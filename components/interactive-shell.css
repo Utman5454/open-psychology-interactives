@@ -1,0 +1,476 @@
+/* =========================================================================
+   Open Psychology Interactives — interactive shell
+   -------------------------------------------------------------------------
+   A shared frame for every interactive in this collection: heading and
+   brief, a controls panel, a stage for the visualisation, a live status
+   line, and a notes area for teaching guidance.
+
+   Why this file exists
+   --------------------
+   Two reasons, both practical:
+
+     1. Consistency. Every interactive looks and behaves the same way, so a
+        student who has used one already knows how to use the next.
+     2. Portability. An interactive can be lifted out of this repository by
+        copying its own folder plus this file and
+        components/interactive-shell.js. It does not depend on main.css,
+        although it inherits the design tokens from main.css when both are
+        loaded, and falls back to its own values when it is used alone.
+
+   Load order when both are used:
+       <link rel="stylesheet" href="../../assets/css/main.css">
+       <link rel="stylesheet" href="../../components/interactive-shell.css">
+
+   No interactive has been built yet. This file defines the frame that the
+   first one will use; see docs/adapting-a-tool.md for the markup contract.
+   ========================================================================= */
+
+/* -------------------------------------------------------------------------
+   Fallback tokens
+   -------------------------------------------------------------------------
+   Each custom property below falls back to a literal value, so the shell is
+   usable on a page that does not load main.css. When main.css *is* loaded,
+   its :root definitions win and the shell adopts the site palette
+   automatically, including the dark theme.
+   ---------------------------------------------------------------------- */
+
+.interactive {
+  --shell-page: var(--colour-page, #ffffff);
+  --shell-surface: var(--colour-surface, #f5f7fa);
+  --shell-raised: var(--colour-surface-raised, #ffffff);
+  --shell-border: var(--colour-border, #d3d9e2);
+  --shell-border-strong: var(--colour-border-strong, #aeb7c4);
+  --shell-text: var(--colour-text, #131820);
+  --shell-muted: var(--colour-text-muted, #4c566a);
+  --shell-accent: var(--colour-accent, #1a4fa0);
+  --shell-accent-soft: var(--colour-accent-soft, #e8eefb);
+  /* Text on an accent-filled surface; flips with the palette so that the
+     light-blue dark-mode accent does not end up carrying white text. */
+  --shell-on-accent: var(--colour-on-accent, #ffffff);
+  --shell-focus: var(--colour-focus, #b45309);
+  --shell-radius: var(--radius-lg, 12px);
+  --shell-gap: var(--space-5, 1.5rem);
+
+  display: block;
+  background-color: var(--shell-raised);
+  color: var(--shell-text);
+  border: 1px solid var(--shell-border);
+  border-radius: var(--shell-radius);
+  overflow: hidden;
+}
+
+/* -------------------------------------------------------------------------
+   Header
+   ---------------------------------------------------------------------- */
+
+.interactive__header {
+  padding: var(--shell-gap);
+  border-bottom: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+
+.interactive__title {
+  margin: 0 0 0.5rem;
+  font-size: 1.375rem;
+  line-height: 1.25;
+}
+
+.interactive__brief {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--shell-muted);
+  font-size: 0.9375rem;
+}
+
+/* -------------------------------------------------------------------------
+   Body: controls beside stage, stacked on narrow screens
+   -------------------------------------------------------------------------
+   Controls come first in the DOM so that the reading and tab order is
+   "change something, then see the result" — which matches how the
+   interactive is explained aloud in class.
+   ---------------------------------------------------------------------- */
+
+.interactive__body {
+  display: grid;
+  gap: var(--shell-gap);
+  padding: var(--shell-gap);
+}
+
+@media (min-width: 52em) {
+  .interactive__body {
+    /* Controls take a fixed-ish column; the stage absorbs the rest. */
+    grid-template-columns: minmax(15rem, 20rem) 1fr;
+    align-items: start;
+  }
+}
+
+/* --- Controls ---------------------------------------------------------- */
+
+.interactive__controls {
+  display: grid;
+  gap: 1.25rem;
+  align-content: start;
+  margin: 0;
+  padding: 1.25rem;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-surface);
+}
+
+/* Group related controls. Always use a <fieldset> with a <legend> in the
+   markup so the grouping is announced, not just drawn. */
+.interactive__controls fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.interactive__controls legend {
+  padding: 0;
+  margin-bottom: 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--shell-muted);
+}
+
+.control {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.control + .control {
+  margin-top: 1rem;
+}
+
+/* Label and current value sit on one line. The value is inside the <label>'s
+   sibling <output>, associated with the input via the `for` attribute. */
+.control__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.control__label {
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.control__value {
+  font-variant-numeric: tabular-nums;
+  font-size: 0.9375rem;
+  font-weight: 650;
+  color: var(--shell-accent);
+}
+
+.control__hint {
+  font-size: 0.8125rem;
+  color: var(--shell-muted);
+}
+
+/* Range inputs get a 44px-tall hit area even though the track is thin. */
+.interactive__controls input[type="range"] {
+  width: 100%;
+  min-height: 2.75rem;
+  accent-color: var(--shell-accent);
+  cursor: pointer;
+}
+
+.interactive__controls select,
+.interactive__controls input[type="number"],
+.interactive__controls input[type="text"] {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.35rem 0.6rem;
+  font: inherit;
+  font-size: 0.9375rem;
+  color: var(--shell-text);
+  background-color: var(--shell-raised);
+  border: 1px solid var(--shell-border-strong);
+  border-radius: var(--radius-sm, 4px);
+}
+
+/* Checkbox and radio rows: the whole label is clickable and comfortably
+   sized for touch. */
+.control--choice {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 2.75rem;
+}
+
+.control--choice input {
+  width: 1.15rem;
+  height: 1.15rem;
+  accent-color: var(--shell-accent);
+  flex: none;
+}
+
+/* --- Stage ------------------------------------------------------------- */
+
+/* Where the visualisation is drawn. Interactives should render inline SVG or
+   a <canvas> here. Any canvas must be paired with a text alternative — see
+   .interactive__readout below and docs/accessibility.md. */
+.interactive__stage {
+  min-height: 16rem;
+  display: grid;
+  align-content: start;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-page);
+}
+
+.interactive__stage svg,
+.interactive__stage canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+
+/* Numeric summary shown beside or beneath the graphic. This doubles as the
+   accessible alternative to the visualisation, so it is never hidden on
+   small screens — it reflows instead. */
+.interactive__readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.interactive__readout div {
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-sm, 4px);
+  background-color: var(--shell-surface);
+}
+
+.interactive__readout dt {
+  font-size: 0.8125rem;
+  color: var(--shell-muted);
+  margin: 0;
+}
+
+.interactive__readout dd {
+  margin: 0.15rem 0 0;
+  font-size: 1.125rem;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+
+/* -------------------------------------------------------------------------
+   Status line
+   -------------------------------------------------------------------------
+   A polite live region. Interactives announce the outcome of an action here
+   ("Sample of 25 drawn; mean 4.8") so that a screen-reader user learns what
+   changed on the stage without having to hunt for it.
+   ---------------------------------------------------------------------- */
+
+.interactive__status {
+  margin: 0;
+  padding: 0.75rem var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+  font-size: 0.9375rem;
+  color: var(--shell-muted);
+  min-height: 3rem;
+  display: flex;
+  align-items: center;
+}
+
+/* -------------------------------------------------------------------------
+   Actions
+   ---------------------------------------------------------------------- */
+
+.interactive__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+}
+
+/* Standalone button styling, so the shell does not require main.css. When
+   main.css is present, `.button` from that file can be used instead. */
+.interactive__actions button {
+  min-height: 2.75rem;
+  padding: 0.4rem 1.25rem;
+  font: inherit;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--shell-on-accent);
+  background-color: var(--shell-accent);
+  border: 1px solid var(--shell-accent);
+  border-radius: var(--radius-md, 8px);
+  cursor: pointer;
+}
+
+.interactive__actions button[data-variant="secondary"] {
+  color: var(--shell-text);
+  background-color: transparent;
+  border-color: var(--shell-border-strong);
+}
+
+.interactive__actions button:hover {
+  filter: brightness(1.08);
+}
+
+.interactive__actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* -------------------------------------------------------------------------
+   Teaching notes
+   -------------------------------------------------------------------------
+   Collapsed by default so the interactive itself is what students meet
+   first. <details> gives keyboard support and correct semantics for free.
+   ---------------------------------------------------------------------- */
+
+.interactive__notes {
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+
+.interactive__notes > summary {
+  padding: 0.85rem var(--shell-gap);
+  font-size: 0.9375rem;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.interactive__notes > summary:focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: -3px;
+}
+
+.interactive__notes > div {
+  padding: 0 var(--shell-gap) var(--shell-gap);
+  max-width: 68ch;
+  font-size: 0.9375rem;
+}
+
+.interactive__notes > div > :last-child {
+  margin-bottom: 0;
+}
+
+/* -------------------------------------------------------------------------
+   Focus, motion and forced colours
+   ---------------------------------------------------------------------- */
+
+/* The shell repeats the site's focus treatment locally so that it survives
+   being used without main.css. */
+.interactive :focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .interactive *,
+  .interactive *::before,
+  .interactive *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Windows High Contrast / forced-colours mode
+   -------------------------------------------------------------------------
+   When forced colours are active the browser discards the author palette and
+   substitutes the reader's system colours. Two consequences drive everything
+   below:
+
+     1. Any boundary drawn with a background tint alone disappears, because
+        backgrounds are replaced. Those boundaries have to be redrawn as
+        borders in a system colour keyword.
+     2. Only system colour keywords (CanvasText, ButtonText, Highlight,
+        GrayText, …) are honoured. A custom property resolving to a hex value
+        is ignored here, which is why this block repeats values rather than
+        using the --shell-* tokens.
+
+   forced-color-adjust is deliberately left at its default of `auto`
+   throughout: overriding it would opt elements out of the reader's chosen
+   palette, which is the opposite of what this mode is for.
+   ---------------------------------------------------------------------- */
+
+@media (forced-colors: active) {
+  /* --- Boundaries ---
+     Panels that were separated from each other by a background tint. */
+  .interactive,
+  .interactive__controls,
+  .interactive__stage,
+  .interactive__readout div {
+    border: 1px solid CanvasText;
+  }
+
+  /* Section dividers within the shell, which were also tint-only. */
+  .interactive__header {
+    border-bottom: 1px solid CanvasText;
+  }
+
+  .interactive__status,
+  .interactive__actions,
+  .interactive__notes {
+    border-top: 1px solid CanvasText;
+  }
+
+  /* --- Interactive control states ---
+     Buttons keep the system's own fill and text. Primary and secondary are
+     distinguished by border weight rather than colour, because in this mode
+     both would otherwise resolve to the same ButtonFace/ButtonText pair. */
+  .interactive__actions button {
+    border: 2px solid ButtonText;
+  }
+
+  .interactive__actions button[data-variant="secondary"] {
+    border-width: 1px;
+  }
+
+  /* GrayText is the system's disabled colour. The author stylesheet dims
+     disabled buttons with opacity, which is *not* replaced in forced-colours
+     mode and would leave faint-but-full-contrast text, so it is reset here
+     and the state carried by colour keyword instead. */
+  .interactive__actions button:disabled {
+    opacity: 1;
+    color: GrayText;
+    border-color: GrayText;
+  }
+
+  /* Text inputs and selects need an explicit boundary for the same reason. */
+  .interactive__controls select,
+  .interactive__controls input[type="number"],
+  .interactive__controls input[type="text"] {
+    border: 1px solid ButtonText;
+  }
+
+  /* --- Focus ---
+     Highlight is the system's selection colour and is guaranteed to contrast
+     with both Canvas and ButtonFace. Both rules are needed: the summary rule
+     in the main stylesheet is more specific than the general one and would
+     otherwise keep its author colour. */
+  .interactive :focus-visible {
+    outline: 3px solid Highlight;
+    outline-offset: 2px;
+  }
+
+  .interactive__notes > summary:focus-visible {
+    outline: 3px solid Highlight;
+    outline-offset: -3px;
+  }
+
+  /* --- Visualisations ---
+     Graphics drawn with `currentColor` follow the system text colour
+     automatically. Interactives should therefore stroke and fill with
+     currentColor rather than fixed values; anything hard-coded will keep its
+     own colour here and may become illegible. Where a chart distinguishes
+     series, it must not rely on hue alone — see docs/accessibility.md. */
+  .interactive__stage svg {
+    forced-color-adjust: auto;
+  }
+}
