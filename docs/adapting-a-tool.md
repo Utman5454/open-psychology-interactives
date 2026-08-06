@@ -1,11 +1,11 @@
 # Adapting a tool
 
-How to take an interactive from this project and change it for your own course,
-and — because the two are the same job — how to build a new one against the
-shared shell.
+How to take a tool from this project and change it for your own course, and —
+because the two are the same job — how to build a new one against the shared
+shell.
 
-> **Current status.** No interactives have been published yet, so there is
-> nothing to copy today. The shell they will be built on
+> **Current status.** No tools have been published yet, so there is nothing to
+> copy today. The shell they will be built on
 > (`components/interactive-shell.css` and `components/interactive-shell.js`)
 > exists and is documented here in full, so a first tool can be written against
 > a settled contract.
@@ -41,20 +41,35 @@ cd open-psychology-interactives
 Everything works from your own disk. There is no install step, no `npm install`,
 nothing to compile.
 
-## What a tool folder contains
+## Where tools live
+
+The repository is organised into five canonical modules. Every tool sits inside
+one of them:
 
 ```
-tools/<collection>/<tool-slug>/
-├── index.html      the page
-├── tool.js         the logic
-├── tool.css        styling specific to this tool (optional)
-└── README.md       what it teaches, and how it was accessibility-checked
+modules/<module-slug>/tools/<tool-slug>/
+├── index.html          the tool itself
+├── metadata.json       the catalogue record
+└── teaching-notes.md   educator guidance
 ```
 
-It depends on three shared files, all referenced with relative paths:
+The five module slugs are fixed:
+
+| Module | Slug |
+| --- | --- |
+| Cognitive Psychology | `cognitive` |
+| Research Methods | `research-methods` |
+| Neuropsychology | `neuropsychology` |
+| Social and Critical Psychology | `social-critical-psychology` |
+| Personality and Individual Differences | `personality-individual-differences` |
+
+Tool-specific CSS and JavaScript live in the same folder, conventionally
+`tool.css` and `tool.js`.
+
+A tool depends on three shared files, all referenced with relative paths:
 
 ```
-assets/css/main.css                 site styling (optional for a tool page)
+assets/css/main.css                 site styling
 components/interactive-shell.css    the shell's styling
 components/interactive-shell.js     the shell's behaviour
 ```
@@ -169,16 +184,16 @@ attributes are what the JavaScript looks for.
 Load order in the page `<head>`:
 
 ```html
-<link rel="stylesheet" href="../../../assets/css/main.css">
-<link rel="stylesheet" href="../../../components/interactive-shell.css">
+<link rel="stylesheet" href="../../../../assets/css/main.css">
+<link rel="stylesheet" href="../../../../components/interactive-shell.css">
 <link rel="stylesheet" href="tool.css">
-<script src="../../../components/interactive-shell.js" defer></script>
+<script src="../../../../components/interactive-shell.js" defer></script>
 <script src="tool.js" defer></script>
 ```
 
-Three levels of `../` because a tool sits at
-`tools/<collection>/<tool-slug>/index.html`. Both scripts use `defer`, which
-also guarantees the shell is defined before `tool.js` runs.
+Four levels of `../` because a tool sits at
+`modules/<module-slug>/tools/<tool-slug>/index.html`. Both scripts use `defer`,
+which also guarantees the shell is defined before `tool.js` runs.
 
 ## The shell: JavaScript API
 
@@ -255,6 +270,31 @@ A complete `tool.js` skeleton:
 })();
 ```
 
+## The other two files
+
+A tool folder is not complete without them.
+
+### `metadata.json`
+
+The catalogue record. The same object is copied into the module's `tools` array
+in `data/catalogue.json`. Required fields are listed in
+[`../CONTRIBUTING.md`](../CONTRIBUTING.md); the full standard is in
+[`../CLAUDE.md`](../CLAUDE.md).
+
+The `status` field is what controls visibility: only `"published"` makes a tool
+appear on its module page. Leave it as `"in-progress"` while you build.
+
+### `teaching-notes.md`
+
+Educator guidance: intended level, learning objectives, estimated duration,
+preparation, suggested lecture or seminar use, the prediction question, the
+activity sequence, debrief questions, likely misconceptions, limitations and
+cautions, accessibility considerations, an optional extension task, and citation
+notes where appropriate.
+
+If you adapt a tool, adapt its teaching notes too — notes that describe a
+different version of the tool are worse than none.
+
 ## Rules worth keeping when you adapt
 
 You may of course do as you like with your copy. These are the constraints the
@@ -264,8 +304,8 @@ originals are built under, and they are cheap to preserve:
   step, no CDN. This is what makes the tools still work in a decade and work
   offline.
 - **Relative paths only.** An absolute path breaks the moment the site is hosted
-  under a sub-path — which it is, at
-  `/open-psychology-interactives/`. Test by opening the file directly from disk.
+  under a sub-path — which it is, at `/open-psychology-interactives/`. The one
+  approved exception is `404.html`; the reason is documented in that file.
 - **Nothing leaves the browser.** No analytics, no external fonts, no fetches to
   third-party services. Student responses stay in the tab.
 - **No copyrighted media.** No photographs, stock images or icon fonts. Graphics
@@ -285,10 +325,12 @@ is the least trouble:
    `/ (root)`.
 3. Keep the `.nojekyll` file at the repository root. Without it GitHub's Jekyll
    step ignores any file or folder whose name begins with an underscore.
-4. Your site appears at `https://<username>.github.io/<repository>/`.
+4. Update the project prefix in `404.html` to match your repository name, and
+   the `canonical` and `og:url` tags in each page's `<head>`.
+5. Your site appears at `https://<username>.github.io/<repository>/`.
 
-Because everything is relative, the same files also work from a university web
-server, a VLE file upload, a USB stick, or a local folder.
+Because everything else is relative, the same files also work from a university
+web server, a VLE file upload, a USB stick, or a local folder.
 
 ## Contributing your version back
 

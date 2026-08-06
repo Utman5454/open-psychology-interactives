@@ -52,12 +52,18 @@
   --colour-focus: #b45309; /* deliberately different hue from --colour-accent
                               so the focus ring is visible on top of links */
 
-  /* --- Collection identity colours ---
-     Used only for thin accent bars and small labels, never as a background
-     for body text, so hue choice cannot compromise text contrast. */
-  --colour-statistics: #1a4fa0;
-  --colour-personality: #7a2e6d;
+  /* --- Module identity colours ---
+     One per canonical module. Used only for thin accent bars and small
+     uppercase labels, never as a background for body text, so hue choice
+     cannot compromise text contrast. Each is also checked as a text colour
+     against --colour-page, because the module label uses it as such.
+     Colour never carries meaning on its own: every module is named in text
+     wherever its accent appears. */
+  --colour-cognitive: #8a4b00;
+  --colour-research-methods: #1a4fa0;
   --colour-neuropsychology: #145c53;
+  --colour-social-critical-psychology: #9e2f45;
+  --colour-personality-individual-differences: #7a2e6d;
 
   /* --- Status colours (for "in preparation" badges) --- */
   --colour-status-bg: #f1ede3;
@@ -122,9 +128,11 @@
     --colour-on-accent: #0f141b;  /*  9.1:1 on --colour-accent */
     --colour-focus: #f0b429;
 
-    --colour-statistics: #8fb6ff;
-    --colour-personality: #db9ccd;
+    --colour-cognitive: #e2ab5f;
+    --colour-research-methods: #8fb6ff;
     --colour-neuropsychology: #6fc3b4;
+    --colour-social-critical-psychology: #f19aa8;
+    --colour-personality-individual-differences: #db9ccd;
 
     --colour-status-bg: #241f14;
     --colour-status-text: #e2cf9f;
@@ -146,9 +154,26 @@
 }
 
 html {
-  /* Anchor links land below the sticky header instead of underneath it. */
+  /* Anchor links, and elements the browser scrolls into view when they take
+     focus, land below the sticky header rather than underneath it. This is
+     what keeps WCAG 2.2 SC 2.4.11 (Focus Not Obscured) satisfied.
+
+     5rem (80px) clears the 68px single-row header. The value must stay at or
+     above the header's real height — see the narrow-viewport override further
+     down, and re-measure if the header's contents change. */
   scroll-padding-top: 5rem;
   -webkit-text-size-adjust: 100%;
+}
+
+/* Below roughly 460px the wordmark wraps onto a second line and the header
+   grows to 122px, reaching 145px at 320px. 5rem would no longer clear it, so
+   a focused element could end up behind the header. 9.5rem (152px) covers the
+   worst case. The breakpoint is 29em (464px), just above the width at which
+   the wordmark stops wrapping, so the two never disagree. */
+@media (max-width: 29em) {
+  html {
+    scroll-padding-top: 9.5rem;
+  }
 }
 
 body {
@@ -458,12 +483,20 @@ hr {
   border-bottom-color: var(--colour-accent);
 }
 
-/* --- Mobile navigation ---------------------------------------------------
-   Below 48em the nav collapses behind the toggle button. The [hidden]
+/* --- Collapsed navigation -------------------------------------------------
+   Below 64em the nav collapses behind the toggle button. The [hidden]
    attribute is what actually hides it, set by assets/js/main.js, so the
    visual state and the accessibility tree can never disagree. With
-   JavaScript disabled the nav simply stays open, which is still usable. */
-@media (max-width: 47.99em) {
+   JavaScript disabled the nav simply stays open, which is still usable.
+
+   The breakpoint is 64em (1024px) rather than the 48em used elsewhere in
+   this file. With seven navigation items — five modules plus Home and
+   Documentation — the full row no longer fits beside the wordmark on a
+   tablet-width viewport, and would wrap onto a second line. Collapsing it
+   instead keeps the header one row tall at every width.
+
+   assets/js/main.js reads the same 64em value; the two must stay in step. */
+@media (max-width: 63.99em) {
   .site-header__inner {
     flex-wrap: wrap;
   }
@@ -485,7 +518,7 @@ hr {
   }
 }
 
-@media (min-width: 48em) {
+@media (min-width: 64em) {
   .nav-toggle {
     display: none;
   }
@@ -706,10 +739,14 @@ hr {
   color: var(--card-accent, var(--colour-accent));
 }
 
-/* Per-collection accent, set on the <li> or card element in the markup. */
-.card--statistics { --card-accent: var(--colour-statistics); }
-.card--personality { --card-accent: var(--colour-personality); }
+/* Per-module accent, set on the <li> or card element in the markup. The
+   modifier suffix is the canonical module slug, so markup, catalogue entries
+   and folder names all use the same identifier. */
+.card--cognitive { --card-accent: var(--colour-cognitive); }
+.card--research-methods { --card-accent: var(--colour-research-methods); }
 .card--neuropsychology { --card-accent: var(--colour-neuropsychology); }
+.card--social-critical-psychology { --card-accent: var(--colour-social-critical-psychology); }
+.card--personality-individual-differences { --card-accent: var(--colour-personality-individual-differences); }
 
 /* -------------------------------------------------------------------------
    8. Status badges and placeholders
@@ -961,7 +998,178 @@ hr {
 }
 
 /* -------------------------------------------------------------------------
-   12. Print
+   12. Windows High Contrast / forced-colours mode
+   -------------------------------------------------------------------------
+   When forced colours are active the browser discards the author palette and
+   substitutes the reader's system colours. Two consequences drive everything
+   below:
+
+     1. Any boundary drawn with a background tint alone disappears, because
+        backgrounds are replaced. Those boundaries have to be redrawn as
+        borders in a system colour keyword.
+     2. Only system colour keywords (CanvasText, ButtonText, LinkText,
+        Highlight, GrayText, …) are honoured. A custom property resolving to a
+        hex value is ignored here, which is why this block repeats values
+        rather than using the --colour-* tokens.
+
+   forced-color-adjust is deliberately left at its default of `auto`
+   throughout: overriding it would opt elements out of the reader's chosen
+   palette, which is the opposite of what this mode is for.
+
+   components/interactive-shell.css carries an equivalent block for the tool
+   shell. The two are kept separate so that either file can be used without
+   the other; do not merge them.
+   ---------------------------------------------------------------------- */
+
+@media (forced-colors: active) {
+
+  /* --- Site chrome boundaries ---
+     The header, footer and tinted sections are separated from the page by a
+     background tint, which is discarded in this mode. */
+  .site-header {
+    border-bottom: 1px solid CanvasText;
+  }
+
+  .site-footer {
+    border-top: 1px solid CanvasText;
+  }
+
+  .site-footer__bottom {
+    border-top: 1px solid CanvasText;
+  }
+
+  .section--tinted {
+    border-block: 1px solid CanvasText;
+  }
+
+  .hero {
+    /* The hero's gradient is dropped; keep the edge it provided. */
+    border-bottom: 1px solid CanvasText;
+  }
+
+  /* --- Navigation --- */
+
+  /* The current page is marked with a coloured underline. Colour alone never
+     carries meaning here — aria-current does the semantic work — but the
+     visual cue should survive, so it is redrawn in the system highlight. */
+  .site-nav__link[aria-current="page"] {
+    border-bottom-color: Highlight;
+  }
+
+  .site-nav__link:hover {
+    border-bottom-color: LinkText;
+  }
+
+  /* The collapsed navigation panel is separated from the header by a border
+     that must remain visible. */
+  .site-nav {
+    border-top-color: CanvasText;
+  }
+
+  /* --- Menu toggle --- */
+  .nav-toggle {
+    border: 1px solid ButtonText;
+  }
+
+  .nav-toggle:hover {
+    border-color: Highlight;
+  }
+
+  /* --- Buttons ---
+     Both variants keep the system's own fill and text. They are distinguished
+     by border weight rather than colour, because in this mode both would
+     otherwise resolve to the same ButtonFace/ButtonText pair. */
+  .button--primary {
+    border: 2px solid ButtonText;
+  }
+
+  .button--secondary {
+    border: 1px solid ButtonText;
+  }
+
+  .button:hover {
+    border-color: Highlight;
+  }
+
+  /* --- Cards ---
+     The card body needs an explicit boundary, and the accent rule across the
+     top is a background colour, so it is redrawn in the system text colour.
+     The module is always named in text beside it, so nothing is lost by the
+     five accents collapsing to one colour here. */
+  .card {
+    border: 1px solid CanvasText;
+  }
+
+  .card::before {
+    background-color: CanvasText;
+  }
+
+  .card:hover {
+    border-color: Highlight;
+  }
+
+  /* --- Panels, placeholders and badges --- */
+  .panel {
+    border: 1px solid CanvasText;
+  }
+
+  .placeholder {
+    border: 2px dashed CanvasText;
+  }
+
+  .badge {
+    border: 1px solid CanvasText;
+  }
+
+  /* A small filled circle; without this it would vanish with the background. */
+  .badge__dot {
+    background-color: CanvasText;
+  }
+
+  /* The numbered step markers are a tinted circle with coloured text. */
+  .steps > li::before {
+    border: 1px solid CanvasText;
+  }
+
+  /* The topic list marker is drawn as a bordered square. */
+  .topic-list > li::before {
+    border-color: CanvasText;
+  }
+
+  /* Inline code keeps its outline. */
+  code {
+    border-color: CanvasText;
+  }
+
+  hr {
+    border-top-color: CanvasText;
+  }
+
+  /* --- Focus ---
+     Highlight is the system's selection colour and is guaranteed to contrast
+     with both Canvas and ButtonFace. The card rule is listed separately
+     because :has() gives it a different specificity. */
+  :focus-visible {
+    outline: 3px solid Highlight;
+    outline-offset: 2px;
+  }
+
+  .card:has(a:focus-visible) {
+    outline: 3px solid Highlight;
+    outline-offset: 2px;
+  }
+
+  /* The skip link sits on top of the page when focused, so it needs an opaque
+     background and a visible edge of its own. */
+  .skip-link {
+    background-color: Canvas;
+    color: CanvasText;
+    border: 2px solid Highlight;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   13. Print
    ---------------------------------------------------------------------- */
 
 @media print {

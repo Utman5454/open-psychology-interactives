@@ -13,7 +13,8 @@
 
    Path handling
    -------------
-   Pages live at different depths (`/index.html`, `/collections/x/index.html`),
+   Pages live at different depths (`/index.html`, `/modules/<slug>/index.html`,
+   `/modules/<slug>/tools/<slug>/index.html`),
    and the site is published under the project sub-path
    `/open-psychology-interactives/`. Rather than hard-coding either, every
    page declares its own way back to the site root:
@@ -71,8 +72,9 @@
       return;
     }
 
-    // The breakpoint here must match the one in main.css (48em).
-    var wideScreen = window.matchMedia("(min-width: 48em)");
+    // The breakpoint here must match the one in main.css (64em). See the
+    // "Collapsed navigation" comment there for why it is 64em and not 48em.
+    var wideScreen = window.matchMedia("(min-width: 64em)");
 
     // Whether the reader has opened the menu. Only meaningful below the
     // breakpoint; above it the navigation is always shown.
@@ -108,6 +110,42 @@
     toggle.addEventListener("click", function () {
       isOpen = !isOpen;
       render();
+    });
+
+    /* Activating a navigation link closes the menu.
+       -----------------------------------------------------------------
+       This is a WCAG 2.2 requirement, not a nicety. SC 2.4.11 (Focus Not
+       Obscured, Minimum) says a focused element must not be entirely hidden
+       behind other content. The site header is `position: sticky`, and while
+       the collapsed menu is expanded it is several hundred pixels tall — so
+       anything focused below it would be underneath the header.
+
+       Closing the menu returns the header to a single row, which the
+       `scroll-padding-top: 5rem` in main.css is sized to clear.
+
+       A link to another page would resolve this by loading a fresh document
+       anyway, but a same-page anchor (Documentation on the home page) does
+       not, so the menu has to be closed explicitly.
+
+       This also covers keyboard activation: pressing Enter on a link fires a
+       click event. */
+    nav.addEventListener("click", function (event) {
+      var link = event.target && event.target.closest
+        ? event.target.closest("a[href]")
+        : null;
+
+      if (!link || !nav.contains(link)) {
+        return;
+      }
+
+      // Collapse first, so the header has already shrunk by the time the
+      // browser performs its own scroll to a same-page anchor.
+      if (!wideScreen.matches && isOpen) {
+        isOpen = false;
+        render();
+      }
+
+      moveFocusToAnchorTarget(link);
     });
 
     // Escape closes the menu from anywhere inside the header.
@@ -152,6 +190,56 @@
     }
   }
 
+  /**
+   * When a link points at an anchor in this same document, move keyboard focus
+   * to the target after the browser has scrolled to it.
+   *
+   * Following an in-page anchor moves the viewport but, in most browsers, not
+   * the keyboard focus — so a keyboard user is scrolled to a new section while
+   * their next Tab continues from the navigation. Moving focus keeps the two
+   * in step, which is also what makes SC 2.4.11 hold: focus lands in the
+   * region the reader was sent to, below the collapsed header, rather than
+   * remaining in a header that may still be overlapping the content.
+   *
+   * Links to another document are ignored — the new page load handles it.
+   *
+   * @param {HTMLAnchorElement} link
+   */
+  function moveFocusToAnchorTarget(link) {
+    var href = link.getAttribute("href") || "";
+    var hashIndex = href.indexOf("#");
+
+    if (hashIndex === -1) {
+      return;
+    }
+
+    var id = href.slice(hashIndex + 1);
+    if (!id) {
+      return;
+    }
+
+    // Present in *this* document? A link such as "../../index.html#documentation"
+    // has a hash but points elsewhere, and getElementById returns null there.
+    var target = document.getElementById(id);
+    if (!target) {
+      return;
+    }
+
+    // Deferred to the end of the task, so the browser's own scroll to the
+    // anchor — which respects scroll-padding-top — has already happened.
+    window.setTimeout(function () {
+      // Section elements are not focusable by default. tabindex="-1" makes
+      // them programmatically focusable without adding a tab stop; it is left
+      // in place afterwards because it has no effect on tab order.
+      if (!target.hasAttribute("tabindex")) {
+        target.setAttribute("tabindex", "-1");
+      }
+      // preventScroll: the browser has already positioned the page correctly;
+      // focusing again without this would scroll a second time.
+      target.focus({ preventScroll: true });
+    }, 0);
+  }
+
   /* -----------------------------------------------------------------------
      2. Footer year
      --------------------------------------------------------------------- */
@@ -173,22 +261,25 @@
 
   /**
    * `data/catalogue.json` is the single machine-readable index of the
-   * project. It is the file a contributor edits when an interactive is
-   * added, and the file any external listing should read.
+   * project. It is the file a contributor edits when a tool is added, and
+   * the file any external listing should read.
    *
-   * On pages that opt in with `data-catalogue-collection="<id>"`, this
+   * On pages that opt in with `data-catalogue-module="<moduleSlug>"`, this
    * function replaces the statically written placeholder with a list built
    * from the catalogue — but only if the catalogue actually contains
-   * published entries for that collection. If the fetch fails (which it
-   * will when the page is opened straight from disk over `file://`, because
-   * browsers block such requests), or if the collection is still empty, the
-   * markup that is already on the page is left exactly as it is.
+   * *published* entries for that module. If the fetch fails (which it will
+   * when the page is opened straight from disk over `file://`, because
+   * browsers block such requests), or if the module has no published tools,
+   * the markup already on the page is left exactly as it is.
    *
-   * That ordering matters: the page must never claim an interactive exists
-   * before one has been published.
+   * That ordering matters: the page must never claim a tool exists before it
+   * has been published. A tool whose `status` is anything other than
+   * "published" — "planned", "in-progress", "draft" — is ignored here, so a
+   * work in progress can be recorded in the catalogue without appearing on
+   * the site as though it were finished.
    */
   function initCatalogue() {
-    var regions = document.querySelectorAll("[data-catalogue-collection]");
+    var regions = document.querySelectorAll("[data-catalogue-module]");
     if (regions.length === 0) {
       return;
     }
@@ -209,7 +300,7 @@
       })
       .then(function (catalogue) {
         Array.prototype.forEach.call(regions, function (region) {
-          renderCollection(region, catalogue);
+          renderModule(region, catalogue);
         });
       })
       .catch(function (error) {
@@ -222,24 +313,30 @@
   }
 
   /**
-   * Render the published interactives for one collection into `region`.
-   * @param {Element} region  Element carrying data-catalogue-collection.
+   * Render the published tools for one module into `region`.
+   * @param {Element} region  Element carrying data-catalogue-module.
    * @param {object} catalogue  Parsed contents of data/catalogue.json.
    */
-  function renderCollection(region, catalogue) {
-    var id = region.getAttribute("data-catalogue-collection");
-    var collections = (catalogue && catalogue.collections) || [];
+  function renderModule(region, catalogue) {
+    var slug = region.getAttribute("data-catalogue-module");
+    var modules = (catalogue && catalogue.modules) || [];
     var match = null;
 
-    for (var i = 0; i < collections.length; i += 1) {
-      if (collections[i].id === id) {
-        match = collections[i];
+    for (var i = 0; i < modules.length; i += 1) {
+      if (modules[i].moduleSlug === slug) {
+        match = modules[i];
         break;
       }
     }
 
-    var tools = (match && match.interactives) || [];
-    if (tools.length === 0) {
+    var tools = (match && match.tools) || [];
+
+    // Only finished work is listed. See the note on initCatalogue.
+    var published = tools.filter(function (tool) {
+      return tool && tool.status === "published";
+    });
+
+    if (published.length === 0) {
       // Nothing published yet — leave the placeholder in place.
       return;
     }
@@ -247,8 +344,8 @@
     var list = document.createElement("ul");
     list.className = "card-grid";
 
-    tools.forEach(function (tool) {
-      list.appendChild(buildToolCard(tool, id));
+    published.forEach(function (tool) {
+      list.appendChild(buildToolCard(tool, slug));
     });
 
     region.textContent = "";
@@ -256,23 +353,35 @@
   }
 
   /**
-   * Build one interactive's card. Uses textContent rather than innerHTML for
-   * all catalogue-supplied strings so that catalogue data can never inject
-   * markup into the page.
-   * @param {object} tool
-   * @param {string} collectionId
+   * Build one tool's card from its catalogue entry. Field names follow the
+   * metadata standard in CLAUDE.md, so a tool's `metadata.json` and its
+   * catalogue entry can be kept identical.
+   *
+   * Uses textContent rather than innerHTML for every catalogue-supplied
+   * string, so catalogue data can never inject markup into the page.
+   *
+   * @param {object} tool  Catalogue entry: title, summary, toolSlug,
+   *   difficulty, estimatedMinutes, and optionally an explicit path.
+   * @param {string} moduleSlug  Canonical module slug.
    * @returns {HTMLLIElement}
    */
-  function buildToolCard(tool, collectionId) {
+  function buildToolCard(tool, moduleSlug) {
     var item = document.createElement("li");
-    item.className = "card card--" + collectionId;
+    item.className = "card card--" + moduleSlug;
 
     var heading = document.createElement("h3");
     heading.className = "card__title";
 
+    // Prefer an explicit path, but derive the canonical one when it is
+    // absent: modules/<moduleSlug>/tools/<toolSlug>/index.html
+    var path = tool.path;
+    if (!path && tool.toolSlug) {
+      path = "modules/" + moduleSlug + "/tools/" + tool.toolSlug + "/index.html";
+    }
+
     var link = document.createElement("a");
-    link.href = fromSiteRoot(tool.path || "");
-    link.textContent = tool.title || "Untitled interactive";
+    link.href = fromSiteRoot(path || "");
+    link.textContent = tool.title || "Untitled tool";
     heading.appendChild(link);
 
     var summary = document.createElement("p");
@@ -282,11 +391,14 @@
     item.appendChild(heading);
     item.appendChild(summary);
 
-    // Optional teaching level / duration metadata, shown only when present.
-    if (tool.level || tool.duration) {
+    // Optional difficulty / duration metadata, shown only when present.
+    var minutes = tool.estimatedMinutes
+      ? tool.estimatedMinutes + " minutes"
+      : "";
+    if (tool.difficulty || minutes) {
       var footer = document.createElement("p");
       footer.className = "card__footer";
-      footer.textContent = [tool.level, tool.duration]
+      footer.textContent = [tool.difficulty, minutes]
         .filter(Boolean)
         .join(" · ");
       item.appendChild(footer);

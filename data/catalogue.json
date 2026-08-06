@@ -2,29 +2,72 @@
   "$comment": [
     "Machine-readable index of Open Psychology Interactives.",
     "This file is the single source of truth for what has been published.",
-    "When you add an interactive, append an entry to the matching collection's",
-    "'interactives' array; assets/js/main.js renders those entries onto the",
-    "collection pages. While an array is empty the page keeps its static",
-    "'in preparation' message, so the site never claims a tool exists before",
-    "it does. See CONTRIBUTING.md for the field-by-field description."
+    "",
+    "When you add a tool, append an entry to the matching module's 'tools'",
+    "array. Entry fields follow the metadata standard in CLAUDE.md, so a",
+    "tool's own metadata.json and its catalogue entry can be kept identical.",
+    "",
+    "assets/js/main.js renders only entries whose status is exactly",
+    "'published'. Anything marked 'planned', 'in-progress' or 'draft' is",
+    "recorded here but does not appear on the site, so a work in progress is",
+    "never presented as finished. While a module has no published tools its",
+    "page keeps its static 'in preparation' message.",
+    "",
+    "See CONTRIBUTING.md for the field-by-field description."
   ],
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "project": {
     "name": "Open Psychology Interactives",
-    "description": "Free, accessible, classroom-ready browser-based teaching tools for statistics, personality and individual differences, and neuropsychology.",
+    "description": "Free, accessible, classroom-ready browser-based teaching tools for cognitive psychology, research methods, neuropsychology, social and critical psychology, and personality and individual differences.",
     "repository": "https://github.com/utman5454/open-psychology-interactives",
     "site": "https://utman5454.github.io/open-psychology-interactives/",
+    "basePath": "/open-psychology-interactives/",
     "licence": "MIT",
+    "accessibilityTarget": "WCAG 2.2 AA",
     "updated": "2026-08-06"
   },
-  "collections": [
+  "modules": [
     {
-      "id": "statistics",
-      "title": "Statistics",
-      "shortTitle": "Statistics",
-      "path": "collections/statistics/index.html",
-      "toolsDirectory": "tools/statistics/",
-      "summary": "Interactives for the inferential ideas that students most often meet as formulae first and intuition second: sampling variation, uncertainty, and what a test statistic is actually responding to.",
+      "id": "cognitive",
+      "moduleSlug": "cognitive",
+      "module": "Cognitive Psychology",
+      "shortTitle": "Cognitive",
+      "path": "modules/cognitive/index.html",
+      "toolsDirectory": "modules/cognitive/tools/",
+      "summary": "Tools for the processes students are asked to take on trust: how attention selects, how memory reconstructs rather than replays, and how perception and judgement are shaped by what the system does with limited capacity.",
+      "status": "in-preparation",
+      "plannedTopics": [
+        {
+          "title": "Selective attention and its costs",
+          "detail": "What is missed while attending elsewhere, and why the cost is a property of the task rather than of the person."
+        },
+        {
+          "title": "Working memory capacity",
+          "detail": "Holding, manipulating and losing information, and what the limit does and does not predict."
+        },
+        {
+          "title": "Reconstructive memory",
+          "detail": "How recall is assembled at retrieval, and how confidence and accuracy come apart."
+        },
+        {
+          "title": "Perception as inference",
+          "detail": "Why the same input supports more than one interpretation, and what the system does about it."
+        },
+        {
+          "title": "Judgement under uncertainty",
+          "detail": "Heuristics as a sensible response to limited information rather than as simple error."
+        }
+      ],
+      "tools": []
+    },
+    {
+      "id": "research-methods",
+      "moduleSlug": "research-methods",
+      "module": "Research Methods",
+      "shortTitle": "Research Methods",
+      "path": "modules/research-methods/index.html",
+      "toolsDirectory": "modules/research-methods/tools/",
+      "summary": "Tools for design and inference: how much a statistic moves from sample to sample, what uncertainty around an estimate means, and what a test statistic is actually responding to.",
       "status": "in-preparation",
       "plannedTopics": [
         {
@@ -48,47 +91,16 @@
           "detail": "The trade-off between sample size, effect size and the chance of detecting a real effect."
         }
       ],
-      "interactives": []
-    },
-    {
-      "id": "personality",
-      "title": "Personality and Individual Differences",
-      "shortTitle": "Personality",
-      "path": "collections/personality/index.html",
-      "toolsDirectory": "tools/personality/",
-      "summary": "Interactives for trait structure and psychological measurement: where factors come from, what reliability and validity buy you, and why profiles are harder to interpret than they look.",
-      "status": "in-preparation",
-      "plannedTopics": [
-        {
-          "title": "Trait structure and the Big Five",
-          "detail": "How correlations between many items resolve into a small number of broad dimensions."
-        },
-        {
-          "title": "Factor analysis, made visible",
-          "detail": "Watching a correlation matrix reduce to factors, and seeing how the number retained changes the story."
-        },
-        {
-          "title": "Reliability",
-          "detail": "How internal consistency and test–retest reliability respond to scale length and item quality."
-        },
-        {
-          "title": "Validity and measurement error",
-          "detail": "Why an unreliable measure limits the correlation it can show with anything else."
-        },
-        {
-          "title": "Reading a trait profile",
-          "detail": "Norms, percentiles and standard error of measurement, and the width of the band around a single score."
-        }
-      ],
-      "interactives": []
+      "tools": []
     },
     {
       "id": "neuropsychology",
-      "title": "Neuropsychology",
+      "moduleSlug": "neuropsychology",
+      "module": "Neuropsychology",
       "shortTitle": "Neuropsychology",
-      "path": "collections/neuropsychology/index.html",
-      "toolsDirectory": "tools/neuropsychology/",
-      "summary": "Interactives for brain–behaviour reasoning and the classic experimental tasks, so students can experience the paradigm before they read the effect size.",
+      "path": "modules/neuropsychology/index.html",
+      "toolsDirectory": "modules/neuropsychology/tools/",
+      "summary": "Tools for brain–behaviour reasoning and the classic experimental tasks, so students can experience the paradigm before they read the effect size.",
       "status": "in-preparation",
       "plannedTopics": [
         {
@@ -109,10 +121,76 @@
         },
         {
           "title": "Interpreting deficits",
-          "detail": "Why performance on a task rarely maps onto one region, and how case evidence accumulates."
+          "detail": "Why performance on a task rarely maps onto one region, and why network and disconnection accounts are often the better explanation."
         }
       ],
-      "interactives": []
+      "tools": []
+    },
+    {
+      "id": "social-critical-psychology",
+      "moduleSlug": "social-critical-psychology",
+      "module": "Social and Critical Psychology",
+      "shortTitle": "Social and Critical",
+      "path": "modules/social-critical-psychology/index.html",
+      "toolsDirectory": "modules/social-critical-psychology/tools/",
+      "summary": "Tools for social influence and for the critical questions that follow it: who was studied, what a measure licenses you to claim, and where an empirical pattern ends and an interpretation of it begins.",
+      "status": "in-preparation",
+      "plannedTopics": [
+        {
+          "title": "Conformity and social influence",
+          "detail": "How group size, unanimity and private versus public response change the pressure a situation exerts."
+        },
+        {
+          "title": "Attitudes and what a measure captures",
+          "detail": "Why self-report, implicit and behavioural measures of the same attitude often disagree, and what follows from that."
+        },
+        {
+          "title": "Intergroup bias and its measurement",
+          "detail": "What group-level findings support at the level of an individual, and the inferential step that is not licensed."
+        },
+        {
+          "title": "Sampling, generalisability and WEIRD samples",
+          "detail": "Which populations the evidence base was built on, and how that constrains the claims that can be made from it."
+        },
+        {
+          "title": "Constructing the object of study",
+          "detail": "How choosing a definition and a measure shapes the finding, and how contested constructs are handled honestly."
+        }
+      ],
+      "tools": []
+    },
+    {
+      "id": "personality-individual-differences",
+      "moduleSlug": "personality-individual-differences",
+      "module": "Personality and Individual Differences",
+      "shortTitle": "Personality",
+      "path": "modules/personality-individual-differences/index.html",
+      "toolsDirectory": "modules/personality-individual-differences/tools/",
+      "summary": "Tools for trait structure and psychological measurement: where factors come from, what reliability and validity buy you, and why an individual profile is harder to interpret than it looks.",
+      "status": "in-preparation",
+      "plannedTopics": [
+        {
+          "title": "Trait structure and the Big Five",
+          "detail": "How correlations among many items resolve into a small number of broad dimensions, and what is lost in the reduction."
+        },
+        {
+          "title": "Factor analysis, made visible",
+          "detail": "Watching a correlation matrix reduce to factors, and seeing how the number retained changes the story."
+        },
+        {
+          "title": "Reliability",
+          "detail": "How internal consistency and test–retest reliability respond to scale length and item quality."
+        },
+        {
+          "title": "Validity and measurement error",
+          "detail": "Why an unreliable measure puts a ceiling on the correlation it can show with anything else."
+        },
+        {
+          "title": "Reading a trait profile",
+          "detail": "Norms, percentiles and the standard error of measurement, and how wide the band around a single score really is."
+        }
+      ],
+      "tools": []
     }
   ]
 }

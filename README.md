@@ -1,7 +1,9 @@
 # Open Psychology Interactives
 
-Free, accessible, classroom-ready browser-based teaching tools for **statistics**,
-**personality and individual differences**, and **neuropsychology**.
+Free, accessible, classroom-ready browser-based teaching tools for university
+psychology, organised into five modules: **cognitive psychology**, **research
+methods**, **neuropsychology**, **social and critical psychology**, and
+**personality and individual differences**.
 
 **Site:** <https://utman5454.github.io/open-psychology-interactives/>
 *(live once GitHub Pages is enabled — see [Publishing](#publishing-with-github-pages))*
@@ -10,21 +12,21 @@ Free, accessible, classroom-ready browser-based teaching tools for **statistics*
 
 ## Status
 
-**Scaffold stage. No interactives have been published yet.**
+**Scaffold stage. No tools have been published yet.**
 
-What exists today: the landing page, three collection pages, the shared
-interactive shell that tools will be built on, and the documentation. The
-collection pages describe their intended scope and say plainly that they are
-empty. Nothing here is ready to use in a class yet.
+What exists today: the landing page, five module pages, the shared interactive
+shell that tools will be built on, and the documentation. The module pages
+describe their intended scope and say plainly that they are empty. Nothing here
+is ready to use in a class yet.
 
-All fifteen planned topics are unclaimed — see [Contributing](#contributing).
+All twenty-five planned topics are unclaimed — see [Contributing](#contributing).
 
 ## What this is
 
 Several ideas in a psychology degree are far easier to see than to be told. What
 a sampling distribution does when you change *n*. Why an unreliable measure caps
 the correlation it can produce. What a Stroop trial actually feels like. This
-project builds small, single-purpose interactives for exactly those ideas.
+project builds small, single-purpose tools for exactly those ideas.
 
 Every tool is a plain web page:
 
@@ -33,8 +35,21 @@ Every tool is a plain web page:
 - **No accounts, no tracking, no cookies** — nothing a student does is recorded
   or transmitted.
 - **Works offline** — download the folder and it still runs.
-- **WCAG 2.1 AA** as a merge requirement, not a follow-up task.
+- **WCAG 2.2 AA** as a merge requirement, not a follow-up task.
 - **MIT licensed** — reuse, edit and re-host without asking.
+
+## The five modules
+
+| Module | Slug | Scope |
+| --- | --- | --- |
+| [Cognitive Psychology](modules/cognitive/index.html) | `cognitive` | Attention, working memory, reconstructive memory, perception, judgement |
+| [Research Methods](modules/research-methods/index.html) | `research-methods` | Sampling distributions, confidence intervals, p-values, correlation, power |
+| [Neuropsychology](modules/neuropsychology/index.html) | `neuropsychology` | Attention and executive paradigms, span, dissociation logic, interpreting deficits |
+| [Social and Critical Psychology](modules/social-critical-psychology/index.html) | `social-critical-psychology` | Social influence, attitude measurement, intergroup bias, generalisability, contested constructs |
+| [Personality and Individual Differences](modules/personality-individual-differences/index.html) | `personality-individual-differences` | Trait structure, factor analysis, reliability, validity, profile interpretation |
+
+The slugs are canonical: they are the folder name, the CSS modifier and the
+`moduleSlug` in the catalogue.
 
 ## Using it locally
 
@@ -53,11 +68,11 @@ cd open-psychology-interactives
 Then open `index.html` in a browser.
 
 **One caveat when opening from disk.** Browsers block `fetch()` on `file://`
-URLs, so the catalogue-driven listing on the collection pages does not run. The
+URLs, so the catalogue-driven listing on the module pages does not run. The
 pages detect this and keep their static content, so nothing appears broken —
-you simply see the same "in preparation" text either way. Once interactives
-exist, they will still open and work perfectly from disk; only the auto-generated
-*listing* needs a server.
+you simply see the same "in preparation" text either way. Once tools exist, they
+will still open and work perfectly from disk; only the auto-generated *listing*
+needs a server.
 
 If you want the listing too, serve the folder over HTTP with anything you
 already have:
@@ -92,68 +107,96 @@ its Jekyll build over the site, which silently ignores any file or directory
 whose name begins with an underscore. Keeping the file switches that step off
 and publishes the repository exactly as it is. Do not delete it.
 
+### The `404.html` exception
+
+`404.html` is the only file that uses root-absolute paths beginning
+`/open-psychology-interactives/`. GitHub Pages serves the error document at the
+address that was *requested*, not at its own location, so relative paths inside
+it would resolve against a mistyped deep URL and break. The reasoning is
+documented at the top of the file.
+
 ### Forking to your own site
 
 Fork or copy the repository, enable Pages the same way, and your version appears
-at `https://<your-username>/<your-repository>/`. Every internal link is relative,
-so the site works under any project sub-path without any configuration. The only
-absolute URLs are the `canonical` and Open Graph tags in each page's `<head>`,
-which you should update to your own address.
+at `https://<your-username>.github.io/<your-repository>/`. Every internal link
+is relative, so the site works under any project sub-path without configuration.
+Two things do need updating in a fork:
+
+- the project prefix in `404.html`;
+- the `canonical` and Open Graph tags in each page's `<head>`.
 
 ## Repository layout
 
 ```
 .
-├── index.html                     landing page
+├── index.html                     landing page, five module cards
+├── 404.html                       error page (see note above)
 ├── .nojekyll                      switches off GitHub's Jekyll build
+├── CLAUDE.md                      project rules and standards
 ├── assets/
 │   ├── css/main.css               design tokens, site chrome, cards, footer
 │   └── js/main.js                 nav toggle, footer year, catalogue loading
 ├── components/
-│   ├── interactive-shell.css      shared frame for every interactive
+│   ├── interactive-shell.css      shared frame for every tool
 │   └── interactive-shell.js       live region, reset wiring, slider labelling
-├── collections/
-│   ├── statistics/index.html      collection landing pages
-│   ├── personality/index.html
-│   └── neuropsychology/index.html
-├── tools/
-│   ├── statistics/                one folder per interactive (all empty today)
-│   ├── personality/
-│   └── neuropsychology/
+├── modules/
+│   ├── cognitive/
+│   │   ├── index.html             module landing page
+│   │   └── tools/                 one folder per tool (empty today)
+│   ├── research-methods/
+│   │   ├── index.html
+│   │   └── tools/
+│   ├── neuropsychology/
+│   │   ├── index.html
+│   │   └── tools/
+│   ├── social-critical-psychology/
+│   │   ├── index.html
+│   │   └── tools/
+│   └── personality-individual-differences/
+│       ├── index.html
+│       └── tools/
 ├── data/catalogue.json            machine-readable index of what is published
 ├── docs/
 │   ├── teaching-guide.md          using the tools in lectures, labs and revision
-│   ├── accessibility.md           the standard, how it is tested, known gaps
+│   ├── accessibility.md           the WCAG 2.2 AA standard, testing, known gaps
 │   └── adapting-a-tool.md         copying, changing and re-hosting a tool
 ├── CONTRIBUTING.md
 └── LICENSE
 ```
 
+Each tool will live at `modules/<module-slug>/tools/<tool-slug>/` and contain
+`index.html`, `metadata.json` and `teaching-notes.md`.
+
 `data/catalogue.json` is the single source of truth for what has been published.
-Adding an entry there is what makes a tool appear on its collection page; the
-page's HTML does not need editing.
+Adding an entry there is what makes a tool appear on its module page; the page's
+HTML does not need editing. A tool is listed only when its `status` is exactly
+`"published"`, so work in progress can be recorded without being presented as
+finished.
 
 ## Documentation
 
-- **[Teaching guide](docs/teaching-guide.md)** — using the interactives in
-  lectures, labs and independent study, with collection-specific cautions.
-- **[Accessibility](docs/accessibility.md)** — the standard every page is held
-  to, how it is checked, and what is still missing.
+- **[Teaching guide](docs/teaching-guide.md)** — using the tools in lectures,
+  labs and independent study, with module-specific cautions.
+- **[Accessibility](docs/accessibility.md)** — the WCAG 2.2 AA standard every
+  page is held to, how it is checked, and what is still missing.
 - **[Adapting a tool](docs/adapting-a-tool.md)** — copying a tool for your own
   course, the interactive shell's markup contract and JavaScript API, and
   hosting your version.
-- **[Contributing](CONTRIBUTING.md)** — ground rules, folder conventions and the
-  pre-merge checklist.
+- **[Contributing](CONTRIBUTING.md)** — ground rules, folder conventions,
+  metadata standard and the pre-merge checklist.
+- **[CLAUDE.md](CLAUDE.md)** — the project's standing rules for structure,
+  pedagogy, accuracy and privacy.
 
 ## Contributing
 
 Contributions are welcome, and not only code: bug reports, clearer wording,
 testing with assistive technology, and suggestions for tools are all useful.
 
-If you want to build an interactive, **open an issue first** saying which topic
-you are taking. Then read [CONTRIBUTING.md](CONTRIBUTING.md) for the folder
-layout and the checklist, and [docs/adapting-a-tool.md](docs/adapting-a-tool.md)
-for the shell's API and a working skeleton to copy.
+If you want to build a tool, **open an issue first** saying which module and
+topic you are taking. Then read [CONTRIBUTING.md](CONTRIBUTING.md) for the
+folder layout, metadata standard and checklist, and
+[docs/adapting-a-tool.md](docs/adapting-a-tool.md) for the shell's API and a
+working skeleton to copy.
 
 The ground rules in short: no dependencies, no backend, relative paths only,
 nothing leaves the browser, no copyrighted media or commercial test material,

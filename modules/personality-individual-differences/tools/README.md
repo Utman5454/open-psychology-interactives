@@ -1,0 +1,80 @@
+# modules/personality-individual-differences/tools/
+
+Tools for the **Personality and Individual Differences** module live here, one
+folder per tool.
+
+**This folder is currently empty.** No personality and individual differences
+tool has been built yet. The module page at
+`modules/personality-individual-differences/index.html` describes the planned
+scope.
+
+## Canonical tool structure
+
+Each tool is a self-contained folder named with a short, lowercase, hyphenated
+slug that matches its `toolSlug` in `data/catalogue.json`:
+
+```
+modules/personality-individual-differences/tools/<tool-slug>/
+├── index.html          the tool itself
+├── metadata.json       the catalogue record (see CLAUDE.md metadata standard)
+└── teaching-notes.md   educator guidance (see CLAUDE.md teaching-notes standard)
+```
+
+Tool-specific CSS and JavaScript live in the same folder — `tool.css` and
+`tool.js` are the usual names. Self-contained means the folder can be copied
+out of this repository and still work, provided `assets/css/main.css` and the
+two `components/` files travel with it. Nothing is fetched from a CDN and
+nothing is bundled.
+
+A tool page sits four levels below the repository root, so shared assets are
+referenced as `../../../../assets/css/main.css`.
+
+## Adding one
+
+1. Read [`../../../CONTRIBUTING.md`](../../../CONTRIBUTING.md) for the full
+   checklist.
+2. Read [`../../../docs/adapting-a-tool.md`](../../../docs/adapting-a-tool.md)
+   for the interactive-shell markup contract and a working skeleton.
+3. Create the folder and build the page against the shell.
+4. Write `metadata.json` and `teaching-notes.md`.
+5. Add the same record to the `personality-individual-differences` module's
+   `tools` array in
+   [`../../../data/catalogue.json`](../../../data/catalogue.json).
+
+The module page lists a tool only when its catalogue `status` is exactly
+`"published"`, so a work in progress can be recorded without appearing on the
+site as finished.
+
+## Questionnaire items: a hard rule
+
+Tools in this module often need scale items. Use only public-domain or openly
+licensed item pools, and record the source in the tool's `metadata.json` and
+`teaching-notes.md`. **Do not reproduce commercial inventories**, in whole or
+in part, even as "examples".
+
+## Requirements for anything that scores a response
+
+- Say plainly on the page that the result is a classroom illustration, not an
+  assessment of the person using it.
+- Keep every response in the browser tab: nothing stored, nothing transmitted.
+- Do not request names, health information, protected characteristics or other
+  identifying details.
+- Do not produce employment-suitability, clinical or risk judgements.
+- Treat traits as probabilistic, dimensional and context-sensitive. Never imply
+  that a score determines behaviour.
+- Distinguish states from traits, and facets from broad domains, where the
+  distinction affects interpretation.
+- Show the uncertainty around a score — a band, not a point — wherever a
+  profile is displayed.
+- Label simulated values as simulated. Never present generated numbers as norms
+  or validated cut-offs.
+
+See [`../../../docs/accessibility.md`](../../../docs/accessibility.md).
+
+## Planned topics
+
+Trait structure and the Big Five · factor analysis · reliability · validity and
+measurement error · reading a trait profile.
+
+All are unclaimed. Open an issue before starting so two people do not build the
+same thing.

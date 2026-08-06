@@ -5,8 +5,8 @@ and it gets better mainly through people who teach these topics adding the
 demonstration they already run by hand.
 
 > **Current status.** The repository holds the site scaffold: landing page,
-> three collection pages, the shared interactive shell, and documentation. No
-> interactives have been built yet. All fifteen planned topics are unclaimed.
+> five module pages, the shared interactive shell, and documentation. No tools
+> have been built yet. All twenty-five planned topics are unclaimed.
 
 ---
 
@@ -21,7 +21,20 @@ You do not have to write code to be useful.
 | **Improve the writing** | The explanations on these pages are the teaching. Clearer wording is a real contribution. |
 | **Improve the documentation** | Especially the teaching guide, which needs input from people who have used tools like these in a real room. |
 | **Test with assistive technology** | The most valuable thing currently missing. See [`docs/accessibility.md`](docs/accessibility.md). |
-| **Build an interactive** | The main event. See below. |
+| **Build a tool** | The main event. See below. |
+
+## The five modules
+
+Every tool belongs to exactly one module. These slugs are canonical — they are
+the folder name, the CSS modifier and the `moduleSlug` in the catalogue.
+
+| Module | Slug |
+| --- | --- |
+| Cognitive Psychology | `cognitive` |
+| Research Methods | `research-methods` |
+| Neuropsychology | `neuropsychology` |
+| Social and Critical Psychology | `social-critical-psychology` |
+| Personality and Individual Differences | `personality-individual-differences` |
 
 ## Before you start building
 
@@ -29,7 +42,7 @@ You do not have to write code to be useful.
 plan to show it. This avoids two people building the same thing, and it is much
 cheaper to reshape an idea in a comment thread than after the code is written.
 
-Planned topics are listed on each collection page and in
+Planned topics are listed on each module page and in
 [`data/catalogue.json`](data/catalogue.json). A topic that is not on those lists
 is not thereby excluded — propose it.
 
@@ -39,13 +52,17 @@ These are firm, and a pull request that breaks one will be asked to change
 before it is merged.
 
 1. **No dependencies.** Plain HTML, CSS and vanilla JavaScript. No React, no
-   npm, no bundler, no TypeScript compile step, no CDN link, no external font.
-   The project's central promise is that these pages still work in ten years and
-   work with no internet connection.
-2. **No backend, no external API.** Everything runs in the browser. If a tool
-   needs data, that data is a small JSON file or an array in the source.
+   Vue, no npm, no bundler, no TypeScript compile step, no CDN link, no external
+   font. The project's central promise is that these pages still work in ten
+   years and work with no internet connection.
+2. **No backend, no external API, no database.** Everything runs in the browser.
+   If a tool needs data, that data is a small JSON file or an array in the
+   source.
 3. **Relative paths only.** The site is published under
-   `/open-psychology-interactives/`, so any path starting with `/` breaks.
+   `/open-psychology-interactives/`, so any path starting with `/` breaks. The
+   single approved exception is `404.html`, which must use root-absolute paths
+   because GitHub Pages serves it at the address that was requested rather than
+   at its own location; the reasoning is documented in that file.
 4. **Nothing leaves the browser.** No analytics, no telemetry, no cookies, no
    third-party requests. Student responses stay in the tab and are never stored
    or transmitted.
@@ -55,12 +72,18 @@ before it is merged.
 6. **No copyrighted test material.** Do not reproduce commercial personality
    inventories or neuropsychological test batteries, in whole or in part. Use
    public-domain or openly licensed item pools and record the source.
-7. **Accessibility is a merge requirement.** WCAG 2.1 AA. Not a follow-up issue.
+7. **Accessibility is a merge requirement.** WCAG 2.2 AA. Not a follow-up issue.
 8. **Never claim a tool exists before it does.** Placeholder text says plainly
-   what is not there yet. This matters: a lecturer who plans a seminar around a
-   tool that turns out to be a stub has had their time wasted.
+   what is not there yet, and the catalogue lists a tool on its module page only
+   when its `status` is exactly `"published"`. This matters: a lecturer who
+   plans a seminar around a tool that turns out to be a stub has had their time
+   wasted.
+9. **British English** in learner-facing text.
+10. **No diagnosis or assessment.** Nothing here scores, labels, profiles or
+    assesses the person using it, and no tool asks for names, health
+    information or protected characteristics.
 
-## Building an interactive
+## Building a tool
 
 ### 1. Decide the one idea
 
@@ -73,73 +96,111 @@ that misconception visible and then untenable.
 ### 2. Create the folder
 
 ```
-tools/<collection>/<tool-slug>/
-├── index.html
-├── tool.js
-├── tool.css        (optional)
-└── README.md
+modules/<module-slug>/tools/<tool-slug>/
+├── index.html          the tool itself
+├── metadata.json       the catalogue record
+├── teaching-notes.md   educator guidance
+├── tool.js             the logic
+└── tool.css            styling specific to this tool (optional)
 ```
 
-`<collection>` is `statistics`, `personality` or `neuropsychology`. The slug is
-short, lowercase and hyphenated, and matches the `id` you will add to the
-catalogue.
+The slug is short, lowercase and hyphenated, and matches the `toolSlug` you will
+put in the catalogue.
 
 ### 3. Build against the shared shell
 
 [`docs/adapting-a-tool.md`](docs/adapting-a-tool.md) has the full markup
-contract and JavaScript API for `components/interactive-shell.{css,js}`,
-plus a working skeleton to copy. Use the shell: it is what makes every tool
-behave consistently and handles the live region, reset wiring and slider
-labelling that are easy to get subtly wrong.
+contract and JavaScript API for `components/interactive-shell.{css,js}`, plus a
+working skeleton to copy. Use the shell: it is what makes every tool behave
+consistently and handles the live region, reset wiring and slider labelling that
+are easy to get subtly wrong.
 
 Your page needs the standard site header, footer and skip link. Copy them from
-`collections/statistics/index.html` and fix the relative depth — a tool page is
-three levels deep, so assets are at `../../../`.
+`modules/research-methods/index.html` and fix the relative depth — a tool page
+is four levels deep, so assets are at `../../../../`.
 
-### 4. Register it in the catalogue
+### 4. Follow the learning loop
 
-Add an entry to the matching collection's `interactives` array in
+A substantive tool normally contains a concise learning objective; a prediction
+before the reveal; a meaningful manipulation; a live consequence; a
+plain-language interpretation; one or more challenge tasks; explanatory feedback
+rather than only "correct" or "incorrect"; a "What this demonstrates" section; a
+"What this does not demonstrate" section; and reset plus worked-example
+controls.
+
+Do not force these into a tool where a different structure is pedagogically
+stronger, but keep the underlying predict–manipulate–observe–explain–apply
+sequence.
+
+### 5. Write `metadata.json`
+
+The same object goes into the module's `tools` array in
 [`data/catalogue.json`](data/catalogue.json):
 
 ```json
 {
   "id": "sampling-distribution",
   "title": "Sampling distribution of the mean",
-  "path": "tools/statistics/sampling-distribution/index.html",
+  "module": "Research Methods",
+  "moduleSlug": "research-methods",
+  "toolSlug": "sampling-distribution",
   "summary": "Draw repeated samples from a population you control and watch the distribution of the sample mean take shape.",
-  "teaches": "Why a sample statistic varies, and how that variation shrinks with n.",
-  "level": "Introductory",
-  "duration": "5–10 minutes",
-  "added": "2026-09-01"
+  "learningObjectives": [
+    "Explain why a sample statistic varies from sample to sample.",
+    "Predict how the spread of the sampling distribution responds to n."
+  ],
+  "topics": ["sampling", "variability", "central limit theorem"],
+  "interactionTypes": ["slider", "repeated simulation"],
+  "estimatedMinutes": 10,
+  "difficulty": "Introductory",
+  "status": "published",
+  "version": "1.0.0",
+  "lastUpdated": "2026-09-01",
+  "licenceCode": "MIT",
+  "licenceContent": "CC BY 4.0",
+  "privacy": "No data collected; all computation in the browser.",
+  "accessibilityNotes": "Keyboard operable; chart paired with a text readout; reduced motion honoured."
 }
 ```
 
-| Field | Required | Notes |
-| --- | --- | --- |
-| `id` | yes | Matches the folder name. |
-| `title` | yes | Sentence case, no trailing full stop. |
-| `path` | yes | Relative to the repository root; the site script resolves it per page. |
-| `summary` | yes | One or two sentences, aimed at a lecturer deciding whether to open it. |
-| `teaches` | no | The single idea, for maintainers and future indexes. |
-| `level` | no | e.g. `Introductory`, `Intermediate`. Shown on the card. |
-| `duration` | no | Realistic classroom time. Shown on the card. |
-| `added` | no | ISO date. |
+| Field | Notes |
+| --- | --- |
+| `id` | Matches the folder name and `toolSlug`. |
+| `title` | Sentence case, no trailing full stop. |
+| `module` / `moduleSlug` | Full module name and its canonical slug. |
+| `toolSlug` | The folder name. The site derives the path from this. |
+| `summary` | One or two sentences, aimed at a lecturer deciding whether to open it. |
+| `learningObjectives` | Array of statements a student should be able to make afterwards. |
+| `topics`, `interactionTypes` | Arrays of short keywords, for search and filtering. |
+| `estimatedMinutes` | Realistic classroom time, as a number. Shown on the card. |
+| `difficulty` | e.g. `Introductory`, `Intermediate`. Shown on the card. |
+| `status` | **Only `"published"` makes a tool appear on the site.** Use `"planned"`, `"in-progress"` or `"draft"` while building. |
+| `version`, `lastUpdated` | Semantic version and ISO date. |
+| `licenceCode`, `licenceContent` | Licence for the code and for the written content. |
+| `privacy` | One sentence on what the tool does with responses. |
+| `accessibilityNotes` | What you did and what you checked. |
 
-Adding the entry is what makes the tool appear on its collection page —
-`assets/js/main.js` reads the catalogue and replaces the "nothing published yet"
-placeholder. You do not need to edit the collection page's HTML.
+Optionally include `path` to override the derived location. Preserve any
+additional fields the repository has already established.
 
-Also update the collection page's status badge and the landing page's status
-section once a collection is no longer empty, so that the pages stop saying
-nothing has been published.
+### 6. Write `teaching-notes.md`
 
-### 5. Write the tool's README
+Intended level; learning objectives; estimated duration; preparation; suggested
+lecture or seminar use; the prediction question; the activity sequence; debrief
+questions; likely misconceptions; limitations and cautions; accessibility
+considerations; an optional extension task; and citation or evidence notes where
+appropriate.
 
-A short paragraph on what it teaches, any assumptions built into it (a
-distribution, a fixed effect size, an item pool and its source), and the
-accessibility checks you ran.
+### 7. Integrate it
 
-### 6. Check it
+- Add the catalogue entry (step 5). The module page picks it up from there — no
+  HTML edit is needed to list it.
+- Update the module page's status badge and the landing page's status section
+  once a module is no longer empty, so the pages stop saying nothing has been
+  published.
+- Verify the tool can be reached from both the home page and its module page.
+
+### 8. Check it
 
 Run through this before opening a pull request, and say in the description what
 you ran:
@@ -147,16 +208,24 @@ you ran:
 **Function**
 - [ ] Works when opened directly from disk (`file://`), not just from a server.
 - [ ] Works in at least two browsers, one of them not Chromium-based.
-- [ ] Reset returns the tool to exactly its starting state.
+- [ ] Reset restores the entire initial state.
+- [ ] Prediction-before-reveal behaves correctly, including on a second run.
+- [ ] Random and worked-example controls behave correctly.
 - [ ] No errors or warnings in the browser console.
+- [ ] `metadata.json` is valid JSON and matches the catalogue entry.
+- [ ] Teaching notes match what the tool actually does.
 
 **Accessibility** — the fuller list is in [`docs/accessibility.md`](docs/accessibility.md)
 - [ ] Fully operable by keyboard; focus always visible; tab order sensible.
+- [ ] Focus never hidden behind the sticky header (WCAG 2.2, 2.4.11).
+- [ ] Anything draggable also works without dragging (2.5.7).
+- [ ] Pointer targets at least 24 × 24px (2.5.8); the shell's 44px default
+      clears this.
 - [ ] No keyboard trap.
 - [ ] Every graphic has a visible text equivalent showing the same numbers.
 - [ ] Changes announced through `shell.announce()`.
 - [ ] Every control has a real `<label>`; groups use `<fieldset>`/`<legend>`.
-- [ ] Nothing depends on colour alone.
+- [ ] Nothing depends on colour, hover or timing alone.
 - [ ] Contrast at least 4.5:1 for text, in both light and dark themes.
 - [ ] Usable at 320px wide and at 400% zoom, with no horizontal page scrolling.
 - [ ] `prefers-reduced-motion` honoured.
@@ -165,9 +234,13 @@ you ran:
       route to the same concept.
 
 **Content**
-- [ ] The statistics or psychology is correct, and any simplification is stated.
+- [ ] The psychology and statistics are correct, and any simplification is
+      stated on the page as well as in the source.
+- [ ] Simulated values are labelled as simulated, and are not presented as norms
+      or cut-offs.
+- [ ] No causal claim the design does not support.
+- [ ] Contested constructs and interpretations are flagged as contested.
 - [ ] Item pools or datasets are openly licensed, and the source is recorded.
-- [ ] Teaching notes are present.
 
 ## Style
 
@@ -181,7 +254,9 @@ own `tool.css`.
 **JavaScript** — two-space indent, semicolons, single quotes, `const`/`let`
 (never `var` in new tool code — the older syntax in `components/` and
 `assets/js/` is deliberate, for maximum compatibility when a page is opened
-from disk). Wrap tool code in an IIFE. Comment the *why*, not the *what*.
+from disk). Wrap tool code in an IIFE. Avoid unexplained constants and
+duplicated magic numbers. Validate inputs and prevent impossible states.
+Comment the *why*, not the *what*, and comment the educational model.
 
 **Prose** — British English. Address the reader as "you". Say what a thing does,
 not how exciting it is. No claims about tools that do not exist.
@@ -190,8 +265,8 @@ not how exciting it is. No claims about tools that do not exist.
 
 1. Fork, and branch from `main`.
 2. Keep the change to one thing: one tool, or one fix.
-3. In the description, say what you built, which topic it covers, and which
-   checks you ran.
+3. In the description, say what you built, which module and topic it covers, and
+   which checks you ran.
 4. Expect review comments about wording and accessibility. They are not
    criticism of the work; consistency across the collection is much of what
    makes it usable.
