@@ -304,6 +304,14 @@
     return audioContext;
   }
 
+  /* Called from the Start click, which is a user gesture: a context created
+     or resumed here is running by the time the first tone is scheduled. */
+  function startAudio() {
+    var ctx = ensureAudio();
+    if (ctx && ctx.state === "suspended" && ctx.resume) { ctx.resume(); }
+    return ctx;
+  }
+
   function blip(spec, pan) {
     var ctx = ensureAudio();
     if (!ctx) { return; }
@@ -1021,14 +1029,19 @@
     var tag = event.target && event.target.tagName;
     if (tag === "SELECT" || tag === "INPUT" || tag === "TEXTAREA") { return; }
     if (tag === "BUTTON" && event.target !== targetButton) { return; }
-    if (!state || targetButton.disabled) { return; }
+    if (!state || (state.mode !== "practice" && state.mode !== "run")) { return; }
+
+    // While a trial is running the space bar is the response key, so it must
+    // not scroll the page - including between items, when the button is
+    // briefly disabled and the old guard let the keypress through.
     event.preventDefault();
+    if (event.repeat) { return; }
     pressTarget();
   });
 
   startPractice.addEventListener("click", function () {
     cancelPending();
-    if (state.audio === "on") { ensureAudio(); }
+    if (state.audio === "on") { startAudio(); }
     state.mode = "practice";
     state.index = 0;
     state.queue = [null];
@@ -1040,7 +1053,7 @@
 
   startRun.addEventListener("click", function () {
     cancelPending();
-    if (state.audio === "on") { ensureAudio(); }
+    if (state.audio === "on") { startAudio(); }
     state.mode = "run";
     state.index = 0;
     state.queue = shuffle(PROBE_TYPES.slice());
@@ -1077,17 +1090,8 @@
     blip(AUDIO.attended, -1);
     later(function () { blip(AUDIO.ignored, 1); }, 400);
     later(function () { blip(AUDIO.markedProbe, 1); }, 900);
-
-    // Testing the sound and then hearing nothing in the trial is the failure
-    // this guards against: a successful test now switches the trial tones on
-    // as well, so the thing that was just checked is the thing that will play.
-    // The dropdown still switches them back off.
-    state.audio = "on";
-    audioSelect.value = "on";
-
     shell.announce("Three tones: the attended side on the left, the ignored " +
-      "side on the right, then the different tone a marked item gets. " +
-      "Sound is on for the trial - use the menu above to turn it off again.",
+      "side on the right, then the different tone a marked item gets.",
       { immediate: true });
   });
 
@@ -1347,7 +1351,7 @@
       noticed: false,
       side: "left",
       rule: "one",
-      audio: "off",
+      audio: "on",
       practiceDone: false,
       runsDone: 0
     };
@@ -1374,7 +1378,7 @@
 
     sideSelect.value = "left";
     ruleSelect.value = "one";
-    audioSelect.value = "off";
+    audioSelect.value = "on";
     sideSelect.disabled = true;
     ruleSelect.disabled = true;
     audioSelect.disabled = true;

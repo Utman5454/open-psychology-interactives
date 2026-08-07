@@ -20,11 +20,10 @@ keep them apart.
   observation anyone will get.
 - **The tones are optional and synthesised.** No audio files, no speech, no
   network. They give real left–right separation with headphones and they carry
-  the physical-salience manipulation, but they carry no words. They start
-  switched off; pressing **Test the sound** switches them on for the trial as
-  well as playing the three calibration tones, so a headphone check cannot
-  leave you with a silent task. The menu above the button still turns them off
-  again.
+  the physical-salience manipulation, but they carry no words. They are on by
+  default, because a dichotic-listening analogue that is silent unless you find
+  a setting is the wrong default. **Test the sound** is a headphone check, and
+  the menu switches to a visual-only alternative for anyone who wants it.
 - **Every trial is followed by a full transcript** of both streams, which is
   the text alternative for both the visual display and the tones.
 
@@ -230,7 +229,8 @@ why: it absorbs all five, which is its strength and its problem.
 - The attended side is marked by border weight, a filled label and a caret
   glyph — three carriers, none a hue. The marked probe is larger, bolder and
   underlined.
-- Audio is off by default, opt-in, low-gain, with a test button; a full
+- Audio is on by default, low-gain, with a test button and a one-control
+  switch to a visual-only alternative; a full
   transcript of every trial follows it.
 - The live stream area is `aria-hidden` — reading both sides aloud would
   destroy the selection the task is about.
