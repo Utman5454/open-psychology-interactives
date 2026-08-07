@@ -4,11 +4,13 @@ How to take a tool from this project and change it for your own course, and —
 because the two are the same job — how to build a new one against the shared
 shell.
 
-> **Current status.** No tools have been published yet, so there is nothing to
-> copy today. The shell they will be built on
-> (`components/interactive-shell.css` and `components/interactive-shell.js`)
-> exists and is documented here in full, so a first tool can be written against
-> a settled contract.
+> **Current status.** Twelve tools are published, all in Personality and
+> Individual Differences, so there is plenty to copy. They are built on the
+> shared shell (`components/interactive-shell.css` and
+> `components/interactive-shell.js`), documented here in full, plus
+> `components/tool-kit.css`, which styles the page furniture around the shell —
+> prediction panels, feedback boxes, verdicts, tables and charts. A tool folder
+> plus those four files is self-contained.
 
 ---
 
@@ -66,16 +68,24 @@ The five module slugs are fixed:
 Tool-specific CSS and JavaScript live in the same folder, conventionally
 `tool.css` and `tool.js`.
 
-A tool depends on three shared files, all referenced with relative paths:
+A tool depends on four shared files, all referenced with relative paths:
 
 ```
-assets/css/main.css                 site styling
+assets/css/main.css                 site styling and design tokens
 components/interactive-shell.css    the shell's styling
+components/tool-kit.css             page furniture around the shell
 components/interactive-shell.js     the shell's behaviour
 ```
 
-To lift a tool out of this repository entirely, take its folder plus those three
+To lift a tool out of this repository entirely, take its folder plus those four
 files and keep the relative paths between them intact.
+
+`tool-kit.css` styles the parts of a tool page that sit outside the
+interactive itself: prediction panels, feedback boxes, verdict boxes, data
+tables, charts and stage tracks. It was added once eleven tools existed and the
+same four hundred lines were otherwise going to be maintained in a dozen
+places. The one exception is `12-alpha-trap`, which predates it and carries its
+own copy.
 
 ## The three most common adaptations
 

@@ -2,10 +2,10 @@
 
 How to use Open Psychology Interactives in university teaching.
 
-> **Current status.** The site scaffold exists; no tools have been published
-> yet. This guide sets out how the tools are intended to be used and what each
-> one will provide, so that it is ready when the first tools land and so
-> contributors know what they are building towards.
+> **Current status.** Twelve tools are published, all in Personality and
+> Individual Differences; each carries its own `teaching-notes.md` with a
+> suggested sequence, debrief questions and limitations. This guide covers what
+> applies across all of them. The other four modules are still scaffold only.
 
 ---
 

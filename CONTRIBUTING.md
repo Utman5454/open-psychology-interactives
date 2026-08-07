@@ -4,9 +4,10 @@ Thank you for considering it. This project is for teaching staff and students,
 and it gets better mainly through people who teach these topics adding the
 demonstration they already run by hand.
 
-> **Current status.** The repository holds the site scaffold: landing page,
-> five module pages, the shared interactive shell, and documentation. No tools
-> have been built yet. All twenty-five planned topics are unclaimed.
+> **Current status.** Twelve tools are published, all of them in Personality
+> and Individual Differences. The other four modules hold the scaffold —
+> module page, shared interactive shell and documentation — and are unclaimed.
+> See `data/catalogue.json` for the authoritative list.
 
 ---
 

@@ -12,14 +12,20 @@ methods**, **neuropsychology**, **social and critical psychology**, and
 
 ## Status
 
-**Scaffold stage. No tools have been published yet.**
+**Twelve tools published, all in Personality and Individual Differences.**
 
-What exists today: the landing page, five module pages, the shared interactive
-shell that tools will be built on, and the documentation. The module pages
-describe their intended scope and say plainly that they are empty. Nothing here
-is ready to use in a class yet.
+That module covers trait structure and facets, person–situation interaction,
+states versus traits, factor rotation, reliability, response styles,
+intelligence-test construction, culture-fair testing, behaviour genetics,
+gene–environment interaction, explanation and underdetermination, and
+self-esteem dynamics. Each is a self-contained page with teaching notes.
 
-All twenty-five planned topics are unclaimed — see [Contributing](#contributing).
+The other four modules — Cognitive, Research Methods, Neuropsychology, and
+Social and Critical — hold the scaffold only: module page, shared interactive
+shell and documentation. Their planned topics are unclaimed; see
+[Contributing](#contributing).
+
+`data/catalogue.json` is the authoritative list of what is published.
 
 ## What this is
 

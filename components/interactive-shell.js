@@ -22,8 +22,7 @@
        shell.bindRange('#sample-size', { format: n => n + ' cases' });
        shell.announce('Sample of 25 drawn. Mean 4.8.');
 
-   No interactive has been built yet; this module is the foundation the
-   first one will be written against.
+   Every published interactive is written against this module.
 
    Exposed as a global (window.InteractiveShell) rather than an ES module so
    that a single interactive folder can be opened directly from disk over

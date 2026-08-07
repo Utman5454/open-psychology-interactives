@@ -41,7 +41,8 @@ modules/personality-individual-differences/tools/<tool-slug>/
 Tool-specific CSS and JavaScript live in the same folder — `tool.css` and
 `tool.js` are the usual names. Self-contained means the folder can be copied
 out of this repository and still work, provided `assets/css/main.css` and the
-two `components/` files travel with it. Nothing is fetched from a CDN and
+three `components/` files (`interactive-shell.css`, `tool-kit.css` and
+`interactive-shell.js`) travel with it. Nothing is fetched from a CDN and
 nothing is bundled.
 
 A tool page sits four levels below the repository root, so shared assets are
