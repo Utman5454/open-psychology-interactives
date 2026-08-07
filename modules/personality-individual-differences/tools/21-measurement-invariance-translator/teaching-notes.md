@@ -125,6 +125,10 @@ intentions.
 
 ## Accessibility considerations
 
+- **One item's sliders are on screen at a time**, chosen with the "item to
+  adjust" radios at the top of the controls. All sixteen parameters stay live
+  and every item stays in the chart; this only decides which four sliders are
+  in front of the learner, so the picture they change never scrolls away.
 - Each item's parameter group is a `fieldset` whose floated `legend` carries
   the item text, so sliders are never announced orphaned.
 - Every slider announces what it controls in words — "how readily this item is

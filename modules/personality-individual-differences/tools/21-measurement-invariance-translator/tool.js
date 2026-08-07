@@ -204,6 +204,7 @@
     interceptsB: [3.0, 3.0, 3.0, 3.0],
     latentA: 0,
     latentB: 0,
+    activeItem: 0,
     stage: "predict"
   };
   var state = null;
@@ -239,10 +240,28 @@
 
   /* --- Build the parameter controls -------------------------------------- */
 
+  /* One item's four sliders at a time.
+     Sixteen sliders in one column runs to well over two screens: the learner
+     scrolls down to reach item 4's intercept and the picture it changes has
+     gone off the top. The parameters are all still here and all still live —
+     the selector decides which set is on screen, and the chart always shows
+     every item, so the comparison the tool is about is never hidden. */
   function buildControls() {
     clear(controlsHost);
     // Discard the previous generation's syncs along with their elements.
     itemSyncs = [];
+
+    var groups = [];
+
+    var chooser = make("fieldset", "param-chooser");
+    var chooserLegend = make("legend", "param-chooser__legend", "Item to adjust");
+    chooser.appendChild(chooserLegend);
+    controlsHost.appendChild(chooser);
+
+    function showItem(index) {
+      state.activeItem = index;
+      groups.forEach(function (group, i) { group.hidden = i !== index; });
+    }
 
     ITEMS.forEach(function (item, index) {
       var group = make("fieldset", "param-group");
@@ -298,7 +317,26 @@
       });
 
       controlsHost.appendChild(group);
+      groups.push(group);
+
+      var choice = make("label", "control--choice");
+      var radio = document.createElement("input");
+      radio.type = "radio";
+      radio.name = "active-item";
+      radio.value = String(index);
+      radio.checked = index === state.activeItem;
+      radio.addEventListener("change", function () {
+        if (!radio.checked) { return; }
+        showItem(index);
+        shell.announce("Now adjusting item " + (index + 1) + ": " + item.text + ".");
+      });
+      choice.appendChild(radio);
+      choice.appendChild(document.createTextNode(
+        "Item " + (index + 1) + ": " + item.text));
+      chooser.appendChild(choice);
     });
+
+    showItem(state.activeItem);
   }
 
   bindRange($("#latent-a"), {
