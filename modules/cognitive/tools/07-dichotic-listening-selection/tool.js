@@ -307,8 +307,22 @@
   function blip(spec, pan) {
     var ctx = ensureAudio();
     if (!ctx) { return; }
-    if (ctx.state === "suspended" && ctx.resume) { ctx.resume(); }
 
+    // A suspended context reports a currentTime that does not advance, so a
+    // tone scheduled against it can be dropped rather than delayed. Resume
+    // first and read the clock afterwards; resume() resolves immediately when
+    // the context is already running.
+    if (ctx.state === "suspended" && ctx.resume) {
+      var resumed = ctx.resume();
+      if (resumed && resumed.then) {
+        resumed.then(function () { schedule(ctx, spec, pan); });
+        return;
+      }
+    }
+    schedule(ctx, spec, pan);
+  }
+
+  function schedule(ctx, spec, pan) {
     var t = ctx.currentTime;
     var osc = ctx.createOscillator();
     var gain = ctx.createGain();
@@ -1069,8 +1083,17 @@
     blip(AUDIO.attended, -1);
     later(function () { blip(AUDIO.ignored, 1); }, 400);
     later(function () { blip(AUDIO.markedProbe, 1); }, 900);
+
+    // Testing the sound and then hearing nothing in the trial is the failure
+    // this guards against: a successful test now switches the trial tones on
+    // as well, so the thing that was just checked is the thing that will play.
+    // The dropdown still switches them back off.
+    state.audio = "on";
+    audioSelect.value = "on";
+
     shell.announce("Three tones: the attended side on the left, the ignored " +
-      "side on the right, then the different tone a marked item gets.",
+      "side on the right, then the different tone a marked item gets. " +
+      "Sound is on for the trial - use the menu above to turn it off again.",
       { immediate: true });
   });
 

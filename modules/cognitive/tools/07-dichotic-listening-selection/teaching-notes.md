@@ -20,7 +20,11 @@ keep them apart.
   observation anyone will get.
 - **The tones are optional and synthesised.** No audio files, no speech, no
   network. They give real left–right separation with headphones and they carry
-  the physical-salience manipulation, but they carry no words.
+  the physical-salience manipulation, but they carry no words. They start
+  switched off; pressing **Test the sound** switches them on for the trial as
+  well as playing the three calibration tones, so a headphone check cannot
+  leave you with a silent task. The menu above the button still turns them off
+  again.
 - **Every trial is followed by a full transcript** of both streams, which is
   the text alternative for both the visual display and the tones.
 
