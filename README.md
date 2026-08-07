@@ -12,18 +12,37 @@ methods**, **neuropsychology**, **social and critical psychology**, and
 
 ## Status
 
-**Twelve tools published, all in Personality and Individual Differences.**
+**Seventy-five tools published, across all five modules.**
 
-That module covers trait structure and facets, person–situation interaction,
-states versus traits, factor rotation, reliability, response styles,
-intelligence-test construction, culture-fair testing, behaviour genetics,
-gene–environment interaction, explanation and underdetermination, and
-self-esteem dynamics. Each is a self-contained page with teaching notes.
+| Module | Tools |
+| --- | --- |
+| Cognitive Psychology | 12 |
+| Research Methods | 21 |
+| Neuropsychology | 12 |
+| Social and Critical Psychology | 12 |
+| Personality and Individual Differences | 18 |
 
-The other four modules — Cognitive, Research Methods, Neuropsychology, and
-Social and Critical — hold the scaffold only: module page, shared interactive
-shell and documentation. Their planned topics are unclaimed; see
-[Contributing](#contributing).
+Cognitive covers covert orienting, visual search, inattentional and change
+blindness, the attentional blink, interference, selection, dual-task cost,
+working-memory load, false memory and source monitoring, framing, and a
+comparison between human attention and what "attention" names in a transformer.
+Research Methods runs from question-to-method fit, operationalisation,
+confounding and sampling through reflexive thematic analysis to distribution,
+sampling, inference, uncertainty, effect size, power, the general linear model
+and multiplicity. Neuropsychology teaches inference from lesion evidence:
+dissociation logic, disconnection, neglect, visual fields, memory systems,
+aphasia profiles, executive demands, lateralisation, face recognition,
+assessment design and recovery. Social and Critical pairs mainstream social
+psychology with critical analysis: epistemology, category construction, the
+attitude–behaviour gap, conformity, the self, discourse, norm formation,
+minimal groups, crowds, power, prejudice measurement, and person versus setting.
+Personality and Individual Differences covers trait structure and facets,
+person–situation interaction, states versus traits, factor rotation,
+reliability, response styles, intelligence-test construction, culture-fair
+testing, behaviour genetics, gene–environment interaction, explanation and
+underdetermination, and self-esteem dynamics.
+
+Each tool is a self-contained page with teaching notes.
 
 `data/catalogue.json` is the authoritative list of what is published.
 
@@ -75,9 +94,8 @@ Then open `index.html` in a browser.
 
 **One caveat when opening from disk.** Browsers block `fetch()` on `file://`
 URLs, so the catalogue-driven listing on the module pages does not run. The
-pages detect this and keep their static content, so nothing appears broken: the
-Personality and Individual Differences page still lists every published tool from
-its own markup, and the modules with nothing published still say so. Tools
+pages detect this and keep their static content, so nothing appears broken:
+every module page lists its published tools from its own markup. Tools
 themselves open and work perfectly from disk; only the auto-generated *listing*
 needs a server.
 
