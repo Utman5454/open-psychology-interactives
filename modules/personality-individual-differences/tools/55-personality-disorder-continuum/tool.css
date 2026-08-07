@@ -1,0 +1,141 @@
+/* =========================================================================
+   Personality Disorder Continuum — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. What is
+   particular here is the dimensional profile, the population scatter with
+   its category line, and the list of judged selections.
+   ========================================================================= */
+
+#continuum .interactive__controls,
+#continuum .interactive__stage {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #continuum .interactive__body {
+    grid-template-columns: minmax(0, 21rem) minmax(0, 1fr);
+  }
+}
+
+#continuum .control + .control {
+  margin-top: var(--space-3);
+}
+
+.preset-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.preset-buttons .button {
+  font-size: var(--text-xs);
+  padding: 0.35rem 0.7rem;
+  min-height: 2.75rem;
+}
+
+/* -------------------------------------------------------------------------
+   The dimensional profile
+   -------------------------------------------------------------------------
+   The second profile is drawn as a narrower bar directly beneath the first
+   and is also given its own column in the table, so the comparison never
+   depends on telling two colours apart.
+   ---------------------------------------------------------------------- */
+
+.continuum__bar--second {
+  fill: var(--colour-personality-individual-differences);
+  opacity: 0.75;
+}
+
+/* -------------------------------------------------------------------------
+   The population scatter and its category line
+   ---------------------------------------------------------------------- */
+
+.scatter__points {
+  stroke: var(--colour-text-muted);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-opacity: 0.35;
+  fill: none;
+}
+
+.continuum__line {
+  stroke: var(--colour-social-critical-psychology);
+  stroke-width: 2.4;
+  stroke-dasharray: 6 4;
+}
+
+.continuum__marker {
+  stroke: var(--colour-accent);
+  stroke-width: 3;
+  stroke-linecap: round;
+  fill: none;
+}
+
+[data-category-verdict] {
+  margin-top: var(--space-2);
+}
+
+/* -------------------------------------------------------------------------
+   Judged selections
+   -------------------------------------------------------------------------
+   Each item begins with "Belongs in the answer" or "Does not belong", so the
+   border colour repeats information that is already in the text.
+   ---------------------------------------------------------------------- */
+
+.challenge__results {
+  margin: var(--space-4) 0 0;
+  padding-left: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--space-3);
+}
+
+.challenge__results > li {
+  margin-top: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+
+.challenge__results > li[data-defensible="yes"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+
+.challenge__results > li[data-defensible="no"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+
+.challenge__results p {
+  margin: 0;
+}
+
+/* The unknowns panel sits inside the stage, where it belongs — it is part of
+   the output, not an afterthought. */
+#continuum .interactive__stage .panel--caution {
+  margin-top: var(--space-5);
+}
+
+@media (forced-colors: active) {
+  .scatter__points {
+    stroke: CanvasText;
+    stroke-opacity: 1;
+  }
+
+  .continuum__line {
+    stroke: Highlight;
+  }
+
+  .continuum__marker {
+    stroke: CanvasText;
+  }
+
+  .continuum__bar--second {
+    fill: Highlight;
+  }
+
+  .challenge__results > li {
+    border: 1px solid CanvasText;
+  }
+}

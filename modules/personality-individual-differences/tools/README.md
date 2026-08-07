@@ -25,6 +25,7 @@ folder per tool.
 | Gene × Environment Interaction Visualiser | [`42-gene-environment-interaction-visualiser/`](42-gene-environment-interaction-visualiser/) | Gene-environment interaction: how the sampled environmental range decides which theory a study appears to support |
 | Emotional-Intelligence Claims Laboratory | [`49-emotional-intelligence-claims-laboratory/`](49-emotional-intelligence-claims-laboratory/) | Construct validity: convergent, discriminant and incremental evidence, and what an attractive label can hide |
 | Self-Esteem Stability Tracker | [`50-self-esteem-stability-tracker/`](50-self-esteem-stability-tracker/) | Self-esteem dynamics: level, volatility, domain contingency and recovery as four separable characteristics |
+| Personality Disorder Continuum | [`55-personality-disorder-continuum/`](55-personality-disorder-continuum/) | Personality pathology as a continuum: why unusual traits are not sufficient, and what changes when a category line is drawn |
 
 <!-- PUBLISHED:END -->
 
