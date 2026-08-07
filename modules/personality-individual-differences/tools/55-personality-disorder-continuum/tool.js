@@ -295,7 +295,27 @@
     "Four configurations worth comparing. The first two have identical trait " +
     "extremity, which is the point of them.";
 
+  /* Two views, one at a time.
+     Six sliders, a rule, a threshold, two charts and two tables on one screen
+     meant the learner could not tell which output answered which control. The
+     dimensional view and the categorical view are separate questions, so they
+     are separate steps; the profile itself is shared, and step 2 draws its
+     line across whatever step 1 was left set to. */
+  var STEPS = {
+    "1": {
+      hint: "Set a profile and read what it does and does not support. Nothing " +
+            "here is a category yet.",
+      announce: "Step 1. The dimensional view."
+    },
+    "2": {
+      hint: "The profile is as you left it. This step asks what changes when a " +
+            "line is drawn across it, and what does not.",
+      announce: "Step 2. Drawing a category line."
+    }
+  };
+
   var INITIAL = {
+    step: "1",
     values: { extremity: 85, rigidity: 20, persistence: 35, distress: 15, impact: 20, impairment: 10 },
     rule: "traits",
     threshold: 60,
@@ -364,6 +384,23 @@
       : "Second profile hidden.");
   });
 
+  $$('input[name="continuum-step"]').forEach(function (input) {
+    input.addEventListener("change", function () {
+      if (!input.checked) { return; }
+      state.step = input.value;
+      applyStep();
+      shell.announce(STEPS[state.step].announce + " " + STEPS[state.step].hint,
+        { immediate: true });
+    });
+  });
+
+  function applyStep() {
+    $$("[data-step]").forEach(function (el) {
+      el.hidden = el.getAttribute("data-step") !== state.step;
+    });
+    $("[data-step-hint]").textContent = STEPS[state.step].hint;
+  }
+
   $$("[data-preset]").forEach(function (button) {
     button.addEventListener("click", function () {
       var preset = PRESETS[button.getAttribute("data-preset")];
@@ -378,6 +415,8 @@
   });
 
   function applyState() {
+    $('input[name="continuum-step"][value="' + state.step + '"]').checked = true;
+    applyStep();
     DIMENSIONS.forEach(function (dimension) {
       $("#" + dimension.id + "-range").value = String(state.values[dimension.id]);
     });

@@ -54,6 +54,14 @@ If you want to project it, the "Grouped by how they were collected" ordering is
 the version to have on screen; the block structure is obvious at the back of a
 lecture theatre.
 
+## Two steps
+
+The laboratory asks one question at a time. **Step 1** is what the measures
+have in common: the sliders, the ordering and the matrix. **Step 2** is whether
+any of it adds anything: the scatterplot and the incremental analysis. The
+model is shared, so whatever is set in step 1 is what step 2 analyses, and
+moving between them changes nothing except what is on screen.
+
 ## The demonstration worth doing from the front
 
 1. Show the matrix in the administered order. Ask which pairs are large.
@@ -85,7 +93,7 @@ depend on how each measure was collected rather than on the label.
    across-method correlations do not move at all.
 5. **Move the mix slider to 100.** Now the self-report scale correlates with
    the tasks and not with the personality questionnaire.
-6. **Run the incremental analysis.** Add the self-report scale; note the
+6. **Move to step 2 and run the incremental analysis.** Add the self-report scale; note the
    change. Then add the emotion-management task instead and note that the
    measure with the *smaller* raw correlation adds more.
 7. **Judge the five claims.** They are scored against whatever the student has

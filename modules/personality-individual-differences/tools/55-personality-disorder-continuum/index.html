@@ -277,11 +277,23 @@
             </p>
           </header>
 
-          <div class="interactive__body">
+          <div class="interactive__body interactive__body--pinned">
 
             <form class="interactive__controls" data-interactive-controls>
 
-              <fieldset>
+              <fieldset class="steps">
+                <legend>Where you are</legend>
+                <label class="control--choice">
+                  <input type="radio" name="continuum-step" value="1" checked>
+                  1. The dimensional view
+                </label>
+                <label class="control--choice">
+                  <input type="radio" name="continuum-step" value="2">
+                  2. Drawing a category line
+                </label>
+                <p class="control__hint" data-step-hint></p>
+              </fieldset>
+              <fieldset data-step="1">
                 <legend>Load a configuration</legend>
                 <div class="preset-buttons">
                   <button class="button button--secondary" type="button" data-preset="working">
@@ -300,7 +312,7 @@
                 <p class="control__hint" data-preset-note></p>
               </fieldset>
 
-              <fieldset>
+              <fieldset data-step="1">
                 <legend>The six dimensions</legend>
 
                 <div class="control">
@@ -359,7 +371,7 @@
 
               </fieldset>
 
-              <fieldset>
+              <fieldset data-step="2">
                 <legend>How the category is defined</legend>
                 <label class="control--choice">
                   <input type="radio" name="rule" value="traits" checked>
@@ -383,7 +395,7 @@
                 </div>
               </fieldset>
 
-              <fieldset>
+              <fieldset data-step="1">
                 <legend>Comparison</legend>
                 <label class="control--choice">
                   <input type="checkbox" id="compare-toggle">
@@ -396,56 +408,67 @@
 
             <div class="interactive__stage" data-interactive-stage>
 
-              <h4 class="stage__heading">The dimensional view</h4>
-              <figure class="chart">
-                <figcaption class="visually-hidden">
-                  The profile's position on each of the six dimensions, from 0
-                  to 100
-                </figcaption>
-                <svg class="chart__svg" data-profile-chart viewBox="0 0 460 216"
-                     aria-hidden="true" focusable="false"></svg>
-                <div class="table-scroll">
-                  <table class="chart__table">
-                    <caption class="visually-hidden">
-                      Each dimension, its value from 0 to 100 and that value in
-                      words
-                    </caption>
-                    <thead data-profile-head></thead>
-                    <tbody data-profile-table></tbody>
-                  </table>
-                </div>
-              </figure>
+              <!-- Step 1: the profile itself. Pinned, because it is what the six
+                   sliders move and they run past the fold. -->
+              <div class="stage__primary" data-step="1">
+                <h4 class="stage__heading">The dimensional view</h4>
+                <figure class="chart">
+                  <figcaption class="visually-hidden">
+                    The profile's position on each of the six dimensions, from 0
+                    to 100
+                  </figcaption>
+                  <svg class="chart__svg" data-profile-chart viewBox="0 0 460 216"
+                       aria-hidden="true" focusable="false"></svg>
+                  <div class="table-scroll">
+                    <table class="chart__table">
+                      <caption class="visually-hidden">
+                        Each dimension, its value from 0 to 100 and that value in
+                        words
+                      </caption>
+                      <thead data-profile-head></thead>
+                      <tbody data-profile-table></tbody>
+                    </table>
+                  </div>
+                </figure>
+              </div>
 
-              <dl class="interactive__readout" data-readout></dl>
+              <div data-step="1">
+                <dl class="interactive__readout" data-readout></dl>
+              </div>
 
-              <h4 class="stage__heading">The categorical view</h4>
-              <figure class="chart">
-                <figcaption class="visually-hidden">
-                  800 fictional profiles plotted by trait extremity and
-                  functioning difficulty, with the category line drawn across
-                  them and this profile marked with a cross
-                </figcaption>
-                <svg class="chart__svg" data-population-chart viewBox="0 0 266 258"
-                     aria-hidden="true" focusable="false"></svg>
-                <div class="table-scroll">
-                  <table class="chart__table">
-                    <caption class="visually-hidden">
-                      Which side of the line this profile falls on under each
-                      rule, and what proportion of the fictional population
-                      falls above it
-                    </caption>
-                    <tbody data-category-table></tbody>
-                  </table>
-                </div>
-              </figure>
+              <!-- Step 2: the same profile, with a line drawn across it. -->
+              <div class="stage__primary" data-step="2">
+                <h4 class="stage__heading">The categorical view</h4>
+                <figure class="chart">
+                  <figcaption class="visually-hidden">
+                    800 fictional profiles plotted by trait extremity and
+                    functioning difficulty, with the category line drawn across
+                    them and this profile marked with a cross
+                  </figcaption>
+                  <svg class="chart__svg" data-population-chart viewBox="0 0 266 258"
+                       aria-hidden="true" focusable="false"></svg>
+                  <div class="table-scroll">
+                    <table class="chart__table">
+                      <caption class="visually-hidden">
+                        Which side of the line this profile falls on under each
+                        rule, and what proportion of the fictional population
+                        falls above it
+                      </caption>
+                      <tbody data-category-table></tbody>
+                    </table>
+                  </div>
+                </figure>
+              </div>
 
-              <p class="control__hint" data-category-verdict></p>
+              <div data-step="2">
+                <p class="control__hint" data-category-verdict></p>
 
-              <p class="control__hint">
-                The 800 profiles are invented, generated once from a documented
-                seed to make the arithmetic of cut-offs visible. They are not a
-                prevalence estimate and describe no real population.
-              </p>
+                <p class="control__hint">
+                  The 800 profiles are invented, generated once from a documented
+                  seed to make the arithmetic of cut-offs visible. They are not a
+                  prevalence estimate and describe no real population.
+                </p>
+              </div>
 
               <div class="verdict">
                 <h4 class="verdict__title">What this configuration does and does not show</h4>

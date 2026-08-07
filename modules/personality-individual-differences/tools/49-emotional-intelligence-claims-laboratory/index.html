@@ -255,11 +255,23 @@
             </p>
           </header>
 
-          <div class="interactive__body">
+          <div class="interactive__body interactive__body--pinned">
 
             <form class="interactive__controls" data-interactive-controls>
 
-              <fieldset>
+              <fieldset class="steps">
+                <legend>Where you are</legend>
+                <label class="control--choice">
+                  <input type="radio" name="lab-step" value="1" checked>
+                  1. What do these measures have in common?
+                </label>
+                <label class="control--choice">
+                  <input type="radio" name="lab-step" value="2">
+                  2. Does any of it add anything?
+                </label>
+                <p class="control__hint" data-step-hint></p>
+              </fieldset>
+              <fieldset data-step="1">
                 <legend>Set the study up</legend>
                 <div class="preset-buttons">
                   <button class="button button--secondary" type="button" data-preset="study">
@@ -278,7 +290,7 @@
                 <p class="control__hint" data-preset-note></p>
               </fieldset>
 
-              <fieldset>
+              <fieldset data-step="1">
                 <legend>What the measures are made of</legend>
 
                 <div class="control">
@@ -322,7 +334,7 @@
 
               </fieldset>
 
-              <fieldset>
+              <fieldset data-step="1">
                 <legend>How to order the matrix</legend>
                 <label class="control--choice">
                   <input type="radio" name="order" value="administered" checked>
@@ -334,7 +346,7 @@
                 </label>
               </fieldset>
 
-              <fieldset>
+              <fieldset data-step="2">
                 <legend>Scatterplot</legend>
                 <div class="control">
                   <div class="control__header">
@@ -351,7 +363,7 @@
                 </div>
               </fieldset>
 
-              <fieldset>
+              <fieldset data-step="2">
                 <legend>Does it add anything?</legend>
                 <p class="control__hint">
                   Predicting observed social effectiveness. The baseline is
@@ -375,57 +387,69 @@
 
             <div class="interactive__stage" data-interactive-stage>
 
-              <h4 class="stage__heading">The correlation matrix</h4>
-              <div class="table-scroll">
-                <table class="data-table matrix">
-                  <caption class="visually-hidden">
-                    Model-implied correlation between every pair of measures.
-                    Each row header names the measure and how it was collected.
-                  </caption>
-                  <thead data-matrix-head></thead>
-                  <tbody data-matrix-body></tbody>
-                </table>
-              </div>
-              <p class="control__hint" data-matrix-note></p>
-
-              <dl class="interactive__readout" data-readout></dl>
-
-              <h4 class="stage__heading">One pair, as a scatterplot</h4>
-              <figure class="chart">
-                <figcaption class="visually-hidden">
-                  Simulated scores for 300 of the fictional people on the
-                  selected pair of measures
-                </figcaption>
-                <svg class="chart__svg" data-scatter viewBox="0 0 248 238"
-                     aria-hidden="true" focusable="false"></svg>
+              <!-- Step 1: the matrix is the primary result, pinned so it stays
+                   in view while the sliders beside it are moved. -->
+              <div class="stage__primary" data-step="1">
+                <h4 class="stage__heading">The correlation matrix</h4>
                 <div class="table-scroll">
-                  <table class="chart__table">
+                  <table class="data-table matrix">
                     <caption class="visually-hidden">
-                      The plotted pair, its model correlation, the correlation
-                      observed in the simulated sample, and the variance shared
+                      Model-implied correlation between every pair of measures.
+                      Each row header names the measure and how it was collected.
                     </caption>
-                    <tbody data-scatter-table></tbody>
+                    <thead data-matrix-head></thead>
+                    <tbody data-matrix-body></tbody>
                   </table>
                 </div>
-              </figure>
-
-              <h4 class="stage__heading">Does it add anything?</h4>
-              <div class="table-scroll">
-                <table class="data-table">
-                  <caption class="visually-hidden">
-                    Variance in observed social effectiveness accounted for,
-                    with and without the added measures
-                  </caption>
-                  <thead>
-                    <tr>
-                      <th scope="col">Predictors</th>
-                      <th scope="col">Variance accounted for</th>
-                    </tr>
-                  </thead>
-                  <tbody data-incremental-body></tbody>
-                </table>
+                <p class="control__hint" data-matrix-note></p>
+                <dl class="interactive__readout" data-readout></dl>
               </div>
-              <p class="control__hint" data-incremental-note></p>
+
+              <div data-step="1">
+                <dl class="interactive__readout" data-readout></dl>
+              </div>
+
+              <!-- Step 2: one pair at a time, then what it adds. -->
+              <div class="stage__primary" data-step="2">
+                <h4 class="stage__heading">One pair, as a scatterplot</h4>
+                <figure class="chart">
+                  <figcaption class="visually-hidden">
+                    Simulated scores for 300 of the fictional people on the
+                    selected pair of measures
+                  </figcaption>
+                  <svg class="chart__svg" data-scatter viewBox="0 0 248 238"
+                       aria-hidden="true" focusable="false"></svg>
+                  <div class="table-scroll">
+                    <table class="chart__table">
+                      <caption class="visually-hidden">
+                        The plotted pair, its model correlation, the correlation
+                        observed in the simulated sample, and the variance shared
+                      </caption>
+                      <tbody data-scatter-table></tbody>
+                    </table>
+                  </div>
+                </figure>
+              </div>
+
+              <div data-step="2">
+                <h4 class="stage__heading">Does it add anything?</h4>
+                <div class="table-scroll">
+                  <table class="data-table">
+                    <caption class="visually-hidden">
+                      Variance in observed social effectiveness accounted for,
+                      with and without the added measures
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Predictors</th>
+                        <th scope="col">Variance accounted for</th>
+                      </tr>
+                    </thead>
+                    <tbody data-incremental-body></tbody>
+                  </table>
+                </div>
+                <p class="control__hint" data-incremental-note></p>
+              </div>
 
               <div class="verdict">
                 <h4 class="verdict__title">What this evidence supports</h4>

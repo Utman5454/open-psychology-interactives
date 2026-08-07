@@ -58,15 +58,24 @@ After the activity a student should be able to:
 Nothing to install. Open the page, answer or skip the opening question, and the
 tool unlocks.
 
+## Two steps
+
+**Step 1** is the dimensional view: the six sliders, the profile and what it
+does and does not support. **Step 2** draws a category line across whatever
+step 1 was left set to: the rule, the threshold and the fictional population.
+The profile is shared between them, which is what makes the second step land —
+nothing about the person changes when the category does.
+
 ## The demonstration worth doing from the front
 
 1. Load **Unusual, and working**. Trait extremity 85 — a genuinely distinctive
    person. Everything else low. Read the interpretation.
 2. Load **The same traits, much more difficulty**. Point at the trait extremity
    figure: *still 85*. Everything the tool says has changed.
-3. Go back to the first configuration and leave it alone. Switch the category
-   rule from **Count unusual traits** to **Unusual traits and difficulty in
-   functioning, together**. The profile changes sides without changing at all.
+3. Go back to the first configuration and leave it alone. Move to **step 2**
+   and switch the category rule from **Count unusual traits** to **Unusual
+   traits and difficulty in functioning, together**. The profile changes sides
+   without changing at all.
 4. Move the threshold slider slowly from 40 to 80 and read the percentages.
    Ask what has happened to the people between those two lines.
 

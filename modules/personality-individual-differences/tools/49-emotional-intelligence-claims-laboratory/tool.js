@@ -391,7 +391,30 @@
     "Four ways of setting the study up. Each one is a different answer to " +
     "\"what are these four measures measuring?\"";
 
+  /* Two questions, asked one at a time.
+     Everything below was originally on screen at once: three sliders, a
+     matrix, a scatterplot, an incremental-validity table and two orderings.
+     The learner could not tell which output answered which control. The two
+     steps ask one question each, and each shows only the controls and the
+     result that belong to it. Nothing is removed — the model is shared, so
+     what is set in step 1 is what step 2 analyses. */
+  var STEPS = {
+    "1": {
+      hint:
+        "Read the matrix, then reorder it by method and read it again. The " +
+        "sliders ask what would have to be true for the shared label to be honest.",
+      announce: "Step 1. What these measures have in common."
+    },
+    "2": {
+      hint:
+        "The study is set as you left it in step 1. This step asks the harder " +
+        "question: does any of it tell you something the ordinary measures did not?",
+      announce: "Step 2. Whether any of it adds anything."
+    }
+  };
+
   var INITIAL = {
+    step: "1",
     mix: 0.16,
     questionnaireMethod: 0.30,
     testMethod: 0.25,
@@ -485,6 +508,24 @@
     });
   });
 
+  $$('input[name="lab-step"]').forEach(function (input) {
+    input.addEventListener("change", function () {
+      if (!input.checked) { return; }
+      state.step = input.value;
+      applyStep();
+      shell.announce(STEPS[state.step].announce + " " + STEPS[state.step].hint,
+        { immediate: true });
+    });
+  });
+
+  function applyStep() {
+    $$("[data-step]").forEach(function (el) {
+      el.hidden = el.getAttribute("data-step") !== state.step;
+    });
+    $("[data-step-hint]").hidden = false;
+    $("[data-step-hint]").textContent = STEPS[state.step].hint;
+  }
+
   $$("[data-preset]").forEach(function (button) {
     button.addEventListener("click", function () {
       var preset = PRESETS[button.getAttribute("data-preset")];
@@ -499,6 +540,8 @@
   });
 
   function applyState() {
+    $('input[name="lab-step"][value="' + state.step + '"]').checked = true;
+    applyStep();
     $("#mix-range").value = String(Math.round(state.mix * 100));
     $("#questionnaire-range").value = String(Math.round(state.questionnaireMethod * 100));
     $("#test-range").value = String(Math.round(state.testMethod * 100));
