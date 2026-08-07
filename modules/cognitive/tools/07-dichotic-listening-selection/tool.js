@@ -547,10 +547,32 @@
     return item.kind === "animal";
   }
 
+  var flashTimer = null;
+  var FLASH_MS = 150;
+
+  /* A response is otherwise invisible when it comes from the space bar: the
+     button never takes focus and nothing on screen moves. This acknowledges
+     that the press was recorded. It says nothing about whether the item was
+     a target - correctness belongs at the end of the trial. */
+  function flashTarget() {
+    if (flashTimer) { window.clearTimeout(flashTimer); }
+    targetButton.setAttribute("data-registered", "yes");
+    flashTimer = window.setTimeout(function () {
+      targetButton.removeAttribute("data-registered");
+      flashTimer = null;
+    }, FLASH_MS);
+  }
+
+  function clearFlash() {
+    if (flashTimer) { window.clearTimeout(flashTimer); flashTimer = null; }
+    targetButton.removeAttribute("data-registered");
+  }
+
   function pressTarget() {
     if (targetButton.disabled || state.pressedThisItem) { return; }
     state.pressedThisItem = true;
     state.presses.push(state.currentIndex);
+    flashTarget();
   }
 
   function scoreAttended() {
@@ -1349,6 +1371,7 @@
 
   shell.onReset(function () {
     cancelPending();
+    clearFlash();
     state = {
       mode: "idle",
       index: 0,
