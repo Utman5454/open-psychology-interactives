@@ -8,6 +8,14 @@ exactly the same face-task profile.
 
 ---
 
+## Running it from the front
+
+In experiment 1, the pair worth putting side by side is face familiarity and person identity knowledge. Both leave face perception intact. One spares the voice route completely and one does not, and that single difference is the whole argument for a face-specific stage.
+
+Then general visual processing against face perception. The only task that separates them is the one about everyday objects. Students routinely skip it as irrelevant; it is the control task that makes the rest interpretable.
+
+In experiment 2, profile E fits no single component and profile F fits two. Say nothing about either in advance. The habit worth breaking is the assumption that a profile always has an answer.
+
 ## Intended level
 
 Second-year undergraduate neuropsychology or cognitive psychology. It assumes

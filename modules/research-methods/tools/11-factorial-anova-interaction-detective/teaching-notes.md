@@ -8,6 +8,14 @@ add the large error bars. Nothing about the data changes.
 
 ---
 
+## Running it from the front
+
+Remove the interaction is the button worth pressing twice. It keeps both marginal means exactly where they are and moves the cells to the only arrangement with no interaction. Students who think an interaction is "the lines are far apart" find that surprising.
+
+Dramatic-looking and trivial should be shown on the zoomed axis first, with the room asked what they see, and then switched to the full scale. Add the large error bars afterwards. It is the most useful ninety seconds on the page.
+
+Then press Put feedback on the horizontal axis. Same data, quite different-looking plot, identical interaction term. Which factor goes on the x-axis is a presentation decision.
+
 ## Intended level
 
 Second-year undergraduate meeting factorial designs, and any student writing up

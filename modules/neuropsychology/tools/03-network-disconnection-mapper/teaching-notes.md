@@ -7,6 +7,14 @@ screen the lesson turns on.
 
 ---
 
+## Running it from the front
+
+Start with A pathway cut between two intact regions. Every box on the diagram is undamaged and repetition is still impaired. That is the whole disconnection argument in one screen, and it is the state a purely localisationist account cannot describe.
+
+Then compare Word-sound store damaged with Speech output damaged and with cutting the pathway between them. Three different failures, one identical profile. Ask what evidence outside the behaviour would separate them.
+
+The second routes are what stop this being a set of light switches. Cutting meaning off from word sounds leaves picture naming possible via the direct route, and the names that come out are semantically wrong - which is a real phenomenon and the reason "impaired" is a different outcome from "fails".
+
 ## Intended level
 
 First- or second-year undergraduate neuropsychology. No anatomy is required

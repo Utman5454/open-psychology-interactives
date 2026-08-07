@@ -8,6 +8,18 @@ observation is what standardisation is for.
 
 ---
 
+## Running it from the front
+
+Set the highlight to &mu; &plusmn; 1&sigma; and then drag &sigma; from 2 to 20. The band gets enormously wider in raw score points and its area never moves off 68.3%. That is the whole idea of standardisation, seen once rather than derived.
+
+Then leave the score at 70 and drag &mu;. The score has not changed and its percentile travels the entire range. Ask what a raw score means on its own.
+
+The default pair is the interesting one: 62 on a test with mean 50 and SD 6 is a z of 2.00, and 62 on a test with mean 55 and SD 15 is a z of 0.47. Identical marks, 97.7th percentile against 67.9th.
+
+Set me a new pair hides the answer again and picks a fresh Test B, so the judgement can be practised several times. Ask for a show of hands each time before revealing.
+
+Watch for the student who says "Test B is harder, so 62 is more impressive there". Harder means a lower mean, which does make 62 more unusual &mdash; and a larger spread pulls the other way, and here the spread wins. Both numbers matter, and only their combination decides.
+
 ## Intended level
 
 First-year undergraduate meeting descriptive statistics, and useful again as

@@ -7,6 +7,12 @@ the frustration is the seminar.
 
 ---
 
+## Running it from the front
+
+Extract 3 is the one to slow down on. Read the semantic pass and the critical pass aloud one after the other. The semantic pass gives you "finding out about extensions informally". The critical pass gives you "the rules are learnt through networks, so who you know decides what you get". Both are in the words; neither is extracted from them.
+
+If a student asks which pass is correct, the honest answer is that the question is malformed. A pass is answerable to the data, to the research question, and to whether its assumptions have been stated — not to a key.
+
 ## Intended level
 
 Second-year undergraduate meeting qualitative analysis for the first time, and

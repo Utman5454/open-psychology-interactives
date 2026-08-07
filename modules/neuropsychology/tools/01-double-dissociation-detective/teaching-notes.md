@@ -8,6 +8,14 @@ pattern of scores entitled to the word *dissociation*?
 
 ---
 
+## Running it from the front
+
+Case 4 is the one to slow down on. The raw scores are 88% and 30%, which looks like the most dramatic dissociation on the page, and it disappears entirely once each score is read against its own control group. Most students return a verdict of double dissociation before they look at the control column.
+
+Case 5 carries the test-length slider. At 40 items neither difference is resolvable; at 50 one is; from about 55 items upwards both are, and the same three scores become a double dissociation. Nothing about the two people changed.
+
+Case 6 is a genuine crossover with a confound sitting in the task-demands table. Students who return "double dissociation" are reading the chart and not the case.
+
 ## Intended level
 
 First- or second-year undergraduate neuropsychology, or a research-methods

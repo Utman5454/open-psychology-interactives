@@ -8,6 +8,14 @@ reader, and what it would hide.
 
 ---
 
+## Running it from the front
+
+Take the curve first. The picture shows an almost perfect relationship and r is essentially zero. Ask what a results table containing only that number would tell a reader, and what it would hide.
+
+Then the two odd-point datasets. Set the pull to 0% and to 100% in each, and put the four values of r on the board. In the twelve-person sample one observation swings r across most of its range; in the hundred-and-twenty-person sample the same observation barely registers.
+
+Finish with the units menu on the strong positive dataset. The slope moves by a factor of ten and r does not move at all. That is the difference between a standardised measure and one that carries units.
+
 ## Intended level
 
 First-year undergraduate meeting correlation, and again with anyone reading a

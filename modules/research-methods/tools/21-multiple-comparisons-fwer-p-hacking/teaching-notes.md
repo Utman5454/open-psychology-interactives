@@ -9,6 +9,20 @@ and every suggestion will be perfectly sensible. Keep count out loud.
 
 ---
 
+## Running it from the front
+
+Press Run one experiment half a dozen times before running the thousand. Most runs produce one or two marked squares out of twenty, in data where there is nothing at all to find. Ask what a paper reporting one of those squares would look like.
+
+Then run the thousand and compare the counted rate with 1 &minus; (1 &minus; &alpha;)k in the disclosure. Drag k and watch the curve bend: at k = 14 the family-wise rate has already passed a half.
+
+Now set how many have a real effect to 5 and switch the correction on. The false-positive rate collapses, which is what Bonferroni is for &mdash; and the detection rate for the five real effects collapses with it. Both figures are in the readout, deliberately side by side.
+
+Let the room drive. Ask for the outcome first, then take suggestions when the first analysis comes back null: somebody will propose dropping the slow responders, somebody else will propose looking at first-years, and each suggestion will be perfectly sensible. Keep count out loud.
+
+When a significant result appears, stop and ask what the paper would say. Then press Show me every path. The point is not that the analyst was dishonest &mdash; the point is that the p-value in the paper is the smallest of many, and its stated meaning assumed it was the only one.
+
+Fresh dataset regenerates the data with no effect in it and clears the search, so the demonstration can be run again with a different room and a different route through the garden.
+
 ## Intended level
 
 Final-year undergraduate or taught postgraduate, and worth running with anybody

@@ -7,6 +7,12 @@ loud at least twice.
 
 ---
 
+## Running it from the front
+
+Start with a single measure and read the coverage map aloud. Then press Tick everything: coverage rises, three facets go from missing to covered, and reactivity and feasibility both collapse. The plan that measures the construct best is the plan nobody can afford to run, and it still does not reach the construct.
+
+The most useful single line in the tool is the coverage figure's own caveat: it is calculated against a facet list that somebody wrote down. Change the list and the best measure changes with it.
+
 ## Intended level
 
 First-year undergraduate research methods, and useful again with project

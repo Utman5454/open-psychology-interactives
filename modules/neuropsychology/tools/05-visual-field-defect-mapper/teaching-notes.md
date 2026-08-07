@@ -8,6 +8,14 @@ which is why the tool ends by showing what the pattern still cannot tell you.
 
 ---
 
+## Running it from the front
+
+Work through the points in order. The first three establish the logic - one eye, both temporal halves, one side of both fields - and after that most students can derive the rest.
+
+The pair to dwell on is the optic tract and the occipital cortex. In quadrant terms they are identical, which is the honest answer to "can a field pattern localise a lesion?" It can say which side of the chiasm and roughly how far along; it cannot say which structure.
+
+Macular sparing is shown for the occipital case and is worth exactly one sentence: it is a clue, its explanation is still argued about, and it is not reliable enough to decide anything on its own.
+
 ## Intended level
 
 First-year undergraduate. No prior anatomy is assumed; two facts are stated in

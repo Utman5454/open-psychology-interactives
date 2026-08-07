@@ -9,6 +9,14 @@ who see that once stop confusing the two panels.
 
 ---
 
+## Running it from the front
+
+Press Draw one sample six or seven times before doing anything else, reading the sample mean aloud each time. The ticks along the population axis are the data somebody would actually collect; the single dot that lands below is all the lower panel ever gets from a real study. Students who see that once stop confusing the two panels.
+
+With the right-skewed population, set n to 2 and draw a thousand: the pile is still visibly skewed. Then 10, then 30, then 100, and read the predicted skewness in the table each time. It falls as one over the square root of n, which is the honest version of "n = 30 is enough".
+
+The bimodal population is the one that embarrasses the rule of thumb from the other direction: at n = 2 the means are trimodal, and by n = 10 they are already close to normal even though the population looks nothing like it.
+
 ## Intended level
 
 First- or second-year undergraduate meeting sampling distributions, and again

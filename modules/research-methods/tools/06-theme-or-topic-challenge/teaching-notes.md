@@ -7,6 +7,12 @@ supported, reasonable-sounding sentence in third place.
 
 ---
 
+## Running it from the front
+
+The candidate students most often mislabel is the third in each cluster — the reasonable-sounding descriptive sentence. It is true, it is supported, and it is not yet a theme, because nothing in it explains why the extracts belong together. Sitting with that for two minutes is the point of the tool.
+
+The over-reaching candidate is worth reading aloud in every cluster. Each of the three fails differently: one asserts a cause, one attributes intent to an institution, and one imports a between-person construct that qualitative data cannot deliver.
+
 ## Intended level
 
 Second- or third-year undergraduate, and every project student about to write a

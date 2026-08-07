@@ -8,6 +8,14 @@ tell them apart, and nothing else on the page can either.
 
 ---
 
+## Running it from the front
+
+In experiment 1, do not change anything at first. Ask which of the five people is recovering. Then press Draw five different people two or three times. The model is identical every time; the fan is individual variation and measurement noise, and it is wide enough that a single person's curve tells you very little.
+
+Then put measurement noise on high and ask what a change from month 8 to month 9 in one person would mean. The answer is usually nothing, and it is the reason single-point comparisons are not evidence of change.
+
+Experiment 2 is the argument. Load Route A and then Route B: nearly the same score on the trained task, and a very different score on the task never practised. The readout prints both numbers and the gap. That gap is compensation plus practice, exactly, and it is the only thing on the page that separates them.
+
 ## Intended level
 
 Second- or third-year undergraduate neuropsychology, or a rehabilitation

@@ -6,6 +6,12 @@ There is a button in every study that does nothing. Use it.
 
 ---
 
+## Running it from the front
+
+In study 1, tick Recruit 400 students instead of 60 on its own. The estimate does not move at all. That single moment does more work than any amount of explanation: sample size buys precision, and precision applied to a biased estimate buys a confident wrong answer.
+
+Study 2 is the one where a statistical adjustment is available. It removes most of the severity bias and none of the rest, and the note says why: adjustment works only for confounders you measured, measured well, and modelled correctly. Randomisation does not need that list.
+
 ## Intended level
 
 First- or second-year undergraduate research methods. It assumes the idea of an

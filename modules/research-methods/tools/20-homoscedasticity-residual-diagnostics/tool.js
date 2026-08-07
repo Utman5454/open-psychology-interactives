@@ -646,49 +646,34 @@
     if (s.severity < 0.1 || s.pattern === "constant") {
       tone = "good";
       text =
-        "The residual band is about the same thickness all the way across: " +
-        fmt(sds[0], 1) + " in the low third, " + fmt(sds[1], 1) + " in the " +
-        "middle and " + fmt(sds[2], 1) + " in the high third. That is what " +
-        "homoscedasticity looks like, and it is worth knowing by sight before " +
-        "you go looking for departures from it. The classical and robust " +
-        "standard errors agree, which is the other sign that nothing is wrong.";
+        "The band is about the same thickness all the way across: " +
+        fmt(sds[0], 1) + ", " + fmt(sds[1], 1) + " and " + fmt(sds[2], 1) +
+        " across the thirds. That is homoscedasticity, and the two standard " +
+        "errors agree. Worth knowing by sight.";
     } else {
       var spreadPhrase =
-        "The residual spread runs " + fmt(sds[0], 1) + ", " + fmt(sds[1], 1) +
-        " and " + fmt(sds[2], 1) + " across the low, middle and high thirds - " +
-        "the widest is " + fmt(ratio, 2) + " times the narrowest. In the lower " +
-        "panel that is far easier to see than in the upper one. The estimated " +
-        "slope is " + fmt(f.b1) + " against a true 0.50, so the estimate has " +
-        "not been damaged. ";
+        "The residuals fan out: " + fmt(ratio, 2) + " times wider at one end " +
+        "than the other. The slope is still " + fmt(f.b1) + " against a true " +
+        "0.50. ";
       if (model.ratio > 1.06) {
         tone = "warn";
         text = spreadPhrase +
-          "The damage is in the standard error: classical " +
-          fmt(f.seClassical, 3) + " against robust " + fmt(f.seRobust, 3) +
-          ", and the model says the true standard error is " +
-          fmt(100 * (model.ratio - 1), 0) + " per cent larger than the " +
-          "classical formula is aiming at. The interval and the test built on " +
-          "it are correspondingly too confident, while looking entirely " +
-          "ordinary on the output.";
+          "The classical standard error is " + fmt(100 * (model.ratio - 1), 0) +
+          " per cent too small. The estimate survives; the uncertainty does " +
+          "not.";
       } else if (model.ratio < 0.94) {
         tone = "caution";
         text = spreadPhrase +
-          "This time the classical standard error errs the other way: the " +
-          "model says it overstates the true variability by " +
-          fmt(100 * (1 / model.ratio - 1), 0) + " per cent, so the interval " +
-          "is conservative rather than liberal. The extra spread here sits " +
-          "where the line is least sensitive to it, and the cost is lost " +
-          "power rather than false confidence. Non-constant variance does not " +
-          "always push in the alarming direction.";
+          "This time the classical standard error is " +
+          fmt(100 * (1 / model.ratio - 1), 0) + " per cent too large, so the " +
+          "interval is conservative. Non-constant variance does not always " +
+          "push in the alarming direction.";
       } else {
         tone = "caution";
         text = spreadPhrase +
-          "And yet the classical standard error is within a few per cent of " +
-          "the truth here. That is worth sitting with: how much a fan shape " +
-          "costs depends on where the extra spread sits relative to the " +
-          "extremes of the predictor, not simply on how obvious it looks. Try " +
-          "the widest-at-both-extremes pattern for the version that really " +
-          "does break the standard error.";
+          "And the classical standard error is within a few per cent of the " +
+          "truth. An obvious fan does not always cost anything. Try " +
+          "widest-at-both-extremes.";
       }
     }
 

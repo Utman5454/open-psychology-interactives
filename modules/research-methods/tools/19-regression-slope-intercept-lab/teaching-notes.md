@@ -9,6 +9,14 @@ experience rather than by algebra.
 
 ---
 
+## Running it from the front
+
+Give the room two minutes to get the error total as low as they can before anybody reveals anything. Someone will get within a per cent or two, nobody will beat it, and that is the argument for the phrase "least squares" made by experience rather than by algebra.
+
+Tick Draw each residual as a square once the line is roughly right. The name of the method becomes literal: the total area of those squares is the quantity being minimised, and it is why one badly missed point costs so much more than two slightly missed ones.
+
+Then look at where the fitted line crosses the vertical axis. Nobody in this dataset practised for zero minutes, so the intercept is a mathematical necessity describing nobody. Open the centring disclosure and watch it become a number worth reporting.
+
 ## Intended level
 
 First- or second-year undergraduate meeting regression. It assumes correlation

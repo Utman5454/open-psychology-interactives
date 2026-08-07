@@ -8,6 +8,20 @@ identical populations. That is the anchor for everything else.
 
 ---
 
+## Running it from the front
+
+Start at separation 0. Draw four or five new samples and read F aloud each time: 0.3, 1.8, 0.6, 2.4. Every one of those came from three identical populations. F hovers around 1 when nothing is going on, because both halves of the fraction are then estimating the same quantity.
+
+Then take the separation to 8 and watch F climb into the fifties; then take the within-group SD from 6 to 12 with the separation untouched, and watch it fall to about a quarter of that. The population means never move. That is the whole argument for a ratio rather than a difference.
+
+"Tiny difference, large sample" is the preset worth ending on: a difference nobody would act on, with a p below .01.
+
+Ask for a show of hands on each pattern before anyone commits. In most rooms pattern A wins comfortably, because evenly spaced means look like the tidiest version of "a difference".
+
+The three patterns were constructed to have identical between-groups sums of squares, so with the same n and the same within-group spread they give identical F values to the last decimal place. That is not a trick; it is what a single summary of three deviations can and cannot carry.
+
+Follow it with the obvious question: if you wanted to know whether method C beats method A, what would you have had to plan before collecting the data?
+
 ## Intended level
 
 Second-year undergraduate meeting ANOVA, and again with anyone about to run one.

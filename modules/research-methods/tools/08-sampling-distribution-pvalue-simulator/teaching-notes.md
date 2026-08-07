@@ -8,6 +8,12 @@ work.
 
 ---
 
+## Running it from the front
+
+Run twenty studies slowly first, before the thousand. Watching twenty differences land at 1.2, then −3.4, then 6.1, when the true difference is zero every time, does more for the idea of sampling variability than the finished histogram does.
+
+Then leave the observed difference at 5 and drag the sample size from 40 to 200. The p-value collapses without the observed difference changing at all. That is the point that returns in the t-test and power tools later in this module.
+
 ## Intended level
 
 First- or second-year undergraduate meeting significance testing, and again

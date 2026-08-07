@@ -8,6 +8,14 @@ supply.
 
 ---
 
+## Running it from the front
+
+Experiment 1 usually goes the same way: students tick one or two processes per task and the model has four to six. Say nothing until the third task, then ask how many rows of the matrix have a single entry. None do.
+
+In experiment 2, the demonstration is the two presets reduced inhibition and reduced processing speed. Both make the colour-word task the lowest score. So one low score on that task identifies nothing, which is the answer to the opening question.
+
+Then the strategy slider. The summary score for the timed tasks does not move at all while the accuracy and speed numbers underneath it move in opposite directions. A person can be doing something entirely different and score the same.
+
 ## Intended level
 
 Second-year undergraduate neuropsychology or cognitive assessment. It follows

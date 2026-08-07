@@ -6,6 +6,12 @@ The tool never names a statistical test. That is the point of it.
 
 ---
 
+## Running it from the front
+
+Question 6 is the one to spend time on. It can be read as a question about explanation or a question about interpretation, and both readings are defensible; which one you take depends on what you think an answer would look like, not on the wording. Ask the room to argue for each before checking.
+
+Question 3 catches almost everyone on part 4: the observations are nested within shift workers, so the independence assumption of an ordinary correlation is already broken before any analysis is chosen.
+
 ## Intended level
 
 First- or second-year undergraduate research methods, and useful again with

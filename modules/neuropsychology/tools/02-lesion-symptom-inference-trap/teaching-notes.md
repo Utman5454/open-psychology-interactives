@@ -7,6 +7,14 @@ has six things wrong with it, and they arrive one at a time.
 
 ---
 
+## Running it from the front
+
+The ceiling starts at 50% and ends at 12%. It is a teaching device, not a calculation - it encodes the judgement that a single case with a large multi-region lesion in a systematic vascular territory cannot carry a general localisation claim. Say so out loud; students should argue with the numbers rather than accept them.
+
+Complication 2 is the one most often missed. Because strokes follow blood supply rather than functional boundaries, certain regions are damaged together in almost every case. That co-occurrence is systematic, so it does not wash out with more patients - which is why modern lesion-symptom mapping has to model it explicitly.
+
+Complication 6 turns the original dissociation into an artefact of the questions asked. Ask the room what they would have concluded had formal testing come first.
+
 ## Intended level
 
 First- or second-year undergraduate neuropsychology. It assumes nothing beyond

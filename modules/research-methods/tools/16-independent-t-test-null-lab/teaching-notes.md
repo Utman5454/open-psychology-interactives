@@ -8,6 +8,14 @@ identical in both. *d* = 0.50 in both. *p* goes from .182 to below .001.
 
 ---
 
+## Running it from the front
+
+The two study buttons are the demonstration. Press The 15-per-group study, read all four figures, then press The same effect at 100 per group and read them again. The two groups are identical in both. Cohen's d is 0.50 in both. p goes from about .18 to about .0005.
+
+Then take the sample size down to 3 or 4 and look at the curve. The tails are visibly fat, the critical value is above 4, and the faint normal curve behind shows what is being paid for estimating the standard deviation from almost nothing.
+
+No difference at all is worth ending on. The observed t sits on top of zero, p is 1, and the honest sentence is still not "the groups are the same". Ask the room to write it.
+
 ## Intended level
 
 Second-year undergraduate meeting the t-test properly, and again with anyone

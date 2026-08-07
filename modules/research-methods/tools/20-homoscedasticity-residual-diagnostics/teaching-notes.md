@@ -9,6 +9,16 @@ interval too narrow.
 
 ---
 
+## Running it from the front
+
+Start at severity 0 and take the room through both panels, so that everybody knows what "nothing wrong" looks like. Then drag the severity up slowly. The upper panel changes in a way that is easy to argue about; the lower panel changes in a way that is not.
+
+Keep an eye on the estimated slope while you do it. It stays within a few hundredths of 0.50 the whole way, and the average across repeated samples in the disclosure stays on 0.50 exactly as it should. The cost is entirely in the standard error, and it is invisible on the coefficient.
+
+Then run the pattern menu from top to bottom at full severity and read the coverage row each time. Constant gives about 95%, the megaphone about 93%, widest-at-both-extremes about 86%, and widest-in-the-middle about 99%. That last one is the reason this tool has five patterns rather than three: non-constant variance does not always make the interval too narrow, and the direction depends on where the spread sits relative to the extremes of the predictor rather than on how obvious the fan looks.
+
+Finally set the sample size to 20 with the severity still high. The pattern is still there and the picture is no longer convincing. Ask what anybody could honestly conclude.
+
 ## Intended level
 
 Final-year undergraduate or taught postgraduate, and anybody about to report a

@@ -9,6 +9,14 @@ this topic.
 
 ---
 
+## Running it from the front
+
+Take the three benchmark buttons in order and read the overlap aloud each time: 92%, 80%, 69%. A room that has just been told 0.8 is a large effect finds 69% overlap genuinely surprising, and it is the most useful surprise available in this topic.
+
+Then leave the means where they are and drag group A's standard deviation from 10 to 5. The two averages have not moved by a point and d nearly doubles. Ask which number a reader should be given.
+
+Finally drag the sample size from 5 to 400 with everything else fixed. Open the disclosure: d is stuck and the p-value falls off a cliff. That is the difference between an effect and a test, in one gesture.
+
 ## Intended level
 
 Second-year undergraduate meeting effect sizes, and any student writing a

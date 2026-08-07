@@ -9,6 +9,20 @@ both of those in mind at once is the point of the session.
 
 ---
 
+## Running it from the front
+
+Start where the prediction left off: d = 0.50, twenty per group, &alpha; = .05. Power is 32.9%. Ask what that means for a literature in which most studies look like this one.
+
+Then use the target-power readout. Reaching 80% at d = 0.50 needs 64 per group; at d = 0.25 it needs 253. Drag the effect size slowly and watch the required n climb as the square of the reciprocal.
+
+Finally set &alpha; to .005 and watch power fall without a single participant being lost. Every threshold is a trade between the two error rates, and moving one moves the other.
+
+Take a show of hands on the prediction before running anything. The most popular answer is usually "about the same, each study is unbiased" &mdash; which is true of the studies and false of the ones that get published, and holding both of those in mind at once is the point of the exercise.
+
+Run the low-power setting first, then the high-power one, and put the two exaggeration ratios side by side. At fifteen per group the significant estimates average well over twice the truth; at a hundred and twenty they are within a few per cent of it.
+
+The sign errors are worth a moment too. At very low power a noticeable share of the significant results point the wrong way entirely, and every one of them would be written up as a finding.
+
 ## Intended level
 
 Final-year undergraduate or taught postgraduate, and essential for anyone

@@ -7,6 +7,16 @@ answer last, and it is the commonest correct one.
 
 ---
 
+## Running it from the front
+
+Of the twenty-five cells in the grid, eight support a claim, five count against one and twelve cannot decide. Students find the last category uncomfortable and reach for it last. Say early that it is the commonest correct answer, or they will force every profile into a conclusion.
+
+Profile C is the one to spend time on. Recall at floor with normal recognition is the pattern always cited for a retrieval account, and it does not establish one: recognition is the easier task, so a trace too weak to be recalled can still be strong enough to be recognised. Separating a retrieval problem from a weak-storage problem needs the two tasks matched for difficulty, which is very hard to do.
+
+Profile D is the impurity case. Every episodic measure here uses words, and word knowledge is the thing that is most impaired, so the episodic scores cannot be read as episodic scores.
+
+Profile E has nothing selective in it at all. Ask what would explain it before anybody reaches for a memory system.
+
 ## Intended level
 
 Second- or third-year undergraduate. It assumes the standard taxonomy of

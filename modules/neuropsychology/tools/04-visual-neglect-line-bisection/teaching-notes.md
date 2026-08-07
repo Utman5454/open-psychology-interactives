@@ -7,6 +7,14 @@ it and one is not attending to it, and the copying task tells you which.
 
 ---
 
+## Running it from the front
+
+The comparison that does the work is copying. Left field loss produces a complete copy - the eyes move, the information gets in. Neglect leaves things out. Then switch to bisection and note that the two profiles err in opposite directions: neglect to the right of centre, field loss slightly towards the blind side.
+
+The two neglect profiles are the second demonstration. On copying, one leaves out everything on the left of the page and the other leaves out the left half of every object - including the tree on the right-hand side, which is the observation that makes object-centred neglect hard to explain as a problem with looking.
+
+The prompt rescues field loss completely and neglect only partly, and it does nothing at all for the object-centred profile's copying, because "check the whole page" is an instruction about the page.
+
 ## Intended level
 
 First- or second-year undergraduate neuropsychology or cognitive psychology.

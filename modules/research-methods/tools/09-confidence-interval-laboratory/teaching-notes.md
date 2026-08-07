@@ -8,6 +8,18 @@ the truth. The answer — they would not — is the whole session.
 
 ---
 
+## Running it from the front
+
+Draw six or seven studies one at a time before running the hundred. Ask after each one whether it caught the truth, and ask how anybody would know that in a real study. The honest answer &mdash; you would not &mdash; is the whole lesson.
+
+Then run the hundred, note the coverage, and drag the sample size from 25 to 200. The bars become far shorter and the coverage stays where it was. Width and coverage are two different properties, and students routinely fuse them.
+
+The best moment here is the second trial: 2,400 participants, an interval that excludes zero comfortably, and a result that is still worthless if three extra minutes of walking a day is not worth an app. Ask the room what the abstract would say.
+
+Then take the third trial &mdash; interval from &minus;6 to &plus;34 &mdash; and ask whether the app "did not work". It is compatible with no change and with a change three times larger than anyone hoped for. Nothing has been shown either way.
+
+Finally, drag the threshold to 3 and re-judge all four. The data have not changed and three of the four verdicts have.
+
 ## Intended level
 
 First- or second-year undergraduate meeting estimation, and again with anyone

@@ -9,6 +9,20 @@ of the programme.
 
 ---
 
+## Running it from the front
+
+Start with the gap at zero and the correlation at 0.7. The unadjusted and adjusted differences are almost identical, and the point of the covariate is not the estimate at all &mdash; it is the residual variance, and therefore the precision.
+
+Then drag the covariate gap to &minus;10 with the design still set to random allocation. The two numbers separate. Ask which of them is the effect of the programme. Then switch the design to two intact classes and ask again. The arithmetic has not changed by a decimal place.
+
+Finally drag the slope difference to 0.6 and open the disclosure. The "adjusted difference" is now three different numbers depending on where you stand, which is what a violated homogeneity assumption actually costs.
+
+Run the presets in order. "Same direction, positively correlated" is the case most people imagine when they picture MANOVA, and it is the case where the multivariate test adds almost nothing: the two outcomes are largely the same information twice.
+
+"Two small effects, one clear separation" is the case worth the lesson. Two differences of 0.3 standard deviations, either of which most studies would miss, become a joint separation of well over 1 because the outcomes are strongly correlated within groups and the difference runs across that correlation.
+
+Then ask the obvious follow-up: the multivariate test has told you the clouds are apart. It has not told you which outcome, or in which direction. Following it with two univariate tests is the usual practice, and it does not protect them from multiplicity.
+
 ## Intended level
 
 Final-year undergraduate or taught postgraduate, or anyone about to add a

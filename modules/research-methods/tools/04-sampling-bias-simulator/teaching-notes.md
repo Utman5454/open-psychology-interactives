@@ -7,6 +7,12 @@ does not move. That is the lesson, and it takes ninety seconds.
 
 ---
 
+## Running it from the front
+
+The sequence that makes the point: choose convenience, press Recruit 20 samples, and note where the cloud of dots sits. Then drag the sample size to 1,000 and press it again. The cloud gets much tighter and does not move towards the line. That is the whole distinction, and no amount of talking lands it as well.
+
+Then choose simple random sample, which sits on the line, and raise the non-response tilt to 90%. The dots march away again. A probability sample is only unbiased while the people it selects actually take part.
+
 ## Intended level
 
 First-year undergraduate research methods. It assumes only the idea of an

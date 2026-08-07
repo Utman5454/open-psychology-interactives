@@ -7,6 +7,14 @@ informative measure for the contrast you are trying to make.
 
 ---
 
+## Running it from the front
+
+The pair worth starting with is A against D. They differ by five points on repetition and by one point or less on everything else. That is as clean a demonstration as this material offers that repetition needs something the rest of the profile does not, and it maps directly onto the disconnection argument in the Network Disconnection Mapper.
+
+Then A against B, where two measures separate them almost equally. Ask which one you would want if you could only have one, and why "the largest gap" is not automatically "the most informative".
+
+Profile F fits none of the textbook patterns. It is not a trick, and it is not rare: a substantial minority of people assessed for language difficulty after a stroke do not fit any classical category.
+
 ## Intended level
 
 Second-year undergraduate neuropsychology, or a language-and-the-brain strand.

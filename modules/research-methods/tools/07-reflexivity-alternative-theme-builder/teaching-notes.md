@@ -7,6 +7,12 @@ becoming an argument about whether qualitative work has standards.
 
 ---
 
+## Running it from the front
+
+The pairing to demonstrate is the strained one: the question about how the moment of deciding is experienced, read through a critical institutional lens. The account it produces is not wrong so much as beside the point — it answers a question nobody asked, and the coherence note says so. Students who believe qualitative work has no standards find this the most persuasive part of the tool.
+
+Then save the strong experiential pairing, switch to the strong critical one, and compare. Toby moves from the margins to the centre and Lena moves the other way, on the same six extracts.
+
 ## Intended level
 
 Third-year undergraduate or taught postgraduate, and any project student

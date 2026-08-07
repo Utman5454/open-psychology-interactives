@@ -8,6 +8,14 @@ things dropped when the session runs short.
 
 ---
 
+## Running it from the front
+
+Give the room the first referral and no advice, and most batteries come back full of the interesting tasks and short of the boring ones. The four checks are what to talk about, and the one that fails most often is the context one.
+
+The second referral is the important one. Eight months after a mild head injury, the mood and effort measures are not an afterthought - they are the referral question. A battery without them cannot distinguish the readings that matter, no matter how many cognitive tests it contains.
+
+Worth doing explicitly: tick everything. All three content checks pass and the battery runs to 167 minutes, which means it cannot be delivered and therefore says nothing. Ask what would have to come out, and watch how quickly the room offers the context measures.
+
 ## Intended level
 
 Second- or third-year undergraduate neuropsychology, or an introductory

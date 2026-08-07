@@ -9,6 +9,14 @@ cut.
 
 ---
 
+## Running it from the front
+
+The trial worth running first from the front is a word in the left visual field with a spoken report and a complete section - the "Set up the classic trial" button does it. Then change only the response channel to the left hand. Same item, same hemisphere, opposite outcome. Ask what changed.
+
+Then set the callosum back to intact and run both again. Both succeed. The contralateral routing has not changed at all; what has changed is whether the two hemispheres can talk.
+
+Experiment 2 is the part students remember. Take the trial that fails and untick "presentation was brief". It now succeeds - because the eyes moved, not because anything about the brain is different. Untick "cross-cueing was controlled" instead and it also succeeds, by a route the design was meant to exclude. A published-looking result and a methodological failure produce the same observation.
+
 ## Intended level
 
 First- or second-year undergraduate neuropsychology, or a research-methods
