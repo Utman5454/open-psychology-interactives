@@ -1024,16 +1024,28 @@
 
   targetButton.addEventListener("click", pressTarget);
 
+  /* The space bar is the response key for the whole page while a trial runs,
+     not a shortcut for a focused button. An earlier version skipped whenever
+     any button other than Target had focus, so clicking Start with the mouse
+     left focus on Start and swallowed every subsequent press - the key only
+     appeared to work once the learner had clicked Target and given it focus.
+
+     Two exceptions survive, because Space has a legitimate meaning there:
+     an editable control, and the Stop button, which a keyboard user needs to
+     be able to press. Everything else during a trial belongs to the task.
+
+     preventDefault also suppresses the browser's own activation of a focused
+     Target button, so a press registers exactly once however focus sits. */
   document.addEventListener("keydown", function (event) {
     if (event.key !== " " && event.key !== "Spacebar") { return; }
-    var tag = event.target && event.target.tagName;
-    if (tag === "SELECT" || tag === "INPUT" || tag === "TEXTAREA") { return; }
-    if (tag === "BUTTON" && event.target !== targetButton) { return; }
     if (!state || (state.mode !== "practice" && state.mode !== "run")) { return; }
 
-    // While a trial is running the space bar is the response key, so it must
-    // not scroll the page - including between items, when the button is
-    // briefly disabled and the old guard let the keypress through.
+    var el = event.target;
+    var tag = el && el.tagName;
+    if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") { return; }
+    if (el && el.isContentEditable) { return; }
+    if (el === stopButton) { return; }
+
     event.preventDefault();
     if (event.repeat) { return; }
     pressTarget();
