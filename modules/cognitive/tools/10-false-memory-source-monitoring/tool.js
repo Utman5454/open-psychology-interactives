@@ -666,11 +666,10 @@
       ? "Simulated class data from a documented generator with a fixed seed, " +
         "in which the pattern is set by hand. Not a norm, not a published rate " +
         "and not anybody's data."
-      : "Twelve test items, three or four per kind, from one person on one " +
-        "occasion. One item moves a percentage by 25 to 33 points. This " +
-        "measures nothing about you, and it is not evidence that memory is " +
-        "unreliable — only that a system which stores themes will sometimes " +
-        "accept a good fit to a theme.";
+      : "Twelve test items from one person on one occasion, so a single " +
+        "item moves a percentage by a quarter. Not a measure of you, and not " +
+        "evidence that memory is unreliable — a system that stores themes " +
+        "will sometimes accept a good fit to one.";
   }
 
   function renderChart(stats) {
@@ -757,12 +756,10 @@
 
     if (simulated) {
       resultsBody.appendChild(make("p", null,
-        "The three rows are set by the generator documented at the top of " +
-        "tool.js. Related words that were never presented are endorsed far " +
-        "more often than unrelated ones and carry substantial confidence, " +
-        "while source accuracy for genuinely studied words sits well below " +
-        "recognition accuracy. That shape illustrates the classic finding; it " +
-        "is not evidence for it."));
+        "The three rows come from the generator: related lures endorsed far " +
+        "more often than unrelated ones and with real confidence, and source " +
+        "accuracy well below recognition. That shape illustrates the classic " +
+        "finding rather than evidencing it."));
     } else {
       resultsBody.appendChild(make("p", null,
         "Three or four items of each kind is very few. Read the ordering of " +
@@ -771,11 +768,10 @@
     }
 
     resultsBody.appendChild(make("p", null,
-      "The unrelated row is the control that makes the other two readable. " +
-      "Someone willing to say “seen” will say it more often to " +
-      "everything, so a high related-word rate only means something if the " +
-      "unrelated rate is low. A full analysis would use that row to correct " +
-      "the others rather than reporting raw rates as this page does."));
+      "The unrelated row is the control that makes the other two readable: " +
+      "a high related-lure rate only means something if the unrelated rate " +
+      "is low. A full analysis would use it to correct the others rather " +
+      "than reporting raw rates."));
 
     resultsBody.appendChild(make("p", null,
       "Notice what this is not. Every intrusion here is to a word that fits " +

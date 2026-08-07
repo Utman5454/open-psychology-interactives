@@ -854,11 +854,9 @@
               "worked example shows the shape the design can produce.")));
       }
       resultsBody.appendChild(make("p", null,
-        "Four trials at each load. One trial moves a point by 25 percentage " +
-        "points, so read the shape, not the numbers. The comparison worth " +
-        "making is between your own runs with different concurrent tasks — " +
-        "and even that is a comparison, not an experiment, because the runs " +
-        "differ in order and practice as well as in condition."));
+        "Four trials at each load, so one trial moves a point by 25 " +
+        "percentage points. Read the shape, not the numbers, and compare " +
+        "your own runs — a comparison, not an experiment."));
     }
 
     resultsBody.appendChild(make("p", null,

@@ -829,21 +829,17 @@
 
     if (simulated) {
       resultsBody.appendChild(make("p", null,
-        "The second set is the interesting one. Removing the per-item choice " +
-        "response to the number leaves the number to be read and held but not " +
-        "chosen about, and the letter task's cost falls sharply. A " +
-        "response-selection bottleneck predicts exactly that; a general-capacity " +
-        "account predicts a smaller reduction, because the number still has to " +
-        "be processed. Both patterns are built into the generator here, so treat " +
-        "this as an illustration of the argument and not as an instance of it."));
+        "Look at the second set. Take away the per-item choice and the " +
+        "letter cost falls sharply — which is what a response-selection " +
+        "bottleneck predicts and more than a capacity account would. Both " +
+        "patterns are built into the generator, so this illustrates the " +
+        "argument rather than settling it."));
     } else {
       resultsBody.appendChild(make("p", null,
         "Correct responses between " + ANTICIPATION_MS + " ms and " + LAPSE_MS +
-        " ms go into the means. Twenty trials a block is far too few for a " +
-        "stable difference: the two blocks that make up a cost each carry their " +
-        "own noise, and subtracting them adds it together. Run the other " +
-        "setting and compare the two costs, and pool with other people if you " +
-        "want a number worth quoting."));
+        " ms go into the means. Twenty trials a block is far too few: a cost " +
+        "subtracts two noisy means and adds their noise together. Run the " +
+        "other setting and compare."));
     }
   }
 
@@ -968,10 +964,9 @@
     var modes = {};
     state.sets.forEach(function (s) { modes[s.mode] = true; });
     setsNote.textContent = Object.keys(modes).length > 1
-      ? "You have sets from both overlap settings. Compare their letter-cost " +
-        "columns — that difference is the one that bears on capacity versus " +
-        "bottleneck. It is still a comparison and not an experiment: the sets " +
-        "differ in order and practice as well as in setting."
+      ? "Sets from both settings. Compare the letter-cost columns — that is " +
+        "the difference bearing on capacity versus bottleneck. It is a " +
+        "comparison, not an experiment: order and practice differ too."
       : "Run a set with the other overlap setting to add a row here. Sets are " +
         "kept only in this tab and disappear on reload or reset.";
   }
@@ -1002,11 +997,9 @@
       "a different kind. Both are kept out of the means and counted here. The " +
       "cut-offs are a documented choice, not a fact about the data."));
     excludedBody.appendChild(make("p", null,
-      "Errors are excluded from the time means and reported as accuracy. This " +
-      "matters more in a dual-task design than almost anywhere else: a smaller " +
-      "time cost bought with more errors is not a smaller cost, and reading the " +
-      "two columns separately is how people talk themselves into believing they " +
-      "multitask well."));
+      "Errors are excluded from the time means and reported as accuracy. " +
+      "Read both columns: a smaller time cost bought with more errors is not " +
+      "a smaller cost."));
   }
 
   /* =======================================================================

@@ -643,15 +643,12 @@
         "You gave up after " + (state.elapsedMs / 1000).toFixed(1) + " seconds" +
         (state.blank ? " with the blank." : " with no blank.")));
       resultsBody.appendChild(make("p", null, state.blank
-        ? "Giving up is a perfectly ordinary outcome with the blank switched " +
-          "on, and in the published paradigm trials are routinely cut off at " +
-          "a time limit for exactly that reason. The change is ringed beside " +
-          "this; now try the same scene with the blank switched off."
-        : "Giving up with the blank switched off is unusual: swapping " +
-          "directly between the two versions produces a local flicker at the " +
-          "changing object and nowhere else, which normally pulls attention " +
-          "straight to it. Worth checking that you were watching the picture " +
-          "as it swapped rather than between swaps."));
+        ? "An ordinary outcome with the blank on — published versions cut " +
+          "trials off at a time limit for the same reason. The change is " +
+          "ringed. Now run the same scene with the blank off."
+        : "Unusual with the blank off: the direct swap makes a local " +
+          "flicker at the change and nowhere else, which normally pulls the " +
+          "eye straight to it. Check you were watching as it swapped."));
     } else {
       resultsBody.appendChild(make("p", "reveal__lead",
         (correct ? "Correct — " : "Not that one — ") +
@@ -722,11 +719,8 @@
     });
 
     trialSummary.textContent =
-      "Change type, position and size vary one scene at a time, so they are " +
-      "completely confounded with each other and with the scene. This table " +
-      "records what you did; it cannot attribute a difference in time to any " +
-      "one of those three properties, and it would be a mistake to read it as " +
-      "though it could. The one comparison it does support is the same scene " +
+      "Change type, position and size are confounded with each other and with " +
+      "the scene. The one comparison this table supports is the same scene " +
       "with and without the blank.";
   }
 

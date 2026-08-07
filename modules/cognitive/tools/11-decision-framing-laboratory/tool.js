@@ -478,13 +478,11 @@
         " fictional participants in each certainty condition, four decisions " +
         "each — two gain-framed and two loss-framed — so 600 decisions per cell."));
       resultsBody.appendChild(make("p", null,
-        "Read the chart in two directions. Down the pairs is the framing " +
-        "effect: the same arithmetic described as things saved rather than " +
-        "things lost sharply increases the proportion choosing the safe option. " +
-        "Across a row is the certainty effect: taking the guarantee away from " +
-        "the safe option, without changing its expected outcome at all, costs " +
-        "it a great deal of its appeal — and costs it far more in the gain " +
-        "frame than in the loss frame."));
+        "Read the chart in two directions. Down the pairs is framing: the " +
+        "same arithmetic, described as saved rather than lost, moves people " +
+        "towards the safe option. Across a row is certainty: removing the " +
+        "guarantee costs the safe option most of its appeal, and more in the " +
+        "gain frame."));
       resultsBody.appendChild(make("p", null,
         "Both effects are built into the generator documented at the top of " +
         "tool.js. This illustrates the shape of two well-replicated findings; " +
@@ -503,11 +501,9 @@
       "You chose the safe option on " + gainSafe + " of your 2 gain-framed " +
       "decisions and " + lossSafe + " of your 2 loss-framed decisions."));
     resultsBody.appendChild(make("p", null,
-      "Those two numbers cannot show a framing effect and are not meant to. " +
-      "You saw each scenario in one frame only, so there is no comparison " +
-      "available within your own answers, and four decisions could not " +
-      "establish anything even if there were. What your decisions are for is " +
-      "the next paragraph."));
+      "Your four answers cannot show a framing effect: you saw each " +
+      "scenario in one frame only. They are there to be compared with the " +
+      "simulated sample below."));
     resultsBody.appendChild(make("p", null,
       "In every scenario, the safe option and the gamble had exactly the same " +
       "expected outcome: a third of the stock. Below, each of your decisions " +

@@ -876,27 +876,21 @@
 
     if (simulated) {
       resultsBody.appendChild(make("p", null,
-        "The pattern is built into the generator documented at the top of " +
-        "tool.js: a physical change is noticed far more often than a word is " +
-        "identified; relevance helps the unmarked items and matters much less " +
-        "for the marked ones; and everything falls when the attended rule gets " +
-        "harder. It illustrates the shape of the classic findings rather than " +
-        "providing evidence for them."));
+        "The pattern is built into the generator: physical changes get " +
+        "through more often than word identities, and everything falls when " +
+        "the attended rule gets harder. It illustrates the classic findings " +
+        "rather than evidencing them."));
     } else {
       resultsBody.appendChild(make("p", null,
-        "One trial per cell is one observation per cell. Any single rate here " +
-        "is either 0% or 100%, which is why the class dataset exists and why " +
-        "pooling a room's answers is the only useful version of this on real " +
-        "data. Compare the shape of your rows with the worked example, not " +
-        "with another person."));
+        "One trial per cell, so every rate is 0% or 100%. Compare the shape " +
+        "of your rows with the worked example, not with another person."));
     }
 
     resultsBody.appendChild(make("p", null,
-      "Read the two right-hand columns as answers to different questions. " +
-      "“Looked different” is a physical judgement about the ignored stream. " +
-      "“Word recognised” requires that the word's identity survived. An " +
-      "account of selection has to explain both columns, and the gap between " +
-      "them."));
+      "The two right-hand columns answer different questions. “Looked " +
+      "different” is physical; “word recognised” needs the identity to have " +
+      "survived. The gap between them is what selection accounts must " +
+      "explain."));
   }
 
   function renderChart(stats) {
@@ -1003,10 +997,10 @@
     loadNote.textContent = meta.source === "simulated"
       ? "The simulated class contributes no attended-task scores, so this " +
         "table stays empty for the worked example. Run a set yourself to fill it."
-      : "A load manipulation is only worth anything if it actually loaded you. " +
-        "If the two rules produced the same misses and the same false presses, " +
-        "the harder rule was not harder for you, and any difference in what got " +
-        "through from the ignored side needs a different explanation.";
+      : "A load manipulation only counts if it loaded you. Same misses and " +
+        "false presses under both rules means the harder rule was not " +
+        "harder, and any difference on the ignored side needs another " +
+        "explanation.";
   }
 
   /* =======================================================================
