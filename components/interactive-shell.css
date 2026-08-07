@@ -58,7 +58,12 @@
   color: var(--shell-text);
   border: 1px solid var(--shell-border);
   border-radius: var(--shell-radius);
-  overflow: hidden;
+  /* Clip sideways so a wide table cannot break the rounded box, but do NOT
+     use `overflow: hidden`: that would make this a scroll container and
+     silently disable `position: sticky` on .stage__primary below. `clip`
+     does not create one. */
+  overflow-x: clip;
+  overflow-y: visible;
 }
 
 /* -------------------------------------------------------------------------
@@ -224,6 +229,54 @@
   border: 1px solid var(--shell-border);
   border-radius: var(--radius-md, 8px);
   background-color: var(--shell-page);
+}
+
+/* -------------------------------------------------------------------------
+   The pinned primary result
+   -------------------------------------------------------------------------
+   Some interactives need a long controls column — a bank of items to choose
+   from, one slider per parameter, a list of things to rate. Without help, the
+   learner scrolls down to reach the fifth control and the thing it changes has
+   scrolled off the top: they can no longer see what they are doing.
+
+   Wrapping the ONE result that answers "what am I looking at to see the
+   effect?" in .stage__primary pins it to the top of the stage while the rest
+   of the page scrolls underneath. Everything below it stays reachable, which
+   is why this is used instead of pinning the whole stage column.
+
+   Only the primary result should carry this class. Secondary diagnostics,
+   tables and interpretation stay in normal flow beneath it.
+   ---------------------------------------------------------------------- */
+
+@media (min-width: 52em) {
+  /* The pin can only travel inside its own column, so the stage has to be as
+     tall as the controls beside it. Add this modifier to .interactive__body
+     whenever the stage contains a .stage__primary. */
+  .interactive__body--pinned {
+    align-items: stretch;
+  }
+
+  .interactive__stage > .stage__primary {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    /* Span the stage padding so content scrolling under it is covered. */
+    margin: -1rem -1rem 0;
+    padding: 1rem 1rem 0.75rem;
+    background-color: var(--shell-page);
+    border-bottom: 1px solid var(--shell-border);
+  }
+}
+
+/* On a short viewport a pinned block would take most of the screen, so it
+   returns to normal flow. */
+@media (min-width: 52em) and (max-height: 30em) {
+  .interactive__stage > .stage__primary {
+    position: static;
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
+  }
 }
 
 .interactive__stage svg,
