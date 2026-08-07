@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Twin-Study Simulator — Open Psychology Interactives</title>
+  <meta name="description" content="Set true variance components, generate fictional twin pairs, and recover ACE estimates - then break the equal-environments, random-mating and independence assumptions and watch the estimates fail in opposite directions.">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f141b" media="(prefers-color-scheme: dark)">
+
+  <link rel="canonical" href="https://utman5454.github.io/open-psychology-interactives/modules/personality-individual-differences/tools/39-twin-study-simulator/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Open Psychology Interactives">
+  <meta property="og:title" content="Twin-Study Simulator">
+  <meta property="og:description" content="Set the truth, generate fictional twin pairs, estimate it back - then break the assumptions one at a time.">
+  <meta property="og:url" content="https://utman5454.github.io/open-psychology-interactives/modules/personality-individual-differences/tools/39-twin-study-simulator/">
+  <meta property="og:locale" content="en_GB">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Twin-Study Simulator">
+  <meta name="twitter:description" content="Set the truth, generate fictional twin pairs, estimate it back - then break the assumptions one at a time.">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%237a2e6d'/%3E%3Cpath d='M4 24C10 24 10 8 16 8s6 16 12 16' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
+
+  <!-- Four directories deep (modules/<slug>/tools/<slug>/), so shared assets
+       are at ../../../../ — see docs/adapting-a-tool.md. -->
+  <link rel="stylesheet" href="../../../../assets/css/main.css">
+  <link rel="stylesheet" href="../../../../components/interactive-shell.css">
+  <link rel="stylesheet" href="../../../../components/tool-kit.css">
+  <link rel="stylesheet" href="tool.css">
+  <script src="../../../../assets/js/main.js" defer></script>
+  <script src="../../../../components/interactive-shell.js" defer></script>
+  <script src="tool.js" defer></script>
+</head>
+
+<!-- data-site-root: the path back to the site root from this page. -->
+<body data-site-root="../../../../">
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+
+      <a class="brand" href="../../../../index.html" aria-label="Open Psychology Interactives, home">
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <rect x="1" y="1" width="30" height="30" rx="7" fill="none" stroke="currentColor" stroke-width="2"></rect>
+          <path d="M5 24C10 24 10 8 16 8s6 16 11 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        </svg>
+        <span>
+          <span class="brand__name">Open Psychology Interactives</span>
+          <span class="brand__tagline">Free teaching tools for psychology</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" data-nav-toggle
+              aria-expanded="false" aria-controls="site-nav" hidden>
+        <svg class="nav-toggle__icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+          <path d="M2 5h16M2 10h16M2 15h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        </svg>
+        Menu
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul class="site-nav__list">
+          <li><a class="site-nav__link" href="../../../../index.html">Home</a></li>
+          <li><a class="site-nav__link" href="../../../cognitive/index.html">Cognitive<span class="visually-hidden"> Psychology</span></a></li>
+          <li><a class="site-nav__link" href="../../../research-methods/index.html">Research Methods</a></li>
+          <li><a class="site-nav__link" href="../../../neuropsychology/index.html">Neuropsychology</a></li>
+          <li><a class="site-nav__link" href="../../../social-critical-psychology/index.html">Social and Critical<span class="visually-hidden"> Psychology</span></a></li>
+          <li><a class="site-nav__link" href="../../index.html">Personality<span class="visually-hidden"> and Individual Differences</span></a></li>
+          <li><a class="site-nav__link" href="../../../../index.html#documentation">Documentation</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <nav class="breadcrumbs container" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="../../../../index.html">Home</a></li>
+      <li><a href="../../../../index.html#modules">Modules</a></li>
+      <li><a href="../../index.html">Personality and Individual Differences</a></li>
+      <li aria-current="page">Twin-Study Simulator</li>
+    </ol>
+  </nav>
+
+  <main id="main">
+
+    <!-- ================= Title and purpose ================= -->
+    <section class="section card--personality-individual-differences" aria-labelledby="page-heading">
+      <div class="container">
+
+        <p class="hero__eyebrow" style="color: var(--colour-personality-individual-differences)">
+          Personality and Individual Differences
+        </p>
+        <h1 id="page-heading">Twin-Study Simulator</h1>
+        <p class="hero__lead">
+          Set the truth, generate fictional twin pairs, estimate it back — and
+          then break the assumptions one at a time and watch the estimates go
+          wrong in specific directions.
+        </p>
+
+        <p>
+          <span class="badge">
+            <span class="badge__dot" aria-hidden="true"></span>
+            Simulated — fictional pairs from a seeded generator, no real study
+          </span>
+        </p>
+
+        <div class="split split--wide">
+
+          <div class="panel">
+            <h2 class="panel__title">Learning objective</h2>
+            <p>
+              By the end you should be able to state what heritability is a
+              property of, derive it from twin correlations, name the
+              assumptions that derivation rests on, and say which direction
+              each violation pushes the estimate.
+            </p>
+            <p class="text-muted">
+              About 30 minutes. Nothing you do here is saved or sent anywhere.
+            </p>
+          </div>
+
+          <div class="panel panel--caution">
+            <h2 class="panel__title">The one sentence to take away</h2>
+            <p>
+              Heritability is the proportion of <strong>variance in a
+              population</strong> attributable to genetic variance in
+              <strong>that</strong> population under <strong>those</strong>
+              environmental conditions. It is <strong>not</strong> the
+              proportion of any individual's trait caused by their genes, and
+              it says nothing about whether a trait can be changed.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= Opening prediction ================= -->
+    <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="opening-heading">First, the definition</h2>
+          <p class="prose">
+            A study reports that a trait has a heritability of 0.50.
+          </p>
+        </div>
+
+        <noscript>
+          <div class="placeholder">
+            <h3 class="placeholder__title">This part needs JavaScript</h3>
+            <p class="prose">
+              The simulator generates fictional twin data in your browser, so it
+              cannot run with JavaScript switched off. The rest of this page is
+              readable without it.
+            </p>
+          </div>
+        </noscript>
+
+        <form class="panel prediction" id="opening-form">
+          <fieldset class="prediction__group">
+            <legend class="prediction__legend">What does that mean?</legend>
+            <label class="control--choice">
+              <input type="radio" name="opening" value="individual">
+              For each person, half of the trait was caused by their genes
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="opening" value="population">
+              Half the variation between people in this population, in these environments, is associated with genetic variation
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="opening" value="fixed">
+              The trait is half fixed and only half open to change
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="opening" value="genes">
+              Half the relevant genes have been identified
+            </label>
+          </fieldset>
+
+          <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+          <div class="prediction__actions">
+            <button class="button button--primary" type="submit">
+              Record my answer and open the simulator
+            </button>
+            <button class="button button--secondary" type="button" data-action="skip-opening">
+              Skip — I am demonstrating this
+            </button>
+          </div>
+
+          <div class="feedback" data-opening-feedback hidden></div>
+        </form>
+
+      </div>
+    </section>
+
+    <!-- ================= Simulator ================= -->
+    <section class="section" id="simulator-section" aria-labelledby="simulator-heading" hidden>
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="simulator-heading" tabindex="-1">The simulator</h2>
+          <p class="prose">
+            You set the true variance components. The simulator generates 250
+            pairs in each group from them, and Falconer's formulae estimate
+            them back from the correlations. Real studies only ever see the
+            right-hand column.
+          </p>
+        </div>
+
+        <section class="interactive" id="twins" data-interactive
+                 data-reset-message="Everything cleared. Back to the definition question.">
+
+          <header class="interactive__header">
+            <h3 class="interactive__title">Fictional twin and sibling pairs</h3>
+            <p class="interactive__brief">
+              250 pairs per group, generated from a seed. No real family, study
+              or dataset is involved.
+            </p>
+          </header>
+
+          <div class="interactive__body">
+
+            <form class="interactive__controls" data-interactive-controls>
+
+              <fieldset>
+                <legend>The truth you are setting</legend>
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="a2-range">A — additive genetic</label>
+                    <output class="control__value" for="a2-range">0.40</output>
+                  </div>
+                  <input type="range" id="a2-range" min="0" max="100" step="5" value="40">
+                </div>
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="c2-range">C — shared environment</label>
+                    <output class="control__value" for="c2-range">0.35</output>
+                  </div>
+                  <input type="range" id="c2-range" min="0" max="100" step="5" value="35">
+                </div>
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="e2-range">E — non-shared environment</label>
+                    <output class="control__value" for="e2-range">0.20</output>
+                  </div>
+                  <input type="range" id="e2-range" min="0" max="100" step="5" value="20">
+                </div>
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="m2-range">Measurement error</label>
+                    <output class="control__value" for="m2-range">0.05</output>
+                  </div>
+                  <input type="range" id="m2-range" min="0" max="100" step="5" value="5">
+                  <p class="control__hint">
+                    The four are renormalised to sum to 1. Error is generated
+                    separately but cannot be separated from E by this model.
+                  </p>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>Break the assumptions</legend>
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="unequal-range">Unequal environments</label>
+                    <output class="control__value" for="unequal-range">0.00</output>
+                  </div>
+                  <input type="range" id="unequal-range" min="0" max="60" step="5" value="0">
+                  <p class="control__hint">
+                    Identical twins share more environment than fraternal twins.
+                  </p>
+                </div>
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="assortative-range">Assortative mating</label>
+                    <output class="control__value" for="assortative-range">0.00</output>
+                  </div>
+                  <input type="range" id="assortative-range" min="0" max="60" step="5" value="0">
+                  <p class="control__hint">
+                    Parents resemble each other, so non-identical pairs share more than half of A.
+                  </p>
+                </div>
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="gxe-range">Gene–environment correlation</label>
+                    <output class="control__value" for="gxe-range">0.00</output>
+                  </div>
+                  <input type="range" id="gxe-range" min="0" max="70" step="5" value="0">
+                  <p class="control__hint">
+                    The environment a pair meets depends partly on their own characteristics.
+                  </p>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>Sampling</legend>
+                <div class="control">
+                  <label class="control__label" for="seed-input">Random seed</label>
+                  <input type="number" id="seed-input" value="4471" step="1">
+                </div>
+                <div class="control">
+                  <button class="button button--secondary" type="button" data-action="resample">
+                    Draw a new sample
+                  </button>
+                </div>
+              </fieldset>
+
+            </form>
+
+            <div class="interactive__stage" data-interactive-stage>
+
+              <h4 class="stage__heading">Pair resemblance</h4>
+              <figure class="chart">
+                <figcaption class="visually-hidden">
+                  Scatterplots of one pair member against the other, for each
+                  group
+                </figcaption>
+                <svg class="chart__svg" data-scatter viewBox="0 0 486 190"
+                     aria-hidden="true" focusable="false"></svg>
+                <div class="table-scroll">
+                  <table class="chart__table">
+                    <caption class="visually-hidden">
+                      Number of pairs and observed within-pair correlation for
+                      each group
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Group</th>
+                        <th scope="col">Pairs</th>
+                        <th scope="col">Correlation</th>
+                      </tr>
+                    </thead>
+                    <tbody data-scatter-table></tbody>
+                  </table>
+                </div>
+              </figure>
+
+              <dl class="interactive__readout" data-readout></dl>
+
+              <h4 class="stage__heading">Truth against estimate</h4>
+              <div class="table-scroll">
+                <table class="data-table">
+                  <caption class="visually-hidden">
+                    The variance components you set, the values Falconer's
+                    formulae recover, and the error in each
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Component</th>
+                      <th scope="col">Truth</th>
+                      <th scope="col">Estimated</th>
+                      <th scope="col">Error</th>
+                    </tr>
+                  </thead>
+                  <tbody data-estimate-table></tbody>
+                </table>
+              </div>
+              <p class="verdict verdict__body" data-estimate-note></p>
+
+              <div class="verdict" data-violation-note-wrap>
+                <h4 class="verdict__title">What the violations are doing</h4>
+                <p class="verdict__body" data-violation-note></p>
+              </div>
+
+            </div>
+
+          </div>
+
+          <p class="interactive__status" data-interactive-status role="status"></p>
+
+          <div class="interactive__actions">
+            <button type="button" data-action="equalise">
+              Equalise everyone's environment
+            </button>
+            <button type="button" data-variant="secondary" data-interactive-reset>
+              Reset everything
+            </button>
+          </div>
+
+          <details class="interactive__notes">
+            <summary>Notes for whoever is running this</summary>
+            <div>
+              <p>
+                The <em>Equalise everyone's environment</em> button is the most
+                useful thing here. It removes shared-environment variance and
+                heritability rises sharply, with no gene changing. A high
+                heritability can be evidence that environments have been made
+                more equal — which is close to the opposite of how the number is
+                usually read aloud.
+              </p>
+              <p>
+                Fuller guidance and the debrief questions are in
+                <a href="teaching-notes.md">teaching-notes.md</a> beside this
+                page.
+              </p>
+            </div>
+          </details>
+
+        </section>
+
+        <div class="panel">
+          <p class="verdict verdict__body" data-env-note hidden></p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= Challenge ================= -->
+    <section class="section section--tinted" id="challenge" aria-labelledby="challenge-heading">
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="challenge-heading">Challenge — diagnose the inflation</h2>
+        </div>
+
+        <form class="panel challenge" id="challenge-form">
+          <p>
+            A study reports a heritability well above the truth, and a
+            shared-environment estimate near zero. Which assumption failure
+            produces exactly that pattern?
+          </p>
+
+          <fieldset class="prediction__group">
+            <legend class="prediction__legend">Your answer</legend>
+            <label class="control--choice">
+              <input type="radio" name="challenge" value="unequal">
+              Identical twins share more of their environment than fraternal twins do
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="challenge" value="assortative">
+              Parents resemble each other on the trait
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="challenge" value="error">
+              The measure is unreliable
+            </label>
+          </fieldset>
+
+          <div class="prediction__actions">
+            <button class="button button--primary" type="submit">
+              Check my answer
+            </button>
+          </div>
+
+          <div class="feedback" data-challenge-feedback hidden></div>
+        </form>
+
+      </div>
+    </section>
+
+    <!-- ================= Debrief ================= -->
+    <section class="section" id="debrief" aria-labelledby="debrief-heading">
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="debrief-heading">What this demonstrates</h2>
+        </div>
+
+        <div class="split split--wide">
+
+          <div class="prose">
+            <h3>Heritability is a ratio, and ratios have denominators</h3>
+            <p>
+              h² is genetic variance divided by total variance in a particular
+              population. Shrink the environmental variance — equalise
+              schooling, nutrition, income — and heritability rises without a
+              single gene changing. It follows that a high heritability may
+              describe a society that has succeeded in making environments more
+              similar, and a low one may describe a society where environments
+              differ enormously. The number is as much about the population as
+              about the trait.
+            </p>
+
+            <h3>It is not about individuals, at all</h3>
+            <p>
+              There is no coherent way to divide one person's characteristic
+              into a genetic portion and an environmental portion. They had one
+              genome and one life, and both were necessary for all of it. A
+              statement about the sources of <em>variation between</em> people
+              is not a statement about the <em>composition of</em> any one of
+              them.
+            </p>
+
+            <h3>It says nothing about malleability</h3>
+            <p>
+              Height is highly heritable and rose substantially across the
+              twentieth century through nutrition. Needing spectacles is highly
+              heritable and is corrected with a pair of spectacles. A heritable
+              trait is not a fixed one, and the inference from one to the other
+              has caused real harm.
+            </p>
+
+            <h3>The assumptions are the argument</h3>
+            <p>
+              Falconer's formulae are three lines of arithmetic resting on
+              substantive claims: that identical and fraternal twins share
+              their environments to the same extent, that parents pair at
+              random with respect to the trait, and that genetic and
+              environmental influences are independent. All three are known to
+              fail to some degree, and they do not all fail in the same
+              direction — which is why the responsible reading of a
+              heritability estimate is as a rough indication with a direction
+              of likely bias attached.
+            </p>
+          </div>
+
+          <aside class="panel panel--caution" aria-labelledby="limits-heading">
+            <h3 class="panel__title" id="limits-heading">
+              What this does <em>not</em> demonstrate
+            </h3>
+            <ul>
+              <li>
+                <strong>These are not data.</strong> Fictional pairs from a
+                seeded generator. No real twin study, family or dataset is
+                represented, and no trait is named — deliberately, because the
+                argument is about the method.
+              </li>
+              <li>
+                <strong>Nothing here concerns any group of people.</strong> The
+                simulation has one undifferentiated population. It makes no
+                claim, and can make no claim, about differences between
+                populations — a question to which heritability within groups is
+                simply not the relevant evidence.
+              </li>
+              <li>
+                <strong>The model is the simplest possible one.</strong> Purely
+                additive genetic effects: no dominance, no epistasis, no sex
+                differences, no age moderation, no gene–environment
+                <em>interaction</em> (as distinct from correlation, which is
+                modelled). Real behaviour-genetic models fit many more
+                parameters.
+              </li>
+              <li>
+                <strong>Falconer's method is not what modern studies use.</strong>
+                It is shown because it makes the logic visible in three lines.
+                Current work uses structural equation models over many family
+                relationships, with confidence intervals and model comparison.
+              </li>
+              <li>
+                <strong>No confidence intervals are shown.</strong> Press "draw
+                a new sample" repeatedly to see how much the estimates move
+                between samples of this size — that movement is what an interval
+                would summarise.
+              </li>
+              <li>
+                <strong>Nobody is assessed.</strong> You set parameters and read
+                estimates. The tool asks nothing about you or your family.
+              </li>
+            </ul>
+          </aside>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+
+        <div>
+          <h2>Open Psychology Interactives</h2>
+          <p class="text-muted">
+            Free, accessible, classroom-ready teaching tools for university
+            psychology. Built as plain web pages so they keep working, and
+            openly licensed so they can be adapted.
+          </p>
+        </div>
+
+        <div>
+          <h2>Modules</h2>
+          <ul>
+            <li><a href="../../../cognitive/index.html">Cognitive Psychology</a></li>
+            <li><a href="../../../research-methods/index.html">Research Methods</a></li>
+            <li><a href="../../../neuropsychology/index.html">Neuropsychology</a></li>
+            <li><a href="../../../social-critical-psychology/index.html">Social and Critical Psychology</a></li>
+            <li><a href="../../index.html">Personality and Individual Differences</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h2>Project</h2>
+          <ul>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives">GitHub repository</a></li>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives/blob/main/CONTRIBUTING.md">Contributing</a></li>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives/blob/main/docs/accessibility.md">Accessibility</a></li>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives/blob/main/LICENSE">MIT licence</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="site-footer__bottom">
+        <p>© <span data-current-year>2026</span> Open Psychology Interactives. Released under the MIT licence.</p>
+        <p>Built with plain HTML, CSS and JavaScript. No trackers, no accounts.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

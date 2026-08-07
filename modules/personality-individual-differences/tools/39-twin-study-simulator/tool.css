@@ -1,0 +1,50 @@
+/* =========================================================================
+   Twin-Study Simulator — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. The three
+   scatterplots are the only genuinely new component.
+   ========================================================================= */
+
+#twins .interactive__controls,
+#twins .interactive__stage {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #twins .interactive__body {
+    grid-template-columns: minmax(0, 19rem) minmax(0, 1fr);
+  }
+}
+
+#twins .control + .control {
+  margin-top: var(--space-4);
+}
+
+#twins input[type="number"] {
+  font-variant-numeric: tabular-nums;
+}
+
+/* -------------------------------------------------------------------------
+   Scatterplots
+   -------------------------------------------------------------------------
+   Drawn as a single path of zero-length segments with round caps, which is
+   far cheaper than 250 <circle> elements per panel and renders identically.
+   Each panel is labelled with its group and its correlation as text, and the
+   same figures appear in the table beneath, so nothing depends on judging a
+   cloud by eye.
+   ---------------------------------------------------------------------- */
+
+.scatter__points {
+  stroke: var(--colour-accent);
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-opacity: 0.5;
+  fill: none;
+}
+
+@media (forced-colors: active) {
+  .scatter__points {
+    stroke: CanvasText;
+    stroke-opacity: 1;
+  }
+}
