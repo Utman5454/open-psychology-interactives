@@ -1,0 +1,247 @@
+/* =========================================================================
+   Culture-Fair Test Challenge — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. The design
+   feature groups, the construct-share bar and the participant cards are what
+   is particular here.
+   ========================================================================= */
+
+#culture-fair .interactive__controls,
+#culture-fair .interactive__stage {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #culture-fair .interactive__body {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+@media (min-width: 72em) {
+  #culture-fair .interactive__body {
+    grid-template-columns: minmax(0, 25rem) minmax(0, 1fr);
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Design features
+   ---------------------------------------------------------------------- */
+
+.feature {
+  margin: 0;
+  padding: 0 0 var(--space-3);
+  border: 0;
+  border-bottom: 1px solid var(--colour-border);
+}
+
+.feature + .feature {
+  padding-top: var(--space-3);
+}
+
+.feature:last-of-type {
+  border-bottom: 0;
+}
+
+.feature__name {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+
+/* Each option is a radio plus a two-line body, so the row is taller than the
+   shell's default choice row. align-items: flex-start keeps the control level
+   with the first line of the label. */
+.feature__option {
+  align-items: flex-start !important;
+  padding: 0.3rem 0;
+}
+
+.feature__option input {
+  margin-top: 0.25rem;
+}
+
+.feature__body {
+  display: grid;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.feature__label {
+  font-weight: 600;
+}
+
+.feature__note {
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+  font-style: italic;
+}
+
+/* -------------------------------------------------------------------------
+   Construct-share bar
+   -------------------------------------------------------------------------
+   Two parts of one bar. Each part prints its own label and percentage inside
+   it, so the split is readable without reference to the fill colours, and the
+   figures are repeated in the note beneath.
+   ---------------------------------------------------------------------- */
+
+.share {
+  display: flex;
+  width: 100%;
+  min-height: 2.5rem;
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.share__part {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  overflow: hidden;
+  transition: width 200ms ease-out;
+}
+
+.share__part--relevant {
+  background-color: var(--colour-accent);
+}
+
+.share__part--irrelevant {
+  background-color: var(--colour-status-bg);
+  border-left: 1px solid var(--colour-border-strong);
+}
+
+.share__label {
+  padding: 0 0.4rem;
+  font-size: var(--text-xs);
+  font-weight: 650;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.share__part--relevant .share__label {
+  color: var(--colour-on-accent);
+}
+
+.share__part--irrelevant .share__label {
+  color: var(--colour-status-text);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .share__part {
+    transition: none;
+  }
+}
+
+/* A demand at or above 0.6 is drawn in the warning accent as well as being
+   labelled "high" in the table beside it. */
+.chart__bar--high {
+  fill: var(--colour-social-critical-psychology);
+}
+
+/* -------------------------------------------------------------------------
+   Participants
+   ---------------------------------------------------------------------- */
+
+.participants {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+}
+
+.participants > li {
+  margin-top: 0;
+}
+
+.participant {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  background-color: var(--colour-surface-raised);
+}
+
+.participant__name {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-base);
+}
+
+.participant__sketch {
+  margin: 0 0 var(--space-3);
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+
+.participant__meter {
+  height: 0.75rem;
+  border: 1px solid var(--colour-border-strong);
+  border-radius: 999px;
+  background-color: var(--colour-surface);
+  overflow: hidden;
+}
+
+.participant__fill {
+  height: 100%;
+  background-color: var(--colour-social-critical-psychology);
+  transition: width 200ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .participant__fill {
+    transition: none;
+  }
+}
+
+.participant__load {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-sm);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+
+.participant__hurdles {
+  margin: var(--space-2) 0 0;
+  padding-left: 1.1rem;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+
+.evidence__item {
+  margin: var(--space-3) 0 0;
+}
+
+@media (forced-colors: active) {
+  .participant,
+  .participant__meter,
+  .share {
+    border: 1px solid CanvasText;
+  }
+
+  .share__part--relevant,
+  .participant__fill {
+    background-color: Highlight;
+  }
+
+  .share__part--irrelevant {
+    background-color: Canvas;
+  }
+
+  .share__part--relevant .share__label {
+    color: Canvas;
+  }
+
+  .share__part--irrelevant .share__label {
+    color: CanvasText;
+  }
+
+  .chart__bar--high {
+    fill: Highlight;
+  }
+}

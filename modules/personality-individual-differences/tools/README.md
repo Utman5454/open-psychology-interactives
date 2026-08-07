@@ -13,6 +13,7 @@ folder per tool.
 | Facet-Level Detective | [`09-facet-level-detective/`](09-facet-level-detective/) | Trait structure: what a broad domain score averages away, and the bandwidth-fidelity trade-off |
 | The Alpha Trap | [`12-alpha-trap/`](12-alpha-trap/) | Reliability: why a high Cronbach's alpha is not validity, unidimensionality or evidence of a good measure |
 | Intelligence-Test Battery Builder | [`31-intelligence-test-battery-builder/`](31-intelligence-test-battery-builder/) | Intelligence testing: construct coverage, the trade-offs in battery construction, and validity as a property of a use |
+| Culture-Fair Test Challenge | [`34-culture-fair-test-challenge/`](34-culture-fair-test-challenge/) | Culture-fair testing: construct-irrelevant demand, opportunity to learn a format, and what comparability requires |
 
 <!-- PUBLISHED:END -->
 
