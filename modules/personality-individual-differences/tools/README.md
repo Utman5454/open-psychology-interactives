@@ -19,6 +19,7 @@ folder per tool.
 | Culture-Fair Test Challenge | [`34-culture-fair-test-challenge/`](34-culture-fair-test-challenge/) | Culture-fair testing: construct-irrelevant demand, opportunity to learn a format, and what comparability requires |
 | Twin-Study Simulator | [`39-twin-study-simulator/`](39-twin-study-simulator/) | Behaviour genetics: what heritability is a property of, and which way each broken assumption bends the estimate |
 | Gene × Environment Interaction Visualiser | [`42-gene-environment-interaction-visualiser/`](42-gene-environment-interaction-visualiser/) | Gene-environment interaction: how the sampled environmental range decides which theory a study appears to support |
+| Self-Esteem Stability Tracker | [`50-self-esteem-stability-tracker/`](50-self-esteem-stability-tracker/) | Self-esteem dynamics: level, volatility, domain contingency and recovery as four separable characteristics |
 
 <!-- PUBLISHED:END -->
 

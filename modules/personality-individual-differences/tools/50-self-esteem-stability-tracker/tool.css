@@ -1,0 +1,103 @@
+/* =========================================================================
+   Self-Esteem Stability Tracker — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. The four-series
+   time plot and the event log are what is particular here.
+   ========================================================================= */
+
+#tracker .interactive__controls,
+#tracker .interactive__stage {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #tracker .interactive__body {
+    grid-template-columns: minmax(0, 17rem) minmax(0, 1fr);
+  }
+}
+
+#tracker .control + .control {
+  margin-top: var(--space-4);
+}
+
+/* -------------------------------------------------------------------------
+   Series
+   -------------------------------------------------------------------------
+   Four people on one pair of axes, distinguished by colour, by dash pattern
+   AND by a name printed at the end of each line. The summary table beneath
+   carries every figure, so no comparison depends on reading the plot.
+   ---------------------------------------------------------------------- */
+
+.series__line {
+  fill: none;
+  stroke-width: 1.9;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.series__line--one { stroke: var(--colour-accent); }
+
+.series__line--two {
+  stroke: var(--colour-personality-individual-differences);
+  stroke-dasharray: 7 3;
+}
+
+.series__line--three {
+  stroke: var(--colour-neuropsychology);
+  stroke-dasharray: 2 3;
+}
+
+.series__line--four {
+  stroke: var(--colour-cognitive);
+  stroke-dasharray: 10 3 2 3;
+}
+
+/* The baseline all four share. */
+.tracker__baseline {
+  stroke: var(--colour-text-muted);
+  stroke-width: 1;
+  stroke-dasharray: 3 4;
+  stroke-opacity: 0.8;
+}
+
+/* Where an event was delivered. Also listed in the event log below, so the
+   marker is never the only record. */
+.tracker__event {
+  stroke: var(--colour-social-critical-psychology);
+  stroke-width: 1.5;
+  stroke-opacity: 0.6;
+}
+
+/* -------------------------------------------------------------------------
+   Event log
+   ---------------------------------------------------------------------- */
+
+.event-log {
+  margin: 0;
+  padding-left: 1.2rem;
+  font-size: var(--text-sm);
+  display: grid;
+  gap: 0.2rem;
+}
+
+.event-log > li {
+  margin-top: 0;
+}
+
+@media (forced-colors: active) {
+  .series__line--one,
+  .series__line--three {
+    stroke: CanvasText;
+  }
+
+  .series__line--two,
+  .series__line--four {
+    stroke: Highlight;
+  }
+
+  .tracker__baseline,
+  .tracker__event {
+    stroke: GrayText;
+    stroke-opacity: 1;
+  }
+}
