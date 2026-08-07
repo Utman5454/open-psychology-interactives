@@ -1,0 +1,258 @@
+/* =========================================================================
+   Power Lens Laboratory — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. What is
+   particular here: the nine-item case file, the evidence picker, the pinned
+   lens card and the item-by-item feedback.
+   ========================================================================= */
+
+#power-lab .interactive__controls,
+#power-lab .interactive__stage {
+  min-width: 0;
+}
+
+/* The stage is a grid, and a grid item's automatic minimum size is its
+   min-content width - so a wide table inside a .table-scroll still widens
+   the whole track and pushes the stage past a narrow viewport, even though
+   the scroller itself would have coped. Every direct child of the stage has
+   to opt out of that minimum, not just the stage. */
+#power-lab .interactive__stage > * {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #power-lab .interactive__body {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+@media (min-width: 76em) {
+  #power-lab .interactive__body {
+    grid-template-columns: minmax(0, 30rem) minmax(0, 1fr);
+  }
+}
+
+/* Multi-line labels: the shared rule centres a single line, which leaves a
+   wrapped option looking detached from its control. */
+#power-lab .control--choice {
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: var(--text-sm);
+  line-height: 1.4;
+}
+
+#power-lab .control--choice input {
+  margin-top: 0.3rem;
+}
+
+/* -------------------------------------------------------------------------
+   The case file
+   -------------------------------------------------------------------------
+   Printed once, in full, above the laboratory. Every lens gets all nine
+   items, so nothing here is styled to suggest that any item belongs to any
+   particular reading.
+   ---------------------------------------------------------------------- */
+
+.ledger {
+  margin: 0;
+  padding-left: 1.4rem;
+  display: grid;
+  gap: var(--space-2);
+  max-width: 62rem;
+}
+
+.ledger__item {
+  margin-top: 0;
+  padding: var(--space-2) var(--space-3);
+  border-left: 3px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+
+.ledger__number {
+  font-variant-numeric: tabular-nums;
+}
+
+/* -------------------------------------------------------------------------
+   The evidence picker
+   ---------------------------------------------------------------------- */
+
+.task__label {
+  margin: var(--space-3) 0 var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: 650;
+  line-height: 1.4;
+}
+
+.task__label:first-of-type {
+  margin-top: var(--space-2);
+}
+
+.pick {
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  background-color: var(--colour-surface-raised);
+  cursor: pointer;
+}
+
+.pick + .pick {
+  margin-top: var(--space-2);
+}
+
+.pick:has(input:checked) {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+}
+
+.pick input:disabled + .pick__body {
+  opacity: 0.75;
+}
+
+.pick__body {
+  display: grid;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.pick__number {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+
+.pick__text {
+  font-size: var(--text-sm);
+  line-height: 1.4;
+}
+
+.stage-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.stage-nav .button {
+  min-height: 2.75rem;
+}
+
+/* -------------------------------------------------------------------------
+   The pinned lens card
+   -------------------------------------------------------------------------
+   Deliberately small. It carries the lens's central question while the
+   learner works down a long list of evidence, which is the whole reason the
+   primary is pinned in this tool.
+   ---------------------------------------------------------------------- */
+
+.lens__question {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-base);
+  font-weight: 650;
+  line-height: 1.4;
+}
+
+.lens__lead {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  line-height: 1.55;
+}
+
+[data-primary-body] > :last-child {
+  margin-bottom: 0;
+}
+
+.verdict + .verdict {
+  margin-top: var(--space-3);
+}
+
+/* -------------------------------------------------------------------------
+   Item-by-item feedback
+   -------------------------------------------------------------------------
+   The band is named in words in the heading of every entry. The left rule is
+   a redundant second cue only.
+   ---------------------------------------------------------------------- */
+
+.item-notes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.item-notes > li {
+  margin-top: 0;
+  padding: var(--space-2) var(--space-3);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+
+.item-notes > li[data-band="core"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+
+.item-notes > li[data-band="partly"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+
+.item-notes__head {
+  margin: 0 0 var(--space-1);
+}
+
+/* -------------------------------------------------------------------------
+   Challenge results
+   ---------------------------------------------------------------------- */
+
+.claims__results {
+  margin: var(--space-3) 0 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: var(--space-3);
+}
+
+.claims__results > li {
+  margin-top: 0;
+  padding-left: var(--space-3);
+  border-left: 3px solid var(--colour-border-strong);
+}
+
+.claims__results > li[data-agreed="yes"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+
+.claims__results > li[data-agreed="no"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+
+.claims__result-head {
+  margin: 0 0 var(--space-1);
+}
+
+/* -------------------------------------------------------------------------
+   Forced colours
+   ---------------------------------------------------------------------- */
+
+@media (forced-colors: active) {
+  .ledger__item,
+  .pick,
+  .item-notes > li,
+  .claims__results > li {
+    border: 1px solid CanvasText;
+  }
+
+  .pick:has(input:checked) {
+    border: 2px solid Highlight;
+  }
+
+  .item-notes > li[data-band="core"] {
+    border: 2px solid Highlight;
+  }
+}

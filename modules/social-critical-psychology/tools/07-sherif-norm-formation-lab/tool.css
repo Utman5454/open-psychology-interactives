@@ -1,0 +1,158 @@
+/* =========================================================================
+   Norm-Formation Laboratory — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. What is
+   particular here: the ambiguous stimulus, the other participants' estimates
+   and the fifteen-round trace.
+   ========================================================================= */
+
+#norm-lab .interactive__controls,
+#norm-lab .interactive__stage {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #norm-lab .interactive__body {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+@media (min-width: 76em) {
+  #norm-lab .interactive__body {
+    grid-template-columns: minmax(0, 24rem) minmax(0, 1fr);
+  }
+}
+
+/* -------------------------------------------------------------------------
+   The stimulus
+   -------------------------------------------------------------------------
+   Deliberately uninformative. The sentence beneath it carries everything the
+   drawing does, so nothing here depends on seeing it.
+   ---------------------------------------------------------------------- */
+
+.stimulus {
+  margin: 0 0 var(--space-3);
+  display: grid;
+  gap: var(--space-2);
+}
+
+.stimulus__svg {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+}
+
+.stimulus__field {
+  fill: #10131a;
+}
+
+.stimulus__mark {
+  fill: #f4f1e6;
+}
+
+.stimulus__mark--first {
+  fill-opacity: 0.45;
+}
+
+.stimulus__mark--second {
+  fill-opacity: 0.9;
+}
+
+/* -------------------------------------------------------------------------
+   The other participants
+   ---------------------------------------------------------------------- */
+
+.others__lead {
+  margin: var(--space-3) 0 var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+
+.others {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.others__item {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-top: 0;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+
+.others__value {
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+
+/* -------------------------------------------------------------------------
+   Controls
+   ---------------------------------------------------------------------- */
+
+.stage-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.stage-nav .button {
+  min-height: 2.75rem;
+}
+
+/* -------------------------------------------------------------------------
+   The trace
+   -------------------------------------------------------------------------
+   The group phase is marked by a shaded band AND by a label inside it, and
+   the whole series is restated in words underneath, so nothing depends on
+   reading the chart.
+   ---------------------------------------------------------------------- */
+
+/* The id prefix is load-bearing, not decoration. interactive-shell.css sets
+   `.interactive__stage svg { max-width: 100% }`, whose specificity (0,1,1)
+   beats a bare class rule here, so an unprefixed cap is silently ignored
+   and the chart stretches to the full stage width. */
+#norm-lab .trace-chart {
+  max-width: 30rem;
+}
+
+.trace__band {
+  fill: var(--colour-accent-soft);
+}
+
+.verdict + .verdict {
+  margin-top: var(--space-3);
+}
+
+/* -------------------------------------------------------------------------
+   Forced colours
+   ---------------------------------------------------------------------- */
+
+@media (forced-colors: active) {
+  .others__item {
+    border: 1px solid CanvasText;
+  }
+
+  .trace__band {
+    fill: Canvas;
+    stroke: CanvasText;
+    stroke-dasharray: 3 3;
+  }
+
+  .stimulus__field {
+    fill: Canvas;
+    stroke: CanvasText;
+  }
+
+  .stimulus__mark {
+    fill: CanvasText;
+  }
+}

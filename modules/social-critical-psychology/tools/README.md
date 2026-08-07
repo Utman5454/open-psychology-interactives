@@ -1,11 +1,28 @@
 # modules/social-critical-psychology/tools/
 
+<!-- PUBLISHED:START -->
+| Tool | Folder | Topic |
+| --- | --- | --- |
+| Epistemology Lens Switch | [`01-epistemology-lens-switch/`](01-epistemology-lens-switch/) | Same school, same evidence, three epistemologies: how the research object decides the method and the defensible claim |
+| Constructing a Category | [`02-constructing-a-category/`](02-constructing-a-category/) | From nine accounts to a named condition with a prevalence figure: reification broken into steps you can point at |
+| Attitude-Behaviour Gap Laboratory | [`03-attitude-behaviour-gap/`](03-attitude-behaviour-gap/) | Four identical attitude scores, four different working lives: what stands between an evaluation and an act |
+| Conformity Under Context | [`04-conformity-under-context/`](04-conformity-under-context/) | Two routes to agreement, six things about the situation, and the distribution hiding inside a conformity percentage |
+| The Self Through Different Lenses | [`05-self-through-different-lenses/`](05-self-through-different-lenses/) | Seven frameworks for the self applied to one person, and the statement none of them can use |
+| Discourse and Subject Position Laboratory | [`06-discourse-subject-position-lab/`](06-discourse-subject-position-lab/) | Same events, five write-ups: subject positions, legitimacy, authority and where responsibility comes to rest |
+| Norm-Formation Laboratory | [`07-sherif-norm-formation-lab/`](07-sherif-norm-formation-lab/) | Alone, together, alone again: how a shared frame of reference forms under ambiguity and outlives the group |
+| Minimal Group Allocation Laboratory | [`08-minimal-group-positive-distinctiveness/`](08-minimal-group-positive-distinctiveness/) | Sorted into an invented category, allocating points to strangers - and the option that costs your own side points to buy a bigger lead |
+| Crowd Behaviour Laboratory: Deindividuation and ESIM | [`09-crowd-deindividuation-vs-esim/`](09-crowd-deindividuation-vs-esim/) | The same crowd, policed two ways: participation and target selection move independently, and only one account predicts each |
+| Power Lens Laboratory | [`10-power-lens-lukes-foucault-fricker/`](10-power-lens-lukes-foucault-fricker/) | One institutional case, three analyses of power: what each makes visible, what each hides, and what each would have you change |
+| Measuring Prejudice: What Does the Instrument Capture? | [`11-measuring-prejudice-instrument-lab/`](11-measuring-prejudice-instrument-lab/) | A latency score, a shortlist, a survey and twelve years of appointment figures - four objects at four levels, and none of them is prejudice |
+| Person or Setting? Workplace Explanation Laboratory | [`12-person-or-setting-workplace-lab/`](12-person-or-setting-workplace-lab/) | A correlation of 0.61 inside one team, a rota that is the same for all fourteen, and a budget that covers half of what is needed |
+
+<!-- PUBLISHED:END -->
+
 Tools for the **Social and Critical Psychology** module live here, one folder
 per tool.
 
-**This folder is currently empty.** No social and critical psychology tool has
-been built yet. The module page at
-`modules/social-critical-psychology/index.html` describes the planned scope.
+Twelve tools are published; they are listed above. The module page at
+`modules/social-critical-psychology/index.html` describes the scope.
 
 ## Canonical tool structure
 

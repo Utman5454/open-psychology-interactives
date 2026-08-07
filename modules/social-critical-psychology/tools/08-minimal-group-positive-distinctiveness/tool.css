@@ -1,0 +1,182 @@
+/* =========================================================================
+   Minimal Group Allocation Laboratory — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. What is
+   particular here: the four allocation options (each of which has to state
+   its full arithmetic, not just a label), the strategy profile chart, and
+   the challenge results list.
+   ========================================================================= */
+
+#minimal-lab .interactive__controls,
+#minimal-lab .interactive__stage {
+  min-width: 0;
+}
+
+/* The stage is a grid, and a grid item's automatic minimum size is its
+   min-content width - so a wide table inside a .table-scroll still widens
+   the whole track and pushes the stage past a narrow viewport, even though
+   the scroller itself would have coped. Every direct child of the stage has
+   to opt out of that minimum, not just the stage. */
+#minimal-lab .interactive__stage > * {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #minimal-lab .interactive__body {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+@media (min-width: 76em) {
+  #minimal-lab .interactive__body {
+    grid-template-columns: minmax(0, 29rem) minmax(0, 1fr);
+  }
+}
+
+/* -------------------------------------------------------------------------
+   The allocation options
+   -------------------------------------------------------------------------
+   Every option prints what it gives to each person and, underneath, the
+   total and the difference. The whole diagnostic value of the paradigm
+   depends on the learner being able to see that the largest-lead option
+   gives their own category FEWER points than the own-group-most option, so
+   nothing here may be hidden behind a label or a colour.
+   ---------------------------------------------------------------------- */
+
+.allocation {
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  background-color: var(--colour-surface-raised);
+  cursor: pointer;
+}
+
+.allocation + .allocation {
+  margin-top: var(--space-2);
+}
+
+.allocation:has(input:checked) {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+}
+
+.allocation input {
+  margin-top: 0.25rem;
+}
+
+.allocation__body {
+  display: grid;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.allocation__points {
+  font-size: var(--text-sm);
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+.allocation__detail {
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+  line-height: 1.35;
+  font-variant-numeric: tabular-nums;
+}
+
+/* -------------------------------------------------------------------------
+   Controls
+   ---------------------------------------------------------------------- */
+
+.stage-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.stage-nav .button {
+  min-height: 2.75rem;
+}
+
+/* -------------------------------------------------------------------------
+   The strategy profile
+   -------------------------------------------------------------------------
+   The largest-lead bar is drawn differently from the other three because it
+   is the one the paradigm is about - but the sentence beneath the chart
+   names every count in words, so the distinction never rests on the fill.
+   The chart is near-square in its viewBox, so it is capped rather than
+   allowed to fill a wide stage column.
+   ---------------------------------------------------------------------- */
+
+.prevalence {
+  margin: 0;
+  font-size: var(--text-base);
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+/* The id prefix is load-bearing, not decoration. interactive-shell.css sets
+   `.interactive__stage svg { max-width: 100% }`, whose specificity (0,1,1)
+   beats a bare `.strategy-chart`, so a plain class rule here is silently
+   ignored and the chart stretches to the full stage width. */
+#minimal-lab .strategy-chart {
+  max-width: 28rem;
+}
+
+.bar--gap {
+  fill: var(--colour-social-critical-psychology);
+}
+
+.verdict + .verdict {
+  margin-top: var(--space-3);
+}
+
+/* -------------------------------------------------------------------------
+   Challenge results
+   ---------------------------------------------------------------------- */
+
+.claims__results {
+  margin: var(--space-3) 0 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: var(--space-3);
+}
+
+.claims__results > li {
+  margin-top: 0;
+  padding-left: var(--space-3);
+  border-left: 3px solid var(--colour-border-strong);
+}
+
+.claims__results > li[data-agreed="yes"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+
+.claims__results > li[data-agreed="no"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+
+.claims__result-head {
+  margin: 0 0 var(--space-1);
+}
+
+/* -------------------------------------------------------------------------
+   Forced colours
+   ---------------------------------------------------------------------- */
+
+@media (forced-colors: active) {
+  .allocation,
+  .claims__results > li {
+    border: 1px solid CanvasText;
+  }
+
+  .allocation:has(input:checked) {
+    border: 2px solid Highlight;
+  }
+
+  .bar--gap {
+    fill: Highlight;
+  }
+}

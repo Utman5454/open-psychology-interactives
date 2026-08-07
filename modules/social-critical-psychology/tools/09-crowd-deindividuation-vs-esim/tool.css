@@ -1,0 +1,207 @@
+/* =========================================================================
+   Crowd Behaviour Laboratory — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. What is
+   particular here: the preset buttons, the target chart with its even-spread
+   marker, the section table and the challenge results.
+   ========================================================================= */
+
+#crowd-lab .interactive__controls,
+#crowd-lab .interactive__stage {
+  min-width: 0;
+}
+
+/* The stage is a grid, and a grid item's automatic minimum size is its
+   min-content width - so a wide table inside a .table-scroll still widens
+   the whole track and pushes the stage past a narrow viewport, even though
+   the scroller itself would have coped. Every direct child of the stage has
+   to opt out of that minimum, not just the stage. */
+#crowd-lab .interactive__stage > * {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #crowd-lab .interactive__body {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+@media (min-width: 76em) {
+  #crowd-lab .interactive__body {
+    grid-template-columns: minmax(0, 28rem) minmax(0, 1fr);
+  }
+}
+
+/* Two-line radio labels: the shared rule centres a single line, which leaves
+   a wrapped option looking detached from its control. */
+#crowd-lab .control--choice {
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: var(--text-sm);
+  line-height: 1.4;
+}
+
+#crowd-lab .control--choice input {
+  margin-top: 0.3rem;
+}
+
+/* -------------------------------------------------------------------------
+   Presets
+   ---------------------------------------------------------------------- */
+
+/* Two columns as soon as the control column is wide enough. Four stacked
+   preset buttons is the single largest block in this tool's control column,
+   and halving it is what keeps the pinned result reachable. */
+.preset-grid {
+  display: grid;
+  gap: var(--space-2);
+}
+
+@media (min-width: 26em) {
+  .preset-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.preset {
+  display: grid;
+  gap: 0.15rem;
+  justify-items: start;
+  text-align: left;
+  min-height: 2.75rem;
+  padding: var(--space-2) var(--space-3);
+  line-height: 1.35;
+}
+
+.preset__label {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+
+.preset__hint {
+  font-size: var(--text-xs);
+  font-weight: 400;
+  opacity: 0.85;
+}
+
+/* -------------------------------------------------------------------------
+   The primary result
+   -------------------------------------------------------------------------
+   Near-square viewBox, so the chart is capped rather than allowed to fill a
+   wide stage column and become 400px tall.
+   ---------------------------------------------------------------------- */
+
+.headline {
+  margin: 0;
+  font-size: var(--text-base);
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+/* The id prefix is load-bearing, not decoration. interactive-shell.css sets
+   `.interactive__stage svg { max-width: 100% }`, whose specificity (0,1,1)
+   beats a bare `.target-chart`, so a plain class rule here is silently
+   ignored and the chart stretches to the full stage width. */
+#crowd-lab .target-chart {
+  max-width: 27rem;
+}
+
+/* The police line is drawn differently from the other three targets because
+   it is the one the norms in this model single out. The share is printed
+   beside every bar and restated in the caption, so nothing rests on the
+   fill. */
+.bar--police {
+  fill: var(--colour-social-critical-psychology);
+}
+
+/* The even-spread reference: a dashed rule AND a label above it. */
+.target__marker {
+  stroke: var(--colour-text-muted);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+
+/* -------------------------------------------------------------------------
+   The two readings
+   -------------------------------------------------------------------------
+   Stacked, not side by side. The stage column is around 550px wide at
+   1366px, and splitting it in two makes each reading narrower than it is
+   tall, which costs more height than it saves.
+   ---------------------------------------------------------------------- */
+
+[data-readings] {
+  display: grid;
+  gap: var(--space-3);
+}
+
+[data-readings] > .verdict {
+  margin: 0;
+}
+
+/* -------------------------------------------------------------------------
+   The section table
+   -------------------------------------------------------------------------
+   Participation is carried by the "Took part?" column in words. The heavier
+   left rule is a second, redundant cue only.
+   ---------------------------------------------------------------------- */
+
+[data-sections-body] tr[data-acted="yes"] > th {
+  border-left: 4px solid var(--colour-social-critical-psychology);
+  padding-left: calc(var(--space-2) - 4px);
+}
+
+[data-sections-body] td {
+  font-variant-numeric: tabular-nums;
+}
+
+/* -------------------------------------------------------------------------
+   Challenge results
+   ---------------------------------------------------------------------- */
+
+.claims__results {
+  margin: var(--space-3) 0 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: var(--space-3);
+}
+
+.claims__results > li {
+  margin-top: 0;
+  padding-left: var(--space-3);
+  border-left: 3px solid var(--colour-border-strong);
+}
+
+.claims__results > li[data-agreed="yes"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+
+.claims__results > li[data-agreed="no"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+
+.claims__result-head {
+  margin: 0 0 var(--space-1);
+}
+
+/* -------------------------------------------------------------------------
+   Forced colours
+   ---------------------------------------------------------------------- */
+
+@media (forced-colors: active) {
+  .preset,
+  .claims__results > li {
+    border: 1px solid CanvasText;
+  }
+
+  .bar--police {
+    fill: Highlight;
+  }
+
+  .target__marker {
+    stroke: CanvasText;
+  }
+
+  [data-sections-body] tr[data-acted="yes"] > th {
+    border-left: 4px solid Highlight;
+  }
+}

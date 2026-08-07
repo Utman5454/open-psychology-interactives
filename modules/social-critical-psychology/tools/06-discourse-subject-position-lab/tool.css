@@ -1,0 +1,247 @@
+/* =========================================================================
+   Discourse and Subject Position Laboratory — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. What is
+   particular here: the fixed ledger, the account chooser, the four analytic
+   questions and the pinned account text.
+   ========================================================================= */
+
+#discourse-lab .interactive__controls,
+#discourse-lab .interactive__stage {
+  min-width: 0;
+}
+
+/* The stage is a grid, and a grid item's automatic minimum size is its
+   min-content width - so a wide table inside a .table-scroll still widens
+   the whole track and pushes the stage past a narrow viewport, even though
+   the scroller itself would have coped. Every direct child of the stage has
+   to opt out of that minimum, not just the stage. */
+#discourse-lab .interactive__stage > * {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #discourse-lab .interactive__body {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+@media (min-width: 76em) {
+  #discourse-lab .interactive__body {
+    grid-template-columns: minmax(0, 30rem) minmax(0, 1fr);
+  }
+}
+
+/* -------------------------------------------------------------------------
+   The ledger
+   -------------------------------------------------------------------------
+   Entry 2 - the budget decision none of the accounts mentions - carries a
+   marker word as well as a heavier rule, so it is not identified by tint.
+   ---------------------------------------------------------------------- */
+
+.ledger {
+  margin: 0;
+  padding-left: 1.4rem;
+  display: grid;
+  gap: var(--space-2);
+  max-width: 62rem;
+}
+
+.ledger__item {
+  margin-top: 0;
+  padding: var(--space-2) var(--space-3);
+  border-left: 3px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+
+.ledger__item[data-key="yes"] {
+  border-left-width: 5px;
+  border-left-color: var(--colour-social-critical-psychology);
+  font-weight: 600;
+}
+
+.ledger__item[data-key="yes"]::after {
+  content: " (this entry appears in only one of the five accounts)";
+  font-weight: 400;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+
+/* -------------------------------------------------------------------------
+   Account chooser
+   ---------------------------------------------------------------------- */
+
+.lens-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  min-height: 2.75rem;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  background-color: var(--colour-surface-raised);
+  cursor: pointer;
+}
+
+.lens-option + .lens-option {
+  margin-top: var(--space-2);
+}
+
+.lens-option:has(input:checked) {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+}
+
+.lens-option input {
+  width: 1.15rem;
+  height: 1.15rem;
+  margin-top: 0.25rem;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+
+.lens-option__body {
+  display: grid;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.lens-option__name {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+
+.lens-option__question {
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+  line-height: 1.35;
+}
+
+/* -------------------------------------------------------------------------
+   The four questions
+   ---------------------------------------------------------------------- */
+
+.question {
+  margin: 0 0 var(--space-3);
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  background-color: var(--colour-surface-raised);
+}
+
+/* A <legend> paints on the fieldset's top border, so a long one that wraps
+   spills out; floating it lays it out as a block without changing the
+   element or its announcement with each radio. */
+.question__legend {
+  float: left;
+  width: 100%;
+  padding: 0 0 var(--space-2);
+  margin: 0;
+  font-size: var(--text-sm);
+  font-weight: 650;
+  line-height: 1.4;
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--colour-text);
+}
+
+.question__option {
+  clear: both;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: var(--text-sm);
+  line-height: 1.4;
+}
+
+.question__option input {
+  margin-top: 0.3rem;
+}
+
+.stage-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.stage-nav .button {
+  min-height: 2.75rem;
+}
+
+/* -------------------------------------------------------------------------
+   The pinned account
+   ---------------------------------------------------------------------- */
+
+.account__source {
+  margin: 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+
+.account__text {
+  margin: 0;
+  padding: var(--space-3);
+  border-left: 4px solid var(--colour-social-critical-psychology);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+
+.verdict + .verdict {
+  margin-top: var(--space-3);
+}
+
+/* -------------------------------------------------------------------------
+   Challenge results
+   ---------------------------------------------------------------------- */
+
+.claims__results {
+  margin: var(--space-3) 0 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: var(--space-3);
+}
+
+.claims__results > li {
+  margin-top: 0;
+  padding-left: var(--space-3);
+  border-left: 3px solid var(--colour-border-strong);
+}
+
+.claims__results > li[data-agreed="yes"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+
+.claims__results > li[data-agreed="no"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+
+.claims__result-head {
+  margin: 0 0 var(--space-1);
+}
+
+/* -------------------------------------------------------------------------
+   Forced colours
+   ---------------------------------------------------------------------- */
+
+@media (forced-colors: active) {
+  .ledger__item,
+  .lens-option,
+  .question,
+  .account__text,
+  .claims__results > li {
+    border: 1px solid CanvasText;
+  }
+
+  .lens-option:has(input:checked) {
+    border: 2px solid Highlight;
+  }
+
+  .ledger__item[data-key="yes"] {
+    border: 2px solid Highlight;
+  }
+}
