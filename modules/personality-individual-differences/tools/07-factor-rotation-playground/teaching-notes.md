@@ -6,6 +6,12 @@ Every loading changes. Not one point moves.
 
 ---
 
+## Running it from the front
+
+Rotate slowly with the loading table on screen and the invariants box beneath it. Loadings pour through every value they can take; total variance explained does not move in the second decimal place. That contrast is the tool.
+
+Then switch to the third marker set, where the clusters sit about 55° apart. No orthogonal rotation can put an axis through both. Dropping the axis angle to about 55° does it — and the factor correlation jumps to around 0.57, which is the price.
+
 ## Intended level
 
 Second- or third-year undergraduate meeting factor analysis, or postgraduates

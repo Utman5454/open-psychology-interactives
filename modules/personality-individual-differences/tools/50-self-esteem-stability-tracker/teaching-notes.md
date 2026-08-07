@@ -29,6 +29,12 @@ If a student does raise something personal, the appropriate response is the
 ordinary one — acknowledge it, do not analyse it, and mention support routes
 after the session rather than in front of the group.
 
+## Running it from the front
+
+Start with no events at all. Ari and Bea already look like different people, and nothing has happened to either of them — that is volatility on its own, with level held constant.
+
+Then add the same criticism twice, once in work and once in friendship. Cal moves sharply for the first and barely at all for the second. That is contingency, and it is invisible until you vary the domain.
+
 ## Intended level
 
 First- or second-year undergraduate. It pairs directly with the State versus

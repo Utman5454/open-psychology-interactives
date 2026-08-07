@@ -7,6 +7,12 @@ could ever have been wrong.
 
 ---
 
+## Running it from the front
+
+The distinctiveness column is the one to point at. Explanations that predict nothing the others do not — the broad trait account is the clearest case — score low, and no evidence in this case could ever have told against them. Students usually rate those highest, because comfortable fit reads as explanatory power.
+
+The six-month follow-up is deliberately marked unavailable. Any student who asks for it anyway has understood the exercise.
+
 ## Intended level
 
 Any undergraduate year. It works particularly well early, before students have

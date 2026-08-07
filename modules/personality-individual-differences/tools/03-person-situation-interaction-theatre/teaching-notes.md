@@ -7,6 +7,10 @@ which reorders them.
 
 ---
 
+## Running it from the front
+
+The anonymous discussion is the one that does the work: it is as weak as the party but carries a negative weight on politeness, so it releases what the party suppresses. Students who have concluded from Round 1 that "traits just show through" are usually surprised, which is the right moment to introduce affordances.
+
 ## Intended level
 
 First- or second-year undergraduate meeting the person–situation debate for the

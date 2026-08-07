@@ -25,6 +25,12 @@ everyone in a room — motor impairment, tremor, visual difficulty, anxiety,
 pain, medication and simple unfamiliarity all affect it — and the tool is built
 so that opting out costs nothing pedagogically.
 
+## Running it from the front
+
+Nobody needs to do the task. The strategy simulator below produces the whole argument from a slider, and the debrief does not depend on anyone's own data. If you are running this with a group, that is worth saying before you start rather than after.
+
+The most useful single move is the caution slider: one dial moves accuracy and reaction time together while the drift rate — the ability term — never changes.
+
 ## Intended level
 
 First- or second-year undergraduate. Useful in research methods as much as in

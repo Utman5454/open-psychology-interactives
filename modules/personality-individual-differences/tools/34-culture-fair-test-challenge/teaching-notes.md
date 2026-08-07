@@ -28,6 +28,10 @@ interpretable without exactly the evidence the final challenge asks for. The
 tool gives you the vocabulary to have that conversation properly rather than
 simulating an answer to it.
 
+## Running it from the front
+
+The move worth making from the front: press Show the lowest-demand design and point at the construct-relevant share. It rises a long way and does not reach 100%, and every improvement was bought with administration time. Fairness here is a design cost, not a property a test either has or lacks.
+
 ## Intended level
 
 Second- or third-year undergraduate on individual differences, psychometrics,

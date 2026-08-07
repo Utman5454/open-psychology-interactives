@@ -933,12 +933,10 @@
             "personality questionnaire is also in the model, the self-report " +
             "scale adds " + (gain >= 0 ? "+" : "") + pct(gain) + ".",
           teaching:
-            "Two comparisons are being run together. One measure can have " +
-            "the larger raw correlation and still add almost nothing, " +
-            "because what it predicts was already predicted by something " +
-            "cheaper. Beating the reasoning test is not the same as beating " +
-            "the personality questionnaire, and the advertising rarely says " +
-            "which competitor it means."
+            "Two comparisons are being run together. A measure can have the " +
+            "larger raw correlation and still add almost nothing, because " +
+            "what it predicts was already predicted more cheaply. Beating " +
+            "the reasoning test is not beating the questionnaire."
         };
       }
     },
@@ -959,15 +957,10 @@
             " with a self-description questionnaire and " + fmt(withReasoning) +
             " with a verbal reasoning test.",
           teaching:
-            "Scoring answers against a key does change what a measure picks " +
-            "up, and the two numbers above are what tells you whether it has " +
-            "here: a task that sits with the reasoning test rather than with " +
-            "the questionnaire is behaving like a test. Two cautions come " +
-            "with that either way. The task also shares " +
-            "variance with ordinary reasoning, so \"emotion ability\" is not " +
-            "the only thing it taps. And a consensus key defines the right " +
-            "answer by what most people say, which is a defensible choice " +
-            "but a choice, not a fact about emotions."
+            "A task sitting with the reasoning test rather than with the " +
+            "questionnaire is behaving like a test. Two cautions either way: " +
+            "it shares variance with ordinary reasoning, and a consensus key " +
+            "defines the right answer by what most people say."
         };
       }
     },
@@ -985,13 +978,9 @@
             "The weakest correlation among the three measures carrying the " +
             "label is " + fmt(lowest) + " (" + band(lowest) + ").",
           teaching:
-            "Measures of one construct have to converge with each other, and " +
-            "whether they do is decided by the weakest link rather than the " +
-            "strongest — which is why the number above is the minimum of the " +
-            "three. When that minimum is small, the honest description is a " +
-            "family of loosely related things sharing a name. Notice how much " +
-            "easier this claim is to sell than to test, and that the test is " +
-            "not difficult, only inconvenient."
+            "Convergence is decided by the weakest link, which is why the " +
+            "number above is the minimum of the three. A small minimum means " +
+            "a family of loosely related things sharing a name."
         };
       }
     },
@@ -1007,12 +996,11 @@
             " with observed effectiveness, which is " + pct(value * value) +
             " of the variance in it.",
           teaching:
-            "Two separate problems. The size: an association this size " +
-            "leaves most of the differences between people unexplained. And " +
-            "the form of the claim: \"shows you will be\" turns an average " +
-            "association across a sample into a prediction about one person, " +
-            "which no correlation licenses however large it gets. Both " +
-            "problems would remain if the number were twice the size."
+            "Two problems, and the second is the serious one. The " +
+            "association leaves most differences between people unexplained " +
+            "— and \"shows you will be\" turns an average across a sample " +
+            "into a claim about one person, which no correlation licenses at " +
+            "any size."
         };
       }
     }

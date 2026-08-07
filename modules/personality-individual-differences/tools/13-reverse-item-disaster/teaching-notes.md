@@ -7,6 +7,10 @@ silent.
 
 ---
 
+## Running it from the front
+
+Move through the four methods in this order: no recoding, reversed-in-the-head, wrong maximum, correct. The first two are arithmetically identical and produce an obvious disaster — negative item-total correlations and a scrambled order. The third is the dangerous one: alpha barely moves, no item statistic looks wrong, and every score is a point or two out.
+
 ## Intended level
 
 First-year undergraduate, or any student about to score their own

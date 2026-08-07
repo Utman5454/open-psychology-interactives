@@ -7,6 +7,10 @@ behaviour. Students work out why before any facet score is shown.
 
 ---
 
+## Running it from the front
+
+The two people in every case are constructed to average to the same broad score, so a prediction made from the broad score alone is necessarily identical for both — it is one number standing in for two. The reveal shows this as two columns of identical figures beside two columns that separate them.
+
 ## Intended level
 
 First- or second-year undergraduate, on a personality, individual differences

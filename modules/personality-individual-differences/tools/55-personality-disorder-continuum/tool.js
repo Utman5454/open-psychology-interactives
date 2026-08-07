@@ -686,32 +686,22 @@
     } else if (v.distress >= 70 && f < 40) {
       tone = "caution";
       text =
-        "Distress without impairment. Someone is having a hard time, and that " +
-        "is a reason for support in its own right — it does not need to be a " +
-        "disorder to deserve one. What it is not is evidence of a " +
-        "disorder-level personality pattern: functioning is largely intact, " +
-        "and distress can arise from a great many things, including " +
-        "circumstances that would distress anybody.";
+        "Distress without impairment. A reason for support in its own " +
+        "right — help does not require a category. It is not evidence of a " +
+        "disorder-level pattern: functioning is largely intact.";
     } else if (v.extremity >= 60 && f >= 60 && v.persistence >= 60) {
       tone = "warn";
       text =
-        "This is the configuration that would lead a professional to look " +
-        "carefully: traits at the extreme, used inflexibly, across settings " +
-        "and over time, with interference in work and relationships. Be " +
-        "precise about what that means. It is a reason for a proper " +
-        "assessment, not the result of one. Everything in the panel below " +
-        "this — history, context, culture, other explanations, the person's " +
-        "own account — is still unknown, and any of it could change the " +
-        "picture entirely.";
+        "Extreme, inflexible, persistent, and interfering. This is the " +
+        "configuration that would lead a professional to look carefully — a " +
+        "reason for an assessment, not the result of one.";
     } else if (f >= 45) {
       tone = "caution";
       text =
-        "A mixed picture with real difficulty in it. Configurations like this " +
-        "are where careful assessment does most of its work and where " +
-        "premature labelling does most of its harm: the same six numbers are " +
-        "compatible with a personality pattern, with a response to " +
-        "circumstances, with something episodic, and with several of those at " +
-        "once.";
+        "A mixed picture with real difficulty in it. These same six numbers " +
+        "fit a personality pattern, a response to circumstances, something " +
+        "episodic, or several at once — which is where careful assessment " +
+        "earns its keep.";
     } else {
       tone = "good";
       text =

@@ -7,6 +7,10 @@ assumptions and watch which way each one bends the answer.
 
 ---
 
+## Running it from the front
+
+The Equalise everyone's environment button is the most useful thing here. It removes shared-environment variance and heritability rises sharply, with no gene changing. A high heritability can be evidence that environments have been made more equal — which is close to the opposite of how the number is usually read aloud.
+
 ## Intended level
 
 Second- or third-year undergraduate meeting behaviour genetics, or

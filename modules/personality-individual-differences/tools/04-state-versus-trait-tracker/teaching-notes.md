@@ -7,6 +7,12 @@ at a time.
 
 ---
 
+## Running it from the front
+
+Ada and Bo are built to share a typical level and differ sharply in how much they move around it. That pair is the centre of the tool: a trait questionnaire would describe them identically.
+
+The measurement-error slider is the other one worth using from the front. Turn it up: the series gets visibly noisier, and every person's mean stays put. Error averages away; the person does not.
+
 ## Intended level
 
 First- or second-year undergraduate meeting the state/trait distinction, or

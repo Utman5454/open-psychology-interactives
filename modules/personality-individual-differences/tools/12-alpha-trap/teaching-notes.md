@@ -7,6 +7,10 @@ Cronbach's alpha, succeed, and then discover what they have built.
 
 ---
 
+## Running it from the front
+
+The trap is structural, not a matter of luck: no combination of differently worded items in this bank reaches alpha 0.85. The widest scale with no repeated wording — all 14 distinguishable items — tops out at 0.84. The only route to the Round 1 target is repetition, which is exactly the point to draw out afterwards.
+
 ## Intended level
 
 Second-year undergraduate and above, on a psychometrics, individual

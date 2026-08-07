@@ -26,6 +26,12 @@ Say three things out loud before anyone touches the tool.
 If you are teaching this in a clinical or applied programme, the stigma section
 of the debrief is the part not to skip.
 
+## Running it from the front
+
+The demonstration is two clicks. Load Unusual, and working, note the trait extremity, then load The same traits, much more difficulty. Trait extremity is identical in both; everything the tool says about them differs. That is the whole argument against reading personality difficulty off trait scores.
+
+Then leave a profile where it is and switch the category rule. Nothing about the profile changes and its classification does. Students find this more unsettling than the sliders, which is the right reaction to have to a cut-off.
+
 ## Intended level
 
 Second or third-year undergraduate, or postgraduate conversion. It assumes

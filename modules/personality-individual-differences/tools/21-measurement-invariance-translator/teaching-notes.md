@@ -23,6 +23,12 @@ If a student wants to apply this to real group comparisons, the honest answer
 is that this is exactly the machinery you would need, and that running it
 properly means fitting nested models to real data rather than moving sliders.
 
+## Running it from the front
+
+The move worth making from the front is One item harder to endorse. Both latent means are zero — the groups are identical on the trait — and the observed means differ anyway, because speaking up when you disagree is harder to endorse in one setting than the other. That gap is entirely manufactured by the item, and a study comparing raw means would report it as a difference between the groups.
+
+Then compare with A real trait difference, where the observed and latent differences agree. The observed numbers look similar in both cases; only the invariance evidence separates them.
+
 ## Intended level
 
 Third-year undergraduate or postgraduate. It assumes familiarity with factor

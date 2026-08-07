@@ -20,6 +20,12 @@ were true" preset exists so that argument stays honest.
 No published measure is reproduced, quoted, paraphrased or scored anywhere in
 the tool. The six measures are fictional descriptions of *method types*.
 
+## Running it from the front
+
+The demonstration worth doing from the front is Method effects removed. Students reach for "it is all method variance" as soon as they see two questionnaires agreeing, and it is a good instinct. Turning both method sliders to zero shows how much of the pattern survives — most of it. The self-report scale overlaps the personality questionnaire because of what it asks about, not because of how it asks.
+
+Then load If the label were true and ask what changed. The point is that the evidence which would justify the label is perfectly obtainable, and looks nothing like the evidence in front of them.
+
 ## Intended level
 
 Second or third-year undergraduate. It assumes correlation and the general idea

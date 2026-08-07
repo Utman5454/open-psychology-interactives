@@ -6,6 +6,10 @@ Three theories, two straight lines, and one decision about who to recruit.
 
 ---
 
+## Running it from the front
+
+Load differential susceptibility, then drag the "most supportive sampled" slider down to zero. The pattern label changes to diathesis–stress with no slope and no crossover having moved. That single manipulation is the argument of the whole tool.
+
 ## Intended level
 
 Second- or third-year undergraduate, or postgraduate. Assumes familiarity with

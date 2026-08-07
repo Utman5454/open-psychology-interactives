@@ -6,6 +6,12 @@ The first factor appears whatever you put underneath it. That is the lesson.
 
 ---
 
+## Running it from the front
+
+Load Strong general factor, look at the loading chart, then load Broad group factors and look again. Both produce a first factor with every task loading positively. The structures underneath are quite different, and the loading chart alone does not distinguish them — which is the argument of the tool.
+
+The first factor here is genuinely computed: the tool runs the power method on the matrix on screen and reports the leading eigenvector scaled by the square root of its eigenvalue.
+
 ## Intended level
 
 Second- or third-year undergraduate on an intelligence, individual differences

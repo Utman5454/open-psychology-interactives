@@ -7,6 +7,10 @@ the difference is the trait.
 
 ---
 
+## Running it from the front
+
+The balanced-keying switch is the demonstration worth doing from the front. With balanced keying the acquiescent respondent's total sits close to the attentive one's, because agreeing with an item and its opposite cancels. Switch it off and the two totals separate sharply — acquiescence becomes indistinguishable from a high score. That is the practical argument for balanced scales in one move.
+
 ## Intended level
 
 First- or second-year undergraduate meeting questionnaire measurement, or any

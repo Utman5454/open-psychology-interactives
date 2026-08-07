@@ -7,6 +7,10 @@ wins on everything.
 
 ---
 
+## Running it from the front
+
+The move worth making from the front is to build a battery for one purpose, submit it, and then change the purpose selector without changing a single task. Every number moves. That is the argument that a test is validated for a use rather than in general.
+
 ## Intended level
 
 Second- or third-year undergraduate on an individual differences,
