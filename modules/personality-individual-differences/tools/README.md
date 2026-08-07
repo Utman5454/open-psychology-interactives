@@ -23,6 +23,7 @@ folder per tool.
 | Speed–Accuracy Trade-Off | [`36-speed-accuracy-trade-off/`](36-speed-accuracy-trade-off/) | Speed-accuracy trade-off: why one outcome measure cannot separate ability from response caution |
 | Twin-Study Simulator | [`39-twin-study-simulator/`](39-twin-study-simulator/) | Behaviour genetics: what heritability is a property of, and which way each broken assumption bends the estimate |
 | Gene × Environment Interaction Visualiser | [`42-gene-environment-interaction-visualiser/`](42-gene-environment-interaction-visualiser/) | Gene-environment interaction: how the sampled environmental range decides which theory a study appears to support |
+| Emotional-Intelligence Claims Laboratory | [`49-emotional-intelligence-claims-laboratory/`](49-emotional-intelligence-claims-laboratory/) | Construct validity: convergent, discriminant and incremental evidence, and what an attractive label can hide |
 | Self-Esteem Stability Tracker | [`50-self-esteem-stability-tracker/`](50-self-esteem-stability-tracker/) | Self-esteem dynamics: level, volatility, domain contingency and recovery as four separable characteristics |
 
 <!-- PUBLISHED:END -->

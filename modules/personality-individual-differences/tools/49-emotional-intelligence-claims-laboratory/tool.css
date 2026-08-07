@@ -1,0 +1,166 @@
+/* =========================================================================
+   Emotional-Intelligence Claims Laboratory — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. What is
+   particular here is the correlation matrix, the scatterplot and the list of
+   judged claims.
+   ========================================================================= */
+
+#ei-lab .interactive__controls,
+#ei-lab .interactive__stage {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #ei-lab .interactive__body {
+    grid-template-columns: minmax(0, 21rem) minmax(0, 1fr);
+  }
+}
+
+#ei-lab .control + .control {
+  margin-top: var(--space-3);
+}
+
+.preset-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.preset-buttons .button {
+  font-size: var(--text-xs);
+  padding: 0.35rem 0.7rem;
+  min-height: 2.75rem;
+}
+
+.control__select {
+  width: 100%;
+  min-height: 2.75rem;
+}
+
+/* -------------------------------------------------------------------------
+   The correlation matrix
+   -------------------------------------------------------------------------
+   The tint is a reading aid only: every cell states its correlation as a
+   number, every row header names the method the measure used, and the note
+   under the table says what the ordering is. Nothing is carried by colour.
+   ---------------------------------------------------------------------- */
+
+.matrix td {
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.matrix th[scope="row"] {
+  font-weight: 600;
+}
+
+.matrix td[data-strength="high"] {
+  background-color: var(--colour-accent);
+  color: var(--colour-on-accent);
+  font-weight: 650;
+}
+
+.matrix td[data-strength="mid"] {
+  background-color: var(--colour-accent-soft);
+}
+
+.matrix td[data-strength="low"] {
+  background-color: var(--colour-surface);
+}
+
+/* A dotted underline marks pairs that share a collection method — a second,
+   non-colour cue for the block structure the tool is about. */
+.matrix td[data-samemethod="yes"] {
+  text-decoration: underline dotted;
+  text-underline-offset: 0.25em;
+}
+
+/* -------------------------------------------------------------------------
+   Scatterplot
+   ---------------------------------------------------------------------- */
+
+.scatter__points {
+  stroke: var(--colour-accent);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-opacity: 0.4;
+  fill: none;
+}
+
+/* -------------------------------------------------------------------------
+   Emphasis in the incremental-validity table
+   ---------------------------------------------------------------------- */
+
+.data-table td[data-emphasis="yes"] {
+  font-weight: 700;
+}
+
+/* -------------------------------------------------------------------------
+   The judged claims
+   -------------------------------------------------------------------------
+   Agreement is shown by a word in the text ("That is what you said" / "You
+   said: ...") as well as by the border, so the list reads correctly with the
+   colours removed.
+   ---------------------------------------------------------------------- */
+
+.claims__results {
+  margin: var(--space-4) 0 0;
+  padding-left: 0;
+  list-style: none;
+  counter-reset: claim;
+  display: grid;
+  gap: var(--space-3);
+}
+
+.claims__results > li {
+  margin-top: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+
+.claims__results > li[data-agreed="yes"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+
+.claims__results > li[data-agreed="no"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+
+.claims__result-head {
+  margin: 0 0 var(--space-2);
+}
+
+.claims__evidence {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+
+.claims__results p:last-child {
+  margin-bottom: 0;
+}
+
+#claims-form .prediction__group + .prediction__group {
+  margin-top: var(--space-4);
+}
+
+@media (forced-colors: active) {
+  .matrix td[data-strength="high"] {
+    background-color: Highlight;
+    color: Canvas;
+  }
+
+  .scatter__points {
+    stroke: CanvasText;
+    stroke-opacity: 1;
+  }
+
+  .claims__results > li {
+    border: 1px solid CanvasText;
+  }
+}
