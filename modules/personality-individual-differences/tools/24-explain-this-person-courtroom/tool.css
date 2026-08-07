@@ -1,0 +1,234 @@
+/* =========================================================================
+   "Explain This Person" Courtroom — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. The explanation
+   cards, evidence cards, findings and the competition diagram are what is
+   particular here.
+   ========================================================================= */
+
+#courtroom .interactive__controls,
+#courtroom .interactive__stage {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #courtroom .interactive__body {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+@media (min-width: 76em) {
+  #courtroom .interactive__body {
+    grid-template-columns: minmax(0, 27rem) minmax(0, 1fr);
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Explanations
+   ---------------------------------------------------------------------- */
+
+.explanation-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+
+.explanation-list > li {
+  margin-top: 0;
+}
+
+.explanation__group {
+  margin: 0;
+  padding: 0 var(--space-3) var(--space-2);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  background-color: var(--colour-surface);
+}
+
+/* Floated legend: a <legend> renders on the fieldset's top border, so one
+   that wraps to two lines spills out of the box. Floating it makes it behave
+   as an ordinary block while keeping the element — and so the announcement of
+   the explanation with each radio option — unchanged. */
+.explanation__name {
+  float: left;
+  width: 100%;
+  padding: var(--space-3) 0 0;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.explanation__family {
+  clear: both;
+  margin: 0.15rem 0 var(--space-2);
+  font-size: var(--text-xs);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+
+.explanation__scale {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-3);
+}
+
+.explanation__scale .control--choice {
+  font-size: var(--text-xs);
+  min-height: 2.75rem;
+}
+
+/* -------------------------------------------------------------------------
+   Evidence
+   ---------------------------------------------------------------------- */
+
+.evidence-cards {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--space-2);
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+}
+
+.evidence-cards > li {
+  margin-top: 0;
+}
+
+.evidence-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  height: 100%;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  background-color: var(--colour-surface-raised);
+  cursor: pointer;
+}
+
+.evidence-card:has(input:checked) {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+}
+
+.evidence-card input {
+  width: 1.15rem;
+  height: 1.15rem;
+  margin-top: 0.2rem;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+
+.evidence-card__body {
+  display: grid;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.evidence-card__name {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+
+.evidence-card__question {
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+
+.evidence-card__flag {
+  justify-self: start;
+  padding: 0.05rem 0.4rem;
+  border: 1px solid var(--colour-status-border);
+  border-radius: 999px;
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+  font-size: var(--text-xs);
+  font-weight: 650;
+}
+
+/* -------------------------------------------------------------------------
+   Findings
+   ---------------------------------------------------------------------- */
+
+.findings {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.finding {
+  padding: var(--space-3);
+  border-left: 4px solid var(--colour-personality-individual-differences);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+
+.finding__name {
+  margin: 0 0 var(--space-1);
+  font-size: var(--text-sm);
+}
+
+.finding__text {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+
+/* -------------------------------------------------------------------------
+   Competition diagram
+   -------------------------------------------------------------------------
+   Nodes are labelled with their family and id, edges join only competing
+   pairs, and the table beneath states every pair's relationship in words —
+   so the diagram is a summary of the table rather than the only source.
+   ---------------------------------------------------------------------- */
+
+.diagram__edge {
+  stroke: var(--colour-social-critical-psychology);
+  stroke-width: 1.4;
+  stroke-opacity: 0.5;
+}
+
+.diagram__node {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border-strong);
+  stroke-width: 2;
+}
+
+.diagram__node--supported {
+  fill: var(--colour-accent);
+  stroke: var(--colour-accent);
+}
+
+.diagram__node--undermined {
+  fill: var(--colour-surface);
+  stroke: var(--colour-social-critical-psychology);
+  stroke-dasharray: 3 2;
+}
+
+@media (forced-colors: active) {
+  .explanation__group,
+  .evidence-card,
+  .evidence-card__flag {
+    border: 1px solid CanvasText;
+  }
+
+  .evidence-card:has(input:checked) {
+    border: 2px solid Highlight;
+  }
+
+  .diagram__edge {
+    stroke: CanvasText;
+    stroke-opacity: 1;
+  }
+
+  .diagram__node {
+    fill: Canvas;
+    stroke: CanvasText;
+  }
+
+  .diagram__node--supported {
+    fill: Highlight;
+  }
+}

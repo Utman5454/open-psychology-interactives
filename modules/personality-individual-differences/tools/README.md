@@ -12,6 +12,7 @@ folder per tool.
 | State versus Trait Tracker | [`04-state-versus-trait-tracker/`](04-state-versus-trait-tracker/) | States versus traits: within-person variability, repeated measurement and what a single administration cannot tell you |
 | Facet-Level Detective | [`09-facet-level-detective/`](09-facet-level-detective/) | Trait structure: what a broad domain score averages away, and the bandwidth-fidelity trade-off |
 | The Alpha Trap | [`12-alpha-trap/`](12-alpha-trap/) | Reliability: why a high Cronbach's alpha is not validity, unidimensionality or evidence of a good measure |
+| “Explain This Person” Courtroom | [`24-explain-this-person-courtroom/`](24-explain-this-person-courtroom/) | Explanation and underdetermination: why fitting a case is cheap and predicting something distinctive is not |
 | Intelligence-Test Battery Builder | [`31-intelligence-test-battery-builder/`](31-intelligence-test-battery-builder/) | Intelligence testing: construct coverage, the trade-offs in battery construction, and validity as a property of a use |
 | Culture-Fair Test Challenge | [`34-culture-fair-test-challenge/`](34-culture-fair-test-challenge/) | Culture-fair testing: construct-irrelevant demand, opportunity to learn a format, and what comparability requires |
 | Twin-Study Simulator | [`39-twin-study-simulator/`](39-twin-study-simulator/) | Behaviour genetics: what heritability is a property of, and which way each broken assumption bends the estimate |
