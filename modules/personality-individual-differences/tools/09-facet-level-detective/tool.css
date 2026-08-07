@@ -1,0 +1,197 @@
+/* =========================================================================
+   Facet-Level Detective — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture (prediction panels, feedback, verdicts, tables,
+   charts) comes from components/tool-kit.css. Only what is particular to this
+   tool lives here: the evidence list, the studio's paired controls, and the
+   grid proportions for an interactive whose controls panel is narrow and
+   whose stage carries most of the content.
+   ========================================================================= */
+
+/* Both children of the shell's grid must be able to shrink below their own
+   min-content width, or a wide table pushes the shared track past the
+   viewport where .interactive's `overflow: hidden` silently clips it. */
+#facet-detective .interactive__controls,
+#facet-detective .interactive__stage {
+  min-width: 0;
+}
+
+/* This tool's controls are a short case selector and two scores; the stage
+   carries the evidence. Give the stage the larger share. */
+@media (min-width: 52em) {
+  #facet-detective .interactive__body {
+    grid-template-columns: minmax(0, 17rem) minmax(0, 1fr);
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Evidence list
+   -------------------------------------------------------------------------
+   Each observation is a fieldset: the behaviour is the legend, and the two
+   people are radio options. Using a real fieldset/legend means the question
+   is announced with each option rather than the options arriving orphaned.
+   ---------------------------------------------------------------------- */
+
+.evidence-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+
+.evidence-list > li {
+  margin-top: 0;
+}
+
+.evidence__group {
+  margin: 0;
+  /* No top padding: the floated legend below supplies its own, so that the
+     box hugs the text consistently however many lines it runs to. */
+  padding: 0 var(--space-4) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  background-color: var(--colour-surface);
+}
+
+/* A <legend> is rendered on the fieldset's top border, so a legend that wraps
+   to two lines spills out of the box. Floating it takes it out of that
+   special layout and makes it behave as an ordinary block inside the
+   fieldset, while keeping the element — and therefore the announcement of the
+   question with each radio option — exactly as it was. */
+.evidence__text {
+  float: left;
+  width: 100%;
+  padding: var(--space-3) 0 0;
+  font-size: var(--text-sm);
+  line-height: 1.45;
+  max-width: 60ch;
+}
+
+.evidence__choices {
+  clear: both;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: var(--space-2);
+}
+
+.evidence__choices .control--choice {
+  font-weight: 600;
+}
+
+.evidence__verdict {
+  margin: var(--space-2) 0 0;
+  padding-left: var(--space-3);
+  border-left: 3px solid var(--colour-border-strong);
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+
+.evidence__verdict[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+
+.evidence__verdict[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+
+/* -------------------------------------------------------------------------
+   Studio
+   ---------------------------------------------------------------------- */
+
+.studio-controls {
+  display: grid;
+  gap: var(--space-5);
+  align-content: start;
+  padding: var(--space-5);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--colour-surface);
+}
+
+.studio-controls fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.studio-controls .control + .control {
+  margin-top: var(--space-4);
+}
+
+.studio-controls input[type="range"] {
+  width: 100%;
+  min-height: 2.75rem;
+  accent-color: var(--colour-accent);
+  cursor: pointer;
+}
+
+/* The item-mix slider sits in a plain panel rather than the shell. */
+#mix input[type="range"] {
+  width: 100%;
+  min-height: 2.75rem;
+  accent-color: var(--colour-accent);
+  cursor: pointer;
+}
+
+#mix .control__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+#mix .control__label,
+.studio-controls .control__label {
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+#mix .control__value,
+.studio-controls .control__value {
+  font-variant-numeric: tabular-nums;
+  font-weight: 650;
+  color: var(--colour-accent);
+}
+
+#mix .control__hint {
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+  margin-top: var(--space-1);
+}
+
+#mix .interactive__readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+}
+
+#mix .interactive__readout div {
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+
+#mix .interactive__readout dt {
+  margin: 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+
+#mix .interactive__readout dd {
+  margin: 0.15rem 0 0;
+  font-size: var(--text-lg);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (forced-colors: active) {
+  .evidence__group,
+  .studio-controls,
+  #mix .interactive__readout div {
+    border: 1px solid CanvasText;
+  }
+}

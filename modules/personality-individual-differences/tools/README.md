@@ -5,9 +5,13 @@ folder per tool.
 
 ## Published
 
+<!-- PUBLISHED:START -->
 | Tool | Folder | Topic |
 | --- | --- | --- |
+| Facet-Level Detective | [`09-facet-level-detective/`](09-facet-level-detective/) | Trait structure: what a broad domain score averages away, and the bandwidth-fidelity trade-off |
 | The Alpha Trap | [`12-alpha-trap/`](12-alpha-trap/) | Reliability: why a high Cronbach's alpha is not validity, unidimensionality or evidence of a good measure |
+
+<!-- PUBLISHED:END -->
 
 The module page at `modules/personality-individual-differences/index.html`
 describes the rest of the planned scope.

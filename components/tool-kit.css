@@ -1,0 +1,580 @@
+/* =========================================================================
+   Open Psychology Interactives — tool kit
+   -------------------------------------------------------------------------
+   Shared page furniture for interactive tools: prediction panels, feedback
+   boxes, verdict boxes, data tables, charts, stage tracks and the small
+   layout helpers that every tool page in this collection needs.
+
+   Why this file exists
+   --------------------
+   components/interactive-shell.css styles the interactive itself — the frame
+   around the visualisation. It deliberately knows nothing about the rest of a
+   tool page. But every tool page also has a prediction panel, explanatory
+   feedback, a debrief and a limitations panel, and repeating those styles in
+   each tool's own tool.css would mean maintaining the same 400 lines in a
+   dozen places.
+
+   So: interactive-shell.css frames the interactive; this file styles the page
+   around it; tool.css holds only what is genuinely specific to one tool.
+
+   Load order:
+       <link rel="stylesheet" href="../../../../assets/css/main.css">
+       <link rel="stylesheet" href="../../../../components/interactive-shell.css">
+       <link rel="stylesheet" href="../../../../components/tool-kit.css">
+       <link rel="stylesheet" href="tool.css">
+
+   Every colour here resolves to a token from main.css, so both the light and
+   dark palettes work without restatement. Nothing is hard-coded except the
+   system colour keywords in the forced-colours block, which is the one place
+   custom properties are not honoured.
+
+   Note: modules/personality-individual-differences/tools/12-alpha-trap/ was
+   built before this file existed and carries its own copy of these patterns.
+   It is left alone deliberately — it works, it is published, and rewriting a
+   released tool to save duplication is not a trade worth making.
+   ========================================================================= */
+
+/* -------------------------------------------------------------------------
+   Layout helpers
+   ---------------------------------------------------------------------- */
+
+/* Equal columns. The site default .split is 3fr/2fr, which is right for
+   "content plus sidebar"; these are two peers. */
+@media (min-width: 56em) {
+  .split--wide {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.how-to {
+  padding-left: 1.2rem;
+  font-size: var(--text-sm);
+}
+
+.how-to > li {
+  margin-top: var(--space-2);
+}
+
+.table-scroll {
+  overflow-x: auto;
+}
+
+/* -------------------------------------------------------------------------
+   Prediction panels
+   -------------------------------------------------------------------------
+   Used for every "commit to an answer before the reveal" panel, and for the
+   radio groups inside challenges.
+   ---------------------------------------------------------------------- */
+
+.prediction {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 52rem;
+}
+
+.prediction__group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.prediction__legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-weight: 650;
+  font-size: var(--text-base);
+}
+
+/* .control--choice is defined in interactive-shell.css, scoped inside
+   .interactive. These panels sit outside the shell, so the sizing that makes
+   the whole row a 44px target is repeated for them here. */
+.prediction .control--choice,
+.challenge .control--choice,
+.evidence .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 2.75rem;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+
+.prediction .control--choice input,
+.challenge .control--choice input,
+.evidence .control--choice input {
+  width: 1.15rem;
+  height: 1.15rem;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+
+.prediction__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.prediction__error {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-status-border);
+  border-left: 4px solid var(--colour-status-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+  font-size: var(--text-sm);
+}
+
+.prediction__readback {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+
+/* -------------------------------------------------------------------------
+   Feedback
+   -------------------------------------------------------------------------
+   Explanatory response to what the learner actually did. The tone is always
+   also stated in words ("Yes.", "Not quite.") so it never depends on the
+   border colour.
+   ---------------------------------------------------------------------- */
+
+.feedback {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+
+.feedback > :last-child {
+  margin-bottom: 0;
+}
+
+.feedback[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+
+.feedback[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+
+.feedback[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+
+.feedback__verdict {
+  font-weight: 700;
+}
+
+/* -------------------------------------------------------------------------
+   Verdict boxes
+   ---------------------------------------------------------------------- */
+
+.verdict {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+
+.verdict__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+
+.verdict__body {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+
+.verdict__body + .verdict__body {
+  margin-top: var(--space-2);
+}
+
+.verdict__note {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+
+.verdict[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+
+.verdict[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+
+.verdict[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+
+/* -------------------------------------------------------------------------
+   Goal / task banner
+   ---------------------------------------------------------------------- */
+
+.goal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+
+.goal__label {
+  flex: none;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+
+.goal__text {
+  flex: 1 1 16rem;
+}
+
+.goal strong {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Live checklist of requirements, used where a tool has a multi-part goal.
+   "(met)" / "(not yet)" is written into the text by the tool, so the marker
+   is never the only carrier. */
+.goal__checks {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+  display: grid;
+  gap: 0.15rem;
+}
+
+.goal__checks > li {
+  margin-top: 0;
+  padding-left: 1.4rem;
+  position: relative;
+}
+
+.goal__checks > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 0.6rem;
+  height: 0.6rem;
+  border: 2px solid var(--colour-border-strong);
+  border-radius: 2px;
+}
+
+.goal__checks > li[data-met="yes"]::before {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent);
+}
+
+/* -------------------------------------------------------------------------
+   Stage track
+   ---------------------------------------------------------------------- */
+
+.stage-track {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+
+.stage-track > li {
+  margin-top: 0;
+  flex: 1 1 10rem;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-bottom: 3px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  color: var(--colour-text-muted);
+}
+
+.stage-track > li > span {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+
+.stage-track > li[data-state="done"] {
+  border-bottom-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+
+.stage-track > li[aria-current="step"] {
+  border-bottom-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+  color: var(--colour-text);
+  font-weight: 650;
+}
+
+.stage__heading {
+  margin: 0;
+  font-size: var(--text-base);
+}
+
+/* -------------------------------------------------------------------------
+   Tables
+   ---------------------------------------------------------------------- */
+
+.data-table,
+.chart__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+
+.data-table th,
+.data-table td,
+.chart__table th,
+.chart__table td {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--colour-border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.data-table thead th,
+.chart__table thead th {
+  background-color: var(--colour-surface);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+
+.data-table td,
+.chart__table td {
+  font-variant-numeric: tabular-nums;
+}
+
+.chart__table tbody th,
+.data-table tbody th {
+  font-weight: 550;
+}
+
+.data-table__total > th,
+.data-table__total > td {
+  border-top: 2px solid var(--colour-border-strong);
+  font-weight: 650;
+}
+
+/* -------------------------------------------------------------------------
+   Charts
+   -------------------------------------------------------------------------
+   Every chart in this collection is hidden from assistive technology and
+   paired with a visible table carrying the same numbers, so the SVG may use
+   colour freely — but bars still carry their own value as text, which is what
+   keeps them readable in greyscale.
+   ---------------------------------------------------------------------- */
+
+.chart {
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+
+.chart__caption {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+
+.chart__svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.chart__label,
+.chart__count,
+.chart__inline,
+.chart__axis {
+  font-family: var(--font-body);
+  fill: var(--colour-text);
+  font-size: 13px;
+}
+
+.chart__count,
+.chart__axis {
+  fill: var(--colour-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.chart__inline {
+  fill: var(--colour-on-accent);
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.chart__track {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+
+.chart__bar {
+  fill: var(--colour-accent);
+}
+
+/* Two-series charts. The pair is distinguished by fill AND by the name
+   printed inside each bar, so the distinction survives greyscale. */
+.chart__bar--one {
+  fill: var(--colour-accent);
+}
+
+.chart__bar--two {
+  fill: var(--colour-personality-individual-differences);
+}
+
+.chart__baseline,
+.chart__grid {
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+
+.chart__line {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+
+.chart__line--two {
+  stroke: var(--colour-personality-individual-differences);
+  stroke-dasharray: 6 4;
+}
+
+.chart__point {
+  fill: var(--colour-accent);
+}
+
+/* -------------------------------------------------------------------------
+   Reveal blocks
+   ---------------------------------------------------------------------- */
+
+.reveal > :last-child {
+  margin-bottom: 0;
+}
+
+.reveal__lead {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+
+.reveal__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+  padding: 0;
+  list-style: none;
+}
+
+.reveal__figures > li {
+  margin-top: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+
+.reveal__figure-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+
+.reveal__figure-value {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+
+/* -------------------------------------------------------------------------
+   Challenges and caution panels
+   ---------------------------------------------------------------------- */
+
+.challenge {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+
+.challenge__locked {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+
+.panel--caution {
+  background-color: var(--colour-status-bg);
+  border-color: var(--colour-status-border);
+}
+
+.panel--caution li + li {
+  margin-top: var(--space-3);
+}
+
+/* -------------------------------------------------------------------------
+   Forced colours
+   -------------------------------------------------------------------------
+   Author backgrounds are discarded in this mode, so anything whose boundary
+   or state was carried by a tint has to be redrawn with a system colour
+   keyword. Same reasoning as the block in interactive-shell.css.
+   ---------------------------------------------------------------------- */
+
+@media (forced-colors: active) {
+  .goal,
+  .verdict,
+  .feedback,
+  .prediction__error,
+  .prediction__readback,
+  .stage-track > li,
+  .reveal__figures > li {
+    border: 1px solid CanvasText;
+  }
+
+  .stage-track > li[aria-current="step"] {
+    border: 2px solid Highlight;
+  }
+
+  .chart__bar,
+  .chart__bar--one {
+    fill: CanvasText;
+  }
+
+  .chart__bar--two {
+    fill: Highlight;
+  }
+
+  .chart__inline {
+    fill: Canvas;
+  }
+
+  .chart__line {
+    stroke: CanvasText;
+  }
+
+  .chart__line--two {
+    stroke: Highlight;
+  }
+}
