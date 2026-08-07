@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Factor Rotation Playground — Open Psychology Interactives</title>
+  <meta name="description" content="Rotate the axes of a two-factor solution and watch every loading change while the configuration of points, each communality and the fit stay exactly where they were. A teaching tool on rotation, simple structure and oblique solutions.">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f141b" media="(prefers-color-scheme: dark)">
+
+  <link rel="canonical" href="https://utman5454.github.io/open-psychology-interactives/modules/personality-individual-differences/tools/07-factor-rotation-playground/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Open Psychology Interactives">
+  <meta property="og:title" content="Factor Rotation Playground">
+  <meta property="og:description" content="Twelve markers in a plane. Turn the axes and every loading changes while not one point moves.">
+  <meta property="og:url" content="https://utman5454.github.io/open-psychology-interactives/modules/personality-individual-differences/tools/07-factor-rotation-playground/">
+  <meta property="og:locale" content="en_GB">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Factor Rotation Playground">
+  <meta name="twitter:description" content="Twelve markers in a plane. Turn the axes and every loading changes while not one point moves.">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%237a2e6d'/%3E%3Cpath d='M4 24C10 24 10 8 16 8s6 16 12 16' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
+
+  <!-- Four directories deep (modules/<slug>/tools/<slug>/), so shared assets
+       are at ../../../../ — see docs/adapting-a-tool.md. -->
+  <link rel="stylesheet" href="../../../../assets/css/main.css">
+  <link rel="stylesheet" href="../../../../components/interactive-shell.css">
+  <link rel="stylesheet" href="../../../../components/tool-kit.css">
+  <link rel="stylesheet" href="tool.css">
+  <script src="../../../../assets/js/main.js" defer></script>
+  <script src="../../../../components/interactive-shell.js" defer></script>
+  <script src="tool.js" defer></script>
+</head>
+
+<!-- data-site-root: the path back to the site root from this page. -->
+<body data-site-root="../../../../">
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+
+      <a class="brand" href="../../../../index.html" aria-label="Open Psychology Interactives, home">
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <rect x="1" y="1" width="30" height="30" rx="7" fill="none" stroke="currentColor" stroke-width="2"></rect>
+          <path d="M5 24C10 24 10 8 16 8s6 16 11 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        </svg>
+        <span>
+          <span class="brand__name">Open Psychology Interactives</span>
+          <span class="brand__tagline">Free teaching tools for psychology</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" data-nav-toggle
+              aria-expanded="false" aria-controls="site-nav" hidden>
+        <svg class="nav-toggle__icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+          <path d="M2 5h16M2 10h16M2 15h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        </svg>
+        Menu
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul class="site-nav__list">
+          <li><a class="site-nav__link" href="../../../../index.html">Home</a></li>
+          <li><a class="site-nav__link" href="../../../cognitive/index.html">Cognitive<span class="visually-hidden"> Psychology</span></a></li>
+          <li><a class="site-nav__link" href="../../../research-methods/index.html">Research Methods</a></li>
+          <li><a class="site-nav__link" href="../../../neuropsychology/index.html">Neuropsychology</a></li>
+          <li><a class="site-nav__link" href="../../../social-critical-psychology/index.html">Social and Critical<span class="visually-hidden"> Psychology</span></a></li>
+          <li><a class="site-nav__link" href="../../index.html">Personality<span class="visually-hidden"> and Individual Differences</span></a></li>
+          <li><a class="site-nav__link" href="../../../../index.html#documentation">Documentation</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <nav class="breadcrumbs container" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="../../../../index.html">Home</a></li>
+      <li><a href="../../../../index.html#modules">Modules</a></li>
+      <li><a href="../../index.html">Personality and Individual Differences</a></li>
+      <li aria-current="page">Factor Rotation Playground</li>
+    </ol>
+  </nav>
+
+  <main id="main">
+
+    <!-- ================= Title and purpose ================= -->
+    <section class="section card--personality-individual-differences" aria-labelledby="page-heading">
+      <div class="container">
+
+        <p class="hero__eyebrow" style="color: var(--colour-personality-individual-differences)">
+          Personality and Individual Differences
+        </p>
+        <h1 id="page-heading">Factor Rotation Playground</h1>
+        <p class="hero__lead">
+          Twelve markers in a plane. Turn the axes and every loading changes
+          while not one point moves.
+        </p>
+
+        <p>
+          <span class="badge">
+            <span class="badge__dot" aria-hidden="true"></span>
+            Simulated — fictional adjective markers with illustrative coordinates
+          </span>
+        </p>
+
+        <div class="split split--wide">
+
+          <div class="panel">
+            <h2 class="panel__title">Learning objective</h2>
+            <p>
+              By the end you should be able to say exactly what rotation changes
+              and what it leaves untouched, explain the difference between an
+              orthogonal and an oblique solution, and defend simple structure as
+              a criterion without claiming it finds the true one.
+            </p>
+            <p class="text-muted">
+              About 20 minutes. Nothing you do here is saved or sent anywhere.
+            </p>
+          </div>
+
+          <div class="panel">
+            <h2 class="panel__title">How to use this</h2>
+            <ol class="how-to">
+              <li>Say what you think rotation does to model fit.</li>
+              <li>Rotate the first axis and watch the loading table.</li>
+              <li>
+                Watch the invariants underneath it — total variance and every
+                communality — refuse to move.
+              </li>
+              <li>
+                Let the axes come off 90° and see the factors start to
+                correlate.
+              </li>
+              <li>Try the marker set with a genuine cross-loading.</li>
+            </ol>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= Opening prediction ================= -->
+    <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="opening-heading">First, a prediction</h2>
+          <p class="prose">
+            A researcher extracts two factors, then rotates them.
+          </p>
+        </div>
+
+        <noscript>
+          <div class="placeholder">
+            <h3 class="placeholder__title">This part needs JavaScript</h3>
+            <p class="prose">
+              The playground recomputes loadings in your browser as you rotate
+              the axes, so it cannot run with JavaScript switched off. The rest
+              of this page is readable without it.
+            </p>
+          </div>
+        </noscript>
+
+        <form class="panel prediction" id="opening-form">
+          <fieldset class="prediction__group">
+            <legend class="prediction__legend">
+              What does rotation do to how well the model fits the data?
+            </legend>
+            <label class="control--choice">
+              <input type="radio" name="opening" value="nothing">
+              Nothing at all — fit is unchanged
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="opening" value="better">
+              Improves it — that is why people rotate
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="opening" value="worse">
+              Worsens it slightly, in exchange for interpretability
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="opening" value="depends">
+              Depends whether the rotation is orthogonal or oblique
+            </label>
+          </fieldset>
+
+          <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+          <div class="prediction__actions">
+            <button class="button button--primary" type="submit">
+              Record my answer and start rotating
+            </button>
+            <button class="button button--secondary" type="button" data-action="skip-opening">
+              Skip — I am demonstrating this
+            </button>
+          </div>
+
+          <div class="feedback" data-opening-feedback hidden></div>
+        </form>
+
+      </div>
+    </section>
+
+    <!-- ================= Playground ================= -->
+    <section class="section" aria-labelledby="playground-heading">
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="playground-heading">The playground</h2>
+        </div>
+
+        <section class="interactive" id="rotation" data-interactive
+                 data-reset-message="Everything cleared. Back to the opening question.">
+
+          <header class="interactive__header">
+            <h3 class="interactive__title">Two factors, twelve markers</h3>
+            <p class="interactive__brief">
+              Fictional adjective markers with illustrative coordinates. The
+              positions came out of the extraction and never change; only the
+              axes move.
+            </p>
+          </header>
+
+          <div class="interactive__body">
+
+            <form class="interactive__controls" data-interactive-controls>
+
+              <fieldset>
+                <legend>Marker set</legend>
+                <div class="control">
+                  <label class="control__label" for="set-select">Which structure</label>
+                  <select id="set-select" disabled></select>
+                  <p class="control__hint" data-set-note></p>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>Rotation</legend>
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="angle-range">First axis</label>
+                    <output class="control__value" for="angle-range">0°</output>
+                  </div>
+                  <input type="range" id="angle-range" min="0" max="180" step="1" value="0" disabled>
+                </div>
+
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="oblique-range">Angle between the axes</label>
+                    <output class="control__value" for="oblique-range">90°</output>
+                  </div>
+                  <input type="range" id="oblique-range" min="40" max="120" step="1" value="90" disabled>
+                  <p class="control__hint">
+                    90° is an orthogonal solution with uncorrelated factors.
+                    Anything else is oblique.
+                  </p>
+                </div>
+
+                <div class="control">
+                  <button class="button button--secondary" type="button" data-action="best" disabled>
+                    Find the simplest structure
+                  </button>
+                </div>
+              </fieldset>
+
+            </form>
+
+            <div class="interactive__stage" data-interactive-stage>
+
+              <figure class="chart">
+                <figcaption class="chart__caption">
+                  The markers, and the axes you are reading them against
+                </figcaption>
+                <svg class="chart__svg plot" data-plot viewBox="0 0 380 380"
+                     aria-hidden="true" focusable="false"></svg>
+              </figure>
+
+              <dl class="interactive__readout" data-readout></dl>
+
+              <div class="verdict" data-tone="good">
+                <h4 class="verdict__title">What has not changed</h4>
+                <p class="verdict__body" data-invariant></p>
+              </div>
+
+              <h4 class="stage__heading">Tentative factor labels</h4>
+              <dl class="labels">
+                <div>
+                  <dt>Factor 1 is anchored by</dt>
+                  <dd data-label-one></dd>
+                </div>
+                <div>
+                  <dt>Factor 2 is anchored by</dt>
+                  <dd data-label-two></dd>
+                </div>
+              </dl>
+              <p class="text-muted">
+                Labels are an interpretive act, not a result. These are the
+                highest-loading markers, nothing more.
+              </p>
+
+              <h4 class="stage__heading">Loadings</h4>
+              <div class="table-scroll">
+                <table class="data-table">
+                  <caption class="visually-hidden">
+                    Loadings on each factor, communality, and which factor each
+                    marker is salient on
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Marker</th>
+                      <th scope="col">F1</th>
+                      <th scope="col">F2</th>
+                      <th scope="col">Communality</th>
+                      <th scope="col">Salient on</th>
+                    </tr>
+                  </thead>
+                  <tbody data-loading-table></tbody>
+                </table>
+              </div>
+
+            </div>
+
+          </div>
+
+          <p class="interactive__status" data-interactive-status role="status"></p>
+
+          <div class="interactive__actions">
+            <button type="button" data-variant="secondary" data-interactive-reset>
+              Reset everything
+            </button>
+          </div>
+
+          <details class="interactive__notes">
+            <summary>Notes for whoever is running this</summary>
+            <div>
+              <p>
+                Rotate slowly with the loading table on screen and the
+                invariants box beneath it. Loadings pour through every value
+                they can take; total variance explained does not move in the
+                second decimal place. That contrast is the tool.
+              </p>
+              <p>
+                Then switch to the third marker set, where the clusters sit
+                about 55° apart. No orthogonal rotation can put an axis through
+                both. Dropping the axis angle to about 55° does it — and the
+                factor correlation jumps to around 0.57, which is the price.
+              </p>
+              <p>
+                Fuller guidance and the debrief questions are in
+                <a href="teaching-notes.md">teaching-notes.md</a> beside this
+                page.
+              </p>
+            </div>
+          </details>
+
+        </section>
+
+      </div>
+    </section>
+
+    <!-- ================= Challenge ================= -->
+    <section class="section section--tinted" id="challenge" aria-labelledby="challenge-heading">
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="challenge-heading">Challenge — what actually changed?</h2>
+          <p class="prose">
+            Rotate until you have found the simplest structure you can, then
+            answer.
+          </p>
+        </div>
+
+        <form class="panel challenge" id="challenge-form">
+          <p class="verdict verdict__body" data-challenge-status></p>
+
+          <fieldset class="prediction__group">
+            <legend class="prediction__legend">
+              Between the unrotated and the rotated solution, what changed?
+            </legend>
+            <label class="control--choice">
+              <input type="radio" name="challenge" value="mathematical">
+              Something mathematical — the rotated solution describes the data better
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="challenge" value="interpretive">
+              Nothing mathematical; what changed is which description you are reading
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="challenge" value="arbitrary">
+              Nothing meaningful — rotation makes factor analysis arbitrary
+            </label>
+          </fieldset>
+
+          <div class="prediction__actions">
+            <button class="button button--primary" type="submit">
+              Check my answer
+            </button>
+          </div>
+
+          <div class="feedback" data-challenge-feedback hidden></div>
+        </form>
+
+      </div>
+    </section>
+
+    <!-- ================= Debrief ================= -->
+    <section class="section" id="debrief" aria-labelledby="debrief-heading">
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="debrief-heading">What this demonstrates</h2>
+        </div>
+
+        <div class="split split--wide">
+
+          <div class="prose">
+            <h3>Rotation changes the description, not the data</h3>
+            <p>
+              Every loading changes; the configuration of points does not. The
+              rotated model reproduces the correlations exactly as well as the
+              unrotated one, each variable's communality is untouched, and the
+              total variance explained is identical. Rotation is a change of
+              coordinate system, and coordinate systems are not discoveries.
+            </p>
+
+            <h3>Which is why it is neither a trick nor a revelation</h3>
+            <p>
+              Two opposite overreactions are common. The first is that rotation
+              manufactures results — it cannot, because fit is invariant. The
+              second is that the rotated solution is the true structure — it is
+              not, because the mathematics does not privilege it. Simple
+              structure is a criterion people adopted, for good reasons: it
+              yields solutions that are interpretable and comparable between
+              studies. Those are real virtues, and they are not the same as
+              truth.
+            </p>
+
+            <h3>Orthogonal or oblique is a substantive choice</h3>
+            <p>
+              Forcing the axes to 90° asserts that the constructs are
+              uncorrelated. For most psychological constructs that is
+              implausible, and the third marker set shows what it costs: when
+              the clusters genuinely sit 55° apart, no orthogonal rotation puts
+              an axis through both, and the solution looks worse than it is.
+              Allowing the axes to move fixes the picture and produces
+              correlated factors — which is a claim about the world, to be
+              defended rather than avoided.
+            </p>
+
+            <h3>Some items will not settle, and that is information</h3>
+            <p>
+              In the second marker set, one pair of markers sits between the
+              clusters and no rotation makes it simple. That is what a genuine
+              cross-loading is: not a nuisance to be rotated away but a fact
+              about a variable that belongs partly to both factors. Deleting
+              such items to improve simple structure is common and quietly
+              changes what the factors mean.
+            </p>
+          </div>
+
+          <aside class="panel panel--caution" aria-labelledby="limits-heading">
+            <h3 class="panel__title" id="limits-heading">
+              What this does <em>not</em> demonstrate
+            </h3>
+            <ul>
+              <li>
+                <strong>These are not data.</strong> Twelve fictional adjective
+                markers with coordinates chosen to make three situations legible.
+                No correlation matrix was factored and no real study is
+                represented.
+              </li>
+              <li>
+                <strong>Two dimensions is the special case.</strong> Real
+                solutions have three, five or more factors, where rotation
+                cannot be drawn on a page and simple structure is much harder to
+                reach.
+              </li>
+              <li>
+                <strong>Nothing here decides how many factors to keep.</strong>
+                That question comes before rotation and is the more consequential
+                one; the number is fixed at two throughout.
+              </li>
+              <li>
+                <strong>The rotation is done by hand.</strong> Real analyses use
+                analytic criteria — varimax, oblimin, promax — which optimise a
+                specific function rather than a slider. The "find the simplest
+                structure" button is a coarse sweep, not any of those.
+              </li>
+              <li>
+                <strong>Oblique loadings are simplified.</strong> A real oblique
+                solution distinguishes pattern from structure coefficients; this
+                tool shows one set of numbers and the factor correlation
+                separately.
+              </li>
+              <li>
+                <strong>Nobody is assessed.</strong> You rotate axes. The tool
+                asks nothing about you.
+              </li>
+            </ul>
+          </aside>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+
+        <div>
+          <h2>Open Psychology Interactives</h2>
+          <p class="text-muted">
+            Free, accessible, classroom-ready teaching tools for university
+            psychology. Built as plain web pages so they keep working, and
+            openly licensed so they can be adapted.
+          </p>
+        </div>
+
+        <div>
+          <h2>Modules</h2>
+          <ul>
+            <li><a href="../../../cognitive/index.html">Cognitive Psychology</a></li>
+            <li><a href="../../../research-methods/index.html">Research Methods</a></li>
+            <li><a href="../../../neuropsychology/index.html">Neuropsychology</a></li>
+            <li><a href="../../../social-critical-psychology/index.html">Social and Critical Psychology</a></li>
+            <li><a href="../../index.html">Personality and Individual Differences</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h2>Project</h2>
+          <ul>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives">GitHub repository</a></li>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives/blob/main/CONTRIBUTING.md">Contributing</a></li>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives/blob/main/docs/accessibility.md">Accessibility</a></li>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives/blob/main/LICENSE">MIT licence</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="site-footer__bottom">
+        <p>© <span data-current-year>2026</span> Open Psychology Interactives. Released under the MIT licence.</p>
+        <p>Built with plain HTML, CSS and JavaScript. No trackers, no accounts.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

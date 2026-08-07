@@ -1,0 +1,113 @@
+/* =========================================================================
+   Factor Rotation Playground — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. The loading plot
+   and the tentative-label list are what is particular here.
+   ========================================================================= */
+
+#rotation .interactive__controls,
+#rotation .interactive__stage {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #rotation .interactive__body {
+    grid-template-columns: minmax(0, 18rem) minmax(0, 1fr);
+  }
+}
+
+#rotation .control + .control {
+  margin-top: var(--space-4);
+}
+
+/* -------------------------------------------------------------------------
+   The loading plot
+   -------------------------------------------------------------------------
+   Markers are labelled with their names directly on the plot, and the same
+   loadings appear in the table beneath, so the plot is a summary rather than
+   the only source. The two axes are distinguished by dash pattern as well as
+   colour and are labelled F1 and F2.
+   ---------------------------------------------------------------------- */
+
+.plot {
+  max-width: 26rem;
+}
+
+.plot__circle {
+  fill: none;
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+
+.plot__axis {
+  stroke-width: 2;
+}
+
+.plot__axis--one {
+  stroke: var(--colour-accent);
+}
+
+.plot__axis--two {
+  stroke: var(--colour-personality-individual-differences);
+  stroke-dasharray: 7 4;
+}
+
+.plot__marker {
+  fill: var(--colour-text);
+}
+
+.plot__label {
+  fill: var(--colour-text-muted);
+  font-family: var(--font-body);
+  font-size: 11px;
+}
+
+/* -------------------------------------------------------------------------
+   Tentative labels
+   ---------------------------------------------------------------------- */
+
+.labels {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+}
+
+.labels > div {
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+
+.labels dt {
+  margin: 0;
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+
+.labels dd {
+  margin: 0.2rem 0 0;
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+@media (forced-colors: active) {
+  .plot__axis--one {
+    stroke: CanvasText;
+  }
+
+  .plot__axis--two {
+    stroke: Highlight;
+  }
+
+  .plot__marker {
+    fill: CanvasText;
+  }
+
+  .labels > div {
+    border: 1px solid CanvasText;
+  }
+}

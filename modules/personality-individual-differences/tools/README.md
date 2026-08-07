@@ -10,6 +10,7 @@ folder per tool.
 | --- | --- | --- |
 | Person–Situation Interaction Theatre | [`03-person-situation-interaction-theatre/`](03-person-situation-interaction-theatre/) | Person-situation interaction: situational strength, affordances, and why the debate was badly posed |
 | State versus Trait Tracker | [`04-state-versus-trait-tracker/`](04-state-versus-trait-tracker/) | States versus traits: within-person variability, repeated measurement and what a single administration cannot tell you |
+| Factor Rotation Playground | [`07-factor-rotation-playground/`](07-factor-rotation-playground/) | Factor analysis: what rotation changes, what it cannot change, and why simple structure is a criterion rather than a discovery |
 | Facet-Level Detective | [`09-facet-level-detective/`](09-facet-level-detective/) | Trait structure: what a broad domain score averages away, and the bandwidth-fidelity trade-off |
 | The Alpha Trap | [`12-alpha-trap/`](12-alpha-trap/) | Reliability: why a high Cronbach's alpha is not validity, unidimensionality or evidence of a good measure |
 | “Explain This Person” Courtroom | [`24-explain-this-person-courtroom/`](24-explain-this-person-courtroom/) | Explanation and underdetermination: why fitting a case is cheap and predicting something distinctive is not |
