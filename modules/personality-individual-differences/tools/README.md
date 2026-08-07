@@ -8,6 +8,7 @@ folder per tool.
 <!-- PUBLISHED:START -->
 | Tool | Folder | Topic |
 | --- | --- | --- |
+| Person–Situation Interaction Theatre | [`03-person-situation-interaction-theatre/`](03-person-situation-interaction-theatre/) | Person-situation interaction: situational strength, affordances, and why the debate was badly posed |
 | Facet-Level Detective | [`09-facet-level-detective/`](09-facet-level-detective/) | Trait structure: what a broad domain score averages away, and the bandwidth-fidelity trade-off |
 | The Alpha Trap | [`12-alpha-trap/`](12-alpha-trap/) | Reliability: why a high Cronbach's alpha is not validity, unidimensionality or evidence of a good measure |
 

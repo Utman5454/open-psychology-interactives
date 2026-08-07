@@ -1,0 +1,204 @@
+/* =========================================================================
+   Person–Situation Interaction Theatre — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. Only the cast
+   cards, the ranking rows and the interaction graph live here.
+   ========================================================================= */
+
+#theatre .interactive__controls,
+#theatre .interactive__stage {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #theatre .interactive__body {
+    grid-template-columns: minmax(0, 19rem) minmax(0, 1fr);
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Cast
+   ---------------------------------------------------------------------- */
+
+.cast {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}
+
+.cast > li {
+  margin-top: 0;
+}
+
+.cast__card {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-top: 3px solid var(--colour-personality-individual-differences);
+  border-radius: var(--radius-md);
+  background-color: var(--colour-surface-raised);
+}
+
+.cast__name {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-base);
+}
+
+.cast__sketch {
+  margin: 0 0 var(--space-3);
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+
+.cast__traits {
+  display: grid;
+  gap: 0.15rem;
+  margin: 0;
+  font-size: var(--text-xs);
+}
+
+.cast__traits > div {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: 0.15rem 0;
+  border-top: 1px solid var(--colour-border);
+}
+
+.cast__traits dt {
+  margin: 0;
+  color: var(--colour-text-muted);
+}
+
+.cast__traits dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+  font-weight: 650;
+}
+
+/* -------------------------------------------------------------------------
+   Ranking rows
+   -------------------------------------------------------------------------
+   A select per character rather than a drag-and-drop list: keyboard operable
+   with no custom widget, and it satisfies WCAG 2.5.7 without needing a
+   dragging alternative because there is no dragging.
+   ---------------------------------------------------------------------- */
+
+.ranking {
+  display: grid;
+  gap: var(--space-2);
+  max-width: 26rem;
+}
+
+.ranking__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* Wraps rather than overflowing when the character name and the select
+     cannot share a line at 320px. */
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-3);
+  min-height: 2.75rem;
+  padding: 0.35rem 0.6rem;
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+
+.ranking__name {
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.ranking select {
+  min-height: 2.75rem;
+  min-width: 4.5rem;
+  padding: 0.35rem 0.6rem;
+  font: inherit;
+  font-size: var(--text-sm);
+  color: var(--colour-text);
+  background-color: var(--colour-page);
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+}
+
+/* -------------------------------------------------------------------------
+   Interaction graph
+   -------------------------------------------------------------------------
+   Edge thickness carries the weight, but the same numbers are printed beside
+   each edge AND repeated in the table beneath, so nothing depends on reading
+   a line width. A negative weight is drawn dashed as well as labelled with a
+   minus sign.
+   ---------------------------------------------------------------------- */
+
+.graph__node {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border-strong);
+  stroke-width: 1;
+}
+
+.graph__node--muted {
+  fill: transparent;
+  stroke-dasharray: 3 3;
+}
+
+.graph__node--situation {
+  fill: var(--colour-accent-soft);
+  stroke: var(--colour-accent);
+}
+
+.graph__node--outcome {
+  fill: var(--colour-surface-raised);
+  stroke: var(--colour-personality-individual-differences);
+  stroke-width: 2;
+}
+
+.graph__edge {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-opacity: 0.75;
+  stroke-linecap: round;
+}
+
+.graph__edge--negative {
+  stroke: var(--colour-social-critical-psychology);
+  stroke-dasharray: 7 4;
+}
+
+.graph__edge--situation {
+  stroke: var(--colour-personality-individual-differences);
+}
+
+/* -------------------------------------------------------------------------
+   Selects inside the shell's controls need the shell's own sizing, which is
+   scoped to .interactive and already applies. The strength slider does too.
+   ---------------------------------------------------------------------- */
+
+#theatre .control + .control {
+  margin-top: var(--space-4);
+}
+
+@media (forced-colors: active) {
+  .cast__card,
+  .ranking__row {
+    border: 1px solid CanvasText;
+  }
+
+  .graph__node,
+  .graph__node--situation,
+  .graph__node--outcome {
+    fill: Canvas;
+    stroke: CanvasText;
+  }
+
+  .graph__edge {
+    stroke: CanvasText;
+  }
+
+  .graph__edge--negative,
+  .graph__edge--situation {
+    stroke: Highlight;
+  }
+}
