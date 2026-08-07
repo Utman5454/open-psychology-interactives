@@ -1,0 +1,148 @@
+/* =========================================================================
+   Intelligence-Test Battery Builder — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. The task cards
+   are what is particular here: each is a checkbox plus a small fact sheet,
+   because the trade-offs are only visible if the costs are on the card.
+   ========================================================================= */
+
+#battery .interactive__controls,
+#battery .interactive__stage {
+  min-width: 0;
+}
+
+/* The task list carries a lot of text, so the controls column takes the
+   larger share of the width here — the reverse of most tools. */
+@media (min-width: 52em) {
+  #battery .interactive__body {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  }
+}
+
+@media (min-width: 72em) {
+  #battery .interactive__body {
+    grid-template-columns: minmax(0, 26rem) minmax(0, 1fr);
+  }
+}
+
+#battery .control + .control {
+  margin-top: var(--space-4);
+}
+
+/* -------------------------------------------------------------------------
+   Task cards
+   ---------------------------------------------------------------------- */
+
+.task-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+
+.task-list > li {
+  margin-top: 0;
+}
+
+.task {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  background-color: var(--colour-surface-raised);
+  cursor: pointer;
+}
+
+.task:hover {
+  border-color: var(--colour-border-strong);
+}
+
+.task input {
+  width: 1.15rem;
+  height: 1.15rem;
+  margin-top: 0.2rem;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+
+.task:has(input:checked) {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+}
+
+.task:has(input:disabled) {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.task__body {
+  display: grid;
+  gap: 0.3rem;
+  min-width: 0;
+}
+
+.task__name {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+
+.task__desc {
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+
+/* The costs, on the card. A student should not have to click a task to find
+   out what it will spend. */
+.task__facts {
+  list-style: none;
+  padding: 0;
+  margin: 0.15rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.task__facts > li {
+  margin-top: 0;
+  padding: 0.1rem 0.45rem;
+  border: 1px solid var(--colour-border);
+  border-radius: 999px;
+  background-color: var(--colour-surface);
+  font-size: var(--text-xs);
+  font-variant-numeric: tabular-nums;
+  color: var(--colour-text-muted);
+}
+
+.task__note {
+  font-size: var(--text-xs);
+  font-style: italic;
+  color: var(--colour-text-muted);
+}
+
+/* -------------------------------------------------------------------------
+   Coverage chart
+   ---------------------------------------------------------------------- */
+
+/* A domain sampled only incidentally is drawn hatched as well as short, and
+   the table beside it says "barely" in words. */
+.chart__bar--thin {
+  fill: var(--colour-border-strong);
+}
+
+@media (forced-colors: active) {
+  .task,
+  .task__facts > li {
+    border: 1px solid CanvasText;
+  }
+
+  .task:has(input:checked) {
+    border: 2px solid Highlight;
+  }
+
+  .chart__bar--thin {
+    fill: GrayText;
+  }
+}

@@ -12,6 +12,7 @@ folder per tool.
 | State versus Trait Tracker | [`04-state-versus-trait-tracker/`](04-state-versus-trait-tracker/) | States versus traits: within-person variability, repeated measurement and what a single administration cannot tell you |
 | Facet-Level Detective | [`09-facet-level-detective/`](09-facet-level-detective/) | Trait structure: what a broad domain score averages away, and the bandwidth-fidelity trade-off |
 | The Alpha Trap | [`12-alpha-trap/`](12-alpha-trap/) | Reliability: why a high Cronbach's alpha is not validity, unidimensionality or evidence of a good measure |
+| Intelligence-Test Battery Builder | [`31-intelligence-test-battery-builder/`](31-intelligence-test-battery-builder/) | Intelligence testing: construct coverage, the trade-offs in battery construction, and validity as a property of a use |
 
 <!-- PUBLISHED:END -->
 
