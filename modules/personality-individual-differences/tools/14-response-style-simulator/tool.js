@@ -310,6 +310,7 @@
   var gridWrap = $("[data-grids]");
   var statsTable = $("[data-stats-table]");
   var distChart = $("[data-dist-chart]");
+  var distTable = $("[data-dist-table]");
   var balanceNote = $("[data-balance-note]");
   var balancedToggle = $("#balanced-toggle");
   var standingRange = $("#standing-range");
@@ -514,6 +515,20 @@
         text.textContent = String(count);
         distChart.appendChild(text);
       });
+    });
+
+    /* Same counts as the chart, in a table, so the shape of each style's
+       answering is readable without seeing the bars. */
+    clear(distTable);
+    styles.forEach(function (style) {
+      var row = make("tr");
+      var th = make("th", null, style.name);
+      th.setAttribute("scope", "row");
+      row.appendChild(th);
+      distribution(answersFor(style)).forEach(function (count) {
+        row.appendChild(make("td", null, String(count)));
+      });
+      distTable.appendChild(row);
     });
   }
 

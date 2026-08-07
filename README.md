@@ -75,9 +75,10 @@ Then open `index.html` in a browser.
 
 **One caveat when opening from disk.** Browsers block `fetch()` on `file://`
 URLs, so the catalogue-driven listing on the module pages does not run. The
-pages detect this and keep their static content, so nothing appears broken —
-you simply see the same "in preparation" text either way. Once tools exist, they
-will still open and work perfectly from disk; only the auto-generated *listing*
+pages detect this and keep their static content, so nothing appears broken: the
+Personality and Individual Differences page still lists every published tool from
+its own markup, and the modules with nothing published still say so. Tools
+themselves open and work perfectly from disk; only the auto-generated *listing*
 needs a server.
 
 If you want the listing too, serve the folder over HTTP with anything you
