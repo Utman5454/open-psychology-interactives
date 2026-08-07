@@ -1,0 +1,101 @@
+/* =========================================================================
+   Gene × Environment Interaction Visualiser — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. The two regression
+   lines, the scatter clouds and the shaded unsampled regions are what is
+   particular here.
+   ========================================================================= */
+
+#gxe .interactive__controls,
+#gxe .interactive__stage {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #gxe .interactive__body {
+    grid-template-columns: minmax(0, 19rem) minmax(0, 1fr);
+  }
+}
+
+#gxe .control + .control {
+  margin-top: var(--space-4);
+}
+
+.preset-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.preset-buttons .button {
+  font-size: var(--text-xs);
+  padding: 0.35rem 0.7rem;
+  min-height: 2.75rem;
+}
+
+/* -------------------------------------------------------------------------
+   The two groups
+   -------------------------------------------------------------------------
+   Distinguished by colour, by dash pattern, AND by a label printed at the end
+   of each line, so the pair never depends on hue. The tables carry the same
+   numbers.
+   ---------------------------------------------------------------------- */
+
+.gxe__line {
+  fill: none;
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.gxe__line--high {
+  stroke: var(--colour-personality-individual-differences);
+}
+
+.gxe__line--low {
+  stroke: var(--colour-accent);
+  stroke-dasharray: 8 4;
+}
+
+.gxe__points {
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-opacity: 0.4;
+  fill: none;
+}
+
+.gxe__points--high {
+  stroke: var(--colour-personality-individual-differences);
+}
+
+.gxe__points--low {
+  stroke: var(--colour-accent);
+}
+
+/* The part of the environmental range the study did not sample. Hatched as
+   well as tinted, because "we have no data here" is the single most important
+   thing on the chart. */
+.gxe__unobserved {
+  fill: var(--colour-text-muted);
+  fill-opacity: 0.14;
+}
+
+@media (forced-colors: active) {
+  .gxe__line--high,
+  .gxe__points--high {
+    stroke: CanvasText;
+  }
+
+  .gxe__line--low,
+  .gxe__points--low {
+    stroke: Highlight;
+  }
+
+  .gxe__points {
+    stroke-opacity: 1;
+  }
+
+  .gxe__unobserved {
+    fill: GrayText;
+    fill-opacity: 0.3;
+  }
+}

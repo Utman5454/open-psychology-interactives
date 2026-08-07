@@ -15,6 +15,7 @@ folder per tool.
 | Intelligence-Test Battery Builder | [`31-intelligence-test-battery-builder/`](31-intelligence-test-battery-builder/) | Intelligence testing: construct coverage, the trade-offs in battery construction, and validity as a property of a use |
 | Culture-Fair Test Challenge | [`34-culture-fair-test-challenge/`](34-culture-fair-test-challenge/) | Culture-fair testing: construct-irrelevant demand, opportunity to learn a format, and what comparability requires |
 | Twin-Study Simulator | [`39-twin-study-simulator/`](39-twin-study-simulator/) | Behaviour genetics: what heritability is a property of, and which way each broken assumption bends the estimate |
+| Gene × Environment Interaction Visualiser | [`42-gene-environment-interaction-visualiser/`](42-gene-environment-interaction-visualiser/) | Gene-environment interaction: how the sampled environmental range decides which theory a study appears to support |
 
 <!-- PUBLISHED:END -->
 
