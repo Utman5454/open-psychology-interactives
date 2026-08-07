@@ -3,10 +3,14 @@
 Tools for the **Personality and Individual Differences** module live here, one
 folder per tool.
 
-**This folder is currently empty.** No personality and individual differences
-tool has been built yet. The module page at
-`modules/personality-individual-differences/index.html` describes the planned
-scope.
+## Published
+
+| Tool | Folder | Topic |
+| --- | --- | --- |
+| The Alpha Trap | [`12-alpha-trap/`](12-alpha-trap/) | Reliability: why a high Cronbach's alpha is not validity, unidimensionality or evidence of a good measure |
+
+The module page at `modules/personality-individual-differences/index.html`
+describes the rest of the planned scope.
 
 ## Canonical tool structure
 
@@ -76,5 +80,7 @@ See [`../../../docs/accessibility.md`](../../../docs/accessibility.md).
 Trait structure and the Big Five · factor analysis · reliability · validity and
 measurement error · reading a trait profile.
 
-All are unclaimed. Open an issue before starting so two people do not build the
-same thing.
+Reliability is partly covered by The Alpha Trap, which takes the internal
+consistency side of it; test–retest reliability is still open. Everything else
+is unclaimed. Open an issue before starting so two people do not build the same
+thing.

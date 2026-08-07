@@ -1,0 +1,678 @@
+/* =========================================================================
+   The Alpha Trap — tool-specific styling
+   -------------------------------------------------------------------------
+   Loaded after assets/css/main.css and components/interactive-shell.css, and
+   uses their design tokens throughout. Nothing here redefines a token, so the
+   light and dark palettes, the focus treatment and the forced-colours
+   behaviour of the shared files all continue to apply.
+
+   Only two shared rules are overridden, both in one place and both explained
+   where they appear: the width of the shell's controls column (this tool's
+   controls are 24 sentences, not four sliders), and the two-column .split,
+   which needs equal columns here rather than the 3fr/2fr used on landing
+   pages.
+   ========================================================================= */
+
+/* -------------------------------------------------------------------------
+   Layout overrides
+   ---------------------------------------------------------------------- */
+
+/* Equal columns for the debrief and challenge pairs. The site default (3fr
+   2fr) is right for "content plus sidebar"; these are two peers. */
+@media (min-width: 56em) {
+  .split--wide {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Both children of the shell's grid must be allowed to shrink below their
+   own min-content width. Without this, a grid item's automatic minimum size
+   is its min-content — and the coverage table's min-content is about 248px,
+   which pushed the shared single-column track wider than the viewport at
+   320px. The overflow was then invisibly clipped by the `overflow: hidden`
+   on .interactive rather than showing as a scrollbar. The table scrolls
+   inside its own .table-scroll container instead. */
+#alpha-trap .interactive__controls,
+#alpha-trap .interactive__stage {
+  min-width: 0;
+}
+
+/* The shell gives its controls column minmax(15rem, 20rem), which suits a
+   panel of sliders. The item bank is 24 full sentences and needs more room,
+   so the proportions are restated here rather than fought with. */
+@media (min-width: 52em) {
+  #alpha-trap .interactive__body {
+    grid-template-columns: minmax(0, 22rem) minmax(0, 1fr);
+  }
+}
+
+@media (min-width: 72em) {
+  #alpha-trap .interactive__body {
+    grid-template-columns: minmax(0, 26rem) minmax(0, 1fr);
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Introductory panels
+   ---------------------------------------------------------------------- */
+
+.how-to {
+  padding-left: 1.2rem;
+  font-size: var(--text-sm);
+}
+
+.how-to > li {
+  margin-top: var(--space-2);
+}
+
+/* -------------------------------------------------------------------------
+   Prediction panel
+   ---------------------------------------------------------------------- */
+
+.prediction {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 46rem;
+}
+
+.prediction__group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.prediction__legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-weight: 650;
+  font-size: var(--text-base);
+}
+
+/* .control--choice comes from the interactive shell, which scopes it inside
+   .interactive. These panels sit outside the shell, so the sizing that makes
+   the whole row a 44px target is repeated here. */
+.prediction .control--choice,
+.challenge .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 2.75rem;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+
+.prediction .control--choice input,
+.challenge .control--choice input {
+  width: 1.15rem;
+  height: 1.15rem;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+
+.prediction__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.prediction__error {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-status-border);
+  border-left: 4px solid var(--colour-status-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+  font-size: var(--text-sm);
+}
+
+.prediction__readback {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+
+/* -------------------------------------------------------------------------
+   Stage track
+   -------------------------------------------------------------------------
+   Which of the three stages the student is in. The current stage carries
+   aria-current="step" and the completed ones carry a visually hidden word,
+   so the state is never conveyed by weight or colour alone.
+   ---------------------------------------------------------------------- */
+
+.stage-track {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+
+.stage-track > li {
+  margin-top: 0;
+  flex: 1 1 10rem;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-bottom: 3px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  color: var(--colour-text-muted);
+}
+
+.stage-track > li > span {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+
+.stage-track > li[data-state="done"] {
+  border-bottom-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+
+.stage-track > li[aria-current="step"] {
+  border-bottom-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+  color: var(--colour-text);
+  font-weight: 650;
+}
+
+/* -------------------------------------------------------------------------
+   Goal banner
+   ---------------------------------------------------------------------- */
+
+.goal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+
+.goal__label {
+  flex: none;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+
+.goal__text {
+  flex: 1 1 16rem;
+}
+
+.goal strong {
+  font-variant-numeric: tabular-nums;
+}
+
+/* -------------------------------------------------------------------------
+   Item bank
+   ---------------------------------------------------------------------- */
+
+.bank__intro {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+
+.bank__group + .bank__group {
+  margin-top: var(--space-4);
+}
+
+.bank__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.25rem;
+}
+
+.bank__list > li {
+  margin-top: 0;
+}
+
+.item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  min-height: 2.75rem;
+  padding: 0.45rem 0.6rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  line-height: 1.35;
+  cursor: pointer;
+}
+
+.item:hover {
+  background-color: var(--colour-accent-soft);
+}
+
+.item input {
+  width: 1.15rem;
+  height: 1.15rem;
+  margin-top: 0.15rem;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+
+/* A selected item is already marked by its own checkbox; this is a redundant
+   visual cue for scanning a long list, not the only one. */
+.item:has(input:checked) {
+  border-color: var(--colour-border-strong);
+  background-color: var(--colour-surface-raised);
+  font-weight: 550;
+}
+
+.item input:disabled {
+  cursor: not-allowed;
+}
+
+.item:has(input:disabled) {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.item:has(input:disabled):hover {
+  background-color: transparent;
+}
+
+/* -------------------------------------------------------------------------
+   Alpha meter
+   -------------------------------------------------------------------------
+   A redundant visual for the headline number, which is also printed in the
+   readout below it. Hidden from assistive technology for that reason.
+   ---------------------------------------------------------------------- */
+
+.meter {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.meter__scale {
+  position: relative;
+  height: 1.5rem;
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  overflow: hidden;
+}
+
+.meter__fill {
+  height: 100%;
+  width: 0;
+  background-color: var(--colour-accent);
+  transition: width 220ms ease-out;
+}
+
+/* The Round 1 threshold, drawn as a line with a label beneath the scale. */
+.meter__target {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: var(--colour-text);
+}
+
+.meter__labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .meter__fill {
+    transition: none;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Stage contents
+   ---------------------------------------------------------------------- */
+
+.stage__heading {
+  margin: 0;
+  font-size: var(--text-base);
+}
+
+/* The alpha figure is the phenomenon; let it dominate the readout. */
+.interactive__readout dd[data-metric="alpha"] {
+  font-size: var(--text-2xl);
+  line-height: 1.1;
+  color: var(--colour-accent);
+}
+
+.chart {
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+
+.chart__caption {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+
+.chart__svg {
+  max-width: 32rem;
+}
+
+/* Bars are filled with the accent, and the portion of each area made up of
+   repeated wording is overlaid with a hatch. Neither carries meaning on its
+   own: every bar is labelled with its own count in text, and the table below
+   repeats all of it. */
+.chart__bar {
+  fill: var(--colour-accent-soft);
+  stroke: var(--colour-accent);
+  stroke-width: 1;
+}
+
+.chart__bar-repeat {
+  fill: url(#alpha-trap-hatch);
+  stroke: var(--colour-accent);
+  stroke-width: 1;
+}
+
+.chart__hatch {
+  stroke: var(--colour-accent);
+  stroke-width: 2;
+}
+
+.chart__baseline {
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+
+.chart__label,
+.chart__count {
+  fill: var(--colour-text);
+  font-family: var(--font-body);
+  font-size: 13px;
+}
+
+.chart__count {
+  fill: var(--colour-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* The Round 2 requirements, ticked off live. "(met)" / "(not yet)" is written
+   into the text by tool.js, so the state is never carried by the marker
+   alone. */
+.goal__checks {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+  display: grid;
+  gap: 0.15rem;
+}
+
+.goal__checks > li {
+  margin-top: 0;
+  padding-left: 1.4rem;
+  position: relative;
+}
+
+.goal__checks > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 0.6rem;
+  height: 0.6rem;
+  border: 2px solid var(--colour-border-strong);
+  border-radius: 2px;
+}
+
+.goal__checks > li[data-met="yes"]::before {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent);
+}
+
+/* -------------------------------------------------------------------------
+   Tables
+   ---------------------------------------------------------------------- */
+
+.table-scroll {
+  overflow-x: auto;
+}
+
+.data-table,
+.chart__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+
+.data-table th,
+.data-table td,
+.chart__table th,
+.chart__table td {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--colour-border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.data-table thead th,
+.chart__table thead th {
+  background-color: var(--colour-surface);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+
+.data-table td,
+.chart__table td {
+  font-variant-numeric: tabular-nums;
+}
+
+.chart__table tbody th {
+  font-weight: 550;
+}
+
+/* -------------------------------------------------------------------------
+   Verdict boxes (redundancy, outcome correlation)
+   -------------------------------------------------------------------------
+   The tone is carried by a word in the text as well as by the border, so the
+   distinction survives greyscale, forced colours and a screen reader.
+   ---------------------------------------------------------------------- */
+
+.verdict {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+
+.verdict__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+
+.verdict__body {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+
+.verdict__body + .verdict__body {
+  margin-top: var(--space-2);
+}
+
+.verdict__note {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+
+.verdict[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+
+.verdict[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+
+.verdict[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+
+.verdict--outcome {
+  background-color: var(--colour-accent-soft);
+}
+
+/* -------------------------------------------------------------------------
+   Reveal and comparison
+   ---------------------------------------------------------------------- */
+
+.reveal > :last-child,
+.feedback > :last-child {
+  margin-bottom: 0;
+}
+
+.reveal__lead {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+
+.reveal__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+  padding: 0;
+  list-style: none;
+}
+
+.reveal__figures > li {
+  margin-top: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+
+.reveal__figure-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+
+.reveal__figure-value {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+
+.reveal__items {
+  font-size: var(--text-sm);
+  padding-left: 1.2rem;
+}
+
+/* -------------------------------------------------------------------------
+   Challenges
+   ---------------------------------------------------------------------- */
+
+.challenge {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+
+.challenge__locked {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+
+.feedback {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+
+.feedback[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+
+.feedback[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+
+.feedback__verdict {
+  font-weight: 700;
+}
+
+/* -------------------------------------------------------------------------
+   Caution panel
+   ---------------------------------------------------------------------- */
+
+.panel--caution {
+  background-color: var(--colour-status-bg);
+  border-color: var(--colour-status-border);
+}
+
+.panel--caution li + li {
+  margin-top: var(--space-3);
+}
+
+/* -------------------------------------------------------------------------
+   Forced colours
+   -------------------------------------------------------------------------
+   Same reasoning as the block in components/interactive-shell.css: anything
+   whose boundary or state was carried by a background tint has to be redrawn
+   with a system colour keyword, because author backgrounds are discarded.
+   ---------------------------------------------------------------------- */
+
+@media (forced-colors: active) {
+  .stage-track > li,
+  .goal,
+  .verdict,
+  .feedback,
+  .prediction__error,
+  .prediction__readback,
+  .meter__scale,
+  .reveal__figures > li {
+    border: 1px solid CanvasText;
+  }
+
+  /* Current stage: the accent background is gone, so mark it with a heavier
+     border. aria-current still carries this for assistive technology. */
+  .stage-track > li[aria-current="step"] {
+    border: 2px solid Highlight;
+  }
+
+  /* A selected item is distinguished by the checkbox itself in this mode. */
+  .item:has(input:checked) {
+    border-color: CanvasText;
+  }
+
+  .meter__fill {
+    background-color: Highlight;
+  }
+
+  .meter__target {
+    background-color: CanvasText;
+  }
+}

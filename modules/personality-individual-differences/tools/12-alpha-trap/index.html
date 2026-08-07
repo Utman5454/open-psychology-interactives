@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>The Alpha Trap — Open Psychology Interactives</title>
+  <meta name="description" content="Build a questionnaire scale from a simulated item bank and watch Cronbach's alpha rise as you add near-duplicate items. A teaching tool showing why a high alpha is not evidence of validity, unidimensionality or measurement quality.">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f141b" media="(prefers-color-scheme: dark)">
+
+  <link rel="canonical" href="https://utman5454.github.io/open-psychology-interactives/modules/personality-individual-differences/tools/12-alpha-trap/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Open Psychology Interactives">
+  <meta property="og:title" content="The Alpha Trap">
+  <meta property="og:description" content="Push Cronbach's alpha as high as you can, then see what it cost. A classroom tool on reliability, redundancy and validity.">
+  <meta property="og:url" content="https://utman5454.github.io/open-psychology-interactives/modules/personality-individual-differences/tools/12-alpha-trap/">
+  <meta property="og:locale" content="en_GB">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="The Alpha Trap">
+  <meta name="twitter:description" content="Push Cronbach's alpha as high as you can, then see what it cost.">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%237a2e6d'/%3E%3Cpath d='M4 24C10 24 10 8 16 8s6 16 12 16' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
+
+  <!-- Four directories deep (modules/<slug>/tools/<slug>/), so shared assets
+       are at ../../../../ — see docs/adapting-a-tool.md. -->
+  <link rel="stylesheet" href="../../../../assets/css/main.css">
+  <link rel="stylesheet" href="../../../../components/interactive-shell.css">
+  <link rel="stylesheet" href="tool.css">
+  <script src="../../../../assets/js/main.js" defer></script>
+  <script src="../../../../components/interactive-shell.js" defer></script>
+  <script src="tool.js" defer></script>
+</head>
+
+<!-- data-site-root: the path back to the site root from this page. -->
+<body data-site-root="../../../../">
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+
+      <a class="brand" href="../../../../index.html" aria-label="Open Psychology Interactives, home">
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <rect x="1" y="1" width="30" height="30" rx="7" fill="none" stroke="currentColor" stroke-width="2"></rect>
+          <path d="M5 24C10 24 10 8 16 8s6 16 11 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        </svg>
+        <span>
+          <span class="brand__name">Open Psychology Interactives</span>
+          <span class="brand__tagline">Free teaching tools for psychology</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" data-nav-toggle
+              aria-expanded="false" aria-controls="site-nav" hidden>
+        <svg class="nav-toggle__icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+          <path d="M2 5h16M2 10h16M2 15h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        </svg>
+        Menu
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul class="site-nav__list">
+          <li><a class="site-nav__link" href="../../../../index.html">Home</a></li>
+          <li><a class="site-nav__link" href="../../../cognitive/index.html">Cognitive<span class="visually-hidden"> Psychology</span></a></li>
+          <li><a class="site-nav__link" href="../../../research-methods/index.html">Research Methods</a></li>
+          <li><a class="site-nav__link" href="../../../neuropsychology/index.html">Neuropsychology</a></li>
+          <li><a class="site-nav__link" href="../../../social-critical-psychology/index.html">Social and Critical<span class="visually-hidden"> Psychology</span></a></li>
+          <li><a class="site-nav__link" href="../../index.html">Personality<span class="visually-hidden"> and Individual Differences</span></a></li>
+          <li><a class="site-nav__link" href="../../../../index.html#documentation">Documentation</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <nav class="breadcrumbs container" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="../../../../index.html">Home</a></li>
+      <li><a href="../../../../index.html#modules">Modules</a></li>
+      <li><a href="../../index.html">Personality and Individual Differences</a></li>
+      <li aria-current="page">The Alpha Trap</li>
+    </ol>
+  </nav>
+
+  <main id="main">
+
+    <!-- ================= Title and purpose ================= -->
+    <section class="section card--personality-individual-differences" aria-labelledby="page-heading">
+      <div class="container">
+
+        <p class="hero__eyebrow" style="color: var(--colour-personality-individual-differences)">
+          Personality and Individual Differences
+        </p>
+        <h1 id="page-heading">The Alpha Trap</h1>
+        <p class="hero__lead">
+          Build a questionnaire scale by choosing items, and watch how easily
+          Cronbach&rsquo;s alpha can be pushed upwards by asking the same
+          question in five different ways.
+        </p>
+
+        <p>
+          <span class="badge">
+            <span class="badge__dot" aria-hidden="true"></span>
+            Simulated data — a fictional item bank, not a real questionnaire
+          </span>
+        </p>
+
+        <div class="split split--wide">
+
+          <div class="panel">
+            <h2 class="panel__title">Learning objective</h2>
+            <p>
+              By the end you should be able to explain why a high Cronbach&rsquo;s
+              alpha is <strong>not</strong> evidence that a scale is valid,
+              unidimensional or well made — and to say what alpha does tell you.
+            </p>
+            <p class="text-muted">
+              About 20 minutes. Nothing you do here is saved or sent anywhere.
+            </p>
+          </div>
+
+          <div class="panel">
+            <h2 class="panel__title">How to use this</h2>
+            <ol class="how-to">
+              <li>Commit to a prediction before you touch the item bank.</li>
+              <li>
+                <strong>Round 1.</strong> Tick items to push alpha to
+                <strong>0.85</strong> or above. Any items you like.
+              </li>
+              <li>Look at what your scale turned out to measure.</li>
+              <li>
+                <strong>Round 2.</strong> Build a scale you would actually
+                defend, and compare the two.
+              </li>
+              <li>Work through the two challenges at the foot of the page.</li>
+            </ol>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= Prediction ================= -->
+    <section class="section section--tinted" id="prediction" aria-labelledby="prediction-heading">
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="prediction-heading">First, a prediction</h2>
+          <p class="prose">
+            You are about to be asked to get Cronbach&rsquo;s alpha above 0.85
+            using a bank of 24 items measuring &ldquo;academic
+            conscientiousness&rdquo;. Commit to an answer now — the point of the
+            exercise is largely lost if you read the outcome first.
+          </p>
+        </div>
+
+        <form class="panel prediction" id="prediction-form">
+
+          <fieldset class="prediction__group">
+            <legend class="prediction__legend">
+              1. The construct has five content areas. How many do you think
+              your alpha-chasing scale will end up covering?
+            </legend>
+            <label class="control--choice">
+              <input type="radio" name="predict-breadth" value="one-or-two">
+              One or two of the five
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="predict-breadth" value="three">
+              About three of the five
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="predict-breadth" value="four-or-five">
+              Four or five — a high alpha needs broad coverage
+            </label>
+          </fieldset>
+
+          <fieldset class="prediction__group">
+            <legend class="prediction__legend">
+              2. Suppose we then correlate that scale with a relevant outcome.
+              What would you expect?
+            </legend>
+            <label class="control--choice">
+              <input type="radio" name="predict-outcome" value="weak">
+              A weak correlation, around 0.2
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="predict-outcome" value="moderate">
+              A moderate correlation, around 0.4
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="predict-outcome" value="strong">
+              A strong correlation, around 0.6 — high alpha, good measure
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="predict-outcome" value="unknown">
+              Alpha on its own does not tell you
+            </label>
+          </fieldset>
+
+          <p class="prediction__error" data-prediction-error role="alert" hidden></p>
+
+          <div class="prediction__actions">
+            <button class="button button--primary" type="submit" data-action="record-prediction">
+              Record my prediction and begin
+            </button>
+            <button class="button button--secondary" type="button" data-action="skip-prediction">
+              Skip — I am demonstrating this
+            </button>
+          </div>
+
+          <p class="prediction__readback" data-prediction-readback hidden></p>
+
+        </form>
+
+      </div>
+    </section>
+
+    <!-- ================= The interactive ================= -->
+    <section class="section" aria-labelledby="builder-heading">
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="builder-heading">The scale builder</h2>
+        </div>
+
+        <noscript>
+          <div class="placeholder">
+            <h3 class="placeholder__title">This part needs JavaScript</h3>
+            <p class="prose">
+              The scale builder calculates Cronbach&rsquo;s alpha in your browser
+              as you tick items, so it cannot work with JavaScript switched off.
+              The rest of this page — what the demonstration shows, its
+              limitations, and the teaching notes — is readable without it.
+            </p>
+          </div>
+        </noscript>
+
+        <!-- Progress through the three stages. aria-current="step" marks the
+             active one, so it is not carried by styling alone. -->
+        <ol class="stage-track" data-stage-track>
+          <li data-stage-step="predict"><span>1.</span> Predict</li>
+          <li data-stage-step="round1"><span>2.</span> Chase alpha</li>
+          <li data-stage-step="round2"><span>3.</span> Build it properly</li>
+        </ol>
+
+        <section class="interactive" id="alpha-trap" data-interactive
+                 data-reset-message="Everything cleared. Back to the prediction.">
+
+          <header class="interactive__header">
+            <h3 class="interactive__title">Academic conscientiousness — item bank</h3>
+            <p class="interactive__brief">
+              Tick items to put them in your scale. Every figure below is
+              calculated from a fictional correlation model, not from real
+              respondents.
+            </p>
+            <p class="goal" data-goal>
+              <span class="goal__label">Goal</span>
+              <span class="goal__text" data-goal-text>Record your prediction above to unlock the item bank.</span>
+            </p>
+          </header>
+
+          <div class="interactive__body">
+
+            <!-- Controls first in the DOM: choose items, then see the result. -->
+            <form class="interactive__controls" data-interactive-controls data-item-bank>
+              <p class="bank__intro">
+                24 items, written for this demonstration. Read them — the
+                relationships between them matter.
+              </p>
+              <!-- Fieldsets are built by tool.js from a single source of truth,
+                   so the item text, its content area and its psychometric
+                   parameters cannot drift apart. -->
+            </form>
+
+            <div class="interactive__stage" data-interactive-stage>
+
+              <h4 class="stage__heading">Your scale</h4>
+
+              <!-- A redundant visual for the alpha figure printed in the
+                   readout immediately below, so it is hidden from assistive
+                   technology rather than announced twice. -->
+              <div class="meter" aria-hidden="true">
+                <div class="meter__scale">
+                  <div class="meter__fill" data-meter-fill></div>
+                  <div class="meter__target" data-meter-target></div>
+                </div>
+                <p class="meter__labels">
+                  <span>alpha 0</span>
+                  <span data-meter-caption>target 0.85</span>
+                  <span>1</span>
+                </p>
+              </div>
+
+              <dl class="interactive__readout" data-readout>
+                <div>
+                  <dt>Cronbach&rsquo;s alpha</dt>
+                  <dd data-metric="alpha">—</dd>
+                </div>
+                <div>
+                  <dt>Items</dt>
+                  <dd data-metric="items">0</dd>
+                </div>
+                <div>
+                  <dt>Mean inter-item <abbr title="correlation">r</abbr></dt>
+                  <dd data-metric="rbar">—</dd>
+                </div>
+                <div>
+                  <dt>Content areas covered</dt>
+                  <dd data-metric="breadth">0 of 5</dd>
+                </div>
+                <div>
+                  <dt>Near-duplicate pairs</dt>
+                  <dd data-metric="duplicates">0</dd>
+                </div>
+                <div data-outcome-cell hidden>
+                  <dt>Correlation with outcome</dt>
+                  <dd data-metric="outcome">—</dd>
+                </div>
+              </dl>
+
+              <figure class="chart">
+                <figcaption class="chart__caption">Content coverage</figcaption>
+                <!-- The SVG is decorative repetition of the table below it,
+                     so it is hidden from assistive technology rather than
+                     announced twice. The table is the text equivalent and is
+                     never hidden. -->
+                <svg class="chart__svg" data-chart viewBox="0 0 460 190"
+                     aria-hidden="true" focusable="false"></svg>
+                <div class="table-scroll">
+                  <table class="chart__table">
+                    <caption class="visually-hidden">
+                      Items selected in each content area, and how many of those
+                      repeat the wording of another selected item
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Content area</th>
+                        <th scope="col">Items</th>
+                        <th scope="col">Repeated wording</th>
+                      </tr>
+                    </thead>
+                    <tbody data-chart-table></tbody>
+                  </table>
+                </div>
+              </figure>
+
+              <div class="verdict" data-redundancy>
+                <h4 class="verdict__title">Redundancy</h4>
+                <p class="verdict__body" data-redundancy-body>
+                  No items selected yet.
+                </p>
+              </div>
+
+              <!-- Held back until the end of Round 1. Revealing it earlier
+                   would answer the prediction question before it is asked. -->
+              <div class="verdict verdict--outcome" data-criterion hidden>
+                <h4 class="verdict__title">
+                  Correlation with a simulated outcome
+                </h4>
+                <p class="verdict__body" data-criterion-body></p>
+                <p class="verdict__note">
+                  A fictional outcome — tutor-rated dependability — generated by
+                  the same model. It is an illustration of a principle, not a
+                  validity coefficient from any real study.
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+
+          <p class="interactive__status" data-interactive-status role="status"></p>
+
+          <div class="interactive__actions">
+            <button type="button" data-action="advance" disabled>
+              Reveal what I built
+            </button>
+            <button type="button" data-variant="secondary" data-action="example">
+              Show me a worked example
+            </button>
+            <button type="button" data-variant="secondary" data-action="clear">
+              Clear selection
+            </button>
+            <button type="button" data-variant="secondary" data-interactive-reset>
+              Reset everything
+            </button>
+          </div>
+
+          <details class="interactive__notes">
+            <summary>Notes for whoever is running this</summary>
+            <div>
+              <p>
+                The trap is structural, not a matter of luck: no combination of
+                differently worded items in this bank reaches alpha 0.85. The
+                widest scale with no repeated wording — all 14 distinguishable
+                items — tops out at 0.84. The only route to the Round 1 target
+                is repetition, which is exactly the point to draw out afterwards.
+              </p>
+              <p>
+                Fuller guidance, a suggested seminar sequence and the debrief
+                questions are in
+                <a href="teaching-notes.md">teaching-notes.md</a> beside this
+                page.
+              </p>
+            </div>
+          </details>
+
+        </section>
+
+      </div>
+    </section>
+
+    <!-- ================= Reveal (Round 1 result) ================= -->
+    <section class="section section--tinted" id="reveal" aria-labelledby="reveal-heading" hidden>
+      <div class="container">
+        <div class="section__header">
+          <h2 id="reveal-heading" tabindex="-1">What you actually built</h2>
+        </div>
+        <div class="panel reveal" data-reveal-body></div>
+      </div>
+    </section>
+
+    <!-- ================= Comparison (Round 2 result) ================= -->
+    <section class="section" id="comparison" aria-labelledby="comparison-heading" hidden>
+      <div class="container">
+        <div class="section__header">
+          <h2 id="comparison-heading" tabindex="-1">The two scales side by side</h2>
+        </div>
+        <div class="panel">
+          <div class="table-scroll">
+            <table class="data-table">
+              <caption class="visually-hidden">
+                Round 1 and Round 2 scales compared on five measures
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">Measure</th>
+                  <th scope="col">Round 1 — chasing alpha</th>
+                  <th scope="col">Round 2 — built properly</th>
+                </tr>
+              </thead>
+              <tbody data-comparison-body></tbody>
+            </table>
+          </div>
+          <p class="reveal__lead" data-comparison-verdict></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Challenges ================= -->
+    <section class="section section--tinted" id="challenges" aria-labelledby="challenges-heading">
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="challenges-heading">Two challenges</h2>
+          <p class="prose">
+            The first can be attempted at any point. The second uses the scale
+            you build in Round 2, so it unlocks once you have finished it.
+          </p>
+        </div>
+
+        <div class="split split--wide">
+
+          <!-- Challenge A: diagnosis -->
+          <form class="panel challenge" id="challenge-diagnosis">
+            <h3 class="panel__title">Challenge 1 — diagnose three measures</h3>
+            <p>
+              Three fictional research groups publish a scale for the same
+              construct. Which is the strongest measure of it?
+            </p>
+
+            <div class="table-scroll">
+              <table class="data-table">
+                <caption class="visually-hidden">
+                  Three fictional scales compared
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Scale</th>
+                    <th scope="col">Items</th>
+                    <th scope="col">Alpha</th>
+                    <th scope="col">Content areas</th>
+                    <th scope="col">Largest set of near-identical items</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">A</th>
+                    <td>12</td><td>0.94</td><td>2 of 5</td><td>7 items</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">B</th>
+                    <td>10</td><td>0.79</td><td>5 of 5</td><td>1 item</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">C</th>
+                    <td>6</td><td>0.51</td><td>5 of 5</td><td>1 item</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <fieldset class="prediction__group">
+              <legend class="prediction__legend">Your answer</legend>
+              <label class="control--choice">
+                <input type="radio" name="diagnosis" value="a">
+                Scale A — the highest alpha
+              </label>
+              <label class="control--choice">
+                <input type="radio" name="diagnosis" value="b">
+                Scale B
+              </label>
+              <label class="control--choice">
+                <input type="radio" name="diagnosis" value="c">
+                Scale C — the shortest, and it covers everything
+              </label>
+            </fieldset>
+
+            <div class="prediction__actions">
+              <button class="button button--primary" type="submit"
+                      data-action="check-diagnosis">
+                Check my answer
+              </button>
+            </div>
+
+            <div class="feedback" data-diagnosis-feedback hidden></div>
+          </form>
+
+          <!-- Challenge B: transfer -->
+          <form class="panel challenge" id="challenge-transfer">
+            <h3 class="panel__title">Challenge 2 — predict the effect</h3>
+
+            <p class="challenge__locked" data-transfer-locked>
+              This unlocks when you have finished Round 2. It asks you to
+              predict what happens to your own scale when four near-duplicate
+              items are added to it.
+            </p>
+
+            <div data-transfer-body hidden>
+              <p>
+                A reviewer says your Round 2 scale &ldquo;would be more reliable
+                with a few more items&rdquo;. You add the four remaining
+                deadline paraphrases to it. Predict what happens, then apply it.
+              </p>
+
+              <fieldset class="prediction__group">
+                <legend class="prediction__legend">Alpha will…</legend>
+                <label class="control--choice">
+                  <input type="radio" name="transfer-alpha" value="up"> rise
+                </label>
+                <label class="control--choice">
+                  <input type="radio" name="transfer-alpha" value="down"> fall
+                </label>
+                <label class="control--choice">
+                  <input type="radio" name="transfer-alpha" value="same"> stay about the same
+                </label>
+              </fieldset>
+
+              <fieldset class="prediction__group">
+                <legend class="prediction__legend">
+                  The correlation with the outcome will…
+                </legend>
+                <label class="control--choice">
+                  <input type="radio" name="transfer-outcome" value="up"> rise
+                </label>
+                <label class="control--choice">
+                  <input type="radio" name="transfer-outcome" value="down"> fall
+                </label>
+                <label class="control--choice">
+                  <input type="radio" name="transfer-outcome" value="same"> stay about the same
+                </label>
+              </fieldset>
+
+              <p class="prediction__error" data-transfer-error role="alert" hidden></p>
+
+              <div class="prediction__actions">
+                <button class="button button--primary" type="submit"
+                        data-action="apply-transfer">
+                  Apply the change and check
+                </button>
+              </div>
+
+              <div class="feedback" data-transfer-feedback hidden></div>
+            </div>
+          </form>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= Debrief ================= -->
+    <section class="section" id="debrief" aria-labelledby="debrief-heading">
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="debrief-heading">What this demonstrates</h2>
+        </div>
+
+        <div class="split split--wide">
+
+          <div class="prose">
+            <h3>Alpha is a function of two things you control</h3>
+            <p>
+              Cronbach&rsquo;s alpha rises with the number of items and with the
+              average correlation between them. Neither is a fact about the
+              construct. Write an item five times over and both go up at once,
+              which is why a scale of paraphrases can reach 0.91 while covering
+              a fifth of the ground the construct occupies.
+            </p>
+
+            <h3>Internal consistency is not unidimensionality</h3>
+            <p>
+              A high alpha is often read as &ldquo;the items measure one
+              thing&rdquo;. It does not establish that. Alpha can be high for a
+              clearly multidimensional scale, simply because it has many items;
+              and it can be high because one narrow cluster dominates. Deciding
+              how many dimensions there are is a question for factor analysis,
+              not for alpha.
+            </p>
+
+            <h3>Internal consistency is not validity</h3>
+            <p>
+              Reliability limits validity but does not supply it. In this
+              simulation, adding near-duplicates loads the total score with
+              variance specific to one phrasing — variance the outcome does not
+              care about. The scale becomes a more precise measure of something
+              narrower. That is the bloated specific factor, and it is a real
+              failure mode in published scales, not an artefact of this
+              demonstration.
+            </p>
+
+            <h3>Very high alpha is a warning, not a prize</h3>
+            <p>
+              For a broad construct, an alpha above about 0.90 in a short scale
+              usually means the items repeat each other. The useful question is
+              never &ldquo;is alpha high enough?&rdquo; but &ldquo;is this scale
+              made of items that between them cover what I claim to be
+              measuring?&rdquo;
+            </p>
+          </div>
+
+          <aside class="panel panel--caution" aria-labelledby="limits-heading">
+            <h3 class="panel__title" id="limits-heading">
+              What this does <em>not</em> demonstrate
+            </h3>
+            <ul>
+              <li>
+                <strong>These are not real data.</strong> Every correlation comes
+                from a fictional model written for teaching. No respondents were
+                measured, and no number here is a norm, a validated coefficient
+                or a cut-off.
+              </li>
+              <li>
+                <strong>No sampling error is modelled.</strong> The figures are
+                the values the model implies for a population. A real alpha is
+                an estimate from a sample and carries a confidence interval,
+                which is often wider than people expect.
+              </li>
+              <li>
+                <strong>Alpha is not being condemned.</strong> It remains a
+                useful summary of internal consistency, and a very low alpha is
+                a genuine problem. The argument here is against treating it as a
+                sufficient certificate of quality.
+              </li>
+              <li>
+                <strong>The construct is invented.</strong> &ldquo;Academic
+                conscientiousness&rdquo; and its five areas were written for this
+                page. Nothing here should be read as a claim about the structure
+                of conscientiousness, and the items are not a usable
+                questionnaire.
+              </li>
+              <li>
+                <strong>Breadth is not automatically better.</strong> A scale
+                deliberately built to measure one narrow facet is perfectly
+                legitimate — provided it is described that way. The failure
+                modelled here is claiming broad coverage while measuring
+                narrowly.
+              </li>
+              <li>
+                <strong>This does not assess you.</strong> Nothing here measures
+                anybody. You are choosing items, not answering them.
+              </li>
+            </ul>
+          </aside>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= Educator guidance and admin ================= -->
+    <section class="section section--tinted" aria-labelledby="educator-heading">
+      <div class="container">
+
+        <div class="split split--wide">
+
+          <div>
+            <div class="section__header">
+              <h2 id="educator-heading">For educators</h2>
+            </div>
+            <p class="prose">
+              The teaching notes beside this tool give the intended level, a
+              suggested seminar sequence, the prediction question, debrief
+              questions, likely misconceptions, and the limitations to state
+              aloud. They also record the exact simulation model, so you can
+              check what the tool is claiming before you show it to a class.
+            </p>
+            <p>
+              <a class="button button--primary" href="teaching-notes.md">
+                Read the teaching notes
+              </a>
+            </p>
+          </div>
+
+          <aside class="panel" aria-labelledby="admin-heading">
+            <h2 class="panel__title" id="admin-heading">Licence and privacy</h2>
+            <ul>
+              <li>
+                Part of
+                <a href="../../../../index.html">Open Psychology Interactives</a>,
+                in the
+                <a href="../../index.html">Personality and Individual
+                Differences</a> module.
+              </li>
+              <li>
+                Code released under the
+                <a href="https://github.com/utman5454/open-psychology-interactives/blob/main/LICENSE">MIT
+                licence</a>; written content under CC BY 4.0. The items were
+                written for this tool and reproduce no published instrument.
+              </li>
+              <li>
+                <strong>Nothing is collected.</strong> Every calculation happens
+                in this tab. There is no account, no analytics, no storage and
+                no network request once the page has loaded.
+              </li>
+              <li>
+                This is a teaching demonstration. It is not an assessment, a
+                diagnosis or a professional measurement instrument.
+              </li>
+            </ul>
+          </aside>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+
+        <div>
+          <h2>Open Psychology Interactives</h2>
+          <p class="text-muted">
+            Free, accessible, classroom-ready teaching tools for university
+            psychology. Built as plain web pages so they keep working, and
+            openly licensed so they can be adapted.
+          </p>
+        </div>
+
+        <div>
+          <h2>Modules</h2>
+          <ul>
+            <li><a href="../../../cognitive/index.html">Cognitive Psychology</a></li>
+            <li><a href="../../../research-methods/index.html">Research Methods</a></li>
+            <li><a href="../../../neuropsychology/index.html">Neuropsychology</a></li>
+            <li><a href="../../../social-critical-psychology/index.html">Social and Critical Psychology</a></li>
+            <li><a href="../../index.html">Personality and Individual Differences</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h2>Project</h2>
+          <ul>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives">GitHub repository</a></li>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives/blob/main/CONTRIBUTING.md">Contributing</a></li>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives/blob/main/docs/accessibility.md">Accessibility</a></li>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives/blob/main/LICENSE">MIT licence</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="site-footer__bottom">
+        <p>© <span data-current-year>2026</span> Open Psychology Interactives. Released under the MIT licence.</p>
+        <p>Built with plain HTML, CSS and JavaScript. No trackers, no accounts.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
