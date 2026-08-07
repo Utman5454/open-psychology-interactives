@@ -279,8 +279,19 @@
   }
 }
 
-.interactive__stage svg,
-.interactive__stage canvas {
+/* A grid item's automatic minimum size is its min-content width, so a wide
+   table inside a .table-scroll widens the whole stage track and can push a
+   pinned primary past the viewport. Every stage child opts out. */
+.interactive__stage > * {
+  min-width: 0;
+}
+
+/* :where() keeps this at specificity (0,0,1) so a tool's own `.some-chart {
+   max-width: 30rem }` can still cap an oversized SVG. Written as
+   `.interactive__stage svg` it was (0,1,1) and silently beat every such rule,
+   which made the documented way of capping a chart impossible. */
+:where(.interactive__stage) svg,
+:where(.interactive__stage) canvas {
   display: block;
   width: 100%;
   height: auto;
