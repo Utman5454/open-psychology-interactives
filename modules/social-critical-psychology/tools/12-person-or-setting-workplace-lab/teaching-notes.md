@@ -8,6 +8,16 @@ sitting at 74 because of a rota.
 
 ---
 
+## Running it from the front
+
+Do not tell the room that more evidence is coming. Let them commit to round 1 believing that is the file. The moment worth having is the one where somebody who confidently chose the individual explanation at round 1 reads item 11 and has to say out loud what changed.
+
+And then push the other way. The correlation of 0.61 does not go away when the rota changes. Those individual differences are real, replicable and stable, and a student who concludes at round 3 that they were an illusion has learned the wrong lesson as thoroughly as the one who stopped at round 1.
+
+Run the two ten-unit extremes back to back: everything individual and relational, against the two structural changes alone. The second gets a lower exhaustion score. Then read what each one leaves untouched, and notice that the structural combination leaves two people with a documented training gap exactly where they were.
+
+The line that does the most work is the last one in the result, and it is the same after every combination: the rank order of the fourteen staff barely moves. The same people are still the most exhausted. A real, stable difference between people is not evidence about where its cause lives.
+
 ## Intended level
 
 Second-year undergraduate upwards, including applied and occupational strands.

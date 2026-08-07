@@ -7,6 +7,14 @@ screen so that nobody can leave thinking the events were made of language.
 
 ---
 
+## Running it from the front
+
+Run the case note and the recovery account back to back. Students expect the recovery account to be the humane one, and it is - it is also the one that most thoroughly makes the cut in service hours R's own responsibility to manage. "Taking ownership of her journey" is not a neutral description of somebody whose group was closed.
+
+Ledger entry 2 - the budget decision - appears in none of the five accounts. Ask what would have to change about the reporting template for it to appear, and who would have to agree to that.
+
+If a student says discourse analysis means the events are not real, point at the ledger. It is on screen for exactly that reason.
+
 ## Intended level
 
 Second- or third-year undergraduate on a critical psychology, qualitative

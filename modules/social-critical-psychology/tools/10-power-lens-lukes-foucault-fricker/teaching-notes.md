@@ -21,6 +21,14 @@ recognises a name tends to stop analysing. For your own preparation:
 
 Introduce the names in the debrief, after the analysis, not before it.
 
+## Running it from the front
+
+The items that more than one lens claims are the valuable ones. Item 4 - the technicians who stopped reporting - is central to the first lens, is readable as the third lens's silencing effect, and is a textbook case of the second lens's interest in how people come to know what counts. When a student selects it under two lenses and the feedback agrees with them both times, that is the tool working, not a scoring bug.
+
+Resist the pull towards a winner. Each pass ends with a remedy, and each remedy is real and would have changed something. The point of the synthesis stage is that implementing any one of them alone leaves a working mechanism in place - and the comparison table names which.
+
+The most common wrong answer to the opening question is "somebody decided against them". Nobody in this case ever decided anything. That is the discovery the first lens exists to produce, and it is worth letting the room find it rather than telling them.
+
 ## Intended level
 
 Second- or third-year undergraduate, or a taught postgraduate seminar. It is the

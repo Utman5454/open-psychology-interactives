@@ -7,6 +7,14 @@ concept for it. That is the session.
 
 ---
 
+## Running it from the front
+
+Statement 8 - the course fees rising and her hours being cut - is the one to point at. Six of the seven frameworks mark it as something they have no place for, and the seventh can only reach it obliquely. That is not a gap in these seven particular theories; it is a feature of a literature whose object of study is located inside a person.
+
+Statement 9 - the tutor's remark about "people from your background" - is the other one worth stopping on, because frameworks disagree about whether it is information about Nadia or information about the course.
+
+Do not let the activity settle into finding the best lens. If a student asks which one is right, ask them what question they want answered first.
+
 ## Intended level
 
 First- or second-year undergraduate on a social psychology or self-and-identity

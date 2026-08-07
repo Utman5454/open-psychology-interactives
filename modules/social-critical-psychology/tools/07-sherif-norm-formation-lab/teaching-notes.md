@@ -7,6 +7,14 @@ comes with you anyway.
 
 ---
 
+## Running it from the front
+
+Run it yourself first, honestly, before demonstrating it. The effect is much more convincing to a room when the person at the front has been surprised by their own round 11.
+
+The three other participants are generated from anchors drawn around your own first five estimates, so the emerging norm is not imposed on you from outside. That is deliberate: the interesting version of this phenomenon is one in which nobody was told anything and a shared frame appeared anyway.
+
+If a student converges hard and is embarrassed, the useful response is that agreeing with three other people about an unanswerable question is not a failure of independence. It is what people do when they have nothing else to go on, and it is the reason shared knowledge is possible at all.
+
 ## Intended level
 
 First-year undergraduate on a social psychology strand, or any group meeting

@@ -8,6 +8,18 @@ comes out at 43 per cent.
 
 ---
 
+## Running it from the front
+
+Do three or four by hand at the front and let the room call the answers out. The useful moment is the one where a large score belongs to somebody who shortlisted three Uplanders, and it arrives quickly.
+
+Then press Run twenty predictions for me, which always guesses the score's direction, and read the accuracy against the base rate printed beside it. Guessing "even" every single time does better.
+
+The correlation in this simulated sample is deliberately of the same order as the ones reported in meta-analyses of real latency-behaviour relationships. It is not zero, and the point is not that it is zero: a small average association is a real finding about a population and still supports no statement about any individual in it.
+
+The row that does the most work is the last one. An appointments record is a fact about an organisation, and it stays exactly as true whatever anybody's attitude turns out to be - which is why a study of individual attitudes cannot confirm it and a change in individual attitudes need not shift it.
+
+Watch for the move in the other direction too. Students who have just learned that latency scores predict individual behaviour poorly sometimes conclude that the aggregate finding is worthless. It is not: a small average association is a real fact about a population, and the error is only in what is done with it.
+
 ## Intended level
 
 Second- or third-year undergraduate, or taught postgraduate. It assumes comfort

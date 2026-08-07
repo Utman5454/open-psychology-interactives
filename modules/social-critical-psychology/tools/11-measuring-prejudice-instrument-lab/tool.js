@@ -903,8 +903,6 @@
     second.setAttribute("data-tone", "neutral");
     second.appendChild(make("h5", "verdict__title", "What is inferred from it"));
     second.appendChild(make("p", "verdict__body", instrument.inferred));
-    second.appendChild(make("p", "verdict__body",
-      "What remains unexplained: " + instrument.remains));
     instrumentFeedback.appendChild(second);
 
     var third = make("div", "verdict");
@@ -912,6 +910,14 @@
     third.appendChild(make("h5", "verdict__title", "What it cannot support"));
     third.appendChild(make("p", "verdict__body", instrument.cannot));
     instrumentFeedback.appendChild(third);
+
+    /* The confounds are the longest part of each instrument and the part a
+       learner needs least at the moment of the answer, so they open on
+       request rather than arriving with the verdict. */
+    var more = make("details", "stage__more");
+    more.appendChild(make("summary", null, "What remains unexplained"));
+    more.appendChild(make("p", null, instrument.remains));
+    instrumentFeedback.appendChild(more);
   }
 
   function renderLevels() {

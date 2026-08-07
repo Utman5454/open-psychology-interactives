@@ -7,6 +7,14 @@ them. What changes is how they were treated.
 
 ---
 
+## Running it from the front
+
+Run presets 1 and 2 back to back and say nothing except: the crowd is the same crowd. Nothing about the people changed between those two runs. What changed was how they were treated, and six sections took part instead of one.
+
+Then run preset 4, where a crowd unites completely and does almost nothing. Students routinely arrive believing that the identity account predicts crowds will be violent. It predicts that crowds will act in line with a shared norm, and a shared norm often forbids exactly the behaviour people expect.
+
+Finish on preset 3, which is the honest one. With no common category and no shared norm, action scatters across every target and the selectivity index falls to about 0.08. That is the pattern a deindividuation account describes best, and saying so out loud is what stops this becoming a tool that argues for one side.
+
 ## Intended level
 
 Second-year undergraduate on a social psychology strand, or any group meeting

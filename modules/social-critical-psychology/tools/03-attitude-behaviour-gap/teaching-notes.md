@@ -7,6 +7,12 @@ teaching.
 
 ---
 
+## Running it from the front
+
+Marek is the one to stop on. His attitude, his confidence and his habit are all as strong as Rowan's; his estimated behaviour is low because the occasion rarely arises. Opportunity in this model multiplies rather than adds, which is the difference between a condition that helps and a condition that gates. Ask the room what a training course aimed at Marek's attitude would achieve.
+
+In experiment 3, switch the setting from uniform to real teams and read the correlation aloud. Nothing about anybody's attitude has changed. The correlation fell because the outcome now depends on things the questionnaire never asked about - which is most of what people mean when they say attitudes predict behaviour poorly.
+
 ## Intended level
 
 First- or second-year undergraduate on a social psychology strand. It needs no

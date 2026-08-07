@@ -6,6 +6,14 @@ The private-response condition is the whole session in one manipulation.
 
 ---
 
+## Running it from the front
+
+The pair worth running back to back is Classic public unanimous and One person disagrees first. The majority is still four to one; the rate collapses anyway. Unanimity is not about numbers, it is about whether the answer looks like the only answer available.
+
+The discriminating manipulation is private written response. It moves the normative bar and leaves the informational bar almost untouched. Under the ambiguous-task preset, private responding barely helps at all, which is the cleanest way to show that the two routes are different things rather than two words for social pressure.
+
+In experiment 2, ask what proportion of the hundred never conformed at all. It is usually about a quarter, and it is invisible in the headline figure the whole class has been reading.
+
 ## Intended level
 
 First- or second-year undergraduate on a social psychology strand. No

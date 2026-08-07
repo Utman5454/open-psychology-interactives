@@ -7,6 +7,14 @@ If anyone takes it, the thing being pursued is not gain.
 
 ---
 
+## Running it from the front
+
+The option to look for is always the one that gives your own category fewer points than the "own group most" option does. If a room chooses it, the thing being pursued is not gain; it is being further ahead. That distinction is the entire empirical contribution of the paradigm, and it is easy to lose if the options are read quickly.
+
+Run the equal condition first and the "already ahead" condition second. The same choice means something different in the two: in the first it creates a difference, in the second it widens an existing one. Ask the room whether their reasoning changed, and whether it should have.
+
+Expect a substantial number of fair allocations. That is not a failed demonstration - fairness is the single most common strategy in the real literature too, and the finding was always about a reliable pull away from it rather than about its absence.
+
 ## Intended level
 
 First- or second-year undergraduate meeting the minimal group paradigm and social

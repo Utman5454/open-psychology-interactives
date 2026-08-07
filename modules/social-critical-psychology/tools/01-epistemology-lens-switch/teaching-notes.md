@@ -7,6 +7,12 @@ whether you can see that depends on what you decided the object of study was.
 
 ---
 
+## Running it from the front
+
+Option D in every decision - screen the pupils, find who is responsible - is not one of the three positions. It is a fourth, and it is the one schools most often act on. It is on the list because students should be able to recognise it, name what it assumes, and notice that it answers a question nobody asked.
+
+The most useful sequence from the front is: run the realist/positivist lens cleanly, note that its final claim is about recorded incidents, then run the constructionist lens and ask what the referral form is doing. Students usually arrive believing the disagreement is about method. It is about what the incident log is a record of.
+
 ## Intended level
 
 Second- or third-year undergraduate on a social, critical or research-methods

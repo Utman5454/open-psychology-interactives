@@ -7,6 +7,14 @@ line, an instrument, a figure and a set of careers. That is the lesson.
 
 ---
 
+## Running it from the front
+
+Stage 3 is the stage to slow down on. Set the threshold to two features and read the prevalence aloud; set it to four and read it again. Nothing about the 400 simulated people changed between those two readings. The sensitivity table under the chart makes the whole range visible at once.
+
+The most easily missed decision is in stage 1: "long or unpredictable working hours" is a feature of an arrangement, not of a person. Including it points the category outwards and makes the eventual intervention a rota; leaving it out points the category inwards and makes the intervention a course. Students almost never notice they have made that choice.
+
+Accounts 7 and 9 are written so that a conventional five-item instrument misses them. Ask what happens, institutionally, to somebody the screening tool does not find.
+
 ## Intended level
 
 First- or second-year undergraduate on a social, critical or conceptual-issues
