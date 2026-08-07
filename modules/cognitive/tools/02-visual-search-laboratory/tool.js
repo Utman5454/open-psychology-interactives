@@ -770,12 +770,8 @@
         "Simulated data, seed " + SIM.seed + ": " + SIM.repsPerCell +
         " trials per cell in each condition."));
       resultsBody.appendChild(make("p", null,
-        "These numbers come from the generator documented at the top of " +
-        "tool.js, with a fixed seed, so they are identical every time. The " +
-        "absent slopes were set to roughly twice the present slopes because " +
-        "that is the ratio commonly reported — it is built in here, not " +
-        "discovered, and this example therefore illustrates the pattern " +
-        "rather than providing evidence for it."));
+        "Simulated from a fixed seed. The two-to-one slope ratio is built " +
+        "into the generator, not discovered here."));
     } else {
       resultsBody.appendChild(make("p", "reveal__lead",
         available.length === 1
@@ -1002,18 +998,10 @@
     slopeText.textContent = sentences.join(" ");
 
     slopeNote.textContent = source === "simulated"
-      ? "Simulated values from a documented generator with a fixed seed, in " +
-        "which the absent slope was set to about twice the present slope. Not " +
-        "a norm, not a published estimate and not anybody's data. A ratio " +
-        "near two is consistent with checking items one at a time and " +
-        "stopping when the target is found — and also with several other " +
-        "accounts, so it does not establish one."
-      : "Slopes fitted by ordinary least squares to your correct trials, " +
-        "three per point. That is far too few for a stable estimate, and a " +
-        "negative or wildly large slope here means noise rather than a " +
-        "finding. A ratio near two between absent and present slopes is " +
-        "consistent with checking items one at a time and stopping when the " +
-        "target is found — and also with several other accounts.";
+      ? "Simulated, with the two-to-one ratio built in. A ratio near two " +
+        "fits self-terminating serial search — and several other accounts."
+      : "Three trials per point. A negative or wildly large slope here is " +
+        "noise, not a finding.";
   }
 
   /* =======================================================================

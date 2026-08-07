@@ -609,19 +609,13 @@
 
       revealBody.appendChild(make("p", null,
         noticed
-          ? "That happens often, and it is not a failure of the demonstration. " +
-            "Noticing rates depend on how demanding the count was, how similar " +
-            "the object was to what you were attending to, how big it was, and " +
-            "whether you half-expected something. Change any of those and the " +
-            "rate changes — which is the actual finding. The variant table " +
-            "below shows what each variant alters."
+          ? "That happens often, and it is the finding rather than a " +
+            "failure. Noticing rates move with task load, similarity, size " +
+            "and expectation. The variant table shows what each one changes."
           : partial
-            ? "This is the most interesting answer of the six. Something " +
-              "survived far enough to leave a trace, but not far enough to be " +
-              "named. Accounts that treat the phenomenon as a failure of " +
-              "perception and accounts that treat it as a failure of memory " +
-              "make different predictions about answers like yours, and this " +
-              "single trial cannot separate them."
+            ? "The most interesting of the six answers. Something survived " +
+              "far enough to leave a trace and not far enough to be named — " +
+              "which is exactly where perception and memory accounts differ."
             : "The star was drawn about " +
               Math.round(display.star.r / SHAPE_R * 10) / 10 + " times the " +
               "width of the shapes you were counting, and it was on screen the " +
@@ -644,11 +638,9 @@
         (state.limited ? ", with the 25-second limit on." : ", self-paced.")));
 
       revealBody.appendChild(make("p", "verdict__note",
-        "One trial, one binary answer. This is not a measurement of your " +
-        "attention, and it would be a mistake to compare your answer with " +
-        "anybody else's as though it were. You are also no longer a naive " +
-        "observer: any further variant shows you how the design works, but it " +
-        "can no longer test you."));
+        "One trial, one binary answer — not a measurement of your " +
+        "attention. You are also no longer naive: further variants show you " +
+        "the design, they cannot test you."));
     }
 
     renderVariantTable();
