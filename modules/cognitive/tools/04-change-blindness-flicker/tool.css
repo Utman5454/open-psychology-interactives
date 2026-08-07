@@ -1,0 +1,148 @@
+/* =========================================================================
+   Change Blindness — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. What is specific
+   here is the vector scene and the run controls.
+
+   FLICKER SAFETY
+   --------------
+   The alternation cycle is 1.7 seconds (view 600ms, blank 250ms, view 600ms,
+   blank 250ms), so the screen changes about 1.2 times a second — well under
+   the three-per-second threshold associated with photosensitive reactions.
+   There is a Pause button throughout and a manual-stepping mode in which
+   nothing changes without a keypress. Under prefers-reduced-motion the tool
+   starts in manual mode; that is handled in tool.js rather than here, because
+   it changes behaviour rather than presentation.
+
+   No CSS transition or animation is used anywhere in this tool. The scene is
+   redrawn, not animated.
+   ---------------------------------------------------------------------- */
+
+/* Absolutely positioned visually-hidden <caption> elements have no positioned
+   ancestor inside a scroller, which adds ~30px to the document's scrollable
+   width at 320px. Candidate for components/tool-kit.css. */
+.table-scroll {
+  position: relative;
+}
+
+#flicker .interactive__controls,
+#flicker .interactive__stage {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #flicker .interactive__body {
+    grid-template-columns: minmax(0, 19rem) minmax(0, 1fr);
+  }
+}
+
+#flicker .control + .control {
+  margin-top: var(--space-4);
+}
+
+/* -------------------------------------------------------------------------
+   The scene
+   -------------------------------------------------------------------------
+   `.interactive__stage svg` in interactive-shell.css sets max-width: 100% and
+   outranks a single class, so the cap is written with matching specificity.
+   ---------------------------------------------------------------------- */
+
+.interactive__stage svg.scene,
+.scene {
+  display: block;
+  width: 100%;
+  max-width: 32rem;
+  margin-inline: auto;
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  background-color: var(--colour-surface);
+}
+
+/* Scene parts. Fill and outline do the work; the ringed reveal adds a shape,
+   and the reveal text names the change in words, so nothing depends on hue. */
+.scene__sky { fill: var(--colour-surface); }
+.scene__ground { fill: var(--colour-border); }
+.scene__building { fill: var(--colour-text-muted); }
+.scene__window-lit { fill: var(--colour-page); }
+.scene__window-dark { fill: var(--colour-text); }
+.scene__trunk { fill: var(--colour-text); }
+.scene__canopy { fill: var(--colour-text); }
+.scene__cloud { fill: var(--colour-page); stroke: var(--colour-border-strong); stroke-width: 1.5; }
+.scene__sun { fill: none; stroke: var(--colour-text-muted); stroke-width: 3; }
+.scene__fence { fill: var(--colour-text-muted); }
+.scene__blank { fill: var(--colour-border); }
+
+.scene__marker {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 4;
+  stroke-dasharray: 8 6;
+}
+
+.scene__caption {
+  margin: 0;
+  min-height: 2.5rem;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+  text-align: center;
+}
+
+.stage__controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  justify-content: center;
+}
+
+.stage__controls .button {
+  min-height: 3.25rem;
+  flex: 1 1 13rem;
+}
+
+.stage__form {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.stage__form > * {
+  min-width: 0;
+}
+
+.stage__form .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 2.75rem;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+
+.stage__form .control--choice input {
+  width: 1.15rem;
+  height: 1.15rem;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+
+/* -------------------------------------------------------------------------
+   Forced colours
+   ---------------------------------------------------------------------- */
+
+@media (forced-colors: active) {
+  .scene {
+    border: 1px solid CanvasText;
+  }
+
+  .scene__sky { fill: Canvas; }
+  .scene__ground,
+  .scene__building,
+  .scene__fence { fill: GrayText; }
+  .scene__window-lit { fill: Canvas; }
+  .scene__window-dark,
+  .scene__trunk,
+  .scene__canopy { fill: CanvasText; }
+  .scene__cloud { fill: Canvas; stroke: CanvasText; }
+  .scene__sun { stroke: CanvasText; }
+  .scene__blank { fill: GrayText; }
+  .scene__marker { stroke: Highlight; }
+}

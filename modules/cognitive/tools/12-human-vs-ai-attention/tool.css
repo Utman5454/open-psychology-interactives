@@ -1,0 +1,230 @@
+/* =========================================================================
+   Human Attention versus AI Attention — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. What is specific
+   here is the sentence display, the token strip and the weight chart.
+
+   Nothing in this tool is timed and nothing moves. There is no animation or
+   transition anywhere in this file, so a reduced-motion preference has
+   nothing to switch off.
+   ---------------------------------------------------------------------- */
+
+/* Absolutely positioned visually-hidden <caption> elements have no positioned
+   ancestor inside a scroller, which adds ~30px to the document's scrollable
+   width at 320px. Candidate for components/tool-kit.css. */
+.table-scroll {
+  position: relative;
+}
+
+#attn .interactive__controls,
+#attn .interactive__stage {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #attn .interactive__body {
+    grid-template-columns: minmax(0, 19rem) minmax(0, 1fr);
+  }
+}
+
+#attn .control + .control {
+  margin-top: var(--space-3);
+}
+
+.control--buttons {
+  display: grid;
+  gap: var(--space-2);
+}
+
+/* -------------------------------------------------------------------------
+   Stage 1 — the two sentences
+   ---------------------------------------------------------------------- */
+
+.sentence-item + .sentence-item {
+  margin-top: var(--space-5);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--colour-border);
+}
+
+.sentence-item__text {
+  margin: 0 0 var(--space-3);
+  font-size: var(--text-lg);
+  line-height: 1.6;
+}
+
+/* The pronoun is marked by weight, an underline and quotation marks written
+   into the text, so it is identifiable without colour. */
+.sentence-item__pronoun {
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+}
+
+/* -------------------------------------------------------------------------
+   The token strip
+   -------------------------------------------------------------------------
+   The query position is marked by a heavier border, a filled background and
+   the word "query" printed under it — three carriers, none of them a hue.
+   ---------------------------------------------------------------------- */
+
+.tokens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin: 0 0 var(--space-3);
+  padding: 0;
+  list-style: none;
+}
+
+.tokens > li {
+  margin-top: 0;
+}
+
+/* Deliberately compact: the strip and the chart below it have to share the
+   pinned block, and the pin has to stay under about 450px for the controls
+   column to travel past it on a 768px-tall screen. */
+.token {
+  display: grid;
+  gap: 0;
+  justify-items: center;
+  padding: 0.25rem 0.45rem;
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  font-size: var(--text-xs);
+  line-height: 1.3;
+}
+
+.token[data-query="yes"] {
+  border-width: 3px;
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+  font-weight: 700;
+}
+
+.token[data-masked="yes"] {
+  border-style: dashed;
+  color: var(--colour-text-muted);
+}
+
+.token__index {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+
+.token__role {
+  font-size: var(--text-xs);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+  min-height: 1em;
+}
+
+/* -------------------------------------------------------------------------
+   Weight chart
+   -------------------------------------------------------------------------
+   Ten horizontal bars, one per position. Each prints its own weight, the
+   query row is outlined, and masked rows print the word "masked" instead of
+   a bar. Nothing depends on hue.
+   ---------------------------------------------------------------------- */
+
+/* The cap goes on the <figure> rather than on the SVG. A near-square viewBox
+   stretched across the full stage column becomes several hundred pixels tall,
+   and the whole figure has to fit inside the pinned primary block along with
+   the token strip. Capping the block-level figure is reliable in a way that
+   capping a stretched grid item is not. */
+#attn .chart {
+  max-width: 26rem;
+}
+
+#attn .attn-chart {
+  max-width: 100%;
+}
+
+/* The always-visible text equivalent for the chart. The full ten-row table
+   sits one click away inside the same <figure>; this paragraph carries the
+   headline numbers so nothing has to be opened to read the result. */
+.chart__equivalent {
+  margin: 0;
+  font-size: var(--text-sm);
+  line-height: 1.55;
+}
+
+.attn__bar {
+  fill: var(--colour-accent);
+}
+
+.attn__bar--query {
+  fill: var(--colour-cognitive);
+}
+
+.attn__outline {
+  fill: none;
+  stroke: var(--colour-text);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 3;
+}
+
+/* -------------------------------------------------------------------------
+   Challenge
+   ---------------------------------------------------------------------- */
+
+.challenge select {
+  width: 100%;
+  min-width: 12rem;
+  min-height: 2.75rem;
+  padding: 0.35rem 0.6rem;
+  font: inherit;
+  font-size: var(--text-sm);
+  color: var(--colour-text);
+  background-color: var(--colour-surface-raised);
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+}
+
+.challenge th[scope="row"] {
+  min-width: 17rem;
+  font-weight: 400;
+}
+
+.challenge__mark {
+  display: block;
+  margin-top: var(--space-1);
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+
+/* -------------------------------------------------------------------------
+   Forced colours
+   ---------------------------------------------------------------------- */
+
+@media (forced-colors: active) {
+  .token {
+    border: 1px solid CanvasText;
+  }
+
+  .token[data-query="yes"] {
+    border: 3px solid Highlight;
+  }
+
+  .token[data-masked="yes"] {
+    border-style: dashed;
+  }
+
+  .attn__bar {
+    fill: CanvasText;
+  }
+
+  .attn__bar--query {
+    fill: Highlight;
+  }
+
+  .attn__outline {
+    stroke: CanvasText;
+  }
+
+  .challenge select {
+    border: 1px solid ButtonText;
+  }
+}

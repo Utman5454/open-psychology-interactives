@@ -1,0 +1,239 @@
+/* =========================================================================
+   Decision Framing Laboratory — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. What is specific
+   here is the scenario card, the two large option buttons and the frame
+   chart.
+
+   Nothing in this tool is timed and nothing moves. There is no animation or
+   transition anywhere in this file, so a reduced-motion preference has
+   nothing to switch off.
+   ---------------------------------------------------------------------- */
+
+/* Absolutely positioned visually-hidden <caption> elements have no positioned
+   ancestor inside a scroller, which adds ~30px to the document's scrollable
+   width at 320px. Candidate for components/tool-kit.css. */
+.table-scroll {
+  position: relative;
+}
+
+#framing .interactive__controls,
+#framing .interactive__stage {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #framing .interactive__body {
+    grid-template-columns: minmax(0, 19rem) minmax(0, 1fr);
+  }
+}
+
+#framing .control + .control {
+  margin-top: var(--space-3);
+}
+
+.control--buttons {
+  display: grid;
+  gap: var(--space-2);
+}
+
+/* -------------------------------------------------------------------------
+   The scenario card
+   ---------------------------------------------------------------------- */
+
+.scenario {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-md);
+  background-color: var(--colour-surface);
+}
+
+.scenario--sample {
+  margin-top: var(--space-3);
+}
+
+.scenario__title {
+  margin: 0;
+  font-size: var(--text-base);
+  font-weight: 700;
+}
+
+.scenario__body {
+  margin: 0;
+  font-size: var(--text-base);
+  line-height: 1.65;
+}
+
+.scenario__options {
+  display: grid;
+  gap: var(--space-3);
+}
+
+@media (min-width: 40em) {
+  .scenario__options {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* The two options are deliberately large blocks rather than inline buttons:
+   they carry a sentence each, and a decision made from a sentence should not
+   be made from a control the size of a checkbox. */
+.option {
+  display: grid;
+  gap: var(--space-2);
+  justify-items: start;
+  text-align: left;
+  padding: var(--space-4);
+  min-height: 6rem;
+  white-space: normal;
+}
+
+.option__label {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+
+.option__text {
+  font-size: var(--text-sm);
+  font-weight: 550;
+  line-height: 1.5;
+}
+
+.display__caption {
+  margin: var(--space-3) 0 0;
+  min-height: 2.5rem;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+  text-align: center;
+}
+
+/* -------------------------------------------------------------------------
+   Reframe list
+   ---------------------------------------------------------------------- */
+
+.reframe {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+  padding: 0;
+  list-style: none;
+}
+
+.reframe > li {
+  margin-top: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+
+.reframe__pair {
+  display: grid;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+@media (min-width: 46em) {
+  .reframe__pair {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.reframe__side {
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+
+.reframe__side > strong {
+  display: block;
+  font-size: var(--text-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+
+/* -------------------------------------------------------------------------
+   Frame chart
+   -------------------------------------------------------------------------
+   Four bars. The loss-framed bars are hatched as well as differently filled,
+   and every bar prints its own percentage.
+   ---------------------------------------------------------------------- */
+
+.framing-chart {
+  max-width: 30rem;
+}
+
+.framing__bar--gain {
+  fill: var(--colour-accent);
+}
+
+.framing__bar--loss {
+  fill: var(--colour-cognitive);
+}
+
+.framing__hatch {
+  stroke: var(--colour-surface);
+  stroke-width: 3;
+}
+
+/* -------------------------------------------------------------------------
+   Challenge
+   ---------------------------------------------------------------------- */
+
+.edit-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  min-height: 2.75rem;
+  padding: var(--space-2) 0;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+
+.edit-option input {
+  width: 1.15rem;
+  height: 1.15rem;
+  margin-top: 0.35rem;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+
+.edit-option__mark {
+  display: block;
+  margin-top: var(--space-1);
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+
+/* -------------------------------------------------------------------------
+   Forced colours
+   ---------------------------------------------------------------------- */
+
+@media (forced-colors: active) {
+  .scenario,
+  .reframe > li,
+  .reframe__side {
+    border: 1px solid CanvasText;
+  }
+
+  .framing__bar--gain {
+    fill: CanvasText;
+  }
+
+  .framing__bar--loss {
+    fill: Highlight;
+  }
+
+  .framing__hatch {
+    stroke: Canvas;
+  }
+}

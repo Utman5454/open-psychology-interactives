@@ -1,0 +1,212 @@
+/* =========================================================================
+   Attentional Blink — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. What is specific
+   here is the RSVP stream box, the digit keypad and the lag chart.
+
+   PRESENTATION SAFETY
+   -------------------
+   Only the character inside the box changes. The box, its background, its
+   size and its position stay constant, so there is no large-area luminance
+   change of the kind associated with photosensitive reactions — the changing
+   region is a single glyph. No CSS animation or transition is used; the text
+   node is replaced, nothing fades or moves.
+   ---------------------------------------------------------------------- */
+
+/* Absolutely positioned visually-hidden <caption> elements have no positioned
+   ancestor inside a scroller, which adds ~30px to the document's scrollable
+   width at 320px. Candidate for components/tool-kit.css. */
+.table-scroll {
+  position: relative;
+}
+
+#blink .interactive__controls,
+#blink .interactive__stage {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #blink .interactive__body {
+    grid-template-columns: minmax(0, 18rem) minmax(0, 1fr);
+  }
+}
+
+#blink .control + .control {
+  margin-top: var(--space-4);
+}
+
+/* -------------------------------------------------------------------------
+   The stream
+   ---------------------------------------------------------------------- */
+
+.stream {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 10rem;
+  padding: var(--space-5);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  background-color: var(--colour-surface);
+}
+
+.stream__item {
+  font-family: var(--font-mono);
+  font-size: 4.5rem;
+  line-height: 1;
+  font-weight: 700;
+  color: var(--colour-text);
+  /* A fixed box, so a wide glyph never nudges the layout mid-stream. */
+  display: inline-block;
+  min-width: 3.5rem;
+  text-align: center;
+}
+
+.display__caption {
+  margin: 0;
+  min-height: 2.5rem;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+  text-align: center;
+}
+
+/* -------------------------------------------------------------------------
+   Answers
+   ---------------------------------------------------------------------- */
+
+.stage__form {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.stage__form > * {
+  min-width: 0;
+}
+
+.digits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.digits .button {
+  flex: 1 1 3.5rem;
+  min-height: 3.25rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-xl);
+  font-weight: 700;
+}
+
+.responses {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.response {
+  flex: 1 1 11rem;
+  min-height: 3.25rem;
+  font-size: var(--text-base);
+  font-weight: 650;
+}
+
+/* -------------------------------------------------------------------------
+   Lag chart
+   -------------------------------------------------------------------------
+   Two series: second-target accuracy conditioned on the first, and
+   first-target accuracy. They differ by line style, marker shape and an
+   inline label, so none of the three is load-bearing on its own.
+   ---------------------------------------------------------------------- */
+
+.blink-chart {
+  max-width: 28rem;
+}
+
+.blink__line--t2 {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+
+.blink__line--t1 {
+  fill: none;
+  stroke: var(--colour-text-muted);
+  stroke-width: 2.5;
+  stroke-dasharray: 7 4;
+}
+
+.blink__point--t2 {
+  fill: var(--colour-accent);
+}
+
+.blink__point--t1 {
+  fill: var(--colour-page);
+  stroke: var(--colour-text-muted);
+  stroke-width: 2.5;
+}
+
+/* -------------------------------------------------------------------------
+   Challenge
+   ---------------------------------------------------------------------- */
+
+.challenge select {
+  width: 100%;
+  min-width: 12rem;
+  min-height: 2.75rem;
+  padding: 0.35rem 0.6rem;
+  font: inherit;
+  font-size: var(--text-sm);
+  color: var(--colour-text);
+  background-color: var(--colour-surface-raised);
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+}
+
+.challenge th[scope="row"] {
+  min-width: 15rem;
+  font-weight: 400;
+}
+
+.challenge__mark {
+  display: block;
+  margin-top: var(--space-1);
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+
+/* -------------------------------------------------------------------------
+   Forced colours
+   ---------------------------------------------------------------------- */
+
+@media (forced-colors: active) {
+  .stream {
+    border: 1px solid CanvasText;
+  }
+
+  .stream__item {
+    color: CanvasText;
+  }
+
+  .blink__line--t2,
+  .blink__point--t2 {
+    stroke: CanvasText;
+    fill: CanvasText;
+  }
+
+  .blink__line--t2 {
+    fill: none;
+  }
+
+  .blink__line--t1 {
+    stroke: Highlight;
+  }
+
+  .blink__point--t1 {
+    fill: Canvas;
+    stroke: Highlight;
+  }
+
+  .challenge select {
+    border: 1px solid ButtonText;
+  }
+}

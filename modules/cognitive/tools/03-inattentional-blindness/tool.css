@@ -1,0 +1,191 @@
+/* =========================================================================
+   Inattentional Blindness — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. What is specific
+   here is the shape display, the staged forms inside the interactive, and the
+   ring that marks the unexpected object during the reveal.
+
+   The display is entirely static. Nothing animates, nothing flashes, and the
+   only timed behaviour on the page is an optional 25-second display limit
+   that can be switched off before a run starts. There is therefore no motion
+   for a reduced-motion rule to reduce.
+
+   Everything is drawn in currentColor, and the two properties that matter for
+   the task are SHAPE and FILL. No colour carries meaning anywhere.
+   ---------------------------------------------------------------------- */
+
+/* Absolutely positioned visually-hidden <caption> elements have no positioned
+   ancestor inside a scroller, which adds ~30px to the document's scrollable
+   width at 320px. Candidate for components/tool-kit.css; kept local because
+   shared files are not this tool's to change. */
+.table-scroll {
+  position: relative;
+}
+
+#ib .interactive__controls,
+#ib .interactive__stage {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #ib .interactive__body {
+    grid-template-columns: minmax(0, 18rem) minmax(0, 1fr);
+  }
+}
+
+#ib .control + .control {
+  margin-top: var(--space-4);
+}
+
+/* -------------------------------------------------------------------------
+   The display
+   -------------------------------------------------------------------------
+   The `.interactive__stage svg` rule in interactive-shell.css sets
+   max-width: 100% and outranks a single class, so the cap is written with
+   matching specificity. A 640x400 viewBox stretched across a wide stage would
+   otherwise be 440px tall and push the "I have finished" button off screen.
+   ---------------------------------------------------------------------- */
+
+.interactive__stage svg.ib-display,
+.ib-display {
+  display: block;
+  width: 100%;
+  max-width: 32rem;
+  margin-inline: auto;
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  background-color: var(--colour-surface);
+  color: var(--colour-text);
+}
+
+.ib-display[hidden] {
+  display: none;
+}
+
+.ib-shape {
+  fill: currentColor;
+  stroke: currentColor;
+  stroke-width: 0;
+}
+
+.ib-shape--hollow {
+  fill: none;
+  stroke-width: 2.5;
+}
+
+/* Only drawn during the reveal, never during a live run. */
+.ib-marker {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 3;
+  stroke-dasharray: 6 5;
+}
+
+.stage__instruction {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-base);
+  font-weight: 600;
+}
+
+.display__caption {
+  margin: 0;
+  min-height: 1.5rem;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+  text-align: center;
+}
+
+.stage__controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  justify-content: center;
+}
+
+.stage__controls .button {
+  min-height: 3.25rem;
+  flex: 1 1 14rem;
+}
+
+.stage__form {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.stage__form > * {
+  min-width: 0;
+}
+
+.stage__form input[type="number"] {
+  width: 100%;
+  max-width: 8rem;
+  min-height: 2.75rem;
+  padding: 0.35rem 0.6rem;
+  font: inherit;
+  color: var(--colour-text);
+  background-color: var(--colour-surface-raised);
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+}
+
+/* -------------------------------------------------------------------------
+   Challenge
+   ---------------------------------------------------------------------- */
+
+.challenge select {
+  width: 100%;
+  min-width: 12rem;
+  min-height: 2.75rem;
+  padding: 0.35rem 0.6rem;
+  font: inherit;
+  font-size: var(--text-sm);
+  color: var(--colour-text);
+  background-color: var(--colour-surface-raised);
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+}
+
+.challenge th[scope="row"] {
+  min-width: 15rem;
+  font-weight: 400;
+}
+
+.challenge__mark {
+  display: block;
+  margin-top: var(--space-1);
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+
+.variant-used {
+  font-weight: 650;
+}
+
+/* -------------------------------------------------------------------------
+   Forced colours
+   ---------------------------------------------------------------------- */
+
+@media (forced-colors: active) {
+  .ib-display {
+    border: 1px solid CanvasText;
+    color: CanvasText;
+  }
+
+  .ib-marker {
+    stroke: Highlight;
+  }
+
+  .stage__instruction {
+    border: 1px solid CanvasText;
+  }
+
+  .challenge select,
+  .stage__form input[type="number"] {
+    border: 1px solid ButtonText;
+  }
+}

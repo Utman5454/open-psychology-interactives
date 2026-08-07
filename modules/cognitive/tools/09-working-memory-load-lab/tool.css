@@ -1,0 +1,236 @@
+/* =========================================================================
+   Working-Memory Load Laboratory — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. What is specific
+   here is the trial display (which shows one of four things at a time), the
+   memory grid, the symmetry pattern and the load chart.
+
+   PRESENTATION SAFETY
+   -------------------
+   The display changes at most once every 1.8 seconds, and only its contents
+   change - the panel, its size and its position stay put. Nothing fades,
+   moves or animates, and no CSS animation or transition is used anywhere in
+   this file, so there is nothing for a reduced-motion rule to switch off.
+   ---------------------------------------------------------------------- */
+
+/* Absolutely positioned visually-hidden <caption> elements have no positioned
+   ancestor inside a scroller, which adds ~30px to the document's scrollable
+   width at 320px. Candidate for components/tool-kit.css. */
+.table-scroll {
+  position: relative;
+}
+
+#wm .interactive__controls,
+#wm .interactive__stage {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #wm .interactive__body {
+    grid-template-columns: minmax(0, 19rem) minmax(0, 1fr);
+  }
+}
+
+#wm .control + .control {
+  margin-top: var(--space-3);
+}
+
+.control--buttons {
+  display: grid;
+  gap: var(--space-2);
+}
+
+/* -------------------------------------------------------------------------
+   The trial display
+   ---------------------------------------------------------------------- */
+
+.wm-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 14rem;
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  background-color: var(--colour-surface);
+}
+
+.wm-display__letters {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: clamp(1.8rem, 7vw, 3rem);
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  text-indent: 0.35em;
+  text-align: center;
+  word-break: break-word;
+  color: var(--colour-text);
+}
+
+.wm-display__word {
+  margin: 0;
+  font-size: clamp(1.6rem, 6vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-align: center;
+  color: var(--colour-text);
+}
+
+.wm-display__svg {
+  width: 100%;
+  max-width: 13rem;
+  height: auto;
+}
+
+/* Grid cells. The probed cell is marked by a thick dashed ring as well as a
+   different fill, so it is identifiable without colour. */
+.wm-cell {
+  fill: var(--colour-surface-raised);
+  stroke: var(--colour-border-strong);
+  stroke-width: 2;
+}
+
+.wm-cell--on {
+  fill: var(--colour-accent);
+}
+
+.wm-cell--probe {
+  fill: var(--colour-surface-raised);
+  stroke: var(--colour-text);
+  stroke-width: 5;
+  stroke-dasharray: 7 5;
+}
+
+.wm-pattern-cell {
+  fill: var(--colour-text);
+}
+
+.wm-pattern-axis {
+  stroke: var(--colour-text-muted);
+  stroke-width: 1.5;
+  stroke-dasharray: 5 4;
+}
+
+.display__caption {
+  margin: var(--space-3) 0 0;
+  min-height: 2.5rem;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+  text-align: center;
+}
+
+/* -------------------------------------------------------------------------
+   Responses
+   ---------------------------------------------------------------------- */
+
+.responses {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+  min-height: 3.25rem;
+}
+
+.response {
+  flex: 1 1 10rem;
+  min-height: 3.25rem;
+  font-size: var(--text-base);
+  font-weight: 650;
+}
+
+/* -------------------------------------------------------------------------
+   Load chart
+   -------------------------------------------------------------------------
+   A single line with square markers, plus a dashed reference line for the
+   worked example's matching-domain run when one is loaded. Both carry an
+   inline text label, so neither depends on its stroke.
+   ---------------------------------------------------------------------- */
+
+.wm-chart {
+  max-width: 28rem;
+}
+
+.wm__line {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+
+.wm__point {
+  fill: var(--colour-accent);
+}
+
+/* -------------------------------------------------------------------------
+   Challenge
+   ---------------------------------------------------------------------- */
+
+.challenge select {
+  width: 100%;
+  min-width: 12rem;
+  min-height: 2.75rem;
+  padding: 0.35rem 0.6rem;
+  font: inherit;
+  font-size: var(--text-sm);
+  color: var(--colour-text);
+  background-color: var(--colour-surface-raised);
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+}
+
+.challenge th[scope="row"] {
+  min-width: 16rem;
+  font-weight: 400;
+}
+
+.challenge__mark {
+  display: block;
+  margin-top: var(--space-1);
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+
+/* -------------------------------------------------------------------------
+   Forced colours
+   ---------------------------------------------------------------------- */
+
+@media (forced-colors: active) {
+  .wm-display {
+    border: 1px solid CanvasText;
+  }
+
+  .wm-cell {
+    fill: Canvas;
+    stroke: CanvasText;
+  }
+
+  .wm-cell--on {
+    fill: Highlight;
+  }
+
+  .wm-cell--probe {
+    fill: Canvas;
+    stroke: CanvasText;
+  }
+
+  .wm-pattern-cell {
+    fill: CanvasText;
+  }
+
+  .wm-pattern-axis {
+    stroke: CanvasText;
+  }
+
+  .wm__line,
+  .wm__point {
+    stroke: CanvasText;
+    fill: CanvasText;
+  }
+
+  .wm__line {
+    fill: none;
+  }
+
+  .challenge select {
+    border: 1px solid ButtonText;
+  }
+}

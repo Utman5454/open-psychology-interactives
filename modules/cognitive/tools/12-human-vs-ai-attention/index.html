@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Human Attention versus AI Attention — Open Psychology Interactives</title>
+  <meta name="description" content="Resolve an ambiguous pronoun yourself, then compute attention weights over the same sentence by hand. A teaching tool on why one shared word covers two entirely different things, and on where the analogy genuinely holds.">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f141b" media="(prefers-color-scheme: dark)">
+
+  <link rel="canonical" href="https://utman5454.github.io/open-psychology-interactives/modules/cognitive/tools/12-human-vs-ai-attention/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Open Psychology Interactives">
+  <meta property="og:title" content="Human Attention versus AI Attention">
+  <meta property="og:description" content="One word, two entirely different things. Compute the weights yourself and see what they are.">
+  <meta property="og:url" content="https://utman5454.github.io/open-psychology-interactives/modules/cognitive/tools/12-human-vs-ai-attention/">
+  <meta property="og:locale" content="en_GB">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Human Attention versus AI Attention">
+  <meta name="twitter:description" content="One word, two entirely different things. Compute the weights yourself and see what they are.">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%238a4b00'/%3E%3Cpath d='M4 24C10 24 10 8 16 8s6 16 12 16' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
+
+  <!-- Four directories deep (modules/<slug>/tools/<slug>/), so shared assets
+       are at ../../../../ — see docs/adapting-a-tool.md. -->
+  <link rel="stylesheet" href="../../../../assets/css/main.css">
+  <link rel="stylesheet" href="../../../../components/interactive-shell.css">
+  <link rel="stylesheet" href="../../../../components/tool-kit.css">
+  <link rel="stylesheet" href="tool.css">
+  <script src="../../../../assets/js/main.js" defer></script>
+  <script src="../../../../components/interactive-shell.js" defer></script>
+  <script src="tool.js" defer></script>
+</head>
+
+<!-- data-site-root: the path back to the site root from this page. -->
+<body data-site-root="../../../../">
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+
+      <a class="brand" href="../../../../index.html" aria-label="Open Psychology Interactives, home">
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <rect x="1" y="1" width="30" height="30" rx="7" fill="none" stroke="currentColor" stroke-width="2"></rect>
+          <path d="M5 24C10 24 10 8 16 8s6 16 11 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        </svg>
+        <span>
+          <span class="brand__name">Open Psychology Interactives</span>
+          <span class="brand__tagline">Free teaching tools for psychology</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" data-nav-toggle
+              aria-expanded="false" aria-controls="site-nav" hidden>
+        <svg class="nav-toggle__icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+          <path d="M2 5h16M2 10h16M2 15h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        </svg>
+        Menu
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul class="site-nav__list">
+          <li><a class="site-nav__link" href="../../../../index.html">Home</a></li>
+          <li><a class="site-nav__link" href="../../index.html">Cognitive<span class="visually-hidden"> Psychology</span></a></li>
+          <li><a class="site-nav__link" href="../../../research-methods/index.html">Research Methods</a></li>
+          <li><a class="site-nav__link" href="../../../neuropsychology/index.html">Neuropsychology</a></li>
+          <li><a class="site-nav__link" href="../../../social-critical-psychology/index.html">Social and Critical<span class="visually-hidden"> Psychology</span></a></li>
+          <li><a class="site-nav__link" href="../../../personality-individual-differences/index.html">Personality<span class="visually-hidden"> and Individual Differences</span></a></li>
+          <li><a class="site-nav__link" href="../../../../index.html#documentation">Documentation</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <nav class="breadcrumbs container" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="../../../../index.html">Home</a></li>
+      <li><a href="../../../../index.html#modules">Modules</a></li>
+      <li><a href="../../index.html">Cognitive Psychology</a></li>
+      <li aria-current="page">Human Attention versus AI Attention</li>
+    </ol>
+  </nav>
+
+  <main id="main">
+
+    <!-- ================= Title and purpose ================= -->
+    <section class="section card--cognitive" aria-labelledby="page-heading">
+      <div class="container">
+
+        <p class="hero__eyebrow" style="color: var(--colour-cognitive)">
+          Cognitive Psychology
+        </p>
+        <h1 id="page-heading">Human Attention versus AI Attention</h1>
+        <p class="hero__lead">
+          The word "attention" appears in two literatures that have almost
+          nothing in common. In one it names a set of experimental findings
+          about selection, capacity and awareness. In the other it names an
+          arithmetic operation: a normalised similarity between one position in
+          a sequence and every other position. This page has you do both, on
+          the same sentence, so the difference is something you have produced
+          rather than been told.
+        </p>
+
+        <p>
+          <span class="badge">
+            <span class="badge__dot" aria-hidden="true"></span>
+            The numbers here are chosen by hand to be legible — no model was run, and nothing was learned
+          </span>
+        </p>
+
+        <div class="split split--wide">
+
+          <div class="panel">
+            <h2 class="panel__title">Learning objective</h2>
+            <p>
+              By the end you should be able to state precisely what a
+              transformer attention weight <em>is</em>, name two respects in
+              which the two uses of the word genuinely rhyme and four in which
+              they do not, and explain why a weight map is not an explanation of
+              a model's output.
+            </p>
+            <p class="text-muted">
+              About 30 minutes. Nothing is timed. Nothing you do here is saved
+              or sent anywhere.
+            </p>
+          </div>
+
+          <div class="panel panel--caution">
+            <h2 class="panel__title">Before you start — the language problem</h2>
+            <p>
+              <strong>A weight is a number, not a noticing.</strong> Throughout
+              this page, the computational side is described in arithmetic
+              terms only. A high weight on a position does not mean the system
+              "focused on" or "cared about" or "was drawn to" that word; it
+              means a dot product came out large and the softmax normalised it
+              upwards. The habit of saying otherwise is the single commonest
+              error in writing about these models, and it is easier to avoid
+              here than anywhere else because you can see the arithmetic.
+            </p>
+            <p>
+              <strong>Nothing on the machine side is aware of anything.</strong>
+              There is no experience, no report, no effort and no cost of the
+              kind the human literature measures. That is not a limitation of
+              this demonstration — it is the finding.
+            </p>
+          </div>
+
+        </div>
+
+        <ol class="how-to">
+          <li>Answer the prediction below — it unlocks the first stage.</li>
+          <li>Stage 1: read two sentences that differ by three words and say what "it" refers to in each.</li>
+          <li>Stage 2: compute attention weights over the same sentence, by choosing a query position, a head, a temperature and a mask.</li>
+          <li>Stage 3: compare the two things you have just done, in the sorting challenge.</li>
+          <li>Read the debrief, which is where the two rhymes and the four divergences are set out.</li>
+        </ol>
+
+      </div>
+    </section>
+
+    <!-- ================= Opening prediction ================= -->
+    <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="opening-heading">First, a prediction</h2>
+          <p class="prose">
+            You are about to do two quite different things with the same
+            sentence. Before you do either, commit to a view about what the
+            relationship between them will turn out to be.
+          </p>
+        </div>
+
+        <noscript>
+          <div class="placeholder">
+            <h3 class="placeholder__title">This part needs JavaScript</h3>
+            <p class="prose">
+              The attention weights are computed in your browser, so this cannot
+              work with JavaScript switched off. The rest of the page is
+              readable without it.
+            </p>
+          </div>
+        </noscript>
+
+        <form class="panel prediction" id="opening-form">
+          <fieldset class="prediction__group">
+            <legend class="prediction__legend">
+              If a transformer's attention weights for the word "it" land on the
+              same noun you chose, what would that show?
+            </legend>
+            <label class="control--choice">
+              <input type="radio" name="opening" value="nothing-much">
+              Very little on its own — two processes can produce the same output for unrelated reasons
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="opening" value="same-mechanism">
+              That the model resolves pronouns the way people do
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="opening" value="explains">
+              That the weights explain why the model produced the answer it did
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="opening" value="attention">
+              That the model was paying attention to the noun, in the ordinary sense
+            </label>
+          </fieldset>
+
+          <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+          <div class="prediction__actions">
+            <button class="button button--primary" type="submit">
+              Record my answer and unlock stage 1
+            </button>
+            <button class="button button--secondary" type="button" data-action="skip-opening">
+              Skip — I am demonstrating this
+            </button>
+          </div>
+
+          <div class="feedback" data-opening-feedback hidden></div>
+        </form>
+
+      </div>
+    </section>
+
+    <!-- ================= Stage 1 — the human side ================= -->
+    <section class="section" id="human" aria-labelledby="human-heading" hidden>
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="human-heading" tabindex="-1">Stage 1 — what does "it" refer to?</h2>
+          <p class="prose">
+            Two sentences. They differ in their last three words and in nothing
+            else. Read each one and say what "it" refers to. There is no time
+            limit, and no trick beyond the one you can see.
+          </p>
+        </div>
+
+        <form class="panel prediction" id="human-form">
+          <div data-human-items></div>
+
+          <p class="prediction__error" data-human-error role="alert" hidden></p>
+
+          <div class="prediction__actions">
+            <button class="button button--primary" type="submit">
+              Record both answers
+            </button>
+          </div>
+
+          <div class="feedback" data-human-feedback hidden></div>
+        </form>
+
+        <div class="panel" data-human-reflection hidden>
+          <h3 class="panel__title">Before you move on</h3>
+          <dl class="interactive__readout" data-human-readout></dl>
+          <div class="verdict">
+            <h4 class="verdict__title">What you just did</h4>
+            <p class="verdict__body" data-human-text></p>
+            <p class="verdict__note" data-human-note></p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= Stage 2 — the computation ================= -->
+    <section class="section section--tinted" id="machine" aria-labelledby="machine-heading" hidden>
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="machine-heading" tabindex="-1">Stage 2 — compute the weights yourself</h2>
+          <p class="prose">
+            The same sentence, cut into ten tokens. Each token has a vector of
+            three numbers attached to it — arbitrary numbers, written by hand
+            for this page. Pick a position to compute from, pick a head, and the
+            arithmetic below runs in front of you.
+          </p>
+        </div>
+
+        <section class="interactive" id="attn" data-interactive
+                 data-reset-message="Everything cleared. Back to the opening question.">
+
+          <header class="interactive__header">
+            <h3 class="interactive__title">One softmax over ten positions</h3>
+            <p class="interactive__brief">
+              Every number on this page was chosen by the author to make the
+              pattern legible. Nothing was learned, no model was run, and the
+              apparent meaningfulness of what you are about to see is
+              manufactured. That is itself one of the points.
+            </p>
+            <p class="goal">
+              <span class="goal__label">The computation</span>
+              <span class="goal__text" data-formula-text></span>
+            </p>
+          </header>
+
+          <div class="interactive__body interactive__body--pinned">
+
+            <form class="interactive__controls" data-interactive-controls>
+
+              <fieldset>
+                <legend>The query</legend>
+
+                <div class="control">
+                  <label class="control__label" for="query-select">
+                    Compute the weights for which position?
+                  </label>
+                  <select id="query-select"></select>
+                </div>
+
+                <div class="control">
+                  <label class="control__label" for="head-select">
+                    Which head?
+                  </label>
+                  <select id="head-select">
+                    <option value="0" selected>Head A</option>
+                    <option value="1">Head B</option>
+                    <option value="2">Head C</option>
+                  </select>
+                  <p class="control__hint">
+                    Three multipliers applied to the query vector. They have no
+                    assigned meaning.
+                  </p>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>The normalisation</legend>
+
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="temperature-range">
+                      Softmax temperature
+                    </label>
+                    <output class="control__value" for="temperature-range"
+                            data-temperature-output>1.00</output>
+                  </div>
+                  <input type="range" id="temperature-range"
+                         min="0.4" max="2.5" step="0.1" value="1">
+                  <p class="control__hint">
+                    Divides every score before normalising. Low concentrates,
+                    high flattens.
+                  </p>
+                </div>
+
+                <div class="control">
+                  <label class="control--choice">
+                    <input type="checkbox" id="mask-check">
+                    Mask later positions
+                  </label>
+                  <p class="control__hint">
+                    An architectural rule, not a discovery about the sentence.
+                  </p>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>Presets</legend>
+                <div class="control control--buttons">
+                  <button class="button button--secondary" type="button"
+                          data-action="preset-referent">
+                    The one that looks meaningful
+                  </button>
+                  <button class="button button--secondary" type="button"
+                          data-action="preset-recency">
+                    The one that is just recency
+                  </button>
+                  <button class="button button--secondary" type="button"
+                          data-action="preset-flat">
+                    The one that says nothing at all
+                  </button>
+                </div>
+              </fieldset>
+
+            </form>
+
+            <div class="interactive__stage" data-interactive-stage>
+
+              <div class="stage__primary">
+                <ol class="tokens" data-tokens aria-label="The ten token positions, with the query position marked"></ol>
+
+                <figure class="chart">
+                  <figcaption class="chart__caption" data-chart-caption>
+                    Attention weights over the ten token positions
+                  </figcaption>
+                  <svg class="chart__svg attn-chart" data-weight-chart
+                       viewBox="0 0 460 250" aria-hidden="true" focusable="false"></svg>
+                  <p class="chart__equivalent" data-weight-summary></p>
+                  <details class="stage__more">
+                    <summary>Every position, with its key vector and score</summary>
+                    <div class="table-scroll">
+                      <table class="chart__table">
+                        <caption class="visually-hidden">
+                          For each token position: its three key numbers, the raw
+                          score against the query, and the resulting weight
+                        </caption>
+                        <thead>
+                          <tr>
+                            <th scope="col">Position</th>
+                            <th scope="col">Token</th>
+                            <th scope="col">Key vector</th>
+                            <th scope="col">Score</th>
+                            <th scope="col">Weight</th>
+                          </tr>
+                        </thead>
+                        <tbody data-weight-table></tbody>
+                      </table>
+                    </div>
+                  </details>
+                </figure>
+              </div>
+
+              <div class="verdict" data-weight-verdict>
+                <h4 class="verdict__title">What this readout is</h4>
+                <p class="verdict__body" data-weight-text></p>
+                <p class="verdict__note" data-weight-note></p>
+              </div>
+
+              <details class="stage__more">
+                <summary>Where these numbers came from</summary>
+                <div data-provenance></div>
+              </details>
+
+            </div>
+
+          </div>
+
+          <p class="interactive__status" data-interactive-status role="status"></p>
+
+          <div class="interactive__actions">
+            <button type="button" data-variant="secondary" data-interactive-reset>
+              Reset everything
+            </button>
+          </div>
+
+          <details class="interactive__notes">
+            <summary>Notes for whoever is running this</summary>
+            <div>
+              <p>
+                Use the three presets in order and let the room name what each
+                one "means" before you tell them the vectors were written by
+                hand to produce exactly those three pictures. The point lands
+                harder when a class has already narrated the first preset as
+                the model "working out the referent".
+              </p>
+              <p>
+                The mask checkbox is worth a minute on its own. It changes the
+                weights a great deal and it is a property of the architecture,
+                not of the sentence — a useful antidote to reading every pattern
+                as a discovery about language.
+              </p>
+              <p>
+                Fuller guidance and the debrief questions are in
+                <a href="teaching-notes.md">teaching-notes.md</a> beside this
+                page.
+              </p>
+            </div>
+          </details>
+
+        </section>
+
+      </div>
+    </section>
+
+    <!-- ================= Stage 3 — the sorting challenge ================= -->
+    <section class="section" id="challenge" aria-labelledby="challenge-heading">
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="challenge-heading">Stage 3 — sort the statements</h2>
+          <p class="prose">
+            Eight statements. For each, decide whether it describes the human
+            experimental literature on attention, the transformer operation you
+            have just run, both, or neither. Two of them are true of both, and
+            two are true of neither — those four are the ones worth arguing
+            about.
+          </p>
+        </div>
+
+        <form class="panel challenge" id="challenge-form">
+
+          <p class="challenge__locked" data-challenge-lock>
+            Complete stage 1 and stage 2 first — several of these are much
+            easier once you have done both.
+          </p>
+
+          <div class="table-scroll">
+            <table class="data-table">
+              <caption class="visually-hidden">
+                Eight statements, each to be sorted into human attention,
+                transformer attention, both, or neither
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">Statement</th>
+                  <th scope="col">True of…</th>
+                </tr>
+              </thead>
+              <tbody data-challenge-rows></tbody>
+            </table>
+          </div>
+
+          <div class="prediction__actions">
+            <button class="button button--primary" type="submit" disabled
+                    data-action="check-challenge">
+              Check my answers
+            </button>
+          </div>
+
+          <div class="feedback" data-challenge-feedback hidden></div>
+        </form>
+
+      </div>
+    </section>
+
+    <!-- ================= Debrief ================= -->
+    <section class="section section--tinted" id="debrief" aria-labelledby="debrief-heading">
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="debrief-heading">What this demonstrates</h2>
+        </div>
+
+        <div class="split split--wide">
+
+          <div class="prose">
+            <h3>What a transformer attention weight is, exactly</h3>
+            <p>
+              For a chosen position, take its vector. Take the dot product of
+              that vector with the vector of every position in the sequence,
+              including itself. Divide each result by the square root of the
+              vector length, divide again by a temperature, and push the whole
+              list through a softmax so the numbers are non-negative and sum to
+              one. Use those numbers as coefficients in a weighted sum of the
+              value vectors. That is the entire operation. It is a normalised
+              similarity between positions, computed for every pair at once, and
+              nothing in it corresponds to noticing, ignoring, focusing or
+              caring.
+            </p>
+
+            <h3>Where the two genuinely rhyme</h3>
+            <p>
+              Two respects, and they are worth stating precisely because
+              overstating them is how the confusion starts.
+            </p>
+            <p>
+              <strong>Both are forms of selection under a constraint.</strong>
+              A person cannot fully process everything arriving at once, and
+              their behaviour reflects a weighting of some inputs over others. A
+              transformer layer cannot pass every position's representation
+              forward unchanged either: it must produce one output vector per
+              position, and it does so by weighting. Both are, formally,
+              allocation problems. The constraints themselves are not the same
+              kind of thing — one is a limit on a biological system operating in
+              real time, the other is the shape of a matrix — but "everything
+              cannot count equally" is true of both.
+            </p>
+            <p>
+              <strong>Both are shaped by what came before.</strong> Human
+              selection is influenced by expectation, by recent experience and
+              by the task in hand. A transformer's weights depend on the
+              preceding tokens, and under a causal mask depend on nothing else.
+              In both cases the current selection is a function of context
+              rather than of the current input alone.
+            </p>
+
+            <h3>Where they diverge, and it is not close</h3>
+            <p>
+              <strong>There is no experience on the machine side.</strong> The
+              human literature is substantially about awareness: what gets
+              reported, what does not, and the fact that those two come apart.
+              Nothing in a softmax has a corresponding property, and there is no
+              question the model could be asked whose answer would be a report
+              of an experience.
+            </p>
+            <p>
+              <strong>There is no bottleneck of the same kind.</strong> A
+              transformer computes every pairwise score in parallel and then
+              normalises. Nothing waits for anything. The human findings about
+              serial stages, refractory periods and the cost of dividing
+              attention describe a system with a temporal structure that this
+              operation does not have.
+            </p>
+            <p>
+              <strong>There is no cost of dividing it.</strong> Spreading a
+              transformer's weights evenly across ten positions costs exactly
+              what concentrating them on one costs: the same multiplications.
+              Dividing human attention costs accuracy, speed, or both, and the
+              size of that cost is one of the central measurements in the field.
+            </p>
+            <p>
+              <strong>The weights are fully inspectable, and human attention is
+              not.</strong> You have just read every weight to two decimal
+              places. Nobody can read a person's selection off directly; it is
+              inferred from responses, from errors, from eye position, from
+              electrophysiology, and every one of those inferences is contested.
+              This is the one respect in which the machine case is
+              <em>easier</em>, and it produces its own trap, which is the next
+              paragraph.
+            </p>
+
+            <h3>Why a weight map is not an explanation</h3>
+            <p>
+              It is tempting to treat a picture of the weights as a picture of
+              the reason. It is not. The weights are one factor in one operation
+              in one layer, of which there are many, each with many heads;
+              the value vectors they multiply matter as much as the weights
+              themselves; the residual stream carries information past the
+              operation entirely; and the output depends on everything
+              downstream. Empirically, patterns of weights can be altered
+              substantially without altering the model's output, and identical
+              outputs can be produced by very different weight patterns. Reading
+              a heatmap as "why the model said that" is the computational
+              equivalent of reading a single eye-movement record as the reason
+              for a decision — and it is made worse by the fact that the heatmap
+              is so much easier to look at than the alternative.
+            </p>
+
+            <h3>Why the shared word survives anyway</h3>
+            <p>
+              Not because anyone was confused. The operation was named by
+              analogy to a family of models in which a system weights parts of
+              an input differentially, and the name stuck because it is short.
+              Technical vocabulary borrowed from psychology has form here —
+              "memory", "learning" and "representation" all carry the same
+              hazard. The remedy is not to police the word but to be able to say
+              exactly what is being claimed whenever it appears.
+            </p>
+          </div>
+
+          <aside class="panel panel--caution" aria-labelledby="limits-heading">
+            <h3 class="panel__title" id="limits-heading">
+              What this does <em>not</em> demonstrate
+            </h3>
+            <ul>
+              <li>
+                <strong>No model was run.</strong> The ten key vectors and the
+                three heads were written by hand for this page and chosen so
+                that the three presets would produce three legible pictures. In
+                a real model these numbers are learned, nobody chooses what they
+                mean, and most heads produce patterns that resist description
+                altogether.
+              </li>
+              <li>
+                <strong>It is not a simulation of a transformer.</strong> It is
+                one attention operation, in one head, over three dimensions and
+                ten tokens, with no value vectors, no residual stream, no
+                feed-forward layers and no second layer. Real models have
+                dozens of layers and many heads each.
+              </li>
+              <li>
+                <strong>It says nothing about how people resolve pronouns.</strong>
+                Stage 1 is a demonstration that you can do it and report it, not
+                a measurement of how. That literature involves reading times,
+                eye movements and manipulations this page does not contain.
+              </li>
+              <li>
+                <strong>Agreement between the two stages would mean very
+                little.</strong> Two processes can produce the same output for
+                unrelated reasons. Disagreement would mean little too.
+              </li>
+              <li>
+                <strong>Nothing here licenses claims about machine
+                understanding, awareness or intent.</strong> Those are separate
+                questions with their own literatures, and a weight vector is not
+                evidence in any of them.
+              </li>
+              <li>
+                <strong>The word "attention" is doing no work in the
+                comparison.</strong> If the operation had been called "weighted
+                pooling", which is what it is, this page would be much shorter.
+              </li>
+            </ul>
+          </aside>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+
+        <div>
+          <h2>Open Psychology Interactives</h2>
+          <p class="text-muted">
+            Free, accessible, classroom-ready teaching tools for university
+            psychology. Built as plain web pages so they keep working, and
+            openly licensed so they can be adapted.
+          </p>
+        </div>
+
+        <div>
+          <h2>Modules</h2>
+          <ul>
+            <li><a href="../../index.html">Cognitive Psychology</a></li>
+            <li><a href="../../../research-methods/index.html">Research Methods</a></li>
+            <li><a href="../../../neuropsychology/index.html">Neuropsychology</a></li>
+            <li><a href="../../../social-critical-psychology/index.html">Social and Critical Psychology</a></li>
+            <li><a href="../../../personality-individual-differences/index.html">Personality and Individual Differences</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h2>Project</h2>
+          <ul>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives">GitHub repository</a></li>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives/blob/main/CONTRIBUTING.md">Contributing</a></li>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives/blob/main/docs/accessibility.md">Accessibility</a></li>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives/blob/main/LICENSE">MIT licence</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="site-footer__bottom">
+        <p>© <span data-current-year>2026</span> Open Psychology Interactives. Released under the MIT licence.</p>
+        <p>Built with plain HTML, CSS and JavaScript. No trackers, no accounts.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

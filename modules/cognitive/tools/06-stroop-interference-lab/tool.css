@@ -1,0 +1,247 @@
+/* =========================================================================
+   Stroop Interference Laboratory — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. What is specific
+   here is the stimulus panel, the colour-response buttons and the condition
+   chart.
+
+   WHY THE STIMULUS PANEL HAS A FIXED DARK BACKGROUND
+   --------------------------------------------------
+   The site has a light and a dark palette. An ink colour that is legible on
+   one is not necessarily legible on the other, and yellow on a light surface
+   is the obvious casualty. The stimulus panel therefore keeps one constant
+   near-black background in both themes, and the four inks are chosen to sit
+   at 7:1 or better against it. That also means the stimulus looks the same to
+   everyone in a room, which is what a demonstration needs.
+
+   PRESENTATION SAFETY
+   -------------------
+   One word is on screen at a time and it stays until the learner answers.
+   Nothing fades, moves or animates, and no CSS animation or transition is
+   used anywhere in this file, so there is nothing for a reduced-motion rule
+   to switch off.
+   ---------------------------------------------------------------------- */
+
+/* Absolutely positioned visually-hidden <caption> elements have no positioned
+   ancestor inside a scroller, which adds ~30px to the document's scrollable
+   width at 320px. Candidate for components/tool-kit.css. */
+.table-scroll {
+  position: relative;
+}
+
+#stroop .interactive__controls,
+#stroop .interactive__stage {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #stroop .interactive__body {
+    grid-template-columns: minmax(0, 19rem) minmax(0, 1fr);
+  }
+}
+
+#stroop .control + .control {
+  margin-top: var(--space-3);
+}
+
+/* -------------------------------------------------------------------------
+   The stimulus panel
+   ---------------------------------------------------------------------- */
+
+.stimulus {
+  --stimulus-bg: #15181d;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 11rem;
+  padding: var(--space-5) var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-md);
+  background-color: var(--stimulus-bg);
+}
+
+.stimulus__word {
+  font-family: var(--font-body);
+  font-size: clamp(2.4rem, 9vw, 4rem);
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-align: center;
+  word-break: break-word;
+  /* Set per trial by tool.js from the ink table below. */
+  color: var(--ink, #f2f2f2);
+}
+
+.display__caption {
+  margin: 0;
+  min-height: 2.5rem;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+  text-align: center;
+}
+
+/* -------------------------------------------------------------------------
+   Ink colours
+   -------------------------------------------------------------------------
+   Contrast against #15181d: red 7.1:1, green 9.5:1, blue 8.0:1,
+   yellow 12.4:1. They also differ in luminance from each other, which helps a
+   little when hue discrimination is difficult - but the two-colour set
+   (blue and yellow, 3x apart in luminance) is the route provided for that.
+
+   The colour is never the only carrier of meaning anywhere except the
+   stimulus itself, where it IS the task: every response button prints its
+   colour name in words, and the results are all numbers and tables.
+   ---------------------------------------------------------------------- */
+
+.ink-swatch {
+  display: inline-block;
+  width: 1.4rem;
+  height: 1.4rem;
+  flex: none;
+  border: 2px solid var(--colour-text);
+  border-radius: 50%;
+  background-color: var(--swatch, #888);
+}
+
+/* -------------------------------------------------------------------------
+   Response buttons
+   ---------------------------------------------------------------------- */
+
+.responses {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.response {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  flex: 1 1 8.5rem;
+  min-height: 3.25rem;
+  font-size: var(--text-base);
+  font-weight: 650;
+}
+
+.response__key {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  padding: 0.1rem 0.4rem;
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  color: var(--colour-text-muted);
+}
+
+/* -------------------------------------------------------------------------
+   Condition chart
+   -------------------------------------------------------------------------
+   Three horizontal bars. Each bar prints its own value, the neutral baseline
+   is drawn as a labelled dashed rule, and the incongruent bar is hatched, so
+   the reading survives greyscale and forced colours.
+   ---------------------------------------------------------------------- */
+
+.stroop-chart {
+  max-width: 30rem;
+}
+
+.stroop__baseline {
+  stroke: var(--colour-text-muted);
+  stroke-width: 2;
+  stroke-dasharray: 5 4;
+}
+
+.stroop__bar--congruent {
+  fill: var(--colour-accent);
+}
+
+.stroop__bar--neutral {
+  fill: var(--colour-text-muted);
+}
+
+.stroop__bar--incongruent {
+  fill: var(--colour-cognitive);
+}
+
+.stroop__hatch {
+  stroke: var(--colour-surface);
+  stroke-width: 3;
+}
+
+/* -------------------------------------------------------------------------
+   Challenge
+   ---------------------------------------------------------------------- */
+
+.challenge select {
+  width: 100%;
+  min-width: 12rem;
+  min-height: 2.75rem;
+  padding: 0.35rem 0.6rem;
+  font: inherit;
+  font-size: var(--text-sm);
+  color: var(--colour-text);
+  background-color: var(--colour-surface-raised);
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+}
+
+.challenge th[scope="row"] {
+  min-width: 15rem;
+  font-weight: 400;
+}
+
+.challenge__mark {
+  display: block;
+  margin-top: var(--space-1);
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+
+/* -------------------------------------------------------------------------
+   Forced colours
+   ---------------------------------------------------------------------- */
+
+@media (forced-colors: active) {
+  /* The stimulus panel keeps its own colours on purpose: in a colour-naming
+     task the ink IS the stimulus, and letting the system repaint it would
+     remove the thing being demonstrated. The border is restated so the panel
+     still has a visible edge. */
+  .stimulus {
+    border: 1px solid CanvasText;
+    forced-color-adjust: none;
+  }
+
+  .ink-swatch {
+    forced-color-adjust: none;
+    border-color: CanvasText;
+  }
+
+  .response__key {
+    border-color: ButtonText;
+    color: ButtonText;
+  }
+
+  .stroop__bar--congruent,
+  .stroop__bar--neutral {
+    fill: CanvasText;
+  }
+
+  .stroop__bar--incongruent {
+    fill: Highlight;
+  }
+
+  .stroop__hatch {
+    stroke: Canvas;
+  }
+
+  .stroop__baseline {
+    stroke: CanvasText;
+  }
+
+  .challenge select {
+    border: 1px solid ButtonText;
+  }
+}

@@ -1,0 +1,260 @@
+/* =========================================================================
+   Posner Spatial Cueing — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. What is specific
+   here is the trial display (two peripheral boxes either side of a central
+   fixation cross), the response buttons, and the reaction-time chart.
+
+   Design constraints that drove these rules:
+
+     * Nothing flickers. A cue is a single onset that persists for the whole
+       cue-to-target interval, and the target persists until answered, so the
+       display never changes faster than about once a second. No animation is
+       used at all, which is also why there is no reduced-motion override to
+       write: there is nothing to reduce.
+     * The cue is never carried by colour alone. A cued box gains a heavy
+       border AND a caret glyph beneath it, so it is distinguishable in
+       greyscale and in forced-colours mode.
+     * The display keeps a fixed height so that the appearance of a target
+       does not reflow the page under the reader mid-trial.
+   ---------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------
+   A containing block for absolutely positioned table captions
+   -------------------------------------------------------------------------
+   Both tables on this page carry a <caption class="visually-hidden">. That
+   utility uses position: absolute with white-space: nowrap, and a <caption>
+   so styled has no positioned ancestor inside the scroller — which leaves
+   Chrome adding roughly 30px to the document's scrollable width at 320px,
+   i.e. a horizontal scrollbar on the whole page. Giving the scroller a
+   position makes it the containing block and the overflow disappears.
+
+   This is a candidate for components/tool-kit.css rather than here; it is
+   kept local because shared files are not this tool's to change.
+   ---------------------------------------------------------------------- */
+
+.table-scroll {
+  position: relative;
+}
+
+/* The min-width: 0 that every grid child of the shared body needs, or a wide
+   table pushes the shared track past the viewport. */
+#posner .interactive__controls,
+#posner .interactive__stage {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #posner .interactive__body {
+    grid-template-columns: minmax(0, 19rem) minmax(0, 1fr);
+  }
+}
+
+#posner .control + .control {
+  margin-top: var(--space-4);
+}
+
+/* -------------------------------------------------------------------------
+   The trial display
+   ---------------------------------------------------------------------- */
+
+.display {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  justify-items: center;
+  gap: var(--space-4);
+  min-height: 11rem;
+  padding: var(--space-5) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  background-color: var(--colour-surface);
+}
+
+.display__fixation {
+  font-size: 2.25rem;
+  line-height: 1;
+  font-weight: 700;
+  color: var(--colour-text);
+  /* Held at a constant width so the cross never nudges the boxes. */
+  min-width: 2rem;
+  text-align: center;
+  visibility: hidden;
+}
+
+.display[data-fixation-visible="yes"] .display__fixation {
+  visibility: visible;
+}
+
+.display__box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 7.5rem;
+  height: 6rem;
+  border: 2px solid var(--colour-border-strong);
+  border-radius: var(--radius-md);
+  background-color: var(--colour-page);
+}
+
+/* A cued box: heavier border, accent colour, and a caret printed beneath it.
+   Three carriers, so the cue survives greyscale and forced colours. */
+.display__box[data-cued="yes"] {
+  border-width: 6px;
+  border-color: var(--colour-accent);
+}
+
+.display__box[data-cued="yes"]::after {
+  content: "▲";
+  position: absolute;
+  bottom: -1.45rem;
+  font-size: 0.9rem;
+  line-height: 1;
+  color: var(--colour-accent);
+}
+
+.display__target {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-color: var(--colour-text);
+  visibility: hidden;
+}
+
+.display__box[data-target-visible="yes"] .display__target {
+  visibility: visible;
+}
+
+.display__caption {
+  margin: 0;
+  min-height: 2.5rem;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+  text-align: center;
+}
+
+/* -------------------------------------------------------------------------
+   Responses
+   -------------------------------------------------------------------------
+   Deliberately large. These are the primary control for anybody not using the
+   arrow keys, and a small target in a speeded task is a fairness problem as
+   well as an accessibility one.
+   ---------------------------------------------------------------------- */
+
+.responses {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  justify-content: center;
+}
+
+.response {
+  flex: 1 1 11rem;
+  min-height: 3.5rem;
+  font-size: var(--text-base);
+  font-weight: 650;
+}
+
+kbd {
+  padding: 0.05rem 0.35rem;
+  border: 1px solid var(--colour-border-strong);
+  border-bottom-width: 2px;
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+/* -------------------------------------------------------------------------
+   Reaction-time chart
+   -------------------------------------------------------------------------
+   A near-square viewBox stretched across a wide column would be enormous, so
+   the SVG is capped. The same numbers appear in the table beneath it.
+   ---------------------------------------------------------------------- */
+
+.posner-chart {
+  max-width: 30rem;
+}
+
+.posner__dot {
+  fill: var(--colour-text-muted);
+  opacity: 0.5;
+}
+
+.posner__mean {
+  stroke: var(--colour-accent);
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.posner__baseline {
+  stroke: var(--colour-text-muted);
+  stroke-width: 2;
+  stroke-dasharray: 6 4;
+}
+
+/* -------------------------------------------------------------------------
+   Challenge table
+   ---------------------------------------------------------------------- */
+
+.challenge select {
+  width: 100%;
+  min-width: 13rem;
+  min-height: 2.75rem;
+  padding: 0.35rem 0.6rem;
+  font: inherit;
+  font-size: var(--text-sm);
+  color: var(--colour-text);
+  background-color: var(--colour-surface-raised);
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+}
+
+.challenge__mark {
+  display: block;
+  margin-top: var(--space-1);
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+
+/* -------------------------------------------------------------------------
+   Forced colours
+   ---------------------------------------------------------------------- */
+
+@media (forced-colors: active) {
+  .display,
+  .display__box {
+    border: 2px solid CanvasText;
+  }
+
+  .display__box[data-cued="yes"] {
+    border: 6px solid Highlight;
+  }
+
+  .display__box[data-cued="yes"]::after {
+    color: Highlight;
+  }
+
+  .display__target {
+    background-color: CanvasText;
+  }
+
+  .posner__dot {
+    fill: GrayText;
+    opacity: 1;
+  }
+
+  .posner__mean {
+    stroke: CanvasText;
+  }
+
+  .posner__baseline {
+    stroke: GrayText;
+  }
+
+  .challenge select {
+    border: 1px solid ButtonText;
+  }
+}

@@ -1,0 +1,231 @@
+/* =========================================================================
+   Visual Search Laboratory — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. What is specific
+   here is the search display, the response buttons and the search-function
+   chart.
+
+   Everything in the displays is drawn in currentColor. The two properties
+   that define the stimuli are ORIENTATION (upright or tilted) and FILL (solid
+   or hollow) — neither is a colour, so the whole paradigm survives greyscale,
+   colour vision deficiency and forced-colours mode without a substitute
+   encoding.
+   ---------------------------------------------------------------------- */
+
+/* Absolutely positioned visually-hidden <caption> elements have no positioned
+   ancestor inside a scroller, which adds ~30px to the document's scrollable
+   width at 320px. Giving the scroller a position fixes it. Candidate for
+   components/tool-kit.css; kept local because shared files are not this
+   tool's to change. */
+.table-scroll {
+  position: relative;
+}
+
+#displays .interactive__controls,
+#displays .interactive__stage,
+#search .interactive__controls,
+#search .interactive__stage {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #displays .interactive__body,
+  #search .interactive__body {
+    grid-template-columns: minmax(0, 18rem) minmax(0, 1fr);
+  }
+}
+
+#displays .control + .control,
+#search .control + .control {
+  margin-top: var(--space-4);
+}
+
+/* -------------------------------------------------------------------------
+   The search display
+   -------------------------------------------------------------------------
+   Capped so a 480x300 viewBox does not become 700px wide on a projector and
+   push the response buttons off the bottom of the screen.
+   ---------------------------------------------------------------------- */
+
+/* The `.interactive__stage svg` rule in interactive-shell.css sets
+   max-width: 100% and outranks a single class, so the cap is written with
+   matching specificity. Without it a 480x300 viewBox stretches to the full
+   stage width and becomes 440px tall, pushing the response buttons off the
+   bottom of a 768px screen. */
+.interactive__stage svg.search-display,
+.search-display {
+  display: block;
+  width: 100%;
+  max-width: 30rem;
+  margin-inline: auto;
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  background-color: var(--colour-surface);
+  color: var(--colour-text);
+}
+
+.search-item {
+  fill: currentColor;
+  stroke: currentColor;
+  stroke-width: 0;
+}
+
+/* Hollow items: outline only. The distinction is fill, not hue. */
+.search-item--hollow {
+  fill: none;
+  stroke-width: 3;
+}
+
+/* Used only by the untimed panel's "Where is the target?" control, never
+   during a scored trial. The ring is a shape, and the description under the
+   display names the position in words as well. */
+.search-marker {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 3;
+  stroke-dasharray: 5 4;
+}
+
+.display-figure {
+  gap: var(--space-3);
+}
+
+.display__caption {
+  margin: 0;
+  min-height: 2.5rem;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+  text-align: center;
+}
+
+/* -------------------------------------------------------------------------
+   Responses
+   ---------------------------------------------------------------------- */
+
+.responses {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  justify-content: center;
+}
+
+.response {
+  flex: 1 1 11rem;
+  min-height: 3.5rem;
+  font-size: var(--text-base);
+  font-weight: 650;
+}
+
+kbd {
+  padding: 0.05rem 0.35rem;
+  border: 1px solid var(--colour-border-strong);
+  border-bottom-width: 2px;
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+/* -------------------------------------------------------------------------
+   Search-function chart
+   -------------------------------------------------------------------------
+   Two series per chart: target present and target absent. They differ by line
+   style AND by marker shape AND by an inline label, so none of the three is
+   load-bearing on its own.
+   ---------------------------------------------------------------------- */
+
+.search-chart {
+  max-width: 28rem;
+}
+
+.search__line--present {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+
+.search__line--absent {
+  fill: none;
+  stroke: var(--colour-text-muted);
+  stroke-width: 2.5;
+  stroke-dasharray: 7 4;
+}
+
+.search__point--present {
+  fill: var(--colour-accent);
+}
+
+/* Absent points are hollow squares; present points are solid discs. */
+.search__point--absent {
+  fill: var(--colour-page);
+  stroke: var(--colour-text-muted);
+  stroke-width: 2.5;
+}
+
+/* -------------------------------------------------------------------------
+   Challenge
+   ---------------------------------------------------------------------- */
+
+.challenge select {
+  width: 100%;
+  min-width: 12rem;
+  min-height: 2.75rem;
+  padding: 0.35rem 0.6rem;
+  font: inherit;
+  font-size: var(--text-sm);
+  color: var(--colour-text);
+  background-color: var(--colour-surface-raised);
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+}
+
+.challenge td:first-child,
+.challenge th[scope="row"] {
+  min-width: 15rem;
+  font-weight: 400;
+}
+
+.challenge__mark {
+  display: block;
+  margin-top: var(--space-1);
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+
+/* -------------------------------------------------------------------------
+   Forced colours
+   ---------------------------------------------------------------------- */
+
+@media (forced-colors: active) {
+  .search-display {
+    border: 1px solid CanvasText;
+    color: CanvasText;
+  }
+
+  .search-marker {
+    stroke: Highlight;
+  }
+
+  .search__line--present,
+  .search__point--present {
+    stroke: CanvasText;
+    fill: CanvasText;
+  }
+
+  .search__line--present {
+    fill: none;
+  }
+
+  .search__line--absent {
+    stroke: Highlight;
+  }
+
+  .search__point--absent {
+    fill: Canvas;
+    stroke: Highlight;
+  }
+
+  .challenge select {
+    border: 1px solid ButtonText;
+  }
+}

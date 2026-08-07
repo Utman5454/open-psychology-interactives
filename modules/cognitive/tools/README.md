@@ -1,10 +1,27 @@
 # modules/cognitive/tools/
 
+<!-- PUBLISHED:START -->
+| Tool | Folder | Topic |
+| --- | --- | --- |
+| Posner Spatial Cueing | [`01-posner-spatial-cueing/`](01-posner-spatial-cueing/) | Spatial cueing: separating the benefit of a valid cue from the cost of an invalid one |
+| Visual Search Laboratory | [`02-visual-search-laboratory/`](02-visual-search-laboratory/) | Feature and conjunction search: set size, search slopes, and what a slope does not prove |
+| Inattentional Blindness | [`03-inattentional-blindness/`](03-inattentional-blindness/) | Inattentional blindness: attention, awareness, and a surprise that works exactly once |
+| Change Blindness | [`04-change-blindness-flicker/`](04-change-blindness-flicker/) | Change blindness: what the blank interval does, and what it does not show |
+| Attentional Blink | [`05-attentional-blink/`](05-attentional-blink/) | Attentional blink: the shape of the cost over time, and the accounts it cannot separate |
+| Stroop Interference Laboratory | [`06-stroop-interference-lab/`](06-stroop-interference-lab/) | Stroop interference: what a neutral baseline adds, and what a difference score is not |
+| Dichotic Listening and Selection Theories | [`07-dichotic-listening-selection/`](07-dichotic-listening-selection/) | Selective attention: what gets through from an ignored channel, and which theory each finding troubles |
+| Dual-Task and Limited Capacity Laboratory | [`08-dual-task-capacity-lab/`](08-dual-task-capacity-lab/) | Dual-task costs: baselines, asymmetry, and why multitasking is not a trait |
+| Working-Memory Load Laboratory | [`09-working-memory-load-lab/`](09-working-memory-load-lab/) | Working-memory load: storage, control and similarity are three different things |
+| False Memory and Source Monitoring | [`10-false-memory-source-monitoring/`](10-false-memory-source-monitoring/) | False memory and source monitoring: recognition, confidence and source can disagree |
+| Decision Framing Laboratory | [`11-decision-framing-laboratory/`](11-decision-framing-laboratory/) | Framing and reference dependence: identical arithmetic, two descriptions, different choices |
+| Human Attention versus AI Attention | [`12-human-vs-ai-attention/`](12-human-vs-ai-attention/) | Human attention and transformer attention: one word, two different things |
+
+<!-- PUBLISHED:END -->
+
 Tools for the **Cognitive Psychology** module live here, one folder per tool.
 
-**This folder is currently empty.** No cognitive psychology tool has been built
-yet. The module page at `modules/cognitive/index.html` describes the planned
-scope.
+Twelve tools are published; they are listed above. The module page at
+`modules/cognitive/index.html` describes the scope.
 
 ## Canonical tool structure
 

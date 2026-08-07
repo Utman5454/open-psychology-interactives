@@ -1,0 +1,266 @@
+/* =========================================================================
+   Dichotic Listening and Selection Theories — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. What is specific
+   here is the two-stream display, the recognition options and the probe
+   chart.
+
+   THE ATTENDED SIDE IS MARKED THREE WAYS
+   --------------------------------------
+   A heavier border, a filled label reading "ATTEND TO THIS", and a caret
+   glyph in that label. None of the three is a hue, so which side is yours
+   survives greyscale and forced colours.
+
+   PRESENTATION SAFETY
+   -------------------
+   Items change once every 800 ms - about 1.25 changes a second, well below
+   the three-per-second threshold associated with photosensitive reactions.
+   Only the two words change; the panels, their size and their position stay
+   put. No CSS animation or transition is used anywhere in this file.
+   ---------------------------------------------------------------------- */
+
+/* Absolutely positioned visually-hidden <caption> elements have no positioned
+   ancestor inside a scroller, which adds ~30px to the document's scrollable
+   width at 320px. Candidate for components/tool-kit.css. */
+.table-scroll {
+  position: relative;
+}
+
+#dichotic .interactive__controls,
+#dichotic .interactive__stage {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #dichotic .interactive__body {
+    grid-template-columns: minmax(0, 19rem) minmax(0, 1fr);
+  }
+}
+
+#dichotic .control + .control {
+  margin-top: var(--space-3);
+}
+
+/* The "test the sound" button lives inside the audio control rather than in
+   a control of its own, so the settings column stays short enough for the
+   streams and the response button to share a 768px-tall screen with it. */
+#dichotic .control__hint + .button {
+  margin-top: var(--space-2);
+}
+
+/* The three run buttons share one control block for the same reason. */
+.control--buttons {
+  display: grid;
+  gap: var(--space-2);
+}
+
+/* -------------------------------------------------------------------------
+   The two streams
+   ---------------------------------------------------------------------- */
+
+.streams {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+
+.streams__side {
+  display: grid;
+  gap: var(--space-2);
+  align-content: start;
+  min-width: 0;
+  min-height: 9.5rem;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  background-color: var(--colour-surface);
+}
+
+.streams__side[data-attended="yes"] {
+  border-width: 3px;
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+}
+
+.streams__label {
+  margin: 0;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+  text-align: center;
+}
+
+.streams__side[data-attended="yes"] .streams__label {
+  color: var(--colour-text);
+}
+
+.streams__word {
+  margin: 0;
+  min-height: 4.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body);
+  font-size: clamp(1.15rem, 3.6vw, 1.9rem);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-align: center;
+  word-break: break-word;
+  color: var(--colour-text);
+}
+
+/* The physically marked item in the ignored stream. Heavier, larger and
+   underlined - three carriers, none of them a hue. */
+.streams__word[data-marked="yes"] {
+  font-weight: 800;
+  font-size: clamp(1.4rem, 4.4vw, 2.3rem);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.display__caption {
+  margin: var(--space-3) 0 0;
+  min-height: 2.5rem;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+  text-align: center;
+}
+
+/* -------------------------------------------------------------------------
+   Responses
+   ---------------------------------------------------------------------- */
+
+.responses {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.response {
+  flex: 1 1 11rem;
+  min-height: 3.25rem;
+  font-size: var(--text-base);
+  font-weight: 650;
+}
+
+.stage__form {
+  display: grid;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+.stage__form > * {
+  min-width: 0;
+}
+
+.options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+  gap: var(--space-2);
+}
+
+.options .button {
+  min-height: 3rem;
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+/* -------------------------------------------------------------------------
+   Probe chart
+   -------------------------------------------------------------------------
+   Two series - one rule and two rules - distinguished by fill, by a hatch on
+   the second, and by the value printed inside or beside each bar.
+   ---------------------------------------------------------------------- */
+
+.dichotic-chart {
+  max-width: 30rem;
+}
+
+.dichotic__bar--one {
+  fill: var(--colour-accent);
+}
+
+.dichotic__bar--two {
+  fill: var(--colour-cognitive);
+}
+
+.dichotic__hatch {
+  stroke: var(--colour-surface);
+  stroke-width: 3;
+}
+
+/* -------------------------------------------------------------------------
+   Challenge
+   ---------------------------------------------------------------------- */
+
+.challenge select {
+  width: 100%;
+  min-width: 12rem;
+  min-height: 2.75rem;
+  padding: 0.35rem 0.6rem;
+  font: inherit;
+  font-size: var(--text-sm);
+  color: var(--colour-text);
+  background-color: var(--colour-surface-raised);
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+}
+
+.challenge th[scope="row"] {
+  min-width: 16rem;
+  font-weight: 400;
+}
+
+.challenge__mark {
+  display: block;
+  margin-top: var(--space-1);
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+
+/* -------------------------------------------------------------------------
+   Narrow screens
+   ---------------------------------------------------------------------- */
+
+@media (max-width: 26em) {
+  .streams {
+    gap: var(--space-2);
+  }
+
+  .streams__side {
+    padding: var(--space-2);
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Forced colours
+   ---------------------------------------------------------------------- */
+
+@media (forced-colors: active) {
+  .streams__side {
+    border: 1px solid CanvasText;
+  }
+
+  .streams__side[data-attended="yes"] {
+    border: 3px solid Highlight;
+  }
+
+  .dichotic__bar--one {
+    fill: CanvasText;
+  }
+
+  .dichotic__bar--two {
+    fill: Highlight;
+  }
+
+  .dichotic__hatch {
+    stroke: Canvas;
+  }
+
+  .challenge select {
+    border: 1px solid ButtonText;
+  }
+}

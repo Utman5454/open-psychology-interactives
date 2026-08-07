@@ -1,0 +1,48 @@
+{
+  "id": "12-human-vs-ai-attention",
+  "title": "Human Attention versus AI Attention",
+  "module": "Cognitive Psychology",
+  "moduleSlug": "cognitive",
+  "toolSlug": "12-human-vs-ai-attention",
+  "summary": "Three stages on one sentence. The learner first resolves an ambiguous pronoun in two sentences that differ in three words, and notices that the resolution was fast and reportable. They then compute scaled dot-product attention weights over the same sentence by choosing a position, a head, a softmax temperature and whether later positions are masked. A sorting challenge over eight statements closes the loop: two are true of both, two of neither, and those four mark exactly where the analogy holds and where it fails.",
+  "learningObjectives": [
+    "State precisely what a transformer attention weight is, in arithmetic terms.",
+    "Name two respects in which the two uses of the word genuinely correspond.",
+    "Name four respects in which they do not, including awareness and the cost of division.",
+    "Explain why a map of attention weights is not an explanation of a model's output.",
+    "Recognise when a shared technical word is doing argumentative work it has not earned."
+  ],
+  "topics": [
+    "selective attention",
+    "transformer attention",
+    "softmax",
+    "scaled dot product",
+    "anaphora resolution",
+    "interpretability",
+    "analogy and its limits",
+    "anthropomorphism"
+  ],
+  "interactionTypes": [
+    "prediction before reveal",
+    "staged disclosure of three sections",
+    "pronoun resolution judgement",
+    "learner-driven attention computation",
+    "head, temperature and causal-mask manipulations",
+    "three documented presets",
+    "pinned primary result",
+    "bar chart paired with a text equivalent and a full data table",
+    "four-way sorting challenge"
+  ],
+  "estimatedMinutes": 30,
+  "difficulty": "Intermediate",
+  "status": "published",
+  "version": "1.0.0",
+  "lastUpdated": "2026-08-07",
+  "licenceCode": "MIT",
+  "licenceContent": "CC BY 4.0",
+  "privacy": "No data collected, stored or transmitted; answers and settings stay in the browser tab as JavaScript variables and disappear on reload, nothing is written to storage, and no model or external service is contacted at any point.",
+  "accessibilityNotes": "Nothing in this tool is timed and nothing moves; there is no CSS animation or transition anywhere, so a reduced-motion preference has nothing to switch off. Nothing depends on colour: the query position in the token strip is marked by a heavier border, a filled background and the word query printed under it; masked positions are marked by a dashed border and the word masked; chart bars print their own percentage and the query row carries a dashed outline as well as a different fill. The chart is aria-hidden and paired, inside the same figure, with an always-visible paragraph stating the three largest weights, the smallest, the number of masked positions and the fact that the weights sum to 100 per cent, plus the full five-column table one click away in a details element. The temperature range carries an aria-valuetext in words. The interactive uses a pinned primary block so the token strip and the chart stay in view while the controls column is scrolled. Stage 1 and stage 2 are revealed progressively and focus moves to each new heading as it appears. Every control has an accessible name, headings do not skip, and forced-colours rules are supplied for the token strip and the chart. Usable at 320px and at projector widths with no horizontal page scroll; the wide table scrolls inside its own container.",
+  "readmeTopic": "Human attention and transformer attention: one word, two different things",
+  "dataStatus": "simulated",
+  "simulationNotes": "No model is run and nothing is learned. The sentence - the cyclist passed the lorry because it was moving slowly - is cut into ten tokens, each given a hand-written key vector of three numbers, and three heads are defined as three multipliers each. The computation is genuine scaled dot-product attention as implemented: the query vector is the query token's key vector multiplied elementwise by the head, each score is the dot product with a token's key vector divided by the square root of three, masked positions are set to minus infinity, and the weights are a softmax of the scores divided by the temperature. There are no value vectors, no residual stream, no feed-forward layers and no second layer, and the limits panel says so. Every number was chosen by the author so that the three presets produce three legible pictures, and the page states this in the hero badge, the interactive brief, a dedicated provenance panel and the limits panel: the apparent meaningfulness of the first preset is manufactured, and in a real model these values are learned, nobody chooses what a coordinate means, and many heads produce patterns that resist description. The three coordinates are deliberately never given names, because naming a learned coordinate after the thing it appears to track is the interpretive error the tool exists to make visible. Reference values, verified against the running tool: at position 7 with head A and temperature 1.00 the weights are lorry 35.4 per cent, cyclist 18.5 per cent and it 12.9 per cent; the first preset (head A, temperature 0.60) gives lorry 56.4 per cent; the second (head B, temperature 0.60, masked) gives it 23.1 per cent, because 18.1 per cent and lorry 17.8 per cent with three positions masked; the third (head C, temperature 2.50) gives every position between 9 and 11 per cent."
+}

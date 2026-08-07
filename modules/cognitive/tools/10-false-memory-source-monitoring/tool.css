@@ -1,0 +1,235 @@
+/* =========================================================================
+   False Memory and Source Monitoring — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. What is specific
+   here is the study card (which carries a source label as well as a word),
+   the test panel and the item-type chart.
+
+   HOW THE TWO SOURCES ARE DISTINGUISHED
+   -------------------------------------
+   By their NAME, printed in full above every studied word, and by a border
+   style: the handout has a solid left rule, the whiteboard a dashed one.
+   Never by hue alone. That matters twice over here - once for accessibility,
+   and once because the whole point of the task is that source information is
+   carried by the qualities of the experience.
+
+   PRESENTATION SAFETY
+   -------------------
+   The study card changes once every 1.5 to 3 seconds and only its contents
+   change; the card, its size and its position stay put. The test phase is not
+   timed at all. No CSS animation or transition is used anywhere in this file.
+   ---------------------------------------------------------------------- */
+
+/* Absolutely positioned visually-hidden <caption> elements have no positioned
+   ancestor inside a scroller, which adds ~30px to the document's scrollable
+   width at 320px. Candidate for components/tool-kit.css. */
+.table-scroll {
+  position: relative;
+}
+
+#memory .interactive__controls,
+#memory .interactive__stage {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #memory .interactive__body {
+    grid-template-columns: minmax(0, 18rem) minmax(0, 1fr);
+  }
+}
+
+#memory .control + .control {
+  margin-top: var(--space-3);
+}
+
+.control--buttons {
+  display: grid;
+  gap: var(--space-2);
+}
+
+/* -------------------------------------------------------------------------
+   The study card
+   ---------------------------------------------------------------------- */
+
+.study-card {
+  display: grid;
+  gap: var(--space-3);
+  align-content: center;
+  justify-items: center;
+  min-height: 11rem;
+  padding: var(--space-5) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 6px solid var(--colour-border-strong);
+  border-radius: var(--radius-md);
+  background-color: var(--colour-surface);
+}
+
+.study-card[data-source="whiteboard"] {
+  border-left-style: dashed;
+}
+
+.study-card__source {
+  margin: 0;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+  text-align: center;
+  min-height: 1.2em;
+}
+
+.study-card__word {
+  margin: 0;
+  font-size: clamp(2rem, 8vw, 3.2rem);
+  font-weight: 750;
+  letter-spacing: 0.05em;
+  text-align: center;
+  word-break: break-word;
+  color: var(--colour-text);
+  min-height: 1em;
+}
+
+.display__caption {
+  margin: var(--space-3) 0 0;
+  min-height: 2.5rem;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+  text-align: center;
+}
+
+/* -------------------------------------------------------------------------
+   The test panel
+   ---------------------------------------------------------------------- */
+
+.stage__form {
+  display: grid;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+.stage__form > * {
+  min-width: 0;
+}
+
+.test__prompt {
+  margin: 0;
+  text-align: center;
+}
+
+.test__word {
+  display: inline-block;
+  padding: var(--space-2) var(--space-4);
+  border: 2px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: clamp(1.5rem, 6vw, 2.2rem);
+  font-weight: 750;
+  letter-spacing: 0.05em;
+  word-break: break-word;
+}
+
+.options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+  gap: var(--space-2);
+}
+
+.options .button {
+  min-height: 3rem;
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+/* -------------------------------------------------------------------------
+   Item-type chart
+   -------------------------------------------------------------------------
+   Three bars. Each prints its own percentage, and the lure bar is hatched as
+   well as differently filled, so nothing depends on hue.
+   ---------------------------------------------------------------------- */
+
+.fm-chart {
+  max-width: 30rem;
+}
+
+.fm__bar--studied {
+  fill: var(--colour-accent);
+}
+
+.fm__bar--lure {
+  fill: var(--colour-cognitive);
+}
+
+.fm__bar--new {
+  fill: var(--colour-text-muted);
+}
+
+.fm__hatch {
+  stroke: var(--colour-surface);
+  stroke-width: 3;
+}
+
+/* -------------------------------------------------------------------------
+   Challenge
+   ---------------------------------------------------------------------- */
+
+.challenge select {
+  width: 100%;
+  min-width: 12rem;
+  min-height: 2.75rem;
+  padding: 0.35rem 0.6rem;
+  font: inherit;
+  font-size: var(--text-sm);
+  color: var(--colour-text);
+  background-color: var(--colour-surface-raised);
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+}
+
+.challenge th[scope="row"] {
+  min-width: 17rem;
+  font-weight: 400;
+}
+
+.challenge__mark {
+  display: block;
+  margin-top: var(--space-1);
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+
+/* -------------------------------------------------------------------------
+   Forced colours
+   ---------------------------------------------------------------------- */
+
+@media (forced-colors: active) {
+  .study-card,
+  .test__word {
+    border: 1px solid CanvasText;
+  }
+
+  .study-card {
+    border-left: 6px solid CanvasText;
+  }
+
+  .study-card[data-source="whiteboard"] {
+    border-left-style: dashed;
+  }
+
+  .fm__bar--studied,
+  .fm__bar--new {
+    fill: CanvasText;
+  }
+
+  .fm__bar--lure {
+    fill: Highlight;
+  }
+
+  .fm__hatch {
+    stroke: Canvas;
+  }
+
+  .challenge select {
+    border: 1px solid ButtonText;
+  }
+}

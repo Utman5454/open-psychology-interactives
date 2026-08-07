@@ -1,0 +1,237 @@
+/* =========================================================================
+   Dual-Task and Limited Capacity Laboratory — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. What is specific
+   here is the two-part stimulus display, the two response rows and the
+   task-cost chart.
+
+   PRESENTATION SAFETY
+   -------------------
+   One display at a time, staying on screen until the learner answers. Only
+   the two glyphs change; the panel, its size and its position stay put. No
+   CSS animation or transition is used anywhere in this file, so there is
+   nothing for a reduced-motion rule to switch off.
+   ---------------------------------------------------------------------- */
+
+/* Absolutely positioned visually-hidden <caption> elements have no positioned
+   ancestor inside a scroller, which adds ~30px to the document's scrollable
+   width at 320px. Candidate for components/tool-kit.css. */
+.table-scroll {
+  position: relative;
+}
+
+#dual .interactive__controls,
+#dual .interactive__stage {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #dual .interactive__body {
+    grid-template-columns: minmax(0, 19rem) minmax(0, 1fr);
+  }
+}
+
+#dual .control + .control {
+  margin-top: var(--space-3);
+}
+
+.control--buttons {
+  display: grid;
+  gap: var(--space-2);
+}
+
+/* -------------------------------------------------------------------------
+   The stimulus display
+   -------------------------------------------------------------------------
+   The number sits directly above the letter and both are centred, so neither
+   task needs an eye movement to reach the other. That is deliberate: this
+   laboratory is about competition for processing, not about scanning.
+   ---------------------------------------------------------------------- */
+
+.display {
+  display: grid;
+  gap: var(--space-2);
+  align-content: center;
+  justify-items: center;
+  min-height: 11rem;
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  background-color: var(--colour-surface);
+}
+
+.display__number,
+.display__letter {
+  margin: 0;
+  font-family: var(--font-mono);
+  line-height: 1;
+  font-weight: 700;
+  color: var(--colour-text);
+  min-height: 1em;
+  text-align: center;
+}
+
+.display__number {
+  font-size: clamp(1.8rem, 6vw, 2.6rem);
+  color: var(--colour-text-muted);
+}
+
+.display__letter {
+  font-size: clamp(2.6rem, 9vw, 4rem);
+}
+
+.display__caption {
+  margin: var(--space-3) 0 0;
+  min-height: 2.5rem;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+  text-align: center;
+}
+
+/* -------------------------------------------------------------------------
+   Responses
+   -------------------------------------------------------------------------
+   Two rows, one per task, always in the same order and always labelled in
+   words. The key hint is decorative and hidden from assistive technology;
+   each button carries an explicit accessible name.
+   ---------------------------------------------------------------------- */
+
+.responses {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.response {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex: 1 1 9rem;
+  min-height: 3.25rem;
+  font-size: var(--text-base);
+  font-weight: 650;
+}
+
+.response[data-answered="yes"] {
+  border-width: 2px;
+  border-color: var(--colour-accent);
+}
+
+.response__key {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  padding: 0.1rem 0.4rem;
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  color: var(--colour-text-muted);
+}
+
+.stage__form {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.stage__form input[type="number"] {
+  width: 100%;
+  max-width: 9rem;
+  min-height: 2.75rem;
+  padding: 0.35rem 0.6rem;
+  font: inherit;
+  color: var(--colour-text);
+  background-color: var(--colour-surface-raised);
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+}
+
+/* -------------------------------------------------------------------------
+   Cost chart
+   -------------------------------------------------------------------------
+   Four bars: each task alone and each task combined. The combined bars are
+   hatched as well as differently filled, and every bar prints its own value.
+   ---------------------------------------------------------------------- */
+
+.dual-chart {
+  max-width: 30rem;
+}
+
+.dual__bar--alone {
+  fill: var(--colour-accent);
+}
+
+.dual__bar--dual {
+  fill: var(--colour-cognitive);
+}
+
+.dual__hatch {
+  stroke: var(--colour-surface);
+  stroke-width: 3;
+}
+
+/* -------------------------------------------------------------------------
+   Challenge
+   ---------------------------------------------------------------------- */
+
+.challenge select {
+  width: 100%;
+  min-width: 12rem;
+  min-height: 2.75rem;
+  padding: 0.35rem 0.6rem;
+  font: inherit;
+  font-size: var(--text-sm);
+  color: var(--colour-text);
+  background-color: var(--colour-surface-raised);
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+}
+
+.challenge th[scope="row"] {
+  min-width: 16rem;
+  font-weight: 400;
+}
+
+.challenge__mark {
+  display: block;
+  margin-top: var(--space-1);
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+
+/* -------------------------------------------------------------------------
+   Forced colours
+   ---------------------------------------------------------------------- */
+
+@media (forced-colors: active) {
+  .display {
+    border: 1px solid CanvasText;
+  }
+
+  .response[data-answered="yes"] {
+    border: 2px solid Highlight;
+  }
+
+  .response__key {
+    border-color: ButtonText;
+    color: ButtonText;
+  }
+
+  .dual__bar--alone {
+    fill: CanvasText;
+  }
+
+  .dual__bar--dual {
+    fill: Highlight;
+  }
+
+  .dual__hatch {
+    stroke: Canvas;
+  }
+
+  .challenge select,
+  .stage__form input[type="number"] {
+    border: 1px solid ButtonText;
+  }
+}
