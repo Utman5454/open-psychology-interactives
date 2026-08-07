@@ -1,0 +1,163 @@
+/* =========================================================================
+   Confidence Interval Laboratory — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. What is specific
+   here is the caterpillar plot of repeated intervals (Experiment 1) and the
+   single-interval picture drawn against a threshold band (Experiment 2).
+
+   Both charts state their meaning in words as well as in colour: intervals
+   that missed the true mean are dashed AND carry a cross at the true value,
+   and the threshold band carries a hatch as well as a tint.
+   ========================================================================= */
+
+#coverage .interactive__controls,
+#coverage .interactive__stage,
+#claims .interactive__controls,
+#claims .interactive__stage {
+  min-width: 0;
+}
+
+#coverage .interactive__stage > *,
+#claims .interactive__stage > * {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #coverage .interactive__body,
+  #claims .interactive__body {
+    grid-template-columns: minmax(0, 19rem) minmax(0, 1fr);
+  }
+}
+
+/* Capped so the whole pinned block — chart, its text-equivalent table and the
+   four figures — still fits inside a 768px-tall viewport while the controls
+   beside it are being used. A near-square viewBox stretched across a 700px
+   stage would otherwise be 700px tall on its own. */
+/* The descendant part is load-bearing: interactive-shell.css sets
+   `.interactive__stage svg { max-width: 100% }`, which out-specifies a bare
+   attribute selector, so a cap written as `[data-caterpillar]` alone would
+   silently do nothing. */
+.interactive__stage [data-caterpillar] {
+  max-width: 30rem;
+}
+
+.interactive__stage [data-claim-chart] {
+  max-width: 30rem;
+}
+
+#coverage .interactive__readout,
+#claims .interactive__readout {
+  grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+  gap: 0.4rem;
+}
+
+#coverage .interactive__readout div {
+  padding: 0.4rem 0.5rem;
+}
+
+#coverage .interactive__readout dd {
+  font-size: 1rem;
+}
+
+/* The verdict radios carry long sentences, so the row has to grow rather than
+   force its text onto one line. */
+#claims .control--choice {
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 0.35rem 0;
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+#claims .control--choice input {
+  margin-top: 0.3rem;
+}
+
+#claims .control--choice label {
+  cursor: pointer;
+}
+
+/* -------------------------------------------------------------------------
+   Caterpillar plot (Experiment 1)
+   ---------------------------------------------------------------------- */
+
+.ci__bar {
+  stroke: var(--colour-accent);
+  stroke-linecap: butt;
+}
+
+/* A missed interval is dashed as well as differently coloured, and the cross
+   drawn at the true mean on the same row says the same thing a third way. */
+.ci__bar--miss {
+  stroke: var(--colour-social-critical-psychology);
+  stroke-dasharray: 4 2;
+}
+
+.ci__miss-mark {
+  stroke: var(--colour-social-critical-psychology);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+}
+
+.ci__truth {
+  stroke: var(--colour-text);
+  stroke-width: 2;
+}
+
+.ci__axis {
+  stroke: var(--colour-border-strong);
+  stroke-width: 1;
+}
+
+/* -------------------------------------------------------------------------
+   Single-claim picture (Experiment 2)
+   ---------------------------------------------------------------------- */
+
+.claim__band {
+  fill: var(--colour-accent-soft);
+  stroke: var(--colour-accent);
+  stroke-width: 1;
+}
+
+.claim__hatch {
+  stroke: var(--colour-accent);
+  stroke-width: 1;
+  opacity: 0.45;
+}
+
+.claim__zero {
+  stroke: var(--colour-text-muted);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 3;
+}
+
+.claim__interval {
+  stroke: var(--colour-text);
+  stroke-width: 4;
+  stroke-linecap: butt;
+}
+
+.claim__cap {
+  stroke: var(--colour-text);
+  stroke-width: 2.5;
+}
+
+.claim__point {
+  fill: var(--colour-research-methods, var(--colour-accent));
+  stroke: var(--colour-text);
+  stroke-width: 1;
+}
+
+@media (forced-colors: active) {
+  .ci__bar { stroke: CanvasText; }
+  .ci__bar--miss { stroke: Highlight; }
+  .ci__miss-mark { stroke: Highlight; }
+  .ci__truth { stroke: CanvasText; }
+  .ci__axis { stroke: CanvasText; }
+  .claim__band { fill: Canvas; stroke: CanvasText; }
+  .claim__hatch { stroke: CanvasText; opacity: 1; }
+  .claim__zero { stroke: GrayText; }
+  .claim__interval,
+  .claim__cap { stroke: CanvasText; }
+  .claim__point { fill: Highlight; stroke: CanvasText; }
+}

@@ -1,0 +1,293 @@
+/* =========================================================================
+   Confound Detective — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. What is
+   particular here is the study card, the two-bar effect comparison and the
+   causal diagram.
+   ========================================================================= */
+
+#confound .interactive__controls,
+#confound .interactive__stage {
+  min-width: 0;
+}
+
+/* The stage is a grid, so a wide child would otherwise set the track's
+   minimum width and drag the page sideways instead of scrolling itself. */
+#confound .interactive__stage > * {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #confound .interactive__body {
+    grid-template-columns: minmax(0, 21rem) minmax(0, 1fr);
+  }
+}
+
+/* The causal diagram is nearly square, so without a cap it would stretch to
+   the full stage width and become several hundred pixels tall. */
+[data-dag] {
+  max-width: 30rem;
+}
+
+/* -------------------------------------------------------------------------
+   Study card
+   ---------------------------------------------------------------------- */
+
+.claim {
+  margin: 0 0 var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border-left: 4px solid var(--colour-research-methods);
+  background-color: var(--colour-surface);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-base);
+  font-weight: 650;
+  line-height: 1.45;
+}
+
+.case__design {
+  margin: 0 0 var(--space-3);
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+
+/* -------------------------------------------------------------------------
+   Variable classification rows
+   ---------------------------------------------------------------------- */
+
+.variable {
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--colour-border);
+}
+
+.variable:first-child {
+  border-top: 0;
+}
+
+.variable__label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* -------------------------------------------------------------------------
+   Repair checkboxes
+   ---------------------------------------------------------------------- */
+
+.repair {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  min-height: 2.75rem;
+  padding: var(--space-2) 0;
+  border-top: 1px solid var(--colour-border);
+  font-size: var(--text-sm);
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.repair:first-child {
+  border-top: 0;
+}
+
+.repair input {
+  width: 1.15rem;
+  height: 1.15rem;
+  flex: none;
+  margin-top: 0.55rem;
+  accent-color: var(--colour-accent);
+}
+
+.repair span {
+  padding-top: 0.35rem;
+}
+
+/* -------------------------------------------------------------------------
+   Estimated against true effect
+   -------------------------------------------------------------------------
+   Two bars, each printing its own number and its own name, so neither the
+   length nor the fill is the only carrier.
+   ---------------------------------------------------------------------- */
+
+.effect {
+  display: grid;
+  gap: 0.4rem;
+  font-size: var(--text-sm);
+}
+
+.effect__row {
+  display: grid;
+  grid-template-columns: minmax(5.5rem, 8rem) 1fr;
+  gap: 0.2rem var(--space-3);
+  align-items: center;
+}
+
+@media (max-width: 30em) {
+  .effect__row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.effect__name {
+  font-weight: 600;
+}
+
+.effect__meter {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.effect__track {
+  flex: 1 1 4rem;
+  min-width: 3rem;
+  height: 1rem;
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  overflow: hidden;
+}
+
+.effect__fill {
+  display: block;
+  height: 100%;
+  transition: width 200ms ease-out;
+}
+
+/* The true bar is solid; the estimated bar is striped, so the two are
+   distinguishable in greyscale as well as by their printed labels. */
+.effect__row[data-kind="true"] .effect__fill {
+  background-color: var(--colour-neuropsychology);
+}
+
+.effect__row[data-kind="estimate"] .effect__fill {
+  background-color: var(--colour-accent);
+  background-image: repeating-linear-gradient(
+    45deg, transparent 0 5px, rgb(255 255 255 / 0.45) 5px 10px);
+}
+
+.effect__value {
+  flex: 0 0 auto;
+  font-variant-numeric: tabular-nums;
+  font-weight: 650;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .effect__fill {
+    transition: none;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Causal diagram
+   -------------------------------------------------------------------------
+   Blocked confounds are drawn with a dashed outline AND labelled "blocked" in
+   the node itself, and the paired table repeats every status in words.
+   ---------------------------------------------------------------------- */
+
+.dag__node {
+  fill: var(--colour-surface);
+  stroke: var(--colour-text);
+  stroke-width: 1.5;
+}
+
+.dag__node--core {
+  fill: var(--colour-accent-soft);
+  stroke: var(--colour-accent);
+  stroke-width: 2;
+}
+
+.dag__node--blocked {
+  stroke-dasharray: 5 4;
+  stroke: var(--colour-text-muted);
+}
+
+.dag__edge {
+  stroke: var(--colour-text);
+  stroke-width: 1.6;
+  fill: none;
+}
+
+.dag__edge--core {
+  stroke: var(--colour-accent);
+  stroke-width: 2.4;
+}
+
+.dag__edge--blocked {
+  stroke: var(--colour-text-muted);
+  stroke-dasharray: 4 4;
+  stroke-width: 1.2;
+}
+
+.dag__head {
+  fill: var(--colour-text);
+}
+
+.dag__head--core {
+  fill: var(--colour-accent);
+}
+
+.dag__head--blocked {
+  fill: var(--colour-text-muted);
+}
+
+/* -------------------------------------------------------------------------
+   Variable-by-variable feedback
+   ---------------------------------------------------------------------- */
+
+.part {
+  margin: 0 0 var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border-left: 4px solid var(--colour-border-strong);
+  background-color: var(--colour-surface);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+}
+
+.part:last-child {
+  margin-bottom: 0;
+}
+
+.part[data-standing="right"] { border-left-color: var(--colour-neuropsychology); }
+.part[data-standing="wrong"] { border-left-color: var(--colour-social-critical-psychology); }
+
+.part__head {
+  margin: 0 0 0.2rem;
+  font-weight: 700;
+}
+
+.part__standing {
+  font-variant: small-caps;
+  letter-spacing: 0.03em;
+}
+
+.part__body {
+  margin: 0;
+}
+
+@media (forced-colors: active) {
+  .claim,
+  .effect__track,
+  .variable,
+  .repair,
+  .part {
+    border-color: CanvasText;
+  }
+
+  .effect__row[data-kind="true"] .effect__fill { background-color: CanvasText; }
+  .effect__row[data-kind="estimate"] .effect__fill {
+    background-color: Highlight;
+    background-image: none;
+  }
+
+  .dag__node { fill: Canvas; stroke: CanvasText; }
+  .dag__node--core { fill: Canvas; stroke: Highlight; }
+  .dag__node--blocked { stroke: GrayText; }
+  .dag__edge { stroke: CanvasText; }
+  .dag__edge--core { stroke: Highlight; }
+  .dag__edge--blocked { stroke: GrayText; }
+  .dag__head { fill: CanvasText; }
+  .dag__head--core { fill: Highlight; }
+  .dag__head--blocked { fill: GrayText; }
+}

@@ -1,10 +1,36 @@
 # modules/research-methods/tools/
 
+<!-- PUBLISHED:START -->
+| Tool | Folder | Topic |
+| --- | --- | --- |
+| Research Question to Method Mapper | [`01-research-question-method-mapper/`](01-research-question-method-mapper/) | Reading a research question: what claim it makes, what design could support it, and what you still need to know |
+| Operationalisation Laboratory | [`02-operationalisation-laboratory/`](02-operationalisation-laboratory/) | Operationalisation: what a measure reaches, what it misses, and what it quietly records instead |
+| Confound Detective | [`03-confound-detective/`](03-confound-detective/) | Confounds, nuisance variables and design repair: why more data cannot fix bias |
+| Sampling Bias Simulator | [`04-sampling-bias-simulator/`](04-sampling-bias-simulator/) | Sampling bias against sampling variability: why a bigger sample cannot fix the wrong people |
+| Thematic Analysis Coding Laboratory | [`05-thematic-analysis-coding-lab/`](05-thematic-analysis-coding-lab/) | Coding as an analytic act: three defensible readings of the same six extracts, and no answer key |
+| Theme or Topic? | [`06-theme-or-topic-challenge/`](06-theme-or-topic-challenge/) | Topic summary, staging post, developed theme, or a claim the data cannot carry |
+| Reflexivity and Alternative Theme Builder | [`07-reflexivity-alternative-theme-builder/`](07-reflexivity-alternative-theme-builder/) | Reflexivity: how the question and the lens decide which themes are available, and where several defensible readings stop |
+| Sampling Distribution and p-Value Simulator | [`08-sampling-distribution-pvalue-simulator/`](08-sampling-distribution-pvalue-simulator/) | What a null world looks like: the sampling distribution, the tail area, and everything a p-value is not |
+| Confidence Interval Laboratory | [`09-confidence-interval-laboratory/`](09-confidence-interval-laboratory/) | Coverage is a property of the procedure: count the misses, then separate precision from importance |
+| ANOVA F-Ratio Visualiser | [`10-anova-f-ratio-visualiser/`](10-anova-f-ratio-visualiser/) | F is a fraction: move the signal, move the noise, and meet three patterns of means that share one F |
+| Factorial ANOVA Interaction Detective | [`11-factorial-anova-interaction-detective/`](11-factorial-anova-interaction-detective/) | An interaction is a difference of differences - and a plot will not tell you the scale or the uncertainty |
+| ANCOVA / MANOVA Decision Laboratory | [`12-ancova-manova-decision-lab/`](12-ancova-manova-decision-lab/) | What a covariate is for, when adjustment misleads, and why MANOVA is not several ANOVAs at once |
+| The Normal Curve and z-Scores | [`13-normal-curve-z-scores/`](13-normal-curve-z-scores/) | Two numbers make the whole curve, and a raw score means nothing without them |
+| Central Limit Theorem Simulator | [`14-central-limit-theorem-simulator/`](14-central-limit-theorem-simulator/) | The population, one sample and the sampling distribution, kept visibly apart |
+| Cohen's d and Distributional Overlap | [`15-cohens-d-overlap-explorer/`](15-cohens-d-overlap-explorer/) | A conventionally large effect still leaves two thirds of the two distributions overlapping |
+| Independent-Samples t-Test: The Null Distribution | [`16-independent-t-test-null-lab/`](16-independent-t-test-null-lab/) | One number on one curve: where t comes from, and why p moves with n when d does not |
+| Statistical Power and Type M Error | [`17-statistical-power-type-m-lab/`](17-statistical-power-type-m-lab/) | Power as four areas, the sample size a study would need, and why significant small studies exaggerate |
+| Correlation: Linearity, Outliers and Shared Variance | [`18-correlation-outlier-nonlinearity-lab/`](18-correlation-outlier-nonlinearity-lab/) | r measures straightness, not relatedness: curves, single points and a change of units |
+| Regression: Intercept, Slope and Least Squares | [`19-regression-slope-intercept-lab/`](19-regression-slope-intercept-lab/) | Try to beat the least-squares line, then find out what the intercept is a prediction for |
+| Homoscedasticity and Residual Diagnostics | [`20-homoscedasticity-residual-diagnostics/`](20-homoscedasticity-residual-diagnostics/) | The residual plot is the instrument: what non-constant variance does to the standard error, and what it leaves alone |
+| Multiple Comparisons, FWER and Forking Paths | [`21-multiple-comparisons-fwer-p-hacking/`](21-multiple-comparisons-fwer-p-hacking/) | Why flexibility inflates false positives without anyone cheating, and what a correction costs |
+
+<!-- PUBLISHED:END -->
+
 Tools for the **Research Methods** module live here, one folder per tool.
 
-**This folder is currently empty.** No research methods tool has been built
-yet. The module page at `modules/research-methods/index.html` describes the
-planned scope.
+Twenty-one tools are published; they are listed above. The module page at
+`modules/research-methods/index.html` describes the scope.
 
 ## Canonical tool structure
 

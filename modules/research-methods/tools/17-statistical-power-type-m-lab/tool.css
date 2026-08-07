@@ -1,0 +1,169 @@
+/* =========================================================================
+   Statistical Power and Type M Error — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. What is specific
+   here is the two-curve power picture, with its alpha and beta regions
+   distinguished by hatch direction as well as by fill, and the Type M
+   histogram, whose significant bars are hatched rather than merely recoloured.
+   ========================================================================= */
+
+#power .interactive__controls,
+#power .interactive__stage,
+#typem .interactive__controls,
+#typem .interactive__stage {
+  min-width: 0;
+}
+
+#power .interactive__stage > *,
+#typem .interactive__stage > * {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #power .interactive__body,
+  #typem .interactive__body {
+    grid-template-columns: minmax(0, 19rem) minmax(0, 1fr);
+  }
+}
+
+/* The descendant part is load-bearing: interactive-shell.css sets
+   `.interactive__stage svg { max-width: 100% }`, which out-specifies a bare
+   attribute selector, so a cap written as `[data-power]` alone would silently
+   do nothing. */
+.interactive__stage [data-power],
+.interactive__stage [data-typem] {
+  max-width: 29rem;
+}
+
+#power .interactive__readout {
+  grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+  gap: 0.4rem;
+}
+
+#power .interactive__readout div {
+  padding: 0.4rem 0.5rem;
+}
+
+#power .interactive__readout dd {
+  font-size: 1rem;
+}
+
+#typem .control--choice {
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 0.3rem 0;
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+#typem .control--choice input {
+  margin-top: 0.3rem;
+}
+
+#typem .control--choice label {
+  cursor: pointer;
+}
+
+/* -------------------------------------------------------------------------
+   The power picture
+   ---------------------------------------------------------------------- */
+
+.pw__null {
+  fill: none;
+  stroke: var(--colour-text-muted);
+  stroke-width: 2;
+  stroke-dasharray: 6 3;
+}
+
+.pw__alt {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+
+.pw__alpha-fill {
+  fill: var(--colour-status-bg, var(--colour-surface));
+}
+
+.pw__beta-fill {
+  fill: var(--colour-accent-soft);
+}
+
+/* Alpha is hatched one way, beta the other, so the two shaded regions are
+   never told apart by tint alone. */
+.pw__alpha-hatch {
+  stroke: var(--colour-social-critical-psychology);
+  stroke-width: 1;
+  opacity: 0.75;
+}
+
+.pw__beta-hatch {
+  stroke: var(--colour-accent);
+  stroke-width: 1;
+  opacity: 0.6;
+}
+
+.pw__threshold {
+  stroke: var(--colour-text);
+  stroke-width: 2.5;
+}
+
+.pw__axis {
+  stroke: var(--colour-border-strong);
+  stroke-width: 1;
+}
+
+/* -------------------------------------------------------------------------
+   The Type M histogram
+   ---------------------------------------------------------------------- */
+
+.tm__bar {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border-strong);
+  stroke-width: 0.6;
+}
+
+.tm__bar--sig {
+  fill: var(--colour-accent-soft);
+  stroke: var(--colour-accent);
+}
+
+.tm__hatch {
+  stroke: var(--colour-accent);
+  stroke-width: 1;
+  opacity: 0.7;
+}
+
+.tm__truth {
+  stroke: var(--colour-text);
+  stroke-width: 2.5;
+}
+
+.tm__all {
+  stroke: var(--colour-text-muted);
+  stroke-width: 2;
+  stroke-dasharray: 3 3;
+}
+
+.tm__sig {
+  stroke: var(--colour-social-critical-psychology);
+  stroke-width: 2.5;
+  stroke-dasharray: 8 3;
+}
+
+@media (forced-colors: active) {
+  .pw__null { stroke: GrayText; }
+  .pw__alt { stroke: CanvasText; }
+  .pw__alpha-fill,
+  .pw__beta-fill { fill: Canvas; }
+  .pw__alpha-hatch { stroke: Highlight; opacity: 1; }
+  .pw__beta-hatch { stroke: CanvasText; opacity: 1; }
+  .pw__threshold { stroke: CanvasText; }
+  .pw__axis { stroke: CanvasText; }
+  .tm__bar { fill: Canvas; stroke: GrayText; }
+  .tm__bar--sig { fill: Canvas; stroke: CanvasText; }
+  .tm__hatch { stroke: CanvasText; opacity: 1; }
+  .tm__truth { stroke: CanvasText; }
+  .tm__all { stroke: GrayText; }
+  .tm__sig { stroke: Highlight; }
+}

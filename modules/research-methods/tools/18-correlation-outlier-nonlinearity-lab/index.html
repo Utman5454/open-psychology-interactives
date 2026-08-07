@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Correlation: Linearity, Outliers and Shared Variance — Open Psychology Interactives</title>
+  <meta name="description" content="Six fictional datasets, one moveable point and a change of units. Watch r collapse on a strong curve, swing on a single outlier in a small sample, and refuse to move when the slope does.">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f141b" media="(prefers-color-scheme: dark)">
+
+  <link rel="canonical" href="https://utman5454.github.io/open-psychology-interactives/modules/research-methods/tools/18-correlation-outlier-nonlinearity-lab/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Open Psychology Interactives">
+  <meta property="og:title" content="Correlation: Linearity, Outliers and Shared Variance">
+  <meta property="og:description" content="r measures straightness, not relatedness. One point can move it, and a change of units cannot.">
+  <meta property="og:url" content="https://utman5454.github.io/open-psychology-interactives/modules/research-methods/tools/18-correlation-outlier-nonlinearity-lab/">
+  <meta property="og:locale" content="en_GB">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Correlation: Linearity, Outliers and Shared Variance">
+  <meta name="twitter:description" content="r measures straightness, not relatedness. One point can move it, and a change of units cannot.">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231a4fa0'/%3E%3Cpath d='M4 24C10 24 10 8 16 8s6 16 12 16' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
+
+  <!-- Four directories deep (modules/<slug>/tools/<slug>/), so shared assets
+       are at ../../../../ — see docs/adapting-a-tool.md. -->
+  <link rel="stylesheet" href="../../../../assets/css/main.css">
+  <link rel="stylesheet" href="../../../../components/interactive-shell.css">
+  <link rel="stylesheet" href="../../../../components/tool-kit.css">
+  <link rel="stylesheet" href="tool.css">
+  <script src="../../../../assets/js/main.js" defer></script>
+  <script src="../../../../components/interactive-shell.js" defer></script>
+  <script src="tool.js" defer></script>
+</head>
+
+<!-- data-site-root: the path back to the site root from this page. -->
+<body data-site-root="../../../../">
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+
+      <a class="brand" href="../../../../index.html" aria-label="Open Psychology Interactives, home">
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <rect x="1" y="1" width="30" height="30" rx="7" fill="none" stroke="currentColor" stroke-width="2"></rect>
+          <path d="M5 24C10 24 10 8 16 8s6 16 11 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        </svg>
+        <span>
+          <span class="brand__name">Open Psychology Interactives</span>
+          <span class="brand__tagline">Free teaching tools for psychology</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" data-nav-toggle
+              aria-expanded="false" aria-controls="site-nav" hidden>
+        <svg class="nav-toggle__icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+          <path d="M2 5h16M2 10h16M2 15h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        </svg>
+        Menu
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul class="site-nav__list">
+          <li><a class="site-nav__link" href="../../../../index.html">Home</a></li>
+          <li><a class="site-nav__link" href="../../../cognitive/index.html">Cognitive<span class="visually-hidden"> Psychology</span></a></li>
+          <li><a class="site-nav__link" href="../../index.html">Research Methods</a></li>
+          <li><a class="site-nav__link" href="../../../neuropsychology/index.html">Neuropsychology</a></li>
+          <li><a class="site-nav__link" href="../../../social-critical-psychology/index.html">Social and Critical<span class="visually-hidden"> Psychology</span></a></li>
+          <li><a class="site-nav__link" href="../../../personality-individual-differences/index.html">Personality<span class="visually-hidden"> and Individual Differences</span></a></li>
+          <li><a class="site-nav__link" href="../../../../index.html#documentation">Documentation</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <nav class="breadcrumbs container" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="../../../../index.html">Home</a></li>
+      <li><a href="../../../../index.html#modules">Modules</a></li>
+      <li><a href="../../index.html">Research Methods</a></li>
+      <li aria-current="page">Correlation: Linearity, Outliers and Shared Variance</li>
+    </ol>
+  </nav>
+
+  <main id="main">
+
+    <!-- ================= Title and purpose ================= -->
+    <section class="section card--research-methods" aria-labelledby="page-heading">
+      <div class="container">
+
+        <p class="hero__eyebrow" style="color: var(--colour-research-methods)">
+          Research Methods
+        </p>
+        <h1 id="page-heading">Correlation: Linearity, Outliers and Shared Variance</h1>
+        <p class="hero__lead">
+          Pearson's <em>r</em> measures how close two variables come to a
+          <em>straight line</em>. It is not a measure of how related they are,
+          and the difference is the whole of this page.
+        </p>
+
+        <p>
+          <span class="badge">
+            <span class="badge__dot" aria-hidden="true"></span>
+            Simulated &mdash; generated datasets from a documented seed
+          </span>
+        </p>
+
+        <div class="split split--wide">
+
+          <div class="panel">
+            <h2 class="panel__title">Learning objective</h2>
+            <p>
+              By the end you should be able to say what <em>r</em> does and does
+              not measure, interpret <em>r</em>&sup2; carefully, explain why a
+              near-zero <em>r</em> is not evidence of no relationship, describe
+              how a single point can move <em>r</em> in a small sample, and
+              distinguish <em>r</em> from a regression slope.
+            </p>
+            <p class="text-muted">
+              About 25 minutes. Nothing you do here is saved or sent anywhere.
+            </p>
+          </div>
+
+          <div class="panel panel--caution">
+            <h2 class="panel__title">Always plot it</h2>
+            <p>
+              Every trap on this page is invisible in the number and obvious in
+              the picture. A strong curve gives <em>r</em> = 0. One point in a
+              small sample can take <em>r</em> from 0.02 to 0.75. A change of
+              units leaves <em>r</em> untouched while the slope moves by a
+              factor of ten. No summary statistic can be trusted without the
+              scatterplot it came from.
+            </p>
+          </div>
+
+        </div>
+
+        <ol class="how-to">
+          <li>Answer the prediction question to open the laboratory.</li>
+          <li>Work through the six datasets and read the number against the picture.</li>
+          <li>Drag the highlighted point and watch what one observation can do.</li>
+          <li>Change the units of y and watch the slope move while <em>r</em> does not.</li>
+        </ol>
+
+      </div>
+    </section>
+
+    <!-- ================= Opening prediction ================= -->
+    <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="opening-heading">First, a prediction</h2>
+          <p class="prose">
+            A fictional study measures two things and finds a strong,
+            unmistakable relationship: as x rises, y falls steeply, bottoms out
+            around the middle of the range, and then rises again just as
+            steeply. Plotted, it is a clean U. Every value of x predicts its y
+            almost exactly.
+          </p>
+        </div>
+
+        <noscript>
+          <div class="placeholder">
+            <h3 class="placeholder__title">This part needs JavaScript</h3>
+            <p class="prose">
+              The datasets are generated and the correlations computed in your
+              browser, so this part cannot run with JavaScript switched off.
+              The rest of this page is readable without it.
+            </p>
+          </div>
+        </noscript>
+
+        <form class="panel prediction" id="opening-form">
+          <fieldset class="prediction__group">
+            <legend class="prediction__legend">
+              What will Pearson's <em>r</em> be?
+            </legend>
+            <label class="control--choice">
+              <input type="radio" name="opening" value="high"> Close to +1
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="opening" value="low"> Close to &minus;1
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="opening" value="mid"> Somewhere around 0.5, since the relationship is strong
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="opening" value="zero"> Close to 0
+            </label>
+          </fieldset>
+
+          <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+          <div class="prediction__actions">
+            <button class="button button--primary" type="submit">
+              Record my prediction and open the laboratory
+            </button>
+            <button class="button button--secondary" type="button" data-action="skip-opening">
+              Skip &mdash; I am demonstrating this
+            </button>
+          </div>
+
+          <div class="feedback" data-opening-feedback hidden></div>
+        </form>
+
+      </div>
+    </section>
+
+    <!-- ================= Laboratory ================= -->
+    <section class="section" id="lab-section" aria-labelledby="lab-heading" hidden>
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="lab-heading" tabindex="-1">The laboratory</h2>
+          <p class="prose">
+            Six fictional datasets on the same axes. One point in each is
+            ringed and can be dragged with the second control, and the units of
+            y can be changed with the third.
+          </p>
+        </div>
+
+        <section class="interactive" id="corr" data-interactive
+                 data-reset-message="Everything cleared. Back to the opening prediction.">
+
+          <header class="interactive__header">
+            <h3 class="interactive__title">One number, six pictures</h3>
+            <p class="interactive__brief">
+              Read the number and the picture together, every time. Several of
+              these datasets produce a number that would be badly misleading on
+              its own.
+            </p>
+          </header>
+
+          <div class="interactive__body interactive__body--pinned">
+
+            <form class="interactive__controls" data-interactive-controls>
+
+              <fieldset>
+                <legend>The data</legend>
+                <div class="control">
+                  <label class="control__label" for="set-select">Dataset</label>
+                  <select id="set-select">
+                    <option value="pos">Strong positive, n = 40</option>
+                    <option value="neg">Strong negative, n = 40</option>
+                    <option value="none">No linear association, n = 40</option>
+                    <option value="curve">A clean curve, n = 40</option>
+                    <option value="small">One odd point, n = 12</option>
+                    <option value="large">The same odd point, n = 120</option>
+                  </select>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>The ringed point</legend>
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="pull-range">Pull it towards the corner</label>
+                    <output class="control__value" for="pull-range">0%</output>
+                  </div>
+                  <input type="range" id="pull-range" min="0" max="100" step="5" value="0">
+                  <p class="control__hint">
+                    At 0% the ringed observation sits where it was generated. At
+                    100% it has been dragged to the top-right corner of the
+                    plot. Nothing else about the dataset changes.
+                  </p>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>The units of y</legend>
+                <div class="control">
+                  <label class="control__label" for="units-select">Measure y in</label>
+                  <select id="units-select">
+                    <option value="1">the original units</option>
+                    <option value="10">units ten times smaller</option>
+                    <option value="0.2">units five times larger</option>
+                  </select>
+                  <p class="control__hint">
+                    A change of units is not a change of data. Watch which of
+                    the four numbers below reacts.
+                  </p>
+                </div>
+              </fieldset>
+
+            </form>
+
+            <div class="interactive__stage" data-interactive-stage>
+
+              <!-- Pinned: the scatterplot with its fitted line. -->
+              <div class="stage__primary">
+                <h4 class="stage__heading" data-chart-heading>The scatterplot</h4>
+                <figure class="chart">
+                  <figcaption class="visually-hidden">
+                    Scatterplot of y against x with the least-squares line drawn
+                    through it and one observation ringed
+                  </figcaption>
+                  <svg class="chart__svg" data-scatter viewBox="0 0 460 200"
+                       aria-hidden="true" focusable="false"></svg>
+                  <div class="table-scroll">
+                    <table class="chart__table">
+                      <caption class="visually-hidden">
+                        The summary statistics of the dataset currently plotted
+                      </caption>
+                      <thead>
+                        <tr>
+                          <th scope="col">Quantity</th>
+                          <th scope="col">Value</th>
+                        </tr>
+                      </thead>
+                      <tbody data-stat-table></tbody>
+                    </table>
+                  </div>
+                </figure>
+                <dl class="interactive__readout" data-readout></dl>
+              </div>
+
+              <div class="verdict" data-verdict>
+                <h4 class="verdict__title">What this number is telling you</h4>
+                <p class="verdict__body" data-interpretation></p>
+                <p class="verdict__note" data-caution></p>
+              </div>
+
+              <details class="stage__more">
+                <summary>The same dataset with the ringed point removed</summary>
+                <div>
+                  <p class="prose" data-drop-note></p>
+                  <div class="table-scroll">
+                    <table class="data-table">
+                      <caption class="visually-hidden">
+                        The correlation and slope with and without the ringed
+                        observation
+                      </caption>
+                      <thead>
+                        <tr>
+                          <th scope="col">Quantity</th>
+                          <th scope="col">With the point</th>
+                          <th scope="col">Without it</th>
+                        </tr>
+                      </thead>
+                      <tbody data-drop-table></tbody>
+                    </table>
+                  </div>
+                </div>
+              </details>
+
+            </div>
+
+          </div>
+
+          <p class="interactive__status" data-interactive-status role="status"></p>
+
+          <div class="interactive__actions">
+            <button type="button" data-action="show-challenge">Try the eyeball test</button>
+            <button type="button" data-variant="secondary" data-interactive-reset>
+              Reset everything
+            </button>
+          </div>
+
+          <details class="interactive__notes">
+            <summary>Notes for whoever is running this</summary>
+            <div>
+              <p>
+                Take the curve first. The picture shows an almost perfect
+                relationship and <em>r</em> is essentially zero. Ask what a
+                results table containing only that number would tell a reader,
+                and what it would hide.
+              </p>
+              <p>
+                Then the two odd-point datasets. Set the pull to 0% and to 100%
+                in each, and put the four values of <em>r</em> on the board. In
+                the twelve-person sample one observation swings <em>r</em>
+                across most of its range; in the hundred-and-twenty-person
+                sample the same observation barely registers.
+              </p>
+              <p>
+                Finish with the units menu on the strong positive dataset. The
+                slope moves by a factor of ten and <em>r</em> does not move at
+                all. That is the difference between a standardised measure and
+                one that carries units.
+              </p>
+              <p>
+                Fuller guidance is in
+                <a href="teaching-notes.md">teaching-notes.md</a> beside this
+                page.
+              </p>
+            </div>
+          </details>
+
+        </section>
+
+      </div>
+    </section>
+
+    <!-- ================= Challenge ================= -->
+    <section class="section section--tinted" id="challenge" aria-labelledby="challenge-heading" hidden>
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="challenge-heading" tabindex="-1">Challenge &mdash; the eyeball test</h2>
+          <p class="prose">
+            Three fictional scatterplots. Estimate Pearson's <em>r</em> for each
+            one on the slider beneath it, then check all three at once. People
+            are reliably bad at this in one particular direction, and finding
+            out which is the point.
+          </p>
+        </div>
+
+        <form class="panel challenge" id="challenge-form">
+
+          <div class="guess" data-guess="0">
+            <h3 class="guess__title">Scatterplot A</h3>
+            <figure class="chart">
+              <figcaption class="visually-hidden">
+                Scatterplot A, forty fictional observations
+              </figcaption>
+              <svg class="chart__svg guess__svg" data-guess-chart="0" viewBox="0 0 300 170"
+                   aria-hidden="true" focusable="false"></svg>
+              <p class="guess__alt" data-guess-alt="0"></p>
+            </figure>
+            <div class="estimate__row">
+              <label class="visually-hidden" for="guess-0">
+                Your estimate of r for scatterplot A
+              </label>
+              <input type="range" id="guess-0" min="-1" max="1" step="0.05" value="0">
+              <output class="estimate__value" for="guess-0">0.00</output>
+            </div>
+          </div>
+
+          <div class="guess" data-guess="1">
+            <h3 class="guess__title">Scatterplot B</h3>
+            <figure class="chart">
+              <figcaption class="visually-hidden">
+                Scatterplot B, forty fictional observations
+              </figcaption>
+              <svg class="chart__svg guess__svg" data-guess-chart="1" viewBox="0 0 300 170"
+                   aria-hidden="true" focusable="false"></svg>
+              <p class="guess__alt" data-guess-alt="1"></p>
+            </figure>
+            <div class="estimate__row">
+              <label class="visually-hidden" for="guess-1">
+                Your estimate of r for scatterplot B
+              </label>
+              <input type="range" id="guess-1" min="-1" max="1" step="0.05" value="0">
+              <output class="estimate__value" for="guess-1">0.00</output>
+            </div>
+          </div>
+
+          <div class="guess" data-guess="2">
+            <h3 class="guess__title">Scatterplot C</h3>
+            <figure class="chart">
+              <figcaption class="visually-hidden">
+                Scatterplot C, forty fictional observations
+              </figcaption>
+              <svg class="chart__svg guess__svg" data-guess-chart="2" viewBox="0 0 300 170"
+                   aria-hidden="true" focusable="false"></svg>
+              <p class="guess__alt" data-guess-alt="2"></p>
+            </figure>
+            <div class="estimate__row">
+              <label class="visually-hidden" for="guess-2">
+                Your estimate of r for scatterplot C
+              </label>
+              <input type="range" id="guess-2" min="-1" max="1" step="0.05" value="0">
+              <output class="estimate__value" for="guess-2">0.00</output>
+            </div>
+          </div>
+
+          <div class="prediction__actions">
+            <button class="button button--primary" type="submit">Check all three</button>
+          </div>
+
+          <div class="feedback" data-challenge-feedback hidden></div>
+        </form>
+
+      </div>
+    </section>
+
+    <!-- ================= Debrief ================= -->
+    <section class="section" id="debrief" aria-labelledby="debrief-heading">
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="debrief-heading">What this demonstrates</h2>
+        </div>
+
+        <div class="split split--wide">
+
+          <div class="prose">
+            <h3><em>r</em> measures straightness</h3>
+            <p>
+              Pearson's <em>r</em> is the average product of the two variables'
+              z-scores. It answers one question: how closely do the points fall
+              along a straight line, and in which direction? A clean curve has
+              a perfect relationship and no consistent direction, so the
+              products cancel and <em>r</em> comes out at zero. "No
+              correlation" and "no relationship" are different findings, and
+              only the picture distinguishes them.
+            </p>
+
+            <h3><em>r</em>&sup2;, said carefully</h3>
+            <p>
+              In this simple two-variable linear setting, <em>r</em>&sup2; is
+              the proportion of the variance in y that the straight-line
+              relationship with x accounts for, and 1 &minus; <em>r</em>&sup2;
+              is what it does not. Two cautions travel with that sentence. The
+              word is <em>accounted for</em>, not <em>caused by</em>. And
+              because it is a square, it falls away fast: <em>r</em> = 0.5
+              accounts for a quarter of the variance, and <em>r</em> = 0.3 for
+              nine per cent.
+            </p>
+
+            <h3>One point, in a small sample, is enough</h3>
+            <p>
+              In the twelve-person dataset, dragging a single observation to the
+              corner takes <em>r</em> from 0.02 to 0.75, because
+              that point is now the only thing spanning the range. The same
+              observation added to a hundred and twenty people moves the number
+              much less. Influence is not about being extreme in y; it is about
+              being extreme in x, where there is nothing else to hold the line
+              down.
+            </p>
+
+            <h3><em>r</em> and the slope are relatives, not synonyms</h3>
+            <p>
+              The regression slope is <em>r</em> times the ratio of the two
+              standard deviations, so it carries units and <em>r</em> does not.
+              Change y from one unit to another and the slope moves by exactly
+              that factor while <em>r</em> stays where it was. That is why
+              <em>r</em> can be compared across studies of different measures
+              and a slope generally cannot &mdash; and why a large slope is not
+              evidence of a strong relationship.
+            </p>
+          </div>
+
+          <aside class="panel panel--caution" aria-labelledby="limits-heading">
+            <h3 class="panel__title" id="limits-heading">
+              What this does <em>not</em> demonstrate
+            </h3>
+            <ul>
+              <li>
+                <strong>No real variables.</strong> All six datasets are
+                generated from a seeded random number generator and x and y are
+                deliberately unnamed, so that no story about what they might be
+                does the explaining.
+              </li>
+              <li>
+                <strong>Correlation does not establish causation</strong>, and
+                nothing on this page could. x might cause y, y might cause x,
+                something else might cause both, or the pattern might be an
+                artefact of who was sampled. Only the design settles it.
+              </li>
+              <li>
+                <strong>Restricted range is not shown here.</strong> Sampling
+                only the middle of x, or only the top of it, shrinks <em>r</em>
+                without changing the relationship at all &mdash; a common
+                problem in selected samples that this tool does not simulate.
+              </li>
+              <li>
+                <strong>Pearson is not the only correlation.</strong>
+                Spearman's rank correlation would find the monotonic part of a
+                curved relationship and is far less disturbed by a single
+                extreme point. The right response to these pictures is often a
+                different statistic, not a bigger one.
+              </li>
+              <li>
+                <strong>Removing an outlier is a decision, not a fix.</strong>
+                The disclosure shows what happens without the ringed point; it
+                does not license deleting it. An unusual observation may be an
+                error, or the most informative case in the dataset, and which it
+                is has to be argued rather than tested.
+              </li>
+            </ul>
+          </aside>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+
+        <div>
+          <h2>Open Psychology Interactives</h2>
+          <p class="text-muted">
+            Free, accessible, classroom-ready teaching tools for university
+            psychology. Built as plain web pages so they keep working, and
+            openly licensed so they can be adapted.
+          </p>
+        </div>
+
+        <div>
+          <h2>Modules</h2>
+          <ul>
+            <li><a href="../../../cognitive/index.html">Cognitive Psychology</a></li>
+            <li><a href="../../index.html">Research Methods</a></li>
+            <li><a href="../../../neuropsychology/index.html">Neuropsychology</a></li>
+            <li><a href="../../../social-critical-psychology/index.html">Social and Critical Psychology</a></li>
+            <li><a href="../../../personality-individual-differences/index.html">Personality and Individual Differences</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h2>Project</h2>
+          <ul>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives">GitHub repository</a></li>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives/blob/main/CONTRIBUTING.md">Contributing</a></li>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives/blob/main/docs/accessibility.md">Accessibility</a></li>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives/blob/main/LICENSE">MIT licence</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="site-footer__bottom">
+        <p>© <span data-current-year>2026</span> Open Psychology Interactives. Released under the MIT licence.</p>
+        <p>Built with plain HTML, CSS and JavaScript. No trackers, no accounts.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

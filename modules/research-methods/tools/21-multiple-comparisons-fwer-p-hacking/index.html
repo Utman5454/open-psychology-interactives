@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Multiple Comparisons, FWER and Forking Paths — Open Psychology Interactives</title>
+  <meta name="description" content="Twenty tests where nothing is going on, and how often one of them lands. Then a fictional dataset with no effect in it at all, and seventy-two defensible analyses of it - one of which you are going to find.">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f141b" media="(prefers-color-scheme: dark)">
+
+  <link rel="canonical" href="https://utman5454.github.io/open-psychology-interactives/modules/research-methods/tools/21-multiple-comparisons-fwer-p-hacking/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Open Psychology Interactives">
+  <meta property="og:title" content="Multiple Comparisons, FWER and Forking Paths">
+  <meta property="og:description" content="Analytic flexibility inflates false positives without anyone intending to cheat. Seventy-two defensible analyses of one empty dataset.">
+  <meta property="og:url" content="https://utman5454.github.io/open-psychology-interactives/modules/research-methods/tools/21-multiple-comparisons-fwer-p-hacking/">
+  <meta property="og:locale" content="en_GB">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Multiple Comparisons, FWER and Forking Paths">
+  <meta name="twitter:description" content="Analytic flexibility inflates false positives without anyone intending to cheat. Seventy-two defensible analyses of one empty dataset.">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231a4fa0'/%3E%3Cpath d='M4 24C10 24 10 8 16 8s6 16 12 16' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
+
+  <!-- Four directories deep (modules/<slug>/tools/<slug>/), so shared assets
+       are at ../../../../ — see docs/adapting-a-tool.md. -->
+  <link rel="stylesheet" href="../../../../assets/css/main.css">
+  <link rel="stylesheet" href="../../../../components/interactive-shell.css">
+  <link rel="stylesheet" href="../../../../components/tool-kit.css">
+  <link rel="stylesheet" href="tool.css">
+  <script src="../../../../assets/js/main.js" defer></script>
+  <script src="../../../../components/interactive-shell.js" defer></script>
+  <script src="tool.js" defer></script>
+</head>
+
+<!-- data-site-root: the path back to the site root from this page. -->
+<body data-site-root="../../../../">
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+
+      <a class="brand" href="../../../../index.html" aria-label="Open Psychology Interactives, home">
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <rect x="1" y="1" width="30" height="30" rx="7" fill="none" stroke="currentColor" stroke-width="2"></rect>
+          <path d="M5 24C10 24 10 8 16 8s6 16 11 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        </svg>
+        <span>
+          <span class="brand__name">Open Psychology Interactives</span>
+          <span class="brand__tagline">Free teaching tools for psychology</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" data-nav-toggle
+              aria-expanded="false" aria-controls="site-nav" hidden>
+        <svg class="nav-toggle__icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+          <path d="M2 5h16M2 10h16M2 15h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        </svg>
+        Menu
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul class="site-nav__list">
+          <li><a class="site-nav__link" href="../../../../index.html">Home</a></li>
+          <li><a class="site-nav__link" href="../../../cognitive/index.html">Cognitive<span class="visually-hidden"> Psychology</span></a></li>
+          <li><a class="site-nav__link" href="../../index.html">Research Methods</a></li>
+          <li><a class="site-nav__link" href="../../../neuropsychology/index.html">Neuropsychology</a></li>
+          <li><a class="site-nav__link" href="../../../social-critical-psychology/index.html">Social and Critical<span class="visually-hidden"> Psychology</span></a></li>
+          <li><a class="site-nav__link" href="../../../personality-individual-differences/index.html">Personality<span class="visually-hidden"> and Individual Differences</span></a></li>
+          <li><a class="site-nav__link" href="../../../../index.html#documentation">Documentation</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <nav class="breadcrumbs container" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="../../../../index.html">Home</a></li>
+      <li><a href="../../../../index.html#modules">Modules</a></li>
+      <li><a href="../../index.html">Research Methods</a></li>
+      <li aria-current="page">Multiple Comparisons, FWER and Forking Paths</li>
+    </ol>
+  </nav>
+
+  <main id="main">
+
+    <!-- ================= Title and purpose ================= -->
+    <section class="section card--research-methods" aria-labelledby="page-heading">
+      <div class="container">
+
+        <p class="hero__eyebrow" style="color: var(--colour-research-methods)">
+          Research Methods
+        </p>
+        <h1 id="page-heading">Multiple Comparisons, FWER and Forking Paths</h1>
+        <p class="hero__lead">
+          Run enough tests on nothing and something will come out significant.
+          The uncomfortable part is that you do not have to run them
+          deliberately, or even know that you did.
+        </p>
+
+        <p>
+          <span class="badge">
+            <span class="badge__dot" aria-hidden="true"></span>
+            Simulated &mdash; generated data containing no effect at all
+          </span>
+        </p>
+
+        <div class="split split--wide">
+
+          <div class="panel">
+            <h2 class="panel__title">Learning objective</h2>
+            <p>
+              By the end you should be able to compute a family-wise error rate
+              and say what family it belongs to, describe what a Bonferroni
+              correction buys and what it costs, explain how ordinary analytic
+              flexibility inflates false positives without anyone intending to
+              cheat, and distinguish planned multiplicity, exploratory analysis,
+              undisclosed selective reporting and confirmatory inference.
+            </p>
+            <p class="text-muted">
+              About 30 minutes. Nothing you do here is saved or sent anywhere.
+            </p>
+          </div>
+
+          <div class="panel panel--caution">
+            <h2 class="panel__title">This is not a technique</h2>
+            <p>
+              The second experiment lets you search a fictional dataset until
+              something comes out significant. It is there to show you what that
+              search does to the meaning of the number you end up with, and
+              every choice it offers is one a careful researcher might make in
+              good faith. Nobody in this laboratory is cheating. That is exactly
+              why the problem is hard, and why the answer is transparency about
+              what was decided when, rather than better intentions.
+            </p>
+          </div>
+
+        </div>
+
+        <ol class="how-to">
+          <li>Answer the prediction question to open Experiment 1.</li>
+          <li>Run a family of tests where every null is true, and count the hits.</li>
+          <li>Apply a Bonferroni correction and read both of its consequences.</li>
+          <li>In Experiment 2, analyse one empty dataset until something works.</li>
+        </ol>
+
+      </div>
+    </section>
+
+    <!-- ================= Opening prediction ================= -->
+    <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="opening-heading">First, a prediction</h2>
+          <p class="prose">
+            A fictional study runs <strong>20</strong> independent tests at
+            &alpha;&nbsp;=&nbsp;.05. Every single null hypothesis is true: there
+            is nothing to find anywhere in the data.
+          </p>
+        </div>
+
+        <noscript>
+          <div class="placeholder">
+            <h3 class="placeholder__title">This part needs JavaScript</h3>
+            <p class="prose">
+              The experiments are generated in your browser, so they cannot run
+              with JavaScript switched off. The rest of this page is readable
+              without it.
+            </p>
+          </div>
+        </noscript>
+
+        <form class="panel prediction" id="opening-form">
+          <fieldset class="prediction__group">
+            <legend class="prediction__legend">
+              What is the probability that at least one of the twenty comes out
+              significant?
+            </legend>
+            <label class="control--choice">
+              <input type="radio" name="opening" value="five">
+              About 5% &mdash; that is what &alpha; is
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="opening" value="twenty">
+              About 20%
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="opening" value="sixtyfour">
+              About 64%
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="opening" value="ninetyfive">
+              About 95%
+            </label>
+          </fieldset>
+
+          <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+          <div class="prediction__actions">
+            <button class="button button--primary" type="submit">
+              Record my prediction and open Experiment 1
+            </button>
+            <button class="button button--secondary" type="button" data-action="skip-opening">
+              Skip &mdash; I am demonstrating this
+            </button>
+          </div>
+
+          <div class="feedback" data-opening-feedback hidden></div>
+        </form>
+
+      </div>
+    </section>
+
+    <!-- ================= Experiment 1 ================= -->
+    <section class="section" id="family-section" aria-labelledby="family-heading" hidden>
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="family-heading" tabindex="-1">Experiment 1 &mdash; the family of tests</h2>
+          <p class="prose">
+            Each square below is one test in one simulated experiment. A square
+            is marked when that test came out significant. Most of the tests
+            have nothing to find; you can give a few of them a real effect and
+            watch what a correction does to those as well.
+          </p>
+        </div>
+
+        <section class="interactive" id="family" data-interactive
+                 data-reset-message="Everything cleared. Back to the opening prediction.">
+
+          <header class="interactive__header">
+            <h3 class="interactive__title">One experiment, k tests</h3>
+            <p class="interactive__brief">
+              The family-wise error rate is a property of the whole family, not
+              of any one test in it. Every test in the family is behaving
+              exactly as advertised.
+            </p>
+          </header>
+
+          <div class="interactive__body interactive__body--pinned">
+
+            <form class="interactive__controls" data-interactive-controls>
+
+              <fieldset>
+                <legend>The family</legend>
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="k-range">Number of tests, k</label>
+                    <output class="control__value" for="k-range">20</output>
+                  </div>
+                  <input type="range" id="k-range" min="1" max="60" step="1" value="20">
+                </div>
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="real-range">How many have a real effect</label>
+                    <output class="control__value" for="real-range">0</output>
+                  </div>
+                  <input type="range" id="real-range" min="0" max="10" step="1" value="0">
+                  <p class="control__hint">
+                    The rest have nothing to find. Any real effects are of a
+                    fixed size, <em>d</em>&nbsp;=&nbsp;0.60 with 40 per group.
+                  </p>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>The decision rule</legend>
+                <div class="control">
+                  <label class="control__label" for="alpha-select">Per-test &alpha;</label>
+                  <select id="alpha-select">
+                    <option value="0.10">.10</option>
+                    <option value="0.05" selected>.05</option>
+                    <option value="0.01">.01</option>
+                  </select>
+                </div>
+                <div class="control">
+                  <label class="control__label" for="correct-select">Correction</label>
+                  <select id="correct-select">
+                    <option value="none" selected>None &mdash; test each at &alpha;</option>
+                    <option value="bonferroni">Bonferroni &mdash; test each at &alpha;/k</option>
+                  </select>
+                  <p class="control__hint">
+                    Read both consequences in the readout, not just the one the
+                    correction is advertised for.
+                  </p>
+                </div>
+                <div class="control">
+                  <label class="control__label" for="seed-input">Random seed</label>
+                  <input type="number" id="seed-input" value="4711" step="1" min="1" max="999999">
+                </div>
+              </fieldset>
+
+            </form>
+
+            <div class="interactive__stage" data-interactive-stage>
+
+              <!-- Pinned: the most recent experiment's k tests, and the rates
+                   the whole family produces. -->
+              <div class="stage__primary">
+                <h4 class="stage__heading" data-chart-heading>Nothing run yet</h4>
+                <figure class="chart chart--capped">
+                  <figcaption class="visually-hidden">
+                    A grid of squares, one per test in the most recent simulated
+                    experiment, with the significant ones marked by a cross
+                  </figcaption>
+                  <svg class="chart__svg" data-grid viewBox="0 0 460 132"
+                       aria-hidden="true" focusable="false"></svg>
+                  <div class="table-scroll">
+                    <table class="chart__table">
+                      <caption class="visually-hidden">
+                        What happened in the most recent experiment, split by
+                        whether each test had anything to find
+                      </caption>
+                      <thead>
+                        <tr>
+                          <th scope="col">In the most recent experiment</th>
+                          <th scope="col">Count</th>
+                        </tr>
+                      </thead>
+                      <tbody data-run-table></tbody>
+                    </table>
+                  </div>
+                </figure>
+                <dl class="interactive__readout" data-readout></dl>
+              </div>
+
+              <div class="verdict" data-verdict>
+                <h4 class="verdict__title">Reading this correctly</h4>
+                <p class="verdict__body" data-interpretation></p>
+                <p class="verdict__note" data-cost></p>
+              </div>
+
+              <details class="stage__more">
+                <summary>Theory beside simulation</summary>
+                <div class="table-scroll">
+                  <table class="data-table">
+                    <caption class="visually-hidden">
+                      Quantities the formula predicts and the same quantities
+                      measured across the simulated experiments
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Predicted</th>
+                        <th scope="col">Simulated</th>
+                      </tr>
+                    </thead>
+                    <tbody data-theory-table></tbody>
+                  </table>
+                </div>
+              </details>
+
+            </div>
+
+          </div>
+
+          <p class="interactive__status" data-interactive-status role="status"></p>
+
+          <div class="interactive__actions">
+            <button type="button" data-action="run-one">Run one experiment</button>
+            <button type="button" data-action="run-many">Run 1,000 experiments</button>
+            <button type="button" data-variant="secondary" data-action="clear-runs">
+              Clear the tally
+            </button>
+            <button type="button" data-variant="secondary" data-action="open-garden">
+              Go to Experiment 2
+            </button>
+            <button type="button" data-variant="secondary" data-interactive-reset>
+              Reset everything
+            </button>
+          </div>
+
+          <details class="interactive__notes">
+            <summary>Notes for whoever is running this</summary>
+            <div>
+              <p>
+                Press <em>Run one experiment</em> half a dozen times before
+                running the thousand. Most runs produce one or two marked
+                squares out of twenty, in data where there is nothing at all to
+                find. Ask what a paper reporting one of those squares would look
+                like.
+              </p>
+              <p>
+                Then run the thousand and compare the counted rate with
+                1 &minus; (1 &minus; &alpha;)<sup>k</sup> in the disclosure.
+                Drag k and watch the curve bend: at k = 14 the family-wise rate
+                has already passed a half.
+              </p>
+              <p>
+                Now set <em>how many have a real effect</em> to 5 and switch the
+                correction on. The false-positive rate collapses, which is what
+                Bonferroni is for &mdash; and the detection rate for the five
+                real effects collapses with it. Both figures are in the readout,
+                deliberately side by side.
+              </p>
+              <p>
+                Fuller guidance is in
+                <a href="teaching-notes.md">teaching-notes.md</a> beside this
+                page.
+              </p>
+            </div>
+          </details>
+
+        </section>
+
+      </div>
+    </section>
+
+    <!-- ================= Experiment 2 ================= -->
+    <section class="section section--tinted" id="garden-section"
+             aria-labelledby="garden-heading" hidden>
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="garden-heading" tabindex="-1">Experiment 2 &mdash; the garden of forking paths</h2>
+          <p class="prose">
+            One fictional dataset: ninety students, randomly assigned to two
+            versions of a revision task, measured on four outcomes, with a
+            baseline test, a response-speed measure and a cohort label. The data
+            were generated with <strong>no difference between the two groups on
+            anything</strong>. Below are the choices a careful analyst might
+            reasonably make. Make them, and see what happens.
+          </p>
+        </div>
+
+        <section class="interactive" id="garden" data-interactive
+                 data-reset-message="Experiment 2 reset. A fresh empty dataset, and no paths tried.">
+
+          <header class="interactive__header">
+            <h3 class="interactive__title">Seventy-two defensible analyses of nothing</h3>
+            <p class="interactive__brief">
+              Four outcomes, three exclusion rules, three subgroups and two
+              covariate decisions. Nobody would call any single one of those
+              choices dishonest.
+            </p>
+          </header>
+
+          <div class="interactive__body interactive__body--pinned">
+
+            <form class="interactive__controls" data-interactive-controls>
+
+              <fieldset>
+                <legend>Your analysis</legend>
+                <div class="control">
+                  <label class="control__label" for="outcome-select">Outcome</label>
+                  <select id="outcome-select">
+                    <option value="0">Overall revision score</option>
+                    <option value="1">Recall accuracy</option>
+                    <option value="2">Comprehension score</option>
+                    <option value="3">Self-rated confidence</option>
+                  </select>
+                </div>
+                <div class="control">
+                  <label class="control__label" for="exclude-select">Exclusions</label>
+                  <select id="exclude-select">
+                    <option value="0">No exclusions</option>
+                    <option value="1">Exclude the slowest 10% of responders</option>
+                    <option value="2">Exclude the bottom 10% on the baseline test</option>
+                  </select>
+                </div>
+                <div class="control">
+                  <label class="control__label" for="subgroup-select">Participants</label>
+                  <select id="subgroup-select">
+                    <option value="0">Everyone</option>
+                    <option value="1">First-year students only</option>
+                    <option value="2">Returning students only</option>
+                  </select>
+                </div>
+                <div class="control">
+                  <label class="control__label" for="covariate-select">Baseline score</label>
+                  <select id="covariate-select">
+                    <option value="0">Not adjusted for</option>
+                    <option value="1">Adjusted for</option>
+                  </select>
+                  <p class="control__hint">
+                    Every combination of these four menus is a complete,
+                    reportable analysis. There are 72 of them.
+                  </p>
+                </div>
+              </fieldset>
+
+            </form>
+
+            <div class="interactive__stage" data-interactive-stage>
+
+              <!-- Pinned: the paths tried so far, laid out on a p-value axis,
+                   with the current one marked. -->
+              <div class="stage__primary">
+                <h4 class="stage__heading" data-garden-heading>
+                  No analyses run yet
+                </h4>
+                <figure class="chart chart--capped">
+                  <figcaption class="visually-hidden">
+                    A p-value axis from zero to one, with a tick for every
+                    analysis run so far and a rule at .05
+                  </figcaption>
+                  <svg class="chart__svg" data-garden-chart viewBox="0 0 460 128"
+                       aria-hidden="true" focusable="false"></svg>
+                  <div class="table-scroll">
+                    <table class="chart__table">
+                      <caption class="visually-hidden">
+                        The result of the analysis currently selected, and the
+                        search so far
+                      </caption>
+                      <thead>
+                        <tr>
+                          <th scope="col">Quantity</th>
+                          <th scope="col">Value</th>
+                        </tr>
+                      </thead>
+                      <tbody data-garden-table></tbody>
+                    </table>
+                  </div>
+                </figure>
+              </div>
+
+              <div class="goal" data-goal>
+                <span class="goal__label">The task</span>
+                <span class="goal__text">
+                  Find an analysis of this empty dataset that reaches
+                  <em>p</em> &lt; .05, and count how many you had to run. This
+                  is a demonstration of what the search costs, not a method to
+                  use.
+                </span>
+                <ul class="goal__checks" data-goal-checks></ul>
+              </div>
+
+              <div class="feedback" data-garden-feedback hidden></div>
+
+              <details class="stage__more" data-reveal-details hidden>
+                <summary>Every path you could have taken</summary>
+                <div>
+                  <p class="prose" data-reveal-note></p>
+                  <div class="table-scroll">
+                    <table class="data-table">
+                      <caption class="visually-hidden">
+                        How the 72 available analyses of this dataset are
+                        distributed across ranges of p
+                      </caption>
+                      <thead>
+                        <tr>
+                          <th scope="col">Range of p</th>
+                          <th scope="col">Analyses</th>
+                        </tr>
+                      </thead>
+                      <tbody data-reveal-table></tbody>
+                    </table>
+                  </div>
+                </div>
+              </details>
+
+            </div>
+
+          </div>
+
+          <p class="interactive__status" data-interactive-status role="status"></p>
+
+          <div class="interactive__actions">
+            <button type="button" data-action="run-path">Run this analysis</button>
+            <button type="button" data-variant="secondary" data-action="reveal-all">
+              Show me every path
+            </button>
+            <button type="button" data-variant="secondary" data-action="fresh">
+              Fresh dataset, still with no effect
+            </button>
+            <button type="button" data-variant="secondary" data-interactive-reset>
+              Reset Experiment 2
+            </button>
+          </div>
+
+          <details class="interactive__notes">
+            <summary>Notes for whoever is running this</summary>
+            <div>
+              <p>
+                Let the room drive. Ask for the outcome first, then take
+                suggestions when the first analysis comes back null: somebody
+                will propose dropping the slow responders, somebody else will
+                propose looking at first-years, and each suggestion will be
+                perfectly sensible. Keep count out loud.
+              </p>
+              <p>
+                When a significant result appears, stop and ask what the paper
+                would say. Then press <em>Show me every path</em>. The point is
+                not that the analyst was dishonest &mdash; the point is that the
+                <em>p</em>-value in the paper is the smallest of many, and its
+                stated meaning assumed it was the only one.
+              </p>
+              <p>
+                <em>Fresh dataset</em> regenerates the data with no effect in it
+                and clears the search, so the demonstration can be run again
+                with a different room and a different route through the garden.
+              </p>
+            </div>
+          </details>
+
+        </section>
+
+      </div>
+    </section>
+
+    <!-- ================= Challenge ================= -->
+    <section class="section" id="challenge" aria-labelledby="challenge-heading" hidden>
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="challenge-heading" tabindex="-1">Challenge &mdash; four studies, four practices</h2>
+          <p class="prose">
+            Multiplicity is not one thing. Label each of these four fictional
+            studies. Only one of the four is a problem, and it is not the one
+            with the most tests in it.
+          </p>
+        </div>
+
+        <form class="panel challenge" id="challenge-form">
+
+          <div class="vignette">
+            <h3 class="vignette__title">Study A</h3>
+            <p class="vignette__text">
+              A trial names one primary outcome and three secondary outcomes in
+              its protocol before any data are collected, states that the three
+              secondaries will be tested at a corrected threshold, and reports
+              all four results whichever way they came out.
+            </p>
+            <label class="vignette__label" for="v0">This is</label>
+            <select id="v0">
+              <option value="">choose&hellip;</option>
+              <option value="planned">Planned multiplicity</option>
+              <option value="exploratory">Exploratory analysis</option>
+              <option value="selective">Undisclosed selective reporting</option>
+              <option value="confirmatory">Confirmatory inference</option>
+            </select>
+          </div>
+
+          <div class="vignette">
+            <h3 class="vignette__title">Study B</h3>
+            <p class="vignette__text">
+              A team measures twelve variables with no prior hypotheses, looks
+              for patterns, reports everything it measured and everything it
+              tried, and describes the findings as hypothesis-generating and in
+              need of an independent replication.
+            </p>
+            <label class="vignette__label" for="v1">This is</label>
+            <select id="v1">
+              <option value="">choose&hellip;</option>
+              <option value="planned">Planned multiplicity</option>
+              <option value="exploratory">Exploratory analysis</option>
+              <option value="selective">Undisclosed selective reporting</option>
+              <option value="confirmatory">Confirmatory inference</option>
+            </select>
+          </div>
+
+          <div class="vignette">
+            <h3 class="vignette__title">Study C</h3>
+            <p class="vignette__text">
+              A team measures four outcomes and tries two exclusion rules. One
+              combination reaches <em>p</em> = .04. The paper reports that
+              outcome and that exclusion rule, describes them as the study's
+              analysis, and does not mention the others.
+            </p>
+            <label class="vignette__label" for="v2">This is</label>
+            <select id="v2">
+              <option value="">choose&hellip;</option>
+              <option value="planned">Planned multiplicity</option>
+              <option value="exploratory">Exploratory analysis</option>
+              <option value="selective">Undisclosed selective reporting</option>
+              <option value="confirmatory">Confirmatory inference</option>
+            </select>
+          </div>
+
+          <div class="vignette">
+            <h3 class="vignette__title">Study D</h3>
+            <p class="vignette__text">
+              A preregistered study states one hypothesis, one outcome, one
+              exclusion rule and one analysis, collects the data, runs that
+              analysis and reports the result. It came out non-significant and
+              was published anyway.
+            </p>
+            <label class="vignette__label" for="v3">This is</label>
+            <select id="v3">
+              <option value="">choose&hellip;</option>
+              <option value="planned">Planned multiplicity</option>
+              <option value="exploratory">Exploratory analysis</option>
+              <option value="selective">Undisclosed selective reporting</option>
+              <option value="confirmatory">Confirmatory inference</option>
+            </select>
+          </div>
+
+          <p class="prediction__error" data-challenge-error role="alert" hidden></p>
+
+          <div class="prediction__actions">
+            <button class="button button--primary" type="submit">Check my four labels</button>
+          </div>
+
+          <div class="feedback" data-challenge-feedback hidden></div>
+        </form>
+
+      </div>
+    </section>
+
+    <!-- ================= Debrief ================= -->
+    <section class="section section--tinted" id="debrief" aria-labelledby="debrief-heading">
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="debrief-heading">What this demonstrates</h2>
+        </div>
+
+        <div class="split split--wide">
+
+          <div class="prose">
+            <h3>The error rate belongs to the family, not to the test</h3>
+            <p>
+              Each individual test in Experiment 1 is behaving exactly as
+              advertised: a 5% chance of a false positive, every time. Nothing
+              is broken. What changes is the question you are implicitly asking
+              &mdash; "did anything come out?" &mdash; and the answer to that
+              question has its own error rate,
+              1 &minus; (1 &minus; &alpha;)<sup>k</sup>, which reaches a half by
+              fourteen tests and 64% by twenty. Deciding which tests belong in
+              the family is a judgement about the claim being made, not a
+              property of the software, and it is the judgement that most
+              corrections quietly depend on.
+            </p>
+
+            <h3>A correction is a trade, and both sides are visible</h3>
+            <p>
+              Bonferroni tests each hypothesis at &alpha;/k, which does what it
+              promises: the family-wise false-positive rate drops back to about
+              &alpha;. The readout shows the price in the same breath. With five
+              real effects among twenty tests, the correction takes the
+              detection rate for those real effects down sharply, because every
+              one of them is now being judged against a threshold twenty times
+              stricter. There is no setting of that dial that gives you both,
+              and choosing where to sit on it is a decision about which mistake
+              you would rather make.
+            </p>
+
+            <h3>Flexibility does the same damage without any tests being run</h3>
+            <p>
+              In Experiment 2 the analyst runs one test at a time and reports
+              one <em>p</em>-value. There is no correction to apply, because on
+              the face of it there is nothing to correct for. But the dataset
+              contains no effect at all, and among the seventy-two defensible
+              analyses of it there are almost always several below .05. The
+              number that ends up in the paper is not a random draw from a null
+              distribution; it is the smallest of however many were looked at,
+              including the ones that were considered and abandoned before
+              anybody clicked anything. That is the garden of forking paths, and
+              it does its damage whether or not the paths were consciously
+              walked.
+            </p>
+
+            <h3>Four practices that look alike and are not</h3>
+            <p>
+              <strong>Planned multiplicity</strong> is knowing in advance that
+              you will run several tests and saying so, usually with a
+              correction. <strong>Exploratory analysis</strong> is looking
+              without a prior hypothesis and labelling the result as
+              provisional; it is legitimate and useful, and it is not
+              confirmatory evidence. <strong>Undisclosed selective
+              reporting</strong> is running several analyses and presenting one
+              as though it were the plan; this is the only one of the four that
+              is a problem, and it rarely feels like misconduct from the inside.
+              <strong>Confirmatory inference</strong> is testing a stated
+              hypothesis with a stated analysis fixed before the data, and it is
+              the only route by which a <em>p</em>-value means what it says.
+              Preregistration is not a moral test &mdash; it is simply a record
+              of which of these four you are doing.
+            </p>
+          </div>
+
+          <aside class="panel panel--caution" aria-labelledby="limits-heading">
+            <h3 class="panel__title" id="limits-heading">
+              What this does <em>not</em> demonstrate
+            </h3>
+            <ul>
+              <li>
+                <strong>No real study, and no real dataset.</strong> Everything
+                is generated from a documented seed, and the ninety students in
+                Experiment 2 are invented. The generating model contains no
+                group difference on anything, which is why every significant
+                result you find there is a false one by construction.
+              </li>
+              <li>
+                <strong>Independence is assumed in Experiment 1 and false in
+                Experiment 2.</strong> The formula
+                1 &minus; (1 &minus; &alpha;)<sup>k</sup> requires independent
+                tests. Real families of tests overlap, which usually makes the
+                true family-wise rate somewhat lower than the formula says
+                &mdash; and never as low as &alpha;.
+              </li>
+              <li>
+                <strong>Bonferroni is not the only correction, or the best
+                one.</strong> Holm's step-down procedure controls the same rate
+                with more power and no extra assumptions; false-discovery-rate
+                procedures control a different and often more appropriate
+                quantity. The tool uses Bonferroni because it is the one whose
+                arithmetic can be read off the screen.
+              </li>
+              <li>
+                <strong>Seventy-two is a small garden.</strong> A real analysis
+                has more outcomes, more covariates, more ways to code a
+                variable and more decisions about who counts as a participant.
+                The count here is bounded only because a menu had to fit on a
+                page.
+              </li>
+              <li>
+                <strong>Correcting after the fact is not a repair.</strong>
+                Applying a correction to the analyses you happened to run does
+                not recover the ones you thought about and did not, and no
+                statistical procedure can reconstruct a decision process that
+                was not recorded. The remedy is a record, not a formula.
+              </li>
+            </ul>
+          </aside>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+
+        <div>
+          <h2>Open Psychology Interactives</h2>
+          <p class="text-muted">
+            Free, accessible, classroom-ready teaching tools for university
+            psychology. Built as plain web pages so they keep working, and
+            openly licensed so they can be adapted.
+          </p>
+        </div>
+
+        <div>
+          <h2>Modules</h2>
+          <ul>
+            <li><a href="../../../cognitive/index.html">Cognitive Psychology</a></li>
+            <li><a href="../../index.html">Research Methods</a></li>
+            <li><a href="../../../neuropsychology/index.html">Neuropsychology</a></li>
+            <li><a href="../../../social-critical-psychology/index.html">Social and Critical Psychology</a></li>
+            <li><a href="../../../personality-individual-differences/index.html">Personality and Individual Differences</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h2>Project</h2>
+          <ul>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives">GitHub repository</a></li>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives/blob/main/CONTRIBUTING.md">Contributing</a></li>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives/blob/main/docs/accessibility.md">Accessibility</a></li>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives/blob/main/LICENSE">MIT licence</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="site-footer__bottom">
+        <p>© <span data-current-year>2026</span> Open Psychology Interactives. Released under the MIT licence.</p>
+        <p>Built with plain HTML, CSS and JavaScript. No trackers, no accounts.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>ANCOVA / MANOVA Decision Laboratory — Open Psychology Interactives</title>
+  <meta name="description" content="Decide what role each variable plays in a fictional study, watch a covariate adjustment happen and break when the slopes differ, then see two outcomes analysed jointly rather than one at a time.">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f141b" media="(prefers-color-scheme: dark)">
+
+  <link rel="canonical" href="https://utman5454.github.io/open-psychology-interactives/modules/research-methods/tools/12-ancova-manova-decision-lab/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Open Psychology Interactives">
+  <meta property="og:title" content="ANCOVA / MANOVA Decision Laboratory">
+  <meta property="og:description" content="What is a covariate for, when does adjustment mislead, and why is MANOVA not several ANOVAs at once?">
+  <meta property="og:url" content="https://utman5454.github.io/open-psychology-interactives/modules/research-methods/tools/12-ancova-manova-decision-lab/">
+  <meta property="og:locale" content="en_GB">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="ANCOVA / MANOVA Decision Laboratory">
+  <meta name="twitter:description" content="What is a covariate for, when does adjustment mislead, and why is MANOVA not several ANOVAs at once?">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231a4fa0'/%3E%3Cpath d='M4 24C10 24 10 8 16 8s6 16 12 16' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
+
+  <!-- Four directories deep (modules/<slug>/tools/<slug>/), so shared assets
+       are at ../../../../ — see docs/adapting-a-tool.md. -->
+  <link rel="stylesheet" href="../../../../assets/css/main.css">
+  <link rel="stylesheet" href="../../../../components/interactive-shell.css">
+  <link rel="stylesheet" href="../../../../components/tool-kit.css">
+  <link rel="stylesheet" href="tool.css">
+  <script src="../../../../assets/js/main.js" defer></script>
+  <script src="../../../../components/interactive-shell.js" defer></script>
+  <script src="tool.js" defer></script>
+</head>
+
+<!-- data-site-root: the path back to the site root from this page. -->
+<body data-site-root="../../../../">
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+
+      <a class="brand" href="../../../../index.html" aria-label="Open Psychology Interactives, home">
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <rect x="1" y="1" width="30" height="30" rx="7" fill="none" stroke="currentColor" stroke-width="2"></rect>
+          <path d="M5 24C10 24 10 8 16 8s6 16 11 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        </svg>
+        <span>
+          <span class="brand__name">Open Psychology Interactives</span>
+          <span class="brand__tagline">Free teaching tools for psychology</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" data-nav-toggle
+              aria-expanded="false" aria-controls="site-nav" hidden>
+        <svg class="nav-toggle__icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+          <path d="M2 5h16M2 10h16M2 15h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        </svg>
+        Menu
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul class="site-nav__list">
+          <li><a class="site-nav__link" href="../../../../index.html">Home</a></li>
+          <li><a class="site-nav__link" href="../../../cognitive/index.html">Cognitive<span class="visually-hidden"> Psychology</span></a></li>
+          <li><a class="site-nav__link" href="../../index.html">Research Methods</a></li>
+          <li><a class="site-nav__link" href="../../../neuropsychology/index.html">Neuropsychology</a></li>
+          <li><a class="site-nav__link" href="../../../social-critical-psychology/index.html">Social and Critical<span class="visually-hidden"> Psychology</span></a></li>
+          <li><a class="site-nav__link" href="../../../personality-individual-differences/index.html">Personality<span class="visually-hidden"> and Individual Differences</span></a></li>
+          <li><a class="site-nav__link" href="../../../../index.html#documentation">Documentation</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <nav class="breadcrumbs container" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="../../../../index.html">Home</a></li>
+      <li><a href="../../../../index.html#modules">Modules</a></li>
+      <li><a href="../../index.html">Research Methods</a></li>
+      <li aria-current="page">ANCOVA / MANOVA Decision Laboratory</li>
+    </ol>
+  </nav>
+
+  <main id="main">
+
+    <!-- ================= Title and purpose ================= -->
+    <section class="section card--research-methods" aria-labelledby="page-heading">
+      <div class="container">
+
+        <p class="hero__eyebrow" style="color: var(--colour-research-methods)">
+          Research Methods
+        </p>
+        <h1 id="page-heading">ANCOVA / MANOVA Decision Laboratory</h1>
+        <p class="hero__lead">
+          Before either of these analyses is a calculation, it is a decision:
+          what is this variable <em>for</em>? Assign the roles, watch a covariate
+          adjustment happen &mdash; and watch it stop meaning what people think
+          it means.
+        </p>
+
+        <p>
+          <span class="badge">
+            <span class="badge__dot" aria-hidden="true"></span>
+            Simulated &mdash; fictional studies and generated data
+          </span>
+        </p>
+
+        <div class="split split--wide">
+
+          <div class="panel">
+            <h2 class="panel__title">Learning objective</h2>
+            <p>
+              By the end you should be able to say what role each variable plays
+              in a design, explain what a covariate adjustment does and when its
+              result cannot be read causally, state the
+              homogeneity-of-regression-slopes assumption and what its failure
+              costs, and explain why a multivariate test is not several
+              univariate tests bundled together.
+            </p>
+            <p class="text-muted">
+              About 30 minutes. Nothing you do here is saved or sent anywhere.
+            </p>
+          </div>
+
+          <div class="panel panel--caution">
+            <h2 class="panel__title">Neither analysis rescues a design</h2>
+            <p>
+              A covariate cannot turn two intact groups into a randomised trial,
+              and a multivariate test is not a way to run several analyses
+              without paying for them. Both are useful tools with narrow jobs,
+              and most of the harm they do comes from being reached for as
+              repairs. Several of the scenarios in this laboratory have the
+              answer "neither", and saying so is the skill being practised.
+            </p>
+          </div>
+
+        </div>
+
+        <ol class="how-to">
+          <li>Assign the roles in the opening scenario and choose an analysis.</li>
+          <li>In Experiment 1, adjust for a covariate and watch the adjustment move.</li>
+          <li>Break the equal-slopes assumption and see what the adjusted difference becomes.</li>
+          <li>In Experiment 2, compare two outcomes one at a time with the two of them together.</li>
+        </ol>
+
+      </div>
+    </section>
+
+    <!-- ================= Opening decision ================= -->
+    <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="opening-heading">First, a decision</h2>
+        </div>
+
+        <div class="panel">
+          <h3 class="panel__title">Scenario &mdash; the September test</h3>
+          <p class="prose">
+            A fictional evaluation randomly assigns 80 students either to a new
+            tutoring programme or to the usual timetable. Everyone sits a
+            baseline test in <strong>September</strong>, before allocation, and
+            an outcome test in <strong>June</strong>. The question is whether
+            the programme raised June scores.
+          </p>
+        </div>
+
+        <noscript>
+          <div class="placeholder">
+            <h3 class="placeholder__title">This part needs JavaScript</h3>
+            <p class="prose">
+              The laboratory generates its data and recalculates its
+              adjustments in your browser, so it cannot run with JavaScript
+              switched off. The rest of this page is readable without it.
+            </p>
+          </div>
+        </noscript>
+
+        <form class="panel prediction" id="opening-form">
+          <fieldset class="prediction__group">
+            <legend class="prediction__legend">
+              What role does each variable play?
+            </legend>
+            <div class="role">
+              <label class="role__label" for="role-june">June test score</label>
+              <select id="role-june">
+                <option value="">choose&hellip;</option>
+                <option value="outcome">Outcome (dependent variable)</option>
+                <option value="factor">Grouping factor (independent variable)</option>
+                <option value="covariate">Covariate</option>
+                <option value="unusable">Not usable in this analysis</option>
+              </select>
+            </div>
+            <div class="role">
+              <label class="role__label" for="role-group">Programme or usual timetable</label>
+              <select id="role-group">
+                <option value="">choose&hellip;</option>
+                <option value="outcome">Outcome (dependent variable)</option>
+                <option value="factor">Grouping factor (independent variable)</option>
+                <option value="covariate">Covariate</option>
+                <option value="unusable">Not usable in this analysis</option>
+              </select>
+            </div>
+            <div class="role">
+              <label class="role__label" for="role-sept">September test score</label>
+              <select id="role-sept">
+                <option value="">choose&hellip;</option>
+                <option value="outcome">Outcome (dependent variable)</option>
+                <option value="factor">Grouping factor (independent variable)</option>
+                <option value="covariate">Covariate</option>
+                <option value="unusable">Not usable in this analysis</option>
+              </select>
+            </div>
+          </fieldset>
+
+          <fieldset class="prediction__group">
+            <legend class="prediction__legend">
+              Which analysis fits this design best?
+            </legend>
+            <label class="control--choice">
+              <input type="radio" name="analysis" value="anova">
+              One-way ANOVA on June scores, ignoring September
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="analysis" value="ancova">
+              ANCOVA on June scores with September as a covariate
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="analysis" value="manova">
+              MANOVA with September and June as two outcomes
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="analysis" value="change">
+              A t-test on the change from September to June
+            </label>
+          </fieldset>
+
+          <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+          <div class="prediction__actions">
+            <button class="button button--primary" type="submit">
+              Submit my decision and open Experiment 1
+            </button>
+            <button class="button button--secondary" type="button" data-action="skip-opening">
+              Skip &mdash; I am demonstrating this
+            </button>
+          </div>
+
+          <div class="feedback" data-opening-feedback hidden></div>
+        </form>
+
+      </div>
+    </section>
+
+    <!-- ================= Experiment 1: ANCOVA ================= -->
+    <section class="section" id="ancova-section" aria-labelledby="ancova-heading" hidden>
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="ancova-heading" tabindex="-1">Experiment 1 &mdash; what adjustment actually does</h2>
+          <p class="prose">
+            Eighty fictional students, forty in each group. The horizontal axis
+            is the September score, the vertical axis is the June score, and
+            each group has its own regression line. The adjusted difference is
+            the vertical gap between those lines, measured at the overall
+            September mean.
+          </p>
+        </div>
+
+        <section class="interactive" id="ancova" data-interactive
+                 data-reset-message="Everything cleared. Back to the opening decision.">
+
+          <header class="interactive__header">
+            <h3 class="interactive__title">The covariate adjustment</h3>
+            <p class="interactive__brief">
+              Adjustment asks a conditional question: how far apart would the
+              groups be if they had started at the same place? Whether that
+              question has an answer depends on the design, not on the software.
+            </p>
+          </header>
+
+          <div class="interactive__body interactive__body--pinned">
+
+            <form class="interactive__controls" data-interactive-controls>
+
+              <fieldset>
+                <legend>How the covariate behaves</legend>
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="r-range">Covariate&ndash;outcome correlation</label>
+                    <output class="control__value" for="r-range">0.70</output>
+                  </div>
+                  <input type="range" id="r-range" min="0" max="0.9" step="0.05" value="0.7">
+                  <p class="control__hint">
+                    How well September predicts June within a group. This is
+                    what decides whether a covariate is worth having at all.
+                  </p>
+                </div>
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="gap-range">Group gap on the covariate</label>
+                    <output class="control__value" for="gap-range">0</output>
+                  </div>
+                  <input type="range" id="gap-range" min="-12" max="12" step="1" value="0">
+                  <p class="control__hint">
+                    How far apart the two groups already were in September. With
+                    random allocation this is near zero; with intact groups it
+                    is not.
+                  </p>
+                </div>
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="slope-range">Difference between the two slopes</label>
+                    <output class="control__value" for="slope-range">0.00</output>
+                  </div>
+                  <input type="range" id="slope-range" min="-1" max="1" step="0.05" value="0">
+                  <p class="control__hint">
+                    ANCOVA assumes this is zero &mdash; the
+                    homogeneity-of-regression-slopes assumption.
+                  </p>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>The programme itself</legend>
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="effect-range">True programme effect</label>
+                    <output class="control__value" for="effect-range">6</output>
+                  </div>
+                  <input type="range" id="effect-range" min="0" max="12" step="1" value="6">
+                </div>
+                <div class="control">
+                  <label class="control__label" for="design-select">How groups were formed</label>
+                  <select id="design-select">
+                    <option value="random">Random allocation</option>
+                    <option value="intact">Two intact classes</option>
+                  </select>
+                  <p class="control__hint">
+                    This changes nothing in the arithmetic. It changes what the
+                    adjusted difference is allowed to mean.
+                  </p>
+                </div>
+              </fieldset>
+
+            </form>
+
+            <div class="interactive__stage" data-interactive-stage>
+
+              <!-- Pinned: the scatter with both regression lines, and the two
+                   numbers everything is about. -->
+              <div class="stage__primary">
+                <h4 class="stage__heading" data-chart-heading>September against June</h4>
+                <figure class="chart">
+                  <figcaption class="visually-hidden">
+                    Scatterplot of June score against September score with one
+                    regression line per group, and a vertical rule at the
+                    overall September mean where the adjusted difference is read
+                  </figcaption>
+                  <svg class="chart__svg" data-scatter viewBox="0 0 460 210"
+                       aria-hidden="true" focusable="false"></svg>
+                  <div class="table-scroll">
+                    <table class="chart__table">
+                      <caption class="visually-hidden">
+                        Group means on the covariate and the outcome, and each
+                        group's own regression slope
+                      </caption>
+                      <thead>
+                        <tr>
+                          <th scope="col">Group</th>
+                          <th scope="col">September mean</th>
+                          <th scope="col">June mean</th>
+                          <th scope="col">Own slope</th>
+                        </tr>
+                      </thead>
+                      <tbody data-group-table></tbody>
+                    </table>
+                  </div>
+                </figure>
+                <dl class="interactive__readout" data-readout></dl>
+              </div>
+
+              <div class="verdict" data-verdict>
+                <h4 class="verdict__title">What this adjusted number means</h4>
+                <p class="verdict__body" data-interpretation></p>
+                <p class="verdict__note" data-assumption></p>
+              </div>
+
+              <details class="stage__more">
+                <summary>The adjusted difference at three different starting points</summary>
+                <div>
+                  <p class="prose" data-slope-note></p>
+                  <div class="table-scroll">
+                    <table class="data-table">
+                      <caption class="visually-hidden">
+                        The vertical gap between the two group regression lines
+                        evaluated at a low, average and high September score
+                      </caption>
+                      <thead>
+                        <tr>
+                          <th scope="col">Evaluated at</th>
+                          <th scope="col">September score</th>
+                          <th scope="col">Gap between the lines</th>
+                        </tr>
+                      </thead>
+                      <tbody data-gap-table></tbody>
+                    </table>
+                  </div>
+                </div>
+              </details>
+
+            </div>
+
+          </div>
+
+          <p class="interactive__status" data-interactive-status role="status"></p>
+
+          <div class="interactive__actions">
+            <button type="button" data-action="resample">Draw a new sample</button>
+            <button type="button" data-variant="secondary" data-action="open-manova">
+              Go to Experiment 2
+            </button>
+            <button type="button" data-variant="secondary" data-interactive-reset>
+              Reset everything
+            </button>
+          </div>
+
+          <details class="interactive__notes">
+            <summary>Notes for whoever is running this</summary>
+            <div>
+              <p>
+                Start with the gap at zero and the correlation at 0.7. The
+                unadjusted and adjusted differences are almost identical, and
+                the point of the covariate is not the estimate at all &mdash; it
+                is the residual variance, and therefore the precision.
+              </p>
+              <p>
+                Then drag the covariate gap to &minus;10 with the design still
+                set to random allocation. The two numbers separate. Ask which of
+                them is the effect of the programme. Then switch the design to
+                two intact classes and ask again. The arithmetic has not
+                changed by a decimal place.
+              </p>
+              <p>
+                Finally drag the slope difference to 0.6 and open the disclosure.
+                The "adjusted difference" is now three different numbers
+                depending on where you stand, which is what a violated
+                homogeneity assumption actually costs.
+              </p>
+              <p>
+                Fuller guidance is in
+                <a href="teaching-notes.md">teaching-notes.md</a> beside this
+                page.
+              </p>
+            </div>
+          </details>
+
+        </section>
+
+      </div>
+    </section>
+
+    <!-- ================= Experiment 2: MANOVA ================= -->
+    <section class="section section--tinted" id="manova-section"
+             aria-labelledby="manova-heading" hidden>
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="manova-heading" tabindex="-1">Experiment 2 &mdash; two outcomes, taken together</h2>
+          <p class="prose">
+            The same two fictional groups, now measured on two outcomes at once.
+            Each dot is one person, placed by both scores. A multivariate test
+            asks whether the two clouds are separated <em>in the plane</em>,
+            which is not the same question as asking about each axis in turn.
+          </p>
+        </div>
+
+        <section class="interactive" id="manova" data-interactive
+                 data-reset-message="Experiment 2 reset to its starting values.">
+
+          <header class="interactive__header">
+            <h3 class="interactive__title">Why this is not several ANOVAs</h3>
+            <p class="interactive__brief">
+              Watch the joint separation while the two separate differences stay
+              exactly where they are. The correlation between the outcomes is
+              doing all the work.
+            </p>
+          </header>
+
+          <div class="interactive__body interactive__body--pinned">
+
+            <form class="interactive__controls" data-interactive-controls>
+
+              <fieldset>
+                <legend>Group differences, one outcome at a time</legend>
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="d1-range">Difference on outcome 1</label>
+                    <output class="control__value" for="d1-range">0.40</output>
+                  </div>
+                  <input type="range" id="d1-range" min="-1.5" max="1.5" step="0.05" value="0.4">
+                  <p class="control__hint">In standard deviations.</p>
+                </div>
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="d2-range">Difference on outcome 2</label>
+                    <output class="control__value" for="d2-range">0.40</output>
+                  </div>
+                  <input type="range" id="d2-range" min="-1.5" max="1.5" step="0.05" value="0.4">
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>How the two outcomes hang together</legend>
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="rho-range">Correlation within groups</label>
+                    <output class="control__value" for="rho-range">0.00</output>
+                  </div>
+                  <input type="range" id="rho-range" min="-0.9" max="0.9" step="0.05" value="0">
+                  <p class="control__hint">
+                    Not the correlation across the whole sample: the correlation
+                    among people in the same group, which is what the
+                    multivariate test uses.
+                  </p>
+                </div>
+                <div class="control">
+                  <label class="control__label" for="mpreset-select">Worked examples</label>
+                  <select id="mpreset-select">
+                    <option value="custom">Current settings</option>
+                    <option value="nogain">Same direction, positively correlated</option>
+                    <option value="bigwin">Same direction, negatively correlated</option>
+                    <option value="hidden">Two small effects, one clear separation</option>
+                    <option value="opposed">Opposite directions, positively correlated</option>
+                  </select>
+                </div>
+              </fieldset>
+
+            </form>
+
+            <div class="interactive__stage" data-interactive-stage>
+
+              <!-- Pinned: the two clouds in the plane and the three distances. -->
+              <div class="stage__primary">
+                <h4 class="stage__heading" data-mchart-heading>The two groups in the plane</h4>
+                <figure class="chart">
+                  <figcaption class="visually-hidden">
+                    Scatterplot of outcome 2 against outcome 1 with one marker
+                    shape per group, and a line joining the two group centres
+                  </figcaption>
+                  <svg class="chart__svg" data-cloud viewBox="0 0 460 200"
+                       aria-hidden="true" focusable="false"></svg>
+                  <div class="table-scroll">
+                    <table class="chart__table">
+                      <caption class="visually-hidden">
+                        Separation between the groups on each outcome alone and
+                        on both together
+                      </caption>
+                      <thead>
+                        <tr>
+                          <th scope="col">Comparison</th>
+                          <th scope="col">Separation, in SD units</th>
+                        </tr>
+                      </thead>
+                      <tbody data-sep-table></tbody>
+                    </table>
+                  </div>
+                </figure>
+              </div>
+
+              <div class="verdict" data-mverdict>
+                <h4 class="verdict__title">What the multivariate test has added</h4>
+                <p class="verdict__body" data-minterpretation></p>
+                <p class="verdict__note" data-mcaveat></p>
+              </div>
+
+            </div>
+
+          </div>
+
+          <p class="interactive__status" data-interactive-status role="status"></p>
+
+          <div class="interactive__actions">
+            <button type="button" data-action="mresample">Draw a new sample</button>
+            <button type="button" data-variant="secondary" data-interactive-reset>
+              Reset Experiment 2
+            </button>
+          </div>
+
+          <details class="interactive__notes">
+            <summary>Notes for whoever is running this</summary>
+            <div>
+              <p>
+                Run the presets in order. "Same direction, positively
+                correlated" is the case most people imagine when they picture
+                MANOVA, and it is the case where the multivariate test adds
+                almost nothing: the two outcomes are largely the same
+                information twice.
+              </p>
+              <p>
+                "Two small effects, one clear separation" is the case worth the
+                lesson. Two differences of 0.3 standard deviations, either of
+                which most studies would miss, become a joint separation of well
+                over 1 because the outcomes are strongly correlated within
+                groups and the difference runs across that correlation.
+              </p>
+              <p>
+                Then ask the obvious follow-up: the multivariate test has told
+                you the clouds are apart. It has not told you which outcome, or
+                in which direction. Following it with two univariate tests is
+                the usual practice, and it does not protect them from
+                multiplicity.
+              </p>
+            </div>
+          </details>
+
+        </section>
+
+      </div>
+    </section>
+
+    <!-- ================= Challenge ================= -->
+    <section class="section" id="challenge" aria-labelledby="challenge-heading" hidden>
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="challenge-heading" tabindex="-1">Challenge &mdash; four studies, four decisions</h2>
+          <p class="prose">
+            One choice per study. More than one of these has the answer
+            "neither", and picking it is the point.
+          </p>
+        </div>
+
+        <form class="panel challenge" id="challenge-form">
+
+          <div class="scenario">
+            <h3 class="scenario__title">Study 1 &mdash; two intact classes</h3>
+            <p class="scenario__text">
+              The tutoring programme is given to one whole class and not to
+              another. The classes were not randomly formed and differ by about
+              nine points on the September test. The researchers want the causal
+              effect of the programme on June scores.
+            </p>
+            <label class="scenario__label" for="q1">Best analysis for Study 1</label>
+            <select id="q1">
+              <option value="">choose&hellip;</option>
+              <option value="ancova">ANCOVA with September as a covariate, read causally</option>
+              <option value="ancova-hedged">ANCOVA, but reported as an adjusted association rather than a causal effect</option>
+              <option value="manova">MANOVA with September and June as outcomes</option>
+              <option value="anova">One-way ANOVA on June scores</option>
+            </select>
+          </div>
+
+          <div class="scenario">
+            <h3 class="scenario__title">Study 2 &mdash; four reading measures</h3>
+            <p class="scenario__text">
+              A randomised study of a reading intervention measures speed,
+              accuracy, comprehension and enjoyment. The team argues that these
+              four are facets of one construct and wants a single omnibus test
+              of whether reading performance differs.
+            </p>
+            <label class="scenario__label" for="q2">Best analysis for Study 2</label>
+            <select id="q2">
+              <option value="">choose&hellip;</option>
+              <option value="manova">MANOVA on the four outcomes, followed by declared follow-up tests</option>
+              <option value="four">Four separate ANOVAs, unadjusted</option>
+              <option value="ancova">ANCOVA with enjoyment as a covariate</option>
+              <option value="neither">Neither &mdash; the design cannot support any test</option>
+            </select>
+          </div>
+
+          <div class="scenario">
+            <h3 class="scenario__title">Study 3 &mdash; three unrelated outcomes</h3>
+            <p class="scenario__text">
+              A randomised study measures hours of sleep, an exam mark and
+              self-reported height. The team plans a MANOVA "so that we only
+              have to run one test and do not have to correct for multiple
+              comparisons".
+            </p>
+            <label class="scenario__label" for="q3">Best analysis for Study 3</label>
+            <select id="q3">
+              <option value="">choose&hellip;</option>
+              <option value="manova">MANOVA on the three outcomes</option>
+              <option value="neither">Neither &mdash; run the planned analyses and handle multiplicity openly</option>
+              <option value="ancova">ANCOVA with height as a covariate</option>
+              <option value="combine">Combine the three into a single composite score</option>
+            </select>
+          </div>
+
+          <div class="scenario">
+            <h3 class="scenario__title">Study 4 &mdash; the covariate measured afterwards</h3>
+            <p class="scenario__text">
+              In a randomised trial of the tutoring programme, the team notices
+              that students in the programme attended more sessions overall.
+              They propose adding attendance as a covariate, "to control for
+              engagement".
+            </p>
+            <label class="scenario__label" for="q4">Best analysis for Study 4</label>
+            <select id="q4">
+              <option value="">choose&hellip;</option>
+              <option value="ancova">ANCOVA with attendance as a covariate</option>
+              <option value="neither">Neither &mdash; attendance is downstream of the allocation and must not be adjusted for</option>
+              <option value="manova">MANOVA with attendance and June score as outcomes</option>
+              <option value="both">Report the analysis both with and without the covariate</option>
+            </select>
+          </div>
+
+          <p class="prediction__error" data-challenge-error role="alert" hidden></p>
+
+          <div class="prediction__actions">
+            <button class="button button--primary" type="submit">Check my four decisions</button>
+          </div>
+
+          <div class="feedback" data-challenge-feedback hidden></div>
+        </form>
+
+      </div>
+    </section>
+
+    <!-- ================= Debrief ================= -->
+    <section class="section section--tinted" id="debrief" aria-labelledby="debrief-heading">
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="debrief-heading">What this demonstrates</h2>
+        </div>
+
+        <div class="split split--wide">
+
+          <div class="prose">
+            <h3>A covariate's main job is precision, not correction</h3>
+            <p>
+              Under random allocation the groups already start in roughly the
+              same place, so adjusting barely moves the estimated difference.
+              What it moves is the residual variance: the covariate explains
+              part of the variation in the outcome that would otherwise be
+              noise, and the comparison becomes more precise. That is a good
+              enough reason to use one, and it is a completely different reason
+              from the one usually given.
+            </p>
+
+            <h3>Adjustment answers a conditional question</h3>
+            <p>
+              The adjusted difference is the vertical gap between two regression
+              lines at a particular value of the covariate. When groups were
+              randomly formed, that gap estimates the causal effect. When they
+              were not, it estimates what the difference would look like among
+              people matched on the covariate &mdash; which is a real quantity,
+              and is not the causal effect unless nothing else differs between
+              the groups. Reaching for ANCOVA to repair non-equivalent groups is
+              the most common misuse of the technique, and the tool shows that
+              the arithmetic gives you no warning at all.
+            </p>
+
+            <h3>Equal slopes is an assumption with a visible cost</h3>
+            <p>
+              If the two groups have different regression slopes, there is no
+              single adjusted difference to report: the gap between the lines
+              depends on where you measure it, and the disclosure in Experiment
+              1 shows three different answers from the same data. That is not a
+              technicality but a finding &mdash; the effect depends on the
+              covariate, which is a covariate-by-treatment interaction and is
+              worth reporting as one.
+            </p>
+
+            <h3>Multivariate is a different question, not a cheaper one</h3>
+            <p>
+              A multivariate test asks whether the group centres are separated
+              in the space defined by all the outcomes together, using the
+              correlations among them. When the outcomes are highly correlated
+              and the differences point the same way, it adds very little
+              &mdash; the outcomes are one thing measured twice. When the
+              differences run across the within-group correlation, it can find a
+              separation far larger than anything visible on either axis. Both
+              are real; neither makes it a device for running several tests
+              without paying for them, and the follow-up univariate tests
+              inherit the whole multiplicity problem.
+            </p>
+          </div>
+
+          <aside class="panel panel--caution" aria-labelledby="limits-heading">
+            <h3 class="panel__title" id="limits-heading">
+              What this does <em>not</em> demonstrate
+            </h3>
+            <ul>
+              <li>
+                <strong>No real study.</strong> The tutoring programme, the
+                reading intervention and every number in them are invented. The
+                data are generated from a stated model with a documented seed.
+              </li>
+              <li>
+                <strong>No test statistics.</strong> The tool reports adjusted
+                differences and separations in standard-deviation units rather
+                than F or Wilks' lambda, because the teaching point is what the
+                quantities mean, and a test statistic invites the discussion to
+                collapse into a threshold.
+              </li>
+              <li>
+                <strong>Two outcomes, not many.</strong> Experiment 2 uses two
+                so that the plane can be drawn. Real multivariate analyses with
+                five or ten outcomes behave the same way in principle and are
+                far harder to see, which is a reason for caution rather than
+                confidence.
+              </li>
+              <li>
+                <strong>The design menu changes nothing computational.</strong>
+                Switching between random allocation and intact classes alters
+                only the interpretation offered. That is the honest state of
+                affairs: the software cannot tell how the groups were formed,
+                and neither can the numbers.
+              </li>
+              <li>
+                <strong>Causal inference has a larger literature than this.</strong>
+                Propensity methods, instrumental variables, difference-in-
+                differences and regression discontinuity all address
+                non-equivalent groups more carefully than covariate adjustment,
+                and each carries assumptions of its own.
+              </li>
+            </ul>
+          </aside>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+
+        <div>
+          <h2>Open Psychology Interactives</h2>
+          <p class="text-muted">
+            Free, accessible, classroom-ready teaching tools for university
+            psychology. Built as plain web pages so they keep working, and
+            openly licensed so they can be adapted.
+          </p>
+        </div>
+
+        <div>
+          <h2>Modules</h2>
+          <ul>
+            <li><a href="../../../cognitive/index.html">Cognitive Psychology</a></li>
+            <li><a href="../../index.html">Research Methods</a></li>
+            <li><a href="../../../neuropsychology/index.html">Neuropsychology</a></li>
+            <li><a href="../../../social-critical-psychology/index.html">Social and Critical Psychology</a></li>
+            <li><a href="../../../personality-individual-differences/index.html">Personality and Individual Differences</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h2>Project</h2>
+          <ul>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives">GitHub repository</a></li>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives/blob/main/CONTRIBUTING.md">Contributing</a></li>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives/blob/main/docs/accessibility.md">Accessibility</a></li>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives/blob/main/LICENSE">MIT licence</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="site-footer__bottom">
+        <p>© <span data-current-year>2026</span> Open Psychology Interactives. Released under the MIT licence.</p>
+        <p>Built with plain HTML, CSS and JavaScript. No trackers, no accounts.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

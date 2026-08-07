@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Sampling Distribution and p-Value Simulator — Open Psychology Interactives</title>
+  <meta name="description" content="Run a study whose true effect is exactly zero several thousand times and watch what nothing looks like. The p-value is the tail area of that picture, and the tool says plainly what it is not.">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f141b" media="(prefers-color-scheme: dark)">
+
+  <link rel="canonical" href="https://utman5454.github.io/open-psychology-interactives/modules/research-methods/tools/08-sampling-distribution-pvalue-simulator/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Open Psychology Interactives">
+  <meta property="og:title" content="Sampling Distribution and p-Value Simulator">
+  <meta property="og:description" content="Run a null study a thousand times, mark one result, and read the p-value off the tail. And see what it is not.">
+  <meta property="og:url" content="https://utman5454.github.io/open-psychology-interactives/modules/research-methods/tools/08-sampling-distribution-pvalue-simulator/">
+  <meta property="og:locale" content="en_GB">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Sampling Distribution and p-Value Simulator">
+  <meta name="twitter:description" content="Run a null study a thousand times, mark one result, and read the p-value off the tail. And see what it is not.">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231a4fa0'/%3E%3Cpath d='M4 24C10 24 10 8 16 8s6 16 12 16' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
+
+  <!-- Four directories deep (modules/<slug>/tools/<slug>/), so shared assets
+       are at ../../../../ — see docs/adapting-a-tool.md. -->
+  <link rel="stylesheet" href="../../../../assets/css/main.css">
+  <link rel="stylesheet" href="../../../../components/interactive-shell.css">
+  <link rel="stylesheet" href="../../../../components/tool-kit.css">
+  <link rel="stylesheet" href="tool.css">
+  <script src="../../../../assets/js/main.js" defer></script>
+  <script src="../../../../components/interactive-shell.js" defer></script>
+  <script src="tool.js" defer></script>
+</head>
+
+<!-- data-site-root: the path back to the site root from this page. -->
+<body data-site-root="../../../../">
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+
+      <a class="brand" href="../../../../index.html" aria-label="Open Psychology Interactives, home">
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <rect x="1" y="1" width="30" height="30" rx="7" fill="none" stroke="currentColor" stroke-width="2"></rect>
+          <path d="M5 24C10 24 10 8 16 8s6 16 11 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        </svg>
+        <span>
+          <span class="brand__name">Open Psychology Interactives</span>
+          <span class="brand__tagline">Free teaching tools for psychology</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" data-nav-toggle
+              aria-expanded="false" aria-controls="site-nav" hidden>
+        <svg class="nav-toggle__icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+          <path d="M2 5h16M2 10h16M2 15h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        </svg>
+        Menu
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul class="site-nav__list">
+          <li><a class="site-nav__link" href="../../../../index.html">Home</a></li>
+          <li><a class="site-nav__link" href="../../../cognitive/index.html">Cognitive<span class="visually-hidden"> Psychology</span></a></li>
+          <li><a class="site-nav__link" href="../../index.html">Research Methods</a></li>
+          <li><a class="site-nav__link" href="../../../neuropsychology/index.html">Neuropsychology</a></li>
+          <li><a class="site-nav__link" href="../../../social-critical-psychology/index.html">Social and Critical<span class="visually-hidden"> Psychology</span></a></li>
+          <li><a class="site-nav__link" href="../../../personality-individual-differences/index.html">Personality<span class="visually-hidden"> and Individual Differences</span></a></li>
+          <li><a class="site-nav__link" href="../../../../index.html#documentation">Documentation</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <nav class="breadcrumbs container" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="../../../../index.html">Home</a></li>
+      <li><a href="../../../../index.html#modules">Modules</a></li>
+      <li><a href="../../index.html">Research Methods</a></li>
+      <li aria-current="page">Sampling Distribution and p-Value Simulator</li>
+    </ol>
+  </nav>
+
+  <main id="main">
+
+    <!-- ================= Title and purpose ================= -->
+    <section class="section card--research-methods" aria-labelledby="page-heading">
+      <div class="container">
+
+        <p class="hero__eyebrow" style="color: var(--colour-research-methods)">
+          Research Methods
+        </p>
+        <h1 id="page-heading">Sampling Distribution and p-Value Simulator</h1>
+        <p class="hero__lead">
+          Run a study whose true effect is exactly zero, several thousand times,
+          and watch what "nothing is going on" actually looks like. The p-value
+          is the tail area of that picture — and nothing else.
+        </p>
+
+        <p>
+          <span class="badge">
+            <span class="badge__dot" aria-hidden="true"></span>
+            Simulated — a generated null model, drawn from a documented seed
+          </span>
+        </p>
+
+        <div class="split split--wide">
+
+          <div class="panel">
+            <h2 class="panel__title">Learning objective</h2>
+            <p>
+              By the end you should be able to describe a sampling distribution
+              as the spread of a statistic across repeated studies under a
+              stated model, read a p-value off that distribution as a tail area,
+              and say precisely what a p-value is not.
+            </p>
+            <p class="text-muted">
+              About 25 minutes. Nothing you do here is saved or sent anywhere.
+            </p>
+          </div>
+
+          <div class="panel panel--caution">
+            <h2 class="panel__title">What a p-value is conditional on</h2>
+            <p>
+              Everything on this page is computed <em>assuming</em> the null
+              model is true, the samples are independent draws from it, the
+              analysis was decided in advance, and this is the only test being
+              run. A p-value is a statement about data under a model. It is not
+              the probability that the null hypothesis is true, not the
+              probability the result happened by chance, and not a measure of
+              how large or important an effect is.
+            </p>
+          </div>
+
+        </div>
+
+        <ol class="how-to">
+          <li>Answer the prediction question to unlock the simulator.</li>
+          <li>Press <em>Run 1,000 null studies</em> and watch the pile build.</li>
+          <li>Move the observed difference and watch the shaded tails change.</li>
+          <li>Change n and &sigma; and see the whole distribution rescale.</li>
+        </ol>
+
+      </div>
+    </section>
+
+    <!-- ================= Opening prediction ================= -->
+    <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="opening-heading">First, a prediction</h2>
+          <p class="prose">
+            Two groups of 40 fictional participants are drawn from exactly the
+            same population, so the true difference between them is zero. Scores
+            have a standard deviation of 15.
+          </p>
+        </div>
+
+        <noscript>
+          <div class="placeholder">
+            <h3 class="placeholder__title">This part needs JavaScript</h3>
+            <p class="prose">
+              The simulator generates its studies in your browser, so it cannot
+              run with JavaScript switched off. The rest of this page is
+              readable without it.
+            </p>
+          </div>
+        </noscript>
+
+        <form class="panel prediction" id="opening-form">
+          <fieldset class="prediction__group">
+            <legend class="prediction__legend">
+              How often will such a study produce a difference of 5 points or
+              more, in either direction, purely from which people happened to be
+              sampled?
+            </legend>
+            <label class="control--choice">
+              <input type="radio" name="opening" value="never">
+              Less than one study in a hundred
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="opening" value="twenty">
+              About one study in twenty
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="opening" value="seven">
+              About one study in seven
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="opening" value="three">
+              About one study in three
+            </label>
+          </fieldset>
+
+          <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+          <div class="prediction__actions">
+            <button class="button button--primary" type="submit">
+              Record my prediction and open the simulator
+            </button>
+            <button class="button button--secondary" type="button" data-action="skip-opening">
+              Skip — I am demonstrating this
+            </button>
+          </div>
+
+          <div class="feedback" data-opening-feedback hidden></div>
+        </form>
+
+      </div>
+    </section>
+
+    <!-- ================= Simulator ================= -->
+    <section class="section" id="sim-section" aria-labelledby="sim-heading" hidden>
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="sim-heading" tabindex="-1">The simulator</h2>
+          <p class="prose">
+            Every study in the pile has a true effect of exactly zero. The
+            spread you see is what sampling alone produces.
+          </p>
+        </div>
+
+        <section class="interactive" id="pvalue" data-interactive
+                 data-reset-message="Everything cleared. Back to the opening prediction.">
+
+          <header class="interactive__header">
+            <h3 class="interactive__title">A world in which nothing is going on</h3>
+            <p class="interactive__brief">
+              Two groups of n fictional participants, drawn from the same
+              population. The statistic is the difference between their means.
+            </p>
+          </header>
+
+          <div class="interactive__body interactive__body--pinned">
+
+            <form class="interactive__controls" data-interactive-controls>
+
+              <fieldset>
+                <legend>The null model</legend>
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="n-range">Participants per group</label>
+                    <output class="control__value" for="n-range">40</output>
+                  </div>
+                  <input type="range" id="n-range" min="10" max="200" step="5" value="40">
+                </div>
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="sd-range">Population standard deviation</label>
+                    <output class="control__value" for="sd-range">15</output>
+                  </div>
+                  <input type="range" id="sd-range" min="5" max="30" step="1" value="15">
+                  <p class="control__hint">
+                    The true difference between the groups is fixed at zero and
+                    cannot be changed. That is what makes this the null model.
+                  </p>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>Your study's result</legend>
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="obs-range">Observed difference</label>
+                    <output class="control__value" for="obs-range">5.0</output>
+                  </div>
+                  <input type="range" id="obs-range" min="0" max="20" step="0.5" value="5">
+                  <p class="control__hint">
+                    One real study reported this. Everything shaded lies at least
+                    this far from zero.
+                  </p>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>Sampling</legend>
+                <div class="control">
+                  <label class="control__label" for="seed-input">Random seed</label>
+                  <input type="number" id="seed-input" value="5140" step="1" min="1" max="999999">
+                </div>
+              </fieldset>
+
+            </form>
+
+            <div class="interactive__stage" data-interactive-stage>
+
+              <!-- Pinned: the null distribution with the observed value marked.
+                   Every control on the left moves it. -->
+              <div class="stage__primary">
+                <h4 class="stage__heading" data-chart-heading>
+                  Differences from 0 null studies
+                </h4>
+                <figure class="chart">
+                  <figcaption class="visually-hidden">
+                    Histogram of mean differences from repeated simulated studies
+                    in which the true difference is zero, with the observed
+                    difference marked and the tails at least that far from zero
+                    shaded
+                  </figcaption>
+                  <svg class="chart__svg" data-hist viewBox="0 0 460 190"
+                       aria-hidden="true" focusable="false"></svg>
+                  <div class="table-scroll">
+                    <table class="chart__table">
+                      <caption class="visually-hidden">
+                        How many simulated null studies fell in each region
+                      </caption>
+                      <thead>
+                        <tr>
+                          <th scope="col">Region</th>
+                          <th scope="col">Null studies</th>
+                          <th scope="col">Share</th>
+                        </tr>
+                      </thead>
+                      <tbody data-region-table></tbody>
+                    </table>
+                  </div>
+                </figure>
+                <dl class="interactive__readout" data-readout></dl>
+              </div>
+
+              <div class="verdict" data-verdict>
+                <h4 class="verdict__title">Reading this correctly</h4>
+                <p class="verdict__body" data-interpretation></p>
+              </div>
+
+              <details class="stage__more">
+                <summary>Theory beside simulation</summary>
+                <div class="table-scroll">
+                  <table class="data-table">
+                    <caption class="visually-hidden">
+                      Quantities predicted by the model and the same quantities
+                      measured in the simulation
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Predicted by the model</th>
+                        <th scope="col">Observed in the simulation</th>
+                      </tr>
+                    </thead>
+                    <tbody data-theory-table></tbody>
+                  </table>
+                </div>
+              </details>
+
+            </div>
+
+          </div>
+
+          <p class="interactive__status" data-interactive-status role="status"></p>
+
+          <div class="interactive__actions">
+            <button type="button" data-action="run1000">Run 1,000 null studies</button>
+            <button type="button" data-variant="secondary" data-action="run20">
+              Run 20 more, slowly
+            </button>
+            <button type="button" data-variant="secondary" data-action="clear">
+              Clear the pile
+            </button>
+            <button type="button" data-variant="secondary" data-interactive-reset>
+              Reset everything
+            </button>
+          </div>
+
+          <details class="interactive__notes">
+            <summary>Notes for whoever is running this</summary>
+            <div>
+              <p>
+                Run twenty studies slowly first, before the thousand. Watching
+                twenty differences land at 1.2, then −3.4, then 6.1, when the
+                true difference is zero every time, does more for the idea of
+                sampling variability than the finished histogram does.
+              </p>
+              <p>
+                Then leave the observed difference at 5 and drag the sample size
+                from 40 to 200. The p-value collapses without the observed
+                difference changing at all. That is the point that returns in
+                the t-test and power tools later in this module.
+              </p>
+              <p>
+                Fuller guidance and the debrief questions are in
+                <a href="teaching-notes.md">teaching-notes.md</a> beside this
+                page.
+              </p>
+            </div>
+          </details>
+
+        </section>
+
+      </div>
+    </section>
+
+    <!-- ================= Challenge ================= -->
+    <section class="section section--tinted" id="challenge" aria-labelledby="challenge-heading">
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="challenge-heading">Challenge — say what p means</h2>
+          <p class="prose">
+            A study reports a difference of 5.0 points between two groups, with
+            <em>p</em> = .14.
+          </p>
+        </div>
+
+        <form class="panel challenge" id="challenge-form">
+          <fieldset class="prediction__group">
+            <legend class="prediction__legend">
+              Which statements are correct? Select all that apply.
+            </legend>
+            <label class="control--choice">
+              <input type="checkbox" name="challenge" value="tail">
+              If the null model were true, about 14% of studies like this one would produce a difference at least this far from zero
+            </label>
+            <label class="control--choice">
+              <input type="checkbox" name="challenge" value="prob-null">
+              There is a 14% probability that the null hypothesis is true
+            </label>
+            <label class="control--choice">
+              <input type="checkbox" name="challenge" value="chance">
+              There is a 14% probability the result was due to chance
+            </label>
+            <label class="control--choice">
+              <input type="checkbox" name="challenge" value="noeffect">
+              The study shows there is no effect
+            </label>
+            <label class="control--choice">
+              <input type="checkbox" name="challenge" value="small">
+              The effect is small
+            </label>
+            <label class="control--choice">
+              <input type="checkbox" name="challenge" value="replicate">
+              If the study were repeated, there is an 86% chance of a significant result
+            </label>
+          </fieldset>
+
+          <div class="prediction__actions">
+            <button class="button button--primary" type="submit">Check my answer</button>
+          </div>
+
+          <div class="feedback" data-challenge-feedback hidden></div>
+        </form>
+
+      </div>
+    </section>
+
+    <!-- ================= Debrief ================= -->
+    <section class="section" id="debrief" aria-labelledby="debrief-heading">
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="debrief-heading">What this demonstrates</h2>
+        </div>
+
+        <div class="split split--wide">
+
+          <div class="prose">
+            <h3>A sampling distribution is a picture of repetition</h3>
+            <p>
+              Every bar in the histogram is a study that was never run. The
+              distribution says what results a stated model would produce if you
+              repeated the whole procedure, and it is the reference against which
+              one real result is judged. Nothing about it is a property of your
+              data.
+            </p>
+
+            <h3>The p-value is a tail area, and it points backwards</h3>
+            <p>
+              It answers: <em>given the model, how often would data at least this
+              extreme appear?</em> It cannot answer the question people actually
+              want — how likely the hypothesis is — because that would require
+              starting from something other than the data, and the calculation
+              never does. Reversing the conditional is the single most common
+              error in statistical reporting, and it is the one the challenge
+              above is built around.
+            </p>
+
+            <h3>The same difference gives different p-values</h3>
+            <p>
+              Hold the observed difference at 5.0 and change the sample size.
+              The number the study reported has not moved, and the p-value
+              travels from about .5 to below .001. A p-value is therefore not a
+              measure of how big anything is; it confounds size, variability and
+              sample size into one figure, which is why effect sizes are reported
+              alongside it rather than instead of it.
+            </p>
+
+            <h3>Everything here is conditional on a model nobody checked</h3>
+            <p>
+              The tail area is exact only if the samples really are independent
+              draws from the stated distribution, the analysis was fixed in
+              advance, and this is the only comparison being made. Break any of
+              those and the number on screen stops meaning what it says — which
+              is the subject of the multiple-comparisons tool later in this
+              module.
+            </p>
+          </div>
+
+          <aside class="panel panel--caution" aria-labelledby="limits-heading">
+            <h3 class="panel__title" id="limits-heading">
+              What this does <em>not</em> demonstrate
+            </h3>
+            <ul>
+              <li>
+                <strong>No real data.</strong> Every study in the pile is
+                generated from a seeded random number generator, and the
+                observed difference is a slider rather than a finding.
+              </li>
+              <li>
+                <strong>The null model here is unusually clean.</strong> Normal
+                populations, equal and known variances, no measurement error, no
+                dropouts, no dependence. Real reference distributions are
+                approximations to something messier.
+              </li>
+              <li>
+                <strong>The reference distribution is normal, not <em>t</em>.</strong>
+                Because the model treats the population standard deviation as
+                known, z is exactly right here. A real t-test estimates it from
+                the sample and pays for that with heavier tails — the subject of
+                a later tool in this module.
+              </li>
+              <li>
+                <strong>A small p-value does not identify what is wrong with
+                the model.</strong> It says the data sit far into the tail of
+                <em>this</em> model. An effect is one explanation; dependence
+                between observations, a skewed population or a selective
+                analysis are others.
+              </li>
+              <li>
+                <strong>Nothing here justifies a threshold.</strong> The
+                simulator never mentions .05, because whether a tail area of a
+                particular size should change what anybody does is a decision,
+                not a statistical fact.
+              </li>
+            </ul>
+          </aside>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+
+        <div>
+          <h2>Open Psychology Interactives</h2>
+          <p class="text-muted">
+            Free, accessible, classroom-ready teaching tools for university
+            psychology. Built as plain web pages so they keep working, and
+            openly licensed so they can be adapted.
+          </p>
+        </div>
+
+        <div>
+          <h2>Modules</h2>
+          <ul>
+            <li><a href="../../../cognitive/index.html">Cognitive Psychology</a></li>
+            <li><a href="../../index.html">Research Methods</a></li>
+            <li><a href="../../../neuropsychology/index.html">Neuropsychology</a></li>
+            <li><a href="../../../social-critical-psychology/index.html">Social and Critical Psychology</a></li>
+            <li><a href="../../../personality-individual-differences/index.html">Personality and Individual Differences</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h2>Project</h2>
+          <ul>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives">GitHub repository</a></li>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives/blob/main/CONTRIBUTING.md">Contributing</a></li>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives/blob/main/docs/accessibility.md">Accessibility</a></li>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives/blob/main/LICENSE">MIT licence</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="site-footer__bottom">
+        <p>© <span data-current-year>2026</span> Open Psychology Interactives. Released under the MIT licence.</p>
+        <p>Built with plain HTML, CSS and JavaScript. No trackers, no accounts.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

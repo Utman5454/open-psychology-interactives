@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Statistical Power and Type M Error — Open Psychology Interactives</title>
+  <meta name="description" content="Two sampling distributions side by side, with alpha, beta and power as areas you can move. Then two thousand simulated studies, filtered to the significant ones, to see how badly an underpowered literature exaggerates.">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f141b" media="(prefers-color-scheme: dark)">
+
+  <link rel="canonical" href="https://utman5454.github.io/open-psychology-interactives/modules/research-methods/tools/17-statistical-power-type-m-lab/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Open Psychology Interactives">
+  <meta property="og:title" content="Statistical Power and Type M Error">
+  <meta property="og:description" content="Power is a plan, not a post-mortem. And a significant result from an underpowered study is an overestimate by construction.">
+  <meta property="og:url" content="https://utman5454.github.io/open-psychology-interactives/modules/research-methods/tools/17-statistical-power-type-m-lab/">
+  <meta property="og:locale" content="en_GB">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Statistical Power and Type M Error">
+  <meta name="twitter:description" content="Power is a plan, not a post-mortem. And a significant result from an underpowered study is an overestimate by construction.">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231a4fa0'/%3E%3Cpath d='M4 24C10 24 10 8 16 8s6 16 12 16' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
+
+  <!-- Four directories deep (modules/<slug>/tools/<slug>/), so shared assets
+       are at ../../../../ — see docs/adapting-a-tool.md. -->
+  <link rel="stylesheet" href="../../../../assets/css/main.css">
+  <link rel="stylesheet" href="../../../../components/interactive-shell.css">
+  <link rel="stylesheet" href="../../../../components/tool-kit.css">
+  <link rel="stylesheet" href="tool.css">
+  <script src="../../../../assets/js/main.js" defer></script>
+  <script src="../../../../components/interactive-shell.js" defer></script>
+  <script src="tool.js" defer></script>
+</head>
+
+<!-- data-site-root: the path back to the site root from this page. -->
+<body data-site-root="../../../../">
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+
+      <a class="brand" href="../../../../index.html" aria-label="Open Psychology Interactives, home">
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <rect x="1" y="1" width="30" height="30" rx="7" fill="none" stroke="currentColor" stroke-width="2"></rect>
+          <path d="M5 24C10 24 10 8 16 8s6 16 11 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        </svg>
+        <span>
+          <span class="brand__name">Open Psychology Interactives</span>
+          <span class="brand__tagline">Free teaching tools for psychology</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" data-nav-toggle
+              aria-expanded="false" aria-controls="site-nav" hidden>
+        <svg class="nav-toggle__icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+          <path d="M2 5h16M2 10h16M2 15h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        </svg>
+        Menu
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul class="site-nav__list">
+          <li><a class="site-nav__link" href="../../../../index.html">Home</a></li>
+          <li><a class="site-nav__link" href="../../../cognitive/index.html">Cognitive<span class="visually-hidden"> Psychology</span></a></li>
+          <li><a class="site-nav__link" href="../../index.html">Research Methods</a></li>
+          <li><a class="site-nav__link" href="../../../neuropsychology/index.html">Neuropsychology</a></li>
+          <li><a class="site-nav__link" href="../../../social-critical-psychology/index.html">Social and Critical<span class="visually-hidden"> Psychology</span></a></li>
+          <li><a class="site-nav__link" href="../../../personality-individual-differences/index.html">Personality<span class="visually-hidden"> and Individual Differences</span></a></li>
+          <li><a class="site-nav__link" href="../../../../index.html#documentation">Documentation</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <nav class="breadcrumbs container" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="../../../../index.html">Home</a></li>
+      <li><a href="../../../../index.html#modules">Modules</a></li>
+      <li><a href="../../index.html">Research Methods</a></li>
+      <li aria-current="page">Statistical Power and Type M Error</li>
+    </ol>
+  </nav>
+
+  <main id="main">
+
+    <!-- ================= Title and purpose ================= -->
+    <section class="section card--research-methods" aria-labelledby="page-heading">
+      <div class="container">
+
+        <p class="hero__eyebrow" style="color: var(--colour-research-methods)">
+          Research Methods
+        </p>
+        <h1 id="page-heading">Statistical Power and Type M Error</h1>
+        <p class="hero__lead">
+          Power is a plan, not a post-mortem: it is worked out before the study,
+          for an effect you have assumed. And when power is low, the results
+          that pass the filter are not just fewer &mdash; they are bigger than
+          the truth.
+        </p>
+
+        <p>
+          <span class="badge">
+            <span class="badge__dot" aria-hidden="true"></span>
+            Simulated &mdash; generated studies from a documented seed
+          </span>
+        </p>
+
+        <div class="split split--wide">
+
+          <div class="panel">
+            <h2 class="panel__title">Learning objective</h2>
+            <p>
+              By the end you should be able to identify &alpha;, &beta; and
+              power as areas on two sampling distributions, work out the sample
+              size a planned study needs, explain why observed power adds
+              nothing after the fact, and explain how conditioning on
+              significance exaggerates effects without biasing any individual
+              study.
+            </p>
+            <p class="text-muted">
+              About 30 minutes. Nothing you do here is saved or sent anywhere.
+            </p>
+          </div>
+
+          <div class="panel panel--caution">
+            <h2 class="panel__title">Low power does not bias your estimate</h2>
+            <p>
+              This is the part that is easy to get wrong in the other
+              direction. An underpowered study's effect-size estimate is
+              unbiased: run a thousand of them and their average lands on the
+              truth. The exaggeration appears only when you look at the
+              <em>significant</em> ones, because a small study can only reach
+              significance by overshooting. It is a property of the filter, not
+              of the studies.
+            </p>
+          </div>
+
+        </div>
+
+        <ol class="how-to">
+          <li>Answer the prediction question to open Experiment 1.</li>
+          <li>Move the true effect, the sample size and &alpha;, and watch the four areas.</li>
+          <li>Use the target-power control to find the sample size a study would need.</li>
+          <li>In Experiment 2, commit to a prediction, then run two thousand studies.</li>
+        </ol>
+
+      </div>
+    </section>
+
+    <!-- ================= Opening prediction ================= -->
+    <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="opening-heading">First, a prediction</h2>
+          <p class="prose">
+            A fictional study compares two groups of <strong>20</strong> people
+            each, using a two-tailed test at &alpha;&nbsp;=&nbsp;.05. The true
+            effect in the population is <em>d</em>&nbsp;=&nbsp;0.50 &mdash;
+            Cohen's "medium".
+          </p>
+        </div>
+
+        <noscript>
+          <div class="placeholder">
+            <h3 class="placeholder__title">This part needs JavaScript</h3>
+            <p class="prose">
+              The distributions are drawn and the studies generated in your
+              browser, so this part cannot run with JavaScript switched off.
+              The rest of this page is readable without it.
+            </p>
+          </div>
+        </noscript>
+
+        <form class="panel prediction" id="opening-form">
+          <fieldset class="prediction__group">
+            <legend class="prediction__legend">
+              What is the probability that this study returns a significant
+              result?
+            </legend>
+            <label class="control--choice">
+              <input type="radio" name="opening" value="eighty">
+              About 80% &mdash; that is the usual target
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="opening" value="fifty">
+              About 50%
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="opening" value="thirty">
+              About 34%
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="opening" value="five">
+              About 5% &mdash; that is what &alpha; is
+            </label>
+          </fieldset>
+
+          <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+          <div class="prediction__actions">
+            <button class="button button--primary" type="submit">
+              Record my prediction and open Experiment 1
+            </button>
+            <button class="button button--secondary" type="button" data-action="skip-opening">
+              Skip &mdash; I am demonstrating this
+            </button>
+          </div>
+
+          <div class="feedback" data-opening-feedback hidden></div>
+        </form>
+
+      </div>
+    </section>
+
+    <!-- ================= Experiment 1 ================= -->
+    <section class="section" id="power-section" aria-labelledby="power-heading" hidden>
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="power-heading" tabindex="-1">Experiment 1 &mdash; four areas on two curves</h2>
+          <p class="prose">
+            The horizontal axis is the effect size a study would <em>observe</em>.
+            The left curve is what that observation does when the true effect is
+            zero; the right curve is what it does when the true effect is what
+            you have assumed. Everything else is an area.
+          </p>
+        </div>
+
+        <section class="interactive" id="power" data-interactive
+                 data-reset-message="Everything cleared. Back to the opening prediction.">
+
+          <header class="interactive__header">
+            <h3 class="interactive__title">Alpha, beta and what is left over</h3>
+            <p class="interactive__brief">
+              &alpha; is the shaded tail under the left curve; &beta; is the
+              shaded body of the right curve on the wrong side of the threshold;
+              power is everything else under the right curve.
+            </p>
+          </header>
+
+          <div class="interactive__body interactive__body--pinned">
+
+            <form class="interactive__controls" data-interactive-controls>
+
+              <fieldset>
+                <legend>What you are assuming</legend>
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="d-range">True effect size, d</label>
+                    <output class="control__value" for="d-range">0.50</output>
+                  </div>
+                  <input type="range" id="d-range" min="0.05" max="1.5" step="0.05" value="0.5">
+                  <p class="control__hint">
+                    This is an assumption made before the study, not something
+                    the study measures. Everything downstream depends on it.
+                  </p>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>What you are choosing</legend>
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="n-range">Participants per group</label>
+                    <output class="control__value" for="n-range">20</output>
+                  </div>
+                  <input type="range" id="n-range" min="5" max="300" step="5" value="20">
+                </div>
+                <div class="control">
+                  <label class="control__label" for="alpha-select">Significance level &alpha;</label>
+                  <select id="alpha-select">
+                    <option value="0.10">.10</option>
+                    <option value="0.05" selected>.05</option>
+                    <option value="0.01">.01</option>
+                    <option value="0.005">.005</option>
+                  </select>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>Planning a study</legend>
+                <div class="control">
+                  <label class="control__label" for="target-select">Target power</label>
+                  <select id="target-select">
+                    <option value="0.5">50%</option>
+                    <option value="0.8" selected>80%</option>
+                    <option value="0.9">90%</option>
+                    <option value="0.95">95%</option>
+                  </select>
+                  <p class="control__hint">
+                    The readout shows the sample size that would reach this
+                    target for the effect size and &alpha; above.
+                  </p>
+                </div>
+              </fieldset>
+
+            </form>
+
+            <div class="interactive__stage" data-interactive-stage>
+
+              <!-- Pinned: the two sampling distributions with the four areas. -->
+              <div class="stage__primary">
+                <h4 class="stage__heading" data-chart-heading>Two sampling distributions</h4>
+                <figure class="chart">
+                  <figcaption class="visually-hidden">
+                    Two overlapping sampling distributions of the observed
+                    effect size, one centred on zero and one centred on the
+                    assumed true effect, with the rejection threshold marked and
+                    the alpha and beta regions shaded
+                  </figcaption>
+                  <svg class="chart__svg" data-power viewBox="0 0 460 190"
+                       aria-hidden="true" focusable="false"></svg>
+                  <div class="table-scroll">
+                    <table class="chart__table">
+                      <caption class="visually-hidden">
+                        The four probabilities on the picture and the threshold
+                        that divides them
+                      </caption>
+                      <thead>
+                        <tr>
+                          <th scope="col">Quantity</th>
+                          <th scope="col">Value</th>
+                        </tr>
+                      </thead>
+                      <tbody data-power-table></tbody>
+                    </table>
+                  </div>
+                </figure>
+                <dl class="interactive__readout" data-readout></dl>
+              </div>
+
+              <div class="verdict" data-verdict>
+                <h4 class="verdict__title">What this study could and could not do</h4>
+                <p class="verdict__body" data-interpretation></p>
+                <p class="verdict__note" data-planning></p>
+              </div>
+
+              <details class="stage__more">
+                <summary>The sample size needed at each target</summary>
+                <div class="table-scroll">
+                  <table class="data-table">
+                    <caption class="visually-hidden">
+                      Participants per group required to reach each level of
+                      power for the current effect size and alpha
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Target power</th>
+                        <th scope="col">Per group</th>
+                        <th scope="col">Total</th>
+                      </tr>
+                    </thead>
+                    <tbody data-plan-table></tbody>
+                  </table>
+                </div>
+              </details>
+
+            </div>
+
+          </div>
+
+          <p class="interactive__status" data-interactive-status role="status"></p>
+
+          <div class="interactive__actions">
+            <button type="button" data-action="open-typem">Go to Experiment 2</button>
+            <button type="button" data-variant="secondary" data-interactive-reset>
+              Reset everything
+            </button>
+          </div>
+
+          <details class="interactive__notes">
+            <summary>Notes for whoever is running this</summary>
+            <div>
+              <p>
+                Start where the prediction left off: <em>d</em> = 0.50, twenty
+                per group, &alpha; = .05. Power is 32.9%. Ask what that means for
+                a literature in which most studies look like this one.
+              </p>
+              <p>
+                Then use the target-power readout. Reaching 80% at
+                <em>d</em> = 0.50 needs 64 per group; at <em>d</em> = 0.25 it
+                needs 253. Drag the effect size slowly and watch the required n
+                climb as the square of the reciprocal.
+              </p>
+              <p>
+                Finally set &alpha; to .005 and watch power fall without a
+                single participant being lost. Every threshold is a trade
+                between the two error rates, and moving one moves the other.
+              </p>
+              <p>
+                Fuller guidance is in
+                <a href="teaching-notes.md">teaching-notes.md</a> beside this
+                page.
+              </p>
+            </div>
+          </details>
+
+        </section>
+
+      </div>
+    </section>
+
+    <!-- ================= Experiment 2 ================= -->
+    <section class="section section--tinted" id="typem-section"
+             aria-labelledby="typem-heading" hidden>
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="typem-heading" tabindex="-1">Experiment 2 &mdash; what survives the filter</h2>
+          <p class="prose">
+            Two thousand fictional studies, all of them investigating the same
+            real effect of <strong><em>d</em>&nbsp;=&nbsp;0.35</strong>, all
+            tested at &alpha;&nbsp;=&nbsp;.05. Each one is a genuine simulated
+            experiment: two groups are generated, a t-test is run, an effect
+            size is estimated. Commit to a prediction before running them.
+          </p>
+        </div>
+
+        <section class="interactive" id="typem" data-interactive
+                 data-reset-message="Experiment 2 reset. Nothing has been run.">
+
+          <header class="interactive__header">
+            <h3 class="interactive__title">The estimates that get published</h3>
+            <p class="interactive__brief">
+              Every study is unbiased. The literature built from the
+              significant ones is not, and the smaller the studies the worse it
+              gets.
+            </p>
+          </header>
+
+          <div class="interactive__body interactive__body--pinned">
+
+            <form class="interactive__controls" data-interactive-controls>
+
+              <fieldset>
+                <legend>The studies</legend>
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="tm-n-range">Participants per group</label>
+                    <output class="control__value" for="tm-n-range">15</output>
+                  </div>
+                  <input type="range" id="tm-n-range" min="5" max="200" step="5" value="15">
+                  <p class="control__hint">
+                    The true effect stays at <em>d</em> = 0.35 and &alpha; stays
+                    at .05 whatever you do here. Only the size of each study
+                    changes.
+                  </p>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>Your prediction</legend>
+                <div class="control--choice">
+                  <input type="radio" name="typem" id="tm-same" value="same">
+                  <label for="tm-same">
+                    About the same as the truth &mdash; each study is unbiased
+                  </label>
+                </div>
+                <div class="control--choice">
+                  <input type="radio" name="typem" id="tm-half" value="half">
+                  <label for="tm-half">About one and a half times the truth</label>
+                </div>
+                <div class="control--choice">
+                  <input type="radio" name="typem" id="tm-double" value="double">
+                  <label for="tm-double">About two and a half times the truth</label>
+                </div>
+                <div class="control--choice">
+                  <input type="radio" name="typem" id="tm-smaller" value="smaller">
+                  <label for="tm-smaller">Smaller than the truth</label>
+                </div>
+                <p class="prediction__error" data-typem-error role="alert" hidden></p>
+              </fieldset>
+
+            </form>
+
+            <div class="interactive__stage" data-interactive-stage>
+
+              <!-- Pinned: every estimate, with the significant ones marked. -->
+              <div class="stage__primary">
+                <h4 class="stage__heading" data-tm-heading>
+                  Nothing run yet
+                </h4>
+                <figure class="chart">
+                  <figcaption class="visually-hidden">
+                    Histogram of the effect sizes estimated by every simulated
+                    study, with the bars that reached significance hatched, and
+                    rules marking the true effect, the average of all estimates
+                    and the average of the significant ones
+                  </figcaption>
+                  <svg class="chart__svg" data-typem viewBox="0 0 460 190"
+                       aria-hidden="true" focusable="false"></svg>
+                  <div class="table-scroll">
+                    <table class="chart__table">
+                      <caption class="visually-hidden">
+                        What the whole set of studies produced and what the
+                        significant subset produced
+                      </caption>
+                      <thead>
+                        <tr>
+                          <th scope="col">Quantity</th>
+                          <th scope="col">Value</th>
+                        </tr>
+                      </thead>
+                      <tbody data-tm-table></tbody>
+                    </table>
+                  </div>
+                </figure>
+              </div>
+
+              <div class="feedback" data-typem-feedback hidden></div>
+
+              <div class="verdict" data-tm-verdict hidden>
+                <h4 class="verdict__title">Reading this correctly</h4>
+                <p class="verdict__body" data-tm-interpretation></p>
+              </div>
+
+            </div>
+
+          </div>
+
+          <p class="interactive__status" data-interactive-status role="status"></p>
+
+          <div class="interactive__actions">
+            <button type="button" data-action="run-typem">Run 2,000 studies</button>
+            <button type="button" data-variant="secondary" data-action="tm-low">
+              Low-power setting
+            </button>
+            <button type="button" data-variant="secondary" data-action="tm-high">
+              High-power setting
+            </button>
+            <button type="button" data-variant="secondary" data-interactive-reset>
+              Reset Experiment 2
+            </button>
+          </div>
+
+          <details class="interactive__notes">
+            <summary>Notes for whoever is running this</summary>
+            <div>
+              <p>
+                Take a show of hands on the prediction before running anything.
+                The most popular answer is usually "about the same, each study
+                is unbiased" &mdash; which is true of the studies and false of
+                the ones that get published, and holding both of those in mind
+                at once is the point of the exercise.
+              </p>
+              <p>
+                Run the low-power setting first, then the high-power one, and
+                put the two exaggeration ratios side by side. At fifteen per
+                group the significant estimates average well over twice the
+                truth; at a hundred and twenty they are within a few per cent
+                of it.
+              </p>
+              <p>
+                The sign errors are worth a moment too. At very low power a
+                noticeable share of the significant results point the wrong way
+                entirely, and every one of them would be written up as a finding.
+              </p>
+            </div>
+          </details>
+
+        </section>
+
+      </div>
+    </section>
+
+    <!-- ================= Challenge ================= -->
+    <section class="section" id="challenge" aria-labelledby="challenge-heading">
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="challenge-heading">Challenge &mdash; what power is and is not</h2>
+        </div>
+
+        <form class="panel challenge" id="challenge-form">
+          <fieldset class="prediction__group">
+            <legend class="prediction__legend">
+              Which statements are correct? Select all that apply &mdash; four
+              of the seven are.
+            </legend>
+            <label class="control--choice">
+              <input type="checkbox" name="challenge" value="before">
+              Power is computed before a study, for an effect size you have assumed
+            </label>
+            <label class="control--choice">
+              <input type="checkbox" name="challenge" value="observed">
+              Observed power, computed afterwards from the study's own p-value, tells you how much power the study had
+            </label>
+            <label class="control--choice">
+              <input type="checkbox" name="challenge" value="informative">
+              A non-significant result from a well-powered study is more informative than one from an underpowered study
+            </label>
+            <label class="control--choice">
+              <input type="checkbox" name="challenge" value="doubling">
+              Doubling the sample size doubles the power
+            </label>
+            <label class="control--choice">
+              <input type="checkbox" name="challenge" value="eighty">
+              80% power means that if the assumed effect is the true one, 80% of such studies would come out significant
+            </label>
+            <label class="control--choice">
+              <input type="checkbox" name="challenge" value="exaggerate">
+              Among significant results from underpowered studies, the estimated effect tends to be larger than the truth
+            </label>
+            <label class="control--choice">
+              <input type="checkbox" name="challenge" value="biased">
+              Low power biases every estimate upwards
+            </label>
+          </fieldset>
+
+          <div class="prediction__actions">
+            <button class="button button--primary" type="submit">Check my answer</button>
+          </div>
+
+          <div class="feedback" data-challenge-feedback hidden></div>
+        </form>
+
+      </div>
+    </section>
+
+    <!-- ================= Debrief ================= -->
+    <section class="section section--tinted" id="debrief" aria-labelledby="debrief-heading">
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="debrief-heading">What this demonstrates</h2>
+        </div>
+
+        <div class="split split--wide">
+
+          <div class="prose">
+            <h3>Power is four areas and a decision</h3>
+            <p>
+              Draw what the observed effect size does when the truth is zero,
+              draw what it does when the truth is what you assumed, and put a
+              threshold between them. The tail of the first curve beyond the
+              threshold is &alpha;. The body of the second curve on the wrong
+              side of it is &beta;. Power is the rest. Everything you can do to
+              a study &mdash; more participants, a cleaner measure, a larger
+              manipulation, a looser threshold &mdash; works by moving those
+              curves apart or narrowing them.
+            </p>
+
+            <h3>The sample size you need grows as the square of the reciprocal</h3>
+            <p>
+              Halving the effect size you want to detect roughly quadruples the
+              sample you need. At <em>d</em> = 0.5 the classic 80% target costs
+              64 per group; at <em>d</em> = 0.25 it costs 253. That single fact
+              explains most of what has gone wrong in fields where small effects
+              are studied with small samples, and no amount of analysis after
+              the fact recovers it.
+            </p>
+
+            <h3>Observed power is not a diagnosis</h3>
+            <p>
+              Power computed after a study, using the effect the study itself
+              observed, is a one-to-one function of the <em>p</em>-value: a high
+              <em>p</em> always gives low observed power, by construction. It
+              therefore adds no information at all, and "the analysis was
+              underpowered, as shown by the observed power of 21%" is a
+              restatement of the <em>p</em>-value rather than an explanation of
+              it. Power calculations belong in a protocol, not in a discussion
+              section.
+            </p>
+
+            <h3>The exaggeration is in the filter, not in the studies</h3>
+            <p>
+              This is the part worth being careful about. Every simulated study
+              in Experiment 2 estimates the effect without bias, and the average
+              of all two thousand estimates lands on the truth. But a small
+              study can only clear the significance threshold by overshooting,
+              so the subset that clears it has a much larger average. Publish
+              only those and the literature reports an effect two or three times
+              the real one, with nobody having done anything wrong at any single
+              step. At very low power some of those significant results also
+              point in the wrong direction entirely.
+            </p>
+          </div>
+
+          <aside class="panel panel--caution" aria-labelledby="limits-heading">
+            <h3 class="panel__title" id="limits-heading">
+              What this does <em>not</em> demonstrate
+            </h3>
+            <ul>
+              <li>
+                <strong>No real studies.</strong> Every experiment in
+                Experiment 2 is generated from a seeded random number generator,
+                and the "true effect" is a number the simulation was told.
+              </li>
+              <li>
+                <strong>Power needs an effect size you do not have.</strong> The
+                slider labelled "true effect" is the central awkwardness of the
+                whole procedure: in a real protocol it is an assumption, drawn
+                from previous work that is itself probably exaggerated, or from
+                a judgement about the smallest effect worth detecting.
+              </li>
+              <li>
+                <strong>The power curve here uses a normal approximation.</strong>
+                The threshold uses the exact critical value of <em>t</em>, and
+                the probability beyond it is computed from a normal rather than
+                a non-central t distribution. The difference is a fraction of a
+                percentage point at these sample sizes and is not visible on the
+                picture.
+              </li>
+              <li>
+                <strong>Publication bias is only one filter.</strong> Selective
+                reporting of outcomes, flexible analysis and undisclosed
+                exclusions all act the same way and are the subject of the last
+                tool in this module.
+              </li>
+              <li>
+                <strong>Power is not the only thing that matters.</strong> A
+                large study of a badly operationalised construct answers nothing
+                precisely. Sample size is the easiest thing to fix and rarely
+                the most important.
+              </li>
+            </ul>
+          </aside>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+
+        <div>
+          <h2>Open Psychology Interactives</h2>
+          <p class="text-muted">
+            Free, accessible, classroom-ready teaching tools for university
+            psychology. Built as plain web pages so they keep working, and
+            openly licensed so they can be adapted.
+          </p>
+        </div>
+
+        <div>
+          <h2>Modules</h2>
+          <ul>
+            <li><a href="../../../cognitive/index.html">Cognitive Psychology</a></li>
+            <li><a href="../../index.html">Research Methods</a></li>
+            <li><a href="../../../neuropsychology/index.html">Neuropsychology</a></li>
+            <li><a href="../../../social-critical-psychology/index.html">Social and Critical Psychology</a></li>
+            <li><a href="../../../personality-individual-differences/index.html">Personality and Individual Differences</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h2>Project</h2>
+          <ul>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives">GitHub repository</a></li>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives/blob/main/CONTRIBUTING.md">Contributing</a></li>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives/blob/main/docs/accessibility.md">Accessibility</a></li>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives/blob/main/LICENSE">MIT licence</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="site-footer__bottom">
+        <p>© <span data-current-year>2026</span> Open Psychology Interactives. Released under the MIT licence.</p>
+        <p>Built with plain HTML, CSS and JavaScript. No trackers, no accounts.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,91 @@
+/* =========================================================================
+   Sampling Distribution and p-Value Simulator — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. What is
+   particular here is the null-distribution histogram: shaded tail bars, the
+   observed-difference marker and the zero line.
+   ========================================================================= */
+
+#pvalue .interactive__controls,
+#pvalue .interactive__stage {
+  min-width: 0;
+}
+
+#pvalue .interactive__stage > * {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #pvalue .interactive__body {
+    grid-template-columns: minmax(0, 19rem) minmax(0, 1fr);
+  }
+}
+
+/* Capped so the pinned block stays inside a 768px-tall viewport: the chart,
+   its text-equivalent table and the four figures all have to fit above the
+   fold while the controls beside them are used. */
+[data-hist] {
+  max-width: 26rem;
+}
+
+#pvalue .interactive__readout {
+  grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+  gap: 0.4rem;
+}
+
+#pvalue .interactive__readout div {
+  padding: 0.4rem 0.5rem;
+}
+
+#pvalue .interactive__readout dd {
+  font-size: 1rem;
+}
+
+/* -------------------------------------------------------------------------
+   Histogram
+   -------------------------------------------------------------------------
+   Tail bars carry a diagonal hatch as well as a different fill, and the
+   paired table states how many studies fell in each region, so the shading is
+   never the only carrier of the tail area.
+   ---------------------------------------------------------------------- */
+
+.hist__bar {
+  fill: var(--colour-accent-soft);
+  stroke: var(--colour-accent);
+  stroke-width: 0.6;
+}
+
+.hist__bar--tail {
+  fill: var(--colour-accent);
+}
+
+.hist__hatch {
+  stroke: var(--colour-on-accent);
+  stroke-width: 1;
+  opacity: 0.55;
+}
+
+.hist__zero {
+  stroke: var(--colour-text-muted);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+
+.hist__observed {
+  stroke: var(--colour-social-critical-psychology);
+  stroke-width: 2.5;
+}
+
+.hist__axis {
+  stroke: var(--colour-border-strong);
+  stroke-width: 1;
+}
+
+@media (forced-colors: active) {
+  .hist__bar { fill: Canvas; stroke: CanvasText; }
+  .hist__bar--tail { fill: Highlight; }
+  .hist__hatch { stroke: Canvas; opacity: 1; }
+  .hist__zero { stroke: GrayText; }
+  .hist__observed { stroke: CanvasText; stroke-width: 3; }
+  .hist__axis { stroke: CanvasText; }
+}

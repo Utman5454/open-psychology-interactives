@@ -1,0 +1,136 @@
+/* =========================================================================
+   Correlation: Linearity, Outliers and Shared Variance — tool styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. What is specific
+   here is the scatterplot with its fitted line and ringed observation, and
+   the three small "eyeball test" plots in the challenge.
+
+   The ringed point is marked by a ring - a shape, not a colour - and each
+   guess plot carries a written alternative beneath it stating how many
+   points it holds and how they run, so the challenge is answerable without
+   seeing the picture.
+   ========================================================================= */
+
+#corr .interactive__controls,
+#corr .interactive__stage {
+  min-width: 0;
+}
+
+#corr .interactive__stage > * {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #corr .interactive__body {
+    grid-template-columns: minmax(0, 19rem) minmax(0, 1fr);
+  }
+}
+
+/* The descendant part is load-bearing: interactive-shell.css sets
+   `.interactive__stage svg { max-width: 100% }`, which out-specifies a bare
+   attribute selector, so a cap written as `[data-scatter]` alone would
+   silently do nothing. */
+.interactive__stage [data-scatter] {
+  max-width: 29rem;
+}
+
+#corr .interactive__readout {
+  grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+  gap: 0.4rem;
+}
+
+#corr .interactive__readout div {
+  padding: 0.4rem 0.5rem;
+}
+
+#corr .interactive__readout dd {
+  font-size: 1rem;
+}
+
+/* -------------------------------------------------------------------------
+   The scatterplot
+   ---------------------------------------------------------------------- */
+
+.sc__point {
+  fill: var(--colour-accent);
+  opacity: 0.65;
+}
+
+/* The one observation the slider moves. Marked with a ring rather than a
+   different colour, so it is identifiable in greyscale. */
+.sc__ring {
+  fill: none;
+  stroke: var(--colour-text);
+  stroke-width: 2;
+}
+
+.sc__fit {
+  stroke: var(--colour-social-critical-psychology);
+  stroke-width: 2.5;
+  fill: none;
+}
+
+.sc__axis {
+  stroke: var(--colour-border-strong);
+  stroke-width: 1;
+}
+
+/* -------------------------------------------------------------------------
+   The eyeball test
+   ---------------------------------------------------------------------- */
+
+.guess {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+
+.guess__title {
+  margin: 0 0 var(--space-3);
+  font-size: var(--text-base);
+}
+
+.guess__svg {
+  max-width: 20rem;
+}
+
+.guess__alt {
+  margin: 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+
+.estimate__row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.estimate__row input[type="range"] {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 2.75rem;
+  accent-color: var(--colour-accent);
+  cursor: pointer;
+}
+
+.estimate__value {
+  flex: none;
+  min-width: 3.5rem;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-size: var(--text-lg);
+  font-weight: 650;
+  color: var(--colour-accent);
+}
+
+@media (forced-colors: active) {
+  .sc__point { fill: CanvasText; opacity: 1; }
+  .sc__ring { stroke: Highlight; stroke-width: 3; }
+  .sc__fit { stroke: Highlight; }
+  .sc__axis { stroke: CanvasText; }
+  .guess { border: 1px solid CanvasText; }
+}

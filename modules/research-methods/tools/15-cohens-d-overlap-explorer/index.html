@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Cohen's d and Distributional Overlap — Open Psychology Interactives</title>
+  <meta name="description" content="Two overlapping distributions, one effect size, and four different ways of saying how far apart they are. Estimate the overlap before you see it, then watch d hold still while the p-value collapses.">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f141b" media="(prefers-color-scheme: dark)">
+
+  <link rel="canonical" href="https://utman5454.github.io/open-psychology-interactives/modules/research-methods/tools/15-cohens-d-overlap-explorer/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Open Psychology Interactives">
+  <meta property="og:title" content="Cohen's d and Distributional Overlap">
+  <meta property="og:description" content="A large effect still means most people overlap. Estimate the overlap first, then read the four indices that describe it.">
+  <meta property="og:url" content="https://utman5454.github.io/open-psychology-interactives/modules/research-methods/tools/15-cohens-d-overlap-explorer/">
+  <meta property="og:locale" content="en_GB">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Cohen's d and Distributional Overlap">
+  <meta name="twitter:description" content="A large effect still means most people overlap. Estimate the overlap first, then read the four indices that describe it.">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231a4fa0'/%3E%3Cpath d='M4 24C10 24 10 8 16 8s6 16 12 16' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
+
+  <!-- Four directories deep (modules/<slug>/tools/<slug>/), so shared assets
+       are at ../../../../ — see docs/adapting-a-tool.md. -->
+  <link rel="stylesheet" href="../../../../assets/css/main.css">
+  <link rel="stylesheet" href="../../../../components/interactive-shell.css">
+  <link rel="stylesheet" href="../../../../components/tool-kit.css">
+  <link rel="stylesheet" href="tool.css">
+  <script src="../../../../assets/js/main.js" defer></script>
+  <script src="../../../../components/interactive-shell.js" defer></script>
+  <script src="tool.js" defer></script>
+</head>
+
+<!-- data-site-root: the path back to the site root from this page. -->
+<body data-site-root="../../../../">
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+
+      <a class="brand" href="../../../../index.html" aria-label="Open Psychology Interactives, home">
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <rect x="1" y="1" width="30" height="30" rx="7" fill="none" stroke="currentColor" stroke-width="2"></rect>
+          <path d="M5 24C10 24 10 8 16 8s6 16 11 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        </svg>
+        <span>
+          <span class="brand__name">Open Psychology Interactives</span>
+          <span class="brand__tagline">Free teaching tools for psychology</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" data-nav-toggle
+              aria-expanded="false" aria-controls="site-nav" hidden>
+        <svg class="nav-toggle__icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+          <path d="M2 5h16M2 10h16M2 15h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        </svg>
+        Menu
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul class="site-nav__list">
+          <li><a class="site-nav__link" href="../../../../index.html">Home</a></li>
+          <li><a class="site-nav__link" href="../../../cognitive/index.html">Cognitive<span class="visually-hidden"> Psychology</span></a></li>
+          <li><a class="site-nav__link" href="../../index.html">Research Methods</a></li>
+          <li><a class="site-nav__link" href="../../../neuropsychology/index.html">Neuropsychology</a></li>
+          <li><a class="site-nav__link" href="../../../social-critical-psychology/index.html">Social and Critical<span class="visually-hidden"> Psychology</span></a></li>
+          <li><a class="site-nav__link" href="../../../personality-individual-differences/index.html">Personality<span class="visually-hidden"> and Individual Differences</span></a></li>
+          <li><a class="site-nav__link" href="../../../../index.html#documentation">Documentation</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <nav class="breadcrumbs container" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="../../../../index.html">Home</a></li>
+      <li><a href="../../../../index.html#modules">Modules</a></li>
+      <li><a href="../../index.html">Research Methods</a></li>
+      <li aria-current="page">Cohen's d and Distributional Overlap</li>
+    </ol>
+  </nav>
+
+  <main id="main">
+
+    <!-- ================= Title and purpose ================= -->
+    <section class="section card--research-methods" aria-labelledby="page-heading">
+      <div class="container">
+
+        <p class="hero__eyebrow" style="color: var(--colour-research-methods)">
+          Research Methods
+        </p>
+        <h1 id="page-heading">Cohen's d and Distributional Overlap</h1>
+        <p class="hero__lead">
+          An effect size is a statement about two whole distributions, not about
+          two averages. The picture that matters is how much of them sit on top
+          of one another &mdash; and it is almost always more than people expect.
+        </p>
+
+        <p>
+          <span class="badge">
+            <span class="badge__dot" aria-hidden="true"></span>
+            Simulated &mdash; illustrative distributions, no real group data
+          </span>
+        </p>
+
+        <div class="split split--wide">
+
+          <div class="panel">
+            <h2 class="panel__title">Learning objective</h2>
+            <p>
+              By the end you should be able to compute Cohen's <em>d</em> from a
+              mean difference and a pooled standard deviation, translate it into
+              overlap, probability of superiority and U&#8323;, explain why
+              <em>d</em> does not grow with the sample size, and say what a
+              group difference does and does not license about an individual.
+            </p>
+            <p class="text-muted">
+              About 25 minutes. Nothing you do here is saved or sent anywhere.
+            </p>
+          </div>
+
+          <div class="panel panel--caution">
+            <h2 class="panel__title">Groups are not people</h2>
+            <p>
+              Every index on this page describes two distributions. None of them
+              says anything about any individual. Even at
+              <em>d</em>&nbsp;=&nbsp;1.0 &mdash; twice Cohen's "medium" &mdash;
+              nearly a third of the two distributions still overlaps, and
+              roughly one person in four drawn from the higher group scores
+              below a person drawn from the lower one. Sentences of the form
+              "group X are more Y" almost always overstate what an effect size
+              supports.
+            </p>
+          </div>
+
+        </div>
+
+        <ol class="how-to">
+          <li>Estimate the overlap before you see it.</li>
+          <li>Move the means apart and watch every index move together.</li>
+          <li>Change one group's spread and watch <em>d</em> change without the means moving.</li>
+          <li>Change the sample size and watch <em>d</em> refuse to move at all.</li>
+        </ol>
+
+      </div>
+    </section>
+
+    <!-- ================= Opening prediction ================= -->
+    <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="opening-heading">First, an estimate</h2>
+          <p class="prose">
+            Two fictional groups are compared on a 100-point task. Both have a
+            standard deviation of 10; their means are 50 and 58. That is
+            <em>d</em>&nbsp;=&nbsp;0.80, which Cohen's rough labels would call a
+            large effect.
+          </p>
+        </div>
+
+        <noscript>
+          <div class="placeholder">
+            <h3 class="placeholder__title">This part needs JavaScript</h3>
+            <p class="prose">
+              The curves are drawn and their overlap integrated in your browser,
+              so this part cannot run with JavaScript switched off. The rest of
+              this page is readable without it.
+            </p>
+          </div>
+        </noscript>
+
+        <form class="panel prediction" id="opening-form">
+          <fieldset class="prediction__group">
+            <legend class="prediction__legend">
+              What percentage of the two distributions do you think overlaps?
+            </legend>
+            <div class="estimate">
+              <label class="estimate__label" for="guess-range">
+                Your estimate of the overlap
+              </label>
+              <div class="estimate__row">
+                <input type="range" id="guess-range" min="0" max="100" step="1" value="30">
+                <output class="estimate__value" for="guess-range">30%</output>
+              </div>
+              <p class="control__hint">
+                0% would mean the two distributions share no common ground at
+                all; 100% would mean they sit exactly on top of one another.
+              </p>
+            </div>
+          </fieldset>
+
+          <div class="prediction__actions">
+            <button class="button button--primary" type="submit">
+              Lock in my estimate and open the explorer
+            </button>
+            <button class="button button--secondary" type="button" data-action="skip-opening">
+              Skip &mdash; I am demonstrating this
+            </button>
+          </div>
+
+          <div class="feedback" data-opening-feedback hidden></div>
+        </form>
+
+      </div>
+    </section>
+
+    <!-- ================= Explorer ================= -->
+    <section class="section" id="explorer-section" aria-labelledby="explorer-heading" hidden>
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="explorer-heading" tabindex="-1">The explorer</h2>
+          <p class="prose">
+            Two normal distributions on one axis. The shaded common ground is
+            the overlap, integrated numerically rather than looked up, so it
+            stays correct when you give the two groups different spreads.
+          </p>
+        </div>
+
+        <section class="interactive" id="overlap" data-interactive
+                 data-reset-message="Everything cleared. Back to the opening estimate.">
+
+          <header class="interactive__header">
+            <h3 class="interactive__title">Two distributions, four ways of describing the gap</h3>
+            <p class="interactive__brief">
+              <em>d</em> counts the gap in pooled standard deviations. The other
+              three translate that into shares of people, which is what a reader
+              can actually picture.
+            </p>
+          </header>
+
+          <div class="interactive__body interactive__body--pinned">
+
+            <form class="interactive__controls" data-interactive-controls>
+
+              <fieldset>
+                <legend>The two groups</legend>
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="mean-b-range">Mean of group B</label>
+                    <output class="control__value" for="mean-b-range">58</output>
+                  </div>
+                  <input type="range" id="mean-b-range" min="50" max="80" step="1" value="58">
+                  <p class="control__hint">Group A's mean is fixed at 50.</p>
+                </div>
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="sd-a-range">Standard deviation of group A</label>
+                    <output class="control__value" for="sd-a-range">10</output>
+                  </div>
+                  <input type="range" id="sd-a-range" min="4" max="20" step="1" value="10">
+                </div>
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="sd-b-range">Standard deviation of group B</label>
+                    <output class="control__value" for="sd-b-range">10</output>
+                  </div>
+                  <input type="range" id="sd-b-range" min="4" max="20" step="1" value="10">
+                  <p class="control__hint">
+                    Give the two groups different spreads and the pooled figure
+                    in the readout shows what <em>d</em> is dividing by.
+                  </p>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>Sample size &mdash; the test, not the effect</legend>
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="n-range">Participants per group</label>
+                    <output class="control__value" for="n-range">30</output>
+                  </div>
+                  <input type="range" id="n-range" min="5" max="400" step="5" value="30">
+                  <p class="control__hint">
+                    This slider cannot move <em>d</em>, the overlap or the
+                    picture. Open the disclosure under the chart to see what it
+                    does move.
+                  </p>
+                </div>
+              </fieldset>
+
+            </form>
+
+            <div class="interactive__stage" data-interactive-stage>
+
+              <!-- Pinned: the two curves with the common ground shaded, and
+                   the four indices that describe it. -->
+              <div class="stage__primary">
+                <h4 class="stage__heading" data-chart-heading>Two overlapping distributions</h4>
+                <figure class="chart">
+                  <figcaption class="visually-hidden">
+                    Two normal density curves on one score axis, group A as a
+                    solid line and group B as a dashed line, with the region
+                    lying under both of them shaded and hatched
+                  </figcaption>
+                  <svg class="chart__svg" data-overlap viewBox="0 0 460 190"
+                       aria-hidden="true" focusable="false"></svg>
+                  <div class="table-scroll">
+                    <table class="chart__table">
+                      <caption class="visually-hidden">
+                        Every index of separation currently on screen, with what
+                        each one counts
+                      </caption>
+                      <thead>
+                        <tr>
+                          <th scope="col">Index</th>
+                          <th scope="col">Value</th>
+                          <th scope="col">What it counts</th>
+                        </tr>
+                      </thead>
+                      <tbody data-index-table></tbody>
+                    </table>
+                  </div>
+                </figure>
+                <dl class="interactive__readout" data-readout></dl>
+              </div>
+
+              <div class="verdict" data-verdict>
+                <h4 class="verdict__title">Saying it without overstating it</h4>
+                <p class="verdict__body" data-interpretation></p>
+                <p class="verdict__note" data-benchmark></p>
+              </div>
+
+              <details class="stage__more">
+                <summary>What the sample size changes, and what it does not</summary>
+                <div>
+                  <p class="prose" data-n-note></p>
+                  <div class="table-scroll">
+                    <table class="data-table">
+                      <caption class="visually-hidden">
+                        The effect size and the test statistic at the current
+                        settings
+                      </caption>
+                      <thead>
+                        <tr>
+                          <th scope="col">Quantity</th>
+                          <th scope="col">Value</th>
+                          <th scope="col">Moves with n?</th>
+                        </tr>
+                      </thead>
+                      <tbody data-n-table></tbody>
+                    </table>
+                  </div>
+                </div>
+              </details>
+
+            </div>
+
+          </div>
+
+          <p class="interactive__status" data-interactive-status role="status"></p>
+
+          <div class="interactive__actions">
+            <button type="button" data-action="preset-small">Cohen's "small", d = 0.2</button>
+            <button type="button" data-variant="secondary" data-action="preset-medium">
+              "Medium", d = 0.5
+            </button>
+            <button type="button" data-variant="secondary" data-action="preset-large">
+              "Large", d = 0.8
+            </button>
+            <button type="button" data-variant="secondary" data-interactive-reset>
+              Reset everything
+            </button>
+          </div>
+
+          <details class="interactive__notes">
+            <summary>Notes for whoever is running this</summary>
+            <div>
+              <p>
+                Take the three benchmark buttons in order and read the overlap
+                aloud each time: 92%, 80%, 69%. A room that has just been told
+                0.8 is a large effect finds 69% overlap genuinely surprising,
+                and it is the most useful surprise available in this topic.
+              </p>
+              <p>
+                Then leave the means where they are and drag group A's standard
+                deviation from 10 to 5. The two averages have not moved by a
+                point and <em>d</em> nearly doubles. Ask which number a reader
+                should be given.
+              </p>
+              <p>
+                Finally drag the sample size from 5 to 400 with everything else
+                fixed. Open the disclosure: <em>d</em> is stuck and the p-value
+                falls off a cliff. That is the difference between an effect and
+                a test, in one gesture.
+              </p>
+              <p>
+                Fuller guidance is in
+                <a href="teaching-notes.md">teaching-notes.md</a> beside this
+                page.
+              </p>
+            </div>
+          </details>
+
+        </section>
+
+      </div>
+    </section>
+
+    <!-- ================= Challenge ================= -->
+    <section class="section section--tinted" id="challenge" aria-labelledby="challenge-heading" hidden>
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="challenge-heading" tabindex="-1">Challenge &mdash; which index is being described?</h2>
+          <p class="prose">
+            Five sentences from five fictional results paragraphs. Match each one
+            to the quantity it is actually describing.
+          </p>
+        </div>
+
+        <form class="panel challenge" id="challenge-form">
+
+          <div class="match">
+            <p class="match__text">
+              "If you drew one person at random from each group, there is a 71%
+              chance the person from the second group would score higher."
+            </p>
+            <label class="match__label" for="m1">This describes</label>
+            <select id="m1">
+              <option value="">choose&hellip;</option>
+              <option value="d">Cohen's d</option>
+              <option value="ovl">The overlap coefficient</option>
+              <option value="cles">The probability of superiority</option>
+              <option value="u3">U&#8323;</option>
+              <option value="none">None of these</option>
+            </select>
+          </div>
+
+          <div class="match">
+            <p class="match__text">
+              "79% of the second group scored above the average of the first."
+            </p>
+            <label class="match__label" for="m2">This describes</label>
+            <select id="m2">
+              <option value="">choose&hellip;</option>
+              <option value="d">Cohen's d</option>
+              <option value="ovl">The overlap coefficient</option>
+              <option value="cles">The probability of superiority</option>
+              <option value="u3">U&#8323;</option>
+              <option value="none">None of these</option>
+            </select>
+          </div>
+
+          <div class="match">
+            <p class="match__text">
+              "The groups differed by 0.80 pooled standard deviations."
+            </p>
+            <label class="match__label" for="m3">This describes</label>
+            <select id="m3">
+              <option value="">choose&hellip;</option>
+              <option value="d">Cohen's d</option>
+              <option value="ovl">The overlap coefficient</option>
+              <option value="cles">The probability of superiority</option>
+              <option value="u3">U&#8323;</option>
+              <option value="none">None of these</option>
+            </select>
+          </div>
+
+          <div class="match">
+            <p class="match__text">
+              "69% of the two distributions occupied common ground."
+            </p>
+            <label class="match__label" for="m4">This describes</label>
+            <select id="m4">
+              <option value="">choose&hellip;</option>
+              <option value="d">Cohen's d</option>
+              <option value="ovl">The overlap coefficient</option>
+              <option value="cles">The probability of superiority</option>
+              <option value="u3">U&#8323;</option>
+              <option value="none">None of these</option>
+            </select>
+          </div>
+
+          <div class="match">
+            <p class="match__text">
+              "There is a 95% probability that the difference between the groups
+              is real."
+            </p>
+            <label class="match__label" for="m5">This describes</label>
+            <select id="m5">
+              <option value="">choose&hellip;</option>
+              <option value="d">Cohen's d</option>
+              <option value="ovl">The overlap coefficient</option>
+              <option value="cles">The probability of superiority</option>
+              <option value="u3">U&#8323;</option>
+              <option value="none">None of these</option>
+            </select>
+          </div>
+
+          <p class="prediction__error" data-challenge-error role="alert" hidden></p>
+
+          <div class="prediction__actions">
+            <button class="button button--primary" type="submit">Check my five</button>
+          </div>
+
+          <div class="feedback" data-challenge-feedback hidden></div>
+        </form>
+
+      </div>
+    </section>
+
+    <!-- ================= Debrief ================= -->
+    <section class="section" id="debrief" aria-labelledby="debrief-heading">
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="debrief-heading">What this demonstrates</h2>
+        </div>
+
+        <div class="split split--wide">
+
+          <div class="prose">
+            <h3><em>d</em> is a ratio, so both parts of it matter</h3>
+            <p>
+              Cohen's <em>d</em> is the difference between the means divided by
+              the pooled standard deviation. Because the denominator is in the
+              same units as the numerator, the result has no units at all, which
+              is what lets an eight-point gap on a fictional task be compared
+              with a two-second gap in a reaction-time study. It also means the
+              same raw difference produces quite different effect sizes in
+              groups of different spread &mdash; drag one group's standard
+              deviation and watch <em>d</em> move while neither mean does.
+            </p>
+
+            <h3>The sample size cannot touch it</h3>
+            <p>
+              <em>d</em> estimates a property of the populations. Collecting
+              more people gives you a better estimate of it, not a bigger one.
+              A t-statistic and a p-value, by contrast, grow with the square root
+              of n without limit, which is why a study of four hundred can
+              report an unmissable p-value for a difference nobody would notice.
+              The disclosure under the chart puts both on screen at once.
+            </p>
+
+            <h3>Overlap is the honest translation</h3>
+            <p>
+              Effect sizes in standard-deviation units are hard to picture, and
+              the conventional labels invite the picture to be much cleaner than
+              it is. At <em>d</em>&nbsp;=&nbsp;0.8, called large, 69% of the two
+              distributions still overlaps and 71% is the chance that a randomly
+              chosen member of the higher group beats a randomly chosen member
+              of the lower one &mdash; which leaves 29% going the other way.
+              Reporting the overlap alongside the effect size is the cheapest
+              available protection against overstating a finding.
+            </p>
+
+            <h3>Small, medium and large were always rough</h3>
+            <p>
+              Cohen offered those labels as a stopgap for fields with no
+              accumulated knowledge of their own, and said so. In a field with
+              a literature, the useful comparison is with other effects in the
+              same area, and in an applied context it is with a threshold of
+              practical importance decided before the data arrive. A <em>d</em>
+              of 0.2 can be transformative in a public-health intervention and
+              negligible in a laboratory task, and no benchmark table can know
+              which is which.
+            </p>
+          </div>
+
+          <aside class="panel panel--caution" aria-labelledby="limits-heading">
+            <h3 class="panel__title" id="limits-heading">
+              What this does <em>not</em> demonstrate
+            </h3>
+            <ul>
+              <li>
+                <strong>No real groups and no real measure.</strong> The
+                distributions are mathematical objects on an invented 100-point
+                scale. Nothing here describes any actual population.
+              </li>
+              <li>
+                <strong>Nothing about individuals.</strong> Every index on this
+                page is a statement about two distributions. None of them
+                supports a claim about a person, and a difference between group
+                averages is compatible with any particular individual falling
+                anywhere.
+              </li>
+              <li>
+                <strong>Both distributions are normal here.</strong> The
+                overlap, the probability of superiority and U&#8323; all assume
+                that. For skewed or bounded variables the relationships between
+                them come apart, and the probability of superiority - which can
+                be estimated without any distributional assumption - is the one
+                that survives best.
+              </li>
+              <li>
+                <strong>These are population values, not estimates.</strong> A
+                <em>d</em> computed from a real sample has a confidence interval,
+                and at small n it is a wide one. It is also biased upwards,
+                which is what Hedges' correction is for.
+              </li>
+              <li>
+                <strong>An effect size is not a cause.</strong> The size of a
+                difference says nothing about what produced it, and none of
+                these indices distinguishes a manipulated difference from an
+                observed one.
+              </li>
+            </ul>
+          </aside>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+
+        <div>
+          <h2>Open Psychology Interactives</h2>
+          <p class="text-muted">
+            Free, accessible, classroom-ready teaching tools for university
+            psychology. Built as plain web pages so they keep working, and
+            openly licensed so they can be adapted.
+          </p>
+        </div>
+
+        <div>
+          <h2>Modules</h2>
+          <ul>
+            <li><a href="../../../cognitive/index.html">Cognitive Psychology</a></li>
+            <li><a href="../../index.html">Research Methods</a></li>
+            <li><a href="../../../neuropsychology/index.html">Neuropsychology</a></li>
+            <li><a href="../../../social-critical-psychology/index.html">Social and Critical Psychology</a></li>
+            <li><a href="../../../personality-individual-differences/index.html">Personality and Individual Differences</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h2>Project</h2>
+          <ul>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives">GitHub repository</a></li>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives/blob/main/CONTRIBUTING.md">Contributing</a></li>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives/blob/main/docs/accessibility.md">Accessibility</a></li>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives/blob/main/LICENSE">MIT licence</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="site-footer__bottom">
+        <p>© <span data-current-year>2026</span> Open Psychology Interactives. Released under the MIT licence.</p>
+        <p>Built with plain HTML, CSS and JavaScript. No trackers, no accounts.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

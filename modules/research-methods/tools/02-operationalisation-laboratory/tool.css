@@ -1,0 +1,209 @@
+/* =========================================================================
+   Operationalisation Laboratory — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. What is
+   particular here is the facet coverage map: one row per facet, each row
+   printing its own standing in words so the bar length and the fill are both
+   redundant cues.
+   ========================================================================= */
+
+/* "Operationalisation" is one 18-character word and is wider than a 320px
+   viewport at heading size, which would take the page's horizontal scrollbar
+   with it. Let it break rather than overflow. */
+#page-heading {
+  overflow-wrap: break-word;
+}
+
+#operationalise .interactive__controls,
+#operationalise .interactive__stage {
+  min-width: 0;
+}
+
+/* The stage is a grid, so each child's automatic minimum size is its
+   min-content width. The comparison table inside <details> is wider than a
+   320px viewport, and without this it would set the stage's minimum and drag
+   the whole page sideways instead of scrolling inside its own .table-scroll. */
+#operationalise .interactive__stage > * {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #operationalise .interactive__body {
+    grid-template-columns: minmax(0, 21rem) minmax(0, 1fr);
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Measure checkboxes
+   ---------------------------------------------------------------------- */
+
+.measure {
+  display: block;
+  padding: var(--space-2) 0;
+  border-top: 1px solid var(--colour-border);
+}
+
+.measure:first-child {
+  border-top: 0;
+}
+
+.measure__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  min-height: 2.75rem;
+  cursor: pointer;
+}
+
+.measure__row input {
+  width: 1.15rem;
+  height: 1.15rem;
+  flex: none;
+  margin-top: 0.55rem;
+  accent-color: var(--colour-accent);
+}
+
+.measure__name {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  line-height: 1.4;
+  padding-top: 0.35rem;
+}
+
+.measure__family {
+  display: block;
+  font-weight: 400;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* -------------------------------------------------------------------------
+   Coverage map
+   -------------------------------------------------------------------------
+   Five rows, one per facet. Every row states its standing as a word, so the
+   bar is an illustration of the text rather than the only carrier of it.
+   ---------------------------------------------------------------------- */
+
+.coverage {
+  display: grid;
+  gap: 0.4rem;
+  margin-bottom: var(--space-4);
+}
+
+.coverage__row {
+  display: grid;
+  grid-template-columns: minmax(6rem, 10rem) 1fr;
+  gap: 0.25rem var(--space-3);
+  align-items: center;
+  font-size: var(--text-sm);
+}
+
+@media (max-width: 30em) {
+  .coverage__row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.coverage__facet {
+  font-weight: 600;
+}
+
+.coverage__meter {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.coverage__track {
+  flex: 1 1 4rem;
+  min-width: 3rem;
+  height: 0.85rem;
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  overflow: hidden;
+}
+
+.coverage__fill {
+  display: block;
+  height: 100%;
+  background-color: var(--colour-accent);
+  transition: width 180ms ease-out;
+}
+
+.coverage__row[data-level="0"] .coverage__fill {
+  background-color: transparent;
+}
+
+/* Level is repeated as a word, and the word is what a reader relies on. */
+.coverage__word {
+  flex: 0 0 auto;
+  font-size: var(--text-xs);
+  font-variant: small-caps;
+  letter-spacing: 0.03em;
+  color: var(--colour-text-muted);
+}
+
+.coverage__row[data-level="0"] .coverage__word {
+  color: var(--colour-status-text);
+  font-weight: 700;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .coverage__fill {
+    transition: none;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Contamination cards
+   ---------------------------------------------------------------------- */
+
+.contam {
+  margin: 0 0 var(--space-3);
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-cognitive);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  font-size: var(--text-sm);
+}
+
+.contam:last-child {
+  margin-bottom: 0;
+}
+
+.contam__name {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+.contam__list {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.contam__list li + li {
+  margin-top: 0.2rem;
+}
+
+.contam__empty {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+
+@media (forced-colors: active) {
+  .coverage__track,
+  .contam,
+  .measure {
+    border-color: CanvasText;
+  }
+
+  .coverage__fill {
+    background-color: Highlight;
+  }
+}

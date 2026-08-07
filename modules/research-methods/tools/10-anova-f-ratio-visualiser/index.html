@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>ANOVA F-Ratio Visualiser — Open Psychology Interactives</title>
+  <meta name="description" content="Pull three group means apart, then make the groups noisier, and watch F respond to the ratio rather than to either part alone. Then meet three different patterns of means that produce exactly the same F.">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f141b" media="(prefers-color-scheme: dark)">
+
+  <link rel="canonical" href="https://utman5454.github.io/open-psychology-interactives/modules/research-methods/tools/10-anova-f-ratio-visualiser/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Open Psychology Interactives">
+  <meta property="og:title" content="ANOVA F-Ratio Visualiser">
+  <meta property="og:description" content="F is a ratio. Move the signal, move the noise, and watch which one wins - then see three different patterns give the same F.">
+  <meta property="og:url" content="https://utman5454.github.io/open-psychology-interactives/modules/research-methods/tools/10-anova-f-ratio-visualiser/">
+  <meta property="og:locale" content="en_GB">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="ANOVA F-Ratio Visualiser">
+  <meta name="twitter:description" content="F is a ratio. Move the signal, move the noise, and watch which one wins - then see three different patterns give the same F.">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231a4fa0'/%3E%3Cpath d='M4 24C10 24 10 8 16 8s6 16 12 16' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
+
+  <!-- Four directories deep (modules/<slug>/tools/<slug>/), so shared assets
+       are at ../../../../ — see docs/adapting-a-tool.md. -->
+  <link rel="stylesheet" href="../../../../assets/css/main.css">
+  <link rel="stylesheet" href="../../../../components/interactive-shell.css">
+  <link rel="stylesheet" href="../../../../components/tool-kit.css">
+  <link rel="stylesheet" href="tool.css">
+  <script src="../../../../assets/js/main.js" defer></script>
+  <script src="../../../../components/interactive-shell.js" defer></script>
+  <script src="tool.js" defer></script>
+</head>
+
+<!-- data-site-root: the path back to the site root from this page. -->
+<body data-site-root="../../../../">
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+
+      <a class="brand" href="../../../../index.html" aria-label="Open Psychology Interactives, home">
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <rect x="1" y="1" width="30" height="30" rx="7" fill="none" stroke="currentColor" stroke-width="2"></rect>
+          <path d="M5 24C10 24 10 8 16 8s6 16 11 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        </svg>
+        <span>
+          <span class="brand__name">Open Psychology Interactives</span>
+          <span class="brand__tagline">Free teaching tools for psychology</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" data-nav-toggle
+              aria-expanded="false" aria-controls="site-nav" hidden>
+        <svg class="nav-toggle__icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+          <path d="M2 5h16M2 10h16M2 15h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        </svg>
+        Menu
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul class="site-nav__list">
+          <li><a class="site-nav__link" href="../../../../index.html">Home</a></li>
+          <li><a class="site-nav__link" href="../../../cognitive/index.html">Cognitive<span class="visually-hidden"> Psychology</span></a></li>
+          <li><a class="site-nav__link" href="../../index.html">Research Methods</a></li>
+          <li><a class="site-nav__link" href="../../../neuropsychology/index.html">Neuropsychology</a></li>
+          <li><a class="site-nav__link" href="../../../social-critical-psychology/index.html">Social and Critical<span class="visually-hidden"> Psychology</span></a></li>
+          <li><a class="site-nav__link" href="../../../personality-individual-differences/index.html">Personality<span class="visually-hidden"> and Individual Differences</span></a></li>
+          <li><a class="site-nav__link" href="../../../../index.html#documentation">Documentation</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <nav class="breadcrumbs container" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="../../../../index.html">Home</a></li>
+      <li><a href="../../../../index.html#modules">Modules</a></li>
+      <li><a href="../../index.html">Research Methods</a></li>
+      <li aria-current="page">ANOVA F-Ratio Visualiser</li>
+    </ol>
+  </nav>
+
+  <main id="main">
+
+    <!-- ================= Title and purpose ================= -->
+    <section class="section card--research-methods" aria-labelledby="page-heading">
+      <div class="container">
+
+        <p class="hero__eyebrow" style="color: var(--colour-research-methods)">
+          Research Methods
+        </p>
+        <h1 id="page-heading">ANOVA F-Ratio Visualiser</h1>
+        <p class="hero__lead">
+          <em>F</em> is a fraction. Pull the group means apart and the top grows;
+          make the groups noisier and the bottom grows. Nothing about the test
+          makes sense until you can see both halves of it at once.
+        </p>
+
+        <p>
+          <span class="badge">
+            <span class="badge__dot" aria-hidden="true"></span>
+            Simulated &mdash; generated scores from a documented seed
+          </span>
+        </p>
+
+        <div class="split split--wide">
+
+          <div class="panel">
+            <h2 class="panel__title">Learning objective</h2>
+            <p>
+              By the end you should be able to describe <em>F</em> as the ratio
+              of between-groups to within-groups mean squares, predict what
+              happens to it when the means separate, when the groups get noisier
+              and when the sample grows, and explain why a significant omnibus
+              <em>F</em> does not tell you which groups differ.
+            </p>
+            <p class="text-muted">
+              About 25 minutes. Nothing you do here is saved or sent anywhere.
+            </p>
+          </div>
+
+          <div class="panel panel--caution">
+            <h2 class="panel__title">What the omnibus test asks</h2>
+            <p>
+              One-way ANOVA asks a single question: are all the population means
+              equal? It is not three t-tests wearing a coat, and a small
+              <em>p</em> does not identify which groups differ, in which
+              direction, or by how much. Those are separate questions with
+              separate answers, and the second experiment on this page is built
+              to make that unavoidable.
+            </p>
+          </div>
+
+        </div>
+
+        <ol class="how-to">
+          <li>Answer the prediction question to open Experiment 1.</li>
+          <li>Separate the group means and watch <em>F</em> climb.</li>
+          <li>Now raise the within-group spread and watch it collapse again.</li>
+          <li>In Experiment 2, decide which pattern of means produced a given <em>F</em>.</li>
+        </ol>
+
+      </div>
+    </section>
+
+    <!-- ================= Opening prediction ================= -->
+    <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="opening-heading">First, a prediction</h2>
+          <p class="prose">
+            Three fictional groups of 30 people each sit the same 100-point test
+            after a different revision method. In the first study the population
+            means are 44, 52 and 60, and the within-group standard deviation is
+            6. A second study has exactly the same three population means, but
+            the scores <em>within</em> each group are twice as spread out.
+          </p>
+        </div>
+
+        <noscript>
+          <div class="placeholder">
+            <h3 class="placeholder__title">This part needs JavaScript</h3>
+            <p class="prose">
+              The visualiser generates its scores in your browser, so it cannot
+              run with JavaScript switched off. The rest of this page is
+              readable without it.
+            </p>
+          </div>
+        </noscript>
+
+        <form class="panel prediction" id="opening-form">
+          <fieldset class="prediction__group">
+            <legend class="prediction__legend">
+              What happens to <em>F</em> in the second study?
+            </legend>
+            <label class="control--choice">
+              <input type="radio" name="opening" value="same">
+              Unchanged &mdash; the group means have not moved
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="opening" value="half">
+              About half as large
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="opening" value="quarter">
+              About a quarter as large
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="opening" value="double">
+              Twice as large &mdash; more variation means more to explain
+            </label>
+          </fieldset>
+
+          <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+          <div class="prediction__actions">
+            <button class="button button--primary" type="submit">
+              Record my prediction and open Experiment 1
+            </button>
+            <button class="button button--secondary" type="button" data-action="skip-opening">
+              Skip &mdash; I am demonstrating this
+            </button>
+          </div>
+
+          <div class="feedback" data-opening-feedback hidden></div>
+        </form>
+
+      </div>
+    </section>
+
+    <!-- ================= Experiment 1 ================= -->
+    <section class="section" id="ratio-section" aria-labelledby="ratio-heading" hidden>
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="ratio-heading" tabindex="-1">Experiment 1 &mdash; the two halves of the ratio</h2>
+          <p class="prose">
+            Three groups, deliberately labelled A, B and C so that nothing about
+            the story does the explaining. Each dot is one simulated score, each
+            heavy bar is a group mean, and the dashed line is the grand mean.
+          </p>
+        </div>
+
+        <section class="interactive" id="ratio" data-interactive
+                 data-reset-message="Everything cleared. Back to the opening prediction.">
+
+          <header class="interactive__header">
+            <h3 class="interactive__title">Signal over noise</h3>
+            <p class="interactive__brief">
+              The distance of each bar from the dashed line is the between-groups
+              part. The scatter of dots around their own bar is the
+              within-groups part. <em>F</em> is one divided by the other, after
+              each is turned into a mean square.
+            </p>
+          </header>
+
+          <div class="interactive__body interactive__body--pinned">
+
+            <form class="interactive__controls" data-interactive-controls>
+
+              <fieldset>
+                <legend>The population the samples come from</legend>
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="sep-range">Separation of the group means</label>
+                    <output class="control__value" for="sep-range">4.0</output>
+                  </div>
+                  <input type="range" id="sep-range" min="0" max="10" step="0.5" value="8">
+                  <p class="control__hint">
+                    True means are 52 minus this, 52, and 52 plus this. At zero
+                    the three populations are identical.
+                  </p>
+                </div>
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="within-range">Within-group standard deviation</label>
+                    <output class="control__value" for="within-range">6</output>
+                  </div>
+                  <input type="range" id="within-range" min="2" max="18" step="1" value="6">
+                </div>
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="n-range">Participants per group</label>
+                    <output class="control__value" for="n-range">30</output>
+                  </div>
+                  <input type="range" id="n-range" min="5" max="60" step="5" value="30">
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>Worked examples</legend>
+                <div class="control">
+                  <label class="control__label" for="preset-select">Jump to a situation</label>
+                  <select id="preset-select">
+                    <option value="custom">Current settings</option>
+                    <option value="study1">The first study you predicted about</option>
+                    <option value="study2">The same means, twice the spread</option>
+                    <option value="null">No real difference at all</option>
+                    <option value="bign">Tiny difference, large sample</option>
+                  </select>
+                </div>
+                <div class="control">
+                  <label class="control__label" for="seed-input">Random seed</label>
+                  <input type="number" id="seed-input" value="4021" step="1" min="1" max="999999">
+                </div>
+              </fieldset>
+
+            </form>
+
+            <div class="interactive__stage" data-interactive-stage>
+
+              <!-- Pinned: the strip plot and the ratio it produces. Every
+                   control on the left moves both. -->
+              <div class="stage__primary">
+                <h4 class="stage__heading" data-chart-heading>
+                  Three simulated groups
+                </h4>
+                <figure class="chart">
+                  <figcaption class="visually-hidden">
+                    Strip plot of individual simulated scores in three groups,
+                    with each group mean drawn as a heavy bar and the grand mean
+                    as a dashed line across all three
+                  </figcaption>
+                  <svg class="chart__svg" data-strip viewBox="0 0 460 220"
+                       aria-hidden="true" focusable="false"></svg>
+                  <div class="table-scroll">
+                    <table class="chart__table">
+                      <caption class="visually-hidden">
+                        The simulated sample in each group
+                      </caption>
+                      <thead>
+                        <tr>
+                          <th scope="col">Group</th>
+                          <th scope="col">n</th>
+                          <th scope="col">Mean</th>
+                          <th scope="col">SD</th>
+                        </tr>
+                      </thead>
+                      <tbody data-group-table></tbody>
+                    </table>
+                  </div>
+                </figure>
+                <dl class="interactive__readout" data-readout></dl>
+              </div>
+
+              <div class="verdict" data-verdict>
+                <h4 class="verdict__title">Reading this correctly</h4>
+                <p class="verdict__body" data-interpretation></p>
+              </div>
+
+              <details class="stage__more">
+                <summary>The full source table</summary>
+                <div class="table-scroll">
+                  <table class="data-table">
+                    <caption class="visually-hidden">
+                      Sums of squares, degrees of freedom and mean squares for
+                      this simulated sample
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Source</th>
+                        <th scope="col">SS</th>
+                        <th scope="col">df</th>
+                        <th scope="col">MS</th>
+                      </tr>
+                    </thead>
+                    <tbody data-source-table></tbody>
+                  </table>
+                </div>
+              </details>
+
+            </div>
+
+          </div>
+
+          <p class="interactive__status" data-interactive-status role="status"></p>
+
+          <div class="interactive__actions">
+            <button type="button" data-action="resample">Draw a new sample</button>
+            <button type="button" data-variant="secondary" data-action="open-two">
+              Go to Experiment 2
+            </button>
+            <button type="button" data-variant="secondary" data-interactive-reset>
+              Reset everything
+            </button>
+          </div>
+
+          <details class="interactive__notes">
+            <summary>Notes for whoever is running this</summary>
+            <div>
+              <p>
+                Start at separation 0. Draw four or five new samples and read
+                <em>F</em> aloud each time: 0.3, 1.8, 0.6, 2.4. Every one of
+                those came from three identical populations. <em>F</em> hovers
+                around 1 when nothing is going on, because both halves of the
+                fraction are then estimating the same quantity.
+              </p>
+              <p>
+                Then take the separation to 8 and watch <em>F</em> climb into
+                the fifties; then take the within-group SD from 6 to 12 with
+                the separation untouched, and watch it fall to about a quarter
+                of that. The population means never move. That is the whole
+                argument for a ratio rather than a difference.
+              </p>
+              <p>
+                "Tiny difference, large sample" is the preset worth ending on:
+                a difference nobody would act on, with a <em>p</em> below .01.
+              </p>
+              <p>
+                Fuller guidance is in
+                <a href="teaching-notes.md">teaching-notes.md</a> beside this
+                page.
+              </p>
+            </div>
+          </details>
+
+        </section>
+
+      </div>
+    </section>
+
+    <!-- ================= Experiment 2 ================= -->
+    <section class="section section--tinted" id="pattern-section"
+             aria-labelledby="pattern-heading" hidden>
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="pattern-heading" tabindex="-1">Experiment 2 &mdash; what F cannot tell you</h2>
+          <p class="prose">
+            A fictional study of three revision methods reports
+            <strong>F(2,&nbsp;87)&nbsp;=&nbsp;7.50, <em>p</em>&nbsp;=&nbsp;.001</strong>,
+            with 30 people per group and a within-group standard deviation of 6.
+            Below are three patterns of group means. Look at each one, then say
+            which of them produced that <em>F</em>.
+          </p>
+        </div>
+
+        <section class="interactive" id="pattern" data-interactive
+                 data-reset-message="Experiment 2 reset. The answer is hidden again.">
+
+          <header class="interactive__header">
+            <h3 class="interactive__title">Three shapes, one number</h3>
+            <p class="interactive__brief">
+              Browse the patterns freely. The <em>F</em> each one would produce
+              stays hidden until you commit to an answer.
+            </p>
+          </header>
+
+          <div class="interactive__body interactive__body--pinned">
+
+            <form class="interactive__controls" data-interactive-controls>
+
+              <fieldset>
+                <legend>Look at a pattern</legend>
+                <div class="control--choice">
+                  <input type="radio" name="pattern" id="pattern-a" value="a" checked>
+                  <label for="pattern-a">A &mdash; evenly spaced: 49.0, 52.0, 55.0</label>
+                </div>
+                <div class="control--choice">
+                  <input type="radio" name="pattern" id="pattern-b" value="b">
+                  <label for="pattern-b">B &mdash; one group high: 50.0, 50.0, 55.2</label>
+                </div>
+                <div class="control--choice">
+                  <input type="radio" name="pattern" id="pattern-c" value="c">
+                  <label for="pattern-c">C &mdash; one group low: 46.8, 52.0, 52.0</label>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>Which pattern produced F = 7.50?</legend>
+                <div class="control--choice">
+                  <input type="radio" name="answer" id="answer-a" value="a">
+                  <label for="answer-a">Pattern A, the evenly spaced one</label>
+                </div>
+                <div class="control--choice">
+                  <input type="radio" name="answer" id="answer-b" value="b">
+                  <label for="answer-b">Pattern B, with one group standing out above</label>
+                </div>
+                <div class="control--choice">
+                  <input type="radio" name="answer" id="answer-c" value="c">
+                  <label for="answer-c">Pattern C, with one group standing out below</label>
+                </div>
+                <div class="control--choice">
+                  <input type="radio" name="answer" id="answer-any" value="any">
+                  <label for="answer-any">There is no way to tell from <em>F</em> alone</label>
+                </div>
+                <p class="prediction__error" data-pattern-error role="alert" hidden></p>
+              </fieldset>
+
+            </form>
+
+            <div class="interactive__stage" data-interactive-stage>
+
+              <!-- Pinned: the pattern currently being inspected. -->
+              <div class="stage__primary">
+                <h4 class="stage__heading" data-pattern-heading>Pattern A</h4>
+                <figure class="chart">
+                  <figcaption class="visually-hidden">
+                    The three group means for this pattern, each with a bar
+                    showing one within-group standard deviation either side, on a
+                    common test-score scale with the grand mean marked
+                  </figcaption>
+                  <svg class="chart__svg" data-pattern-chart viewBox="0 0 460 170"
+                       aria-hidden="true" focusable="false"></svg>
+                  <div class="table-scroll">
+                    <table class="chart__table">
+                      <caption class="visually-hidden">
+                        Group means and their distance from the grand mean for
+                        this pattern
+                      </caption>
+                      <thead>
+                        <tr>
+                          <th scope="col">Group</th>
+                          <th scope="col">Mean</th>
+                          <th scope="col">Distance from grand mean</th>
+                        </tr>
+                      </thead>
+                      <tbody data-pattern-table></tbody>
+                    </table>
+                  </div>
+                </figure>
+              </div>
+
+              <div class="feedback" data-pattern-feedback hidden></div>
+
+              <details class="stage__more" data-reveal-table hidden>
+                <summary>All three patterns, with their model-implied F</summary>
+                <div class="table-scroll">
+                  <table class="data-table">
+                    <caption class="visually-hidden">
+                      Every pattern in this experiment with its between-groups
+                      sum of squares and the F it implies
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Pattern</th>
+                        <th scope="col">Means</th>
+                        <th scope="col">SS between</th>
+                        <th scope="col">F(2, 87)</th>
+                      </tr>
+                    </thead>
+                    <tbody data-all-patterns-table></tbody>
+                  </table>
+                </div>
+              </details>
+
+            </div>
+
+          </div>
+
+          <p class="interactive__status" data-interactive-status role="status"></p>
+
+          <div class="interactive__actions">
+            <button type="button" data-action="check-pattern">Commit to an answer</button>
+            <button type="button" data-variant="secondary" data-interactive-reset>
+              Hide the answer again
+            </button>
+          </div>
+
+          <details class="interactive__notes">
+            <summary>Notes for whoever is running this</summary>
+            <div>
+              <p>
+                Ask for a show of hands on each pattern before anyone commits.
+                In most rooms pattern A wins comfortably, because evenly spaced
+                means look like the tidiest version of "a difference".
+              </p>
+              <p>
+                The three patterns were constructed to have identical
+                between-groups sums of squares, so with the same n and the same
+                within-group spread they give identical <em>F</em> values to the
+                last decimal place. That is not a trick; it is what a single
+                summary of three deviations can and cannot carry.
+              </p>
+              <p>
+                Follow it with the obvious question: if you wanted to know
+                whether method C beats method A, what would you have had to plan
+                before collecting the data?
+              </p>
+            </div>
+          </details>
+
+        </section>
+
+      </div>
+    </section>
+
+    <!-- ================= Challenge ================= -->
+    <section class="section" id="challenge" aria-labelledby="challenge-heading">
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="challenge-heading">Challenge &mdash; what F entitles you to say</h2>
+          <p class="prose">
+            A fictional study of three revision methods, 30 people per group,
+            reports <strong>F(2,&nbsp;87)&nbsp;=&nbsp;7.50,
+            <em>p</em>&nbsp;=&nbsp;.001</strong>.
+          </p>
+        </div>
+
+        <form class="panel challenge" id="challenge-form">
+          <fieldset class="prediction__group">
+            <legend class="prediction__legend">
+              Which statements are correct? Select all that apply &mdash; more
+              than one is.
+            </legend>
+            <label class="control--choice">
+              <input type="checkbox" name="challenge" value="notall">
+              Under the model's assumptions, the data are hard to reconcile with all three population means being equal
+            </label>
+            <label class="control--choice">
+              <input type="checkbox" name="challenge" value="allthree">
+              All three group means differ from one another
+            </label>
+            <label class="control--choice">
+              <input type="checkbox" name="challenge" value="direction">
+              Method C produced higher scores than method A
+            </label>
+            <label class="control--choice">
+              <input type="checkbox" name="challenge" value="ratio">
+              The between-groups mean square is 7.50 times the within-groups mean square
+            </label>
+            <label class="control--choice">
+              <input type="checkbox" name="challenge" value="large">
+              The effect of revision method is large
+            </label>
+            <label class="control--choice">
+              <input type="checkbox" name="challenge" value="ttests">
+              Running three separate t-tests would have answered the same question
+            </label>
+            <label class="control--choice">
+              <input type="checkbox" name="challenge" value="equivalent">
+              Had F been non-significant, the three methods would have been shown to be equivalent
+            </label>
+          </fieldset>
+
+          <div class="prediction__actions">
+            <button class="button button--primary" type="submit">Check my answer</button>
+          </div>
+
+          <div class="feedback" data-challenge-feedback hidden></div>
+        </form>
+
+      </div>
+    </section>
+
+    <!-- ================= Debrief ================= -->
+    <section class="section section--tinted" id="debrief" aria-labelledby="debrief-heading">
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="debrief-heading">What this demonstrates</h2>
+        </div>
+
+        <div class="split split--wide">
+
+          <div class="prose">
+            <h3>F is a comparison of two estimates of the same thing</h3>
+            <p>
+              If the population means really are equal, the scatter of the group
+              means around the grand mean is just sampling noise, and the
+              between-groups mean square estimates the same population variance
+              that the within-groups mean square does. Their ratio then wanders
+              around 1. When the population means are not equal, the numerator
+              picks up something extra that the denominator never sees, and the
+              ratio climbs. That is the entire logic, and it is why a ratio is
+              used rather than a difference.
+            </p>
+
+            <h3>Three things move F, and only one of them is the effect</h3>
+            <p>
+              Separating the means raises it. Increasing the within-group spread
+              lowers it, and does so as the square: doubling the within-group
+              standard deviation divides the amount by which <em>F</em> exceeds
+              1 by exactly four, so a large <em>F</em> falls to roughly a
+              quarter of itself. Increasing n raises it,
+              because between-groups sum of squares grows with n while the
+              within-groups mean square does not. A large <em>F</em> is
+              therefore not a statement about how big the difference between the
+              methods is.
+            </p>
+
+            <h3>The omnibus test answers one question, and it is a modest one</h3>
+            <p>
+              A significant <em>F</em> says the data sit awkwardly with the
+              hypothesis that all the population means are equal. It does not say
+              which means differ, in which direction, or by how much. Experiment
+              2 makes this concrete: three genuinely different patterns of means
+              &mdash; one evenly spaced, one with a high outlier, one with a low
+              outlier &mdash; produce exactly the same <em>F</em>. Anything you
+              want to say about particular groups needs a planned contrast or a
+              post-hoc comparison, and those carry their own multiplicity
+              problem.
+            </p>
+
+            <h3>ANOVA is not a bundle of t-tests</h3>
+            <p>
+              Running every pairwise t-test would answer three separate
+              questions and would inflate the chance of at least one false
+              positive, which is the reason the omnibus test exists. But the
+              relationship runs the other way too: with only two groups,
+              <em>F</em> is exactly the square of the independent-samples
+              <em>t</em>. They are the same test written twice, and the
+              generalisation to three groups is where they part company.
+            </p>
+          </div>
+
+          <aside class="panel panel--caution" aria-labelledby="limits-heading">
+            <h3 class="panel__title" id="limits-heading">
+              What this does <em>not</em> demonstrate
+            </h3>
+            <ul>
+              <li>
+                <strong>No real data and no real methods.</strong> The groups are
+                called A, B and C on purpose. Nothing here is evidence about
+                revision, teaching or testing.
+              </li>
+              <li>
+                <strong>The model here is unusually well behaved.</strong> Normal
+                populations, exactly equal within-group variances, independent
+                observations, equal group sizes, no missing data. Real ANOVAs
+                make the same assumptions and rarely meet them so cleanly; the
+                homoscedasticity tool later in this module is about what it costs
+                when they fail.
+              </li>
+              <li>
+                <strong>The <em>p</em>-value carries every caveat it carried
+                before.</strong> It is a tail area under an assumed model, not
+                the probability that the null is true and not a measure of size.
+              </li>
+              <li>
+                <strong>A non-significant <em>F</em> is not equivalence.</strong>
+                Set the separation to 1.0 with a small sample and watch a real
+                difference fail to register. Establishing that groups are
+                similar enough requires an equivalence test and a threshold
+                stated in advance.
+              </li>
+              <li>
+                <strong>Post-hoc comparisons are not free.</strong> The page
+                points at them as the right tool for "which groups differ", but
+                every extra comparison has its own error rate, which is the
+                subject of the multiple-comparisons tool at the end of this
+                module.
+              </li>
+            </ul>
+          </aside>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+
+        <div>
+          <h2>Open Psychology Interactives</h2>
+          <p class="text-muted">
+            Free, accessible, classroom-ready teaching tools for university
+            psychology. Built as plain web pages so they keep working, and
+            openly licensed so they can be adapted.
+          </p>
+        </div>
+
+        <div>
+          <h2>Modules</h2>
+          <ul>
+            <li><a href="../../../cognitive/index.html">Cognitive Psychology</a></li>
+            <li><a href="../../index.html">Research Methods</a></li>
+            <li><a href="../../../neuropsychology/index.html">Neuropsychology</a></li>
+            <li><a href="../../../social-critical-psychology/index.html">Social and Critical Psychology</a></li>
+            <li><a href="../../../personality-individual-differences/index.html">Personality and Individual Differences</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h2>Project</h2>
+          <ul>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives">GitHub repository</a></li>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives/blob/main/CONTRIBUTING.md">Contributing</a></li>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives/blob/main/docs/accessibility.md">Accessibility</a></li>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives/blob/main/LICENSE">MIT licence</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="site-footer__bottom">
+        <p>© <span data-current-year>2026</span> Open Psychology Interactives. Released under the MIT licence.</p>
+        <p>Built with plain HTML, CSS and JavaScript. No trackers, no accounts.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

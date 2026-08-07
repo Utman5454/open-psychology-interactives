@@ -1,0 +1,97 @@
+/* =========================================================================
+   Central Limit Theorem Simulator — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. What is specific
+   here is the two-panel chart: the population density with the most recent
+   sample drawn as ticks along its axis, and beneath it the histogram of
+   sample means.
+
+   The two panels are separated by a rule and each is labelled in words inside
+   the picture, so the distinction is never carried by position or colour
+   alone.
+   ========================================================================= */
+
+#clt .interactive__controls,
+#clt .interactive__stage {
+  min-width: 0;
+}
+
+#clt .interactive__stage > * {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #clt .interactive__body {
+    grid-template-columns: minmax(0, 18rem) minmax(0, 1fr);
+  }
+}
+
+/* The descendant part is load-bearing: interactive-shell.css sets
+   `.interactive__stage svg { max-width: 100% }`, which out-specifies a bare
+   attribute selector, so a cap written as `[data-clt]` alone would silently
+   do nothing. This chart is two panels tall, so the cap is tighter than
+   elsewhere in the module to keep the pinned block inside a 768px viewport. */
+.interactive__stage [data-clt] {
+  max-width: 26rem;
+}
+
+#clt .interactive__readout {
+  grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+  gap: 0.4rem;
+}
+
+#clt .interactive__readout div {
+  padding: 0.4rem 0.5rem;
+}
+
+#clt .interactive__readout dd {
+  font-size: 1rem;
+}
+
+/* -------------------------------------------------------------------------
+   The two panels
+   ---------------------------------------------------------------------- */
+
+.clt__pop {
+  fill: var(--colour-accent-soft);
+  stroke: var(--colour-accent);
+  stroke-width: 2;
+}
+
+/* The most recent sample, drawn as ticks along the population axis. */
+.clt__tick {
+  stroke: var(--colour-text);
+  stroke-width: 1.2;
+  opacity: 0.75;
+}
+
+.clt__bar {
+  fill: var(--colour-research-methods, var(--colour-accent));
+  stroke: var(--colour-surface-raised);
+  stroke-width: 0.4;
+}
+
+.clt__mu {
+  stroke: var(--colour-social-critical-psychology);
+  stroke-width: 2;
+  stroke-dasharray: 5 3;
+}
+
+.clt__axis {
+  stroke: var(--colour-border-strong);
+  stroke-width: 1;
+}
+
+.clt__divide {
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+
+@media (forced-colors: active) {
+  .clt__pop { fill: Canvas; stroke: CanvasText; }
+  .clt__tick { stroke: CanvasText; opacity: 1; }
+  .clt__bar { fill: CanvasText; stroke: Canvas; }
+  .clt__mu { stroke: Highlight; }
+  .clt__axis { stroke: CanvasText; }
+  .clt__divide { stroke: GrayText; }
+}

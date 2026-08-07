@@ -1,0 +1,133 @@
+/* =========================================================================
+   Theme or Topic? — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. What is
+   particular here is the cluster card that stays pinned while the candidates
+   are classified.
+   ========================================================================= */
+
+#themeortopic .interactive__controls,
+#themeortopic .interactive__stage {
+  min-width: 0;
+}
+
+#themeortopic .interactive__stage > * {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #themeortopic .interactive__body {
+    grid-template-columns: minmax(0, 23rem) minmax(0, 1fr);
+  }
+}
+
+/* -------------------------------------------------------------------------
+   The cluster card
+   ---------------------------------------------------------------------- */
+
+.cluster__name {
+  margin: 0 0 var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-left: 4px solid var(--colour-research-methods);
+  background-color: var(--colour-surface);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-base);
+  font-weight: 650;
+}
+
+.cluster__codes {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+
+.cluster__quotes {
+  margin: 0;
+  padding-left: 1.2rem;
+  font-size: var(--text-sm);
+}
+
+.cluster__quotes li + li {
+  margin-top: 0.25rem;
+}
+
+/* -------------------------------------------------------------------------
+   Candidate rows
+   ---------------------------------------------------------------------- */
+
+.candidate {
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--colour-border);
+}
+
+.candidate:first-child {
+  border-top: 0;
+}
+
+.candidate__label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.candidate__tag {
+  display: block;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+
+/* -------------------------------------------------------------------------
+   Candidate-by-candidate feedback
+   -------------------------------------------------------------------------
+   Each block states in words both what the learner said and what the tool
+   would call it, so the coloured border is a redundant cue.
+   ---------------------------------------------------------------------- */
+
+.part {
+  margin: 0 0 var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border-left: 4px solid var(--colour-border-strong);
+  background-color: var(--colour-surface);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+}
+
+.part:last-child {
+  margin-bottom: 0;
+}
+
+.part[data-standing="right"] { border-left-color: var(--colour-neuropsychology); }
+.part[data-standing="wrong"] { border-left-color: var(--colour-social-critical-psychology); }
+
+.part__head {
+  margin: 0 0 0.2rem;
+  font-weight: 700;
+}
+
+.part__standing {
+  display: block;
+  font-weight: 400;
+  font-variant: small-caps;
+  letter-spacing: 0.03em;
+}
+
+.part__body {
+  margin: 0;
+}
+
+.part__body + .part__body {
+  margin-top: var(--space-2);
+}
+
+@media (forced-colors: active) {
+  .cluster__name,
+  .candidate,
+  .part {
+    border-color: CanvasText;
+  }
+}

@@ -1,0 +1,148 @@
+/* =========================================================================
+   Regression: Intercept, Slope and Least Squares — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. What is specific
+   here is the scatterplot with its candidate line, its residual segments and
+   the optional squares, plus the shading over the region outside the observed
+   range of x.
+
+   The candidate line is solid and the revealed least-squares line dashed, and
+   both are labelled at their right-hand ends, so the two are never told apart
+   by colour alone.
+   ========================================================================= */
+
+#reg .interactive__controls,
+#reg .interactive__stage {
+  min-width: 0;
+}
+
+#reg .interactive__stage > * {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #reg .interactive__body {
+    grid-template-columns: minmax(0, 19rem) minmax(0, 1fr);
+  }
+}
+
+/* The descendant part is load-bearing: interactive-shell.css sets
+   `.interactive__stage svg { max-width: 100% }`, which out-specifies a bare
+   attribute selector, so a cap written as `[data-reg]` alone would silently
+   do nothing. */
+.interactive__stage [data-reg] {
+  max-width: 29rem;
+}
+
+#reg .interactive__readout {
+  grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+  gap: 0.4rem;
+}
+
+#reg .interactive__readout div {
+  padding: 0.4rem 0.5rem;
+}
+
+#reg .interactive__readout dd {
+  font-size: 1rem;
+}
+
+#reg .control--choice {
+  font-size: 0.9375rem;
+}
+
+#reg .control--choice label {
+  cursor: pointer;
+}
+
+/* -------------------------------------------------------------------------
+   The regression picture
+   ---------------------------------------------------------------------- */
+
+.rg__point {
+  fill: var(--colour-accent);
+  opacity: 0.75;
+}
+
+.rg__residual {
+  stroke: var(--colour-social-critical-psychology);
+  stroke-width: 1.4;
+}
+
+/* The literal squares of "least squares". Drawn as outlines so overlapping
+   ones stay readable. */
+.rg__square {
+  fill: var(--colour-accent-soft);
+  stroke: var(--colour-social-critical-psychology);
+  stroke-width: 0.8;
+  opacity: 0.5;
+}
+
+.rg__candidate {
+  stroke: var(--colour-text);
+  stroke-width: 2.5;
+  fill: none;
+}
+
+.rg__least {
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+  stroke-dasharray: 8 4;
+  fill: none;
+}
+
+/* The region outside the observed range of x, where the line is arithmetic
+   rather than evidence. */
+.rg__outside {
+  fill: var(--colour-surface);
+  opacity: 0.85;
+}
+
+.rg__outside-hatch {
+  stroke: var(--colour-border-strong);
+  stroke-width: 1;
+  opacity: 0.7;
+}
+
+.rg__axis {
+  stroke: var(--colour-border-strong);
+  stroke-width: 1;
+}
+
+/* The two number inputs in the challenge. */
+.role input[type="number"] {
+  width: 100%;
+  max-width: 12rem;
+  min-height: 2.75rem;
+  padding: 0.35rem 0.6rem;
+  font: inherit;
+  font-size: var(--text-sm);
+  color: var(--colour-text);
+  background-color: var(--colour-surface-raised);
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+}
+
+.role {
+  display: grid;
+  gap: 0.4rem;
+  margin-bottom: var(--space-3);
+}
+
+.role__label {
+  font-weight: 600;
+  font-size: var(--text-sm);
+  max-width: 60ch;
+}
+
+@media (forced-colors: active) {
+  .rg__point { fill: CanvasText; opacity: 1; }
+  .rg__residual { stroke: Highlight; }
+  .rg__square { fill: Canvas; stroke: Highlight; opacity: 1; }
+  .rg__candidate { stroke: CanvasText; }
+  .rg__least { stroke: Highlight; }
+  .rg__outside { fill: Canvas; opacity: 1; }
+  .rg__outside-hatch { stroke: GrayText; opacity: 1; }
+  .rg__axis { stroke: CanvasText; }
+  .role input[type="number"] { border: 1px solid ButtonText; }
+}

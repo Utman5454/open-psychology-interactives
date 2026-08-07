@@ -1,0 +1,122 @@
+/* =========================================================================
+   The Normal Curve and z-Scores — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. What is specific
+   here is the density curve, the shaded area below the chosen score, the
+   standard-deviation band and the two-curve comparison.
+
+   The shaded area carries a diagonal hatch as well as a fill, the score is a
+   labelled rule, and the second curve is dashed and named at its peak, so no
+   distinction depends on colour.
+   ========================================================================= */
+
+#curve .interactive__controls,
+#curve .interactive__stage,
+#compare .interactive__controls,
+#compare .interactive__stage {
+  min-width: 0;
+}
+
+#curve .interactive__stage > *,
+#compare .interactive__stage > * {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #curve .interactive__body,
+  #compare .interactive__body {
+    grid-template-columns: minmax(0, 19rem) minmax(0, 1fr);
+  }
+}
+
+/* The descendant part is load-bearing: interactive-shell.css sets
+   `.interactive__stage svg { max-width: 100% }`, which out-specifies a bare
+   attribute selector, so a cap written as `[data-curve]` alone would silently
+   do nothing. */
+.interactive__stage [data-curve],
+.interactive__stage [data-two-curves] {
+  max-width: 30rem;
+}
+
+#curve .interactive__readout {
+  grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+  gap: 0.4rem;
+}
+
+#curve .interactive__readout div {
+  padding: 0.4rem 0.5rem;
+}
+
+#curve .interactive__readout dd {
+  font-size: 1rem;
+}
+
+#compare .control--choice {
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.9375rem;
+}
+
+#compare .control--choice label {
+  cursor: pointer;
+}
+
+/* -------------------------------------------------------------------------
+   The density curve
+   ---------------------------------------------------------------------- */
+
+.nc__curve {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+
+.nc__curve--two {
+  stroke: var(--colour-social-critical-psychology);
+  stroke-dasharray: 7 4;
+}
+
+.nc__fill {
+  fill: var(--colour-accent-soft);
+}
+
+/* Hatch over the shaded region, so the "area below the score" is not carried
+   by a pale fill alone. */
+.nc__hatch {
+  stroke: var(--colour-accent);
+  stroke-width: 1;
+  opacity: 0.5;
+}
+
+.nc__band {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border-strong);
+  stroke-width: 1;
+}
+
+.nc__score {
+  stroke: var(--colour-text);
+  stroke-width: 2.5;
+}
+
+.nc__mean {
+  stroke: var(--colour-text-muted);
+  stroke-width: 1.5;
+  stroke-dasharray: 3 3;
+}
+
+.nc__axis {
+  stroke: var(--colour-border-strong);
+  stroke-width: 1;
+}
+
+@media (forced-colors: active) {
+  .nc__curve { stroke: CanvasText; }
+  .nc__curve--two { stroke: Highlight; }
+  .nc__fill { fill: Canvas; }
+  .nc__hatch { stroke: CanvasText; opacity: 1; }
+  .nc__band { fill: Canvas; stroke: GrayText; }
+  .nc__score { stroke: CanvasText; }
+  .nc__mean { stroke: GrayText; }
+  .nc__axis { stroke: CanvasText; }
+}

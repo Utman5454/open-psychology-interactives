@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Factorial ANOVA Interaction Detective — Open Psychology Interactives</title>
+  <meta name="description" content="Edit the four cell means of a 2x2 design and watch the marginal means and the interaction plot follow. Crossovers, fans, parallel lines, hidden main effects - and how convincing a trivial interaction looks on a zoomed axis.">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f141b" media="(prefers-color-scheme: dark)">
+
+  <link rel="canonical" href="https://utman5454.github.io/open-psychology-interactives/modules/research-methods/tools/11-factorial-anova-interaction-detective/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Open Psychology Interactives">
+  <meta property="og:title" content="Factorial ANOVA Interaction Detective">
+  <meta property="og:description" content="An interaction is a difference of differences. Move four cell means and say, in words, what the pattern means.">
+  <meta property="og:url" content="https://utman5454.github.io/open-psychology-interactives/modules/research-methods/tools/11-factorial-anova-interaction-detective/">
+  <meta property="og:locale" content="en_GB">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Factorial ANOVA Interaction Detective">
+  <meta name="twitter:description" content="An interaction is a difference of differences. Move four cell means and say, in words, what the pattern means.">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231a4fa0'/%3E%3Cpath d='M4 24C10 24 10 8 16 8s6 16 12 16' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
+
+  <!-- Four directories deep (modules/<slug>/tools/<slug>/), so shared assets
+       are at ../../../../ — see docs/adapting-a-tool.md. -->
+  <link rel="stylesheet" href="../../../../assets/css/main.css">
+  <link rel="stylesheet" href="../../../../components/interactive-shell.css">
+  <link rel="stylesheet" href="../../../../components/tool-kit.css">
+  <link rel="stylesheet" href="tool.css">
+  <script src="../../../../assets/js/main.js" defer></script>
+  <script src="../../../../components/interactive-shell.js" defer></script>
+  <script src="tool.js" defer></script>
+</head>
+
+<!-- data-site-root: the path back to the site root from this page. -->
+<body data-site-root="../../../../">
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+
+      <a class="brand" href="../../../../index.html" aria-label="Open Psychology Interactives, home">
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <rect x="1" y="1" width="30" height="30" rx="7" fill="none" stroke="currentColor" stroke-width="2"></rect>
+          <path d="M5 24C10 24 10 8 16 8s6 16 11 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        </svg>
+        <span>
+          <span class="brand__name">Open Psychology Interactives</span>
+          <span class="brand__tagline">Free teaching tools for psychology</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" data-nav-toggle
+              aria-expanded="false" aria-controls="site-nav" hidden>
+        <svg class="nav-toggle__icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+          <path d="M2 5h16M2 10h16M2 15h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        </svg>
+        Menu
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul class="site-nav__list">
+          <li><a class="site-nav__link" href="../../../../index.html">Home</a></li>
+          <li><a class="site-nav__link" href="../../../cognitive/index.html">Cognitive<span class="visually-hidden"> Psychology</span></a></li>
+          <li><a class="site-nav__link" href="../../index.html">Research Methods</a></li>
+          <li><a class="site-nav__link" href="../../../neuropsychology/index.html">Neuropsychology</a></li>
+          <li><a class="site-nav__link" href="../../../social-critical-psychology/index.html">Social and Critical<span class="visually-hidden"> Psychology</span></a></li>
+          <li><a class="site-nav__link" href="../../../personality-individual-differences/index.html">Personality<span class="visually-hidden"> and Individual Differences</span></a></li>
+          <li><a class="site-nav__link" href="../../../../index.html#documentation">Documentation</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <nav class="breadcrumbs container" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="../../../../index.html">Home</a></li>
+      <li><a href="../../../../index.html#modules">Modules</a></li>
+      <li><a href="../../index.html">Research Methods</a></li>
+      <li aria-current="page">Factorial ANOVA Interaction Detective</li>
+    </ol>
+  </nav>
+
+  <main id="main">
+
+    <!-- ================= Title and purpose ================= -->
+    <section class="section card--research-methods" aria-labelledby="page-heading">
+      <div class="container">
+
+        <p class="hero__eyebrow" style="color: var(--colour-research-methods)">
+          Research Methods
+        </p>
+        <h1 id="page-heading">Factorial ANOVA Interaction Detective</h1>
+        <p class="hero__lead">
+          Four cell means are all a 2&times;2 design has. Move them and the
+          marginal means, the two main effects and the interaction all follow
+          &mdash; and so does a picture that is easy to over-read.
+        </p>
+
+        <p>
+          <span class="badge">
+            <span class="badge__dot" aria-hidden="true"></span>
+            Simulated &mdash; invented cell means, editable at will
+          </span>
+        </p>
+
+        <div class="split split--wide">
+
+          <div class="panel">
+            <h2 class="panel__title">Learning objective</h2>
+            <p>
+              By the end you should be able to read main effects off the
+              marginal means, define an interaction as a difference of
+              differences, recognise crossover, fan and parallel patterns, and
+              describe an interaction in a sentence rather than by announcing
+              that one is present.
+            </p>
+            <p class="text-muted">
+              About 25 minutes. Nothing you do here is saved or sent anywhere.
+            </p>
+          </div>
+
+          <div class="panel panel--caution">
+            <h2 class="panel__title">Two things a plot will not tell you</h2>
+            <p>
+              Non-parallel lines are the definition of an interaction in the
+              sample, not evidence of one in the population. Two things decide
+              whether the picture means anything: the <strong>scale</strong> it
+              is drawn on &mdash; a zoomed axis makes half a point look like a
+              chasm &mdash; and the <strong>uncertainty</strong> around each
+              cell mean. Both are controls in this tool, and both are missing
+              from most published interaction plots.
+            </p>
+          </div>
+
+        </div>
+
+        <ol class="how-to">
+          <li>Answer the three prediction questions to open the detective.</li>
+          <li>Load a pattern, or drag the four cell means yourself.</li>
+          <li>Read the interaction as a difference of differences, not as a shape.</li>
+          <li>Switch the axis to the full scale and add uncertainty before believing anything.</li>
+        </ol>
+
+      </div>
+    </section>
+
+    <!-- ================= Opening prediction ================= -->
+    <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="opening-heading">First, three predictions</h2>
+          <p class="prose">
+            A fictional 2&times;2 study. People do a simple or a complex task and
+            receive feedback either immediately or after a delay. The outcome is
+            a score out of 100. These are the four cell means.
+          </p>
+        </div>
+
+        <div class="table-scroll">
+          <table class="data-table">
+            <caption>
+              Cell means for the study you are predicting about (simulated).
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Feedback</th>
+                <th scope="col">Simple task</th>
+                <th scope="col">Complex task</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Immediate</th>
+                <td>70</td>
+                <td>50</td>
+              </tr>
+              <tr>
+                <th scope="row">Delayed</th>
+                <td>50</td>
+                <td>70</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <noscript>
+          <div class="placeholder">
+            <h3 class="placeholder__title">This part needs JavaScript</h3>
+            <p class="prose">
+              The detective recalculates its marginal means and redraws its plot
+              in your browser, so it cannot run with JavaScript switched off.
+              The rest of this page is readable without it.
+            </p>
+          </div>
+        </noscript>
+
+        <form class="panel prediction" id="opening-form">
+          <fieldset class="prediction__group">
+            <legend class="prediction__legend">
+              Is there a main effect of feedback &mdash; that is, do the two
+              feedback conditions differ once you average over task type?
+            </legend>
+            <label class="control--choice">
+              <input type="radio" name="mainA" value="yes"> Yes
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="mainA" value="no"> No
+            </label>
+          </fieldset>
+
+          <fieldset class="prediction__group">
+            <legend class="prediction__legend">
+              Is there a main effect of task &mdash; do the two task types differ
+              once you average over feedback?
+            </legend>
+            <label class="control--choice">
+              <input type="radio" name="mainB" value="yes"> Yes
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="mainB" value="no"> No
+            </label>
+          </fieldset>
+
+          <fieldset class="prediction__group">
+            <legend class="prediction__legend">
+              Is there an interaction &mdash; does the effect of feedback depend
+              on the task?
+            </legend>
+            <label class="control--choice">
+              <input type="radio" name="inter" value="yes"> Yes
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="inter" value="no"> No
+            </label>
+          </fieldset>
+
+          <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+          <div class="prediction__actions">
+            <button class="button button--primary" type="submit">
+              Record my predictions and open the detective
+            </button>
+            <button class="button button--secondary" type="button" data-action="skip-opening">
+              Skip &mdash; I am demonstrating this
+            </button>
+          </div>
+
+          <div class="feedback" data-opening-feedback hidden></div>
+        </form>
+
+      </div>
+    </section>
+
+    <!-- ================= The detective ================= -->
+    <section class="section" id="detective-section" aria-labelledby="detective-heading" hidden>
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="detective-heading" tabindex="-1">The detective</h2>
+          <p class="prose">
+            The four sliders are the whole dataset. Everything else on this
+            screen &mdash; the marginal means, the two main effects, the
+            interaction and the plot &mdash; is arithmetic performed on them.
+          </p>
+        </div>
+
+        <section class="interactive" id="detective" data-interactive
+                 data-reset-message="Everything cleared. Back to the opening predictions.">
+
+          <header class="interactive__header">
+            <h3 class="interactive__title">Four numbers, one picture</h3>
+            <p class="interactive__brief">
+              An interaction is a difference of differences: how much the effect
+              of feedback changes when you move from the simple task to the
+              complex one.
+            </p>
+          </header>
+
+          <div class="interactive__body interactive__body--pinned">
+
+            <form class="interactive__controls" data-interactive-controls>
+
+              <fieldset>
+                <legend>Load a pattern</legend>
+                <div class="control">
+                  <label class="control__label" for="preset-select">Known shapes</label>
+                  <select id="preset-select">
+                    <option value="custom">Whatever the sliders say</option>
+                    <option value="crossover">Crossover &mdash; the effect reverses</option>
+                    <option value="fan">Fan &mdash; the effect is bigger in one condition</option>
+                    <option value="parallel">Parallel &mdash; two main effects, no interaction</option>
+                    <option value="hidden">Hidden &mdash; a real effect with no main effect</option>
+                    <option value="tiny">Dramatic-looking and trivial</option>
+                  </select>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>Cell means (score out of 100)</legend>
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="cell-is">Immediate, simple</label>
+                    <output class="control__value" for="cell-is">70</output>
+                  </div>
+                  <input type="range" id="cell-is" min="0" max="100" step="0.5" value="70">
+                </div>
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="cell-ic">Immediate, complex</label>
+                    <output class="control__value" for="cell-ic">50</output>
+                  </div>
+                  <input type="range" id="cell-ic" min="0" max="100" step="0.5" value="50">
+                </div>
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="cell-ds">Delayed, simple</label>
+                    <output class="control__value" for="cell-ds">50</output>
+                  </div>
+                  <input type="range" id="cell-ds" min="0" max="100" step="0.5" value="50">
+                </div>
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="cell-dc">Delayed, complex</label>
+                    <output class="control__value" for="cell-dc">70</output>
+                  </div>
+                  <input type="range" id="cell-dc" min="0" max="100" step="0.5" value="70">
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>How the picture is drawn</legend>
+                <div class="control">
+                  <label class="control__label" for="axis-select">Vertical axis</label>
+                  <select id="axis-select">
+                    <option value="zoom">Zoomed to the data</option>
+                    <option value="full">Full scale, 0 to 100</option>
+                  </select>
+                </div>
+                <div class="control">
+                  <label class="control__label" for="error-select">Uncertainty in each cell mean</label>
+                  <select id="error-select">
+                    <option value="0">Not shown</option>
+                    <option value="1.5">Small &mdash; standard error 1.5</option>
+                    <option value="5">Large &mdash; standard error 5</option>
+                  </select>
+                  <p class="control__hint">
+                    Error bars show one standard error either side. They are
+                    stated by you, not estimated from anything: this tool has
+                    cell means and nothing else.
+                  </p>
+                </div>
+              </fieldset>
+
+            </form>
+
+            <div class="interactive__stage" data-interactive-stage>
+
+              <!-- Pinned: the interaction plot and the three numbers it is
+                   built from. Every slider on the left moves both. -->
+              <div class="stage__primary">
+                <h4 class="stage__heading" data-chart-heading>Interaction plot</h4>
+                <figure class="chart">
+                  <figcaption class="visually-hidden">
+                    Interaction plot with task type along the horizontal axis and
+                    one line per feedback condition, drawn as a solid line with
+                    round markers for immediate feedback and a dashed line with
+                    square markers for delayed feedback
+                  </figcaption>
+                  <svg class="chart__svg" data-plot viewBox="0 0 460 210"
+                       aria-hidden="true" focusable="false"></svg>
+                  <div class="table-scroll">
+                    <table class="chart__table">
+                      <caption class="visually-hidden">
+                        The four cell means with the row and column marginal
+                        means
+                      </caption>
+                      <thead>
+                        <tr>
+                          <th scope="col">Feedback</th>
+                          <th scope="col">Simple</th>
+                          <th scope="col">Complex</th>
+                          <th scope="col">Row mean</th>
+                        </tr>
+                      </thead>
+                      <tbody data-cell-table></tbody>
+                    </table>
+                  </div>
+                </figure>
+                <dl class="interactive__readout" data-readout></dl>
+              </div>
+
+              <div class="verdict" data-verdict>
+                <h4 class="verdict__title">Say it in words</h4>
+                <p class="verdict__body" data-interpretation></p>
+                <p class="verdict__note" data-caveat></p>
+              </div>
+
+              <details class="stage__more">
+                <summary>The same interaction, read the other way round</summary>
+                <div>
+                  <p class="prose" data-symmetry></p>
+                  <div class="table-scroll">
+                    <table class="data-table">
+                      <caption class="visually-hidden">
+                        The simple effects of each factor within each level of
+                        the other
+                      </caption>
+                      <thead>
+                        <tr>
+                          <th scope="col">Simple effect</th>
+                          <th scope="col">Size</th>
+                        </tr>
+                      </thead>
+                      <tbody data-simple-table></tbody>
+                    </table>
+                  </div>
+                </div>
+              </details>
+
+            </div>
+
+          </div>
+
+          <p class="interactive__status" data-interactive-status role="status"></p>
+
+          <div class="interactive__actions">
+            <button type="button" data-action="flatten">Remove the interaction</button>
+            <button type="button" data-variant="secondary" data-action="swap-axes">
+              Put feedback on the horizontal axis
+            </button>
+            <button type="button" data-variant="secondary" data-interactive-reset>
+              Reset everything
+            </button>
+          </div>
+
+          <details class="interactive__notes">
+            <summary>Notes for whoever is running this</summary>
+            <div>
+              <p>
+                <em>Remove the interaction</em> is the button worth pressing
+                twice. It keeps both marginal means exactly where they are and
+                moves the cells to the only arrangement with no interaction.
+                Students who think an interaction is "the lines are far apart"
+                find that surprising.
+              </p>
+              <p>
+                <em>Dramatic-looking and trivial</em> should be shown on the
+                zoomed axis first, with the room asked what they see, and then
+                switched to the full scale. Add the large error bars afterwards.
+                It is the most useful ninety seconds on the page.
+              </p>
+              <p>
+                Then press <em>Put feedback on the horizontal axis</em>. Same
+                data, quite different-looking plot, identical interaction term.
+                Which factor goes on the x-axis is a presentation decision.
+              </p>
+              <p>
+                Fuller guidance is in
+                <a href="teaching-notes.md">teaching-notes.md</a> beside this
+                page.
+              </p>
+            </div>
+          </details>
+
+        </section>
+
+      </div>
+    </section>
+
+    <!-- ================= Challenge ================= -->
+    <section class="section section--tinted" id="challenge" aria-labelledby="challenge-heading" hidden>
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="challenge-heading" tabindex="-1">Challenge &mdash; describe it in a sentence</h2>
+          <p class="prose">
+            "There was a significant interaction" is not a description of
+            anything. Build the sentence that actually says what happened in
+            the crossover pattern: immediate feedback gives 70 on the simple
+            task and 50 on the complex one; delayed feedback gives 50 on the
+            simple task and 70 on the complex one.
+          </p>
+        </div>
+
+        <form class="panel challenge" id="challenge-form">
+
+          <div class="sentence">
+            <p class="sentence__text">
+              Delaying feedback
+              <span class="sentence__slot">
+                <label class="visually-hidden" for="slot-1">
+                  Effect of delayed feedback on complex tasks
+                </label>
+                <select id="slot-1">
+                  <option value="">choose&hellip;</option>
+                  <option value="raised">raised</option>
+                  <option value="lowered">lowered</option>
+                  <option value="nochange">did not change</option>
+                </select>
+              </span>
+              scores on <strong>complex</strong> tasks and
+              <span class="sentence__slot">
+                <label class="visually-hidden" for="slot-2">
+                  Effect of delayed feedback on simple tasks
+                </label>
+                <select id="slot-2">
+                  <option value="">choose&hellip;</option>
+                  <option value="raised">raised</option>
+                  <option value="lowered">lowered</option>
+                  <option value="nochange">did not change</option>
+                </select>
+              </span>
+              scores on <strong>simple</strong> tasks, so overall the effect of
+              feedback
+              <span class="sentence__slot">
+                <label class="visually-hidden" for="slot-3">
+                  How the effect of feedback differs between task types
+                </label>
+                <select id="slot-3">
+                  <option value="">choose&hellip;</option>
+                  <option value="reversed">reversed direction between the two task types</option>
+                  <option value="bigger">was in the same direction but bigger for complex tasks</option>
+                  <option value="absent">was absent, because the marginal means are equal</option>
+                </select>
+              </span>.
+            </p>
+          </div>
+
+          <p class="prediction__error" data-challenge-error role="alert" hidden></p>
+
+          <div class="prediction__actions">
+            <button class="button button--primary" type="submit">Check my sentence</button>
+          </div>
+
+          <div class="feedback" data-challenge-feedback hidden></div>
+        </form>
+
+      </div>
+    </section>
+
+    <!-- ================= Debrief ================= -->
+    <section class="section" id="debrief" aria-labelledby="debrief-heading">
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="debrief-heading">What this demonstrates</h2>
+        </div>
+
+        <div class="split split--wide">
+
+          <div class="prose">
+            <h3>Main effects live in the margins</h3>
+            <p>
+              A main effect is a comparison of marginal means &mdash; averages
+              taken across the levels of the other factor. That averaging is
+              exactly why a main effect can vanish while something large is
+              going on: in the crossover pattern, feedback helps by 20 points in
+              one task and hurts by 20 in the other, and the two cancel to
+              nothing. Reporting "no main effect of feedback" as though it meant
+              "feedback did not matter" is wrong in a way that a table of
+              marginal means cannot show you.
+            </p>
+
+            <h3>An interaction is a difference of differences</h3>
+            <p>
+              Take the effect of feedback within the simple task; take it again
+              within the complex task; subtract. That single number is the
+              interaction, and it does not care which factor you put on the
+              horizontal axis, because subtracting the other way round gives the
+              same value. The picture changes, the term does not.
+            </p>
+
+            <h3>A shape is not a finding</h3>
+            <p>
+              Non-parallel lines in a sample are guaranteed: four means drawn
+              from anything will almost never line up exactly. Whether the
+              non-parallelism means anything depends on how big it is relative
+              to the scale of the outcome and relative to the uncertainty in
+              each cell. The tool lets you take the same four numbers from
+              "obviously a strong interaction" to "obviously nothing" without
+              editing a single value, using the axis and the error bars alone.
+            </p>
+
+            <h3>Ordinal, disordinal, and what to say about main effects</h3>
+            <p>
+              When the lines do not cross within the range studied, the
+              interaction is ordinal: the effect is bigger in one condition than
+              the other but points the same way, and a main effect can usually
+              be described sensibly alongside it. When they cross, it is
+              disordinal, and describing the main effect on its own becomes
+              misleading. The rule of thumb that follows is not "always
+              interpret the interaction first" but "say which simple effects you
+              mean".
+            </p>
+          </div>
+
+          <aside class="panel panel--caution" aria-labelledby="limits-heading">
+            <h3 class="panel__title" id="limits-heading">
+              What this does <em>not</em> demonstrate
+            </h3>
+            <ul>
+              <li>
+                <strong>There is no dataset here.</strong> The tool holds four
+                cell means and nothing else. It computes no F, no p and no
+                effect size, because with no raw scores and no sample sizes
+                there is nothing to compute them from.
+              </li>
+              <li>
+                <strong>The error bars are stated, not estimated.</strong> You
+                choose them from a menu to see what they would do to your
+                reading of the plot. In a real analysis they come from the data
+                and you do not get to pick.
+              </li>
+              <li>
+                <strong>Non-overlapping error bars are not a test.</strong>
+                Whether two standard-error bars overlap is a poor proxy for any
+                formal comparison, and for an interaction it is the wrong
+                comparison entirely &mdash; the quantity being tested is the
+                difference of differences, which has its own standard error.
+              </li>
+              <li>
+                <strong>2&times;2 is the easy case.</strong> With more levels or
+                more factors, "the interaction" stops being one number, and
+                three-way interactions rarely survive being described in a
+                sentence at all.
+              </li>
+              <li>
+                <strong>Nothing here is about causation.</strong> The pattern
+                would look identical whether the factors were manipulated or
+                merely measured, and only the design decides which reading is
+                available.
+              </li>
+            </ul>
+          </aside>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+
+        <div>
+          <h2>Open Psychology Interactives</h2>
+          <p class="text-muted">
+            Free, accessible, classroom-ready teaching tools for university
+            psychology. Built as plain web pages so they keep working, and
+            openly licensed so they can be adapted.
+          </p>
+        </div>
+
+        <div>
+          <h2>Modules</h2>
+          <ul>
+            <li><a href="../../../cognitive/index.html">Cognitive Psychology</a></li>
+            <li><a href="../../index.html">Research Methods</a></li>
+            <li><a href="../../../neuropsychology/index.html">Neuropsychology</a></li>
+            <li><a href="../../../social-critical-psychology/index.html">Social and Critical Psychology</a></li>
+            <li><a href="../../../personality-individual-differences/index.html">Personality and Individual Differences</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h2>Project</h2>
+          <ul>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives">GitHub repository</a></li>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives/blob/main/CONTRIBUTING.md">Contributing</a></li>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives/blob/main/docs/accessibility.md">Accessibility</a></li>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives/blob/main/LICENSE">MIT licence</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="site-footer__bottom">
+        <p>© <span data-current-year>2026</span> Open Psychology Interactives. Released under the MIT licence.</p>
+        <p>Built with plain HTML, CSS and JavaScript. No trackers, no accounts.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

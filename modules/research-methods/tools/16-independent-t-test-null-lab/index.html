@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Independent-Samples t-Test: The Null Distribution — Open Psychology Interactives</title>
+  <meta name="description" content="The t distribution under the null hypothesis, with its critical regions and the observed t marked on it. Hold Cohen's d still and grow the sample: p collapses and the effect size does not move.">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f141b" media="(prefers-color-scheme: dark)">
+
+  <link rel="canonical" href="https://utman5454.github.io/open-psychology-interactives/modules/research-methods/tools/16-independent-t-test-null-lab/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Open Psychology Interactives">
+  <meta property="og:title" content="Independent-Samples t-Test: The Null Distribution">
+  <meta property="og:description" content="Where t comes from, what the critical regions are, and why p depends on the sample size when the effect size does not.">
+  <meta property="og:url" content="https://utman5454.github.io/open-psychology-interactives/modules/research-methods/tools/16-independent-t-test-null-lab/">
+  <meta property="og:locale" content="en_GB">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Independent-Samples t-Test: The Null Distribution">
+  <meta name="twitter:description" content="Where t comes from, what the critical regions are, and why p depends on the sample size when the effect size does not.">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231a4fa0'/%3E%3Cpath d='M4 24C10 24 10 8 16 8s6 16 12 16' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
+
+  <!-- Four directories deep (modules/<slug>/tools/<slug>/), so shared assets
+       are at ../../../../ — see docs/adapting-a-tool.md. -->
+  <link rel="stylesheet" href="../../../../assets/css/main.css">
+  <link rel="stylesheet" href="../../../../components/interactive-shell.css">
+  <link rel="stylesheet" href="../../../../components/tool-kit.css">
+  <link rel="stylesheet" href="tool.css">
+  <script src="../../../../assets/js/main.js" defer></script>
+  <script src="../../../../components/interactive-shell.js" defer></script>
+  <script src="tool.js" defer></script>
+</head>
+
+<!-- data-site-root: the path back to the site root from this page. -->
+<body data-site-root="../../../../">
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+
+      <a class="brand" href="../../../../index.html" aria-label="Open Psychology Interactives, home">
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <rect x="1" y="1" width="30" height="30" rx="7" fill="none" stroke="currentColor" stroke-width="2"></rect>
+          <path d="M5 24C10 24 10 8 16 8s6 16 11 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        </svg>
+        <span>
+          <span class="brand__name">Open Psychology Interactives</span>
+          <span class="brand__tagline">Free teaching tools for psychology</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" data-nav-toggle
+              aria-expanded="false" aria-controls="site-nav" hidden>
+        <svg class="nav-toggle__icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+          <path d="M2 5h16M2 10h16M2 15h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        </svg>
+        Menu
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul class="site-nav__list">
+          <li><a class="site-nav__link" href="../../../../index.html">Home</a></li>
+          <li><a class="site-nav__link" href="../../../cognitive/index.html">Cognitive<span class="visually-hidden"> Psychology</span></a></li>
+          <li><a class="site-nav__link" href="../../index.html">Research Methods</a></li>
+          <li><a class="site-nav__link" href="../../../neuropsychology/index.html">Neuropsychology</a></li>
+          <li><a class="site-nav__link" href="../../../social-critical-psychology/index.html">Social and Critical<span class="visually-hidden"> Psychology</span></a></li>
+          <li><a class="site-nav__link" href="../../../personality-individual-differences/index.html">Personality<span class="visually-hidden"> and Individual Differences</span></a></li>
+          <li><a class="site-nav__link" href="../../../../index.html#documentation">Documentation</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <nav class="breadcrumbs container" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="../../../../index.html">Home</a></li>
+      <li><a href="../../../../index.html#modules">Modules</a></li>
+      <li><a href="../../index.html">Research Methods</a></li>
+      <li aria-current="page">Independent-Samples t-Test: The Null Distribution</li>
+    </ol>
+  </nav>
+
+  <main id="main">
+
+    <!-- ================= Title and purpose ================= -->
+    <section class="section card--research-methods" aria-labelledby="page-heading">
+      <div class="container">
+
+        <p class="hero__eyebrow" style="color: var(--colour-research-methods)">
+          Research Methods
+        </p>
+        <h1 id="page-heading">Independent-Samples t-Test: The Null Distribution</h1>
+        <p class="hero__lead">
+          A t-test is one number placed on one curve. The curve is what the
+          statistic would do if the population means were equal, and everything
+          the test says is read off where the number lands on it.
+        </p>
+
+        <p>
+          <span class="badge">
+            <span class="badge__dot" aria-hidden="true"></span>
+            Simulated &mdash; illustrative summary statistics, no real study
+          </span>
+        </p>
+
+        <div class="split split--wide">
+
+          <div class="panel">
+            <h2 class="panel__title">Learning objective</h2>
+            <p>
+              By the end you should be able to build <em>t</em> from a mean
+              difference and a standard error, place it on the null
+              distribution, read a two-tailed <em>p</em> as the shaded area,
+              explain why <em>p</em> depends strongly on the sample size while
+              Cohen's <em>d</em> does not, and write a conclusion that does not
+              overclaim.
+            </p>
+            <p class="text-muted">
+              About 25 minutes. Nothing you do here is saved or sent anywhere.
+            </p>
+          </div>
+
+          <div class="panel panel--caution">
+            <h2 class="panel__title">Two phrases to avoid</h2>
+            <p>
+              A large <em>p</em> means the data are compatible with equal
+              population means. It does not mean the means are equal, so the
+              decision is written as <strong>fail to reject H&#8320;</strong>
+              rather than "accept the null". And <em>p</em> is never the
+              probability that H&#8320; is true: the whole calculation begins by
+              assuming H&#8320;, so nothing about how likely it was can come out
+              of it.
+            </p>
+          </div>
+
+        </div>
+
+        <ol class="how-to">
+          <li>Answer the three prediction questions to open the laboratory.</li>
+          <li>Move the group means and watch <em>t</em> travel along the curve.</li>
+          <li>Hold everything else still and grow the sample: <em>d</em> will not move.</li>
+          <li>Change &alpha; and watch the critical value, not the evidence, move.</li>
+        </ol>
+
+      </div>
+    </section>
+
+    <!-- ================= Opening prediction ================= -->
+    <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="opening-heading">First, three predictions</h2>
+          <p class="prose">
+            A fictional study of 15 people per group finds a difference of 5
+            points with a common standard deviation of 10, so Cohen's
+            <em>d</em> is 0.50. The team repeats the study with
+            <strong>100 people per group</strong> and finds exactly the same
+            means and the same standard deviation, so <em>d</em> is 0.50 again.
+          </p>
+        </div>
+
+        <noscript>
+          <div class="placeholder">
+            <h3 class="placeholder__title">This part needs JavaScript</h3>
+            <p class="prose">
+              The null distribution is drawn and its tail areas computed in your
+              browser, so this part cannot run with JavaScript switched off. The
+              rest of this page is readable without it.
+            </p>
+          </div>
+        </noscript>
+
+        <form class="panel prediction" id="opening-form">
+          <fieldset class="prediction__group">
+            <legend class="prediction__legend">
+              What happens to the <em>standard error of the difference</em>?
+            </legend>
+            <label class="control--choice">
+              <input type="radio" name="se" value="smaller"> It gets smaller
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="se" value="same"> It stays the same
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="se" value="larger"> It gets larger
+            </label>
+          </fieldset>
+
+          <fieldset class="prediction__group">
+            <legend class="prediction__legend">
+              What happens to <em>|t|</em>?
+            </legend>
+            <label class="control--choice">
+              <input type="radio" name="t" value="smaller"> It gets smaller
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="t" value="same"> It stays the same
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="t" value="larger"> It gets larger
+            </label>
+          </fieldset>
+
+          <fieldset class="prediction__group">
+            <legend class="prediction__legend">
+              What happens to the two-tailed <em>p</em>?
+            </legend>
+            <label class="control--choice">
+              <input type="radio" name="p" value="smaller"> It gets smaller
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="p" value="same"> It stays the same
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="p" value="larger"> It gets larger
+            </label>
+          </fieldset>
+
+          <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+          <div class="prediction__actions">
+            <button class="button button--primary" type="submit">
+              Record my predictions and open the laboratory
+            </button>
+            <button class="button button--secondary" type="button" data-action="skip-opening">
+              Skip &mdash; I am demonstrating this
+            </button>
+          </div>
+
+          <div class="feedback" data-opening-feedback hidden></div>
+        </form>
+
+      </div>
+    </section>
+
+    <!-- ================= Laboratory ================= -->
+    <section class="section" id="lab-section" aria-labelledby="lab-heading" hidden>
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="lab-heading" tabindex="-1">The laboratory</h2>
+          <p class="prose">
+            The curve is the distribution of <em>t</em> if the two population
+            means were equal. The dashed rules are the critical values at your
+            chosen &alpha;, and the shaded tails are the two-tailed
+            <em>p</em> &mdash; the area at least as far from zero as the
+            observed <em>t</em>.
+          </p>
+        </div>
+
+        <section class="interactive" id="ttest" data-interactive
+                 data-reset-message="Everything cleared. Back to the opening predictions.">
+
+          <header class="interactive__header">
+            <h3 class="interactive__title">One number on one curve</h3>
+            <p class="interactive__brief">
+              The sliders are summary statistics, not raw data: two means, two
+              standard deviations and a sample size are everything a t-test
+              needs.
+            </p>
+          </header>
+
+          <div class="interactive__body interactive__body--pinned">
+
+            <form class="interactive__controls" data-interactive-controls>
+
+              <fieldset>
+                <legend>The two groups</legend>
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="mean-b-range">Mean of group B</label>
+                    <output class="control__value" for="mean-b-range">55</output>
+                  </div>
+                  <input type="range" id="mean-b-range" min="45" max="70" step="0.5" value="55">
+                  <p class="control__hint">Group A's mean is fixed at 50.</p>
+                </div>
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="sd-a-range">SD of group A</label>
+                    <output class="control__value" for="sd-a-range">10</output>
+                  </div>
+                  <input type="range" id="sd-a-range" min="4" max="25" step="1" value="10">
+                </div>
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="sd-b-range">SD of group B</label>
+                    <output class="control__value" for="sd-b-range">10</output>
+                  </div>
+                  <input type="range" id="sd-b-range" min="4" max="25" step="1" value="10">
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>Hold the effect, change the study</legend>
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="n-range">Participants per group</label>
+                    <output class="control__value" for="n-range">15</output>
+                  </div>
+                  <input type="range" id="n-range" min="3" max="200" step="1" value="15">
+                  <p class="control__hint">
+                    Nothing about the two groups changes when you move this, so
+                    Cohen's <em>d</em> cannot move either. Watch the other three
+                    figures.
+                  </p>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>The decision rule</legend>
+                <div class="control">
+                  <label class="control__label" for="alpha-select">Significance level &alpha;</label>
+                  <select id="alpha-select">
+                    <option value="0.10">.10</option>
+                    <option value="0.05" selected>.05</option>
+                    <option value="0.01">.01</option>
+                    <option value="0.001">.001</option>
+                  </select>
+                  <p class="control__hint">
+                    &alpha; is chosen before the data arrive and is not
+                    evidence. Moving it moves the dashed rules and nothing else.
+                  </p>
+                </div>
+              </fieldset>
+
+            </form>
+
+            <div class="interactive__stage" data-interactive-stage>
+
+              <!-- Pinned: the null distribution with the critical rules and
+                   the observed t. Every control moves it. -->
+              <div class="stage__primary">
+                <h4 class="stage__heading" data-chart-heading>The null distribution</h4>
+                <figure class="chart">
+                  <figcaption class="visually-hidden">
+                    The t distribution under the null hypothesis, with the tails
+                    at least as far from zero as the observed t shaded, the
+                    critical values marked by dashed rules, and the standard
+                    normal curve drawn faintly behind for comparison
+                  </figcaption>
+                  <svg class="chart__svg" data-null viewBox="0 0 460 190"
+                       aria-hidden="true" focusable="false"></svg>
+                  <div class="table-scroll">
+                    <table class="chart__table">
+                      <caption class="visually-hidden">
+                        The observed statistic, the critical value and the tail
+                        area
+                      </caption>
+                      <thead>
+                        <tr>
+                          <th scope="col">Quantity</th>
+                          <th scope="col">Value</th>
+                        </tr>
+                      </thead>
+                      <tbody data-null-table></tbody>
+                    </table>
+                  </div>
+                </figure>
+                <dl class="interactive__readout" data-readout></dl>
+              </div>
+
+              <div class="verdict" data-verdict>
+                <h4 class="verdict__title">The conclusion, written carefully</h4>
+                <p class="verdict__body" data-interpretation></p>
+                <p class="verdict__note" data-assumption></p>
+              </div>
+
+              <details class="stage__more">
+                <summary>The same comparison as an interval, and t against z</summary>
+                <div>
+                  <p class="prose" data-df-note></p>
+                  <div class="table-scroll">
+                    <table class="data-table">
+                      <caption class="visually-hidden">
+                        The confidence interval for the mean difference and the
+                        critical values of t and of the standard normal
+                      </caption>
+                      <thead>
+                        <tr>
+                          <th scope="col">Quantity</th>
+                          <th scope="col">Value</th>
+                        </tr>
+                      </thead>
+                      <tbody data-extra-table></tbody>
+                    </table>
+                  </div>
+                </div>
+              </details>
+
+            </div>
+
+          </div>
+
+          <p class="interactive__status" data-interactive-status role="status"></p>
+
+          <div class="interactive__actions">
+            <button type="button" data-action="small-study">The 15-per-group study</button>
+            <button type="button" data-variant="secondary" data-action="big-study">
+              The same effect at 100 per group
+            </button>
+            <button type="button" data-variant="secondary" data-action="null-study">
+              No difference at all
+            </button>
+            <button type="button" data-variant="secondary" data-interactive-reset>
+              Reset everything
+            </button>
+          </div>
+
+          <details class="interactive__notes">
+            <summary>Notes for whoever is running this</summary>
+            <div>
+              <p>
+                The two study buttons are the demonstration. Press
+                <em>The 15-per-group study</em>, read all four figures, then
+                press <em>The same effect at 100 per group</em> and read them
+                again. The two groups are identical in both. Cohen's <em>d</em>
+                is 0.50 in both. <em>p</em> goes from about .18 to about .0005.
+              </p>
+              <p>
+                Then take the sample size down to 3 or 4 and look at the curve.
+                The tails are visibly fat, the critical value is above 4, and
+                the faint normal curve behind shows what is being paid for
+                estimating the standard deviation from almost nothing.
+              </p>
+              <p>
+                <em>No difference at all</em> is worth ending on. The observed
+                <em>t</em> sits on top of zero, <em>p</em> is 1, and the honest
+                sentence is still not "the groups are the same". Ask the room to
+                write it.
+              </p>
+              <p>
+                Fuller guidance is in
+                <a href="teaching-notes.md">teaching-notes.md</a> beside this
+                page.
+              </p>
+            </div>
+          </details>
+
+        </section>
+
+      </div>
+    </section>
+
+    <!-- ================= Challenge ================= -->
+    <section class="section section--tinted" id="challenge" aria-labelledby="challenge-heading" hidden>
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="challenge-heading" tabindex="-1">Challenge &mdash; write the conclusion</h2>
+          <p class="prose">
+            A fictional study of 30 people per group reports a difference of 4.5
+            points, <em>t</em>(58)&nbsp;=&nbsp;1.74,
+            <em>p</em>&nbsp;=&nbsp;.087, <em>d</em>&nbsp;=&nbsp;0.45, with a 95%
+            confidence interval for the difference running from &minus;0.7 to
+            9.7 points. &alpha; was set at .05 in advance.
+          </p>
+        </div>
+
+        <form class="panel challenge" id="challenge-form">
+          <fieldset class="prediction__group">
+            <legend class="prediction__legend">
+              Which of these four is the best write-up?
+            </legend>
+            <label class="control--choice">
+              <input type="radio" name="conclusion" value="nodiff">
+              "There was no difference between the two groups."
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="conclusion" value="good">
+              "The groups did not differ significantly, t(58) = 1.74, p = .087, d = 0.45, 95% CI for the difference [&minus;0.7, 9.7]. The study was too small to distinguish a moderate difference from none."
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="conclusion" value="trend">
+              "There was a marginally significant trend towards a difference, p = .087."
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="conclusion" value="probably">
+              "We failed to reject the null hypothesis, so the null hypothesis is probably true."
+            </label>
+          </fieldset>
+
+          <p class="prediction__error" data-challenge-error role="alert" hidden></p>
+
+          <div class="prediction__actions">
+            <button class="button button--primary" type="submit">Check my choice</button>
+          </div>
+
+          <div class="feedback" data-challenge-feedback hidden></div>
+        </form>
+
+      </div>
+    </section>
+
+    <!-- ================= Debrief ================= -->
+    <section class="section" id="debrief" aria-labelledby="debrief-heading">
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="debrief-heading">What this demonstrates</h2>
+        </div>
+
+        <div class="split split--wide">
+
+          <div class="prose">
+            <h3><em>t</em> is a signal-to-noise ratio</h3>
+            <p>
+              The numerator is the difference between the two sample means. The
+              denominator is the standard error of that difference &mdash; how
+              much it would bounce around from study to study if you repeated
+              the whole thing. <em>t</em> is one divided by the other, so it
+              answers: how big is this difference compared with how big a
+              difference this design produces by chance? A difference of five
+              points is impressive or unremarkable depending entirely on the
+              denominator.
+            </p>
+
+            <h3>The sample size lives in the denominator only</h3>
+            <p>
+              The standard error is the pooled standard deviation times the
+              square root of two over n, so it shrinks as the study grows.
+              Nothing in the numerator changes, and nothing in Cohen's <em>d</em>
+              changes either, because <em>d</em> divides the difference by the
+              spread of individual people rather than by the spread of sample
+              means. That is the whole distinction between an effect size and a
+              test statistic, and it is why the same finding can be reported
+              with <em>p</em> = .18 and <em>p</em> = .0005.
+            </p>
+
+            <h3>The curve is fatter than the normal, and that is a price</h3>
+            <p>
+              A z-test would use the population standard deviation. A t-test has
+              to estimate it from the same small sample that produced the means,
+              and that extra uncertainty shows up as heavier tails. At three per
+              group the critical value is above 4; by a hundred per group it has
+              come down to 1.97, within a whisker of the normal's 1.96. Degrees
+              of freedom are the accounting for how much information was left
+              after estimating the spread.
+            </p>
+
+            <h3>&alpha; is a decision, and <em>p</em> is not evidence about
+              H&#8320;</h3>
+            <p>
+              Moving &alpha; moves the dashed rules and touches nothing else on
+              screen: the data, the difference, the effect size and the tail
+              area are all where they were. The threshold is a rule about what
+              to do, chosen in advance, and choosing it after seeing <em>p</em>
+              is the beginning of the problem the last tool in this module is
+              about. And whatever &alpha; is, <em>p</em> is a statement about
+              data under an assumed model, never the probability that the model
+              is right.
+            </p>
+          </div>
+
+          <aside class="panel panel--caution" aria-labelledby="limits-heading">
+            <h3 class="panel__title" id="limits-heading">
+              What this does <em>not</em> demonstrate
+            </h3>
+            <ul>
+              <li>
+                <strong>No raw data.</strong> The tool works from summary
+                statistics, which is all a t-test needs. That also means it
+                cannot show you the things you should look at first: outliers,
+                skew, floor and ceiling effects, and whether the two groups look
+                anything like the model assumes.
+              </li>
+              <li>
+                <strong>This is the classic pooled-variance test.</strong> It
+                assumes the two population variances are equal. When the SD
+                sliders are set far apart the tool says so, and Welch's version
+                &mdash; which does not make that assumption and is a reasonable
+                default &mdash; is not computed here.
+              </li>
+              <li>
+                <strong>Equal group sizes.</strong> Unequal groups change the
+                standard error and the degrees of freedom, and make the
+                equal-variance assumption matter a good deal more.
+              </li>
+              <li>
+                <strong>Independence is assumed and cannot be checked.</strong>
+                Paired, clustered or repeated observations need a different
+                test, and no sample size repairs the wrong one.
+              </li>
+              <li>
+                <strong>A single test in isolation.</strong> Everything on this
+                page assumes the comparison was decided in advance and is the
+                only one being made. Neither assumption is common, and the last
+                tool in this module is about what happens when they fail.
+              </li>
+            </ul>
+          </aside>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+
+        <div>
+          <h2>Open Psychology Interactives</h2>
+          <p class="text-muted">
+            Free, accessible, classroom-ready teaching tools for university
+            psychology. Built as plain web pages so they keep working, and
+            openly licensed so they can be adapted.
+          </p>
+        </div>
+
+        <div>
+          <h2>Modules</h2>
+          <ul>
+            <li><a href="../../../cognitive/index.html">Cognitive Psychology</a></li>
+            <li><a href="../../index.html">Research Methods</a></li>
+            <li><a href="../../../neuropsychology/index.html">Neuropsychology</a></li>
+            <li><a href="../../../social-critical-psychology/index.html">Social and Critical Psychology</a></li>
+            <li><a href="../../../personality-individual-differences/index.html">Personality and Individual Differences</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h2>Project</h2>
+          <ul>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives">GitHub repository</a></li>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives/blob/main/CONTRIBUTING.md">Contributing</a></li>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives/blob/main/docs/accessibility.md">Accessibility</a></li>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives/blob/main/LICENSE">MIT licence</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="site-footer__bottom">
+        <p>© <span data-current-year>2026</span> Open Psychology Interactives. Released under the MIT licence.</p>
+        <p>Built with plain HTML, CSS and JavaScript. No trackers, no accounts.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

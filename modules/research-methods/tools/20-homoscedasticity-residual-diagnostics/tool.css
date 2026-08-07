@@ -1,0 +1,157 @@
+/* =========================================================================
+   Homoscedasticity and Residual Diagnostics — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. What is specific
+   here is the two-panel chart (raw scatter above, residuals against fitted
+   below) and the four small plot cards in the challenge.
+
+   The two panels are separated by a rule and labelled in words inside the
+   picture; the zero line in the residual panel is dashed and labelled; and
+   the three fitted-value regions are marked by tick rules AND named in the
+   paired table, so nothing is carried by colour.
+   ========================================================================= */
+
+#hetero .interactive__controls,
+#hetero .interactive__stage {
+  min-width: 0;
+}
+
+/* The stage is a grid track, and a grid item's automatic minimum size is its
+   min-content width: without this, a wide table inside .table-scroll widens
+   the whole track and can push the pinned block past a 320px viewport. */
+#hetero .interactive__stage > * {
+  min-width: 0;
+}
+
+/* A visually-hidden <caption> is positioned against the nearest positioned
+   ancestor, which without this is the page — adding roughly 30px of spurious
+   scrollable width inside every scroller. Local fix only. */
+#hetero .table-scroll,
+#challenge .table-scroll {
+  position: relative;
+}
+
+@media (min-width: 52em) {
+  #hetero .interactive__body {
+    grid-template-columns: minmax(0, 19rem) minmax(0, 1fr);
+  }
+}
+
+/* interactive-shell.css sets `.interactive__stage svg { max-width: 100% }` at
+   a specificity a plain class cannot beat, so the cap goes on the block-level
+   <figure> instead. This chart is two panels tall, so the cap is tight enough
+   to keep the pinned block inside a 768px viewport. */
+#hetero .chart--capped {
+  max-width: 26rem;
+}
+
+#hetero .interactive__readout {
+  grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+  gap: 0.4rem;
+}
+
+#hetero .interactive__readout div {
+  padding: 0.4rem 0.5rem;
+}
+
+#hetero .interactive__readout dd {
+  font-size: 1rem;
+}
+
+/* -------------------------------------------------------------------------
+   The two panels
+   ---------------------------------------------------------------------- */
+
+.hs__point {
+  fill: var(--colour-accent);
+  opacity: 0.6;
+}
+
+.hs__fit {
+  stroke: var(--colour-social-critical-psychology);
+  stroke-width: 2.5;
+  fill: none;
+}
+
+.hs__zero {
+  stroke: var(--colour-social-critical-psychology);
+  stroke-width: 2;
+  stroke-dasharray: 6 3;
+}
+
+/* The boundaries between the low, middle and high thirds of the fitted
+   values, which the paired table reports numerically. */
+.hs__region {
+  stroke: var(--colour-text-muted);
+  stroke-width: 1;
+  stroke-dasharray: 2 4;
+}
+
+.hs__axis {
+  stroke: var(--colour-border-strong);
+  stroke-width: 1;
+}
+
+.hs__divide {
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+
+/* -------------------------------------------------------------------------
+   The four plot cards in the challenge
+   ---------------------------------------------------------------------- */
+
+.plotcard {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+
+.plotcard__title {
+  margin: 0 0 var(--space-3);
+  font-size: var(--text-base);
+}
+
+.plotcard__svg {
+  max-width: 20rem;
+}
+
+.plotcard__alt {
+  margin: 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+  max-width: 62ch;
+}
+
+.plotcard__label {
+  display: block;
+  margin: var(--space-3) 0 0.3rem;
+  font-weight: 600;
+  font-size: var(--text-sm);
+}
+
+.plotcard select {
+  width: 100%;
+  max-width: 30rem;
+  min-height: 2.75rem;
+  padding: 0.35rem 0.6rem;
+  font: inherit;
+  font-size: var(--text-sm);
+  color: var(--colour-text);
+  background-color: var(--colour-surface-raised);
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+}
+
+@media (forced-colors: active) {
+  .hs__point { fill: CanvasText; opacity: 1; }
+  .hs__fit { stroke: Highlight; }
+  .hs__zero { stroke: Highlight; }
+  .hs__region { stroke: GrayText; }
+  .hs__axis { stroke: CanvasText; }
+  .hs__divide { stroke: GrayText; }
+  .plotcard { border: 1px solid CanvasText; }
+  .plotcard select { border: 1px solid ButtonText; }
+}

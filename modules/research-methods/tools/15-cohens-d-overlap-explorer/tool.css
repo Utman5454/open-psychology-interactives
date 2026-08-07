@@ -1,0 +1,174 @@
+/* =========================================================================
+   Cohen's d and Distributional Overlap — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. What is specific
+   here is the pair of overlapping density curves with their common ground
+   shaded, the estimate slider in the opening prediction, and the matching
+   challenge.
+
+   Group A is a solid line, group B is dashed, both are named at their peaks,
+   and the shaded overlap carries a hatch, so nothing depends on colour.
+   ========================================================================= */
+
+#overlap .interactive__controls,
+#overlap .interactive__stage {
+  min-width: 0;
+}
+
+#overlap .interactive__stage > * {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #overlap .interactive__body {
+    grid-template-columns: minmax(0, 19rem) minmax(0, 1fr);
+  }
+}
+
+/* The descendant part is load-bearing: interactive-shell.css sets
+   `.interactive__stage svg { max-width: 100% }`, which out-specifies a bare
+   attribute selector, so a cap written as `[data-overlap]` alone would
+   silently do nothing. */
+.interactive__stage [data-overlap] {
+  max-width: 29rem;
+}
+
+#overlap .interactive__readout {
+  grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+  gap: 0.4rem;
+}
+
+#overlap .interactive__readout div {
+  padding: 0.4rem 0.5rem;
+}
+
+#overlap .interactive__readout dd {
+  font-size: 1rem;
+}
+
+/* -------------------------------------------------------------------------
+   The estimate slider in the opening prediction
+   ---------------------------------------------------------------------- */
+
+.estimate {
+  display: grid;
+  gap: 0.4rem;
+  max-width: 34rem;
+}
+
+.estimate__label {
+  font-weight: 600;
+  font-size: var(--text-sm);
+}
+
+.estimate__row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.estimate__row input[type="range"] {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 2.75rem;
+  accent-color: var(--colour-accent);
+  cursor: pointer;
+}
+
+.estimate__value {
+  flex: none;
+  min-width: 3.5rem;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-size: var(--text-lg);
+  font-weight: 650;
+  color: var(--colour-accent);
+}
+
+/* -------------------------------------------------------------------------
+   The matching challenge
+   ---------------------------------------------------------------------- */
+
+.match {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+
+.match__text {
+  margin: 0 0 var(--space-3);
+  font-size: var(--text-sm);
+  font-style: italic;
+  max-width: 60ch;
+}
+
+.match__label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+  font-size: var(--text-sm);
+}
+
+.match select {
+  width: 100%;
+  max-width: 26rem;
+  min-height: 2.75rem;
+  padding: 0.35rem 0.6rem;
+  font: inherit;
+  font-size: var(--text-sm);
+  color: var(--colour-text);
+  background-color: var(--colour-surface-raised);
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+}
+
+/* -------------------------------------------------------------------------
+   The two curves
+   ---------------------------------------------------------------------- */
+
+.ov__curve-a {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+
+.ov__curve-b {
+  fill: none;
+  stroke: var(--colour-social-critical-psychology);
+  stroke-width: 2.5;
+  stroke-dasharray: 7 4;
+}
+
+.ov__common {
+  fill: var(--colour-accent-soft);
+}
+
+.ov__hatch {
+  stroke: var(--colour-text-muted);
+  stroke-width: 1;
+  opacity: 0.55;
+}
+
+.ov__mean {
+  stroke: var(--colour-text-muted);
+  stroke-width: 1.2;
+  stroke-dasharray: 2 3;
+}
+
+.ov__axis {
+  stroke: var(--colour-border-strong);
+  stroke-width: 1;
+}
+
+@media (forced-colors: active) {
+  .ov__curve-a { stroke: CanvasText; }
+  .ov__curve-b { stroke: Highlight; }
+  .ov__common { fill: Canvas; }
+  .ov__hatch { stroke: CanvasText; opacity: 1; }
+  .ov__mean { stroke: GrayText; }
+  .ov__axis { stroke: CanvasText; }
+  .match { border: 1px solid CanvasText; }
+  .match select { border: 1px solid ButtonText; }
+}

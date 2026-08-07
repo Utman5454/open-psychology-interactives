@@ -1,0 +1,131 @@
+/* =========================================================================
+   Factorial ANOVA Interaction Detective — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. What is specific
+   here is the two-line interaction plot and the fill-in-the-sentence
+   challenge.
+
+   The two lines are distinguished by dash pattern, marker shape AND an
+   end-of-line label, so the plot survives greyscale and forced colours.
+   ========================================================================= */
+
+#detective .interactive__controls,
+#detective .interactive__stage {
+  min-width: 0;
+}
+
+#detective .interactive__stage > * {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #detective .interactive__body {
+    grid-template-columns: minmax(0, 19rem) minmax(0, 1fr);
+  }
+}
+
+/* The descendant part is load-bearing: interactive-shell.css sets
+   `.interactive__stage svg { max-width: 100% }`, which out-specifies a bare
+   attribute selector, so a cap written as `[data-plot]` alone would silently
+   do nothing. Capped so the pinned block fits inside a 768px-tall viewport
+   with the four cell sliders in use beside it. */
+.interactive__stage [data-plot] {
+  max-width: 29rem;
+}
+
+#detective .interactive__readout {
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+  gap: 0.4rem;
+}
+
+#detective .interactive__readout div {
+  padding: 0.4rem 0.5rem;
+}
+
+#detective .interactive__readout dd {
+  font-size: 1rem;
+}
+
+/* -------------------------------------------------------------------------
+   Interaction plot
+   ---------------------------------------------------------------------- */
+
+.plot__line {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+
+/* The second condition is dashed as well as differently coloured, and its
+   markers are squares rather than circles. */
+.plot__line--two {
+  stroke: var(--colour-social-critical-psychology);
+  stroke-dasharray: 7 4;
+}
+
+.plot__marker {
+  fill: var(--colour-accent);
+  stroke: var(--colour-surface-raised);
+  stroke-width: 1;
+}
+
+.plot__marker--two {
+  fill: var(--colour-social-critical-psychology);
+}
+
+.plot__error {
+  stroke: var(--colour-text-muted);
+  stroke-width: 1.5;
+}
+
+.plot__axis {
+  stroke: var(--colour-border-strong);
+  stroke-width: 1;
+}
+
+.plot__grid {
+  stroke: var(--colour-border);
+  stroke-width: 1;
+  stroke-dasharray: 2 3;
+}
+
+/* -------------------------------------------------------------------------
+   Fill-in-the-sentence challenge
+   ---------------------------------------------------------------------- */
+
+.sentence__text {
+  margin: 0;
+  font-size: var(--text-lg);
+  line-height: 2.2;
+}
+
+/* The select's intrinsic width comes from its longest option, and `max-width:
+   100%` on the select resolves against this slot rather than the line box — so
+   the slot itself has to be capped or the sentence overflows a phone. */
+.sentence__slot {
+  display: inline-block;
+  max-width: 100%;
+}
+
+.sentence__slot select {
+  min-height: 2.75rem;
+  max-width: 100%;
+  padding: 0.25rem 0.5rem;
+  font: inherit;
+  font-size: var(--text-base);
+  color: var(--colour-text);
+  background-color: var(--colour-surface-raised);
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+}
+
+@media (forced-colors: active) {
+  .plot__line { stroke: CanvasText; }
+  .plot__line--two { stroke: Highlight; }
+  .plot__marker { fill: CanvasText; stroke: Canvas; }
+  .plot__marker--two { fill: Highlight; }
+  .plot__error { stroke: CanvasText; }
+  .plot__axis { stroke: CanvasText; }
+  .plot__grid { stroke: GrayText; }
+  .sentence__slot select { border: 1px solid ButtonText; }
+}

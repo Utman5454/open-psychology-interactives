@@ -1,0 +1,129 @@
+/* =========================================================================
+   Sampling Bias Simulator — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. What is
+   particular here is the estimate line: a number line carrying the population
+   mean, the current estimate with its interval, and every previous draw.
+   ========================================================================= */
+
+#sampling .interactive__controls,
+#sampling .interactive__stage {
+  min-width: 0;
+}
+
+/* The stage is a grid, so a wide child would otherwise set the track's
+   minimum width and drag the page sideways instead of scrolling itself. */
+#sampling .interactive__stage > * {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #sampling .interactive__body {
+    grid-template-columns: minmax(0, 20rem) minmax(0, 1fr);
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Recruitment method radios
+   ---------------------------------------------------------------------- */
+
+.method {
+  display: block;
+  padding: var(--space-2) 0;
+  border-top: 1px solid var(--colour-border);
+}
+
+.method:first-child {
+  border-top: 0;
+}
+
+.method__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  min-height: 2.75rem;
+  cursor: pointer;
+}
+
+.method__row input {
+  width: 1.15rem;
+  height: 1.15rem;
+  flex: none;
+  margin-top: 0.55rem;
+  accent-color: var(--colour-accent);
+}
+
+.method__name {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  line-height: 1.4;
+  padding-top: 0.35rem;
+}
+
+.method__where {
+  display: block;
+  font-weight: 400;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+
+/* -------------------------------------------------------------------------
+   The estimate line
+   -------------------------------------------------------------------------
+   The truth is a solid vertical rule with its own printed label; previous
+   estimates are hollow circles; the current estimate is a filled diamond with
+   a horizontal interval bar. Shape carries the distinction, not colour, and
+   every figure is repeated in the readout beneath.
+   ---------------------------------------------------------------------- */
+
+[data-line] {
+  max-width: 34rem;
+}
+
+.line__axis {
+  stroke: var(--colour-border-strong);
+  stroke-width: 1;
+}
+
+.line__truth {
+  stroke: var(--colour-neuropsychology);
+  stroke-width: 2.5;
+}
+
+.line__past {
+  fill: none;
+  stroke: var(--colour-text-muted);
+  stroke-width: 1.4;
+}
+
+.line__current {
+  fill: var(--colour-accent);
+  stroke: var(--colour-accent);
+  stroke-width: 1;
+}
+
+.line__interval {
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+/* -------------------------------------------------------------------------
+   Composition table emphasis
+   ---------------------------------------------------------------------- */
+
+.data-table td[data-drift="high"] {
+  font-weight: 700;
+}
+
+@media (forced-colors: active) {
+  .method {
+    border-color: CanvasText;
+  }
+
+  .line__axis { stroke: CanvasText; }
+  .line__truth { stroke: CanvasText; stroke-width: 3; }
+  .line__past { stroke: GrayText; }
+  .line__current { fill: Highlight; stroke: Highlight; }
+  .line__interval { stroke: Highlight; }
+}

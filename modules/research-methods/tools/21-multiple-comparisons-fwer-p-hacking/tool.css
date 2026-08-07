@@ -1,0 +1,186 @@
+/* =========================================================================
+   Multiple Comparisons, FWER and Forking Paths — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. What is specific
+   here is the grid of test squares in Experiment 1, the p-value strip in
+   Experiment 2, and the four vignette cards in the challenge.
+
+   A significant test is marked with a CROSS as well as a fill, and a test
+   that had a real effect to find is drawn with a heavier outline, so the two
+   distinctions survive greyscale and forced colours.
+   ========================================================================= */
+
+#family .interactive__controls,
+#family .interactive__stage,
+#garden .interactive__controls,
+#garden .interactive__stage {
+  min-width: 0;
+}
+
+/* The stage is a grid track, and a grid item's automatic minimum size is its
+   min-content width: without this, a wide table inside .table-scroll widens
+   the whole track and can push the pinned block past a 320px viewport. */
+#family .interactive__stage > *,
+#garden .interactive__stage > * {
+  min-width: 0;
+}
+
+/* A visually-hidden <caption> is positioned against the nearest positioned
+   ancestor, which without this is the page — adding roughly 30px of spurious
+   scrollable width inside every scroller. Local fix only. */
+#family .table-scroll,
+#garden .table-scroll,
+#challenge .table-scroll {
+  position: relative;
+}
+
+@media (min-width: 52em) {
+  #family .interactive__body,
+  #garden .interactive__body {
+    grid-template-columns: minmax(0, 19rem) minmax(0, 1fr);
+  }
+}
+
+/* interactive-shell.css sets `.interactive__stage svg { max-width: 100% }` at
+   a specificity a plain class cannot beat, so the cap goes on the block-level
+   <figure> instead. */
+#family .chart--capped,
+#garden .chart--capped {
+  max-width: 29rem;
+}
+
+#family .interactive__readout {
+  grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+  gap: 0.4rem;
+}
+
+#family .interactive__readout div {
+  padding: 0.4rem 0.5rem;
+}
+
+#family .interactive__readout dd {
+  font-size: 1rem;
+}
+
+/* -------------------------------------------------------------------------
+   The grid of tests
+   ---------------------------------------------------------------------- */
+
+.mc__cell {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border-strong);
+  stroke-width: 1;
+}
+
+/* A test that really did have something to find. Heavier outline, so the
+   distinction is not a matter of hue. */
+.mc__cell--real {
+  stroke: var(--colour-text);
+  stroke-width: 2.5;
+}
+
+.mc__cell--hit {
+  fill: var(--colour-accent-soft);
+}
+
+.mc__mark {
+  stroke: var(--colour-social-critical-psychology);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+/* -------------------------------------------------------------------------
+   The p-value strip
+   ---------------------------------------------------------------------- */
+
+.gd__axis {
+  stroke: var(--colour-border-strong);
+  stroke-width: 1;
+}
+
+.gd__alpha {
+  stroke: var(--colour-social-critical-psychology);
+  stroke-width: 2;
+  stroke-dasharray: 5 3;
+}
+
+.gd__tick {
+  stroke: var(--colour-accent);
+  stroke-width: 2;
+}
+
+.gd__tick--sig {
+  stroke: var(--colour-social-critical-psychology);
+  stroke-width: 3;
+}
+
+/* The path currently selected, ringed so it is findable without colour. */
+.gd__current {
+  fill: none;
+  stroke: var(--colour-text);
+  stroke-width: 2;
+}
+
+.gd__all {
+  stroke: var(--colour-text-muted);
+  stroke-width: 1.4;
+  opacity: 0.75;
+}
+
+/* -------------------------------------------------------------------------
+   The vignette cards
+   ---------------------------------------------------------------------- */
+
+.vignette {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+
+.vignette__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-base);
+}
+
+.vignette__text {
+  margin: 0 0 var(--space-3);
+  font-size: var(--text-sm);
+  max-width: 62ch;
+}
+
+.vignette__label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+  font-size: var(--text-sm);
+}
+
+.vignette select {
+  width: 100%;
+  max-width: 26rem;
+  min-height: 2.75rem;
+  padding: 0.35rem 0.6rem;
+  font: inherit;
+  font-size: var(--text-sm);
+  color: var(--colour-text);
+  background-color: var(--colour-surface-raised);
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+}
+
+@media (forced-colors: active) {
+  .mc__cell { fill: Canvas; stroke: GrayText; }
+  .mc__cell--real { stroke: CanvasText; }
+  .mc__cell--hit { fill: Canvas; }
+  .mc__mark { stroke: Highlight; }
+  .gd__axis { stroke: CanvasText; }
+  .gd__alpha { stroke: Highlight; }
+  .gd__tick { stroke: CanvasText; }
+  .gd__tick--sig { stroke: Highlight; }
+  .gd__current { stroke: CanvasText; }
+  .gd__all { stroke: GrayText; opacity: 1; }
+  .vignette { border: 1px solid CanvasText; }
+  .vignette select { border: 1px solid ButtonText; }
+}

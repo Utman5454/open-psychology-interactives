@@ -1,0 +1,243 @@
+/* =========================================================================
+   Reflexivity and Alternative Theme Builder — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. What is
+   particular here is the account card - a coherence line, the themes it
+   yields, and a map of which extracts it is built on.
+   ========================================================================= */
+
+#reflexivity .interactive__controls,
+#reflexivity .interactive__stage {
+  min-width: 0;
+}
+
+#reflexivity .interactive__stage > * {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #reflexivity .interactive__body {
+    grid-template-columns: minmax(0, 22rem) minmax(0, 1fr);
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Question and lens choices
+   ---------------------------------------------------------------------- */
+
+.choice {
+  display: block;
+  padding: var(--space-2) 0;
+  border-top: 1px solid var(--colour-border);
+}
+
+.choice:first-child {
+  border-top: 0;
+}
+
+.choice__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  min-height: 2.75rem;
+  cursor: pointer;
+}
+
+.choice__row input {
+  width: 1.15rem;
+  height: 1.15rem;
+  flex: none;
+  margin-top: 0.55rem;
+  accent-color: var(--colour-accent);
+}
+
+.choice__text {
+  font-size: var(--text-sm);
+  line-height: 1.45;
+  padding-top: 0.35rem;
+}
+
+.choice__tag {
+  display: block;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+
+/* -------------------------------------------------------------------------
+   The account card
+   -------------------------------------------------------------------------
+   The coherence rating is a word, always. The left border repeats it and is
+   never the only carrier.
+   ---------------------------------------------------------------------- */
+
+.coherence {
+  margin: 0 0 var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border-left: 4px solid var(--colour-border-strong);
+  background-color: var(--colour-surface);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+
+.coherence[data-level="strong"] { border-left-color: var(--colour-neuropsychology); }
+.coherence[data-level="workable"] { border-left-color: var(--colour-cognitive); }
+.coherence[data-level="strained"] { border-left-color: var(--colour-social-critical-psychology); }
+
+.themes {
+  margin: 0 0 var(--space-3);
+  padding-left: 1.3rem;
+  font-size: var(--text-sm);
+}
+
+.themes > li {
+  margin-top: 0.3rem;
+  font-weight: 600;
+}
+
+.themes > li:first-child {
+  margin-top: 0;
+}
+
+/* -------------------------------------------------------------------------
+   Foregrounding map
+   -------------------------------------------------------------------------
+   One row per extract. Each prints its standing in words - central,
+   supporting, at the margins - so the bar is an illustration of the text.
+   ---------------------------------------------------------------------- */
+
+.foreground {
+  display: grid;
+  gap: 0.3rem;
+  font-size: var(--text-sm);
+}
+
+.foreground__row {
+  display: grid;
+  grid-template-columns: minmax(4.5rem, 7rem) 1fr;
+  gap: 0.2rem var(--space-3);
+  align-items: center;
+}
+
+@media (max-width: 30em) {
+  .foreground__row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.foreground__who {
+  font-weight: 600;
+}
+
+.foreground__meter {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.foreground__track {
+  flex: 1 1 3rem;
+  min-width: 2.5rem;
+  height: 0.75rem;
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  overflow: hidden;
+}
+
+.foreground__fill {
+  display: block;
+  height: 100%;
+  background-color: var(--colour-accent);
+  transition: width 180ms ease-out;
+}
+
+.foreground__word {
+  flex: 0 0 auto;
+  font-size: var(--text-xs);
+  font-variant: small-caps;
+  letter-spacing: 0.03em;
+  color: var(--colour-text-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .foreground__fill {
+    transition: none;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   The extracts disclosure and claim rows
+   ---------------------------------------------------------------------- */
+
+.extract {
+  margin: 0 0 var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border-left: 4px solid var(--colour-research-methods);
+  background-color: var(--colour-surface);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+}
+
+.extract:last-child {
+  margin-bottom: 0;
+}
+
+.extract__who {
+  display: block;
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--colour-text-muted);
+}
+
+.claim {
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--colour-border);
+}
+
+.claim:first-child {
+  border-top: 0;
+}
+
+.claim__label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+/* This select sits outside the interactive shell, so it does not inherit the
+   shell's full-width sizing. Its options are long sentences, and a select
+   sized to its content would be wider than a 320px viewport and would take the
+   page's horizontal scrollbar with it. */
+.claim select {
+  width: 100%;
+  max-width: 100%;
+  min-height: 2.75rem;
+  padding: 0.35rem 0.6rem;
+  font: inherit;
+  font-size: var(--text-sm);
+  color: var(--colour-text);
+  background-color: var(--colour-surface-raised);
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+}
+
+@media (forced-colors: active) {
+  .coherence,
+  .choice,
+  .foreground__track,
+  .extract,
+  .claim {
+    border-color: CanvasText;
+  }
+
+  .foreground__fill {
+    background-color: Highlight;
+  }
+}

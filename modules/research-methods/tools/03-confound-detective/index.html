@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Confound Detective — Open Psychology Interactives</title>
+  <meta name="description" content="Three fictional studies with confident causal claims. Sort the variables that co-vary with the manipulation from the ones that only add noise, then repair the design and watch the estimated effect move back towards the truth.">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f141b" media="(prefers-color-scheme: dark)">
+
+  <link rel="canonical" href="https://utman5454.github.io/open-psychology-interactives/modules/research-methods/tools/03-confound-detective/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Open Psychology Interactives">
+  <meta property="og:title" content="Confound Detective">
+  <meta property="og:description" content="Sort confounds from nuisance variables, then repair the design and watch the estimate move back towards the truth.">
+  <meta property="og:url" content="https://utman5454.github.io/open-psychology-interactives/modules/research-methods/tools/03-confound-detective/">
+  <meta property="og:locale" content="en_GB">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Confound Detective">
+  <meta name="twitter:description" content="Sort confounds from nuisance variables, then repair the design and watch the estimate move back towards the truth.">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231a4fa0'/%3E%3Cpath d='M4 24C10 24 10 8 16 8s6 16 12 16' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
+
+  <!-- Four directories deep (modules/<slug>/tools/<slug>/), so shared assets
+       are at ../../../../ — see docs/adapting-a-tool.md. -->
+  <link rel="stylesheet" href="../../../../assets/css/main.css">
+  <link rel="stylesheet" href="../../../../components/interactive-shell.css">
+  <link rel="stylesheet" href="../../../../components/tool-kit.css">
+  <link rel="stylesheet" href="tool.css">
+  <script src="../../../../assets/js/main.js" defer></script>
+  <script src="../../../../components/interactive-shell.js" defer></script>
+  <script src="tool.js" defer></script>
+</head>
+
+<!-- data-site-root: the path back to the site root from this page. -->
+<body data-site-root="../../../../">
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+
+      <a class="brand" href="../../../../index.html" aria-label="Open Psychology Interactives, home">
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <rect x="1" y="1" width="30" height="30" rx="7" fill="none" stroke="currentColor" stroke-width="2"></rect>
+          <path d="M5 24C10 24 10 8 16 8s6 16 11 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        </svg>
+        <span>
+          <span class="brand__name">Open Psychology Interactives</span>
+          <span class="brand__tagline">Free teaching tools for psychology</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" data-nav-toggle
+              aria-expanded="false" aria-controls="site-nav" hidden>
+        <svg class="nav-toggle__icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+          <path d="M2 5h16M2 10h16M2 15h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        </svg>
+        Menu
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul class="site-nav__list">
+          <li><a class="site-nav__link" href="../../../../index.html">Home</a></li>
+          <li><a class="site-nav__link" href="../../../cognitive/index.html">Cognitive<span class="visually-hidden"> Psychology</span></a></li>
+          <li><a class="site-nav__link" href="../../index.html">Research Methods</a></li>
+          <li><a class="site-nav__link" href="../../../neuropsychology/index.html">Neuropsychology</a></li>
+          <li><a class="site-nav__link" href="../../../social-critical-psychology/index.html">Social and Critical<span class="visually-hidden"> Psychology</span></a></li>
+          <li><a class="site-nav__link" href="../../../personality-individual-differences/index.html">Personality<span class="visually-hidden"> and Individual Differences</span></a></li>
+          <li><a class="site-nav__link" href="../../../../index.html#documentation">Documentation</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <nav class="breadcrumbs container" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="../../../../index.html">Home</a></li>
+      <li><a href="../../../../index.html#modules">Modules</a></li>
+      <li><a href="../../index.html">Research Methods</a></li>
+      <li aria-current="page">Confound Detective</li>
+    </ol>
+  </nav>
+
+  <main id="main">
+
+    <!-- ================= Title and purpose ================= -->
+    <section class="section card--research-methods" aria-labelledby="page-heading">
+      <div class="container">
+
+        <p class="hero__eyebrow" style="color: var(--colour-research-methods)">
+          Research Methods
+        </p>
+        <h1 id="page-heading">Confound Detective</h1>
+        <p class="hero__lead">
+          Three fictional studies, each with a confident causal claim. Sort the
+          variables that travel with the manipulation from the ones that only
+          add noise — then repair the design and watch the estimate move back
+          towards the truth.
+        </p>
+
+        <p>
+          <span class="badge">
+            <span class="badge__dot" aria-hidden="true"></span>
+            Simulated — fictional studies and a transparent bias model
+          </span>
+        </p>
+
+        <div class="split split--wide">
+
+          <div class="panel">
+            <h2 class="panel__title">Learning objective</h2>
+            <p>
+              By the end you should be able to state the two conditions a
+              variable must meet before it can bias a comparison, tell a
+              confound apart from a nuisance variable and from part of the
+              manipulation, and choose a design repair that removes the bias
+              rather than one that only makes the biased estimate look tidier.
+            </p>
+            <p class="text-muted">
+              About 30 minutes. Nothing you do here is saved or sent anywhere.
+            </p>
+          </div>
+
+          <div class="panel panel--caution">
+            <h2 class="panel__title">The numbers are a model, not a finding</h2>
+            <p>
+              Each study has a true effect that only the tool knows, plus a bias
+              contributed by each unresolved confound. Those figures are chosen
+              to make the argument visible. They are not estimates of how large
+              real confounding is in any real study, and no real trial, ward,
+              module or dataset is described.
+            </p>
+          </div>
+
+        </div>
+
+        <ol class="how-to">
+          <li>Answer the opening question to unlock the detective.</li>
+          <li>Read the study card, then classify each of its five variables.</li>
+          <li>Check your classification and read the note on each variable.</li>
+          <li>Move to the repair bench and tick fixes. Watch the two bars.</li>
+        </ol>
+
+      </div>
+    </section>
+
+    <!-- ================= Opening prediction ================= -->
+    <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="opening-heading">First, a judgement</h2>
+          <p class="prose">
+            A study reports that students who use the library more get higher
+            marks. A critic objects that motivation is a confound.
+          </p>
+        </div>
+
+        <noscript>
+          <div class="placeholder">
+            <h3 class="placeholder__title">This part needs JavaScript</h3>
+            <p class="prose">
+              The detective builds its diagrams and estimates in your browser, so
+              it cannot run with JavaScript switched off. The rest of this page
+              is readable without it.
+            </p>
+          </div>
+        </noscript>
+
+        <form class="panel prediction" id="opening-form">
+          <fieldset class="prediction__group">
+            <legend class="prediction__legend">
+              For that objection to work, what must be true of motivation?
+            </legend>
+            <label class="control--choice">
+              <input type="radio" name="opening" value="varies">
+              It must vary between students
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="opening" value="outcome">
+              It must be related to marks
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="opening" value="both">
+              It must differ systematically with library use <em>and</em> be related to marks
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="opening" value="uncontrolled">
+              It must be uncontrolled
+            </label>
+          </fieldset>
+
+          <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+          <div class="prediction__actions">
+            <button class="button button--primary" type="submit">
+              Record my answer and open the detective
+            </button>
+            <button class="button button--secondary" type="button" data-action="skip-opening">
+              Skip — I am demonstrating this
+            </button>
+          </div>
+
+          <div class="feedback" data-opening-feedback hidden></div>
+        </form>
+
+      </div>
+    </section>
+
+    <!-- ================= Detective ================= -->
+    <section class="section" id="lab-section" aria-labelledby="lab-heading" hidden>
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="lab-heading" tabindex="-1">The detective</h2>
+          <p class="prose">
+            Each study runs in two phases. First you classify the variables;
+            then the repair bench opens and you fix the design. The study card
+            stays at the top of the stage throughout.
+          </p>
+        </div>
+
+        <ol class="stage-track" data-stage-track></ol>
+
+        <section class="interactive" id="confound" data-interactive
+                 data-reset-message="Everything cleared. Back to the opening question.">
+
+          <header class="interactive__header">
+            <h3 class="interactive__title">One study at a time</h3>
+            <p class="interactive__brief">
+              A variable can only bias a comparison if it travels with the
+              conditions <em>and</em> touches the outcome. Everything else is
+              noise, treatment, or beside the point.
+            </p>
+          </header>
+
+          <div class="interactive__body interactive__body--pinned">
+
+            <form class="interactive__controls" data-interactive-controls>
+
+              <fieldset data-phase="classify">
+                <legend>Phase 1 — classify each variable</legend>
+                <div data-variable-list></div>
+              </fieldset>
+
+              <fieldset data-phase="repair" hidden>
+                <legend>Phase 2 — repair the design</legend>
+                <p class="control__hint">
+                  Tick the changes you would make. Every tick redraws the
+                  diagram and moves the estimate. The diagram shows every
+                  confound in the study, including any that were not among the
+                  five variables you classified.
+                </p>
+                <div data-repair-list></div>
+              </fieldset>
+
+            </form>
+
+            <div class="interactive__stage" data-interactive-stage>
+
+              <!-- Pinned: the study, and — once the repair bench opens — the
+                   estimate that every repair moves. Both must stay visible
+                   while the controls below are worked through. -->
+              <div class="stage__primary">
+                <h4 class="stage__heading" data-case-label>Study 1 of 3</h4>
+                <p class="claim" data-case-claim></p>
+                <p class="case__design" data-case-design></p>
+
+                <div data-effect-block hidden>
+                  <h4 class="stage__heading">What the study would estimate</h4>
+                  <div class="effect" data-effect></div>
+                </div>
+              </div>
+
+              <div class="feedback" data-phase-feedback hidden></div>
+
+              <div data-classify-detail hidden>
+                <h4 class="stage__heading">Variable by variable</h4>
+                <div data-classify-body></div>
+              </div>
+
+              <div data-repair-detail hidden>
+                <h4 class="stage__heading">The causal picture</h4>
+                <figure class="chart">
+                  <figcaption class="visually-hidden">
+                    A diagram of the manipulation, the outcome and each
+                    confound, with blocked confounds drawn as dashed outlines
+                  </figcaption>
+                  <svg class="chart__svg" data-dag viewBox="0 0 460 210"
+                       aria-hidden="true" focusable="false"></svg>
+                  <div class="table-scroll">
+                    <table class="chart__table">
+                      <caption class="visually-hidden">
+                        Each confound, whether it is still open, and the bias it
+                        is contributing to the estimate
+                      </caption>
+                      <thead>
+                        <tr>
+                          <th scope="col">Confound</th>
+                          <th scope="col">Status</th>
+                          <th scope="col">Bias it adds</th>
+                        </tr>
+                      </thead>
+                      <tbody data-dag-table></tbody>
+                    </table>
+                  </div>
+                </figure>
+
+                <div class="verdict" data-verdict>
+                  <h4 class="verdict__title">Where the design stands</h4>
+                  <p class="verdict__body" data-interpretation></p>
+                </div>
+
+                <details class="stage__more">
+                  <summary>What each repair you ticked actually does</summary>
+                  <div data-repair-notes></div>
+                </details>
+              </div>
+
+            </div>
+
+          </div>
+
+          <p class="interactive__status" data-interactive-status role="status"></p>
+
+          <div class="interactive__actions">
+            <button type="button" data-action="check">Check my classification</button>
+            <button type="button" data-variant="secondary" data-action="repair">
+              Open the repair bench
+            </button>
+            <button type="button" data-variant="secondary" data-action="next">
+              Next study
+            </button>
+            <button type="button" data-variant="secondary" data-interactive-reset>
+              Reset everything
+            </button>
+          </div>
+
+          <details class="interactive__notes">
+            <summary>Notes for whoever is running this</summary>
+            <div>
+              <p>
+                In study 1, tick <em>Recruit 400 students instead of 60</em> on
+                its own. The estimate does not move at all. That single moment
+                does more work than any amount of explanation: sample size buys
+                precision, and precision applied to a biased estimate buys a
+                confident wrong answer.
+              </p>
+              <p>
+                Study 2 is the one where a statistical adjustment is available.
+                It removes most of the severity bias and none of the rest, and
+                the note says why: adjustment works only for confounders you
+                measured, measured well, and modelled correctly. Randomisation
+                does not need that list.
+              </p>
+              <p>
+                Fuller guidance and the debrief questions are in
+                <a href="teaching-notes.md">teaching-notes.md</a> beside this
+                page.
+              </p>
+            </div>
+          </details>
+
+        </section>
+
+      </div>
+    </section>
+
+    <!-- ================= Challenge ================= -->
+    <section class="section section--tinted" id="challenge" aria-labelledby="challenge-heading">
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="challenge-heading">Challenge — which objections actually bite?</h2>
+          <p class="prose">
+            A randomised trial allocates 200 volunteers to a six-week exercise
+            programme or a waiting list, and measures depressive symptoms
+            before and after. The exercise group improves more.
+          </p>
+        </div>
+
+        <form class="panel challenge" id="challenge-form">
+          <fieldset class="prediction__group">
+            <legend class="prediction__legend">
+              Which of these objections identifies something that could bias the
+              comparison? Select all that apply.
+            </legend>
+            <label class="control--choice">
+              <input type="checkbox" name="challenge" value="age">
+              The two groups differ slightly in mean age
+            </label>
+            <label class="control--choice">
+              <input type="checkbox" name="challenge" value="expect">
+              The exercise group knew they were receiving something and the waiting list knew they were not
+            </label>
+            <label class="control--choice">
+              <input type="checkbox" name="challenge" value="dropout">
+              More people dropped out of the exercise group, and those who dropped out were doing worst
+            </label>
+            <label class="control--choice">
+              <input type="checkbox" name="challenge" value="volunteers">
+              All 200 were volunteers, so the sample is unrepresentative
+            </label>
+            <label class="control--choice">
+              <input type="checkbox" name="challenge" value="rater">
+              The researcher who scored the symptom measure knew which group each person was in
+            </label>
+          </fieldset>
+
+          <div class="prediction__actions">
+            <button class="button button--primary" type="submit">Check my answer</button>
+          </div>
+
+          <div class="feedback" data-challenge-feedback hidden></div>
+        </form>
+
+      </div>
+    </section>
+
+    <!-- ================= Debrief ================= -->
+    <section class="section" id="debrief" aria-labelledby="debrief-heading">
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="debrief-heading">What this demonstrates</h2>
+        </div>
+
+        <div class="split split--wide">
+
+          <div class="prose">
+            <h3>A confound needs two properties, not one</h3>
+            <p>
+              It must differ systematically between the conditions, and it must
+              plausibly touch the outcome. A variable with only the first is
+              irrelevant; a variable with only the second adds noise and widens
+              your interval without moving your estimate. Students who learn to
+              list "extra variables" find confounds everywhere and cannot say
+              which ones matter.
+            </p>
+
+            <h3>Noise and bias are different problems with different cures</h3>
+            <p>
+              Noise makes an estimate imprecise, and more data fixes it. Bias
+              makes an estimate wrong, and more data makes the wrong answer more
+              confident. The repair bench contains a sample-size button
+              precisely so that it can be seen doing nothing.
+            </p>
+
+            <h3>Randomisation and adjustment are not substitutes</h3>
+            <p>
+              Randomising breaks the link between the condition and everything
+              else, measured or not, known or not. Adjusting for a covariate
+              handles that one variable, provided it was measured, measured
+              well, and entered into the model in roughly the right form. That
+              is a much longer list of things to be right about, which is why
+              the two are not interchangeable however similar the output looks.
+            </p>
+
+            <h3>Some variables are the treatment</h3>
+            <p>
+              The spaced-repetition schedule in study 1 is not a confound; it is
+              what the app is. Removing it does not clean up the comparison, it
+              deletes the manipulation. Deciding which features are the active
+              ingredient is a theoretical question, and answering it needs a
+              condition designed to isolate it rather than a statistical
+              control.
+            </p>
+          </div>
+
+          <aside class="panel panel--caution" aria-labelledby="limits-heading">
+            <h3 class="panel__title" id="limits-heading">
+              What this does <em>not</em> demonstrate
+            </h3>
+            <ul>
+              <li>
+                <strong>The bias figures are invented.</strong> Each study's
+                true effect and each confound's contribution were chosen to make
+                the teaching point legible. They are not estimates of real
+                confounding anywhere.
+              </li>
+              <li>
+                <strong>Bias adds up neatly here, and it does not in life.</strong>
+                Real confounds interact, point in opposite directions and
+                sometimes cancel. The tool keeps them additive so the arithmetic
+                can be followed.
+              </li>
+              <li>
+                <strong>A repaired design is not a good study.</strong> Blocking
+                every confound in the list leaves the measures, the sample, the
+                power and the question exactly as they were.
+              </li>
+              <li>
+                <strong>Directed diagrams encode assumptions.</strong> The arrows
+                shown are the ones the tool asserts. Drawing a different diagram
+                is a substantive claim about the world, not a formatting choice.
+              </li>
+              <li>
+                <strong>No real studies.</strong> The module, the ward and the
+                typography experiment are all invented, as are the numbers.
+              </li>
+            </ul>
+          </aside>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+
+        <div>
+          <h2>Open Psychology Interactives</h2>
+          <p class="text-muted">
+            Free, accessible, classroom-ready teaching tools for university
+            psychology. Built as plain web pages so they keep working, and
+            openly licensed so they can be adapted.
+          </p>
+        </div>
+
+        <div>
+          <h2>Modules</h2>
+          <ul>
+            <li><a href="../../../cognitive/index.html">Cognitive Psychology</a></li>
+            <li><a href="../../index.html">Research Methods</a></li>
+            <li><a href="../../../neuropsychology/index.html">Neuropsychology</a></li>
+            <li><a href="../../../social-critical-psychology/index.html">Social and Critical Psychology</a></li>
+            <li><a href="../../../personality-individual-differences/index.html">Personality and Individual Differences</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h2>Project</h2>
+          <ul>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives">GitHub repository</a></li>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives/blob/main/CONTRIBUTING.md">Contributing</a></li>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives/blob/main/docs/accessibility.md">Accessibility</a></li>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives/blob/main/LICENSE">MIT licence</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="site-footer__bottom">
+        <p>© <span data-current-year>2026</span> Open Psychology Interactives. Released under the MIT licence.</p>
+        <p>Built with plain HTML, CSS and JavaScript. No trackers, no accounts.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

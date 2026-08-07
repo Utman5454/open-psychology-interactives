@@ -1,0 +1,147 @@
+/* =========================================================================
+   ANOVA F-Ratio Visualiser — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. What is specific
+   here is the strip plot of individual scores (Experiment 1) and the
+   three-row means-with-spread picture (Experiment 2).
+
+   Both charts state their content in words as well as in position: group
+   means are drawn as heavy bars and named in the paired table, and the grand
+   mean is dashed and labelled, so nothing is carried by colour.
+   ========================================================================= */
+
+#ratio .interactive__controls,
+#ratio .interactive__stage,
+#pattern .interactive__controls,
+#pattern .interactive__stage {
+  min-width: 0;
+}
+
+#ratio .interactive__stage > *,
+#pattern .interactive__stage > * {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #ratio .interactive__body,
+  #pattern .interactive__body {
+    grid-template-columns: minmax(0, 19rem) minmax(0, 1fr);
+  }
+}
+
+/* The descendant part is load-bearing: interactive-shell.css sets
+   `.interactive__stage svg { max-width: 100% }`, which out-specifies a bare
+   attribute selector, so a cap written as `[data-strip]` alone would silently
+   do nothing. Capped so the whole pinned block fits inside a 768px-tall
+   viewport while the controls beside it are in use. */
+.interactive__stage [data-strip] {
+  max-width: 30rem;
+}
+
+.interactive__stage [data-pattern-chart] {
+  max-width: 30rem;
+}
+
+#ratio .interactive__readout {
+  grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+  gap: 0.4rem;
+}
+
+#ratio .interactive__readout div {
+  padding: 0.4rem 0.5rem;
+}
+
+#ratio .interactive__readout dd {
+  font-size: 1rem;
+}
+
+/* The pattern radios carry a list of three means each, so the row grows
+   rather than forcing its text onto one line. */
+#pattern .control--choice {
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 0.3rem 0;
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+#pattern .control--choice input {
+  margin-top: 0.3rem;
+}
+
+#pattern .control--choice label {
+  cursor: pointer;
+}
+
+/* -------------------------------------------------------------------------
+   Strip plot (Experiment 1)
+   ---------------------------------------------------------------------- */
+
+.strip__dot {
+  fill: var(--colour-accent);
+  opacity: 0.55;
+}
+
+.strip__mean {
+  stroke: var(--colour-text);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+}
+
+.strip__grand {
+  stroke: var(--colour-text-muted);
+  stroke-width: 1.5;
+  stroke-dasharray: 5 4;
+}
+
+/* The vertical reach of each group mean away from the grand mean: the
+   between-groups part of the ratio, drawn rather than described. */
+.strip__reach {
+  stroke: var(--colour-social-critical-psychology);
+  stroke-width: 2;
+}
+
+.strip__axis {
+  stroke: var(--colour-border-strong);
+  stroke-width: 1;
+}
+
+/* -------------------------------------------------------------------------
+   Pattern picture (Experiment 2)
+   ---------------------------------------------------------------------- */
+
+.pattern__spread {
+  stroke: var(--colour-border-strong);
+  stroke-width: 6;
+  stroke-linecap: butt;
+  opacity: 0.5;
+}
+
+.pattern__cap {
+  stroke: var(--colour-border-strong);
+  stroke-width: 1.5;
+}
+
+.pattern__mean {
+  fill: var(--colour-accent);
+  stroke: var(--colour-text);
+  stroke-width: 1;
+}
+
+.pattern__grand {
+  stroke: var(--colour-text-muted);
+  stroke-width: 1.5;
+  stroke-dasharray: 5 4;
+}
+
+@media (forced-colors: active) {
+  .strip__dot { fill: CanvasText; opacity: 1; }
+  .strip__mean { stroke: CanvasText; }
+  .strip__grand { stroke: GrayText; }
+  .strip__reach { stroke: Highlight; }
+  .strip__axis { stroke: CanvasText; }
+  .pattern__spread { stroke: GrayText; opacity: 1; }
+  .pattern__cap { stroke: CanvasText; }
+  .pattern__mean { fill: Highlight; stroke: CanvasText; }
+  .pattern__grand { stroke: GrayText; }
+}

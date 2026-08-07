@@ -1,0 +1,102 @@
+/* =========================================================================
+   Independent-Samples t-Test: The Null Distribution — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. What is specific
+   here is the null distribution: the t density, the shaded tails beyond the
+   observed statistic, the dashed critical rules and the faint standard normal
+   drawn behind for comparison.
+
+   The shaded tails carry a hatch as well as a fill, the observed statistic is
+   a labelled rule, and the critical values are labelled dashed rules, so no
+   part of the reading depends on colour.
+   ========================================================================= */
+
+#ttest .interactive__controls,
+#ttest .interactive__stage {
+  min-width: 0;
+}
+
+#ttest .interactive__stage > * {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #ttest .interactive__body {
+    grid-template-columns: minmax(0, 19rem) minmax(0, 1fr);
+  }
+}
+
+/* The descendant part is load-bearing: interactive-shell.css sets
+   `.interactive__stage svg { max-width: 100% }`, which out-specifies a bare
+   attribute selector, so a cap written as `[data-null]` alone would silently
+   do nothing. */
+.interactive__stage [data-null] {
+  max-width: 29rem;
+}
+
+#ttest .interactive__readout {
+  grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+  gap: 0.4rem;
+}
+
+#ttest .interactive__readout div {
+  padding: 0.4rem 0.5rem;
+}
+
+#ttest .interactive__readout dd {
+  font-size: 1rem;
+}
+
+/* -------------------------------------------------------------------------
+   The null distribution
+   ---------------------------------------------------------------------- */
+
+.nd__curve {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+
+/* The standard normal, drawn behind so the fatter tails of t are visible. */
+.nd__normal {
+  fill: none;
+  stroke: var(--colour-text-muted);
+  stroke-width: 1.2;
+  stroke-dasharray: 3 3;
+}
+
+.nd__tail {
+  fill: var(--colour-accent-soft);
+}
+
+.nd__hatch {
+  stroke: var(--colour-accent);
+  stroke-width: 1;
+  opacity: 0.5;
+}
+
+.nd__critical {
+  stroke: var(--colour-social-critical-psychology);
+  stroke-width: 2;
+  stroke-dasharray: 6 3;
+}
+
+.nd__observed {
+  stroke: var(--colour-text);
+  stroke-width: 2.5;
+}
+
+.nd__axis {
+  stroke: var(--colour-border-strong);
+  stroke-width: 1;
+}
+
+@media (forced-colors: active) {
+  .nd__curve { stroke: CanvasText; }
+  .nd__normal { stroke: GrayText; }
+  .nd__tail { fill: Canvas; }
+  .nd__hatch { stroke: CanvasText; opacity: 1; }
+  .nd__critical { stroke: Highlight; }
+  .nd__observed { stroke: CanvasText; }
+  .nd__axis { stroke: CanvasText; }
+}

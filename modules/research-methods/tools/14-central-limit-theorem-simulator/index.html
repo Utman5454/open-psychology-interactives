@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Central Limit Theorem Simulator — Open Psychology Interactives</title>
+  <meta name="description" content="Three things kept apart: the population, one sample, and the distribution of sample means. Choose a skewed, uniform or bimodal population, draw thousands of samples, and check the observed spread against the standard error.">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f141b" media="(prefers-color-scheme: dark)">
+
+  <link rel="canonical" href="https://utman5454.github.io/open-psychology-interactives/modules/research-methods/tools/14-central-limit-theorem-simulator/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Open Psychology Interactives">
+  <meta property="og:title" content="Central Limit Theorem Simulator">
+  <meta property="og:description" content="The sample mean is itself a random variable. Watch its distribution build, and check it against the theory line by line.">
+  <meta property="og:url" content="https://utman5454.github.io/open-psychology-interactives/modules/research-methods/tools/14-central-limit-theorem-simulator/">
+  <meta property="og:locale" content="en_GB">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Central Limit Theorem Simulator">
+  <meta name="twitter:description" content="The sample mean is itself a random variable. Watch its distribution build, and check it against the theory line by line.">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231a4fa0'/%3E%3Cpath d='M4 24C10 24 10 8 16 8s6 16 12 16' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
+
+  <!-- Four directories deep (modules/<slug>/tools/<slug>/), so shared assets
+       are at ../../../../ — see docs/adapting-a-tool.md. -->
+  <link rel="stylesheet" href="../../../../assets/css/main.css">
+  <link rel="stylesheet" href="../../../../components/interactive-shell.css">
+  <link rel="stylesheet" href="../../../../components/tool-kit.css">
+  <link rel="stylesheet" href="tool.css">
+  <script src="../../../../assets/js/main.js" defer></script>
+  <script src="../../../../components/interactive-shell.js" defer></script>
+  <script src="tool.js" defer></script>
+</head>
+
+<!-- data-site-root: the path back to the site root from this page. -->
+<body data-site-root="../../../../">
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+
+      <a class="brand" href="../../../../index.html" aria-label="Open Psychology Interactives, home">
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <rect x="1" y="1" width="30" height="30" rx="7" fill="none" stroke="currentColor" stroke-width="2"></rect>
+          <path d="M5 24C10 24 10 8 16 8s6 16 11 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        </svg>
+        <span>
+          <span class="brand__name">Open Psychology Interactives</span>
+          <span class="brand__tagline">Free teaching tools for psychology</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" data-nav-toggle
+              aria-expanded="false" aria-controls="site-nav" hidden>
+        <svg class="nav-toggle__icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+          <path d="M2 5h16M2 10h16M2 15h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        </svg>
+        Menu
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul class="site-nav__list">
+          <li><a class="site-nav__link" href="../../../../index.html">Home</a></li>
+          <li><a class="site-nav__link" href="../../../cognitive/index.html">Cognitive<span class="visually-hidden"> Psychology</span></a></li>
+          <li><a class="site-nav__link" href="../../index.html">Research Methods</a></li>
+          <li><a class="site-nav__link" href="../../../neuropsychology/index.html">Neuropsychology</a></li>
+          <li><a class="site-nav__link" href="../../../social-critical-psychology/index.html">Social and Critical<span class="visually-hidden"> Psychology</span></a></li>
+          <li><a class="site-nav__link" href="../../../personality-individual-differences/index.html">Personality<span class="visually-hidden"> and Individual Differences</span></a></li>
+          <li><a class="site-nav__link" href="../../../../index.html#documentation">Documentation</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <nav class="breadcrumbs container" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="../../../../index.html">Home</a></li>
+      <li><a href="../../../../index.html#modules">Modules</a></li>
+      <li><a href="../../index.html">Research Methods</a></li>
+      <li aria-current="page">Central Limit Theorem Simulator</li>
+    </ol>
+  </nav>
+
+  <main id="main">
+
+    <!-- ================= Title and purpose ================= -->
+    <section class="section card--research-methods" aria-labelledby="page-heading">
+      <div class="container">
+
+        <p class="hero__eyebrow" style="color: var(--colour-research-methods)">
+          Research Methods
+        </p>
+        <h1 id="page-heading">Central Limit Theorem Simulator</h1>
+        <p class="hero__lead">
+          Three things that get confused with one another: the population, one
+          sample from it, and the distribution of the <em>means</em> of many
+          such samples. Only the third one is what the theorem is about.
+        </p>
+
+        <p>
+          <span class="badge">
+            <span class="badge__dot" aria-hidden="true"></span>
+            Simulated &mdash; generated populations, drawn from a documented seed
+          </span>
+        </p>
+
+        <div class="split split--wide">
+
+          <div class="panel">
+            <h2 class="panel__title">Learning objective</h2>
+            <p>
+              By the end you should be able to distinguish a population, a
+              sample and a sampling distribution, describe the sample mean as a
+              random variable, state where the sampling distribution is centred
+              and how wide it is, and say precisely what does and does not become
+              more normal as the sample size grows.
+            </p>
+            <p class="text-muted">
+              About 25 minutes. Nothing you do here is saved or sent anywhere.
+            </p>
+          </div>
+
+          <div class="panel panel--caution">
+            <h2 class="panel__title">The sentence to strike out</h2>
+            <p>
+              "With a large enough sample the data become normal" is wrong, and
+              it is wrong in a way that leads people to run the wrong tests. The
+              data are whatever the population made them. What becomes closer to
+              normal is the distribution of the sample <em>mean</em> across
+              repeated samples &mdash; a distribution nobody ever observes,
+              which is precisely why it has to be simulated to be seen.
+            </p>
+          </div>
+
+        </div>
+
+        <ol class="how-to">
+          <li>Answer the three prediction questions to open the simulator.</li>
+          <li>Draw one sample at a time first, and watch its mean land.</li>
+          <li>Then draw a thousand and compare the picture with the population above it.</li>
+          <li>Change n and check the observed spread against the standard error.</li>
+        </ol>
+
+      </div>
+    </section>
+
+    <!-- ================= Opening prediction ================= -->
+    <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="opening-heading">First, three predictions</h2>
+          <p class="prose">
+            A fictional population is strongly right-skewed: most values are
+            small, a long tail runs to the right, the mean is 40.0 and the
+            standard deviation is 20.0. Samples of <strong>25</strong> are drawn
+            from it over and over, and each sample's mean is written down.
+          </p>
+        </div>
+
+        <noscript>
+          <div class="placeholder">
+            <h3 class="placeholder__title">This part needs JavaScript</h3>
+            <p class="prose">
+              The simulator generates its samples in your browser, so it cannot
+              run with JavaScript switched off. The rest of this page is
+              readable without it.
+            </p>
+          </div>
+        </noscript>
+
+        <form class="panel prediction" id="opening-form">
+          <fieldset class="prediction__group">
+            <legend class="prediction__legend">
+              The <em>shape</em>: how will the distribution of those sample
+              means compare with the population?
+            </legend>
+            <label class="control--choice">
+              <input type="radio" name="shape" value="less"> Less skewed than the population
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="shape" value="same"> Just as skewed as the population
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="shape" value="more"> More skewed than the population
+            </label>
+          </fieldset>
+
+          <fieldset class="prediction__group">
+            <legend class="prediction__legend">
+              The <em>width</em>: how spread out will the sample means be?
+            </legend>
+            <label class="control--choice">
+              <input type="radio" name="width" value="narrower"> Narrower than the population
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="width" value="samew"> About the same width
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="width" value="wider"> Wider than the population
+            </label>
+          </fieldset>
+
+          <fieldset class="prediction__group">
+            <legend class="prediction__legend">
+              The <em>centre</em>: where will the sample means pile up?
+            </legend>
+            <label class="control--choice">
+              <input type="radio" name="centre" value="mu"> Around 40.0, the population mean
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="centre" value="low"> Below 40.0, because most values are small
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="centre" value="high"> Above 40.0, because the tail pulls upwards
+            </label>
+          </fieldset>
+
+          <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+          <div class="prediction__actions">
+            <button class="button button--primary" type="submit">
+              Record my predictions and open the simulator
+            </button>
+            <button class="button button--secondary" type="button" data-action="skip-opening">
+              Skip &mdash; I am demonstrating this
+            </button>
+          </div>
+
+          <div class="feedback" data-opening-feedback hidden></div>
+        </form>
+
+      </div>
+    </section>
+
+    <!-- ================= Simulator ================= -->
+    <section class="section" id="sim-section" aria-labelledby="sim-heading" hidden>
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="sim-heading" tabindex="-1">The simulator</h2>
+          <p class="prose">
+            The upper panel is the population, with the most recent sample drawn
+            as ticks along its axis. The lower panel is the pile of sample
+            means. They are two different distributions, and keeping them apart
+            is most of the battle.
+          </p>
+        </div>
+
+        <section class="interactive" id="clt" data-interactive
+                 data-reset-message="Everything cleared. Back to the opening predictions.">
+
+          <header class="interactive__header">
+            <h3 class="interactive__title">The population, one sample, and the means</h3>
+            <p class="interactive__brief">
+              Every mean in the lower panel came from one sample of n values
+              drawn from the population above it. Nobody ever sees the lower
+              panel in real research; that is what it is for.
+            </p>
+          </header>
+
+          <div class="interactive__body interactive__body--pinned">
+
+            <form class="interactive__controls" data-interactive-controls>
+
+              <fieldset>
+                <legend>The population</legend>
+                <div class="control">
+                  <label class="control__label" for="pop-select">Shape</label>
+                  <select id="pop-select">
+                    <option value="skewed" selected>Strongly right-skewed</option>
+                    <option value="normal">Normal</option>
+                    <option value="uniform">Uniform</option>
+                    <option value="bimodal">Bimodal</option>
+                  </select>
+                  <p class="control__hint">
+                    Changing the population clears the pile: those means came
+                    from somewhere else.
+                  </p>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>The samples</legend>
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="n-range">Size of each sample</label>
+                    <output class="control__value" for="n-range">25</output>
+                  </div>
+                  <input type="range" id="n-range" min="2" max="100" step="1" value="25">
+                </div>
+                <div class="control">
+                  <label class="control__label" for="seed-input">Random seed</label>
+                  <input type="number" id="seed-input" value="7311" step="1" min="1" max="999999">
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>How the lower panel is drawn</legend>
+                <div class="control">
+                  <label class="control__label" for="zoom-select">Horizontal scale for the means</label>
+                  <select id="zoom-select">
+                    <option value="shared">Same scale as the population</option>
+                    <option value="zoom">Zoomed to the means</option>
+                  </select>
+                  <p class="control__hint">
+                    Use the shared scale to see how much narrower the means are,
+                    then zoom in to see their shape.
+                  </p>
+                </div>
+              </fieldset>
+
+            </form>
+
+            <div class="interactive__stage" data-interactive-stage>
+
+              <!-- Pinned: population above, sample means below, on one axis. -->
+              <div class="stage__primary">
+                <h4 class="stage__heading" data-chart-heading>
+                  No samples drawn yet
+                </h4>
+                <figure class="chart">
+                  <figcaption class="visually-hidden">
+                    Two stacked panels on the same value axis: the population
+                    density with the most recent sample drawn as ticks beneath
+                    it, and a histogram of the means of all samples drawn so far
+                  </figcaption>
+                  <svg class="chart__svg" data-clt viewBox="0 0 460 252"
+                       aria-hidden="true" focusable="false"></svg>
+                  <div class="table-scroll">
+                    <table class="chart__table">
+                      <caption class="visually-hidden">
+                        What the theory predicts about the distribution of the
+                        sample mean, and what the simulation produced
+                      </caption>
+                      <thead>
+                        <tr>
+                          <th scope="col">Property of the sample mean</th>
+                          <th scope="col">Predicted</th>
+                          <th scope="col">Simulated</th>
+                        </tr>
+                      </thead>
+                      <tbody data-theory-table></tbody>
+                    </table>
+                  </div>
+                </figure>
+                <dl class="interactive__readout" data-readout></dl>
+              </div>
+
+              <div class="verdict" data-verdict>
+                <h4 class="verdict__title">Reading this correctly</h4>
+                <p class="verdict__body" data-interpretation></p>
+                <p class="verdict__note" data-convergence></p>
+              </div>
+
+              <details class="stage__more">
+                <summary>The population itself, for reference</summary>
+                <div class="table-scroll">
+                  <table class="data-table">
+                    <caption class="visually-hidden">
+                      The exact properties of the population currently selected
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Property of the population</th>
+                        <th scope="col">Value</th>
+                      </tr>
+                    </thead>
+                    <tbody data-pop-table></tbody>
+                  </table>
+                </div>
+              </details>
+
+            </div>
+
+          </div>
+
+          <p class="interactive__status" data-interactive-status role="status"></p>
+
+          <div class="interactive__actions">
+            <button type="button" data-action="draw-one">Draw one sample</button>
+            <button type="button" data-action="draw-many">Draw 1,000 samples</button>
+            <button type="button" data-variant="secondary" data-action="clear-pile">
+              Clear the pile
+            </button>
+            <button type="button" data-variant="secondary" data-interactive-reset>
+              Reset everything
+            </button>
+          </div>
+
+          <details class="interactive__notes">
+            <summary>Notes for whoever is running this</summary>
+            <div>
+              <p>
+                Press <em>Draw one sample</em> six or seven times before doing
+                anything else, reading the sample mean aloud each time. The ticks
+                along the population axis are the data somebody would actually
+                collect; the single dot that lands below is all the lower panel
+                ever gets from a real study. Students who see that once stop
+                confusing the two panels.
+              </p>
+              <p>
+                With the right-skewed population, set n to 2 and draw a thousand:
+                the pile is still visibly skewed. Then 10, then 30, then 100, and
+                read the predicted skewness in the table each time. It falls as
+                one over the square root of n, which is the honest version of
+                "n = 30 is enough".
+              </p>
+              <p>
+                The bimodal population is the one that embarrasses the rule of
+                thumb from the other direction: at n = 2 the means are trimodal,
+                and by n = 10 they are already close to normal even though the
+                population looks nothing like it.
+              </p>
+              <p>
+                Fuller guidance is in
+                <a href="teaching-notes.md">teaching-notes.md</a> beside this
+                page.
+              </p>
+            </div>
+          </details>
+
+        </section>
+
+      </div>
+    </section>
+
+    <!-- ================= Challenge ================= -->
+    <section class="section section--tinted" id="challenge" aria-labelledby="challenge-heading">
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="challenge-heading">Challenge &mdash; what the theorem says</h2>
+        </div>
+
+        <form class="panel challenge" id="challenge-form">
+          <fieldset class="prediction__group">
+            <legend class="prediction__legend">
+              Which statements are correct? Select all that apply &mdash; three
+              of the seven are.
+            </legend>
+            <label class="control--choice">
+              <input type="checkbox" name="challenge" value="means">
+              The distribution of sample means gets closer to normal as n grows
+            </label>
+            <label class="control--choice">
+              <input type="checkbox" name="challenge" value="data">
+              The data themselves get closer to normal as n grows
+            </label>
+            <label class="control--choice">
+              <input type="checkbox" name="challenge" value="samesd">
+              The sampling distribution has about the same standard deviation as the population
+            </label>
+            <label class="control--choice">
+              <input type="checkbox" name="challenge" value="centred">
+              The sample means are centred on the population mean however skewed the population is
+            </label>
+            <label class="control--choice">
+              <input type="checkbox" name="challenge" value="thirty">
+              With n = 30 the sampling distribution is normal for any population
+            </label>
+            <label class="control--choice">
+              <input type="checkbox" name="challenge" value="onesample">
+              The standard error is a property of the one sample you collected
+            </label>
+            <label class="control--choice">
+              <input type="checkbox" name="challenge" value="quadruple">
+              Quadrupling n halves the standard error
+            </label>
+          </fieldset>
+
+          <div class="prediction__actions">
+            <button class="button button--primary" type="submit">Check my answer</button>
+          </div>
+
+          <div class="feedback" data-challenge-feedback hidden></div>
+        </form>
+
+      </div>
+    </section>
+
+    <!-- ================= Debrief ================= -->
+    <section class="section" id="debrief" aria-labelledby="debrief-heading">
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="debrief-heading">What this demonstrates</h2>
+        </div>
+
+        <div class="split split--wide">
+
+          <div class="prose">
+            <h3>The sample mean is a random variable</h3>
+            <p>
+              Draw one sample and you get one mean; draw another and you get a
+              different one. That variation is not error in any everyday sense
+              &mdash; nothing was measured badly &mdash; it is the consequence of
+              having sampled rather than counted everybody. The lower panel is
+              the distribution of that variation, and it is a distribution no
+              real study ever observes, because a real study contributes exactly
+              one dot to it.
+            </p>
+
+            <h3>Centre, spread and shape, in that order</h3>
+            <p>
+              The means are centred on the population mean whatever shape the
+              population has: sampling is unbiased, and the skew does not drag
+              them. Their spread is the population standard deviation divided by
+              the square root of n, which is what the standard error is and why
+              quadrupling the sample only halves it. Their shape is the last
+              thing to arrive, and the only part that depends on the population
+              looking anything like normal.
+            </p>
+
+            <h3>How fast the shape arrives depends on the population</h3>
+            <p>
+              The skewness of the sample mean is the population's skewness
+              divided by the square root of n, and its excess kurtosis is the
+              population's divided by n. Both are printed in the table beside
+              their simulated counterparts. That makes "n = 30 is enough" into
+              something checkable rather than a rule to memorise: for the
+              strongly skewed population here, thirty is not enough for the
+              skewness to disappear, and for the bimodal population ten is
+              already plenty.
+            </p>
+
+            <h3>The data do not change</h3>
+            <p>
+              Nothing about the upper panel improves as n grows. The population
+              is what it is, and a larger sample simply describes it better. If
+              the analysis you plan requires the data to be roughly normal
+              &mdash; and many do not &mdash; a big sample does not supply that.
+              What a big sample supplies is a well-behaved sampling distribution
+              for the mean, which is a different claim and a narrower one.
+            </p>
+          </div>
+
+          <aside class="panel panel--caution" aria-labelledby="limits-heading">
+            <h3 class="panel__title" id="limits-heading">
+              What this does <em>not</em> demonstrate
+            </h3>
+            <ul>
+              <li>
+                <strong>Nothing here is real data.</strong> All four populations
+                are mathematical objects with exactly known means, standard
+                deviations, skewness and kurtosis, and the samples are generated
+                from a seeded random number generator.
+              </li>
+              <li>
+                <strong>The simulation does not prove the theorem.</strong> It
+                agrees with it. Both rest on the same assumptions, so agreement
+                checks the arithmetic rather than the world.
+              </li>
+              <li>
+                <strong>Independent, identically distributed draws.</strong>
+                Every sample here is a genuine random sample from a fixed
+                population. Clustered, time-ordered or self-selected data break
+                the theorem's conditions, and no sample size repairs that.
+              </li>
+              <li>
+                <strong>The theorem is about the mean.</strong> Medians,
+                variances, correlations and maxima have their own sampling
+                distributions with their own behaviour, and the maximum's does
+                not become normal at all.
+              </li>
+              <li>
+                <strong>Knowing &sigma; is a luxury.</strong> The standard error
+                printed here uses the population standard deviation, which the
+                simulation supplies. Real work estimates it from the sample, and
+                the cost of that estimate is the subject of the t-test tool
+                later in this module.
+              </li>
+            </ul>
+          </aside>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+
+        <div>
+          <h2>Open Psychology Interactives</h2>
+          <p class="text-muted">
+            Free, accessible, classroom-ready teaching tools for university
+            psychology. Built as plain web pages so they keep working, and
+            openly licensed so they can be adapted.
+          </p>
+        </div>
+
+        <div>
+          <h2>Modules</h2>
+          <ul>
+            <li><a href="../../../cognitive/index.html">Cognitive Psychology</a></li>
+            <li><a href="../../index.html">Research Methods</a></li>
+            <li><a href="../../../neuropsychology/index.html">Neuropsychology</a></li>
+            <li><a href="../../../social-critical-psychology/index.html">Social and Critical Psychology</a></li>
+            <li><a href="../../../personality-individual-differences/index.html">Personality and Individual Differences</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h2>Project</h2>
+          <ul>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives">GitHub repository</a></li>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives/blob/main/CONTRIBUTING.md">Contributing</a></li>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives/blob/main/docs/accessibility.md">Accessibility</a></li>
+            <li><a href="https://github.com/utman5454/open-psychology-interactives/blob/main/LICENSE">MIT licence</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="site-footer__bottom">
+        <p>© <span data-current-year>2026</span> Open Psychology Interactives. Released under the MIT licence.</p>
+        <p>Built with plain HTML, CSS and JavaScript. No trackers, no accounts.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

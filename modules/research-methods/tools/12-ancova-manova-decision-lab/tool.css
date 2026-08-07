@@ -1,0 +1,163 @@
+/* =========================================================================
+   ANCOVA / MANOVA Decision Laboratory — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. What is specific
+   here is the covariate scatterplot with two regression lines, the
+   two-outcome cloud plot, and the role-assignment and scenario blocks.
+
+   Both plots separate their two groups by marker SHAPE (circle against
+   triangle) as well as by colour, and every line is labelled at its end.
+   ========================================================================= */
+
+#ancova .interactive__controls,
+#ancova .interactive__stage,
+#manova .interactive__controls,
+#manova .interactive__stage {
+  min-width: 0;
+}
+
+#ancova .interactive__stage > *,
+#manova .interactive__stage > * {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #ancova .interactive__body,
+  #manova .interactive__body {
+    grid-template-columns: minmax(0, 19rem) minmax(0, 1fr);
+  }
+}
+
+/* The descendant part is load-bearing: interactive-shell.css sets
+   `.interactive__stage svg { max-width: 100% }`, which out-specifies a bare
+   attribute selector, so a cap written as `[data-scatter]` alone would
+   silently do nothing. */
+.interactive__stage [data-scatter],
+.interactive__stage [data-cloud] {
+  max-width: 29rem;
+}
+
+#ancova .interactive__readout {
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+  gap: 0.4rem;
+}
+
+#ancova .interactive__readout div {
+  padding: 0.4rem 0.5rem;
+}
+
+#ancova .interactive__readout dd {
+  font-size: 1rem;
+}
+
+/* -------------------------------------------------------------------------
+   Role assignment and scenario blocks
+   ---------------------------------------------------------------------- */
+
+.role {
+  display: grid;
+  gap: 0.3rem;
+  margin-bottom: var(--space-3);
+}
+
+.role__label {
+  font-weight: 600;
+  font-size: var(--text-sm);
+}
+
+.role select,
+.scenario select {
+  width: 100%;
+  max-width: 34rem;
+  min-height: 2.75rem;
+  padding: 0.35rem 0.6rem;
+  font: inherit;
+  font-size: var(--text-sm);
+  color: var(--colour-text);
+  background-color: var(--colour-surface-raised);
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+}
+
+.scenario {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+
+.scenario__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-base);
+}
+
+.scenario__text {
+  margin: 0 0 var(--space-3);
+  font-size: var(--text-sm);
+  max-width: 60ch;
+}
+
+.scenario__label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+  font-size: var(--text-sm);
+}
+
+/* -------------------------------------------------------------------------
+   Covariate scatterplot
+   ---------------------------------------------------------------------- */
+
+.sc__dot-a {
+  fill: var(--colour-accent);
+  opacity: 0.6;
+}
+
+.sc__dot-b {
+  fill: none;
+  stroke: var(--colour-social-critical-psychology);
+  stroke-width: 1.4;
+}
+
+.sc__line-a {
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+  fill: none;
+}
+
+.sc__line-b {
+  stroke: var(--colour-social-critical-psychology);
+  stroke-width: 2.5;
+  stroke-dasharray: 7 4;
+  fill: none;
+}
+
+.sc__at {
+  stroke: var(--colour-text-muted);
+  stroke-width: 1.5;
+  stroke-dasharray: 3 3;
+}
+
+.sc__gap {
+  stroke: var(--colour-text);
+  stroke-width: 3;
+}
+
+.sc__axis {
+  stroke: var(--colour-border-strong);
+  stroke-width: 1;
+}
+
+@media (forced-colors: active) {
+  .sc__dot-a { fill: CanvasText; opacity: 1; }
+  .sc__dot-b { stroke: Highlight; }
+  .sc__line-a { stroke: CanvasText; }
+  .sc__line-b { stroke: Highlight; }
+  .sc__at { stroke: GrayText; }
+  .sc__gap { stroke: CanvasText; }
+  .sc__axis { stroke: CanvasText; }
+  .role select,
+  .scenario select { border: 1px solid ButtonText; }
+  .scenario { border: 1px solid CanvasText; }
+}

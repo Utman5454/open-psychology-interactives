@@ -1,0 +1,132 @@
+/* =========================================================================
+   Research Question to Method Mapper — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. What is
+   particular here is the question card that stays pinned at the top of the
+   stage, and the running "your reading" list beneath it.
+   ========================================================================= */
+
+/* Children of the shell's body grid must be allowed to shrink; otherwise a
+   wide child sets the track's minimum width and pushes the page sideways. */
+#mapper .interactive__controls,
+#mapper .interactive__stage {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #mapper .interactive__body {
+    grid-template-columns: minmax(0, 20rem) minmax(0, 1fr);
+  }
+}
+
+/* -------------------------------------------------------------------------
+   The question card
+   ---------------------------------------------------------------------- */
+
+.case {
+  margin: 0 0 var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border-left: 4px solid var(--colour-research-methods);
+  background-color: var(--colour-surface);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.case__context {
+  margin: 0 0 var(--space-3);
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+
+/* -------------------------------------------------------------------------
+   Running reading
+   -------------------------------------------------------------------------
+   A four-row summary of what the learner has chosen so far. Each row prints
+   its own label and value, so nothing depends on position or colour.
+   ---------------------------------------------------------------------- */
+
+.reading {
+  margin: 0;
+  display: grid;
+  gap: 0.25rem;
+  font-size: var(--text-sm);
+}
+
+.reading > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem var(--space-3);
+  padding: 0.3rem 0;
+  border-top: 1px solid var(--colour-border);
+}
+
+.reading dt {
+  margin: 0;
+  flex: 0 0 auto;
+  min-width: 9rem;
+  color: var(--colour-text-muted);
+}
+
+.reading dd {
+  margin: 0;
+  flex: 1 1 12rem;
+  font-weight: 600;
+}
+
+.reading dd[data-set="no"] {
+  font-weight: 400;
+  font-style: italic;
+  color: var(--colour-text-muted);
+}
+
+/* -------------------------------------------------------------------------
+   Part-by-part feedback
+   -------------------------------------------------------------------------
+   Every row states its own standing in words ("Well supported", "Defensible",
+   "Hard to defend"), so the left border is a redundant cue.
+   ---------------------------------------------------------------------- */
+
+.part {
+  margin: 0 0 var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border-left: 4px solid var(--colour-border-strong);
+  background-color: var(--colour-surface);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+}
+
+.part:last-child {
+  margin-bottom: 0;
+}
+
+.part[data-standing="strong"] { border-left-color: var(--colour-neuropsychology); }
+.part[data-standing="ok"] { border-left-color: var(--colour-cognitive); }
+.part[data-standing="weak"] { border-left-color: var(--colour-social-critical-psychology); }
+
+.part__head {
+  margin: 0 0 0.2rem;
+  font-weight: 700;
+}
+
+.part__standing {
+  font-variant: small-caps;
+  letter-spacing: 0.03em;
+}
+
+.part__body {
+  margin: 0;
+}
+
+.part__body + .part__body {
+  margin-top: var(--space-2);
+}
+
+@media (forced-colors: active) {
+  .case,
+  .part,
+  .reading > div {
+    border-color: CanvasText;
+  }
+}
