@@ -1,0 +1,182 @@
+/* =========================================================================
+   Positive Manifold Visualiser — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. The correlation
+   matrix, the variance bar and the scatter panels are what is particular
+   here.
+   ========================================================================= */
+
+#manifold .interactive__controls,
+#manifold .interactive__stage {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #manifold .interactive__body {
+    grid-template-columns: minmax(0, 18rem) minmax(0, 1fr);
+  }
+}
+
+#manifold .control + .control {
+  margin-top: var(--space-4);
+}
+
+.preset-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.preset-buttons .button {
+  font-size: var(--text-xs);
+  padding: 0.35rem 0.7rem;
+  min-height: 2.75rem;
+}
+
+/* -------------------------------------------------------------------------
+   Correlation matrix
+   -------------------------------------------------------------------------
+   Every cell prints its own number, so the shading is a redundant cue that
+   makes the block structure visible at a glance. Same-group pairs also carry
+   a left border, so the two clusters are distinguishable without relying on
+   the tint.
+   ---------------------------------------------------------------------- */
+
+.matrix td {
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.matrix td[data-strength="high"] {
+  background-color: var(--colour-accent);
+  color: var(--colour-on-accent);
+  font-weight: 650;
+}
+
+.matrix td[data-strength="mid"] {
+  background-color: var(--colour-accent-soft);
+}
+
+.matrix td[data-strength="low"] {
+  background-color: var(--colour-surface);
+}
+
+.matrix td[data-samegroup="yes"] {
+  border-left: 3px solid var(--colour-personality-individual-differences);
+}
+
+/* -------------------------------------------------------------------------
+   Variance bar
+   -------------------------------------------------------------------------
+   Four segments of one bar, each printing its own name and percentage, so
+   the split reads without reference to the fills. The readout beneath
+   repeats the specific-variance figure.
+   ---------------------------------------------------------------------- */
+
+.variance {
+  display: flex;
+  width: 100%;
+  min-height: 2.5rem;
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.variance__part {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  overflow: hidden;
+  transition: width 200ms ease-out;
+}
+
+.variance__part--shared { background-color: var(--colour-accent); }
+.variance__part--group { background-color: var(--colour-personality-individual-differences); }
+.variance__part--specific { background-color: var(--colour-surface); }
+.variance__part--error { background-color: var(--colour-status-bg); }
+
+.variance__label {
+  padding: 0 0.35rem;
+  font-size: var(--text-xs);
+  font-weight: 650;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.variance__part--shared .variance__label,
+.variance__part--group .variance__label {
+  color: var(--colour-on-accent);
+}
+
+.variance__part--specific .variance__label {
+  color: var(--colour-text);
+}
+
+.variance__part--error .variance__label {
+  color: var(--colour-status-text);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .variance__part {
+    transition: none;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Scatter panels and loading bars
+   ---------------------------------------------------------------------- */
+
+.scatter__points {
+  stroke: var(--colour-accent);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-opacity: 0.45;
+  fill: none;
+}
+
+/* Group membership is carried by fill AND stated in the table's own column,
+   so the two clusters are never distinguished by colour alone. */
+.manifold__bar--verbal { fill: var(--colour-accent); }
+.manifold__bar--spatial { fill: var(--colour-personality-individual-differences); }
+
+@media (forced-colors: active) {
+  .variance,
+  .matrix td[data-samegroup="yes"] {
+    border-color: CanvasText;
+  }
+
+  .variance__part--shared,
+  .variance__part--group {
+    background-color: Highlight;
+  }
+
+  .variance__part--specific,
+  .variance__part--error {
+    background-color: Canvas;
+  }
+
+  .variance__part--shared .variance__label,
+  .variance__part--group .variance__label {
+    color: Canvas;
+  }
+
+  .variance__part--specific .variance__label,
+  .variance__part--error .variance__label {
+    color: CanvasText;
+  }
+
+  .matrix td[data-strength="high"] {
+    background-color: Highlight;
+    color: Canvas;
+  }
+
+  .scatter__points {
+    stroke: CanvasText;
+    stroke-opacity: 1;
+  }
+
+  .manifold__bar--verbal { fill: CanvasText; }
+  .manifold__bar--spatial { fill: Highlight; }
+}
