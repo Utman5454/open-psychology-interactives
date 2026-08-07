@@ -221,7 +221,7 @@
             </p>
           </header>
 
-          <div class="interactive__body">
+          <div class="interactive__body interactive__body--pinned">
 
             <form class="interactive__controls" data-interactive-controls>
 
@@ -274,10 +274,13 @@
 
             <div class="interactive__stage" data-interactive-stage>
 
-              <h4 class="stage__heading">Where each task's variance comes from</h4>
-              <div class="variance" data-variance-bar></div>
+              <!-- Pinned: where the variance goes, and the headline numbers every slider moves. -->
+              <div class="stage__primary">
+                <h4 class="stage__heading">Where each task's variance comes from</h4>
+                <div class="variance" data-variance-bar></div>
 
-              <dl class="interactive__readout" data-readout></dl>
+                <dl class="interactive__readout" data-readout></dl>
+              </div>
 
               <h4 class="stage__heading">The correlation matrix</h4>
               <div class="table-scroll">
@@ -288,33 +291,6 @@
                   <tbody data-matrix></tbody>
                 </table>
               </div>
-
-              <h4 class="stage__heading">Three of those pairs, as scatterplots</h4>
-              <figure class="chart">
-                <figcaption class="visually-hidden">
-                  Simulated scores for 220 fictional people on three pairs of
-                  tasks
-                </figcaption>
-                <svg class="chart__svg" data-scatter viewBox="0 0 450 178"
-                     aria-hidden="true" focusable="false"></svg>
-                <div class="table-scroll">
-                  <table class="chart__table">
-                    <caption class="visually-hidden">
-                      Model-implied and observed correlation for each plotted
-                      pair
-                    </caption>
-                    <thead>
-                      <tr>
-                        <th scope="col">Pair</th>
-                        <th scope="col">Relationship</th>
-                        <th scope="col">Model</th>
-                        <th scope="col">Observed in sample</th>
-                      </tr>
-                    </thead>
-                    <tbody data-scatter-table></tbody>
-                  </table>
-                </div>
-              </figure>
 
               <h4 class="stage__heading">The illustrative first factor</h4>
               <figure class="chart">
@@ -340,6 +316,38 @@
                   </table>
                 </div>
               </figure>
+
+              <!-- Demoted: the scatterplots illustrate the matrix rather than
+                   adding to it, so they open on request instead of competing
+                   with the first-factor chart for attention. -->
+              <details class="stage__more">
+                <summary>Three of those pairs, as scatterplots</summary>
+                <figure class="chart">
+                  <figcaption class="visually-hidden">
+                    Simulated scores for 220 fictional people on three pairs of
+                    tasks
+                  </figcaption>
+                  <svg class="chart__svg" data-scatter viewBox="0 0 450 178"
+                       aria-hidden="true" focusable="false"></svg>
+                  <div class="table-scroll">
+                    <table class="chart__table">
+                      <caption class="visually-hidden">
+                        Model-implied and observed correlation for each plotted
+                        pair
+                      </caption>
+                      <thead>
+                        <tr>
+                          <th scope="col">Pair</th>
+                          <th scope="col">Relationship</th>
+                          <th scope="col">Model</th>
+                          <th scope="col">Observed in sample</th>
+                        </tr>
+                      </thead>
+                      <tbody data-scatter-table></tbody>
+                    </table>
+                  </div>
+                </figure>
+              </details>
 
               <div class="verdict">
                 <h4 class="verdict__title">What this configuration shows</h4>

@@ -117,6 +117,9 @@ report a general ability in both cases, and would be wrong in one of them.*
   same-group pairs also carry a border, so the block structure does not depend
   on tint.
 - The variance bar prints each segment's name and percentage inside it.
+- The first-factor chart follows the matrix directly, because it is the point
+  of the tool. The three scatterplots illustrate the matrix rather than adding
+  to it, so they sit behind a disclosure control and open on request.
 - Scatterplots and the loading chart are hidden from assistive technology and
   paired with visible tables. The loading table has a **Group** column, so
   cluster membership is never carried by bar colour alone.
