@@ -865,16 +865,8 @@
     effectText.textContent = sentences.join(" ");
 
     effectNote.textContent = meta.source === "simulated"
-      ? "Simulated values from a documented generator with a fixed seed. Not " +
-        "a norm, not a published effect size, and not anybody's data. The " +
-        "noise statements above use the standard error of each difference, " +
-        "which assumes independent trials — a convenient simplification."
-      : "One block, in a browser tab, with no record of where you were " +
-        "looking. Reaction times here include display and input latency. " +
-        "The noise statements above use the standard error of each " +
-        "difference, which assumes independent trials — a convenient " +
-        "simplification, since fatigue and practice make trials within a " +
-        "block correlated.";
+      ? "Simulated from a fixed seed. Illustrative, not a published effect size."
+      : "One block, in a browser tab, with no record of where you were looking.";
   }
 
   /* =======================================================================
@@ -912,34 +904,31 @@
       tone: "good",
       verdict: "That is the usual finding.",
       text:
-        "Valid trials tend to be fastest and invalid slowest, with neutral " +
-        "in between — and the two halves of that pattern are separate " +
-        "effects. Watch which half is larger in your own block."
+        "Valid fastest, invalid slowest, neutral between. Those are two " +
+        "separate effects. Run a block and see which half is larger in yours."
     },
     benefit: {
       tone: "caution",
       verdict: "Half of it, and usually the smaller half.",
       text:
-        "A benefit of valid cueing is real, but in most published work the " +
-        "cost of an invalid cue is the larger of the two. That asymmetry is " +
-        "why disengaging attention became a research topic in its own right."
+        "The benefit is real. In most published work the cost of an invalid " +
+        "cue is the larger of the two. Watch for that asymmetry in your block."
     },
     cost: {
       tone: "caution",
       verdict: "Also half of it.",
       text:
-        "The cost is usually the larger half, so this is often closer to the " +
-        "truth than the opposite answer — but a benefit of valid cueing is " +
-        "normally there too. The neutral baseline is what lets you see both."
+        "Usually the larger half, so this is often nearer the truth than the " +
+        "opposite answer. A benefit is normally there too, and the neutral " +
+        "baseline is what lets you see both."
     },
     none: {
       tone: "caution",
       verdict: "This is the intuition the paradigm was built to test.",
       text:
-        "It seems reasonable that a cue you never look at should not matter. " +
-        "The reason spatial cueing is a landmark design is that it usually " +
-        "does. Whether your own block shows it is a separate question — one " +
-        "block is a small amount of evidence."
+        "A reasonable intuition, and the one the paradigm was built to test. " +
+        "A cue you never look at usually does matter. Whether your own block " +
+        "shows it is a separate question."
     }
   };
 
@@ -956,8 +945,7 @@
     var answer = $('input[name="opening"]:checked', openingForm);
     if (!answer) {
       openingError.textContent =
-        "Choose one of the four patterns before starting. Committing to an " +
-        "answer first is the point of this step.";
+        "Choose one of the four patterns before starting.";
       openingError.hidden = false;
       return;
     }
@@ -971,9 +959,7 @@
   skipOpening.addEventListener("click", function () {
     openingError.hidden = true;
     showFeedback(openingFeedback, "neutral", "Prediction skipped.",
-      "The experiment is unlocked. If you are running this with a group, ask " +
-      "them for the prediction aloud before you start a block — the tool " +
-      "works better when the room has committed to an answer.");
+      "The experiment is unlocked.");
     lockForm(openingForm);
     unlockExperiment("Prediction skipped. Experiment unlocked.");
   });

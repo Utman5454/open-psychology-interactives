@@ -22,6 +22,12 @@ exactly what is being claimed whenever that word turns up.
   shortcut — it is the second teaching point, and the provenance panel exists
   to make it unmissable.
 
+## Running it from the front
+
+Use the three presets in order and let the room name what each one "means" before you tell them the vectors were written by hand to produce exactly those three pictures. The point lands harder when a class has already narrated the first preset as the model "working out the referent".
+
+The mask checkbox is worth a minute on its own. It changes the weights a great deal and it is a property of the architecture, not of the sentence — a useful antidote to reading every pattern as a discovery about language.
+
 ## Intended level
 
 Second-year undergraduate, or a first-year cohort with a good lecture behind

@@ -22,6 +22,12 @@ neutral condition in it.
 - **Say the difference-score warning before anybody runs a block**, not after.
   Otherwise the conversation afterwards is about whose effect was smallest.
 
+## Running it from the front
+
+From the front, load the worked example first. It contains two simulated blocks — balanced and mostly incongruent — which is exactly the comparison the transfer challenge asks about, and nobody has to perform anything to see it.
+
+A 36-trial block gives twelve trials per condition. That is far too few for a stable difference score, and saying so before anybody runs it prevents the "I have a small Stroop effect" conversation afterwards.
+
 ## Intended level
 
 First-year undergraduate. It works as the first reaction-time task a cohort

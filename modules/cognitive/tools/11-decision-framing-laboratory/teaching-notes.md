@@ -23,6 +23,12 @@ This tool is aimed at the second thing.
   scenario is seen in one frame only. Without that warning the debrief turns
   into a conversation about who was rational.
 
+## Running it from the front
+
+If you can, split the room: half set the safe option to "completely certain" and half to "very likely". The difference between those two groups in the gain-framed scenarios is the certainty effect, and it is a more interesting conversation than the framing effect itself.
+
+Four decisions from one person can show nothing. Say so before anybody starts, or the debrief becomes a conversation about who was rational.
+
 ## Intended level
 
 First-year undergraduate. It sits naturally in a lecture on judgement and

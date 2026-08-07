@@ -22,6 +22,12 @@ cost over time — and that shape is compatible with every serious account of it
 - **Load the worked example from the front before anybody runs anything.** It
   takes a minute and it means the room knows what shape they are looking for.
 
+## Running it from the front
+
+Load the worked example first and talk through the lag function before anybody runs anything. It takes a minute, it needs no rapid presentation, and it means the room knows what shape they are looking for.
+
+Twenty-five trials gives four per lag. That is far too few for a stable estimate and is meant to be — comparing an individual block with the worked example is the most useful thing on the page.
+
 ## Intended level
 
 First- or second-year undergraduate. It follows naturally from the Posner and

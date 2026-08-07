@@ -22,6 +22,12 @@ have felt rather than read.
   concurrent task is one of the challenge answers, and it is only visible
   against that baseline.
 
+## Running it from the front
+
+The demonstration is the pair of runs that share a domain against the pair that do not. Load the worked example first: it contains all four combinations, which nobody has time to perform in a seminar.
+
+Four trials per load is far too few for a stable estimate, and the results panel says so. The useful thing a student's own run does is make the load function felt rather than read.
+
 ## Intended level
 
 First- or second-year undergraduate, alongside a lecture on the multi-component

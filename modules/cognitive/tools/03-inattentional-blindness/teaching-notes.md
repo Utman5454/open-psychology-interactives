@@ -43,6 +43,14 @@ fixated an obviously out-of-place object and did not report it.
 It also has a teaching advantage: because nothing was ever fleeting, "you did
 not have time" is not available as an explanation.
 
+## Running it from the front
+
+Press the demonstrator route first. It shows you the display, the unexpected object and the correct count without using up a variant, so you know what the room is about to be asked.
+
+Four variants exist, and the tool marks each one used in this browser session. Give a room one variant, debrief it, and use a second one only to illustrate a design change — never to re-test the same people, who are no longer naive.
+
+Whatever happens, resist scoring it. A noticing rate from one room of twenty is not an estimate of anything, and an individual result is not a fact about that individual.
+
 ## Intended level
 
 First-year undergraduate, in the first week of an attention topic. It also

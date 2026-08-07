@@ -23,6 +23,12 @@ Three things are worth saying aloud before anybody starts.
    exactly the same pattern as one who did not. Saying this at the start rather
    than at the end is what keeps the demonstration honest.
 
+## Running it from the front
+
+From the front, load the worked example first and talk through the three bars: it takes about a minute and nobody has to perform anything. Then let the room run their own blocks and compare how much the invalid mean moves — with only eight invalid trials in a 48-trial block, it moves a lot.
+
+The point that usually needs saying aloud: nothing here checks where anyone was looking. A student who glanced at the cue produces the same pattern as a student who did not.
+
 ## Intended level
 
 First-year undergraduate. It works as the first practical in an attention

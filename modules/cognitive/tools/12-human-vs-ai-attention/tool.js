@@ -635,12 +635,10 @@
     showFeedback(humanFeedback, switched ? "good" : "caution",
       switched ? "Your two answers differ." : "Your two answers are the same.",
       switched
-        ? "Three words changed at the end of the sentence and the referent of " +
-          "a pronoun near the middle changed with them. Nothing local to “it” " +
-          "was different."
-        : "Most people give different answers to the two, because the last " +
-          "three words are what make one reading sensible. Either way, notice " +
-          "what you can now do: you can say what you decided, and roughly why.");
+        ? "The last three words changed your answer. Nothing around “it” " +
+          "changed."
+        : "Most people answer differently, because the last three words are " +
+          "what make one reading sensible.");
 
     clear(humanReadout);
     SENTENCES.forEach(function (sentence, i) {
@@ -652,19 +650,14 @@
     });
 
     humanText.textContent =
-      "You resolved an ambiguous pronoun using the meaning of the rest of the " +
-      "sentence, you did it in about a second, and you were then able to " +
-      "report what you had decided. Every part of that description matters " +
-      "later: it was fast, it used information from elsewhere in the sentence, " +
-      "and it produced something you could tell somebody. " +
-      SENTENCES[0].why + " " + SENTENCES[1].why;
+      "You used the sentence as a whole to resolve the pronoun, in about a " +
+      "second, and you can say what you decided. Hold on to those two " +
+      "properties — fast, and reportable. Now compute the machine-side " +
+      "operation on the same sentence.";
 
     humanNote.textContent =
-      "What this stage does not do is measure how you resolved it. That " +
-      "literature uses reading times, eye movements and manipulations this " +
-      "page does not contain. Stage 1 establishes only that you did it and " +
-      "could report it — which is precisely the pair of properties the " +
-      "machine side will turn out not to have.";
+      SENTENCES[0].why + " " + SENTENCES[1].why +
+      " This stage shows that you did it and could report it, not how.";
 
     humanReflection.hidden = false;
     machineSection.hidden = false;

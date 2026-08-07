@@ -28,6 +28,12 @@ keep them apart.
 - **Every trial is followed by a full transcript** of both streams, which is
   the text alternative for both the visual display and the tones.
 
+## Running it from the front
+
+The single most valuable trial in the whole tool is a student's very first one, before they know a word is planted. Do not explain the design before that trial. Ask for a show of hands afterwards — who saw something odd on the other side, and who can name it? — and the gap between those two counts is the demonstration.
+
+Assign different students to different attended sides, and use the worked example for the pattern. One person's four trials give one observation per cell, which is not enough for anything except a conversation.
+
 ## Intended level
 
 Second-year undergraduate, or a keen first-year cohort. It assumes the students

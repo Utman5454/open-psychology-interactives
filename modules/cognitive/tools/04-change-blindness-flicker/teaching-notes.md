@@ -22,6 +22,12 @@ change announces its own location.
   demonstrator route reveals all four without spending any.
 - **Do not read the debrief first.** It names the mechanism.
 
+## Running it from the front
+
+The single most useful move is to run one scene with the blank on, let the room struggle, and then run the same scene with the blank off. The change that took forty seconds is now impossible to miss. Nothing about the picture changed; only the blank did.
+
+Four scenes exist and each works properly once. The tool marks the ones already used, and it keeps that record across a reset.
+
 ## Intended level
 
 First-year undergraduate. It pairs naturally with the inattentional blindness

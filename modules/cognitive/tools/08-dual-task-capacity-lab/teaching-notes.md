@@ -21,6 +21,12 @@ refusing to let anyone reach block 3 before they have their own baselines.
 - **The worked example needs nobody to perform anything**, and it contains
   both settings, which is the comparison that matters.
 
+## Running it from the front
+
+The set of three takes about two minutes. The comparison worth budgeting time for is a second set with the number task set to count at the end — that is the manipulation that separates a general-capacity story from a response-selection bottleneck, and it is the only one on the page that does.
+
+Twenty trials a block is far too few for a stable difference, and the results panel says so. Pool the room if you want anything more than a conversation.
+
 ## Intended level
 
 First- or second-year undergraduate. It pairs well with the Stroop tool

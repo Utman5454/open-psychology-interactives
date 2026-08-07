@@ -21,6 +21,12 @@ do not have to agree.
 - **The worked example needs no study phase**, which makes it the right route
   for a room that has already done it once.
 
+## Running it from the front
+
+Do not say anything about related words before the study phase. The whole effect depends on nobody looking for it. If you are demonstrating, use the worked example first with a room that has already done it themselves — never the other way round.
+
+Twelve test items give three or four observations per item type, so an individual's percentages move in large steps. Pooling a room, or using the worked example, is the only way to see the pattern rather than the noise.
+
 ## Intended level
 
 First- or second-year undergraduate. It works well immediately before any

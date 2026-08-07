@@ -25,6 +25,14 @@ expensive indeed.
   projector, and in Windows high-contrast mode — which is the reason the
   familiar red-and-green version was not used.
 
+## Running it from the front
+
+Project a 32-item feature display and a 32-item conjunction display side by side and count aloud. The room finds the first target before you finish saying the sentence and is still hunting for the second one. That contrast is worth more than the slopes, and it costs nothing in reaction time.
+
+Eighteen trials means three per cell, which is far too few for a stable slope and is meant to be. Run the worked example afterwards and compare: the same design with more trials gives a far tidier line, and the gap between the two is the honest lesson about single-participant data.
+
+Nobody has to perform either block. The worked example fills the results panel on its own.
+
 ## Intended level
 
 First- or second-year undergraduate. It is the standard companion to a lecture
