@@ -1,0 +1,214 @@
+/* =========================================================================
+   Reverse-Item Disaster — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. The scale item
+   list, the formula visual, the recoded-answer cells and the repair entry are
+   what is particular here.
+   ========================================================================= */
+
+#reverse .interactive__controls,
+#reverse .interactive__stage {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #reverse .interactive__body {
+    grid-template-columns: minmax(0, 18rem) minmax(0, 1fr);
+  }
+}
+
+/* -------------------------------------------------------------------------
+   The scale
+   ---------------------------------------------------------------------- */
+
+.scale-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--space-2);
+  counter-reset: none;
+}
+
+.scale-items > li {
+  margin-top: 0;
+}
+
+.scale-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+
+.scale-item__number {
+  flex: none;
+  width: 1.6rem;
+  height: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: var(--colour-accent-soft);
+  color: var(--colour-accent);
+  font-size: var(--text-xs);
+  font-weight: 700;
+}
+
+.scale-item__body {
+  display: grid;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.scale-item__text {
+  font-size: var(--text-sm);
+}
+
+/* Keying is stated in words on every item, so it is never carried by the
+   tint alone. */
+.scale-item__key {
+  justify-self: start;
+  padding: 0.05rem 0.45rem;
+  border: 1px solid var(--colour-border);
+  border-radius: 999px;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+
+.scale-item__key--reverse {
+  border-color: var(--colour-personality-individual-differences);
+  color: var(--colour-personality-individual-differences);
+  font-weight: 650;
+}
+
+/* -------------------------------------------------------------------------
+   Formula visual
+   ---------------------------------------------------------------------- */
+
+.formula {
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+
+.formula__line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2);
+  margin: 0 0 var(--space-2);
+}
+
+.formula__label {
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+
+.formula__expr {
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-accent-soft);
+  color: var(--colour-accent);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+
+.formula__example {
+  margin: 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+
+/* -------------------------------------------------------------------------
+   Answer cells
+   -------------------------------------------------------------------------
+   A recoded cell prints "5 → 1", so the transformation is legible as text and
+   the tint is only a scanning aid.
+   ---------------------------------------------------------------------- */
+
+.data-table td[data-reverse="yes"] {
+  background-color: var(--colour-surface);
+  font-weight: 600;
+}
+
+.data-table td[data-total="yes"] {
+  font-weight: 700;
+  border-left: 2px solid var(--colour-border-strong);
+}
+
+/* -------------------------------------------------------------------------
+   Profile bars
+   -------------------------------------------------------------------------
+   Two bars per respondent, each labelled in text with which one it is, so the
+   comparison never depends on the two fills.
+   ---------------------------------------------------------------------- */
+
+.rev__bar--correct { fill: var(--colour-accent); }
+.rev__bar--current { fill: var(--colour-personality-individual-differences); }
+
+/* -------------------------------------------------------------------------
+   Repair entry
+   ---------------------------------------------------------------------- */
+
+.repair__item {
+  font-size: var(--text-base);
+  font-weight: 600;
+}
+
+.repair__formula {
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-accent-soft);
+  color: var(--colour-accent);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+
+.repair__entry {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.repair__entry .control__label {
+  display: block;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  margin-bottom: var(--space-1);
+}
+
+.repair__entry input {
+  min-height: 2.75rem;
+  width: 6rem;
+  padding: 0.35rem 0.6rem;
+  font: inherit;
+  font-variant-numeric: tabular-nums;
+  color: var(--colour-text);
+  background-color: var(--colour-page);
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+}
+
+@media (forced-colors: active) {
+  .scale-item,
+  .scale-item__key,
+  .formula,
+  .repair__entry input {
+    border: 1px solid CanvasText;
+  }
+
+  .rev__bar--correct { fill: CanvasText; }
+  .rev__bar--current { fill: Highlight; }
+}
