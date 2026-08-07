@@ -18,6 +18,7 @@ folder per tool.
 | Intelligence-Test Battery Builder | [`31-intelligence-test-battery-builder/`](31-intelligence-test-battery-builder/) | Intelligence testing: construct coverage, the trade-offs in battery construction, and validity as a property of a use |
 | Positive Manifold Visualiser | [`32-positive-manifold-visualiser/`](32-positive-manifold-visualiser/) | The positive manifold: an empirical pattern, the first factor that follows from it, and why extracting one settles nothing |
 | Culture-Fair Test Challenge | [`34-culture-fair-test-challenge/`](34-culture-fair-test-challenge/) | Culture-fair testing: construct-irrelevant demand, opportunity to learn a format, and what comparability requires |
+| Speed–Accuracy Trade-Off | [`36-speed-accuracy-trade-off/`](36-speed-accuracy-trade-off/) | Speed-accuracy trade-off: why one outcome measure cannot separate ability from response caution |
 | Twin-Study Simulator | [`39-twin-study-simulator/`](39-twin-study-simulator/) | Behaviour genetics: what heritability is a property of, and which way each broken assumption bends the estimate |
 | Gene × Environment Interaction Visualiser | [`42-gene-environment-interaction-visualiser/`](42-gene-environment-interaction-visualiser/) | Gene-environment interaction: how the sampled environmental range decides which theory a study appears to support |
 | Self-Esteem Stability Tracker | [`50-self-esteem-stability-tracker/`](50-self-esteem-stability-tracker/) | Self-esteem dynamics: level, volatility, domain contingency and recovery as four separable characteristics |

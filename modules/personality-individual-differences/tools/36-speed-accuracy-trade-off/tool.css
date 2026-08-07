@@ -1,0 +1,157 @@
+/* =========================================================================
+   Speed–Accuracy Trade-Off — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. The stimulus
+   display, the response buttons and the trade-off plot are what is particular
+   here.
+   ========================================================================= */
+
+#sat .interactive__controls,
+#sat .interactive__stage {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #sat .interactive__body {
+    grid-template-columns: minmax(0, 17rem) minmax(0, 1fr);
+  }
+}
+
+#sat .control + .control {
+  margin-top: var(--space-4);
+}
+
+/* -------------------------------------------------------------------------
+   Stimulus
+   -------------------------------------------------------------------------
+   The arrows are marked aria-hidden and paired with a sentence giving the
+   counts, so the trial is answerable without perceiving nine small glyphs.
+   Nothing animates and nothing is removed on a timer.
+   ---------------------------------------------------------------------- */
+
+.stimulus {
+  display: grid;
+  gap: var(--space-3);
+  align-content: center;
+  justify-items: center;
+  min-height: 9rem;
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  background-color: var(--colour-surface);
+  text-align: center;
+}
+
+.arrows {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.arrow {
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--colour-accent);
+}
+
+/* Direction is carried by the glyph itself, not by colour: the two classes
+   exist only so the two directions can be given slightly different weight for
+   legibility, and both remain the same hue. */
+.arrow--left,
+.arrow--right {
+  color: var(--colour-accent);
+}
+
+.arrows__text {
+  margin: 0;
+  max-width: 44ch;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+
+/* -------------------------------------------------------------------------
+   Responses
+   -------------------------------------------------------------------------
+   Deliberately large: these are the primary control for anyone not using the
+   arrow keys, and a small target under any kind of time pressure is a
+   fairness problem as well as an accessibility one.
+   ---------------------------------------------------------------------- */
+
+.responses {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  justify-content: center;
+}
+
+.response {
+  flex: 1 1 12rem;
+  min-height: 3.5rem;
+  font-size: var(--text-base);
+  font-weight: 650;
+}
+
+kbd {
+  padding: 0.05rem 0.35rem;
+  border: 1px solid var(--colour-border-strong);
+  border-bottom-width: 2px;
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+/* -------------------------------------------------------------------------
+   Trade-off plot
+   ---------------------------------------------------------------------- */
+
+.sat__curve {
+  fill: none;
+  stroke: var(--colour-border-strong);
+  stroke-width: 2;
+  stroke-dasharray: 5 4;
+}
+
+/* The three equal-ability respondents share a fill; the one that genuinely
+   differs is drawn hollow with a heavier stroke, so the distinction survives
+   greyscale. The table beside it states drift rate outright. */
+.sat__point--same {
+  fill: var(--colour-accent);
+}
+
+.sat__point--other {
+  fill: var(--colour-page);
+  stroke: var(--colour-personality-individual-differences);
+  stroke-width: 3;
+}
+
+.sat__marker {
+  fill: none;
+  stroke: var(--colour-personality-individual-differences);
+  stroke-width: 3;
+}
+
+@media (forced-colors: active) {
+  .stimulus {
+    border: 1px solid CanvasText;
+  }
+
+  .arrow {
+    color: CanvasText;
+  }
+
+  .sat__curve {
+    stroke: GrayText;
+  }
+
+  .sat__point--same {
+    fill: CanvasText;
+  }
+
+  .sat__point--other,
+  .sat__marker {
+    fill: Canvas;
+    stroke: Highlight;
+  }
+}
