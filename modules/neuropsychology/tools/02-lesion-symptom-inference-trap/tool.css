@@ -1,0 +1,279 @@
+/* =========================================================================
+   Lesion–Symptom Inference Trap — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. Specific here:
+   the schematic map, the two-bar gauge that compares the learner's claim with
+   what the evidence can carry, and the confidence trace.
+
+   Every mark on the map carries a letter decoded in the table beneath it, and
+   every bar prints its own percentage, so neither depends on fill colour.
+   ========================================================================= */
+
+#lesion-trap .interactive__controls,
+#lesion-trap .interactive__stage {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #lesion-trap .interactive__body {
+    grid-template-columns: minmax(0, 20rem) minmax(0, 1fr);
+  }
+}
+
+/* -------------------------------------------------------------------------
+   The pinned primary: map beside gauge
+   ---------------------------------------------------------------------- */
+
+.trap__primary {
+  display: grid;
+  gap: var(--space-4);
+  align-items: start;
+}
+
+@media (min-width: 60em) {
+  .trap__primary {
+    /* The map carries more detail than the gauge, so it gets the wider
+       column. Both are capped by the stage, not by a fixed max-width. */
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  }
+}
+
+.trap__primary > * {
+  min-width: 0;
+}
+
+.trap__map [data-map],
+.trap__gauge [data-gauge] {
+  max-width: 26rem;
+}
+
+/* The map's visible text equivalent: every letter currently drawn, named. */
+.trap__legend {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+  line-height: 1.4;
+}
+
+.trap__gauge .stage__heading {
+  margin-bottom: var(--space-2);
+}
+
+.trap__verdict {
+  margin: var(--space-2) 0 0;
+  padding-left: 0.7rem;
+  border-left: 4px solid var(--colour-border-strong);
+  font-size: var(--text-sm);
+}
+
+.trap__verdict[data-tone="warn"] { border-left-color: var(--colour-social-critical-psychology); }
+.trap__verdict[data-tone="caution"] { border-left-color: var(--colour-cognitive); }
+.trap__verdict[data-tone="good"] { border-left-color: var(--colour-neuropsychology); }
+
+/* -------------------------------------------------------------------------
+   The schematic map
+   ---------------------------------------------------------------------- */
+
+.trap__outline {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border-strong);
+  stroke-width: 2;
+}
+
+.trap__fissure {
+  fill: none;
+  stroke: var(--colour-border-strong);
+  stroke-width: 1.5;
+}
+
+.trap__core {
+  fill: var(--colour-neuropsychology);
+  stroke: var(--colour-neuropsychology);
+}
+
+.trap__extent {
+  fill: var(--colour-neuropsychology);
+  fill-opacity: 0.35;
+  stroke: var(--colour-neuropsychology);
+  stroke-width: 1.5;
+}
+
+.trap__territory {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2;
+  stroke-dasharray: 7 5;
+}
+
+/* Hatching would need a pattern definition; a dotted outline with a light
+   fill reads as "affected but not damaged" and survives greyscale. */
+.trap__diaschisis {
+  fill: var(--colour-accent-soft);
+  stroke: var(--colour-accent);
+  stroke-width: 1.5;
+  stroke-dasharray: 2 3;
+}
+
+.trap__old {
+  fill: var(--colour-text-muted);
+  stroke: var(--colour-text);
+  stroke-width: 1.5;
+}
+
+.trap__uncertain {
+  fill: none;
+  stroke: var(--colour-cognitive);
+  stroke-width: 3;
+  stroke-dasharray: 3 6;
+}
+
+/* Marks sit on fills of very different darkness, so each letter is drawn in
+   the text colour with a page-coloured halo behind it (paint-order puts the
+   stroke underneath the fill). That keeps every letter legible whatever it
+   lands on, in both palettes. */
+.trap__mark {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
+  fill: var(--colour-text);
+  paint-order: stroke;
+  stroke: var(--colour-page);
+  stroke-width: 3.5;
+  stroke-linejoin: round;
+}
+
+/* -------------------------------------------------------------------------
+   The gauge
+   ---------------------------------------------------------------------- */
+
+.trap__bar--yours {
+  fill: var(--colour-accent);
+}
+
+.trap__bar--ceiling {
+  fill: var(--colour-neuropsychology);
+}
+
+/* The stretch beyond the ceiling: outlined rather than filled, so it reads as
+   "claimed but not carried" and does not depend on hue. */
+.trap__overshoot {
+  fill: none;
+  stroke: var(--colour-social-critical-psychology);
+  stroke-width: 2;
+  stroke-dasharray: 4 3;
+}
+
+.trap__ceiling-point {
+  fill: var(--colour-neuropsychology);
+}
+
+/* -------------------------------------------------------------------------
+   Lists
+   ---------------------------------------------------------------------- */
+
+.trap__list {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: var(--text-sm);
+}
+
+.trap__list > li + li {
+  margin-top: var(--space-2);
+}
+
+.trap__list-empty {
+  list-style: none;
+  margin-left: -1.1rem;
+  color: var(--colour-text-muted);
+}
+
+.trap__synthesis {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-3) 0 0;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.trap__synthesis > li {
+  margin-top: 0;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  font-size: var(--text-sm);
+}
+
+.trap__synthesis > li[data-tone="good"] { border-left-color: var(--colour-neuropsychology); }
+.trap__synthesis > li[data-tone="caution"] { border-left-color: var(--colour-cognitive); }
+.trap__synthesis > li[data-tone="warn"] { border-left-color: var(--colour-social-critical-psychology); }
+
+/* -------------------------------------------------------------------------
+   The challenge
+   ---------------------------------------------------------------------- */
+
+.trap__claims {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.trap__claim {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+
+.trap__claim > .prediction__legend {
+  font-weight: 600;
+  font-size: var(--text-sm);
+}
+
+/* -------------------------------------------------------------------------
+   Forced colours
+   ---------------------------------------------------------------------- */
+
+@media (forced-colors: active) {
+  .trap__outline {
+    fill: Canvas;
+    stroke: CanvasText;
+  }
+
+  .trap__fissure,
+  .trap__territory,
+  .trap__diaschisis,
+  .trap__uncertain {
+    stroke: CanvasText;
+  }
+
+  .trap__diaschisis {
+    fill: Canvas;
+  }
+
+  .trap__core,
+  .trap__old,
+  .trap__ceiling-point {
+    fill: CanvasText;
+    stroke: CanvasText;
+  }
+
+  .trap__extent {
+    fill: Canvas;
+    stroke: CanvasText;
+  }
+
+  .trap__mark {
+    fill: CanvasText;
+    stroke: Canvas;
+  }
+
+  .trap__bar--yours { fill: Highlight; }
+  .trap__bar--ceiling { fill: CanvasText; }
+  .trap__overshoot { stroke: CanvasText; }
+
+  .trap__claim,
+  .trap__synthesis > li {
+    border: 1px solid CanvasText;
+  }
+}

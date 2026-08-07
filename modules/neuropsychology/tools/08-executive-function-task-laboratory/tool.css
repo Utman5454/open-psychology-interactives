@@ -1,0 +1,124 @@
+/* =========================================================================
+   Executive Function Task Laboratory — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. Specific here:
+   the weight chart of experiment 1, the score chart of experiment 2, and the
+   tick marker that shows the learner's prediction.
+
+   Every bar prints its own number and both tables repeat it, so no fill is
+   load-bearing. The learner's prediction is a tick shape, not a colour.
+   ========================================================================= */
+
+#exec .interactive__controls,
+#exec .interactive__stage {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #exec .interactive__body {
+    grid-template-columns: minmax(0, 21rem) minmax(0, 1fr);
+  }
+}
+
+#exec .control--choice {
+  font-size: var(--text-sm);
+  line-height: 1.3;
+  align-items: flex-start;
+  padding: 0.3rem 0;
+}
+
+#exec .control--choice input {
+  margin-top: 0.55rem;
+}
+
+/* The two stages' control blocks each hold several fieldsets, so the grid gap
+   has to be restated inside them. */
+#exec [data-stage-one-controls],
+#exec [data-stage-two-controls] {
+  display: grid;
+  gap: 1.25rem;
+}
+
+#exec .control + .control {
+  margin-top: var(--space-3);
+}
+
+.preset-buttons {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.preset-buttons .button {
+  font-size: var(--text-xs);
+  padding: 0.35rem 0.7rem;
+  min-height: 2.75rem;
+  text-align: left;
+}
+
+/* -------------------------------------------------------------------------
+   Charts
+   ---------------------------------------------------------------------- */
+
+#exec [data-weights],
+#exec [data-scores] {
+  max-width: 30rem;
+}
+
+/* Each chart's visible text equivalent, inside its own figure. The pinned
+   primary stays on screen while the tables scroll away, so the pin has to be
+   readable on its own. */
+.exec__legend {
+  margin: var(--space-1) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+  line-height: 1.4;
+}
+
+/* The learner's prediction: a tick drawn to the left of the track. Shape, not
+   colour, and the table repeats it as "yes" or "no". */
+.exec__tick {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* The lowest of the four scores. The table and the interpretation both name
+   it, so the fill is redundant. */
+.exec__bar--lowest {
+  fill: var(--colour-neuropsychology);
+}
+
+/* -------------------------------------------------------------------------
+   Tables
+   ---------------------------------------------------------------------- */
+
+.exec__miss > td {
+  background-color: var(--colour-status-bg);
+}
+
+.data-table td[data-mark="heavy"] {
+  background-color: var(--colour-accent-soft);
+  font-weight: 650;
+}
+
+/* -------------------------------------------------------------------------
+   Forced colours
+   ---------------------------------------------------------------------- */
+
+@media (forced-colors: active) {
+  .exec__tick {
+    stroke: CanvasText;
+  }
+
+  .exec__bar--lowest {
+    fill: Highlight;
+  }
+
+  .exec__miss > td,
+  .data-table td[data-mark="heavy"] {
+    background-color: Canvas;
+    border: 2px solid Highlight;
+  }
+}

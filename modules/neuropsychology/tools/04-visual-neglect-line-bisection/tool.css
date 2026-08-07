@@ -1,0 +1,163 @@
+/* =========================================================================
+   Visual Neglect Laboratory — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. Specific here:
+   the three task drawings.
+
+   Nothing in the drawings carries meaning by colour. A bisection mark is a
+   tall stroke and the true middle a short notch; a found star carries a
+   stroke through it and a missed one does not; an omitted part of the copy is
+   simply absent. Every result is also printed in the readout and the tables.
+   ========================================================================= */
+
+#neglect-lab .interactive__controls,
+#neglect-lab .interactive__stage {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #neglect-lab .interactive__body {
+    grid-template-columns: minmax(0, 21rem) minmax(0, 1fr);
+  }
+}
+
+#neglect-lab .control--choice {
+  font-size: var(--text-sm);
+  line-height: 1.3;
+  align-items: flex-start;
+  padding: 0.3rem 0;
+}
+
+#neglect-lab .control--choice input {
+  margin-top: 0.55rem;
+}
+
+/* -------------------------------------------------------------------------
+   The drawings
+   ---------------------------------------------------------------------- */
+
+.neglect__figure [data-canvas] {
+  max-width: 34rem;
+}
+
+.neg__page {
+  fill: var(--colour-page);
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+
+/* --- Line bisection --- */
+
+.neg__line {
+  stroke: var(--colour-text);
+  stroke-width: 2.5;
+  stroke-linecap: butt;
+}
+
+/* Short notch below the line: the true middle. */
+.neg__truth {
+  stroke: var(--colour-text-muted);
+  stroke-width: 2;
+}
+
+/* Tall stroke across the line: where the mark went. */
+.neg__mark {
+  stroke: var(--colour-neuropsychology);
+  stroke-width: 3;
+}
+
+/* --- Cancellation --- */
+
+.neg__target {
+  fill: var(--colour-surface);
+  stroke: var(--colour-text);
+  stroke-width: 1.4;
+}
+
+.neg__distractor {
+  fill: none;
+  stroke: var(--colour-border-strong);
+  stroke-width: 1.4;
+}
+
+.neg__cancel {
+  stroke: var(--colour-neuropsychology);
+  stroke-width: 2.6;
+  stroke-linecap: round;
+}
+
+/* --- Copying --- */
+
+.neg__part {
+  fill: var(--colour-surface);
+  stroke: var(--colour-text);
+  stroke-width: 1.6;
+}
+
+.neg__part--detail {
+  fill: var(--colour-page);
+}
+
+.neg__ground {
+  stroke: var(--colour-border-strong);
+  stroke-width: 1.5;
+}
+
+/* -------------------------------------------------------------------------
+   Tables
+   ---------------------------------------------------------------------- */
+
+.neg__current > th,
+.neg__current > td {
+  background-color: var(--colour-accent-soft);
+  font-weight: 650;
+}
+
+.neglect__evidence {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: var(--text-sm);
+}
+
+.neglect__evidence > li + li {
+  margin-top: var(--space-2);
+}
+
+/* -------------------------------------------------------------------------
+   Forced colours
+   ---------------------------------------------------------------------- */
+
+@media (forced-colors: active) {
+  .neg__page {
+    fill: Canvas;
+    stroke: CanvasText;
+  }
+
+  .neg__line,
+  .neg__truth,
+  .neg__ground {
+    stroke: CanvasText;
+  }
+
+  .neg__mark,
+  .neg__cancel {
+    stroke: Highlight;
+  }
+
+  .neg__target,
+  .neg__part,
+  .neg__part--detail {
+    fill: Canvas;
+    stroke: CanvasText;
+  }
+
+  .neg__distractor {
+    stroke: GrayText;
+  }
+
+  .neg__current > th,
+  .neg__current > td {
+    background-color: Canvas;
+    border: 2px solid Highlight;
+  }
+}

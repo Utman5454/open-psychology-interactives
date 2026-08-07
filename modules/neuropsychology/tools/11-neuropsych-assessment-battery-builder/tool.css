@@ -1,0 +1,124 @@
+/* =========================================================================
+   Assessment Battery Builder — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. Specific here:
+   the session-time bar and the four checks that sit beside it.
+
+   The control column is a long bank of seventeen checkboxes, which is exactly
+   the case the pinned primary exists for: the time bar and the four checks
+   stay at the top of the stage while the learner works down the menu.
+
+   Nothing is carried by colour. Each check writes "(met)" or "(not yet)" into
+   its own text, and the time bar is described in words underneath it.
+   ========================================================================= */
+
+#battery .interactive__controls,
+#battery .interactive__stage {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #battery .interactive__body {
+    grid-template-columns: minmax(0, 23rem) minmax(0, 1fr);
+  }
+}
+
+#battery .control--choice {
+  font-size: var(--text-sm);
+  line-height: 1.3;
+  align-items: flex-start;
+  padding: 0.3rem 0;
+}
+
+#battery .control--choice input {
+  margin-top: 0.55rem;
+}
+
+/* -------------------------------------------------------------------------
+   The session-time bar
+   ---------------------------------------------------------------------- */
+
+.battery__figure [data-time] {
+  max-width: 28rem;
+}
+
+/* Alternating segments so the composition of the bar is visible. The
+   division carries no meaning on its own; the table lists every task. */
+.battery__segment--alt {
+  fill: var(--colour-accent-soft);
+  stroke: var(--colour-accent);
+  stroke-width: 1;
+}
+
+.battery__divider {
+  stroke: var(--colour-surface);
+  stroke-width: 1.5;
+}
+
+/* The end of the session, drawn as a line and named in the axis text. */
+.battery__budget {
+  stroke: var(--colour-text);
+  stroke-width: 2.5;
+  stroke-dasharray: 3 3;
+}
+
+.battery__legend {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+  line-height: 1.45;
+}
+
+/* -------------------------------------------------------------------------
+   The four checks
+   ---------------------------------------------------------------------- */
+
+/* .goal__checks is a shared component; inside the stage it needs a little
+   more room than it gets inside a goal banner. */
+.battery__checks {
+  margin-top: var(--space-3);
+  font-size: var(--text-sm);
+}
+
+.battery__checks > li {
+  padding-top: 0.15rem;
+  padding-bottom: 0.15rem;
+  line-height: 1.4;
+}
+
+/* -------------------------------------------------------------------------
+   Tables
+   ---------------------------------------------------------------------- */
+
+/* A task whose dependency has not been selected. The row already says so in
+   the checks list; the tint only makes it easy to find. */
+.battery__blocked > td,
+.battery__blocked > th {
+  background-color: var(--colour-status-bg);
+  font-style: italic;
+}
+
+/* -------------------------------------------------------------------------
+   Forced colours
+   ---------------------------------------------------------------------- */
+
+@media (forced-colors: active) {
+  .battery__segment--alt {
+    fill: Canvas;
+    stroke: CanvasText;
+  }
+
+  .battery__divider {
+    stroke: CanvasText;
+  }
+
+  .battery__budget {
+    stroke: Highlight;
+  }
+
+  .battery__blocked > td,
+  .battery__blocked > th {
+    background-color: Canvas;
+    border: 2px solid Highlight;
+  }
+}

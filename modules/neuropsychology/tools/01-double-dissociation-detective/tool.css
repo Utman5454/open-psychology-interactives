@@ -1,0 +1,130 @@
+/* =========================================================================
+   Double Dissociation Detective — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. What is specific
+   here is the interval plot: a shaded control band, a zero line, and point
+   markers that are filled or hollow according to whether the whole interval
+   sits below the control range. The fill is a redundant cue — every value is
+   printed beside its marker and repeated in the table underneath.
+   ========================================================================= */
+
+/* A grid item's automatic minimum size is its min-content width, so a wide
+   table inside either column would push the whole shell past the viewport.
+   Both columns must be allowed to shrink. */
+#detective .interactive__controls,
+#detective .interactive__stage {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #detective .interactive__body {
+    grid-template-columns: minmax(0, 19rem) minmax(0, 1fr);
+  }
+}
+
+/* The plot is nearly 470 units wide and only about 220 tall, but stretching
+   it across a full stage column would still make it needlessly large. Capping
+   the width keeps the pinned block inside the ideal range. */
+#detective [data-profile] {
+  max-width: 34rem;
+}
+
+/* -------------------------------------------------------------------------
+   The interval plot
+   ---------------------------------------------------------------------- */
+
+.dd__band {
+  fill: var(--colour-accent-soft);
+}
+
+.dd__zero {
+  stroke: var(--colour-border-strong);
+  stroke-width: 1.5;
+}
+
+.dd__interval {
+  stroke: var(--colour-text-muted);
+  stroke-width: 2;
+}
+
+/* Hollow marker: the interval still reaches the control range. */
+.dd__point {
+  fill: var(--colour-page);
+  stroke: var(--colour-text);
+  stroke-width: 2;
+}
+
+/* Filled marker: the whole interval lies below the control range. Shape, not
+   only colour, carries the distinction, and the table states it in words. */
+.dd__point--below {
+  fill: var(--colour-neuropsychology);
+  stroke: var(--colour-neuropsychology);
+}
+
+.dd__person {
+  font-weight: 700;
+}
+
+/* -------------------------------------------------------------------------
+   Score table
+   ---------------------------------------------------------------------- */
+
+.dd__summary > th,
+.dd__summary > td {
+  border-top: 2px solid var(--colour-border-strong);
+  background-color: var(--colour-surface);
+  font-weight: 650;
+}
+
+/* -------------------------------------------------------------------------
+   Controls
+   ---------------------------------------------------------------------- */
+
+#detective .interactive__controls .prediction__actions {
+  margin-top: var(--space-3);
+}
+
+#detective .control--choice {
+  align-items: flex-start;
+  gap: 0.6rem;
+  min-height: 2.75rem;
+  padding: 0.35rem 0;
+  font-size: var(--text-sm);
+  line-height: 1.35;
+}
+
+#detective .control--choice input {
+  margin-top: 0.5rem;
+}
+
+/* -------------------------------------------------------------------------
+   Forced colours
+   ---------------------------------------------------------------------- */
+
+@media (forced-colors: active) {
+  .dd__band {
+    fill: Canvas;
+    stroke: GrayText;
+    stroke-dasharray: 4 3;
+  }
+
+  .dd__zero,
+  .dd__interval {
+    stroke: CanvasText;
+  }
+
+  .dd__point {
+    fill: Canvas;
+    stroke: CanvasText;
+  }
+
+  .dd__point--below {
+    fill: CanvasText;
+    stroke: CanvasText;
+  }
+
+  .dd__summary > th,
+  .dd__summary > td {
+    border-top: 2px solid CanvasText;
+  }
+}

@@ -1,0 +1,181 @@
+/* =========================================================================
+   Split-Brain Laboratory — tool-specific styling
+   -------------------------------------------------------------------------
+   Shared page furniture comes from components/tool-kit.css. Specific here:
+   the routing diagram of experiment 1, the cut marker on the callosum, and
+   the list of broken conditions in experiment 2.
+
+   Nothing in the diagram is carried by colour alone. The active route is a
+   thick solid line against thin dashed ones, the active boxes carry a heavier
+   border AND their own label text, the cut is drawn as a cross as well as a
+   gap, and a paragraph under the figure says the whole thing in words.
+   ========================================================================= */
+
+#split .interactive__controls,
+#split .interactive__stage {
+  min-width: 0;
+}
+
+@media (min-width: 52em) {
+  #split .interactive__body {
+    grid-template-columns: minmax(0, 21rem) minmax(0, 1fr);
+  }
+}
+
+#split .control--choice {
+  font-size: var(--text-sm);
+  line-height: 1.3;
+  align-items: flex-start;
+  padding: 0.3rem 0;
+}
+
+#split .control--choice input {
+  margin-top: 0.55rem;
+}
+
+/* Each stage's control block holds several fieldsets, so the grid gap has to
+   be restated inside them. */
+#split [data-stage-one-controls],
+#split [data-stage-two-controls] {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.preset-buttons {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.preset-buttons .button {
+  font-size: var(--text-xs);
+  padding: 0.35rem 0.7rem;
+  min-height: 2.75rem;
+  text-align: left;
+}
+
+/* -------------------------------------------------------------------------
+   The routing diagram
+   ---------------------------------------------------------------------- */
+
+/* A near-square viewBox stretched across the stage would be far too tall, so
+   the drawing is capped well below the column width. */
+.lat__figure [data-route] {
+  max-width: 23rem;
+}
+
+.lat__box {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border-strong);
+  stroke-width: 1.5;
+}
+
+.lat__box--active {
+  fill: var(--colour-accent-soft);
+  stroke: var(--colour-text);
+  stroke-width: 3;
+}
+
+.lat__link {
+  stroke: var(--colour-border-strong);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 4;
+}
+
+.lat__link--active {
+  stroke: var(--colour-text);
+  stroke-width: 3.5;
+  stroke-dasharray: none;
+}
+
+.lat__callosum {
+  stroke: var(--colour-text);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+/* The section itself: a cross over the gap, so the cut is a shape and not a
+   colour or an absence. */
+.lat__cut {
+  fill: none;
+  stroke: var(--colour-text);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+/* The figure's visible text equivalent. */
+.lat__legend {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+  line-height: 1.45;
+}
+
+/* -------------------------------------------------------------------------
+   Experiment 2
+   ---------------------------------------------------------------------- */
+
+.lat__setup {
+  margin: var(--space-2) 0 var(--space-3);
+  font-size: var(--text-sm);
+}
+
+.lat__reasons {
+  margin: var(--space-2) 0 0;
+  padding-left: 1.1rem;
+  font-size: var(--text-sm);
+}
+
+.lat__reasons > li + li {
+  margin-top: var(--space-2);
+}
+
+/* -------------------------------------------------------------------------
+   Tables
+   ---------------------------------------------------------------------- */
+
+/* A trial whose outcome did not match the prediction. The two cells already
+   say so in words; the tint only makes the row easier to find. */
+.lat__miss > td {
+  background-color: var(--colour-status-bg);
+}
+
+.data-table td[data-mark="blocked"] {
+  background-color: var(--colour-accent-soft);
+  font-weight: 650;
+}
+
+/* -------------------------------------------------------------------------
+   Forced colours
+   ---------------------------------------------------------------------- */
+
+@media (forced-colors: active) {
+  .lat__box {
+    fill: Canvas;
+    stroke: CanvasText;
+  }
+
+  .lat__box--active {
+    fill: Canvas;
+    stroke: Highlight;
+    stroke-width: 3;
+  }
+
+  .lat__link {
+    stroke: CanvasText;
+  }
+
+  .lat__link--active {
+    stroke: Highlight;
+  }
+
+  .lat__callosum,
+  .lat__cut {
+    stroke: CanvasText;
+  }
+
+  .lat__miss > td,
+  .data-table td[data-mark="blocked"] {
+    background-color: Canvas;
+    border: 2px solid Highlight;
+  }
+}
