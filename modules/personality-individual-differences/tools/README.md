@@ -15,6 +15,7 @@ folder per tool.
 | The Alpha Trap | [`12-alpha-trap/`](12-alpha-trap/) | Reliability: why a high Cronbach's alpha is not validity, unidimensionality or evidence of a good measure |
 | Reverse-Item Disaster | [`13-reverse-item-disaster/`](13-reverse-item-disaster/) | Reverse-keyed items: correct recoding, the errors that leave no trace, and why reverse wording is a trade rather than a free fix |
 | Response-Style Simulator | [`14-response-style-simulator/`](14-response-style-simulator/) | Response styles: what a rating pattern shows, why balanced keying matters, and what no pattern can establish about a motive |
+| Measurement-Invariance Translator | [`21-measurement-invariance-translator/`](21-measurement-invariance-translator/) | Measurement invariance: what configural, metric and scalar each licence, and how an item can manufacture a group difference |
 | “Explain This Person” Courtroom | [`24-explain-this-person-courtroom/`](24-explain-this-person-courtroom/) | Explanation and underdetermination: why fitting a case is cheap and predicting something distinctive is not |
 | Intelligence-Test Battery Builder | [`31-intelligence-test-battery-builder/`](31-intelligence-test-battery-builder/) | Intelligence testing: construct coverage, the trade-offs in battery construction, and validity as a property of a use |
 | Positive Manifold Visualiser | [`32-positive-manifold-visualiser/`](32-positive-manifold-visualiser/) | The positive manifold: an empirical pattern, the first factor that follows from it, and why extracting one settles nothing |
