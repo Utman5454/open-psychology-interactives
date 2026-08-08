@@ -70,8 +70,12 @@ whoever is running the session rather than for the page. Take
 `<div class="opi-activity">` and every style is scoped to it, so nothing the
 copy carries can reach your headings, buttons, tables or typography. The
 defence runs the other way too: the activity restates the styling it depends
-on, so a page that flattens list padding or restyles every `button` does not
-flatten or restyle the activity.
+on, so a page that flattens list padding, colours every `td`, or restyles every
+`button` does not flatten or restyle the activity.
+
+The copy keeps its **Full screen** button, which expands just the activity —
+useful when it is sitting in the middle of a busy VLE page. It does not keep
+the Copy button; that one belongs to this site.
 
 Two things to know:
 
@@ -81,6 +85,10 @@ Two things to know:
 - **Paste as HTML, not as text.** An editor that escapes the markup, or one
   that strips `<style>` and `<script>`, will give you the words without the
   activity. Most VLEs have an HTML or source view that pastes it properly.
+- **Full screen needs permission.** If your VLE shows the activity inside an
+  `<iframe>` without `allow="fullscreen"`, the browser refuses, and the button
+  removes itself rather than sitting there doing nothing. Everything else works
+  as normal.
 
 The file behind the button is `standalone.html` in the tool's own folder, so it
 can also be opened, read or downloaded directly. It is generated rather than
@@ -386,7 +394,11 @@ standard library.
 
 1. Takes the contents of `<main>`, and removes any element marked
    `data-activity-export` (the Copy control) or `data-instructor-only`
-   (material addressed to whoever is running the session).
+   (material addressed to whoever is running the session). The **Full screen**
+   control is deliberately not removed: it is a usability control and is most
+   useful precisely when the activity has been embedded somewhere busy. That is
+   why the two controls sit in sibling blocks and only one carries
+   `data-activity-export`.
 2. Inlines the four stylesheets, dropping the site-chrome rules, and rewrites
    every selector to sit under `.opi-activity` — see below.
 3. Inlines `components/interactive-shell.js` and the tool's `tool.js`, and
@@ -402,14 +414,35 @@ alone. Both directions come out of one specificity ladder:
 
 | | selector | specificity |
 | --- | --- | --- |
-| the host page's own rules | `h1`, `button`, `td` | (0,0,1) |
+| a host element rule | `td` | (0,0,1) |
 | the export's defensive reset | `.opi-activity *` | (0,1,0) |
-| the activity's own rules | `.opi-activity.opi-activity …` | (0,2,0)+ |
+| a host themed rule | `.theme .content td` | (0,2,1) |
+| the export's host resistance | `.opi-activity`×3 `:where(td)` | (0,3,0) |
+| the activity's own rules | `.opi-activity`×3 `.data-table td` | (0,4,1) |
 
 The reset is `all: revert`, which throws away the host's declarations and lets
-inherited properties fall back to what the wrapper sets. Repeating the class on
-the activity's own rules keeps them above the reset. Elements *inside* an
+inherited properties fall back to what the wrapper sets. Elements *inside* an
 `<svg>` are left out of the revert so chart presentation attributes survive.
+
+The reset alone was not enough, and a real VLE proved it: it sits at (0,1,0),
+and an ordinary themed rule beats it. Because the shared stylesheets set colour
+on only three bare elements — `body`, `a` and `code` — table cells and body text
+inherited theirs, and an inherited value loses to *any* rule that matches the
+element directly. In dark mode that meant dark text on a dark panel. The
+resistance block states those colours instead of leaving them to inheritance,
+and `:where()` keeps it at exactly three classes: high enough to clear any
+realistic themed selector, low enough that every rule the collection writes
+still outranks it.
+
+There is no `!important` anywhere in this, on purpose. Three tools colour table
+cells through `td[data-strength]` and `td[data-empty]` attributes, and a blanket
+important rule would have flattened their data coding.
+
+**The one case this cannot win** is a host rule scoped by `id` — `#content td
+{ color: … }`. An ID beats any number of classes, so only `!important` could
+override it, at the cost above. If an activity's text looks wrong in a
+particular platform, inspect a cell and see whether the winning rule uses an ID;
+that is the one shape of host CSS the export cannot out-rank.
 
 `:root`, `html` and `body` map onto the wrapper, minus the declarations that
 belong to a page rather than a `<div>` — `body` is a flex column filling the
@@ -429,18 +462,41 @@ or the export control still in it. None of these is hypothetical — each one is
 a bug this script shipped once. The shell's own documentation comment contains
 a literal `</script>`, which ends the inlined block early if it is not escaped.
 
-### Adding the control to a new tool
+### Full screen
+
+`components/activity-fullscreen.js` expands the exported `.opi-activity`
+wrapper where there is one and this site's `<main>` otherwise — never `<body>`,
+which would take the header and footer with it.
+
+The label is driven by the `fullscreenchange` event rather than by the click,
+which is what makes Escape work: leaving full screen that way fires no click.
+The full-screen element gets `overflow-y: auto`, without which an activity
+taller than the display would have its debrief clipped out of reach, and a
+background of its own, because the default backdrop is black.
+
+Two feature checks, not one. `requestFullscreen` says whether the browser has
+the API; `document.fullscreenEnabled` says whether this document is *permitted*
+to use it, which is the one that matters inside a VLE iframe with no
+`allow="fullscreen"`. When permission is absent the control hides itself rather
+than remaining as something that looks pressable and is not.
+
+### Adding the controls to a new tool
 
 ```sh
 python scripts/add-export-control.py <tool-dir>     # or --all, or --check
 ```
 
-It is idempotent, and it will move a control that has drifted from the current
-markup. It adds the shared script after the shell it depends on, and puts the
-control last inside `<main>` — inside, because that is what the exporter reads
-and therefore what it can remove; last, because most tools keep the laboratory
-in a section that starts `hidden`, and a lecturer should not have to work
-through the activity to take a copy of it.
+It is idempotent, and it will replace controls that have drifted from the
+current markup. It adds the two shared scripts after the shell they sit
+alongside, and puts the utilities row last inside `<main>` — inside, because
+that is what the exporter reads and therefore what it can edit; last, because
+most tools keep the laboratory in a section that starts `hidden`, and a lecturer
+should not have to work through an activity to expand or copy it.
+
+Note that the two scripts are keyed differently: this script removes a previous
+block by `data-activity-utilities`, the outer wrapper, while the exporter
+removes only the inner `data-activity-export`. Using the exporter's key here
+would strip the copy control and let the utilities row accumulate on each run.
 
 ## Rules worth keeping when you adapt
 
