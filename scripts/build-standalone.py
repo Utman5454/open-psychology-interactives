@@ -57,11 +57,11 @@ REPO = pathlib.Path(__file__).resolve().parent.parent
 #: The wrapper every exported activity is scoped under.
 ROOT = ".opi-activity"
 
-#: Site rules are scoped with the class repeated. That costs nothing visually
-#: and buys one level of specificity over the defensive reset in RESET_CSS,
-#: which has to sit above the host page's element rules and below the
-#: activity's own. See RESET_CSS for the full ladder.
-SITE_ROOT = ROOT + ROOT
+#: Site rules are scoped with the class repeated three times. That costs
+#: nothing visually and buys specificity, which is the whole mechanism by
+#: which an embedded activity keeps its own appearance. See RESET_CSS for the
+#: full ladder and why three.
+SITE_ROOT = ROOT * 3
 
 #: The site never sets a root font size, so `rem` resolves against the browser
 #: default of 16px in the canonical rendering. A host page very often does set
@@ -78,7 +78,14 @@ SHARED_CSS = [
     REPO / "components" / "interactive-shell.css",
     REPO / "components" / "tool-kit.css",
 ]
-SHARED_JS = [REPO / "components" / "interactive-shell.js"]
+#: Inlined into every export. The full-screen control travels with a copy —
+#: it is a usability control, useful precisely because the copy is embedded in
+#: somebody else's page — whereas copy-activity.js does not, because the copy
+#: has no committed artefact of its own to fetch.
+SHARED_JS = [
+    REPO / "components" / "interactive-shell.js",
+    REPO / "components" / "activity-fullscreen.js",
+]
 
 # Rule blocks whose selectors are *entirely* site chrome. A block is dropped
 # only when every one of its selectors matches one of these prefixes, so an
@@ -88,10 +95,9 @@ CHROME_SELECTORS = (
     ".site-header", ".site-nav", ".site-footer", ".nav-toggle", ".brand",
     ".breadcrumbs", ".card-grid", ".card", ".hero__actions", ".steps",
     ".topic-list", ".skip-link",
-    # The export control is removed from the markup, so its styling is dead
-    # weight in the copy.
-    ".activity-export",
 )
+# `.activity-utilities` is deliberately *not* pruned: the utilities row
+# survives into a copy carrying the full-screen control, and needs its styling.
 
 # `.card--*` modifiers only set --card-accent from the module palette, and a
 # tool page puts `card--<module>` on its title section to colour the eyebrow.
@@ -117,9 +123,19 @@ ROOT_DROP_DECLARATIONS = (
 #
 # The specificity ladder this depends on:
 #
-#     host element rule            h1              (0,0,1)   loses
-#     this reset                   .opi-activity * (0,1,0)   beats the host
-#     the activity's own rules     .opi-activity.opi-activity … (0,2,0)+  wins
+#     host element rule        td                          (0,0,1)  loses
+#     this reset               .opi-activity *             (0,1,0)
+#     host themed rule         .theme .content td          (0,2,1)  loses
+#     host resistance          .opi-activity ×3 :where(td) (0,3,0)
+#     the activity's own rules .opi-activity ×3 .data-table td  (0,4,1)  wins
+#
+# `revert` alone is not enough, which a real LMS demonstrated: it sits at
+# (0,1,0) and any themed rule like `.theme .content td { color: #111 }` beats
+# it. The shared stylesheets set colour on only three bare elements — `body`,
+# `a` and `code` — so table cells and body text inherit their colour, and an
+# inherited value loses to *any* rule that matches the element directly. In
+# dark mode that produced dark text on a dark panel. HOST_RESISTANCE_CSS
+# states those colours explicitly instead of leaving them to inheritance.
 #
 # Elements *inside* an <svg> are excluded, because reverting there would drop
 # the presentation attributes the charts are drawn with. The <svg> element
@@ -153,6 +169,44 @@ RESET_CSS = """/* Defensive baseline. See scripts/build-standalone.py for why th
 .opi-activity svg { max-width: 100%; }
 .opi-activity img { max-width: 100%; height: auto; }
 .opi-activity [hidden] { display: none !important; }"""
+
+
+# Says out loud what the stylesheets leave to inheritance, so a themed host
+# page cannot take it away. Emitted *before* the activity's own rules, so that
+# where the two meet at equal specificity — a single-class rule such as
+# `.text-muted` also lands on (0,3,0) — the activity's own rule wins on order.
+#
+# `:where()` contributes nothing to specificity, so each of these sits exactly
+# on the three repeated classes and no higher. That is deliberate: high enough
+# to clear any realistic themed selector, low enough that every rule the
+# collection actually writes still outranks it.
+#
+# Only colour and background are asserted. Borders, spacing and typography are
+# already stated by the collection's own class rules, which outrank both this
+# block and anything a host is likely to write.
+HOST_RESISTANCE_CSS = """/* Host resistance: the colours the stylesheets leave to
+   inheritance, stated explicitly. See scripts/build-standalone.py. */
+.opi-activity.opi-activity.opi-activity :where(
+  table, thead, tbody, tfoot, tr, th, td, caption, colgroup, col,
+  p, ul, ol, li, dl, dt, dd, blockquote, figure, figcaption,
+  h1, h2, h3, h4, h5, h6, span, strong, b, em, i, small, sub, sup,
+  div, section, article, aside, header, footer, main, form, fieldset,
+  legend, label, output, details, summary, abbr, cite, q, time, mark
+) {
+  color: inherit;
+}
+.opi-activity.opi-activity.opi-activity :where(
+  table, thead, tbody, tfoot, tr, th, td, caption,
+  p, ul, ol, li, dl, dt, dd, figure, figcaption, legend, label, output,
+  h1, h2, h3, h4, h5, h6, div, section, article, aside, header, footer, main
+) {
+  background-color: transparent;
+}
+/* Form controls are coloured by class rules throughout the collection, which
+   outrank this; the fallback matters only for a control no rule reaches. */
+.opi-activity.opi-activity.opi-activity :where(button, input, select, textarea) {
+  color: inherit;
+}"""
 
 
 # ---------------------------------------------------------------------------
@@ -603,7 +657,7 @@ def build(tool_dir):
 
     html = index.read_text(encoding="utf-8")
 
-    css_parts = [RESET_CSS]
+    css_parts = [RESET_CSS, HOST_RESISTANCE_CSS]
     for path in SHARED_CSS + [tool_dir / "tool.css"]:
         if not path.exists():
             continue

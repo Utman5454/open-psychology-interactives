@@ -44,25 +44,39 @@ _spec.loader.exec_module(_bs)
 # educator section from its own source.
 strip_export_block = _bs.strip_marked
 
-SCRIPT_TAG = '<script src="{root}components/copy-activity.js" defer></script>'
+SCRIPT_TAGS = [
+    '<script src="{root}components/activity-fullscreen.js" defer></script>',
+    '<script src="{root}components/copy-activity.js" defer></script>',
+]
 ANCHOR_TAG = '<script src="{root}components/interactive-shell.js" defer></script>'
 
-BLOCK = """    <!-- Lecturer-facing, and last inside <main> so that it does not sit in a
-         section that starts hidden. scripts/build-standalone.py strips this
-         block from the export by its data-activity-export attribute, so a
-         copied activity never carries a button pointing at a file that is no
-         longer beside it. -->
-    <div class="section" data-activity-export>
+BLOCK = """    <!-- Utility controls, last inside <main> so that they do not sit in a
+         section that starts hidden: a lecturer should not have to work through
+         an activity to expand or copy it. Full screen travels into an exported
+         copy, because it is a usability control and most useful precisely when
+         the activity is embedded in somebody else's page. -->
+    <div class="section" data-activity-utilities>
       <div class="container">
-        <div class="activity-export">
-          <button type="button" data-copy-activity="standalone.html">
-            Copy activity HTML
-          </button>
-          <p class="activity-export__note" data-copy-activity-note>
-            For teaching elsewhere: copies this activity as one self-contained
-            block of HTML, styled so it will not disturb the page you paste it
-            into.
-          </p>
+        <div class="activity-utilities">
+          <div data-activity-fullscreen>
+            <button type="button" data-fullscreen-toggle aria-pressed="false">
+              Full screen
+            </button>
+          </div>
+          <!-- A control of this website only. The attribute below is what
+               scripts/build-standalone.py looks for to leave this out of a
+               copy, which is also why this comment sits inside the block
+               rather than above it. -->
+          <div class="activity-utilities__copy" data-activity-export>
+            <button type="button" data-copy-activity="standalone.html">
+              Copy activity HTML
+            </button>
+            <p class="activity-utilities__note" data-copy-activity-note>
+              For teaching elsewhere: copies this activity as one self-contained
+              block of HTML, styled so it will not disturb the page you paste
+              it into.
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -90,20 +104,25 @@ def site_root(index_path):
 def transform(text, root):
     changed = []
 
-    # 1. The script tag, immediately after the shell it depends on.
-    script = SCRIPT_TAG.format(root=root)
-    if script not in text:
-        anchor = ANCHOR_TAG.format(root=root)
+    # 1. The script tags, immediately after the shell they sit alongside.
+    anchor = ANCHOR_TAG.format(root=root)
+    for tag in SCRIPT_TAGS:
+        script = tag.format(root=root)
+        if script in text:
+            continue
         if anchor not in text:
             raise SystemExit("  no interactive-shell.js script tag to anchor to")
         text = text.replace(anchor, anchor + "\n  " + script, 1)
-        changed.append("script tag")
+        changed.append(re.search(r"([\w-]+\.js)", script).group(1))
 
-    # 2. Remove any previous placement, then append the current block. The
-    #    current shape nests, so it is removed by the same depth-counting
-    #    routine the exporter uses rather than by a second regex that could
-    #    disagree with it.
+    # 2. Remove any previous placement, then append the current block.
+    #
+    #    Keyed on the *outer* wrapper, data-activity-utilities. The exporter
+    #    keys on the inner data-activity-export instead, because it must leave
+    #    the full-screen control behind; using that key here would strip only
+    #    the copy control and let the utilities section accumulate on every run.
     before = text
+    text, _ = strip_export_block(text, "data-activity-utilities")
     text, _ = strip_export_block(text, "data-activity-export")
     text = LEGACY_BLOCK_RE.sub("", text)
     if text != before:

@@ -464,6 +464,7 @@
   border: 1px solid var(--colour-border);
   text-align: left;
   vertical-align: top;
+  color: var(--colour-text);
 }
 
 .data-table thead th,
@@ -678,27 +679,32 @@
 }
 
 /* -------------------------------------------------------------------------
-   Activity export
+   Activity utilities
    -------------------------------------------------------------------------
-   Copied from components/tool-kit.css, which this tool does not load. It
-   predates that file and carries its own copy of the shared page furniture;
-   see the note at the top of tool-kit.css for why it is left that way.
-   Without this the Copy control renders at the browser's default button
-   size, which is below the 44px target the rest of the collection keeps.
+   A quiet row beneath an activity holding the two controls that are about
+   using the activity rather than about the psychology: Full screen, and Copy
+   activity HTML. Deliberately understated, because neither is part of the
+   learner's path through the page.
+
+   The two have different fates in an export. Copy activity HTML is a control
+   of this website and its block carries data-activity-export, which is how
+   scripts/build-standalone.py finds and removes it - a copy must not arrive
+   carrying a button that looks for a file no longer beside it. Full screen is
+   a usability control and travels with the copy.
    ---------------------------------------------------------------------- */
 
-.activity-export {
+.activity-utilities {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  gap: var(--space-2) var(--space-4);
+  gap: var(--space-3) var(--space-4);
   margin-top: var(--space-4);
   padding: var(--space-3) var(--space-4);
   border: 1px dashed var(--colour-border);
   border-radius: var(--radius-sm);
 }
 
-.activity-export button {
+.activity-utilities button {
   min-height: 2.75rem;
   padding: 0.4rem 1rem;
   font: inherit;
@@ -711,31 +717,47 @@
   cursor: pointer;
 }
 
-.activity-export button:hover:not(:disabled) {
+.activity-utilities button:hover {
   background-color: var(--colour-page);
 }
 
-/* The button is never disabled mid-copy — disabling a focused control drops
-   focus to <body> and a disabled button cannot be given it back. It carries
-   aria-busy instead, and is only truly disabled where fetch is unavailable
-   and the copy can never work. */
-.activity-export button[aria-busy="true"] {
+/* Never disabled mid-copy: disabling a focused control drops focus to <body>
+   and a disabled button cannot be given it back. Copy carries aria-busy
+   instead, and is truly disabled only where fetch is unavailable and the copy
+   can never work. */
+.activity-utilities button[aria-busy="true"] {
   cursor: progress;
 }
 
-.activity-export button:disabled {
+.activity-utilities button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
 
 /* Confirmation state. The tick in the label carries the meaning; the colour
    only reinforces it, so nothing is lost when colour is unavailable. */
-.activity-export button[data-copy-state="ok"] {
+.activity-utilities button[data-copy-state="ok"] {
   border-color: var(--colour-neuropsychology);
   box-shadow: inset 0 0 0 1px var(--colour-neuropsychology);
 }
 
-.activity-export__note {
+/* Pressed state for Full screen. aria-pressed carries this for assistive
+   technology and the label itself changes to "Exit full screen", so the inset
+   line is an echo rather than the only signal. */
+.activity-utilities button[aria-pressed="true"] {
+  border-color: var(--colour-accent);
+  box-shadow: inset 0 0 0 1px var(--colour-accent);
+}
+
+.activity-utilities__copy {
+  display: flex;
+  flex: 1 1 20rem;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-3) var(--space-4);
+}
+
+.activity-utilities__note {
   flex: 1 1 16rem;
   margin: 0;
   font-size: var(--text-sm);
@@ -743,7 +765,38 @@
 }
 
 @media (forced-colors: active) {
-  .activity-export button {
+  .activity-utilities button {
     border: 1px solid ButtonBorder;
   }
+
+  .activity-utilities button[aria-pressed="true"] {
+    border: 2px solid Highlight;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Full-screen state
+   -------------------------------------------------------------------------
+   The element put full screen is the exported `.opi-activity` wrapper where
+   there is one, and this site's <main> otherwise - never <body>, which would
+   take the header and footer with it.
+
+   A full-screen element is sized to the screen and clips what overflows, so
+   an activity taller than the display needs `overflow-y: auto` or its debrief
+   becomes unreachable. It also needs a background of its own: the default
+   backdrop is black, and these panels assume the page colour behind them.
+   ---------------------------------------------------------------------- */
+
+.opi-activity:fullscreen,
+main:fullscreen,
+.interactive:fullscreen {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background-color: var(--colour-page);
+  color: var(--colour-text);
+}
+
+main:fullscreen > .section:first-child,
+.opi-activity:fullscreen > .section:first-child {
+  padding-top: var(--space-5);
 }

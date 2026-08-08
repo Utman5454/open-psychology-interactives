@@ -31,6 +31,7 @@
   <link rel="stylesheet" href="tool.css">
   <script src="../../../../assets/js/main.js" defer></script>
   <script src="../../../../components/interactive-shell.js" defer></script>
+  <script src="../../../../components/activity-fullscreen.js" defer></script>
   <script src="../../../../components/copy-activity.js" defer></script>
   <script src="tool.js" defer></script>
 </head>
@@ -442,22 +443,33 @@
       </div>
     </section>
 
-    <!-- Lecturer-facing, and last inside <main> so that it does not sit in a
-         section that starts hidden. scripts/build-standalone.py strips this
-         block from the export by its data-activity-export attribute, so a
-         copied activity never carries a button pointing at a file that is no
-         longer beside it. -->
-    <div class="section" data-activity-export>
+    <!-- Utility controls, last inside <main> so that they do not sit in a
+         section that starts hidden: a lecturer should not have to work through
+         an activity to expand or copy it. Full screen travels into an exported
+         copy, because it is a usability control and most useful precisely when
+         the activity is embedded in somebody else's page. -->
+    <div class="section" data-activity-utilities>
       <div class="container">
-        <div class="activity-export">
-          <button type="button" data-copy-activity="standalone.html">
-            Copy activity HTML
-          </button>
-          <p class="activity-export__note" data-copy-activity-note>
-            For teaching elsewhere: copies this activity as one self-contained
-            block of HTML, styled so it will not disturb the page you paste it
-            into.
-          </p>
+        <div class="activity-utilities">
+          <div data-activity-fullscreen>
+            <button type="button" data-fullscreen-toggle aria-pressed="false">
+              Full screen
+            </button>
+          </div>
+          <!-- A control of this website only. The attribute below is what
+               scripts/build-standalone.py looks for to leave this out of a
+               copy, which is also why this comment sits inside the block
+               rather than above it. -->
+          <div class="activity-utilities__copy" data-activity-export>
+            <button type="button" data-copy-activity="standalone.html">
+              Copy activity HTML
+            </button>
+            <p class="activity-utilities__note" data-copy-activity-note>
+              For teaching elsewhere: copies this activity as one self-contained
+              block of HTML, styled so it will not disturb the page you paste
+              it into.
+            </p>
+          </div>
         </div>
       </div>
     </div>

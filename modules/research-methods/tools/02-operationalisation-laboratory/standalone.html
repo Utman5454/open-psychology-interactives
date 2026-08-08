@@ -35,8 +35,32 @@
 .opi-activity img { max-width: 100%; height: auto; }
 .opi-activity [hidden] { display: none !important; }
 
+/* Host resistance: the colours the stylesheets leave to
+   inheritance, stated explicitly. See scripts/build-standalone.py. */
+.opi-activity.opi-activity.opi-activity :where(
+  table, thead, tbody, tfoot, tr, th, td, caption, colgroup, col,
+  p, ul, ol, li, dl, dt, dd, blockquote, figure, figcaption,
+  h1, h2, h3, h4, h5, h6, span, strong, b, em, i, small, sub, sup,
+  div, section, article, aside, header, footer, main, form, fieldset,
+  legend, label, output, details, summary, abbr, cite, q, time, mark
+) {
+  color: inherit;
+}
+.opi-activity.opi-activity.opi-activity :where(
+  table, thead, tbody, tfoot, tr, th, td, caption,
+  p, ul, ol, li, dl, dt, dd, figure, figcaption, legend, label, output,
+  h1, h2, h3, h4, h5, h6, div, section, article, aside, header, footer, main
+) {
+  background-color: transparent;
+}
+/* Form controls are coloured by class rules throughout the collection, which
+   outrank this; the fallback matters only for a control no rule reaches. */
+.opi-activity.opi-activity.opi-activity :where(button, input, select, textarea) {
+  color: inherit;
+}
+
 /* assets/css/main.css */
-.opi-activity.opi-activity {
+.opi-activity.opi-activity.opi-activity {
   --colour-page: #ffffff;
   --colour-surface: #f5f7fa;
   --colour-surface-raised: #ffffff;
@@ -85,7 +109,7 @@
   --container: 1152px;
 }
 @media (prefers-color-scheme: dark) {
-.opi-activity.opi-activity {
+.opi-activity.opi-activity.opi-activity {
   --colour-page: #0f141b;
   --colour-surface: #161d27;
   --colour-surface-raised: #1a2230;
@@ -110,78 +134,78 @@
   --shadow-md: 0 2px 10px rgb(0 0 0 / 0.45);
 }
 }
-.opi-activity.opi-activity, .opi-activity.opi-activity *,
-.opi-activity.opi-activity *::before,
-.opi-activity.opi-activity *::after {
+.opi-activity.opi-activity.opi-activity, .opi-activity.opi-activity.opi-activity *,
+.opi-activity.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity.opi-activity *::after {
   box-sizing: border-box;
 }
-.opi-activity.opi-activity {
+.opi-activity.opi-activity.opi-activity {
   -webkit-text-size-adjust: 100%;
 }
-.opi-activity.opi-activity {
+.opi-activity.opi-activity.opi-activity {
   background-color: var(--colour-page);
   color: var(--colour-text);
   font-family: var(--font-body);
   font-size: var(--text-base);
   line-height: 1.65;
 }
-.opi-activity.opi-activity h1,
-.opi-activity.opi-activity h2,
-.opi-activity.opi-activity h3,
-.opi-activity.opi-activity h4 {
+.opi-activity.opi-activity.opi-activity h1,
+.opi-activity.opi-activity.opi-activity h2,
+.opi-activity.opi-activity.opi-activity h3,
+.opi-activity.opi-activity.opi-activity h4 {
   margin: 0 0 var(--space-3);
   line-height: 1.25;
   font-weight: 650;
   letter-spacing: -0.01em;
   text-wrap: balance;
 }
-.opi-activity.opi-activity h1 {
+.opi-activity.opi-activity.opi-activity h1 {
   font-size: var(--text-3xl);
 }
-.opi-activity.opi-activity h2 {
+.opi-activity.opi-activity.opi-activity h2 {
   font-size: var(--text-2xl);
 }
-.opi-activity.opi-activity h3 {
+.opi-activity.opi-activity.opi-activity h3 {
   font-size: var(--text-xl);
 }
-.opi-activity.opi-activity h4 {
+.opi-activity.opi-activity.opi-activity h4 {
   font-size: var(--text-lg);
 }
-.opi-activity.opi-activity p,
-.opi-activity.opi-activity ul,
-.opi-activity.opi-activity ol,
-.opi-activity.opi-activity dl {
+.opi-activity.opi-activity.opi-activity p,
+.opi-activity.opi-activity.opi-activity ul,
+.opi-activity.opi-activity.opi-activity ol,
+.opi-activity.opi-activity.opi-activity dl {
   margin: 0 0 var(--space-4);
 }
-.opi-activity.opi-activity ul,
-.opi-activity.opi-activity ol {
+.opi-activity.opi-activity.opi-activity ul,
+.opi-activity.opi-activity.opi-activity ol {
   padding-left: 1.35em;
 }
-.opi-activity.opi-activity li + li {
+.opi-activity.opi-activity.opi-activity li + li {
   margin-top: var(--space-2);
 }
-.opi-activity.opi-activity a {
+.opi-activity.opi-activity.opi-activity a {
   color: var(--colour-accent);
   text-decoration: underline;
   text-underline-offset: 0.15em;
   text-decoration-thickness: max(1px, 0.06em);
 }
-.opi-activity.opi-activity a:hover {
+.opi-activity.opi-activity.opi-activity a:hover {
   color: var(--colour-accent-hover);
   text-decoration-thickness: max(2px, 0.11em);
 }
-.opi-activity.opi-activity :focus-visible {
+.opi-activity.opi-activity.opi-activity :focus-visible {
   outline: 3px solid var(--colour-focus);
   outline-offset: 2px;
   border-radius: var(--radius-sm);
 }
 @supports not selector(:focus-visible) {
-.opi-activity.opi-activity :focus {
+.opi-activity.opi-activity.opi-activity :focus {
   outline: 3px solid var(--colour-focus);
     outline-offset: 2px;
 }
 }
-.opi-activity.opi-activity code {
+.opi-activity.opi-activity.opi-activity code {
   font-family: var(--font-mono);
   font-size: 0.9em;
   background-color: var(--colour-surface);
@@ -189,22 +213,22 @@
   border-radius: var(--radius-sm);
   padding: 0.1em 0.35em;
 }
-.opi-activity.opi-activity hr {
+.opi-activity.opi-activity.opi-activity hr {
   border: 0;
   border-top: 1px solid var(--colour-border);
   margin: var(--space-6) 0;
 }
 @media (prefers-reduced-motion: reduce) {
-.opi-activity.opi-activity, .opi-activity.opi-activity *,
-.opi-activity.opi-activity *::before,
-.opi-activity.opi-activity *::after {
+.opi-activity.opi-activity.opi-activity, .opi-activity.opi-activity.opi-activity *,
+.opi-activity.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity.opi-activity *::after {
   animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
 }
 }
-.opi-activity.opi-activity .visually-hidden {
+.opi-activity.opi-activity.opi-activity .visually-hidden {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -216,38 +240,38 @@
   white-space: nowrap;
   border: 0;
 }
-.opi-activity.opi-activity .container {
+.opi-activity.opi-activity.opi-activity .container {
   width: 100%;
   max-width: var(--container);
   margin-inline: auto;
   padding-inline: var(--space-4);
 }
 @media (min-width: 40em) {
-.opi-activity.opi-activity .container {
+.opi-activity.opi-activity.opi-activity .container {
   padding-inline: var(--space-5);
 }
 }
-.opi-activity.opi-activity .prose {
+.opi-activity.opi-activity.opi-activity .prose {
   max-width: var(--measure);
 }
-.opi-activity.opi-activity .text-muted {
+.opi-activity.opi-activity.opi-activity .text-muted {
   color: var(--colour-text-muted);
 }
-.opi-activity.opi-activity .section {
+.opi-activity.opi-activity.opi-activity .section {
   padding-block: var(--space-7);
 }
-.opi-activity.opi-activity .section--tinted {
+.opi-activity.opi-activity.opi-activity .section--tinted {
   background-color: var(--colour-surface);
   border-block: 1px solid var(--colour-border);
 }
-.opi-activity.opi-activity .section__header {
+.opi-activity.opi-activity.opi-activity .section__header {
   max-width: var(--measure);
   margin-bottom: var(--space-5);
 }
-.opi-activity.opi-activity .section__header > :last-child {
+.opi-activity.opi-activity.opi-activity .section__header > :last-child {
   margin-bottom: 0;
 }
-.opi-activity.opi-activity .hero {
+.opi-activity.opi-activity.opi-activity .hero {
   padding-block: var(--space-7) var(--space-6);
   border-bottom: 1px solid var(--colour-border);
   
@@ -257,7 +281,7 @@
     var(--colour-page) 100%
   );
 }
-.opi-activity.opi-activity .hero__eyebrow {
+.opi-activity.opi-activity.opi-activity .hero__eyebrow {
   display: inline-block;
   margin-bottom: var(--space-3);
   font-size: var(--text-xs);
@@ -266,24 +290,24 @@
   text-transform: uppercase;
   color: var(--colour-text-muted);
 }
-.opi-activity.opi-activity .hero h1 {
+.opi-activity.opi-activity.opi-activity .hero h1 {
   max-width: 20ch;
   margin-bottom: var(--space-4);
 }
-.opi-activity.opi-activity .hero__lead {
+.opi-activity.opi-activity.opi-activity .hero__lead {
   max-width: var(--measure);
   font-size: var(--text-lg);
   color: var(--colour-text-muted);
 }
 @media (min-width: 48em) {
-.opi-activity.opi-activity .hero {
+.opi-activity.opi-activity.opi-activity .hero {
   padding-block: var(--space-8) var(--space-7);
 }
-.opi-activity.opi-activity .hero h1 {
+.opi-activity.opi-activity.opi-activity .hero h1 {
   font-size: 44px;
 }
 }
-.opi-activity.opi-activity .button {
+.opi-activity.opi-activity.opi-activity .button {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
@@ -298,43 +322,43 @@
   text-decoration: none;
   cursor: pointer;
 }
-.opi-activity.opi-activity .button--primary {
+.opi-activity.opi-activity.opi-activity .button--primary {
   background-color: var(--colour-accent);
   border-color: var(--colour-accent);
   
   color: var(--colour-on-accent);
 }
-.opi-activity.opi-activity .button--primary:hover {
+.opi-activity.opi-activity.opi-activity .button--primary:hover {
   background-color: var(--colour-accent-hover);
   border-color: var(--colour-accent-hover);
   color: var(--colour-on-accent);
 }
-.opi-activity.opi-activity .button--secondary {
+.opi-activity.opi-activity.opi-activity .button--secondary {
   background-color: transparent;
   border-color: var(--colour-border-strong);
   color: var(--colour-text);
 }
-.opi-activity.opi-activity .button--secondary:hover {
+.opi-activity.opi-activity.opi-activity .button--secondary:hover {
   background-color: var(--colour-surface);
   border-color: var(--colour-accent);
   color: var(--colour-accent);
 }
-.opi-activity.opi-activity .card--cognitive {
+.opi-activity.opi-activity.opi-activity .card--cognitive {
   --card-accent: var(--colour-cognitive);
 }
-.opi-activity.opi-activity .card--research-methods {
+.opi-activity.opi-activity.opi-activity .card--research-methods {
   --card-accent: var(--colour-research-methods);
 }
-.opi-activity.opi-activity .card--neuropsychology {
+.opi-activity.opi-activity.opi-activity .card--neuropsychology {
   --card-accent: var(--colour-neuropsychology);
 }
-.opi-activity.opi-activity .card--social-critical-psychology {
+.opi-activity.opi-activity.opi-activity .card--social-critical-psychology {
   --card-accent: var(--colour-social-critical-psychology);
 }
-.opi-activity.opi-activity .card--personality-individual-differences {
+.opi-activity.opi-activity.opi-activity .card--personality-individual-differences {
   --card-accent: var(--colour-personality-individual-differences);
 }
-.opi-activity.opi-activity .badge {
+.opi-activity.opi-activity.opi-activity .badge {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
@@ -347,95 +371,95 @@
   background-color: var(--colour-status-bg);
   color: var(--colour-status-text);
 }
-.opi-activity.opi-activity .badge__dot {
+.opi-activity.opi-activity.opi-activity .badge__dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
   background-color: currentColor;
   flex: none;
 }
-.opi-activity.opi-activity .placeholder {
+.opi-activity.opi-activity.opi-activity .placeholder {
   border: 2px dashed var(--colour-border-strong);
   border-radius: var(--radius-lg);
   background-color: var(--colour-surface);
   padding: var(--space-5);
   text-align: left;
 }
-.opi-activity.opi-activity .placeholder__title {
+.opi-activity.opi-activity.opi-activity .placeholder__title {
   font-size: var(--text-lg);
   margin-bottom: var(--space-2);
 }
-.opi-activity.opi-activity .placeholder > :last-child {
+.opi-activity.opi-activity.opi-activity .placeholder > :last-child {
   margin-bottom: 0;
 }
-.opi-activity.opi-activity .split {
+.opi-activity.opi-activity.opi-activity .split {
   display: grid;
   gap: var(--space-6);
 }
 @media (min-width: 56em) {
-.opi-activity.opi-activity .split {
+.opi-activity.opi-activity.opi-activity .split {
   grid-template-columns: 3fr 2fr;
     align-items: start;
 }
 }
-.opi-activity.opi-activity .panel {
+.opi-activity.opi-activity.opi-activity .panel {
   background-color: var(--colour-surface);
   border: 1px solid var(--colour-border);
   border-radius: var(--radius-lg);
   padding: var(--space-5);
 }
-.opi-activity.opi-activity .panel > :last-child {
+.opi-activity.opi-activity.opi-activity .panel > :last-child {
   margin-bottom: 0;
 }
-.opi-activity.opi-activity .panel__title {
+.opi-activity.opi-activity.opi-activity .panel__title {
   font-size: var(--text-lg);
   margin-bottom: var(--space-3);
 }
 @media (forced-colors: active) {
-.opi-activity.opi-activity .section--tinted {
+.opi-activity.opi-activity.opi-activity .section--tinted {
   border-block: 1px solid CanvasText;
 }
-.opi-activity.opi-activity .hero {
+.opi-activity.opi-activity.opi-activity .hero {
   border-bottom: 1px solid CanvasText;
 }
-.opi-activity.opi-activity .button--primary {
+.opi-activity.opi-activity.opi-activity .button--primary {
   border: 2px solid ButtonText;
 }
-.opi-activity.opi-activity .button--secondary {
+.opi-activity.opi-activity.opi-activity .button--secondary {
   border: 1px solid ButtonText;
 }
-.opi-activity.opi-activity .button:hover {
+.opi-activity.opi-activity.opi-activity .button:hover {
   border-color: Highlight;
 }
-.opi-activity.opi-activity .panel {
+.opi-activity.opi-activity.opi-activity .panel {
   border: 1px solid CanvasText;
 }
-.opi-activity.opi-activity .placeholder {
+.opi-activity.opi-activity.opi-activity .placeholder {
   border: 2px dashed CanvasText;
 }
-.opi-activity.opi-activity .badge {
+.opi-activity.opi-activity.opi-activity .badge {
   border: 1px solid CanvasText;
 }
-.opi-activity.opi-activity .badge__dot {
+.opi-activity.opi-activity.opi-activity .badge__dot {
   background-color: CanvasText;
 }
-.opi-activity.opi-activity code {
+.opi-activity.opi-activity.opi-activity code {
   border-color: CanvasText;
 }
-.opi-activity.opi-activity hr {
+.opi-activity.opi-activity.opi-activity hr {
   border-top-color: CanvasText;
 }
-.opi-activity.opi-activity :focus-visible {
+.opi-activity.opi-activity.opi-activity :focus-visible {
   outline: 3px solid Highlight;
     outline-offset: 2px;
 }
 }
 @media print {
-.opi-activity.opi-activity {
+.opi-activity.opi-activity.opi-activity {
   color: #000;
   background: #fff;
 }
-.opi-activity.opi-activity a[href^="http"]::after {
+.opi-activity.opi-activity.opi-activity a[href^="http"]::after {
   content: " (" attr(href) ")";
     font-size: 0.85em;
     word-break: break-all;
@@ -443,7 +467,7 @@
 }
 
 /* components/interactive-shell.css */
-.opi-activity.opi-activity .interactive {
+.opi-activity.opi-activity.opi-activity .interactive {
   --shell-page: var(--colour-page, #ffffff);
   --shell-surface: var(--colour-surface, #f5f7fa);
   --shell-raised: var(--colour-surface-raised, #ffffff);
@@ -468,34 +492,34 @@
   overflow-x: clip;
   overflow-y: visible;
 }
-.opi-activity.opi-activity .interactive__header {
+.opi-activity.opi-activity.opi-activity .interactive__header {
   padding: var(--shell-gap);
   border-bottom: 1px solid var(--shell-border);
   background-color: var(--shell-surface);
 }
-.opi-activity.opi-activity .interactive__title {
+.opi-activity.opi-activity.opi-activity .interactive__title {
   margin: 0 0 8px;
   font-size: 22px;
   line-height: 1.25;
 }
-.opi-activity.opi-activity .interactive__brief {
+.opi-activity.opi-activity.opi-activity .interactive__brief {
   margin: 0;
   max-width: 62ch;
   color: var(--shell-muted);
   font-size: 15px;
 }
-.opi-activity.opi-activity .interactive__body {
+.opi-activity.opi-activity.opi-activity .interactive__body {
   display: grid;
   gap: var(--shell-gap);
   padding: var(--shell-gap);
 }
 @media (min-width: 52em) {
-.opi-activity.opi-activity .interactive__body {
+.opi-activity.opi-activity.opi-activity .interactive__body {
   grid-template-columns: minmax(240px, 320px) 1fr;
     align-items: start;
 }
 }
-.opi-activity.opi-activity .interactive__controls {
+.opi-activity.opi-activity.opi-activity .interactive__controls {
   display: grid;
   gap: 20px;
   align-content: start;
@@ -505,12 +529,12 @@
   border-radius: var(--radius-md, 8px);
   background-color: var(--shell-surface);
 }
-.opi-activity.opi-activity .interactive__controls fieldset {
+.opi-activity.opi-activity.opi-activity .interactive__controls fieldset {
   margin: 0;
   padding: 0;
   border: 0;
 }
-.opi-activity.opi-activity .interactive__controls legend {
+.opi-activity.opi-activity.opi-activity .interactive__controls legend {
   padding: 0;
   margin-bottom: 8px;
   font-size: 13px;
@@ -519,42 +543,42 @@
   text-transform: uppercase;
   color: var(--shell-muted);
 }
-.opi-activity.opi-activity .control {
+.opi-activity.opi-activity.opi-activity .control {
   display: grid;
   gap: 5.6px;
 }
-.opi-activity.opi-activity .control + .control {
+.opi-activity.opi-activity.opi-activity .control + .control {
   margin-top: 16px;
 }
-.opi-activity.opi-activity .control__header {
+.opi-activity.opi-activity.opi-activity .control__header {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   gap: 12px;
 }
-.opi-activity.opi-activity .control__label {
+.opi-activity.opi-activity.opi-activity .control__label {
   font-size: 15px;
   font-weight: 600;
 }
-.opi-activity.opi-activity .control__value {
+.opi-activity.opi-activity.opi-activity .control__value {
   font-variant-numeric: tabular-nums;
   font-size: 15px;
   font-weight: 650;
   color: var(--shell-accent);
 }
-.opi-activity.opi-activity .control__hint {
+.opi-activity.opi-activity.opi-activity .control__hint {
   font-size: 13px;
   color: var(--shell-muted);
 }
-.opi-activity.opi-activity .interactive__controls input[type="range"] {
+.opi-activity.opi-activity.opi-activity .interactive__controls input[type="range"] {
   width: 100%;
   min-height: 44px;
   accent-color: var(--shell-accent);
   cursor: pointer;
 }
-.opi-activity.opi-activity .interactive__controls select,
-.opi-activity.opi-activity .interactive__controls input[type="number"],
-.opi-activity.opi-activity .interactive__controls input[type="text"] {
+.opi-activity.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity.opi-activity .interactive__controls input[type="text"] {
   width: 100%;
   min-height: 44px;
   padding: 5.6px 9.6px;
@@ -565,19 +589,19 @@
   border: 1px solid var(--shell-border-strong);
   border-radius: var(--radius-sm, 4px);
 }
-.opi-activity.opi-activity .control--choice {
+.opi-activity.opi-activity.opi-activity .control--choice {
   display: flex;
   align-items: center;
   gap: 9.6px;
   min-height: 44px;
 }
-.opi-activity.opi-activity .control--choice input {
+.opi-activity.opi-activity.opi-activity .control--choice input {
   width: 18.4px;
   height: 18.4px;
   accent-color: var(--shell-accent);
   flex: none;
 }
-.opi-activity.opi-activity .interactive__stage {
+.opi-activity.opi-activity.opi-activity .interactive__stage {
   min-height: 256px;
   display: grid;
   align-content: start;
@@ -588,10 +612,10 @@
   background-color: var(--shell-page);
 }
 @media (min-width: 52em) {
-.opi-activity.opi-activity .interactive__body--pinned {
+.opi-activity.opi-activity.opi-activity .interactive__body--pinned {
   align-items: stretch;
 }
-.opi-activity.opi-activity .interactive__stage > .stage__primary {
+.opi-activity.opi-activity.opi-activity .interactive__stage > .stage__primary {
   position: sticky;
     top: 0;
     z-index: 2;
@@ -603,47 +627,47 @@
 }
 }
 @media (min-width: 52em) and (max-height: 30em) {
-.opi-activity.opi-activity .interactive__stage > .stage__primary {
+.opi-activity.opi-activity.opi-activity .interactive__stage > .stage__primary {
   position: static;
     margin: 0;
     padding: 0;
     border-bottom: 0;
 }
 }
-.opi-activity.opi-activity .interactive__stage > * {
+.opi-activity.opi-activity.opi-activity .interactive__stage > * {
   min-width: 0;
 }
-.opi-activity.opi-activity :where(.interactive__stage) svg,
-.opi-activity.opi-activity :where(.interactive__stage) canvas {
+.opi-activity.opi-activity.opi-activity :where(.interactive__stage) svg,
+.opi-activity.opi-activity.opi-activity :where(.interactive__stage) canvas {
   display: block;
   width: 100%;
   height: auto;
   max-width: 100%;
 }
-.opi-activity.opi-activity .interactive__readout {
+.opi-activity.opi-activity.opi-activity .interactive__readout {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
   gap: 12px;
   margin: 0;
 }
-.opi-activity.opi-activity .interactive__readout div {
+.opi-activity.opi-activity.opi-activity .interactive__readout div {
   padding: 9.6px 12px;
   border: 1px solid var(--shell-border);
   border-radius: var(--radius-sm, 4px);
   background-color: var(--shell-surface);
 }
-.opi-activity.opi-activity .interactive__readout dt {
+.opi-activity.opi-activity.opi-activity .interactive__readout dt {
   font-size: 13px;
   color: var(--shell-muted);
   margin: 0;
 }
-.opi-activity.opi-activity .interactive__readout dd {
+.opi-activity.opi-activity.opi-activity .interactive__readout dd {
   margin: 2.4px 0 0;
   font-size: 18px;
   font-weight: 650;
   font-variant-numeric: tabular-nums;
 }
-.opi-activity.opi-activity .interactive__status {
+.opi-activity.opi-activity.opi-activity .interactive__status {
   margin: 0;
   padding: 12px var(--shell-gap);
   border-top: 1px solid var(--shell-border);
@@ -654,14 +678,14 @@
   display: flex;
   align-items: center;
 }
-.opi-activity.opi-activity .interactive__actions {
+.opi-activity.opi-activity.opi-activity .interactive__actions {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
   padding: var(--shell-gap);
   border-top: 1px solid var(--shell-border);
 }
-.opi-activity.opi-activity .interactive__actions button {
+.opi-activity.opi-activity.opi-activity .interactive__actions button {
   min-height: 44px;
   padding: 6.4px 20px;
   font: inherit;
@@ -673,138 +697,138 @@
   border-radius: var(--radius-md, 8px);
   cursor: pointer;
 }
-.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+.opi-activity.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
   color: var(--shell-text);
   background-color: transparent;
   border-color: var(--shell-border-strong);
 }
-.opi-activity.opi-activity .interactive__actions button:hover {
+.opi-activity.opi-activity.opi-activity .interactive__actions button:hover {
   filter: brightness(1.08);
 }
-.opi-activity.opi-activity .interactive__actions button:disabled {
+.opi-activity.opi-activity.opi-activity .interactive__actions button:disabled {
   opacity: 0.55;
   cursor: not-allowed;
 }
-.opi-activity.opi-activity .interactive__notes {
+.opi-activity.opi-activity.opi-activity .interactive__notes {
   border-top: 1px solid var(--shell-border);
   background-color: var(--shell-surface);
 }
-.opi-activity.opi-activity .interactive__notes > summary {
+.opi-activity.opi-activity.opi-activity .interactive__notes > summary {
   padding: 13.6px var(--shell-gap);
   font-size: 15px;
   font-weight: 650;
   cursor: pointer;
 }
-.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+.opi-activity.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
   outline: 3px solid var(--shell-focus);
   outline-offset: -3px;
 }
-.opi-activity.opi-activity .interactive__notes > div {
+.opi-activity.opi-activity.opi-activity .interactive__notes > div {
   padding: 0 var(--shell-gap) var(--shell-gap);
   max-width: 68ch;
   font-size: 15px;
 }
-.opi-activity.opi-activity .interactive__notes > div > :last-child {
+.opi-activity.opi-activity.opi-activity .interactive__notes > div > :last-child {
   margin-bottom: 0;
 }
-.opi-activity.opi-activity .interactive :focus-visible {
+.opi-activity.opi-activity.opi-activity .interactive :focus-visible {
   outline: 3px solid var(--shell-focus);
   outline-offset: 2px;
 }
 @media (prefers-reduced-motion: reduce) {
-.opi-activity.opi-activity .interactive *,
-.opi-activity.opi-activity .interactive *::before,
-.opi-activity.opi-activity .interactive *::after {
+.opi-activity.opi-activity.opi-activity .interactive *,
+.opi-activity.opi-activity.opi-activity .interactive *::before,
+.opi-activity.opi-activity.opi-activity .interactive *::after {
   animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
 }
 }
 @media (forced-colors: active) {
-.opi-activity.opi-activity .interactive,
-.opi-activity.opi-activity .interactive__controls,
-.opi-activity.opi-activity .interactive__stage,
-.opi-activity.opi-activity .interactive__readout div {
+.opi-activity.opi-activity.opi-activity .interactive,
+.opi-activity.opi-activity.opi-activity .interactive__controls,
+.opi-activity.opi-activity.opi-activity .interactive__stage,
+.opi-activity.opi-activity.opi-activity .interactive__readout div {
   border: 1px solid CanvasText;
 }
-.opi-activity.opi-activity .interactive__header {
+.opi-activity.opi-activity.opi-activity .interactive__header {
   border-bottom: 1px solid CanvasText;
 }
-.opi-activity.opi-activity .interactive__status,
-.opi-activity.opi-activity .interactive__actions,
-.opi-activity.opi-activity .interactive__notes {
+.opi-activity.opi-activity.opi-activity .interactive__status,
+.opi-activity.opi-activity.opi-activity .interactive__actions,
+.opi-activity.opi-activity.opi-activity .interactive__notes {
   border-top: 1px solid CanvasText;
 }
-.opi-activity.opi-activity .interactive__actions button {
+.opi-activity.opi-activity.opi-activity .interactive__actions button {
   border: 2px solid ButtonText;
 }
-.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+.opi-activity.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
   border-width: 1px;
 }
-.opi-activity.opi-activity .interactive__actions button:disabled {
+.opi-activity.opi-activity.opi-activity .interactive__actions button:disabled {
   opacity: 1;
     color: GrayText;
     border-color: GrayText;
 }
-.opi-activity.opi-activity .interactive__controls select,
-.opi-activity.opi-activity .interactive__controls input[type="number"],
-.opi-activity.opi-activity .interactive__controls input[type="text"] {
+.opi-activity.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity.opi-activity .interactive__controls input[type="text"] {
   border: 1px solid ButtonText;
 }
-.opi-activity.opi-activity .interactive :focus-visible {
+.opi-activity.opi-activity.opi-activity .interactive :focus-visible {
   outline: 3px solid Highlight;
     outline-offset: 2px;
 }
-.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+.opi-activity.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
   outline: 3px solid Highlight;
     outline-offset: -3px;
 }
-.opi-activity.opi-activity .interactive__stage svg {
+.opi-activity.opi-activity.opi-activity .interactive__stage svg {
   forced-color-adjust: auto;
 }
 }
 
 /* components/tool-kit.css */
 @media (min-width: 56em) {
-.opi-activity.opi-activity .split--wide {
+.opi-activity.opi-activity.opi-activity .split--wide {
   grid-template-columns: 1fr 1fr;
 }
 }
-.opi-activity.opi-activity .how-to {
+.opi-activity.opi-activity.opi-activity .how-to {
   padding-left: 19.2px;
   font-size: var(--text-sm);
 }
-.opi-activity.opi-activity .how-to > li {
+.opi-activity.opi-activity.opi-activity .how-to > li {
   margin-top: var(--space-2);
 }
-.opi-activity.opi-activity .table-scroll {
+.opi-activity.opi-activity.opi-activity .table-scroll {
   overflow-x: auto;
   
   position: relative;
 }
-.opi-activity.opi-activity .prediction {
+.opi-activity.opi-activity.opi-activity .prediction {
   display: grid;
   gap: var(--space-5);
   max-width: 832px;
 }
-.opi-activity.opi-activity .prediction > *,
-.opi-activity.opi-activity .challenge > * {
+.opi-activity.opi-activity.opi-activity .prediction > *,
+.opi-activity.opi-activity.opi-activity .challenge > * {
   min-width: 0;
 }
-.opi-activity.opi-activity .prediction__group {
+.opi-activity.opi-activity.opi-activity .prediction__group {
   margin: 0;
   padding: 0;
   border: 0;
 }
-.opi-activity.opi-activity .prediction__legend {
+.opi-activity.opi-activity.opi-activity .prediction__legend {
   padding: 0;
   margin-bottom: var(--space-2);
   font-weight: 650;
   font-size: var(--text-base);
 }
-.opi-activity.opi-activity .prediction .control--choice,
-.opi-activity.opi-activity .challenge .control--choice,
-.opi-activity.opi-activity .evidence .control--choice {
+.opi-activity.opi-activity.opi-activity .prediction .control--choice,
+.opi-activity.opi-activity.opi-activity .challenge .control--choice,
+.opi-activity.opi-activity.opi-activity .evidence .control--choice {
   display: flex;
   align-items: center;
   gap: 9.6px;
@@ -812,20 +836,20 @@
   font-size: var(--text-sm);
   cursor: pointer;
 }
-.opi-activity.opi-activity .prediction .control--choice input,
-.opi-activity.opi-activity .challenge .control--choice input,
-.opi-activity.opi-activity .evidence .control--choice input {
+.opi-activity.opi-activity.opi-activity .prediction .control--choice input,
+.opi-activity.opi-activity.opi-activity .challenge .control--choice input,
+.opi-activity.opi-activity.opi-activity .evidence .control--choice input {
   width: 18.4px;
   height: 18.4px;
   flex: none;
   accent-color: var(--colour-accent);
 }
-.opi-activity.opi-activity .prediction__actions {
+.opi-activity.opi-activity.opi-activity .prediction__actions {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-3);
 }
-.opi-activity.opi-activity .prediction__error {
+.opi-activity.opi-activity.opi-activity .prediction__error {
   margin: 0;
   padding: var(--space-3) var(--space-4);
   border: 1px solid var(--colour-status-border);
@@ -835,7 +859,7 @@
   color: var(--colour-status-text);
   font-size: var(--text-sm);
 }
-.opi-activity.opi-activity .prediction__readback {
+.opi-activity.opi-activity.opi-activity .prediction__readback {
   margin: 0;
   padding: var(--space-3) var(--space-4);
   border: 1px solid var(--colour-border);
@@ -843,7 +867,7 @@
   background-color: var(--colour-surface-raised);
   font-size: var(--text-sm);
 }
-.opi-activity.opi-activity .feedback {
+.opi-activity.opi-activity.opi-activity .feedback {
   padding: var(--space-4);
   border: 1px solid var(--colour-border-strong);
   border-left: 4px solid var(--colour-border-strong);
@@ -851,57 +875,57 @@
   background-color: var(--colour-surface-raised);
   font-size: var(--text-sm);
 }
-.opi-activity.opi-activity .feedback > :last-child {
+.opi-activity.opi-activity.opi-activity .feedback > :last-child {
   margin-bottom: 0;
 }
-.opi-activity.opi-activity .feedback[data-tone="good"] {
+.opi-activity.opi-activity.opi-activity .feedback[data-tone="good"] {
   border-left-color: var(--colour-neuropsychology);
 }
-.opi-activity.opi-activity .feedback[data-tone="caution"] {
+.opi-activity.opi-activity.opi-activity .feedback[data-tone="caution"] {
   border-left-color: var(--colour-cognitive);
 }
-.opi-activity.opi-activity .feedback[data-tone="warn"] {
+.opi-activity.opi-activity.opi-activity .feedback[data-tone="warn"] {
   border-left-color: var(--colour-social-critical-psychology);
 }
-.opi-activity.opi-activity .feedback__verdict {
+.opi-activity.opi-activity.opi-activity .feedback__verdict {
   font-weight: 700;
 }
-.opi-activity.opi-activity .verdict {
+.opi-activity.opi-activity.opi-activity .verdict {
   padding: var(--space-3) var(--space-4);
   border: 1px solid var(--colour-border);
   border-left: 4px solid var(--colour-border-strong);
   border-radius: var(--radius-sm);
   background-color: var(--colour-surface);
 }
-.opi-activity.opi-activity .verdict__title {
+.opi-activity.opi-activity.opi-activity .verdict__title {
   margin: 0 0 var(--space-2);
   font-size: var(--text-sm);
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--colour-text-muted);
 }
-.opi-activity.opi-activity .verdict__body {
+.opi-activity.opi-activity.opi-activity .verdict__body {
   margin: 0;
   font-size: var(--text-sm);
 }
-.opi-activity.opi-activity .verdict__body + .verdict__body {
+.opi-activity.opi-activity.opi-activity .verdict__body + .verdict__body {
   margin-top: var(--space-2);
 }
-.opi-activity.opi-activity .verdict__note {
+.opi-activity.opi-activity.opi-activity .verdict__note {
   margin: var(--space-2) 0 0;
   font-size: var(--text-xs);
   color: var(--colour-text-muted);
 }
-.opi-activity.opi-activity .verdict[data-tone="warn"] {
+.opi-activity.opi-activity.opi-activity .verdict[data-tone="warn"] {
   border-left-color: var(--colour-social-critical-psychology);
 }
-.opi-activity.opi-activity .verdict[data-tone="caution"] {
+.opi-activity.opi-activity.opi-activity .verdict[data-tone="caution"] {
   border-left-color: var(--colour-cognitive);
 }
-.opi-activity.opi-activity .verdict[data-tone="good"] {
+.opi-activity.opi-activity.opi-activity .verdict[data-tone="good"] {
   border-left-color: var(--colour-neuropsychology);
 }
-.opi-activity.opi-activity .goal {
+.opi-activity.opi-activity.opi-activity .goal {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
@@ -914,7 +938,7 @@
   background-color: var(--colour-surface-raised);
   font-size: var(--text-sm);
 }
-.opi-activity.opi-activity .goal__label {
+.opi-activity.opi-activity.opi-activity .goal__label {
   flex: 0 1 auto;
   min-width: 0;
   font-size: var(--text-xs);
@@ -923,25 +947,25 @@
   text-transform: uppercase;
   color: var(--colour-text-muted);
 }
-.opi-activity.opi-activity .goal__text {
+.opi-activity.opi-activity.opi-activity .goal__text {
   flex: 1 1 256px;
 }
-.opi-activity.opi-activity .goal strong {
+.opi-activity.opi-activity.opi-activity .goal strong {
   font-variant-numeric: tabular-nums;
 }
-.opi-activity.opi-activity .goal__checks {
+.opi-activity.opi-activity.opi-activity .goal__checks {
   list-style: none;
   padding: 0;
   margin: var(--space-2) 0 0;
   display: grid;
   gap: 2.4px;
 }
-.opi-activity.opi-activity .goal__checks > li {
+.opi-activity.opi-activity.opi-activity .goal__checks > li {
   margin-top: 0;
   padding-left: 22.4px;
   position: relative;
 }
-.opi-activity.opi-activity .goal__checks > li::before {
+.opi-activity.opi-activity.opi-activity .goal__checks > li::before {
   content: "";
   position: absolute;
   left: 0;
@@ -951,11 +975,11 @@
   border: 2px solid var(--colour-border-strong);
   border-radius: 2px;
 }
-.opi-activity.opi-activity .goal__checks > li[data-met="yes"]::before {
+.opi-activity.opi-activity.opi-activity .goal__checks > li[data-met="yes"]::before {
   border-color: var(--colour-accent);
   background-color: var(--colour-accent);
 }
-.opi-activity.opi-activity .stage-track {
+.opi-activity.opi-activity.opi-activity .stage-track {
   list-style: none;
   padding: 0;
   margin: 0 0 var(--space-5);
@@ -964,7 +988,7 @@
   gap: var(--space-2);
   font-size: var(--text-sm);
 }
-.opi-activity.opi-activity .stage-track > li {
+.opi-activity.opi-activity.opi-activity .stage-track > li {
   margin-top: 0;
   flex: 1 1 160px;
   padding: var(--space-2) var(--space-3);
@@ -974,130 +998,131 @@
   background-color: var(--colour-surface);
   color: var(--colour-text-muted);
 }
-.opi-activity.opi-activity .stage-track > li > span {
+.opi-activity.opi-activity.opi-activity .stage-track > li > span {
   font-variant-numeric: tabular-nums;
   font-weight: 700;
 }
-.opi-activity.opi-activity .stage-track > li[data-state="done"] {
+.opi-activity.opi-activity.opi-activity .stage-track > li[data-state="done"] {
   border-bottom-color: var(--colour-border-strong);
   color: var(--colour-text);
 }
-.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+.opi-activity.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
   border-bottom-color: var(--colour-accent);
   background-color: var(--colour-accent-soft);
   color: var(--colour-text);
   font-weight: 650;
 }
-.opi-activity.opi-activity .stage__heading {
+.opi-activity.opi-activity.opi-activity .stage__heading {
   margin: 0;
   font-size: var(--text-base);
 }
-.opi-activity.opi-activity .data-table,
-.opi-activity.opi-activity .chart__table {
+.opi-activity.opi-activity.opi-activity .data-table,
+.opi-activity.opi-activity.opi-activity .chart__table {
   width: 100%;
   border-collapse: collapse;
   font-size: var(--text-sm);
 }
-.opi-activity.opi-activity .data-table th,
-.opi-activity.opi-activity .data-table td,
-.opi-activity.opi-activity .chart__table th,
-.opi-activity.opi-activity .chart__table td {
+.opi-activity.opi-activity.opi-activity .data-table th,
+.opi-activity.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity.opi-activity .chart__table th,
+.opi-activity.opi-activity.opi-activity .chart__table td {
   padding: 6.4px 9.6px;
   border: 1px solid var(--colour-border);
   text-align: left;
   vertical-align: top;
+  color: var(--colour-text);
 }
-.opi-activity.opi-activity .data-table thead th,
-.opi-activity.opi-activity .chart__table thead th {
+.opi-activity.opi-activity.opi-activity .data-table thead th,
+.opi-activity.opi-activity.opi-activity .chart__table thead th {
   background-color: var(--colour-surface);
   font-size: var(--text-xs);
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--colour-text-muted);
 }
-.opi-activity.opi-activity .data-table td,
-.opi-activity.opi-activity .chart__table td {
+.opi-activity.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity.opi-activity .chart__table td {
   font-variant-numeric: tabular-nums;
 }
-.opi-activity.opi-activity .chart__table tbody th,
-.opi-activity.opi-activity .data-table tbody th {
+.opi-activity.opi-activity.opi-activity .chart__table tbody th,
+.opi-activity.opi-activity.opi-activity .data-table tbody th {
   font-weight: 550;
 }
-.opi-activity.opi-activity .data-table__total > th,
-.opi-activity.opi-activity .data-table__total > td {
+.opi-activity.opi-activity.opi-activity .data-table__total > th,
+.opi-activity.opi-activity.opi-activity .data-table__total > td {
   border-top: 2px solid var(--colour-border-strong);
   font-weight: 650;
 }
-.opi-activity.opi-activity .chart {
+.opi-activity.opi-activity.opi-activity .chart {
   margin: 0;
   display: grid;
   gap: var(--space-3);
 }
-.opi-activity.opi-activity .chart__caption {
+.opi-activity.opi-activity.opi-activity .chart__caption {
   font-size: var(--text-sm);
   font-weight: 650;
 }
-.opi-activity.opi-activity .chart__svg {
+.opi-activity.opi-activity.opi-activity .chart__svg {
   max-width: 100%;
   height: auto;
 }
-.opi-activity.opi-activity .chart__label,
-.opi-activity.opi-activity .chart__count,
-.opi-activity.opi-activity .chart__inline,
-.opi-activity.opi-activity .chart__axis {
+.opi-activity.opi-activity.opi-activity .chart__label,
+.opi-activity.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity.opi-activity .chart__inline,
+.opi-activity.opi-activity.opi-activity .chart__axis {
   font-family: var(--font-body);
   fill: var(--colour-text);
   font-size: 13px;
 }
-.opi-activity.opi-activity .chart__count,
-.opi-activity.opi-activity .chart__axis {
+.opi-activity.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity.opi-activity .chart__axis {
   fill: var(--colour-text-muted);
   font-variant-numeric: tabular-nums;
 }
-.opi-activity.opi-activity .chart__inline {
+.opi-activity.opi-activity.opi-activity .chart__inline {
   fill: var(--colour-on-accent);
   font-size: 12px;
   font-weight: 650;
 }
-.opi-activity.opi-activity .chart__track {
+.opi-activity.opi-activity.opi-activity .chart__track {
   fill: var(--colour-surface);
   stroke: var(--colour-border);
   stroke-width: 1;
 }
-.opi-activity.opi-activity .chart__bar {
+.opi-activity.opi-activity.opi-activity .chart__bar {
   fill: var(--colour-accent);
 }
-.opi-activity.opi-activity .chart__bar--one {
+.opi-activity.opi-activity.opi-activity .chart__bar--one {
   fill: var(--colour-accent);
 }
-.opi-activity.opi-activity .chart__bar--two {
+.opi-activity.opi-activity.opi-activity .chart__bar--two {
   fill: var(--colour-personality-individual-differences);
 }
-.opi-activity.opi-activity .chart__baseline,
-.opi-activity.opi-activity .chart__grid {
+.opi-activity.opi-activity.opi-activity .chart__baseline,
+.opi-activity.opi-activity.opi-activity .chart__grid {
   stroke: var(--colour-border);
   stroke-width: 1;
 }
-.opi-activity.opi-activity .chart__line {
+.opi-activity.opi-activity.opi-activity .chart__line {
   fill: none;
   stroke: var(--colour-accent);
   stroke-width: 2.5;
 }
-.opi-activity.opi-activity .chart__line--two {
+.opi-activity.opi-activity.opi-activity .chart__line--two {
   stroke: var(--colour-personality-individual-differences);
   stroke-dasharray: 6 4;
 }
-.opi-activity.opi-activity .chart__point {
+.opi-activity.opi-activity.opi-activity .chart__point {
   fill: var(--colour-accent);
 }
-.opi-activity.opi-activity .reveal > :last-child {
+.opi-activity.opi-activity.opi-activity .reveal > :last-child {
   margin-bottom: 0;
 }
-.opi-activity.opi-activity .reveal__lead {
+.opi-activity.opi-activity.opi-activity .reveal__lead {
   font-size: var(--text-lg);
   font-weight: 600;
 }
-.opi-activity.opi-activity .reveal__figures {
+.opi-activity.opi-activity.opi-activity .reveal__figures {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(176px, 1fr));
   gap: var(--space-3);
@@ -1105,77 +1130,77 @@
   padding: 0;
   list-style: none;
 }
-.opi-activity.opi-activity .reveal__figures > li {
+.opi-activity.opi-activity.opi-activity .reveal__figures > li {
   margin-top: 0;
   padding: var(--space-3);
   border: 1px solid var(--colour-border);
   border-radius: var(--radius-sm);
   background-color: var(--colour-surface-raised);
 }
-.opi-activity.opi-activity .reveal__figure-label {
+.opi-activity.opi-activity.opi-activity .reveal__figure-label {
   display: block;
   font-size: var(--text-xs);
   color: var(--colour-text-muted);
 }
-.opi-activity.opi-activity .reveal__figure-value {
+.opi-activity.opi-activity.opi-activity .reveal__figure-value {
   display: block;
   font-size: var(--text-xl);
   font-weight: 650;
   font-variant-numeric: tabular-nums;
 }
-.opi-activity.opi-activity .challenge {
+.opi-activity.opi-activity.opi-activity .challenge {
   display: grid;
   gap: var(--space-4);
   align-content: start;
 }
-.opi-activity.opi-activity .challenge__locked {
+.opi-activity.opi-activity.opi-activity .challenge__locked {
   margin: 0;
   font-size: var(--text-sm);
   color: var(--colour-text-muted);
 }
-.opi-activity.opi-activity .panel--caution {
+.opi-activity.opi-activity.opi-activity .panel--caution {
   background-color: var(--colour-status-bg);
   border-color: var(--colour-status-border);
 }
-.opi-activity.opi-activity .panel--caution li + li {
+.opi-activity.opi-activity.opi-activity .panel--caution li + li {
   margin-top: var(--space-3);
 }
 @media (forced-colors: active) {
-.opi-activity.opi-activity .goal,
-.opi-activity.opi-activity .verdict,
-.opi-activity.opi-activity .feedback,
-.opi-activity.opi-activity .prediction__error,
-.opi-activity.opi-activity .prediction__readback,
-.opi-activity.opi-activity .stage-track > li,
-.opi-activity.opi-activity .reveal__figures > li {
+.opi-activity.opi-activity.opi-activity .goal,
+.opi-activity.opi-activity.opi-activity .verdict,
+.opi-activity.opi-activity.opi-activity .feedback,
+.opi-activity.opi-activity.opi-activity .prediction__error,
+.opi-activity.opi-activity.opi-activity .prediction__readback,
+.opi-activity.opi-activity.opi-activity .stage-track > li,
+.opi-activity.opi-activity.opi-activity .reveal__figures > li {
   border: 1px solid CanvasText;
 }
-.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+.opi-activity.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
   border: 2px solid Highlight;
 }
-.opi-activity.opi-activity .chart__bar,
-.opi-activity.opi-activity .chart__bar--one {
+.opi-activity.opi-activity.opi-activity .chart__bar,
+.opi-activity.opi-activity.opi-activity .chart__bar--one {
   fill: CanvasText;
 }
-.opi-activity.opi-activity .chart__bar--two {
+.opi-activity.opi-activity.opi-activity .chart__bar--two {
   fill: Highlight;
 }
-.opi-activity.opi-activity .chart__inline {
+.opi-activity.opi-activity.opi-activity .chart__inline {
   fill: Canvas;
 }
-.opi-activity.opi-activity .chart__line {
+.opi-activity.opi-activity.opi-activity .chart__line {
   stroke: CanvasText;
 }
-.opi-activity.opi-activity .chart__line--two {
+.opi-activity.opi-activity.opi-activity .chart__line--two {
   stroke: Highlight;
 }
 }
-.opi-activity.opi-activity .stage__more {
+.opi-activity.opi-activity.opi-activity .stage__more {
   border: 1px solid var(--colour-border);
   border-radius: var(--radius-sm);
   background-color: var(--colour-surface);
 }
-.opi-activity.opi-activity .stage__more > summary {
+.opi-activity.opi-activity.opi-activity .stage__more > summary {
   padding: var(--space-2) var(--space-3);
   font-size: var(--text-sm);
   font-weight: 600;
@@ -1184,58 +1209,131 @@
   display: flex;
   align-items: center;
 }
-.opi-activity.opi-activity .stage__more[open] > summary {
+.opi-activity.opi-activity.opi-activity .stage__more[open] > summary {
   border-bottom: 1px solid var(--colour-border);
 }
-.opi-activity.opi-activity .stage__more > *:not(summary) {
+.opi-activity.opi-activity.opi-activity .stage__more > *:not(summary) {
   margin: var(--space-3);
+}
+.opi-activity.opi-activity.opi-activity .activity-utilities {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-3) var(--space-4);
+  margin-top: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border: 1px dashed var(--colour-border);
+  border-radius: var(--radius-sm);
+}
+.opi-activity.opi-activity.opi-activity .activity-utilities button {
+  min-height: 44px;
+  padding: 6.4px 16px;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--colour-text);
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border-strong, var(--colour-border));
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+.opi-activity.opi-activity.opi-activity .activity-utilities button:hover {
+  background-color: var(--colour-page);
+}
+.opi-activity.opi-activity.opi-activity .activity-utilities button[aria-busy="true"] {
+  cursor: progress;
+}
+.opi-activity.opi-activity.opi-activity .activity-utilities button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.opi-activity.opi-activity.opi-activity .activity-utilities button[data-copy-state="ok"] {
+  border-color: var(--colour-neuropsychology);
+  box-shadow: inset 0 0 0 1px var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity.opi-activity .activity-utilities button[aria-pressed="true"] {
+  border-color: var(--colour-accent);
+  box-shadow: inset 0 0 0 1px var(--colour-accent);
+}
+.opi-activity.opi-activity.opi-activity .activity-utilities__copy {
+  display: flex;
+  flex: 1 1 320px;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-3) var(--space-4);
+}
+.opi-activity.opi-activity.opi-activity .activity-utilities__note {
+  flex: 1 1 256px;
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity.opi-activity .activity-utilities button {
+  border: 1px solid ButtonBorder;
+}
+.opi-activity.opi-activity.opi-activity .activity-utilities button[aria-pressed="true"] {
+  border: 2px solid Highlight;
+}
+}
+.opi-activity:fullscreen,
+.opi-activity.opi-activity.opi-activity main:fullscreen,
+.opi-activity.opi-activity.opi-activity .interactive:fullscreen {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background-color: var(--colour-page);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity.opi-activity main:fullscreen > .section:first-child,
+.opi-activity:fullscreen > .section:first-child {
+  padding-top: var(--space-5);
 }
 
 /* modules/research-methods/tools/02-operationalisation-laboratory/tool.css */
-.opi-activity.opi-activity #page-heading {
+.opi-activity.opi-activity.opi-activity #page-heading {
   overflow-wrap: break-word;
 }
-.opi-activity.opi-activity #operationalise .interactive__controls,
-.opi-activity.opi-activity #operationalise .interactive__stage {
+.opi-activity.opi-activity.opi-activity #operationalise .interactive__controls,
+.opi-activity.opi-activity.opi-activity #operationalise .interactive__stage {
   min-width: 0;
 }
-.opi-activity.opi-activity #operationalise .interactive__stage > * {
+.opi-activity.opi-activity.opi-activity #operationalise .interactive__stage > * {
   min-width: 0;
 }
 @media (min-width: 52em) {
-.opi-activity.opi-activity #operationalise .interactive__body {
+.opi-activity.opi-activity.opi-activity #operationalise .interactive__body {
   grid-template-columns: minmax(0, 336px) minmax(0, 1fr);
 }
 }
-.opi-activity.opi-activity .measure {
+.opi-activity.opi-activity.opi-activity .measure {
   display: block;
   padding: var(--space-2) 0;
   border-top: 1px solid var(--colour-border);
 }
-.opi-activity.opi-activity .measure:first-child {
+.opi-activity.opi-activity.opi-activity .measure:first-child {
   border-top: 0;
 }
-.opi-activity.opi-activity .measure__row {
+.opi-activity.opi-activity.opi-activity .measure__row {
   display: flex;
   align-items: flex-start;
   gap: 9.6px;
   min-height: 44px;
   cursor: pointer;
 }
-.opi-activity.opi-activity .measure__row input {
+.opi-activity.opi-activity.opi-activity .measure__row input {
   width: 18.4px;
   height: 18.4px;
   flex: none;
   margin-top: 8.8px;
   accent-color: var(--colour-accent);
 }
-.opi-activity.opi-activity .measure__name {
+.opi-activity.opi-activity.opi-activity .measure__name {
   font-size: var(--text-sm);
   font-weight: 600;
   line-height: 1.4;
   padding-top: 5.6px;
 }
-.opi-activity.opi-activity .measure__family {
+.opi-activity.opi-activity.opi-activity .measure__family {
   display: block;
   font-weight: 400;
   font-size: var(--text-xs);
@@ -1243,12 +1341,12 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
-.opi-activity.opi-activity .coverage {
+.opi-activity.opi-activity.opi-activity .coverage {
   display: grid;
   gap: 6.4px;
   margin-bottom: var(--space-4);
 }
-.opi-activity.opi-activity .coverage__row {
+.opi-activity.opi-activity.opi-activity .coverage__row {
   display: grid;
   grid-template-columns: minmax(96px, 160px) 1fr;
   gap: 4px var(--space-3);
@@ -1256,19 +1354,19 @@
   font-size: var(--text-sm);
 }
 @media (max-width: 30em) {
-.opi-activity.opi-activity .coverage__row {
+.opi-activity.opi-activity.opi-activity .coverage__row {
   grid-template-columns: 1fr;
 }
 }
-.opi-activity.opi-activity .coverage__facet {
+.opi-activity.opi-activity.opi-activity .coverage__facet {
   font-weight: 600;
 }
-.opi-activity.opi-activity .coverage__meter {
+.opi-activity.opi-activity.opi-activity .coverage__meter {
   display: flex;
   align-items: center;
   gap: var(--space-3);
 }
-.opi-activity.opi-activity .coverage__track {
+.opi-activity.opi-activity.opi-activity .coverage__track {
   flex: 1 1 64px;
   min-width: 48px;
   height: 13.6px;
@@ -1277,32 +1375,32 @@
   background-color: var(--colour-surface);
   overflow: hidden;
 }
-.opi-activity.opi-activity .coverage__fill {
+.opi-activity.opi-activity.opi-activity .coverage__fill {
   display: block;
   height: 100%;
   background-color: var(--colour-accent);
   transition: width 180ms ease-out;
 }
-.opi-activity.opi-activity .coverage__row[data-level="0"] .coverage__fill {
+.opi-activity.opi-activity.opi-activity .coverage__row[data-level="0"] .coverage__fill {
   background-color: transparent;
 }
-.opi-activity.opi-activity .coverage__word {
+.opi-activity.opi-activity.opi-activity .coverage__word {
   flex: 0 0 auto;
   font-size: var(--text-xs);
   font-variant: small-caps;
   letter-spacing: 0.03em;
   color: var(--colour-text-muted);
 }
-.opi-activity.opi-activity .coverage__row[data-level="0"] .coverage__word {
+.opi-activity.opi-activity.opi-activity .coverage__row[data-level="0"] .coverage__word {
   color: var(--colour-status-text);
   font-weight: 700;
 }
 @media (prefers-reduced-motion: reduce) {
-.opi-activity.opi-activity .coverage__fill {
+.opi-activity.opi-activity.opi-activity .coverage__fill {
   transition: none;
 }
 }
-.opi-activity.opi-activity .contam {
+.opi-activity.opi-activity.opi-activity .contam {
   margin: 0 0 var(--space-3);
   padding: var(--space-3);
   border: 1px solid var(--colour-border);
@@ -1311,33 +1409,33 @@
   background-color: var(--colour-surface);
   font-size: var(--text-sm);
 }
-.opi-activity.opi-activity .contam:last-child {
+.opi-activity.opi-activity.opi-activity .contam:last-child {
   margin-bottom: 0;
 }
-.opi-activity.opi-activity .contam__name {
+.opi-activity.opi-activity.opi-activity .contam__name {
   margin: 0 0 var(--space-2);
   font-size: var(--text-sm);
   font-weight: 700;
 }
-.opi-activity.opi-activity .contam__list {
+.opi-activity.opi-activity.opi-activity .contam__list {
   margin: 0;
   padding-left: 19.2px;
 }
-.opi-activity.opi-activity .contam__list li + li {
+.opi-activity.opi-activity.opi-activity .contam__list li + li {
   margin-top: 3.2px;
 }
-.opi-activity.opi-activity .contam__empty {
+.opi-activity.opi-activity.opi-activity .contam__empty {
   margin: 0;
   font-size: var(--text-sm);
   color: var(--colour-text-muted);
 }
 @media (forced-colors: active) {
-.opi-activity.opi-activity .coverage__track,
-.opi-activity.opi-activity .contam,
-.opi-activity.opi-activity .measure {
+.opi-activity.opi-activity.opi-activity .coverage__track,
+.opi-activity.opi-activity.opi-activity .contam,
+.opi-activity.opi-activity.opi-activity .measure {
   border-color: CanvasText;
 }
-.opi-activity.opi-activity .coverage__fill {
+.opi-activity.opi-activity.opi-activity .coverage__fill {
   background-color: Highlight;
 }
 }
@@ -1711,6 +1809,22 @@
     </div>
   </section>
 
+  <!-- Utility controls, last inside <main> so that they do not sit in a
+       section that starts hidden: a lecturer should not have to work through
+       an activity to expand or copy it. Full screen travels into an exported
+       copy, because it is a usability control and most useful precisely when
+       the activity is embedded in somebody else's page. -->
+  <div class="section" data-activity-utilities>
+    <div class="container">
+      <div class="activity-utilities">
+        <div data-activity-fullscreen>
+          <button type="button" data-fullscreen-toggle aria-pressed="false">
+            Full screen
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 
@@ -2007,6 +2121,202 @@
     attach: attach,
     prefersReducedMotion: prefersReducedMotion
   };
+})(window);
+
+/* ---- components/activity-fullscreen.js ---- */
+/* =========================================================================
+   Open Psychology Interactives — full-screen control for one activity
+   -------------------------------------------------------------------------
+   Puts a single activity full screen, which matters most when it has been
+   embedded in a teaching page: the surrounding page furniture goes away and
+   the interactive gets the whole display.
+
+   Unlike the "Copy activity HTML" control, this one *is* part of the copied
+   payload. A lecturer who pastes an activity into their own page should still
+   be able to expand it, so scripts/build-standalone.py keeps this block and
+   inlines this script.
+
+   Markup contract:
+
+       <div class="activity-utilities" data-activity-fullscreen>
+         <button type="button" data-fullscreen-toggle
+                 aria-pressed="false">Full screen</button>
+       </div>
+
+   The element that goes full screen is the closest `.opi-activity` wrapper if
+   there is one — which is the case in an exported copy — and otherwise the
+   nearest `.interactive` or the page's <main>. That is what keeps the site
+   version from putting the whole page, header and footer included, full
+   screen.
+
+   Exposed as a global rather than an ES module, for the same reason as the
+   rest of the collection: a tool folder opened straight from disk over file://
+   cannot load modules.
+   ========================================================================= */
+
+(function (global) {
+  "use strict";
+
+  var doc = global.document;
+
+  var LABEL_ENTER = "Full screen";
+  var LABEL_EXIT = "Exit full screen";
+
+  /* -----------------------------------------------------------------------
+     Feature detection
+     -----------------------------------------------------------------------
+     Two separate questions, and they have different answers:
+
+       * does this browser have the API at all?
+       * is this document *permitted* to use it?
+
+     An <iframe> without `allow="fullscreen"` has the methods but every call
+     rejects. `document.fullscreenEnabled` is the check for permission, and it
+     is the one that matters in a VLE, where the activity may well be inside a
+     sandboxed frame. When it says no, the control is removed rather than left
+     to fail on click.
+     --------------------------------------------------------------------- */
+
+  function apiFor(element) {
+    if (element.requestFullscreen) {
+      return {
+        request: "requestFullscreen",
+        exit: "exitFullscreen",
+        element: "fullscreenElement",
+        enabled: "fullscreenEnabled",
+        event: "fullscreenchange",
+        error: "fullscreenerror"
+      };
+    }
+    if (element.webkitRequestFullscreen) {
+      return {
+        request: "webkitRequestFullscreen",
+        exit: "webkitExitFullscreen",
+        element: "webkitFullscreenElement",
+        enabled: "webkitFullscreenEnabled",
+        event: "webkitfullscreenchange",
+        error: "webkitfullscreenerror"
+      };
+    }
+    return null;
+  }
+
+  /* -----------------------------------------------------------------------
+     Wiring
+     --------------------------------------------------------------------- */
+
+  /**
+   * The element that should fill the screen: the exported wrapper when there
+   * is one, else the interactive, else <main>. Never <body>, because on the
+   * site that would take the header and footer with it.
+   * @param {Element} button
+   * @returns {Element|null}
+   */
+  function targetFor(button) {
+    return (
+      button.closest(".opi-activity") ||
+      doc.querySelector(".opi-activity") ||
+      button.closest("main") ||
+      doc.querySelector(".interactive") ||
+      doc.querySelector("main")
+    );
+  }
+
+  function initButton(button) {
+    var target = targetFor(button);
+    if (!target) {
+      return;
+    }
+
+    var api = apiFor(target);
+    var container = button.closest("[data-activity-fullscreen]") || button.parentNode;
+
+    // No API, or the frame is not allowed to use it: remove the control
+    // rather than leave something that looks pressable and is not.
+    if (!api || doc[api.enabled] === false) {
+      if (container && container.hasAttribute("data-activity-fullscreen")) {
+        container.hidden = true;
+      } else {
+        button.hidden = true;
+      }
+      return;
+    }
+
+    /* A polite live region, because the label change on a button the reader
+       has just pressed is announced inconsistently, and entering full screen
+       is a large change of context. */
+    var live = doc.createElement("p");
+    live.className = "visually-hidden";
+    live.setAttribute("role", "status");
+    container.appendChild(live);
+
+    function isActive() {
+      return doc[api.element] === target;
+    }
+
+    function render() {
+      var active = isActive();
+      button.textContent = active ? LABEL_EXIT : LABEL_ENTER;
+      button.setAttribute("aria-pressed", active ? "true" : "false");
+      target.setAttribute("data-fullscreen", active ? "on" : "off");
+    }
+
+    button.addEventListener("click", function () {
+      if (isActive()) {
+        if (doc[api.exit]) { doc[api.exit](); }
+        return;
+      }
+      var result;
+      try {
+        result = target[api.request]();
+      } catch (error) {
+        result = null;
+      }
+      // Blocked by permissions policy, or refused because the click was not
+      // treated as a user gesture. Say so once and leave the control alone.
+      if (result && typeof result.catch === "function") {
+        result.catch(function () {
+          live.textContent =
+            "This page is not allowed to use full screen. Open the activity " +
+            "in its own tab instead.";
+        });
+      }
+    });
+
+    /* Driven by the event, not by the click, so that leaving full screen with
+       Escape — which fires no click — updates the label too. */
+    doc.addEventListener(api.event, function () {
+      render();
+      if (doc[api.element] === target) {
+        live.textContent = "Full screen. Press Escape to leave it.";
+        // Keep the keyboard where it was. The button travels into full
+        // screen with the activity, so it can hold focus.
+        if (doc.activeElement === doc.body) { button.focus(); }
+      } else if (button.getAttribute("aria-pressed") === "false") {
+        live.textContent = "";
+      }
+    });
+
+    doc.addEventListener(api.error, function () {
+      live.textContent = "Full screen could not be started.";
+      render();
+    });
+
+    render();
+  }
+
+  function init() {
+    var buttons = doc.querySelectorAll("[data-fullscreen-toggle]");
+    Array.prototype.forEach.call(buttons, initButton);
+  }
+
+  if (doc.readyState === "loading") {
+    doc.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+
+  global.ActivityFullscreen = { init: init };
 })(window);
 
 /* ---- modules/research-methods/tools/02-operationalisation-laboratory/tool.js ---- */
