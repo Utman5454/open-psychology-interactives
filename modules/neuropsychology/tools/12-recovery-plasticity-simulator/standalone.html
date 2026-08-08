@@ -1,0 +1,3169 @@
+<!-- Recovery and Plasticity Simulator
+     From Open Psychology Interactives - https://github.com/utman5454/open-psychology-interactives
+     Self-contained: no stylesheets, scripts, fonts, images or network requests.
+     Styles are scoped to .opi-activity and do not affect the page around them.
+     Nothing is saved, sent or tracked. MIT licensed; please keep this notice.
+     Paste anywhere that accepts HTML, or save as a .html file and open it. -->
+<div class="opi-activity">
+<style>
+/* Defensive baseline. See scripts/build-standalone.py for why this
+   is `revert` rather than an enumerated reset, and how the specificity ladder
+   keeps the activity's own styling on top of it. */
+.opi-activity *:not(svg *) {
+  all: revert;
+}
+.opi-activity, .opi-activity *, .opi-activity *::before, .opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  text-transform: none;
+  text-indent: 0;
+  font-style: normal;
+  font-variant: normal;
+  letter-spacing: normal;
+  word-spacing: normal;
+  white-space: normal;
+  visibility: visible;
+  float: none;
+  max-width: none;
+}
+.opi-activity svg { max-width: 100%; }
+.opi-activity img { max-width: 100%; height: auto; }
+.opi-activity [hidden] { display: none !important; }
+
+/* assets/css/main.css */
+.opi-activity.opi-activity {
+  --colour-page: #ffffff;
+  --colour-surface: #f5f7fa;
+  --colour-surface-raised: #ffffff;
+  --colour-border: #d3d9e2;
+  --colour-border-strong: #aeb7c4;
+  --colour-text: #131820;
+  --colour-text-muted: #4c566a;
+  --colour-accent: #1a4fa0;
+  --colour-accent-hover: #123a7a;
+  --colour-accent-soft: #e8eefb;
+  --colour-on-accent: #ffffff;
+  --colour-focus: #b45309;
+  --colour-cognitive: #8a4b00;
+  --colour-research-methods: #1a4fa0;
+  --colour-neuropsychology: #145c53;
+  --colour-social-critical-psychology: #9e2f45;
+  --colour-personality-individual-differences: #7a2e6d;
+  --colour-status-bg: #f1ede3;
+  --colour-status-text: #5c4a1f;
+  --colour-status-border: #d9cdb0;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  --text-xs: 13px;
+  --text-sm: 15px;
+  --text-base: 17px;
+  --text-lg: 19px;
+  --text-xl: 23px;
+  --text-2xl: 28px;
+  --text-3xl: 36px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgb(19 24 32 / 0.06);
+  --shadow-md: 0 2px 8px rgb(19 24 32 / 0.08);
+  --measure: 68ch;
+  --container: 1152px;
+}
+@media (prefers-color-scheme: dark) {
+.opi-activity.opi-activity {
+  --colour-page: #0f141b;
+  --colour-surface: #161d27;
+  --colour-surface-raised: #1a2230;
+  --colour-border: #2c3644;
+  --colour-border-strong: #44506180;
+  --colour-text: #e9edf3;
+  --colour-text-muted: #a8b2c1;
+  --colour-accent: #8fb6ff;
+  --colour-accent-hover: #b3cdff;
+  --colour-accent-soft: #1b2740;
+  --colour-on-accent: #0f141b;
+  --colour-focus: #f0b429;
+  --colour-cognitive: #e2ab5f;
+  --colour-research-methods: #8fb6ff;
+  --colour-neuropsychology: #6fc3b4;
+  --colour-social-critical-psychology: #f19aa8;
+  --colour-personality-individual-differences: #db9ccd;
+  --colour-status-bg: #241f14;
+  --colour-status-text: #e2cf9f;
+  --colour-status-border: #4a4028;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 2px 10px rgb(0 0 0 / 0.45);
+}
+}
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity.opi-activity {
+  -webkit-text-size-adjust: 100%;
+}
+.opi-activity.opi-activity {
+  background-color: var(--colour-page);
+  color: var(--colour-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.65;
+}
+.opi-activity.opi-activity h1,
+.opi-activity.opi-activity h2,
+.opi-activity.opi-activity h3,
+.opi-activity.opi-activity h4 {
+  margin: 0 0 var(--space-3);
+  line-height: 1.25;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.opi-activity.opi-activity h1 {
+  font-size: var(--text-3xl);
+}
+.opi-activity.opi-activity h2 {
+  font-size: var(--text-2xl);
+}
+.opi-activity.opi-activity h3 {
+  font-size: var(--text-xl);
+}
+.opi-activity.opi-activity h4 {
+  font-size: var(--text-lg);
+}
+.opi-activity.opi-activity p,
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol,
+.opi-activity.opi-activity dl {
+  margin: 0 0 var(--space-4);
+}
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol {
+  padding-left: 1.35em;
+}
+.opi-activity.opi-activity li + li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity a {
+  color: var(--colour-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: max(1px, 0.06em);
+}
+.opi-activity.opi-activity a:hover {
+  color: var(--colour-accent-hover);
+  text-decoration-thickness: max(2px, 0.11em);
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid var(--colour-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+@supports not selector(:focus-visible) {
+.opi-activity.opi-activity :focus {
+  outline: 3px solid var(--colour-focus);
+    outline-offset: 2px;
+}
+}
+.opi-activity.opi-activity code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.35em;
+}
+.opi-activity.opi-activity hr {
+  border: 0;
+  border-top: 1px solid var(--colour-border);
+  margin: var(--space-6) 0;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+}
+.opi-activity.opi-activity .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.opi-activity.opi-activity .container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+@media (min-width: 40em) {
+.opi-activity.opi-activity .container {
+  padding-inline: var(--space-5);
+}
+}
+.opi-activity.opi-activity .prose {
+  max-width: var(--measure);
+}
+.opi-activity.opi-activity .text-muted {
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .section {
+  padding-block: var(--space-7);
+}
+.opi-activity.opi-activity .section--tinted {
+  background-color: var(--colour-surface);
+  border-block: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .section__header {
+  max-width: var(--measure);
+  margin-bottom: var(--space-5);
+}
+.opi-activity.opi-activity .section__header > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-7) var(--space-6);
+  border-bottom: 1px solid var(--colour-border);
+  
+  background-image: linear-gradient(
+    180deg,
+    var(--colour-accent-soft) 0%,
+    var(--colour-page) 100%
+  );
+}
+.opi-activity.opi-activity .hero__eyebrow {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .hero h1 {
+  max-width: 20ch;
+  margin-bottom: var(--space-4);
+}
+.opi-activity.opi-activity .hero__lead {
+  max-width: var(--measure);
+  font-size: var(--text-lg);
+  color: var(--colour-text-muted);
+}
+@media (min-width: 48em) {
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-8) var(--space-7);
+}
+.opi-activity.opi-activity .hero h1 {
+  font-size: 44px;
+}
+}
+.opi-activity.opi-activity .button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  
+  min-height: 44px;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .button--primary {
+  background-color: var(--colour-accent);
+  border-color: var(--colour-accent);
+  
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--primary:hover {
+  background-color: var(--colour-accent-hover);
+  border-color: var(--colour-accent-hover);
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--secondary {
+  background-color: transparent;
+  border-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .button--secondary:hover {
+  background-color: var(--colour-surface);
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+}
+.opi-activity.opi-activity .card--cognitive {
+  --card-accent: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .card--research-methods {
+  --card-accent: var(--colour-research-methods);
+}
+.opi-activity.opi-activity .card--neuropsychology {
+  --card-accent: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .card--social-critical-psychology {
+  --card-accent: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .card--personality-individual-differences {
+  --card-accent: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 650;
+  line-height: 1.4;
+  padding: 3.2px var(--space-3);
+  border-radius: 999px;
+  border: 1px solid var(--colour-status-border);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+}
+.opi-activity.opi-activity .badge__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex: none;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed var(--colour-border-strong);
+  border-radius: var(--radius-lg);
+  background-color: var(--colour-surface);
+  padding: var(--space-5);
+  text-align: left;
+}
+.opi-activity.opi-activity .placeholder__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+}
+.opi-activity.opi-activity .placeholder > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .split {
+  display: grid;
+  gap: var(--space-6);
+}
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split {
+  grid-template-columns: 3fr 2fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .panel {
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.opi-activity.opi-activity .panel > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .panel__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .section--tinted {
+  border-block: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .hero {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .button--primary {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .button--secondary {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .button:hover {
+  border-color: Highlight;
+}
+.opi-activity.opi-activity .panel {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed CanvasText;
+}
+.opi-activity.opi-activity .badge {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .badge__dot {
+  background-color: CanvasText;
+}
+.opi-activity.opi-activity code {
+  border-color: CanvasText;
+}
+.opi-activity.opi-activity hr {
+  border-top-color: CanvasText;
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+}
+@media print {
+.opi-activity.opi-activity {
+  color: #000;
+  background: #fff;
+}
+.opi-activity.opi-activity a[href^="http"]::after {
+  content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+}
+}
+
+/* components/interactive-shell.css */
+.opi-activity.opi-activity .interactive {
+  --shell-page: var(--colour-page, #ffffff);
+  --shell-surface: var(--colour-surface, #f5f7fa);
+  --shell-raised: var(--colour-surface-raised, #ffffff);
+  --shell-border: var(--colour-border, #d3d9e2);
+  --shell-border-strong: var(--colour-border-strong, #aeb7c4);
+  --shell-text: var(--colour-text, #131820);
+  --shell-muted: var(--colour-text-muted, #4c566a);
+  --shell-accent: var(--colour-accent, #1a4fa0);
+  --shell-accent-soft: var(--colour-accent-soft, #e8eefb);
+  
+  --shell-on-accent: var(--colour-on-accent, #ffffff);
+  --shell-focus: var(--colour-focus, #b45309);
+  --shell-radius: var(--radius-lg, 12px);
+  --shell-gap: var(--space-5, 24px);
+
+  display: block;
+  background-color: var(--shell-raised);
+  color: var(--shell-text);
+  border: 1px solid var(--shell-border);
+  border-radius: var(--shell-radius);
+  
+  overflow-x: clip;
+  overflow-y: visible;
+}
+.opi-activity.opi-activity .interactive__header {
+  padding: var(--shell-gap);
+  border-bottom: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 1.25;
+}
+.opi-activity.opi-activity .interactive__brief {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--shell-muted);
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__body {
+  display: grid;
+  gap: var(--shell-gap);
+  padding: var(--shell-gap);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body {
+  grid-template-columns: minmax(240px, 320px) 1fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .interactive__controls {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__controls fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .interactive__controls legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .control {
+  display: grid;
+  gap: 5.6px;
+}
+.opi-activity.opi-activity .control + .control {
+  margin-top: 16px;
+}
+.opi-activity.opi-activity .control__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.opi-activity.opi-activity .control__label {
+  font-size: 15px;
+  font-weight: 600;
+}
+.opi-activity.opi-activity .control__value {
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--shell-accent);
+}
+.opi-activity.opi-activity .control__hint {
+  font-size: 13px;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .interactive__controls input[type="range"] {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--shell-accent);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  width: 100%;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--shell-text);
+  background-color: var(--shell-raised);
+  border: 1px solid var(--shell-border-strong);
+  border-radius: var(--radius-sm, 4px);
+}
+.opi-activity.opi-activity .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+}
+.opi-activity.opi-activity .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  accent-color: var(--shell-accent);
+  flex: none;
+}
+.opi-activity.opi-activity .interactive__stage {
+  min-height: 256px;
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-page);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body--pinned {
+  align-items: stretch;
+}
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: sticky;
+    top: 0;
+    z-index: 2;
+    
+    margin: -16px -16px 0;
+    padding: 16px 16px 12px;
+    background-color: var(--shell-page);
+    border-bottom: 1px solid var(--shell-border);
+}
+}
+@media (min-width: 52em) and (max-height: 30em) {
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: static;
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
+}
+}
+.opi-activity.opi-activity .interactive__stage > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity :where(.interactive__stage) svg,
+.opi-activity.opi-activity :where(.interactive__stage) canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+.opi-activity.opi-activity .interactive__readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout div {
+  padding: 9.6px 12px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-sm, 4px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__readout dt {
+  font-size: 13px;
+  color: var(--shell-muted);
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout dd {
+  margin: 2.4px 0 0;
+  font-size: 18px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .interactive__status {
+  margin: 0;
+  padding: 12px var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+  font-size: 15px;
+  color: var(--shell-muted);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .interactive__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+}
+.opi-activity.opi-activity .interactive__actions button {
+  min-height: 44px;
+  padding: 6.4px 20px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--shell-on-accent);
+  background-color: var(--shell-accent);
+  border: 1px solid var(--shell-accent);
+  border-radius: var(--radius-md, 8px);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  color: var(--shell-text);
+  background-color: transparent;
+  border-color: var(--shell-border-strong);
+}
+.opi-activity.opi-activity .interactive__actions button:hover {
+  filter: brightness(1.08);
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__notes > summary {
+  padding: 13.6px var(--shell-gap);
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__notes > div {
+  padding: 0 var(--shell-gap) var(--shell-gap);
+  max-width: 68ch;
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__notes > div > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity .interactive *,
+.opi-activity.opi-activity .interactive *::before,
+.opi-activity.opi-activity .interactive *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+}
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .interactive,
+.opi-activity.opi-activity .interactive__controls,
+.opi-activity.opi-activity .interactive__stage,
+.opi-activity.opi-activity .interactive__readout div {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__header {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__status,
+.opi-activity.opi-activity .interactive__actions,
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__actions button {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  border-width: 1px;
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 1;
+    color: GrayText;
+    border-color: GrayText;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__stage svg {
+  forced-color-adjust: auto;
+}
+}
+
+/* components/tool-kit.css */
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split--wide {
+  grid-template-columns: 1fr 1fr;
+}
+}
+.opi-activity.opi-activity .how-to {
+  padding-left: 19.2px;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .how-to > li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .table-scroll {
+  overflow-x: auto;
+  
+  position: relative;
+}
+.opi-activity.opi-activity .prediction {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 832px;
+}
+.opi-activity.opi-activity .prediction > *,
+.opi-activity.opi-activity .challenge > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity .prediction__group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .prediction__legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-weight: 650;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .prediction .control--choice,
+.opi-activity.opi-activity .challenge .control--choice,
+.opi-activity.opi-activity .evidence .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .prediction .control--choice input,
+.opi-activity.opi-activity .challenge .control--choice input,
+.opi-activity.opi-activity .evidence .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .prediction__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .prediction__error {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-status-border);
+  border-left: 4px solid var(--colour-status-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .prediction__readback {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .feedback[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .feedback[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .feedback[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .feedback__verdict {
+  font-weight: 700;
+}
+.opi-activity.opi-activity .verdict {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .verdict__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict__body {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .verdict__body + .verdict__body {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .verdict__note {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .verdict[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .verdict[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .goal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .goal__label {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .goal__text {
+  flex: 1 1 256px;
+}
+.opi-activity.opi-activity .goal strong {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .goal__checks {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+  display: grid;
+  gap: 2.4px;
+}
+.opi-activity.opi-activity .goal__checks > li {
+  margin-top: 0;
+  padding-left: 22.4px;
+  position: relative;
+}
+.opi-activity.opi-activity .goal__checks > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 9.6px;
+  height: 9.6px;
+  border: 2px solid var(--colour-border-strong);
+  border-radius: 2px;
+}
+.opi-activity.opi-activity .goal__checks > li[data-met="yes"]::before {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .stage-track {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .stage-track > li {
+  margin-top: 0;
+  flex: 1 1 160px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-bottom: 3px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .stage-track > li > span {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.opi-activity.opi-activity .stage-track > li[data-state="done"] {
+  border-bottom-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border-bottom-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+  color: var(--colour-text);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .stage__heading {
+  margin: 0;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .data-table,
+.opi-activity.opi-activity .chart__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .data-table th,
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table th,
+.opi-activity.opi-activity .chart__table td {
+  padding: 6.4px 9.6px;
+  border: 1px solid var(--colour-border);
+  text-align: left;
+  vertical-align: top;
+}
+.opi-activity.opi-activity .data-table thead th,
+.opi-activity.opi-activity .chart__table thead th {
+  background-color: var(--colour-surface);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table td {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__table tbody th,
+.opi-activity.opi-activity .data-table tbody th {
+  font-weight: 550;
+}
+.opi-activity.opi-activity .data-table__total > th,
+.opi-activity.opi-activity .data-table__total > td {
+  border-top: 2px solid var(--colour-border-strong);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart {
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .chart__caption {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__svg {
+  max-width: 100%;
+  height: auto;
+}
+.opi-activity.opi-activity .chart__label,
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__inline,
+.opi-activity.opi-activity .chart__axis {
+  font-family: var(--font-body);
+  fill: var(--colour-text);
+  font-size: 13px;
+}
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__axis {
+  fill: var(--colour-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: var(--colour-on-accent);
+  font-size: 12px;
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__track {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__bar {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--one {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .chart__baseline,
+.opi-activity.opi-activity .chart__grid {
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__line {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: var(--colour-personality-individual-differences);
+  stroke-dasharray: 6 4;
+}
+.opi-activity.opi-activity .chart__point {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .reveal > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .reveal__lead {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+.opi-activity.opi-activity .reveal__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(176px, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+  padding: 0;
+  list-style: none;
+}
+.opi-activity.opi-activity .reveal__figures > li {
+  margin-top: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+.opi-activity.opi-activity .reveal__figure-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .reveal__figure-value {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .challenge {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+.opi-activity.opi-activity .challenge__locked {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .panel--caution {
+  background-color: var(--colour-status-bg);
+  border-color: var(--colour-status-border);
+}
+.opi-activity.opi-activity .panel--caution li + li {
+  margin-top: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .goal,
+.opi-activity.opi-activity .verdict,
+.opi-activity.opi-activity .feedback,
+.opi-activity.opi-activity .prediction__error,
+.opi-activity.opi-activity .prediction__readback,
+.opi-activity.opi-activity .stage-track > li,
+.opi-activity.opi-activity .reveal__figures > li {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border: 2px solid Highlight;
+}
+.opi-activity.opi-activity .chart__bar,
+.opi-activity.opi-activity .chart__bar--one {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: Canvas;
+}
+.opi-activity.opi-activity .chart__line {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: Highlight;
+}
+}
+.opi-activity.opi-activity .stage__more {
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .stage__more > summary {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .stage__more[open] > summary {
+  border-bottom: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .stage__more > *:not(summary) {
+  margin: var(--space-3);
+}
+
+/* modules/neuropsychology/tools/12-recovery-plasticity-simulator/tool.css */
+.opi-activity.opi-activity #recovery .interactive__controls,
+.opi-activity.opi-activity #recovery .interactive__stage {
+  min-width: 0;
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity #recovery .interactive__body {
+  grid-template-columns: minmax(0, 336px) minmax(0, 1fr);
+}
+}
+.opi-activity.opi-activity #recovery .control--choice {
+  font-size: var(--text-sm);
+  line-height: 1.3;
+  align-items: flex-start;
+  padding: 4.8px 0;
+}
+.opi-activity.opi-activity #recovery .control--choice input {
+  margin-top: 8.8px;
+}
+.opi-activity.opi-activity #recovery [data-stage-one-controls],
+.opi-activity.opi-activity #recovery [data-stage-two-controls] {
+  display: grid;
+  gap: 20px;
+}
+.opi-activity.opi-activity #recovery .control + .control {
+  margin-top: var(--space-3);
+}
+.opi-activity.opi-activity .preset-buttons {
+  display: grid;
+  gap: var(--space-2);
+}
+.opi-activity.opi-activity .preset-buttons .button {
+  font-size: var(--text-xs);
+  padding: 5.6px 11.2px;
+  min-height: 44px;
+  text-align: left;
+}
+.opi-activity.opi-activity .rec__figure [data-fan],
+.opi-activity.opi-activity .rec__figure [data-transfer] {
+  max-width: 480px;
+}
+.opi-activity.opi-activity .rec__figure [data-decomp] {
+  max-width: 448px;
+}
+.opi-activity.opi-activity .rec__line {
+  fill: none;
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.opi-activity.opi-activity .rec__line--trained {
+  stroke-width: 2.6;
+}
+.opi-activity.opi-activity .rec__line--untrained {
+  stroke-width: 2.6;
+  stroke: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .rec__marker {
+  stroke: var(--colour-text);
+  stroke-width: 1.5;
+  stroke-dasharray: 2 3;
+}
+.opi-activity.opi-activity .rec__legend {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+  line-height: 1.45;
+}
+.opi-activity.opi-activity .rec__seg {
+  stroke: var(--colour-surface);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .rec__seg--base {
+  fill: var(--colour-border-strong);
+}
+.opi-activity.opi-activity .rec__seg--restitution {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .rec__seg--relearning {
+  fill: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .rec__seg--compensation {
+  fill: var(--colour-accent-soft);
+  stroke: var(--colour-accent);
+  stroke-width: 1.5;
+}
+.opi-activity.opi-activity .rec__seg--practice {
+  fill: var(--colour-status-bg);
+  stroke: var(--colour-text);
+  stroke-width: 1.5;
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .rec__line,
+.opi-activity.opi-activity .rec__line--untrained {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .rec__line--untrained {
+  stroke: Highlight;
+}
+.opi-activity.opi-activity .rec__marker {
+  stroke: Highlight;
+}
+.opi-activity.opi-activity .rec__seg {
+  fill: Canvas;
+    stroke: CanvasText;
+    stroke-width: 1.5;
+}
+.opi-activity.opi-activity .rec__seg--restitution,
+.opi-activity.opi-activity .rec__seg--compensation {
+  fill: Canvas;
+    stroke: Highlight;
+}
+}
+</style>
+
+  <!-- ================= Title and purpose ================= -->
+  <section class="section card--neuropsychology" aria-labelledby="page-heading">
+    <div class="container">
+
+      <p class="hero__eyebrow" style="color: var(--colour-neuropsychology)">
+        Neuropsychology
+      </p>
+      <h1 id="page-heading">Recovery and Plasticity Simulator</h1>
+      <p class="hero__lead">
+        Four different things all look like getting better. Watch five
+        simulated trajectories fan out, then take one trained score apart.
+      </p>
+
+      <p>
+        <span class="badge">
+          <span class="badge__dot" aria-hidden="true"></span>
+          Simulated - an invented model with a visible seed, not data, not a
+          prognosis and not a prediction about anybody
+        </span>
+      </p>
+
+      <div class="split split--wide">
+
+        <div class="panel">
+          <h2 class="panel__title">Learning objective</h2>
+          <p>
+            By the end you should be able to name the processes that all
+            raise a score after injury, and say why a trained score cannot
+            separate them.
+          </p>
+          <p class="text-muted">
+            About 30 minutes, in two experiments. Nothing you do here is
+            saved or sent anywhere.
+          </p>
+        </div>
+
+        <div class="panel panel--caution">
+          <h2 class="panel__title">Numbers from a model, not from people</h2>
+          <p>
+            Every curve here is produced by an invented equation from a
+            visible seed. None of it is data, none of it is a norm, and none
+            of it forecasts what would happen to any real person. The model
+            exists to make a logical point about what a score can and cannot
+            distinguish.
+          </p>
+          <p>
+            Recovery is not guaranteed, is not proportional to effort, and
+            does not continue indefinitely. Some of the simulated
+            trajectories plateau and some drift downwards, because real ones
+            do. Nothing here is a promise about outcome or a prognosis for
+            anybody.
+          </p>
+        </div>
+
+      </div>
+
+      <ol class="how-to">
+        <li>
+          <strong>Experiment 1.</strong> Set an injury severity and a
+          rehabilitation intensity, and look at five people rather than one
+          curve.
+        </li>
+        <li>
+          Turn the measurement noise up and see how much of a "change" is
+          not one.
+        </li>
+        <li>
+          <strong>Experiment 2.</strong> Take one person's trained score
+          apart, and compare it with a task they have never practised.
+        </li>
+      </ol>
+
+    </div>
+  </section>
+
+  <!-- ================= Opening prediction ================= -->
+  <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="opening-heading">First, a judgement</h2>
+        <p class="prose">
+          A fictional person's score on a training task rises from 40 to 68
+          over nine months of rehabilitation, measured on the same task
+          every month.
+        </p>
+      </div>
+
+      <noscript>
+        <div class="placeholder">
+          <h3 class="placeholder__title">This part needs JavaScript</h3>
+          <p class="prose">
+            The trajectories are computed and drawn in your browser, so this
+            section cannot run with JavaScript switched off. The rest of this
+            page is readable without it.
+          </p>
+        </div>
+      </noscript>
+
+      <form class="panel prediction" id="opening-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            What does that establish?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="regained">
+            That lost function has been regained
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="rehab">
+            That the rehabilitation worked
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="several">
+            That the score rose - and at least four different things produce
+            that, which this measurement cannot separate
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="reorg">
+            That the brain has reorganised
+          </label>
+        </fieldset>
+
+        <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Record my answer and open the simulator
+          </button>
+          <button class="button button--secondary" type="button" data-action="skip-opening">
+            Skip - I am demonstrating this
+          </button>
+        </div>
+
+        <div class="feedback" data-opening-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= The simulator ================= -->
+  <section class="section" id="lab-section" aria-labelledby="lab-heading" hidden>
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="lab-heading" tabindex="-1">The simulator</h2>
+      </div>
+
+      <ol class="stage-track" data-track>
+        <li><span>1</span> Five people, not one curve</li>
+        <li><span>2</span> What is doing the work</li>
+      </ol>
+
+      <section class="interactive" id="recovery" data-interactive
+               data-reset-message="Simulator cleared. Back to experiment 1 at the starting settings.">
+
+        <header class="interactive__header">
+          <h3 class="interactive__title" data-stage-title>
+            Experiment 1 - five people, not one curve
+          </h3>
+          <p class="interactive__brief" data-stage-brief></p>
+        </header>
+
+        <div class="interactive__body interactive__body--pinned">
+
+          <form class="interactive__controls" data-interactive-controls>
+
+            <!-- ---------- Shared controls ---------- -->
+            <fieldset>
+              <legend>The injury and the rehabilitation</legend>
+
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="severity-range">Injury severity</label>
+                  <output class="control__value" for="severity-range"></output>
+                </div>
+                <input type="range" id="severity-range" min="1" max="10" step="1" value="5">
+              </div>
+
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="rehab-range">Rehabilitation intensity</label>
+                  <output class="control__value" for="rehab-range"></output>
+                </div>
+                <input type="range" id="rehab-range" min="0" max="100" step="10" value="60">
+              </div>
+
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="month-range">When you measure</label>
+                  <output class="control__value" for="month-range"></output>
+                </div>
+                <input type="range" id="month-range" min="0" max="24" step="1" value="9">
+                <p class="control__hint">
+                  Moves the marker on the chart and drives every number in
+                  the readout.
+                </p>
+              </div>
+
+            </fieldset>
+
+            <!-- ---------- Experiment 1 controls ---------- -->
+            <div data-stage-one-controls>
+
+              <fieldset>
+                <legend>Measurement noise</legend>
+                <div data-noise-controls></div>
+                <p class="control__hint">
+                  How much the same person's score moves from one testing
+                  session to the next, for reasons that have nothing to do
+                  with recovery.
+                </p>
+              </fieldset>
+
+              <fieldset>
+                <legend>The five people</legend>
+                <div class="prediction__actions">
+                  <button class="button button--secondary" type="button"
+                          data-action="redraw">Draw five different people</button>
+                  <button class="button button--secondary" type="button"
+                          data-action="to-stage-two">Go to experiment 2</button>
+                </div>
+                <p class="control__hint" data-seed-note></p>
+              </fieldset>
+
+            </div>
+
+            <!-- ---------- Experiment 2 controls ---------- -->
+            <div data-stage-two-controls hidden>
+
+              <fieldset>
+                <legend>Load a route to the same score</legend>
+                <div class="preset-buttons" data-presets></div>
+              </fieldset>
+
+              <fieldset>
+                <legend>What the person and the setting contribute</legend>
+
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="comp-range">Compensatory strategy use</label>
+                    <output class="control__value" for="comp-range"></output>
+                  </div>
+                  <input type="range" id="comp-range" min="0" max="100" step="10" value="0">
+                </div>
+
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="support-range">Environmental support</label>
+                    <output class="control__value" for="support-range"></output>
+                  </div>
+                  <input type="range" id="support-range" min="0" max="100" step="10" value="0">
+                </div>
+
+                <p class="control__hint">
+                  Both raise performance on the task that is practised in the
+                  setting it is practised in. Neither changes the underlying
+                  capacity, so neither reaches the untrained task.
+                </p>
+              </fieldset>
+
+              <fieldset>
+                <legend>Back</legend>
+                <div class="prediction__actions">
+                  <button class="button button--secondary" type="button"
+                          data-action="to-stage-one">Back to experiment 1</button>
+                </div>
+              </fieldset>
+
+            </div>
+
+          </form>
+
+          <div class="interactive__stage" data-interactive-stage>
+
+            <!-- Only one primary is visible at a time. -->
+            <div class="stage__primary" data-stage-one-primary>
+              <h4 class="stage__heading">
+                Five simulated people on the trained task
+              </h4>
+              <figure class="chart rec__figure">
+                <figcaption class="visually-hidden">
+                  Five simulated trajectories over twenty-four months, each
+                  drawn with its own dash pattern and labelled at the right,
+                  with a vertical marker at the month you have chosen
+                </figcaption>
+                <svg class="chart__svg" data-fan viewBox="0 0 420 216"
+                     aria-hidden="true" focusable="false"></svg>
+                <p class="rec__legend" data-fan-text></p>
+              </figure>
+            </div>
+
+            <div class="stage__primary" data-stage-two-primary hidden>
+              <h4 class="stage__heading" data-decomp-heading>
+                What the trained score is made of
+              </h4>
+              <figure class="chart rec__figure">
+                <figcaption class="visually-hidden">
+                  The trained-task score at the chosen month, drawn as one
+                  bar divided into starting capacity, restitution,
+                  relearning, compensation and practice
+                </figcaption>
+                <svg class="chart__svg" data-decomp viewBox="0 0 400 72"
+                     aria-hidden="true" focusable="false"></svg>
+                <p class="rec__legend" data-decomp-text></p>
+              </figure>
+              <dl class="interactive__readout" data-readout></dl>
+            </div>
+
+            <div class="verdict" data-interpretation hidden>
+              <h4 class="verdict__title">Reading this</h4>
+              <p class="verdict__body" data-interpretation-body></p>
+            </div>
+
+            <div data-two-chart hidden>
+              <h4 class="stage__heading">
+                The trained task and a task never practised
+              </h4>
+              <figure class="chart rec__figure">
+                <figcaption class="visually-hidden">
+                  Two lines over twenty-four months: the task that is
+                  practised and measured repeatedly, and a task of the same
+                  underlying ability that the person has never practised
+                </figcaption>
+                <svg class="chart__svg" data-transfer viewBox="0 0 420 200"
+                     aria-hidden="true" focusable="false"></svg>
+                <p class="rec__legend" data-transfer-text></p>
+              </figure>
+            </div>
+
+            <h4 class="stage__heading" data-table-heading>The numbers</h4>
+            <div class="table-scroll">
+              <table class="chart__table">
+                <caption class="visually-hidden">
+                  The simulated scores at five time points
+                </caption>
+                <thead>
+                  <tr data-table-head></tr>
+                </thead>
+                <tbody data-main-table></tbody>
+              </table>
+            </div>
+            <p class="text-muted" data-table-note></p>
+
+            <details class="stage__more">
+              <summary>The four processes, and what tells them apart</summary>
+              <div class="table-scroll">
+                <table class="data-table">
+                  <caption class="visually-hidden">
+                    Each process, what it changes, its time course and the
+                    evidence that would identify it
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Process</th>
+                      <th scope="col">What changes</th>
+                      <th scope="col">Time course</th>
+                      <th scope="col">What would identify it</th>
+                    </tr>
+                  </thead>
+                  <tbody data-process-table></tbody>
+                </table>
+              </div>
+            </details>
+
+          </div>
+
+        </div>
+
+        <p class="interactive__status" data-interactive-status role="status"></p>
+
+        <div class="interactive__actions">
+          <button type="button" data-variant="secondary" data-interactive-reset>
+            Reset everything
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ================= Challenge ================= -->
+  <section class="section section--tinted" id="challenge" aria-labelledby="challenge-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="challenge-heading">Challenge - what would settle it</h2>
+      </div>
+
+      <form class="panel challenge" id="challenge-form">
+        <p>
+          A fictional rehabilitation service reports that scores on its
+          training task rise by an average of 22 points over six months, and
+          concludes that the programme restores function.
+        </p>
+
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            What evidence would distinguish genuine functional recovery from
+            an improved strategy for that task?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="challenge" value="bigger">
+            A larger rise on the same training task
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="challenge" value="transfer">
+            Performance on an untrained task of the same ability, an
+            alternate form of the trained test to remove practice, a group
+            who did not receive the programme, and observation of how the
+            task is now being done
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="challenge" value="scan">
+            A follow-up scan showing reorganisation
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="challenge" value="report">
+            The person's own report that things feel easier
+          </label>
+        </fieldset>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Check my answer
+          </button>
+        </div>
+
+        <div class="feedback" data-challenge-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Debrief ================= -->
+  <section class="section" id="debrief" aria-labelledby="debrief-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="debrief-heading">What this demonstrates</h2>
+      </div>
+
+      <div class="split split--wide">
+
+        <div class="prose">
+          <h3>Four processes, one rising line</h3>
+          <p>
+            Restitution is the early, largely spontaneous return of function
+            as oedema resolves, as remote depression of undamaged tissue
+            lifts, and as tissue that was quiet but not destroyed comes back.
+            Relearning is a slower change in the underlying ability, driven
+            by practice. Compensation is doing the task another way -
+            a different strategy, a different route, a diary, a colleague.
+            Practice effects are simply the score rising because the same
+            test has been given eleven times. All four raise the number, and
+            only one of them is the thing most people mean by recovery.
+          </p>
+
+          <h3>The trained score cannot separate them</h3>
+          <p>
+            Load the two routes in experiment 2 and the trained scores land
+            within a few points of each other while the untrained scores are
+            far apart. That is the whole problem with reporting improvement
+            on the task that was trained: the measurement is downstream of
+            all four processes and cannot say which of them moved.
+          </p>
+
+          <h3>An untrained task is the cheapest discriminator</h3>
+          <p>
+            Compensation attaches to the task and the setting it was
+            developed in; practice attaches to the specific test. Neither
+            reaches a task the person has never done. Restitution and
+            relearning change the underlying capacity, so they do. The gap
+            between the trained and untrained curves is exactly compensation
+            plus practice in this model, and asking for an untrained measure
+            is far cheaper than most of the alternatives.
+          </p>
+
+          <h3>Five people, not one curve</h3>
+          <p>
+            Textbook recovery curves are smooth and rising. The five
+            simulated people are not: some plateau, some drift down, and the
+            noise is large enough that a difference between two adjacent
+            months usually means nothing. Reporting a group mean as though it
+            described an individual, or two time points as though they
+            described a trend, are both mistakes this fan makes visible.
+          </p>
+
+          <h3>Plasticity is not unlimited</h3>
+          <p>
+            Move injury severity to its highest setting with everything else
+            at maximum and the trained task still does not reach the
+            starting level, and the untrained task falls much further short.
+            The ceilings in this model shrink as severity rises, because that
+            is the pattern the evidence shows. Compensation is often the most
+            useful thing available, and saying so is not a lesser conclusion -
+            it is a different one, with different implications for what to
+            train and for what to expect.
+          </p>
+
+          <h3>Compensation is not failure</h3>
+          <p>
+            A person who has learned a reliable way of managing a task has
+            gained something real, and the setting that supports them is part
+            of the outcome. The problem is only ever the description: calling
+            it restored function misstates what has changed, what will
+            transfer, and what happens when the setting changes.
+          </p>
+        </div>
+
+        <aside class="panel panel--caution" aria-labelledby="limits-heading">
+          <h3 class="panel__title" id="limits-heading">
+            What this does <em>not</em> demonstrate
+          </h3>
+          <ul>
+            <li>
+              <strong>No published values.</strong> No trajectory, effect
+              size or recovery rate from the literature is reproduced here.
+            </li>
+            <li>
+              <strong>Four processes is a simplification.</strong> Diaschisis
+              resolving, oedema, reperfusion, denervation supersensitivity,
+              axonal sprouting, map reorganisation, strategy substitution and
+              behavioural compensation are not four things, and they overlap
+              in time.
+            </li>
+            <li>
+              <strong>Smooth curves are wrong.</strong> Real trajectories
+              include illness, medication changes, depression, seizures,
+              surgery, a change of job and a change of family circumstances,
+              none of which is in the model.
+            </li>
+            <li>
+              <strong>Rehabilitation is not a single number.</strong>
+              Intensity, timing, content, specificity and how much the person
+              wants to do it all matter and are collapsed into one slider
+              here.
+            </li>
+            <li>
+              <strong>No anatomy.</strong> The tool names no region and no
+              mechanism at the level of tissue. "Reorganisation" on a scan is
+              not the same as recovered function and is entirely compatible
+              with compensation.
+            </li>
+          </ul>
+        </aside>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+<script>
+/* ---- components/interactive-shell.js ---- */
+/* =========================================================================
+   Open Psychology Interactives — interactive shell helper
+   -------------------------------------------------------------------------
+   A very small vanilla-JS helper that every interactive in this collection
+   uses. It deliberately does *not* draw anything or know anything about
+   statistics, personality or neuropsychology. Its job is the repetitive,
+   easy-to-get-wrong accessibility plumbing:
+
+     * announcing changes through a polite live region;
+     * keeping a range slider and its <output> in step;
+     * wiring the standard Reset button;
+     * reporting the reader's reduced-motion preference.
+
+   Usage (see docs/adapting-a-tool.md for the full markup contract):
+
+       <script src="../../components/interactive-shell.js" defer><\/script>
+       <script src="tool.js" defer><\/script>
+
+       // in tool.js
+       const shell = InteractiveShell.attach('#sampling-demo');
+       shell.onReset(() => { ...restore defaults...; draw(); });
+       shell.bindRange('#sample-size', { format: n => n + ' cases' });
+       shell.announce('Sample of 25 drawn. Mean 4.8.');
+
+   Every published interactive is written against this module.
+
+   Exposed as a global (window.InteractiveShell) rather than an ES module so
+   that a single interactive folder can be opened directly from disk over
+   file:// — ES modules are blocked by CORS in that situation, plain scripts
+   are not. That constraint is the whole reason for the older syntax here.
+   ========================================================================= */
+
+(function (global) {
+  "use strict";
+
+  /* -----------------------------------------------------------------------
+     Internal helpers
+     --------------------------------------------------------------------- */
+
+  /**
+   * Accept either a CSS selector or an element and return an element.
+   * @param {string|Element} target
+   * @param {ParentNode} [scope]
+   * @returns {Element|null}
+   */
+  function resolve(target, scope) {
+    if (!target) {
+      return null;
+    }
+    if (typeof target === "string") {
+      return (scope || document).querySelector(target);
+    }
+    return target;
+  }
+
+  /**
+   * True when the reader has asked the operating system to reduce motion.
+   * Interactives should check this before animating anything — for example
+   * by drawing a sampling distribution in one step instead of animating
+   * each draw.
+   * @returns {boolean}
+   */
+  function prefersReducedMotion() {
+    return (
+      typeof global.matchMedia === "function" &&
+      global.matchMedia("(prefers-reduced-motion: reduce)").matches
+    );
+  }
+
+  /* -----------------------------------------------------------------------
+     Shell controller
+     --------------------------------------------------------------------- */
+
+  /**
+   * Attach the shell behaviour to one `.interactive` element.
+   *
+   * @param {string|Element} target  Selector or element for the shell root.
+   * @returns {object|null}  Controller, or null if the root was not found.
+   */
+  function attach(target) {
+    var root = resolve(target);
+
+    if (!root) {
+      if (global.console && console.warn) {
+        console.warn("InteractiveShell: root element not found.", target);
+      }
+      return null;
+    }
+
+    var controls = root.querySelector("[data-interactive-controls]");
+    var stage = root.querySelector("[data-interactive-stage]");
+    var status = root.querySelector("[data-interactive-status]");
+    var resetButton = root.querySelector("[data-interactive-reset]");
+    var resetHandlers = [];
+    // Every range bound with bindRange() registers its sync function here, so
+    // that reset() can refresh the visible values after the tool's own reset
+    // handlers have restored the inputs. See reset() for why this is needed.
+    var rangeSyncs = [];
+
+    /* --- Live region ----------------------------------------------------
+       The status element is marked up as role="status" (implicitly
+       aria-live="polite"). Two details matter:
+
+         1. Assistive technology only announces *changes* to a live region,
+            so writing the same string twice is silently dropped. We add a
+            trailing zero-width space on repeat messages to force an
+            announcement when a student re-runs the same action.
+         2. Announcements are debounced. A slider dragged across its range
+            fires dozens of input events; without a delay a screen reader
+            would queue every intermediate value and fall far behind.
+       ------------------------------------------------------------------ */
+
+    var announceTimer = null;
+    var lastMessage = "";
+
+    /**
+     * Announce a short sentence describing what just changed.
+     * @param {string} message
+     * @param {object} [options]
+     * @param {boolean} [options.immediate]  Skip the debounce delay. Use for
+     *   discrete actions (button presses); leave off for continuous input.
+     */
+    function announce(message, options) {
+      if (!status) {
+        return;
+      }
+
+      var text = String(message == null ? "" : message);
+      var immediate = Boolean(options && options.immediate);
+
+      if (announceTimer !== null) {
+        global.clearTimeout(announceTimer);
+        announceTimer = null;
+      }
+
+      function write() {
+        // Force a change when the text is identical to last time.
+        status.textContent = text === lastMessage ? text + "​" : text;
+        lastMessage = text;
+      }
+
+      if (immediate) {
+        write();
+      } else {
+        announceTimer = global.setTimeout(write, 350);
+      }
+    }
+
+    /* --- Reset ---------------------------------------------------------- */
+
+    /**
+     * Register a callback to run when the Reset button is pressed.
+     * Several may be registered; they run in the order added.
+     * @param {Function} handler
+     */
+    function onReset(handler) {
+      if (typeof handler === "function") {
+        resetHandlers.push(handler);
+      }
+    }
+
+    /**
+     * Run the reset handlers. Called by the button and available directly so
+     * an interactive can reset itself on first load.
+     *
+     * Bound ranges are re-synced afterwards. A reset handler restores an
+     * input by assigning to `input.value`, and assigning to a value in script
+     * does not fire an `input` event — so without this step the slider would
+     * jump back to its default while its <output> went on showing the old
+     * number. Syncing here, after the handlers have run, also means the sync
+     * sees the restored values regardless of the order things were
+     * registered in.
+     *
+     * @param {object} [options]
+     * @param {boolean} [options.silent]  Suppress the status announcement.
+     */
+    function reset(options) {
+      resetHandlers.forEach(function (handler) {
+        handler();
+      });
+      rangeSyncs.forEach(function (sync) {
+        sync();
+      });
+      if (!options || !options.silent) {
+        announce(
+          root.getAttribute("data-reset-message") ||
+            "Reset to the starting values.",
+          { immediate: true }
+        );
+      }
+    }
+
+    if (resetButton) {
+      resetButton.addEventListener("click", function (event) {
+        // Reset buttons commonly sit inside the controls <form>; stop the
+        // browser's own form reset from fighting with ours.
+        event.preventDefault();
+        reset();
+      });
+    }
+
+    /* --- Range binding --------------------------------------------------
+       Keeps a slider's <output> in step with its value. The <output> must
+       carry `for="<input id>"`, which is what associates the two for
+       assistive technology; this only handles the visible text.
+
+       Optionally sets aria-valuetext, which is how you make a screen reader
+       say "25 cases" or "medium correlation" instead of a bare "25".
+       ------------------------------------------------------------------ */
+
+    /**
+     * @param {string|Element} inputTarget  The range (or number) input.
+     * @param {object} [options]
+     * @param {Function} [options.format]  value:number -> string shown in the
+     *   <output>. Defaults to the raw value.
+     * @param {Function} [options.describe]  value:number -> string used for
+     *   aria-valuetext. Defaults to options.format.
+     * @param {Function} [options.onInput]  value:number -> void, called after
+     *   the display has been updated. Use it to redraw.
+     * @returns {HTMLInputElement|null}
+     */
+    function bindRange(inputTarget, options) {
+      var input = resolve(inputTarget, root);
+      if (!input) {
+        return null;
+      }
+
+      var settings = options || {};
+      var format =
+        typeof settings.format === "function"
+          ? settings.format
+          : function (value) {
+              return String(value);
+            };
+      var describe =
+        typeof settings.describe === "function" ? settings.describe : format;
+
+      // <output for="the-input-id"> is the conventional pairing.
+      var output = input.id
+        ? root.querySelector('output[for="' + input.id + '"]')
+        : null;
+
+      function sync() {
+        var value = Number(input.value);
+        if (output) {
+          output.textContent = format(value);
+        }
+        // Only meaningful for widgets with an implicit or explicit slider
+        // role; harmless elsewhere.
+        input.setAttribute("aria-valuetext", describe(value));
+        if (typeof settings.onInput === "function") {
+          settings.onInput(value);
+        }
+      }
+
+      input.addEventListener("input", sync);
+      // Registered so reset() can refresh the display after the tool's own
+      // reset handlers have put the input back to its default.
+      rangeSyncs.push(sync);
+      sync();
+
+      return input;
+    }
+
+    /* --- Public surface -------------------------------------------------- */
+
+    return {
+      /** The `.interactive` root element. */
+      root: root,
+      /** The controls panel, or null if the shell has none. */
+      controls: controls,
+      /** The stage element where the visualisation is drawn. */
+      stage: stage,
+      /** The live-region element. */
+      status: status,
+      announce: announce,
+      onReset: onReset,
+      reset: reset,
+      bindRange: bindRange,
+      prefersReducedMotion: prefersReducedMotion
+    };
+  }
+
+  /* -----------------------------------------------------------------------
+     Export
+     --------------------------------------------------------------------- */
+
+  global.InteractiveShell = {
+    attach: attach,
+    prefersReducedMotion: prefersReducedMotion
+  };
+})(window);
+
+/* ---- modules/neuropsychology/tools/12-recovery-plasticity-simulator/tool.js ---- */
+/* =========================================================================
+   Recovery and Plasticity Simulator
+   -------------------------------------------------------------------------
+   Two staged experiments on what a rising score after an injury can and
+   cannot establish.
+
+     Experiment 1  Five simulated people over twenty-four months, with
+                   individual variation and measurement noise. There is no
+                   single recovery curve.
+     Experiment 2  One person, no noise. The trained score is taken apart into
+                   its four components and compared with a task the person has
+                   never practised.
+
+   THE EDUCATIONAL MODEL
+   ---------------------
+   Severity s runs 1 to 10. Capacity immediately after the injury is
+
+       C0   = max(5, 100 - 9s)          lost = 100 - C0
+
+   and each process adds to it over months t:
+
+     Restitution   spontaneous, early, time constant 3 months. Its ceiling is
+                   a shrinking fraction of what was lost:
+                       Rmax = lost x (0.55 - 0.035s)
+                       R(t) = Rmax x (1 - e^(-t/3))
+
+     Relearning    driven by rehabilitation intensity r, time constant 9
+                   months, working on what restitution leaves, with its own
+                   severity discount:
+                       Lmax = (lost - Rmax) x r x max(0.15, 0.75 - 0.045s)
+                       L(t) = Lmax x (1 - e^(-t/9))
+
+     Compensation  strategy use k and environmental support e, time constant 6
+                   months, capped in absolute points so that a severe injury
+                   cannot be compensated indefinitely:
+                       Kmax = min(22, (0.25k + 0.12e) x lost)
+                       K(t) = Kmax x (1 - e^(-t/6))
+
+     Practice      the same test administered again and again, time constant 4
+                   months, a fixed 6-point maximum:
+                       P(t) = 6 x (1 - e^(-t/4))
+
+   The TRAINED task is C0 + R + L + K + P, capped at 100.
+   The UNTRAINED task - the same underlying ability, never practised, tested
+   once - is C0 + R + L, capped at 100.
+
+   So the gap between the two curves is exactly K + P: compensation plus
+   practice. That is the whole argument of experiment 2, and it is computed
+   rather than asserted.
+
+   WHY THE CEILINGS SHRINK WITH SEVERITY
+   -------------------------------------
+   Because plasticity is not unlimited, and a tool that let a maximal
+   rehabilitation setting return a severe injury to its starting level would
+   be teaching something false. At s = 10 with every slider at maximum the
+   trained task still falls well short of 100 and the untrained task falls
+   much further short.
+
+   INDIVIDUAL VARIATION AND NOISE (experiment 1 only)
+   --------------------------------------------------
+   Each of the five simulated people gets a restitution multiplier drawn
+   uniformly from 0.7 to 1.3, a relearning multiplier from 0.6 to 1.4, and a
+   late drift of about N(0, 0.12) points per month applied after month 6, so
+   that some trajectories plateau and some fall. Measurement noise is added
+   independently at every month from a normal distribution with SD 2, 5 or 9.
+   Random numbers come from mulberry32 with a visible seed and Box-Muller for
+   the normal deviates, so any figure can be reproduced.
+
+   DELIBERATE SIMPLIFICATIONS
+   --------------------------
+   None of this is data. Four processes is a caricature - diaschisis, oedema,
+   reperfusion, sprouting, map reorganisation, strategy substitution and
+   behavioural compensation are not four things and overlap in time. Real
+   trajectories include illness, medication, mood, surgery and life events.
+   Rehabilitation is one slider standing for intensity, timing, content,
+   specificity and motivation. No published trajectory, effect size or
+   recovery rate is reproduced, no anatomy is named, and nothing here is a
+   prognosis for anybody.
+
+   No data leave the browser. There is no storage and no network request.
+   ========================================================================= */
+
+(function () {
+  "use strict";
+
+  var MONTHS = 24;
+  var PEOPLE = 5;
+  var PRACTICE_MAX = 6;
+  var COMP_CAP = 22;
+  var FIRST_SEED = 20260812;
+
+  /* The months printed in the table. Declared here rather than beside the
+     table code because the first render happens while the ranges are being
+     bound, which is earlier than it looks. */
+  var SAMPLE_MONTHS = [0, 3, 6, 12, 24];
+
+  var NOISE_LEVELS = [
+    { id: "low", label: "Low - a very reliable measure", sd: 2 },
+    { id: "typical", label: "Typical for a cognitive test", sd: 5 },
+    { id: "high", label: "High - a short or unstable measure", sd: 9 }
+  ];
+
+  var DASHES = ["none", "6 3", "2 3", "9 3 2 3", "1 4"];
+
+  var PROCESSES = [
+    {
+      id: "base", name: "Capacity just after the injury",
+      changes: "Nothing - this is the starting point",
+      course: "Fixed",
+      evidence: "The first assessment, ideally before rehabilitation begins"
+    },
+    {
+      id: "restitution", name: "Restitution",
+      changes: "The underlying ability, as swelling and remote depression of undamaged tissue resolve",
+      course: "Fast, mostly done by three to six months",
+      evidence: "Improvement in people who received no training, and its early timing"
+    },
+    {
+      id: "relearning", name: "Relearning",
+      changes: "The underlying ability, through practice",
+      course: "Slow, continues while training continues",
+      evidence: "Transfer to an untrained task of the same ability, and a comparison group who did not train"
+    },
+    {
+      id: "compensation", name: "Compensation",
+      changes: "How the task is done, not what the person can do",
+      course: "Grows over about six months, tied to the task and the setting",
+      evidence: "A large trained-untrained gap, and watching how the task is now performed"
+    },
+    {
+      id: "practice", name: "Practice effects",
+      changes: "The score on this particular test only",
+      course: "Rises over the first few administrations, then flattens",
+      evidence: "An alternate form of the test, or a first administration in a fresh group"
+    }
+  ];
+
+  var PRESETS = [
+    {
+      id: "routeA", label: "Route A - restitution and relearning",
+      set: { severity: 5, rehab: 100, comp: 0, support: 0 },
+      note: "Intensive training, no compensation. Note the trained score, then load Route B."
+    },
+    {
+      id: "routeB", label: "Route B - compensation and practice",
+      set: { severity: 5, rehab: 0, comp: 80, support: 60 },
+      note: "No training at all, heavy compensation. Nearly the same trained score - and look at the untrained task."
+    },
+    {
+      id: "severe", label: "Severe injury, everything at maximum",
+      set: { severity: 10, rehab: 100, comp: 100, support: 100 },
+      note: "Every slider at its highest. The trained task still falls well short, and the untrained task further still."
+    },
+    {
+      id: "mild", label: "Mild injury, no rehabilitation",
+      set: { severity: 2, rehab: 0, comp: 0, support: 0 },
+      note: "Nothing but spontaneous restitution and practice, and the curve still rises."
+    }
+  ];
+
+  /* =======================================================================
+     The model
+     ===================================================================== */
+
+  function capacities(severity) {
+    var c0 = Math.max(5, 100 - 9 * severity);
+    var lost = 100 - c0;
+    var factor = 0.55 - 0.035 * severity;          /* restitution discount */
+    var learnFactor = Math.max(0.15, 0.75 - 0.045 * severity);
+    var restMax = lost * factor;
+    return {
+      c0: c0, lost: lost, factor: factor,
+      learnFactor: learnFactor, restMax: restMax
+    };
+  }
+
+  /** The four components at month t, before any noise or variation. */
+  function components(settings, t, person) {
+    var base = capacities(settings.severity);
+    var restMult = person ? person.restMult : 1;
+    var learnMult = person ? person.learnMult : 1;
+
+    var restMax = base.restMax * restMult;
+    var restitution = restMax * (1 - Math.exp(-t / 3));
+
+    var learnMax = Math.max(0, base.lost - restMax) *
+      (settings.rehab / 100) * base.learnFactor * learnMult;
+    var relearning = learnMax * (1 - Math.exp(-t / 9));
+
+    var compMax = Math.min(COMP_CAP,
+      (0.25 * (settings.comp / 100) + 0.12 * (settings.support / 100)) * base.lost);
+    var compensation = compMax * (1 - Math.exp(-t / 6));
+
+    var practice = PRACTICE_MAX * (1 - Math.exp(-t / 4));
+
+    var drift = person && t > 6 ? person.drift * (t - 6) : 0;
+
+    return {
+      base: base.c0,
+      restitution: restitution,
+      relearning: relearning,
+      compensation: compensation,
+      practice: practice,
+      drift: drift
+    };
+  }
+
+  function trainedScore(parts) {
+    return clamp(parts.base + parts.restitution + parts.relearning +
+      parts.compensation + parts.practice + parts.drift);
+  }
+
+  /** The same ability, never practised, tested once: no compensation, no
+      practice effect. */
+  function untrainedScore(parts) {
+    return clamp(parts.base + parts.restitution + parts.relearning +
+      parts.drift);
+  }
+
+  function clamp(value) {
+    return Math.max(0, Math.min(100, value));
+  }
+
+  /* mulberry32 and Box-Muller, copied in rather than imported so that the
+     folder works on its own. */
+  function mulberry32(seed) {
+    var a = seed >>> 0;
+    return function () {
+      a = (a + 0x6D2B79F5) >>> 0;
+      var t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  function normal(rand) {
+    var u = Math.max(1e-9, rand());
+    var v = rand();
+    return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+  }
+
+  function makePeople(seed) {
+    var rand = mulberry32(seed);
+    var people = [];
+    for (var i = 0; i < PEOPLE; i += 1) {
+      people.push({
+        label: "P" + (i + 1),
+        restMult: 0.7 + rand() * 0.6,
+        learnMult: 0.6 + rand() * 0.8,
+        drift: normal(rand) * 0.12,
+        noiseSeed: Math.floor(rand() * 1e9)
+      });
+    }
+    return people;
+  }
+
+  /** One person's observed trained-task series, with measurement noise. */
+  function observedSeries(settings, person, sd) {
+    var rand = mulberry32(person.noiseSeed);
+    var series = [];
+    for (var t = 0; t <= MONTHS; t += 1) {
+      var parts = components(settings, t, person);
+      series.push(clamp(trainedScore(parts) + normal(rand) * sd));
+    }
+    return series;
+  }
+
+  /* =======================================================================
+     Helpers
+     ===================================================================== */
+
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) { node.className = className; }
+    if (text !== undefined) { node.textContent = text; }
+    return node;
+  }
+
+  function clear(node) {
+    while (node.firstChild) { node.removeChild(node.firstChild); }
+  }
+
+  var NS = "http://www.w3.org/2000/svg";
+
+  function svgEl(name, attrs) {
+    var node = document.createElementNS(NS, name);
+    Object.keys(attrs).forEach(function (key) {
+      node.setAttribute(key, String(attrs[key]));
+    });
+    return node;
+  }
+
+  function svgText(x, y, className, anchor, text) {
+    var node = svgEl("text", { x: x, y: y, class: className, "text-anchor": anchor });
+    node.textContent = text;
+    return node;
+  }
+
+  function byId(list, id) {
+    return list.filter(function (entry) { return entry.id === id; })[0];
+  }
+
+  function severityWord(value) {
+    return value <= 3 ? "mild" : value <= 7 ? "moderate" : "severe";
+  }
+
+  /* =======================================================================
+     Wiring
+     ===================================================================== */
+
+  var shell = InteractiveShell.attach("#recovery");
+  if (!shell) { return; }
+
+  var $ = function (selector, scope) {
+    return (scope || document).querySelector(selector);
+  };
+
+  var track = $("[data-track]");
+  var stageTitle = $("[data-stage-title]");
+  var stageBrief = $("[data-stage-brief]");
+  var oneControls = $("[data-stage-one-controls]");
+  var twoControls = $("[data-stage-two-controls]");
+  var onePrimary = $("[data-stage-one-primary]");
+  var twoPrimary = $("[data-stage-two-primary]");
+  var noiseControls = $("[data-noise-controls]");
+  var presetHost = $("[data-presets]");
+  var fanSvg = $("[data-fan]");
+  var fanText = $("[data-fan-text]");
+  var decompSvg = $("[data-decomp]");
+  var decompText = $("[data-decomp-text]");
+  var decompHeading = $("[data-decomp-heading]");
+  var readout = $("[data-readout]");
+  var transferBlock = $("[data-two-chart]");
+  var transferSvg = $("[data-transfer]");
+  var transferText = $("[data-transfer-text]");
+  var interpretation = $("[data-interpretation]");
+  var interpretationBody = $("[data-interpretation-body]");
+  var tableHeading = $("[data-table-heading]");
+  var tableHead = $("[data-table-head]");
+  var mainTable = $("[data-main-table]");
+  var tableNote = $("[data-table-note]");
+  var processTable = $("[data-process-table]");
+  var seedNote = $("[data-seed-note]");
+  var severityRange = $("#severity-range");
+  var rehabRange = $("#rehab-range");
+  var monthRange = $("#month-range");
+  var compRange = $("#comp-range");
+  var supportRange = $("#support-range");
+
+  var openingForm = $("#opening-form");
+  var openingError = $("[data-opening-error]");
+  var openingFeedback = $("[data-opening-feedback]");
+  var labSection = $("#lab-section");
+
+  var challengeForm = $("#challenge-form");
+  var challengeFeedback = $("[data-challenge-feedback]");
+
+  function initialState() {
+    return {
+      stage: 1,
+      severity: 5,
+      rehab: 60,
+      comp: 0,
+      support: 0,
+      month: 9,
+      noise: "typical",
+      seed: FIRST_SEED
+    };
+  }
+
+  var state = initialState();
+  var people = makePeople(state.seed);
+  var suspend = false;
+
+  function settings() {
+    return {
+      severity: state.severity, rehab: state.rehab,
+      comp: state.comp, support: state.support
+    };
+  }
+
+  /* --- Controls, built once --------------------------------------------- */
+
+  NOISE_LEVELS.forEach(function (level) {
+    var label = make("label", "control--choice");
+    var input = document.createElement("input");
+    input.type = "radio";
+    input.name = "noise";
+    input.value = level.id;
+    input.checked = level.id === state.noise;
+    input.addEventListener("change", function () {
+      state.noise = level.id;
+      render();
+      shell.announce("Measurement noise: " + level.label.toLowerCase() +
+        ", standard deviation " + level.sd + " points.", { immediate: true });
+    });
+    label.appendChild(input);
+    label.appendChild(document.createTextNode(level.label));
+    noiseControls.appendChild(label);
+  });
+
+  PRESETS.forEach(function (preset) {
+    var button = make("button", "button button--secondary", preset.label);
+    button.type = "button";
+    button.addEventListener("click", function () {
+      Object.keys(preset.set).forEach(function (key) {
+        state[key] = preset.set[key];
+      });
+      syncRanges();
+      render();
+      shell.announce(preset.label + ". " + preset.note, { immediate: true });
+    });
+    presetHost.appendChild(button);
+  });
+
+  shell.bindRange(severityRange, {
+    format: function (v) { return v + " of 10, " + severityWord(v); },
+    describe: function (v) {
+      return "Injury severity " + v + " of 10, " + severityWord(v) +
+        ", starting capacity " + capacities(v).c0 + " points";
+    },
+    onInput: function (v) { state.severity = v; if (!suspend) { render(); } }
+  });
+
+  shell.bindRange(rehabRange, {
+    format: function (v) { return v + "%"; },
+    describe: function (v) {
+      return "Rehabilitation intensity " + v + " per cent of the maximum in " +
+        "this model" + (v === 0 ? ", that is none at all" : "");
+    },
+    onInput: function (v) { state.rehab = v; if (!suspend) { render(); } }
+  });
+
+  shell.bindRange(monthRange, {
+    format: function (v) { return v === 1 ? "1 month" : v + " months"; },
+    describe: function (v) {
+      return v === 0 ? "at the injury" : v + " months after the injury";
+    },
+    onInput: function (v) { state.month = v; if (!suspend) { render(); } }
+  });
+
+  shell.bindRange(compRange, {
+    format: function (v) { return v + "%"; },
+    describe: function (v) {
+      return "Compensatory strategy use " + v + " per cent of the maximum in " +
+        "this model";
+    },
+    onInput: function (v) { state.comp = v; if (!suspend) { render(); } }
+  });
+
+  shell.bindRange(supportRange, {
+    format: function (v) { return v + "%"; },
+    describe: function (v) {
+      return "Environmental support " + v + " per cent of the maximum in " +
+        "this model";
+    },
+    onInput: function (v) { state.support = v; if (!suspend) { render(); } }
+  });
+
+  /* Assigning to input.value does not fire an input event, so the bound
+     <output> would keep showing the old number; dispatching one fixes it, and
+     the suspend flag stops five dispatches causing five redraws. */
+  function syncRanges() {
+    suspend = true;
+    [[severityRange, state.severity], [rehabRange, state.rehab],
+      [monthRange, state.month], [compRange, state.comp],
+      [supportRange, state.support]].forEach(function (pair) {
+      pair[0].value = String(pair[1]);
+      pair[0].dispatchEvent(new Event("input"));
+    });
+    suspend = false;
+  }
+
+  $('[data-action="redraw"]').addEventListener("click", function () {
+    state.seed = (state.seed + 7919) >>> 0;
+    people = makePeople(state.seed);
+    render();
+    shell.announce("Five different simulated people, from seed " + state.seed +
+      ". The model has not changed.", { immediate: true });
+  });
+
+  $('[data-action="to-stage-two"]').addEventListener("click", function () {
+    goToStage(2);
+  });
+  $('[data-action="to-stage-one"]').addEventListener("click", function () {
+    goToStage(1);
+  });
+
+  function goToStage(stage) {
+    state.stage = stage;
+    render();
+    shell.announce(stage === 1
+      ? "Experiment 1. Five simulated people with measurement noise."
+      : "Experiment 2. One person, no noise, and the score taken apart.",
+      { immediate: true });
+  }
+
+  /* --- Rendering -------------------------------------------------------- */
+
+  function render() {
+    oneControls.hidden = state.stage !== 1;
+    twoControls.hidden = state.stage !== 2;
+    onePrimary.hidden = state.stage !== 1;
+    twoPrimary.hidden = state.stage !== 2;
+    transferBlock.hidden = state.stage !== 2;
+
+    Array.prototype.forEach.call(track.children, function (item, index) {
+      item.removeAttribute("aria-current");
+      item.removeAttribute("data-state");
+      if (index + 1 < state.stage) { item.setAttribute("data-state", "done"); }
+      if (index + 1 === state.stage) { item.setAttribute("aria-current", "step"); }
+    });
+
+    if (state.stage === 1) { renderStageOne(); } else { renderStageTwo(); }
+    renderProcessTable();
+  }
+
+  function renderStageOne() {
+    var sd = byId(NOISE_LEVELS, state.noise).sd;
+    var series = people.map(function (person) {
+      return observedSeries(settings(), person, sd);
+    });
+
+    stageTitle.textContent = "Experiment 1 - five people, not one curve";
+    stageBrief.textContent =
+      "Five simulated people with the same injury and the same rehabilitation, " +
+      "differing only in how much they recover spontaneously, how much they " +
+      "gain from training, and what the measurement does on the day.";
+    seedNote.textContent = "These five were drawn from seed " + state.seed +
+      ". The same seed always gives the same five.";
+    tableHeading.textContent = "The five people at five time points";
+    tableNote.textContent =
+      "Every value is a simulated observation, not data. Compare two adjacent " +
+      "months in one row and ask whether the difference means anything.";
+
+    drawFan(series, sd);
+    renderFanTable(series);
+
+    var atMonth = series.map(function (s) { return s[state.month]; });
+    var spread = Math.max.apply(null, atMonth) - Math.min.apply(null, atMonth);
+    interpretation.hidden = false;
+    interpretationBody.textContent =
+      "At " + state.month + " month" + (state.month === 1 ? "" : "s") +
+      " the five simulated people span " + spread.toFixed(0) + " points, from " +
+      Math.min.apply(null, atMonth).toFixed(0) + " to " +
+      Math.max.apply(null, atMonth).toFixed(0) + ". Same injury, same " +
+      "rehabilitation, same underlying model. A single person's curve is one " +
+      "draw from this fan, and over most of the range the change between two " +
+      "adjacent months is smaller than the measurement noise on its own " +
+      "(standard deviation " + sd + " points).";
+    interpretation.setAttribute("data-tone", "caution");
+  }
+
+  function renderStageTwo() {
+    var parts = components(settings(), state.month, null);
+    var trained = trainedScore(parts);
+    var untrained = untrainedScore(parts);
+    var gap = trained - untrained;
+
+    stageTitle.textContent = "Experiment 2 - what is doing the work";
+    stageBrief.textContent =
+      "One person, no measurement noise and no individual variation: what the " +
+      "model says is happening underneath. The trained task is measured every " +
+      "month; the untrained task is a first attempt at the same ability.";
+    decompHeading.textContent = "The trained score at " + state.month +
+      " month" + (state.month === 1 ? "" : "s") + ", taken apart";
+    tableHeading.textContent = "The two tasks at five time points";
+    tableNote.textContent =
+      "Model values with no noise. The difference between the two columns is " +
+      "compensation plus practice, exactly.";
+
+    drawDecomposition(parts, trained);
+    drawTransfer();
+    renderTransferTable();
+
+    clear(readout);
+    [
+      ["Trained task", trained.toFixed(0)],
+      ["Untrained task", untrained.toFixed(0)],
+      ["The gap", gap.toFixed(0) + " points"]
+    ].forEach(function (pair) {
+      var wrap = make("div");
+      wrap.appendChild(make("dt", null, pair[0]));
+      wrap.appendChild(make("dd", null, pair[1]));
+      readout.appendChild(wrap);
+    });
+
+    interpretation.hidden = false;
+    interpretationBody.textContent =
+      "Of the " + trained.toFixed(0) + " points on the trained task, " +
+      parts.base.toFixed(0) + " were there immediately after the injury, " +
+      parts.restitution.toFixed(0) + " came from restitution, " +
+      parts.relearning.toFixed(0) + " from relearning, " +
+      parts.compensation.toFixed(0) + " from compensation and " +
+      parts.practice.toFixed(0) + " from having taken the same test " +
+      "repeatedly. The untrained task scores " + untrained.toFixed(0) + ": the " +
+      gap.toFixed(0) + "-point gap is compensation and practice, and nothing " +
+      "else. No amount of measuring the trained task would have separated them.";
+    interpretation.setAttribute("data-tone", gap >= 12 ? "warn" : "caution");
+  }
+
+  /* Five trajectories. Each line has its own dash pattern and its own label
+     at the right-hand end, so no line depends on colour. */
+  function drawFan(series, sd) {
+    var LEFT = 34, RIGHT = 380, TOP = 10, BOTTOM = 176;
+
+    clear(fanSvg);
+    drawAxes(fanSvg, LEFT, RIGHT, TOP, BOTTOM, "simulated score on the trained task");
+
+    series.forEach(function (values, index) {
+      var points = values.map(function (value, t) {
+        return xAt(t, LEFT, RIGHT) + "," + yAt(value, TOP, BOTTOM);
+      }).join(" ");
+      var line = svgEl("polyline", { points: points, class: "chart__line rec__line" });
+      if (DASHES[index] !== "none") {
+        line.setAttribute("stroke-dasharray", DASHES[index]);
+      }
+      fanSvg.appendChild(line);
+      fanSvg.appendChild(svgText(RIGHT + 5,
+        yAt(values[MONTHS], TOP, BOTTOM) + 4, "chart__count", "start",
+        people[index].label));
+    });
+
+    drawMarker(fanSvg, LEFT, RIGHT, TOP, BOTTOM);
+
+    var atMonth = series.map(function (s) { return s[state.month]; });
+    fanText.textContent = "At " + state.month + " month" +
+      (state.month === 1 ? "" : "s") + " the five simulated people score " +
+      atMonth.map(function (v, i) {
+        return people[i].label + " " + v.toFixed(0);
+      }).join(", ") + ". Measurement noise has a standard deviation of " +
+      sd + " points, and the vertical marker is the month you have chosen.";
+  }
+
+  /* One stacked bar: where the trained score comes from. */
+  function drawDecomposition(parts, trained) {
+    var LEFT = 4, RIGHT = 396, TOP = 8, HEIGHT = 26;
+    var span = RIGHT - LEFT;
+
+    clear(decompSvg);
+    decompSvg.appendChild(svgEl("rect", {
+      x: LEFT, y: TOP, width: span, height: HEIGHT, class: "chart__track"
+    }));
+
+    var segments = [
+      { key: "base", label: "start", value: parts.base },
+      { key: "restitution", label: "restitution", value: parts.restitution },
+      { key: "relearning", label: "relearning", value: parts.relearning },
+      { key: "compensation", label: "compensation", value: parts.compensation },
+      { key: "practice", label: "practice", value: parts.practice }
+    ];
+
+    var x = LEFT;
+    segments.forEach(function (segment) {
+      var w = (Math.max(0, segment.value) / 100) * span;
+      if (w <= 0) { return; }
+      decompSvg.appendChild(svgEl("rect", {
+        x: x, y: TOP, width: w, height: HEIGHT,
+        class: "rec__seg rec__seg--" + segment.key
+      }));
+      x += w;
+    });
+
+    /* A tick every 25 points, so the bar can be read as a score. */
+    [0, 25, 50, 75, 100].forEach(function (tick) {
+      var tx = LEFT + (tick / 100) * span;
+      decompSvg.appendChild(svgEl("line", {
+        x1: tx, y1: TOP + HEIGHT, x2: tx, y2: TOP + HEIGHT + 4,
+        class: "chart__baseline"
+      }));
+      decompSvg.appendChild(
+        svgText(tx, TOP + HEIGHT + 18, "chart__axis",
+          tick === 0 ? "start" : tick === 100 ? "end" : "middle", String(tick)));
+    });
+
+    decompText.textContent = "Trained score " + trained.toFixed(0) +
+      " out of 100: " + segments.map(function (segment) {
+        return segment.label + " " + segment.value.toFixed(0);
+      }).join(", ") +
+      (parts.drift ? ", plus a late drift of " + parts.drift.toFixed(0) : "") +
+      ". The segments run along the bar in that order, left to right.";
+  }
+
+  /* Trained against untrained, over the whole twenty-four months. */
+  function drawTransfer() {
+    var LEFT = 34, RIGHT = 372, TOP = 10, BOTTOM = 160;
+
+    clear(transferSvg);
+    drawAxes(transferSvg, LEFT, RIGHT, TOP, BOTTOM, "simulated score");
+
+    var trainedValues = [];
+    var untrainedValues = [];
+    for (var t = 0; t <= MONTHS; t += 1) {
+      var parts = components(settings(), t, null);
+      trainedValues.push(trainedScore(parts));
+      untrainedValues.push(untrainedScore(parts));
+    }
+
+    [[trainedValues, "trained", "none"],
+      [untrainedValues, "untrained", "5 4"]].forEach(function (entry) {
+      var points = entry[0].map(function (value, t) {
+        return xAt(t, LEFT, RIGHT) + "," + yAt(value, TOP, BOTTOM);
+      }).join(" ");
+      var line = svgEl("polyline", {
+        points: points, class: "chart__line rec__line rec__line--" + entry[1]
+      });
+      if (entry[2] !== "none") { line.setAttribute("stroke-dasharray", entry[2]); }
+      transferSvg.appendChild(line);
+      transferSvg.appendChild(svgText(RIGHT + 5,
+        yAt(entry[0][MONTHS], TOP, BOTTOM) + 4, "chart__count", "start",
+        entry[1] === "trained" ? "trained" : "untrained"));
+    });
+
+    drawMarker(transferSvg, LEFT, RIGHT, TOP, BOTTOM);
+
+    transferText.textContent = "The solid line is the task that is practised " +
+      "and measured every month; the dashed line is the same ability tested " +
+      "once, without practice and without the strategies that were built " +
+      "around the trained task. At 24 months they read " +
+      trainedValues[MONTHS].toFixed(0) + " and " +
+      untrainedValues[MONTHS].toFixed(0) + ".";
+  }
+
+  function xAt(t, left, right) {
+    return left + (t / MONTHS) * (right - left);
+  }
+
+  function yAt(value, top, bottom) {
+    return bottom - (value / 100) * (bottom - top);
+  }
+
+  function drawAxes(svg, left, right, top, bottom, caption) {
+    [0, 25, 50, 75, 100].forEach(function (value) {
+      var y = yAt(value, top, bottom);
+      svg.appendChild(svgEl("line", {
+        x1: left, y1: y, x2: right, y2: y, class: "chart__grid"
+      }));
+      svg.appendChild(svgText(left - 6, y + 4, "chart__axis", "end",
+        String(value)));
+    });
+    svg.appendChild(svgEl("line", {
+      x1: left, y1: bottom, x2: right, y2: bottom, class: "chart__baseline"
+    }));
+    [0, 6, 12, 18, 24].forEach(function (t) {
+      svg.appendChild(svgText(xAt(t, left, right), bottom + 16, "chart__axis",
+        "middle", String(t)));
+    });
+    svg.appendChild(svgText((left + right) / 2, bottom + 32, "chart__axis",
+      "middle", "months since the injury"));
+    svg.appendChild(svgText(0, top - 2, "chart__axis", "start", caption));
+  }
+
+  function drawMarker(svg, left, right, top, bottom) {
+    var x = xAt(state.month, left, right);
+    svg.appendChild(svgEl("line", {
+      x1: x, y1: top, x2: x, y2: bottom, class: "rec__marker"
+    }));
+    svg.appendChild(svgText(x, top + 10, "chart__axis",
+      state.month > MONTHS / 2 ? "end" : "start",
+      state.month > MONTHS / 2 ? "month " + state.month + " " : " month " + state.month));
+  }
+
+  function renderFanTable(series) {
+    clear(tableHead);
+    var head = ["Person"].concat(SAMPLE_MONTHS.map(function (t) {
+      return t + " mo";
+    }));
+    head.forEach(function (text) {
+      var th = make("th", null, text);
+      th.setAttribute("scope", "col");
+      tableHead.appendChild(th);
+    });
+
+    clear(mainTable);
+    series.forEach(function (values, index) {
+      var tr = make("tr");
+      var th = make("th", null, people[index].label);
+      th.setAttribute("scope", "row");
+      tr.appendChild(th);
+      SAMPLE_MONTHS.forEach(function (t) {
+        tr.appendChild(make("td", null, values[t].toFixed(0)));
+      });
+      mainTable.appendChild(tr);
+    });
+  }
+
+  function renderTransferTable() {
+    clear(tableHead);
+    ["Months since the injury", "Trained task", "Untrained task",
+      "Gap (compensation + practice)"].forEach(function (text) {
+      var th = make("th", null, text);
+      th.setAttribute("scope", "col");
+      tableHead.appendChild(th);
+    });
+
+    clear(mainTable);
+    SAMPLE_MONTHS.forEach(function (t) {
+      var parts = components(settings(), t, null);
+      var trained = trainedScore(parts);
+      var untrained = untrainedScore(parts);
+      var tr = make("tr");
+      var th = make("th", null, String(t));
+      th.setAttribute("scope", "row");
+      tr.appendChild(th);
+      tr.appendChild(make("td", null, trained.toFixed(0)));
+      tr.appendChild(make("td", null, untrained.toFixed(0)));
+      tr.appendChild(make("td", null, (trained - untrained).toFixed(0)));
+      mainTable.appendChild(tr);
+    });
+  }
+
+  var processDrawn = false;
+  function renderProcessTable() {
+    if (processDrawn) { return; }
+    processDrawn = true;
+    PROCESSES.forEach(function (entry) {
+      var tr = make("tr");
+      var th = make("th", null, entry.name);
+      th.setAttribute("scope", "row");
+      tr.appendChild(th);
+      tr.appendChild(make("td", null, entry.changes));
+      tr.appendChild(make("td", null, entry.course));
+      tr.appendChild(make("td", null, entry.evidence));
+      processTable.appendChild(tr);
+    });
+  }
+
+  /* --- Opening prediction ----------------------------------------------- */
+
+  var OPENING = {
+    regained: {
+      tone: "caution",
+      verdict: "One of at least four readings.",
+      text:
+        "Lost function returning is what restitution and relearning look " +
+        "like. Compensation - doing the task another way - and the practice " +
+        "effect of eleven administrations of the same test produce the same " +
+        "rise without any capacity having changed. Experiment 2 separates " +
+        "them; the trained score cannot."
+    },
+    rehab: {
+      tone: "caution",
+      verdict: "Not without something to compare it with.",
+      text:
+        "Most of the early rise in this model happens whatever anybody does. " +
+        "Set rehabilitation intensity to zero in experiment 1 and the curves " +
+        "still climb. Attributing the rise to the programme needs a group who " +
+        "did not receive it."
+    },
+    several: {
+      tone: "good",
+      verdict: "Yes.",
+      text:
+        "Restitution, relearning, compensation and practice all raise the " +
+        "trained score, and the trained score is downstream of all four. " +
+        "Experiment 2 takes it apart and shows what an untrained task would " +
+        "reveal."
+    },
+    reorg: {
+      tone: "caution",
+      verdict: "Two steps beyond the evidence, and one of them is bigger than it looks.",
+      text:
+        "Nothing in a behavioural score speaks to tissue. And even a scan " +
+        "showing changed activity would not settle it: reorganisation is " +
+        "entirely compatible with a person having learned a different way of " +
+        "doing the task."
+    }
+  };
+
+  openingForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answer = $('input[name="opening"]:checked', openingForm);
+    if (!answer) {
+      openingError.textContent = "Choose an answer before opening the simulator.";
+      openingError.hidden = false;
+      return;
+    }
+    openingError.hidden = true;
+    var entry = OPENING[answer.value];
+    showFeedback(openingFeedback, entry.tone, entry.verdict, entry.text);
+    unlockLab();
+  });
+
+  $('[data-action="skip-opening"]').addEventListener("click", function () {
+    openingError.hidden = true;
+    showFeedback(openingFeedback, "neutral",
+      "Prediction skipped - demonstration mode.", "");
+    unlockLab();
+  });
+
+  function unlockLab() {
+    lockForm(openingForm);
+    labSection.hidden = false;
+    render();
+    $("#lab-heading").focus();
+    shell.announce("Simulator open. Experiment 1.", { immediate: true });
+  }
+
+  /* --- Challenge -------------------------------------------------------- */
+
+  var CHALLENGE = {
+    bigger: {
+      tone: "caution",
+      verdict: "A bigger version of the same problem.",
+      text:
+        "A larger rise on the trained task is still downstream of all four " +
+        "processes. Load Route B in experiment 2 and push compensation and " +
+        "support to the maximum: the trained score goes up and the untrained " +
+        "score does not move at all."
+    },
+    transfer: {
+      tone: "good",
+      verdict: "Yes, and each part does a different job.",
+      text:
+        "The untrained task removes compensation, because strategies attach " +
+        "to the task they were built for. The alternate form removes the " +
+        "practice effect. The untreated group removes spontaneous " +
+        "restitution, which happens anyway. And watching how the task is done " +
+        "often settles it in a minute, because compensation is usually " +
+        "visible if anybody looks."
+    },
+    scan: {
+      tone: "caution",
+      verdict: "Compatible with either.",
+      text:
+        "Changed activity is what you would expect whether the person has " +
+        "regained an ability or learned a different way of doing the task - " +
+        "learning anything changes activity. Reorganisation on an image is " +
+        "not a measure of recovered function."
+    },
+    report: {
+      tone: "caution",
+      verdict: "Important, and it answers a different question.",
+      text:
+        "Whether things feel easier is worth knowing in its own right and is " +
+        "often the outcome that matters most to the person. It does not " +
+        "distinguish a regained ability from a good workaround, and a good " +
+        "workaround is exactly what would make things feel easier."
+    }
+  };
+
+  challengeForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answer = $('input[name="challenge"]:checked', challengeForm);
+    if (!answer) {
+      showFeedback(challengeFeedback, "caution", "Choose an answer first.", "");
+      return;
+    }
+    var entry = CHALLENGE[answer.value];
+    showFeedback(challengeFeedback, entry.tone, entry.verdict, entry.text);
+    shell.announce("Challenge answered.", { immediate: true });
+  });
+
+  /* --- Feedback plumbing ------------------------------------------------ */
+
+  function showFeedback(container, tone, verdictText, text) {
+    clear(container);
+    container.setAttribute("data-tone", tone);
+    var p = make("p");
+    p.appendChild(make("strong", "feedback__verdict", verdictText));
+    if (text) { p.appendChild(document.createTextNode(" " + text)); }
+    container.appendChild(p);
+    container.hidden = false;
+  }
+
+  function lockForm(form) {
+    Array.prototype.forEach.call(form.querySelectorAll("input, button"),
+      function (control) { control.disabled = true; });
+  }
+
+  function unlockForm(form) {
+    Array.prototype.forEach.call(form.querySelectorAll("input, button"),
+      function (control) { control.disabled = false; });
+    form.reset();
+  }
+
+  /* --- Reset ------------------------------------------------------------ */
+
+  shell.onReset(function () {
+    state = initialState();
+    people = makePeople(state.seed);
+    Array.prototype.forEach.call(
+      noiseControls.querySelectorAll("input"),
+      function (input) { input.checked = input.value === state.noise; });
+    severityRange.value = String(state.severity);
+    rehabRange.value = String(state.rehab);
+    monthRange.value = String(state.month);
+    compRange.value = String(state.comp);
+    supportRange.value = String(state.support);
+    unlockForm(openingForm);
+    openingFeedback.hidden = true;
+    openingError.hidden = true;
+    labSection.hidden = true;
+    interpretation.hidden = true;
+    challengeForm.reset();
+    challengeFeedback.hidden = true;
+    render();
+  });
+
+  /* --- Start-up --------------------------------------------------------- */
+
+  shell.reset({ silent: true });
+  shell.announce(
+    "Ready. Answer the question above to open the simulator.",
+    { immediate: true });
+})();
+
+</script>
+</div>

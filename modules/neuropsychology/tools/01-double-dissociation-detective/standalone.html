@@ -1,0 +1,3103 @@
+<!-- Double Dissociation Detective
+     From Open Psychology Interactives - https://github.com/utman5454/open-psychology-interactives
+     Self-contained: no stylesheets, scripts, fonts, images or network requests.
+     Styles are scoped to .opi-activity and do not affect the page around them.
+     Nothing is saved, sent or tracked. MIT licensed; please keep this notice.
+     Paste anywhere that accepts HTML, or save as a .html file and open it. -->
+<div class="opi-activity">
+<style>
+/* Defensive baseline. See scripts/build-standalone.py for why this
+   is `revert` rather than an enumerated reset, and how the specificity ladder
+   keeps the activity's own styling on top of it. */
+.opi-activity *:not(svg *) {
+  all: revert;
+}
+.opi-activity, .opi-activity *, .opi-activity *::before, .opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  text-transform: none;
+  text-indent: 0;
+  font-style: normal;
+  font-variant: normal;
+  letter-spacing: normal;
+  word-spacing: normal;
+  white-space: normal;
+  visibility: visible;
+  float: none;
+  max-width: none;
+}
+.opi-activity svg { max-width: 100%; }
+.opi-activity img { max-width: 100%; height: auto; }
+.opi-activity [hidden] { display: none !important; }
+
+/* assets/css/main.css */
+.opi-activity.opi-activity {
+  --colour-page: #ffffff;
+  --colour-surface: #f5f7fa;
+  --colour-surface-raised: #ffffff;
+  --colour-border: #d3d9e2;
+  --colour-border-strong: #aeb7c4;
+  --colour-text: #131820;
+  --colour-text-muted: #4c566a;
+  --colour-accent: #1a4fa0;
+  --colour-accent-hover: #123a7a;
+  --colour-accent-soft: #e8eefb;
+  --colour-on-accent: #ffffff;
+  --colour-focus: #b45309;
+  --colour-cognitive: #8a4b00;
+  --colour-research-methods: #1a4fa0;
+  --colour-neuropsychology: #145c53;
+  --colour-social-critical-psychology: #9e2f45;
+  --colour-personality-individual-differences: #7a2e6d;
+  --colour-status-bg: #f1ede3;
+  --colour-status-text: #5c4a1f;
+  --colour-status-border: #d9cdb0;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  --text-xs: 13px;
+  --text-sm: 15px;
+  --text-base: 17px;
+  --text-lg: 19px;
+  --text-xl: 23px;
+  --text-2xl: 28px;
+  --text-3xl: 36px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgb(19 24 32 / 0.06);
+  --shadow-md: 0 2px 8px rgb(19 24 32 / 0.08);
+  --measure: 68ch;
+  --container: 1152px;
+}
+@media (prefers-color-scheme: dark) {
+.opi-activity.opi-activity {
+  --colour-page: #0f141b;
+  --colour-surface: #161d27;
+  --colour-surface-raised: #1a2230;
+  --colour-border: #2c3644;
+  --colour-border-strong: #44506180;
+  --colour-text: #e9edf3;
+  --colour-text-muted: #a8b2c1;
+  --colour-accent: #8fb6ff;
+  --colour-accent-hover: #b3cdff;
+  --colour-accent-soft: #1b2740;
+  --colour-on-accent: #0f141b;
+  --colour-focus: #f0b429;
+  --colour-cognitive: #e2ab5f;
+  --colour-research-methods: #8fb6ff;
+  --colour-neuropsychology: #6fc3b4;
+  --colour-social-critical-psychology: #f19aa8;
+  --colour-personality-individual-differences: #db9ccd;
+  --colour-status-bg: #241f14;
+  --colour-status-text: #e2cf9f;
+  --colour-status-border: #4a4028;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 2px 10px rgb(0 0 0 / 0.45);
+}
+}
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity.opi-activity {
+  -webkit-text-size-adjust: 100%;
+}
+.opi-activity.opi-activity {
+  background-color: var(--colour-page);
+  color: var(--colour-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.65;
+}
+.opi-activity.opi-activity h1,
+.opi-activity.opi-activity h2,
+.opi-activity.opi-activity h3,
+.opi-activity.opi-activity h4 {
+  margin: 0 0 var(--space-3);
+  line-height: 1.25;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.opi-activity.opi-activity h1 {
+  font-size: var(--text-3xl);
+}
+.opi-activity.opi-activity h2 {
+  font-size: var(--text-2xl);
+}
+.opi-activity.opi-activity h3 {
+  font-size: var(--text-xl);
+}
+.opi-activity.opi-activity h4 {
+  font-size: var(--text-lg);
+}
+.opi-activity.opi-activity p,
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol,
+.opi-activity.opi-activity dl {
+  margin: 0 0 var(--space-4);
+}
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol {
+  padding-left: 1.35em;
+}
+.opi-activity.opi-activity li + li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity a {
+  color: var(--colour-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: max(1px, 0.06em);
+}
+.opi-activity.opi-activity a:hover {
+  color: var(--colour-accent-hover);
+  text-decoration-thickness: max(2px, 0.11em);
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid var(--colour-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+@supports not selector(:focus-visible) {
+.opi-activity.opi-activity :focus {
+  outline: 3px solid var(--colour-focus);
+    outline-offset: 2px;
+}
+}
+.opi-activity.opi-activity code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.35em;
+}
+.opi-activity.opi-activity hr {
+  border: 0;
+  border-top: 1px solid var(--colour-border);
+  margin: var(--space-6) 0;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+}
+.opi-activity.opi-activity .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.opi-activity.opi-activity .container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+@media (min-width: 40em) {
+.opi-activity.opi-activity .container {
+  padding-inline: var(--space-5);
+}
+}
+.opi-activity.opi-activity .prose {
+  max-width: var(--measure);
+}
+.opi-activity.opi-activity .text-muted {
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .section {
+  padding-block: var(--space-7);
+}
+.opi-activity.opi-activity .section--tinted {
+  background-color: var(--colour-surface);
+  border-block: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .section__header {
+  max-width: var(--measure);
+  margin-bottom: var(--space-5);
+}
+.opi-activity.opi-activity .section__header > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-7) var(--space-6);
+  border-bottom: 1px solid var(--colour-border);
+  
+  background-image: linear-gradient(
+    180deg,
+    var(--colour-accent-soft) 0%,
+    var(--colour-page) 100%
+  );
+}
+.opi-activity.opi-activity .hero__eyebrow {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .hero h1 {
+  max-width: 20ch;
+  margin-bottom: var(--space-4);
+}
+.opi-activity.opi-activity .hero__lead {
+  max-width: var(--measure);
+  font-size: var(--text-lg);
+  color: var(--colour-text-muted);
+}
+@media (min-width: 48em) {
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-8) var(--space-7);
+}
+.opi-activity.opi-activity .hero h1 {
+  font-size: 44px;
+}
+}
+.opi-activity.opi-activity .button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  
+  min-height: 44px;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .button--primary {
+  background-color: var(--colour-accent);
+  border-color: var(--colour-accent);
+  
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--primary:hover {
+  background-color: var(--colour-accent-hover);
+  border-color: var(--colour-accent-hover);
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--secondary {
+  background-color: transparent;
+  border-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .button--secondary:hover {
+  background-color: var(--colour-surface);
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+}
+.opi-activity.opi-activity .card--cognitive {
+  --card-accent: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .card--research-methods {
+  --card-accent: var(--colour-research-methods);
+}
+.opi-activity.opi-activity .card--neuropsychology {
+  --card-accent: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .card--social-critical-psychology {
+  --card-accent: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .card--personality-individual-differences {
+  --card-accent: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 650;
+  line-height: 1.4;
+  padding: 3.2px var(--space-3);
+  border-radius: 999px;
+  border: 1px solid var(--colour-status-border);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+}
+.opi-activity.opi-activity .badge__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex: none;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed var(--colour-border-strong);
+  border-radius: var(--radius-lg);
+  background-color: var(--colour-surface);
+  padding: var(--space-5);
+  text-align: left;
+}
+.opi-activity.opi-activity .placeholder__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+}
+.opi-activity.opi-activity .placeholder > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .split {
+  display: grid;
+  gap: var(--space-6);
+}
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split {
+  grid-template-columns: 3fr 2fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .panel {
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.opi-activity.opi-activity .panel > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .panel__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .section--tinted {
+  border-block: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .hero {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .button--primary {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .button--secondary {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .button:hover {
+  border-color: Highlight;
+}
+.opi-activity.opi-activity .panel {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed CanvasText;
+}
+.opi-activity.opi-activity .badge {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .badge__dot {
+  background-color: CanvasText;
+}
+.opi-activity.opi-activity code {
+  border-color: CanvasText;
+}
+.opi-activity.opi-activity hr {
+  border-top-color: CanvasText;
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+}
+@media print {
+.opi-activity.opi-activity {
+  color: #000;
+  background: #fff;
+}
+.opi-activity.opi-activity a[href^="http"]::after {
+  content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+}
+}
+
+/* components/interactive-shell.css */
+.opi-activity.opi-activity .interactive {
+  --shell-page: var(--colour-page, #ffffff);
+  --shell-surface: var(--colour-surface, #f5f7fa);
+  --shell-raised: var(--colour-surface-raised, #ffffff);
+  --shell-border: var(--colour-border, #d3d9e2);
+  --shell-border-strong: var(--colour-border-strong, #aeb7c4);
+  --shell-text: var(--colour-text, #131820);
+  --shell-muted: var(--colour-text-muted, #4c566a);
+  --shell-accent: var(--colour-accent, #1a4fa0);
+  --shell-accent-soft: var(--colour-accent-soft, #e8eefb);
+  
+  --shell-on-accent: var(--colour-on-accent, #ffffff);
+  --shell-focus: var(--colour-focus, #b45309);
+  --shell-radius: var(--radius-lg, 12px);
+  --shell-gap: var(--space-5, 24px);
+
+  display: block;
+  background-color: var(--shell-raised);
+  color: var(--shell-text);
+  border: 1px solid var(--shell-border);
+  border-radius: var(--shell-radius);
+  
+  overflow-x: clip;
+  overflow-y: visible;
+}
+.opi-activity.opi-activity .interactive__header {
+  padding: var(--shell-gap);
+  border-bottom: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 1.25;
+}
+.opi-activity.opi-activity .interactive__brief {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--shell-muted);
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__body {
+  display: grid;
+  gap: var(--shell-gap);
+  padding: var(--shell-gap);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body {
+  grid-template-columns: minmax(240px, 320px) 1fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .interactive__controls {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__controls fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .interactive__controls legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .control {
+  display: grid;
+  gap: 5.6px;
+}
+.opi-activity.opi-activity .control + .control {
+  margin-top: 16px;
+}
+.opi-activity.opi-activity .control__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.opi-activity.opi-activity .control__label {
+  font-size: 15px;
+  font-weight: 600;
+}
+.opi-activity.opi-activity .control__value {
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--shell-accent);
+}
+.opi-activity.opi-activity .control__hint {
+  font-size: 13px;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .interactive__controls input[type="range"] {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--shell-accent);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  width: 100%;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--shell-text);
+  background-color: var(--shell-raised);
+  border: 1px solid var(--shell-border-strong);
+  border-radius: var(--radius-sm, 4px);
+}
+.opi-activity.opi-activity .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+}
+.opi-activity.opi-activity .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  accent-color: var(--shell-accent);
+  flex: none;
+}
+.opi-activity.opi-activity .interactive__stage {
+  min-height: 256px;
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-page);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body--pinned {
+  align-items: stretch;
+}
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: sticky;
+    top: 0;
+    z-index: 2;
+    
+    margin: -16px -16px 0;
+    padding: 16px 16px 12px;
+    background-color: var(--shell-page);
+    border-bottom: 1px solid var(--shell-border);
+}
+}
+@media (min-width: 52em) and (max-height: 30em) {
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: static;
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
+}
+}
+.opi-activity.opi-activity .interactive__stage > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity :where(.interactive__stage) svg,
+.opi-activity.opi-activity :where(.interactive__stage) canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+.opi-activity.opi-activity .interactive__readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout div {
+  padding: 9.6px 12px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-sm, 4px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__readout dt {
+  font-size: 13px;
+  color: var(--shell-muted);
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout dd {
+  margin: 2.4px 0 0;
+  font-size: 18px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .interactive__status {
+  margin: 0;
+  padding: 12px var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+  font-size: 15px;
+  color: var(--shell-muted);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .interactive__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+}
+.opi-activity.opi-activity .interactive__actions button {
+  min-height: 44px;
+  padding: 6.4px 20px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--shell-on-accent);
+  background-color: var(--shell-accent);
+  border: 1px solid var(--shell-accent);
+  border-radius: var(--radius-md, 8px);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  color: var(--shell-text);
+  background-color: transparent;
+  border-color: var(--shell-border-strong);
+}
+.opi-activity.opi-activity .interactive__actions button:hover {
+  filter: brightness(1.08);
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__notes > summary {
+  padding: 13.6px var(--shell-gap);
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__notes > div {
+  padding: 0 var(--shell-gap) var(--shell-gap);
+  max-width: 68ch;
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__notes > div > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity .interactive *,
+.opi-activity.opi-activity .interactive *::before,
+.opi-activity.opi-activity .interactive *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+}
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .interactive,
+.opi-activity.opi-activity .interactive__controls,
+.opi-activity.opi-activity .interactive__stage,
+.opi-activity.opi-activity .interactive__readout div {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__header {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__status,
+.opi-activity.opi-activity .interactive__actions,
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__actions button {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  border-width: 1px;
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 1;
+    color: GrayText;
+    border-color: GrayText;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__stage svg {
+  forced-color-adjust: auto;
+}
+}
+
+/* components/tool-kit.css */
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split--wide {
+  grid-template-columns: 1fr 1fr;
+}
+}
+.opi-activity.opi-activity .how-to {
+  padding-left: 19.2px;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .how-to > li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .table-scroll {
+  overflow-x: auto;
+  
+  position: relative;
+}
+.opi-activity.opi-activity .prediction {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 832px;
+}
+.opi-activity.opi-activity .prediction > *,
+.opi-activity.opi-activity .challenge > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity .prediction__group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .prediction__legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-weight: 650;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .prediction .control--choice,
+.opi-activity.opi-activity .challenge .control--choice,
+.opi-activity.opi-activity .evidence .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .prediction .control--choice input,
+.opi-activity.opi-activity .challenge .control--choice input,
+.opi-activity.opi-activity .evidence .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .prediction__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .prediction__error {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-status-border);
+  border-left: 4px solid var(--colour-status-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .prediction__readback {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .feedback[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .feedback[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .feedback[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .feedback__verdict {
+  font-weight: 700;
+}
+.opi-activity.opi-activity .verdict {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .verdict__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict__body {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .verdict__body + .verdict__body {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .verdict__note {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .verdict[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .verdict[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .goal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .goal__label {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .goal__text {
+  flex: 1 1 256px;
+}
+.opi-activity.opi-activity .goal strong {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .goal__checks {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+  display: grid;
+  gap: 2.4px;
+}
+.opi-activity.opi-activity .goal__checks > li {
+  margin-top: 0;
+  padding-left: 22.4px;
+  position: relative;
+}
+.opi-activity.opi-activity .goal__checks > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 9.6px;
+  height: 9.6px;
+  border: 2px solid var(--colour-border-strong);
+  border-radius: 2px;
+}
+.opi-activity.opi-activity .goal__checks > li[data-met="yes"]::before {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .stage-track {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .stage-track > li {
+  margin-top: 0;
+  flex: 1 1 160px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-bottom: 3px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .stage-track > li > span {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.opi-activity.opi-activity .stage-track > li[data-state="done"] {
+  border-bottom-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border-bottom-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+  color: var(--colour-text);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .stage__heading {
+  margin: 0;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .data-table,
+.opi-activity.opi-activity .chart__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .data-table th,
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table th,
+.opi-activity.opi-activity .chart__table td {
+  padding: 6.4px 9.6px;
+  border: 1px solid var(--colour-border);
+  text-align: left;
+  vertical-align: top;
+}
+.opi-activity.opi-activity .data-table thead th,
+.opi-activity.opi-activity .chart__table thead th {
+  background-color: var(--colour-surface);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table td {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__table tbody th,
+.opi-activity.opi-activity .data-table tbody th {
+  font-weight: 550;
+}
+.opi-activity.opi-activity .data-table__total > th,
+.opi-activity.opi-activity .data-table__total > td {
+  border-top: 2px solid var(--colour-border-strong);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart {
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .chart__caption {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__svg {
+  max-width: 100%;
+  height: auto;
+}
+.opi-activity.opi-activity .chart__label,
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__inline,
+.opi-activity.opi-activity .chart__axis {
+  font-family: var(--font-body);
+  fill: var(--colour-text);
+  font-size: 13px;
+}
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__axis {
+  fill: var(--colour-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: var(--colour-on-accent);
+  font-size: 12px;
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__track {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__bar {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--one {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .chart__baseline,
+.opi-activity.opi-activity .chart__grid {
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__line {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: var(--colour-personality-individual-differences);
+  stroke-dasharray: 6 4;
+}
+.opi-activity.opi-activity .chart__point {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .reveal > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .reveal__lead {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+.opi-activity.opi-activity .reveal__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(176px, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+  padding: 0;
+  list-style: none;
+}
+.opi-activity.opi-activity .reveal__figures > li {
+  margin-top: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+.opi-activity.opi-activity .reveal__figure-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .reveal__figure-value {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .challenge {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+.opi-activity.opi-activity .challenge__locked {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .panel--caution {
+  background-color: var(--colour-status-bg);
+  border-color: var(--colour-status-border);
+}
+.opi-activity.opi-activity .panel--caution li + li {
+  margin-top: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .goal,
+.opi-activity.opi-activity .verdict,
+.opi-activity.opi-activity .feedback,
+.opi-activity.opi-activity .prediction__error,
+.opi-activity.opi-activity .prediction__readback,
+.opi-activity.opi-activity .stage-track > li,
+.opi-activity.opi-activity .reveal__figures > li {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border: 2px solid Highlight;
+}
+.opi-activity.opi-activity .chart__bar,
+.opi-activity.opi-activity .chart__bar--one {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: Canvas;
+}
+.opi-activity.opi-activity .chart__line {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: Highlight;
+}
+}
+.opi-activity.opi-activity .stage__more {
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .stage__more > summary {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .stage__more[open] > summary {
+  border-bottom: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .stage__more > *:not(summary) {
+  margin: var(--space-3);
+}
+
+/* modules/neuropsychology/tools/01-double-dissociation-detective/tool.css */
+.opi-activity.opi-activity #detective .interactive__controls,
+.opi-activity.opi-activity #detective .interactive__stage {
+  min-width: 0;
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity #detective .interactive__body {
+  grid-template-columns: minmax(0, 304px) minmax(0, 1fr);
+}
+}
+.opi-activity.opi-activity #detective [data-profile] {
+  max-width: 544px;
+}
+.opi-activity.opi-activity .dd__band {
+  fill: var(--colour-accent-soft);
+}
+.opi-activity.opi-activity .dd__zero {
+  stroke: var(--colour-border-strong);
+  stroke-width: 1.5;
+}
+.opi-activity.opi-activity .dd__interval {
+  stroke: var(--colour-text-muted);
+  stroke-width: 2;
+}
+.opi-activity.opi-activity .dd__point {
+  fill: var(--colour-page);
+  stroke: var(--colour-text);
+  stroke-width: 2;
+}
+.opi-activity.opi-activity .dd__point--below {
+  fill: var(--colour-neuropsychology);
+  stroke: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .dd__person {
+  font-weight: 700;
+}
+.opi-activity.opi-activity .dd__summary > th,
+.opi-activity.opi-activity .dd__summary > td {
+  border-top: 2px solid var(--colour-border-strong);
+  background-color: var(--colour-surface);
+  font-weight: 650;
+}
+.opi-activity.opi-activity #detective .interactive__controls .prediction__actions {
+  margin-top: var(--space-3);
+}
+.opi-activity.opi-activity #detective .control--choice {
+  align-items: flex-start;
+  gap: 9.6px;
+  min-height: 44px;
+  padding: 5.6px 0;
+  font-size: var(--text-sm);
+  line-height: 1.35;
+}
+.opi-activity.opi-activity #detective .control--choice input {
+  margin-top: 8px;
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .dd__band {
+  fill: Canvas;
+    stroke: GrayText;
+    stroke-dasharray: 4 3;
+}
+.opi-activity.opi-activity .dd__zero,
+.opi-activity.opi-activity .dd__interval {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .dd__point {
+  fill: Canvas;
+    stroke: CanvasText;
+}
+.opi-activity.opi-activity .dd__point--below {
+  fill: CanvasText;
+    stroke: CanvasText;
+}
+.opi-activity.opi-activity .dd__summary > th,
+.opi-activity.opi-activity .dd__summary > td {
+  border-top: 2px solid CanvasText;
+}
+}
+</style>
+
+  <!-- ================= Title and purpose ================= -->
+  <section class="section card--neuropsychology" aria-labelledby="page-heading">
+    <div class="container">
+
+      <p class="hero__eyebrow" style="color: var(--colour-neuropsychology)">
+        Neuropsychology
+      </p>
+      <h1 id="page-heading">Double Dissociation Detective</h1>
+      <p class="hero__lead">
+        Six fictional case files, two tasks each, and one question:
+        what does this pattern of scores actually establish?
+      </p>
+
+      <p>
+        <span class="badge">
+          <span class="badge__dot" aria-hidden="true"></span>
+          Simulated — invented people, invented tasks, invented control data
+        </span>
+      </p>
+
+      <div class="split split--wide">
+
+        <div class="panel">
+          <h2 class="panel__title">Learning objective</h2>
+          <p>
+            By the end you should be able to tell a double dissociation from
+            a single one, and say what each rules out.
+          </p>
+          <p class="text-muted">
+            About 30 minutes. Nothing you do here is saved or sent anywhere.
+          </p>
+        </div>
+
+        <div class="panel panel--caution">
+          <h2 class="panel__title">These are not patients</h2>
+          <p>
+            Every case file, score, task and control group here was written
+            for teaching. No real person is described and no clinical
+            instrument is used. Nothing on this page diagnoses, assesses or
+            gives a prognosis for anybody.
+          </p>
+        </div>
+
+      </div>
+
+      <ol class="how-to">
+        <li>Commit to an answer to the opening question.</li>
+        <li>
+          Work through the six case files in order. For each one, read the
+          scores against their own control group, open the task demands, and
+          return a verdict.
+        </li>
+        <li>
+          Case 5 has a test-length slider. Change it and watch the same
+          scores change verdict.
+        </li>
+      </ol>
+
+    </div>
+  </section>
+
+  <!-- ================= Opening prediction ================= -->
+  <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="opening-heading">First, a judgement</h2>
+        <p class="prose">
+          One fictional person scores 91% on a word-picture matching task and
+          48% on a picture-naming task. Both tasks use everyday objects.
+        </p>
+      </div>
+
+      <noscript>
+        <div class="placeholder">
+          <h3 class="placeholder__title">This part needs JavaScript</h3>
+          <p class="prose">
+            The case files are drawn and scored in your browser, so they
+            cannot run with JavaScript switched off. The rest of this page is
+            readable without it.
+          </p>
+        </div>
+      </noscript>
+
+      <form class="panel prediction" id="opening-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            What does that pattern, on its own, establish?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="separable">
+            That naming and comprehension depend on separable processes
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="harder">
+            That naming is simply the harder of the two tasks
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="open">
+            A difference worth explaining, with several explanations still open
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="nothing">
+            Nothing at all - one person's scores can never establish anything
+          </label>
+        </fieldset>
+
+        <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Record my answer and open the case files
+          </button>
+          <button class="button button--secondary" type="button" data-action="skip-opening">
+            Skip - I am demonstrating this
+          </button>
+        </div>
+
+        <div class="feedback" data-opening-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Case files ================= -->
+  <section class="section" id="cases-section" aria-labelledby="cases-heading" hidden>
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="cases-heading" tabindex="-1">The case files</h2>
+      </div>
+
+      <ol class="stage-track" data-track></ol>
+
+      <section class="interactive" id="detective" data-interactive
+               data-reset-message="All six case files cleared. Back to the opening question.">
+
+        <header class="interactive__header">
+          <h3 class="interactive__title" data-case-title>Case 1</h3>
+          <p class="interactive__brief" data-case-brief></p>
+        </header>
+
+        <div class="interactive__body interactive__body--pinned">
+
+          <form class="interactive__controls" data-interactive-controls>
+
+            <fieldset>
+              <legend>Case file</legend>
+              <div class="control">
+                <label class="control__label" for="case-select">Which case</label>
+                <select id="case-select" data-case-select></select>
+              </div>
+            </fieldset>
+
+            <fieldset data-precision-block>
+              <legend>Test length</legend>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="items-range">Items per task</label>
+                  <output class="control__value" for="items-range">40</output>
+                </div>
+                <input type="range" id="items-range" min="15" max="150" step="5" value="40">
+                <p class="control__hint">
+                  The percentage correct stays where it is; only the precision
+                  of the estimate changes. Watch the intervals in the chart.
+                </p>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Your verdict</legend>
+              <label class="control--choice">
+                <input type="radio" name="verdict" value="insufficient">
+                Not enough evidence to say
+              </label>
+              <label class="control--choice">
+                <input type="radio" name="verdict" value="severity">
+                A general severity difference
+              </label>
+              <label class="control--choice">
+                <input type="radio" name="verdict" value="single">
+                A single dissociation
+              </label>
+              <label class="control--choice">
+                <input type="radio" name="verdict" value="double">
+                A double dissociation
+              </label>
+              <label class="control--choice">
+                <input type="radio" name="verdict" value="confounded">
+                A crossover, but the tasks differ in more than the process of interest
+              </label>
+              <div class="prediction__actions">
+                <button class="button button--primary" type="submit">
+                  Return this verdict
+                </button>
+              </div>
+            </fieldset>
+
+          </form>
+
+          <div class="interactive__stage" data-interactive-stage>
+
+            <!-- Pinned: every score in the file, referenced to its own control
+                 group. This is the one thing the slider and the case selector
+                 both change. -->
+            <div class="stage__primary">
+              <h4 class="stage__heading">
+                How far below the control average, in control standard deviations
+              </h4>
+              <figure class="chart">
+                <figcaption class="visually-hidden">
+                  Each person's score on each task, expressed as a distance
+                  from that task's own fictional control-group average, with a
+                  95% interval reflecting test length
+                </figcaption>
+                <svg class="chart__svg" data-profile viewBox="0 0 470 210"
+                     aria-hidden="true" focusable="false"></svg>
+              </figure>
+            </div>
+
+            <div class="feedback" data-verdict-feedback hidden></div>
+
+            <h4 class="stage__heading">The numbers</h4>
+            <div class="table-scroll">
+              <table class="chart__table">
+                <caption class="visually-hidden">
+                  Raw score, fictional control-group average and standard
+                  deviation, control-referenced score and its 95% interval
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Person</th>
+                    <th scope="col">Task</th>
+                    <th scope="col">Score</th>
+                    <th scope="col">Controls</th>
+                    <th scope="col">Distance from controls</th>
+                    <th scope="col">95% interval</th>
+                  </tr>
+                </thead>
+                <tbody data-score-table></tbody>
+              </table>
+            </div>
+
+            <div class="verdict" data-case-notes>
+              <h4 class="verdict__title">Case notes</h4>
+              <p class="verdict__body" data-notes-body></p>
+            </div>
+
+            <details class="stage__more" data-demands-details>
+              <summary>What each task actually demands</summary>
+              <div class="table-scroll">
+                <table class="data-table">
+                  <caption class="visually-hidden">
+                    What each task requires the person to see, hold in mind and
+                    do
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Task</th>
+                      <th scope="col">Input</th>
+                      <th scope="col">Response</th>
+                      <th scope="col">Also required</th>
+                    </tr>
+                  </thead>
+                  <tbody data-demands-table></tbody>
+                </table>
+              </div>
+              <p class="text-muted">
+                Two tasks never differ in only one thing. Whether the extra
+                differences matter is a judgement about the case, not a number
+                the chart can give you.
+              </p>
+            </details>
+
+          </div>
+
+        </div>
+
+        <p class="interactive__status" data-interactive-status role="status"></p>
+
+        <div class="interactive__actions">
+          <button type="button" data-action="next-case">Next case</button>
+          <button type="button" data-variant="secondary" data-interactive-reset>
+            Reset everything
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ================= Challenge ================= -->
+  <section class="section section--tinted" id="challenge" aria-labelledby="challenge-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="challenge-heading">Challenge - what does a clean crossover buy you?</h2>
+      </div>
+
+      <form class="panel challenge" id="challenge-form">
+        <p>
+          A fictional report describes two people. One is far below the
+          control range on face recognition and within it on object naming;
+          the other shows the opposite. Both tasks use the same input, the
+          same response and the same number of items, and both differences are
+          well outside measurement error. The report concludes:
+          <em>"face recognition is performed by one brain region and object
+          naming by another."</em>
+        </p>
+
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            What does the crossover actually support?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="challenge" value="regions">
+            The conclusion as written - two tasks, two dedicated regions
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="challenge" value="separable">
+            That the two tasks draw on at least partly separable processing,
+            with the anatomy still open
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="challenge" value="difficulty">
+            Only that the two tasks are equally difficult
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="challenge" value="nothing">
+            Nothing - two people are never enough
+          </label>
+        </fieldset>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Check my answer
+          </button>
+        </div>
+
+        <div class="feedback" data-challenge-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Debrief ================= -->
+  <section class="section" id="debrief" aria-labelledby="debrief-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="debrief-heading">What this demonstrates</h2>
+      </div>
+
+      <div class="split split--wide">
+
+        <div class="prose">
+          <h3>A single dissociation has a boring rival</h3>
+          <p>
+            If one person is poor at task B and fine at task A, the obvious
+            explanation is that A and B need different things. The boring
+            rival is that B is simply more demanding, so any general
+            reduction in capacity shows up there first. One person cannot
+            tell those apart, however dramatic the gap.
+          </p>
+
+          <h3>A double dissociation rules that rival out</h3>
+          <p>
+            If a second person shows the opposite pattern, task difficulty
+            can no longer be the explanation: a task cannot be the harder one
+            for one person and the easier one for another purely by being
+            harder. That is the whole logical work a double dissociation
+            does, and it is real work. It is also the limit of what it does.
+          </p>
+
+          <h3>Compare each score with its own control group</h3>
+          <p>
+            Raw percentages are not comparable across tasks. A task on which
+            healthy controls average 52% and a task on which they average 95%
+            are different rulers. Case 4 on this page has a 58-point raw gap
+            and no gap at all once both scores are referenced to their own
+            controls. Whenever you see two percentages compared directly, ask
+            what the control groups did.
+          </p>
+
+          <h3>Precision decides what you are allowed to claim</h3>
+          <p>
+            Case 5 changes verdict as the test gets longer without a single
+            score changing. Short tests produce wide intervals, and a
+            difference inside the interval is a difference you cannot claim.
+            This is not a technicality: single-case dissociations are often
+            built on tasks short enough that the difference would not survive
+            being treated seriously as an estimate.
+          </p>
+
+          <h3>Two tasks always differ in more than one thing</h3>
+          <p>
+            Task impurity is unavoidable. Two tasks with different names
+            differ in input, response, speed pressure, familiarity, strategy
+            and how much they load on everything else at once. A crossover
+            between two tasks isolates the process you had in mind only if
+            nothing else that differs between them could produce the same
+            crossover. Case 6 is a real crossover produced by two peripheral
+            sensory differences, and nothing about it is a trick - it is what
+            most real cases look like before the follow-up testing.
+          </p>
+        </div>
+
+        <aside class="panel panel--caution" aria-labelledby="limits-heading">
+          <h3 class="panel__title" id="limits-heading">
+            What this does <em>not</em> demonstrate
+          </h3>
+          <ul>
+            <li>
+              <strong>Not a localisation.</strong> Nothing on this page
+              mentions where any damage is, because a dissociation between
+              tasks is evidence about functional separability, not about
+              anatomy. Two separable processes can be distributed across the
+              same tissue; one region can serve both.
+            </li>
+            <li>
+              <strong>A double dissociation constrains, it does not
+              prove.</strong> It rules out a single graded resource shared by
+              the two tasks in the same proportions. It is still compatible
+              with overlapping networks, with different strategies, with a
+              shared component plus two separate ones, and with connectionist
+              models that produce crossovers from damage to a single
+              undivided system.
+            </li>
+            <li>
+              <strong>The numbers were written to make the verdicts come
+              out.</strong> Control means, standard deviations and scores are
+              not norms, prevalences or published values, so no percentage
+              here should be quoted.
+            </li>
+            <li>
+              <strong>The statistics are simplified.</strong> The intervals
+              use a binomial standard error and treat the control mean and
+              standard deviation as known exactly. Proper single-case
+              comparison uses a modified <em>t</em> test that allows for the
+              control sample being finite, and gives wider intervals than
+              these.
+            </li>
+            <li>
+              <strong>Two people are not a syndrome.</strong> Real dissociation
+              evidence accumulates over many cases, converging methods and
+              usually imaging. Individual variation in how any task is
+              performed is large enough that a single pair proves nothing on
+              its own.
+            </li>
+          </ul>
+        </aside>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+<script>
+/* ---- components/interactive-shell.js ---- */
+/* =========================================================================
+   Open Psychology Interactives — interactive shell helper
+   -------------------------------------------------------------------------
+   A very small vanilla-JS helper that every interactive in this collection
+   uses. It deliberately does *not* draw anything or know anything about
+   statistics, personality or neuropsychology. Its job is the repetitive,
+   easy-to-get-wrong accessibility plumbing:
+
+     * announcing changes through a polite live region;
+     * keeping a range slider and its <output> in step;
+     * wiring the standard Reset button;
+     * reporting the reader's reduced-motion preference.
+
+   Usage (see docs/adapting-a-tool.md for the full markup contract):
+
+       <script src="../../components/interactive-shell.js" defer><\/script>
+       <script src="tool.js" defer><\/script>
+
+       // in tool.js
+       const shell = InteractiveShell.attach('#sampling-demo');
+       shell.onReset(() => { ...restore defaults...; draw(); });
+       shell.bindRange('#sample-size', { format: n => n + ' cases' });
+       shell.announce('Sample of 25 drawn. Mean 4.8.');
+
+   Every published interactive is written against this module.
+
+   Exposed as a global (window.InteractiveShell) rather than an ES module so
+   that a single interactive folder can be opened directly from disk over
+   file:// — ES modules are blocked by CORS in that situation, plain scripts
+   are not. That constraint is the whole reason for the older syntax here.
+   ========================================================================= */
+
+(function (global) {
+  "use strict";
+
+  /* -----------------------------------------------------------------------
+     Internal helpers
+     --------------------------------------------------------------------- */
+
+  /**
+   * Accept either a CSS selector or an element and return an element.
+   * @param {string|Element} target
+   * @param {ParentNode} [scope]
+   * @returns {Element|null}
+   */
+  function resolve(target, scope) {
+    if (!target) {
+      return null;
+    }
+    if (typeof target === "string") {
+      return (scope || document).querySelector(target);
+    }
+    return target;
+  }
+
+  /**
+   * True when the reader has asked the operating system to reduce motion.
+   * Interactives should check this before animating anything — for example
+   * by drawing a sampling distribution in one step instead of animating
+   * each draw.
+   * @returns {boolean}
+   */
+  function prefersReducedMotion() {
+    return (
+      typeof global.matchMedia === "function" &&
+      global.matchMedia("(prefers-reduced-motion: reduce)").matches
+    );
+  }
+
+  /* -----------------------------------------------------------------------
+     Shell controller
+     --------------------------------------------------------------------- */
+
+  /**
+   * Attach the shell behaviour to one `.interactive` element.
+   *
+   * @param {string|Element} target  Selector or element for the shell root.
+   * @returns {object|null}  Controller, or null if the root was not found.
+   */
+  function attach(target) {
+    var root = resolve(target);
+
+    if (!root) {
+      if (global.console && console.warn) {
+        console.warn("InteractiveShell: root element not found.", target);
+      }
+      return null;
+    }
+
+    var controls = root.querySelector("[data-interactive-controls]");
+    var stage = root.querySelector("[data-interactive-stage]");
+    var status = root.querySelector("[data-interactive-status]");
+    var resetButton = root.querySelector("[data-interactive-reset]");
+    var resetHandlers = [];
+    // Every range bound with bindRange() registers its sync function here, so
+    // that reset() can refresh the visible values after the tool's own reset
+    // handlers have restored the inputs. See reset() for why this is needed.
+    var rangeSyncs = [];
+
+    /* --- Live region ----------------------------------------------------
+       The status element is marked up as role="status" (implicitly
+       aria-live="polite"). Two details matter:
+
+         1. Assistive technology only announces *changes* to a live region,
+            so writing the same string twice is silently dropped. We add a
+            trailing zero-width space on repeat messages to force an
+            announcement when a student re-runs the same action.
+         2. Announcements are debounced. A slider dragged across its range
+            fires dozens of input events; without a delay a screen reader
+            would queue every intermediate value and fall far behind.
+       ------------------------------------------------------------------ */
+
+    var announceTimer = null;
+    var lastMessage = "";
+
+    /**
+     * Announce a short sentence describing what just changed.
+     * @param {string} message
+     * @param {object} [options]
+     * @param {boolean} [options.immediate]  Skip the debounce delay. Use for
+     *   discrete actions (button presses); leave off for continuous input.
+     */
+    function announce(message, options) {
+      if (!status) {
+        return;
+      }
+
+      var text = String(message == null ? "" : message);
+      var immediate = Boolean(options && options.immediate);
+
+      if (announceTimer !== null) {
+        global.clearTimeout(announceTimer);
+        announceTimer = null;
+      }
+
+      function write() {
+        // Force a change when the text is identical to last time.
+        status.textContent = text === lastMessage ? text + "​" : text;
+        lastMessage = text;
+      }
+
+      if (immediate) {
+        write();
+      } else {
+        announceTimer = global.setTimeout(write, 350);
+      }
+    }
+
+    /* --- Reset ---------------------------------------------------------- */
+
+    /**
+     * Register a callback to run when the Reset button is pressed.
+     * Several may be registered; they run in the order added.
+     * @param {Function} handler
+     */
+    function onReset(handler) {
+      if (typeof handler === "function") {
+        resetHandlers.push(handler);
+      }
+    }
+
+    /**
+     * Run the reset handlers. Called by the button and available directly so
+     * an interactive can reset itself on first load.
+     *
+     * Bound ranges are re-synced afterwards. A reset handler restores an
+     * input by assigning to `input.value`, and assigning to a value in script
+     * does not fire an `input` event — so without this step the slider would
+     * jump back to its default while its <output> went on showing the old
+     * number. Syncing here, after the handlers have run, also means the sync
+     * sees the restored values regardless of the order things were
+     * registered in.
+     *
+     * @param {object} [options]
+     * @param {boolean} [options.silent]  Suppress the status announcement.
+     */
+    function reset(options) {
+      resetHandlers.forEach(function (handler) {
+        handler();
+      });
+      rangeSyncs.forEach(function (sync) {
+        sync();
+      });
+      if (!options || !options.silent) {
+        announce(
+          root.getAttribute("data-reset-message") ||
+            "Reset to the starting values.",
+          { immediate: true }
+        );
+      }
+    }
+
+    if (resetButton) {
+      resetButton.addEventListener("click", function (event) {
+        // Reset buttons commonly sit inside the controls <form>; stop the
+        // browser's own form reset from fighting with ours.
+        event.preventDefault();
+        reset();
+      });
+    }
+
+    /* --- Range binding --------------------------------------------------
+       Keeps a slider's <output> in step with its value. The <output> must
+       carry `for="<input id>"`, which is what associates the two for
+       assistive technology; this only handles the visible text.
+
+       Optionally sets aria-valuetext, which is how you make a screen reader
+       say "25 cases" or "medium correlation" instead of a bare "25".
+       ------------------------------------------------------------------ */
+
+    /**
+     * @param {string|Element} inputTarget  The range (or number) input.
+     * @param {object} [options]
+     * @param {Function} [options.format]  value:number -> string shown in the
+     *   <output>. Defaults to the raw value.
+     * @param {Function} [options.describe]  value:number -> string used for
+     *   aria-valuetext. Defaults to options.format.
+     * @param {Function} [options.onInput]  value:number -> void, called after
+     *   the display has been updated. Use it to redraw.
+     * @returns {HTMLInputElement|null}
+     */
+    function bindRange(inputTarget, options) {
+      var input = resolve(inputTarget, root);
+      if (!input) {
+        return null;
+      }
+
+      var settings = options || {};
+      var format =
+        typeof settings.format === "function"
+          ? settings.format
+          : function (value) {
+              return String(value);
+            };
+      var describe =
+        typeof settings.describe === "function" ? settings.describe : format;
+
+      // <output for="the-input-id"> is the conventional pairing.
+      var output = input.id
+        ? root.querySelector('output[for="' + input.id + '"]')
+        : null;
+
+      function sync() {
+        var value = Number(input.value);
+        if (output) {
+          output.textContent = format(value);
+        }
+        // Only meaningful for widgets with an implicit or explicit slider
+        // role; harmless elsewhere.
+        input.setAttribute("aria-valuetext", describe(value));
+        if (typeof settings.onInput === "function") {
+          settings.onInput(value);
+        }
+      }
+
+      input.addEventListener("input", sync);
+      // Registered so reset() can refresh the display after the tool's own
+      // reset handlers have put the input back to its default.
+      rangeSyncs.push(sync);
+      sync();
+
+      return input;
+    }
+
+    /* --- Public surface -------------------------------------------------- */
+
+    return {
+      /** The `.interactive` root element. */
+      root: root,
+      /** The controls panel, or null if the shell has none. */
+      controls: controls,
+      /** The stage element where the visualisation is drawn. */
+      stage: stage,
+      /** The live-region element. */
+      status: status,
+      announce: announce,
+      onReset: onReset,
+      reset: reset,
+      bindRange: bindRange,
+      prefersReducedMotion: prefersReducedMotion
+    };
+  }
+
+  /* -----------------------------------------------------------------------
+     Export
+     --------------------------------------------------------------------- */
+
+  global.InteractiveShell = {
+    attach: attach,
+    prefersReducedMotion: prefersReducedMotion
+  };
+})(window);
+
+/* ---- modules/neuropsychology/tools/01-double-dissociation-detective/tool.js ---- */
+/* =========================================================================
+   Double Dissociation Detective
+   -------------------------------------------------------------------------
+   Six fictional case files. Each file gives one or two people, two tasks, a
+   fictional control group for each task, and a verdict to reach: not enough
+   evidence, a general severity difference, a single dissociation, a double
+   dissociation, or a crossover confounded by the tasks themselves.
+
+   THE EDUCATIONAL MODEL
+   ---------------------
+   Raw percentages on two different tasks are not comparable, so every score
+   is referenced to its own control group:
+
+       z = (score - controlMean) / controlSd
+
+   Test length decides precision. A score of p correct out of n items has a
+   binomial standard error
+
+       SE(p) = sqrt(p(1 - p) / n)
+
+   which in control-referenced units is SE(p) / controlSd. The difference
+   between a person's two control-referenced scores therefore has
+
+       SE(dz) = sqrt(SEz(a)^2 + SEz(b)^2)
+
+   and the difference counts as resolvable when |dz| > 1.96 * SE(dz).
+
+   Classification then follows the logic of the inference rather than the size
+   of the gap:
+
+       no resolvable difference in anybody     -> not enough evidence
+       exactly one resolvable difference       -> single dissociation
+       two, same direction                     -> general severity difference
+       two, opposite directions                -> double dissociation
+       two, opposite, case flagged as impure   -> confounded crossover
+
+   The last line is the one the numbers cannot reach on their own. Whether two
+   tasks differ in more than the process of interest is a judgement about the
+   case notes and the task-demands table, which is why case 6 carries a flag
+   the arithmetic knows nothing about.
+
+   DELIBERATE SIMPLIFICATIONS
+   --------------------------
+   * The observed proportion is held fixed while test length varies, so the
+     slider isolates precision. In reality a longer test changes the estimate
+     as well as its interval.
+   * Control mean and standard deviation are treated as known exactly.
+     Single-case comparison properly uses a modified t test that allows for a
+     finite control sample and gives wider intervals than these.
+   * A binomial standard error assumes items are independent and equally
+     difficult, which no real task satisfies.
+   * Every number, task, control group and case note is invented for teaching.
+     None is a norm, a prevalence or a published value.
+
+   No data leave the browser. There is no storage and no network request.
+   ========================================================================= */
+
+(function () {
+  "use strict";
+
+  var CRIT = 1.96;          /* 95% two-tailed normal critical value */
+  var TYPICAL_LIMIT = 1.65; /* edge of the shaded "control range" band */
+
+  /* =======================================================================
+     The case files - all fictional
+     ===================================================================== */
+
+  var CASES = [
+    {
+      title: "One person, two tasks",
+      brief:
+        "Person A, tested on two tasks that use the same everyday objects. " +
+        "Read each score against its own control group before you decide.",
+      items: 40,
+      precision: false,
+      impure: false,
+      tasks: [
+        {
+          key: "a",
+          name: "Naming pictures of everyday objects",
+          short: "Naming pictures",
+          mean: 0.94, sd: 0.08,
+          input: "Line drawings, one at a time",
+          response: "Says the object's name aloud",
+          also: "Recognising the drawing, retrieving the word, producing the word"
+        },
+        {
+          key: "b",
+          name: "Matching a spoken word to one of four pictures",
+          short: "Word to picture",
+          mean: 0.96, sd: 0.05,
+          input: "One spoken word with four drawings on the page",
+          response: "Points to one drawing",
+          also: "Hearing the word, recognising four drawings, comparing options"
+        }
+      ],
+      people: [{ label: "Person A", scores: { a: 0.48, b: 0.91 } }],
+      notes:
+        "Person A is 67 and was tested five months after a stroke. Both tasks " +
+        "were completed in one 40-minute session with a break in the middle. " +
+        "She reported no difficulty hearing the spoken words, and her failures " +
+        "on the naming task were mostly of the form \"I know what it is, I " +
+        "just cannot get the word\".",
+      commentary:
+        "A single dissociation, and worth having: the two tasks come apart, " +
+        "so naming a picture is not simply comprehending it plus speaking. " +
+        "What it cannot rule out is that naming is the more demanding task. " +
+        "One person never settles that, however large the gap."
+    },
+
+    {
+      title: "Two people, same shape",
+      brief:
+        "Person A and Person B, tested on the same two memory tasks with the " +
+        "same items. Person B is more impaired overall.",
+      items: 40,
+      precision: false,
+      impure: false,
+      tasks: [
+        {
+          key: "a",
+          name: "Recalling a short list of words straight away",
+          short: "Immediate recall",
+          mean: 0.86, sd: 0.11,
+          input: "Twelve spoken words",
+          response: "Says back as many as possible at once",
+          also: "Hearing, holding a short list, speaking"
+        },
+        {
+          key: "b",
+          name: "Recalling the same list after twenty minutes",
+          short: "Delayed recall",
+          mean: 0.82, sd: 0.12,
+          input: "No new material; the list from earlier",
+          response: "Says back as many as possible",
+          also: "Everything the immediate task needs, plus retention over a delay"
+        }
+      ],
+      people: [
+        { label: "Person A", scores: { a: 0.70, b: 0.36 } },
+        { label: "Person B", scores: { a: 0.58, b: 0.20 } }
+      ],
+      notes:
+        "Both were tested about six months after a first stroke. Person B was " +
+        "in hospital for considerably longer and was described by the ward " +
+        "team as tiring quickly. Both completed 40 items on each task in a " +
+        "single session.",
+      commentary:
+        "Two resolvable differences, both the same way round: further below " +
+        "controls on delayed recall than on immediate recall. One graded " +
+        "impairment produces that, and so would two separate deficits. The " +
+        "second person adds severity, not logic. Only a reversal adds logic."
+    },
+
+    {
+      title: "Two people, opposite shapes",
+      brief:
+        "Person A and Person B, the same two tasks, the same 40 items, the " +
+        "same testing session length.",
+      items: 40,
+      precision: false,
+      impure: false,
+      tasks: [
+        {
+          key: "a",
+          name: "Naming familiar objects from pictures",
+          short: "Naming objects",
+          mean: 0.93, sd: 0.07,
+          input: "Line drawings, one at a time",
+          response: "Says the object's name aloud",
+          also: "Recognising the drawing, retrieving and producing the word"
+        },
+        {
+          key: "b",
+          name: "Copying a shown design with coloured blocks",
+          short: "Block design",
+          mean: 0.84, sd: 0.12,
+          input: "A printed design and a set of blocks",
+          response: "Arranges the blocks by hand",
+          also: "Seeing the design, breaking it into parts, planning, hand movement"
+        }
+      ],
+      people: [
+        { label: "Person A", scores: { a: 0.45, b: 0.80 } },
+        { label: "Person B", scores: { a: 0.90, b: 0.30 } }
+      ],
+      notes:
+        "Person A is 58 and Person B is 62. Both were tested seven to nine " +
+        "months after a first stroke, both in the morning, both with the same " +
+        "examiner. Neither reported difficulty seeing the material or moving " +
+        "the hand they used.",
+      commentary:
+        "This is the crossover. Neither task can be \"the harder one\", " +
+        "because a task cannot be more demanding for one person and less " +
+        "demanding for another simply by being more demanding. That single " +
+        "piece of logic is the whole contribution of a double dissociation, " +
+        "and it is a real one: these two tasks draw on at least partly " +
+        "separable processing. Where that processing sits is a different " +
+        "question, and this file does not touch it."
+    },
+
+    {
+      title: "A 58-point gap",
+      brief:
+        "Person A scores 88% on one task and 30% on the other. Before you " +
+        "decide, look at what the control groups scored.",
+      items: 40,
+      precision: false,
+      impure: false,
+      tasks: [
+        {
+          key: "a",
+          name: "Recognising which of two faces was seen before",
+          short: "Face recognition",
+          mean: 0.95, sd: 0.05,
+          input: "Two photographs of unfamiliar faces",
+          response: "Points to the one seen earlier",
+          also: "Seeing detail, holding a face in mind, choosing between two"
+        },
+        {
+          key: "b",
+          name: "Recalling which words were paired with which",
+          short: "Word pairs",
+          mean: 0.52, sd: 0.18,
+          input: "Twenty pairs of unrelated words, then one word of each pair",
+          response: "Says the word that went with it",
+          also: "Hearing, forming a new association, retrieving it to a cue"
+        }
+      ],
+      people: [{ label: "Person A", scores: { a: 0.88, b: 0.30 } }],
+      notes:
+        "Person A is 44 and was tested four months after a head injury. The " +
+        "word-pair task was administered at the end of a two-hour session; the " +
+        "face task was the second thing she did that morning. She described " +
+        "the word pairs as \"impossible - nobody could do that\".",
+      commentary:
+        "The largest raw gap on this page, and not a dissociation at all. " +
+        "Controls average 52% on the word pairs and 95% on the faces, so the " +
+        "two percentages are readings from different rulers. Against their own " +
+        "controls the two scores sit within a fifth of a control SD of each " +
+        "other, and this person's remark about the task being impossible was, " +
+        "for once, close to accurate."
+    },
+
+    {
+      title: "The same scores, a longer test",
+      brief:
+        "Two people, two rhyme-judgement tasks, and a slider for how many " +
+        "items each task contained. The percentages do not move.",
+      items: 40,
+      precision: true,
+      impure: false,
+      tasks: [
+        {
+          key: "a",
+          name: "Deciding whether two spoken words rhyme",
+          short: "Spoken rhyme",
+          mean: 0.90, sd: 0.10,
+          input: "Two words read aloud by the examiner",
+          response: "Says yes or no",
+          also: "Hearing, holding two words, comparing their sounds"
+        },
+        {
+          key: "b",
+          name: "Deciding whether two written words rhyme",
+          short: "Written rhyme",
+          mean: 0.89, sd: 0.10,
+          input: "Two words printed on a card",
+          response: "Says yes or no",
+          also: "Seeing, converting letters to sounds, comparing their sounds"
+        }
+      ],
+      people: [
+        { label: "Person A", scores: { a: 0.79, b: 0.61 } },
+        { label: "Person B", scores: { a: 0.63, b: 0.80 } }
+      ],
+      notes:
+        "Both were tested about a year after a stroke, both were fluent " +
+        "readers before it, and both wear their usual glasses. The published " +
+        "version of this fictional study used 40 items per task. The slider " +
+        "asks what would have been claimable if it had used more.",
+      commentary:
+        "Nothing about these two people changes as you move the slider; only " +
+        "the precision of the estimates does. At 40 items the crossover is in " +
+        "the point estimates and not in the evidence. Around 50 items one " +
+        "difference becomes resolvable, and from about 55 both do - the same " +
+        "four scores, now a double dissociation. Test length decides what you " +
+        "are entitled to claim."
+    },
+
+    {
+      title: "A crossover with a problem",
+      brief:
+        "A clean reversal, well outside measurement error. Read the case notes " +
+        "and the task demands before you commit.",
+      items: 40,
+      precision: false,
+      impure: true,
+      tasks: [
+        {
+          key: "a",
+          name: "Identifying objects shown as photographs",
+          short: "Objects by sight",
+          mean: 0.95, sd: 0.06,
+          input: "Colour photographs; small objects, fine detail matters",
+          response: "Says the object's name aloud",
+          also: "Sharp vision, recognising the object, retrieving the word"
+        },
+        {
+          key: "b",
+          name: "Identifying objects held in the hands, out of sight",
+          short: "Objects by touch",
+          mean: 0.88, sd: 0.10,
+          input: "Real objects handled behind a screen; touch only",
+          response: "Says the object's name aloud",
+          also: "Sensation in the fingertips, exploratory hand movement, recognising the object, retrieving the word"
+        }
+      ],
+      people: [
+        { label: "Person A", scores: { a: 0.90, b: 0.35 } },
+        { label: "Person B", scores: { a: 0.55, b: 0.82 } }
+      ],
+      notes:
+        "Person A is 61 and was tested nine months after a stroke; she has had " +
+        "reduced sensation in both hands since a neck injury in her forties. " +
+        "Person B is 58 and was tested seven months after a stroke; he has a " +
+        "long-standing eye condition, reads only large print, and his acuity " +
+        "with glasses is well below the range of the control group. Both " +
+        "completed 40 items on each task with the same examiner.",
+      commentary:
+        "The crossover is real and well outside measurement error, and it " +
+        "still does not separate visual from tactile object recognition. One " +
+        "person cannot feel the objects properly; the other cannot see the " +
+        "photographs properly. A crossover isolates the process you had in " +
+        "mind only when nothing else that differs between the tasks could " +
+        "produce the same reversal, and here something obviously could."
+    }
+  ];
+
+  /* =======================================================================
+     The inference
+     ===================================================================== */
+
+  function zOf(score, task) {
+    return (score - task.mean) / task.sd;
+  }
+
+  /** Binomial standard error of the proportion, in control-SD units. */
+  function seZ(score, items, task) {
+    return Math.sqrt((score * (1 - score)) / items) / task.sd;
+  }
+
+  /**
+   * Everything the display and the classifier need for one case at one test
+   * length. Kept in one place so the chart, the table and the verdict can
+   * never disagree with each other.
+   */
+  function analyse(caseDef, items) {
+    var taskA = caseDef.tasks[0];
+    var taskB = caseDef.tasks[1];
+
+    var people = caseDef.people.map(function (person) {
+      var rows = caseDef.tasks.map(function (task) {
+        var score = person.scores[task.key];
+        var z = zOf(score, task);
+        var se = seZ(score, items, task);
+        return {
+          task: task,
+          score: score,
+          correct: Math.round(score * items),
+          z: z,
+          se: se,
+          low: z - CRIT * se,
+          high: z + CRIT * se,
+          clearlyBelow: z + CRIT * se < -TYPICAL_LIMIT
+        };
+      });
+
+      var dz = zOf(person.scores[taskA.key], taskA) - zOf(person.scores[taskB.key], taskB);
+      var seDiff = Math.sqrt(
+        Math.pow(seZ(person.scores[taskA.key], items, taskA), 2) +
+        Math.pow(seZ(person.scores[taskB.key], items, taskB), 2)
+      );
+
+      return {
+        label: person.label,
+        rows: rows,
+        dz: dz,
+        seDiff: seDiff,
+        resolvable: Math.abs(dz) > CRIT * seDiff,
+        /* Negative dz means the person stands further below controls on the
+           first task; positive means further below on the second. */
+        worseOn: dz < 0 ? taskA : taskB
+      };
+    });
+
+    var resolved = people.filter(function (p) { return p.resolvable; });
+    var verdict;
+
+    if (resolved.length === 0) {
+      verdict = "insufficient";
+    } else if (resolved.length === 1) {
+      verdict = "single";
+    } else {
+      var signs = resolved.map(function (p) { return p.dz > 0 ? 1 : -1; });
+      var mixed = signs.some(function (s) { return s !== signs[0]; });
+      verdict = mixed ? (caseDef.impure ? "confounded" : "double") : "severity";
+    }
+
+    return {
+      caseDef: caseDef,
+      items: items,
+      people: people,
+      resolved: resolved,
+      verdict: verdict,
+      /* The smallest control-referenced difference this test length could
+         resolve, averaged across the people in the file. Used as a readout. */
+      resolvableAt: people.reduce(function (sum, p) {
+        return sum + CRIT * p.seDiff;
+      }, 0) / people.length
+    };
+  }
+
+  /* =======================================================================
+     Wording
+     ===================================================================== */
+
+  var VERDICT_NAME = {
+    insufficient: "Not enough evidence to say",
+    severity: "A general severity difference",
+    single: "A single dissociation",
+    double: "A double dissociation",
+    confounded: "A crossover the tasks cannot support"
+  };
+
+  /** One sentence stating what the arithmetic found, built from the numbers. */
+  function statement(result) {
+    var items = result.items;
+    var parts = result.people.map(function (p) {
+      if (!p.resolvable) {
+        return p.label + "'s two scores differ by " + fmt(Math.abs(p.dz), 2) +
+          " control SDs, inside the " + fmt(CRIT * p.seDiff, 2) +
+          " that " + items + " items can resolve";
+      }
+      return p.label + " is " + fmt(Math.abs(p.dz), 2) +
+        " control SDs further below on " + p.worseOn.short.toLowerCase() +
+        ", against " + fmt(CRIT * p.seDiff, 2) + " needed to resolve";
+    });
+    return parts.join("; ") + ".";
+  }
+
+  /** Why the answer the learner gave does not fit what the numbers show. */
+  function whyNot(chosen, result) {
+    var n = result.people.length;
+    var resolvedCount = result.resolved.length;
+
+    if (chosen === "insufficient") {
+      return "You called it unresolvable, but " + resolvedCount + " of the " + n +
+        " within-person differences here is larger than what " + result.items +
+        " items can resolve, so at least that much is claimable.";
+    }
+    if (chosen === "severity") {
+      if (result.verdict === "double" || result.verdict === "confounded") {
+        return "A severity difference means both people are further below " +
+          "controls on the same task. Here they are worse on different tasks, " +
+          "which is the one pattern a shared graded impairment cannot produce.";
+      }
+      if (n === 1) {
+        return "A severity difference is a comparison between two people, and " +
+          "this file contains one.";
+      }
+      return "A severity difference needs two resolvable differences in the " +
+        "same direction. That is not what these numbers give.";
+    }
+    if (chosen === "single") {
+      if (result.verdict === "insufficient") {
+        return "A single dissociation needs one difference that is bigger than " +
+          "its own interval. At " + result.items + " items, none here is.";
+      }
+      if (result.verdict === "double" || result.verdict === "confounded") {
+        return "There are two resolvable differences here, in opposite " +
+          "directions - which is more than a single dissociation, and buys " +
+          "more than one.";
+      }
+      return "Both people show a resolvable difference, so this is not a " +
+        "single case standing on its own.";
+    }
+    if (chosen === "double") {
+      if (result.verdict === "insufficient") {
+        return "A crossover in the point estimates is not a crossover in the " +
+          "evidence. At " + result.items + " items neither difference is larger " +
+          "than its own interval.";
+      }
+      if (result.verdict === "severity") {
+        return "Both people are further below controls on the same task. " +
+          "Without a reversal, \"that task is simply more demanding\" survives " +
+          "as an explanation, which is precisely what a double dissociation is " +
+          "for ruling out.";
+      }
+      if (result.verdict === "single") {
+        return n === 1
+          ? "A double dissociation needs two people going opposite ways. This " +
+            "file has one person, so it cannot deliver one however large the gap is."
+          : "Only one of the two differences is resolvable at this test length, " +
+            "so only one half of the crossover is actually evidence.";
+      }
+      if (result.verdict === "confounded") {
+        return "The crossover itself is not in doubt - the numbers are as you " +
+          "read them. The problem is what the two tasks differ in besides the " +
+          "process you wanted to isolate.";
+      }
+    }
+    if (chosen === "confounded") {
+      if (result.verdict === "double") {
+        return "Worth being suspicious, and here it does not land: the tasks " +
+          "were matched on items and session length, and the case notes record " +
+          "no sensory or motor difference that could produce the reversal. " +
+          "Impurity has to be argued from the case, not assumed.";
+      }
+      return "There is no resolvable crossover here to be confounded in the " +
+        "first place.";
+    }
+    return "";
+  }
+
+  /* =======================================================================
+     Small helpers
+     ===================================================================== */
+
+  function fmt(v, places) {
+    return (v === null || v === undefined || isNaN(v))
+      ? "-" : v.toFixed(places === undefined ? 2 : places);
+  }
+
+  function signed(v, places) {
+    return (v >= 0 ? "+" : "−") + Math.abs(v).toFixed(places === undefined ? 1 : places);
+  }
+
+  function pct(v) { return Math.round(v * 100) + "%"; }
+
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) { node.className = className; }
+    if (text !== undefined) { node.textContent = text; }
+    return node;
+  }
+
+  function clear(node) {
+    while (node.firstChild) { node.removeChild(node.firstChild); }
+  }
+
+  var NS = "http://www.w3.org/2000/svg";
+
+  function svgEl(name, attrs) {
+    var node = document.createElementNS(NS, name);
+    Object.keys(attrs).forEach(function (key) {
+      node.setAttribute(key, String(attrs[key]));
+    });
+    return node;
+  }
+
+  function svgText(x, y, className, anchor, text) {
+    var node = svgEl("text", { x: x, y: y, class: className, "text-anchor": anchor });
+    node.textContent = text;
+    return node;
+  }
+
+  /* =======================================================================
+     Wiring
+     ===================================================================== */
+
+  var shell = InteractiveShell.attach("#detective");
+  if (!shell) { return; }
+
+  var $ = function (selector, scope) {
+    return (scope || document).querySelector(selector);
+  };
+
+  var caseSelect = $("[data-case-select]");
+  var itemsRange = $("#items-range");
+  var precisionBlock = $("[data-precision-block]");
+  var profileChart = $("[data-profile]");
+  var scoreTable = $("[data-score-table]");
+  var demandsTable = $("[data-demands-table]");
+  var demandsDetails = $("[data-demands-details]");
+  var notesBody = $("[data-notes-body]");
+  var caseTitle = $("[data-case-title]");
+  var caseBrief = $("[data-case-brief]");
+  var verdictFeedback = $("[data-verdict-feedback]");
+  var track = $("[data-track]");
+  var nextButton = $('[data-action="next-case"]');
+  var controlsForm = $("[data-interactive-controls]");
+
+  var openingForm = $("#opening-form");
+  var openingError = $("[data-opening-error]");
+  var openingFeedback = $("[data-opening-feedback]");
+  var casesSection = $("#cases-section");
+
+  var challengeForm = $("#challenge-form");
+  var challengeFeedback = $("[data-challenge-feedback]");
+
+  var state = { index: 0, items: 40, answered: [] };
+
+  /* --- The case selector, built once ------------------------------------ */
+
+  CASES.forEach(function (caseDef, index) {
+    var option = make("option", null, "Case " + (index + 1) + " - " + caseDef.title);
+    option.value = String(index);
+    caseSelect.appendChild(option);
+
+    var item = make("li");
+    item.appendChild(make("span", null, String(index + 1)));
+    item.appendChild(document.createTextNode(" " + caseDef.title));
+    track.appendChild(item);
+  });
+
+  caseSelect.addEventListener("change", function () {
+    goToCase(Number(caseSelect.value));
+  });
+
+  nextButton.addEventListener("click", function () {
+    if (state.index < CASES.length - 1) {
+      goToCase(state.index + 1);
+      caseSelect.focus();
+    }
+  });
+
+  shell.bindRange(itemsRange, {
+    format: function (v) { return String(v); },
+    describe: function (v) { return v + " items per task"; },
+    onInput: function (v) {
+      state.items = v;
+      verdictFeedback.hidden = true;
+      render();
+      shell.announce(
+        "Test length now " + v + " items per task. The intervals have " +
+        "changed - return a verdict again."
+      );
+    }
+  });
+
+  controlsForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    submitVerdict();
+  });
+
+  /* --- Navigation ------------------------------------------------------- */
+
+  function goToCase(index) {
+    state.index = index;
+    caseSelect.value = String(index);
+    state.items = CASES[index].items;
+    itemsRange.value = String(state.items);
+    verdictFeedback.hidden = true;
+    controlsForm.querySelectorAll('input[name="verdict"]').forEach(function (input) {
+      input.checked = false;
+    });
+    render();
+    shell.announce(
+      "Case " + (index + 1) + " of " + CASES.length + ": " + CASES[index].title + ".",
+      { immediate: true }
+    );
+  }
+
+  /* --- Rendering -------------------------------------------------------- */
+
+  function render() {
+    var caseDef = CASES[state.index];
+    var result = analyse(caseDef, state.items);
+
+    caseTitle.textContent = "Case " + (state.index + 1) + " - " + caseDef.title;
+    caseBrief.textContent = caseDef.brief;
+    notesBody.textContent = caseDef.notes;
+
+    precisionBlock.hidden = !caseDef.precision;
+    demandsDetails.open = false;
+
+    renderTrack();
+    renderChart(result);
+    renderScoreTable(result);
+    renderDemands(caseDef);
+
+    nextButton.disabled = state.index >= CASES.length - 1;
+    nextButton.textContent = nextButton.disabled ? "Last case" : "Next case";
+  }
+
+  function renderTrack() {
+    Array.prototype.forEach.call(track.children, function (item, index) {
+      item.removeAttribute("aria-current");
+      item.removeAttribute("data-state");
+      if (state.answered[index]) { item.setAttribute("data-state", "done"); }
+      if (index === state.index) { item.setAttribute("aria-current", "step"); }
+    });
+  }
+
+  /* Horizontal interval plot: one row per person-task, the control average at
+     zero, and a shaded band for the usual control range. Point markers are
+     filled when the whole interval sits below the band and hollow otherwise,
+     so the distinction survives greyscale; every value is also printed. */
+  function renderChart(result) {
+    var LEFT = 140;          /* right edge of the row labels */
+    var AXIS_START = 148;
+    var AXIS_END = 396;
+    var Z_MIN = -10;
+    var Z_MAX = 2;
+    var ROW = 30;
+    var HEAD = 20;
+    var TOP = 10;
+
+    function xOf(z) {
+      var clamped = Math.max(Z_MIN, Math.min(Z_MAX, z));
+      return AXIS_START + ((clamped - Z_MIN) / (Z_MAX - Z_MIN)) * (AXIS_END - AXIS_START);
+    }
+
+    var height = TOP;
+    result.people.forEach(function (person) {
+      height += HEAD + person.rows.length * ROW + 6;
+    });
+    var axisY = height + 6;
+    var total = axisY + 30;
+
+    clear(profileChart);
+    profileChart.setAttribute("viewBox", "0 0 470 " + total);
+
+    /* The band of scores a control group would usually produce. */
+    profileChart.appendChild(svgEl("rect", {
+      x: xOf(-TYPICAL_LIMIT), y: TOP - 4,
+      width: xOf(TYPICAL_LIMIT) - xOf(-TYPICAL_LIMIT),
+      height: axisY - TOP + 4,
+      class: "dd__band"
+    }));
+
+    profileChart.appendChild(svgEl("line", {
+      x1: xOf(0), y1: TOP - 4, x2: xOf(0), y2: axisY, class: "dd__zero"
+    }));
+
+    var y = TOP;
+    result.people.forEach(function (person) {
+      profileChart.appendChild(
+        svgText(0, y + 12, "chart__label dd__person", "start", person.label));
+      y += HEAD;
+
+      person.rows.forEach(function (row) {
+        var mid = y + ROW / 2;
+
+        profileChart.appendChild(
+          svgText(LEFT, mid + 4, "chart__count", "end", row.task.short));
+
+        profileChart.appendChild(svgEl("line", {
+          x1: xOf(row.low), y1: mid, x2: xOf(row.high), y2: mid, class: "dd__interval"
+        }));
+        [row.low, row.high].forEach(function (end) {
+          profileChart.appendChild(svgEl("line", {
+            x1: xOf(end), y1: mid - 5, x2: xOf(end), y2: mid + 5, class: "dd__interval"
+          }));
+        });
+
+        profileChart.appendChild(svgEl("circle", {
+          cx: xOf(row.z), cy: mid, r: 5.5,
+          class: "dd__point" + (row.clearlyBelow ? " dd__point--below" : "")
+        }));
+
+        profileChart.appendChild(
+          svgText(AXIS_END + 8, mid + 4, "chart__count", "start", signed(row.z, 1)));
+
+        y += ROW;
+      });
+      y += 6;
+    });
+
+    profileChart.appendChild(svgEl("line", {
+      x1: AXIS_START, y1: axisY, x2: AXIS_END, y2: axisY, class: "chart__baseline"
+    }));
+
+    [-9, -6, -3, 0].forEach(function (tick) {
+      profileChart.appendChild(svgEl("line", {
+        x1: xOf(tick), y1: axisY, x2: xOf(tick), y2: axisY + 4, class: "chart__baseline"
+      }));
+      profileChart.appendChild(
+        svgText(xOf(tick), axisY + 16, "chart__axis", "middle",
+          tick === 0 ? "0" : String(tick)));
+    });
+
+    profileChart.appendChild(
+      svgText(xOf(0), axisY + 28, "chart__axis", "middle", "control average"));
+    profileChart.appendChild(
+      svgText(0, axisY + 16, "chart__axis", "start", "control SDs"));
+  }
+
+  function renderScoreTable(result) {
+    clear(scoreTable);
+    result.people.forEach(function (person) {
+      person.rows.forEach(function (row, rowIndex) {
+        var tr = make("tr");
+
+        var th = make("th", null, rowIndex === 0 ? person.label : "");
+        th.setAttribute("scope", "row");
+        if (rowIndex === 0) {
+          th.setAttribute("rowspan", String(person.rows.length));
+          tr.appendChild(th);
+        }
+
+        tr.appendChild(make("td", null, row.task.name));
+        tr.appendChild(make("td", null,
+          row.correct + " of " + result.items + " (" + pct(row.score) + ")"));
+        tr.appendChild(make("td", null,
+          pct(row.task.mean) + " (SD " + Math.round(row.task.sd * 100) + ")"));
+        tr.appendChild(make("td", null,
+          signed(row.z, 1) + " SD" +
+          (row.clearlyBelow ? " - clearly below the control range" : " - within reach of the control range")));
+        tr.appendChild(make("td", null, signed(row.low, 1) + " to " + signed(row.high, 1)));
+
+        scoreTable.appendChild(tr);
+      });
+
+      var summary = make("tr", "dd__summary");
+      var label = make("th", null, person.label + ": difference between the two tasks");
+      label.setAttribute("scope", "row");
+      label.setAttribute("colspan", "4");
+      summary.appendChild(label);
+      summary.appendChild(make("td", null, fmt(Math.abs(person.dz), 2) + " SD"));
+      summary.appendChild(make("td", null,
+        person.resolvable
+          ? "resolvable (needs " + fmt(CRIT * person.seDiff, 2) + ")"
+          : "not resolvable (needs " + fmt(CRIT * person.seDiff, 2) + ")"));
+      scoreTable.appendChild(summary);
+    });
+  }
+
+  function renderDemands(caseDef) {
+    clear(demandsTable);
+    caseDef.tasks.forEach(function (task) {
+      var tr = make("tr");
+      var th = make("th", null, task.name);
+      th.setAttribute("scope", "row");
+      tr.appendChild(th);
+      tr.appendChild(make("td", null, task.input));
+      tr.appendChild(make("td", null, task.response));
+      tr.appendChild(make("td", null, task.also));
+      demandsTable.appendChild(tr);
+    });
+  }
+
+  /* --- Verdicts --------------------------------------------------------- */
+
+  function submitVerdict() {
+    var chosen = $('input[name="verdict"]:checked', controlsForm);
+    if (!chosen) {
+      showFeedback(verdictFeedback, "caution", "Choose a verdict first.", "");
+      shell.announce("No verdict chosen yet.", { immediate: true });
+      return;
+    }
+
+    var caseDef = CASES[state.index];
+    var result = analyse(caseDef, state.items);
+    var right = chosen.value === result.verdict;
+
+    var body = document.createDocumentFragment();
+
+    var lead = make("p");
+    lead.appendChild(make("strong", "feedback__verdict",
+      right ? "Yes - " + VERDICT_NAME[result.verdict] + "." : "Not quite."));
+    lead.appendChild(document.createTextNode(" " + statement(result)));
+    body.appendChild(lead);
+
+    if (!right) {
+      var correction = make("p");
+      correction.appendChild(make("strong", null,
+        "On these numbers this is: " + VERDICT_NAME[result.verdict] + ". "));
+      correction.appendChild(document.createTextNode(whyNot(chosen.value, result)));
+      body.appendChild(correction);
+    }
+
+    body.appendChild(make("p", null, caseDef.commentary));
+
+    if (result.verdict === "confounded" || caseDef.impure) {
+      var pointer = make("p", "text-muted",
+        "The arithmetic cannot see this. Only the case notes and the " +
+        "task-demands table can.");
+      body.appendChild(pointer);
+      demandsDetails.open = true;
+    }
+
+    clear(verdictFeedback);
+    verdictFeedback.setAttribute("data-tone", right ? "good" : "caution");
+    verdictFeedback.appendChild(body);
+    verdictFeedback.hidden = false;
+
+    state.answered[state.index] = true;
+    renderTrack();
+
+    shell.announce(
+      (right ? "Correct. " : "Not quite. ") +
+      "On these numbers, case " + (state.index + 1) + " is " +
+      VERDICT_NAME[result.verdict].toLowerCase() + ".",
+      { immediate: true });
+  }
+
+  /* --- Opening prediction ----------------------------------------------- */
+
+  var OPENING = {
+    separable: {
+      tone: "caution",
+      verdict: "That is the step to be careful about.",
+      text:
+        "The natural reading, and one step further than the evidence goes. " +
+        "The failed task may simply be the more demanding one. Case 3 below " +
+        "is what it takes to rule that out."
+    },
+    harder: {
+      tone: "caution",
+      verdict: "Possible, and not established either.",
+      text:
+        "Task difficulty is the rival a single case cannot exclude - but it " +
+        "is a rival, not the answer. Both readings survive. What decides " +
+        "between them is a second person showing the reverse pattern."
+    },
+    open: {
+      tone: "good",
+      verdict: "Yes.",
+      text:
+        "It puts a difference on the table and leaves at least two " +
+        "explanations alive: separable processes, or one task making more of " +
+        "the same demand. The six files below take the alternatives apart one " +
+        "at a time."
+    },
+    nothing: {
+      tone: "caution",
+      verdict: "Too strong the other way.",
+      text:
+        "A person who can do A but not B shows that A does not require " +
+        "everything B requires, which rules some models out. The limit is " +
+        "narrower than \"nothing\": one person cannot separate a functional " +
+        "difference from a difficulty difference."
+    }
+  };
+
+  openingForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answer = $('input[name="opening"]:checked', openingForm);
+    if (!answer) {
+      openingError.textContent = "Choose an answer before opening the case files.";
+      openingError.hidden = false;
+      return;
+    }
+    openingError.hidden = true;
+    var entry = OPENING[answer.value];
+    showFeedback(openingFeedback, entry.tone, entry.verdict, entry.text);
+    unlockCases();
+  });
+
+  $('[data-action="skip-opening"]').addEventListener("click", function () {
+    openingError.hidden = true;
+    showFeedback(openingFeedback, "neutral",
+      "Prediction skipped - demonstration mode.", "");
+    unlockCases();
+  });
+
+  function unlockCases() {
+    lockForm(openingForm);
+    casesSection.hidden = false;
+    goToCase(0);
+    $("#cases-heading").focus();
+    shell.announce("Case files open. Case 1 of " + CASES.length + ".",
+      { immediate: true });
+  }
+
+  /* --- Challenge -------------------------------------------------------- */
+
+  var CHALLENGE = {
+    regions: {
+      tone: "caution",
+      verdict: "That is the sentence to push back on.",
+      text:
+        "The crossover is evidence about tasks, not about tissue. It supports " +
+        "at least partly separable processing; it says nothing about whether " +
+        "that processing sits in one region, spreads over a network, or uses " +
+        "the same tissue in two ways. Damage to a single undivided system " +
+        "produces crossovers too."
+    },
+    separable: {
+      tone: "good",
+      verdict: "Yes.",
+      text:
+        "Separable processing, anatomy open. The crossover rules out the one " +
+        "rival a single case cannot - that one task is simply more demanding - " +
+        "and stops there. Anatomy needs lesion information, imaging and many " +
+        "more cases, and even then it constrains models rather than proving one."
+    },
+    difficulty: {
+      tone: "caution",
+      verdict: "Not what it shows.",
+      text:
+        "It establishes that a difficulty difference cannot be the whole " +
+        "story, which is a different claim. The two tasks may well differ in " +
+        "difficulty; what they cannot do is make each of them the harder one " +
+        "for a different person."
+    },
+    nothing: {
+      tone: "caution",
+      verdict: "Too strong.",
+      text:
+        "Two cases are thin evidence for anything general. But the crossover " +
+        "removes an explanation that no number of extra single cases could " +
+        "remove. A constraint on models, then - neither nothing nor proof."
+    }
+  };
+
+  challengeForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answer = $('input[name="challenge"]:checked', challengeForm);
+    if (!answer) {
+      showFeedback(challengeFeedback, "caution", "Choose an answer first.", "");
+      return;
+    }
+    var entry = CHALLENGE[answer.value];
+    showFeedback(challengeFeedback, entry.tone, entry.verdict, entry.text);
+    shell.announce("Challenge answered.", { immediate: true });
+  });
+
+  /* --- Feedback plumbing ------------------------------------------------ */
+
+  function showFeedback(container, tone, verdict, text) {
+    clear(container);
+    container.setAttribute("data-tone", tone);
+    var p = make("p");
+    p.appendChild(make("strong", "feedback__verdict", verdict));
+    if (text) { p.appendChild(document.createTextNode(" " + text)); }
+    container.appendChild(p);
+    container.hidden = false;
+  }
+
+  function lockForm(form) {
+    Array.prototype.forEach.call(form.querySelectorAll("input, button"),
+      function (control) { control.disabled = true; });
+  }
+
+  function unlockForm(form) {
+    Array.prototype.forEach.call(form.querySelectorAll("input, button"),
+      function (control) { control.disabled = false; });
+    form.reset();
+  }
+
+  /* --- Reset ------------------------------------------------------------ */
+
+  shell.onReset(function () {
+    state = { index: 0, items: CASES[0].items, answered: [] };
+    unlockForm(openingForm);
+    openingFeedback.hidden = true;
+    openingError.hidden = true;
+    casesSection.hidden = true;
+    verdictFeedback.hidden = true;
+    challengeForm.reset();
+    challengeFeedback.hidden = true;
+    caseSelect.value = "0";
+    itemsRange.value = String(CASES[0].items);
+    controlsForm.querySelectorAll('input[name="verdict"]').forEach(function (input) {
+      input.checked = false;
+    });
+    render();
+  });
+
+  /* --- Start-up --------------------------------------------------------- */
+
+  shell.reset({ silent: true });
+  shell.announce(
+    "Ready. Answer the question above to open the case files.",
+    { immediate: true });
+})();
+
+</script>
+</div>

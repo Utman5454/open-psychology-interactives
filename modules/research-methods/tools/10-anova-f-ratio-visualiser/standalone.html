@@ -1,0 +1,3248 @@
+<!-- ANOVA F-Ratio Visualiser
+     From Open Psychology Interactives - https://github.com/utman5454/open-psychology-interactives
+     Self-contained: no stylesheets, scripts, fonts, images or network requests.
+     Styles are scoped to .opi-activity and do not affect the page around them.
+     Nothing is saved, sent or tracked. MIT licensed; please keep this notice.
+     Paste anywhere that accepts HTML, or save as a .html file and open it. -->
+<div class="opi-activity">
+<style>
+/* Defensive baseline. See scripts/build-standalone.py for why this
+   is `revert` rather than an enumerated reset, and how the specificity ladder
+   keeps the activity's own styling on top of it. */
+.opi-activity *:not(svg *) {
+  all: revert;
+}
+.opi-activity, .opi-activity *, .opi-activity *::before, .opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  text-transform: none;
+  text-indent: 0;
+  font-style: normal;
+  font-variant: normal;
+  letter-spacing: normal;
+  word-spacing: normal;
+  white-space: normal;
+  visibility: visible;
+  float: none;
+  max-width: none;
+}
+.opi-activity svg { max-width: 100%; }
+.opi-activity img { max-width: 100%; height: auto; }
+.opi-activity [hidden] { display: none !important; }
+
+/* assets/css/main.css */
+.opi-activity.opi-activity {
+  --colour-page: #ffffff;
+  --colour-surface: #f5f7fa;
+  --colour-surface-raised: #ffffff;
+  --colour-border: #d3d9e2;
+  --colour-border-strong: #aeb7c4;
+  --colour-text: #131820;
+  --colour-text-muted: #4c566a;
+  --colour-accent: #1a4fa0;
+  --colour-accent-hover: #123a7a;
+  --colour-accent-soft: #e8eefb;
+  --colour-on-accent: #ffffff;
+  --colour-focus: #b45309;
+  --colour-cognitive: #8a4b00;
+  --colour-research-methods: #1a4fa0;
+  --colour-neuropsychology: #145c53;
+  --colour-social-critical-psychology: #9e2f45;
+  --colour-personality-individual-differences: #7a2e6d;
+  --colour-status-bg: #f1ede3;
+  --colour-status-text: #5c4a1f;
+  --colour-status-border: #d9cdb0;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  --text-xs: 13px;
+  --text-sm: 15px;
+  --text-base: 17px;
+  --text-lg: 19px;
+  --text-xl: 23px;
+  --text-2xl: 28px;
+  --text-3xl: 36px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgb(19 24 32 / 0.06);
+  --shadow-md: 0 2px 8px rgb(19 24 32 / 0.08);
+  --measure: 68ch;
+  --container: 1152px;
+}
+@media (prefers-color-scheme: dark) {
+.opi-activity.opi-activity {
+  --colour-page: #0f141b;
+  --colour-surface: #161d27;
+  --colour-surface-raised: #1a2230;
+  --colour-border: #2c3644;
+  --colour-border-strong: #44506180;
+  --colour-text: #e9edf3;
+  --colour-text-muted: #a8b2c1;
+  --colour-accent: #8fb6ff;
+  --colour-accent-hover: #b3cdff;
+  --colour-accent-soft: #1b2740;
+  --colour-on-accent: #0f141b;
+  --colour-focus: #f0b429;
+  --colour-cognitive: #e2ab5f;
+  --colour-research-methods: #8fb6ff;
+  --colour-neuropsychology: #6fc3b4;
+  --colour-social-critical-psychology: #f19aa8;
+  --colour-personality-individual-differences: #db9ccd;
+  --colour-status-bg: #241f14;
+  --colour-status-text: #e2cf9f;
+  --colour-status-border: #4a4028;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 2px 10px rgb(0 0 0 / 0.45);
+}
+}
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity.opi-activity {
+  -webkit-text-size-adjust: 100%;
+}
+.opi-activity.opi-activity {
+  background-color: var(--colour-page);
+  color: var(--colour-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.65;
+}
+.opi-activity.opi-activity h1,
+.opi-activity.opi-activity h2,
+.opi-activity.opi-activity h3,
+.opi-activity.opi-activity h4 {
+  margin: 0 0 var(--space-3);
+  line-height: 1.25;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.opi-activity.opi-activity h1 {
+  font-size: var(--text-3xl);
+}
+.opi-activity.opi-activity h2 {
+  font-size: var(--text-2xl);
+}
+.opi-activity.opi-activity h3 {
+  font-size: var(--text-xl);
+}
+.opi-activity.opi-activity h4 {
+  font-size: var(--text-lg);
+}
+.opi-activity.opi-activity p,
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol,
+.opi-activity.opi-activity dl {
+  margin: 0 0 var(--space-4);
+}
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol {
+  padding-left: 1.35em;
+}
+.opi-activity.opi-activity li + li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity a {
+  color: var(--colour-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: max(1px, 0.06em);
+}
+.opi-activity.opi-activity a:hover {
+  color: var(--colour-accent-hover);
+  text-decoration-thickness: max(2px, 0.11em);
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid var(--colour-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+@supports not selector(:focus-visible) {
+.opi-activity.opi-activity :focus {
+  outline: 3px solid var(--colour-focus);
+    outline-offset: 2px;
+}
+}
+.opi-activity.opi-activity code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.35em;
+}
+.opi-activity.opi-activity hr {
+  border: 0;
+  border-top: 1px solid var(--colour-border);
+  margin: var(--space-6) 0;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+}
+.opi-activity.opi-activity .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.opi-activity.opi-activity .container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+@media (min-width: 40em) {
+.opi-activity.opi-activity .container {
+  padding-inline: var(--space-5);
+}
+}
+.opi-activity.opi-activity .prose {
+  max-width: var(--measure);
+}
+.opi-activity.opi-activity .text-muted {
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .section {
+  padding-block: var(--space-7);
+}
+.opi-activity.opi-activity .section--tinted {
+  background-color: var(--colour-surface);
+  border-block: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .section__header {
+  max-width: var(--measure);
+  margin-bottom: var(--space-5);
+}
+.opi-activity.opi-activity .section__header > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-7) var(--space-6);
+  border-bottom: 1px solid var(--colour-border);
+  
+  background-image: linear-gradient(
+    180deg,
+    var(--colour-accent-soft) 0%,
+    var(--colour-page) 100%
+  );
+}
+.opi-activity.opi-activity .hero__eyebrow {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .hero h1 {
+  max-width: 20ch;
+  margin-bottom: var(--space-4);
+}
+.opi-activity.opi-activity .hero__lead {
+  max-width: var(--measure);
+  font-size: var(--text-lg);
+  color: var(--colour-text-muted);
+}
+@media (min-width: 48em) {
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-8) var(--space-7);
+}
+.opi-activity.opi-activity .hero h1 {
+  font-size: 44px;
+}
+}
+.opi-activity.opi-activity .button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  
+  min-height: 44px;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .button--primary {
+  background-color: var(--colour-accent);
+  border-color: var(--colour-accent);
+  
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--primary:hover {
+  background-color: var(--colour-accent-hover);
+  border-color: var(--colour-accent-hover);
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--secondary {
+  background-color: transparent;
+  border-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .button--secondary:hover {
+  background-color: var(--colour-surface);
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+}
+.opi-activity.opi-activity .card--cognitive {
+  --card-accent: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .card--research-methods {
+  --card-accent: var(--colour-research-methods);
+}
+.opi-activity.opi-activity .card--neuropsychology {
+  --card-accent: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .card--social-critical-psychology {
+  --card-accent: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .card--personality-individual-differences {
+  --card-accent: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 650;
+  line-height: 1.4;
+  padding: 3.2px var(--space-3);
+  border-radius: 999px;
+  border: 1px solid var(--colour-status-border);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+}
+.opi-activity.opi-activity .badge__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex: none;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed var(--colour-border-strong);
+  border-radius: var(--radius-lg);
+  background-color: var(--colour-surface);
+  padding: var(--space-5);
+  text-align: left;
+}
+.opi-activity.opi-activity .placeholder__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+}
+.opi-activity.opi-activity .placeholder > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .split {
+  display: grid;
+  gap: var(--space-6);
+}
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split {
+  grid-template-columns: 3fr 2fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .panel {
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.opi-activity.opi-activity .panel > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .panel__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .section--tinted {
+  border-block: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .hero {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .button--primary {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .button--secondary {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .button:hover {
+  border-color: Highlight;
+}
+.opi-activity.opi-activity .panel {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed CanvasText;
+}
+.opi-activity.opi-activity .badge {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .badge__dot {
+  background-color: CanvasText;
+}
+.opi-activity.opi-activity code {
+  border-color: CanvasText;
+}
+.opi-activity.opi-activity hr {
+  border-top-color: CanvasText;
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+}
+@media print {
+.opi-activity.opi-activity {
+  color: #000;
+  background: #fff;
+}
+.opi-activity.opi-activity a[href^="http"]::after {
+  content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+}
+}
+
+/* components/interactive-shell.css */
+.opi-activity.opi-activity .interactive {
+  --shell-page: var(--colour-page, #ffffff);
+  --shell-surface: var(--colour-surface, #f5f7fa);
+  --shell-raised: var(--colour-surface-raised, #ffffff);
+  --shell-border: var(--colour-border, #d3d9e2);
+  --shell-border-strong: var(--colour-border-strong, #aeb7c4);
+  --shell-text: var(--colour-text, #131820);
+  --shell-muted: var(--colour-text-muted, #4c566a);
+  --shell-accent: var(--colour-accent, #1a4fa0);
+  --shell-accent-soft: var(--colour-accent-soft, #e8eefb);
+  
+  --shell-on-accent: var(--colour-on-accent, #ffffff);
+  --shell-focus: var(--colour-focus, #b45309);
+  --shell-radius: var(--radius-lg, 12px);
+  --shell-gap: var(--space-5, 24px);
+
+  display: block;
+  background-color: var(--shell-raised);
+  color: var(--shell-text);
+  border: 1px solid var(--shell-border);
+  border-radius: var(--shell-radius);
+  
+  overflow-x: clip;
+  overflow-y: visible;
+}
+.opi-activity.opi-activity .interactive__header {
+  padding: var(--shell-gap);
+  border-bottom: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 1.25;
+}
+.opi-activity.opi-activity .interactive__brief {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--shell-muted);
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__body {
+  display: grid;
+  gap: var(--shell-gap);
+  padding: var(--shell-gap);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body {
+  grid-template-columns: minmax(240px, 320px) 1fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .interactive__controls {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__controls fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .interactive__controls legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .control {
+  display: grid;
+  gap: 5.6px;
+}
+.opi-activity.opi-activity .control + .control {
+  margin-top: 16px;
+}
+.opi-activity.opi-activity .control__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.opi-activity.opi-activity .control__label {
+  font-size: 15px;
+  font-weight: 600;
+}
+.opi-activity.opi-activity .control__value {
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--shell-accent);
+}
+.opi-activity.opi-activity .control__hint {
+  font-size: 13px;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .interactive__controls input[type="range"] {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--shell-accent);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  width: 100%;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--shell-text);
+  background-color: var(--shell-raised);
+  border: 1px solid var(--shell-border-strong);
+  border-radius: var(--radius-sm, 4px);
+}
+.opi-activity.opi-activity .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+}
+.opi-activity.opi-activity .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  accent-color: var(--shell-accent);
+  flex: none;
+}
+.opi-activity.opi-activity .interactive__stage {
+  min-height: 256px;
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-page);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body--pinned {
+  align-items: stretch;
+}
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: sticky;
+    top: 0;
+    z-index: 2;
+    
+    margin: -16px -16px 0;
+    padding: 16px 16px 12px;
+    background-color: var(--shell-page);
+    border-bottom: 1px solid var(--shell-border);
+}
+}
+@media (min-width: 52em) and (max-height: 30em) {
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: static;
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
+}
+}
+.opi-activity.opi-activity .interactive__stage > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity :where(.interactive__stage) svg,
+.opi-activity.opi-activity :where(.interactive__stage) canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+.opi-activity.opi-activity .interactive__readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout div {
+  padding: 9.6px 12px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-sm, 4px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__readout dt {
+  font-size: 13px;
+  color: var(--shell-muted);
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout dd {
+  margin: 2.4px 0 0;
+  font-size: 18px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .interactive__status {
+  margin: 0;
+  padding: 12px var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+  font-size: 15px;
+  color: var(--shell-muted);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .interactive__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+}
+.opi-activity.opi-activity .interactive__actions button {
+  min-height: 44px;
+  padding: 6.4px 20px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--shell-on-accent);
+  background-color: var(--shell-accent);
+  border: 1px solid var(--shell-accent);
+  border-radius: var(--radius-md, 8px);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  color: var(--shell-text);
+  background-color: transparent;
+  border-color: var(--shell-border-strong);
+}
+.opi-activity.opi-activity .interactive__actions button:hover {
+  filter: brightness(1.08);
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__notes > summary {
+  padding: 13.6px var(--shell-gap);
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__notes > div {
+  padding: 0 var(--shell-gap) var(--shell-gap);
+  max-width: 68ch;
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__notes > div > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity .interactive *,
+.opi-activity.opi-activity .interactive *::before,
+.opi-activity.opi-activity .interactive *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+}
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .interactive,
+.opi-activity.opi-activity .interactive__controls,
+.opi-activity.opi-activity .interactive__stage,
+.opi-activity.opi-activity .interactive__readout div {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__header {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__status,
+.opi-activity.opi-activity .interactive__actions,
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__actions button {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  border-width: 1px;
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 1;
+    color: GrayText;
+    border-color: GrayText;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__stage svg {
+  forced-color-adjust: auto;
+}
+}
+
+/* components/tool-kit.css */
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split--wide {
+  grid-template-columns: 1fr 1fr;
+}
+}
+.opi-activity.opi-activity .how-to {
+  padding-left: 19.2px;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .how-to > li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .table-scroll {
+  overflow-x: auto;
+  
+  position: relative;
+}
+.opi-activity.opi-activity .prediction {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 832px;
+}
+.opi-activity.opi-activity .prediction > *,
+.opi-activity.opi-activity .challenge > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity .prediction__group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .prediction__legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-weight: 650;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .prediction .control--choice,
+.opi-activity.opi-activity .challenge .control--choice,
+.opi-activity.opi-activity .evidence .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .prediction .control--choice input,
+.opi-activity.opi-activity .challenge .control--choice input,
+.opi-activity.opi-activity .evidence .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .prediction__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .prediction__error {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-status-border);
+  border-left: 4px solid var(--colour-status-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .prediction__readback {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .feedback[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .feedback[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .feedback[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .feedback__verdict {
+  font-weight: 700;
+}
+.opi-activity.opi-activity .verdict {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .verdict__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict__body {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .verdict__body + .verdict__body {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .verdict__note {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .verdict[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .verdict[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .goal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .goal__label {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .goal__text {
+  flex: 1 1 256px;
+}
+.opi-activity.opi-activity .goal strong {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .goal__checks {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+  display: grid;
+  gap: 2.4px;
+}
+.opi-activity.opi-activity .goal__checks > li {
+  margin-top: 0;
+  padding-left: 22.4px;
+  position: relative;
+}
+.opi-activity.opi-activity .goal__checks > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 9.6px;
+  height: 9.6px;
+  border: 2px solid var(--colour-border-strong);
+  border-radius: 2px;
+}
+.opi-activity.opi-activity .goal__checks > li[data-met="yes"]::before {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .stage-track {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .stage-track > li {
+  margin-top: 0;
+  flex: 1 1 160px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-bottom: 3px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .stage-track > li > span {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.opi-activity.opi-activity .stage-track > li[data-state="done"] {
+  border-bottom-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border-bottom-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+  color: var(--colour-text);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .stage__heading {
+  margin: 0;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .data-table,
+.opi-activity.opi-activity .chart__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .data-table th,
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table th,
+.opi-activity.opi-activity .chart__table td {
+  padding: 6.4px 9.6px;
+  border: 1px solid var(--colour-border);
+  text-align: left;
+  vertical-align: top;
+}
+.opi-activity.opi-activity .data-table thead th,
+.opi-activity.opi-activity .chart__table thead th {
+  background-color: var(--colour-surface);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table td {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__table tbody th,
+.opi-activity.opi-activity .data-table tbody th {
+  font-weight: 550;
+}
+.opi-activity.opi-activity .data-table__total > th,
+.opi-activity.opi-activity .data-table__total > td {
+  border-top: 2px solid var(--colour-border-strong);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart {
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .chart__caption {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__svg {
+  max-width: 100%;
+  height: auto;
+}
+.opi-activity.opi-activity .chart__label,
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__inline,
+.opi-activity.opi-activity .chart__axis {
+  font-family: var(--font-body);
+  fill: var(--colour-text);
+  font-size: 13px;
+}
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__axis {
+  fill: var(--colour-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: var(--colour-on-accent);
+  font-size: 12px;
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__track {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__bar {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--one {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .chart__baseline,
+.opi-activity.opi-activity .chart__grid {
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__line {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: var(--colour-personality-individual-differences);
+  stroke-dasharray: 6 4;
+}
+.opi-activity.opi-activity .chart__point {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .reveal > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .reveal__lead {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+.opi-activity.opi-activity .reveal__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(176px, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+  padding: 0;
+  list-style: none;
+}
+.opi-activity.opi-activity .reveal__figures > li {
+  margin-top: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+.opi-activity.opi-activity .reveal__figure-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .reveal__figure-value {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .challenge {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+.opi-activity.opi-activity .challenge__locked {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .panel--caution {
+  background-color: var(--colour-status-bg);
+  border-color: var(--colour-status-border);
+}
+.opi-activity.opi-activity .panel--caution li + li {
+  margin-top: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .goal,
+.opi-activity.opi-activity .verdict,
+.opi-activity.opi-activity .feedback,
+.opi-activity.opi-activity .prediction__error,
+.opi-activity.opi-activity .prediction__readback,
+.opi-activity.opi-activity .stage-track > li,
+.opi-activity.opi-activity .reveal__figures > li {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border: 2px solid Highlight;
+}
+.opi-activity.opi-activity .chart__bar,
+.opi-activity.opi-activity .chart__bar--one {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: Canvas;
+}
+.opi-activity.opi-activity .chart__line {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: Highlight;
+}
+}
+.opi-activity.opi-activity .stage__more {
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .stage__more > summary {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .stage__more[open] > summary {
+  border-bottom: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .stage__more > *:not(summary) {
+  margin: var(--space-3);
+}
+
+/* modules/research-methods/tools/10-anova-f-ratio-visualiser/tool.css */
+.opi-activity.opi-activity #ratio .interactive__controls,
+.opi-activity.opi-activity #ratio .interactive__stage,
+.opi-activity.opi-activity #pattern .interactive__controls,
+.opi-activity.opi-activity #pattern .interactive__stage {
+  min-width: 0;
+}
+.opi-activity.opi-activity #ratio .interactive__stage > *,
+.opi-activity.opi-activity #pattern .interactive__stage > * {
+  min-width: 0;
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity #ratio .interactive__body,
+.opi-activity.opi-activity #pattern .interactive__body {
+  grid-template-columns: minmax(0, 304px) minmax(0, 1fr);
+}
+}
+.opi-activity.opi-activity .interactive__stage [data-strip] {
+  max-width: 480px;
+}
+.opi-activity.opi-activity .interactive__stage [data-pattern-chart] {
+  max-width: 480px;
+}
+.opi-activity.opi-activity #ratio .interactive__readout {
+  grid-template-columns: repeat(auto-fit, minmax(112px, 1fr));
+  gap: 6.4px;
+}
+.opi-activity.opi-activity #ratio .interactive__readout div {
+  padding: 6.4px 8px;
+}
+.opi-activity.opi-activity #ratio .interactive__readout dd {
+  font-size: 16px;
+}
+.opi-activity.opi-activity #pattern .control--choice {
+  align-items: flex-start;
+  gap: 9.6px;
+  padding: 4.8px 0;
+  font-size: 14px;
+  line-height: 1.4;
+}
+.opi-activity.opi-activity #pattern .control--choice input {
+  margin-top: 4.8px;
+}
+.opi-activity.opi-activity #pattern .control--choice label {
+  cursor: pointer;
+}
+.opi-activity.opi-activity .strip__dot {
+  fill: var(--colour-accent);
+  opacity: 0.55;
+}
+.opi-activity.opi-activity .strip__mean {
+  stroke: var(--colour-text);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+}
+.opi-activity.opi-activity .strip__grand {
+  stroke: var(--colour-text-muted);
+  stroke-width: 1.5;
+  stroke-dasharray: 5 4;
+}
+.opi-activity.opi-activity .strip__reach {
+  stroke: var(--colour-social-critical-psychology);
+  stroke-width: 2;
+}
+.opi-activity.opi-activity .strip__axis {
+  stroke: var(--colour-border-strong);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .pattern__spread {
+  stroke: var(--colour-border-strong);
+  stroke-width: 6;
+  stroke-linecap: butt;
+  opacity: 0.5;
+}
+.opi-activity.opi-activity .pattern__cap {
+  stroke: var(--colour-border-strong);
+  stroke-width: 1.5;
+}
+.opi-activity.opi-activity .pattern__mean {
+  fill: var(--colour-accent);
+  stroke: var(--colour-text);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .pattern__grand {
+  stroke: var(--colour-text-muted);
+  stroke-width: 1.5;
+  stroke-dasharray: 5 4;
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .strip__dot {
+  fill: CanvasText; opacity: 1;
+}
+.opi-activity.opi-activity .strip__mean {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .strip__grand {
+  stroke: GrayText;
+}
+.opi-activity.opi-activity .strip__reach {
+  stroke: Highlight;
+}
+.opi-activity.opi-activity .strip__axis {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .pattern__spread {
+  stroke: GrayText; opacity: 1;
+}
+.opi-activity.opi-activity .pattern__cap {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .pattern__mean {
+  fill: Highlight; stroke: CanvasText;
+}
+.opi-activity.opi-activity .pattern__grand {
+  stroke: GrayText;
+}
+}
+</style>
+
+  <!-- ================= Title and purpose ================= -->
+  <section class="section card--research-methods" aria-labelledby="page-heading">
+    <div class="container">
+
+      <p class="hero__eyebrow" style="color: var(--colour-research-methods)">
+        Research Methods
+      </p>
+      <h1 id="page-heading">ANOVA F-Ratio Visualiser</h1>
+      <p class="hero__lead">
+        <em>F</em> is a fraction. Pull the group means apart and the top grows;
+        make the groups noisier and the bottom grows. Nothing about the test
+        makes sense until you can see both halves of it at once.
+      </p>
+
+      <p>
+        <span class="badge">
+          <span class="badge__dot" aria-hidden="true"></span>
+          Simulated &mdash; generated scores from a documented seed
+        </span>
+      </p>
+
+      <div class="split split--wide">
+
+        <div class="panel">
+          <h2 class="panel__title">Learning objective</h2>
+          <p>
+            By the end you should be able to read F as a ratio of two
+            variances, and say what question the omnibus test actually
+            answers.
+          </p>
+          <p class="text-muted">
+            About 25 minutes. Nothing you do here is saved or sent anywhere.
+          </p>
+        </div>
+
+        <div class="panel panel--caution">
+          <h2 class="panel__title">What the omnibus test asks</h2>
+          <p>
+            One-way ANOVA asks a single question: are all the population means
+            equal? It is not three t-tests wearing a coat, and a small
+            <em>p</em> does not identify which groups differ, in which
+            direction, or by how much. Those are separate questions with
+            separate answers, and the second experiment on this page is built
+            to make that unavoidable.
+          </p>
+        </div>
+
+      </div>
+
+      <ol class="how-to">
+        <li>Answer the prediction question to open Experiment 1.</li>
+        <li>Separate the group means and watch <em>F</em> climb.</li>
+        <li>Now raise the within-group spread and watch it collapse again.</li>
+        <li>In Experiment 2, decide which pattern of means produced a given <em>F</em>.</li>
+      </ol>
+
+    </div>
+  </section>
+
+  <!-- ================= Opening prediction ================= -->
+  <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="opening-heading">First, a prediction</h2>
+        <p class="prose">
+          Three fictional groups of 30 people each sit the same 100-point test
+          after a different revision method. In the first study the population
+          means are 44, 52 and 60, and the within-group standard deviation is
+          6. A second study has exactly the same three population means, but
+          the scores <em>within</em> each group are twice as spread out.
+        </p>
+      </div>
+
+      <noscript>
+        <div class="placeholder">
+          <h3 class="placeholder__title">This part needs JavaScript</h3>
+          <p class="prose">
+            The visualiser generates its scores in your browser, so it cannot
+            run with JavaScript switched off. The rest of this page is
+            readable without it.
+          </p>
+        </div>
+      </noscript>
+
+      <form class="panel prediction" id="opening-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            What happens to <em>F</em> in the second study?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="same">
+            Unchanged &mdash; the group means have not moved
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="half">
+            About half as large
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="quarter">
+            About a quarter as large
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="double">
+            Twice as large &mdash; more variation means more to explain
+          </label>
+        </fieldset>
+
+        <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Record my prediction and open Experiment 1
+          </button>
+          <button class="button button--secondary" type="button" data-action="skip-opening">
+            Skip &mdash; I am demonstrating this
+          </button>
+        </div>
+
+        <div class="feedback" data-opening-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Experiment 1 ================= -->
+  <section class="section" id="ratio-section" aria-labelledby="ratio-heading" hidden>
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="ratio-heading" tabindex="-1">Experiment 1 &mdash; the two halves of the ratio</h2>
+        <p class="prose">
+          Three groups, deliberately labelled A, B and C so that nothing about
+          the story does the explaining. Each dot is one simulated score, each
+          heavy bar is a group mean, and the dashed line is the grand mean.
+        </p>
+      </div>
+
+      <section class="interactive" id="ratio" data-interactive
+               data-reset-message="Everything cleared. Back to the opening prediction.">
+
+        <header class="interactive__header">
+          <h3 class="interactive__title">Signal over noise</h3>
+          <p class="interactive__brief">
+            The distance of each bar from the dashed line is the between-groups
+            part. The scatter of dots around their own bar is the
+            within-groups part. <em>F</em> is one divided by the other, after
+            each is turned into a mean square.
+          </p>
+        </header>
+
+        <div class="interactive__body interactive__body--pinned">
+
+          <form class="interactive__controls" data-interactive-controls>
+
+            <fieldset>
+              <legend>The population the samples come from</legend>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="sep-range">Separation of the group means</label>
+                  <output class="control__value" for="sep-range">4.0</output>
+                </div>
+                <input type="range" id="sep-range" min="0" max="10" step="0.5" value="8">
+                <p class="control__hint">
+                  True means are 52 minus this, 52, and 52 plus this. At zero
+                  the three populations are identical.
+                </p>
+              </div>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="within-range">Within-group standard deviation</label>
+                  <output class="control__value" for="within-range">6</output>
+                </div>
+                <input type="range" id="within-range" min="2" max="18" step="1" value="6">
+              </div>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="n-range">Participants per group</label>
+                  <output class="control__value" for="n-range">30</output>
+                </div>
+                <input type="range" id="n-range" min="5" max="60" step="5" value="30">
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Worked examples</legend>
+              <div class="control">
+                <label class="control__label" for="preset-select">Jump to a situation</label>
+                <select id="preset-select">
+                  <option value="custom">Current settings</option>
+                  <option value="study1">The first study you predicted about</option>
+                  <option value="study2">The same means, twice the spread</option>
+                  <option value="null">No real difference at all</option>
+                  <option value="bign">Tiny difference, large sample</option>
+                </select>
+              </div>
+              <div class="control">
+                <label class="control__label" for="seed-input">Random seed</label>
+                <input type="number" id="seed-input" value="4021" step="1" min="1" max="999999">
+              </div>
+            </fieldset>
+
+          </form>
+
+          <div class="interactive__stage" data-interactive-stage>
+
+            <!-- Pinned: the strip plot and the ratio it produces. Every
+                 control on the left moves both. -->
+            <div class="stage__primary">
+              <h4 class="stage__heading" data-chart-heading>
+                Three simulated groups
+              </h4>
+              <figure class="chart">
+                <figcaption class="visually-hidden">
+                  Strip plot of individual simulated scores in three groups,
+                  with each group mean drawn as a heavy bar and the grand mean
+                  as a dashed line across all three
+                </figcaption>
+                <svg class="chart__svg" data-strip viewBox="0 0 460 220"
+                     aria-hidden="true" focusable="false"></svg>
+                <div class="table-scroll">
+                  <table class="chart__table">
+                    <caption class="visually-hidden">
+                      The simulated sample in each group
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Group</th>
+                        <th scope="col">n</th>
+                        <th scope="col">Mean</th>
+                        <th scope="col">SD</th>
+                      </tr>
+                    </thead>
+                    <tbody data-group-table></tbody>
+                  </table>
+                </div>
+              </figure>
+              <dl class="interactive__readout" data-readout></dl>
+            </div>
+
+            <div class="verdict" data-verdict>
+              <h4 class="verdict__title">Reading this correctly</h4>
+              <p class="verdict__body" data-interpretation></p>
+            </div>
+
+            <details class="stage__more">
+              <summary>The full source table</summary>
+              <div class="table-scroll">
+                <table class="data-table">
+                  <caption class="visually-hidden">
+                    Sums of squares, degrees of freedom and mean squares for
+                    this simulated sample
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Source</th>
+                      <th scope="col">SS</th>
+                      <th scope="col">df</th>
+                      <th scope="col">MS</th>
+                    </tr>
+                  </thead>
+                  <tbody data-source-table></tbody>
+                </table>
+              </div>
+            </details>
+
+          </div>
+
+        </div>
+
+        <p class="interactive__status" data-interactive-status role="status"></p>
+
+        <div class="interactive__actions">
+          <button type="button" data-action="resample">Draw a new sample</button>
+          <button type="button" data-variant="secondary" data-action="open-two">
+            Go to Experiment 2
+          </button>
+          <button type="button" data-variant="secondary" data-interactive-reset>
+            Reset everything
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ================= Experiment 2 ================= -->
+  <section class="section section--tinted" id="pattern-section"
+           aria-labelledby="pattern-heading" hidden>
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="pattern-heading" tabindex="-1">Experiment 2 &mdash; what F cannot tell you</h2>
+        <p class="prose">
+          A fictional study of three revision methods reports
+          <strong>F(2,&nbsp;87)&nbsp;=&nbsp;7.50, <em>p</em>&nbsp;=&nbsp;.001</strong>,
+          with 30 people per group and a within-group standard deviation of 6.
+          Below are three patterns of group means. Look at each one, then say
+          which of them produced that <em>F</em>.
+        </p>
+      </div>
+
+      <section class="interactive" id="pattern" data-interactive
+               data-reset-message="Experiment 2 reset. The answer is hidden again.">
+
+        <header class="interactive__header">
+          <h3 class="interactive__title">Three shapes, one number</h3>
+          <p class="interactive__brief">
+            Browse the patterns freely. The <em>F</em> each one would produce
+            stays hidden until you commit to an answer.
+          </p>
+        </header>
+
+        <div class="interactive__body interactive__body--pinned">
+
+          <form class="interactive__controls" data-interactive-controls>
+
+            <fieldset>
+              <legend>Look at a pattern</legend>
+              <div class="control--choice">
+                <input type="radio" name="pattern" id="pattern-a" value="a" checked>
+                <label for="pattern-a">A &mdash; evenly spaced: 49.0, 52.0, 55.0</label>
+              </div>
+              <div class="control--choice">
+                <input type="radio" name="pattern" id="pattern-b" value="b">
+                <label for="pattern-b">B &mdash; one group high: 50.0, 50.0, 55.2</label>
+              </div>
+              <div class="control--choice">
+                <input type="radio" name="pattern" id="pattern-c" value="c">
+                <label for="pattern-c">C &mdash; one group low: 46.8, 52.0, 52.0</label>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Which pattern produced F = 7.50?</legend>
+              <div class="control--choice">
+                <input type="radio" name="answer" id="answer-a" value="a">
+                <label for="answer-a">Pattern A, the evenly spaced one</label>
+              </div>
+              <div class="control--choice">
+                <input type="radio" name="answer" id="answer-b" value="b">
+                <label for="answer-b">Pattern B, with one group standing out above</label>
+              </div>
+              <div class="control--choice">
+                <input type="radio" name="answer" id="answer-c" value="c">
+                <label for="answer-c">Pattern C, with one group standing out below</label>
+              </div>
+              <div class="control--choice">
+                <input type="radio" name="answer" id="answer-any" value="any">
+                <label for="answer-any">There is no way to tell from <em>F</em> alone</label>
+              </div>
+              <p class="prediction__error" data-pattern-error role="alert" hidden></p>
+            </fieldset>
+
+          </form>
+
+          <div class="interactive__stage" data-interactive-stage>
+
+            <!-- Pinned: the pattern currently being inspected. -->
+            <div class="stage__primary">
+              <h4 class="stage__heading" data-pattern-heading>Pattern A</h4>
+              <figure class="chart">
+                <figcaption class="visually-hidden">
+                  The three group means for this pattern, each with a bar
+                  showing one within-group standard deviation either side, on a
+                  common test-score scale with the grand mean marked
+                </figcaption>
+                <svg class="chart__svg" data-pattern-chart viewBox="0 0 460 170"
+                     aria-hidden="true" focusable="false"></svg>
+                <div class="table-scroll">
+                  <table class="chart__table">
+                    <caption class="visually-hidden">
+                      Group means and their distance from the grand mean for
+                      this pattern
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Group</th>
+                        <th scope="col">Mean</th>
+                        <th scope="col">Distance from grand mean</th>
+                      </tr>
+                    </thead>
+                    <tbody data-pattern-table></tbody>
+                  </table>
+                </div>
+              </figure>
+            </div>
+
+            <div class="feedback" data-pattern-feedback hidden></div>
+
+            <details class="stage__more" data-reveal-table hidden>
+              <summary>All three patterns, with their model-implied F</summary>
+              <div class="table-scroll">
+                <table class="data-table">
+                  <caption class="visually-hidden">
+                    Every pattern in this experiment with its between-groups
+                    sum of squares and the F it implies
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Pattern</th>
+                      <th scope="col">Means</th>
+                      <th scope="col">SS between</th>
+                      <th scope="col">F(2, 87)</th>
+                    </tr>
+                  </thead>
+                  <tbody data-all-patterns-table></tbody>
+                </table>
+              </div>
+            </details>
+
+          </div>
+
+        </div>
+
+        <p class="interactive__status" data-interactive-status role="status"></p>
+
+        <div class="interactive__actions">
+          <button type="button" data-action="check-pattern">Commit to an answer</button>
+          <button type="button" data-variant="secondary" data-interactive-reset>
+            Hide the answer again
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ================= Challenge ================= -->
+  <section class="section" id="challenge" aria-labelledby="challenge-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="challenge-heading">Challenge &mdash; what F entitles you to say</h2>
+        <p class="prose">
+          A fictional study of three revision methods, 30 people per group,
+          reports <strong>F(2,&nbsp;87)&nbsp;=&nbsp;7.50,
+          <em>p</em>&nbsp;=&nbsp;.001</strong>.
+        </p>
+      </div>
+
+      <form class="panel challenge" id="challenge-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            Which statements are correct? Select all that apply &mdash; more
+            than one is.
+          </legend>
+          <label class="control--choice">
+            <input type="checkbox" name="challenge" value="notall">
+            Under the model's assumptions, the data are hard to reconcile with all three population means being equal
+          </label>
+          <label class="control--choice">
+            <input type="checkbox" name="challenge" value="allthree">
+            All three group means differ from one another
+          </label>
+          <label class="control--choice">
+            <input type="checkbox" name="challenge" value="direction">
+            Method C produced higher scores than method A
+          </label>
+          <label class="control--choice">
+            <input type="checkbox" name="challenge" value="ratio">
+            The between-groups mean square is 7.50 times the within-groups mean square
+          </label>
+          <label class="control--choice">
+            <input type="checkbox" name="challenge" value="large">
+            The effect of revision method is large
+          </label>
+          <label class="control--choice">
+            <input type="checkbox" name="challenge" value="ttests">
+            Running three separate t-tests would have answered the same question
+          </label>
+          <label class="control--choice">
+            <input type="checkbox" name="challenge" value="equivalent">
+            Had F been non-significant, the three methods would have been shown to be equivalent
+          </label>
+        </fieldset>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">Check my answer</button>
+        </div>
+
+        <div class="feedback" data-challenge-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Debrief ================= -->
+  <section class="section section--tinted" id="debrief" aria-labelledby="debrief-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="debrief-heading">What this demonstrates</h2>
+      </div>
+
+      <div class="split split--wide">
+
+        <div class="prose">
+          <h3>F is a comparison of two estimates of the same thing</h3>
+          <p>
+            If the population means really are equal, the scatter of the group
+            means around the grand mean is just sampling noise, and the
+            between-groups mean square estimates the same population variance
+            that the within-groups mean square does. Their ratio then wanders
+            around 1. When the population means are not equal, the numerator
+            picks up something extra that the denominator never sees, and the
+            ratio climbs. That is the entire logic, and it is why a ratio is
+            used rather than a difference.
+          </p>
+
+          <h3>Three things move F, and only one of them is the effect</h3>
+          <p>
+            Separating the means raises it. Increasing the within-group spread
+            lowers it, and does so as the square: doubling the within-group
+            standard deviation divides the amount by which <em>F</em> exceeds
+            1 by exactly four, so a large <em>F</em> falls to roughly a
+            quarter of itself. Increasing n raises it,
+            because between-groups sum of squares grows with n while the
+            within-groups mean square does not. A large <em>F</em> is
+            therefore not a statement about how big the difference between the
+            methods is.
+          </p>
+
+          <h3>The omnibus test answers one question, and it is a modest one</h3>
+          <p>
+            A significant <em>F</em> says the data sit awkwardly with the
+            hypothesis that all the population means are equal. It does not say
+            which means differ, in which direction, or by how much. Experiment
+            2 makes this concrete: three genuinely different patterns of means
+            &mdash; one evenly spaced, one with a high outlier, one with a low
+            outlier &mdash; produce exactly the same <em>F</em>. Anything you
+            want to say about particular groups needs a planned contrast or a
+            post-hoc comparison, and those carry their own multiplicity
+            problem.
+          </p>
+
+          <h3>ANOVA is not a bundle of t-tests</h3>
+          <p>
+            Running every pairwise t-test would answer three separate
+            questions and would inflate the chance of at least one false
+            positive, which is the reason the omnibus test exists. But the
+            relationship runs the other way too: with only two groups,
+            <em>F</em> is exactly the square of the independent-samples
+            <em>t</em>. They are the same test written twice, and the
+            generalisation to three groups is where they part company.
+          </p>
+        </div>
+
+        <aside class="panel panel--caution" aria-labelledby="limits-heading">
+          <h3 class="panel__title" id="limits-heading">
+            What this does <em>not</em> demonstrate
+          </h3>
+          <ul>
+            <li>
+              <strong>No real data and no real methods.</strong> The groups are
+              called A, B and C on purpose. Nothing here is evidence about
+              revision, teaching or testing.
+            </li>
+            <li>
+              <strong>The model here is unusually well behaved.</strong> Normal
+              populations, exactly equal within-group variances, independent
+              observations, equal group sizes, no missing data. Real ANOVAs
+              make the same assumptions and rarely meet them so cleanly; the
+              homoscedasticity tool later in this module is about what it costs
+              when they fail.
+            </li>
+            <li>
+              <strong>The <em>p</em>-value carries every caveat it carried
+              before.</strong> It is a tail area under an assumed model, not
+              the probability that the null is true and not a measure of size.
+            </li>
+            <li>
+              <strong>A non-significant <em>F</em> is not equivalence.</strong>
+              Set the separation to 1.0 with a small sample and watch a real
+              difference fail to register.
+            </li>
+            <li>
+              <strong>Post-hoc comparisons are not free.</strong> The page
+              points at them as the right tool for "which groups differ", but
+              every extra comparison has its own error rate, which is the
+              subject of the multiple-comparisons tool at the end of this
+              module.
+            </li>
+          </ul>
+        </aside>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+<script>
+/* ---- components/interactive-shell.js ---- */
+/* =========================================================================
+   Open Psychology Interactives — interactive shell helper
+   -------------------------------------------------------------------------
+   A very small vanilla-JS helper that every interactive in this collection
+   uses. It deliberately does *not* draw anything or know anything about
+   statistics, personality or neuropsychology. Its job is the repetitive,
+   easy-to-get-wrong accessibility plumbing:
+
+     * announcing changes through a polite live region;
+     * keeping a range slider and its <output> in step;
+     * wiring the standard Reset button;
+     * reporting the reader's reduced-motion preference.
+
+   Usage (see docs/adapting-a-tool.md for the full markup contract):
+
+       <script src="../../components/interactive-shell.js" defer><\/script>
+       <script src="tool.js" defer><\/script>
+
+       // in tool.js
+       const shell = InteractiveShell.attach('#sampling-demo');
+       shell.onReset(() => { ...restore defaults...; draw(); });
+       shell.bindRange('#sample-size', { format: n => n + ' cases' });
+       shell.announce('Sample of 25 drawn. Mean 4.8.');
+
+   Every published interactive is written against this module.
+
+   Exposed as a global (window.InteractiveShell) rather than an ES module so
+   that a single interactive folder can be opened directly from disk over
+   file:// — ES modules are blocked by CORS in that situation, plain scripts
+   are not. That constraint is the whole reason for the older syntax here.
+   ========================================================================= */
+
+(function (global) {
+  "use strict";
+
+  /* -----------------------------------------------------------------------
+     Internal helpers
+     --------------------------------------------------------------------- */
+
+  /**
+   * Accept either a CSS selector or an element and return an element.
+   * @param {string|Element} target
+   * @param {ParentNode} [scope]
+   * @returns {Element|null}
+   */
+  function resolve(target, scope) {
+    if (!target) {
+      return null;
+    }
+    if (typeof target === "string") {
+      return (scope || document).querySelector(target);
+    }
+    return target;
+  }
+
+  /**
+   * True when the reader has asked the operating system to reduce motion.
+   * Interactives should check this before animating anything — for example
+   * by drawing a sampling distribution in one step instead of animating
+   * each draw.
+   * @returns {boolean}
+   */
+  function prefersReducedMotion() {
+    return (
+      typeof global.matchMedia === "function" &&
+      global.matchMedia("(prefers-reduced-motion: reduce)").matches
+    );
+  }
+
+  /* -----------------------------------------------------------------------
+     Shell controller
+     --------------------------------------------------------------------- */
+
+  /**
+   * Attach the shell behaviour to one `.interactive` element.
+   *
+   * @param {string|Element} target  Selector or element for the shell root.
+   * @returns {object|null}  Controller, or null if the root was not found.
+   */
+  function attach(target) {
+    var root = resolve(target);
+
+    if (!root) {
+      if (global.console && console.warn) {
+        console.warn("InteractiveShell: root element not found.", target);
+      }
+      return null;
+    }
+
+    var controls = root.querySelector("[data-interactive-controls]");
+    var stage = root.querySelector("[data-interactive-stage]");
+    var status = root.querySelector("[data-interactive-status]");
+    var resetButton = root.querySelector("[data-interactive-reset]");
+    var resetHandlers = [];
+    // Every range bound with bindRange() registers its sync function here, so
+    // that reset() can refresh the visible values after the tool's own reset
+    // handlers have restored the inputs. See reset() for why this is needed.
+    var rangeSyncs = [];
+
+    /* --- Live region ----------------------------------------------------
+       The status element is marked up as role="status" (implicitly
+       aria-live="polite"). Two details matter:
+
+         1. Assistive technology only announces *changes* to a live region,
+            so writing the same string twice is silently dropped. We add a
+            trailing zero-width space on repeat messages to force an
+            announcement when a student re-runs the same action.
+         2. Announcements are debounced. A slider dragged across its range
+            fires dozens of input events; without a delay a screen reader
+            would queue every intermediate value and fall far behind.
+       ------------------------------------------------------------------ */
+
+    var announceTimer = null;
+    var lastMessage = "";
+
+    /**
+     * Announce a short sentence describing what just changed.
+     * @param {string} message
+     * @param {object} [options]
+     * @param {boolean} [options.immediate]  Skip the debounce delay. Use for
+     *   discrete actions (button presses); leave off for continuous input.
+     */
+    function announce(message, options) {
+      if (!status) {
+        return;
+      }
+
+      var text = String(message == null ? "" : message);
+      var immediate = Boolean(options && options.immediate);
+
+      if (announceTimer !== null) {
+        global.clearTimeout(announceTimer);
+        announceTimer = null;
+      }
+
+      function write() {
+        // Force a change when the text is identical to last time.
+        status.textContent = text === lastMessage ? text + "​" : text;
+        lastMessage = text;
+      }
+
+      if (immediate) {
+        write();
+      } else {
+        announceTimer = global.setTimeout(write, 350);
+      }
+    }
+
+    /* --- Reset ---------------------------------------------------------- */
+
+    /**
+     * Register a callback to run when the Reset button is pressed.
+     * Several may be registered; they run in the order added.
+     * @param {Function} handler
+     */
+    function onReset(handler) {
+      if (typeof handler === "function") {
+        resetHandlers.push(handler);
+      }
+    }
+
+    /**
+     * Run the reset handlers. Called by the button and available directly so
+     * an interactive can reset itself on first load.
+     *
+     * Bound ranges are re-synced afterwards. A reset handler restores an
+     * input by assigning to `input.value`, and assigning to a value in script
+     * does not fire an `input` event — so without this step the slider would
+     * jump back to its default while its <output> went on showing the old
+     * number. Syncing here, after the handlers have run, also means the sync
+     * sees the restored values regardless of the order things were
+     * registered in.
+     *
+     * @param {object} [options]
+     * @param {boolean} [options.silent]  Suppress the status announcement.
+     */
+    function reset(options) {
+      resetHandlers.forEach(function (handler) {
+        handler();
+      });
+      rangeSyncs.forEach(function (sync) {
+        sync();
+      });
+      if (!options || !options.silent) {
+        announce(
+          root.getAttribute("data-reset-message") ||
+            "Reset to the starting values.",
+          { immediate: true }
+        );
+      }
+    }
+
+    if (resetButton) {
+      resetButton.addEventListener("click", function (event) {
+        // Reset buttons commonly sit inside the controls <form>; stop the
+        // browser's own form reset from fighting with ours.
+        event.preventDefault();
+        reset();
+      });
+    }
+
+    /* --- Range binding --------------------------------------------------
+       Keeps a slider's <output> in step with its value. The <output> must
+       carry `for="<input id>"`, which is what associates the two for
+       assistive technology; this only handles the visible text.
+
+       Optionally sets aria-valuetext, which is how you make a screen reader
+       say "25 cases" or "medium correlation" instead of a bare "25".
+       ------------------------------------------------------------------ */
+
+    /**
+     * @param {string|Element} inputTarget  The range (or number) input.
+     * @param {object} [options]
+     * @param {Function} [options.format]  value:number -> string shown in the
+     *   <output>. Defaults to the raw value.
+     * @param {Function} [options.describe]  value:number -> string used for
+     *   aria-valuetext. Defaults to options.format.
+     * @param {Function} [options.onInput]  value:number -> void, called after
+     *   the display has been updated. Use it to redraw.
+     * @returns {HTMLInputElement|null}
+     */
+    function bindRange(inputTarget, options) {
+      var input = resolve(inputTarget, root);
+      if (!input) {
+        return null;
+      }
+
+      var settings = options || {};
+      var format =
+        typeof settings.format === "function"
+          ? settings.format
+          : function (value) {
+              return String(value);
+            };
+      var describe =
+        typeof settings.describe === "function" ? settings.describe : format;
+
+      // <output for="the-input-id"> is the conventional pairing.
+      var output = input.id
+        ? root.querySelector('output[for="' + input.id + '"]')
+        : null;
+
+      function sync() {
+        var value = Number(input.value);
+        if (output) {
+          output.textContent = format(value);
+        }
+        // Only meaningful for widgets with an implicit or explicit slider
+        // role; harmless elsewhere.
+        input.setAttribute("aria-valuetext", describe(value));
+        if (typeof settings.onInput === "function") {
+          settings.onInput(value);
+        }
+      }
+
+      input.addEventListener("input", sync);
+      // Registered so reset() can refresh the display after the tool's own
+      // reset handlers have put the input back to its default.
+      rangeSyncs.push(sync);
+      sync();
+
+      return input;
+    }
+
+    /* --- Public surface -------------------------------------------------- */
+
+    return {
+      /** The `.interactive` root element. */
+      root: root,
+      /** The controls panel, or null if the shell has none. */
+      controls: controls,
+      /** The stage element where the visualisation is drawn. */
+      stage: stage,
+      /** The live-region element. */
+      status: status,
+      announce: announce,
+      onReset: onReset,
+      reset: reset,
+      bindRange: bindRange,
+      prefersReducedMotion: prefersReducedMotion
+    };
+  }
+
+  /* -----------------------------------------------------------------------
+     Export
+     --------------------------------------------------------------------- */
+
+  global.InteractiveShell = {
+    attach: attach,
+    prefersReducedMotion: prefersReducedMotion
+  };
+})(window);
+
+/* ---- modules/research-methods/tools/10-anova-f-ratio-visualiser/tool.js ---- */
+/* =========================================================================
+   ANOVA F-Ratio Visualiser
+   -------------------------------------------------------------------------
+   Two staged experiments, each with its own controls and one primary picture.
+
+   EXPERIMENT 1 — the ratio
+   ------------------------
+   Three groups of n fictional participants are drawn from normal populations
+   with means (52 - s, 52, 52 + s) and a common within-group standard
+   deviation. A one-way ANOVA is then computed on the SIMULATED SAMPLE, not on
+   the population values, so the numbers on screen are a real analysis of real
+   (generated) data and move about when the sample is redrawn.
+
+       SS_between = sum over groups of  n_j * (mean_j - grand mean)^2
+       SS_within  = sum over all cases of (x - mean of its group)^2
+       df_between = k - 1 = 2          df_within = N - k
+       F          = (SS_between / df_between) / (SS_within / df_within)
+       p          = P(F(df1, df2) >= observed F)
+
+   When the population means are equal, both mean squares estimate the same
+   population variance, so F wanders around 1. When they are not, the
+   numerator picks up something the denominator never sees.
+
+   Three separate things move F, and only one of them is the effect: the
+   separation of the means, the within-group spread and n. The spread enters
+   as its square, and the exact statement is that the amount by which F
+   EXCEEDS 1 is divided by four when the within-group standard deviation
+   doubles - because E[MS_between] = sigma^2 + n * sum(delta^2)/(k-1) while
+   E[MS_within] = sigma^2, so E[F] - 1 is proportional to 1/sigma^2. F itself
+   therefore falls to roughly a quarter only when F is comfortably above 1.
+   None of this is a measure of how large the difference between the groups
+   is, which is why the tool prints the share of variance beside F.
+
+   EXPERIMENT 2 — what F cannot carry
+   ----------------------------------
+   Three patterns of three group means, constructed to have IDENTICAL
+   between-groups sums of squares:
+
+       A  49.0, 52.0, 55.0            evenly spaced,     sum of squared
+       B  50.0, 50.0, 55.196          one group high,    deviations = 18
+       C  46.804, 52.0, 52.0          one group low,     in every case
+
+   With the same n and the same within-group spread they therefore give
+   exactly the same F. A significant omnibus test says the data sit awkwardly
+   with "all population means are equal"; it does not say which means differ,
+   in which direction, or by how much. Those questions need planned contrasts
+   or post-hoc comparisons, which carry their own multiplicity cost.
+
+   The p-values here are tail areas under an assumed model. Everything the
+   earlier p-value tool said still applies: p is not the probability the null
+   is true, and a large p is not evidence of equivalence.
+
+   Randomness is seeded (mulberry32 with Box-Muller normals). No data leave
+   the browser: no storage, no network request.
+   ========================================================================= */
+
+(function () {
+  "use strict";
+
+  var GROUPS = ["A", "B", "C"];
+  var GRAND = 52;          // centre of the simulated populations
+  var DEFAULTS = { sep: 8, within: 6, n: 30, seed: 4021 };
+
+  /* Experiment 2 is stated in model terms, so its constants are fixed. */
+  var P2_N = 30;
+  var P2_SD = 6;
+  /* The three sets of means are constructed to have identical sums of squared
+     deviations from their own grand mean (18 in every case), so that with the
+     same n and the same within-group spread they give the same F. */
+  var P2_PATTERNS = {
+    a: { description: "evenly spaced", means: [49, 52, 55] },
+    b: { description: "one group high", means: [50, 50, 55.196152] },
+    c: { description: "one group low", means: [46.803848, 52, 52] }
+  };
+
+  /* =======================================================================
+     Seeded randomness
+     ===================================================================== */
+
+  function mulberry32(seed) {
+    var a = seed >>> 0;
+    return function () {
+      a += 0x6d2b79f5;
+      var t = a;
+      t = Math.imul(t ^ (t >>> 15), t | 1);
+      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  function normal(random) {
+    var u = Math.max(random(), 1e-9);
+    return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * random());
+  }
+
+  /* =======================================================================
+     The F distribution
+     -------------------------------------------------------------------
+     P(F >= f) = I_x(df2/2, df1/2) with x = df2 / (df2 + df1 * f), where I is
+     the regularised incomplete beta function. Continued-fraction evaluation
+     after Numerical Recipes; log-gamma by the Lanczos approximation.
+     ===================================================================== */
+
+  var LANCZOS = [
+    0.99999999999980993, 676.5203681218851, -1259.1392167224028,
+    771.32342877765313, -176.61502916214059, 12.507343278686905,
+    -0.13857109526572012, 9.9843695780195716e-6, 1.5056327351493116e-7
+  ];
+
+  function logGamma(x) {
+    if (x < 0.5) {
+      return Math.log(Math.PI / Math.sin(Math.PI * x)) - logGamma(1 - x);
+    }
+    var z = x - 1;
+    var a = LANCZOS[0];
+    var t = z + 7.5;
+    for (var i = 1; i < 9; i += 1) { a += LANCZOS[i] / (z + i); }
+    return 0.5 * Math.log(2 * Math.PI) + (z + 0.5) * Math.log(t) - t + Math.log(a);
+  }
+
+  function betacf(a, b, x) {
+    var MAXIT = 300;
+    var EPS = 3e-14;
+    var FPMIN = 1e-300;
+    var qab = a + b;
+    var qap = a + 1;
+    var qam = a - 1;
+    var c = 1;
+    var d = 1 - qab * x / qap;
+    if (Math.abs(d) < FPMIN) { d = FPMIN; }
+    d = 1 / d;
+    var h = d;
+    for (var m = 1; m <= MAXIT; m += 1) {
+      var m2 = 2 * m;
+      var aa = m * (b - m) * x / ((qam + m2) * (a + m2));
+      d = 1 + aa * d;
+      if (Math.abs(d) < FPMIN) { d = FPMIN; }
+      c = 1 + aa / c;
+      if (Math.abs(c) < FPMIN) { c = FPMIN; }
+      d = 1 / d;
+      h *= d * c;
+      aa = -(a + m) * (qab + m) * x / ((a + m2) * (qap + m2));
+      d = 1 + aa * d;
+      if (Math.abs(d) < FPMIN) { d = FPMIN; }
+      c = 1 + aa / c;
+      if (Math.abs(c) < FPMIN) { c = FPMIN; }
+      d = 1 / d;
+      var del = d * c;
+      h *= del;
+      if (Math.abs(del - 1) < EPS) { break; }
+    }
+    return h;
+  }
+
+  function betai(a, b, x) {
+    if (x <= 0) { return 0; }
+    if (x >= 1) { return 1; }
+    var bt = Math.exp(
+      logGamma(a + b) - logGamma(a) - logGamma(b) +
+      a * Math.log(x) + b * Math.log(1 - x));
+    if (x < (a + 1) / (a + b + 2)) {
+      return bt * betacf(a, b, x) / a;
+    }
+    return 1 - bt * betacf(b, a, 1 - x) / b;
+  }
+
+  function fTail(f, df1, df2) {
+    if (!(f > 0)) { return 1; }
+    return betai(df2 / 2, df1 / 2, df2 / (df2 + df1 * f));
+  }
+
+  /* =======================================================================
+     Small DOM helpers
+     ===================================================================== */
+
+  var NS = "http://www.w3.org/2000/svg";
+
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) { node.className = className; }
+    if (text !== undefined) { node.textContent = text; }
+    return node;
+  }
+
+  function svgNode(tag, attrs) {
+    var node = document.createElementNS(NS, tag);
+    Object.keys(attrs || {}).forEach(function (key) {
+      node.setAttribute(key, String(attrs[key]));
+    });
+    return node;
+  }
+
+  function svgText(attrs, text, className) {
+    var node = svgNode("text", attrs);
+    if (className) { node.setAttribute("class", className); }
+    node.textContent = text;
+    return node;
+  }
+
+  function clear(node) {
+    while (node.firstChild) { node.removeChild(node.firstChild); }
+  }
+
+  function fmt(value, places) {
+    return value.toFixed(places === undefined ? 2 : places);
+  }
+
+  function fmtP(p) {
+    if (p < 0.0001) { return "< .0001"; }
+    if (p < 0.001) { return "< .001"; }
+    return "= " + p.toFixed(3).replace(/^0/, "");
+  }
+
+  function row(cells) {
+    var tr = make("tr");
+    cells.forEach(function (cell, i) {
+      if (i === 0) {
+        var th = make("th", null, cell);
+        th.setAttribute("scope", "row");
+        tr.appendChild(th);
+      } else {
+        tr.appendChild(make("td", null, cell));
+      }
+    });
+    return tr;
+  }
+
+  var page = document;
+  var $ = function (s, scope) { return (scope || page).querySelector(s); };
+  var $$ = function (s, scope) {
+    return Array.prototype.slice.call((scope || page).querySelectorAll(s));
+  };
+
+  function showFeedback(container, tone, verdictText, text) {
+    clear(container);
+    container.setAttribute("data-tone", tone);
+    var p = make("p");
+    p.appendChild(make("strong", "feedback__verdict", verdictText));
+    if (text) { p.appendChild(document.createTextNode(" " + text)); }
+    container.appendChild(p);
+    container.hidden = false;
+    return p;
+  }
+
+  /* =======================================================================
+     Wiring
+     ===================================================================== */
+
+  var ratioShell = InteractiveShell.attach("#ratio");
+  var patternShell = InteractiveShell.attach("#pattern");
+  if (!ratioShell || !patternShell) { return; }
+
+  var sepRange = $("#sep-range");
+  var withinRange = $("#within-range");
+  var nRange = $("#n-range");
+  var presetSelect = $("#preset-select");
+  var seedInput = $("#seed-input");
+  var chartHeading = $("[data-chart-heading]");
+  var strip = $("[data-strip]");
+  var groupTable = $("[data-group-table]");
+  var readout = $("[data-readout]");
+  var verdictBox = $("[data-verdict]");
+  var interpretation = $("[data-interpretation]");
+  var sourceTable = $("[data-source-table]");
+
+  var openingForm = $("#opening-form");
+  var openingError = $("[data-opening-error]");
+  var openingFeedback = $("[data-opening-feedback]");
+  var ratioSection = $("#ratio-section");
+  var patternSection = $("#pattern-section");
+
+  var patternHeading = $("[data-pattern-heading]");
+  var patternChart = $("[data-pattern-chart]");
+  var patternTable = $("[data-pattern-table]");
+  var patternFeedback = $("[data-pattern-feedback]");
+  var patternError = $("[data-pattern-error]");
+  var revealTable = $("[data-reveal-table]");
+  var allPatternsTable = $("[data-all-patterns-table]");
+
+  var challengeForm = $("#challenge-form");
+  var challengeFeedback = $("[data-challenge-feedback]");
+
+  /* =======================================================================
+     Experiment 1 — simulate and analyse
+     ===================================================================== */
+
+  var sample = null;   // { groups: [{values, jitter, mean, sd}], ... }
+
+  function settings() {
+    return {
+      sep: Number(sepRange.value),
+      within: Number(withinRange.value),
+      n: Number(nRange.value)
+    };
+  }
+
+  function drawSample() {
+    var s = settings();
+    var seed = Math.max(1, Math.round(Number(seedInput.value) || 1));
+    var random = mulberry32(seed);
+    var trueMeans = [GRAND - s.sep, GRAND, GRAND + s.sep];
+    var groups = trueMeans.map(function (mu) {
+      var values = [];
+      var jitter = [];
+      for (var i = 0; i < s.n; i += 1) {
+        values.push(mu + normal(random) * s.within);
+        jitter.push(random() * 2 - 1);
+      }
+      var mean = values.reduce(function (a, b) { return a + b; }, 0) / values.length;
+      var ss = values.reduce(function (a, b) { return a + (b - mean) * (b - mean); }, 0);
+      return {
+        values: values, jitter: jitter, mean: mean,
+        sd: Math.sqrt(ss / (values.length - 1)), ss: ss
+      };
+    });
+    sample = { groups: groups, trueMeans: trueMeans, n: s.n };
+  }
+
+  function anova() {
+    var groups = sample.groups;
+    var k = groups.length;
+    var total = 0;
+    var count = 0;
+    groups.forEach(function (g) {
+      total += g.mean * g.values.length;
+      count += g.values.length;
+    });
+    var grand = total / count;
+    var ssBetween = 0;
+    var ssWithin = 0;
+    groups.forEach(function (g) {
+      ssBetween += g.values.length * (g.mean - grand) * (g.mean - grand);
+      ssWithin += g.ss;
+    });
+    var dfB = k - 1;
+    var dfW = count - k;
+    var msB = ssBetween / dfB;
+    var msW = ssWithin / dfW;
+    var f = msW > 0 ? msB / msW : 0;
+    return {
+      grand: grand, ssBetween: ssBetween, ssWithin: ssWithin,
+      dfB: dfB, dfW: dfW, msB: msB, msW: msW, f: f,
+      p: fTail(f, dfB, dfW),
+      eta: ssBetween / (ssBetween + ssWithin)
+    };
+  }
+
+  function renderStrip(a) {
+    var left = 40;
+    var right = 450;
+    var top = 12;
+    var base = 176;
+
+    clear(strip);
+
+    var all = [];
+    sample.groups.forEach(function (g) {
+      all = all.concat(g.values);
+    });
+    var lo = Math.min.apply(null, all);
+    var hi = Math.max.apply(null, all);
+    var pad = Math.max(2, (hi - lo) * 0.06);
+    lo -= pad;
+    hi += pad;
+
+    var y = function (value) {
+      return base - ((value - lo) / (hi - lo)) * (base - top);
+    };
+    var colW = (right - left) / 3;
+
+    // Y axis with ticks.
+    strip.appendChild(svgNode("line", {
+      x1: left, y1: top, x2: left, y2: base, class: "strip__axis"
+    }));
+    var tickStep = (hi - lo) > 60 ? 20 : (hi - lo) > 30 ? 10 : 5;
+    var first = Math.ceil(lo / tickStep) * tickStep;
+    for (var v = first; v <= hi; v += tickStep) {
+      strip.appendChild(svgNode("line", {
+        x1: left - 4, y1: y(v), x2: left, y2: y(v), class: "strip__axis"
+      }));
+      strip.appendChild(svgText(
+        { x: left - 7, y: y(v) + 4, "text-anchor": "end" },
+        String(Math.round(v)), "chart__axis"));
+    }
+
+    // Grand mean across the whole plot.
+    strip.appendChild(svgNode("line", {
+      x1: left, y1: y(a.grand), x2: right, y2: y(a.grand), class: "strip__grand"
+    }));
+    strip.appendChild(svgText(
+      { x: right, y: y(a.grand) - 5, "text-anchor": "end" },
+      "grand mean " + fmt(a.grand, 1), "chart__axis"));
+
+    sample.groups.forEach(function (g, i) {
+      var cx = left + (i + 0.5) * colW;
+      g.values.forEach(function (value, j) {
+        strip.appendChild(svgNode("circle", {
+          cx: cx + g.jitter[j] * colW * 0.3, cy: y(value), r: 2.4,
+          class: "strip__dot"
+        }));
+      });
+      // The between-groups reach: this mean's distance from the grand mean.
+      strip.appendChild(svgNode("line", {
+        x1: cx, y1: y(a.grand), x2: cx, y2: y(g.mean), class: "strip__reach"
+      }));
+      strip.appendChild(svgNode("line", {
+        x1: cx - colW * 0.36, y1: y(g.mean), x2: cx + colW * 0.36, y2: y(g.mean),
+        class: "strip__mean"
+      }));
+      strip.appendChild(svgText(
+        { x: cx, y: base + 17, "text-anchor": "middle" },
+        "Group " + GROUPS[i], "chart__label"));
+      strip.appendChild(svgText(
+        { x: cx, y: base + 32, "text-anchor": "middle" },
+        "mean " + fmt(g.mean, 1), "chart__axis"));
+    });
+
+    strip.appendChild(svgNode("line", {
+      x1: left, y1: base, x2: right, y2: base, class: "strip__axis"
+    }));
+    strip.appendChild(svgText(
+      { x: left - 7, y: top + 4, "text-anchor": "end" },
+      "score", "chart__axis"));
+  }
+
+  function renderGroupTable() {
+    clear(groupTable);
+    sample.groups.forEach(function (g, i) {
+      groupTable.appendChild(row([
+        "Group " + GROUPS[i],
+        String(g.values.length),
+        fmt(g.mean, 1),
+        fmt(g.sd, 1)
+      ]));
+    });
+  }
+
+  function renderReadout(a) {
+    clear(readout);
+    [
+      ["F ratio", fmt(a.f)],
+      ["Degrees of freedom", a.dfB + ", " + a.dfW],
+      ["Tail area", "p " + fmtP(a.p)],
+      ["Variance accounted for", (100 * a.eta).toFixed(1) + "%"]
+    ].forEach(function (pair) {
+      var cell = make("div");
+      cell.appendChild(make("dt", null, pair[0]));
+      cell.appendChild(make("dd", null, pair[1]));
+      readout.appendChild(cell);
+    });
+  }
+
+  function renderSourceTable(a) {
+    clear(sourceTable);
+    [
+      ["Between groups", fmt(a.ssBetween, 1), String(a.dfB), fmt(a.msB, 1)],
+      ["Within groups", fmt(a.ssWithin, 1), String(a.dfW), fmt(a.msW, 1)],
+      ["Total", fmt(a.ssBetween + a.ssWithin, 1),
+        String(a.dfB + a.dfW), "—"]
+    ].forEach(function (cells) {
+      sourceTable.appendChild(row(cells));
+    });
+  }
+
+  function renderInterpretation(a) {
+    var s = settings();
+    var tone;
+    var text;
+
+    if (s.sep === 0) {
+      tone = "neutral";
+      text =
+        "The three populations are identical: every difference between the " +
+        "bars is sampling noise. F came out at " + fmt(a.f) + ", p " +
+        fmtP(a.p) + ". Draw four or five more samples and watch it bounce " +
+        "around 1 - both halves of the fraction are estimating the same " +
+        "population variance.";
+    } else if (a.f < 1.5) {
+      tone = "caution";
+      text =
+        "F = " + fmt(a.f) + ", p " + fmtP(a.p) + ". The population means " +
+        "really do differ - the separation slider is at " + fmt(s.sep, 1) +
+        " - and this sample cannot see it: a within-group spread of " +
+        s.within + " swamps a gap that size at n = " + s.n + " per group. " +
+        "Nothing here has shown the groups to be the same.";
+    } else if (a.p > 0.05) {
+      tone = "caution";
+      text =
+        "F = " + fmt(a.f) + ", p " + fmtP(a.p) + ", with " +
+        (100 * a.eta).toFixed(1) + "% of the total variation lying between " +
+        "the groups. A real difference is present in the populations and this " +
+        "sample has not established it. Raise n and watch F climb with the " +
+        "separation untouched: F is not a measure of how big the difference is.";
+    } else {
+      tone = "good";
+      text =
+        "F = " + fmt(a.f) + ", p " + fmtP(a.p) + ". The between-groups mean " +
+        "square is " + fmt(a.f) + " times the within-groups mean square, and " +
+        (100 * a.eta).toFixed(1) + "% of the total variation lies between the " +
+        "groups. Say the modest thing: these data sit awkwardly with all " +
+        "three population means being equal. Not which groups differ, and not " +
+        "that the difference is large.";
+    }
+
+    interpretation.textContent = text;
+    verdictBox.setAttribute("data-tone", tone);
+  }
+
+  function renderRatio() {
+    var a = anova();
+    var s = settings();
+    chartHeading.textContent =
+      "Three simulated groups of " + s.n + ", within-group SD " + s.within;
+    renderStrip(a);
+    renderGroupTable();
+    renderReadout(a);
+    renderSourceTable(a);
+    renderInterpretation(a);
+    return a;
+  }
+
+  function refresh(redraw) {
+    if (redraw !== false) { drawSample(); }
+    return renderRatio();
+  }
+
+  /* Set while a preset is writing to the sliders, so that the input events it
+     fires do not knock the preset menu back to "Current settings". */
+  var applyingPreset = false;
+
+  function onControlChange() {
+    if (applyingPreset) { return; }
+    presetSelect.value = "custom";
+    refresh();
+  }
+
+  ratioShell.bindRange(sepRange, {
+    format: function (v) { return fmt(v, 1); },
+    describe: function (v) {
+      return v === 0
+        ? "no separation: all three population means are 52"
+        : "population means " + fmt(GRAND - v, 1) + ", 52.0 and " +
+          fmt(GRAND + v, 1);
+    },
+    onInput: onControlChange
+  });
+
+  ratioShell.bindRange(withinRange, {
+    format: function (v) { return String(v); },
+    describe: function (v) { return "within-group standard deviation " + v + " points"; },
+    onInput: onControlChange
+  });
+
+  ratioShell.bindRange(nRange, {
+    format: function (v) { return String(v); },
+    describe: function (v) { return v + " participants in each group"; },
+    onInput: onControlChange
+  });
+
+  var PRESETS = {
+    study1: { sep: 8, within: 6, n: 30,
+      note: "The first study from the prediction: population means 44, 52 and " +
+        "60, within-group SD 6." },
+    study2: { sep: 8, within: 12, n: 30,
+      note: "The same three population means with the within-group spread " +
+        "doubled. The amount by which F exceeds 1 is divided by four, because " +
+        "the denominator is a variance and variances scale with the square." },
+    "null": { sep: 0, within: 8, n: 30,
+      note: "Three identical populations. Draw new samples and watch F " +
+        "bounce around 1 - and occasionally, by chance, well above it." },
+    bign: { sep: 1.5, within: 8, n: 60,
+      note: "A difference of one and a half points either side of 52, which " +
+        "nobody would act on, at sixty per group. Read the p-value, then read " +
+        "the percentage of variance beside it." }
+  };
+
+  presetSelect.addEventListener("change", function () {
+    var preset = PRESETS[presetSelect.value];
+    if (!preset) { return; }
+    applyingPreset = true;
+    sepRange.value = String(preset.sep);
+    withinRange.value = String(preset.within);
+    nRange.value = String(preset.n);
+    // Re-sync the <output> elements: assigning to value fires no input event.
+    [sepRange, withinRange, nRange].forEach(function (input) {
+      input.dispatchEvent(new Event("input"));
+    });
+    applyingPreset = false;
+    var a = refresh();
+    ratioShell.announce(preset.note + " F = " + fmt(a.f) + ", p " + fmtP(a.p) + ".",
+      { immediate: true });
+  });
+
+  seedInput.addEventListener("change", function () { refresh(); });
+
+  $('[data-action="resample"]').addEventListener("click", function () {
+    // A new sample means a new seed, kept visible so the run is reproducible.
+    var next = (Math.round(Number(seedInput.value) || 1) * 7 + 13) % 999983;
+    seedInput.value = String(Math.max(1, next));
+    var a = refresh();
+    ratioShell.announce(
+      "New sample drawn with seed " + seedInput.value + ". F = " + fmt(a.f) +
+      ", p " + fmtP(a.p) + ", with group means " +
+      sample.groups.map(function (g) { return fmt(g.mean, 1); }).join(", ") + ".",
+      { immediate: true });
+  });
+
+  /* =======================================================================
+     Experiment 2 — three patterns, one F
+     ===================================================================== */
+
+  var patternAnswered = false;
+
+  function patternStats(key) {
+    var means = P2_PATTERNS[key].means;
+    var grand = (means[0] + means[1] + means[2]) / 3;
+    var ssBetween = 0;
+    means.forEach(function (m) { ssBetween += P2_N * (m - grand) * (m - grand); });
+    var msB = ssBetween / 2;
+    var msW = P2_SD * P2_SD;          // the model states the within-group variance
+    var f = msB / msW;
+    return {
+      means: means, grand: grand, ssBetween: ssBetween, f: f,
+      p: fTail(f, 2, 3 * P2_N - 3)
+    };
+  }
+
+  function currentPatternKey() {
+    var checked = $('input[name="pattern"]:checked', patternShell.controls);
+    return checked ? checked.value : "a";
+  }
+
+  function renderPatternChart(key) {
+    var left = 46;
+    var right = 450;
+    var top = 18;
+    var base = 118;
+    var AXIS_LO = 42;
+    var AXIS_HI = 60;
+    var stats = patternStats(key);
+
+    clear(patternChart);
+
+    var x = function (value) {
+      return left + ((value - AXIS_LO) / (AXIS_HI - AXIS_LO)) * (right - left);
+    };
+    var rowY = [34, 62, 90];
+
+    // Grand mean for this pattern.
+    patternChart.appendChild(svgNode("line", {
+      x1: x(stats.grand), y1: top, x2: x(stats.grand), y2: base,
+      class: "pattern__grand"
+    }));
+    patternChart.appendChild(svgText(
+      { x: x(stats.grand), y: top - 4, "text-anchor": "middle" },
+      "grand mean " + fmt(stats.grand, 1), "chart__axis"));
+
+    stats.means.forEach(function (m, i) {
+      var y = rowY[i];
+      patternChart.appendChild(svgNode("line", {
+        x1: x(Math.max(AXIS_LO, m - P2_SD)), y1: y,
+        x2: x(Math.min(AXIS_HI, m + P2_SD)), y2: y,
+        class: "pattern__spread"
+      }));
+      [m - P2_SD, m + P2_SD].forEach(function (v) {
+        if (v < AXIS_LO || v > AXIS_HI) { return; }
+        patternChart.appendChild(svgNode("line", {
+          x1: x(v), y1: y - 6, x2: x(v), y2: y + 6, class: "pattern__cap"
+        }));
+      });
+      patternChart.appendChild(svgNode("circle", {
+        cx: x(m), cy: y, r: 5.5, class: "pattern__mean"
+      }));
+      patternChart.appendChild(svgText(
+        { x: left - 8, y: y + 4, "text-anchor": "end" },
+        "Group " + GROUPS[i], "chart__label"));
+      patternChart.appendChild(svgText(
+        { x: x(m), y: y - 11, "text-anchor": "middle" },
+        fmt(m, 1), "chart__axis"));
+    });
+
+    patternChart.appendChild(svgNode("line", {
+      x1: left, y1: base, x2: right, y2: base, class: "strip__axis"
+    }));
+    for (var v2 = 44; v2 <= 60; v2 += 4) {
+      patternChart.appendChild(svgNode("line", {
+        x1: x(v2), y1: base, x2: x(v2), y2: base + 4, class: "strip__axis"
+      }));
+      patternChart.appendChild(svgText(
+        { x: x(v2), y: base + 17, "text-anchor": "middle" },
+        String(v2), "chart__axis"));
+    }
+    patternChart.appendChild(svgText(
+      { x: (left + right) / 2, y: base + 33, "text-anchor": "middle" },
+      "test score, with one within-group SD either side of each mean",
+      "chart__axis"));
+  }
+
+  function renderPatternTable(key) {
+    var stats = patternStats(key);
+    clear(patternTable);
+    stats.means.forEach(function (m, i) {
+      var d = m - stats.grand;
+      patternTable.appendChild(row([
+        "Group " + GROUPS[i],
+        fmt(m, 1),
+        (d >= 0 ? "+" : "−") + fmt(Math.abs(d), 2)
+      ]));
+    });
+  }
+
+  function renderPattern() {
+    var key = currentPatternKey();
+    var stats = patternStats(key);
+    patternHeading.textContent =
+      "Pattern " + key.toUpperCase() + ", " + P2_PATTERNS[key].description +
+      (patternAnswered ? " — F = " + fmt(stats.f) : " — F still hidden");
+    renderPatternChart(key);
+    renderPatternTable(key);
+  }
+
+  $$('input[name="pattern"]', patternShell.controls).forEach(function (input) {
+    input.addEventListener("change", function () {
+      renderPattern();
+      var key = currentPatternKey();
+      patternShell.announce(
+        "Showing pattern " + key.toUpperCase() + ": group means " +
+        P2_PATTERNS[key].means.map(function (m) { return fmt(m, 1); }).join(", ") +
+        ".", { immediate: true });
+    });
+  });
+
+  function fillAllPatterns() {
+    clear(allPatternsTable);
+    ["a", "b", "c"].forEach(function (key) {
+      var stats = patternStats(key);
+      allPatternsTable.appendChild(row([
+        "Pattern " + key.toUpperCase(),
+        stats.means.map(function (m) { return fmt(m, 1); }).join(", "),
+        fmt(stats.ssBetween, 1),
+        fmt(stats.f)
+      ]));
+    });
+  }
+
+  $('[data-action="check-pattern"]').addEventListener("click", function () {
+    var chosen = $('input[name="answer"]:checked', patternShell.controls);
+    if (!chosen) {
+      patternError.textContent = "Choose one of the four answers before committing.";
+      patternError.hidden = false;
+      return;
+    }
+    patternError.hidden = true;
+    patternAnswered = true;
+    revealTable.hidden = false;
+    renderPattern();
+
+    var right = chosen.value === "any";
+    var lead = right
+      ? "Yes — there is no way to tell."
+      : "Not pattern " + chosen.value.toUpperCase() + ", or rather: not only " +
+        "pattern " + chosen.value.toUpperCase() + ".";
+    var body =
+      "All three patterns have a between-groups sum of squares of exactly " +
+      "540.0, so with 30 people per group and a within-group standard " +
+      "deviation of 6 they all give F(2, 87) = 7.50. Open the table below and " +
+      "check. Three quite different shapes, one F: it is built from the " +
+      "squared distances of the means from the grand mean, and squaring " +
+      "discards the direction and the arrangement.";
+    showFeedback(patternFeedback, right ? "good" : "caution", lead, body);
+
+    var next = make("p");
+    next.appendChild(make("strong", null, "So what would tell you? "));
+    next.appendChild(document.createTextNode(
+      "A planned contrast, if you knew before collecting the data which " +
+      "comparison you cared about, or a post-hoc comparison with an " +
+      "adjustment if you did not. Both are separate decisions that have to be " +
+      "declared."));
+    patternFeedback.appendChild(next);
+
+    patternShell.announce(lead + " All three patterns give F = 7.50.",
+      { immediate: true });
+  });
+
+  patternShell.onReset(function () {
+    patternAnswered = false;
+    revealTable.hidden = true;
+    revealTable.open = false;
+    patternFeedback.hidden = true;
+    patternError.hidden = true;
+    $$('input[name="answer"]', patternShell.controls).forEach(function (input) {
+      input.checked = false;
+    });
+    $$('input[name="pattern"]', patternShell.controls).forEach(function (input, i) {
+      input.checked = i === 0;
+    });
+    renderPattern();
+  });
+
+  function openPatterns() {
+    var wasHidden = patternSection.hidden;
+    patternSection.hidden = false;
+    renderPattern();
+    if (wasHidden) {
+      $("#pattern-heading").focus();
+      patternShell.announce(
+        "Experiment 2 opened. Browse the three patterns, then commit to an " +
+        "answer.", { immediate: true });
+    }
+  }
+
+  $('[data-action="open-two"]').addEventListener("click", openPatterns);
+
+  /* =======================================================================
+     Opening prediction
+     ===================================================================== */
+
+  var OPENING = {
+    same: {
+      tone: "caution",
+      verdict: "No — and this is the half of F that gets forgotten.",
+      text:
+        "F is a ratio, so it responds to the denominator as well as the " +
+        "numerator. Identical group means with noisier groups mean the same " +
+        "signal against more noise, and F falls. Set the separation to 4 and " +
+        "then drag the within-group SD from 4 to 8 to watch it happen."
+    },
+    half: {
+      tone: "caution",
+      verdict: "The right direction, and not far enough.",
+      text:
+        "F falls by more than half. The denominator is a mean SQUARE - a " +
+        "variance - so doubling the standard deviation multiplies it by four, " +
+        "and F drops from about 54 on average to about 14."
+    },
+    quarter: {
+      tone: "good",
+      verdict: "Yes — because the denominator is a variance.",
+      text:
+        "Doubling the within-group standard deviation quadruples the " +
+        "within-groups mean square. Exactly: it is the amount by which F " +
+        "exceeds 1 that divides by four, so F falls from about 54 on average " +
+        "to about 14. No single run lands on the expected value."
+    },
+    double: {
+      tone: "warn",
+      verdict: "The opposite, and the reason is worth stating precisely.",
+      text:
+        "Extra within-group variation is not extra signal - it is the noise " +
+        "the signal has to be judged against, and it sits in the denominator. " +
+        "More of it makes the same separation of means less impressive, not " +
+        "more. Drag the within-group SD and watch F fall."
+    }
+  };
+
+  function lockForm(form) {
+    $$("input, button, select", form).forEach(function (c) { c.disabled = true; });
+  }
+
+  function unlockForm(form) {
+    $$("input, button, select", form).forEach(function (c) { c.disabled = false; });
+    form.reset();
+  }
+
+  function openRatio() {
+    ratioSection.hidden = false;
+    refresh();
+    $("#ratio-heading").focus();
+    ratioShell.announce(
+      "Experiment 1 unlocked. A first sample has been drawn.", { immediate: true });
+  }
+
+  openingForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answer = $('input[name="opening"]:checked', openingForm);
+    if (!answer) {
+      openingError.textContent = "Choose a prediction before opening the experiment.";
+      openingError.hidden = false;
+      return;
+    }
+    openingError.hidden = true;
+    var feedback = OPENING[answer.value];
+    showFeedback(openingFeedback, feedback.tone, feedback.verdict, feedback.text);
+    lockForm(openingForm);
+    openRatio();
+  });
+
+  $('[data-action="skip-opening"]').addEventListener("click", function () {
+    openingError.hidden = true;
+    showFeedback(openingFeedback, "neutral",
+      "Prediction skipped — demonstration mode.", "");
+    lockForm(openingForm);
+    openRatio();
+  });
+
+  /* =======================================================================
+     Challenge
+     ===================================================================== */
+
+  var CHALLENGE_NOTES = {
+    notall: {
+      correct: true,
+      text:
+        "Correct, and it is almost the whole of what the omnibus test says. " +
+        "Note how modest it is: not all equal, under a model assuming normal " +
+        "populations, equal variances and independent observations."
+    },
+    allthree: {
+      correct: false,
+      text:
+        "Wrong. Pattern B in Experiment 2 has two identical group means and " +
+        "produces the same F = 7.50. The test cannot distinguish 'one group " +
+        "differs' from 'all three differ'."
+    },
+    direction: {
+      correct: false,
+      text:
+        "Wrong. F is built from squared deviations, so direction has already " +
+        "been discarded by the time the number exists. Pattern C - where the " +
+        "lowest group is the odd one out - gives the identical F."
+    },
+    ratio: {
+      correct: true,
+      text:
+        "Correct, and it is worth saying out loud, because it is literally " +
+        "the definition: F is the between-groups mean square divided by the " +
+        "within-groups mean square. Open the source table in Experiment 1 and " +
+        "check the division for yourself."
+    },
+    large: {
+      correct: false,
+      text:
+        "Wrong. F rises with the sample size at a fixed separation, so it " +
+        "confounds size with precision exactly as a p-value does. The 'Tiny " +
+        "difference, large sample' preset produces a small p and a trivial " +
+        "difference. Size is what eta squared, omega squared or a plain mean " +
+        "difference in points is for."
+    },
+    ttests: {
+      correct: false,
+      text:
+        "Wrong in both directions. Three pairwise t-tests ask three separate " +
+        "questions rather than the one the omnibus test asks, and running " +
+        "them raises the chance of at least one false positive above the " +
+        "nominal level. The connection is real but narrower: with only TWO " +
+        "groups, F is exactly t squared."
+    },
+    equivalent: {
+      correct: false,
+      text:
+        "Wrong. A non-significant F means the data are compatible with equal " +
+        "population means; they are usually also compatible with differences " +
+        "worth caring about. Set the separation to 1.5 with 5 per group and " +
+        "look at what a non-significant result is hiding. Showing that groups " +
+        "are similar enough needs an equivalence test against a threshold set " +
+        "in advance."
+    }
+  };
+
+  challengeForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var chosen = $$('input[name="challenge"]:checked', challengeForm)
+      .map(function (b) { return b.value; });
+
+    if (!chosen.length) {
+      showFeedback(challengeFeedback, "caution", "Select at least one statement.",
+        "Two of the seven are correct.");
+      return;
+    }
+
+    var wrongPicked = chosen.filter(function (v) {
+      return !CHALLENGE_NOTES[v].correct;
+    });
+    var missed = ["notall", "ratio"].filter(function (v) {
+      return chosen.indexOf(v) === -1;
+    });
+
+    var tone = wrongPicked.length ? "warn" : missed.length ? "caution" : "good";
+    var verdictText;
+    if (wrongPicked.length) {
+      verdictText = "At least one of these reads a direction, a pattern or a " +
+        "size off a single squared ratio.";
+    } else if (missed.length) {
+      verdictText = "Everything you picked is right, and one of the two " +
+        "correct statements is still unselected.";
+    } else {
+      verdictText = "Yes — both correct statements, and none of the five " +
+        "over-readings.";
+    }
+
+    clear(challengeFeedback);
+    challengeFeedback.setAttribute("data-tone", tone);
+    var lead = make("p");
+    lead.appendChild(make("strong", "feedback__verdict", verdictText));
+    lead.appendChild(document.createTextNode(
+      " The five incorrect statements are the five things a significant F is " +
+      "most often taken to mean in write-ups."));
+    challengeFeedback.appendChild(lead);
+
+    var list = make("ul");
+    Object.keys(CHALLENGE_NOTES).forEach(function (value) {
+      var li = make("li");
+      li.appendChild(make("strong", null,
+        chosen.indexOf(value) !== -1
+          ? "You selected this. " : "You did not select this. "));
+      li.appendChild(document.createTextNode(CHALLENGE_NOTES[value].text));
+      list.appendChild(li);
+    });
+    challengeFeedback.appendChild(list);
+    challengeFeedback.hidden = false;
+    ratioShell.announce(verdictText, { immediate: true });
+  });
+
+  /* =======================================================================
+     Reset and start-up
+     ===================================================================== */
+
+  ratioShell.onReset(function () {
+    unlockForm(openingForm);
+    openingFeedback.hidden = true;
+    openingError.hidden = true;
+    ratioSection.hidden = true;
+    patternSection.hidden = true;
+    challengeForm.reset();
+    challengeFeedback.hidden = true;
+    sepRange.value = String(DEFAULTS.sep);
+    withinRange.value = String(DEFAULTS.within);
+    nRange.value = String(DEFAULTS.n);
+    seedInput.value = String(DEFAULTS.seed);
+    presetSelect.value = "custom";
+    patternShell.reset({ silent: true });
+    drawSample();
+    renderRatio();
+  });
+
+  fillAllPatterns();
+  ratioShell.reset({ silent: true });
+  ratioShell.announce(
+    "Ready. Answer the prediction above to open Experiment 1.",
+    { immediate: true });
+})();
+
+</script>
+</div>

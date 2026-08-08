@@ -1,0 +1,2788 @@
+<!-- Regression: Intercept, Slope and Least Squares
+     From Open Psychology Interactives - https://github.com/utman5454/open-psychology-interactives
+     Self-contained: no stylesheets, scripts, fonts, images or network requests.
+     Styles are scoped to .opi-activity and do not affect the page around them.
+     Nothing is saved, sent or tracked. MIT licensed; please keep this notice.
+     Paste anywhere that accepts HTML, or save as a .html file and open it. -->
+<div class="opi-activity">
+<style>
+/* Defensive baseline. See scripts/build-standalone.py for why this
+   is `revert` rather than an enumerated reset, and how the specificity ladder
+   keeps the activity's own styling on top of it. */
+.opi-activity *:not(svg *) {
+  all: revert;
+}
+.opi-activity, .opi-activity *, .opi-activity *::before, .opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  text-transform: none;
+  text-indent: 0;
+  font-style: normal;
+  font-variant: normal;
+  letter-spacing: normal;
+  word-spacing: normal;
+  white-space: normal;
+  visibility: visible;
+  float: none;
+  max-width: none;
+}
+.opi-activity svg { max-width: 100%; }
+.opi-activity img { max-width: 100%; height: auto; }
+.opi-activity [hidden] { display: none !important; }
+
+/* assets/css/main.css */
+.opi-activity.opi-activity {
+  --colour-page: #ffffff;
+  --colour-surface: #f5f7fa;
+  --colour-surface-raised: #ffffff;
+  --colour-border: #d3d9e2;
+  --colour-border-strong: #aeb7c4;
+  --colour-text: #131820;
+  --colour-text-muted: #4c566a;
+  --colour-accent: #1a4fa0;
+  --colour-accent-hover: #123a7a;
+  --colour-accent-soft: #e8eefb;
+  --colour-on-accent: #ffffff;
+  --colour-focus: #b45309;
+  --colour-cognitive: #8a4b00;
+  --colour-research-methods: #1a4fa0;
+  --colour-neuropsychology: #145c53;
+  --colour-social-critical-psychology: #9e2f45;
+  --colour-personality-individual-differences: #7a2e6d;
+  --colour-status-bg: #f1ede3;
+  --colour-status-text: #5c4a1f;
+  --colour-status-border: #d9cdb0;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  --text-xs: 13px;
+  --text-sm: 15px;
+  --text-base: 17px;
+  --text-lg: 19px;
+  --text-xl: 23px;
+  --text-2xl: 28px;
+  --text-3xl: 36px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgb(19 24 32 / 0.06);
+  --shadow-md: 0 2px 8px rgb(19 24 32 / 0.08);
+  --measure: 68ch;
+  --container: 1152px;
+}
+@media (prefers-color-scheme: dark) {
+.opi-activity.opi-activity {
+  --colour-page: #0f141b;
+  --colour-surface: #161d27;
+  --colour-surface-raised: #1a2230;
+  --colour-border: #2c3644;
+  --colour-border-strong: #44506180;
+  --colour-text: #e9edf3;
+  --colour-text-muted: #a8b2c1;
+  --colour-accent: #8fb6ff;
+  --colour-accent-hover: #b3cdff;
+  --colour-accent-soft: #1b2740;
+  --colour-on-accent: #0f141b;
+  --colour-focus: #f0b429;
+  --colour-cognitive: #e2ab5f;
+  --colour-research-methods: #8fb6ff;
+  --colour-neuropsychology: #6fc3b4;
+  --colour-social-critical-psychology: #f19aa8;
+  --colour-personality-individual-differences: #db9ccd;
+  --colour-status-bg: #241f14;
+  --colour-status-text: #e2cf9f;
+  --colour-status-border: #4a4028;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 2px 10px rgb(0 0 0 / 0.45);
+}
+}
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity.opi-activity {
+  -webkit-text-size-adjust: 100%;
+}
+.opi-activity.opi-activity {
+  background-color: var(--colour-page);
+  color: var(--colour-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.65;
+}
+.opi-activity.opi-activity h1,
+.opi-activity.opi-activity h2,
+.opi-activity.opi-activity h3,
+.opi-activity.opi-activity h4 {
+  margin: 0 0 var(--space-3);
+  line-height: 1.25;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.opi-activity.opi-activity h1 {
+  font-size: var(--text-3xl);
+}
+.opi-activity.opi-activity h2 {
+  font-size: var(--text-2xl);
+}
+.opi-activity.opi-activity h3 {
+  font-size: var(--text-xl);
+}
+.opi-activity.opi-activity h4 {
+  font-size: var(--text-lg);
+}
+.opi-activity.opi-activity p,
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol,
+.opi-activity.opi-activity dl {
+  margin: 0 0 var(--space-4);
+}
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol {
+  padding-left: 1.35em;
+}
+.opi-activity.opi-activity li + li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity a {
+  color: var(--colour-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: max(1px, 0.06em);
+}
+.opi-activity.opi-activity a:hover {
+  color: var(--colour-accent-hover);
+  text-decoration-thickness: max(2px, 0.11em);
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid var(--colour-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+@supports not selector(:focus-visible) {
+.opi-activity.opi-activity :focus {
+  outline: 3px solid var(--colour-focus);
+    outline-offset: 2px;
+}
+}
+.opi-activity.opi-activity code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.35em;
+}
+.opi-activity.opi-activity hr {
+  border: 0;
+  border-top: 1px solid var(--colour-border);
+  margin: var(--space-6) 0;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+}
+.opi-activity.opi-activity .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.opi-activity.opi-activity .container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+@media (min-width: 40em) {
+.opi-activity.opi-activity .container {
+  padding-inline: var(--space-5);
+}
+}
+.opi-activity.opi-activity .prose {
+  max-width: var(--measure);
+}
+.opi-activity.opi-activity .text-muted {
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .section {
+  padding-block: var(--space-7);
+}
+.opi-activity.opi-activity .section--tinted {
+  background-color: var(--colour-surface);
+  border-block: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .section__header {
+  max-width: var(--measure);
+  margin-bottom: var(--space-5);
+}
+.opi-activity.opi-activity .section__header > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-7) var(--space-6);
+  border-bottom: 1px solid var(--colour-border);
+  
+  background-image: linear-gradient(
+    180deg,
+    var(--colour-accent-soft) 0%,
+    var(--colour-page) 100%
+  );
+}
+.opi-activity.opi-activity .hero__eyebrow {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .hero h1 {
+  max-width: 20ch;
+  margin-bottom: var(--space-4);
+}
+.opi-activity.opi-activity .hero__lead {
+  max-width: var(--measure);
+  font-size: var(--text-lg);
+  color: var(--colour-text-muted);
+}
+@media (min-width: 48em) {
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-8) var(--space-7);
+}
+.opi-activity.opi-activity .hero h1 {
+  font-size: 44px;
+}
+}
+.opi-activity.opi-activity .button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  
+  min-height: 44px;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .button--primary {
+  background-color: var(--colour-accent);
+  border-color: var(--colour-accent);
+  
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--primary:hover {
+  background-color: var(--colour-accent-hover);
+  border-color: var(--colour-accent-hover);
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--secondary {
+  background-color: transparent;
+  border-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .button--secondary:hover {
+  background-color: var(--colour-surface);
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+}
+.opi-activity.opi-activity .card--cognitive {
+  --card-accent: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .card--research-methods {
+  --card-accent: var(--colour-research-methods);
+}
+.opi-activity.opi-activity .card--neuropsychology {
+  --card-accent: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .card--social-critical-psychology {
+  --card-accent: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .card--personality-individual-differences {
+  --card-accent: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 650;
+  line-height: 1.4;
+  padding: 3.2px var(--space-3);
+  border-radius: 999px;
+  border: 1px solid var(--colour-status-border);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+}
+.opi-activity.opi-activity .badge__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex: none;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed var(--colour-border-strong);
+  border-radius: var(--radius-lg);
+  background-color: var(--colour-surface);
+  padding: var(--space-5);
+  text-align: left;
+}
+.opi-activity.opi-activity .placeholder__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+}
+.opi-activity.opi-activity .placeholder > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .split {
+  display: grid;
+  gap: var(--space-6);
+}
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split {
+  grid-template-columns: 3fr 2fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .panel {
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.opi-activity.opi-activity .panel > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .panel__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .section--tinted {
+  border-block: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .hero {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .button--primary {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .button--secondary {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .button:hover {
+  border-color: Highlight;
+}
+.opi-activity.opi-activity .panel {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed CanvasText;
+}
+.opi-activity.opi-activity .badge {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .badge__dot {
+  background-color: CanvasText;
+}
+.opi-activity.opi-activity code {
+  border-color: CanvasText;
+}
+.opi-activity.opi-activity hr {
+  border-top-color: CanvasText;
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+}
+@media print {
+.opi-activity.opi-activity {
+  color: #000;
+  background: #fff;
+}
+.opi-activity.opi-activity a[href^="http"]::after {
+  content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+}
+}
+
+/* components/interactive-shell.css */
+.opi-activity.opi-activity .interactive {
+  --shell-page: var(--colour-page, #ffffff);
+  --shell-surface: var(--colour-surface, #f5f7fa);
+  --shell-raised: var(--colour-surface-raised, #ffffff);
+  --shell-border: var(--colour-border, #d3d9e2);
+  --shell-border-strong: var(--colour-border-strong, #aeb7c4);
+  --shell-text: var(--colour-text, #131820);
+  --shell-muted: var(--colour-text-muted, #4c566a);
+  --shell-accent: var(--colour-accent, #1a4fa0);
+  --shell-accent-soft: var(--colour-accent-soft, #e8eefb);
+  
+  --shell-on-accent: var(--colour-on-accent, #ffffff);
+  --shell-focus: var(--colour-focus, #b45309);
+  --shell-radius: var(--radius-lg, 12px);
+  --shell-gap: var(--space-5, 24px);
+
+  display: block;
+  background-color: var(--shell-raised);
+  color: var(--shell-text);
+  border: 1px solid var(--shell-border);
+  border-radius: var(--shell-radius);
+  
+  overflow-x: clip;
+  overflow-y: visible;
+}
+.opi-activity.opi-activity .interactive__header {
+  padding: var(--shell-gap);
+  border-bottom: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 1.25;
+}
+.opi-activity.opi-activity .interactive__brief {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--shell-muted);
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__body {
+  display: grid;
+  gap: var(--shell-gap);
+  padding: var(--shell-gap);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body {
+  grid-template-columns: minmax(240px, 320px) 1fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .interactive__controls {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__controls fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .interactive__controls legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .control {
+  display: grid;
+  gap: 5.6px;
+}
+.opi-activity.opi-activity .control + .control {
+  margin-top: 16px;
+}
+.opi-activity.opi-activity .control__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.opi-activity.opi-activity .control__label {
+  font-size: 15px;
+  font-weight: 600;
+}
+.opi-activity.opi-activity .control__value {
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--shell-accent);
+}
+.opi-activity.opi-activity .control__hint {
+  font-size: 13px;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .interactive__controls input[type="range"] {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--shell-accent);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  width: 100%;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--shell-text);
+  background-color: var(--shell-raised);
+  border: 1px solid var(--shell-border-strong);
+  border-radius: var(--radius-sm, 4px);
+}
+.opi-activity.opi-activity .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+}
+.opi-activity.opi-activity .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  accent-color: var(--shell-accent);
+  flex: none;
+}
+.opi-activity.opi-activity .interactive__stage {
+  min-height: 256px;
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-page);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body--pinned {
+  align-items: stretch;
+}
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: sticky;
+    top: 0;
+    z-index: 2;
+    
+    margin: -16px -16px 0;
+    padding: 16px 16px 12px;
+    background-color: var(--shell-page);
+    border-bottom: 1px solid var(--shell-border);
+}
+}
+@media (min-width: 52em) and (max-height: 30em) {
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: static;
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
+}
+}
+.opi-activity.opi-activity .interactive__stage > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity :where(.interactive__stage) svg,
+.opi-activity.opi-activity :where(.interactive__stage) canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+.opi-activity.opi-activity .interactive__readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout div {
+  padding: 9.6px 12px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-sm, 4px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__readout dt {
+  font-size: 13px;
+  color: var(--shell-muted);
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout dd {
+  margin: 2.4px 0 0;
+  font-size: 18px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .interactive__status {
+  margin: 0;
+  padding: 12px var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+  font-size: 15px;
+  color: var(--shell-muted);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .interactive__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+}
+.opi-activity.opi-activity .interactive__actions button {
+  min-height: 44px;
+  padding: 6.4px 20px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--shell-on-accent);
+  background-color: var(--shell-accent);
+  border: 1px solid var(--shell-accent);
+  border-radius: var(--radius-md, 8px);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  color: var(--shell-text);
+  background-color: transparent;
+  border-color: var(--shell-border-strong);
+}
+.opi-activity.opi-activity .interactive__actions button:hover {
+  filter: brightness(1.08);
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__notes > summary {
+  padding: 13.6px var(--shell-gap);
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__notes > div {
+  padding: 0 var(--shell-gap) var(--shell-gap);
+  max-width: 68ch;
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__notes > div > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity .interactive *,
+.opi-activity.opi-activity .interactive *::before,
+.opi-activity.opi-activity .interactive *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+}
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .interactive,
+.opi-activity.opi-activity .interactive__controls,
+.opi-activity.opi-activity .interactive__stage,
+.opi-activity.opi-activity .interactive__readout div {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__header {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__status,
+.opi-activity.opi-activity .interactive__actions,
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__actions button {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  border-width: 1px;
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 1;
+    color: GrayText;
+    border-color: GrayText;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__stage svg {
+  forced-color-adjust: auto;
+}
+}
+
+/* components/tool-kit.css */
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split--wide {
+  grid-template-columns: 1fr 1fr;
+}
+}
+.opi-activity.opi-activity .how-to {
+  padding-left: 19.2px;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .how-to > li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .table-scroll {
+  overflow-x: auto;
+  
+  position: relative;
+}
+.opi-activity.opi-activity .prediction {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 832px;
+}
+.opi-activity.opi-activity .prediction > *,
+.opi-activity.opi-activity .challenge > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity .prediction__group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .prediction__legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-weight: 650;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .prediction .control--choice,
+.opi-activity.opi-activity .challenge .control--choice,
+.opi-activity.opi-activity .evidence .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .prediction .control--choice input,
+.opi-activity.opi-activity .challenge .control--choice input,
+.opi-activity.opi-activity .evidence .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .prediction__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .prediction__error {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-status-border);
+  border-left: 4px solid var(--colour-status-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .prediction__readback {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .feedback[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .feedback[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .feedback[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .feedback__verdict {
+  font-weight: 700;
+}
+.opi-activity.opi-activity .verdict {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .verdict__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict__body {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .verdict__body + .verdict__body {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .verdict__note {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .verdict[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .verdict[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .goal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .goal__label {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .goal__text {
+  flex: 1 1 256px;
+}
+.opi-activity.opi-activity .goal strong {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .goal__checks {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+  display: grid;
+  gap: 2.4px;
+}
+.opi-activity.opi-activity .goal__checks > li {
+  margin-top: 0;
+  padding-left: 22.4px;
+  position: relative;
+}
+.opi-activity.opi-activity .goal__checks > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 9.6px;
+  height: 9.6px;
+  border: 2px solid var(--colour-border-strong);
+  border-radius: 2px;
+}
+.opi-activity.opi-activity .goal__checks > li[data-met="yes"]::before {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .stage-track {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .stage-track > li {
+  margin-top: 0;
+  flex: 1 1 160px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-bottom: 3px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .stage-track > li > span {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.opi-activity.opi-activity .stage-track > li[data-state="done"] {
+  border-bottom-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border-bottom-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+  color: var(--colour-text);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .stage__heading {
+  margin: 0;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .data-table,
+.opi-activity.opi-activity .chart__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .data-table th,
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table th,
+.opi-activity.opi-activity .chart__table td {
+  padding: 6.4px 9.6px;
+  border: 1px solid var(--colour-border);
+  text-align: left;
+  vertical-align: top;
+}
+.opi-activity.opi-activity .data-table thead th,
+.opi-activity.opi-activity .chart__table thead th {
+  background-color: var(--colour-surface);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table td {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__table tbody th,
+.opi-activity.opi-activity .data-table tbody th {
+  font-weight: 550;
+}
+.opi-activity.opi-activity .data-table__total > th,
+.opi-activity.opi-activity .data-table__total > td {
+  border-top: 2px solid var(--colour-border-strong);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart {
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .chart__caption {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__svg {
+  max-width: 100%;
+  height: auto;
+}
+.opi-activity.opi-activity .chart__label,
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__inline,
+.opi-activity.opi-activity .chart__axis {
+  font-family: var(--font-body);
+  fill: var(--colour-text);
+  font-size: 13px;
+}
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__axis {
+  fill: var(--colour-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: var(--colour-on-accent);
+  font-size: 12px;
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__track {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__bar {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--one {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .chart__baseline,
+.opi-activity.opi-activity .chart__grid {
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__line {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: var(--colour-personality-individual-differences);
+  stroke-dasharray: 6 4;
+}
+.opi-activity.opi-activity .chart__point {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .reveal > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .reveal__lead {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+.opi-activity.opi-activity .reveal__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(176px, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+  padding: 0;
+  list-style: none;
+}
+.opi-activity.opi-activity .reveal__figures > li {
+  margin-top: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+.opi-activity.opi-activity .reveal__figure-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .reveal__figure-value {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .challenge {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+.opi-activity.opi-activity .challenge__locked {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .panel--caution {
+  background-color: var(--colour-status-bg);
+  border-color: var(--colour-status-border);
+}
+.opi-activity.opi-activity .panel--caution li + li {
+  margin-top: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .goal,
+.opi-activity.opi-activity .verdict,
+.opi-activity.opi-activity .feedback,
+.opi-activity.opi-activity .prediction__error,
+.opi-activity.opi-activity .prediction__readback,
+.opi-activity.opi-activity .stage-track > li,
+.opi-activity.opi-activity .reveal__figures > li {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border: 2px solid Highlight;
+}
+.opi-activity.opi-activity .chart__bar,
+.opi-activity.opi-activity .chart__bar--one {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: Canvas;
+}
+.opi-activity.opi-activity .chart__line {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: Highlight;
+}
+}
+.opi-activity.opi-activity .stage__more {
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .stage__more > summary {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .stage__more[open] > summary {
+  border-bottom: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .stage__more > *:not(summary) {
+  margin: var(--space-3);
+}
+
+/* modules/research-methods/tools/19-regression-slope-intercept-lab/tool.css */
+.opi-activity.opi-activity #reg .interactive__controls,
+.opi-activity.opi-activity #reg .interactive__stage {
+  min-width: 0;
+}
+.opi-activity.opi-activity #reg .interactive__stage > * {
+  min-width: 0;
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity #reg .interactive__body {
+  grid-template-columns: minmax(0, 304px) minmax(0, 1fr);
+}
+}
+.opi-activity.opi-activity .interactive__stage [data-reg] {
+  max-width: 464px;
+}
+.opi-activity.opi-activity #reg .interactive__readout {
+  grid-template-columns: repeat(auto-fit, minmax(112px, 1fr));
+  gap: 6.4px;
+}
+.opi-activity.opi-activity #reg .interactive__readout div {
+  padding: 6.4px 8px;
+}
+.opi-activity.opi-activity #reg .interactive__readout dd {
+  font-size: 16px;
+}
+.opi-activity.opi-activity #reg .control--choice {
+  font-size: 15px;
+}
+.opi-activity.opi-activity #reg .control--choice label {
+  cursor: pointer;
+}
+.opi-activity.opi-activity .rg__point {
+  fill: var(--colour-accent);
+  opacity: 0.75;
+}
+.opi-activity.opi-activity .rg__residual {
+  stroke: var(--colour-social-critical-psychology);
+  stroke-width: 1.4;
+}
+.opi-activity.opi-activity .rg__square {
+  fill: var(--colour-accent-soft);
+  stroke: var(--colour-social-critical-psychology);
+  stroke-width: 0.8;
+  opacity: 0.5;
+}
+.opi-activity.opi-activity .rg__candidate {
+  stroke: var(--colour-text);
+  stroke-width: 2.5;
+  fill: none;
+}
+.opi-activity.opi-activity .rg__least {
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+  stroke-dasharray: 8 4;
+  fill: none;
+}
+.opi-activity.opi-activity .rg__outside {
+  fill: var(--colour-surface);
+  opacity: 0.85;
+}
+.opi-activity.opi-activity .rg__outside-hatch {
+  stroke: var(--colour-border-strong);
+  stroke-width: 1;
+  opacity: 0.7;
+}
+.opi-activity.opi-activity .rg__axis {
+  stroke: var(--colour-border-strong);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .role input[type="number"] {
+  width: 100%;
+  max-width: 192px;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  font-size: var(--text-sm);
+  color: var(--colour-text);
+  background-color: var(--colour-surface-raised);
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+}
+.opi-activity.opi-activity .role {
+  display: grid;
+  gap: 6.4px;
+  margin-bottom: var(--space-3);
+}
+.opi-activity.opi-activity .role__label {
+  font-weight: 600;
+  font-size: var(--text-sm);
+  max-width: 60ch;
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .rg__point {
+  fill: CanvasText; opacity: 1;
+}
+.opi-activity.opi-activity .rg__residual {
+  stroke: Highlight;
+}
+.opi-activity.opi-activity .rg__square {
+  fill: Canvas; stroke: Highlight; opacity: 1;
+}
+.opi-activity.opi-activity .rg__candidate {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .rg__least {
+  stroke: Highlight;
+}
+.opi-activity.opi-activity .rg__outside {
+  fill: Canvas; opacity: 1;
+}
+.opi-activity.opi-activity .rg__outside-hatch {
+  stroke: GrayText; opacity: 1;
+}
+.opi-activity.opi-activity .rg__axis {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .role input[type="number"] {
+  border: 1px solid ButtonText;
+}
+}
+</style>
+
+  <!-- ================= Title and purpose ================= -->
+  <section class="section card--research-methods" aria-labelledby="page-heading">
+    <div class="container">
+
+      <p class="hero__eyebrow" style="color: var(--colour-research-methods)">
+        Research Methods
+      </p>
+      <h1 id="page-heading">Regression: Intercept, Slope and Least Squares</h1>
+      <p class="hero__lead">
+        Two numbers define a line: where it starts and how steeply it climbs.
+        Move them by hand, watch every residual it creates, and try to beat
+        the line the arithmetic would have chosen.
+      </p>
+
+      <p>
+        <span class="badge">
+          <span class="badge__dot" aria-hidden="true"></span>
+          Simulated &mdash; one generated dataset from a documented seed
+        </span>
+      </p>
+
+      <div class="split split--wide">
+
+        <div class="panel">
+          <h2 class="panel__title">Learning objective</h2>
+          <p>
+            By the end you should be able to say what least squares
+            minimises, and why the intercept often describes nobody in the
+            data.
+          </p>
+          <p class="text-muted">
+            About 25 minutes. Nothing you do here is saved or sent anywhere.
+          </p>
+        </div>
+
+        <div class="panel panel--caution">
+          <h2 class="panel__title">Two words that are not in the model</h2>
+          <p>
+            The model predicts. It does not explain and it does not cause. A
+            slope of 0.6 says that two people differing by one unit of x
+            differ, on average, by 0.6 units of y &mdash; not that changing
+            one person's x by a unit would change their y. And "predicting"
+            beyond the range of x actually observed is arithmetic rather than
+            evidence, which is why the region outside the data is shaded on
+            the picture.
+          </p>
+        </div>
+
+      </div>
+
+      <ol class="how-to">
+        <li>Answer the two prediction questions to open the laboratory.</li>
+        <li>Drag the intercept and slope and watch the residuals and their squared total.</li>
+        <li>Get the sum of squared errors as low as you can, then reveal.</li>
+        <li>Open the mean-centring disclosure to see what the intercept really is.</li>
+      </ol>
+
+    </div>
+  </section>
+
+  <!-- ================= Opening prediction ================= -->
+  <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="opening-heading">First, two predictions</h2>
+        <p class="prose">
+          You are about to be given thirty fictional observations and a line
+          you can move by hand.
+        </p>
+      </div>
+
+      <noscript>
+        <div class="placeholder">
+          <h3 class="placeholder__title">This part needs JavaScript</h3>
+          <p class="prose">
+            The dataset is generated and the residuals recomputed in your
+            browser, so this part cannot run with JavaScript switched off.
+            The rest of this page is readable without it.
+          </p>
+        </div>
+      </noscript>
+
+      <form class="panel prediction" id="opening-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            What does the least-squares line make as small as possible?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="criterion" value="sum">
+            The sum of the residuals
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="criterion" value="squares">
+            The sum of the squared residuals
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="criterion" value="largest">
+            The largest single residual
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="criterion" value="count">
+            The number of points that fall below the line
+          </label>
+        </fieldset>
+
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            Do you expect to find a line that beats it on that criterion?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="beat" value="yes"> Yes, with enough fiddling
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="beat" value="no"> No
+          </label>
+        </fieldset>
+
+        <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Record my predictions and open the laboratory
+          </button>
+          <button class="button button--secondary" type="button" data-action="skip-opening">
+            Skip &mdash; I am demonstrating this
+          </button>
+        </div>
+
+        <div class="feedback" data-opening-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Laboratory ================= -->
+  <section class="section" id="lab-section" aria-labelledby="lab-heading" hidden>
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="lab-heading" tabindex="-1">The laboratory</h2>
+        <p class="prose">
+          Thirty fictional people. The horizontal axis is minutes of daily
+          practice, the vertical axis is a score out of 100, and the vertical
+          line from each point to your line is its residual: what the person
+          actually scored minus what your line predicted.
+        </p>
+      </div>
+
+      <section class="interactive" id="reg" data-interactive
+               data-reset-message="Everything cleared. Back to the opening predictions.">
+
+        <header class="interactive__header">
+          <h3 class="interactive__title">Beat the line</h3>
+          <p class="interactive__brief">
+            Every position of the two sliders produces thirty residuals. The
+            sum of their squares is the one number the fitting procedure
+            cares about.
+          </p>
+        </header>
+
+        <div class="interactive__body interactive__body--pinned">
+
+          <form class="interactive__controls" data-interactive-controls>
+
+            <fieldset>
+              <legend>Your line</legend>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="b0-range">Intercept b&#8320;</label>
+                  <output class="control__value" for="b0-range">52.5</output>
+                </div>
+                <input type="range" id="b0-range" min="0" max="90" step="0.5" value="52.5">
+                <p class="control__hint">
+                  Where your line crosses x = 0 &mdash; which, on this
+                  dataset, is well outside anything anybody was measured at.
+                </p>
+              </div>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="b1-range">Slope b&#8321;</label>
+                  <output class="control__value" for="b1-range">0.00</output>
+                </div>
+                <input type="range" id="b1-range" min="-0.6" max="1.6" step="0.01" value="0">
+                <p class="control__hint">
+                  How many points the line predicts for each extra minute of
+                  practice.
+                </p>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>What to draw</legend>
+              <div class="control--choice">
+                <input type="checkbox" id="show-residuals" checked>
+                <label for="show-residuals">Draw the residuals</label>
+              </div>
+              <div class="control--choice">
+                <input type="checkbox" id="show-squares">
+                <label for="show-squares">Draw each residual as a square</label>
+              </div>
+            </fieldset>
+
+          </form>
+
+          <div class="interactive__stage" data-interactive-stage>
+
+            <!-- Pinned: the scatterplot, your line and its residuals. -->
+            <div class="stage__primary">
+              <h4 class="stage__heading" data-chart-heading>Your line</h4>
+              <figure class="chart">
+                <figcaption class="visually-hidden">
+                  Scatterplot of score against minutes of practice with the
+                  candidate line drawn across it, a vertical residual from
+                  each point to the line, and the region outside the observed
+                  range of practice shaded
+                </figcaption>
+                <svg class="chart__svg" data-reg viewBox="0 0 460 200"
+                     aria-hidden="true" focusable="false"></svg>
+                <div class="table-scroll">
+                  <table class="chart__table">
+                    <caption class="visually-hidden">
+                      Your line's coefficients and the errors they produce,
+                      beside the least-squares solution once it is revealed
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Your line</th>
+                        <th scope="col">Least squares</th>
+                      </tr>
+                    </thead>
+                    <tbody data-fit-table></tbody>
+                  </table>
+                </div>
+              </figure>
+              <dl class="interactive__readout" data-readout></dl>
+            </div>
+
+            <div class="goal" data-goal>
+              <span class="goal__label">Goal</span>
+              <span class="goal__text" data-goal-text></span>
+              <ul class="goal__checks" data-goal-checks></ul>
+            </div>
+
+            <div class="verdict" data-verdict>
+              <h4 class="verdict__title">Reading your line</h4>
+              <p class="verdict__body" data-interpretation></p>
+              <p class="verdict__note" data-extrapolation></p>
+            </div>
+
+            <details class="stage__more">
+              <summary>The same fit with x centred on its mean</summary>
+              <div>
+                <p class="prose" data-centre-note></p>
+                <div class="table-scroll">
+                  <table class="data-table">
+                    <caption class="visually-hidden">
+                      The least-squares fit expressed on the raw scale of x
+                      and on a scale centred at the mean of x
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">x as measured</th>
+                        <th scope="col">x centred on its mean</th>
+                      </tr>
+                    </thead>
+                    <tbody data-centre-table></tbody>
+                  </table>
+                </div>
+              </div>
+            </details>
+
+          </div>
+
+        </div>
+
+        <p class="interactive__status" data-interactive-status role="status"></p>
+
+        <div class="interactive__actions">
+          <button type="button" data-action="reveal">Reveal the least-squares line</button>
+          <button type="button" data-variant="secondary" data-action="snap" disabled>
+            Snap my line to it
+          </button>
+          <button type="button" data-variant="secondary" data-interactive-reset>
+            Reset everything
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ================= Challenge ================= -->
+  <section class="section section--tinted" id="challenge" aria-labelledby="challenge-heading" hidden>
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="challenge-heading" tabindex="-1">Challenge &mdash; use the line, then judge it</h2>
+        <p class="prose">
+          Use the least-squares line you have just revealed. Two predictions
+          and one decision.
+        </p>
+      </div>
+
+      <form class="panel challenge" id="challenge-form">
+
+        <div class="role">
+          <label class="role__label" for="pred-inside">
+            What score does the fitted line predict for someone who practises
+            for <strong>55 minutes</strong> a day? (to the nearest point)
+          </label>
+          <input type="number" id="pred-inside" step="0.1" min="0" max="200">
+        </div>
+
+        <div class="role">
+          <label class="role__label" for="pred-outside">
+            And for someone who practises for <strong>0 minutes</strong> a
+            day? (to the nearest point)
+          </label>
+          <input type="number" id="pred-outside" step="0.1" min="-100" max="200">
+        </div>
+
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            Which of those two predictions would you be willing to report?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="report" value="inside">
+            The 55-minute one only
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="report" value="outside">
+            The 0-minute one only
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="report" value="both">
+            Both &mdash; the line gives a number for each
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="report" value="neither">
+            Neither, because R&sup2; is not high enough
+          </label>
+        </fieldset>
+
+        <p class="prediction__error" data-challenge-error role="alert" hidden></p>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">Check my three answers</button>
+        </div>
+
+        <div class="feedback" data-challenge-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Debrief ================= -->
+  <section class="section" id="debrief" aria-labelledby="debrief-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="debrief-heading">What this demonstrates</h2>
+      </div>
+
+      <div class="split split--wide">
+
+        <div class="prose">
+          <h3>A residual is an observation minus a prediction</h3>
+          <p>
+            Every point in the picture has a vertical distance to the line,
+            and that distance is the part of the person the line failed to
+            capture. Positive above the line, negative below it. The sum of
+            those residuals is zero for any least-squares line, which is why
+            minimising the plain sum would be useless: a line that missed
+            wildly in both directions would score just as well as a perfect
+            one. Squaring removes the cancellation and, incidentally, makes
+            one large miss cost far more than several small ones.
+          </p>
+
+          <h3>Least squares is not a guess, it is the answer</h3>
+          <p>
+            For any dataset there is exactly one pair of values that minimises
+            the squared total, and it can be written down directly: the slope
+            is the covariance of x and y divided by the variance of x, and the
+            intercept is whatever puts the line through the point (mean of x,
+            mean of y). No amount of dragging beats it, because there is
+            nothing to beat &mdash; the arithmetic has already been done to
+            the smallest number available.
+          </p>
+
+          <h3>The intercept is a prediction at x = 0, and often at nobody</h3>
+          <p>
+            On this dataset nobody practised for less than about ten minutes,
+            so the intercept is a prediction for a person who does not appear
+            anywhere in the data. It is a mathematically necessary anchor for
+            the line and a substantively empty number. Centring x on its mean
+            fixes that at no cost: the slope, every prediction and every
+            residual stay exactly where they were, and the intercept becomes
+            the predicted score for someone with an average amount of
+            practice &mdash; a number that describes a real region of the data.
+          </p>
+
+          <h3>R&sup2; describes fit, and only fit</h3>
+          <p>
+            It is the share of the variance in y that the line accounts for,
+            and it is the same quantity as the squared correlation. A high
+            R&sup2; means the points sit close to the line; it says nothing
+            about whether the line's shape is right, whether the relationship
+            is causal, or whether the model would predict anything about a new
+            person. A perfect R&sup2; on a curved relationship fitted with a
+            straight line is impossible, and a high one on a spurious
+            association is entirely routine.
+          </p>
+        </div>
+
+        <aside class="panel panel--caution" aria-labelledby="limits-heading">
+          <h3 class="panel__title" id="limits-heading">
+            What this does <em>not</em> demonstrate
+          </h3>
+          <ul>
+            <li>
+              <strong>No real people and no real practice.</strong> The thirty
+              observations are generated from a stated model with a documented
+              seed, and none of the numbers describes anything about learning.
+            </li>
+            <li>
+              <strong>The slope is not a causal effect.</strong> It compares
+              people who differ in x; it does not say what would happen if one
+              person's x were changed. Only the design decides which reading
+              is available, and this one is observational by construction.
+            </li>
+            <li>
+              <strong>No uncertainty is shown.</strong> A real slope comes
+              with a standard error and a confidence interval, and at n = 30
+              a wide one. Nothing here would tell you whether the slope is
+              distinguishable from zero.
+            </li>
+            <li>
+              <strong>The assumptions are not checked.</strong> Least squares
+              assumes the relationship is linear, the errors independent, and
+              their spread constant across x. The residual plot that would
+              show you all three is the subject of the next tool in this
+              module.
+            </li>
+            <li>
+              <strong>Squaring is a choice.</strong> Minimising absolute
+              deviations gives a different and more outlier-resistant line;
+              least squares is conventional and convenient rather than
+              uniquely correct, and its sensitivity to a single distant point
+              is the price of that convenience.
+            </li>
+          </ul>
+        </aside>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+<script>
+/* ---- components/interactive-shell.js ---- */
+/* =========================================================================
+   Open Psychology Interactives — interactive shell helper
+   -------------------------------------------------------------------------
+   A very small vanilla-JS helper that every interactive in this collection
+   uses. It deliberately does *not* draw anything or know anything about
+   statistics, personality or neuropsychology. Its job is the repetitive,
+   easy-to-get-wrong accessibility plumbing:
+
+     * announcing changes through a polite live region;
+     * keeping a range slider and its <output> in step;
+     * wiring the standard Reset button;
+     * reporting the reader's reduced-motion preference.
+
+   Usage (see docs/adapting-a-tool.md for the full markup contract):
+
+       <script src="../../components/interactive-shell.js" defer><\/script>
+       <script src="tool.js" defer><\/script>
+
+       // in tool.js
+       const shell = InteractiveShell.attach('#sampling-demo');
+       shell.onReset(() => { ...restore defaults...; draw(); });
+       shell.bindRange('#sample-size', { format: n => n + ' cases' });
+       shell.announce('Sample of 25 drawn. Mean 4.8.');
+
+   Every published interactive is written against this module.
+
+   Exposed as a global (window.InteractiveShell) rather than an ES module so
+   that a single interactive folder can be opened directly from disk over
+   file:// — ES modules are blocked by CORS in that situation, plain scripts
+   are not. That constraint is the whole reason for the older syntax here.
+   ========================================================================= */
+
+(function (global) {
+  "use strict";
+
+  /* -----------------------------------------------------------------------
+     Internal helpers
+     --------------------------------------------------------------------- */
+
+  /**
+   * Accept either a CSS selector or an element and return an element.
+   * @param {string|Element} target
+   * @param {ParentNode} [scope]
+   * @returns {Element|null}
+   */
+  function resolve(target, scope) {
+    if (!target) {
+      return null;
+    }
+    if (typeof target === "string") {
+      return (scope || document).querySelector(target);
+    }
+    return target;
+  }
+
+  /**
+   * True when the reader has asked the operating system to reduce motion.
+   * Interactives should check this before animating anything — for example
+   * by drawing a sampling distribution in one step instead of animating
+   * each draw.
+   * @returns {boolean}
+   */
+  function prefersReducedMotion() {
+    return (
+      typeof global.matchMedia === "function" &&
+      global.matchMedia("(prefers-reduced-motion: reduce)").matches
+    );
+  }
+
+  /* -----------------------------------------------------------------------
+     Shell controller
+     --------------------------------------------------------------------- */
+
+  /**
+   * Attach the shell behaviour to one `.interactive` element.
+   *
+   * @param {string|Element} target  Selector or element for the shell root.
+   * @returns {object|null}  Controller, or null if the root was not found.
+   */
+  function attach(target) {
+    var root = resolve(target);
+
+    if (!root) {
+      if (global.console && console.warn) {
+        console.warn("InteractiveShell: root element not found.", target);
+      }
+      return null;
+    }
+
+    var controls = root.querySelector("[data-interactive-controls]");
+    var stage = root.querySelector("[data-interactive-stage]");
+    var status = root.querySelector("[data-interactive-status]");
+    var resetButton = root.querySelector("[data-interactive-reset]");
+    var resetHandlers = [];
+    // Every range bound with bindRange() registers its sync function here, so
+    // that reset() can refresh the visible values after the tool's own reset
+    // handlers have restored the inputs. See reset() for why this is needed.
+    var rangeSyncs = [];
+
+    /* --- Live region ----------------------------------------------------
+       The status element is marked up as role="status" (implicitly
+       aria-live="polite"). Two details matter:
+
+         1. Assistive technology only announces *changes* to a live region,
+            so writing the same string twice is silently dropped. We add a
+            trailing zero-width space on repeat messages to force an
+            announcement when a student re-runs the same action.
+         2. Announcements are debounced. A slider dragged across its range
+            fires dozens of input events; without a delay a screen reader
+            would queue every intermediate value and fall far behind.
+       ------------------------------------------------------------------ */
+
+    var announceTimer = null;
+    var lastMessage = "";
+
+    /**
+     * Announce a short sentence describing what just changed.
+     * @param {string} message
+     * @param {object} [options]
+     * @param {boolean} [options.immediate]  Skip the debounce delay. Use for
+     *   discrete actions (button presses); leave off for continuous input.
+     */
+    function announce(message, options) {
+      if (!status) {
+        return;
+      }
+
+      var text = String(message == null ? "" : message);
+      var immediate = Boolean(options && options.immediate);
+
+      if (announceTimer !== null) {
+        global.clearTimeout(announceTimer);
+        announceTimer = null;
+      }
+
+      function write() {
+        // Force a change when the text is identical to last time.
+        status.textContent = text === lastMessage ? text + "​" : text;
+        lastMessage = text;
+      }
+
+      if (immediate) {
+        write();
+      } else {
+        announceTimer = global.setTimeout(write, 350);
+      }
+    }
+
+    /* --- Reset ---------------------------------------------------------- */
+
+    /**
+     * Register a callback to run when the Reset button is pressed.
+     * Several may be registered; they run in the order added.
+     * @param {Function} handler
+     */
+    function onReset(handler) {
+      if (typeof handler === "function") {
+        resetHandlers.push(handler);
+      }
+    }
+
+    /**
+     * Run the reset handlers. Called by the button and available directly so
+     * an interactive can reset itself on first load.
+     *
+     * Bound ranges are re-synced afterwards. A reset handler restores an
+     * input by assigning to `input.value`, and assigning to a value in script
+     * does not fire an `input` event — so without this step the slider would
+     * jump back to its default while its <output> went on showing the old
+     * number. Syncing here, after the handlers have run, also means the sync
+     * sees the restored values regardless of the order things were
+     * registered in.
+     *
+     * @param {object} [options]
+     * @param {boolean} [options.silent]  Suppress the status announcement.
+     */
+    function reset(options) {
+      resetHandlers.forEach(function (handler) {
+        handler();
+      });
+      rangeSyncs.forEach(function (sync) {
+        sync();
+      });
+      if (!options || !options.silent) {
+        announce(
+          root.getAttribute("data-reset-message") ||
+            "Reset to the starting values.",
+          { immediate: true }
+        );
+      }
+    }
+
+    if (resetButton) {
+      resetButton.addEventListener("click", function (event) {
+        // Reset buttons commonly sit inside the controls <form>; stop the
+        // browser's own form reset from fighting with ours.
+        event.preventDefault();
+        reset();
+      });
+    }
+
+    /* --- Range binding --------------------------------------------------
+       Keeps a slider's <output> in step with its value. The <output> must
+       carry `for="<input id>"`, which is what associates the two for
+       assistive technology; this only handles the visible text.
+
+       Optionally sets aria-valuetext, which is how you make a screen reader
+       say "25 cases" or "medium correlation" instead of a bare "25".
+       ------------------------------------------------------------------ */
+
+    /**
+     * @param {string|Element} inputTarget  The range (or number) input.
+     * @param {object} [options]
+     * @param {Function} [options.format]  value:number -> string shown in the
+     *   <output>. Defaults to the raw value.
+     * @param {Function} [options.describe]  value:number -> string used for
+     *   aria-valuetext. Defaults to options.format.
+     * @param {Function} [options.onInput]  value:number -> void, called after
+     *   the display has been updated. Use it to redraw.
+     * @returns {HTMLInputElement|null}
+     */
+    function bindRange(inputTarget, options) {
+      var input = resolve(inputTarget, root);
+      if (!input) {
+        return null;
+      }
+
+      var settings = options || {};
+      var format =
+        typeof settings.format === "function"
+          ? settings.format
+          : function (value) {
+              return String(value);
+            };
+      var describe =
+        typeof settings.describe === "function" ? settings.describe : format;
+
+      // <output for="the-input-id"> is the conventional pairing.
+      var output = input.id
+        ? root.querySelector('output[for="' + input.id + '"]')
+        : null;
+
+      function sync() {
+        var value = Number(input.value);
+        if (output) {
+          output.textContent = format(value);
+        }
+        // Only meaningful for widgets with an implicit or explicit slider
+        // role; harmless elsewhere.
+        input.setAttribute("aria-valuetext", describe(value));
+        if (typeof settings.onInput === "function") {
+          settings.onInput(value);
+        }
+      }
+
+      input.addEventListener("input", sync);
+      // Registered so reset() can refresh the display after the tool's own
+      // reset handlers have put the input back to its default.
+      rangeSyncs.push(sync);
+      sync();
+
+      return input;
+    }
+
+    /* --- Public surface -------------------------------------------------- */
+
+    return {
+      /** The `.interactive` root element. */
+      root: root,
+      /** The controls panel, or null if the shell has none. */
+      controls: controls,
+      /** The stage element where the visualisation is drawn. */
+      stage: stage,
+      /** The live-region element. */
+      status: status,
+      announce: announce,
+      onReset: onReset,
+      reset: reset,
+      bindRange: bindRange,
+      prefersReducedMotion: prefersReducedMotion
+    };
+  }
+
+  /* -----------------------------------------------------------------------
+     Export
+     --------------------------------------------------------------------- */
+
+  global.InteractiveShell = {
+    attach: attach,
+    prefersReducedMotion: prefersReducedMotion
+  };
+})(window);
+
+/* ---- modules/research-methods/tools/19-regression-slope-intercept-lab/tool.js ---- */
+/* =========================================================================
+   Regression: Intercept, Slope and Least Squares
+   -------------------------------------------------------------------------
+   Thirty generated observations. The learner moves a candidate line by hand
+   and every residual, and the sum of their squares, is recomputed live:
+
+       predicted   = b0 + b1 * x
+       residual    = observed y - predicted y
+       SSE         = sum of the squared residuals
+       R^2         = 1 - SSE / SST,   SST = sum of (y - mean y)^2
+
+   R^2 is reported for the candidate line as well as for the fitted one, and
+   can go NEGATIVE for a bad candidate - a line worse than simply predicting
+   the mean of y for everybody. The tool says so rather than clamping it,
+   because that is exactly what the quantity means.
+
+   The least-squares solution is written down directly rather than searched
+   for:
+
+       b1 = sum((x - mx)(y - my)) / sum((x - mx)^2)
+       b0 = my - b1 * mx
+
+   so the reveal is an answer, not a better guess. No candidate can beat it,
+   which is the point of the exercise.
+
+   THE INTERCEPT AND CENTRING
+   --------------------------
+   The generated x values run from roughly 12 to 68 minutes, so x = 0 lies
+   well outside them and the intercept is a prediction for a person who does
+   not appear in the data. The region outside the observed range is shaded on
+   the picture, and a disclosure shows the identical fit with x centred on its
+   mean: the slope, every prediction and every residual are unchanged, and the
+   intercept becomes the predicted score at an average amount of practice.
+
+   WHAT IS NOT CLAIMED
+   -------------------
+   The slope compares people who differ in x; it does not say what would
+   happen if one person's x were changed. No standard errors or intervals are
+   computed, and the assumptions behind least squares are not checked here -
+   that is the next tool in the module.
+
+   No data leave the browser: no storage, no network request.
+   ========================================================================= */
+
+(function () {
+  "use strict";
+
+  var N = 30;
+  var SEED = 2884;
+  var TRUE_B0 = 30;
+  var TRUE_B1 = 0.6;
+  var NOISE = 7;
+  var X_MIN = 12;
+  var X_MAX = 68;
+  var DEFAULTS = { b0: 52.5, b1: 0 };
+
+  /* =======================================================================
+     The dataset
+     ===================================================================== */
+
+  function mulberry32(seed) {
+    var a = seed >>> 0;
+    return function () {
+      a += 0x6d2b79f5;
+      var t = a;
+      t = Math.imul(t ^ (t >>> 15), t | 1);
+      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  function normal(random) {
+    var u = Math.max(random(), 1e-9);
+    return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * random());
+  }
+
+  var DATA = (function () {
+    var random = mulberry32(SEED);
+    var points = [];
+    for (var i = 0; i < N; i += 1) {
+      var x = X_MIN + (X_MAX - X_MIN) * random();
+      points.push({
+        x: x,
+        y: TRUE_B0 + TRUE_B1 * x + normal(random) * NOISE
+      });
+    }
+    points.sort(function (a, b) { return a.x - b.x; });
+    return points;
+  }());
+
+  var SUMMARY = (function () {
+    var mx = 0;
+    var my = 0;
+    DATA.forEach(function (p) { mx += p.x; my += p.y; });
+    mx /= N;
+    my /= N;
+    var sxx = 0;
+    var sxy = 0;
+    var syy = 0;
+    DATA.forEach(function (p) {
+      sxx += (p.x - mx) * (p.x - mx);
+      sxy += (p.x - mx) * (p.y - my);
+      syy += (p.y - my) * (p.y - my);
+    });
+    var b1 = sxy / sxx;
+    return {
+      mx: mx, my: my, sst: syy, b1: b1, b0: my - b1 * mx,
+      xLo: DATA[0].x, xHi: DATA[N - 1].x
+    };
+  }());
+
+  function errorsFor(b0, b1) {
+    var sse = 0;
+    DATA.forEach(function (p) {
+      var e = p.y - (b0 + b1 * p.x);
+      sse += e * e;
+    });
+    return { sse: sse, r2: 1 - sse / SUMMARY.sst };
+  }
+
+  var BEST = errorsFor(SUMMARY.b0, SUMMARY.b1);
+
+  /* =======================================================================
+     Small DOM helpers
+     ===================================================================== */
+
+  var NS = "http://www.w3.org/2000/svg";
+
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) { node.className = className; }
+    if (text !== undefined) { node.textContent = text; }
+    return node;
+  }
+
+  function svgNode(tag, attrs) {
+    var node = document.createElementNS(NS, tag);
+    Object.keys(attrs || {}).forEach(function (key) {
+      node.setAttribute(key, String(attrs[key]));
+    });
+    return node;
+  }
+
+  function svgText(attrs, text, className) {
+    var node = svgNode("text", attrs);
+    if (className) { node.setAttribute("class", className); }
+    node.textContent = text;
+    return node;
+  }
+
+  function clear(node) {
+    while (node.firstChild) { node.removeChild(node.firstChild); }
+  }
+
+  function fmt(value, places) {
+    return value.toFixed(places === undefined ? 2 : places);
+  }
+
+  function pct(p) { return (100 * p).toFixed(1) + "%"; }
+
+  function row(cells) {
+    var tr = make("tr");
+    cells.forEach(function (cell, i) {
+      if (i === 0) {
+        var th = make("th", null, cell);
+        th.setAttribute("scope", "row");
+        tr.appendChild(th);
+      } else {
+        tr.appendChild(make("td", null, cell));
+      }
+    });
+    return tr;
+  }
+
+  var page = document;
+  var $ = function (s, scope) { return (scope || page).querySelector(s); };
+  var $$ = function (s, scope) {
+    return Array.prototype.slice.call((scope || page).querySelectorAll(s));
+  };
+
+  function showFeedback(container, tone, verdictText, text) {
+    clear(container);
+    container.setAttribute("data-tone", tone);
+    var p = make("p");
+    p.appendChild(make("strong", "feedback__verdict", verdictText));
+    if (text) { p.appendChild(document.createTextNode(" " + text)); }
+    container.appendChild(p);
+    container.hidden = false;
+    return p;
+  }
+
+  /* =======================================================================
+     Wiring
+     ===================================================================== */
+
+  var shell = InteractiveShell.attach("#reg");
+  if (!shell) { return; }
+
+  var b0Range = $("#b0-range");
+  var b1Range = $("#b1-range");
+  var showResiduals = $("#show-residuals");
+  var showSquares = $("#show-squares");
+  var chartHeading = $("[data-chart-heading]");
+  var regSvg = $("[data-reg]");
+  var fitTable = $("[data-fit-table]");
+  var readout = $("[data-readout]");
+  var goalText = $("[data-goal-text]");
+  var goalChecks = $("[data-goal-checks]");
+  var verdictBox = $("[data-verdict]");
+  var interpretation = $("[data-interpretation]");
+  var extrapolation = $("[data-extrapolation]");
+  var centreNote = $("[data-centre-note]");
+  var centreTable = $("[data-centre-table]");
+  var snapButton = $('[data-action="snap"]');
+
+  var openingForm = $("#opening-form");
+  var openingError = $("[data-opening-error]");
+  var openingFeedback = $("[data-opening-feedback]");
+  var labSection = $("#lab-section");
+  var challengeSection = $("#challenge");
+
+  var challengeForm = $("#challenge-form");
+  var challengeError = $("[data-challenge-error]");
+  var challengeFeedback = $("[data-challenge-feedback]");
+
+  var revealed = false;
+  var bestSoFar = Infinity;
+
+  /* =======================================================================
+     Drawing
+     ===================================================================== */
+
+  var PLOT = { left: 40, right: 448, top: 12, base: 156 };
+  var AX = { xLo: 0, xHi: 75, yLo: 20, yHi: 95 };
+
+  function X(v) {
+    return PLOT.left + ((v - AX.xLo) / (AX.xHi - AX.xLo)) * (PLOT.right - PLOT.left);
+  }
+  function Y(v) {
+    return PLOT.base - ((v - AX.yLo) / (AX.yHi - AX.yLo)) * (PLOT.base - PLOT.top);
+  }
+
+  function draw(b0, b1) {
+    clear(regSvg);
+
+    // Outside the observed range of x: arithmetic rather than evidence.
+    [[AX.xLo, SUMMARY.xLo], [SUMMARY.xHi, AX.xHi]].forEach(function (span) {
+      if (span[1] <= span[0]) { return; }
+      regSvg.appendChild(svgNode("rect", {
+        x: X(span[0]), y: PLOT.top, width: X(span[1]) - X(span[0]),
+        height: PLOT.base - PLOT.top, class: "rg__outside"
+      }));
+      for (var hx = X(span[0]) + 4; hx < X(span[1]); hx += 8) {
+        regSvg.appendChild(svgNode("line", {
+          x1: hx, y1: PLOT.top, x2: hx, y2: PLOT.base, class: "rg__outside-hatch"
+        }));
+      }
+    });
+    regSvg.appendChild(svgText(
+      { x: X(SUMMARY.xLo) - 4, y: PLOT.top + 10, "text-anchor": "end" },
+      "no data", "chart__axis"));
+
+    // Residuals, optionally as squares.
+    if (showSquares.checked) {
+      DATA.forEach(function (p) {
+        var pred = b0 + b1 * p.x;
+        var side = Math.abs(Y(p.y) - Y(pred));
+        if (side < 1) { return; }
+        regSvg.appendChild(svgNode("rect", {
+          x: X(p.x), y: Math.min(Y(p.y), Y(pred)),
+          width: side, height: side, class: "rg__square"
+        }));
+      });
+    }
+    if (showResiduals.checked) {
+      DATA.forEach(function (p) {
+        var pred = b0 + b1 * p.x;
+        regSvg.appendChild(svgNode("line", {
+          x1: X(p.x), y1: Y(p.y), x2: X(p.x), y2: Y(pred), class: "rg__residual"
+        }));
+      });
+    }
+
+    if (revealed) {
+      regSvg.appendChild(svgNode("line", {
+        x1: X(AX.xLo), y1: Y(SUMMARY.b0 + SUMMARY.b1 * AX.xLo),
+        x2: X(AX.xHi), y2: Y(SUMMARY.b0 + SUMMARY.b1 * AX.xHi),
+        class: "rg__least"
+      }));
+      regSvg.appendChild(svgText(
+        { x: PLOT.right - 3,
+          y: Math.max(PLOT.top + 22, Y(SUMMARY.b0 + SUMMARY.b1 * AX.xHi) + 16),
+          "text-anchor": "end" },
+        "least squares", "chart__label"));
+    }
+
+    regSvg.appendChild(svgNode("line", {
+      x1: X(AX.xLo), y1: Y(b0 + b1 * AX.xLo),
+      x2: X(AX.xHi), y2: Y(b0 + b1 * AX.xHi), class: "rg__candidate"
+    }));
+    regSvg.appendChild(svgText(
+      { x: PLOT.right - 3,
+        y: Math.max(PLOT.top + 10, Math.min(PLOT.base - 4, Y(b0 + b1 * AX.xHi) - 6)),
+        "text-anchor": "end" },
+      "your line", "chart__label"));
+
+    DATA.forEach(function (p) {
+      regSvg.appendChild(svgNode("circle",
+        { cx: X(p.x), cy: Y(p.y), r: 3.2, class: "rg__point" }));
+    });
+
+    // Axes.
+    regSvg.appendChild(svgNode("line",
+      { x1: PLOT.left, y1: PLOT.top, x2: PLOT.left, y2: PLOT.base, class: "rg__axis" }));
+    regSvg.appendChild(svgNode("line",
+      { x1: PLOT.left, y1: PLOT.base, x2: PLOT.right, y2: PLOT.base, class: "rg__axis" }));
+    for (var v = 0; v <= 75; v += 15) {
+      regSvg.appendChild(svgNode("line",
+        { x1: X(v), y1: PLOT.base, x2: X(v), y2: PLOT.base + 4, class: "rg__axis" }));
+      regSvg.appendChild(svgText(
+        { x: X(v), y: PLOT.base + 16, "text-anchor": "middle" },
+        String(v), "chart__axis"));
+    }
+    for (var w = 20; w <= 95; w += 15) {
+      regSvg.appendChild(svgNode("line",
+        { x1: PLOT.left - 4, y1: Y(w), x2: PLOT.left, y2: Y(w), class: "rg__axis" }));
+      regSvg.appendChild(svgText(
+        { x: PLOT.left - 7, y: Y(w) + 4, "text-anchor": "end" },
+        String(w), "chart__axis"));
+    }
+    regSvg.appendChild(svgText(
+      { x: (PLOT.left + PLOT.right) / 2, y: PLOT.base + 32, "text-anchor": "middle" },
+      "minutes of practice a day — shaded region has no data", "chart__axis"));
+    regSvg.appendChild(svgText(
+      { x: PLOT.left - 7, y: PLOT.top - 1, "text-anchor": "end" },
+      "score", "chart__axis"));
+  }
+
+  function render() {
+    var b0 = Number(b0Range.value);
+    var b1 = Number(b1Range.value);
+    var e = errorsFor(b0, b1);
+    if (e.sse < bestSoFar) { bestSoFar = e.sse; }
+
+    chartHeading.textContent =
+      "Your line: predicted score = " + fmt(b0, 1) + " + " + fmt(b1) +
+      " × minutes";
+    draw(b0, b1);
+
+    clear(fitTable);
+    [
+      ["Intercept b₀", fmt(b0, 1), revealed ? fmt(SUMMARY.b0, 1) : "hidden"],
+      ["Slope b₁", fmt(b1), revealed ? fmt(SUMMARY.b1) : "hidden"],
+      ["Sum of squared errors", fmt(e.sse, 0), revealed ? fmt(BEST.sse, 0) : "hidden"],
+      ["Variance accounted for",
+        e.r2 < -0.01 ? "none — worse than the mean" : pct(e.r2),
+        revealed ? pct(BEST.r2) : "hidden"]
+    ].forEach(function (cells) { fitTable.appendChild(row(cells)); });
+
+    clear(readout);
+    [
+      ["Intercept", fmt(b0, 1)],
+      ["Slope", fmt(b1)],
+      ["Sum of squared errors", fmt(e.sse, 0)],
+      ["Your best so far", fmt(bestSoFar, 0)]
+    ].forEach(function (pair) {
+      var cell = make("div");
+      cell.appendChild(make("dt", null, pair[0]));
+      cell.appendChild(make("dd", null, pair[1]));
+      readout.appendChild(cell);
+    });
+
+    // Goal banner.
+    var within = e.sse <= BEST.sse * 1.02;
+    goalText.textContent = revealed
+      ? "The smallest possible sum of squared errors on this dataset is " +
+        fmt(BEST.sse, 0) + ". Nothing you can do to the two sliders will go below it."
+      : "Get the sum of squared errors as low as you can, then reveal the " +
+        "least-squares line and see how close you came.";
+    clear(goalChecks);
+    [
+      ["Both sliders moved from their starting values",
+        Number(b0Range.value) !== DEFAULTS.b0 || Number(b1Range.value) !== DEFAULTS.b1],
+      ["Sum of squared errors below 2,500", e.sse < 2500],
+      ["Within 2% of the least-squares total", within]
+    ].forEach(function (entry) {
+      var li = make("li", null,
+        entry[0] + (entry[1] ? " (met)" : " (not yet)"));
+      li.setAttribute("data-met", entry[1] ? "yes" : "no");
+      goalChecks.appendChild(li);
+    });
+
+    // Verdict.
+    var tone;
+    var text;
+    if (e.r2 < -0.05) {
+      tone = "warn";
+      text =
+        "This line is worse than no line at all: predicting the mean score of " +
+        fmt(SUMMARY.my, 1) + " for everybody would produce a smaller squared " +
+        "total than " + fmt(e.sse, 0) + ". That is what a negative variance " +
+        "accounted for means, and it is why the figure is reported rather " +
+        "than clamped at zero.";
+    } else if (!revealed && within) {
+      tone = "good";
+      text =
+        "Sum of squared errors " + fmt(e.sse, 0) + ", accounting for " +
+        pct(e.r2) + " of the variance in the scores. You are within two per " +
+        "cent of the best line there is. Reveal it and compare the two pairs " +
+        "of numbers.";
+    } else if (!revealed) {
+      tone = "caution";
+      text =
+        "Sum of squared errors " + fmt(e.sse, 0) + ", accounting for " +
+        pct(e.r2) + " of the variance. Read your line as a claim: it says " +
+        "that two people whose practice differs by one minute a day differ, " +
+        "on average, by " + fmt(b1) + " points. Tick the squares box to see " +
+        "why one badly missed point costs so much more than several near " +
+        "misses.";
+    } else {
+      tone = "good";
+      text =
+        "The least-squares line is predicted score = " + fmt(SUMMARY.b0, 1) +
+        " + " + fmt(SUMMARY.b1) + " × minutes, with a squared error total of " +
+        fmt(BEST.sse, 0) + " and " + pct(BEST.r2) + " of the variance " +
+        "accounted for. Your best attempt reached " + fmt(bestSoFar, 0) +
+        ". The slope compares people who differ by one minute of daily " +
+        "practice. It is not a prediction about changing anybody.";
+    }
+    interpretation.textContent = text;
+    verdictBox.setAttribute("data-tone", tone);
+
+    extrapolation.textContent =
+      "The shaded region holds no data: the observed practice times run from " +
+      fmt(SUMMARY.xLo, 1) + " to " + fmt(SUMMARY.xHi, 1) + " minutes. The " +
+      "intercept is the line's prediction at zero minutes, which is " +
+      fmt(SUMMARY.xLo, 0) + " minutes outside anything anybody was measured " +
+      "at, so it is a mathematically necessary anchor rather than a statement " +
+      "about a person. The disclosure below shows what centring x does to it.";
+
+    clear(centreTable);
+    [
+      ["Slope b₁", fmt(SUMMARY.b1), fmt(SUMMARY.b1)],
+      ["Intercept b₀", fmt(SUMMARY.b0, 1), fmt(SUMMARY.my, 1)],
+      ["What the intercept predicts",
+        "score at 0 minutes", "score at the mean of " + fmt(SUMMARY.mx, 1) + " minutes"],
+      ["Predicted score at 30 minutes",
+        fmt(SUMMARY.b0 + SUMMARY.b1 * 30, 1),
+        fmt(SUMMARY.my + SUMMARY.b1 * (30 - SUMMARY.mx), 1)],
+      ["Predicted score at 55 minutes",
+        fmt(SUMMARY.b0 + SUMMARY.b1 * 55, 1),
+        fmt(SUMMARY.my + SUMMARY.b1 * (55 - SUMMARY.mx), 1)],
+      ["Sum of squared errors", fmt(BEST.sse, 0), fmt(BEST.sse, 0)]
+    ].forEach(function (cells) { centreTable.appendChild(row(cells)); });
+
+    centreNote.textContent =
+      "Subtracting the mean of x from every x value moves the vertical axis " +
+      "to the middle of the data and changes nothing else. The slope is " +
+      "identical, every prediction is identical, every residual is identical " +
+      "and the squared error total is identical - and the intercept has gone " +
+      "from " + fmt(SUMMARY.b0, 1) + ", a prediction for somebody who does " +
+      "not exist, to " + fmt(SUMMARY.my, 1) + ", the predicted score at an " +
+      "average amount of practice. It is the same model, reported in a way " +
+      "that has a meaning.";
+
+    return e;
+  }
+
+  shell.bindRange(b0Range, {
+    format: function (v) { return fmt(v, 1); },
+    describe: function (v) {
+      return "an intercept of " + fmt(v, 1) + " points at zero minutes";
+    },
+    onInput: render
+  });
+
+  shell.bindRange(b1Range, {
+    format: function (v) { return fmt(v); },
+    describe: function (v) {
+      return "a slope of " + fmt(v) + " points per extra minute of practice";
+    },
+    onInput: render
+  });
+
+  showResiduals.addEventListener("change", render);
+  showSquares.addEventListener("change", function () {
+    render();
+    shell.announce(showSquares.checked
+      ? "Each residual is now drawn as a square. Their total area is the " +
+        "quantity being minimised."
+      : "Squares removed.", { immediate: true });
+  });
+
+  $('[data-action="reveal"]').addEventListener("click", function () {
+    revealed = true;
+    snapButton.disabled = false;
+    challengeSection.hidden = false;
+    var e = render();
+    shell.announce(
+      "Least-squares line revealed: intercept " + fmt(SUMMARY.b0, 1) +
+      ", slope " + fmt(SUMMARY.b1) + ", squared error total " +
+      fmt(BEST.sse, 0) + ". Your best attempt reached " + fmt(bestSoFar, 0) +
+      ", which is " + fmt(100 * (bestSoFar / BEST.sse - 1), 1) +
+      " per cent above it. The challenge has opened below.",
+      { immediate: true });
+    return e;
+  });
+
+  snapButton.addEventListener("click", function () {
+    b0Range.value = String(Math.round(SUMMARY.b0 * 2) / 2);
+    b1Range.value = String(Math.round(SUMMARY.b1 * 100) / 100);
+    [b0Range, b1Range].forEach(function (input) {
+      input.dispatchEvent(new Event("input"));
+    });
+    render();
+    shell.announce(
+      "Sliders snapped to the nearest step to the least-squares values. The " +
+      "small remaining gap is the slider's resolution, not a better line.",
+      { immediate: true });
+  });
+
+  /* =======================================================================
+     Opening predictions
+     ===================================================================== */
+
+  var CRITERION = {
+    sum: "The plain sum of the residuals is zero for every least-squares line " +
+      "and for a great many others, so it cannot distinguish between them. A " +
+      "line that missed wildly upwards for half the points and wildly " +
+      "downwards for the other half would score exactly as well as a perfect " +
+      "one.",
+    squares: "Correct. Squaring removes the cancellation that makes the plain " +
+      "sum useless, and it has a second consequence worth noticing: one large " +
+      "miss costs far more than several small ones, which is why least squares " +
+      "is so sensitive to a single distant point.",
+    largest: "That is a different and perfectly respectable criterion, called " +
+      "minimax, and it gives a different line. It is far more influenced by " +
+      "the single worst point than least squares is, which is usually a " +
+      "reason not to use it.",
+    count: "A line can be moved to put any number of points above it without " +
+      "fitting any of them well, so this criterion says nothing about how " +
+      "close the line comes to the data. It is also satisfied by infinitely " +
+      "many quite different lines."
+  };
+
+  function lockForm(form) {
+    $$("input, button, select", form).forEach(function (c) { c.disabled = true; });
+  }
+
+  function unlockForm(form) {
+    $$("input, button, select", form).forEach(function (c) { c.disabled = false; });
+    form.reset();
+  }
+
+  function openLab() {
+    labSection.hidden = false;
+    render();
+    $("#lab-heading").focus();
+    shell.announce(
+      "Laboratory unlocked, with a flat line to start from.", { immediate: true });
+  }
+
+  openingForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var criterion = $('input[name="criterion"]:checked', openingForm);
+    var beat = $('input[name="beat"]:checked', openingForm);
+    if (!criterion || !beat) {
+      openingError.textContent = "Answer both questions before opening the laboratory.";
+      openingError.hidden = false;
+      return;
+    }
+    openingError.hidden = true;
+
+    var right = criterion.value === "squares";
+    var tone = right && beat.value === "no" ? "good" : "caution";
+    clear(openingFeedback);
+    openingFeedback.setAttribute("data-tone", tone);
+    var p = make("p");
+    p.appendChild(make("strong", "feedback__verdict",
+      right ? "The criterion is right." : "Not the criterion the method uses."));
+    p.appendChild(document.createTextNode(" " + CRITERION[criterion.value]));
+    openingFeedback.appendChild(p);
+    var second = make("p");
+    second.appendChild(make("strong", null,
+      beat.value === "no"
+        ? "And you are right that you cannot beat it. "
+        : "On the second question: you will not manage it. "));
+    second.appendChild(document.createTextNode(
+      "There is exactly one pair of values that minimises the squared total, " +
+      "and it can be written down directly from the data rather than searched " +
+      "for. Try anyway - getting within a per cent or two by hand is a much " +
+      "better way to believe that than being shown the algebra."));
+    openingFeedback.appendChild(second);
+    openingFeedback.hidden = false;
+
+    lockForm(openingForm);
+    openLab();
+  });
+
+  $('[data-action="skip-opening"]').addEventListener("click", function () {
+    openingError.hidden = true;
+    showFeedback(openingFeedback, "neutral",
+      "Predictions skipped — demonstration mode.", "");
+    lockForm(openingForm);
+    openLab();
+  });
+
+  /* =======================================================================
+     Challenge
+     ===================================================================== */
+
+  challengeForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var inside = $("#pred-inside").value;
+    var outside = $("#pred-outside").value;
+    var report = $('input[name="report"]:checked', challengeForm);
+    if (inside === "" || outside === "" || !report) {
+      challengeError.textContent =
+        "Fill in both predictions and choose an answer to the third question.";
+      challengeError.hidden = false;
+      return;
+    }
+    challengeError.hidden = true;
+
+    var trueInside = SUMMARY.b0 + SUMMARY.b1 * 55;
+    var trueOutside = SUMMARY.b0;
+    var insideOk = Math.abs(Number(inside) - trueInside) <= 1.5;
+    var outsideOk = Math.abs(Number(outside) - trueOutside) <= 1.5;
+    var reportOk = report.value === "inside";
+    var score = (insideOk ? 1 : 0) + (outsideOk ? 1 : 0) + (reportOk ? 1 : 0);
+
+    clear(challengeFeedback);
+    challengeFeedback.setAttribute("data-tone",
+      score === 3 ? "good" : score >= 1 ? "caution" : "warn");
+    var p = make("p");
+    p.appendChild(make("strong", "feedback__verdict", score + " of the three."));
+    p.appendChild(document.createTextNode(
+      " The arithmetic is the easy part; the third question is the one that " +
+      "separates using a model from trusting it."));
+    challengeFeedback.appendChild(p);
+
+    var list = make("ul");
+    var li1 = make("li");
+    li1.appendChild(make("strong", null,
+      "At 55 minutes — " + (insideOk ? "correct. " : "not quite. ")));
+    li1.appendChild(document.createTextNode(
+      "The line gives " + fmt(SUMMARY.b0, 1) + " + " + fmt(SUMMARY.b1) +
+      " × 55 = " + fmt(trueInside, 1) + " points. Fifty-five minutes sits " +
+      "comfortably inside the observed range, so this is interpolation: the " +
+      "line has been fitted to people like this."));
+    list.appendChild(li1);
+
+    var li2 = make("li");
+    li2.appendChild(make("strong", null,
+      "At 0 minutes — " + (outsideOk ? "correct. " : "not quite. ")));
+    li2.appendChild(document.createTextNode(
+      "The line gives " + fmt(trueOutside, 1) + " points, which is simply the " +
+      "intercept. The arithmetic is straightforward and the number describes " +
+      "nobody: the least practice anybody in this dataset did was " +
+      fmt(SUMMARY.xLo, 1) + " minutes."));
+    list.appendChild(li2);
+
+    var li3 = make("li");
+    li3.appendChild(make("strong", null,
+      "Which to report — " + (reportOk ? "correct. " : "not quite. ")));
+    li3.appendChild(document.createTextNode(
+      "The 55-minute prediction only. Extrapolating to zero assumes the " +
+      "straight line continues into a region where nothing was observed, and " +
+      "nothing in the data supports that: the relationship could flatten, " +
+      "steepen or reverse there and the fit would look identical. \"Both\" " +
+      "treats arithmetic as evidence. \"Neither, because R squared is not " +
+      "high enough\" confuses fit with applicability - a model with a modest " +
+      "R squared can still predict usefully inside its range, and one with a " +
+      "high R squared is no safer outside it."));
+    list.appendChild(li3);
+    challengeFeedback.appendChild(list);
+    challengeFeedback.hidden = false;
+    shell.announce(score + " of the three correct.", { immediate: true });
+  });
+
+  /* =======================================================================
+     Reset and start-up
+     ===================================================================== */
+
+  shell.onReset(function () {
+    revealed = false;
+    bestSoFar = Infinity;
+    snapButton.disabled = true;
+    unlockForm(openingForm);
+    openingFeedback.hidden = true;
+    openingError.hidden = true;
+    labSection.hidden = true;
+    challengeSection.hidden = true;
+    challengeForm.reset();
+    challengeFeedback.hidden = true;
+    challengeError.hidden = true;
+    b0Range.value = String(DEFAULTS.b0);
+    b1Range.value = String(DEFAULTS.b1);
+    showResiduals.checked = true;
+    showSquares.checked = false;
+    render();
+  });
+
+  shell.reset({ silent: true });
+  shell.announce(
+    "Ready. Answer the two predictions above to open the laboratory.",
+    { immediate: true });
+})();
+
+</script>
+</div>

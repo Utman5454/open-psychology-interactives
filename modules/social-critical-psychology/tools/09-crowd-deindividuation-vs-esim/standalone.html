@@ -1,0 +1,3112 @@
+<!-- Crowd Behaviour Laboratory: Deindividuation and ESIM
+     From Open Psychology Interactives - https://github.com/utman5454/open-psychology-interactives
+     Self-contained: no stylesheets, scripts, fonts, images or network requests.
+     Styles are scoped to .opi-activity and do not affect the page around them.
+     Nothing is saved, sent or tracked. MIT licensed; please keep this notice.
+     Paste anywhere that accepts HTML, or save as a .html file and open it. -->
+<div class="opi-activity">
+<style>
+/* Defensive baseline. See scripts/build-standalone.py for why this
+   is `revert` rather than an enumerated reset, and how the specificity ladder
+   keeps the activity's own styling on top of it. */
+.opi-activity *:not(svg *) {
+  all: revert;
+}
+.opi-activity, .opi-activity *, .opi-activity *::before, .opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  text-transform: none;
+  text-indent: 0;
+  font-style: normal;
+  font-variant: normal;
+  letter-spacing: normal;
+  word-spacing: normal;
+  white-space: normal;
+  visibility: visible;
+  float: none;
+  max-width: none;
+}
+.opi-activity svg { max-width: 100%; }
+.opi-activity img { max-width: 100%; height: auto; }
+.opi-activity [hidden] { display: none !important; }
+
+/* assets/css/main.css */
+.opi-activity.opi-activity {
+  --colour-page: #ffffff;
+  --colour-surface: #f5f7fa;
+  --colour-surface-raised: #ffffff;
+  --colour-border: #d3d9e2;
+  --colour-border-strong: #aeb7c4;
+  --colour-text: #131820;
+  --colour-text-muted: #4c566a;
+  --colour-accent: #1a4fa0;
+  --colour-accent-hover: #123a7a;
+  --colour-accent-soft: #e8eefb;
+  --colour-on-accent: #ffffff;
+  --colour-focus: #b45309;
+  --colour-cognitive: #8a4b00;
+  --colour-research-methods: #1a4fa0;
+  --colour-neuropsychology: #145c53;
+  --colour-social-critical-psychology: #9e2f45;
+  --colour-personality-individual-differences: #7a2e6d;
+  --colour-status-bg: #f1ede3;
+  --colour-status-text: #5c4a1f;
+  --colour-status-border: #d9cdb0;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  --text-xs: 13px;
+  --text-sm: 15px;
+  --text-base: 17px;
+  --text-lg: 19px;
+  --text-xl: 23px;
+  --text-2xl: 28px;
+  --text-3xl: 36px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgb(19 24 32 / 0.06);
+  --shadow-md: 0 2px 8px rgb(19 24 32 / 0.08);
+  --measure: 68ch;
+  --container: 1152px;
+}
+@media (prefers-color-scheme: dark) {
+.opi-activity.opi-activity {
+  --colour-page: #0f141b;
+  --colour-surface: #161d27;
+  --colour-surface-raised: #1a2230;
+  --colour-border: #2c3644;
+  --colour-border-strong: #44506180;
+  --colour-text: #e9edf3;
+  --colour-text-muted: #a8b2c1;
+  --colour-accent: #8fb6ff;
+  --colour-accent-hover: #b3cdff;
+  --colour-accent-soft: #1b2740;
+  --colour-on-accent: #0f141b;
+  --colour-focus: #f0b429;
+  --colour-cognitive: #e2ab5f;
+  --colour-research-methods: #8fb6ff;
+  --colour-neuropsychology: #6fc3b4;
+  --colour-social-critical-psychology: #f19aa8;
+  --colour-personality-individual-differences: #db9ccd;
+  --colour-status-bg: #241f14;
+  --colour-status-text: #e2cf9f;
+  --colour-status-border: #4a4028;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 2px 10px rgb(0 0 0 / 0.45);
+}
+}
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity.opi-activity {
+  -webkit-text-size-adjust: 100%;
+}
+.opi-activity.opi-activity {
+  background-color: var(--colour-page);
+  color: var(--colour-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.65;
+}
+.opi-activity.opi-activity h1,
+.opi-activity.opi-activity h2,
+.opi-activity.opi-activity h3,
+.opi-activity.opi-activity h4 {
+  margin: 0 0 var(--space-3);
+  line-height: 1.25;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.opi-activity.opi-activity h1 {
+  font-size: var(--text-3xl);
+}
+.opi-activity.opi-activity h2 {
+  font-size: var(--text-2xl);
+}
+.opi-activity.opi-activity h3 {
+  font-size: var(--text-xl);
+}
+.opi-activity.opi-activity h4 {
+  font-size: var(--text-lg);
+}
+.opi-activity.opi-activity p,
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol,
+.opi-activity.opi-activity dl {
+  margin: 0 0 var(--space-4);
+}
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol {
+  padding-left: 1.35em;
+}
+.opi-activity.opi-activity li + li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity a {
+  color: var(--colour-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: max(1px, 0.06em);
+}
+.opi-activity.opi-activity a:hover {
+  color: var(--colour-accent-hover);
+  text-decoration-thickness: max(2px, 0.11em);
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid var(--colour-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+@supports not selector(:focus-visible) {
+.opi-activity.opi-activity :focus {
+  outline: 3px solid var(--colour-focus);
+    outline-offset: 2px;
+}
+}
+.opi-activity.opi-activity code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.35em;
+}
+.opi-activity.opi-activity hr {
+  border: 0;
+  border-top: 1px solid var(--colour-border);
+  margin: var(--space-6) 0;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+}
+.opi-activity.opi-activity .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.opi-activity.opi-activity .container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+@media (min-width: 40em) {
+.opi-activity.opi-activity .container {
+  padding-inline: var(--space-5);
+}
+}
+.opi-activity.opi-activity .prose {
+  max-width: var(--measure);
+}
+.opi-activity.opi-activity .text-muted {
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .section {
+  padding-block: var(--space-7);
+}
+.opi-activity.opi-activity .section--tinted {
+  background-color: var(--colour-surface);
+  border-block: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .section__header {
+  max-width: var(--measure);
+  margin-bottom: var(--space-5);
+}
+.opi-activity.opi-activity .section__header > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-7) var(--space-6);
+  border-bottom: 1px solid var(--colour-border);
+  
+  background-image: linear-gradient(
+    180deg,
+    var(--colour-accent-soft) 0%,
+    var(--colour-page) 100%
+  );
+}
+.opi-activity.opi-activity .hero__eyebrow {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .hero h1 {
+  max-width: 20ch;
+  margin-bottom: var(--space-4);
+}
+.opi-activity.opi-activity .hero__lead {
+  max-width: var(--measure);
+  font-size: var(--text-lg);
+  color: var(--colour-text-muted);
+}
+@media (min-width: 48em) {
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-8) var(--space-7);
+}
+.opi-activity.opi-activity .hero h1 {
+  font-size: 44px;
+}
+}
+.opi-activity.opi-activity .button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  
+  min-height: 44px;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .button--primary {
+  background-color: var(--colour-accent);
+  border-color: var(--colour-accent);
+  
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--primary:hover {
+  background-color: var(--colour-accent-hover);
+  border-color: var(--colour-accent-hover);
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--secondary {
+  background-color: transparent;
+  border-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .button--secondary:hover {
+  background-color: var(--colour-surface);
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+}
+.opi-activity.opi-activity .card--cognitive {
+  --card-accent: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .card--research-methods {
+  --card-accent: var(--colour-research-methods);
+}
+.opi-activity.opi-activity .card--neuropsychology {
+  --card-accent: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .card--social-critical-psychology {
+  --card-accent: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .card--personality-individual-differences {
+  --card-accent: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 650;
+  line-height: 1.4;
+  padding: 3.2px var(--space-3);
+  border-radius: 999px;
+  border: 1px solid var(--colour-status-border);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+}
+.opi-activity.opi-activity .badge__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex: none;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed var(--colour-border-strong);
+  border-radius: var(--radius-lg);
+  background-color: var(--colour-surface);
+  padding: var(--space-5);
+  text-align: left;
+}
+.opi-activity.opi-activity .placeholder__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+}
+.opi-activity.opi-activity .placeholder > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .split {
+  display: grid;
+  gap: var(--space-6);
+}
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split {
+  grid-template-columns: 3fr 2fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .panel {
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.opi-activity.opi-activity .panel > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .panel__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .section--tinted {
+  border-block: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .hero {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .button--primary {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .button--secondary {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .button:hover {
+  border-color: Highlight;
+}
+.opi-activity.opi-activity .panel {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed CanvasText;
+}
+.opi-activity.opi-activity .badge {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .badge__dot {
+  background-color: CanvasText;
+}
+.opi-activity.opi-activity code {
+  border-color: CanvasText;
+}
+.opi-activity.opi-activity hr {
+  border-top-color: CanvasText;
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+}
+@media print {
+.opi-activity.opi-activity {
+  color: #000;
+  background: #fff;
+}
+.opi-activity.opi-activity a[href^="http"]::after {
+  content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+}
+}
+
+/* components/interactive-shell.css */
+.opi-activity.opi-activity .interactive {
+  --shell-page: var(--colour-page, #ffffff);
+  --shell-surface: var(--colour-surface, #f5f7fa);
+  --shell-raised: var(--colour-surface-raised, #ffffff);
+  --shell-border: var(--colour-border, #d3d9e2);
+  --shell-border-strong: var(--colour-border-strong, #aeb7c4);
+  --shell-text: var(--colour-text, #131820);
+  --shell-muted: var(--colour-text-muted, #4c566a);
+  --shell-accent: var(--colour-accent, #1a4fa0);
+  --shell-accent-soft: var(--colour-accent-soft, #e8eefb);
+  
+  --shell-on-accent: var(--colour-on-accent, #ffffff);
+  --shell-focus: var(--colour-focus, #b45309);
+  --shell-radius: var(--radius-lg, 12px);
+  --shell-gap: var(--space-5, 24px);
+
+  display: block;
+  background-color: var(--shell-raised);
+  color: var(--shell-text);
+  border: 1px solid var(--shell-border);
+  border-radius: var(--shell-radius);
+  
+  overflow-x: clip;
+  overflow-y: visible;
+}
+.opi-activity.opi-activity .interactive__header {
+  padding: var(--shell-gap);
+  border-bottom: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 1.25;
+}
+.opi-activity.opi-activity .interactive__brief {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--shell-muted);
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__body {
+  display: grid;
+  gap: var(--shell-gap);
+  padding: var(--shell-gap);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body {
+  grid-template-columns: minmax(240px, 320px) 1fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .interactive__controls {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__controls fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .interactive__controls legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .control {
+  display: grid;
+  gap: 5.6px;
+}
+.opi-activity.opi-activity .control + .control {
+  margin-top: 16px;
+}
+.opi-activity.opi-activity .control__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.opi-activity.opi-activity .control__label {
+  font-size: 15px;
+  font-weight: 600;
+}
+.opi-activity.opi-activity .control__value {
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--shell-accent);
+}
+.opi-activity.opi-activity .control__hint {
+  font-size: 13px;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .interactive__controls input[type="range"] {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--shell-accent);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  width: 100%;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--shell-text);
+  background-color: var(--shell-raised);
+  border: 1px solid var(--shell-border-strong);
+  border-radius: var(--radius-sm, 4px);
+}
+.opi-activity.opi-activity .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+}
+.opi-activity.opi-activity .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  accent-color: var(--shell-accent);
+  flex: none;
+}
+.opi-activity.opi-activity .interactive__stage {
+  min-height: 256px;
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-page);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body--pinned {
+  align-items: stretch;
+}
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: sticky;
+    top: 0;
+    z-index: 2;
+    
+    margin: -16px -16px 0;
+    padding: 16px 16px 12px;
+    background-color: var(--shell-page);
+    border-bottom: 1px solid var(--shell-border);
+}
+}
+@media (min-width: 52em) and (max-height: 30em) {
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: static;
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
+}
+}
+.opi-activity.opi-activity .interactive__stage > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity :where(.interactive__stage) svg,
+.opi-activity.opi-activity :where(.interactive__stage) canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+.opi-activity.opi-activity .interactive__readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout div {
+  padding: 9.6px 12px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-sm, 4px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__readout dt {
+  font-size: 13px;
+  color: var(--shell-muted);
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout dd {
+  margin: 2.4px 0 0;
+  font-size: 18px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .interactive__status {
+  margin: 0;
+  padding: 12px var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+  font-size: 15px;
+  color: var(--shell-muted);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .interactive__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+}
+.opi-activity.opi-activity .interactive__actions button {
+  min-height: 44px;
+  padding: 6.4px 20px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--shell-on-accent);
+  background-color: var(--shell-accent);
+  border: 1px solid var(--shell-accent);
+  border-radius: var(--radius-md, 8px);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  color: var(--shell-text);
+  background-color: transparent;
+  border-color: var(--shell-border-strong);
+}
+.opi-activity.opi-activity .interactive__actions button:hover {
+  filter: brightness(1.08);
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__notes > summary {
+  padding: 13.6px var(--shell-gap);
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__notes > div {
+  padding: 0 var(--shell-gap) var(--shell-gap);
+  max-width: 68ch;
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__notes > div > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity .interactive *,
+.opi-activity.opi-activity .interactive *::before,
+.opi-activity.opi-activity .interactive *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+}
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .interactive,
+.opi-activity.opi-activity .interactive__controls,
+.opi-activity.opi-activity .interactive__stage,
+.opi-activity.opi-activity .interactive__readout div {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__header {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__status,
+.opi-activity.opi-activity .interactive__actions,
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__actions button {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  border-width: 1px;
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 1;
+    color: GrayText;
+    border-color: GrayText;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__stage svg {
+  forced-color-adjust: auto;
+}
+}
+
+/* components/tool-kit.css */
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split--wide {
+  grid-template-columns: 1fr 1fr;
+}
+}
+.opi-activity.opi-activity .how-to {
+  padding-left: 19.2px;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .how-to > li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .table-scroll {
+  overflow-x: auto;
+  
+  position: relative;
+}
+.opi-activity.opi-activity .prediction {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 832px;
+}
+.opi-activity.opi-activity .prediction > *,
+.opi-activity.opi-activity .challenge > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity .prediction__group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .prediction__legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-weight: 650;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .prediction .control--choice,
+.opi-activity.opi-activity .challenge .control--choice,
+.opi-activity.opi-activity .evidence .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .prediction .control--choice input,
+.opi-activity.opi-activity .challenge .control--choice input,
+.opi-activity.opi-activity .evidence .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .prediction__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .prediction__error {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-status-border);
+  border-left: 4px solid var(--colour-status-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .prediction__readback {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .feedback[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .feedback[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .feedback[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .feedback__verdict {
+  font-weight: 700;
+}
+.opi-activity.opi-activity .verdict {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .verdict__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict__body {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .verdict__body + .verdict__body {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .verdict__note {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .verdict[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .verdict[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .goal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .goal__label {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .goal__text {
+  flex: 1 1 256px;
+}
+.opi-activity.opi-activity .goal strong {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .goal__checks {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+  display: grid;
+  gap: 2.4px;
+}
+.opi-activity.opi-activity .goal__checks > li {
+  margin-top: 0;
+  padding-left: 22.4px;
+  position: relative;
+}
+.opi-activity.opi-activity .goal__checks > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 9.6px;
+  height: 9.6px;
+  border: 2px solid var(--colour-border-strong);
+  border-radius: 2px;
+}
+.opi-activity.opi-activity .goal__checks > li[data-met="yes"]::before {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .stage-track {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .stage-track > li {
+  margin-top: 0;
+  flex: 1 1 160px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-bottom: 3px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .stage-track > li > span {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.opi-activity.opi-activity .stage-track > li[data-state="done"] {
+  border-bottom-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border-bottom-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+  color: var(--colour-text);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .stage__heading {
+  margin: 0;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .data-table,
+.opi-activity.opi-activity .chart__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .data-table th,
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table th,
+.opi-activity.opi-activity .chart__table td {
+  padding: 6.4px 9.6px;
+  border: 1px solid var(--colour-border);
+  text-align: left;
+  vertical-align: top;
+}
+.opi-activity.opi-activity .data-table thead th,
+.opi-activity.opi-activity .chart__table thead th {
+  background-color: var(--colour-surface);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table td {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__table tbody th,
+.opi-activity.opi-activity .data-table tbody th {
+  font-weight: 550;
+}
+.opi-activity.opi-activity .data-table__total > th,
+.opi-activity.opi-activity .data-table__total > td {
+  border-top: 2px solid var(--colour-border-strong);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart {
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .chart__caption {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__svg {
+  max-width: 100%;
+  height: auto;
+}
+.opi-activity.opi-activity .chart__label,
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__inline,
+.opi-activity.opi-activity .chart__axis {
+  font-family: var(--font-body);
+  fill: var(--colour-text);
+  font-size: 13px;
+}
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__axis {
+  fill: var(--colour-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: var(--colour-on-accent);
+  font-size: 12px;
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__track {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__bar {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--one {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .chart__baseline,
+.opi-activity.opi-activity .chart__grid {
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__line {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: var(--colour-personality-individual-differences);
+  stroke-dasharray: 6 4;
+}
+.opi-activity.opi-activity .chart__point {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .reveal > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .reveal__lead {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+.opi-activity.opi-activity .reveal__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(176px, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+  padding: 0;
+  list-style: none;
+}
+.opi-activity.opi-activity .reveal__figures > li {
+  margin-top: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+.opi-activity.opi-activity .reveal__figure-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .reveal__figure-value {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .challenge {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+.opi-activity.opi-activity .challenge__locked {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .panel--caution {
+  background-color: var(--colour-status-bg);
+  border-color: var(--colour-status-border);
+}
+.opi-activity.opi-activity .panel--caution li + li {
+  margin-top: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .goal,
+.opi-activity.opi-activity .verdict,
+.opi-activity.opi-activity .feedback,
+.opi-activity.opi-activity .prediction__error,
+.opi-activity.opi-activity .prediction__readback,
+.opi-activity.opi-activity .stage-track > li,
+.opi-activity.opi-activity .reveal__figures > li {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border: 2px solid Highlight;
+}
+.opi-activity.opi-activity .chart__bar,
+.opi-activity.opi-activity .chart__bar--one {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: Canvas;
+}
+.opi-activity.opi-activity .chart__line {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: Highlight;
+}
+}
+.opi-activity.opi-activity .stage__more {
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .stage__more > summary {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .stage__more[open] > summary {
+  border-bottom: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .stage__more > *:not(summary) {
+  margin: var(--space-3);
+}
+
+/* modules/social-critical-psychology/tools/09-crowd-deindividuation-vs-esim/tool.css */
+.opi-activity.opi-activity #crowd-lab .interactive__controls,
+.opi-activity.opi-activity #crowd-lab .interactive__stage {
+  min-width: 0;
+}
+.opi-activity.opi-activity #crowd-lab .interactive__stage > * {
+  min-width: 0;
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity #crowd-lab .interactive__body {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+}
+@media (min-width: 76em) {
+.opi-activity.opi-activity #crowd-lab .interactive__body {
+  grid-template-columns: minmax(0, 448px) minmax(0, 1fr);
+}
+}
+.opi-activity.opi-activity #crowd-lab .control--choice {
+  align-items: flex-start;
+  gap: 9.6px;
+  font-size: var(--text-sm);
+  line-height: 1.4;
+}
+.opi-activity.opi-activity #crowd-lab .control--choice input {
+  margin-top: 4.8px;
+}
+.opi-activity.opi-activity .preset-grid {
+  display: grid;
+  gap: var(--space-2);
+}
+@media (min-width: 26em) {
+.opi-activity.opi-activity .preset-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+}
+.opi-activity.opi-activity .preset {
+  display: grid;
+  gap: 2.4px;
+  justify-items: start;
+  text-align: left;
+  min-height: 44px;
+  padding: var(--space-2) var(--space-3);
+  line-height: 1.35;
+}
+.opi-activity.opi-activity .preset__label {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .preset__hint {
+  font-size: var(--text-xs);
+  font-weight: 400;
+  opacity: 0.85;
+}
+.opi-activity.opi-activity .headline {
+  margin: 0;
+  font-size: var(--text-base);
+  font-weight: 650;
+  line-height: 1.35;
+}
+.opi-activity.opi-activity #crowd-lab .target-chart {
+  max-width: 432px;
+}
+.opi-activity.opi-activity .bar--police {
+  fill: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .target__marker {
+  stroke: var(--colour-text-muted);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+.opi-activity.opi-activity [data-readings] {
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity [data-readings] > .verdict {
+  margin: 0;
+}
+.opi-activity.opi-activity [data-sections-body] tr[data-acted="yes"] > th {
+  border-left: 4px solid var(--colour-social-critical-psychology);
+  padding-left: calc(var(--space-2) - 4px);
+}
+.opi-activity.opi-activity [data-sections-body] td {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .claims__results {
+  margin: var(--space-3) 0 0;
+  padding-left: 19.2px;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .claims__results > li {
+  margin-top: 0;
+  padding-left: var(--space-3);
+  border-left: 3px solid var(--colour-border-strong);
+}
+.opi-activity.opi-activity .claims__results > li[data-agreed="yes"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .claims__results > li[data-agreed="no"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .claims__result-head {
+  margin: 0 0 var(--space-1);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .preset,
+.opi-activity.opi-activity .claims__results > li {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .bar--police {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .target__marker {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity [data-sections-body] tr[data-acted="yes"] > th {
+  border-left: 4px solid Highlight;
+}
+}
+</style>
+
+  <!-- ================= Title and purpose ================= -->
+  <section class="section card--social-critical-psychology" aria-labelledby="page-heading">
+    <div class="container">
+
+      <p class="hero__eyebrow" style="color: var(--colour-social-critical-psychology)">
+        Social and Critical Psychology
+      </p>
+      <h1 id="page-heading">Crowd Behaviour Laboratory: Deindividuation and ESIM</h1>
+      <p class="hero__lead">
+        One fictional afternoon on Marlow Bridge, set up five different ways.
+        A generic deindividuation account asks how much a crowd does. The
+        elaborated social identity model asks what it does, to whom, and who
+        joined in - and answers differently depending on how the crowd was
+        policed.
+      </p>
+
+      <p>
+        <span class="badge">
+          <span class="badge__dot" aria-hidden="true"></span>
+          Fictional event, model-implied numbers - Marlow Bridge exists only here, and no real incident, policing operation or dataset is described
+        </span>
+      </p>
+
+      <div class="split split--wide">
+
+        <div class="panel">
+          <h2 class="panel__title">Learning objective</h2>
+          <p>
+            By the end you should be able to say how deindividuation and the
+            elaborated social identity model differ about the patterning of
+            crowd action, and where each locates the cause.
+          </p>
+          <p class="text-muted">
+            About 30 minutes. Nothing is timed and nothing you choose is saved
+            or sent anywhere.
+          </p>
+        </div>
+
+        <div class="panel panel--caution">
+          <h2 class="panel__title">What the numbers here are</h2>
+          <p>
+            Everything on this page is produced by a small rule-based model
+            whose arithmetic is printed in the teaching notes. It is a device
+            for making two theories argue with each other in a way you can
+            point at, not a simulation of any real crowd and not evidence for
+            either account. Neither theory is refuted here. Deindividuation
+            research is a live tradition with a serious modern successor, and
+            the elaborated social identity model has its own critics; the
+            section below the laboratory sets out what each is criticised for.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="how-to">
+        <h2 class="panel__title">How to use this</h2>
+        <ol>
+          <li>Read the two accounts and commit to an answer to the question below.</li>
+          <li>
+            Set up the afternoon: how the police responded, how the crowd read
+            that response, whether a common category was available, what the
+            norm was, and whether people were identifiable.
+          </li>
+          <li>
+            Watch the two things the result reports - how many sections of the
+            crowd took part, and how concentrated their action was.
+          </li>
+          <li>Use the four preset set-ups to reach the contrasts quickly.</li>
+          <li>Then judge five observations from a different event.</li>
+        </ol>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= The two accounts, and the prediction ================= -->
+  <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="opening-heading">The two accounts</h2>
+        <p class="prose">
+          Both are trying to explain the same thing: why people in crowds
+          sometimes do what they would not do alone. They locate the
+          explanation in different places, and that is what makes them
+          testable against each other.
+        </p>
+      </div>
+
+      <div class="split split--wide">
+
+        <div class="panel">
+          <h3 class="panel__title">A generic deindividuation account</h3>
+          <p>
+            Being one of many reduces attention to the self and to personal
+            standards. Anonymity, arousal and the sheer size of the crowd
+            loosen the ordinary restraints on behaviour, so what emerges is
+            behaviour that is <strong>less regulated</strong> than usual.
+          </p>
+          <p>
+            What follows: action should rise with anonymity, and because the
+            restraint that has been lost was general, the resulting behaviour
+            should be relatively <strong>undirected</strong> - spread across
+            whatever targets happen to be to hand. The cause sits inside the
+            crowd member.
+          </p>
+        </div>
+
+        <div class="panel">
+          <h3 class="panel__title">The elaborated social identity model</h3>
+          <p>
+            People in a crowd do not lose an identity, they act in terms of one
+            they share. A shared identity brings its own norms about what is
+            and is not acceptable, and those norms come with
+            <strong>limits</strong> as well as licence.
+          </p>
+          <p>
+            What follows: action should be <strong>patterned</strong> - aimed
+            at some targets and withheld from others, sometimes actively
+            policed by the crowd itself. And because a shared identity can be
+            created by how a crowd is treated, indiscriminate policing can
+            produce the very unity it is trying to prevent. The cause sits in
+            the relationship between the crowd and the people policing it.
+          </p>
+        </div>
+
+      </div>
+
+      <noscript>
+        <div class="placeholder">
+          <h3 class="placeholder__title">This part needs JavaScript</h3>
+          <p class="prose">
+            The laboratory runs its model and draws the result in your browser,
+            so it cannot run with JavaScript switched off. The two accounts
+            above, the criticisms of each, the debrief and the limitations are
+            all readable without it.
+          </p>
+        </div>
+      </noscript>
+
+      <form class="panel prediction" id="opening-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            A crowd is pushed back as a single mass, regardless of what any
+            individual was doing. What would you expect to happen next?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="calm">
+            The crowd disperses - most people did not come for a confrontation
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="minority">
+            Only the small group who came expecting trouble does anything
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="spread">
+            More of the crowd takes part, and what they do stays aimed at the police
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="chaos">
+            Restraint collapses and people attack whatever is nearest
+          </label>
+        </fieldset>
+
+        <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Record my answer and open the laboratory
+          </button>
+          <button class="button button--secondary" type="button" data-action="skip-opening">
+            Skip - I am demonstrating this
+          </button>
+        </div>
+
+        <div class="feedback" data-opening-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= The laboratory ================= -->
+  <section class="section" id="lab-section" aria-labelledby="lab-heading" hidden>
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="lab-heading" tabindex="-1">The laboratory</h2>
+        <p class="prose">
+          Marlow Bridge, a Saturday afternoon. Around two thousand people have
+          come to a demonstration about the closure of the river crossing. Six
+          recognisable sections of the crowd are present, including a handful
+          who arrived expecting a confrontation. Set the afternoon up and see
+          what the model produces.
+        </p>
+      </div>
+
+      <section class="interactive" id="crowd-lab" data-interactive
+               data-reset-message="Back to the opening set-up: differentiated policing, seen as legitimate.">
+
+        <header class="interactive__header">
+          <h3 class="interactive__title">Set the afternoon up</h3>
+          <p class="interactive__brief">
+            Two things are reported. <strong>How many of the six sections took
+            part</strong> - which is what a deindividuation account is
+            indifferent to - and <strong>how concentrated the action was</strong>
+            across four possible targets, which is where the two accounts
+            disagree.
+          </p>
+        </header>
+
+        <div class="interactive__body interactive__body--pinned">
+
+          <form class="interactive__controls" data-interactive-controls>
+
+            <fieldset>
+              <legend>The police response</legend>
+              <label class="control--choice">
+                <input type="radio" name="police" value="differentiated" checked>
+                <span>Differentiated - only those who act are dealt with</span>
+              </label>
+              <label class="control--choice">
+                <input type="radio" name="police" value="indiscriminate">
+                <span>Indiscriminate - the area is pushed back as one</span>
+              </label>
+            </fieldset>
+
+            <fieldset>
+              <legend>The norm in play</legend>
+              <label class="control--choice">
+                <input type="radio" name="norm" value="police" checked>
+                <span>The police line only; nothing else</span>
+              </label>
+              <label class="control--choice">
+                <input type="radio" name="norm" value="none">
+                <span>No shared sense of what is acceptable</span>
+              </label>
+              <label class="control--choice">
+                <input type="radio" name="norm" value="off">
+                <span>Confrontation is out of bounds</span>
+              </label>
+            </fieldset>
+
+            <div class="control">
+              <div class="control__header">
+                <label class="control__label" for="legitimacy-select">
+                  How the crowd reads that response
+                </label>
+              </div>
+              <select id="legitimacy-select">
+                <option value="legitimate">As reasonable</option>
+                <option value="illegitimate">As unfair, and aimed at people who did nothing</option>
+              </select>
+            </div>
+
+            <div class="control">
+              <div class="control__header">
+                <label class="control__label" for="category-select">
+                  A common category everyone here would recognise
+                </label>
+              </div>
+              <select id="category-select">
+                <option value="yes">Available - "people who came about the bridge"</option>
+                <option value="no">Not available - the sections have little in common</option>
+              </select>
+            </div>
+
+            <div class="control">
+              <div class="control__header">
+                <label class="control__label" for="anonymity-select">Identifiability</label>
+              </div>
+              <select id="anonymity-select">
+                <option value="identifiable">Recognisable to each other</option>
+                <option value="anonymous">Anonymous in the mass</option>
+              </select>
+            </div>
+
+            <fieldset>
+              <legend>Preset set-ups</legend>
+              <div class="preset-grid" data-presets></div>
+            </fieldset>
+
+          </form>
+
+          <div class="interactive__stage" data-interactive-stage>
+
+            <div class="stage__primary">
+              <h4 class="stage__heading">What the afternoon produced</h4>
+              <p class="headline" data-headline></p>
+              <figure class="chart">
+                <figcaption class="visually-hidden">
+                  Share of the crowd's action directed at each of four targets,
+                  with the even-spread level marked
+                </figcaption>
+                <svg class="chart__svg target-chart" data-targets viewBox="0 0 320 146"
+                     aria-hidden="true" focusable="false"></svg>
+                <p class="chart__caption" data-targets-text></p>
+              </figure>
+            </div>
+
+            <div data-readings></div>
+
+            <details class="stage__more">
+              <summary>Who took part, section by section</summary>
+              <div class="table-scroll">
+                <table class="data-table">
+                  <caption class="visually-hidden">
+                    Each section of the crowd, its baseline readiness to
+                    confront, what the set-up added or subtracted, and whether
+                    it took part
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Section of the crowd</th>
+                      <th scope="col">Baseline</th>
+                      <th scope="col">This set-up</th>
+                      <th scope="col">Total</th>
+                      <th scope="col">Took part?</th>
+                    </tr>
+                  </thead>
+                  <tbody data-sections-body></tbody>
+                </table>
+              </div>
+              <p class="text-muted">
+                Baselines are invented for teaching. A section takes part when
+                its total reaches 0.60. "Took part" means joining the
+                collective action - standing the line, refusing to move,
+                chanting - and not necessarily violence.
+              </p>
+            </details>
+
+          </div>
+
+        </div>
+
+        <p class="interactive__status" data-interactive-status role="status"></p>
+
+        <div class="interactive__actions">
+          <button type="button" data-variant="secondary" data-interactive-reset>
+            Reset everything
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ================= What each account is criticised for ================= -->
+  <section class="section section--tinted" aria-labelledby="criticism-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="criticism-heading">What each account is criticised for</h2>
+        <p class="prose">
+          Neither of these is a settled matter, and a tool that let you believe
+          otherwise would be doing you a disservice.
+        </p>
+      </div>
+
+      <div class="split split--wide">
+
+        <div class="panel">
+          <h3 class="panel__title">Against the deindividuation account</h3>
+          <ul>
+            <li>
+              <strong>The evidence is thinner than the textbook suggests.</strong>
+              Reviews of the experimental literature have repeatedly found the
+              predicted effects of anonymity and group immersion to be small
+              and inconsistent.
+            </li>
+            <li>
+              <strong>It predicts the wrong shape.</strong> Crowd action is
+              usually limited: particular targets are attacked and others
+              nearby are conspicuously left alone, sometimes protected by the
+              crowd. A loss of restraint does not obviously explain restraint.
+            </li>
+            <li>
+              <strong>Anonymity does not simply disinhibit.</strong> A
+              substantial body of work finds that anonymity increases
+              conformity to whatever norm is salient - which can be
+              helpfulness, order or silence as easily as aggression.
+            </li>
+            <li>
+              <strong>It has a politics.</strong> Locating the cause inside the
+              crowd member makes the crowd the thing to be explained and the
+              policing merely the response to it, which is a convenient
+              division of labour for whoever did the policing.
+            </li>
+          </ul>
+        </div>
+
+        <div class="panel">
+          <h3 class="panel__title">Against the elaborated social identity model</h3>
+          <ul>
+            <li>
+              <strong>Much of the evidence is retrospective.</strong> Detailed
+              accounts of particular events, reconstructed afterwards from
+              interviews and records, are hard to falsify and hard to
+              aggregate.
+            </li>
+            <li>
+              <strong>"The norm" can be read off the outcome.</strong> If
+              whatever the crowd did is explained as the norm it shared, the
+              account risks describing rather than predicting - unless the norm
+              is specified in advance, which is difficult.
+            </li>
+            <li>
+              <strong>Not all crowd action is patterned.</strong> Some events
+              really do involve widespread, unfocused destruction, and an
+              account built on selectivity has to work harder there.
+            </li>
+            <li>
+              <strong>It can under-describe what a crowd contains.</strong>
+              Treating the crowd as one identity risks losing the sections
+              within it that disagreed, left, or tried to stop what was
+              happening.
+            </li>
+            <li>
+              <strong>It also has a politics.</strong> Locating the cause in
+              the relationship makes policing a candidate cause, which is
+              a substantive claim and not a neutral one.
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= Challenge ================= -->
+  <section class="section" id="challenge" aria-labelledby="challenge-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="challenge-heading">Challenge - a different event</h2>
+        <p class="prose">
+          A fictional summer night in a different fictional town: a music
+          event on Calder Green overran, the power was cut at midnight and
+          several thousand people were moved off the field. Five things were
+          observed. For each, say which account handles it better - and notice
+          that the honest answer is sometimes "both" and sometimes "neither".
+        </p>
+      </div>
+
+      <form class="panel challenge" id="claims-form">
+        <div data-claims-list></div>
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Check my judgements
+          </button>
+        </div>
+        <div class="feedback" data-claims-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Debrief ================= -->
+  <section class="section section--tinted" id="debrief" aria-labelledby="debrief-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="debrief-heading">What this demonstrates</h2>
+      </div>
+
+      <div class="split split--wide">
+
+        <div class="prose">
+          <h3>The disagreement is about pattern, not about amount</h3>
+          <p>
+            Both accounts agree that people in crowds sometimes do things they
+            would not do alone. What they disagree about is the shape of it. A
+            generic deindividuation account expects restraint to be lost, and
+            lost restraint has no particular direction. An identity account
+            expects action to be governed by a norm, and a norm is a set of
+            limits as much as a licence. That is why the useful question to ask
+            of any crowd event is not "how bad did it get" but
+            <em>what did they do, to whom, and what did they leave alone.</em>
+          </p>
+
+          <h3>Indiscriminate treatment can manufacture the category</h3>
+          <p>
+            The most consequential move in the model is the one that runs
+            between presets 1 and 2. Nothing about the people changes. What
+            changes is whether they are dealt with as individuals or handled as
+            a single mass - and being handled as a single mass is itself an
+            argument that they are one. Once "people being pushed back" becomes
+            a description that everyone present recognises, sections of the
+            crowd who wanted nothing to do with a confrontation are inside a
+            category that now has a reason to have one. This is the model's
+            sharpest practical claim, and it is why the model has had
+            consequences for public order training.
+          </p>
+
+          <h3>Anonymity amplifies a norm rather than removing one</h3>
+          <p>
+            In the model, being anonymous in the mass does not add
+            indiscriminate action; it makes whatever norm is in play more
+            dominant. Set the norm to "confrontation of any kind is out of
+            bounds", make the crowd anonymous, and the crowd becomes
+            <em>more</em> restrained, not less. That is the direction the
+            social identity model of deindividuation effects predicts, and it
+            is the point at which the classic account and its successor part
+            company.
+          </p>
+
+          <h3>And a case where the other account fits better</h3>
+          <p>
+            Preset 3 removes the common category and the shared norm, and the
+            result is action scattered almost evenly across every available
+            target - a selectivity index around 0.08. That is not a defect in
+            the model. It is the case that a deindividuation account describes
+            well and an identity account has to work hardest to explain, and
+            the fact that it exists is why this remains a live argument rather
+            than a settled one.
+          </p>
+
+          <h3>Where the problem is located, and who benefits</h3>
+          <p>
+            These are not just two hypotheses. An account that places the cause
+            inside crowd members makes the crowd the problem and the policing
+            the response, and recommends containment. An account that places
+            the cause in the relationship makes the policing a candidate cause
+            and recommends differentiation, communication and facilitation. Both
+            are substantive positions with consequences for what gets funded,
+            trained and reviewed after an event - and noticing that is part of
+            reading the literature, not a substitute for it.
+          </p>
+        </div>
+
+        <aside class="panel panel--caution" aria-labelledby="limits-heading">
+          <h3 class="panel__title" id="limits-heading">
+            What this does <em>not</em> demonstrate
+          </h3>
+          <ul>
+            <li>
+              <strong>Nothing here is evidence for either account.</strong> The
+              model was written to make two theories argue in a way you can
+              point at. It produces the patterns it was built to produce, and
+              the evidence about real crowds is in the literature, not on this
+              page.
+            </li>
+            <li>
+              <strong>Marlow Bridge and Calder Green are inventions.</strong>
+              No real event, policing operation, organisation or person is
+              described, and no number here corresponds to anything reported
+              anywhere.
+            </li>
+            <li>
+              <strong>Deindividuation is not refuted.</strong> It has a serious
+              modern successor in the social identity model of deindividuation
+              effects, which keeps the interest in anonymity and changes what
+              anonymity is taken to do. Treating the classic account as simply
+              wrong is a caricature of an active research tradition.
+            </li>
+            <li>
+              <strong>The elaborated model does not predict peaceful crowds.</strong>
+              It predicts norm-governed crowds. Whether that is peaceful
+              depends entirely on the norm, and preset 2 and preset 4 differ in
+              nothing except that.
+            </li>
+            <li>
+              <strong>A model cannot settle a causal question.</strong> That
+              indiscriminate policing produces unity <em>in this model</em> is
+              true by construction. Whether it does so in the world is an
+              empirical question with a real and contested literature behind
+              it.
+            </li>
+            <li>
+              <strong>"The norm" is doing a lot of work.</strong> Here you set
+              it with a control. In a real event nobody can see it directly,
+              and the risk of reading it backwards off what the crowd did is
+              the standard criticism of this kind of account.
+            </li>
+            <li>
+              <strong>Six sections is a simplification.</strong> Real crowds
+              contain far more, overlapping, shifting, and disagreeing with
+              each other throughout.
+            </li>
+          </ul>
+        </aside>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+<script>
+/* ---- components/interactive-shell.js ---- */
+/* =========================================================================
+   Open Psychology Interactives — interactive shell helper
+   -------------------------------------------------------------------------
+   A very small vanilla-JS helper that every interactive in this collection
+   uses. It deliberately does *not* draw anything or know anything about
+   statistics, personality or neuropsychology. Its job is the repetitive,
+   easy-to-get-wrong accessibility plumbing:
+
+     * announcing changes through a polite live region;
+     * keeping a range slider and its <output> in step;
+     * wiring the standard Reset button;
+     * reporting the reader's reduced-motion preference.
+
+   Usage (see docs/adapting-a-tool.md for the full markup contract):
+
+       <script src="../../components/interactive-shell.js" defer><\/script>
+       <script src="tool.js" defer><\/script>
+
+       // in tool.js
+       const shell = InteractiveShell.attach('#sampling-demo');
+       shell.onReset(() => { ...restore defaults...; draw(); });
+       shell.bindRange('#sample-size', { format: n => n + ' cases' });
+       shell.announce('Sample of 25 drawn. Mean 4.8.');
+
+   Every published interactive is written against this module.
+
+   Exposed as a global (window.InteractiveShell) rather than an ES module so
+   that a single interactive folder can be opened directly from disk over
+   file:// — ES modules are blocked by CORS in that situation, plain scripts
+   are not. That constraint is the whole reason for the older syntax here.
+   ========================================================================= */
+
+(function (global) {
+  "use strict";
+
+  /* -----------------------------------------------------------------------
+     Internal helpers
+     --------------------------------------------------------------------- */
+
+  /**
+   * Accept either a CSS selector or an element and return an element.
+   * @param {string|Element} target
+   * @param {ParentNode} [scope]
+   * @returns {Element|null}
+   */
+  function resolve(target, scope) {
+    if (!target) {
+      return null;
+    }
+    if (typeof target === "string") {
+      return (scope || document).querySelector(target);
+    }
+    return target;
+  }
+
+  /**
+   * True when the reader has asked the operating system to reduce motion.
+   * Interactives should check this before animating anything — for example
+   * by drawing a sampling distribution in one step instead of animating
+   * each draw.
+   * @returns {boolean}
+   */
+  function prefersReducedMotion() {
+    return (
+      typeof global.matchMedia === "function" &&
+      global.matchMedia("(prefers-reduced-motion: reduce)").matches
+    );
+  }
+
+  /* -----------------------------------------------------------------------
+     Shell controller
+     --------------------------------------------------------------------- */
+
+  /**
+   * Attach the shell behaviour to one `.interactive` element.
+   *
+   * @param {string|Element} target  Selector or element for the shell root.
+   * @returns {object|null}  Controller, or null if the root was not found.
+   */
+  function attach(target) {
+    var root = resolve(target);
+
+    if (!root) {
+      if (global.console && console.warn) {
+        console.warn("InteractiveShell: root element not found.", target);
+      }
+      return null;
+    }
+
+    var controls = root.querySelector("[data-interactive-controls]");
+    var stage = root.querySelector("[data-interactive-stage]");
+    var status = root.querySelector("[data-interactive-status]");
+    var resetButton = root.querySelector("[data-interactive-reset]");
+    var resetHandlers = [];
+    // Every range bound with bindRange() registers its sync function here, so
+    // that reset() can refresh the visible values after the tool's own reset
+    // handlers have restored the inputs. See reset() for why this is needed.
+    var rangeSyncs = [];
+
+    /* --- Live region ----------------------------------------------------
+       The status element is marked up as role="status" (implicitly
+       aria-live="polite"). Two details matter:
+
+         1. Assistive technology only announces *changes* to a live region,
+            so writing the same string twice is silently dropped. We add a
+            trailing zero-width space on repeat messages to force an
+            announcement when a student re-runs the same action.
+         2. Announcements are debounced. A slider dragged across its range
+            fires dozens of input events; without a delay a screen reader
+            would queue every intermediate value and fall far behind.
+       ------------------------------------------------------------------ */
+
+    var announceTimer = null;
+    var lastMessage = "";
+
+    /**
+     * Announce a short sentence describing what just changed.
+     * @param {string} message
+     * @param {object} [options]
+     * @param {boolean} [options.immediate]  Skip the debounce delay. Use for
+     *   discrete actions (button presses); leave off for continuous input.
+     */
+    function announce(message, options) {
+      if (!status) {
+        return;
+      }
+
+      var text = String(message == null ? "" : message);
+      var immediate = Boolean(options && options.immediate);
+
+      if (announceTimer !== null) {
+        global.clearTimeout(announceTimer);
+        announceTimer = null;
+      }
+
+      function write() {
+        // Force a change when the text is identical to last time.
+        status.textContent = text === lastMessage ? text + "​" : text;
+        lastMessage = text;
+      }
+
+      if (immediate) {
+        write();
+      } else {
+        announceTimer = global.setTimeout(write, 350);
+      }
+    }
+
+    /* --- Reset ---------------------------------------------------------- */
+
+    /**
+     * Register a callback to run when the Reset button is pressed.
+     * Several may be registered; they run in the order added.
+     * @param {Function} handler
+     */
+    function onReset(handler) {
+      if (typeof handler === "function") {
+        resetHandlers.push(handler);
+      }
+    }
+
+    /**
+     * Run the reset handlers. Called by the button and available directly so
+     * an interactive can reset itself on first load.
+     *
+     * Bound ranges are re-synced afterwards. A reset handler restores an
+     * input by assigning to `input.value`, and assigning to a value in script
+     * does not fire an `input` event — so without this step the slider would
+     * jump back to its default while its <output> went on showing the old
+     * number. Syncing here, after the handlers have run, also means the sync
+     * sees the restored values regardless of the order things were
+     * registered in.
+     *
+     * @param {object} [options]
+     * @param {boolean} [options.silent]  Suppress the status announcement.
+     */
+    function reset(options) {
+      resetHandlers.forEach(function (handler) {
+        handler();
+      });
+      rangeSyncs.forEach(function (sync) {
+        sync();
+      });
+      if (!options || !options.silent) {
+        announce(
+          root.getAttribute("data-reset-message") ||
+            "Reset to the starting values.",
+          { immediate: true }
+        );
+      }
+    }
+
+    if (resetButton) {
+      resetButton.addEventListener("click", function (event) {
+        // Reset buttons commonly sit inside the controls <form>; stop the
+        // browser's own form reset from fighting with ours.
+        event.preventDefault();
+        reset();
+      });
+    }
+
+    /* --- Range binding --------------------------------------------------
+       Keeps a slider's <output> in step with its value. The <output> must
+       carry `for="<input id>"`, which is what associates the two for
+       assistive technology; this only handles the visible text.
+
+       Optionally sets aria-valuetext, which is how you make a screen reader
+       say "25 cases" or "medium correlation" instead of a bare "25".
+       ------------------------------------------------------------------ */
+
+    /**
+     * @param {string|Element} inputTarget  The range (or number) input.
+     * @param {object} [options]
+     * @param {Function} [options.format]  value:number -> string shown in the
+     *   <output>. Defaults to the raw value.
+     * @param {Function} [options.describe]  value:number -> string used for
+     *   aria-valuetext. Defaults to options.format.
+     * @param {Function} [options.onInput]  value:number -> void, called after
+     *   the display has been updated. Use it to redraw.
+     * @returns {HTMLInputElement|null}
+     */
+    function bindRange(inputTarget, options) {
+      var input = resolve(inputTarget, root);
+      if (!input) {
+        return null;
+      }
+
+      var settings = options || {};
+      var format =
+        typeof settings.format === "function"
+          ? settings.format
+          : function (value) {
+              return String(value);
+            };
+      var describe =
+        typeof settings.describe === "function" ? settings.describe : format;
+
+      // <output for="the-input-id"> is the conventional pairing.
+      var output = input.id
+        ? root.querySelector('output[for="' + input.id + '"]')
+        : null;
+
+      function sync() {
+        var value = Number(input.value);
+        if (output) {
+          output.textContent = format(value);
+        }
+        // Only meaningful for widgets with an implicit or explicit slider
+        // role; harmless elsewhere.
+        input.setAttribute("aria-valuetext", describe(value));
+        if (typeof settings.onInput === "function") {
+          settings.onInput(value);
+        }
+      }
+
+      input.addEventListener("input", sync);
+      // Registered so reset() can refresh the display after the tool's own
+      // reset handlers have put the input back to its default.
+      rangeSyncs.push(sync);
+      sync();
+
+      return input;
+    }
+
+    /* --- Public surface -------------------------------------------------- */
+
+    return {
+      /** The `.interactive` root element. */
+      root: root,
+      /** The controls panel, or null if the shell has none. */
+      controls: controls,
+      /** The stage element where the visualisation is drawn. */
+      stage: stage,
+      /** The live-region element. */
+      status: status,
+      announce: announce,
+      onReset: onReset,
+      reset: reset,
+      bindRange: bindRange,
+      prefersReducedMotion: prefersReducedMotion
+    };
+  }
+
+  /* -----------------------------------------------------------------------
+     Export
+     --------------------------------------------------------------------- */
+
+  global.InteractiveShell = {
+    attach: attach,
+    prefersReducedMotion: prefersReducedMotion
+  };
+})(window);
+
+/* ---- modules/social-critical-psychology/tools/09-crowd-deindividuation-vs-esim/tool.js ---- */
+/* =========================================================================
+   Crowd Behaviour Laboratory: deindividuation and the elaborated social
+   identity model
+   -------------------------------------------------------------------------
+   One fictional crowd event (Marlow Bridge) can be set up five ways. The
+   model reports two quantities, and the whole teaching point lives in the
+   difference between them:
+
+     PARTICIPATION  how many of six sections of the crowd took part
+     SELECTIVITY    how concentrated the action was across four targets
+
+   A generic deindividuation account predicts the first and is indifferent to
+   the second: restraint that has been lost has no particular direction. The
+   elaborated social identity model predicts the second: action is governed by
+   a norm, and a norm sets limits as well as licence.
+
+   THE EDUCATIONAL MODEL (all numbers invented for teaching)
+   ---------------------------------------------------------
+   Six sections of the crowd each carry a baseline readiness to confront:
+
+       Bridge Road residents               0.20
+       Campaign committee regulars         0.40
+       Weekend market stallholders         0.12
+       Sixth-form students                 0.28
+       Families at the fun day             0.04
+       A handful expecting a confrontation 0.88
+
+   A section takes part when
+
+       baseline + unity x legitimacy + (norm shift, if inside the category)
+
+   reaches 0.60, where
+
+       unity        differentiated policing               0.10
+                    indiscriminate, no common category    0.55
+                    indiscriminate, common category       1.00
+       legitimacy   read as reasonable                    0.12
+                    read as unfair                        0.50
+       norm shift   police line only                     +0.18
+                    no shared understanding                0.00
+                    confrontation out of bounds          -0.45
+
+   A section is inside the category when unity reaches 0.55; the handful who
+   came for a confrontation are inside it only at unity 1.00, because a
+   differentiated or fragmented crowd never absorbs them.
+
+   Target weights are set by the norm and then reshaped by identifiability.
+   Where a norm is in play, anonymity SHARPENS it (each weight raised to the
+   power 1.35 and renormalised) rather than broadening the targets - which is
+   the direction the social identity model of deindividuation effects
+   predicts, and the point at which the classic account and its successor part
+   company. Where there is no shared norm, anonymity moves the weights 40 per
+   cent of the way towards an even spread instead.
+
+   Selectivity is the mean absolute deviation of the four shares from 0.25,
+   divided by 1.5 so that 0 is a perfectly even spread and 1 is everything on
+   one target. It is a teaching device invented for this page, not a published
+   measure of anything.
+
+   The "disinhibition index" reported beside it is what a deindividuation
+   account tracks - identifiability plus how many sections joined in - and is
+   printed precisely so that a learner can see two runs score almost the same
+   on it while producing completely different patterns.
+
+   WHAT THIS IS NOT
+   ----------------
+   Not evidence for either account: the model produces the patterns it was
+   built to produce. Marlow Bridge and Calder Green are inventions and no real
+   event, operation, organisation or person is described. Deindividuation is
+   not refuted here; preset 3 is deliberately a case its description fits
+   better than the identity account's usual prediction does.
+
+   No data leave the browser. There is no storage and no network request.
+   ========================================================================= */
+
+(function () {
+  "use strict";
+
+  /* --- The crowd ---------------------------------------------------------- */
+
+  var SECTIONS = [
+    { id: "residents", name: "Bridge Road residents", base: 0.20 },
+    { id: "campaign", name: "Campaign committee regulars", base: 0.40 },
+    { id: "traders", name: "Weekend market stallholders", base: 0.12 },
+    { id: "students", name: "Sixth-form students", base: 0.28 },
+    { id: "families", name: "Families at the fun day", base: 0.04 },
+    {
+      id: "ready",
+      name: "A handful who arrived expecting a confrontation",
+      base: 0.88,
+      outsider: true
+    }
+  ];
+
+  var THRESHOLD = 0.60;
+
+  var UNITY = { differentiated: 0.10, fragmented: 0.55, full: 1.00 };
+  var LEGITIMACY = { legitimate: 0.12, illegitimate: 0.50 };
+  var NORM_SHIFT = { police: 0.18, none: 0, off: -0.45 };
+
+  /* `short` is what fits inside the chart; `label` is what the caption and the
+     announcement say. The caption carries the full names, so nothing is lost
+     by abbreviating the drawing. */
+  var TARGETS = [
+    { id: "police", short: "Police line", label: "the police line" },
+    { id: "shops", short: "Shop fronts", label: "shop fronts on Bridge Road" },
+    { id: "centre", short: "Community centre", label: "the community centre" },
+    { id: "crowd", short: "Other crowd members", label: "other people in the crowd" }
+  ];
+
+  var BASE_WEIGHTS = {
+    police: { police: 0.88, shops: 0.05, centre: 0.02, crowd: 0.05 },
+    none: { police: 0.33, shops: 0.27, centre: 0.18, crowd: 0.22 },
+    off: { police: 0.45, shops: 0.22, centre: 0.13, crowd: 0.20 }
+  };
+
+  var SHARPEN = 1.35;
+  var FLATTEN = 0.4;
+  var EVEN = 0.25;
+
+  var PRESETS = [
+    {
+      id: "differentiated",
+      label: "1. Differentiated policing",
+      hint: "Individuals dealt with, the crowd left alone",
+      state: {
+        police: "differentiated", norm: "police", legitimacy: "legitimate",
+        category: "yes", anonymity: "identifiable"
+      }
+    },
+    {
+      id: "indiscriminate",
+      label: "2. Indiscriminate policing, common category",
+      hint: "Same crowd, same norm, handled as one mass",
+      state: {
+        police: "indiscriminate", norm: "police", legitimacy: "illegitimate",
+        category: "yes", anonymity: "identifiable"
+      }
+    },
+    {
+      id: "fragmented",
+      label: "3. No common category, anonymous",
+      hint: "The run a deindividuation account describes best",
+      state: {
+        police: "indiscriminate", norm: "none", legitimacy: "illegitimate",
+        category: "no", anonymity: "anonymous"
+      }
+    },
+    {
+      id: "restrained",
+      label: "4. United, and the norm forbids it",
+      hint: "A crowd that unites completely and does almost nothing",
+      state: {
+        police: "indiscriminate", norm: "off", legitimacy: "illegitimate",
+        category: "yes", anonymity: "anonymous"
+      }
+    }
+  ];
+
+  /* --- The challenge ------------------------------------------------------ */
+
+  var CLAIMS = [
+    {
+      id: "stalls",
+      text:
+        "\"Bottles were thrown at the police line for twenty minutes. Fifty " +
+        "metres away the row of food stalls was untouched, and two people who " +
+        "went for one of them were pulled away by others in the crowd.\"",
+      answer: "esim",
+      why:
+        "Restraint that has been lost cannot explain restraint that is being " +
+        "enforced. Somebody in that crowd was doing boundary work - deciding " +
+        "what the action was for and what it was not - and that is a norm, " +
+        "which is exactly what an identity account expects a shared category " +
+        "to supply."
+    },
+    {
+      id: "heat",
+      text:
+        "\"People who had been on the field for six hours in the heat, with no " +
+        "water and no information, were considerably more likely to join in.\"",
+      answer: "both",
+      why:
+        "A deindividuation account reads this as arousal and depleted " +
+        "self-regulation, and that is a coherent reading. An identity account " +
+        "reads the same fact as a crowd being treated with contempt for six " +
+        "hours, which is what makes the treatment illegitimate and the " +
+        "category available. The observation does not choose between them."
+    },
+    {
+      id: "onemass",
+      text:
+        "\"When the power was cut, everyone in the north field - who had come " +
+        "separately, in small groups, and did not know each other - was moved " +
+        "off as a single block by officers in identical uniform.\"",
+      answer: "esim",
+      why:
+        "A deindividuation account has nothing to say about this. Being " +
+        "handled as one mass is itself an argument that you are one, and it " +
+        "can create the shared category that was not there before - where " +
+        "deindividuation treats the crowd as the thing to be explained and " +
+        "the policing as a response to it."
+    },
+    {
+      id: "selfreport",
+      text:
+        "\"A survey afterwards found that people who had covered their faces " +
+        "reported feeling less individually identifiable.\"",
+      answer: "neither",
+      why:
+        "This is a self-report about a feeling, collected after the event, " +
+        "from people who know what happened. It tells you nothing about what " +
+        "anybody did, to whom, or why - and both accounts would predict the " +
+        "correlation anyway. Treating it as evidence for deindividuation " +
+        "measures the proposed mediator and calls it the outcome, which is a " +
+        "measurement error rather than a theoretical result."
+    },
+    {
+      id: "carpark",
+      text:
+        "\"In the car park, unconnected small groups smashed windscreens, a " +
+        "bus shelter, a ticket machine and each other's wing mirrors, with no " +
+        "discernible pattern to what was hit.\"",
+      answer: "deind",
+      why:
+        "This is the case a deindividuation account describes well and an " +
+        "identity account has to work hardest at. There is no target " +
+        "selection to explain, no boundary being enforced, and no obvious " +
+        "shared category. An identity theorist would have to argue for " +
+        "several small categories with different norms - which is possible, " +
+        "and is more work than the alternative. Preset 3 in the laboratory " +
+        "produces this shape deliberately."
+    }
+  ];
+
+  var CLAIM_OPTIONS = [
+    { value: "deind", label: "A deindividuation account handles this better" },
+    { value: "esim", label: "The elaborated social identity model handles this better" },
+    { value: "both", label: "Both handle it - the observation does not choose between them" },
+    { value: "neither", label: "Neither - this observation supports no conclusion about crowd action" }
+  ];
+
+  var CLAIM_SHORT = {
+    deind: "A deindividuation account handles this better",
+    esim: "The elaborated social identity model handles this better",
+    both: "Both handle it",
+    neither: "Neither - it supports no conclusion about crowd action"
+  };
+
+  /* =======================================================================
+     Helpers
+     ===================================================================== */
+
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) { node.className = className; }
+    if (text !== undefined) { node.textContent = text; }
+    return node;
+  }
+
+  function clear(node) {
+    while (node.firstChild) { node.removeChild(node.firstChild); }
+  }
+
+  function pct(value) {
+    return Math.round(value * 100);
+  }
+
+  function fixed(value, places) {
+    return Number(value).toFixed(places === undefined ? 2 : places);
+  }
+
+  /* =======================================================================
+     The model
+     ===================================================================== */
+
+  /**
+   * Run one afternoon. Everything the display needs comes out of here so the
+   * arithmetic lives in one place and can be checked against the notes.
+   */
+  function runModel(setup) {
+    var unity = setup.police === "differentiated"
+      ? UNITY.differentiated
+      : (setup.category === "yes" ? UNITY.full : UNITY.fragmented);
+    var legitimacy = LEGITIMACY[setup.legitimacy];
+    var normShift = NORM_SHIFT[setup.norm];
+    var treatmentBonus = unity * legitimacy;
+
+    var rows = SECTIONS.map(function (section) {
+      /* A section sits inside the shared category once the crowd is being
+         handled as one. The handful who came for a confrontation are absorbed
+         only when the category is fully available - a fragmented crowd never
+         takes them in. */
+      var inside = unity >= UNITY.fragmented && (!section.outsider || unity === UNITY.full);
+      var shift = inside ? normShift : 0;
+      var total = section.base + treatmentBonus + shift;
+      return {
+        name: section.name,
+        base: section.base,
+        situational: treatmentBonus + shift,
+        total: total,
+        inside: inside,
+        acted: total >= THRESHOLD
+      };
+    });
+
+    var acting = rows.filter(function (row) { return row.acted; }).length;
+
+    /* Target weights: the norm sets the shape, identifiability reshapes it. */
+    var base = BASE_WEIGHTS[setup.norm];
+    var weights = {};
+    if (setup.anonymity === "anonymous" && setup.norm === "none") {
+      /* No norm to sharpen, so anonymity moves the spread towards even. */
+      TARGETS.forEach(function (target) {
+        weights[target.id] = (1 - FLATTEN) * base[target.id] + FLATTEN * EVEN;
+      });
+    } else if (setup.anonymity === "anonymous") {
+      var sum = 0;
+      TARGETS.forEach(function (target) {
+        weights[target.id] = Math.pow(base[target.id], SHARPEN);
+        sum += weights[target.id];
+      });
+      TARGETS.forEach(function (target) { weights[target.id] /= sum; });
+    } else {
+      TARGETS.forEach(function (target) { weights[target.id] = base[target.id]; });
+    }
+
+    var deviation = 0;
+    TARGETS.forEach(function (target) {
+      deviation += Math.abs(weights[target.id] - EVEN);
+    });
+    var selectivity = deviation / 1.5;
+
+    /* What a deindividuation account tracks: identifiability and how many
+       people were swept in. Deliberately reported so that two runs can score
+       almost the same on it and look nothing alike. */
+    var disinhibition = (setup.anonymity === "anonymous" ? 0.5 : 0.2) + acting / 12;
+
+    return {
+      unity: unity,
+      legitimacy: legitimacy,
+      normShift: normShift,
+      treatmentBonus: treatmentBonus,
+      rows: rows,
+      acting: acting,
+      weights: weights,
+      selectivity: selectivity,
+      disinhibition: disinhibition
+    };
+  }
+
+  /* =======================================================================
+     Wiring
+     ===================================================================== */
+
+  var shell = InteractiveShell.attach("#crowd-lab");
+  if (!shell) { return; }
+
+  var $ = function (s, scope) { return (scope || document).querySelector(s); };
+  var $$ = function (s, scope) {
+    return Array.prototype.slice.call((scope || document).querySelectorAll(s));
+  };
+
+  var openingForm = $("#opening-form");
+  var openingError = $("[data-opening-error]");
+  var openingFeedback = $("[data-opening-feedback]");
+  var labSection = $("#lab-section");
+
+  var legitimacySelect = $("#legitimacy-select");
+  var categorySelect = $("#category-select");
+  var anonymitySelect = $("#anonymity-select");
+  var presetsBox = $("[data-presets]");
+
+  var headline = $("[data-headline]");
+  var targetsSvg = $("[data-targets]");
+  var targetsText = $("[data-targets-text]");
+  var readings = $("[data-readings]");
+  var sectionsBody = $("[data-sections-body]");
+
+  var claimsForm = $("#claims-form");
+  var claimsList = $("[data-claims-list]");
+  var claimsFeedback = $("[data-claims-feedback]");
+
+  var INITIAL = {
+    police: "differentiated",
+    norm: "police",
+    legitimacy: "legitimate",
+    category: "yes",
+    anonymity: "identifiable"
+  };
+  var state = null;
+
+  /* --- Reading the controls ------------------------------------------------ */
+
+  function readControls() {
+    var police = $('input[name="police"]:checked');
+    var norm = $('input[name="norm"]:checked');
+    state.police = police ? police.value : INITIAL.police;
+    state.norm = norm ? norm.value : INITIAL.norm;
+    state.legitimacy = legitimacySelect.value;
+    state.category = categorySelect.value;
+    state.anonymity = anonymitySelect.value;
+  }
+
+  function writeControls() {
+    $$('input[name="police"]').forEach(function (input) {
+      input.checked = input.value === state.police;
+    });
+    $$('input[name="norm"]').forEach(function (input) {
+      input.checked = input.value === state.norm;
+    });
+    legitimacySelect.value = state.legitimacy;
+    categorySelect.value = state.category;
+    anonymitySelect.value = state.anonymity;
+  }
+
+  /* --- Drawing -------------------------------------------------------------- */
+
+  var NS = "http://www.w3.org/2000/svg";
+  var BAR_X = 138;
+  var BAR_W = 152;
+  var ROW_H = 32;
+  var BAR_H = 18;
+
+  function drawTargets(result) {
+    clear(targetsSvg);
+    var any = result.acting > 0;
+
+    /* The even-spread reference, marked with a dashed line AND labelled, so
+       the comparison never depends on seeing the line. */
+    var markX = BAR_X + EVEN * BAR_W;
+    var marker = document.createElementNS(NS, "line");
+    marker.setAttribute("x1", String(markX));
+    marker.setAttribute("x2", String(markX));
+    marker.setAttribute("y1", "16");
+    marker.setAttribute("y2", String(14 + TARGETS.length * ROW_H));
+    marker.setAttribute("class", "target__marker");
+    targetsSvg.appendChild(marker);
+
+    var markLabel = document.createElementNS(NS, "text");
+    markLabel.setAttribute("x", String(markX));
+    markLabel.setAttribute("y", "11");
+    markLabel.setAttribute("text-anchor", "middle");
+    markLabel.setAttribute("class", "chart__axis");
+    markLabel.textContent = "even spread 25%";
+    targetsSvg.appendChild(markLabel);
+
+    TARGETS.forEach(function (target, index) {
+      var y = 18 + index * ROW_H;
+      var share = any ? result.weights[target.id] : 0;
+
+      var track = document.createElementNS(NS, "rect");
+      track.setAttribute("x", String(BAR_X));
+      track.setAttribute("y", String(y));
+      track.setAttribute("width", String(BAR_W));
+      track.setAttribute("height", String(BAR_H));
+      track.setAttribute("class", "chart__track");
+      targetsSvg.appendChild(track);
+
+      var bar = document.createElementNS(NS, "rect");
+      bar.setAttribute("x", String(BAR_X));
+      bar.setAttribute("y", String(y));
+      bar.setAttribute("width", String(Math.max(share > 0 ? 1 : 0, share * BAR_W)));
+      bar.setAttribute("height", String(BAR_H));
+      bar.setAttribute("class", target.id === "police" ? "chart__bar bar--police" : "chart__bar");
+      targetsSvg.appendChild(bar);
+
+      var name = document.createElementNS(NS, "text");
+      name.setAttribute("x", String(BAR_X - 6));
+      name.setAttribute("y", String(y + 13));
+      name.setAttribute("text-anchor", "end");
+      name.setAttribute("class", "chart__label");
+      name.textContent = target.short;
+      targetsSvg.appendChild(name);
+
+      var value = document.createElementNS(NS, "text");
+      value.setAttribute("x", String(BAR_X + Math.max(2, share * BAR_W) + 5));
+      value.setAttribute("y", String(y + 13));
+      value.setAttribute("class", "chart__count");
+      value.textContent = any ? pct(share) + "%" : "-";
+      targetsSvg.appendChild(value);
+    });
+  }
+
+  /* --- The readings --------------------------------------------------------- */
+
+  function selectivityWord(value) {
+    if (value >= 0.60) { return "concentrated on one target"; }
+    if (value >= 0.30) { return "only partly concentrated"; }
+    return "close to an even spread";
+  }
+
+  function buildReadings(result) {
+    clear(readings);
+
+    /* --- What a deindividuation account tracks --- */
+    var one = make("div", "verdict");
+    one.setAttribute("data-tone", "neutral");
+    one.appendChild(make("h5", "verdict__title",
+      "Read as a deindividuation account would"));
+    one.appendChild(make("p", "verdict__body",
+      "The quantity this account tracks - identifiability plus how much of the " +
+      "crowd was swept in - comes out at " + fixed(result.disinhibition) +
+      " on a 0 to 1 scale. " +
+      (state.anonymity === "anonymous"
+        ? "People were anonymous in the mass: on this account, the condition " +
+          "under which personal standards stop governing behaviour."
+        : "People were recognisable to each other: on this account, the " +
+          "condition under which personal standards still govern behaviour.")));
+    one.appendChild(make("p", "verdict__body",
+      "What it does not predict is the row of numbers above. Lost restraint " +
+      "has no direction, so the four targets should be roughly " +
+      "interchangeable. Here they were " + selectivityWord(result.selectivity) +
+      "."));
+
+    /* --- What the elaborated model says --- */
+    var two = make("div", "verdict");
+    two.setAttribute("data-tone", "neutral");
+    two.appendChild(make("h5", "verdict__title",
+      "Read as the elaborated social identity model would"));
+
+    var unityText;
+    if (result.unity === UNITY.differentiated) {
+      unityText =
+        "Policing was differentiated, so no common category formed. The " +
+        "sections stayed separate and the handful who came for a confrontation " +
+        "stayed a handful with nobody behind them.";
+    } else if (result.unity === UNITY.full) {
+      unityText =
+        "The crowd was handled as one mass and a description everyone could " +
+        "recognise themselves in was available, so one category formed across " +
+        "all six sections - including the ones who came for a fun day. The " +
+        "policing did not respond to that category; it helped make it.";
+    } else {
+      unityText =
+        "The crowd was handled as one mass, but no description was available " +
+        "that everyone could recognise themselves in, so only part of it was " +
+        "drawn together. Indiscriminate treatment is not by itself sufficient: " +
+        "there has to be a category for it to create.";
+    }
+    two.appendChild(make("p", "verdict__body", unityText));
+
+    var normText;
+    if (state.norm === "police") {
+      normText =
+        "The norm licensed one thing and forbade the rest, and the shares " +
+        "follow it: " + pct(result.weights.police) + " per cent to the police " +
+        "line, " + pct(result.weights.shops + result.weights.centre) +
+        " per cent to the shops and the community centre combined.";
+    } else if (state.norm === "off") {
+      normText =
+        "The norm put confrontation out of bounds, which is a norm like any " +
+        "other and produces restraint rather than licence. " +
+        (result.acting <= 1
+          ? "Almost nobody took part - a result the account predicts rather " +
+            "than an absence of one."
+          : "The action that did occur was held down accordingly.");
+    } else {
+      normText =
+        "There was no shared understanding of what was acceptable, so nothing " +
+        "to set limits with. This is where the identity account has least to " +
+        "say, and the shares show it.";
+    }
+    two.appendChild(make("p", "verdict__body", normText));
+
+    two.appendChild(make("p", "verdict__body",
+      state.legitimacy === "illegitimate"
+        ? "The response was read as unfair and aimed at people who had done " +
+          "nothing - what turns being handled as a group into having a reason " +
+          "to act as one."
+        : "The response was read as reasonable, which leaves the crowd little " +
+          "to unite around even when handled as a group. Legitimacy is doing " +
+          "as much work here as unity."));
+
+    /* --- Where they diverge --- */
+    var three = make("div", "verdict");
+    var verdictText;
+    var tone;
+    if (result.acting === 0) {
+      tone = "neutral";
+      verdictText =
+        "Nothing happened, so neither account is being tested - which is a " +
+        "possible outcome, and the commonest one. Change the policing or the " +
+        "legitimacy and run it again.";
+    } else if (result.selectivity >= 0.60) {
+      tone = "warn";
+      verdictText =
+        "This run separates the two accounts cleanly. " + result.acting +
+        " of 6 sections took part, and what they did stayed aimed at one " +
+        "target while three others within reach were left alone. A general " +
+        "loss of restraint does not predict selective action, and selective " +
+        "action is what a shared norm looks like from outside.";
+    } else if (result.selectivity < 0.30) {
+      tone = "caution";
+      verdictText =
+        "This run goes the other way. Action was spread almost evenly across " +
+        "every available target, which is the shape a deindividuation account " +
+        "describes well and an identity account has to work hardest to " +
+        "explain - it would have to argue for several small categories with " +
+        "different norms, which is possible but is more work. Cases like this " +
+        "are why the argument is still live.";
+    } else {
+      tone = "neutral";
+      verdictText =
+        "This run does not separate the accounts. Action was partly " +
+        "concentrated and partly not, which both accounts can absorb - one by " +
+        "calling it a weakly shared norm, the other by calling it partial " +
+        "disinhibition. Runs like this are the majority of real events, and " +
+        "they are why single events rarely settle anything.";
+    }
+    three.setAttribute("data-tone", tone);
+    three.appendChild(make("h5", "verdict__title", "Where the two accounts diverge"));
+    three.appendChild(make("p", "verdict__body", verdictText));
+    three.appendChild(make("p", "verdict__note",
+      "Participation and selectivity move independently. Run preset 2 and " +
+      "preset 3 one after the other: the deindividuation index barely changes " +
+      "between them, and the pattern of what was done changes completely."));
+
+    readings.appendChild(one);
+    readings.appendChild(two);
+    readings.appendChild(three);
+  }
+
+  /* --- The section table ------------------------------------------------------ */
+
+  function buildSections(result) {
+    clear(sectionsBody);
+    result.rows.forEach(function (row) {
+      var tr = make("tr");
+      tr.setAttribute("data-acted", row.acted ? "yes" : "no");
+      var th = make("th", null, row.name);
+      th.setAttribute("scope", "row");
+      tr.appendChild(th);
+      tr.appendChild(make("td", null, fixed(row.base)));
+      tr.appendChild(make("td", null,
+        (row.situational >= 0 ? "+" : "") + fixed(row.situational)));
+      tr.appendChild(make("td", null, fixed(row.total)));
+      tr.appendChild(make("td", null, row.acted ? "Yes" : "No"));
+      sectionsBody.appendChild(tr);
+    });
+  }
+
+  /* --- Render ------------------------------------------------------------------ */
+
+  function render(options) {
+    var result = runModel(state);
+
+    if (result.acting === 0) {
+      headline.textContent =
+        "No section of the crowd took part. There is no distribution of " +
+        "action to report.";
+    } else {
+      headline.textContent =
+        result.acting + " of 6 sections took part, and the action was " +
+        selectivityWord(result.selectivity) + " (selectivity " +
+        fixed(result.selectivity) + " on a 0 to 1 scale).";
+    }
+
+    drawTargets(result);
+
+    targetsText.textContent = result.acting === 0
+      ? "No action occurred in this run, so no share can be reported for any " +
+        "of the four targets. Selectivity is not defined."
+      : "Share of the crowd's action by target: the police line " +
+        pct(result.weights.police) + " per cent, shop fronts on Bridge Road " +
+        pct(result.weights.shops) + " per cent, the community centre " +
+        pct(result.weights.centre) + " per cent, other people in the crowd " +
+        pct(result.weights.crowd) + " per cent. An even spread would be 25 " +
+        "per cent each; selectivity " + fixed(result.selectivity) + ".";
+
+    buildReadings(result);
+    buildSections(result);
+
+    if (!options || !options.silent) {
+      shell.announce(
+        result.acting === 0
+          ? "No section of the crowd took part in this run."
+          : result.acting + " of 6 sections took part. Action was " +
+            selectivityWord(result.selectivity) + ", selectivity " +
+            fixed(result.selectivity) + ". The police line took " +
+            pct(result.weights.police) + " per cent of it.",
+        { immediate: true });
+    }
+    return result;
+  }
+
+  /* --- Controls -------------------------------------------------------------- */
+
+  $$('input[name="police"], input[name="norm"]').forEach(function (input) {
+    input.addEventListener("change", function () { readControls(); render(); });
+  });
+  [legitimacySelect, categorySelect, anonymitySelect].forEach(function (select) {
+    select.addEventListener("change", function () { readControls(); render(); });
+  });
+
+  function buildPresets() {
+    clear(presetsBox);
+    PRESETS.forEach(function (preset) {
+      var button = make("button", "button button--secondary preset");
+      button.type = "button";
+      button.appendChild(make("span", "preset__label", preset.label));
+      button.appendChild(make("span", "preset__hint", preset.hint));
+      button.addEventListener("click", function () {
+        Object.keys(preset.state).forEach(function (key) {
+          state[key] = preset.state[key];
+        });
+        writeControls();
+        var result = render({ silent: true });
+        shell.announce(
+          preset.label + " loaded. " + (result.acting === 0
+            ? "No section took part."
+            : result.acting + " of 6 sections took part, selectivity " +
+              fixed(result.selectivity) + "."),
+          { immediate: true });
+      });
+      presetsBox.appendChild(button);
+    });
+  }
+
+  /* --- Challenge --------------------------------------------------------------- */
+
+  function buildClaims() {
+    clear(claimsList);
+    CLAIMS.forEach(function (claim, index) {
+      var group = make("fieldset", "prediction__group");
+      group.appendChild(make("legend", "prediction__legend",
+        (index + 1) + ". " + claim.text));
+      CLAIM_OPTIONS.forEach(function (option) {
+        var label = make("label", "control--choice");
+        var input = document.createElement("input");
+        input.type = "radio";
+        input.name = "claim-" + claim.id;
+        input.value = option.value;
+        label.appendChild(input);
+        label.appendChild(make("span", null, option.label));
+        group.appendChild(label);
+      });
+      claimsList.appendChild(group);
+    });
+  }
+
+  claimsForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answers = CLAIMS.map(function (claim) {
+      var picked = $('input[name="claim-' + claim.id + '"]:checked', claimsForm);
+      return picked ? picked.value : null;
+    });
+    if (answers.indexOf(null) !== -1) {
+      showFeedback(claimsFeedback, "caution",
+        "One judgement per observation, please.",
+        "A blank is not a verdict, and the observations are meant to be " +
+        "uncomfortable rather than skippable.");
+      return;
+    }
+    var right = 0;
+    CLAIMS.forEach(function (claim, index) {
+      if (answers[index] === claim.answer) { right += 1; }
+    });
+    clear(claimsFeedback);
+    claimsFeedback.setAttribute("data-tone", right >= 4 ? "good" : "caution");
+    var lead = make("p");
+    lead.appendChild(make("strong", "feedback__verdict", right + " of 5 match."));
+    lead.appendChild(document.createTextNode(
+      " Two of these are meant to resist an easy answer: one that both " +
+      "accounts explain equally well, and one that supports no conclusion " +
+      "about crowd action at all."));
+    claimsFeedback.appendChild(lead);
+    var list = make("ol", "claims__results");
+    CLAIMS.forEach(function (claim, index) {
+      var li = make("li");
+      var agreed = answers[index] === claim.answer;
+      li.setAttribute("data-agreed", agreed ? "yes" : "no");
+      var head = make("p", "claims__result-head");
+      head.appendChild(make("strong", null,
+        (index + 1) + ": " + CLAIM_SHORT[claim.answer] + "."));
+      head.appendChild(document.createTextNode(
+        agreed
+          ? " That is what you said."
+          : " You said: " + CLAIM_SHORT[answers[index]].toLowerCase() + "."));
+      li.appendChild(head);
+      li.appendChild(make("p", null, claim.why));
+      list.appendChild(li);
+    });
+    claimsFeedback.appendChild(list);
+    claimsFeedback.hidden = false;
+    shell.announce("Five observations judged. " + right + " match.",
+      { immediate: true });
+  });
+
+  /* --- Opening prediction -------------------------------------------------------- */
+
+  var OPENING = {
+    calm: {
+      tone: "caution",
+      verdict: "Sometimes, and it is the outcome nobody studies.",
+      text:
+        "Most demonstrations on most afternoons end with everyone going home, " +
+        "and a literature built only on the ones that did not is a biased " +
+        "sample. But the specific thing being asked about here - being pushed " +
+        "back as a mass, regardless of what you were doing - is the condition " +
+        "under which both accounts expect something rather than nothing."
+    },
+    minority: {
+      tone: "caution",
+      verdict: "That is what differentiated policing produces, not this.",
+      text:
+        "Try preset 1 and then preset 2 in the laboratory. Under differentiated " +
+        "policing the handful who came for a confrontation stay a handful. It " +
+        "is being handled as one mass that puts everyone else in the same " +
+        "category as them."
+    },
+    spread: {
+      tone: "good",
+      verdict: "That is the elaborated model's prediction, and it has two parts.",
+      text:
+        "Participation generalises - sections of the crowd who wanted nothing " +
+        "to do with a confrontation are now inside a category that has a " +
+        "reason to have one - while the targets stay narrow, because a shared " +
+        "identity brings limits as well as licence. Preset 2 in the laboratory " +
+        "is exactly this."
+    },
+    chaos: {
+      tone: "caution",
+      verdict: "That is the deindividuation prediction, and it is testable.",
+      text:
+        "Lost restraint has no direction, so this account expects action to " +
+        "spread across whatever is to hand. The laboratory can produce that " +
+        "shape - preset 3 does - but it takes the absence of a shared category " +
+        "and of a shared norm to get there. Whether real events look like " +
+        "preset 2 or preset 3 is the empirical question."
+    }
+  };
+
+  function showFeedback(container, tone, verdict, text) {
+    clear(container);
+    container.setAttribute("data-tone", tone);
+    var p = make("p");
+    p.appendChild(make("strong", "feedback__verdict", verdict));
+    if (text) { p.appendChild(document.createTextNode(" " + text)); }
+    container.appendChild(p);
+    container.hidden = false;
+  }
+
+  function lockForm(form) {
+    $$("input, button, select", form).forEach(function (c) { c.disabled = true; });
+  }
+
+  function unlockForm(form) {
+    $$("input, button, select", form).forEach(function (c) { c.disabled = false; });
+    form.reset();
+  }
+
+  function unlockLab() {
+    labSection.hidden = false;
+    render({ silent: true });
+    shell.announce(
+      "Laboratory open, loaded with differentiated policing seen as legitimate.",
+      { immediate: true });
+  }
+
+  openingForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answer = $('input[name="opening"]:checked', openingForm);
+    if (!answer) {
+      openingError.textContent = "Choose an answer before opening the laboratory.";
+      openingError.hidden = false;
+      return;
+    }
+    openingError.hidden = true;
+    var feedback = OPENING[answer.value];
+    showFeedback(openingFeedback, feedback.tone, feedback.verdict, feedback.text);
+    lockForm(openingForm);
+    unlockLab();
+    $("#lab-heading").focus();
+  });
+
+  $('[data-action="skip-opening"]').addEventListener("click", function () {
+    openingError.hidden = true;
+    showFeedback(openingFeedback, "neutral",
+      "Prediction skipped - demonstration mode.", "");
+    lockForm(openingForm);
+    unlockLab();
+  });
+
+  /* --- Reset and start-up --------------------------------------------------------- */
+
+  shell.onReset(function () {
+    state = JSON.parse(JSON.stringify(INITIAL));
+    unlockForm(openingForm);
+    openingFeedback.hidden = true;
+    openingError.hidden = true;
+    labSection.hidden = true;
+    claimsForm.reset();
+    claimsFeedback.hidden = true;
+    writeControls();
+    render({ silent: true });
+  });
+
+  buildPresets();
+  buildClaims();
+
+  shell.reset({ silent: true });
+  shell.announce(
+    "Ready. Read the two accounts above, then answer the question to open the " +
+    "laboratory.",
+    { immediate: true });
+})();
+
+</script>
+</div>

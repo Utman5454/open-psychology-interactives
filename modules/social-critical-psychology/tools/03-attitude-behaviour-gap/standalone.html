@@ -1,0 +1,3374 @@
+<!-- Attitude-Behaviour Gap Laboratory
+     From Open Psychology Interactives - https://github.com/utman5454/open-psychology-interactives
+     Self-contained: no stylesheets, scripts, fonts, images or network requests.
+     Styles are scoped to .opi-activity and do not affect the page around them.
+     Nothing is saved, sent or tracked. MIT licensed; please keep this notice.
+     Paste anywhere that accepts HTML, or save as a .html file and open it. -->
+<div class="opi-activity">
+<style>
+/* Defensive baseline. See scripts/build-standalone.py for why this
+   is `revert` rather than an enumerated reset, and how the specificity ladder
+   keeps the activity's own styling on top of it. */
+.opi-activity *:not(svg *) {
+  all: revert;
+}
+.opi-activity, .opi-activity *, .opi-activity *::before, .opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  text-transform: none;
+  text-indent: 0;
+  font-style: normal;
+  font-variant: normal;
+  letter-spacing: normal;
+  word-spacing: normal;
+  white-space: normal;
+  visibility: visible;
+  float: none;
+  max-width: none;
+}
+.opi-activity svg { max-width: 100%; }
+.opi-activity img { max-width: 100%; height: auto; }
+.opi-activity [hidden] { display: none !important; }
+
+/* assets/css/main.css */
+.opi-activity.opi-activity {
+  --colour-page: #ffffff;
+  --colour-surface: #f5f7fa;
+  --colour-surface-raised: #ffffff;
+  --colour-border: #d3d9e2;
+  --colour-border-strong: #aeb7c4;
+  --colour-text: #131820;
+  --colour-text-muted: #4c566a;
+  --colour-accent: #1a4fa0;
+  --colour-accent-hover: #123a7a;
+  --colour-accent-soft: #e8eefb;
+  --colour-on-accent: #ffffff;
+  --colour-focus: #b45309;
+  --colour-cognitive: #8a4b00;
+  --colour-research-methods: #1a4fa0;
+  --colour-neuropsychology: #145c53;
+  --colour-social-critical-psychology: #9e2f45;
+  --colour-personality-individual-differences: #7a2e6d;
+  --colour-status-bg: #f1ede3;
+  --colour-status-text: #5c4a1f;
+  --colour-status-border: #d9cdb0;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  --text-xs: 13px;
+  --text-sm: 15px;
+  --text-base: 17px;
+  --text-lg: 19px;
+  --text-xl: 23px;
+  --text-2xl: 28px;
+  --text-3xl: 36px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgb(19 24 32 / 0.06);
+  --shadow-md: 0 2px 8px rgb(19 24 32 / 0.08);
+  --measure: 68ch;
+  --container: 1152px;
+}
+@media (prefers-color-scheme: dark) {
+.opi-activity.opi-activity {
+  --colour-page: #0f141b;
+  --colour-surface: #161d27;
+  --colour-surface-raised: #1a2230;
+  --colour-border: #2c3644;
+  --colour-border-strong: #44506180;
+  --colour-text: #e9edf3;
+  --colour-text-muted: #a8b2c1;
+  --colour-accent: #8fb6ff;
+  --colour-accent-hover: #b3cdff;
+  --colour-accent-soft: #1b2740;
+  --colour-on-accent: #0f141b;
+  --colour-focus: #f0b429;
+  --colour-cognitive: #e2ab5f;
+  --colour-research-methods: #8fb6ff;
+  --colour-neuropsychology: #6fc3b4;
+  --colour-social-critical-psychology: #f19aa8;
+  --colour-personality-individual-differences: #db9ccd;
+  --colour-status-bg: #241f14;
+  --colour-status-text: #e2cf9f;
+  --colour-status-border: #4a4028;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 2px 10px rgb(0 0 0 / 0.45);
+}
+}
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity.opi-activity {
+  -webkit-text-size-adjust: 100%;
+}
+.opi-activity.opi-activity {
+  background-color: var(--colour-page);
+  color: var(--colour-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.65;
+}
+.opi-activity.opi-activity h1,
+.opi-activity.opi-activity h2,
+.opi-activity.opi-activity h3,
+.opi-activity.opi-activity h4 {
+  margin: 0 0 var(--space-3);
+  line-height: 1.25;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.opi-activity.opi-activity h1 {
+  font-size: var(--text-3xl);
+}
+.opi-activity.opi-activity h2 {
+  font-size: var(--text-2xl);
+}
+.opi-activity.opi-activity h3 {
+  font-size: var(--text-xl);
+}
+.opi-activity.opi-activity h4 {
+  font-size: var(--text-lg);
+}
+.opi-activity.opi-activity p,
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol,
+.opi-activity.opi-activity dl {
+  margin: 0 0 var(--space-4);
+}
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol {
+  padding-left: 1.35em;
+}
+.opi-activity.opi-activity li + li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity a {
+  color: var(--colour-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: max(1px, 0.06em);
+}
+.opi-activity.opi-activity a:hover {
+  color: var(--colour-accent-hover);
+  text-decoration-thickness: max(2px, 0.11em);
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid var(--colour-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+@supports not selector(:focus-visible) {
+.opi-activity.opi-activity :focus {
+  outline: 3px solid var(--colour-focus);
+    outline-offset: 2px;
+}
+}
+.opi-activity.opi-activity code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.35em;
+}
+.opi-activity.opi-activity hr {
+  border: 0;
+  border-top: 1px solid var(--colour-border);
+  margin: var(--space-6) 0;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+}
+.opi-activity.opi-activity .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.opi-activity.opi-activity .container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+@media (min-width: 40em) {
+.opi-activity.opi-activity .container {
+  padding-inline: var(--space-5);
+}
+}
+.opi-activity.opi-activity .prose {
+  max-width: var(--measure);
+}
+.opi-activity.opi-activity .text-muted {
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .section {
+  padding-block: var(--space-7);
+}
+.opi-activity.opi-activity .section--tinted {
+  background-color: var(--colour-surface);
+  border-block: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .section__header {
+  max-width: var(--measure);
+  margin-bottom: var(--space-5);
+}
+.opi-activity.opi-activity .section__header > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-7) var(--space-6);
+  border-bottom: 1px solid var(--colour-border);
+  
+  background-image: linear-gradient(
+    180deg,
+    var(--colour-accent-soft) 0%,
+    var(--colour-page) 100%
+  );
+}
+.opi-activity.opi-activity .hero__eyebrow {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .hero h1 {
+  max-width: 20ch;
+  margin-bottom: var(--space-4);
+}
+.opi-activity.opi-activity .hero__lead {
+  max-width: var(--measure);
+  font-size: var(--text-lg);
+  color: var(--colour-text-muted);
+}
+@media (min-width: 48em) {
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-8) var(--space-7);
+}
+.opi-activity.opi-activity .hero h1 {
+  font-size: 44px;
+}
+}
+.opi-activity.opi-activity .button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  
+  min-height: 44px;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .button--primary {
+  background-color: var(--colour-accent);
+  border-color: var(--colour-accent);
+  
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--primary:hover {
+  background-color: var(--colour-accent-hover);
+  border-color: var(--colour-accent-hover);
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--secondary {
+  background-color: transparent;
+  border-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .button--secondary:hover {
+  background-color: var(--colour-surface);
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+}
+.opi-activity.opi-activity .card--cognitive {
+  --card-accent: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .card--research-methods {
+  --card-accent: var(--colour-research-methods);
+}
+.opi-activity.opi-activity .card--neuropsychology {
+  --card-accent: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .card--social-critical-psychology {
+  --card-accent: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .card--personality-individual-differences {
+  --card-accent: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 650;
+  line-height: 1.4;
+  padding: 3.2px var(--space-3);
+  border-radius: 999px;
+  border: 1px solid var(--colour-status-border);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+}
+.opi-activity.opi-activity .badge__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex: none;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed var(--colour-border-strong);
+  border-radius: var(--radius-lg);
+  background-color: var(--colour-surface);
+  padding: var(--space-5);
+  text-align: left;
+}
+.opi-activity.opi-activity .placeholder__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+}
+.opi-activity.opi-activity .placeholder > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .split {
+  display: grid;
+  gap: var(--space-6);
+}
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split {
+  grid-template-columns: 3fr 2fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .panel {
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.opi-activity.opi-activity .panel > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .panel__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .section--tinted {
+  border-block: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .hero {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .button--primary {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .button--secondary {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .button:hover {
+  border-color: Highlight;
+}
+.opi-activity.opi-activity .panel {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed CanvasText;
+}
+.opi-activity.opi-activity .badge {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .badge__dot {
+  background-color: CanvasText;
+}
+.opi-activity.opi-activity code {
+  border-color: CanvasText;
+}
+.opi-activity.opi-activity hr {
+  border-top-color: CanvasText;
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+}
+@media print {
+.opi-activity.opi-activity {
+  color: #000;
+  background: #fff;
+}
+.opi-activity.opi-activity a[href^="http"]::after {
+  content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+}
+}
+
+/* components/interactive-shell.css */
+.opi-activity.opi-activity .interactive {
+  --shell-page: var(--colour-page, #ffffff);
+  --shell-surface: var(--colour-surface, #f5f7fa);
+  --shell-raised: var(--colour-surface-raised, #ffffff);
+  --shell-border: var(--colour-border, #d3d9e2);
+  --shell-border-strong: var(--colour-border-strong, #aeb7c4);
+  --shell-text: var(--colour-text, #131820);
+  --shell-muted: var(--colour-text-muted, #4c566a);
+  --shell-accent: var(--colour-accent, #1a4fa0);
+  --shell-accent-soft: var(--colour-accent-soft, #e8eefb);
+  
+  --shell-on-accent: var(--colour-on-accent, #ffffff);
+  --shell-focus: var(--colour-focus, #b45309);
+  --shell-radius: var(--radius-lg, 12px);
+  --shell-gap: var(--space-5, 24px);
+
+  display: block;
+  background-color: var(--shell-raised);
+  color: var(--shell-text);
+  border: 1px solid var(--shell-border);
+  border-radius: var(--shell-radius);
+  
+  overflow-x: clip;
+  overflow-y: visible;
+}
+.opi-activity.opi-activity .interactive__header {
+  padding: var(--shell-gap);
+  border-bottom: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 1.25;
+}
+.opi-activity.opi-activity .interactive__brief {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--shell-muted);
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__body {
+  display: grid;
+  gap: var(--shell-gap);
+  padding: var(--shell-gap);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body {
+  grid-template-columns: minmax(240px, 320px) 1fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .interactive__controls {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__controls fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .interactive__controls legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .control {
+  display: grid;
+  gap: 5.6px;
+}
+.opi-activity.opi-activity .control + .control {
+  margin-top: 16px;
+}
+.opi-activity.opi-activity .control__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.opi-activity.opi-activity .control__label {
+  font-size: 15px;
+  font-weight: 600;
+}
+.opi-activity.opi-activity .control__value {
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--shell-accent);
+}
+.opi-activity.opi-activity .control__hint {
+  font-size: 13px;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .interactive__controls input[type="range"] {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--shell-accent);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  width: 100%;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--shell-text);
+  background-color: var(--shell-raised);
+  border: 1px solid var(--shell-border-strong);
+  border-radius: var(--radius-sm, 4px);
+}
+.opi-activity.opi-activity .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+}
+.opi-activity.opi-activity .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  accent-color: var(--shell-accent);
+  flex: none;
+}
+.opi-activity.opi-activity .interactive__stage {
+  min-height: 256px;
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-page);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body--pinned {
+  align-items: stretch;
+}
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: sticky;
+    top: 0;
+    z-index: 2;
+    
+    margin: -16px -16px 0;
+    padding: 16px 16px 12px;
+    background-color: var(--shell-page);
+    border-bottom: 1px solid var(--shell-border);
+}
+}
+@media (min-width: 52em) and (max-height: 30em) {
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: static;
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
+}
+}
+.opi-activity.opi-activity .interactive__stage > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity :where(.interactive__stage) svg,
+.opi-activity.opi-activity :where(.interactive__stage) canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+.opi-activity.opi-activity .interactive__readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout div {
+  padding: 9.6px 12px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-sm, 4px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__readout dt {
+  font-size: 13px;
+  color: var(--shell-muted);
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout dd {
+  margin: 2.4px 0 0;
+  font-size: 18px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .interactive__status {
+  margin: 0;
+  padding: 12px var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+  font-size: 15px;
+  color: var(--shell-muted);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .interactive__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+}
+.opi-activity.opi-activity .interactive__actions button {
+  min-height: 44px;
+  padding: 6.4px 20px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--shell-on-accent);
+  background-color: var(--shell-accent);
+  border: 1px solid var(--shell-accent);
+  border-radius: var(--radius-md, 8px);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  color: var(--shell-text);
+  background-color: transparent;
+  border-color: var(--shell-border-strong);
+}
+.opi-activity.opi-activity .interactive__actions button:hover {
+  filter: brightness(1.08);
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__notes > summary {
+  padding: 13.6px var(--shell-gap);
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__notes > div {
+  padding: 0 var(--shell-gap) var(--shell-gap);
+  max-width: 68ch;
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__notes > div > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity .interactive *,
+.opi-activity.opi-activity .interactive *::before,
+.opi-activity.opi-activity .interactive *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+}
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .interactive,
+.opi-activity.opi-activity .interactive__controls,
+.opi-activity.opi-activity .interactive__stage,
+.opi-activity.opi-activity .interactive__readout div {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__header {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__status,
+.opi-activity.opi-activity .interactive__actions,
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__actions button {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  border-width: 1px;
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 1;
+    color: GrayText;
+    border-color: GrayText;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__stage svg {
+  forced-color-adjust: auto;
+}
+}
+
+/* components/tool-kit.css */
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split--wide {
+  grid-template-columns: 1fr 1fr;
+}
+}
+.opi-activity.opi-activity .how-to {
+  padding-left: 19.2px;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .how-to > li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .table-scroll {
+  overflow-x: auto;
+  
+  position: relative;
+}
+.opi-activity.opi-activity .prediction {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 832px;
+}
+.opi-activity.opi-activity .prediction > *,
+.opi-activity.opi-activity .challenge > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity .prediction__group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .prediction__legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-weight: 650;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .prediction .control--choice,
+.opi-activity.opi-activity .challenge .control--choice,
+.opi-activity.opi-activity .evidence .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .prediction .control--choice input,
+.opi-activity.opi-activity .challenge .control--choice input,
+.opi-activity.opi-activity .evidence .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .prediction__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .prediction__error {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-status-border);
+  border-left: 4px solid var(--colour-status-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .prediction__readback {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .feedback[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .feedback[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .feedback[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .feedback__verdict {
+  font-weight: 700;
+}
+.opi-activity.opi-activity .verdict {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .verdict__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict__body {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .verdict__body + .verdict__body {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .verdict__note {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .verdict[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .verdict[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .goal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .goal__label {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .goal__text {
+  flex: 1 1 256px;
+}
+.opi-activity.opi-activity .goal strong {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .goal__checks {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+  display: grid;
+  gap: 2.4px;
+}
+.opi-activity.opi-activity .goal__checks > li {
+  margin-top: 0;
+  padding-left: 22.4px;
+  position: relative;
+}
+.opi-activity.opi-activity .goal__checks > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 9.6px;
+  height: 9.6px;
+  border: 2px solid var(--colour-border-strong);
+  border-radius: 2px;
+}
+.opi-activity.opi-activity .goal__checks > li[data-met="yes"]::before {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .stage-track {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .stage-track > li {
+  margin-top: 0;
+  flex: 1 1 160px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-bottom: 3px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .stage-track > li > span {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.opi-activity.opi-activity .stage-track > li[data-state="done"] {
+  border-bottom-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border-bottom-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+  color: var(--colour-text);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .stage__heading {
+  margin: 0;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .data-table,
+.opi-activity.opi-activity .chart__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .data-table th,
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table th,
+.opi-activity.opi-activity .chart__table td {
+  padding: 6.4px 9.6px;
+  border: 1px solid var(--colour-border);
+  text-align: left;
+  vertical-align: top;
+}
+.opi-activity.opi-activity .data-table thead th,
+.opi-activity.opi-activity .chart__table thead th {
+  background-color: var(--colour-surface);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table td {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__table tbody th,
+.opi-activity.opi-activity .data-table tbody th {
+  font-weight: 550;
+}
+.opi-activity.opi-activity .data-table__total > th,
+.opi-activity.opi-activity .data-table__total > td {
+  border-top: 2px solid var(--colour-border-strong);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart {
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .chart__caption {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__svg {
+  max-width: 100%;
+  height: auto;
+}
+.opi-activity.opi-activity .chart__label,
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__inline,
+.opi-activity.opi-activity .chart__axis {
+  font-family: var(--font-body);
+  fill: var(--colour-text);
+  font-size: 13px;
+}
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__axis {
+  fill: var(--colour-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: var(--colour-on-accent);
+  font-size: 12px;
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__track {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__bar {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--one {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .chart__baseline,
+.opi-activity.opi-activity .chart__grid {
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__line {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: var(--colour-personality-individual-differences);
+  stroke-dasharray: 6 4;
+}
+.opi-activity.opi-activity .chart__point {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .reveal > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .reveal__lead {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+.opi-activity.opi-activity .reveal__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(176px, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+  padding: 0;
+  list-style: none;
+}
+.opi-activity.opi-activity .reveal__figures > li {
+  margin-top: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+.opi-activity.opi-activity .reveal__figure-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .reveal__figure-value {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .challenge {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+.opi-activity.opi-activity .challenge__locked {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .panel--caution {
+  background-color: var(--colour-status-bg);
+  border-color: var(--colour-status-border);
+}
+.opi-activity.opi-activity .panel--caution li + li {
+  margin-top: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .goal,
+.opi-activity.opi-activity .verdict,
+.opi-activity.opi-activity .feedback,
+.opi-activity.opi-activity .prediction__error,
+.opi-activity.opi-activity .prediction__readback,
+.opi-activity.opi-activity .stage-track > li,
+.opi-activity.opi-activity .reveal__figures > li {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border: 2px solid Highlight;
+}
+.opi-activity.opi-activity .chart__bar,
+.opi-activity.opi-activity .chart__bar--one {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: Canvas;
+}
+.opi-activity.opi-activity .chart__line {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: Highlight;
+}
+}
+.opi-activity.opi-activity .stage__more {
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .stage__more > summary {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .stage__more[open] > summary {
+  border-bottom: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .stage__more > *:not(summary) {
+  margin: var(--space-3);
+}
+
+/* modules/social-critical-psychology/tools/03-attitude-behaviour-gap/tool.css */
+.opi-activity.opi-activity #ab-lab .interactive__controls,
+.opi-activity.opi-activity #ab-lab .interactive__stage {
+  min-width: 0;
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity #ab-lab .interactive__body {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+}
+@media (min-width: 76em) {
+.opi-activity.opi-activity #ab-lab .interactive__body {
+  grid-template-columns: minmax(0, 416px) minmax(0, 1fr);
+}
+}
+.opi-activity.opi-activity .person {
+  margin: 0 0 var(--space-3);
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  background-color: var(--colour-surface-raised);
+}
+.opi-activity.opi-activity .person__legend {
+  float: left;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  font-size: var(--text-base);
+  font-weight: 650;
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .person__blurb {
+  clear: both;
+  margin: 3.2px 0 var(--space-2);
+  font-size: var(--text-sm);
+  line-height: 1.45;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .person .control--choice {
+  min-height: 44px;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .subfield {
+  margin: 0 0 var(--space-3);
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .subfield legend {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .subfield .control--choice {
+  align-items: flex-start;
+  gap: 9.6px;
+  font-size: var(--text-sm);
+  line-height: 1.35;
+}
+.opi-activity.opi-activity .subfield .control--choice input {
+  margin-top: 4.8px;
+}
+.opi-activity.opi-activity .stage-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.opi-activity.opi-activity .stage-nav .button {
+  min-height: 44px;
+}
+.opi-activity.opi-activity .prevalence {
+  margin: 0;
+  font-size: var(--text-lg);
+  font-weight: 650;
+  line-height: 1.3;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .driver {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .spec__coherence {
+  margin: 0;
+  padding: var(--space-2) var(--space-3);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .spec__coherence[data-state="ok"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .spec__coherence[data-state="tension"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity #ab-lab .contribution-chart {
+  max-width: 416px;
+}
+.opi-activity.opi-activity #ab-lab .scatter-chart {
+  max-width: 320px;
+}
+.opi-activity.opi-activity .bar--adds {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .bar--subtracts {
+  fill: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .chart__point {
+  fill: var(--colour-accent);
+  fill-opacity: 0.55;
+}
+.opi-activity.opi-activity .data-table td[data-match="no"] {
+  font-weight: 700;
+}
+.opi-activity.opi-activity .data-table td[data-emphasis="yes"],
+.opi-activity.opi-activity .chart__table td[data-emphasis="yes"] {
+  font-weight: 700;
+  background-color: var(--colour-accent-soft);
+}
+.opi-activity.opi-activity .claims__results {
+  margin: var(--space-3) 0 0;
+  padding-left: 19.2px;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .claims__results > li {
+  margin-top: 0;
+  padding-left: var(--space-3);
+  border-left: 3px solid var(--colour-border-strong);
+}
+.opi-activity.opi-activity .claims__results > li[data-agreed="yes"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .claims__results > li[data-agreed="no"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .claims__result-head {
+  margin: 0 0 var(--space-1);
+}
+.opi-activity.opi-activity .claims__evidence {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .person,
+.opi-activity.opi-activity .spec__coherence,
+.opi-activity.opi-activity .claims__results > li {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .bar--adds,
+.opi-activity.opi-activity .chart__point {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .bar--subtracts {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .data-table td[data-emphasis="yes"],
+.opi-activity.opi-activity .chart__table td[data-emphasis="yes"] {
+  border: 2px solid Highlight;
+}
+}
+</style>
+
+  <!-- ================= Title and purpose ================= -->
+  <section class="section card--social-critical-psychology" aria-labelledby="page-heading">
+    <div class="container">
+
+      <p class="hero__eyebrow" style="color: var(--colour-social-critical-psychology)">
+        Social and Critical Psychology
+      </p>
+      <h1 id="page-heading">Attitude-Behaviour Gap Laboratory</h1>
+      <p class="hero__lead">
+        Four fictional colleagues answer a questionnaire about speaking up
+        when they disagree in a meeting. All four score 6.2 out of 7. Then
+        they go to work.
+      </p>
+
+      <p>
+        <span class="badge">
+          <span class="badge__dot" aria-hidden="true"></span>
+          Simulated - fictional people, a fictional workplace and a model with visible coefficients
+        </span>
+      </p>
+
+      <div class="split split--wide">
+
+        <div class="panel">
+          <h2 class="panel__title">Learning objective</h2>
+          <p>
+            By the end you should be able to name the conditions standing
+            between a measured evaluation and an action, and say which of
+            them add and which gate.
+          </p>
+          <p class="text-muted">
+            About 30 minutes. Nothing you do here is saved or sent anywhere.
+          </p>
+        </div>
+
+        <div class="panel panel--caution">
+          <h2 class="panel__title">What the model is and is not</h2>
+          <p>
+            The likelihood figures come from a small logistic model whose
+            coefficients are printed in the interface and in the teaching
+            notes. They are chosen to make a teaching pattern visible. They
+            are not estimates of anything, they do not come from any dataset,
+            and they should never be quoted as effect sizes. The model is a
+            deliberately simplified relative of the reasoned-action tradition;
+            its most important simplification is stated on screen.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="how-to">
+        <h2 class="panel__title">How to use this</h2>
+        <ol>
+          <li>Commit to an answer about Aisha, using only her score.</li>
+          <li>
+            Experiment 1: predict what four colleagues with the same score
+            actually do, then see the model's answer for each.
+          </li>
+          <li>
+            Experiment 2: take one of them and move the six conditions one at
+            a time.
+          </li>
+          <li>
+            Experiment 3: run the whole thing across 300 simulated people and
+            watch the correlation change with the setting and with the
+            measure.
+          </li>
+        </ol>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= Opening prediction ================= -->
+  <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="opening-heading">First, a judgement</h2>
+        <p class="prose">
+          Aisha is a fictional member of a fictional project team. On a
+          well-constructed seven-point questionnaire measuring attitude
+          towards voicing disagreement at work, she scores 6.2. The scale has
+          good internal consistency and a sensible factor structure.
+        </p>
+      </div>
+
+      <noscript>
+        <div class="placeholder">
+          <h3 class="placeholder__title">This part needs JavaScript</h3>
+          <p class="prose">
+            The three experiments compute behavioural likelihoods and
+            correlations in your browser, so they cannot run with JavaScript
+            switched off. The rest of this page is readable without it.
+          </p>
+        </div>
+      </noscript>
+
+      <form class="panel prediction" id="opening-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            On what proportion of the occasions where she disagrees will she
+            say so?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="most">
+            Nearly always - a score that high is a strong disposition
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="often">
+            Often - most of the time, with exceptions
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="some">
+            Sometimes - attitudes and behaviour only correlate modestly
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="cannot">
+            The score does not license any of these answers
+          </label>
+        </fieldset>
+
+        <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Record my answer and open the laboratory
+          </button>
+          <button class="button button--secondary" type="button" data-action="skip-opening">
+            Skip - I am demonstrating this
+          </button>
+        </div>
+
+        <div class="feedback" data-opening-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= The laboratory ================= -->
+  <section class="section" id="lab-section" aria-labelledby="lab-heading" hidden>
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="lab-heading" tabindex="-1">Three experiments</h2>
+      </div>
+
+      <section class="interactive" id="ab-lab" data-interactive
+               data-reset-message="Everything cleared. Back to the opening judgement.">
+
+        <header class="interactive__header">
+          <h3 class="interactive__title">From a score to an action</h3>
+          <p class="interactive__brief">
+            Each experiment shows only its own controls and its own result.
+            Experiment 1 asks you to predict before it answers.
+          </p>
+          <ol class="stage-track" data-stage-track>
+            <li data-stage="1"><span>1.</span> Four people, one score</li>
+            <li data-stage="2"><span>2.</span> Move one condition at a time</li>
+            <li data-stage="3"><span>3.</span> The correlation itself</li>
+          </ol>
+        </header>
+
+        <div class="interactive__body interactive__body--pinned">
+
+          <form class="interactive__controls" data-interactive-controls>
+
+            <fieldset data-stage="1">
+              <legend>Experiment 1. Predict each colleague</legend>
+              <p class="control__hint">
+                All four score 6.2 on the same questionnaire. Only their
+                circumstances differ. Say what you expect for each, then press
+                the button to see what the model gives.
+              </p>
+              <div data-person-predictions></div>
+              <button class="button button--primary" type="button" data-action="reveal">
+                Show the model's answers
+              </button>
+            </fieldset>
+
+            <fieldset data-stage="2">
+              <legend>Experiment 2. The six conditions</legend>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="person-select">Start from</label>
+                </div>
+                <select id="person-select"></select>
+                <p class="control__hint">
+                  Loads that colleague's circumstances. Then move one slider at
+                  a time and watch the figure at the top of the result.
+                </p>
+              </div>
+              <div data-sliders></div>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="correspondence-select">
+                    What the questionnaire asked about
+                  </label>
+                </div>
+                <select id="correspondence-select">
+                  <option value="general">Values in general - "open debate matters"</option>
+                  <option value="middle" selected>The behaviour in general - "I speak up when I disagree"</option>
+                  <option value="specific">This action, here - "I will say so in Thursday's meeting"</option>
+                </select>
+                <p class="control__hint">
+                  The same person, the same disposition; only the question
+                  changes. Compatibility between measure and behaviour is a
+                  property of the instrument, not of the person.
+                </p>
+              </div>
+            </fieldset>
+
+            <fieldset data-stage="3">
+              <legend>Experiment 3. 300 simulated colleagues</legend>
+              <p class="control__hint">
+                Everyone's attitude is drawn from the same distribution. Only
+                the setting and the measure change.
+              </p>
+              <fieldset class="subfield">
+                <legend>The setting</legend>
+                <label class="control--choice">
+                  <input type="radio" name="setting" value="lab" checked>
+                  Uniform conditions - everyone gets the same chaired meeting,
+                  the same standing, the same opportunity
+                </label>
+                <label class="control--choice">
+                  <input type="radio" name="setting" value="field">
+                  Real teams - conditions vary as much as attitudes do
+                </label>
+              </fieldset>
+              <fieldset class="subfield">
+                <legend>The measure</legend>
+                <label class="control--choice">
+                  <input type="radio" name="measure" value="general">
+                  A general values questionnaire
+                </label>
+                <label class="control--choice">
+                  <input type="radio" name="measure" value="middle" checked>
+                  A behaviour-level attitude scale
+                </label>
+                <label class="control--choice">
+                  <input type="radio" name="measure" value="specific">
+                  A specific intention, matched to the action
+                </label>
+              </fieldset>
+            </fieldset>
+
+            <div class="stage-nav">
+              <button class="button button--secondary" type="button" data-action="prev">
+                Previous experiment
+              </button>
+              <button class="button button--primary" type="button" data-action="next">
+                Next experiment
+              </button>
+            </div>
+            <p class="control__hint" data-gate-note role="status"></p>
+
+          </form>
+
+          <div class="interactive__stage" data-interactive-stage>
+
+            <div class="stage__primary" data-stage="1">
+              <h4 class="stage__heading">Four colleagues, four working lives</h4>
+              <div class="table-scroll">
+                <table class="data-table">
+                  <caption class="visually-hidden">
+                    Each colleague, their attitude score, your prediction and
+                    the model's estimated proportion of occasions
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Colleague</th>
+                      <th scope="col">Attitude</th>
+                      <th scope="col">You said</th>
+                      <th scope="col">Model</th>
+                    </tr>
+                  </thead>
+                  <tbody data-people-table></tbody>
+                </table>
+              </div>
+              <p class="spec__coherence" data-people-note></p>
+            </div>
+
+            <!-- The pinned result is the one number the sliders change.
+                 The full contribution figure sits below it, in flow. -->
+            <div class="stage__primary" data-stage="2" hidden>
+              <h4 class="stage__heading">Estimated behaviour</h4>
+              <p class="prevalence" data-likelihood></p>
+              <p class="driver" data-driver></p>
+            </div>
+
+            <div data-stage="2" hidden>
+              <figure class="chart">
+                <figcaption class="chart__caption">
+                  What each condition contributes
+                </figcaption>
+                <svg class="chart__svg contribution-chart" data-contributions
+                     viewBox="0 0 320 168" aria-hidden="true" focusable="false"></svg>
+                <div class="table-scroll">
+                  <table class="chart__table">
+                    <caption class="visually-hidden">
+                      Contribution of each condition in log-odds units
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Condition</th>
+                        <th scope="col">Setting</th>
+                        <th scope="col">Contribution</th>
+                      </tr>
+                    </thead>
+                    <tbody data-contribution-table></tbody>
+                  </table>
+                </div>
+              </figure>
+            </div>
+
+            <div class="stage__primary" data-stage="3" hidden>
+              <h4 class="stage__heading">Attitude against behaviour, 300 people</h4>
+              <p class="prevalence" data-correlation></p>
+              <div class="table-scroll">
+                <table class="data-table">
+                  <caption class="visually-hidden">
+                    Correlation between measured attitude and behaviour in each
+                    combination of setting and measure
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Measure</th>
+                      <th scope="col">Uniform conditions</th>
+                      <th scope="col">Real teams</th>
+                    </tr>
+                  </thead>
+                  <tbody data-matrix-table></tbody>
+                </table>
+              </div>
+            </div>
+
+            <div data-stage="3" hidden>
+              <figure class="chart">
+                <figcaption class="chart__caption">
+                  The selected cell, as a scatterplot
+                </figcaption>
+                <svg class="chart__svg scatter-chart" data-scatter viewBox="0 0 260 210"
+                     aria-hidden="true" focusable="false"></svg>
+                <p class="chart__caption" data-scatter-text></p>
+              </figure>
+            </div>
+
+            <div data-secondary="2" hidden>
+              <div class="verdict" data-interpretation></div>
+            </div>
+
+            <div data-secondary="3" hidden>
+              <div class="verdict" data-matrix-note></div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <p class="interactive__status" data-interactive-status role="status"></p>
+
+        <div class="interactive__actions">
+          <button type="button" data-action="worked">
+            Worked example
+          </button>
+          <button type="button" data-variant="secondary" data-interactive-reset>
+            Reset everything
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ================= Challenge ================= -->
+  <section class="section section--tinted" id="challenge" aria-labelledby="challenge-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="challenge-heading">Challenge - four things a report might say</h2>
+        <p class="prose">
+          Judge each against the model as you currently have it set. Two of
+          them change their verdict depending on your settings, which is the
+          point.
+        </p>
+      </div>
+
+      <form class="panel challenge" id="claims-form">
+        <div data-claims-list></div>
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Check my judgements
+          </button>
+        </div>
+        <div class="feedback" data-claims-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Debrief ================= -->
+  <section class="section" id="debrief" aria-labelledby="debrief-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="debrief-heading">What this demonstrates</h2>
+      </div>
+
+      <div class="split split--wide">
+
+        <div class="prose">
+          <h3>A score is an answer to a question, not a summary of a life</h3>
+          <p>
+            Aisha's 6.2 is a reliable and valid measurement of how she
+            evaluates voicing disagreement. It is not a measurement of how
+            often she does it, and nothing about improving the questionnaire
+            would make it one. The gap between the two is not measurement
+            error to be engineered away; it is occupied by other people, a
+            chair, a room, a rota and a career.
+          </p>
+
+          <h3>Some conditions add; one of them gates</h3>
+          <p>
+            Norms, confidence and habit shift the odds. Opportunity does not:
+            if the occasion does not arise, nothing else matters, which is why
+            it multiplies in the model rather than adding. Marek has every
+            internal condition Rowan has and does the behaviour far less
+            often. A great deal of applied psychology is aimed at the terms
+            that add, in situations where the term that gates is doing the
+            work.
+          </p>
+
+          <h3>Correspondence is a property of the instrument</h3>
+          <p>
+            The same person, the same disposition, three questionnaires. A
+            general values scale correlates weakly with a specific act; a
+            measure matched to the action in target, context and time
+            correlates far better. This is the compatibility principle from
+            the reasoned-action tradition, and it explains a large part of the
+            historical "attitudes do not predict behaviour" literature without
+            anyone having to be wrong about attitudes.
+          </p>
+
+          <h3>The correlation is a fact about the sample's conditions</h3>
+          <p>
+            Experiment 3 holds the attitude distribution fixed and changes only
+            how much the conditions vary. In uniform conditions the
+            correlation is high, because attitude is the only thing left
+            varying. In real teams it falls, because the outcome now depends on
+            things the questionnaire never asked about. An attitude-behaviour
+            correlation is therefore partly a description of the setting the
+            study was run in - which is worth remembering before generalising
+            one.
+          </p>
+
+          <h3>Where this leaves the individual-level account</h3>
+          <p>
+            The reasoned-action models are among the most successful
+            individual-level frameworks in social psychology, and this tool is
+            built on their logic. The critical point is not that they are
+            wrong but that they are a particular level of description: they
+            represent norms as a perception inside a head and constraints as a
+            perceived control, which is exactly right if you want to predict
+            an individual and exactly wrong if you want to explain why the
+            chair closes discussion at ten past. Both questions are legitimate;
+            they are not the same question, and the questionnaire only answers
+            one of them.
+          </p>
+        </div>
+
+        <aside class="panel panel--caution" aria-labelledby="limits-heading">
+          <h3 class="panel__title" id="limits-heading">
+            What this does <em>not</em> demonstrate
+          </h3>
+          <ul>
+            <li>
+              <strong>The coefficients are invented.</strong> They are printed
+              on screen and in the teaching notes so that nothing is hidden,
+              and they are chosen to make a pattern visible. They are not
+              estimates, and the correlations that follow from them are not
+              findings.
+            </li>
+            <li>
+              <strong>Six conditions is a simplification.</strong> Real
+              behaviour also depends on mood, fatigue, what happened in the
+              last meeting, who else is in the room and what is at stake -
+              none of which is modelled here.
+            </li>
+            <li>
+              <strong>It does not show that attitudes are unimportant.</strong>
+              Attitude is the largest single coefficient in the model. The
+              claim is about what a single measured evaluation licenses on its
+              own, not about whether evaluations matter.
+            </li>
+            <li>
+              <strong>It does not test the theory of planned behaviour.</strong>
+              A simulation cannot test a theory. This is an illustration of the
+              logic of such models and of one of their standard criticisms, not
+              evidence for or against any of them.
+            </li>
+            <li>
+              <strong>Nobody is assessed.</strong> The questionnaire is never
+              administered to you. All four colleagues are fictional, and no
+              real workplace is described.
+            </li>
+            <li>
+              <strong>Speaking up is not always the right thing to do.</strong>
+              The model estimates a frequency, not a virtue. Whether voicing
+              disagreement is wise in a particular meeting is a question the
+              model has no view about, and the costs of doing so fall very
+              unevenly across a workforce.
+            </li>
+          </ul>
+        </aside>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+<script>
+/* ---- components/interactive-shell.js ---- */
+/* =========================================================================
+   Open Psychology Interactives — interactive shell helper
+   -------------------------------------------------------------------------
+   A very small vanilla-JS helper that every interactive in this collection
+   uses. It deliberately does *not* draw anything or know anything about
+   statistics, personality or neuropsychology. Its job is the repetitive,
+   easy-to-get-wrong accessibility plumbing:
+
+     * announcing changes through a polite live region;
+     * keeping a range slider and its <output> in step;
+     * wiring the standard Reset button;
+     * reporting the reader's reduced-motion preference.
+
+   Usage (see docs/adapting-a-tool.md for the full markup contract):
+
+       <script src="../../components/interactive-shell.js" defer><\/script>
+       <script src="tool.js" defer><\/script>
+
+       // in tool.js
+       const shell = InteractiveShell.attach('#sampling-demo');
+       shell.onReset(() => { ...restore defaults...; draw(); });
+       shell.bindRange('#sample-size', { format: n => n + ' cases' });
+       shell.announce('Sample of 25 drawn. Mean 4.8.');
+
+   Every published interactive is written against this module.
+
+   Exposed as a global (window.InteractiveShell) rather than an ES module so
+   that a single interactive folder can be opened directly from disk over
+   file:// — ES modules are blocked by CORS in that situation, plain scripts
+   are not. That constraint is the whole reason for the older syntax here.
+   ========================================================================= */
+
+(function (global) {
+  "use strict";
+
+  /* -----------------------------------------------------------------------
+     Internal helpers
+     --------------------------------------------------------------------- */
+
+  /**
+   * Accept either a CSS selector or an element and return an element.
+   * @param {string|Element} target
+   * @param {ParentNode} [scope]
+   * @returns {Element|null}
+   */
+  function resolve(target, scope) {
+    if (!target) {
+      return null;
+    }
+    if (typeof target === "string") {
+      return (scope || document).querySelector(target);
+    }
+    return target;
+  }
+
+  /**
+   * True when the reader has asked the operating system to reduce motion.
+   * Interactives should check this before animating anything — for example
+   * by drawing a sampling distribution in one step instead of animating
+   * each draw.
+   * @returns {boolean}
+   */
+  function prefersReducedMotion() {
+    return (
+      typeof global.matchMedia === "function" &&
+      global.matchMedia("(prefers-reduced-motion: reduce)").matches
+    );
+  }
+
+  /* -----------------------------------------------------------------------
+     Shell controller
+     --------------------------------------------------------------------- */
+
+  /**
+   * Attach the shell behaviour to one `.interactive` element.
+   *
+   * @param {string|Element} target  Selector or element for the shell root.
+   * @returns {object|null}  Controller, or null if the root was not found.
+   */
+  function attach(target) {
+    var root = resolve(target);
+
+    if (!root) {
+      if (global.console && console.warn) {
+        console.warn("InteractiveShell: root element not found.", target);
+      }
+      return null;
+    }
+
+    var controls = root.querySelector("[data-interactive-controls]");
+    var stage = root.querySelector("[data-interactive-stage]");
+    var status = root.querySelector("[data-interactive-status]");
+    var resetButton = root.querySelector("[data-interactive-reset]");
+    var resetHandlers = [];
+    // Every range bound with bindRange() registers its sync function here, so
+    // that reset() can refresh the visible values after the tool's own reset
+    // handlers have restored the inputs. See reset() for why this is needed.
+    var rangeSyncs = [];
+
+    /* --- Live region ----------------------------------------------------
+       The status element is marked up as role="status" (implicitly
+       aria-live="polite"). Two details matter:
+
+         1. Assistive technology only announces *changes* to a live region,
+            so writing the same string twice is silently dropped. We add a
+            trailing zero-width space on repeat messages to force an
+            announcement when a student re-runs the same action.
+         2. Announcements are debounced. A slider dragged across its range
+            fires dozens of input events; without a delay a screen reader
+            would queue every intermediate value and fall far behind.
+       ------------------------------------------------------------------ */
+
+    var announceTimer = null;
+    var lastMessage = "";
+
+    /**
+     * Announce a short sentence describing what just changed.
+     * @param {string} message
+     * @param {object} [options]
+     * @param {boolean} [options.immediate]  Skip the debounce delay. Use for
+     *   discrete actions (button presses); leave off for continuous input.
+     */
+    function announce(message, options) {
+      if (!status) {
+        return;
+      }
+
+      var text = String(message == null ? "" : message);
+      var immediate = Boolean(options && options.immediate);
+
+      if (announceTimer !== null) {
+        global.clearTimeout(announceTimer);
+        announceTimer = null;
+      }
+
+      function write() {
+        // Force a change when the text is identical to last time.
+        status.textContent = text === lastMessage ? text + "​" : text;
+        lastMessage = text;
+      }
+
+      if (immediate) {
+        write();
+      } else {
+        announceTimer = global.setTimeout(write, 350);
+      }
+    }
+
+    /* --- Reset ---------------------------------------------------------- */
+
+    /**
+     * Register a callback to run when the Reset button is pressed.
+     * Several may be registered; they run in the order added.
+     * @param {Function} handler
+     */
+    function onReset(handler) {
+      if (typeof handler === "function") {
+        resetHandlers.push(handler);
+      }
+    }
+
+    /**
+     * Run the reset handlers. Called by the button and available directly so
+     * an interactive can reset itself on first load.
+     *
+     * Bound ranges are re-synced afterwards. A reset handler restores an
+     * input by assigning to `input.value`, and assigning to a value in script
+     * does not fire an `input` event — so without this step the slider would
+     * jump back to its default while its <output> went on showing the old
+     * number. Syncing here, after the handlers have run, also means the sync
+     * sees the restored values regardless of the order things were
+     * registered in.
+     *
+     * @param {object} [options]
+     * @param {boolean} [options.silent]  Suppress the status announcement.
+     */
+    function reset(options) {
+      resetHandlers.forEach(function (handler) {
+        handler();
+      });
+      rangeSyncs.forEach(function (sync) {
+        sync();
+      });
+      if (!options || !options.silent) {
+        announce(
+          root.getAttribute("data-reset-message") ||
+            "Reset to the starting values.",
+          { immediate: true }
+        );
+      }
+    }
+
+    if (resetButton) {
+      resetButton.addEventListener("click", function (event) {
+        // Reset buttons commonly sit inside the controls <form>; stop the
+        // browser's own form reset from fighting with ours.
+        event.preventDefault();
+        reset();
+      });
+    }
+
+    /* --- Range binding --------------------------------------------------
+       Keeps a slider's <output> in step with its value. The <output> must
+       carry `for="<input id>"`, which is what associates the two for
+       assistive technology; this only handles the visible text.
+
+       Optionally sets aria-valuetext, which is how you make a screen reader
+       say "25 cases" or "medium correlation" instead of a bare "25".
+       ------------------------------------------------------------------ */
+
+    /**
+     * @param {string|Element} inputTarget  The range (or number) input.
+     * @param {object} [options]
+     * @param {Function} [options.format]  value:number -> string shown in the
+     *   <output>. Defaults to the raw value.
+     * @param {Function} [options.describe]  value:number -> string used for
+     *   aria-valuetext. Defaults to options.format.
+     * @param {Function} [options.onInput]  value:number -> void, called after
+     *   the display has been updated. Use it to redraw.
+     * @returns {HTMLInputElement|null}
+     */
+    function bindRange(inputTarget, options) {
+      var input = resolve(inputTarget, root);
+      if (!input) {
+        return null;
+      }
+
+      var settings = options || {};
+      var format =
+        typeof settings.format === "function"
+          ? settings.format
+          : function (value) {
+              return String(value);
+            };
+      var describe =
+        typeof settings.describe === "function" ? settings.describe : format;
+
+      // <output for="the-input-id"> is the conventional pairing.
+      var output = input.id
+        ? root.querySelector('output[for="' + input.id + '"]')
+        : null;
+
+      function sync() {
+        var value = Number(input.value);
+        if (output) {
+          output.textContent = format(value);
+        }
+        // Only meaningful for widgets with an implicit or explicit slider
+        // role; harmless elsewhere.
+        input.setAttribute("aria-valuetext", describe(value));
+        if (typeof settings.onInput === "function") {
+          settings.onInput(value);
+        }
+      }
+
+      input.addEventListener("input", sync);
+      // Registered so reset() can refresh the display after the tool's own
+      // reset handlers have put the input back to its default.
+      rangeSyncs.push(sync);
+      sync();
+
+      return input;
+    }
+
+    /* --- Public surface -------------------------------------------------- */
+
+    return {
+      /** The `.interactive` root element. */
+      root: root,
+      /** The controls panel, or null if the shell has none. */
+      controls: controls,
+      /** The stage element where the visualisation is drawn. */
+      stage: stage,
+      /** The live-region element. */
+      status: status,
+      announce: announce,
+      onReset: onReset,
+      reset: reset,
+      bindRange: bindRange,
+      prefersReducedMotion: prefersReducedMotion
+    };
+  }
+
+  /* -----------------------------------------------------------------------
+     Export
+     --------------------------------------------------------------------- */
+
+  global.InteractiveShell = {
+    attach: attach,
+    prefersReducedMotion: prefersReducedMotion
+  };
+})(window);
+
+/* ---- modules/social-critical-psychology/tools/03-attitude-behaviour-gap/tool.js ---- */
+/* =========================================================================
+   Attitude-Behaviour Gap Laboratory
+   -------------------------------------------------------------------------
+   One fictional behaviour - voicing disagreement in a team meeting - and three
+   staged experiments on what stands between a measured evaluation and an act.
+
+       1. Four colleagues, identical attitude scores, four working lives
+       2. One colleague, six conditions, moved one at a time
+       3. 300 simulated colleagues, and what happens to the correlation
+
+   THE EDUCATIONAL MODEL
+   ---------------------
+   A small logistic model in the reasoned-action family, with every coefficient
+   printed on screen:
+
+       logit = B0 + Battitude x c x A + Bnorm x N + Bpbc x P + Bhabit x H
+                  - Bconstraint x C
+       p     = logistic(logit) x O
+
+   A, N, P, H, C and O all run from 0 to 1. `c` is the correspondence weight of
+   the questionnaire: a general values scale carries less of the person's
+   disposition into a specific act than a matched intention does.
+
+   The one structural point worth more than all the coefficients: OPPORTUNITY
+   MULTIPLIES. Norms, confidence and habit shift the odds; if the occasion does
+   not arise, nothing else matters. Marek is written to make that visible - his
+   internal conditions match Rowan's and his behaviour does not.
+
+   Experiment 3 draws 300 simulated colleagues from a seeded generator
+   (mulberry32, seed 20260419). Attitude comes from the same distribution in
+   every condition. Only the VARIANCE OF THE CONDITIONS changes: under "uniform
+   conditions" everyone gets the same chaired meeting, the same standing and the
+   same opportunity, so attitude is the only thing left varying and the
+   correlation is high; under "real teams" the conditions vary as much as the
+   attitudes and the correlation falls. Nothing about anybody's attitude has
+   changed.
+
+   WHAT THIS IS NOT
+   ----------------
+   A simulation cannot test a theory. The coefficients are invented, the
+   correlations that follow from them are not findings, and no number here
+   estimates anything. Six conditions is a deliberate simplification. The tool
+   takes no position on whether voicing disagreement is a good idea - it
+   estimates a frequency, not a virtue, and the costs of speaking up fall very
+   unevenly across a workforce.
+
+   No data leave the browser. There is no storage and no network request.
+   ========================================================================= */
+
+(function () {
+  "use strict";
+
+  /* =======================================================================
+     Coefficients - printed in the interface and in the teaching notes
+     ===================================================================== */
+
+  var B = {
+    intercept: -1.30,
+    attitude: 2.60,
+    norm: 1.30,
+    control: 1.50,
+    habit: 1.40,
+    constraint: 1.80
+  };
+
+  var CORRESPONDENCE = {
+    general: { weight: 0.35, label: "a general values questionnaire" },
+    middle: { weight: 0.70, label: "a behaviour-level attitude scale" },
+    specific: { weight: 1.00, label: "a specific intention matched to the action" }
+  };
+
+  var CONDITIONS = [
+    {
+      id: "attitude", label: "Attitude towards the behaviour", coefficient: "attitude",
+      hint: "How positively the person evaluates speaking up. This is what the questionnaire measured.",
+      low: "strongly negative", high: "strongly positive", gate: false
+    },
+    {
+      id: "norm", label: "Perceived norm in this team", coefficient: "norm",
+      hint: "Whether people who matter here appear to expect or approve of it.",
+      low: "nobody does it", high: "everybody does it", gate: false
+    },
+    {
+      id: "control", label: "Perceived behavioural control", coefficient: "control",
+      hint: "Whether the person believes they could do it if they chose to - standing, confidence, the words to hand.",
+      low: "not up to me", high: "entirely up to me", gate: false
+    },
+    {
+      id: "habit", label: "Habit strength", coefficient: "habit",
+      hint: "How automatic the response has become through repetition in this setting.",
+      low: "never done it here", high: "does it without deciding to", gate: false
+    },
+    {
+      id: "constraint", label: "Situational constraint", coefficient: "constraint",
+      hint: "Features of the meeting that make it harder: a chair who closes discussion, a short agenda, a senior person present.",
+      low: "none", high: "severe", gate: false
+    },
+    {
+      id: "opportunity", label: "Opportunity", coefficient: null,
+      hint: "How often an occasion to disagree actually arises. This one multiplies rather than adds: no occasion, no behaviour, whatever else is true.",
+      low: "almost never arises", high: "arises constantly", gate: true
+    }
+  ];
+
+  var PEOPLE = [
+    {
+      id: "rowan",
+      name: "Rowan",
+      blurb:
+        "Six years in the team, chairs half the meetings herself, works with " +
+        "people who argue openly and expect her to.",
+      attitude: 0.86, norm: 0.85, control: 0.85, habit: 0.80,
+      constraint: 0.15, opportunity: 0.85,
+      teaching:
+        "Everything lines up. Rowan is the case the questionnaire predicts " +
+        "well, and she is the reason attitude measures look good in some " +
+        "workplaces and not others."
+    },
+    {
+      id: "devi",
+      name: "Devi",
+      blurb:
+        "Four months in post, on a fixed-term contract. The chair keeps to " +
+        "time and closes items briskly; nobody else has interrupted an item " +
+        "since she arrived.",
+      attitude: 0.86, norm: 0.15, control: 0.20, habit: 0.10,
+      constraint: 0.80, opportunity: 0.75,
+      teaching:
+        "Same score, opposite behaviour. Nothing about Devi's evaluation is " +
+        "different from Rowan's. What differs is a contract, a chair and a " +
+        "room in which nobody has yet gone first."
+    },
+    {
+      id: "marek",
+      name: "Marek",
+      blurb:
+        "Fifteen years in, confident, well regarded, and in a team whose " +
+        "meetings are almost entirely announcements. Disagreements are settled " +
+        "elsewhere, by people who are not him.",
+      attitude: 0.86, norm: 0.60, control: 0.85, habit: 0.70,
+      constraint: 0.25, opportunity: 0.15,
+      teaching:
+        "The important case. Every internal condition is as strong as " +
+        "Rowan's, and the behaviour is rare, because the occasion does not " +
+        "arise. A course aimed at Marek's attitude would change nothing at all."
+    },
+    {
+      id: "priya",
+      name: "Priya",
+      blurb:
+        "Two years in, well established, in a team that argues sometimes and " +
+        "not always comfortably. The chair is fair but the agenda is long.",
+      attitude: 0.86, norm: 0.50, control: 0.55, habit: 0.40,
+      constraint: 0.50, opportunity: 0.60,
+      teaching:
+        "The ordinary case, and the one most people are. Middling conditions " +
+        "produce a middling frequency, which no single number about Priya " +
+        "would have told you."
+    }
+  ];
+
+  var BANDS = [
+    { max: 0.20, id: "rarely", label: "Rarely" },
+    { max: 0.55, id: "sometimes", label: "Sometimes" },
+    { max: 1.01, id: "usually", label: "Usually" }
+  ];
+
+  /* =======================================================================
+     Model
+     ===================================================================== */
+
+  function logistic(x) { return 1 / (1 + Math.exp(-x)); }
+
+  function contributions(values, correspondence) {
+    var weight = CORRESPONDENCE[correspondence].weight;
+    return [
+      { id: "intercept", label: "Baseline", value: B.intercept },
+      { id: "attitude", label: "Attitude", value: B.attitude * weight * values.attitude },
+      { id: "norm", label: "Perceived norm", value: B.norm * values.norm },
+      { id: "control", label: "Perceived control", value: B.control * values.control },
+      { id: "habit", label: "Habit", value: B.habit * values.habit },
+      { id: "constraint", label: "Situational constraint", value: -B.constraint * values.constraint }
+    ];
+  }
+
+  function likelihood(values, correspondence) {
+    var logit = contributions(values, correspondence).reduce(function (total, item) {
+      return total + item.value;
+    }, 0);
+    return logistic(logit) * values.opportunity;
+  }
+
+  function bandFor(p) {
+    var found = BANDS[BANDS.length - 1];
+    for (var i = 0; i < BANDS.length; i += 1) {
+      if (p < BANDS[i].max) { found = BANDS[i]; break; }
+    }
+    return found;
+  }
+
+  /* =======================================================================
+     The simulated sample for experiment 3
+     ===================================================================== */
+
+  var SEED = 20260419;
+  var SAMPLE = 300;
+
+  function mulberry32(a) {
+    return function () {
+      a |= 0; a = (a + 0x6D2B79F5) | 0;
+      var t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  /* Attitudes are drawn once and reused in every cell, so that switching the
+     setting or the measure cannot be explained by a different sample. */
+  var DRAWS = (function () {
+    var rand = mulberry32(SEED);
+    var rows = [];
+    for (var i = 0; i < SAMPLE; i += 1) {
+      rows.push({
+        attitude: 0.15 + 0.75 * rand(),
+        norm: rand(), control: rand(), habit: rand(),
+        constraint: rand(), opportunity: rand(),
+        noise: rand()
+      });
+    }
+    return rows;
+  })();
+
+  var UNIFORM = { norm: 0.5, control: 0.55, habit: 0.4, constraint: 0.4, opportunity: 0.75 };
+
+  function sampleFor(setting, measure) {
+    return DRAWS.map(function (draw) {
+      var values = setting === "lab"
+        ? {
+            attitude: draw.attitude,
+            norm: UNIFORM.norm, control: UNIFORM.control, habit: UNIFORM.habit,
+            constraint: UNIFORM.constraint, opportunity: UNIFORM.opportunity
+          }
+        : {
+            /* Real teams vary, but not from floor to ceiling: the ranges below
+               keep the field correlations in the region reported for
+               well-matched measures rather than driving them to zero. */
+            attitude: draw.attitude,
+            norm: 0.2 + 0.6 * draw.norm,
+            control: 0.2 + 0.6 * draw.control,
+            habit: 0.15 + 0.6 * draw.habit,
+            constraint: 0.15 + 0.6 * draw.constraint,
+            opportunity: 0.45 + 0.55 * draw.opportunity
+          };
+      var p = likelihood(values, measure);
+      /* Observed behaviour is the model probability plus a little measurement
+         noise, clipped to the unit interval. The noise is the same draw in
+         every cell. */
+      var observed = Math.min(1, Math.max(0, p + (draw.noise - 0.5) * 0.12));
+      return { attitude: draw.attitude, behaviour: observed };
+    });
+  }
+
+  function correlation(rows) {
+    var n = rows.length;
+    var mx = 0, my = 0;
+    rows.forEach(function (row) { mx += row.attitude; my += row.behaviour; });
+    mx /= n; my /= n;
+    var sxy = 0, sxx = 0, syy = 0;
+    rows.forEach(function (row) {
+      var dx = row.attitude - mx;
+      var dy = row.behaviour - my;
+      sxy += dx * dy; sxx += dx * dx; syy += dy * dy;
+    });
+    return sxx && syy ? sxy / Math.sqrt(sxx * syy) : 0;
+  }
+
+  /* =======================================================================
+     Helpers
+     ===================================================================== */
+
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) { node.className = className; }
+    if (text !== undefined) { node.textContent = text; }
+    return node;
+  }
+
+  function clear(node) {
+    while (node.firstChild) { node.removeChild(node.firstChild); }
+  }
+
+  function pct(p) { return Math.round(p * 100) + "%"; }
+
+  function fmt(value) {
+    var rounded = Math.round(Math.abs(value) * 100) / 100;
+    return (value < 0 ? "-" : "") + rounded.toFixed(2);
+  }
+
+  function personById(id) {
+    return PEOPLE.filter(function (p) { return p.id === id; })[0];
+  }
+
+  /* =======================================================================
+     Wiring
+     ===================================================================== */
+
+  var shell = InteractiveShell.attach("#ab-lab");
+  if (!shell) { return; }
+
+  var $ = function (s, scope) { return (scope || document).querySelector(s); };
+  var $$ = function (s, scope) {
+    return Array.prototype.slice.call((scope || document).querySelectorAll(s));
+  };
+
+  var openingForm = $("#opening-form");
+  var openingError = $("[data-opening-error]");
+  var openingFeedback = $("[data-opening-feedback]");
+  var labSection = $("#lab-section");
+
+  var predictionBox = $("[data-person-predictions]");
+  var sliderBox = $("[data-sliders]");
+  var personSelect = $("#person-select");
+  var correspondenceSelect = $("#correspondence-select");
+  var peopleTable = $("[data-people-table]");
+  var peopleNote = $("[data-people-note]");
+  var likelihoodLine = $("[data-likelihood]");
+  var driverLine = $("[data-driver]");
+  var contributionSvg = $("[data-contributions]");
+  var contributionTable = $("[data-contribution-table]");
+  var interpretation = $("[data-interpretation]");
+  var correlationLine = $("[data-correlation]");
+  var scatterSvg = $("[data-scatter]");
+  var scatterText = $("[data-scatter-text]");
+  var matrixTable = $("[data-matrix-table]");
+  var matrixNote = $("[data-matrix-note]");
+  var gateNote = $("[data-gate-note]");
+  var stageTrack = $("[data-stage-track]");
+
+  var claimsForm = $("#claims-form");
+  var claimsList = $("[data-claims-list]");
+  var claimsFeedback = $("[data-claims-feedback]");
+
+  var STAGE_COUNT = 3;
+
+  var INITIAL = {
+    stage: 1,
+    unlocked: false,
+    predictions: {},
+    revealed: false,
+    person: "priya",
+    values: null,
+    correspondence: "middle",
+    setting: "lab",
+    measure: "middle"
+  };
+  var state = null;
+
+  function valuesFor(person) {
+    return {
+      attitude: person.attitude, norm: person.norm, control: person.control,
+      habit: person.habit, constraint: person.constraint,
+      opportunity: person.opportunity
+    };
+  }
+
+  /* --- Experiment 1 ------------------------------------------------------- */
+
+  function buildPredictions() {
+    clear(predictionBox);
+    PEOPLE.forEach(function (person) {
+      var group = make("fieldset", "person");
+      var legend = make("legend", "person__legend", person.name);
+      group.appendChild(legend);
+      group.appendChild(make("p", "person__blurb", person.blurb));
+      BANDS.forEach(function (band) {
+        var label = make("label", "control--choice");
+        var input = document.createElement("input");
+        input.type = "radio";
+        input.name = "predict-" + person.id;
+        input.value = band.id;
+        input.addEventListener("change", function () {
+          state.predictions[person.id] = band.id;
+          renderPeople();
+        });
+        label.appendChild(input);
+        label.appendChild(make("span", null, band.label));
+        group.appendChild(label);
+      });
+      predictionBox.appendChild(group);
+    });
+  }
+
+  function renderPeople() {
+    clear(peopleTable);
+    PEOPLE.forEach(function (person) {
+      var row = make("tr");
+      var th = make("th", null, person.name);
+      th.setAttribute("scope", "row");
+      row.appendChild(th);
+      row.appendChild(make("td", null, "6.2 of 7"));
+      var said = state.predictions[person.id];
+      row.appendChild(make("td", null,
+        said ? BANDS.filter(function (b) { return b.id === said; })[0].label : "-"));
+      if (state.revealed) {
+        var p = likelihood(valuesFor(person), "middle");
+        var band = bandFor(p);
+        var td = make("td", null, pct(p) + " of occasions - " + band.label.toLowerCase());
+        td.setAttribute("data-match",
+          said ? (said === band.id ? "yes" : "no") : "none");
+        row.appendChild(td);
+      } else {
+        row.appendChild(make("td", null, "hidden"));
+      }
+      peopleTable.appendChild(row);
+    });
+
+    if (!state.revealed) {
+      var made = Object.keys(state.predictions).length;
+      peopleNote.textContent =
+        "Predict all four, then press the button. " + made + " of 4 predicted.";
+      peopleNote.setAttribute("data-state", "none");
+      return;
+    }
+
+    var right = PEOPLE.filter(function (person) {
+      var p = likelihood(valuesFor(person), "middle");
+      return state.predictions[person.id] === bandFor(p).id;
+    }).length;
+
+    peopleNote.textContent =
+      right + " of your 4 predictions match the model. " +
+      "Every one of these people scores 6.2, and the questionnaire that " +
+      "produced the 6.2 is a perfectly good questionnaire. " +
+      PEOPLE.map(function (person) {
+        return person.name + ": " + person.teaching;
+      }).join(" ");
+    peopleNote.setAttribute("data-state", right >= 3 ? "ok" : "tension");
+  }
+
+  /* --- Experiment 2 ------------------------------------------------------- */
+
+  function buildSliders() {
+    clear(sliderBox);
+    CONDITIONS.forEach(function (condition) {
+      var wrap = make("div", "control");
+      var header = make("div", "control__header");
+      var label = make("label", "control__label", condition.label);
+      label.setAttribute("for", "slider-" + condition.id);
+      header.appendChild(label);
+      var output = document.createElement("output");
+      output.className = "control__value";
+      output.setAttribute("for", "slider-" + condition.id);
+      output.setAttribute("data-output", condition.id);
+      header.appendChild(output);
+      wrap.appendChild(header);
+
+      var input = document.createElement("input");
+      input.type = "range";
+      input.id = "slider-" + condition.id;
+      input.min = "0"; input.max = "100"; input.step = "1"; input.value = "50";
+      input.addEventListener("input", function () {
+        state.values[condition.id] = Number(input.value) / 100;
+        renderExperiment2();
+        shell.announce(condition.label + " set to " + input.value + " per cent. " +
+          "Estimated behaviour " + pct(likelihood(state.values, state.correspondence)) +
+          " of occasions.");
+      });
+      wrap.appendChild(input);
+      wrap.appendChild(make("p", "control__hint",
+        condition.hint +
+        (condition.coefficient
+          ? " Coefficient " + fmt(condition.id === "constraint"
+              ? -B[condition.coefficient] : B[condition.coefficient]) + "."
+          : " Multiplies the result.")));
+      sliderBox.appendChild(wrap);
+    });
+  }
+
+  function syncSliders() {
+    CONDITIONS.forEach(function (condition) {
+      var input = $("#slider-" + condition.id);
+      var output = $('[data-output="' + condition.id + '"]');
+      var value = Math.round(state.values[condition.id] * 100);
+      input.value = String(value);
+      output.textContent = value + "%";
+      input.setAttribute("aria-valuetext",
+        value + " per cent, between " + condition.low + " and " + condition.high);
+    });
+    personSelect.value = state.person;
+    correspondenceSelect.value = state.correspondence;
+  }
+
+  function renderExperiment2() {
+    syncSliders();
+    var p = likelihood(state.values, state.correspondence);
+    var band = bandFor(p);
+    likelihoodLine.textContent =
+      pct(p) + " of occasions - " + band.label.toLowerCase() + ".";
+
+    var items = contributions(state.values, state.correspondence);
+
+    /* One sentence naming the largest positive term, the largest negative term
+       and the multiplier: the pinned result has to answer "what is driving
+       this?" without the learner scrolling to the chart. */
+    var positives = items.filter(function (i) {
+      return i.id !== "intercept" && i.value > 0;
+    }).sort(function (a, b) { return b.value - a.value; });
+    var negative = items.filter(function (i) {
+      return i.id !== "intercept" && i.value < 0;
+    }).sort(function (a, b) { return a.value - b.value; })[0];
+    driverLine.textContent =
+      "Largest positive term: " +
+      (positives.length ? positives[0].label.toLowerCase() + " (" + fmt(positives[0].value) + ")"
+        : "none") +
+      ". Largest drag: " +
+      (negative ? negative.label.toLowerCase() + " (" + fmt(negative.value) + ")"
+        : "none") +
+      ". Opportunity multiplies the result by " +
+      (Math.round(state.values.opportunity * 100) / 100).toFixed(2) + ".";
+
+    drawContributions(items, p);
+
+    clear(contributionTable);
+    items.forEach(function (item) {
+      var row = make("tr");
+      var th = make("th", null, item.label);
+      th.setAttribute("scope", "row");
+      row.appendChild(th);
+      row.appendChild(make("td", null,
+        item.id === "intercept" ? "fixed"
+          : Math.round(state.values[item.id] * 100) + "%"));
+      row.appendChild(make("td", null, fmt(item.value) + " log-odds"));
+      contributionTable.appendChild(row);
+    });
+    var gateRow = make("tr");
+    var gateTh = make("th", null, "Opportunity (multiplies)");
+    gateTh.setAttribute("scope", "row");
+    gateRow.appendChild(gateTh);
+    gateRow.appendChild(make("td", null,
+      Math.round(state.values.opportunity * 100) + "%"));
+    gateRow.appendChild(make("td", null,
+      "x" + (Math.round(state.values.opportunity * 100) / 100).toFixed(2)));
+    contributionTable.appendChild(gateRow);
+
+    clear(interpretation);
+    interpretation.setAttribute("data-tone",
+      state.values.opportunity < 0.3 ? "warn" : "neutral");
+    interpretation.appendChild(make("h5", "verdict__title",
+      "What the questionnaire would have told you"));
+    var weight = CORRESPONDENCE[state.correspondence];
+    interpretation.appendChild(make("p", "verdict__body",
+      "The measure in use is " + weight.label + ", which carries " +
+      Math.round(weight.weight * 100) + " per cent of the person's disposition " +
+      "into this particular act. Change the measure and the estimate moves " +
+      "without the person changing at all - that is a property of the " +
+      "instrument, not of them."));
+    if (state.values.opportunity < 0.3) {
+      interpretation.appendChild(make("p", "verdict__body",
+        "Opportunity is low. Notice what happens when you push attitude, norm, " +
+        "control and habit all the way up: the estimate barely moves, because " +
+        "the multiplier caps it. Anything aimed at the person is being aimed at " +
+        "the wrong term."));
+    } else if (state.values.constraint > 0.65) {
+      interpretation.appendChild(make("p", "verdict__body",
+        "Constraint is high, and it is subtracting more from the log-odds than " +
+        "norm and control together are adding. The cheapest available " +
+        "intervention here is not a person at all: it is the way the meeting is " +
+        "run."));
+    } else {
+      interpretation.appendChild(make("p", "verdict__body",
+        "Nothing is dominating. This is the regime in which individual-level " +
+        "models predict best and explain least: every term contributes, and no " +
+        "single one tells you where to intervene."));
+    }
+  }
+
+  function drawContributions(items, p) {
+    var NS = "http://www.w3.org/2000/svg";
+    clear(contributionSvg);
+    var rows = items.concat([
+      { id: "gate", label: "Opportunity x", value: null }
+    ]);
+    var mid = 190;
+    var scale = 26;
+    var y = 8;
+    rows.forEach(function (item) {
+      var text = document.createElementNS(NS, "text");
+      text.setAttribute("x", "0");
+      text.setAttribute("y", String(y + 12));
+      text.setAttribute("class", "chart__label");
+      text.textContent = item.label;
+      contributionSvg.appendChild(text);
+
+      if (item.value === null) {
+        var mult = document.createElementNS(NS, "text");
+        mult.setAttribute("x", String(mid));
+        mult.setAttribute("y", String(y + 12));
+        mult.setAttribute("text-anchor", "middle");
+        mult.setAttribute("class", "chart__count");
+        mult.textContent = "x" + (Math.round(state.values.opportunity * 100) / 100).toFixed(2) +
+          "  =  " + pct(p);
+        contributionSvg.appendChild(mult);
+        y += 22;
+        return;
+      }
+
+      var width = Math.min(110, Math.abs(item.value) * scale);
+      var bar = document.createElementNS(NS, "rect");
+      bar.setAttribute("x", String(item.value >= 0 ? mid : mid - width));
+      bar.setAttribute("y", String(y + 2));
+      bar.setAttribute("width", String(Math.max(1, width)));
+      bar.setAttribute("height", "14");
+      bar.setAttribute("class", item.value >= 0 ? "bar--adds" : "bar--subtracts");
+      contributionSvg.appendChild(bar);
+
+      var value = document.createElementNS(NS, "text");
+      value.setAttribute("x", String(item.value >= 0 ? mid + width + 4 : mid - width - 4));
+      value.setAttribute("y", String(y + 13));
+      value.setAttribute("text-anchor", item.value >= 0 ? "start" : "end");
+      value.setAttribute("class", "chart__count");
+      value.textContent = fmt(item.value);
+      contributionSvg.appendChild(value);
+
+      y += 22;
+    });
+
+    var axis = document.createElementNS(NS, "line");
+    axis.setAttribute("x1", String(mid)); axis.setAttribute("x2", String(mid));
+    axis.setAttribute("y1", "4"); axis.setAttribute("y2", String(y - 20));
+    axis.setAttribute("class", "chart__baseline");
+    contributionSvg.appendChild(axis);
+  }
+
+  /* --- Experiment 3 ------------------------------------------------------- */
+
+  function renderExperiment3() {
+    var rows = sampleFor(state.setting, state.measure);
+    var r = correlation(rows);
+    correlationLine.textContent =
+      "r = " + fmt(r) + " between measured attitude and behaviour (" +
+      Math.round(r * r * 100) + "% of the variance).";
+
+    drawScatter(rows);
+
+    /* Text equivalent for the scatterplot: the same information in words. */
+    var high = rows.filter(function (row) { return row.attitude > 0.7; });
+    var meanHigh = high.length
+      ? high.reduce(function (t, r) { return t + r.behaviour; }, 0) / high.length : 0;
+    var low = rows.filter(function (row) { return row.attitude < 0.4; });
+    var meanLow = low.length
+      ? low.reduce(function (t, r) { return t + r.behaviour; }, 0) / low.length : 0;
+    scatterText.textContent =
+      "300 simulated colleagues, " + CORRESPONDENCE[state.measure].label + ", " +
+      (state.setting === "lab" ? "uniform conditions" : "real teams") +
+      ". r = " + fmt(r) + ". The " + high.length + " people scoring above 0.7 on " +
+      "the measure average " + pct(meanHigh) + " of occasions; the " + low.length +
+      " scoring below 0.4 average " + pct(meanLow) + ". The spread within each " +
+      "group is what the correlation leaves unexplained.";
+
+    clear(matrixTable);
+    ["general", "middle", "specific"].forEach(function (measure) {
+      var row = make("tr");
+      var th = make("th", null, CORRESPONDENCE[measure].label);
+      th.setAttribute("scope", "row");
+      row.appendChild(th);
+      ["lab", "field"].forEach(function (setting) {
+        var value = correlation(sampleFor(setting, measure));
+        var td = make("td", null, fmt(value));
+        if (setting === state.setting && measure === state.measure) {
+          td.setAttribute("data-emphasis", "yes");
+        }
+        row.appendChild(td);
+      });
+      matrixTable.appendChild(row);
+    });
+
+    clear(matrixNote);
+    matrixNote.setAttribute("data-tone", "neutral");
+    matrixNote.appendChild(make("h5", "verdict__title",
+      "Two different reasons the correlation moves"));
+    matrixNote.appendChild(make("p", "verdict__body",
+      "Down a column: the measure changes, the people do not. A general values " +
+      "scale asks about something broader than the act, so less of what it " +
+      "measures is relevant to whether this person speaks up on Thursday."));
+    matrixNote.appendChild(make("p", "verdict__body",
+      "Across a row: the setting changes, the people and the measure do not. " +
+      "Under uniform conditions attitude is nearly the only thing left " +
+      "varying, so it accounts for most of the differences. In real teams the " +
+      "conditions vary too, and they are not in the questionnaire."));
+    matrixNote.appendChild(make("p", "verdict__note",
+      "Every cell uses the same 300 simulated people and the same attitude " +
+      "draws, so nothing here can be explained by a different sample."));
+  }
+
+  function drawScatter(rows) {
+    var NS = "http://www.w3.org/2000/svg";
+    var W = 260, H = 210;
+    var left = 34, right = 8, top = 8, bottom = 30;
+    clear(scatterSvg);
+
+    var frame = document.createElementNS(NS, "rect");
+    frame.setAttribute("x", String(left)); frame.setAttribute("y", String(top));
+    frame.setAttribute("width", String(W - left - right));
+    frame.setAttribute("height", String(H - top - bottom));
+    frame.setAttribute("class", "chart__track");
+    scatterSvg.appendChild(frame);
+
+    rows.forEach(function (row) {
+      var dot = document.createElementNS(NS, "circle");
+      dot.setAttribute("cx", String(left + row.attitude * (W - left - right)));
+      dot.setAttribute("cy", String(H - bottom - row.behaviour * (H - top - bottom)));
+      dot.setAttribute("r", "2");
+      dot.setAttribute("class", "chart__point");
+      scatterSvg.appendChild(dot);
+    });
+
+    var x = document.createElementNS(NS, "text");
+    x.setAttribute("x", String(W / 2)); x.setAttribute("y", String(H - 8));
+    x.setAttribute("text-anchor", "middle");
+    x.setAttribute("class", "chart__axis");
+    x.textContent = "measured attitude";
+    scatterSvg.appendChild(x);
+
+    var y = document.createElementNS(NS, "text");
+    y.setAttribute("x", "0"); y.setAttribute("y", String(top + 10));
+    y.setAttribute("class", "chart__axis");
+    y.textContent = "behaviour";
+    scatterSvg.appendChild(y);
+  }
+
+  /* --- Stage plumbing ----------------------------------------------------- */
+
+  var GATES = [
+    null,
+    function () {
+      if (Object.keys(state.predictions).length < PEOPLE.length) {
+        return "Predict all four colleagues before continuing.";
+      }
+      return state.revealed
+        ? null : "Press \"Show the model's answers\" before continuing.";
+    },
+    function () { return null; },
+    function () { return null; }
+  ];
+
+  function setStage(next) {
+    state.stage = Math.max(1, Math.min(STAGE_COUNT, next));
+    render();
+    var heading = $('.stage__primary[data-stage="' + state.stage + '"] .stage__heading');
+    if (heading) {
+      heading.setAttribute("tabindex", "-1");
+      heading.focus();
+    }
+    shell.announce("Experiment " + state.stage + " of 3.", { immediate: true });
+  }
+
+  $('[data-action="next"]').addEventListener("click", function () {
+    var blocked = GATES[state.stage] ? GATES[state.stage]() : null;
+    if (blocked) {
+      gateNote.textContent = blocked;
+      shell.announce(blocked, { immediate: true });
+      return;
+    }
+    gateNote.textContent = "";
+    setStage(state.stage + 1);
+  });
+
+  $('[data-action="prev"]').addEventListener("click", function () {
+    gateNote.textContent = "";
+    setStage(state.stage - 1);
+  });
+
+  $('[data-action="reveal"]').addEventListener("click", function () {
+    if (Object.keys(state.predictions).length < PEOPLE.length) {
+      gateNote.textContent = "Predict all four colleagues first.";
+      shell.announce(gateNote.textContent, { immediate: true });
+      return;
+    }
+    state.revealed = true;
+    gateNote.textContent = "";
+    renderPeople();
+    shell.announce(
+      "Revealed. Four identical attitude scores, four different frequencies.",
+      { immediate: true });
+  });
+
+  function render() {
+    $$("[data-stage]", shell.root).forEach(function (node) {
+      if (node.parentNode === stageTrack) { return; }
+      node.hidden = node.getAttribute("data-stage") !== String(state.stage);
+    });
+    $$("[data-secondary]", shell.root).forEach(function (node) {
+      node.hidden = node.getAttribute("data-secondary") !== String(state.stage);
+    });
+    $$("li", stageTrack).forEach(function (node) {
+      var index = Number(node.getAttribute("data-stage"));
+      node.removeAttribute("aria-current");
+      node.removeAttribute("data-state");
+      if (index === state.stage) {
+        node.setAttribute("aria-current", "step");
+      } else if (index < state.stage) {
+        node.setAttribute("data-state", "done");
+      }
+    });
+    $('[data-action="prev"]').disabled = state.stage === 1;
+    $('[data-action="next"]').disabled = state.stage === STAGE_COUNT;
+
+    renderPeople();
+    renderExperiment2();
+    renderExperiment3();
+  }
+
+  /* --- Stage 2 and 3 controls ---------------------------------------------- */
+
+  function buildPersonSelect() {
+    clear(personSelect);
+    PEOPLE.forEach(function (person) {
+      var option = document.createElement("option");
+      option.value = person.id;
+      option.textContent = person.name + " - " + person.blurb.split(".")[0];
+      personSelect.appendChild(option);
+    });
+  }
+
+  personSelect.addEventListener("change", function () {
+    state.person = personSelect.value;
+    state.values = valuesFor(personById(state.person));
+    renderExperiment2();
+    shell.announce(
+      personById(state.person).name + "'s circumstances loaded. Estimated " +
+      "behaviour " + pct(likelihood(state.values, state.correspondence)) +
+      " of occasions.", { immediate: true });
+  });
+
+  correspondenceSelect.addEventListener("change", function () {
+    state.correspondence = correspondenceSelect.value;
+    renderExperiment2();
+    shell.announce("Measure changed. Estimated behaviour " +
+      pct(likelihood(state.values, state.correspondence)) + " of occasions.",
+      { immediate: true });
+  });
+
+  $$('input[name="setting"]').forEach(function (input) {
+    input.addEventListener("change", function () {
+      state.setting = input.value;
+      renderExperiment3();
+      shell.announce("Setting changed. " + correlationLine.textContent,
+        { immediate: true });
+    });
+  });
+
+  $$('input[name="measure"]').forEach(function (input) {
+    input.addEventListener("change", function () {
+      state.measure = input.value;
+      renderExperiment3();
+      shell.announce("Measure changed. " + correlationLine.textContent,
+        { immediate: true });
+    });
+  });
+
+  /* --- Challenge ------------------------------------------------------------ */
+
+  var CLAIM_OPTIONS = [
+    { value: "yes", label: "Supported as it stands" },
+    { value: "partly", label: "Partly - it needs a qualification" },
+    { value: "no", label: "Not supported" }
+  ];
+
+  var CLAIMS = [
+    {
+      id: "training",
+      text:
+        "\"Staff who score highly on the attitude scale speak up more, so " +
+        "attitude training will raise the rate of speaking up.\"",
+      judge: function () {
+        return {
+          answer: "no",
+          verdict: "Not supported.",
+          evidence: "Rowan, Devi, Marek and Priya all score 6.2 and behave differently.",
+          why:
+            "Two separate leaps. The first turns a between-person association " +
+            "into a within-person cause. The second assumes the attitude term " +
+            "is the one with room to move - and for Marek and Devi it is " +
+            "already near the top. A training course changes the term that is " +
+            "not limiting the behaviour."
+        };
+      }
+    },
+    {
+      id: "marek",
+      text:
+        "\"Marek's low rate of speaking up shows that his stated commitment to " +
+        "open debate is not sincere.\"",
+      judge: function () {
+        return {
+          answer: "no",
+          verdict: "Not supported.",
+          evidence: "Marek's opportunity is 15%; every other condition matches Rowan's.",
+          why:
+            "The inference from \"does not do it\" to \"did not really mean " +
+            "it\" requires that the occasion arose and he declined. In Marek's " +
+            "team the disagreements are settled elsewhere. The absence of a " +
+            "behaviour is not the absence of a disposition."
+        };
+      }
+    },
+    {
+      id: "correlation",
+      text:
+        "\"In our study, attitude correlated with behaviour at the level shown " +
+        "on screen, so attitudes are \" - as strong or as weak as that number " +
+        "makes them sound.",
+      judge: function () {
+        var r = correlation(sampleFor(state.setting, state.measure));
+        return {
+          answer: state.setting === "lab" ? "no" : "partly",
+          verdict: state.setting === "lab"
+            ? "Not supported - the setting is doing the work."
+            : "Partly - the number is honest for this setting.",
+          evidence: "You currently have r = " + fmt(r) + " in the " +
+            (state.setting === "lab" ? "uniform-conditions" : "real-teams") +
+            " condition with " + CORRESPONDENCE[state.measure].label + ".",
+          why: state.setting === "lab"
+            ? "Under uniform conditions attitude is very nearly the only thing " +
+              "left varying, so it must account for most of the differences. " +
+              "The correlation is a description of how little the conditions " +
+              "varied, not of how powerful attitudes are. Switch to real teams " +
+              "and read the same sentence again."
+            : "In the varying condition the number does describe how well the " +
+              "measure tracks behaviour across ordinary teams. It still says " +
+              "nothing about any individual, and it would change again with a " +
+              "different measure - look down the column."
+        };
+      }
+    },
+    {
+      id: "measure",
+      text:
+        "\"The weak association means the attitude questionnaire needs to be " +
+        "more reliable.\"",
+      judge: function () {
+        return {
+          answer: state.measure === "general" ? "partly" : "no",
+          verdict: state.measure === "general"
+            ? "Partly - though the problem is correspondence, not reliability."
+            : "Not supported.",
+          evidence: "The measure in use is " + CORRESPONDENCE[state.measure].label +
+            ", carrying " + Math.round(CORRESPONDENCE[state.measure].weight * 100) +
+            " per cent of the disposition into this act.",
+          why:
+            "Reliability is about whether a measure agrees with itself. What " +
+            "changes the association here is whether the measure is about the " +
+            "same target, context and time as the behaviour. A perfectly " +
+            "reliable values questionnaire will still predict Thursday's " +
+            "meeting poorly, and no extra items will fix it. That is not a " +
+            "defect."
+        };
+      }
+    }
+  ];
+
+  var CLAIM_LABELS = {};
+  CLAIM_OPTIONS.forEach(function (o) { CLAIM_LABELS[o.value] = o.label; });
+
+  function buildClaims() {
+    clear(claimsList);
+    CLAIMS.forEach(function (claim, index) {
+      var group = make("fieldset", "prediction__group");
+      group.appendChild(make("legend", "prediction__legend",
+        "Claim " + (index + 1) + ". " + claim.text));
+      CLAIM_OPTIONS.forEach(function (option) {
+        var label = make("label", "control--choice");
+        var input = document.createElement("input");
+        input.type = "radio";
+        input.name = "claim-" + claim.id;
+        input.value = option.value;
+        label.appendChild(input);
+        label.appendChild(make("span", null, option.label));
+        group.appendChild(label);
+      });
+      claimsList.appendChild(group);
+    });
+  }
+
+  claimsForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    if (!state.unlocked) {
+      showFeedback(claimsFeedback, "caution", "Open the laboratory first.",
+        "Two of these are judged against the settings you choose in " +
+        "experiments 2 and 3.");
+      return;
+    }
+    var answers = CLAIMS.map(function (claim) {
+      var picked = $('input[name="claim-' + claim.id + '"]:checked', claimsForm);
+      return picked ? picked.value : null;
+    });
+    if (answers.indexOf(null) !== -1) {
+      showFeedback(claimsFeedback, "caution", "One judgement per claim, please.",
+        "A blank is not a verdict.");
+      return;
+    }
+    var judged = CLAIMS.map(function (claim) { return claim.judge(); });
+    var right = 0;
+    judged.forEach(function (result, index) {
+      if (result.answer === answers[index]) { right += 1; }
+    });
+
+    clear(claimsFeedback);
+    claimsFeedback.setAttribute("data-tone", right >= 3 ? "good" : "caution");
+    var lead = make("p");
+    lead.appendChild(make("strong", "feedback__verdict",
+      right + " of 4 judgements match the model as you have it set."));
+    lead.appendChild(document.createTextNode(
+      " Claims 3 and 4 are worked out from your current settings rather than " +
+      "from a stored key."));
+    claimsFeedback.appendChild(lead);
+
+    var list = make("ol", "claims__results");
+    CLAIMS.forEach(function (claim, index) {
+      var li = make("li");
+      var agreed = answers[index] === judged[index].answer;
+      li.setAttribute("data-agreed", agreed ? "yes" : "no");
+      var head = make("p", "claims__result-head");
+      head.appendChild(make("strong", null,
+        "Claim " + (index + 1) + ": " + judged[index].verdict));
+      head.appendChild(document.createTextNode(
+        agreed ? " That is what you said."
+          : " You said: " + CLAIM_LABELS[answers[index]].toLowerCase() + "."));
+      li.appendChild(head);
+      li.appendChild(make("p", "claims__evidence", judged[index].evidence));
+      li.appendChild(make("p", null, judged[index].why));
+      list.appendChild(li);
+    });
+    claimsFeedback.appendChild(list);
+    claimsFeedback.hidden = false;
+    shell.announce("Four claims judged. " + right + " match.", { immediate: true });
+  });
+
+  /* --- Opening prediction ---------------------------------------------------- */
+
+  var OPENING = {
+    most: {
+      tone: "caution",
+      verdict: "That is the inference the laboratory is built to test.",
+      text:
+        "A high score is a strong evaluation. Four people with exactly this " +
+        "score are about to behave in four quite different ways, and the " +
+        "questionnaire is not at fault in any of them."
+    },
+    often: {
+      tone: "caution",
+      verdict: "More cautious, and still an answer the score cannot give.",
+      text:
+        "\"Often\" is a claim about a frequency. Nothing in a questionnaire " +
+        "about how somebody evaluates an action tells you how often the " +
+        "occasion arises, who chairs the meeting, or whether anyone has ever " +
+        "gone first."
+    },
+    some: {
+      tone: "caution",
+      verdict: "Right about the literature, wrong about the individual.",
+      text:
+        "Modest attitude-behaviour correlations are a real and well-replicated " +
+        "finding. But a correlation across a sample does not license a " +
+        "frequency for one person - and experiment 3 shows that the size of " +
+        "the correlation is partly a fact about the setting the study ran in."
+    },
+    cannot: {
+      tone: "good",
+      verdict: "Yes - and for a specific reason.",
+      text:
+        "The score is a valid measurement of an evaluation. Behaviour is an " +
+        "event in a room with other people in it. Experiment 1 puts four " +
+        "people with this exact score into four working lives; experiment 2 " +
+        "shows which of the intervening conditions add and which one gates."
+    }
+  };
+
+  function showFeedback(container, tone, verdict, text) {
+    clear(container);
+    container.setAttribute("data-tone", tone);
+    var p = make("p");
+    p.appendChild(make("strong", "feedback__verdict", verdict));
+    if (text) { p.appendChild(document.createTextNode(" " + text)); }
+    container.appendChild(p);
+    container.hidden = false;
+  }
+
+  function lockForm(form) {
+    $$("input, button, select", form).forEach(function (c) { c.disabled = true; });
+  }
+
+  function unlockForm(form) {
+    $$("input, button, select", form).forEach(function (c) { c.disabled = false; });
+    form.reset();
+  }
+
+  function unlockLab() {
+    state.unlocked = true;
+    labSection.hidden = false;
+    render();
+    shell.announce("Laboratory open at experiment 1.", { immediate: true });
+  }
+
+  openingForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answer = $('input[name="opening"]:checked', openingForm);
+    if (!answer) {
+      openingError.textContent = "Choose an answer before opening the laboratory.";
+      openingError.hidden = false;
+      return;
+    }
+    openingError.hidden = true;
+    var feedback = OPENING[answer.value];
+    showFeedback(openingFeedback, feedback.tone, feedback.verdict, feedback.text);
+    lockForm(openingForm);
+    unlockLab();
+    $("#lab-heading").focus();
+  });
+
+  $('[data-action="skip-opening"]').addEventListener("click", function () {
+    openingError.hidden = true;
+    showFeedback(openingFeedback, "neutral",
+      "Prediction skipped - demonstration mode.", "");
+    lockForm(openingForm);
+    unlockLab();
+  });
+
+  /* --- Worked example --------------------------------------------------------- */
+
+  $('[data-action="worked"]').addEventListener("click", function () {
+    state.predictions = { rowan: "usually", devi: "sometimes", marek: "usually", priya: "sometimes" };
+    state.revealed = true;
+    state.person = "marek";
+    state.values = valuesFor(personById("marek"));
+    state.correspondence = "middle";
+    state.setting = "field";
+    state.measure = "middle";
+    state.stage = 2;
+    syncForms();
+    render();
+    shell.announce(
+      "Worked example: the four predictions most people make, then Marek " +
+      "loaded into experiment 2. His attitude, control and habit are near " +
+      "Rowan's; his estimated behaviour is " +
+      pct(likelihood(state.values, state.correspondence)) +
+      " of occasions, because opportunity multiplies.",
+      { immediate: true });
+  });
+
+  function syncForms() {
+    $$("input[type=radio]", predictionBox).forEach(function (input) {
+      var id = input.name.replace("predict-", "");
+      input.checked = state.predictions[id] === input.value;
+    });
+    $$('input[name="setting"]').forEach(function (input) {
+      input.checked = input.value === state.setting;
+    });
+    $$('input[name="measure"]').forEach(function (input) {
+      input.checked = input.value === state.measure;
+    });
+  }
+
+  /* --- Reset and start-up ------------------------------------------------------ */
+
+  shell.onReset(function () {
+    state = JSON.parse(JSON.stringify(INITIAL));
+    state.values = valuesFor(personById(state.person));
+    unlockForm(openingForm);
+    openingFeedback.hidden = true;
+    openingError.hidden = true;
+    labSection.hidden = true;
+    gateNote.textContent = "";
+    claimsForm.reset();
+    claimsFeedback.hidden = true;
+    syncForms();
+    render();
+  });
+
+  buildPredictions();
+  buildSliders();
+  buildPersonSelect();
+  buildClaims();
+
+  shell.reset({ silent: true });
+  shell.announce(
+    "Ready. Answer the question above to open the laboratory.",
+    { immediate: true });
+})();
+
+</script>
+</div>

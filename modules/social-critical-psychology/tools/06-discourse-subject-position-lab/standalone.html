@@ -1,0 +1,2841 @@
+<!-- Discourse and Subject Position Laboratory
+     From Open Psychology Interactives - https://github.com/utman5454/open-psychology-interactives
+     Self-contained: no stylesheets, scripts, fonts, images or network requests.
+     Styles are scoped to .opi-activity and do not affect the page around them.
+     Nothing is saved, sent or tracked. MIT licensed; please keep this notice.
+     Paste anywhere that accepts HTML, or save as a .html file and open it. -->
+<div class="opi-activity">
+<style>
+/* Defensive baseline. See scripts/build-standalone.py for why this
+   is `revert` rather than an enumerated reset, and how the specificity ladder
+   keeps the activity's own styling on top of it. */
+.opi-activity *:not(svg *) {
+  all: revert;
+}
+.opi-activity, .opi-activity *, .opi-activity *::before, .opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  text-transform: none;
+  text-indent: 0;
+  font-style: normal;
+  font-variant: normal;
+  letter-spacing: normal;
+  word-spacing: normal;
+  white-space: normal;
+  visibility: visible;
+  float: none;
+  max-width: none;
+}
+.opi-activity svg { max-width: 100%; }
+.opi-activity img { max-width: 100%; height: auto; }
+.opi-activity [hidden] { display: none !important; }
+
+/* assets/css/main.css */
+.opi-activity.opi-activity {
+  --colour-page: #ffffff;
+  --colour-surface: #f5f7fa;
+  --colour-surface-raised: #ffffff;
+  --colour-border: #d3d9e2;
+  --colour-border-strong: #aeb7c4;
+  --colour-text: #131820;
+  --colour-text-muted: #4c566a;
+  --colour-accent: #1a4fa0;
+  --colour-accent-hover: #123a7a;
+  --colour-accent-soft: #e8eefb;
+  --colour-on-accent: #ffffff;
+  --colour-focus: #b45309;
+  --colour-cognitive: #8a4b00;
+  --colour-research-methods: #1a4fa0;
+  --colour-neuropsychology: #145c53;
+  --colour-social-critical-psychology: #9e2f45;
+  --colour-personality-individual-differences: #7a2e6d;
+  --colour-status-bg: #f1ede3;
+  --colour-status-text: #5c4a1f;
+  --colour-status-border: #d9cdb0;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  --text-xs: 13px;
+  --text-sm: 15px;
+  --text-base: 17px;
+  --text-lg: 19px;
+  --text-xl: 23px;
+  --text-2xl: 28px;
+  --text-3xl: 36px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgb(19 24 32 / 0.06);
+  --shadow-md: 0 2px 8px rgb(19 24 32 / 0.08);
+  --measure: 68ch;
+  --container: 1152px;
+}
+@media (prefers-color-scheme: dark) {
+.opi-activity.opi-activity {
+  --colour-page: #0f141b;
+  --colour-surface: #161d27;
+  --colour-surface-raised: #1a2230;
+  --colour-border: #2c3644;
+  --colour-border-strong: #44506180;
+  --colour-text: #e9edf3;
+  --colour-text-muted: #a8b2c1;
+  --colour-accent: #8fb6ff;
+  --colour-accent-hover: #b3cdff;
+  --colour-accent-soft: #1b2740;
+  --colour-on-accent: #0f141b;
+  --colour-focus: #f0b429;
+  --colour-cognitive: #e2ab5f;
+  --colour-research-methods: #8fb6ff;
+  --colour-neuropsychology: #6fc3b4;
+  --colour-social-critical-psychology: #f19aa8;
+  --colour-personality-individual-differences: #db9ccd;
+  --colour-status-bg: #241f14;
+  --colour-status-text: #e2cf9f;
+  --colour-status-border: #4a4028;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 2px 10px rgb(0 0 0 / 0.45);
+}
+}
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity.opi-activity {
+  -webkit-text-size-adjust: 100%;
+}
+.opi-activity.opi-activity {
+  background-color: var(--colour-page);
+  color: var(--colour-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.65;
+}
+.opi-activity.opi-activity h1,
+.opi-activity.opi-activity h2,
+.opi-activity.opi-activity h3,
+.opi-activity.opi-activity h4 {
+  margin: 0 0 var(--space-3);
+  line-height: 1.25;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.opi-activity.opi-activity h1 {
+  font-size: var(--text-3xl);
+}
+.opi-activity.opi-activity h2 {
+  font-size: var(--text-2xl);
+}
+.opi-activity.opi-activity h3 {
+  font-size: var(--text-xl);
+}
+.opi-activity.opi-activity h4 {
+  font-size: var(--text-lg);
+}
+.opi-activity.opi-activity p,
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol,
+.opi-activity.opi-activity dl {
+  margin: 0 0 var(--space-4);
+}
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol {
+  padding-left: 1.35em;
+}
+.opi-activity.opi-activity li + li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity a {
+  color: var(--colour-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: max(1px, 0.06em);
+}
+.opi-activity.opi-activity a:hover {
+  color: var(--colour-accent-hover);
+  text-decoration-thickness: max(2px, 0.11em);
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid var(--colour-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+@supports not selector(:focus-visible) {
+.opi-activity.opi-activity :focus {
+  outline: 3px solid var(--colour-focus);
+    outline-offset: 2px;
+}
+}
+.opi-activity.opi-activity code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.35em;
+}
+.opi-activity.opi-activity hr {
+  border: 0;
+  border-top: 1px solid var(--colour-border);
+  margin: var(--space-6) 0;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+}
+.opi-activity.opi-activity .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.opi-activity.opi-activity .container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+@media (min-width: 40em) {
+.opi-activity.opi-activity .container {
+  padding-inline: var(--space-5);
+}
+}
+.opi-activity.opi-activity .prose {
+  max-width: var(--measure);
+}
+.opi-activity.opi-activity .text-muted {
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .section {
+  padding-block: var(--space-7);
+}
+.opi-activity.opi-activity .section--tinted {
+  background-color: var(--colour-surface);
+  border-block: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .section__header {
+  max-width: var(--measure);
+  margin-bottom: var(--space-5);
+}
+.opi-activity.opi-activity .section__header > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-7) var(--space-6);
+  border-bottom: 1px solid var(--colour-border);
+  
+  background-image: linear-gradient(
+    180deg,
+    var(--colour-accent-soft) 0%,
+    var(--colour-page) 100%
+  );
+}
+.opi-activity.opi-activity .hero__eyebrow {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .hero h1 {
+  max-width: 20ch;
+  margin-bottom: var(--space-4);
+}
+.opi-activity.opi-activity .hero__lead {
+  max-width: var(--measure);
+  font-size: var(--text-lg);
+  color: var(--colour-text-muted);
+}
+@media (min-width: 48em) {
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-8) var(--space-7);
+}
+.opi-activity.opi-activity .hero h1 {
+  font-size: 44px;
+}
+}
+.opi-activity.opi-activity .button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  
+  min-height: 44px;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .button--primary {
+  background-color: var(--colour-accent);
+  border-color: var(--colour-accent);
+  
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--primary:hover {
+  background-color: var(--colour-accent-hover);
+  border-color: var(--colour-accent-hover);
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--secondary {
+  background-color: transparent;
+  border-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .button--secondary:hover {
+  background-color: var(--colour-surface);
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+}
+.opi-activity.opi-activity .card--cognitive {
+  --card-accent: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .card--research-methods {
+  --card-accent: var(--colour-research-methods);
+}
+.opi-activity.opi-activity .card--neuropsychology {
+  --card-accent: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .card--social-critical-psychology {
+  --card-accent: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .card--personality-individual-differences {
+  --card-accent: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 650;
+  line-height: 1.4;
+  padding: 3.2px var(--space-3);
+  border-radius: 999px;
+  border: 1px solid var(--colour-status-border);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+}
+.opi-activity.opi-activity .badge__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex: none;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed var(--colour-border-strong);
+  border-radius: var(--radius-lg);
+  background-color: var(--colour-surface);
+  padding: var(--space-5);
+  text-align: left;
+}
+.opi-activity.opi-activity .placeholder__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+}
+.opi-activity.opi-activity .placeholder > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .split {
+  display: grid;
+  gap: var(--space-6);
+}
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split {
+  grid-template-columns: 3fr 2fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .panel {
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.opi-activity.opi-activity .panel > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .panel__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .section--tinted {
+  border-block: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .hero {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .button--primary {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .button--secondary {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .button:hover {
+  border-color: Highlight;
+}
+.opi-activity.opi-activity .panel {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed CanvasText;
+}
+.opi-activity.opi-activity .badge {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .badge__dot {
+  background-color: CanvasText;
+}
+.opi-activity.opi-activity code {
+  border-color: CanvasText;
+}
+.opi-activity.opi-activity hr {
+  border-top-color: CanvasText;
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+}
+@media print {
+.opi-activity.opi-activity {
+  color: #000;
+  background: #fff;
+}
+.opi-activity.opi-activity a[href^="http"]::after {
+  content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+}
+}
+
+/* components/interactive-shell.css */
+.opi-activity.opi-activity .interactive {
+  --shell-page: var(--colour-page, #ffffff);
+  --shell-surface: var(--colour-surface, #f5f7fa);
+  --shell-raised: var(--colour-surface-raised, #ffffff);
+  --shell-border: var(--colour-border, #d3d9e2);
+  --shell-border-strong: var(--colour-border-strong, #aeb7c4);
+  --shell-text: var(--colour-text, #131820);
+  --shell-muted: var(--colour-text-muted, #4c566a);
+  --shell-accent: var(--colour-accent, #1a4fa0);
+  --shell-accent-soft: var(--colour-accent-soft, #e8eefb);
+  
+  --shell-on-accent: var(--colour-on-accent, #ffffff);
+  --shell-focus: var(--colour-focus, #b45309);
+  --shell-radius: var(--radius-lg, 12px);
+  --shell-gap: var(--space-5, 24px);
+
+  display: block;
+  background-color: var(--shell-raised);
+  color: var(--shell-text);
+  border: 1px solid var(--shell-border);
+  border-radius: var(--shell-radius);
+  
+  overflow-x: clip;
+  overflow-y: visible;
+}
+.opi-activity.opi-activity .interactive__header {
+  padding: var(--shell-gap);
+  border-bottom: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 1.25;
+}
+.opi-activity.opi-activity .interactive__brief {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--shell-muted);
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__body {
+  display: grid;
+  gap: var(--shell-gap);
+  padding: var(--shell-gap);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body {
+  grid-template-columns: minmax(240px, 320px) 1fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .interactive__controls {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__controls fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .interactive__controls legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .control {
+  display: grid;
+  gap: 5.6px;
+}
+.opi-activity.opi-activity .control + .control {
+  margin-top: 16px;
+}
+.opi-activity.opi-activity .control__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.opi-activity.opi-activity .control__label {
+  font-size: 15px;
+  font-weight: 600;
+}
+.opi-activity.opi-activity .control__value {
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--shell-accent);
+}
+.opi-activity.opi-activity .control__hint {
+  font-size: 13px;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .interactive__controls input[type="range"] {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--shell-accent);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  width: 100%;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--shell-text);
+  background-color: var(--shell-raised);
+  border: 1px solid var(--shell-border-strong);
+  border-radius: var(--radius-sm, 4px);
+}
+.opi-activity.opi-activity .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+}
+.opi-activity.opi-activity .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  accent-color: var(--shell-accent);
+  flex: none;
+}
+.opi-activity.opi-activity .interactive__stage {
+  min-height: 256px;
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-page);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body--pinned {
+  align-items: stretch;
+}
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: sticky;
+    top: 0;
+    z-index: 2;
+    
+    margin: -16px -16px 0;
+    padding: 16px 16px 12px;
+    background-color: var(--shell-page);
+    border-bottom: 1px solid var(--shell-border);
+}
+}
+@media (min-width: 52em) and (max-height: 30em) {
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: static;
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
+}
+}
+.opi-activity.opi-activity .interactive__stage > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity :where(.interactive__stage) svg,
+.opi-activity.opi-activity :where(.interactive__stage) canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+.opi-activity.opi-activity .interactive__readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout div {
+  padding: 9.6px 12px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-sm, 4px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__readout dt {
+  font-size: 13px;
+  color: var(--shell-muted);
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout dd {
+  margin: 2.4px 0 0;
+  font-size: 18px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .interactive__status {
+  margin: 0;
+  padding: 12px var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+  font-size: 15px;
+  color: var(--shell-muted);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .interactive__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+}
+.opi-activity.opi-activity .interactive__actions button {
+  min-height: 44px;
+  padding: 6.4px 20px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--shell-on-accent);
+  background-color: var(--shell-accent);
+  border: 1px solid var(--shell-accent);
+  border-radius: var(--radius-md, 8px);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  color: var(--shell-text);
+  background-color: transparent;
+  border-color: var(--shell-border-strong);
+}
+.opi-activity.opi-activity .interactive__actions button:hover {
+  filter: brightness(1.08);
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__notes > summary {
+  padding: 13.6px var(--shell-gap);
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__notes > div {
+  padding: 0 var(--shell-gap) var(--shell-gap);
+  max-width: 68ch;
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__notes > div > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity .interactive *,
+.opi-activity.opi-activity .interactive *::before,
+.opi-activity.opi-activity .interactive *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+}
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .interactive,
+.opi-activity.opi-activity .interactive__controls,
+.opi-activity.opi-activity .interactive__stage,
+.opi-activity.opi-activity .interactive__readout div {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__header {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__status,
+.opi-activity.opi-activity .interactive__actions,
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__actions button {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  border-width: 1px;
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 1;
+    color: GrayText;
+    border-color: GrayText;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__stage svg {
+  forced-color-adjust: auto;
+}
+}
+
+/* components/tool-kit.css */
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split--wide {
+  grid-template-columns: 1fr 1fr;
+}
+}
+.opi-activity.opi-activity .how-to {
+  padding-left: 19.2px;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .how-to > li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .table-scroll {
+  overflow-x: auto;
+  
+  position: relative;
+}
+.opi-activity.opi-activity .prediction {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 832px;
+}
+.opi-activity.opi-activity .prediction > *,
+.opi-activity.opi-activity .challenge > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity .prediction__group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .prediction__legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-weight: 650;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .prediction .control--choice,
+.opi-activity.opi-activity .challenge .control--choice,
+.opi-activity.opi-activity .evidence .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .prediction .control--choice input,
+.opi-activity.opi-activity .challenge .control--choice input,
+.opi-activity.opi-activity .evidence .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .prediction__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .prediction__error {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-status-border);
+  border-left: 4px solid var(--colour-status-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .prediction__readback {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .feedback[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .feedback[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .feedback[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .feedback__verdict {
+  font-weight: 700;
+}
+.opi-activity.opi-activity .verdict {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .verdict__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict__body {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .verdict__body + .verdict__body {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .verdict__note {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .verdict[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .verdict[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .goal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .goal__label {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .goal__text {
+  flex: 1 1 256px;
+}
+.opi-activity.opi-activity .goal strong {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .goal__checks {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+  display: grid;
+  gap: 2.4px;
+}
+.opi-activity.opi-activity .goal__checks > li {
+  margin-top: 0;
+  padding-left: 22.4px;
+  position: relative;
+}
+.opi-activity.opi-activity .goal__checks > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 9.6px;
+  height: 9.6px;
+  border: 2px solid var(--colour-border-strong);
+  border-radius: 2px;
+}
+.opi-activity.opi-activity .goal__checks > li[data-met="yes"]::before {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .stage-track {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .stage-track > li {
+  margin-top: 0;
+  flex: 1 1 160px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-bottom: 3px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .stage-track > li > span {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.opi-activity.opi-activity .stage-track > li[data-state="done"] {
+  border-bottom-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border-bottom-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+  color: var(--colour-text);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .stage__heading {
+  margin: 0;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .data-table,
+.opi-activity.opi-activity .chart__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .data-table th,
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table th,
+.opi-activity.opi-activity .chart__table td {
+  padding: 6.4px 9.6px;
+  border: 1px solid var(--colour-border);
+  text-align: left;
+  vertical-align: top;
+}
+.opi-activity.opi-activity .data-table thead th,
+.opi-activity.opi-activity .chart__table thead th {
+  background-color: var(--colour-surface);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table td {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__table tbody th,
+.opi-activity.opi-activity .data-table tbody th {
+  font-weight: 550;
+}
+.opi-activity.opi-activity .data-table__total > th,
+.opi-activity.opi-activity .data-table__total > td {
+  border-top: 2px solid var(--colour-border-strong);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart {
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .chart__caption {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__svg {
+  max-width: 100%;
+  height: auto;
+}
+.opi-activity.opi-activity .chart__label,
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__inline,
+.opi-activity.opi-activity .chart__axis {
+  font-family: var(--font-body);
+  fill: var(--colour-text);
+  font-size: 13px;
+}
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__axis {
+  fill: var(--colour-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: var(--colour-on-accent);
+  font-size: 12px;
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__track {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__bar {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--one {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .chart__baseline,
+.opi-activity.opi-activity .chart__grid {
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__line {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: var(--colour-personality-individual-differences);
+  stroke-dasharray: 6 4;
+}
+.opi-activity.opi-activity .chart__point {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .reveal > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .reveal__lead {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+.opi-activity.opi-activity .reveal__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(176px, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+  padding: 0;
+  list-style: none;
+}
+.opi-activity.opi-activity .reveal__figures > li {
+  margin-top: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+.opi-activity.opi-activity .reveal__figure-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .reveal__figure-value {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .challenge {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+.opi-activity.opi-activity .challenge__locked {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .panel--caution {
+  background-color: var(--colour-status-bg);
+  border-color: var(--colour-status-border);
+}
+.opi-activity.opi-activity .panel--caution li + li {
+  margin-top: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .goal,
+.opi-activity.opi-activity .verdict,
+.opi-activity.opi-activity .feedback,
+.opi-activity.opi-activity .prediction__error,
+.opi-activity.opi-activity .prediction__readback,
+.opi-activity.opi-activity .stage-track > li,
+.opi-activity.opi-activity .reveal__figures > li {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border: 2px solid Highlight;
+}
+.opi-activity.opi-activity .chart__bar,
+.opi-activity.opi-activity .chart__bar--one {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: Canvas;
+}
+.opi-activity.opi-activity .chart__line {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: Highlight;
+}
+}
+.opi-activity.opi-activity .stage__more {
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .stage__more > summary {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .stage__more[open] > summary {
+  border-bottom: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .stage__more > *:not(summary) {
+  margin: var(--space-3);
+}
+
+/* modules/social-critical-psychology/tools/06-discourse-subject-position-lab/tool.css */
+.opi-activity.opi-activity #discourse-lab .interactive__controls,
+.opi-activity.opi-activity #discourse-lab .interactive__stage {
+  min-width: 0;
+}
+.opi-activity.opi-activity #discourse-lab .interactive__stage > * {
+  min-width: 0;
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity #discourse-lab .interactive__body {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+}
+@media (min-width: 76em) {
+.opi-activity.opi-activity #discourse-lab .interactive__body {
+  grid-template-columns: minmax(0, 480px) minmax(0, 1fr);
+}
+}
+.opi-activity.opi-activity .ledger {
+  margin: 0;
+  padding-left: 22.4px;
+  display: grid;
+  gap: var(--space-2);
+  max-width: 992px;
+}
+.opi-activity.opi-activity .ledger__item {
+  margin-top: 0;
+  padding: var(--space-2) var(--space-3);
+  border-left: 3px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+.opi-activity.opi-activity .ledger__item[data-key="yes"] {
+  border-left-width: 5px;
+  border-left-color: var(--colour-social-critical-psychology);
+  font-weight: 600;
+}
+.opi-activity.opi-activity .ledger__item[data-key="yes"]::after {
+  content: " (this entry appears in only one of the five accounts)";
+  font-weight: 400;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .lens-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 9.6px;
+  min-height: 44px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  background-color: var(--colour-surface-raised);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .lens-option + .lens-option {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .lens-option:has(input:checked) {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+}
+.opi-activity.opi-activity .lens-option input {
+  width: 18.4px;
+  height: 18.4px;
+  margin-top: 4px;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .lens-option__body {
+  display: grid;
+  gap: 1.6px;
+  min-width: 0;
+}
+.opi-activity.opi-activity .lens-option__name {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .lens-option__question {
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+  line-height: 1.35;
+}
+.opi-activity.opi-activity .question {
+  margin: 0 0 var(--space-3);
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  background-color: var(--colour-surface-raised);
+}
+.opi-activity.opi-activity .question__legend {
+  float: left;
+  width: 100%;
+  padding: 0 0 var(--space-2);
+  margin: 0;
+  font-size: var(--text-sm);
+  font-weight: 650;
+  line-height: 1.4;
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .question__option {
+  clear: both;
+  align-items: flex-start;
+  gap: 9.6px;
+  font-size: var(--text-sm);
+  line-height: 1.4;
+}
+.opi-activity.opi-activity .question__option input {
+  margin-top: 4.8px;
+}
+.opi-activity.opi-activity .stage-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+.opi-activity.opi-activity .stage-nav .button {
+  min-height: 44px;
+}
+.opi-activity.opi-activity .account__source {
+  margin: 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .account__text {
+  margin: 0;
+  padding: var(--space-3);
+  border-left: 4px solid var(--colour-social-critical-psychology);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+.opi-activity.opi-activity .verdict + .verdict {
+  margin-top: var(--space-3);
+}
+.opi-activity.opi-activity .claims__results {
+  margin: var(--space-3) 0 0;
+  padding-left: 19.2px;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .claims__results > li {
+  margin-top: 0;
+  padding-left: var(--space-3);
+  border-left: 3px solid var(--colour-border-strong);
+}
+.opi-activity.opi-activity .claims__results > li[data-agreed="yes"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .claims__results > li[data-agreed="no"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .claims__result-head {
+  margin: 0 0 var(--space-1);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .ledger__item,
+.opi-activity.opi-activity .lens-option,
+.opi-activity.opi-activity .question,
+.opi-activity.opi-activity .account__text,
+.opi-activity.opi-activity .claims__results > li {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .lens-option:has(input:checked) {
+  border: 2px solid Highlight;
+}
+.opi-activity.opi-activity .ledger__item[data-key="yes"] {
+  border: 2px solid Highlight;
+}
+}
+</style>
+
+  <!-- ================= Title and purpose ================= -->
+  <section class="section card--social-critical-psychology" aria-labelledby="page-heading">
+    <div class="container">
+
+      <p class="hero__eyebrow" style="color: var(--colour-social-critical-psychology)">
+        Social and Critical Psychology
+      </p>
+      <h1 id="page-heading">Discourse and Subject Position Laboratory</h1>
+      <p class="hero__lead">
+        Six months in a fictional person's life, written up five times. The
+        events are identical in every version. What differs is the kind of
+        person the account produces, what she may legitimately do next, who is
+        entitled to say what is happening, and where responsibility lands.
+      </p>
+
+      <p>
+        <span class="badge">
+          <span class="badge__dot" aria-hidden="true"></span>
+          Fictional case - the person, the service and all five accounts were written for this activity
+        </span>
+      </p>
+
+      <div class="split split--wide">
+
+        <div class="panel">
+          <h2 class="panel__title">Learning objective</h2>
+          <p>
+            By the end you should be able to identify the subject position
+            an account makes available, and say which actions it renders
+            reasonable and who it authorises to speak.
+          </p>
+          <p class="text-muted">
+            About 30 minutes. Nothing you do here is saved or sent anywhere.
+          </p>
+        </div>
+
+        <div class="panel panel--caution">
+          <h2 class="panel__title">Two things this is not</h2>
+          <p>
+            It is not a word-frequency exercise. Nothing here depends on which
+            words appear most often; what matters is the position an account
+            makes available to the person it is about, and what that position
+            permits.
+          </p>
+          <p>
+            It is not a claim that the events are made of language. The ledger
+            of events is fixed and stays on screen throughout, and one of the
+            entries in it is a budget decision that none of the five accounts
+            mentions. Analysing how something is written up is not the same as
+            saying that only the writing is real.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="how-to">
+        <h2 class="panel__title">How to use this</h2>
+        <ol>
+          <li>Read the ledger of events. It does not change.</li>
+          <li>Commit to an answer to the question below.</li>
+          <li>
+            Choose an account. It stays pinned beside you while you answer four
+            questions about it.
+          </li>
+          <li>
+            Read the feedback, then choose another account. The comparison
+            builds as you go.
+          </li>
+          <li>Analyse at least three, then read the synthesis.</li>
+        </ol>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= The ledger ================= -->
+  <section class="section section--tinted" aria-labelledby="ledger-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="ledger-heading">The ledger: what happened</h2>
+        <p class="prose">
+          A fictional community day service, and six months in the life of a
+          fictional woman referred to throughout as R. Everything below is
+          agreed by everyone involved. No account disputes any of it.
+        </p>
+      </div>
+
+      <ol class="ledger" data-ledger></ol>
+
+      <p class="text-muted">
+        R, the service, the assessment and all five accounts are invented for
+        teaching. No real person, service, record or document is reproduced,
+        and nothing here is a clinical description of anybody.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- ================= Opening prediction ================= -->
+  <section class="section" id="opening" aria-labelledby="opening-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="opening-heading">First, a judgement</h2>
+      </div>
+
+      <noscript>
+        <div class="placeholder">
+          <h3 class="placeholder__title">This part needs JavaScript</h3>
+          <p class="prose">
+            The laboratory presents accounts and evaluates your analysis in
+            your browser, so it cannot run with JavaScript switched off. The
+            ledger, the debrief and the limitations are readable without it.
+          </p>
+        </div>
+      </noscript>
+
+      <form class="panel prediction" id="opening-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            Five accounts of the same six months are about to appear. What is
+            the most important thing that will differ between them?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="tone">
+            Tone - some will be sympathetic and some will not
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="facts">
+            Which facts are included and which are left out
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="position">
+            What kind of person R is made into, and therefore what she may do next
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="accuracy">
+            How accurate they are - one of them will be closest to the truth
+          </label>
+        </fieldset>
+
+        <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Record my answer and open the laboratory
+          </button>
+          <button class="button button--secondary" type="button" data-action="skip-opening">
+            Skip - I am demonstrating this
+          </button>
+        </div>
+
+        <div class="feedback" data-opening-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= The laboratory ================= -->
+  <section class="section section--tinted" id="lab-section" aria-labelledby="lab-heading" hidden>
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="lab-heading" tabindex="-1">The laboratory</h2>
+      </div>
+
+      <section class="interactive" id="discourse-lab" data-interactive
+               data-reset-message="Everything cleared. Back to the ledger and no account.">
+
+        <header class="interactive__header">
+          <h3 class="interactive__title">Five write-ups, one set of events</h3>
+          <p class="interactive__brief">
+            The account you are analysing stays pinned at the top of the result
+            while you answer. Read it again before each question - the answers
+            are in the wording, not in the ledger.
+          </p>
+          <p class="goal">
+            <span class="goal__label">Progress</span>
+            <span class="goal__text" data-goal-text></span>
+          </p>
+        </header>
+
+        <div class="interactive__body interactive__body--pinned">
+
+          <form class="interactive__controls" data-interactive-controls>
+
+            <fieldset>
+              <legend>1. Choose an account</legend>
+              <div data-account-choices></div>
+            </fieldset>
+
+            <fieldset data-questions-block hidden>
+              <legend>2. Analyse it</legend>
+              <div data-questions></div>
+              <div class="stage-nav">
+                <button class="button button--primary" type="button" data-action="check">
+                  Check my analysis
+                </button>
+                <button class="button button--secondary" type="button" data-action="reveal">
+                  Show me
+                </button>
+              </div>
+            </fieldset>
+
+          </form>
+
+          <div class="interactive__stage" data-interactive-stage>
+
+            <div class="stage__primary">
+              <h4 class="stage__heading" data-account-title>No account selected</h4>
+              <p class="account__source" data-account-source></p>
+              <p class="account__text" data-account-text></p>
+            </div>
+
+            <div data-analysis hidden>
+              <h4 class="stage__heading">What this account does</h4>
+              <div data-analysis-body></div>
+            </div>
+
+            <div data-comparison hidden>
+              <h4 class="stage__heading">Accounts you have analysed</h4>
+              <div class="table-scroll">
+                <table class="data-table">
+                  <caption class="visually-hidden">
+                    For each account: the subject position it produces, what
+                    becomes legitimate, who is authorised to speak and where
+                    responsibility lands
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Account</th>
+                      <th scope="col">Kind of person</th>
+                      <th scope="col">Legitimate next action</th>
+                      <th scope="col">Who may say what is happening</th>
+                      <th scope="col">Responsibility</th>
+                    </tr>
+                  </thead>
+                  <tbody data-comparison-body></tbody>
+                </table>
+              </div>
+              <div class="verdict" data-synthesis></div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <p class="interactive__status" data-interactive-status role="status"></p>
+
+        <div class="interactive__actions">
+          <button type="button" data-action="worked">
+            Worked example
+          </button>
+          <button type="button" data-variant="secondary" data-interactive-reset>
+            Reset everything
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ================= Challenge ================= -->
+  <section class="section" id="challenge" aria-labelledby="challenge-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="challenge-heading">Challenge - four short extracts</h2>
+        <p class="prose">
+          Each extract is one sentence somebody wrote about R. For each, say
+          what it does to her: what position it puts her in.
+        </p>
+      </div>
+
+      <form class="panel challenge" id="claims-form">
+        <div data-claims-list></div>
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Check my judgements
+          </button>
+        </div>
+        <div class="feedback" data-claims-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Debrief ================= -->
+  <section class="section section--tinted" id="debrief" aria-labelledby="debrief-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="debrief-heading">What this demonstrates</h2>
+      </div>
+
+      <div class="split split--wide">
+
+        <div class="prose">
+          <h3>An account produces a kind of person</h3>
+          <p>
+            "Non-compliant", "service user exercising choice", "self-advocate",
+            "person taking ownership of her recovery" and "customer" are not
+            five words for R. They are five positions, and a position comes
+            with a specification of what someone in it can reasonably do.
+            Somebody positioned as non-compliant who writes to a manager is
+            escalating. Somebody positioned as a self-advocate who writes to a
+            manager is doing the thing self-advocates do. The letter is the
+            same letter.
+          </p>
+
+          <h3>Legitimacy is distributed by the description</h3>
+          <p>
+            Notice how the same act - starting a peer group in the library -
+            appears in the five versions. It is disengagement, it is
+            unmonitored risk, it is community organising, it is
+            recovery-oriented self-management, it is a customer taking her
+            business elsewhere. Each of those makes a different response by the
+            service obviously appropriate, and only one of them makes asking R
+            what she wanted obviously appropriate.
+          </p>
+
+          <h3>Every account authorises somebody</h3>
+          <p>
+            Accounts do not only describe; they nominate whose description
+            counts. A case note authorises the clinician, a risk register
+            authorises the safeguarding lead, an advocacy bulletin authorises
+            R and people like her, a recovery narrative authorises R in a
+            carefully bounded way - she may narrate her journey, but the
+            service still decides what a journey is. Asking who is entitled to
+            say what is happening is often more revealing than asking what is
+            said.
+          </p>
+
+          <h3>Responsibility moves without anyone moving it</h3>
+          <p>
+            Between the case note and the recovery account, responsibility for
+            the six months travels from R's illness to R's choices - and in
+            neither version does it arrive anywhere near the decision, in
+            ledger entry 2, to halve the programme's hours. That decision is in
+            the ledger, is not disputed by anybody, and appears in none of the
+            five write-ups. The most consequential thing a discourse does is
+            often not what it says about a person but what it has no place to
+            say about anything else.
+          </p>
+
+          <h3>Language, institutions and what can be done</h3>
+          <p>
+            None of this is about wording in the sense of politeness. The
+            positions are held in place by forms, templates, review meetings,
+            funding conditions and the professional training of the people who
+            write them. That is why changing the vocabulary alone rarely
+            changes very much, and why the recovery account - which changed the
+            vocabulary comprehensively - can leave the distribution of
+            authority almost exactly where it was.
+          </p>
+        </div>
+
+        <aside class="panel panel--caution" aria-labelledby="limits-heading">
+          <h3 class="panel__title" id="limits-heading">
+            What this does <em>not</em> demonstrate
+          </h3>
+          <ul>
+            <li>
+              <strong>Real discourse analysis is bigger than this.</strong> It
+              works with much longer stretches of talk and text, and attends
+              to what accounts are doing in the interaction they occur in.
+              Critical realists and discursive psychologists disagree about a
+              great deal while agreeing about that.
+            </li>
+            <li>
+              <strong>No account is simply the villain.</strong> A case note
+              exists so that a clinician who has never met R can act safely at
+              two in the morning. A risk register exists because services have
+              harmed people by not keeping one. The costs are real and so are
+              the reasons.
+            </li>
+            <li>
+              <strong>Recovery language is not a trick.</strong> It was fought
+              for by service users against exactly the case-note position, and
+              it made real differences. What the comparison shows is that a
+              vocabulary can be won and then absorbed, which is a different and
+              sadder point.
+            </li>
+            <li>
+              <strong>Five accounts is a simplification.</strong> A real file
+              contains dozens, they contradict each other, and the same author
+              shifts position within a paragraph.
+            </li>
+            <li>
+              <strong>Nobody is assessed.</strong> R is fictional. The tool
+              asks nothing about the person using it and is not a method for
+              analysing a real person's records.
+            </li>
+          </ul>
+        </aside>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+<script>
+/* ---- components/interactive-shell.js ---- */
+/* =========================================================================
+   Open Psychology Interactives — interactive shell helper
+   -------------------------------------------------------------------------
+   A very small vanilla-JS helper that every interactive in this collection
+   uses. It deliberately does *not* draw anything or know anything about
+   statistics, personality or neuropsychology. Its job is the repetitive,
+   easy-to-get-wrong accessibility plumbing:
+
+     * announcing changes through a polite live region;
+     * keeping a range slider and its <output> in step;
+     * wiring the standard Reset button;
+     * reporting the reader's reduced-motion preference.
+
+   Usage (see docs/adapting-a-tool.md for the full markup contract):
+
+       <script src="../../components/interactive-shell.js" defer><\/script>
+       <script src="tool.js" defer><\/script>
+
+       // in tool.js
+       const shell = InteractiveShell.attach('#sampling-demo');
+       shell.onReset(() => { ...restore defaults...; draw(); });
+       shell.bindRange('#sample-size', { format: n => n + ' cases' });
+       shell.announce('Sample of 25 drawn. Mean 4.8.');
+
+   Every published interactive is written against this module.
+
+   Exposed as a global (window.InteractiveShell) rather than an ES module so
+   that a single interactive folder can be opened directly from disk over
+   file:// — ES modules are blocked by CORS in that situation, plain scripts
+   are not. That constraint is the whole reason for the older syntax here.
+   ========================================================================= */
+
+(function (global) {
+  "use strict";
+
+  /* -----------------------------------------------------------------------
+     Internal helpers
+     --------------------------------------------------------------------- */
+
+  /**
+   * Accept either a CSS selector or an element and return an element.
+   * @param {string|Element} target
+   * @param {ParentNode} [scope]
+   * @returns {Element|null}
+   */
+  function resolve(target, scope) {
+    if (!target) {
+      return null;
+    }
+    if (typeof target === "string") {
+      return (scope || document).querySelector(target);
+    }
+    return target;
+  }
+
+  /**
+   * True when the reader has asked the operating system to reduce motion.
+   * Interactives should check this before animating anything — for example
+   * by drawing a sampling distribution in one step instead of animating
+   * each draw.
+   * @returns {boolean}
+   */
+  function prefersReducedMotion() {
+    return (
+      typeof global.matchMedia === "function" &&
+      global.matchMedia("(prefers-reduced-motion: reduce)").matches
+    );
+  }
+
+  /* -----------------------------------------------------------------------
+     Shell controller
+     --------------------------------------------------------------------- */
+
+  /**
+   * Attach the shell behaviour to one `.interactive` element.
+   *
+   * @param {string|Element} target  Selector or element for the shell root.
+   * @returns {object|null}  Controller, or null if the root was not found.
+   */
+  function attach(target) {
+    var root = resolve(target);
+
+    if (!root) {
+      if (global.console && console.warn) {
+        console.warn("InteractiveShell: root element not found.", target);
+      }
+      return null;
+    }
+
+    var controls = root.querySelector("[data-interactive-controls]");
+    var stage = root.querySelector("[data-interactive-stage]");
+    var status = root.querySelector("[data-interactive-status]");
+    var resetButton = root.querySelector("[data-interactive-reset]");
+    var resetHandlers = [];
+    // Every range bound with bindRange() registers its sync function here, so
+    // that reset() can refresh the visible values after the tool's own reset
+    // handlers have restored the inputs. See reset() for why this is needed.
+    var rangeSyncs = [];
+
+    /* --- Live region ----------------------------------------------------
+       The status element is marked up as role="status" (implicitly
+       aria-live="polite"). Two details matter:
+
+         1. Assistive technology only announces *changes* to a live region,
+            so writing the same string twice is silently dropped. We add a
+            trailing zero-width space on repeat messages to force an
+            announcement when a student re-runs the same action.
+         2. Announcements are debounced. A slider dragged across its range
+            fires dozens of input events; without a delay a screen reader
+            would queue every intermediate value and fall far behind.
+       ------------------------------------------------------------------ */
+
+    var announceTimer = null;
+    var lastMessage = "";
+
+    /**
+     * Announce a short sentence describing what just changed.
+     * @param {string} message
+     * @param {object} [options]
+     * @param {boolean} [options.immediate]  Skip the debounce delay. Use for
+     *   discrete actions (button presses); leave off for continuous input.
+     */
+    function announce(message, options) {
+      if (!status) {
+        return;
+      }
+
+      var text = String(message == null ? "" : message);
+      var immediate = Boolean(options && options.immediate);
+
+      if (announceTimer !== null) {
+        global.clearTimeout(announceTimer);
+        announceTimer = null;
+      }
+
+      function write() {
+        // Force a change when the text is identical to last time.
+        status.textContent = text === lastMessage ? text + "​" : text;
+        lastMessage = text;
+      }
+
+      if (immediate) {
+        write();
+      } else {
+        announceTimer = global.setTimeout(write, 350);
+      }
+    }
+
+    /* --- Reset ---------------------------------------------------------- */
+
+    /**
+     * Register a callback to run when the Reset button is pressed.
+     * Several may be registered; they run in the order added.
+     * @param {Function} handler
+     */
+    function onReset(handler) {
+      if (typeof handler === "function") {
+        resetHandlers.push(handler);
+      }
+    }
+
+    /**
+     * Run the reset handlers. Called by the button and available directly so
+     * an interactive can reset itself on first load.
+     *
+     * Bound ranges are re-synced afterwards. A reset handler restores an
+     * input by assigning to `input.value`, and assigning to a value in script
+     * does not fire an `input` event — so without this step the slider would
+     * jump back to its default while its <output> went on showing the old
+     * number. Syncing here, after the handlers have run, also means the sync
+     * sees the restored values regardless of the order things were
+     * registered in.
+     *
+     * @param {object} [options]
+     * @param {boolean} [options.silent]  Suppress the status announcement.
+     */
+    function reset(options) {
+      resetHandlers.forEach(function (handler) {
+        handler();
+      });
+      rangeSyncs.forEach(function (sync) {
+        sync();
+      });
+      if (!options || !options.silent) {
+        announce(
+          root.getAttribute("data-reset-message") ||
+            "Reset to the starting values.",
+          { immediate: true }
+        );
+      }
+    }
+
+    if (resetButton) {
+      resetButton.addEventListener("click", function (event) {
+        // Reset buttons commonly sit inside the controls <form>; stop the
+        // browser's own form reset from fighting with ours.
+        event.preventDefault();
+        reset();
+      });
+    }
+
+    /* --- Range binding --------------------------------------------------
+       Keeps a slider's <output> in step with its value. The <output> must
+       carry `for="<input id>"`, which is what associates the two for
+       assistive technology; this only handles the visible text.
+
+       Optionally sets aria-valuetext, which is how you make a screen reader
+       say "25 cases" or "medium correlation" instead of a bare "25".
+       ------------------------------------------------------------------ */
+
+    /**
+     * @param {string|Element} inputTarget  The range (or number) input.
+     * @param {object} [options]
+     * @param {Function} [options.format]  value:number -> string shown in the
+     *   <output>. Defaults to the raw value.
+     * @param {Function} [options.describe]  value:number -> string used for
+     *   aria-valuetext. Defaults to options.format.
+     * @param {Function} [options.onInput]  value:number -> void, called after
+     *   the display has been updated. Use it to redraw.
+     * @returns {HTMLInputElement|null}
+     */
+    function bindRange(inputTarget, options) {
+      var input = resolve(inputTarget, root);
+      if (!input) {
+        return null;
+      }
+
+      var settings = options || {};
+      var format =
+        typeof settings.format === "function"
+          ? settings.format
+          : function (value) {
+              return String(value);
+            };
+      var describe =
+        typeof settings.describe === "function" ? settings.describe : format;
+
+      // <output for="the-input-id"> is the conventional pairing.
+      var output = input.id
+        ? root.querySelector('output[for="' + input.id + '"]')
+        : null;
+
+      function sync() {
+        var value = Number(input.value);
+        if (output) {
+          output.textContent = format(value);
+        }
+        // Only meaningful for widgets with an implicit or explicit slider
+        // role; harmless elsewhere.
+        input.setAttribute("aria-valuetext", describe(value));
+        if (typeof settings.onInput === "function") {
+          settings.onInput(value);
+        }
+      }
+
+      input.addEventListener("input", sync);
+      // Registered so reset() can refresh the display after the tool's own
+      // reset handlers have put the input back to its default.
+      rangeSyncs.push(sync);
+      sync();
+
+      return input;
+    }
+
+    /* --- Public surface -------------------------------------------------- */
+
+    return {
+      /** The `.interactive` root element. */
+      root: root,
+      /** The controls panel, or null if the shell has none. */
+      controls: controls,
+      /** The stage element where the visualisation is drawn. */
+      stage: stage,
+      /** The live-region element. */
+      status: status,
+      announce: announce,
+      onReset: onReset,
+      reset: reset,
+      bindRange: bindRange,
+      prefersReducedMotion: prefersReducedMotion
+    };
+  }
+
+  /* -----------------------------------------------------------------------
+     Export
+     --------------------------------------------------------------------- */
+
+  global.InteractiveShell = {
+    attach: attach,
+    prefersReducedMotion: prefersReducedMotion
+  };
+})(window);
+
+/* ---- modules/social-critical-psychology/tools/06-discourse-subject-position-lab/tool.js ---- */
+/* =========================================================================
+   Discourse and Subject Position Laboratory
+   -------------------------------------------------------------------------
+   One fixed ledger of events and five accounts of them. For each account the
+   learner answers four questions:
+
+       1. what kind of person does this account produce?
+       2. what does it make legitimate to do next?
+       3. who is authorised to say what is happening?
+       4. where does responsibility land?
+
+   THE EDUCATIONAL MODEL
+   ---------------------
+   Every account carries an authored answer to each of the four questions, and
+   every option carries an explanation - including the wrong ones, which are
+   right answers to the same question about a different account. The tool never
+   marks an account as true or false: the ledger is undisputed and every account
+   is compatible with all of it.
+
+   Two design decisions carry the critical content:
+
+     * The ledger stays on screen. Discourse analysis here is not a claim that
+       the events are made of language, and the fixed ledger is the guard
+       against that reading.
+     * Ledger entry 2 - the decision to halve the programme's hours - appears in
+       none of the five accounts. What a discourse cannot say about anything
+       other than the person is usually more consequential than what it says
+       about the person.
+
+   WHAT THIS IS NOT
+   ----------------
+   Not word-counting: no result depends on word frequency. Not a ranking: the
+   case note and the risk register exist for reasons, and the recovery
+   vocabulary was fought for by service users against exactly the case-note
+   position. Five accounts is a simplification of a file that would contain
+   dozens, contradicting one another and shifting within a paragraph.
+
+   No data leave the browser. There is no storage and no network request.
+   ========================================================================= */
+
+(function () {
+  "use strict";
+
+  var LEDGER = [
+    "R, 34, attended a community day programme three mornings a week for two years.",
+    "In April the service's budget was reduced and the programme's hours were halved; R's group moved from three mornings to one.",
+    "In May R was reassessed. The assessment recorded that her needs had reduced.",
+    "R told two members of staff that she disagreed with the assessment. She asked for a copy and was given one six weeks later.",
+    "From June R attended two of the eight remaining sessions.",
+    "In July R wrote to the service manager setting out what she thought the assessment had got wrong.",
+    "In August R booked a room in the public library and began running a weekly group for four other people who had used the programme.",
+    "In September the service closed R's case, recording that she had disengaged."
+  ];
+
+  var DIMENSIONS = [
+    {
+      id: "position",
+      question: "What kind of person does this account produce?",
+      column: "Kind of person"
+    },
+    {
+      id: "legitimate",
+      question: "Given that position, what becomes the obviously reasonable next step?",
+      column: "Legitimate next action"
+    },
+    {
+      id: "authority",
+      question: "Who does this account entitle to say what is really happening?",
+      column: "Who may say what is happening"
+    },
+    {
+      id: "responsibility",
+      question: "Where does responsibility for the six months land?",
+      column: "Responsibility"
+    }
+  ];
+
+  /* Every option is the correct answer for exactly one account, so the
+     distractors are never straw men. */
+  var OPTIONS = {
+    position: [
+      { id: "casenote", label: "A patient whose condition is deteriorating and whose judgement is part of what is impaired" },
+      { id: "risk", label: "A source of risk to be monitored, currently outside supervision" },
+      { id: "advocacy", label: "A citizen with a grievance, acting on it competently" },
+      { id: "recovery", label: "An individual on a journey, exercising choice and taking ownership" },
+      { id: "market", label: "A customer whose satisfaction has fallen and who has taken her custom elsewhere" }
+    ],
+    legitimate: [
+      { id: "casenote", label: "Review the care plan and consider whether engagement can be re-established clinically" },
+      { id: "risk", label: "Escalate to safeguarding and record the loss of contact" },
+      { id: "advocacy", label: "Answer the letter on its merits and correct the assessment if it is wrong" },
+      { id: "recovery", label: "Affirm her choices and support the goals she has set for herself" },
+      { id: "market", label: "Survey her about the experience and use it to improve the offer" }
+    ],
+    authority: [
+      { id: "casenote", label: "The clinician, whose training is what makes the observations observations" },
+      { id: "risk", label: "The safeguarding lead, on the basis of a threshold rather than a conversation" },
+      { id: "advocacy", label: "R and the four people in the library, as those to whom it is happening" },
+      { id: "recovery", label: "R, within limits the service sets - she narrates the journey, the service defines what a journey is" },
+      { id: "market", label: "The aggregate of respondents, through an instrument the provider designed" }
+    ],
+    responsibility: [
+      { id: "casenote", label: "With R's condition, which is not her fault and is also not anybody else's" },
+      { id: "risk", label: "With R, for placing herself outside the arrangements made for her" },
+      { id: "advocacy", label: "With the service, for an assessment it has not defended and a letter it has not answered" },
+      { id: "recovery", label: "With R, as the author of her own choices - reframed as empowerment rather than blame" },
+      { id: "market", label: "Nowhere in particular - a transaction ended, which is what transactions do" }
+    ]
+  };
+
+  var ACCOUNTS = [
+    {
+      id: "casenote",
+      title: "The case note",
+      source: "Electronic record, entered by the programme's lead practitioner, September.",
+      text:
+        "Engagement has declined markedly over the reporting period. R attended " +
+        "2/8 sessions following reassessment and has expressed dissatisfaction " +
+        "with the outcome to several staff members. Limited insight into the " +
+        "rationale for the revised plan. Has written to management. Now " +
+        "reported to be organising informal activity in the community, " +
+        "unsupervised. Case closed - disengaged.",
+      note:
+        "Notice how much of the ledger survives and how little of it stays " +
+        "the same kind of event. \"Expressed dissatisfaction\" and \"has " +
+        "written to management\" are true; \"limited insight\" turns a " +
+        "disagreement into a symptom, and once it is a symptom the letter " +
+        "cannot be answered on its merits without a category error.",
+      hidden:
+        "That the hours were halved in April. The record has a field for R's " +
+        "attendance and no field for the programme's."
+    },
+    {
+      id: "risk",
+      title: "The risk register entry",
+      source: "Quarterly risk review, safeguarding lead, September.",
+      text:
+        "Service user with two-year history of supported attendance now out of " +
+        "contact. Last seen June. Unmonitored group activity in a public " +
+        "setting with four other former attendees; no risk assessment held for " +
+        "this activity and no responsible person identified. Contact attempts " +
+        "unsuccessful. Recommend flag pending review.",
+      note:
+        "The same library group that the advocacy bulletin calls peer support " +
+        "here becomes an unassessed setting. Neither description is inaccurate. " +
+        "What differs is that this one is written in a genre whose whole " +
+        "purpose is to notice what has not been signed off, and that genre has " +
+        "no way of recording a thing going well.",
+      hidden:
+        "That R is in a library, on a weekday, with four people she knows. The " +
+        "register records the absence of oversight, not the presence of anyone."
+    },
+    {
+      id: "advocacy",
+      title: "The advocacy bulletin",
+      source: "Newsletter of a local user-led group, October.",
+      text:
+        "After the council halved the hours at the day programme, members were " +
+        "reassessed and several were told their needs had reduced. One member, " +
+        "R, requested her assessment, waited six weeks for it, and wrote to the " +
+        "manager setting out the errors in it. Having had no reply, she has " +
+        "started a weekly peer group at the library, now attended by five " +
+        "people. Her case has since been closed as \"disengaged\".",
+      note:
+        "The only account that includes the budget decision, and it includes it " +
+        "in the first clause. Note what that does to the last sentence: " +
+        "\"closed as disengaged\" is presented as something done to R rather " +
+        "than something she did, and the quotation marks carry the whole " +
+        "argument.",
+      hidden:
+        "Whatever the reassessment might have got right. This account is not " +
+        "neutral either, and its confidence that the assessment was in error is " +
+        "asserted rather than shown."
+    },
+    {
+      id: "recovery",
+      title: "The recovery-oriented summary",
+      source: "Discharge summary, written to the service's recovery template, September.",
+      text:
+        "R has moved into a more independent phase of her recovery journey. She " +
+        "has exercised choice about how she uses her time, taken ownership of " +
+        "her support needs and built her own network in the community, " +
+        "convening a peer group of her own. She has been able to voice her " +
+        "views about her assessment. R now feels ready to manage without " +
+        "formal input and we wish her well.",
+      note:
+        "The humane one, and the one that most completely makes a service cut " +
+        "into a personal achievement. Every verb is R's: she has moved, chosen, " +
+        "taken ownership, built. Nothing was done to her, and \"ready to manage " +
+        "without formal input\" is doing the work that \"case closed\" does in " +
+        "the case note, with none of the friction.",
+      hidden:
+        "That she asked for something and did not get it. In this vocabulary " +
+        "there is no grammatical position for an unanswered request - a " +
+        "disagreement can only appear as a view that has been voiced."
+    },
+    {
+      id: "market",
+      title: "The commissioning report",
+      source: "Provider performance summary to the commissioner, October.",
+      text:
+        "Reduced-hours model implemented on schedule and within budget. " +
+        "Reassessment identified reduced need in a proportion of the cohort, " +
+        "consistent with expected step-down. One service user submitted written " +
+        "feedback; satisfaction data for the quarter remain within tolerance. " +
+        "Attrition at 12%, in line with comparable services. Independent " +
+        "community-based activity has emerged among former attendees, " +
+        "indicating good progression.",
+      note:
+        "R appears once, as \"one service user submitted written feedback\". The " +
+        "peer group in the library appears as evidence that the cut worked. " +
+        "This is the account with the most power attached to it and the least " +
+        "to say about anybody, and both of those facts follow from the same " +
+        "feature: its unit of analysis is a cohort.",
+      hidden:
+        "R entirely, in any sense in which she is a person. Nothing in this " +
+        "genre is false; the person has simply been aggregated out of it."
+    }
+  ];
+
+  var CLAIMS = [
+    {
+      id: "insight",
+      text: "\"R shows limited insight into the rationale for the revised plan.\"",
+      answer: "symptom",
+      why:
+        "It converts a disagreement into a symptom. Once disagreeing is " +
+        "evidence of the condition, there is no move R can make that counts as " +
+        "argument: agreeing confirms the plan and disagreeing confirms the " +
+        "diagnosis. This is not a claim that clinicians write it in bad faith - " +
+        "insight is a real clinical concept - but the sentence has this " +
+        "structure whoever writes it."
+    },
+    {
+      id: "ownership",
+      text: "\"R has taken ownership of her support needs.\"",
+      answer: "responsibility",
+      why:
+        "It relocates responsibility without appearing to. The service's hours " +
+        "were halved; the sentence records R acquiring something rather than " +
+        "losing something, and makes her the agent of the change. This is the " +
+        "reason recovery language is worth analysing rather than simply " +
+        "welcoming: the vocabulary was won by service users and can be operated " +
+        "in a direction they did not intend."
+    },
+    {
+      id: "unsupervised",
+      text: "\"Organising informal activity in the community, unsupervised.\"",
+      answer: "legitimacy",
+      why:
+        "It makes an ordinary activity into an exception. Five adults meeting " +
+        "in a library are not normally described as unsupervised; the word only " +
+        "makes sense against a background in which supervision was the default " +
+        "for these particular five. What the sentence does is withdraw the " +
+        "legitimacy that the same activity would have if anyone else did it."
+    },
+    {
+      id: "attrition",
+      text: "\"Attrition at 12%, in line with comparable services.\"",
+      answer: "erasure",
+      why:
+        "R is not positioned at all here; she is aggregated. That is a position " +
+        "too, and it is the one with the most institutional force, because a " +
+        "figure in line with comparators requires no explanation and generates " +
+        "no action. Ask who would have to notice R for this sentence to become " +
+        "difficult to write."
+    }
+  ];
+
+  var CLAIM_OPTIONS = [
+    { value: "symptom", label: "Turns a disagreement into a symptom" },
+    { value: "responsibility", label: "Moves responsibility onto R while appearing to praise her" },
+    { value: "legitimacy", label: "Withdraws the legitimacy an ordinary activity would otherwise have" },
+    { value: "erasure", label: "Removes R as a person by aggregating her" }
+  ];
+
+  /* =======================================================================
+     Helpers
+     ===================================================================== */
+
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) { node.className = className; }
+    if (text !== undefined) { node.textContent = text; }
+    return node;
+  }
+
+  function clear(node) {
+    while (node.firstChild) { node.removeChild(node.firstChild); }
+  }
+
+  function accountById(id) {
+    return ACCOUNTS.filter(function (a) { return a.id === id; })[0] || null;
+  }
+
+  function optionLabel(dimension, id) {
+    return OPTIONS[dimension].filter(function (o) { return o.id === id; })[0].label;
+  }
+
+  /* =======================================================================
+     Wiring
+     ===================================================================== */
+
+  var shell = InteractiveShell.attach("#discourse-lab");
+  if (!shell) { return; }
+
+  var $ = function (s, scope) { return (scope || document).querySelector(s); };
+  var $$ = function (s, scope) {
+    return Array.prototype.slice.call((scope || document).querySelectorAll(s));
+  };
+
+  var openingForm = $("#opening-form");
+  var openingError = $("[data-opening-error]");
+  var openingFeedback = $("[data-opening-feedback]");
+  var labSection = $("#lab-section");
+
+  var ledgerList = $("[data-ledger]");
+  var accountChoices = $("[data-account-choices]");
+  var questionsBlock = $("[data-questions-block]");
+  var questionsBox = $("[data-questions]");
+  var accountTitle = $("[data-account-title]");
+  var accountSource = $("[data-account-source]");
+  var accountText = $("[data-account-text]");
+  var analysis = $("[data-analysis]");
+  var analysisBody = $("[data-analysis-body]");
+  var comparison = $("[data-comparison]");
+  var comparisonBody = $("[data-comparison-body]");
+  var synthesis = $("[data-synthesis]");
+  var goalText = $("[data-goal-text]");
+
+  var claimsForm = $("#claims-form");
+  var claimsList = $("[data-claims-list]");
+  var claimsFeedback = $("[data-claims-feedback]");
+
+  var INITIAL = { unlocked: false, account: null, picks: {}, analysed: {} };
+  var state = null;
+
+  /* --- Static material -------------------------------------------------------- */
+
+  function buildLedger() {
+    clear(ledgerList);
+    LEDGER.forEach(function (entry, index) {
+      var item = make("li", "ledger__item");
+      if (index === 1) { item.setAttribute("data-key", "yes"); }
+      item.appendChild(make("span", "ledger__text", entry));
+      ledgerList.appendChild(item);
+    });
+  }
+
+  function buildAccountChoices() {
+    clear(accountChoices);
+    ACCOUNTS.forEach(function (account) {
+      var label = make("label", "lens-option");
+      var input = document.createElement("input");
+      input.type = "radio";
+      input.name = "account";
+      input.value = account.id;
+      input.addEventListener("change", function () {
+        state.account = account.id;
+        state.picks = {};
+        buildQuestions();
+        analysis.hidden = !state.analysed[account.id];
+        if (state.analysed[account.id]) { showAnalysis(account, true); }
+        render();
+        shell.announce(account.title + " loaded. Read it, then answer the four " +
+          "questions.", { immediate: true });
+      });
+      label.appendChild(input);
+      var body = make("span", "lens-option__body");
+      body.appendChild(make("span", "lens-option__name", account.title));
+      body.appendChild(make("span", "lens-option__question", account.source));
+      label.appendChild(body);
+      accountChoices.appendChild(label);
+    });
+  }
+
+  function buildQuestions() {
+    clear(questionsBox);
+    if (!state.account) { return; }
+    DIMENSIONS.forEach(function (dimension) {
+      var group = make("fieldset", "question");
+      group.appendChild(make("legend", "question__legend", dimension.question));
+      OPTIONS[dimension.id].forEach(function (option) {
+        var label = make("label", "control--choice question__option");
+        var input = document.createElement("input");
+        input.type = "radio";
+        input.name = "q-" + dimension.id;
+        input.value = option.id;
+        input.addEventListener("change", function () {
+          state.picks[dimension.id] = option.id;
+        });
+        label.appendChild(input);
+        label.appendChild(make("span", null, option.label));
+        group.appendChild(label);
+      });
+      questionsBox.appendChild(group);
+    });
+  }
+
+  /* --- The pinned account ------------------------------------------------------ */
+
+  function renderAccount() {
+    if (!state.account) {
+      accountTitle.textContent = "No account selected";
+      accountSource.textContent = "";
+      accountText.textContent =
+        "Choose one of the five accounts on the left. Every one of them is " +
+        "compatible with every line of the ledger; none of them contains a " +
+        "false statement.";
+      return;
+    }
+    var account = accountById(state.account);
+    accountTitle.textContent = account.title;
+    accountSource.textContent = account.source;
+    accountText.textContent = account.text;
+  }
+
+  /* --- Analysis ---------------------------------------------------------------- */
+
+  function showAnalysis(account, revealed) {
+    state.analysed[account.id] = true;
+    analysis.hidden = false;
+    clear(analysisBody);
+
+    DIMENSIONS.forEach(function (dimension) {
+      var picked = state.picks[dimension.id];
+      var correct = account.id;
+      var box = make("div", "verdict");
+      var agreed = picked === correct;
+      box.setAttribute("data-tone", revealed ? "neutral" : agreed ? "good" : "caution");
+      box.appendChild(make("h5", "verdict__title", dimension.question));
+      box.appendChild(make("p", "verdict__body",
+        optionLabel(dimension.id, correct)));
+      if (picked && !agreed) {
+        box.appendChild(make("p", "verdict__note",
+          "You chose: \"" + optionLabel(dimension.id, picked) + "\" - which is " +
+          "the answer for the " + accountById(picked).title.toLowerCase() +
+          ". It is not a wrong reading of a text; it is a right reading of a " +
+          "different one."));
+      }
+      analysisBody.appendChild(box);
+    });
+
+    var summary = make("div", "verdict");
+    summary.setAttribute("data-tone", "warn");
+    summary.appendChild(make("h5", "verdict__title", "What it does, and what it cannot say"));
+    summary.appendChild(make("p", "verdict__body", account.note));
+    summary.appendChild(make("p", "verdict__body",
+      "What this account has no place for: " + account.hidden));
+    analysisBody.appendChild(summary);
+
+    render();
+  }
+
+  $('[data-action="check"]').addEventListener("click", function () {
+    if (!state.account) { return; }
+    var missing = DIMENSIONS.filter(function (d) { return !state.picks[d.id]; });
+    if (missing.length) {
+      shell.announce("Answer all four questions before checking.", { immediate: true });
+      return;
+    }
+    var account = accountById(state.account);
+    var right = DIMENSIONS.filter(function (d) {
+      return state.picks[d.id] === account.id;
+    }).length;
+    showAnalysis(account, false);
+    shell.announce(right + " of 4 match this account.", { immediate: true });
+  });
+
+  $('[data-action="reveal"]').addEventListener("click", function () {
+    if (!state.account) { return; }
+    showAnalysis(accountById(state.account), true);
+    shell.announce("Analysis revealed.", { immediate: true });
+  });
+
+  /* --- Comparison and synthesis -------------------------------------------------- */
+
+  function renderComparison() {
+    var done = ACCOUNTS.filter(function (a) { return state.analysed[a.id]; });
+    if (!done.length) {
+      comparison.hidden = true;
+      return;
+    }
+    comparison.hidden = false;
+    clear(comparisonBody);
+    done.forEach(function (account) {
+      var row = make("tr");
+      var th = make("th", null, account.title);
+      th.setAttribute("scope", "row");
+      row.appendChild(th);
+      DIMENSIONS.forEach(function (dimension) {
+        row.appendChild(make("td", null, optionLabel(dimension.id, account.id)));
+      });
+      comparisonBody.appendChild(row);
+    });
+
+    clear(synthesis);
+    synthesis.setAttribute("data-tone", done.length >= 3 ? "warn" : "neutral");
+    if (done.length < 3) {
+      synthesis.appendChild(make("p", "verdict__body",
+        done.length + " of 5 accounts analysed. Analyse at least three before " +
+        "reading the synthesis: with one account there is nothing to compare, " +
+        "and with two the difference looks like a difference of opinion."));
+      return;
+    }
+    var mentionsCut = done.filter(function (a) { return a.id === "advocacy"; }).length;
+    synthesis.appendChild(make("h5", "verdict__title",
+      "After " + done.length + " accounts"));
+    synthesis.appendChild(make("p", "verdict__body",
+      "Every line of the ledger is compatible with every one of these accounts, " +
+      "and no account contains a false statement. What differs is the kind of " +
+      "person R is made into, and with it what she may reasonably do, who may " +
+      "say what is happening, and where responsibility comes to rest."));
+    synthesis.appendChild(make("p", "verdict__body",
+      mentionsCut
+        ? "Of the accounts you have analysed, only the advocacy bulletin " +
+          "mentions ledger entry 2 - the decision to halve the programme's " +
+          "hours - and it puts it in the first clause. The others are not " +
+          "concealing it. Their genres have no field for it: a case note " +
+          "records a patient, a risk register records an exposure, a discharge " +
+          "summary records a journey and a commissioning report records a " +
+          "cohort."
+        : "None of the accounts you have analysed mentions ledger entry 2 - " +
+          "the decision to halve the programme's hours. They are not " +
+          "concealing it. Their genres have no field for it: a case note " +
+          "records a patient, a risk register records an exposure, a discharge " +
+          "summary records a journey and a commissioning report records a " +
+          "cohort. Try the advocacy bulletin and see where it puts that entry."));
+    synthesis.appendChild(make("p", "verdict__note",
+      "None of this makes the events unreal, and none of it makes one account " +
+      "the honest one. The ledger is on screen for the first reason and the " +
+      "comparison table for the second."));
+  }
+
+  function renderGoal() {
+    var done = Object.keys(state.analysed).length;
+    clear(goalText);
+    var list = make("ul", "goal__checks");
+    [
+      {
+        label: "Choose an account",
+        detail: state.account ? accountById(state.account).title : "not yet",
+        met: Boolean(state.account)
+      },
+      { label: "Analyse at least three", detail: done + " of 5", met: done >= 3 }
+    ].forEach(function (check) {
+      var item = make("li");
+      item.textContent = check.label + " - " + check.detail +
+        (check.met ? " (met)" : " (not yet)");
+      item.setAttribute("data-met", check.met ? "yes" : "no");
+      list.appendChild(item);
+    });
+    goalText.appendChild(list);
+  }
+
+  function render() {
+    questionsBlock.hidden = !state.account;
+    renderAccount();
+    renderComparison();
+    renderGoal();
+  }
+
+  /* --- Challenge ------------------------------------------------------------------ */
+
+  function buildClaims() {
+    clear(claimsList);
+    CLAIMS.forEach(function (claim, index) {
+      var group = make("fieldset", "prediction__group");
+      group.appendChild(make("legend", "prediction__legend",
+        (index + 1) + ". " + claim.text));
+      CLAIM_OPTIONS.forEach(function (option) {
+        var label = make("label", "control--choice");
+        var input = document.createElement("input");
+        input.type = "radio";
+        input.name = "claim-" + claim.id;
+        input.value = option.value;
+        label.appendChild(input);
+        label.appendChild(make("span", null, option.label));
+        group.appendChild(label);
+      });
+      claimsList.appendChild(group);
+    });
+  }
+
+  var CLAIM_LABELS = {};
+  CLAIM_OPTIONS.forEach(function (o) { CLAIM_LABELS[o.value] = o.label; });
+
+  claimsForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answers = CLAIMS.map(function (claim) {
+      var picked = $('input[name="claim-' + claim.id + '"]:checked', claimsForm);
+      return picked ? picked.value : null;
+    });
+    if (answers.indexOf(null) !== -1) {
+      showFeedback(claimsFeedback, "caution", "One answer per extract, please.",
+        "A blank is not a reading.");
+      return;
+    }
+    var right = 0;
+    CLAIMS.forEach(function (claim, index) {
+      if (answers[index] === claim.answer) { right += 1; }
+    });
+    clear(claimsFeedback);
+    claimsFeedback.setAttribute("data-tone", right >= 3 ? "good" : "caution");
+    var lead = make("p");
+    lead.appendChild(make("strong", "feedback__verdict", right + " of 4 match."));
+    lead.appendChild(document.createTextNode(
+      " Each extract does more than one thing; the answer marked is the one " +
+      "that most changes what can happen next."));
+    claimsFeedback.appendChild(lead);
+    var list = make("ol", "claims__results");
+    CLAIMS.forEach(function (claim, index) {
+      var li = make("li");
+      var agreed = answers[index] === claim.answer;
+      li.setAttribute("data-agreed", agreed ? "yes" : "no");
+      var head = make("p", "claims__result-head");
+      head.appendChild(make("strong", null,
+        (index + 1) + ": " + CLAIM_LABELS[claim.answer] + "."));
+      head.appendChild(document.createTextNode(
+        agreed ? " That is what you said."
+          : " You said: " + CLAIM_LABELS[answers[index]].toLowerCase() + "."));
+      li.appendChild(head);
+      li.appendChild(make("p", null, claim.why));
+      list.appendChild(li);
+    });
+    claimsFeedback.appendChild(list);
+    claimsFeedback.hidden = false;
+    shell.announce("Four extracts judged. " + right + " match.", { immediate: true });
+  });
+
+  /* --- Opening prediction ---------------------------------------------------------- */
+
+  var OPENING = {
+    tone: {
+      tone: "caution",
+      verdict: "Tone is the least of it.",
+      text:
+        "The warmest of the five accounts is also the one that most completely " +
+        "makes a budget cut into a personal achievement. Sympathy and effect " +
+        "come apart, and that is worth watching for."
+    },
+    facts: {
+      tone: "caution",
+      verdict: "Closer, and still not the main thing.",
+      text:
+        "One fact is indeed missing from four of the five, and it is worth " +
+        "finding. But every account is compatible with every line of the " +
+        "ledger; what separates them is not which facts they contain but what " +
+        "kind of thing R becomes in them."
+    },
+    position: {
+      tone: "good",
+      verdict: "That is the argument of the laboratory.",
+      text:
+        "A position comes with a specification of what somebody in it can " +
+        "reasonably do. The same letter to the same manager is an escalation, " +
+        "a piece of self-advocacy or a customer complaint depending on nothing " +
+        "but the position the writing has already put her in."
+    },
+    accuracy: {
+      tone: "caution",
+      verdict: "None of them contains a false statement.",
+      text:
+        "That is the uncomfortable part. Every account is consistent with the " +
+        "whole ledger, so accuracy cannot be what separates them - which is " +
+        "exactly why the question of what an account does has to be asked " +
+        "separately from the question of whether it is true."
+    }
+  };
+
+  function showFeedback(container, tone, verdict, text) {
+    clear(container);
+    container.setAttribute("data-tone", tone);
+    var p = make("p");
+    p.appendChild(make("strong", "feedback__verdict", verdict));
+    if (text) { p.appendChild(document.createTextNode(" " + text)); }
+    container.appendChild(p);
+    container.hidden = false;
+  }
+
+  function lockForm(form) {
+    $$("input, button, select", form).forEach(function (c) { c.disabled = true; });
+  }
+
+  function unlockForm(form) {
+    $$("input, button, select", form).forEach(function (c) { c.disabled = false; });
+    form.reset();
+  }
+
+  function unlockLab() {
+    state.unlocked = true;
+    labSection.hidden = false;
+    render();
+    shell.announce("Laboratory open. Choose an account to begin.", { immediate: true });
+  }
+
+  openingForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answer = $('input[name="opening"]:checked', openingForm);
+    if (!answer) {
+      openingError.textContent = "Choose an answer before opening the laboratory.";
+      openingError.hidden = false;
+      return;
+    }
+    openingError.hidden = true;
+    var feedback = OPENING[answer.value];
+    showFeedback(openingFeedback, feedback.tone, feedback.verdict, feedback.text);
+    lockForm(openingForm);
+    unlockLab();
+    $("#lab-heading").focus();
+  });
+
+  $('[data-action="skip-opening"]').addEventListener("click", function () {
+    openingError.hidden = true;
+    showFeedback(openingFeedback, "neutral",
+      "Prediction skipped - demonstration mode.", "");
+    lockForm(openingForm);
+    unlockLab();
+  });
+
+  /* --- Worked example --------------------------------------------------------------- */
+
+  $('[data-action="worked"]').addEventListener("click", function () {
+    ["casenote", "recovery", "market"].forEach(function (id) {
+      state.analysed[id] = true;
+    });
+    state.account = "recovery";
+    state.picks = {};
+    var input = $$('input[name="account"]').filter(function (node) {
+      return node.value === "recovery";
+    })[0];
+    if (input) { input.checked = true; }
+    buildQuestions();
+    showAnalysis(accountById("recovery"), true);
+    shell.announce(
+      "Worked example: the case note, the recovery summary and the " +
+      "commissioning report analysed, ending on the recovery summary. Compare " +
+      "the responsibility column across the three.",
+      { immediate: true });
+  });
+
+  /* --- Reset and start-up ------------------------------------------------------------ */
+
+  shell.onReset(function () {
+    state = JSON.parse(JSON.stringify(INITIAL));
+    unlockForm(openingForm);
+    openingFeedback.hidden = true;
+    openingError.hidden = true;
+    labSection.hidden = true;
+    analysis.hidden = true;
+    questionsBlock.hidden = true;
+    claimsForm.reset();
+    claimsFeedback.hidden = true;
+    $$('input[name="account"]').forEach(function (input) { input.checked = false; });
+    clear(questionsBox);
+    render();
+  });
+
+  buildLedger();
+  buildAccountChoices();
+  buildClaims();
+
+  shell.reset({ silent: true });
+  shell.announce(
+    "Ready. Read the ledger, then answer the question above.",
+    { immediate: true });
+})();
+
+</script>
+</div>

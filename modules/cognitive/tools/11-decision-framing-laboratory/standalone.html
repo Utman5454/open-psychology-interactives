@@ -1,0 +1,3084 @@
+<!-- Decision Framing Laboratory
+     From Open Psychology Interactives - https://github.com/utman5454/open-psychology-interactives
+     Self-contained: no stylesheets, scripts, fonts, images or network requests.
+     Styles are scoped to .opi-activity and do not affect the page around them.
+     Nothing is saved, sent or tracked. MIT licensed; please keep this notice.
+     Paste anywhere that accepts HTML, or save as a .html file and open it. -->
+<div class="opi-activity">
+<style>
+/* Defensive baseline. See scripts/build-standalone.py for why this
+   is `revert` rather than an enumerated reset, and how the specificity ladder
+   keeps the activity's own styling on top of it. */
+.opi-activity *:not(svg *) {
+  all: revert;
+}
+.opi-activity, .opi-activity *, .opi-activity *::before, .opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  text-transform: none;
+  text-indent: 0;
+  font-style: normal;
+  font-variant: normal;
+  letter-spacing: normal;
+  word-spacing: normal;
+  white-space: normal;
+  visibility: visible;
+  float: none;
+  max-width: none;
+}
+.opi-activity svg { max-width: 100%; }
+.opi-activity img { max-width: 100%; height: auto; }
+.opi-activity [hidden] { display: none !important; }
+
+/* assets/css/main.css */
+.opi-activity.opi-activity {
+  --colour-page: #ffffff;
+  --colour-surface: #f5f7fa;
+  --colour-surface-raised: #ffffff;
+  --colour-border: #d3d9e2;
+  --colour-border-strong: #aeb7c4;
+  --colour-text: #131820;
+  --colour-text-muted: #4c566a;
+  --colour-accent: #1a4fa0;
+  --colour-accent-hover: #123a7a;
+  --colour-accent-soft: #e8eefb;
+  --colour-on-accent: #ffffff;
+  --colour-focus: #b45309;
+  --colour-cognitive: #8a4b00;
+  --colour-research-methods: #1a4fa0;
+  --colour-neuropsychology: #145c53;
+  --colour-social-critical-psychology: #9e2f45;
+  --colour-personality-individual-differences: #7a2e6d;
+  --colour-status-bg: #f1ede3;
+  --colour-status-text: #5c4a1f;
+  --colour-status-border: #d9cdb0;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  --text-xs: 13px;
+  --text-sm: 15px;
+  --text-base: 17px;
+  --text-lg: 19px;
+  --text-xl: 23px;
+  --text-2xl: 28px;
+  --text-3xl: 36px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgb(19 24 32 / 0.06);
+  --shadow-md: 0 2px 8px rgb(19 24 32 / 0.08);
+  --measure: 68ch;
+  --container: 1152px;
+}
+@media (prefers-color-scheme: dark) {
+.opi-activity.opi-activity {
+  --colour-page: #0f141b;
+  --colour-surface: #161d27;
+  --colour-surface-raised: #1a2230;
+  --colour-border: #2c3644;
+  --colour-border-strong: #44506180;
+  --colour-text: #e9edf3;
+  --colour-text-muted: #a8b2c1;
+  --colour-accent: #8fb6ff;
+  --colour-accent-hover: #b3cdff;
+  --colour-accent-soft: #1b2740;
+  --colour-on-accent: #0f141b;
+  --colour-focus: #f0b429;
+  --colour-cognitive: #e2ab5f;
+  --colour-research-methods: #8fb6ff;
+  --colour-neuropsychology: #6fc3b4;
+  --colour-social-critical-psychology: #f19aa8;
+  --colour-personality-individual-differences: #db9ccd;
+  --colour-status-bg: #241f14;
+  --colour-status-text: #e2cf9f;
+  --colour-status-border: #4a4028;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 2px 10px rgb(0 0 0 / 0.45);
+}
+}
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity.opi-activity {
+  -webkit-text-size-adjust: 100%;
+}
+.opi-activity.opi-activity {
+  background-color: var(--colour-page);
+  color: var(--colour-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.65;
+}
+.opi-activity.opi-activity h1,
+.opi-activity.opi-activity h2,
+.opi-activity.opi-activity h3,
+.opi-activity.opi-activity h4 {
+  margin: 0 0 var(--space-3);
+  line-height: 1.25;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.opi-activity.opi-activity h1 {
+  font-size: var(--text-3xl);
+}
+.opi-activity.opi-activity h2 {
+  font-size: var(--text-2xl);
+}
+.opi-activity.opi-activity h3 {
+  font-size: var(--text-xl);
+}
+.opi-activity.opi-activity h4 {
+  font-size: var(--text-lg);
+}
+.opi-activity.opi-activity p,
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol,
+.opi-activity.opi-activity dl {
+  margin: 0 0 var(--space-4);
+}
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol {
+  padding-left: 1.35em;
+}
+.opi-activity.opi-activity li + li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity a {
+  color: var(--colour-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: max(1px, 0.06em);
+}
+.opi-activity.opi-activity a:hover {
+  color: var(--colour-accent-hover);
+  text-decoration-thickness: max(2px, 0.11em);
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid var(--colour-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+@supports not selector(:focus-visible) {
+.opi-activity.opi-activity :focus {
+  outline: 3px solid var(--colour-focus);
+    outline-offset: 2px;
+}
+}
+.opi-activity.opi-activity code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.35em;
+}
+.opi-activity.opi-activity hr {
+  border: 0;
+  border-top: 1px solid var(--colour-border);
+  margin: var(--space-6) 0;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+}
+.opi-activity.opi-activity .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.opi-activity.opi-activity .container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+@media (min-width: 40em) {
+.opi-activity.opi-activity .container {
+  padding-inline: var(--space-5);
+}
+}
+.opi-activity.opi-activity .prose {
+  max-width: var(--measure);
+}
+.opi-activity.opi-activity .text-muted {
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .section {
+  padding-block: var(--space-7);
+}
+.opi-activity.opi-activity .section--tinted {
+  background-color: var(--colour-surface);
+  border-block: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .section__header {
+  max-width: var(--measure);
+  margin-bottom: var(--space-5);
+}
+.opi-activity.opi-activity .section__header > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-7) var(--space-6);
+  border-bottom: 1px solid var(--colour-border);
+  
+  background-image: linear-gradient(
+    180deg,
+    var(--colour-accent-soft) 0%,
+    var(--colour-page) 100%
+  );
+}
+.opi-activity.opi-activity .hero__eyebrow {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .hero h1 {
+  max-width: 20ch;
+  margin-bottom: var(--space-4);
+}
+.opi-activity.opi-activity .hero__lead {
+  max-width: var(--measure);
+  font-size: var(--text-lg);
+  color: var(--colour-text-muted);
+}
+@media (min-width: 48em) {
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-8) var(--space-7);
+}
+.opi-activity.opi-activity .hero h1 {
+  font-size: 44px;
+}
+}
+.opi-activity.opi-activity .button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  
+  min-height: 44px;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .button--primary {
+  background-color: var(--colour-accent);
+  border-color: var(--colour-accent);
+  
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--primary:hover {
+  background-color: var(--colour-accent-hover);
+  border-color: var(--colour-accent-hover);
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--secondary {
+  background-color: transparent;
+  border-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .button--secondary:hover {
+  background-color: var(--colour-surface);
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+}
+.opi-activity.opi-activity .card--cognitive {
+  --card-accent: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .card--research-methods {
+  --card-accent: var(--colour-research-methods);
+}
+.opi-activity.opi-activity .card--neuropsychology {
+  --card-accent: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .card--social-critical-psychology {
+  --card-accent: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .card--personality-individual-differences {
+  --card-accent: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 650;
+  line-height: 1.4;
+  padding: 3.2px var(--space-3);
+  border-radius: 999px;
+  border: 1px solid var(--colour-status-border);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+}
+.opi-activity.opi-activity .badge__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex: none;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed var(--colour-border-strong);
+  border-radius: var(--radius-lg);
+  background-color: var(--colour-surface);
+  padding: var(--space-5);
+  text-align: left;
+}
+.opi-activity.opi-activity .placeholder__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+}
+.opi-activity.opi-activity .placeholder > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .split {
+  display: grid;
+  gap: var(--space-6);
+}
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split {
+  grid-template-columns: 3fr 2fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .panel {
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.opi-activity.opi-activity .panel > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .panel__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .section--tinted {
+  border-block: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .hero {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .button--primary {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .button--secondary {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .button:hover {
+  border-color: Highlight;
+}
+.opi-activity.opi-activity .panel {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed CanvasText;
+}
+.opi-activity.opi-activity .badge {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .badge__dot {
+  background-color: CanvasText;
+}
+.opi-activity.opi-activity code {
+  border-color: CanvasText;
+}
+.opi-activity.opi-activity hr {
+  border-top-color: CanvasText;
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+}
+@media print {
+.opi-activity.opi-activity {
+  color: #000;
+  background: #fff;
+}
+.opi-activity.opi-activity a[href^="http"]::after {
+  content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+}
+}
+
+/* components/interactive-shell.css */
+.opi-activity.opi-activity .interactive {
+  --shell-page: var(--colour-page, #ffffff);
+  --shell-surface: var(--colour-surface, #f5f7fa);
+  --shell-raised: var(--colour-surface-raised, #ffffff);
+  --shell-border: var(--colour-border, #d3d9e2);
+  --shell-border-strong: var(--colour-border-strong, #aeb7c4);
+  --shell-text: var(--colour-text, #131820);
+  --shell-muted: var(--colour-text-muted, #4c566a);
+  --shell-accent: var(--colour-accent, #1a4fa0);
+  --shell-accent-soft: var(--colour-accent-soft, #e8eefb);
+  
+  --shell-on-accent: var(--colour-on-accent, #ffffff);
+  --shell-focus: var(--colour-focus, #b45309);
+  --shell-radius: var(--radius-lg, 12px);
+  --shell-gap: var(--space-5, 24px);
+
+  display: block;
+  background-color: var(--shell-raised);
+  color: var(--shell-text);
+  border: 1px solid var(--shell-border);
+  border-radius: var(--shell-radius);
+  
+  overflow-x: clip;
+  overflow-y: visible;
+}
+.opi-activity.opi-activity .interactive__header {
+  padding: var(--shell-gap);
+  border-bottom: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 1.25;
+}
+.opi-activity.opi-activity .interactive__brief {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--shell-muted);
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__body {
+  display: grid;
+  gap: var(--shell-gap);
+  padding: var(--shell-gap);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body {
+  grid-template-columns: minmax(240px, 320px) 1fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .interactive__controls {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__controls fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .interactive__controls legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .control {
+  display: grid;
+  gap: 5.6px;
+}
+.opi-activity.opi-activity .control + .control {
+  margin-top: 16px;
+}
+.opi-activity.opi-activity .control__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.opi-activity.opi-activity .control__label {
+  font-size: 15px;
+  font-weight: 600;
+}
+.opi-activity.opi-activity .control__value {
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--shell-accent);
+}
+.opi-activity.opi-activity .control__hint {
+  font-size: 13px;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .interactive__controls input[type="range"] {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--shell-accent);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  width: 100%;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--shell-text);
+  background-color: var(--shell-raised);
+  border: 1px solid var(--shell-border-strong);
+  border-radius: var(--radius-sm, 4px);
+}
+.opi-activity.opi-activity .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+}
+.opi-activity.opi-activity .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  accent-color: var(--shell-accent);
+  flex: none;
+}
+.opi-activity.opi-activity .interactive__stage {
+  min-height: 256px;
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-page);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body--pinned {
+  align-items: stretch;
+}
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: sticky;
+    top: 0;
+    z-index: 2;
+    
+    margin: -16px -16px 0;
+    padding: 16px 16px 12px;
+    background-color: var(--shell-page);
+    border-bottom: 1px solid var(--shell-border);
+}
+}
+@media (min-width: 52em) and (max-height: 30em) {
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: static;
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
+}
+}
+.opi-activity.opi-activity .interactive__stage > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity :where(.interactive__stage) svg,
+.opi-activity.opi-activity :where(.interactive__stage) canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+.opi-activity.opi-activity .interactive__readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout div {
+  padding: 9.6px 12px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-sm, 4px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__readout dt {
+  font-size: 13px;
+  color: var(--shell-muted);
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout dd {
+  margin: 2.4px 0 0;
+  font-size: 18px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .interactive__status {
+  margin: 0;
+  padding: 12px var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+  font-size: 15px;
+  color: var(--shell-muted);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .interactive__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+}
+.opi-activity.opi-activity .interactive__actions button {
+  min-height: 44px;
+  padding: 6.4px 20px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--shell-on-accent);
+  background-color: var(--shell-accent);
+  border: 1px solid var(--shell-accent);
+  border-radius: var(--radius-md, 8px);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  color: var(--shell-text);
+  background-color: transparent;
+  border-color: var(--shell-border-strong);
+}
+.opi-activity.opi-activity .interactive__actions button:hover {
+  filter: brightness(1.08);
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__notes > summary {
+  padding: 13.6px var(--shell-gap);
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__notes > div {
+  padding: 0 var(--shell-gap) var(--shell-gap);
+  max-width: 68ch;
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__notes > div > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity .interactive *,
+.opi-activity.opi-activity .interactive *::before,
+.opi-activity.opi-activity .interactive *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+}
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .interactive,
+.opi-activity.opi-activity .interactive__controls,
+.opi-activity.opi-activity .interactive__stage,
+.opi-activity.opi-activity .interactive__readout div {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__header {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__status,
+.opi-activity.opi-activity .interactive__actions,
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__actions button {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  border-width: 1px;
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 1;
+    color: GrayText;
+    border-color: GrayText;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__stage svg {
+  forced-color-adjust: auto;
+}
+}
+
+/* components/tool-kit.css */
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split--wide {
+  grid-template-columns: 1fr 1fr;
+}
+}
+.opi-activity.opi-activity .how-to {
+  padding-left: 19.2px;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .how-to > li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .table-scroll {
+  overflow-x: auto;
+  
+  position: relative;
+}
+.opi-activity.opi-activity .prediction {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 832px;
+}
+.opi-activity.opi-activity .prediction > *,
+.opi-activity.opi-activity .challenge > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity .prediction__group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .prediction__legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-weight: 650;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .prediction .control--choice,
+.opi-activity.opi-activity .challenge .control--choice,
+.opi-activity.opi-activity .evidence .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .prediction .control--choice input,
+.opi-activity.opi-activity .challenge .control--choice input,
+.opi-activity.opi-activity .evidence .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .prediction__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .prediction__error {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-status-border);
+  border-left: 4px solid var(--colour-status-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .prediction__readback {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .feedback[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .feedback[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .feedback[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .feedback__verdict {
+  font-weight: 700;
+}
+.opi-activity.opi-activity .verdict {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .verdict__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict__body {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .verdict__body + .verdict__body {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .verdict__note {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .verdict[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .verdict[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .goal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .goal__label {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .goal__text {
+  flex: 1 1 256px;
+}
+.opi-activity.opi-activity .goal strong {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .goal__checks {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+  display: grid;
+  gap: 2.4px;
+}
+.opi-activity.opi-activity .goal__checks > li {
+  margin-top: 0;
+  padding-left: 22.4px;
+  position: relative;
+}
+.opi-activity.opi-activity .goal__checks > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 9.6px;
+  height: 9.6px;
+  border: 2px solid var(--colour-border-strong);
+  border-radius: 2px;
+}
+.opi-activity.opi-activity .goal__checks > li[data-met="yes"]::before {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .stage-track {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .stage-track > li {
+  margin-top: 0;
+  flex: 1 1 160px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-bottom: 3px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .stage-track > li > span {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.opi-activity.opi-activity .stage-track > li[data-state="done"] {
+  border-bottom-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border-bottom-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+  color: var(--colour-text);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .stage__heading {
+  margin: 0;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .data-table,
+.opi-activity.opi-activity .chart__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .data-table th,
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table th,
+.opi-activity.opi-activity .chart__table td {
+  padding: 6.4px 9.6px;
+  border: 1px solid var(--colour-border);
+  text-align: left;
+  vertical-align: top;
+}
+.opi-activity.opi-activity .data-table thead th,
+.opi-activity.opi-activity .chart__table thead th {
+  background-color: var(--colour-surface);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table td {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__table tbody th,
+.opi-activity.opi-activity .data-table tbody th {
+  font-weight: 550;
+}
+.opi-activity.opi-activity .data-table__total > th,
+.opi-activity.opi-activity .data-table__total > td {
+  border-top: 2px solid var(--colour-border-strong);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart {
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .chart__caption {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__svg {
+  max-width: 100%;
+  height: auto;
+}
+.opi-activity.opi-activity .chart__label,
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__inline,
+.opi-activity.opi-activity .chart__axis {
+  font-family: var(--font-body);
+  fill: var(--colour-text);
+  font-size: 13px;
+}
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__axis {
+  fill: var(--colour-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: var(--colour-on-accent);
+  font-size: 12px;
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__track {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__bar {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--one {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .chart__baseline,
+.opi-activity.opi-activity .chart__grid {
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__line {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: var(--colour-personality-individual-differences);
+  stroke-dasharray: 6 4;
+}
+.opi-activity.opi-activity .chart__point {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .reveal > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .reveal__lead {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+.opi-activity.opi-activity .reveal__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(176px, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+  padding: 0;
+  list-style: none;
+}
+.opi-activity.opi-activity .reveal__figures > li {
+  margin-top: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+.opi-activity.opi-activity .reveal__figure-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .reveal__figure-value {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .challenge {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+.opi-activity.opi-activity .challenge__locked {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .panel--caution {
+  background-color: var(--colour-status-bg);
+  border-color: var(--colour-status-border);
+}
+.opi-activity.opi-activity .panel--caution li + li {
+  margin-top: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .goal,
+.opi-activity.opi-activity .verdict,
+.opi-activity.opi-activity .feedback,
+.opi-activity.opi-activity .prediction__error,
+.opi-activity.opi-activity .prediction__readback,
+.opi-activity.opi-activity .stage-track > li,
+.opi-activity.opi-activity .reveal__figures > li {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border: 2px solid Highlight;
+}
+.opi-activity.opi-activity .chart__bar,
+.opi-activity.opi-activity .chart__bar--one {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: Canvas;
+}
+.opi-activity.opi-activity .chart__line {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: Highlight;
+}
+}
+.opi-activity.opi-activity .stage__more {
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .stage__more > summary {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .stage__more[open] > summary {
+  border-bottom: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .stage__more > *:not(summary) {
+  margin: var(--space-3);
+}
+
+/* modules/cognitive/tools/11-decision-framing-laboratory/tool.css */
+.opi-activity.opi-activity .table-scroll {
+  position: relative;
+}
+.opi-activity.opi-activity #framing .interactive__controls,
+.opi-activity.opi-activity #framing .interactive__stage {
+  min-width: 0;
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity #framing .interactive__body {
+  grid-template-columns: minmax(0, 304px) minmax(0, 1fr);
+}
+}
+.opi-activity.opi-activity #framing .control + .control {
+  margin-top: var(--space-3);
+}
+.opi-activity.opi-activity .control--buttons {
+  display: grid;
+  gap: var(--space-2);
+}
+.opi-activity.opi-activity .scenario {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-md);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .scenario--sample {
+  margin-top: var(--space-3);
+}
+.opi-activity.opi-activity .scenario__title {
+  margin: 0;
+  font-size: var(--text-base);
+  font-weight: 700;
+}
+.opi-activity.opi-activity .scenario__body {
+  margin: 0;
+  font-size: var(--text-base);
+  line-height: 1.65;
+}
+.opi-activity.opi-activity .scenario__options {
+  display: grid;
+  gap: var(--space-3);
+}
+@media (min-width: 40em) {
+.opi-activity.opi-activity .scenario__options {
+  grid-template-columns: 1fr 1fr;
+}
+}
+.opi-activity.opi-activity .option {
+  display: grid;
+  gap: var(--space-2);
+  justify-items: start;
+  text-align: left;
+  padding: var(--space-4);
+  min-height: 96px;
+  white-space: normal;
+}
+.opi-activity.opi-activity .option__label {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .option__text {
+  font-size: var(--text-sm);
+  font-weight: 550;
+  line-height: 1.5;
+}
+.opi-activity.opi-activity .display__caption {
+  margin: var(--space-3) 0 0;
+  min-height: 40px;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+  text-align: center;
+}
+.opi-activity.opi-activity .reframe {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+  padding: 0;
+  list-style: none;
+}
+.opi-activity.opi-activity .reframe > li {
+  margin-top: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .reframe__pair {
+  display: grid;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+@media (min-width: 46em) {
+.opi-activity.opi-activity .reframe__pair {
+  grid-template-columns: 1fr 1fr;
+}
+}
+.opi-activity.opi-activity .reframe__side {
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .reframe__side > strong {
+  display: block;
+  font-size: var(--text-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .framing-chart {
+  max-width: 480px;
+}
+.opi-activity.opi-activity .framing__bar--gain {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .framing__bar--loss {
+  fill: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .framing__hatch {
+  stroke: var(--colour-surface);
+  stroke-width: 3;
+}
+.opi-activity.opi-activity .edit-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 9.6px;
+  min-height: 44px;
+  padding: var(--space-2) 0;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .edit-option input {
+  width: 18.4px;
+  height: 18.4px;
+  margin-top: 5.6px;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .edit-option__mark {
+  display: block;
+  margin-top: var(--space-1);
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .scenario,
+.opi-activity.opi-activity .reframe > li,
+.opi-activity.opi-activity .reframe__side {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .framing__bar--gain {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .framing__bar--loss {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .framing__hatch {
+  stroke: Canvas;
+}
+}
+</style>
+
+  <!-- ================= Title and purpose ================= -->
+  <section class="section card--cognitive" aria-labelledby="page-heading">
+    <div class="container">
+
+      <p class="hero__eyebrow" style="color: var(--colour-cognitive)">
+        Cognitive Psychology
+      </p>
+      <h1 id="page-heading">Decision Framing Laboratory</h1>
+      <p class="hero__lead">
+        Four decisions about seedlings, servers, grain and bicycles. Each one
+        offers a safe option and a gamble with exactly the same expected
+        outcome. The only thing that varies between people is whether the
+        consequences were described as things saved or things lost.
+      </p>
+
+      <p>
+        <span class="badge">
+          <span class="badge__dot" aria-hidden="true"></span>
+          Fictional scenarios with no people in them — chosen so nothing turns on how you feel about the stakes
+        </span>
+      </p>
+
+      <div class="split split--wide">
+
+        <div class="panel">
+          <h2 class="panel__title">Learning objective</h2>
+          <p>
+            By the end you should be able to state a framing effect in terms
+            of a reference point, and distinguish a robust aggregate pattern
+            from a claim about any individual.
+          </p>
+          <p class="text-muted">
+            About 25 minutes. Nothing is timed. Nothing you do here is saved
+            or sent anywhere.
+          </p>
+        </div>
+
+        <div class="panel panel--caution">
+          <h2 class="panel__title">Before you start — what a framing effect is not</h2>
+          <p>
+            <strong>It is not proof that people are irrational.</strong> The
+            effect is a group-level shift in the proportion choosing each
+            option, it varies enormously with how the problem is written, and
+            a preference that depends on a reference point is not obviously a
+            mistake — reference points are how almost every evaluation people
+            make actually works.
+          </p>
+          <p>
+            <strong>Your own four decisions cannot show the effect.</strong>
+            You see one frame per scenario, so there is nothing to compare
+            them with. The reveal shows you the other framing of the same
+            arithmetic, and a simulated class dataset supplies the aggregate
+            pattern one person cannot produce.
+          </p>
+        </div>
+
+      </div>
+
+      <ol class="how-to">
+        <li>Answer the prediction below — it unlocks the laboratory.</li>
+        <li>Set how certain the safe option is, and how the stock is described.</li>
+        <li>Make four decisions. Take as long as you like; nothing is timed.</li>
+        <li>Read the reveal: the same arithmetic, written the other way round.</li>
+        <li>Compare with the simulated class data, then rewrite a scenario in the challenge.</li>
+        <li>Prefer not to decide anything? Load the worked example first.</li>
+      </ol>
+
+    </div>
+  </section>
+
+  <!-- ================= Opening prediction ================= -->
+  <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="opening-heading">First, a prediction</h2>
+        <p class="prose">
+          In each scenario something is at risk. One option produces a fixed,
+          known result. The other is a gamble: a small chance that everything
+          comes through, and a larger chance that nothing does. The two have
+          the same expected outcome, to the unit.
+        </p>
+      </div>
+
+      <noscript>
+        <div class="placeholder">
+          <h3 class="placeholder__title">This part needs JavaScript</h3>
+          <p class="prose">
+            The scenarios are assembled in your browser, so this cannot work
+            with JavaScript switched off. The rest of the page is readable
+            without it.
+          </p>
+        </div>
+      </noscript>
+
+      <form class="panel prediction" id="opening-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            Which way of describing the outcomes should push people towards the gamble?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="loss">
+            Describing the outcome as things lost
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="gain">
+            Describing the outcome as things saved
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="none">
+            Neither — the arithmetic is identical, so the wording should not matter
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="depends">
+            It depends entirely on the person, not on the wording
+          </label>
+        </fieldset>
+
+        <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Record my answer and unlock the laboratory
+          </button>
+          <button class="button button--secondary" type="button" data-action="skip-opening">
+            Skip — I am demonstrating this
+          </button>
+        </div>
+
+        <div class="feedback" data-opening-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= The laboratory ================= -->
+  <section class="section" id="experiment" aria-labelledby="experiment-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="experiment-heading">The laboratory</h2>
+        <p class="prose">
+          Four scenarios, one at a time. Two of them will be written as gains
+          and two as losses, assigned at random, and you are not told which is
+          which until afterwards.
+        </p>
+      </div>
+
+      <section class="interactive" id="framing" data-interactive
+               data-reset-message="Everything cleared. Back to the opening question.">
+
+        <header class="interactive__header">
+          <h3 class="interactive__title">Four decisions with identical arithmetic</h3>
+          <p class="interactive__brief">
+            The equivalence is deliberately withheld until all four decisions
+            are made. Seeing it part-way through would change every decision
+            after that.
+          </p>
+          <p class="goal">
+            <span class="goal__label">Progress</span>
+            <span class="goal__text" data-progress-text>Answer the question above to unlock this.</span>
+          </p>
+        </header>
+
+        <div class="interactive__body">
+
+          <form class="interactive__controls" data-interactive-controls>
+
+            <fieldset>
+              <legend>How the problems are written</legend>
+
+              <div class="control">
+                <label class="control__label" for="certainty-select">
+                  The safe option is…
+                </label>
+                <select id="certainty-select">
+                  <option value="certain" selected>Completely certain</option>
+                  <option value="near">Very likely, but not certain</option>
+                </select>
+                <p class="control__hint">
+                  Both versions have exactly the same expected outcome as the
+                  gamble. Only the certainty differs.
+                </p>
+              </div>
+
+              <div class="control">
+                <label class="control__label" for="reference-select">
+                  The stock at risk is described as…
+                </label>
+                <select id="reference-select">
+                  <option value="owned" selected>Already yours, and long established</option>
+                  <option value="new">Only just arrived, not yet logged as yours</option>
+                </select>
+                <p class="control__hint">
+                  This moves the reference point without changing a single
+                  number.
+                </p>
+              </div>
+
+            </fieldset>
+
+            <fieldset>
+              <legend>Run</legend>
+              <div class="control control--buttons">
+                <button class="button button--primary" type="button"
+                        data-action="start" disabled>
+                  Start the four decisions
+                </button>
+                <button class="button button--secondary" type="button"
+                        data-action="stop" disabled>
+                  Stop
+                </button>
+              </div>
+              <div class="control">
+                <button class="button button--secondary" type="button"
+                        data-action="worked-example">
+                  Load the worked example instead
+                </button>
+                <p class="control__hint">
+                  A simulated class dataset, seeded. Not anybody's data.
+                </p>
+              </div>
+            </fieldset>
+
+          </form>
+
+          <div class="interactive__stage" data-interactive-stage>
+
+            <article class="scenario" data-scenario hidden>
+              <h4 class="scenario__title" data-scenario-title></h4>
+              <p class="scenario__body" data-scenario-setup></p>
+              <div class="scenario__options">
+                <button class="button button--secondary option" type="button"
+                        data-choice="safe">
+                  <span class="option__label">Option A</span>
+                  <span class="option__text" data-option-safe></span>
+                </button>
+                <button class="button button--secondary option" type="button"
+                        data-choice="risky">
+                  <span class="option__label">Option B</span>
+                  <span class="option__text" data-option-risky></span>
+                </button>
+              </div>
+            </article>
+
+            <p class="display__caption" data-display-caption>
+              Answer the question above to unlock the laboratory.
+            </p>
+
+            <div class="feedback" data-task-feedback hidden></div>
+
+          </div>
+
+        </div>
+
+        <p class="interactive__status" data-interactive-status role="status"></p>
+
+        <div class="interactive__actions">
+          <button type="button" data-variant="secondary" data-interactive-reset>
+            Reset everything
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ================= Results ================= -->
+  <section class="section section--tinted" id="results" aria-labelledby="results-heading" hidden>
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="results-heading" tabindex="-1">The same arithmetic, twice</h2>
+      </div>
+
+      <div class="panel reveal" data-results-body></div>
+
+      <div class="panel">
+        <h3 class="panel__title">Your four decisions, with both framings</h3>
+        <div class="table-scroll">
+          <table class="data-table">
+            <caption class="visually-hidden">
+              Each scenario, the frame it was shown in, the choice made, and
+              the expected outcome of both options
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Scenario</th>
+                <th scope="col">Frame you saw</th>
+                <th scope="col">Your choice</th>
+                <th scope="col">Safe option</th>
+                <th scope="col">Gamble</th>
+                <th scope="col">Expected outcome of each</th>
+              </tr>
+            </thead>
+            <tbody data-decision-table></tbody>
+          </table>
+        </div>
+        <div data-reframe-list></div>
+      </div>
+
+      <div class="panel">
+        <figure class="chart">
+          <figcaption class="chart__caption" data-chart-caption>
+            How often the safe option was chosen, by frame and by how certain
+            the safe option was
+          </figcaption>
+          <svg class="chart__svg framing-chart" data-frame-chart viewBox="0 0 460 200"
+               aria-hidden="true" focusable="false"></svg>
+          <div class="table-scroll">
+            <table class="chart__table">
+              <caption class="visually-hidden">
+                For each frame and level of certainty: decisions made and how
+                often the safe option was chosen
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">Frame</th>
+                  <th scope="col">Safe option was</th>
+                  <th scope="col">Decisions</th>
+                  <th scope="col">Safe option chosen</th>
+                </tr>
+              </thead>
+              <tbody data-frame-table></tbody>
+            </table>
+          </div>
+        </figure>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= Challenge ================= -->
+  <section class="section" id="challenge" aria-labelledby="challenge-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="challenge-heading">Challenge — rewrite it so the framing matters less</h2>
+        <p class="prose">
+          Here is one of the scenarios in its original gain-framed form. Below
+          it are six possible edits. Select the ones you think would
+          <strong>reduce</strong> the difference between how people respond to
+          the gain-framed and loss-framed versions. Your selected edits are
+          then applied, so you can read what you have built.
+        </p>
+      </div>
+
+      <form class="panel challenge" id="challenge-form">
+
+        <div class="panel scenario scenario--sample">
+          <h3 class="scenario__title">The original</h3>
+          <p class="scenario__body" data-original-scenario></p>
+        </div>
+
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            Which edits would reduce the framing asymmetry?
+          </legend>
+          <div data-edit-options></div>
+        </fieldset>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Apply my edits and check them
+          </button>
+        </div>
+
+        <div class="feedback" data-challenge-feedback hidden></div>
+
+        <div class="panel scenario scenario--sample" data-rewritten-wrap hidden>
+          <h3 class="scenario__title">Your rewritten version</h3>
+          <div data-rewritten-scenario></div>
+        </div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Debrief ================= -->
+  <section class="section section--tinted" id="debrief" aria-labelledby="debrief-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="debrief-heading">What this demonstrates</h2>
+      </div>
+
+      <div class="split split--wide">
+
+        <div class="prose">
+          <h3>A framing effect is a shift in a proportion</h3>
+          <p>
+            Nobody's arithmetic changes. What changes is how many people in a
+            group choose the gamble, and the shift is typically large enough
+            to reverse which option is in the majority. That is a real and
+            repeatedly replicated finding about aggregates. It is not a
+            statement about any individual, and it is not a claim that any
+            particular person made an error.
+          </p>
+
+          <h3>Reference dependence is the mechanism, and it is not a bug</h3>
+          <p>
+            Outcomes are evaluated as changes from a reference point rather
+            than as final states. "Two hundred saved" is a gain from a
+            reference point of nothing; "four hundred lost" is a loss from a
+            reference point of everything. Losses loom larger than gains of
+            the same size, so a gamble that might avoid a loss altogether
+            becomes attractive in a way that a gamble which might increase a
+            gain does not. Notice that reference dependence is how almost
+            every everyday evaluation works — is this a good price, is this a
+            warm day — and a system without it would be strange rather than
+            wise.
+          </p>
+
+          <h3>Certainty is doing part of the work</h3>
+          <p>
+            Some of the pull of the safe option in the gain frame comes not
+            from its being safe but from its being <em>certain</em>. Take away
+            the certainty — a very high probability instead of a guarantee,
+            with the expected outcome unchanged — and the safe option loses a
+            good deal of its appeal. That is why the certainty setting exists
+            here: it separates a preference for the sure thing from a
+            preference for low variance.
+          </p>
+
+          <h3>From a demonstration to a claim about rationality</h3>
+          <p>
+            The distance is considerable. Framing effects shrink when problems
+            are stated so that both complements are visible, when people are
+            asked to justify their choice, when the sample is expert in the
+            domain, and when the description makes the reference point
+            explicit. They also vary in size across replications. All of that
+            is compatible with a real effect and incompatible with "people are
+            irrational" as a conclusion. What survives is narrower and more
+            useful: descriptions carry information about reference points, and
+            whoever writes the description has some influence over the
+            decision.
+          </p>
+        </div>
+
+        <aside class="panel panel--caution" aria-labelledby="limits-heading">
+          <h3 class="panel__title" id="limits-heading">
+            What this does <em>not</em> demonstrate
+          </h3>
+          <ul>
+            <li>
+              <strong>Your four decisions show nothing on their own.</strong>
+              You saw one frame per scenario. A framing effect is a comparison
+              between people who saw different frames.
+            </li>
+            <li>
+              <strong>It does not show that anybody is irrational.</strong> A
+              preference that depends on a reference point is not obviously a
+              mistake, and the effect is a shift in proportions rather than a
+              universal reversal.
+            </li>
+            <li>
+              <strong>It does not settle the mechanism.</strong> Reference
+              dependence, the certainty effect, ambiguity about what the
+              unstated complement means, and simple conversational implicature
+              all contribute, and the demonstration cannot separate them.
+            </li>
+            <li>
+              <strong>Fictional stock is not a hospital.</strong> These
+              scenarios use seedlings, servers, grain and bicycles precisely so
+              that nothing turns on how anyone feels about the stakes — which
+              also means nothing here generalises to decisions where the stakes
+              are the point.
+            </li>
+            <li>
+              <strong>Replication varies.</strong> The effect is robust in
+              aggregate but its size depends heavily on wording, sample and
+              domain. Any specific percentage should be treated as belonging to
+              a particular study.
+            </li>
+            <li>
+              <strong>The worked example is simulated.</strong> Its
+              proportions come from a documented generator with a fixed seed,
+              and both the framing effect and the certainty effect are built
+              into it. It illustrates the shape; it is not evidence for it, not
+              a norm, and not anybody's data.
+            </li>
+          </ul>
+        </aside>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+<script>
+/* ---- components/interactive-shell.js ---- */
+/* =========================================================================
+   Open Psychology Interactives — interactive shell helper
+   -------------------------------------------------------------------------
+   A very small vanilla-JS helper that every interactive in this collection
+   uses. It deliberately does *not* draw anything or know anything about
+   statistics, personality or neuropsychology. Its job is the repetitive,
+   easy-to-get-wrong accessibility plumbing:
+
+     * announcing changes through a polite live region;
+     * keeping a range slider and its <output> in step;
+     * wiring the standard Reset button;
+     * reporting the reader's reduced-motion preference.
+
+   Usage (see docs/adapting-a-tool.md for the full markup contract):
+
+       <script src="../../components/interactive-shell.js" defer><\/script>
+       <script src="tool.js" defer><\/script>
+
+       // in tool.js
+       const shell = InteractiveShell.attach('#sampling-demo');
+       shell.onReset(() => { ...restore defaults...; draw(); });
+       shell.bindRange('#sample-size', { format: n => n + ' cases' });
+       shell.announce('Sample of 25 drawn. Mean 4.8.');
+
+   Every published interactive is written against this module.
+
+   Exposed as a global (window.InteractiveShell) rather than an ES module so
+   that a single interactive folder can be opened directly from disk over
+   file:// — ES modules are blocked by CORS in that situation, plain scripts
+   are not. That constraint is the whole reason for the older syntax here.
+   ========================================================================= */
+
+(function (global) {
+  "use strict";
+
+  /* -----------------------------------------------------------------------
+     Internal helpers
+     --------------------------------------------------------------------- */
+
+  /**
+   * Accept either a CSS selector or an element and return an element.
+   * @param {string|Element} target
+   * @param {ParentNode} [scope]
+   * @returns {Element|null}
+   */
+  function resolve(target, scope) {
+    if (!target) {
+      return null;
+    }
+    if (typeof target === "string") {
+      return (scope || document).querySelector(target);
+    }
+    return target;
+  }
+
+  /**
+   * True when the reader has asked the operating system to reduce motion.
+   * Interactives should check this before animating anything — for example
+   * by drawing a sampling distribution in one step instead of animating
+   * each draw.
+   * @returns {boolean}
+   */
+  function prefersReducedMotion() {
+    return (
+      typeof global.matchMedia === "function" &&
+      global.matchMedia("(prefers-reduced-motion: reduce)").matches
+    );
+  }
+
+  /* -----------------------------------------------------------------------
+     Shell controller
+     --------------------------------------------------------------------- */
+
+  /**
+   * Attach the shell behaviour to one `.interactive` element.
+   *
+   * @param {string|Element} target  Selector or element for the shell root.
+   * @returns {object|null}  Controller, or null if the root was not found.
+   */
+  function attach(target) {
+    var root = resolve(target);
+
+    if (!root) {
+      if (global.console && console.warn) {
+        console.warn("InteractiveShell: root element not found.", target);
+      }
+      return null;
+    }
+
+    var controls = root.querySelector("[data-interactive-controls]");
+    var stage = root.querySelector("[data-interactive-stage]");
+    var status = root.querySelector("[data-interactive-status]");
+    var resetButton = root.querySelector("[data-interactive-reset]");
+    var resetHandlers = [];
+    // Every range bound with bindRange() registers its sync function here, so
+    // that reset() can refresh the visible values after the tool's own reset
+    // handlers have restored the inputs. See reset() for why this is needed.
+    var rangeSyncs = [];
+
+    /* --- Live region ----------------------------------------------------
+       The status element is marked up as role="status" (implicitly
+       aria-live="polite"). Two details matter:
+
+         1. Assistive technology only announces *changes* to a live region,
+            so writing the same string twice is silently dropped. We add a
+            trailing zero-width space on repeat messages to force an
+            announcement when a student re-runs the same action.
+         2. Announcements are debounced. A slider dragged across its range
+            fires dozens of input events; without a delay a screen reader
+            would queue every intermediate value and fall far behind.
+       ------------------------------------------------------------------ */
+
+    var announceTimer = null;
+    var lastMessage = "";
+
+    /**
+     * Announce a short sentence describing what just changed.
+     * @param {string} message
+     * @param {object} [options]
+     * @param {boolean} [options.immediate]  Skip the debounce delay. Use for
+     *   discrete actions (button presses); leave off for continuous input.
+     */
+    function announce(message, options) {
+      if (!status) {
+        return;
+      }
+
+      var text = String(message == null ? "" : message);
+      var immediate = Boolean(options && options.immediate);
+
+      if (announceTimer !== null) {
+        global.clearTimeout(announceTimer);
+        announceTimer = null;
+      }
+
+      function write() {
+        // Force a change when the text is identical to last time.
+        status.textContent = text === lastMessage ? text + "​" : text;
+        lastMessage = text;
+      }
+
+      if (immediate) {
+        write();
+      } else {
+        announceTimer = global.setTimeout(write, 350);
+      }
+    }
+
+    /* --- Reset ---------------------------------------------------------- */
+
+    /**
+     * Register a callback to run when the Reset button is pressed.
+     * Several may be registered; they run in the order added.
+     * @param {Function} handler
+     */
+    function onReset(handler) {
+      if (typeof handler === "function") {
+        resetHandlers.push(handler);
+      }
+    }
+
+    /**
+     * Run the reset handlers. Called by the button and available directly so
+     * an interactive can reset itself on first load.
+     *
+     * Bound ranges are re-synced afterwards. A reset handler restores an
+     * input by assigning to `input.value`, and assigning to a value in script
+     * does not fire an `input` event — so without this step the slider would
+     * jump back to its default while its <output> went on showing the old
+     * number. Syncing here, after the handlers have run, also means the sync
+     * sees the restored values regardless of the order things were
+     * registered in.
+     *
+     * @param {object} [options]
+     * @param {boolean} [options.silent]  Suppress the status announcement.
+     */
+    function reset(options) {
+      resetHandlers.forEach(function (handler) {
+        handler();
+      });
+      rangeSyncs.forEach(function (sync) {
+        sync();
+      });
+      if (!options || !options.silent) {
+        announce(
+          root.getAttribute("data-reset-message") ||
+            "Reset to the starting values.",
+          { immediate: true }
+        );
+      }
+    }
+
+    if (resetButton) {
+      resetButton.addEventListener("click", function (event) {
+        // Reset buttons commonly sit inside the controls <form>; stop the
+        // browser's own form reset from fighting with ours.
+        event.preventDefault();
+        reset();
+      });
+    }
+
+    /* --- Range binding --------------------------------------------------
+       Keeps a slider's <output> in step with its value. The <output> must
+       carry `for="<input id>"`, which is what associates the two for
+       assistive technology; this only handles the visible text.
+
+       Optionally sets aria-valuetext, which is how you make a screen reader
+       say "25 cases" or "medium correlation" instead of a bare "25".
+       ------------------------------------------------------------------ */
+
+    /**
+     * @param {string|Element} inputTarget  The range (or number) input.
+     * @param {object} [options]
+     * @param {Function} [options.format]  value:number -> string shown in the
+     *   <output>. Defaults to the raw value.
+     * @param {Function} [options.describe]  value:number -> string used for
+     *   aria-valuetext. Defaults to options.format.
+     * @param {Function} [options.onInput]  value:number -> void, called after
+     *   the display has been updated. Use it to redraw.
+     * @returns {HTMLInputElement|null}
+     */
+    function bindRange(inputTarget, options) {
+      var input = resolve(inputTarget, root);
+      if (!input) {
+        return null;
+      }
+
+      var settings = options || {};
+      var format =
+        typeof settings.format === "function"
+          ? settings.format
+          : function (value) {
+              return String(value);
+            };
+      var describe =
+        typeof settings.describe === "function" ? settings.describe : format;
+
+      // <output for="the-input-id"> is the conventional pairing.
+      var output = input.id
+        ? root.querySelector('output[for="' + input.id + '"]')
+        : null;
+
+      function sync() {
+        var value = Number(input.value);
+        if (output) {
+          output.textContent = format(value);
+        }
+        // Only meaningful for widgets with an implicit or explicit slider
+        // role; harmless elsewhere.
+        input.setAttribute("aria-valuetext", describe(value));
+        if (typeof settings.onInput === "function") {
+          settings.onInput(value);
+        }
+      }
+
+      input.addEventListener("input", sync);
+      // Registered so reset() can refresh the display after the tool's own
+      // reset handlers have put the input back to its default.
+      rangeSyncs.push(sync);
+      sync();
+
+      return input;
+    }
+
+    /* --- Public surface -------------------------------------------------- */
+
+    return {
+      /** The `.interactive` root element. */
+      root: root,
+      /** The controls panel, or null if the shell has none. */
+      controls: controls,
+      /** The stage element where the visualisation is drawn. */
+      stage: stage,
+      /** The live-region element. */
+      status: status,
+      announce: announce,
+      onReset: onReset,
+      reset: reset,
+      bindRange: bindRange,
+      prefersReducedMotion: prefersReducedMotion
+    };
+  }
+
+  /* -----------------------------------------------------------------------
+     Export
+     --------------------------------------------------------------------- */
+
+  global.InteractiveShell = {
+    attach: attach,
+    prefersReducedMotion: prefersReducedMotion
+  };
+})(window);
+
+/* ---- modules/cognitive/tools/11-decision-framing-laboratory/tool.js ---- */
+/* =========================================================================
+   Decision Framing Laboratory
+   -------------------------------------------------------------------------
+   Four fictional, ethically neutral decisions. Each has a stock at risk, a
+   SAFE option and a GAMBLE with exactly the same expected outcome. Two of
+   the four are written as gains and two as losses, assigned at random, and
+   the equivalence is withheld until all four decisions have been made.
+
+   WHY SEEDLINGS AND SERVERS
+   -------------------------
+   The famous version of this problem is about people dying. That makes it
+   memorable and it also makes it impossible to separate the framing effect
+   from how a reader feels about the stakes. Everything here is stock in a
+   store: seedlings, servers, sacks of grain and hire bicycles. Nothing turns
+   on the reader's values, which is the point - and which also limits what
+   the demonstration generalises to, as the limits panel says.
+
+   THE ARITHMETIC
+   --------------
+   Every stock is divisible by 27, so all three quantities are whole numbers:
+
+       stock N
+       safe (certain)        save exactly N/3
+       safe (very likely)    a 90 per cent chance of saving N/3 / 0.9
+       gamble                a 1 in 3 chance of saving all N, else none
+
+   All three have an expected outcome of N/3. The "very likely" version is
+   the certainty manipulation: same expectation, one less guarantee.
+
+   THE THREE MANIPULATIONS
+   -----------------------
+       frame        gain or loss wording of identical outcomes (random,
+                    two of each across the four scenarios)
+       certainty    the safe option certain, or very likely (learner's choice)
+       reference    the stock described as long established, or as having only
+                    just arrived and not yet been logged (learner's choice)
+
+   The reference-point setting changes no number. It is included because it
+   changes what counts as the status quo, and the reveal asks the learner
+   which reference point they actually used. It is deliberately NOT modelled
+   in the worked example: inventing a small effect would be worse than
+   reporting none, and the results prose says so.
+
+   WHAT ONE PERSON'S FOUR DECISIONS CAN SHOW
+   -----------------------------------------
+   Nothing, on their own. Each scenario is seen in one frame only, so there
+   is no within-person comparison available. The reveal therefore prints the
+   other framing of the same arithmetic beside each decision, and the
+   aggregate pattern comes from a simulated class.
+
+   THE WORKED EXAMPLE
+   ------------------
+   A simulated class of 120 fictional participants, seed 20261011, four
+   decisions each, drawn as Bernoulli choices of the SAFE option with
+
+                          safe option certain    safe option very likely
+       gain frame              0.74                     0.52
+       loss frame              0.33                     0.27
+
+   The framing effect (the gap between rows) and the certainty effect (the
+   gap between columns, much larger in the gain frame) are both BUILT IN.
+   They illustrate the shape of the classic findings; they are not evidence
+   for them, not norms, and not anybody's data.
+
+   No data leave the browser. No storage, no network request.
+   ========================================================================= */
+
+(function () {
+  "use strict";
+
+  var NEAR_CERTAIN_P = 0.9;
+
+  /* Four scenarios. Every stock is divisible by 27 so that N/3 and
+     N/3/0.9 are both whole numbers. */
+  var SCENARIOS = [
+    {
+      id: "seedlings",
+      title: "The frost warning",
+      unit: "seedlings",
+      stock: 810,
+      owned: "Your nursery has 810 seedlings that have been growing here all season.",
+      fresh: "A delivery of 810 seedlings arrived this morning and has not yet been logged into your stock.",
+      threat: "A hard frost is forecast for tonight, and without intervention none of them will survive."
+    },
+    {
+      id: "servers",
+      title: "The firmware fault",
+      unit: "servers",
+      stock: 540,
+      owned: "Your data centre runs 540 servers that have been in service for years.",
+      fresh: "A batch of 540 servers was delivered this week and has not yet been added to the asset register.",
+      threat: "A firmware fault has been found that will disable every one of them within the day."
+    },
+    {
+      id: "grain",
+      title: "The flooded store",
+      unit: "sacks of grain",
+      stock: 1080,
+      owned: "The cooperative store holds 1,080 sacks of grain from your own harvests.",
+      fresh: "A consignment of 1,080 sacks of grain arrived overnight and is not yet recorded as yours.",
+      threat: "Water is rising in the store and, left alone, all of it will spoil."
+    },
+    {
+      id: "bicycles",
+      title: "The depot fire",
+      unit: "hire bicycles",
+      stock: 1620,
+      owned: "The hire scheme owns 1,620 bicycles, kept in a depot it has used for a decade.",
+      fresh: "A new fleet of 1,620 bicycles was unloaded yesterday and has not yet been transferred to the scheme.",
+      threat: "A fire has started in the depot and, if nothing is done, none of them will be recoverable."
+    }
+  ];
+
+  /* 300 fictional participants in EACH certainty condition, four decisions
+     each - two gain-framed and two loss-framed - so 600 decisions per cell.
+     At 120 the sampling error alone moved a cell by seven points, which is
+     large enough to obscure the certainty effect the example exists to show. */
+  var SIM = {
+    seed: 20261011,
+    participants: 300,
+    safeRate: {
+      gain: { certain: 0.74, near: 0.52 },
+      loss: { certain: 0.33, near: 0.27 }
+    }
+  };
+
+  /* Challenge edits. "reduces" says whether the edit should shrink the
+     framing asymmetry; "apply" is the sentence it adds to the rewritten
+     scenario. */
+  var EDITS = [
+    {
+      id: "both-complements",
+      label: "State both numbers in every option — how many are saved AND how many are lost.",
+      reduces: true,
+      apply: "Option A: 270 seedlings are saved and 540 are lost. " +
+        "Option B: a 1 in 3 chance that 810 are saved and none lost, and a 2 in 3 " +
+        "chance that none are saved and 810 are lost.",
+      why: "The most effective single edit. A large part of the effect comes from " +
+        "each frame leaving one complement unstated, and readers filling in the " +
+        "gap differently. Say both and there is much less room for the wording to " +
+        "do work."
+    },
+    {
+      id: "expected-value",
+      label: "Print the expected outcome of each option next to it.",
+      reduces: true,
+      apply: "Expected outcome of Option A: 270 seedlings saved. " +
+        "Expected outcome of Option B: 270 seedlings saved.",
+      why: "Reduces the asymmetry, because it makes the equivalence a stated fact " +
+        "rather than something the reader has to compute. Note what it does not " +
+        "do: it does not make the two options identical in every respect, since " +
+        "they still differ in variance, and preferring one variance to another is " +
+        "not an error."
+    },
+    {
+      id: "table",
+      label: "Lay the options out in a table with matched columns rather than in prose.",
+      reduces: true,
+      apply: "The two options are set out in a table with one row per option and " +
+        "matched columns for saved, lost and expected outcome.",
+      why: "Reduces it. A matched layout makes the missing complement conspicuous " +
+        "and discourages the reader from treating the two options as answers to " +
+        "different questions."
+    },
+    {
+      id: "justify",
+      label: "Ask the reader to write one sentence justifying their choice before choosing.",
+      reduces: true,
+      apply: "Before choosing, write one sentence explaining why.",
+      why: "Reduces it, in most studies. Being asked for a reason tends to shift " +
+        "people towards the stated numbers and away from the framing. It is also " +
+        "the edit most likely to change who takes part at all, which is worth " +
+        "noticing."
+    },
+    {
+      id: "vivid",
+      label: "Describe the gamble more vividly, so the reader can picture the good outcome.",
+      reduces: false,
+      apply: "Option B: picture the whole nursery coming through untouched, every " +
+        "seedling upright in the morning sun.",
+      why: "Increases the asymmetry rather than reducing it. Vividness makes an " +
+        "outcome easier to bring to mind, which changes how likely and how " +
+        "significant it feels — which is precisely the kind of influence the " +
+        "rewrite is trying to remove."
+    },
+    {
+      id: "bigger",
+      label: "Multiply every quantity by ten, so 810 becomes 8,100.",
+      reduces: false,
+      apply: "All quantities are multiplied by ten.",
+      why: "Little effect on the asymmetry. The framing effect is about the " +
+        "direction outcomes are evaluated from, not about the size of the " +
+        "numbers. Changing the scale changes how impressive the problem sounds " +
+        "and leaves the reference point exactly where it was."
+    }
+  ];
+
+  /* =======================================================================
+     Seeded randomness (copied rather than imported, so a downloaded folder
+     keeps working on its own)
+     ===================================================================== */
+
+  function mulberry32(seed) {
+    var a = seed >>> 0;
+    return function () {
+      a = (a + 0x6d2b79f5) >>> 0;
+      var t = a;
+      t = Math.imul(t ^ (t >>> 15), t | 1);
+      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  function shuffle(items) {
+    for (var i = items.length - 1; i > 0; i -= 1) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = items[i];
+      items[i] = items[j];
+      items[j] = tmp;
+    }
+    return items;
+  }
+
+  /* =======================================================================
+     Small helpers
+     ===================================================================== */
+
+  var NS = "http://www.w3.org/2000/svg";
+
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) { node.className = className; }
+    if (text !== undefined) { node.textContent = text; }
+    return node;
+  }
+
+  function svgNode(tag, attributes, parent) {
+    var node = document.createElementNS(NS, tag);
+    Object.keys(attributes).forEach(function (key) {
+      node.setAttribute(key, String(attributes[key]));
+    });
+    if (parent) { parent.appendChild(node); }
+    return node;
+  }
+
+  function clear(node) {
+    while (node && node.firstChild) { node.removeChild(node.firstChild); }
+  }
+
+  function pct(value) {
+    return value === null || value === undefined || isNaN(value)
+      ? "—" : Math.round(value * 100) + "%";
+  }
+
+  function num(value) {
+    return String(value).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  /* =======================================================================
+     Wording
+     ===================================================================== */
+
+  function safeAmount(scenario) { return scenario.stock / 3; }
+  function nearAmount(scenario) { return Math.round(scenario.stock / 3 / NEAR_CERTAIN_P); }
+
+  function safeText(scenario, frame, certainty) {
+    var saved = safeAmount(scenario);
+    var lost = scenario.stock - saved;
+    if (certainty === "certain") {
+      return frame === "gain"
+        ? num(saved) + " " + scenario.unit + " will be saved."
+        : num(lost) + " " + scenario.unit + " will be lost.";
+    }
+    var nearSaved = nearAmount(scenario);
+    var nearLost = scenario.stock - nearSaved;
+    return frame === "gain"
+      ? "There is a 90 per cent chance that " + num(nearSaved) + " " +
+        scenario.unit + " will be saved, and a 10 per cent chance that none will be."
+      : "There is a 90 per cent chance that " + num(nearLost) + " " +
+        scenario.unit + " will be lost, and a 10 per cent chance that all " +
+        num(scenario.stock) + " will be.";
+  }
+
+  function riskyText(scenario, frame) {
+    return frame === "gain"
+      ? "There is a 1 in 3 chance that all " + num(scenario.stock) + " " +
+        scenario.unit + " will be saved, and a 2 in 3 chance that none will be saved."
+      : "There is a 1 in 3 chance that none of the " + num(scenario.stock) + " " +
+        scenario.unit + " will be lost, and a 2 in 3 chance that all " +
+        num(scenario.stock) + " will be lost.";
+  }
+
+  function setupText(scenario, reference) {
+    return (reference === "owned" ? scenario.owned : scenario.fresh) + " " +
+      scenario.threat + " Two courses of action are available, and you must " +
+      "choose one.";
+  }
+
+  /* =======================================================================
+     Wiring
+     ===================================================================== */
+
+  var shell = InteractiveShell.attach("#framing");
+  if (!shell) { return; }
+
+  var $ = function (selector, scope) {
+    return (scope || document).querySelector(selector);
+  };
+
+  var certaintySelect = $("#certainty-select");
+  var referenceSelect = $("#reference-select");
+  var startButton = $('[data-action="start"]');
+  var stopButton = $('[data-action="stop"]');
+  var workedExample = $('[data-action="worked-example"]');
+
+  var scenarioCard = $("[data-scenario]");
+  var scenarioTitle = $("[data-scenario-title]");
+  var scenarioSetup = $("[data-scenario-setup]");
+  var optionSafe = $("[data-option-safe]");
+  var optionRisky = $("[data-option-risky]");
+  var progressText = $("[data-progress-text]");
+  var displayCaption = $("[data-display-caption]");
+  var taskFeedback = $("[data-task-feedback]");
+
+  var resultsSection = $("#results");
+  var resultsBody = $("[data-results-body]");
+  var decisionTable = $("[data-decision-table]");
+  var reframeList = $("[data-reframe-list]");
+  var chartCaption = $("[data-chart-caption]");
+  var frameChart = $("[data-frame-chart]");
+  var frameTable = $("[data-frame-table]");
+
+  var openingForm = $("#opening-form");
+  var openingError = $("[data-opening-error]");
+  var openingFeedback = $("[data-opening-feedback]");
+  var skipOpening = $('[data-action="skip-opening"]');
+
+  var challengeForm = $("#challenge-form");
+  var originalScenario = $("[data-original-scenario]");
+  var editOptions = $("[data-edit-options]");
+  var challengeFeedback = $("[data-challenge-feedback]");
+  var rewrittenWrap = $("[data-rewritten-wrap]");
+  var rewrittenScenario = $("[data-rewritten-scenario]");
+
+  var state = null;
+
+  /* =======================================================================
+     Running the decisions
+     ===================================================================== */
+
+  function idleControls() {
+    startButton.disabled = false;
+    stopButton.disabled = true;
+    certaintySelect.disabled = false;
+    referenceSelect.disabled = false;
+  }
+
+  function runningControls() {
+    startButton.disabled = true;
+    stopButton.disabled = false;
+    certaintySelect.disabled = true;
+    referenceSelect.disabled = true;
+  }
+
+  function startRun() {
+    // Two gain frames and two loss frames, shuffled across the four
+    // scenarios, so nobody sees the same scenario twice.
+    var frames = shuffle(["gain", "gain", "loss", "loss"]);
+    state.queue = shuffle(SCENARIOS.slice()).map(function (scenario, i) {
+      return { scenario: scenario, frame: frames[i] };
+    });
+    state.index = 0;
+    state.decisions = [];
+    resultsSection.hidden = true;
+    taskFeedback.hidden = true;
+    runningControls();
+    showScenario();
+    shell.announce("Four decisions, one at a time. Nothing is timed.",
+      { immediate: true });
+  }
+
+  function showScenario() {
+    if (state.index >= state.queue.length) {
+      finishRun();
+      return;
+    }
+    var trial = state.queue[state.index];
+    scenarioCard.hidden = false;
+    scenarioTitle.textContent = trial.scenario.title;
+    scenarioSetup.textContent = setupText(trial.scenario, state.reference);
+    optionSafe.textContent = safeText(trial.scenario, trial.frame, state.certainty);
+    optionRisky.textContent = riskyText(trial.scenario, trial.frame);
+    progressText.textContent = "Decision " + (state.index + 1) + " of " +
+      state.queue.length + ". Nothing is timed.";
+    displayCaption.textContent =
+      "Choose one. You will not be told anything until all four are done.";
+    var first = scenarioCard.querySelector("button");
+    if (first) { first.focus(); }
+  }
+
+  function choose(choice) {
+    if (state.index >= state.queue.length) { return; }
+    var trial = state.queue[state.index];
+    state.decisions.push({
+      scenario: trial.scenario,
+      frame: trial.frame,
+      choice: choice
+    });
+    state.index += 1;
+    showScenario();
+  }
+
+  function finishRun() {
+    scenarioCard.hidden = true;
+    idleControls();
+    progressText.textContent = "All four decisions made.";
+    displayCaption.textContent = "Finished. The equivalence is below.";
+    showResults({ source: "own" });
+    shell.announce("All four decisions made. The equivalence is below.",
+      { immediate: true });
+  }
+
+  function stopRun() {
+    scenarioCard.hidden = true;
+    state.queue = [];
+    state.index = 0;
+    state.decisions = [];
+    idleControls();
+    progressText.textContent = "Stopped. Nothing recorded.";
+    displayCaption.textContent =
+      "Stopped. A partial set cannot be summarised, so nothing was kept.";
+    shell.announce("Stopped. Nothing was recorded.", { immediate: true });
+  }
+
+  /* =======================================================================
+     Simulation
+     ===================================================================== */
+
+  function simulate() {
+    var rand = mulberry32(SIM.seed);
+    var cells = {};
+    ["gain", "loss"].forEach(function (frame) {
+      ["certain", "near"].forEach(function (certainty) {
+        var n = SIM.participants * 2;   // two decisions per person per frame
+        var safe = 0;
+        for (var i = 0; i < n; i += 1) {
+          if (rand() < SIM.safeRate[frame][certainty]) { safe += 1; }
+        }
+        cells[frame + "-" + certainty] = { n: n, safe: safe / n };
+      });
+    });
+    return cells;
+  }
+
+  /* =======================================================================
+     Results
+     ===================================================================== */
+
+  function showResults(meta) {
+    $("#results-heading").textContent = meta.source === "simulated"
+      ? "The same arithmetic, twice — worked example, simulated"
+      : "The same arithmetic, twice";
+    renderResultsProse(meta);
+    renderDecisionTable(meta);
+    renderReframes(meta);
+    renderFrameChart();
+    renderFrameTable();
+    resultsSection.hidden = false;
+    $("#results-heading").focus();
+  }
+
+  function renderResultsProse(meta) {
+    clear(resultsBody);
+
+    if (meta.source === "simulated") {
+      resultsBody.appendChild(make("p", "reveal__lead",
+        "Simulated class data, seed " + SIM.seed + ": " + SIM.participants +
+        " fictional participants in each certainty condition, four decisions " +
+        "each — two gain-framed and two loss-framed — so 600 decisions per cell."));
+      resultsBody.appendChild(make("p", null,
+        "Read the chart in two directions. Down the pairs is framing: the " +
+        "same arithmetic, described as saved rather than lost, moves people " +
+        "towards the safe option. Across a row is certainty: removing the " +
+        "guarantee costs the safe option most of its appeal, and more in the " +
+        "gain frame."));
+      resultsBody.appendChild(make("p", null,
+        "Both effects are built into the generator documented at the top of " +
+        "tool.js. This illustrates the shape of two well-replicated findings; " +
+        "it is not evidence for either of them."));
+      return;
+    }
+
+    var gainSafe = state.decisions.filter(function (d) {
+      return d.frame === "gain" && d.choice === "safe";
+    }).length;
+    var lossSafe = state.decisions.filter(function (d) {
+      return d.frame === "loss" && d.choice === "safe";
+    }).length;
+
+    resultsBody.appendChild(make("p", "reveal__lead",
+      "You chose the safe option on " + gainSafe + " of your 2 gain-framed " +
+      "decisions and " + lossSafe + " of your 2 loss-framed decisions."));
+    resultsBody.appendChild(make("p", null,
+      "Your four answers cannot show a framing effect: you saw each " +
+      "scenario in one frame only. They are there to be compared with the " +
+      "simulated sample below."));
+    resultsBody.appendChild(make("p", null,
+      "In every scenario, the safe option and the gamble had exactly the same " +
+      "expected outcome: a third of the stock. Below, each of your decisions " +
+      "is printed with the wording you saw and the wording you did not. Read " +
+      "the pair and ask whether you would have chosen the same way."));
+    resultsBody.appendChild(make("p", null,
+      state.reference === "owned"
+        ? "One more thing to notice. The stock was described as long " +
+          "established and unambiguously yours, so the natural reference point " +
+          "was the full amount, and every outcome was a loss from it. Try the " +
+          "other setting and see whether the wording reads differently."
+        : "One more thing to notice. The stock was described as having only " +
+          "just arrived and not yet been logged as yours. If your reference " +
+          "point was “nothing yet”, then the loss-framed version was not " +
+          "describing a loss at all. Which reference point did you actually " +
+          "use? The tool cannot tell, and neither can any study that does not " +
+          "ask."));
+  }
+
+  function renderDecisionTable(meta) {
+    clear(decisionTable);
+    if (meta.source === "simulated") {
+      var row = make("tr");
+      var cell = make("td", null,
+        "The worked example is a simulated class rather than a set of " +
+        "decisions made here, so there is no per-decision record. Make the " +
+        "four decisions yourself to fill this in.");
+      cell.setAttribute("colspan", "6");
+      row.appendChild(cell);
+      decisionTable.appendChild(row);
+      return;
+    }
+    state.decisions.forEach(function (decision) {
+      var scenario = decision.scenario;
+      var row = make("tr");
+      var head = make("th", null, scenario.title);
+      head.setAttribute("scope", "row");
+      row.appendChild(head);
+      row.appendChild(make("td", null,
+        decision.frame === "gain" ? "Gain — things saved" : "Loss — things lost"));
+      row.appendChild(make("td", null,
+        decision.choice === "safe" ? "Option A, the safe one" : "Option B, the gamble"));
+      row.appendChild(make("td", null,
+        state.certainty === "certain"
+          ? num(safeAmount(scenario)) + " for sure"
+          : "90% chance of " + num(nearAmount(scenario))));
+      row.appendChild(make("td", null,
+        "1 in 3 chance of " + num(scenario.stock)));
+      row.appendChild(make("td", null,
+        num(safeAmount(scenario)) + " " + scenario.unit + " either way"));
+      decisionTable.appendChild(row);
+    });
+  }
+
+  function renderReframes(meta) {
+    clear(reframeList);
+    if (meta.source === "simulated") { return; }
+
+    var list = make("ul", "reframe");
+    state.decisions.forEach(function (decision) {
+      var scenario = decision.scenario;
+      var other = decision.frame === "gain" ? "loss" : "gain";
+      var item = make("li");
+      item.appendChild(make("strong", null, scenario.title + " — "));
+      item.appendChild(document.createTextNode(
+        "you chose " + (decision.choice === "safe" ? "the safe option"
+          : "the gamble") + " when it was written like this:"));
+
+      var pair = make("div", "reframe__pair");
+      [[decision.frame, "What you saw"], [other, "The same arithmetic, the other way"]]
+        .forEach(function (spec) {
+          var side = make("div", "reframe__side");
+          side.appendChild(make("strong", null, spec[1]));
+          side.appendChild(make("p", null,
+            "A: " + safeText(scenario, spec[0], state.certainty)));
+          side.appendChild(make("p", null,
+            "B: " + riskyText(scenario, spec[0])));
+          pair.appendChild(side);
+        });
+      item.appendChild(pair);
+      list.appendChild(item);
+    });
+    reframeList.appendChild(list);
+  }
+
+  function renderFrameChart() {
+    var cells = simulate();
+    var W = 460, H = 200;
+    var PAD_L = 150, PAD_R = 62, PAD_T = 24, PAD_B = 38;
+    var plotW = W - PAD_L - PAD_R;
+    var plotH = H - PAD_T - PAD_B;
+    clear(frameChart);
+
+    var bars = [
+      { label: "Gain, certain", key: "gain-certain", kind: "gain" },
+      { label: "Gain, very likely", key: "gain-near", kind: "gain" },
+      { label: "Loss, certain", key: "loss-certain", kind: "loss" },
+      { label: "Loss, very likely", key: "loss-near", kind: "loss" }
+    ];
+    var rowH = plotH / bars.length;
+    var barH = Math.min(22, rowH * 0.62);
+    var xAt = function (p) { return PAD_L + p * plotW; };
+
+    svgNode("line", { x1: PAD_L, y1: PAD_T, x2: PAD_L, y2: PAD_T + plotH,
+      class: "chart__baseline" }, frameChart);
+    [0, 0.5, 1].forEach(function (p) {
+      svgNode("text", { x: xAt(p).toFixed(1), y: H - 20, "text-anchor": "middle",
+        class: "chart__axis" }, frameChart)
+        .textContent = Math.round(p * 100) + "%";
+    });
+    svgNode("text", { x: (PAD_L + plotW / 2).toFixed(1), y: H - 4,
+      "text-anchor": "middle", class: "chart__axis" }, frameChart)
+      .textContent = "Chose the safe option";
+    svgNode("text", { x: PAD_L, y: 14, class: "chart__label" }, frameChart)
+      .textContent = "Solid = gain frame · Hatched = loss frame";
+
+    bars.forEach(function (bar, row) {
+      var cell = cells[bar.key];
+      var y = PAD_T + row * rowH + (rowH - barH) / 2;
+      svgNode("text", { x: PAD_L - 8, y: (y + barH / 2 + 4).toFixed(1),
+        "text-anchor": "end", class: "chart__label" }, frameChart)
+        .textContent = bar.label;
+      var width = Math.max(1, xAt(cell.safe) - PAD_L);
+      svgNode("rect", { x: PAD_L, y: y.toFixed(1), width: width.toFixed(1),
+        height: barH, class: "framing__bar--" + bar.kind }, frameChart);
+      if (bar.kind === "loss") {
+        for (var x = PAD_L + 9; x < PAD_L + width - 2; x += 11) {
+          svgNode("line", { x1: x.toFixed(1), y1: (y + 1).toFixed(1),
+            x2: (x - 7).toFixed(1), y2: (y + barH - 1).toFixed(1),
+            class: "framing__hatch" }, frameChart);
+        }
+      }
+      svgNode("text", { x: (PAD_L + width + 5).toFixed(1),
+        y: (y + barH / 2 + 4).toFixed(1), class: "chart__count" }, frameChart)
+        .textContent = pct(cell.safe);
+    });
+
+    chartCaption.textContent = "Simulated class data (seed " + SIM.seed +
+      "): how often the safe option was chosen, by frame and by how certain " +
+      "the safe option was";
+  }
+
+  function renderFrameTable() {
+    var cells = simulate();
+    clear(frameTable);
+    [
+      ["Gain — things saved", "Completely certain", "gain-certain"],
+      ["Gain — things saved", "Very likely", "gain-near"],
+      ["Loss — things lost", "Completely certain", "loss-certain"],
+      ["Loss — things lost", "Very likely", "loss-near"]
+    ].forEach(function (spec) {
+      var cell = cells[spec[2]];
+      var row = make("tr");
+      var head = make("th", null, spec[0]);
+      head.setAttribute("scope", "row");
+      row.appendChild(head);
+      row.appendChild(make("td", null, spec[1]));
+      row.appendChild(make("td", null, String(cell.n)));
+      row.appendChild(make("td", null, pct(cell.safe)));
+      frameTable.appendChild(row);
+    });
+  }
+
+  /* =======================================================================
+     Buttons
+     ===================================================================== */
+
+  Array.prototype.forEach.call(scenarioCard.querySelectorAll("[data-choice]"),
+    function (button) {
+      button.addEventListener("click", function () {
+        choose(button.getAttribute("data-choice"));
+      });
+    });
+
+  startButton.addEventListener("click", startRun);
+  stopButton.addEventListener("click", stopRun);
+
+  workedExample.addEventListener("click", function () {
+    scenarioCard.hidden = true;
+    state.queue = [];
+    state.index = 0;
+    idleControls();
+    displayCaption.textContent =
+      "Worked example loaded below. The four decisions are still available.";
+    showResults({ source: "simulated" });
+    shell.announce("Worked example loaded: a simulated class dataset with a fixed seed.",
+      { immediate: true });
+  });
+
+  certaintySelect.addEventListener("change", function () {
+    state.certainty = certaintySelect.value;
+  });
+
+  referenceSelect.addEventListener("change", function () {
+    state.reference = referenceSelect.value;
+  });
+
+  /* =======================================================================
+     Opening prediction
+     ===================================================================== */
+
+  var OPENING = {
+    loss: {
+      tone: "good", verdict: "That is the usual direction.",
+      text: "Described as losses, more people take the gamble; described as " +
+        "gains, more people take the sure thing. The mechanism people usually " +
+        "reach for is that outcomes are judged as changes from a reference " +
+        "point, and losses weigh more heavily than gains of the same size."
+    },
+    gain: {
+      tone: "caution", verdict: "The other way round.",
+      text: "The gain wording tends to pull people towards the certain option, " +
+        "not the gamble. Watch the simulated class data and see which way the " +
+        "two rows go."
+    },
+    none: {
+      tone: "caution", verdict: "A perfectly reasonable position, and it does not hold.",
+      text: "It is what a purely arithmetic account predicts, and the finding " +
+        "that it fails is why this literature exists. Notice, though, that " +
+        "failing it is not the same as being irrational: the wording carries " +
+        "information about what the reference point is, and reference points " +
+        "are how most evaluation works."
+    },
+    depends: {
+      tone: "caution", verdict: "Both are true at once.",
+      text: "People do differ, a great deal. But the frame shifts the whole " +
+        "distribution: change the wording and the proportion choosing the " +
+        "gamble changes substantially, often enough to reverse which option is " +
+        "in the majority."
+    }
+  };
+
+  function unlockLab(message) {
+    idleControls();
+    displayCaption.textContent = "Ready. Nothing is timed at any point.";
+    progressText.textContent = "Ready. Four decisions, in a random order.";
+    shell.announce(message, { immediate: true });
+  }
+
+  openingForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answer = $('input[name="opening"]:checked', openingForm);
+    if (!answer) {
+      openingError.textContent = "Choose one of the four answers before starting.";
+      openingError.hidden = false;
+      return;
+    }
+    openingError.hidden = true;
+    var response = OPENING[answer.value];
+    showFeedback(openingFeedback, response.tone, response.verdict, response.text);
+    lockForm(openingForm);
+    unlockLab("Laboratory unlocked. Four decisions, nothing timed.");
+  });
+
+  skipOpening.addEventListener("click", function () {
+    openingError.hidden = true;
+    showFeedback(openingFeedback, "neutral", "Prediction skipped.",
+      "The laboratory is unlocked. If you are demonstrating, split the room " +
+      "between the two certainty settings before anybody starts.");
+    lockForm(openingForm);
+    unlockLab("Prediction skipped. Laboratory unlocked.");
+  });
+
+  /* =======================================================================
+     Challenge
+     ===================================================================== */
+
+  function renderChallenge() {
+    var scenario = SCENARIOS[0];
+    originalScenario.textContent = setupText(scenario, "owned") + " " +
+      "Option A: " + safeText(scenario, "gain", "certain") + " " +
+      "Option B: " + riskyText(scenario, "gain");
+
+    clear(editOptions);
+    EDITS.forEach(function (edit) {
+      var wrap = make("div");
+      var label = make("label", "edit-option");
+      var input = document.createElement("input");
+      input.type = "checkbox";
+      input.id = "edit-" + edit.id;
+      input.value = edit.id;
+      label.appendChild(input);
+      label.appendChild(make("span", null, edit.label));
+      wrap.appendChild(label);
+      wrap.appendChild(make("span", "edit-option__mark", ""));
+      editOptions.appendChild(wrap);
+    });
+    rewrittenWrap.hidden = true;
+    clear(rewrittenScenario);
+  }
+
+  challengeForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var chosen = [];
+    var right = 0;
+
+    EDITS.forEach(function (edit) {
+      var input = $("#edit-" + edit.id, challengeForm);
+      var mark = input.parentNode.parentNode.querySelector(".edit-option__mark");
+      var selected = input.checked;
+      if (selected) { chosen.push(edit); }
+      var correct = selected === edit.reduces;
+      if (correct) { right += 1; }
+      mark.textContent = correct
+        ? (selected ? "Yes — this reduces it." : "Right to leave this out.")
+        : (selected ? "This one does not reduce it." :
+          "This one would have helped.");
+    });
+
+    showFeedback(challengeFeedback,
+      right === EDITS.length ? "good" : "caution",
+      right + " of " + EDITS.length + " judged correctly.",
+      "Four of the six reduce the asymmetry and two do not. The two that do " +
+      "not are worth dwelling on: making an outcome vivid and making the " +
+      "numbers larger both make the problem feel more consequential without " +
+      "touching the thing that produces the effect.");
+
+    var list = make("ul");
+    EDITS.forEach(function (edit) {
+      var li = make("li");
+      li.appendChild(make("strong", null, edit.label + " "));
+      li.appendChild(document.createTextNode(edit.why));
+      list.appendChild(li);
+    });
+    challengeFeedback.appendChild(list);
+
+    clear(rewrittenScenario);
+    var scenario = SCENARIOS[0];
+    rewrittenScenario.appendChild(make("p", "scenario__body",
+      setupText(scenario, "owned")));
+    if (!chosen.length) {
+      rewrittenScenario.appendChild(make("p", "scenario__body",
+        "Option A: " + safeText(scenario, "gain", "certain") +
+        " Option B: " + riskyText(scenario, "gain") +
+        " (No edits selected, so this is the original.)"));
+    } else {
+      chosen.forEach(function (edit) {
+        rewrittenScenario.appendChild(make("p", "scenario__body", edit.apply));
+      });
+    }
+    rewrittenWrap.hidden = false;
+
+    shell.announce("Edits applied. " + right + " of " + EDITS.length +
+      " judged correctly.", { immediate: true });
+  });
+
+  /* =======================================================================
+     Helpers
+     ===================================================================== */
+
+  function showFeedback(container, tone, verdict, text) {
+    clear(container);
+    container.setAttribute("data-tone", tone);
+    var p = make("p");
+    p.appendChild(make("strong", "feedback__verdict", verdict));
+    if (text) { p.appendChild(document.createTextNode(" " + text)); }
+    container.appendChild(p);
+    container.hidden = false;
+  }
+
+  function lockForm(form) {
+    Array.prototype.forEach.call(form.querySelectorAll("input, button"),
+      function (control) { control.disabled = true; });
+  }
+
+  function unlockForm(form) {
+    Array.prototype.forEach.call(form.querySelectorAll("input, button"),
+      function (control) { control.disabled = false; });
+    form.reset();
+  }
+
+  /* =======================================================================
+     Reset
+     ===================================================================== */
+
+  shell.onReset(function () {
+    state = {
+      queue: [],
+      index: 0,
+      decisions: [],
+      certainty: "certain",
+      reference: "owned"
+    };
+
+    unlockForm(openingForm);
+    openingFeedback.hidden = true;
+    openingError.hidden = true;
+    taskFeedback.hidden = true;
+    challengeFeedback.hidden = true;
+    resultsSection.hidden = true;
+    $("#results-heading").textContent = "The same arithmetic, twice";
+
+    clear(decisionTable);
+    clear(reframeList);
+    clear(frameTable);
+    clear(frameChart);
+    clear(resultsBody);
+
+    certaintySelect.value = "certain";
+    referenceSelect.value = "owned";
+    certaintySelect.disabled = true;
+    referenceSelect.disabled = true;
+    startButton.disabled = true;
+    stopButton.disabled = true;
+
+    scenarioCard.hidden = true;
+    displayCaption.textContent =
+      "Answer the question above to unlock the laboratory.";
+    progressText.textContent = "Answer the question above to unlock this.";
+
+    renderChallenge();
+  });
+
+  /* =======================================================================
+     Start-up
+     ===================================================================== */
+
+  shell.reset({ silent: true });
+  shell.announce(
+    "Ready. Nothing on this page is timed and nothing moves. The equivalence " +
+    "of the two options is withheld until all four decisions have been made.",
+    { immediate: true });
+})();
+
+</script>
+</div>

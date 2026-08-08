@@ -1,0 +1,3463 @@
+<!-- ANCOVA / MANOVA Decision Laboratory
+     From Open Psychology Interactives - https://github.com/utman5454/open-psychology-interactives
+     Self-contained: no stylesheets, scripts, fonts, images or network requests.
+     Styles are scoped to .opi-activity and do not affect the page around them.
+     Nothing is saved, sent or tracked. MIT licensed; please keep this notice.
+     Paste anywhere that accepts HTML, or save as a .html file and open it. -->
+<div class="opi-activity">
+<style>
+/* Defensive baseline. See scripts/build-standalone.py for why this
+   is `revert` rather than an enumerated reset, and how the specificity ladder
+   keeps the activity's own styling on top of it. */
+.opi-activity *:not(svg *) {
+  all: revert;
+}
+.opi-activity, .opi-activity *, .opi-activity *::before, .opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  text-transform: none;
+  text-indent: 0;
+  font-style: normal;
+  font-variant: normal;
+  letter-spacing: normal;
+  word-spacing: normal;
+  white-space: normal;
+  visibility: visible;
+  float: none;
+  max-width: none;
+}
+.opi-activity svg { max-width: 100%; }
+.opi-activity img { max-width: 100%; height: auto; }
+.opi-activity [hidden] { display: none !important; }
+
+/* assets/css/main.css */
+.opi-activity.opi-activity {
+  --colour-page: #ffffff;
+  --colour-surface: #f5f7fa;
+  --colour-surface-raised: #ffffff;
+  --colour-border: #d3d9e2;
+  --colour-border-strong: #aeb7c4;
+  --colour-text: #131820;
+  --colour-text-muted: #4c566a;
+  --colour-accent: #1a4fa0;
+  --colour-accent-hover: #123a7a;
+  --colour-accent-soft: #e8eefb;
+  --colour-on-accent: #ffffff;
+  --colour-focus: #b45309;
+  --colour-cognitive: #8a4b00;
+  --colour-research-methods: #1a4fa0;
+  --colour-neuropsychology: #145c53;
+  --colour-social-critical-psychology: #9e2f45;
+  --colour-personality-individual-differences: #7a2e6d;
+  --colour-status-bg: #f1ede3;
+  --colour-status-text: #5c4a1f;
+  --colour-status-border: #d9cdb0;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  --text-xs: 13px;
+  --text-sm: 15px;
+  --text-base: 17px;
+  --text-lg: 19px;
+  --text-xl: 23px;
+  --text-2xl: 28px;
+  --text-3xl: 36px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgb(19 24 32 / 0.06);
+  --shadow-md: 0 2px 8px rgb(19 24 32 / 0.08);
+  --measure: 68ch;
+  --container: 1152px;
+}
+@media (prefers-color-scheme: dark) {
+.opi-activity.opi-activity {
+  --colour-page: #0f141b;
+  --colour-surface: #161d27;
+  --colour-surface-raised: #1a2230;
+  --colour-border: #2c3644;
+  --colour-border-strong: #44506180;
+  --colour-text: #e9edf3;
+  --colour-text-muted: #a8b2c1;
+  --colour-accent: #8fb6ff;
+  --colour-accent-hover: #b3cdff;
+  --colour-accent-soft: #1b2740;
+  --colour-on-accent: #0f141b;
+  --colour-focus: #f0b429;
+  --colour-cognitive: #e2ab5f;
+  --colour-research-methods: #8fb6ff;
+  --colour-neuropsychology: #6fc3b4;
+  --colour-social-critical-psychology: #f19aa8;
+  --colour-personality-individual-differences: #db9ccd;
+  --colour-status-bg: #241f14;
+  --colour-status-text: #e2cf9f;
+  --colour-status-border: #4a4028;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 2px 10px rgb(0 0 0 / 0.45);
+}
+}
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity.opi-activity {
+  -webkit-text-size-adjust: 100%;
+}
+.opi-activity.opi-activity {
+  background-color: var(--colour-page);
+  color: var(--colour-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.65;
+}
+.opi-activity.opi-activity h1,
+.opi-activity.opi-activity h2,
+.opi-activity.opi-activity h3,
+.opi-activity.opi-activity h4 {
+  margin: 0 0 var(--space-3);
+  line-height: 1.25;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.opi-activity.opi-activity h1 {
+  font-size: var(--text-3xl);
+}
+.opi-activity.opi-activity h2 {
+  font-size: var(--text-2xl);
+}
+.opi-activity.opi-activity h3 {
+  font-size: var(--text-xl);
+}
+.opi-activity.opi-activity h4 {
+  font-size: var(--text-lg);
+}
+.opi-activity.opi-activity p,
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol,
+.opi-activity.opi-activity dl {
+  margin: 0 0 var(--space-4);
+}
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol {
+  padding-left: 1.35em;
+}
+.opi-activity.opi-activity li + li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity a {
+  color: var(--colour-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: max(1px, 0.06em);
+}
+.opi-activity.opi-activity a:hover {
+  color: var(--colour-accent-hover);
+  text-decoration-thickness: max(2px, 0.11em);
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid var(--colour-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+@supports not selector(:focus-visible) {
+.opi-activity.opi-activity :focus {
+  outline: 3px solid var(--colour-focus);
+    outline-offset: 2px;
+}
+}
+.opi-activity.opi-activity code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.35em;
+}
+.opi-activity.opi-activity hr {
+  border: 0;
+  border-top: 1px solid var(--colour-border);
+  margin: var(--space-6) 0;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+}
+.opi-activity.opi-activity .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.opi-activity.opi-activity .container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+@media (min-width: 40em) {
+.opi-activity.opi-activity .container {
+  padding-inline: var(--space-5);
+}
+}
+.opi-activity.opi-activity .prose {
+  max-width: var(--measure);
+}
+.opi-activity.opi-activity .text-muted {
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .section {
+  padding-block: var(--space-7);
+}
+.opi-activity.opi-activity .section--tinted {
+  background-color: var(--colour-surface);
+  border-block: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .section__header {
+  max-width: var(--measure);
+  margin-bottom: var(--space-5);
+}
+.opi-activity.opi-activity .section__header > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-7) var(--space-6);
+  border-bottom: 1px solid var(--colour-border);
+  
+  background-image: linear-gradient(
+    180deg,
+    var(--colour-accent-soft) 0%,
+    var(--colour-page) 100%
+  );
+}
+.opi-activity.opi-activity .hero__eyebrow {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .hero h1 {
+  max-width: 20ch;
+  margin-bottom: var(--space-4);
+}
+.opi-activity.opi-activity .hero__lead {
+  max-width: var(--measure);
+  font-size: var(--text-lg);
+  color: var(--colour-text-muted);
+}
+@media (min-width: 48em) {
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-8) var(--space-7);
+}
+.opi-activity.opi-activity .hero h1 {
+  font-size: 44px;
+}
+}
+.opi-activity.opi-activity .button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  
+  min-height: 44px;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .button--primary {
+  background-color: var(--colour-accent);
+  border-color: var(--colour-accent);
+  
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--primary:hover {
+  background-color: var(--colour-accent-hover);
+  border-color: var(--colour-accent-hover);
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--secondary {
+  background-color: transparent;
+  border-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .button--secondary:hover {
+  background-color: var(--colour-surface);
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+}
+.opi-activity.opi-activity .card--cognitive {
+  --card-accent: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .card--research-methods {
+  --card-accent: var(--colour-research-methods);
+}
+.opi-activity.opi-activity .card--neuropsychology {
+  --card-accent: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .card--social-critical-psychology {
+  --card-accent: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .card--personality-individual-differences {
+  --card-accent: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 650;
+  line-height: 1.4;
+  padding: 3.2px var(--space-3);
+  border-radius: 999px;
+  border: 1px solid var(--colour-status-border);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+}
+.opi-activity.opi-activity .badge__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex: none;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed var(--colour-border-strong);
+  border-radius: var(--radius-lg);
+  background-color: var(--colour-surface);
+  padding: var(--space-5);
+  text-align: left;
+}
+.opi-activity.opi-activity .placeholder__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+}
+.opi-activity.opi-activity .placeholder > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .split {
+  display: grid;
+  gap: var(--space-6);
+}
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split {
+  grid-template-columns: 3fr 2fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .panel {
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.opi-activity.opi-activity .panel > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .panel__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .section--tinted {
+  border-block: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .hero {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .button--primary {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .button--secondary {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .button:hover {
+  border-color: Highlight;
+}
+.opi-activity.opi-activity .panel {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed CanvasText;
+}
+.opi-activity.opi-activity .badge {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .badge__dot {
+  background-color: CanvasText;
+}
+.opi-activity.opi-activity code {
+  border-color: CanvasText;
+}
+.opi-activity.opi-activity hr {
+  border-top-color: CanvasText;
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+}
+@media print {
+.opi-activity.opi-activity {
+  color: #000;
+  background: #fff;
+}
+.opi-activity.opi-activity a[href^="http"]::after {
+  content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+}
+}
+
+/* components/interactive-shell.css */
+.opi-activity.opi-activity .interactive {
+  --shell-page: var(--colour-page, #ffffff);
+  --shell-surface: var(--colour-surface, #f5f7fa);
+  --shell-raised: var(--colour-surface-raised, #ffffff);
+  --shell-border: var(--colour-border, #d3d9e2);
+  --shell-border-strong: var(--colour-border-strong, #aeb7c4);
+  --shell-text: var(--colour-text, #131820);
+  --shell-muted: var(--colour-text-muted, #4c566a);
+  --shell-accent: var(--colour-accent, #1a4fa0);
+  --shell-accent-soft: var(--colour-accent-soft, #e8eefb);
+  
+  --shell-on-accent: var(--colour-on-accent, #ffffff);
+  --shell-focus: var(--colour-focus, #b45309);
+  --shell-radius: var(--radius-lg, 12px);
+  --shell-gap: var(--space-5, 24px);
+
+  display: block;
+  background-color: var(--shell-raised);
+  color: var(--shell-text);
+  border: 1px solid var(--shell-border);
+  border-radius: var(--shell-radius);
+  
+  overflow-x: clip;
+  overflow-y: visible;
+}
+.opi-activity.opi-activity .interactive__header {
+  padding: var(--shell-gap);
+  border-bottom: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 1.25;
+}
+.opi-activity.opi-activity .interactive__brief {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--shell-muted);
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__body {
+  display: grid;
+  gap: var(--shell-gap);
+  padding: var(--shell-gap);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body {
+  grid-template-columns: minmax(240px, 320px) 1fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .interactive__controls {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__controls fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .interactive__controls legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .control {
+  display: grid;
+  gap: 5.6px;
+}
+.opi-activity.opi-activity .control + .control {
+  margin-top: 16px;
+}
+.opi-activity.opi-activity .control__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.opi-activity.opi-activity .control__label {
+  font-size: 15px;
+  font-weight: 600;
+}
+.opi-activity.opi-activity .control__value {
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--shell-accent);
+}
+.opi-activity.opi-activity .control__hint {
+  font-size: 13px;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .interactive__controls input[type="range"] {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--shell-accent);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  width: 100%;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--shell-text);
+  background-color: var(--shell-raised);
+  border: 1px solid var(--shell-border-strong);
+  border-radius: var(--radius-sm, 4px);
+}
+.opi-activity.opi-activity .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+}
+.opi-activity.opi-activity .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  accent-color: var(--shell-accent);
+  flex: none;
+}
+.opi-activity.opi-activity .interactive__stage {
+  min-height: 256px;
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-page);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body--pinned {
+  align-items: stretch;
+}
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: sticky;
+    top: 0;
+    z-index: 2;
+    
+    margin: -16px -16px 0;
+    padding: 16px 16px 12px;
+    background-color: var(--shell-page);
+    border-bottom: 1px solid var(--shell-border);
+}
+}
+@media (min-width: 52em) and (max-height: 30em) {
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: static;
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
+}
+}
+.opi-activity.opi-activity .interactive__stage > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity :where(.interactive__stage) svg,
+.opi-activity.opi-activity :where(.interactive__stage) canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+.opi-activity.opi-activity .interactive__readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout div {
+  padding: 9.6px 12px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-sm, 4px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__readout dt {
+  font-size: 13px;
+  color: var(--shell-muted);
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout dd {
+  margin: 2.4px 0 0;
+  font-size: 18px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .interactive__status {
+  margin: 0;
+  padding: 12px var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+  font-size: 15px;
+  color: var(--shell-muted);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .interactive__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+}
+.opi-activity.opi-activity .interactive__actions button {
+  min-height: 44px;
+  padding: 6.4px 20px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--shell-on-accent);
+  background-color: var(--shell-accent);
+  border: 1px solid var(--shell-accent);
+  border-radius: var(--radius-md, 8px);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  color: var(--shell-text);
+  background-color: transparent;
+  border-color: var(--shell-border-strong);
+}
+.opi-activity.opi-activity .interactive__actions button:hover {
+  filter: brightness(1.08);
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__notes > summary {
+  padding: 13.6px var(--shell-gap);
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__notes > div {
+  padding: 0 var(--shell-gap) var(--shell-gap);
+  max-width: 68ch;
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__notes > div > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity .interactive *,
+.opi-activity.opi-activity .interactive *::before,
+.opi-activity.opi-activity .interactive *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+}
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .interactive,
+.opi-activity.opi-activity .interactive__controls,
+.opi-activity.opi-activity .interactive__stage,
+.opi-activity.opi-activity .interactive__readout div {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__header {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__status,
+.opi-activity.opi-activity .interactive__actions,
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__actions button {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  border-width: 1px;
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 1;
+    color: GrayText;
+    border-color: GrayText;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__stage svg {
+  forced-color-adjust: auto;
+}
+}
+
+/* components/tool-kit.css */
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split--wide {
+  grid-template-columns: 1fr 1fr;
+}
+}
+.opi-activity.opi-activity .how-to {
+  padding-left: 19.2px;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .how-to > li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .table-scroll {
+  overflow-x: auto;
+  
+  position: relative;
+}
+.opi-activity.opi-activity .prediction {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 832px;
+}
+.opi-activity.opi-activity .prediction > *,
+.opi-activity.opi-activity .challenge > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity .prediction__group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .prediction__legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-weight: 650;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .prediction .control--choice,
+.opi-activity.opi-activity .challenge .control--choice,
+.opi-activity.opi-activity .evidence .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .prediction .control--choice input,
+.opi-activity.opi-activity .challenge .control--choice input,
+.opi-activity.opi-activity .evidence .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .prediction__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .prediction__error {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-status-border);
+  border-left: 4px solid var(--colour-status-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .prediction__readback {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .feedback[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .feedback[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .feedback[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .feedback__verdict {
+  font-weight: 700;
+}
+.opi-activity.opi-activity .verdict {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .verdict__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict__body {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .verdict__body + .verdict__body {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .verdict__note {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .verdict[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .verdict[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .goal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .goal__label {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .goal__text {
+  flex: 1 1 256px;
+}
+.opi-activity.opi-activity .goal strong {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .goal__checks {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+  display: grid;
+  gap: 2.4px;
+}
+.opi-activity.opi-activity .goal__checks > li {
+  margin-top: 0;
+  padding-left: 22.4px;
+  position: relative;
+}
+.opi-activity.opi-activity .goal__checks > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 9.6px;
+  height: 9.6px;
+  border: 2px solid var(--colour-border-strong);
+  border-radius: 2px;
+}
+.opi-activity.opi-activity .goal__checks > li[data-met="yes"]::before {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .stage-track {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .stage-track > li {
+  margin-top: 0;
+  flex: 1 1 160px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-bottom: 3px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .stage-track > li > span {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.opi-activity.opi-activity .stage-track > li[data-state="done"] {
+  border-bottom-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border-bottom-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+  color: var(--colour-text);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .stage__heading {
+  margin: 0;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .data-table,
+.opi-activity.opi-activity .chart__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .data-table th,
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table th,
+.opi-activity.opi-activity .chart__table td {
+  padding: 6.4px 9.6px;
+  border: 1px solid var(--colour-border);
+  text-align: left;
+  vertical-align: top;
+}
+.opi-activity.opi-activity .data-table thead th,
+.opi-activity.opi-activity .chart__table thead th {
+  background-color: var(--colour-surface);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table td {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__table tbody th,
+.opi-activity.opi-activity .data-table tbody th {
+  font-weight: 550;
+}
+.opi-activity.opi-activity .data-table__total > th,
+.opi-activity.opi-activity .data-table__total > td {
+  border-top: 2px solid var(--colour-border-strong);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart {
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .chart__caption {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__svg {
+  max-width: 100%;
+  height: auto;
+}
+.opi-activity.opi-activity .chart__label,
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__inline,
+.opi-activity.opi-activity .chart__axis {
+  font-family: var(--font-body);
+  fill: var(--colour-text);
+  font-size: 13px;
+}
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__axis {
+  fill: var(--colour-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: var(--colour-on-accent);
+  font-size: 12px;
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__track {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__bar {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--one {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .chart__baseline,
+.opi-activity.opi-activity .chart__grid {
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__line {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: var(--colour-personality-individual-differences);
+  stroke-dasharray: 6 4;
+}
+.opi-activity.opi-activity .chart__point {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .reveal > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .reveal__lead {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+.opi-activity.opi-activity .reveal__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(176px, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+  padding: 0;
+  list-style: none;
+}
+.opi-activity.opi-activity .reveal__figures > li {
+  margin-top: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+.opi-activity.opi-activity .reveal__figure-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .reveal__figure-value {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .challenge {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+.opi-activity.opi-activity .challenge__locked {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .panel--caution {
+  background-color: var(--colour-status-bg);
+  border-color: var(--colour-status-border);
+}
+.opi-activity.opi-activity .panel--caution li + li {
+  margin-top: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .goal,
+.opi-activity.opi-activity .verdict,
+.opi-activity.opi-activity .feedback,
+.opi-activity.opi-activity .prediction__error,
+.opi-activity.opi-activity .prediction__readback,
+.opi-activity.opi-activity .stage-track > li,
+.opi-activity.opi-activity .reveal__figures > li {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border: 2px solid Highlight;
+}
+.opi-activity.opi-activity .chart__bar,
+.opi-activity.opi-activity .chart__bar--one {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: Canvas;
+}
+.opi-activity.opi-activity .chart__line {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: Highlight;
+}
+}
+.opi-activity.opi-activity .stage__more {
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .stage__more > summary {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .stage__more[open] > summary {
+  border-bottom: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .stage__more > *:not(summary) {
+  margin: var(--space-3);
+}
+
+/* modules/research-methods/tools/12-ancova-manova-decision-lab/tool.css */
+.opi-activity.opi-activity #ancova .interactive__controls,
+.opi-activity.opi-activity #ancova .interactive__stage,
+.opi-activity.opi-activity #manova .interactive__controls,
+.opi-activity.opi-activity #manova .interactive__stage {
+  min-width: 0;
+}
+.opi-activity.opi-activity #ancova .interactive__stage > *,
+.opi-activity.opi-activity #manova .interactive__stage > * {
+  min-width: 0;
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity #ancova .interactive__body,
+.opi-activity.opi-activity #manova .interactive__body {
+  grid-template-columns: minmax(0, 304px) minmax(0, 1fr);
+}
+}
+.opi-activity.opi-activity .interactive__stage [data-scatter],
+.opi-activity.opi-activity .interactive__stage [data-cloud] {
+  max-width: 464px;
+}
+.opi-activity.opi-activity #ancova .interactive__readout {
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 6.4px;
+}
+.opi-activity.opi-activity #ancova .interactive__readout div {
+  padding: 6.4px 8px;
+}
+.opi-activity.opi-activity #ancova .interactive__readout dd {
+  font-size: 16px;
+}
+.opi-activity.opi-activity .role {
+  display: grid;
+  gap: 4.8px;
+  margin-bottom: var(--space-3);
+}
+.opi-activity.opi-activity .role__label {
+  font-weight: 600;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .role select,
+.opi-activity.opi-activity .scenario select {
+  width: 100%;
+  max-width: 544px;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  font-size: var(--text-sm);
+  color: var(--colour-text);
+  background-color: var(--colour-surface-raised);
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+}
+.opi-activity.opi-activity .scenario {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .scenario__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .scenario__text {
+  margin: 0 0 var(--space-3);
+  font-size: var(--text-sm);
+  max-width: 60ch;
+}
+.opi-activity.opi-activity .scenario__label {
+  display: block;
+  margin-bottom: 4.8px;
+  font-weight: 600;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .sc__dot-a {
+  fill: var(--colour-accent);
+  opacity: 0.6;
+}
+.opi-activity.opi-activity .sc__dot-b {
+  fill: none;
+  stroke: var(--colour-social-critical-psychology);
+  stroke-width: 1.4;
+}
+.opi-activity.opi-activity .sc__line-a {
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+  fill: none;
+}
+.opi-activity.opi-activity .sc__line-b {
+  stroke: var(--colour-social-critical-psychology);
+  stroke-width: 2.5;
+  stroke-dasharray: 7 4;
+  fill: none;
+}
+.opi-activity.opi-activity .sc__at {
+  stroke: var(--colour-text-muted);
+  stroke-width: 1.5;
+  stroke-dasharray: 3 3;
+}
+.opi-activity.opi-activity .sc__gap {
+  stroke: var(--colour-text);
+  stroke-width: 3;
+}
+.opi-activity.opi-activity .sc__axis {
+  stroke: var(--colour-border-strong);
+  stroke-width: 1;
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .sc__dot-a {
+  fill: CanvasText; opacity: 1;
+}
+.opi-activity.opi-activity .sc__dot-b {
+  stroke: Highlight;
+}
+.opi-activity.opi-activity .sc__line-a {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .sc__line-b {
+  stroke: Highlight;
+}
+.opi-activity.opi-activity .sc__at {
+  stroke: GrayText;
+}
+.opi-activity.opi-activity .sc__gap {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .sc__axis {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .role select,
+.opi-activity.opi-activity .scenario select {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .scenario {
+  border: 1px solid CanvasText;
+}
+}
+</style>
+
+  <!-- ================= Title and purpose ================= -->
+  <section class="section card--research-methods" aria-labelledby="page-heading">
+    <div class="container">
+
+      <p class="hero__eyebrow" style="color: var(--colour-research-methods)">
+        Research Methods
+      </p>
+      <h1 id="page-heading">ANCOVA / MANOVA Decision Laboratory</h1>
+      <p class="hero__lead">
+        Before either of these analyses is a calculation, it is a decision:
+        what is this variable <em>for</em>? Assign the roles, watch a covariate
+        adjustment happen &mdash; and watch it stop meaning what people think
+        it means.
+      </p>
+
+      <p>
+        <span class="badge">
+          <span class="badge__dot" aria-hidden="true"></span>
+          Simulated &mdash; fictional studies and generated data
+        </span>
+      </p>
+
+      <div class="split split--wide">
+
+        <div class="panel">
+          <h2 class="panel__title">Learning objective</h2>
+          <p>
+            By the end you should be able to say what a covariate buys you,
+            and why it is precision rather than equivalence.
+          </p>
+          <p class="text-muted">
+            About 30 minutes. Nothing you do here is saved or sent anywhere.
+          </p>
+        </div>
+
+        <div class="panel panel--caution">
+          <h2 class="panel__title">Neither analysis rescues a design</h2>
+          <p>
+            A covariate cannot turn two intact groups into a randomised trial,
+            and a multivariate test is not a way to run several analyses
+            without paying for them. Both are useful tools with narrow jobs,
+            and most of the harm they do comes from being reached for as
+            repairs. Several of the scenarios in this laboratory have the
+            answer "neither", and saying so is the skill being practised.
+          </p>
+        </div>
+
+      </div>
+
+      <ol class="how-to">
+        <li>Assign the roles in the opening scenario and choose an analysis.</li>
+        <li>In Experiment 1, adjust for a covariate and watch the adjustment move.</li>
+        <li>Break the equal-slopes assumption and see what the adjusted difference becomes.</li>
+        <li>In Experiment 2, compare two outcomes one at a time with the two of them together.</li>
+      </ol>
+
+    </div>
+  </section>
+
+  <!-- ================= Opening decision ================= -->
+  <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="opening-heading">First, a decision</h2>
+      </div>
+
+      <div class="panel">
+        <h3 class="panel__title">Scenario &mdash; the September test</h3>
+        <p class="prose">
+          A fictional evaluation randomly assigns 80 students either to a new
+          tutoring programme or to the usual timetable. Everyone sits a
+          baseline test in <strong>September</strong>, before allocation, and
+          an outcome test in <strong>June</strong>. The question is whether
+          the programme raised June scores.
+        </p>
+      </div>
+
+      <noscript>
+        <div class="placeholder">
+          <h3 class="placeholder__title">This part needs JavaScript</h3>
+          <p class="prose">
+            The laboratory generates its data and recalculates its
+            adjustments in your browser, so it cannot run with JavaScript
+            switched off. The rest of this page is readable without it.
+          </p>
+        </div>
+      </noscript>
+
+      <form class="panel prediction" id="opening-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            What role does each variable play?
+          </legend>
+          <div class="role">
+            <label class="role__label" for="role-june">June test score</label>
+            <select id="role-june">
+              <option value="">choose&hellip;</option>
+              <option value="outcome">Outcome (dependent variable)</option>
+              <option value="factor">Grouping factor (independent variable)</option>
+              <option value="covariate">Covariate</option>
+              <option value="unusable">Not usable in this analysis</option>
+            </select>
+          </div>
+          <div class="role">
+            <label class="role__label" for="role-group">Programme or usual timetable</label>
+            <select id="role-group">
+              <option value="">choose&hellip;</option>
+              <option value="outcome">Outcome (dependent variable)</option>
+              <option value="factor">Grouping factor (independent variable)</option>
+              <option value="covariate">Covariate</option>
+              <option value="unusable">Not usable in this analysis</option>
+            </select>
+          </div>
+          <div class="role">
+            <label class="role__label" for="role-sept">September test score</label>
+            <select id="role-sept">
+              <option value="">choose&hellip;</option>
+              <option value="outcome">Outcome (dependent variable)</option>
+              <option value="factor">Grouping factor (independent variable)</option>
+              <option value="covariate">Covariate</option>
+              <option value="unusable">Not usable in this analysis</option>
+            </select>
+          </div>
+        </fieldset>
+
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            Which analysis fits this design best?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="analysis" value="anova">
+            One-way ANOVA on June scores, ignoring September
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="analysis" value="ancova">
+            ANCOVA on June scores with September as a covariate
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="analysis" value="manova">
+            MANOVA with September and June as two outcomes
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="analysis" value="change">
+            A t-test on the change from September to June
+          </label>
+        </fieldset>
+
+        <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Submit my decision and open Experiment 1
+          </button>
+          <button class="button button--secondary" type="button" data-action="skip-opening">
+            Skip &mdash; I am demonstrating this
+          </button>
+        </div>
+
+        <div class="feedback" data-opening-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Experiment 1: ANCOVA ================= -->
+  <section class="section" id="ancova-section" aria-labelledby="ancova-heading" hidden>
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="ancova-heading" tabindex="-1">Experiment 1 &mdash; what adjustment actually does</h2>
+        <p class="prose">
+          Eighty fictional students, forty in each group. The horizontal axis
+          is the September score, the vertical axis is the June score, and
+          each group has its own regression line. The adjusted difference is
+          the vertical gap between those lines, measured at the overall
+          September mean.
+        </p>
+      </div>
+
+      <section class="interactive" id="ancova" data-interactive
+               data-reset-message="Everything cleared. Back to the opening decision.">
+
+        <header class="interactive__header">
+          <h3 class="interactive__title">The covariate adjustment</h3>
+          <p class="interactive__brief">
+            Adjustment asks a conditional question: how far apart would the
+            groups be if they had started at the same place? Whether that
+            question has an answer depends on the design, not on the software.
+          </p>
+        </header>
+
+        <div class="interactive__body interactive__body--pinned">
+
+          <form class="interactive__controls" data-interactive-controls>
+
+            <fieldset>
+              <legend>How the covariate behaves</legend>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="r-range">Covariate&ndash;outcome correlation</label>
+                  <output class="control__value" for="r-range">0.70</output>
+                </div>
+                <input type="range" id="r-range" min="0" max="0.9" step="0.05" value="0.7">
+                <p class="control__hint">
+                  How well September predicts June within a group. This is
+                  what decides whether a covariate is worth having at all.
+                </p>
+              </div>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="gap-range">Group gap on the covariate</label>
+                  <output class="control__value" for="gap-range">0</output>
+                </div>
+                <input type="range" id="gap-range" min="-12" max="12" step="1" value="0">
+                <p class="control__hint">
+                  How far apart the two groups already were in September. With
+                  random allocation this is near zero; with intact groups it
+                  is not.
+                </p>
+              </div>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="slope-range">Difference between the two slopes</label>
+                  <output class="control__value" for="slope-range">0.00</output>
+                </div>
+                <input type="range" id="slope-range" min="-1" max="1" step="0.05" value="0">
+                <p class="control__hint">
+                  ANCOVA assumes this is zero &mdash; the
+                  homogeneity-of-regression-slopes assumption.
+                </p>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>The programme itself</legend>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="effect-range">True programme effect</label>
+                  <output class="control__value" for="effect-range">6</output>
+                </div>
+                <input type="range" id="effect-range" min="0" max="12" step="1" value="6">
+              </div>
+              <div class="control">
+                <label class="control__label" for="design-select">How groups were formed</label>
+                <select id="design-select">
+                  <option value="random">Random allocation</option>
+                  <option value="intact">Two intact classes</option>
+                </select>
+                <p class="control__hint">
+                  This changes nothing in the arithmetic. It changes what the
+                  adjusted difference is allowed to mean.
+                </p>
+              </div>
+            </fieldset>
+
+          </form>
+
+          <div class="interactive__stage" data-interactive-stage>
+
+            <!-- Pinned: the scatter with both regression lines, and the two
+                 numbers everything is about. -->
+            <div class="stage__primary">
+              <h4 class="stage__heading" data-chart-heading>September against June</h4>
+              <figure class="chart">
+                <figcaption class="visually-hidden">
+                  Scatterplot of June score against September score with one
+                  regression line per group, and a vertical rule at the
+                  overall September mean where the adjusted difference is read
+                </figcaption>
+                <svg class="chart__svg" data-scatter viewBox="0 0 460 210"
+                     aria-hidden="true" focusable="false"></svg>
+                <div class="table-scroll">
+                  <table class="chart__table">
+                    <caption class="visually-hidden">
+                      Group means on the covariate and the outcome, and each
+                      group's own regression slope
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Group</th>
+                        <th scope="col">September mean</th>
+                        <th scope="col">June mean</th>
+                        <th scope="col">Own slope</th>
+                      </tr>
+                    </thead>
+                    <tbody data-group-table></tbody>
+                  </table>
+                </div>
+              </figure>
+              <dl class="interactive__readout" data-readout></dl>
+            </div>
+
+            <div class="verdict" data-verdict>
+              <h4 class="verdict__title">What this adjusted number means</h4>
+              <p class="verdict__body" data-interpretation></p>
+              <p class="verdict__note" data-assumption></p>
+            </div>
+
+            <details class="stage__more">
+              <summary>The adjusted difference at three different starting points</summary>
+              <div>
+                <p class="prose" data-slope-note></p>
+                <div class="table-scroll">
+                  <table class="data-table">
+                    <caption class="visually-hidden">
+                      The vertical gap between the two group regression lines
+                      evaluated at a low, average and high September score
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Evaluated at</th>
+                        <th scope="col">September score</th>
+                        <th scope="col">Gap between the lines</th>
+                      </tr>
+                    </thead>
+                    <tbody data-gap-table></tbody>
+                  </table>
+                </div>
+              </div>
+            </details>
+
+          </div>
+
+        </div>
+
+        <p class="interactive__status" data-interactive-status role="status"></p>
+
+        <div class="interactive__actions">
+          <button type="button" data-action="resample">Draw a new sample</button>
+          <button type="button" data-variant="secondary" data-action="open-manova">
+            Go to Experiment 2
+          </button>
+          <button type="button" data-variant="secondary" data-interactive-reset>
+            Reset everything
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ================= Experiment 2: MANOVA ================= -->
+  <section class="section section--tinted" id="manova-section"
+           aria-labelledby="manova-heading" hidden>
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="manova-heading" tabindex="-1">Experiment 2 &mdash; two outcomes, taken together</h2>
+        <p class="prose">
+          The same two fictional groups, now measured on two outcomes at once.
+          Each dot is one person, placed by both scores. A multivariate test
+          asks whether the two clouds are separated <em>in the plane</em>,
+          which is not the same question as asking about each axis in turn.
+        </p>
+      </div>
+
+      <section class="interactive" id="manova" data-interactive
+               data-reset-message="Experiment 2 reset to its starting values.">
+
+        <header class="interactive__header">
+          <h3 class="interactive__title">Why this is not several ANOVAs</h3>
+          <p class="interactive__brief">
+            Watch the joint separation while the two separate differences stay
+            exactly where they are. The correlation between the outcomes is
+            doing all the work.
+          </p>
+        </header>
+
+        <div class="interactive__body interactive__body--pinned">
+
+          <form class="interactive__controls" data-interactive-controls>
+
+            <fieldset>
+              <legend>Group differences, one outcome at a time</legend>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="d1-range">Difference on outcome 1</label>
+                  <output class="control__value" for="d1-range">0.40</output>
+                </div>
+                <input type="range" id="d1-range" min="-1.5" max="1.5" step="0.05" value="0.4">
+                <p class="control__hint">In standard deviations.</p>
+              </div>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="d2-range">Difference on outcome 2</label>
+                  <output class="control__value" for="d2-range">0.40</output>
+                </div>
+                <input type="range" id="d2-range" min="-1.5" max="1.5" step="0.05" value="0.4">
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>How the two outcomes hang together</legend>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="rho-range">Correlation within groups</label>
+                  <output class="control__value" for="rho-range">0.00</output>
+                </div>
+                <input type="range" id="rho-range" min="-0.9" max="0.9" step="0.05" value="0">
+                <p class="control__hint">
+                  Not the correlation across the whole sample: the correlation
+                  among people in the same group, which is what the
+                  multivariate test uses.
+                </p>
+              </div>
+              <div class="control">
+                <label class="control__label" for="mpreset-select">Worked examples</label>
+                <select id="mpreset-select">
+                  <option value="custom">Current settings</option>
+                  <option value="nogain">Same direction, positively correlated</option>
+                  <option value="bigwin">Same direction, negatively correlated</option>
+                  <option value="hidden">Two small effects, one clear separation</option>
+                  <option value="opposed">Opposite directions, positively correlated</option>
+                </select>
+              </div>
+            </fieldset>
+
+          </form>
+
+          <div class="interactive__stage" data-interactive-stage>
+
+            <!-- Pinned: the two clouds in the plane and the three distances. -->
+            <div class="stage__primary">
+              <h4 class="stage__heading" data-mchart-heading>The two groups in the plane</h4>
+              <figure class="chart">
+                <figcaption class="visually-hidden">
+                  Scatterplot of outcome 2 against outcome 1 with one marker
+                  shape per group, and a line joining the two group centres
+                </figcaption>
+                <svg class="chart__svg" data-cloud viewBox="0 0 460 200"
+                     aria-hidden="true" focusable="false"></svg>
+                <div class="table-scroll">
+                  <table class="chart__table">
+                    <caption class="visually-hidden">
+                      Separation between the groups on each outcome alone and
+                      on both together
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Comparison</th>
+                        <th scope="col">Separation, in SD units</th>
+                      </tr>
+                    </thead>
+                    <tbody data-sep-table></tbody>
+                  </table>
+                </div>
+              </figure>
+            </div>
+
+            <div class="verdict" data-mverdict>
+              <h4 class="verdict__title">What the multivariate test has added</h4>
+              <p class="verdict__body" data-minterpretation></p>
+              <p class="verdict__note" data-mcaveat></p>
+            </div>
+
+          </div>
+
+        </div>
+
+        <p class="interactive__status" data-interactive-status role="status"></p>
+
+        <div class="interactive__actions">
+          <button type="button" data-action="mresample">Draw a new sample</button>
+          <button type="button" data-variant="secondary" data-interactive-reset>
+            Reset Experiment 2
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ================= Challenge ================= -->
+  <section class="section" id="challenge" aria-labelledby="challenge-heading" hidden>
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="challenge-heading" tabindex="-1">Challenge &mdash; four studies, four decisions</h2>
+        <p class="prose">
+          One choice per study. More than one of these has the answer
+          "neither", and picking it is the point.
+        </p>
+      </div>
+
+      <form class="panel challenge" id="challenge-form">
+
+        <div class="scenario">
+          <h3 class="scenario__title">Study 1 &mdash; two intact classes</h3>
+          <p class="scenario__text">
+            The tutoring programme is given to one whole class and not to
+            another. The classes were not randomly formed and differ by about
+            nine points on the September test. The researchers want the causal
+            effect of the programme on June scores.
+          </p>
+          <label class="scenario__label" for="q1">Best analysis for Study 1</label>
+          <select id="q1">
+            <option value="">choose&hellip;</option>
+            <option value="ancova">ANCOVA with September as a covariate, read causally</option>
+            <option value="ancova-hedged">ANCOVA, but reported as an adjusted association rather than a causal effect</option>
+            <option value="manova">MANOVA with September and June as outcomes</option>
+            <option value="anova">One-way ANOVA on June scores</option>
+          </select>
+        </div>
+
+        <div class="scenario">
+          <h3 class="scenario__title">Study 2 &mdash; four reading measures</h3>
+          <p class="scenario__text">
+            A randomised study of a reading intervention measures speed,
+            accuracy, comprehension and enjoyment. The team argues that these
+            four are facets of one construct and wants a single omnibus test
+            of whether reading performance differs.
+          </p>
+          <label class="scenario__label" for="q2">Best analysis for Study 2</label>
+          <select id="q2">
+            <option value="">choose&hellip;</option>
+            <option value="manova">MANOVA on the four outcomes, followed by declared follow-up tests</option>
+            <option value="four">Four separate ANOVAs, unadjusted</option>
+            <option value="ancova">ANCOVA with enjoyment as a covariate</option>
+            <option value="neither">Neither &mdash; the design cannot support any test</option>
+          </select>
+        </div>
+
+        <div class="scenario">
+          <h3 class="scenario__title">Study 3 &mdash; three unrelated outcomes</h3>
+          <p class="scenario__text">
+            A randomised study measures hours of sleep, an exam mark and
+            self-reported height. The team plans a MANOVA "so that we only
+            have to run one test and do not have to correct for multiple
+            comparisons".
+          </p>
+          <label class="scenario__label" for="q3">Best analysis for Study 3</label>
+          <select id="q3">
+            <option value="">choose&hellip;</option>
+            <option value="manova">MANOVA on the three outcomes</option>
+            <option value="neither">Neither &mdash; run the planned analyses and handle multiplicity openly</option>
+            <option value="ancova">ANCOVA with height as a covariate</option>
+            <option value="combine">Combine the three into a single composite score</option>
+          </select>
+        </div>
+
+        <div class="scenario">
+          <h3 class="scenario__title">Study 4 &mdash; the covariate measured afterwards</h3>
+          <p class="scenario__text">
+            In a randomised trial of the tutoring programme, the team notices
+            that students in the programme attended more sessions overall.
+            They propose adding attendance as a covariate, "to control for
+            engagement".
+          </p>
+          <label class="scenario__label" for="q4">Best analysis for Study 4</label>
+          <select id="q4">
+            <option value="">choose&hellip;</option>
+            <option value="ancova">ANCOVA with attendance as a covariate</option>
+            <option value="neither">Neither &mdash; attendance is downstream of the allocation and must not be adjusted for</option>
+            <option value="manova">MANOVA with attendance and June score as outcomes</option>
+            <option value="both">Report the analysis both with and without the covariate</option>
+          </select>
+        </div>
+
+        <p class="prediction__error" data-challenge-error role="alert" hidden></p>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">Check my four decisions</button>
+        </div>
+
+        <div class="feedback" data-challenge-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Debrief ================= -->
+  <section class="section section--tinted" id="debrief" aria-labelledby="debrief-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="debrief-heading">What this demonstrates</h2>
+      </div>
+
+      <div class="split split--wide">
+
+        <div class="prose">
+          <h3>A covariate's main job is precision, not correction</h3>
+          <p>
+            Under random allocation the groups already start in roughly the
+            same place, so adjusting barely moves the estimated difference.
+            What it moves is the residual variance: the covariate explains
+            part of the variation in the outcome that would otherwise be
+            noise, and the comparison becomes more precise. That is a good
+            enough reason to use one, and it is a completely different reason
+            from the one usually given.
+          </p>
+
+          <h3>Adjustment answers a conditional question</h3>
+          <p>
+            The adjusted difference is the vertical gap between two regression
+            lines at a particular value of the covariate. When groups were
+            randomly formed, that gap estimates the causal effect. When they
+            were not, it estimates what the difference would look like among
+            people matched on the covariate &mdash; which is a real quantity,
+            and is not the causal effect unless nothing else differs between
+            the groups. Reaching for ANCOVA to repair non-equivalent groups is
+            the most common misuse of the technique, and the tool shows that
+            the arithmetic gives you no warning at all.
+          </p>
+
+          <h3>Equal slopes is an assumption with a visible cost</h3>
+          <p>
+            If the two groups have different regression slopes, there is no
+            single adjusted difference to report: the gap between the lines
+            depends on where you measure it, and the disclosure in Experiment
+            1 shows three different answers from the same data. That is not a
+            technicality but a finding &mdash; the effect depends on the
+            covariate, which is a covariate-by-treatment interaction and is
+            worth reporting as one.
+          </p>
+
+          <h3>Multivariate is a different question, not a cheaper one</h3>
+          <p>
+            A multivariate test asks whether the group centres are separated
+            in the space defined by all the outcomes together, using the
+            correlations among them. When the outcomes are highly correlated
+            and the differences point the same way, it adds very little
+            &mdash; the outcomes are one thing measured twice. When the
+            differences run across the within-group correlation, it can find a
+            separation far larger than anything visible on either axis. Both
+            are real; neither makes it a device for running several tests
+            without paying for them, and the follow-up univariate tests
+            inherit the whole multiplicity problem.
+          </p>
+        </div>
+
+        <aside class="panel panel--caution" aria-labelledby="limits-heading">
+          <h3 class="panel__title" id="limits-heading">
+            What this does <em>not</em> demonstrate
+          </h3>
+          <ul>
+            <li>
+              <strong>No real study.</strong> The tutoring programme, the
+              reading intervention and every number in them are invented. The
+              data are generated from a stated model with a documented seed.
+            </li>
+            <li>
+              <strong>No test statistics.</strong> The tool reports adjusted
+              differences and separations in standard-deviation units rather
+              than F or Wilks' lambda, because the teaching point is what the
+              quantities mean, and a test statistic invites the discussion to
+              collapse into a threshold.
+            </li>
+            <li>
+              <strong>Two outcomes, not many.</strong> Experiment 2 uses two
+              so that the plane can be drawn. Real multivariate analyses with
+              five or ten outcomes behave the same way in principle and are
+              far harder to see, which is a reason for caution rather than
+              confidence.
+            </li>
+            <li>
+              <strong>The design menu changes nothing computational.</strong>
+              Switching between random allocation and intact classes alters
+              only the interpretation offered. That is the honest state of
+              affairs: the software cannot tell how the groups were formed,
+              and neither can the numbers.
+            </li>
+            <li>
+              <strong>Causal inference has a larger literature than this.</strong>
+              Propensity methods, instrumental variables, difference-in-
+              differences and regression discontinuity all address
+              non-equivalent groups more carefully than covariate adjustment,
+              and each carries assumptions of its own.
+            </li>
+          </ul>
+        </aside>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+<script>
+/* ---- components/interactive-shell.js ---- */
+/* =========================================================================
+   Open Psychology Interactives — interactive shell helper
+   -------------------------------------------------------------------------
+   A very small vanilla-JS helper that every interactive in this collection
+   uses. It deliberately does *not* draw anything or know anything about
+   statistics, personality or neuropsychology. Its job is the repetitive,
+   easy-to-get-wrong accessibility plumbing:
+
+     * announcing changes through a polite live region;
+     * keeping a range slider and its <output> in step;
+     * wiring the standard Reset button;
+     * reporting the reader's reduced-motion preference.
+
+   Usage (see docs/adapting-a-tool.md for the full markup contract):
+
+       <script src="../../components/interactive-shell.js" defer><\/script>
+       <script src="tool.js" defer><\/script>
+
+       // in tool.js
+       const shell = InteractiveShell.attach('#sampling-demo');
+       shell.onReset(() => { ...restore defaults...; draw(); });
+       shell.bindRange('#sample-size', { format: n => n + ' cases' });
+       shell.announce('Sample of 25 drawn. Mean 4.8.');
+
+   Every published interactive is written against this module.
+
+   Exposed as a global (window.InteractiveShell) rather than an ES module so
+   that a single interactive folder can be opened directly from disk over
+   file:// — ES modules are blocked by CORS in that situation, plain scripts
+   are not. That constraint is the whole reason for the older syntax here.
+   ========================================================================= */
+
+(function (global) {
+  "use strict";
+
+  /* -----------------------------------------------------------------------
+     Internal helpers
+     --------------------------------------------------------------------- */
+
+  /**
+   * Accept either a CSS selector or an element and return an element.
+   * @param {string|Element} target
+   * @param {ParentNode} [scope]
+   * @returns {Element|null}
+   */
+  function resolve(target, scope) {
+    if (!target) {
+      return null;
+    }
+    if (typeof target === "string") {
+      return (scope || document).querySelector(target);
+    }
+    return target;
+  }
+
+  /**
+   * True when the reader has asked the operating system to reduce motion.
+   * Interactives should check this before animating anything — for example
+   * by drawing a sampling distribution in one step instead of animating
+   * each draw.
+   * @returns {boolean}
+   */
+  function prefersReducedMotion() {
+    return (
+      typeof global.matchMedia === "function" &&
+      global.matchMedia("(prefers-reduced-motion: reduce)").matches
+    );
+  }
+
+  /* -----------------------------------------------------------------------
+     Shell controller
+     --------------------------------------------------------------------- */
+
+  /**
+   * Attach the shell behaviour to one `.interactive` element.
+   *
+   * @param {string|Element} target  Selector or element for the shell root.
+   * @returns {object|null}  Controller, or null if the root was not found.
+   */
+  function attach(target) {
+    var root = resolve(target);
+
+    if (!root) {
+      if (global.console && console.warn) {
+        console.warn("InteractiveShell: root element not found.", target);
+      }
+      return null;
+    }
+
+    var controls = root.querySelector("[data-interactive-controls]");
+    var stage = root.querySelector("[data-interactive-stage]");
+    var status = root.querySelector("[data-interactive-status]");
+    var resetButton = root.querySelector("[data-interactive-reset]");
+    var resetHandlers = [];
+    // Every range bound with bindRange() registers its sync function here, so
+    // that reset() can refresh the visible values after the tool's own reset
+    // handlers have restored the inputs. See reset() for why this is needed.
+    var rangeSyncs = [];
+
+    /* --- Live region ----------------------------------------------------
+       The status element is marked up as role="status" (implicitly
+       aria-live="polite"). Two details matter:
+
+         1. Assistive technology only announces *changes* to a live region,
+            so writing the same string twice is silently dropped. We add a
+            trailing zero-width space on repeat messages to force an
+            announcement when a student re-runs the same action.
+         2. Announcements are debounced. A slider dragged across its range
+            fires dozens of input events; without a delay a screen reader
+            would queue every intermediate value and fall far behind.
+       ------------------------------------------------------------------ */
+
+    var announceTimer = null;
+    var lastMessage = "";
+
+    /**
+     * Announce a short sentence describing what just changed.
+     * @param {string} message
+     * @param {object} [options]
+     * @param {boolean} [options.immediate]  Skip the debounce delay. Use for
+     *   discrete actions (button presses); leave off for continuous input.
+     */
+    function announce(message, options) {
+      if (!status) {
+        return;
+      }
+
+      var text = String(message == null ? "" : message);
+      var immediate = Boolean(options && options.immediate);
+
+      if (announceTimer !== null) {
+        global.clearTimeout(announceTimer);
+        announceTimer = null;
+      }
+
+      function write() {
+        // Force a change when the text is identical to last time.
+        status.textContent = text === lastMessage ? text + "​" : text;
+        lastMessage = text;
+      }
+
+      if (immediate) {
+        write();
+      } else {
+        announceTimer = global.setTimeout(write, 350);
+      }
+    }
+
+    /* --- Reset ---------------------------------------------------------- */
+
+    /**
+     * Register a callback to run when the Reset button is pressed.
+     * Several may be registered; they run in the order added.
+     * @param {Function} handler
+     */
+    function onReset(handler) {
+      if (typeof handler === "function") {
+        resetHandlers.push(handler);
+      }
+    }
+
+    /**
+     * Run the reset handlers. Called by the button and available directly so
+     * an interactive can reset itself on first load.
+     *
+     * Bound ranges are re-synced afterwards. A reset handler restores an
+     * input by assigning to `input.value`, and assigning to a value in script
+     * does not fire an `input` event — so without this step the slider would
+     * jump back to its default while its <output> went on showing the old
+     * number. Syncing here, after the handlers have run, also means the sync
+     * sees the restored values regardless of the order things were
+     * registered in.
+     *
+     * @param {object} [options]
+     * @param {boolean} [options.silent]  Suppress the status announcement.
+     */
+    function reset(options) {
+      resetHandlers.forEach(function (handler) {
+        handler();
+      });
+      rangeSyncs.forEach(function (sync) {
+        sync();
+      });
+      if (!options || !options.silent) {
+        announce(
+          root.getAttribute("data-reset-message") ||
+            "Reset to the starting values.",
+          { immediate: true }
+        );
+      }
+    }
+
+    if (resetButton) {
+      resetButton.addEventListener("click", function (event) {
+        // Reset buttons commonly sit inside the controls <form>; stop the
+        // browser's own form reset from fighting with ours.
+        event.preventDefault();
+        reset();
+      });
+    }
+
+    /* --- Range binding --------------------------------------------------
+       Keeps a slider's <output> in step with its value. The <output> must
+       carry `for="<input id>"`, which is what associates the two for
+       assistive technology; this only handles the visible text.
+
+       Optionally sets aria-valuetext, which is how you make a screen reader
+       say "25 cases" or "medium correlation" instead of a bare "25".
+       ------------------------------------------------------------------ */
+
+    /**
+     * @param {string|Element} inputTarget  The range (or number) input.
+     * @param {object} [options]
+     * @param {Function} [options.format]  value:number -> string shown in the
+     *   <output>. Defaults to the raw value.
+     * @param {Function} [options.describe]  value:number -> string used for
+     *   aria-valuetext. Defaults to options.format.
+     * @param {Function} [options.onInput]  value:number -> void, called after
+     *   the display has been updated. Use it to redraw.
+     * @returns {HTMLInputElement|null}
+     */
+    function bindRange(inputTarget, options) {
+      var input = resolve(inputTarget, root);
+      if (!input) {
+        return null;
+      }
+
+      var settings = options || {};
+      var format =
+        typeof settings.format === "function"
+          ? settings.format
+          : function (value) {
+              return String(value);
+            };
+      var describe =
+        typeof settings.describe === "function" ? settings.describe : format;
+
+      // <output for="the-input-id"> is the conventional pairing.
+      var output = input.id
+        ? root.querySelector('output[for="' + input.id + '"]')
+        : null;
+
+      function sync() {
+        var value = Number(input.value);
+        if (output) {
+          output.textContent = format(value);
+        }
+        // Only meaningful for widgets with an implicit or explicit slider
+        // role; harmless elsewhere.
+        input.setAttribute("aria-valuetext", describe(value));
+        if (typeof settings.onInput === "function") {
+          settings.onInput(value);
+        }
+      }
+
+      input.addEventListener("input", sync);
+      // Registered so reset() can refresh the display after the tool's own
+      // reset handlers have put the input back to its default.
+      rangeSyncs.push(sync);
+      sync();
+
+      return input;
+    }
+
+    /* --- Public surface -------------------------------------------------- */
+
+    return {
+      /** The `.interactive` root element. */
+      root: root,
+      /** The controls panel, or null if the shell has none. */
+      controls: controls,
+      /** The stage element where the visualisation is drawn. */
+      stage: stage,
+      /** The live-region element. */
+      status: status,
+      announce: announce,
+      onReset: onReset,
+      reset: reset,
+      bindRange: bindRange,
+      prefersReducedMotion: prefersReducedMotion
+    };
+  }
+
+  /* -----------------------------------------------------------------------
+     Export
+     --------------------------------------------------------------------- */
+
+  global.InteractiveShell = {
+    attach: attach,
+    prefersReducedMotion: prefersReducedMotion
+  };
+})(window);
+
+/* ---- modules/research-methods/tools/12-ancova-manova-decision-lab/tool.js ---- */
+/* =========================================================================
+   ANCOVA / MANOVA Decision Laboratory
+   -------------------------------------------------------------------------
+   Three parts: a role-assignment decision, a covariate-adjustment experiment
+   and a two-outcome experiment, followed by four scenarios with the answer
+   "neither" available.
+
+   EXPERIMENT 1 — the covariate adjustment
+   ---------------------------------------
+   Two groups of 40 fictional students. The covariate (a September test) has
+   standard deviation 10 and mean 50, shifted apart between the groups by the
+   "group gap" slider. The outcome (a June test) is generated as
+
+       june = 50 + b_g * (september - 50) + effect * (group ? 0.5 : -0.5) + e
+       b_g  = r  +/-  slopeDifference / 2
+       e    ~ Normal(0, 10 * sqrt(1 - r^2))
+
+   so that with equal slopes the within-group correlation between covariate
+   and outcome is r and both variables have standard deviation about 10.
+
+   The tool then computes, from the generated sample:
+
+       unadjusted difference = mean(june | B) - mean(june | A)
+       pooled within-group slope b
+       adjusted difference    = unadjusted - b * (mean(sept|B) - mean(sept|A))
+
+   which is exactly the ANCOVA adjusted mean difference for a common-slope
+   model. It also fits each group's own slope, so the
+   homogeneity-of-regression-slopes assumption can be violated on purpose: the
+   disclosure then reports the vertical gap between the two lines at a low,
+   average and high covariate value, and those three numbers stop agreeing.
+
+   The "how groups were formed" menu changes NOTHING in the arithmetic. It
+   changes only what the adjusted number is allowed to mean, which is the
+   honest state of affairs: neither the software nor the data can tell how the
+   groups came about.
+
+   EXPERIMENT 2 — two outcomes together
+   -------------------------------------
+   Two groups, two outcomes, standardised. With standardised group differences
+   d1 and d2 and a within-group correlation rho, the multivariate separation
+   between the group centres is the Mahalanobis distance
+
+       D^2 = (d1^2 - 2*rho*d1*d2 + d2^2) / (1 - rho^2)
+
+   which reduces to sqrt(d1^2 + d2^2) when rho = 0. Two facts follow, and both
+   are drawn:
+
+     * when the differences point the same way and rho is strongly positive,
+       D is barely larger than the larger single d - the outcomes are one
+       thing measured twice;
+     * when the difference runs ACROSS the within-group correlation, D can be
+       far larger than either d, so a multivariate test can find a separation
+       that neither univariate test would.
+
+   Neither fact makes a multivariate test a way of running several analyses
+   without paying for them, and the page says so repeatedly.
+
+   Randomness is seeded (mulberry32 with Box-Muller normals). No data leave
+   the browser: no storage, no network request.
+   ========================================================================= */
+
+(function () {
+  "use strict";
+
+  var N_PER_GROUP = 40;
+  var COV_MEAN = 50;
+  var COV_SD = 10;
+  var DEFAULTS = { r: 0.7, gap: 0, slope: 0, effect: 6, design: "random", seed: 8317 };
+  var M_DEFAULTS = { d1: 0.4, d2: 0.4, rho: 0, seed: 4409 };
+
+  /* =======================================================================
+     Seeded randomness
+     ===================================================================== */
+
+  function mulberry32(seed) {
+    var a = seed >>> 0;
+    return function () {
+      a += 0x6d2b79f5;
+      var t = a;
+      t = Math.imul(t ^ (t >>> 15), t | 1);
+      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  function normal(random) {
+    var u = Math.max(random(), 1e-9);
+    return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * random());
+  }
+
+  /* =======================================================================
+     Small DOM helpers
+     ===================================================================== */
+
+  var NS = "http://www.w3.org/2000/svg";
+
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) { node.className = className; }
+    if (text !== undefined) { node.textContent = text; }
+    return node;
+  }
+
+  function svgNode(tag, attrs) {
+    var node = document.createElementNS(NS, tag);
+    Object.keys(attrs || {}).forEach(function (key) {
+      node.setAttribute(key, String(attrs[key]));
+    });
+    return node;
+  }
+
+  function svgText(attrs, text, className) {
+    var node = svgNode("text", attrs);
+    if (className) { node.setAttribute("class", className); }
+    node.textContent = text;
+    return node;
+  }
+
+  function clear(node) {
+    while (node.firstChild) { node.removeChild(node.firstChild); }
+  }
+
+  function fmt(value, places) {
+    return value.toFixed(places === undefined ? 1 : places);
+  }
+
+  function signed(value, places) {
+    var p = places === undefined ? 1 : places;
+    if (Math.abs(value) < Math.pow(10, -p) / 2) { return (0).toFixed(p); }
+    return (value > 0 ? "+" : "−") + Math.abs(value).toFixed(p);
+  }
+
+  function row(cells) {
+    var tr = make("tr");
+    cells.forEach(function (cell, i) {
+      if (i === 0) {
+        var th = make("th", null, cell);
+        th.setAttribute("scope", "row");
+        tr.appendChild(th);
+      } else {
+        tr.appendChild(make("td", null, cell));
+      }
+    });
+    return tr;
+  }
+
+  function mean(values) {
+    return values.reduce(function (a, b) { return a + b; }, 0) / values.length;
+  }
+
+  /** Least-squares slope of y on x. */
+  function slopeOf(x, y) {
+    var mx = mean(x);
+    var my = mean(y);
+    var num = 0;
+    var den = 0;
+    for (var i = 0; i < x.length; i += 1) {
+      num += (x[i] - mx) * (y[i] - my);
+      den += (x[i] - mx) * (x[i] - mx);
+    }
+    return den === 0 ? 0 : num / den;
+  }
+
+  var page = document;
+  var $ = function (s, scope) { return (scope || page).querySelector(s); };
+  var $$ = function (s, scope) {
+    return Array.prototype.slice.call((scope || page).querySelectorAll(s));
+  };
+
+  function showFeedback(container, tone, verdictText, text) {
+    clear(container);
+    container.setAttribute("data-tone", tone);
+    var p = make("p");
+    p.appendChild(make("strong", "feedback__verdict", verdictText));
+    if (text) { p.appendChild(document.createTextNode(" " + text)); }
+    container.appendChild(p);
+    container.hidden = false;
+    return p;
+  }
+
+  /* =======================================================================
+     Wiring
+     ===================================================================== */
+
+  var covShell = InteractiveShell.attach("#ancova");
+  var manShell = InteractiveShell.attach("#manova");
+  if (!covShell || !manShell) { return; }
+
+  var rRange = $("#r-range");
+  var gapRange = $("#gap-range");
+  var slopeRange = $("#slope-range");
+  var effectRange = $("#effect-range");
+  var designSelect = $("#design-select");
+  var chartHeading = $("[data-chart-heading]");
+  var scatter = $("[data-scatter]");
+  var groupTable = $("[data-group-table]");
+  var readout = $("[data-readout]");
+  var verdictBox = $("[data-verdict]");
+  var interpretation = $("[data-interpretation]");
+  var assumption = $("[data-assumption]");
+  var slopeNote = $("[data-slope-note]");
+  var gapTable = $("[data-gap-table]");
+
+  var d1Range = $("#d1-range");
+  var d2Range = $("#d2-range");
+  var rhoRange = $("#rho-range");
+  var mpresetSelect = $("#mpreset-select");
+  var mchartHeading = $("[data-mchart-heading]");
+  var cloud = $("[data-cloud]");
+  var sepTable = $("[data-sep-table]");
+  var mverdictBox = $("[data-mverdict]");
+  var minterpretation = $("[data-minterpretation]");
+  var mcaveat = $("[data-mcaveat]");
+
+  var openingForm = $("#opening-form");
+  var openingError = $("[data-opening-error]");
+  var openingFeedback = $("[data-opening-feedback]");
+  var ancovaSection = $("#ancova-section");
+  var manovaSection = $("#manova-section");
+  var challengeSection = $("#challenge");
+
+  var challengeForm = $("#challenge-form");
+  var challengeError = $("[data-challenge-error]");
+  var challengeFeedback = $("[data-challenge-feedback]");
+
+  var covSeed = DEFAULTS.seed;
+  var manSeed = M_DEFAULTS.seed;
+  var covData = null;
+  var manData = null;
+  var applyingPreset = false;
+
+  /* =======================================================================
+     Experiment 1 — data and analysis
+     ===================================================================== */
+
+  function covSettings() {
+    return {
+      r: Number(rRange.value),
+      gap: Number(gapRange.value),
+      slopeDiff: Number(slopeRange.value),
+      effect: Number(effectRange.value)
+    };
+  }
+
+  function buildCovData() {
+    var s = covSettings();
+    var random = mulberry32(covSeed);
+    var residualSd = COV_SD * Math.sqrt(Math.max(0, 1 - s.r * s.r));
+    var groups = [0, 1].map(function (g) {
+      var sign = g === 1 ? 0.5 : -0.5;
+      // Group A gets r - slopeDiff/2, group B gets r + slopeDiff/2, so the
+      // average slope stays at r however far the two are pulled apart.
+      var slope = s.r + (g === 1 ? 1 : -1) * s.slopeDiff / 2;
+      var x = [];
+      var y = [];
+      for (var i = 0; i < N_PER_GROUP; i += 1) {
+        var cov = COV_MEAN + sign * s.gap + normal(random) * COV_SD;
+        x.push(cov);
+        y.push(COV_MEAN + slope * (cov - COV_MEAN) + sign * s.effect +
+          normal(random) * residualSd);
+      }
+      return { x: x, y: y, mx: mean(x), my: mean(y), slope: slopeOf(x, y) };
+    });
+    covData = { groups: groups };
+  }
+
+  function covStats() {
+    var a = covData.groups[0];
+    var b = covData.groups[1];
+    var allX = a.x.concat(b.x);
+    var grandX = mean(allX);
+    var unadjusted = b.my - a.my;
+    // Pooled within-group slope: the ANCOVA common-slope estimate.
+    var num = 0;
+    var den = 0;
+    covData.groups.forEach(function (g) {
+      for (var i = 0; i < g.x.length; i += 1) {
+        num += (g.x[i] - g.mx) * (g.y[i] - g.my);
+        den += (g.x[i] - g.mx) * (g.x[i] - g.mx);
+      }
+    });
+    var pooled = den === 0 ? 0 : num / den;
+    return {
+      a: a, b: b, grandX: grandX,
+      covGap: b.mx - a.mx,
+      unadjusted: unadjusted,
+      pooled: pooled,
+      adjusted: unadjusted - pooled * (b.mx - a.mx),
+      slopeDiff: b.slope - a.slope
+    };
+  }
+
+  /** Vertical gap between the two fitted group lines at covariate value x. */
+  function gapAt(t, x) {
+    var lineA = t.a.my + t.a.slope * (x - t.a.mx);
+    var lineB = t.b.my + t.b.slope * (x - t.b.mx);
+    return lineB - lineA;
+  }
+
+  function renderScatter(t) {
+    var left = 42;
+    var right = 448;
+    var top = 12;
+    var base = 162;
+
+    clear(scatter);
+
+    var allX = t.a.x.concat(t.b.x);
+    var allY = t.a.y.concat(t.b.y);
+    var xLo = Math.min.apply(null, allX) - 2;
+    var xHi = Math.max.apply(null, allX) + 2;
+    var yLo = Math.min.apply(null, allY) - 2;
+    var yHi = Math.max.apply(null, allY) + 2;
+
+    var X = function (v) { return left + ((v - xLo) / (xHi - xLo)) * (right - left); };
+    var Y = function (v) { return base - ((v - yLo) / (yHi - yLo)) * (base - top); };
+
+    // Axes and ticks.
+    scatter.appendChild(svgNode("line",
+      { x1: left, y1: top, x2: left, y2: base, class: "sc__axis" }));
+    scatter.appendChild(svgNode("line",
+      { x1: left, y1: base, x2: right, y2: base, class: "sc__axis" }));
+    [20, 40, 60, 80].forEach(function (v) {
+      if (v < xLo || v > xHi) { return; }
+      scatter.appendChild(svgNode("line",
+        { x1: X(v), y1: base, x2: X(v), y2: base + 4, class: "sc__axis" }));
+      scatter.appendChild(svgText(
+        { x: X(v), y: base + 17, "text-anchor": "middle" },
+        String(v), "chart__axis"));
+      scatter.appendChild(svgNode("line",
+        { x1: left - 4, y1: Y(v), x2: left, y2: Y(v), class: "sc__axis" }));
+      scatter.appendChild(svgText(
+        { x: left - 7, y: Y(v) + 4, "text-anchor": "end" },
+        String(v), "chart__axis"));
+    });
+
+    // Points: filled circles for group A, hollow triangles for group B.
+    t.a.x.forEach(function (v, i) {
+      scatter.appendChild(svgNode("circle",
+        { cx: X(v), cy: Y(t.a.y[i]), r: 2.6, class: "sc__dot-a" }));
+    });
+    t.b.x.forEach(function (v, i) {
+      var cx = X(v);
+      var cy = Y(t.b.y[i]);
+      scatter.appendChild(svgNode("polygon", {
+        points: (cx) + "," + (cy - 3.2) + " " + (cx - 3) + "," + (cy + 2.4) +
+          " " + (cx + 3) + "," + (cy + 2.4),
+        class: "sc__dot-b"
+      }));
+    });
+
+    // Each group's own regression line, drawn across the plotted range.
+    [["a", "sc__line-a", "Usual"], ["b", "sc__line-b", "Programme"]]
+      .forEach(function (entry) {
+        var g = t[entry[0]];
+        var y1 = g.my + g.slope * (xLo - g.mx);
+        var y2 = g.my + g.slope * (xHi - g.mx);
+        scatter.appendChild(svgNode("line", {
+          x1: X(xLo), y1: Y(y1), x2: X(xHi), y2: Y(y2), class: entry[1]
+        }));
+        scatter.appendChild(svgText(
+          { x: right - 3, y: Math.max(top + 10, Math.min(base - 3, Y(y2) - 6)),
+            "text-anchor": "end" },
+          entry[2], "chart__label"));
+      });
+
+    // The vertical at the overall covariate mean, where the adjustment is read.
+    var gx = X(t.grandX);
+    scatter.appendChild(svgNode("line",
+      { x1: gx, y1: top, x2: gx, y2: base, class: "sc__at" }));
+    var ya = t.a.my + t.a.slope * (t.grandX - t.a.mx);
+    var yb = t.b.my + t.b.slope * (t.grandX - t.b.mx);
+    scatter.appendChild(svgNode("line",
+      { x1: gx, y1: Y(ya), x2: gx, y2: Y(yb), class: "sc__gap" }));
+    scatter.appendChild(svgText(
+      { x: gx + 5, y: (Y(ya) + Y(yb)) / 2 + 4, "text-anchor": "start" },
+      "adjusted " + signed(yb - ya), "chart__label"));
+
+    scatter.appendChild(svgText(
+      { x: (left + right) / 2, y: base + 34, "text-anchor": "middle" },
+      "September score (the covariate)", "chart__axis"));
+    scatter.appendChild(svgText(
+      { x: left - 7, y: top - 2, "text-anchor": "end" },
+      "June", "chart__axis"));
+  }
+
+  function renderCovTables(t) {
+    clear(groupTable);
+    groupTable.appendChild(row([
+      "Usual timetable", fmt(t.a.mx), fmt(t.a.my), fmt(t.a.slope, 2)
+    ]));
+    groupTable.appendChild(row([
+      "Programme", fmt(t.b.mx), fmt(t.b.my), fmt(t.b.slope, 2)
+    ]));
+
+    clear(gapTable);
+    [
+      ["A low starter", t.grandX - 12],
+      ["The overall mean", t.grandX],
+      ["A high starter", t.grandX + 12]
+    ].forEach(function (entry) {
+      gapTable.appendChild(row([
+        entry[0], fmt(entry[1]), signed(gapAt(t, entry[1]))
+      ]));
+    });
+
+    var spread = Math.abs(gapAt(t, t.grandX + 12) - gapAt(t, t.grandX - 12));
+    slopeNote.textContent = spread < 1.5
+      ? "The two fitted lines are close to parallel, so the gap between them " +
+        "is about the same wherever you measure it. That is what the " +
+        "homogeneity-of-regression-slopes assumption buys: one adjusted " +
+        "difference, reportable as a single number."
+      : "The two fitted lines are not parallel, so the gap between them is " +
+        "a different number depending on where you stand - it moves by about " +
+        fmt(spread) + " points across the range below. There is no single " +
+        "adjusted difference to report here. The honest description is that " +
+        "the effect of the programme depends on where a student started, " +
+        "which is a covariate-by-treatment interaction and is a finding in " +
+        "its own right.";
+  }
+
+  function renderCovReadout(t) {
+    clear(readout);
+    [
+      ["Unadjusted difference", signed(t.unadjusted) + " pts"],
+      ["Adjusted difference", signed(t.adjusted) + " pts"],
+      ["Group gap on the covariate", signed(t.covGap) + " pts"],
+      ["Pooled within-group slope", fmt(t.pooled, 2)]
+    ].forEach(function (pair) {
+      var cell = make("div");
+      cell.appendChild(make("dt", null, pair[0]));
+      cell.appendChild(make("dd", null, pair[1]));
+      readout.appendChild(cell);
+    });
+  }
+
+  function renderCovVerdict(t) {
+    var s = covSettings();
+    var moved = Math.abs(t.adjusted - t.unadjusted);
+    var intact = designSelect.value === "intact";
+    var tone;
+    var text;
+
+    if (Math.abs(t.covGap) < 2.5) {
+      tone = "good";
+      text =
+        "The two groups started in almost the same place - " + signed(t.covGap) +
+        " points apart in September - so adjustment barely moves the estimate: " +
+        signed(t.unadjusted) + " becomes " + signed(t.adjusted) + ". The " +
+        "ordinary case under random allocation: the covariate is not " +
+        "correcting anything. It is explaining part of the variation in June " +
+        "scores, which shrinks the residual variance and buys precision.";
+    } else if (!intact) {
+      tone = "caution";
+      text =
+        "The groups differ by " + signed(t.covGap) + " points on the covariate " +
+        "even though allocation was random - which happens, and is exactly " +
+        "the situation adjustment handles well. Adjusting moves the estimate " +
+        "by " + fmt(moved) + " points, from " + signed(t.unadjusted) + " to " +
+        signed(t.adjusted) + ", and because the groups were formed by chance " +
+        "the adjusted figure is the better estimate of the programme's effect.";
+    } else {
+      tone = "warn";
+      text =
+        "The groups differ by " + signed(t.covGap) + " points on the covariate " +
+        "and were not randomly formed. Adjustment moves the estimate by " +
+        fmt(moved) + " points, from " + signed(t.unadjusted) + " to " +
+        signed(t.adjusted) + ", and that number is not the causal effect of " +
+        "the programme. It is the June difference among students who started " +
+        "at the same September score, which equals the causal effect only if " +
+        "nothing else about the two classes differs. The arithmetic gave you " +
+        "no warning.";
+    }
+
+    interpretation.textContent = text;
+    verdictBox.setAttribute("data-tone", tone);
+
+    var spread = Math.abs(gapAt(t, t.grandX + 12) - gapAt(t, t.grandX - 12));
+    var lines = [];
+    if (Math.abs(s.slopeDiff) >= 0.15) {
+      lines.push(
+        "The two fitted slopes differ by " + fmt(t.slopeDiff, 2) +
+        ", so the homogeneity-of-regression-slopes assumption fails and the " +
+        "single adjusted figure above is an average of gaps that range over " +
+        "about " + fmt(spread) + " points. Open the disclosure below.");
+    }
+    if (s.r < 0.2) {
+      lines.push(
+        "With a covariate-outcome correlation of only " + fmt(s.r, 2) +
+        ", the covariate explains almost nothing and buys almost no " +
+        "precision. Including a useless covariate costs a degree of freedom " +
+        "and adds a paragraph nobody needs.");
+    }
+    if (!lines.length) {
+      lines.push(
+        "The slopes are close enough to parallel for a single adjusted " +
+        "difference to be meaningful, and the covariate is correlated " +
+        "strongly enough with the outcome to be worth including.");
+    }
+    assumption.textContent = lines.join(" ");
+  }
+
+  function renderCov() {
+    var t = covStats();
+    chartHeading.textContent =
+      "September against June — " + (2 * N_PER_GROUP) + " fictional students";
+    renderScatter(t);
+    renderCovTables(t);
+    renderCovReadout(t);
+    renderCovVerdict(t);
+    return t;
+  }
+
+  function refreshCov() {
+    buildCovData();
+    return renderCov();
+  }
+
+  covShell.bindRange(rRange, {
+    format: function (v) { return v.toFixed(2); },
+    describe: function (v) {
+      return "covariate and outcome correlate " + v.toFixed(2) + " within groups";
+    },
+    onInput: refreshCov
+  });
+
+  covShell.bindRange(gapRange, {
+    format: function (v) { return signed(v, 0); },
+    describe: function (v) {
+      return Math.abs(v) < 0.5
+        ? "the two groups start level in September"
+        : "the programme group starts " + signed(v, 0) +
+          " points from the other group in September";
+    },
+    onInput: refreshCov
+  });
+
+  covShell.bindRange(slopeRange, {
+    format: function (v) { return v.toFixed(2); },
+    describe: function (v) {
+      return Math.abs(v) < 0.03
+        ? "the two groups have the same regression slope"
+        : "the two regression slopes differ by " + v.toFixed(2);
+    },
+    onInput: refreshCov
+  });
+
+  covShell.bindRange(effectRange, {
+    format: function (v) { return String(v); },
+    describe: function (v) { return "true programme effect of " + v + " points"; },
+    onInput: refreshCov
+  });
+
+  designSelect.addEventListener("change", function () {
+    renderCov();
+    covShell.announce(
+      designSelect.value === "intact"
+        ? "Design switched to two intact classes. Not one number on screen has " +
+          "changed; what the adjusted difference is allowed to mean has."
+        : "Design switched to random allocation. The arithmetic is identical " +
+          "and the adjusted difference can now be read as the programme's " +
+          "effect.", { immediate: true });
+  });
+
+  $('[data-action="resample"]').addEventListener("click", function () {
+    covSeed = Math.max(1, (covSeed * 7 + 13) % 999983);
+    var t = refreshCov();
+    covShell.announce(
+      "New sample drawn. Unadjusted difference " + signed(t.unadjusted) +
+      " points, adjusted difference " + signed(t.adjusted) + " points.",
+      { immediate: true });
+  });
+
+  /* =======================================================================
+     Experiment 2 — two outcomes together
+     ===================================================================== */
+
+  var M_PRESETS = {
+    nogain: { d1: 0.8, d2: 0.8, rho: 0.8,
+      note: "Two clear effects in the same direction on two strongly related " +
+        "outcomes. The joint separation is barely bigger than either one, " +
+        "because the outcomes are largely the same information twice." },
+    bigwin: { d1: 0.8, d2: 0.8, rho: -0.7,
+      note: "The same two effects, with the outcomes negatively related within " +
+        "groups. The difference now runs across the correlation, and the " +
+        "joint separation is far larger than either." },
+    hidden: { d1: 0.3, d2: -0.3, rho: 0.85,
+      note: "Two small effects in opposite directions on outcomes that " +
+        "normally move together. Neither would be found on its own; jointly " +
+        "the two clouds barely overlap." },
+    opposed: { d1: 0.6, d2: -0.6, rho: 0.0,
+      note: "Effects in opposite directions with uncorrelated outcomes. The " +
+        "joint separation is the ordinary Pythagorean combination: no bonus " +
+        "and no penalty." }
+  };
+
+  function manSettings() {
+    return {
+      d1: Number(d1Range.value),
+      d2: Number(d2Range.value),
+      rho: Number(rhoRange.value)
+    };
+  }
+
+  /** Mahalanobis distance between the two group centres. */
+  function mahalanobis(s) {
+    var denom = 1 - s.rho * s.rho;
+    if (denom < 1e-6) { denom = 1e-6; }
+    var d2 = (s.d1 * s.d1 - 2 * s.rho * s.d1 * s.d2 + s.d2 * s.d2) / denom;
+    return Math.sqrt(Math.max(0, d2));
+  }
+
+  function buildManData() {
+    var s = manSettings();
+    var random = mulberry32(manSeed);
+    var groups = [0, 1].map(function (g) {
+      var sign = g === 1 ? 0.5 : -0.5;
+      var pts = [];
+      for (var i = 0; i < N_PER_GROUP; i += 1) {
+        var z1 = normal(random);
+        var z2 = normal(random);
+        // Cholesky factor of [[1, rho], [rho, 1]].
+        var y1 = z1;
+        var y2 = s.rho * z1 + Math.sqrt(Math.max(0, 1 - s.rho * s.rho)) * z2;
+        pts.push([y1 + sign * s.d1, y2 + sign * s.d2]);
+      }
+      return pts;
+    });
+    manData = groups;
+  }
+
+  function renderCloud() {
+    var left = 42;
+    var right = 448;
+    var top = 12;
+    var base = 156;
+    var LIMIT = 3.6;
+
+    clear(cloud);
+
+    var X = function (v) { return left + ((v + LIMIT) / (2 * LIMIT)) * (right - left); };
+    var Y = function (v) { return base - ((v + LIMIT) / (2 * LIMIT)) * (base - top); };
+
+    cloud.appendChild(svgNode("line",
+      { x1: left, y1: top, x2: left, y2: base, class: "sc__axis" }));
+    cloud.appendChild(svgNode("line",
+      { x1: left, y1: base, x2: right, y2: base, class: "sc__axis" }));
+    [-3, -2, -1, 0, 1, 2, 3].forEach(function (v) {
+      cloud.appendChild(svgNode("line",
+        { x1: X(v), y1: base, x2: X(v), y2: base + 4, class: "sc__axis" }));
+      cloud.appendChild(svgText(
+        { x: X(v), y: base + 16, "text-anchor": "middle" },
+        String(v), "chart__axis"));
+      cloud.appendChild(svgNode("line",
+        { x1: left - 4, y1: Y(v), x2: left, y2: Y(v), class: "sc__axis" }));
+      cloud.appendChild(svgText(
+        { x: left - 7, y: Y(v) + 4, "text-anchor": "end" },
+        String(v), "chart__axis"));
+    });
+
+    manData[0].forEach(function (p) {
+      cloud.appendChild(svgNode("circle",
+        { cx: X(p[0]), cy: Y(p[1]), r: 2.6, class: "sc__dot-a" }));
+    });
+    manData[1].forEach(function (p) {
+      var cx = X(p[0]);
+      var cy = Y(p[1]);
+      cloud.appendChild(svgNode("polygon", {
+        points: cx + "," + (cy - 3.2) + " " + (cx - 3) + "," + (cy + 2.4) +
+          " " + (cx + 3) + "," + (cy + 2.4),
+        class: "sc__dot-b"
+      }));
+    });
+
+    var s = manSettings();
+    var ax = -s.d1 / 2;
+    var ay = -s.d2 / 2;
+    var bx = s.d1 / 2;
+    var by = s.d2 / 2;
+    cloud.appendChild(svgNode("line",
+      { x1: X(ax), y1: Y(ay), x2: X(bx), y2: Y(by), class: "sc__gap" }));
+    cloud.appendChild(svgText(
+      { x: X(ax) - 5, y: Y(ay) - 6, "text-anchor": "end" },
+      "Usual", "chart__label"));
+    cloud.appendChild(svgText(
+      { x: X(bx) + 5, y: Y(by) - 6, "text-anchor": "start" },
+      "Programme", "chart__label"));
+
+    cloud.appendChild(svgText(
+      { x: (left + right) / 2, y: base + 32, "text-anchor": "middle" },
+      "outcome 1, in standard deviations", "chart__axis"));
+    cloud.appendChild(svgText(
+      { x: left - 7, y: top - 2, "text-anchor": "end" },
+      "outcome 2", "chart__axis"));
+  }
+
+  function renderMan() {
+    var s = manSettings();
+    var D = mahalanobis(s);
+    var best = Math.max(Math.abs(s.d1), Math.abs(s.d2));
+
+    mchartHeading.textContent =
+      "The two groups in the plane — within-group correlation " + s.rho.toFixed(2);
+    renderCloud();
+
+    clear(sepTable);
+    [
+      ["Outcome 1 alone", fmt(Math.abs(s.d1), 2)],
+      ["Outcome 2 alone", fmt(Math.abs(s.d2), 2)],
+      ["Both together (Mahalanobis)", fmt(D, 2)]
+    ].forEach(function (pair) {
+      sepTable.appendChild(row(pair));
+    });
+
+    var ratio = best > 0.01 ? D / best : 0;
+    var tone;
+    var text;
+    if (best < 0.05 && D < 0.1) {
+      tone = "neutral";
+      text =
+        "Both differences are effectively zero, so there is nothing for any " +
+        "test to find. Move one of the sliders.";
+    } else if (ratio < 1.15) {
+      tone = "caution";
+      text =
+        "Each outcome on its own separates the groups by about " + fmt(best, 2) +
+        " standard deviations, and taking both together gives " + fmt(D, 2) +
+        ". The multivariate test has added essentially nothing, and the reason " +
+        "is on screen: with a within-group correlation of " + s.rho.toFixed(2) +
+        " and differences pointing the same way, the second outcome is largely " +
+        "the first one measured again. This is the case most people picture " +
+        "when they reach for MANOVA, and it is the case where it helps least.";
+    } else {
+      tone = "good";
+      text =
+        "The better single outcome separates the groups by " + fmt(best, 2) +
+        " standard deviations, and the two together separate them by " +
+        fmt(D, 2) + " - " + fmt(ratio, 2) + " times as much. The difference " +
+        "between the groups runs across the within-group correlation of " +
+        s.rho.toFixed(2) + ", so the combination carries information neither " +
+        "axis has on its own. Look at the plot: the two clouds are stretched " +
+        "along one diagonal and separated along the other.";
+    }
+    minterpretation.textContent = text;
+    mverdictBox.setAttribute("data-tone", tone);
+
+    mcaveat.textContent =
+      "Whatever the separation, note what a multivariate result does not say. " +
+      "It says the group centres are apart in the plane. It does not say which " +
+      "outcome differs, or in which direction, and the univariate tests that " +
+      "follow it are ordinary tests carrying the ordinary multiplicity " +
+      "problem - a significant multivariate test is not a licence that " +
+      "protects them.";
+  }
+
+  function refreshMan() {
+    buildManData();
+    renderMan();
+  }
+
+  function onManChange() {
+    if (applyingPreset) { return; }
+    mpresetSelect.value = "custom";
+    refreshMan();
+  }
+
+  manShell.bindRange(d1Range, {
+    format: function (v) { return v.toFixed(2); },
+    describe: function (v) {
+      return "outcome 1 differs by " + v.toFixed(2) + " standard deviations";
+    },
+    onInput: onManChange
+  });
+
+  manShell.bindRange(d2Range, {
+    format: function (v) { return v.toFixed(2); },
+    describe: function (v) {
+      return "outcome 2 differs by " + v.toFixed(2) + " standard deviations";
+    },
+    onInput: onManChange
+  });
+
+  manShell.bindRange(rhoRange, {
+    format: function (v) { return v.toFixed(2); },
+    describe: function (v) {
+      return "the two outcomes correlate " + v.toFixed(2) + " within groups";
+    },
+    onInput: onManChange
+  });
+
+  mpresetSelect.addEventListener("change", function () {
+    var preset = M_PRESETS[mpresetSelect.value];
+    if (!preset) { return; }
+    applyingPreset = true;
+    d1Range.value = String(preset.d1);
+    d2Range.value = String(preset.d2);
+    rhoRange.value = String(preset.rho);
+    [d1Range, d2Range, rhoRange].forEach(function (input) {
+      input.dispatchEvent(new Event("input"));
+    });
+    applyingPreset = false;
+    refreshMan();
+    manShell.announce(
+      preset.note + " Joint separation " +
+      fmt(mahalanobis(manSettings()), 2) + " standard deviations.",
+      { immediate: true });
+  });
+
+  $('[data-action="mresample"]').addEventListener("click", function () {
+    manSeed = Math.max(1, (manSeed * 7 + 13) % 999983);
+    refreshMan();
+    manShell.announce(
+      "New sample drawn. The underlying differences and correlation are " +
+      "unchanged; only which people were sampled has.", { immediate: true });
+  });
+
+  function openManova() {
+    var wasHidden = manovaSection.hidden;
+    manovaSection.hidden = false;
+    refreshMan();
+    if (wasHidden) {
+      $("#manova-heading").focus();
+      manShell.announce(
+        "Experiment 2 opened. Try the worked examples in order.",
+        { immediate: true });
+    }
+  }
+
+  $('[data-action="open-manova"]').addEventListener("click", openManova);
+
+  /* =======================================================================
+     Opening decision
+     ===================================================================== */
+
+  var ROLE_TRUTH = { "role-june": "outcome", "role-group": "factor", "role-sept": "covariate" };
+
+  var ROLE_WHY = {
+    "role-june":
+      "The June score is the outcome: it is measured after the manipulation " +
+      "and it is what the question is about.",
+    "role-group":
+      "Programme against usual timetable is the grouping factor: it is what " +
+      "was manipulated and what defines the comparison.",
+    "role-sept":
+      "The September score is a covariate: measured before allocation, so it " +
+      "cannot have been affected by the programme, and correlated with the " +
+      "outcome, so it can absorb variation that would otherwise be noise. " +
+      "Both of those conditions matter, and the second scenario in the " +
+      "challenge is about what happens when the first one fails."
+  };
+
+  var ANALYSIS_NOTES = {
+    anova:
+      "Defensible but wasteful. It answers the right question and throws away " +
+      "the September data, so the comparison is less precise than it needs to " +
+      "be. With a covariate-outcome correlation of 0.7 that is a substantial " +
+      "loss.",
+    ancova:
+      "The best answer. Allocation was random, so the groups start level and " +
+      "adjustment is not correcting anything; what it does is remove the part " +
+      "of the June variation that September already explains, which makes the " +
+      "estimate of the programme effect more precise. Experiment 1 shows both " +
+      "halves of that.",
+    manova:
+      "Wrong, and instructively so. The September score is not an outcome: it " +
+      "was measured before anybody was allocated to anything, so no group " +
+      "difference on it could have been caused by the programme. Treating it " +
+      "as a second dependent variable asks a question that makes no sense in " +
+      "this design.",
+    change:
+      "Defensible, and usually second best. A t-test on June minus September " +
+      "is exactly ANCOVA with the slope forced to 1. When the true " +
+      "within-group slope is below 1 - which it usually is - forcing it costs " +
+      "precision, and when the groups differ at baseline the change score and " +
+      "the adjusted difference can disagree sharply. Set the covariate " +
+      "correlation to 0.4 in Experiment 1 and look at the pooled slope."
+  };
+
+  function lockForm(form) {
+    $$("input, button, select", form).forEach(function (c) { c.disabled = true; });
+  }
+
+  function unlockForm(form) {
+    $$("input, button, select", form).forEach(function (c) { c.disabled = false; });
+    form.reset();
+  }
+
+  function openAncova() {
+    ancovaSection.hidden = false;
+    challengeSection.hidden = false;
+    refreshCov();
+    $("#ancova-heading").focus();
+    covShell.announce(
+      "Experiment 1 unlocked, with the groups starting level and a covariate " +
+      "correlation of 0.70.", { immediate: true });
+  }
+
+  openingForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var roles = {};
+    var missing = false;
+    Object.keys(ROLE_TRUTH).forEach(function (id) {
+      var value = $("#" + id).value;
+      if (!value) { missing = true; }
+      roles[id] = value;
+    });
+    var analysis = $('input[name="analysis"]:checked', openingForm);
+    if (missing || !analysis) {
+      openingError.textContent =
+        "Assign all three roles and choose an analysis before continuing.";
+      openingError.hidden = false;
+      return;
+    }
+    openingError.hidden = true;
+
+    var rolesRight = Object.keys(ROLE_TRUTH).filter(function (id) {
+      return roles[id] === ROLE_TRUTH[id];
+    }).length;
+    var analysisRight = analysis.value === "ancova";
+
+    var tone = analysisRight && rolesRight === 3 ? "good"
+      : rolesRight >= 2 ? "caution" : "warn";
+    var lead = analysisRight && rolesRight === 3
+      ? "All three roles and the analysis."
+      : rolesRight + " of the three roles, and the analysis you chose was " +
+        (analysisRight ? "right." : "not the best fit.");
+
+    clear(openingFeedback);
+    openingFeedback.setAttribute("data-tone", tone);
+    var p = make("p");
+    p.appendChild(make("strong", "feedback__verdict", lead));
+    p.appendChild(document.createTextNode(
+      " Roles first, because the analysis follows from them and not the other " +
+      "way round."));
+    openingFeedback.appendChild(p);
+
+    var list = make("ul");
+    Object.keys(ROLE_TRUTH).forEach(function (id) {
+      var li = make("li");
+      li.appendChild(make("strong", null,
+        (roles[id] === ROLE_TRUTH[id] ? "Correct. " : "Not quite. ")));
+      li.appendChild(document.createTextNode(ROLE_WHY[id]));
+      list.appendChild(li);
+    });
+    var li2 = make("li");
+    li2.appendChild(make("strong", null, "Your analysis. "));
+    li2.appendChild(document.createTextNode(ANALYSIS_NOTES[analysis.value]));
+    list.appendChild(li2);
+    if (!analysisRight) {
+      var li3 = make("li");
+      li3.appendChild(make("strong", null, "The best answer, ANCOVA. "));
+      li3.appendChild(document.createTextNode(ANALYSIS_NOTES.ancova));
+      list.appendChild(li3);
+    }
+    openingFeedback.appendChild(list);
+    openingFeedback.hidden = false;
+
+    lockForm(openingForm);
+    openAncova();
+  });
+
+  $('[data-action="skip-opening"]').addEventListener("click", function () {
+    openingError.hidden = true;
+    showFeedback(openingFeedback, "neutral",
+      "Decision skipped — demonstration mode.", "");
+    lockForm(openingForm);
+    openAncova();
+  });
+
+  /* =======================================================================
+     Challenge — four scenarios
+     ===================================================================== */
+
+  var SCENARIOS = [
+    {
+      id: "q1", answer: "ancova-hedged",
+      title: "Study 1, two intact classes",
+      why:
+        "ANCOVA can be computed and its output is perfectly valid arithmetic. " +
+        "What it estimates is the June difference among students matched on " +
+        "September, and that equals the causal effect of the programme only " +
+        "if the two classes are alike in every other relevant way - which " +
+        "nothing here establishes and the nine-point baseline gap actively " +
+        "argues against. Report it as an adjusted association, name the " +
+        "assumption, and say that the design cannot settle the causal " +
+        "question. Experiment 1 makes the point by giving identical numbers " +
+        "under both designs.",
+      wrong: {
+        ancova: "This is the common answer, and it is the misuse the whole " +
+          "experiment is built around: the adjustment is real arithmetic and " +
+          "the causal reading is an assumption smuggled in with it.",
+        manova: "September is not an outcome - it was measured before anyone " +
+          "was allocated - so it cannot be a dependent variable.",
+        anova: "Ignoring a nine-point baseline gap does not make it go away; " +
+          "the unadjusted difference confounds the programme with whatever " +
+          "made the classes different in the first place."
+      }
+    },
+    {
+      id: "q2", answer: "manova",
+      title: "Study 2, four reading measures",
+      why:
+        "This is what a multivariate test is for. The four outcomes are " +
+        "argued in advance to be facets of one construct, the design is " +
+        "randomised, and there is a single substantive question about reading " +
+        "performance as a whole. The omnibus multivariate test answers it. " +
+        "The word 'declared' matters: whatever follow-up univariate tests are " +
+        "run must be stated in advance and reported whether or not they came " +
+        "out well, because a significant multivariate result does not protect " +
+        "them from multiplicity.",
+      wrong: {
+        four: "Four unadjusted tests answer four questions rather than the " +
+          "one that was asked, and raise the chance of at least one false " +
+          "positive well above the nominal level.",
+        ancova: "Enjoyment is one of the outcomes. Adjusting one outcome for " +
+          "another changes the question into something nobody asked.",
+        neither: "The design is randomised and the outcomes are argued to " +
+          "belong together in advance. That is exactly the case a " +
+          "multivariate test was designed for."
+      }
+    },
+    {
+      id: "q3", answer: "neither",
+      title: "Study 3, three unrelated outcomes",
+      why:
+        "The stated reason gives the game away. A multivariate test is not a " +
+        "multiplicity correction, and a joint test of sleep, exam marks and " +
+        "height answers a question with no substantive content - there is no " +
+        "construct of which those three are facets. Run the analyses that " +
+        "were planned, state how many there are, and handle the multiplicity " +
+        "openly. That is the subject of the last tool in this module.",
+      wrong: {
+        manova: "It would run, and the result would mean nothing, because the " +
+          "linear combination of the three outcomes that the test maximises " +
+          "corresponds to no quantity anyone cares about.",
+        ancova: "Height is an outcome here, not a covariate, and adjusting " +
+          "one outcome for another is not what a covariate is.",
+        combine: "A composite of unrelated measurements is not a measure of " +
+          "anything. Combining is a substantive claim about what the items " +
+          "share, and there is no such claim available here."
+      }
+    },
+    {
+      id: "q4", answer: "neither",
+      title: "Study 4, the covariate measured afterwards",
+      why:
+        "Attendance was measured after allocation and is plausibly a " +
+        "consequence of the programme - possibly part of how it works. " +
+        "Adjusting for it removes part of the effect being estimated and can " +
+        "introduce bias even in a randomised trial, because conditioning on a " +
+        "variable that sits between cause and outcome opens paths that " +
+        "randomisation had closed. A covariate has to be measured before the " +
+        "manipulation, or be demonstrably unaffected by it.",
+      wrong: {
+        ancova: "This is the mistake. The phrase 'control for engagement' " +
+          "describes controlling for part of the treatment.",
+        manova: "Attendance is not a second outcome of interest; treating it " +
+          "as one does not repair the underlying problem.",
+        both: "Reporting both is better than hiding one, and it still leaves " +
+          "a reader with two numbers and no principled basis for choosing. " +
+          "The adjusted analysis should not have been run."
+      }
+    }
+  ];
+
+  challengeForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var chosen = SCENARIOS.map(function (s) { return $("#" + s.id).value; });
+    if (chosen.some(function (v) { return !v; })) {
+      challengeError.textContent = "Choose an analysis for all four studies.";
+      challengeError.hidden = false;
+      return;
+    }
+    challengeError.hidden = true;
+
+    var right = SCENARIOS.filter(function (s, i) {
+      return chosen[i] === s.answer;
+    }).length;
+    var tone = right === 4 ? "good" : right >= 2 ? "caution" : "warn";
+    var lead = right + " of the four.";
+
+    clear(challengeFeedback);
+    challengeFeedback.setAttribute("data-tone", tone);
+    var p = make("p");
+    p.appendChild(make("strong", "feedback__verdict", lead));
+    p.appendChild(document.createTextNode(
+      " Two of these four have the answer \"neither\", which is the honest " +
+      "answer more often than the published literature suggests."));
+    challengeFeedback.appendChild(p);
+
+    var list = make("ul");
+    SCENARIOS.forEach(function (s, i) {
+      var li = make("li");
+      li.appendChild(make("strong", null,
+        s.title + " — " + (chosen[i] === s.answer ? "correct. " : "not this one. ")));
+      if (chosen[i] !== s.answer && s.wrong[chosen[i]]) {
+        li.appendChild(document.createTextNode(s.wrong[chosen[i]] + " "));
+      }
+      li.appendChild(document.createTextNode(s.why));
+      list.appendChild(li);
+    });
+    challengeFeedback.appendChild(list);
+    challengeFeedback.hidden = false;
+    covShell.announce(lead + " Explanations are below each study.",
+      { immediate: true });
+  });
+
+  /* =======================================================================
+     Reset and start-up
+     ===================================================================== */
+
+  manShell.onReset(function () {
+    applyingPreset = true;
+    d1Range.value = String(M_DEFAULTS.d1);
+    d2Range.value = String(M_DEFAULTS.d2);
+    rhoRange.value = String(M_DEFAULTS.rho);
+    applyingPreset = false;
+    mpresetSelect.value = "custom";
+    manSeed = M_DEFAULTS.seed;
+    refreshMan();
+  });
+
+  covShell.onReset(function () {
+    unlockForm(openingForm);
+    openingFeedback.hidden = true;
+    openingError.hidden = true;
+    ancovaSection.hidden = true;
+    manovaSection.hidden = true;
+    challengeSection.hidden = true;
+    challengeForm.reset();
+    challengeFeedback.hidden = true;
+    challengeError.hidden = true;
+    rRange.value = String(DEFAULTS.r);
+    gapRange.value = String(DEFAULTS.gap);
+    slopeRange.value = String(DEFAULTS.slope);
+    effectRange.value = String(DEFAULTS.effect);
+    designSelect.value = DEFAULTS.design;
+    covSeed = DEFAULTS.seed;
+    manShell.reset({ silent: true });
+    refreshCov();
+  });
+
+  covShell.reset({ silent: true });
+  covShell.announce(
+    "Ready. Assign the three roles above and choose an analysis.",
+    { immediate: true });
+})();
+
+</script>
+</div>

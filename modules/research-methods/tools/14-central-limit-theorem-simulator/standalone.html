@@ -1,0 +1,2862 @@
+<!-- Central Limit Theorem Simulator
+     From Open Psychology Interactives - https://github.com/utman5454/open-psychology-interactives
+     Self-contained: no stylesheets, scripts, fonts, images or network requests.
+     Styles are scoped to .opi-activity and do not affect the page around them.
+     Nothing is saved, sent or tracked. MIT licensed; please keep this notice.
+     Paste anywhere that accepts HTML, or save as a .html file and open it. -->
+<div class="opi-activity">
+<style>
+/* Defensive baseline. See scripts/build-standalone.py for why this
+   is `revert` rather than an enumerated reset, and how the specificity ladder
+   keeps the activity's own styling on top of it. */
+.opi-activity *:not(svg *) {
+  all: revert;
+}
+.opi-activity, .opi-activity *, .opi-activity *::before, .opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  text-transform: none;
+  text-indent: 0;
+  font-style: normal;
+  font-variant: normal;
+  letter-spacing: normal;
+  word-spacing: normal;
+  white-space: normal;
+  visibility: visible;
+  float: none;
+  max-width: none;
+}
+.opi-activity svg { max-width: 100%; }
+.opi-activity img { max-width: 100%; height: auto; }
+.opi-activity [hidden] { display: none !important; }
+
+/* assets/css/main.css */
+.opi-activity.opi-activity {
+  --colour-page: #ffffff;
+  --colour-surface: #f5f7fa;
+  --colour-surface-raised: #ffffff;
+  --colour-border: #d3d9e2;
+  --colour-border-strong: #aeb7c4;
+  --colour-text: #131820;
+  --colour-text-muted: #4c566a;
+  --colour-accent: #1a4fa0;
+  --colour-accent-hover: #123a7a;
+  --colour-accent-soft: #e8eefb;
+  --colour-on-accent: #ffffff;
+  --colour-focus: #b45309;
+  --colour-cognitive: #8a4b00;
+  --colour-research-methods: #1a4fa0;
+  --colour-neuropsychology: #145c53;
+  --colour-social-critical-psychology: #9e2f45;
+  --colour-personality-individual-differences: #7a2e6d;
+  --colour-status-bg: #f1ede3;
+  --colour-status-text: #5c4a1f;
+  --colour-status-border: #d9cdb0;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  --text-xs: 13px;
+  --text-sm: 15px;
+  --text-base: 17px;
+  --text-lg: 19px;
+  --text-xl: 23px;
+  --text-2xl: 28px;
+  --text-3xl: 36px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgb(19 24 32 / 0.06);
+  --shadow-md: 0 2px 8px rgb(19 24 32 / 0.08);
+  --measure: 68ch;
+  --container: 1152px;
+}
+@media (prefers-color-scheme: dark) {
+.opi-activity.opi-activity {
+  --colour-page: #0f141b;
+  --colour-surface: #161d27;
+  --colour-surface-raised: #1a2230;
+  --colour-border: #2c3644;
+  --colour-border-strong: #44506180;
+  --colour-text: #e9edf3;
+  --colour-text-muted: #a8b2c1;
+  --colour-accent: #8fb6ff;
+  --colour-accent-hover: #b3cdff;
+  --colour-accent-soft: #1b2740;
+  --colour-on-accent: #0f141b;
+  --colour-focus: #f0b429;
+  --colour-cognitive: #e2ab5f;
+  --colour-research-methods: #8fb6ff;
+  --colour-neuropsychology: #6fc3b4;
+  --colour-social-critical-psychology: #f19aa8;
+  --colour-personality-individual-differences: #db9ccd;
+  --colour-status-bg: #241f14;
+  --colour-status-text: #e2cf9f;
+  --colour-status-border: #4a4028;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 2px 10px rgb(0 0 0 / 0.45);
+}
+}
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity.opi-activity {
+  -webkit-text-size-adjust: 100%;
+}
+.opi-activity.opi-activity {
+  background-color: var(--colour-page);
+  color: var(--colour-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.65;
+}
+.opi-activity.opi-activity h1,
+.opi-activity.opi-activity h2,
+.opi-activity.opi-activity h3,
+.opi-activity.opi-activity h4 {
+  margin: 0 0 var(--space-3);
+  line-height: 1.25;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.opi-activity.opi-activity h1 {
+  font-size: var(--text-3xl);
+}
+.opi-activity.opi-activity h2 {
+  font-size: var(--text-2xl);
+}
+.opi-activity.opi-activity h3 {
+  font-size: var(--text-xl);
+}
+.opi-activity.opi-activity h4 {
+  font-size: var(--text-lg);
+}
+.opi-activity.opi-activity p,
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol,
+.opi-activity.opi-activity dl {
+  margin: 0 0 var(--space-4);
+}
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol {
+  padding-left: 1.35em;
+}
+.opi-activity.opi-activity li + li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity a {
+  color: var(--colour-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: max(1px, 0.06em);
+}
+.opi-activity.opi-activity a:hover {
+  color: var(--colour-accent-hover);
+  text-decoration-thickness: max(2px, 0.11em);
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid var(--colour-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+@supports not selector(:focus-visible) {
+.opi-activity.opi-activity :focus {
+  outline: 3px solid var(--colour-focus);
+    outline-offset: 2px;
+}
+}
+.opi-activity.opi-activity code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.35em;
+}
+.opi-activity.opi-activity hr {
+  border: 0;
+  border-top: 1px solid var(--colour-border);
+  margin: var(--space-6) 0;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+}
+.opi-activity.opi-activity .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.opi-activity.opi-activity .container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+@media (min-width: 40em) {
+.opi-activity.opi-activity .container {
+  padding-inline: var(--space-5);
+}
+}
+.opi-activity.opi-activity .prose {
+  max-width: var(--measure);
+}
+.opi-activity.opi-activity .text-muted {
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .section {
+  padding-block: var(--space-7);
+}
+.opi-activity.opi-activity .section--tinted {
+  background-color: var(--colour-surface);
+  border-block: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .section__header {
+  max-width: var(--measure);
+  margin-bottom: var(--space-5);
+}
+.opi-activity.opi-activity .section__header > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-7) var(--space-6);
+  border-bottom: 1px solid var(--colour-border);
+  
+  background-image: linear-gradient(
+    180deg,
+    var(--colour-accent-soft) 0%,
+    var(--colour-page) 100%
+  );
+}
+.opi-activity.opi-activity .hero__eyebrow {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .hero h1 {
+  max-width: 20ch;
+  margin-bottom: var(--space-4);
+}
+.opi-activity.opi-activity .hero__lead {
+  max-width: var(--measure);
+  font-size: var(--text-lg);
+  color: var(--colour-text-muted);
+}
+@media (min-width: 48em) {
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-8) var(--space-7);
+}
+.opi-activity.opi-activity .hero h1 {
+  font-size: 44px;
+}
+}
+.opi-activity.opi-activity .button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  
+  min-height: 44px;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .button--primary {
+  background-color: var(--colour-accent);
+  border-color: var(--colour-accent);
+  
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--primary:hover {
+  background-color: var(--colour-accent-hover);
+  border-color: var(--colour-accent-hover);
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--secondary {
+  background-color: transparent;
+  border-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .button--secondary:hover {
+  background-color: var(--colour-surface);
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+}
+.opi-activity.opi-activity .card--cognitive {
+  --card-accent: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .card--research-methods {
+  --card-accent: var(--colour-research-methods);
+}
+.opi-activity.opi-activity .card--neuropsychology {
+  --card-accent: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .card--social-critical-psychology {
+  --card-accent: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .card--personality-individual-differences {
+  --card-accent: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 650;
+  line-height: 1.4;
+  padding: 3.2px var(--space-3);
+  border-radius: 999px;
+  border: 1px solid var(--colour-status-border);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+}
+.opi-activity.opi-activity .badge__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex: none;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed var(--colour-border-strong);
+  border-radius: var(--radius-lg);
+  background-color: var(--colour-surface);
+  padding: var(--space-5);
+  text-align: left;
+}
+.opi-activity.opi-activity .placeholder__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+}
+.opi-activity.opi-activity .placeholder > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .split {
+  display: grid;
+  gap: var(--space-6);
+}
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split {
+  grid-template-columns: 3fr 2fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .panel {
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.opi-activity.opi-activity .panel > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .panel__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .section--tinted {
+  border-block: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .hero {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .button--primary {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .button--secondary {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .button:hover {
+  border-color: Highlight;
+}
+.opi-activity.opi-activity .panel {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed CanvasText;
+}
+.opi-activity.opi-activity .badge {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .badge__dot {
+  background-color: CanvasText;
+}
+.opi-activity.opi-activity code {
+  border-color: CanvasText;
+}
+.opi-activity.opi-activity hr {
+  border-top-color: CanvasText;
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+}
+@media print {
+.opi-activity.opi-activity {
+  color: #000;
+  background: #fff;
+}
+.opi-activity.opi-activity a[href^="http"]::after {
+  content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+}
+}
+
+/* components/interactive-shell.css */
+.opi-activity.opi-activity .interactive {
+  --shell-page: var(--colour-page, #ffffff);
+  --shell-surface: var(--colour-surface, #f5f7fa);
+  --shell-raised: var(--colour-surface-raised, #ffffff);
+  --shell-border: var(--colour-border, #d3d9e2);
+  --shell-border-strong: var(--colour-border-strong, #aeb7c4);
+  --shell-text: var(--colour-text, #131820);
+  --shell-muted: var(--colour-text-muted, #4c566a);
+  --shell-accent: var(--colour-accent, #1a4fa0);
+  --shell-accent-soft: var(--colour-accent-soft, #e8eefb);
+  
+  --shell-on-accent: var(--colour-on-accent, #ffffff);
+  --shell-focus: var(--colour-focus, #b45309);
+  --shell-radius: var(--radius-lg, 12px);
+  --shell-gap: var(--space-5, 24px);
+
+  display: block;
+  background-color: var(--shell-raised);
+  color: var(--shell-text);
+  border: 1px solid var(--shell-border);
+  border-radius: var(--shell-radius);
+  
+  overflow-x: clip;
+  overflow-y: visible;
+}
+.opi-activity.opi-activity .interactive__header {
+  padding: var(--shell-gap);
+  border-bottom: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 1.25;
+}
+.opi-activity.opi-activity .interactive__brief {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--shell-muted);
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__body {
+  display: grid;
+  gap: var(--shell-gap);
+  padding: var(--shell-gap);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body {
+  grid-template-columns: minmax(240px, 320px) 1fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .interactive__controls {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__controls fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .interactive__controls legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .control {
+  display: grid;
+  gap: 5.6px;
+}
+.opi-activity.opi-activity .control + .control {
+  margin-top: 16px;
+}
+.opi-activity.opi-activity .control__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.opi-activity.opi-activity .control__label {
+  font-size: 15px;
+  font-weight: 600;
+}
+.opi-activity.opi-activity .control__value {
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--shell-accent);
+}
+.opi-activity.opi-activity .control__hint {
+  font-size: 13px;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .interactive__controls input[type="range"] {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--shell-accent);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  width: 100%;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--shell-text);
+  background-color: var(--shell-raised);
+  border: 1px solid var(--shell-border-strong);
+  border-radius: var(--radius-sm, 4px);
+}
+.opi-activity.opi-activity .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+}
+.opi-activity.opi-activity .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  accent-color: var(--shell-accent);
+  flex: none;
+}
+.opi-activity.opi-activity .interactive__stage {
+  min-height: 256px;
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-page);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body--pinned {
+  align-items: stretch;
+}
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: sticky;
+    top: 0;
+    z-index: 2;
+    
+    margin: -16px -16px 0;
+    padding: 16px 16px 12px;
+    background-color: var(--shell-page);
+    border-bottom: 1px solid var(--shell-border);
+}
+}
+@media (min-width: 52em) and (max-height: 30em) {
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: static;
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
+}
+}
+.opi-activity.opi-activity .interactive__stage > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity :where(.interactive__stage) svg,
+.opi-activity.opi-activity :where(.interactive__stage) canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+.opi-activity.opi-activity .interactive__readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout div {
+  padding: 9.6px 12px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-sm, 4px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__readout dt {
+  font-size: 13px;
+  color: var(--shell-muted);
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout dd {
+  margin: 2.4px 0 0;
+  font-size: 18px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .interactive__status {
+  margin: 0;
+  padding: 12px var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+  font-size: 15px;
+  color: var(--shell-muted);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .interactive__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+}
+.opi-activity.opi-activity .interactive__actions button {
+  min-height: 44px;
+  padding: 6.4px 20px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--shell-on-accent);
+  background-color: var(--shell-accent);
+  border: 1px solid var(--shell-accent);
+  border-radius: var(--radius-md, 8px);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  color: var(--shell-text);
+  background-color: transparent;
+  border-color: var(--shell-border-strong);
+}
+.opi-activity.opi-activity .interactive__actions button:hover {
+  filter: brightness(1.08);
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__notes > summary {
+  padding: 13.6px var(--shell-gap);
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__notes > div {
+  padding: 0 var(--shell-gap) var(--shell-gap);
+  max-width: 68ch;
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__notes > div > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity .interactive *,
+.opi-activity.opi-activity .interactive *::before,
+.opi-activity.opi-activity .interactive *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+}
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .interactive,
+.opi-activity.opi-activity .interactive__controls,
+.opi-activity.opi-activity .interactive__stage,
+.opi-activity.opi-activity .interactive__readout div {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__header {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__status,
+.opi-activity.opi-activity .interactive__actions,
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__actions button {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  border-width: 1px;
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 1;
+    color: GrayText;
+    border-color: GrayText;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__stage svg {
+  forced-color-adjust: auto;
+}
+}
+
+/* components/tool-kit.css */
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split--wide {
+  grid-template-columns: 1fr 1fr;
+}
+}
+.opi-activity.opi-activity .how-to {
+  padding-left: 19.2px;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .how-to > li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .table-scroll {
+  overflow-x: auto;
+  
+  position: relative;
+}
+.opi-activity.opi-activity .prediction {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 832px;
+}
+.opi-activity.opi-activity .prediction > *,
+.opi-activity.opi-activity .challenge > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity .prediction__group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .prediction__legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-weight: 650;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .prediction .control--choice,
+.opi-activity.opi-activity .challenge .control--choice,
+.opi-activity.opi-activity .evidence .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .prediction .control--choice input,
+.opi-activity.opi-activity .challenge .control--choice input,
+.opi-activity.opi-activity .evidence .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .prediction__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .prediction__error {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-status-border);
+  border-left: 4px solid var(--colour-status-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .prediction__readback {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .feedback[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .feedback[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .feedback[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .feedback__verdict {
+  font-weight: 700;
+}
+.opi-activity.opi-activity .verdict {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .verdict__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict__body {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .verdict__body + .verdict__body {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .verdict__note {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .verdict[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .verdict[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .goal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .goal__label {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .goal__text {
+  flex: 1 1 256px;
+}
+.opi-activity.opi-activity .goal strong {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .goal__checks {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+  display: grid;
+  gap: 2.4px;
+}
+.opi-activity.opi-activity .goal__checks > li {
+  margin-top: 0;
+  padding-left: 22.4px;
+  position: relative;
+}
+.opi-activity.opi-activity .goal__checks > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 9.6px;
+  height: 9.6px;
+  border: 2px solid var(--colour-border-strong);
+  border-radius: 2px;
+}
+.opi-activity.opi-activity .goal__checks > li[data-met="yes"]::before {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .stage-track {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .stage-track > li {
+  margin-top: 0;
+  flex: 1 1 160px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-bottom: 3px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .stage-track > li > span {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.opi-activity.opi-activity .stage-track > li[data-state="done"] {
+  border-bottom-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border-bottom-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+  color: var(--colour-text);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .stage__heading {
+  margin: 0;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .data-table,
+.opi-activity.opi-activity .chart__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .data-table th,
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table th,
+.opi-activity.opi-activity .chart__table td {
+  padding: 6.4px 9.6px;
+  border: 1px solid var(--colour-border);
+  text-align: left;
+  vertical-align: top;
+}
+.opi-activity.opi-activity .data-table thead th,
+.opi-activity.opi-activity .chart__table thead th {
+  background-color: var(--colour-surface);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table td {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__table tbody th,
+.opi-activity.opi-activity .data-table tbody th {
+  font-weight: 550;
+}
+.opi-activity.opi-activity .data-table__total > th,
+.opi-activity.opi-activity .data-table__total > td {
+  border-top: 2px solid var(--colour-border-strong);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart {
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .chart__caption {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__svg {
+  max-width: 100%;
+  height: auto;
+}
+.opi-activity.opi-activity .chart__label,
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__inline,
+.opi-activity.opi-activity .chart__axis {
+  font-family: var(--font-body);
+  fill: var(--colour-text);
+  font-size: 13px;
+}
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__axis {
+  fill: var(--colour-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: var(--colour-on-accent);
+  font-size: 12px;
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__track {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__bar {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--one {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .chart__baseline,
+.opi-activity.opi-activity .chart__grid {
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__line {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: var(--colour-personality-individual-differences);
+  stroke-dasharray: 6 4;
+}
+.opi-activity.opi-activity .chart__point {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .reveal > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .reveal__lead {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+.opi-activity.opi-activity .reveal__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(176px, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+  padding: 0;
+  list-style: none;
+}
+.opi-activity.opi-activity .reveal__figures > li {
+  margin-top: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+.opi-activity.opi-activity .reveal__figure-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .reveal__figure-value {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .challenge {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+.opi-activity.opi-activity .challenge__locked {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .panel--caution {
+  background-color: var(--colour-status-bg);
+  border-color: var(--colour-status-border);
+}
+.opi-activity.opi-activity .panel--caution li + li {
+  margin-top: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .goal,
+.opi-activity.opi-activity .verdict,
+.opi-activity.opi-activity .feedback,
+.opi-activity.opi-activity .prediction__error,
+.opi-activity.opi-activity .prediction__readback,
+.opi-activity.opi-activity .stage-track > li,
+.opi-activity.opi-activity .reveal__figures > li {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border: 2px solid Highlight;
+}
+.opi-activity.opi-activity .chart__bar,
+.opi-activity.opi-activity .chart__bar--one {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: Canvas;
+}
+.opi-activity.opi-activity .chart__line {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: Highlight;
+}
+}
+.opi-activity.opi-activity .stage__more {
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .stage__more > summary {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .stage__more[open] > summary {
+  border-bottom: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .stage__more > *:not(summary) {
+  margin: var(--space-3);
+}
+
+/* modules/research-methods/tools/14-central-limit-theorem-simulator/tool.css */
+.opi-activity.opi-activity #clt .interactive__controls,
+.opi-activity.opi-activity #clt .interactive__stage {
+  min-width: 0;
+}
+.opi-activity.opi-activity #clt .interactive__stage > * {
+  min-width: 0;
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity #clt .interactive__body {
+  grid-template-columns: minmax(0, 288px) minmax(0, 1fr);
+}
+}
+.opi-activity.opi-activity .interactive__stage [data-clt] {
+  max-width: 416px;
+}
+.opi-activity.opi-activity #clt .interactive__readout {
+  grid-template-columns: repeat(auto-fit, minmax(112px, 1fr));
+  gap: 6.4px;
+}
+.opi-activity.opi-activity #clt .interactive__readout div {
+  padding: 6.4px 8px;
+}
+.opi-activity.opi-activity #clt .interactive__readout dd {
+  font-size: 16px;
+}
+.opi-activity.opi-activity .clt__pop {
+  fill: var(--colour-accent-soft);
+  stroke: var(--colour-accent);
+  stroke-width: 2;
+}
+.opi-activity.opi-activity .clt__tick {
+  stroke: var(--colour-text);
+  stroke-width: 1.2;
+  opacity: 0.75;
+}
+.opi-activity.opi-activity .clt__bar {
+  fill: var(--colour-research-methods, var(--colour-accent));
+  stroke: var(--colour-surface-raised);
+  stroke-width: 0.4;
+}
+.opi-activity.opi-activity .clt__mu {
+  stroke: var(--colour-social-critical-psychology);
+  stroke-width: 2;
+  stroke-dasharray: 5 3;
+}
+.opi-activity.opi-activity .clt__axis {
+  stroke: var(--colour-border-strong);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .clt__divide {
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .clt__pop {
+  fill: Canvas; stroke: CanvasText;
+}
+.opi-activity.opi-activity .clt__tick {
+  stroke: CanvasText; opacity: 1;
+}
+.opi-activity.opi-activity .clt__bar {
+  fill: CanvasText; stroke: Canvas;
+}
+.opi-activity.opi-activity .clt__mu {
+  stroke: Highlight;
+}
+.opi-activity.opi-activity .clt__axis {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .clt__divide {
+  stroke: GrayText;
+}
+}
+</style>
+
+  <!-- ================= Title and purpose ================= -->
+  <section class="section card--research-methods" aria-labelledby="page-heading">
+    <div class="container">
+
+      <p class="hero__eyebrow" style="color: var(--colour-research-methods)">
+        Research Methods
+      </p>
+      <h1 id="page-heading">Central Limit Theorem Simulator</h1>
+      <p class="hero__lead">
+        Three things that get confused with one another: the population, one
+        sample from it, and the distribution of the <em>means</em> of many
+        such samples. Only the third one is what the theorem is about.
+      </p>
+
+      <p>
+        <span class="badge">
+          <span class="badge__dot" aria-hidden="true"></span>
+          Simulated &mdash; generated populations, drawn from a documented seed
+        </span>
+      </p>
+
+      <div class="split split--wide">
+
+        <div class="panel">
+          <h2 class="panel__title">Learning objective</h2>
+          <p>
+            By the end you should be able to say what becomes normal as the
+            sample grows, and what does not.
+          </p>
+          <p class="text-muted">
+            About 25 minutes. Nothing you do here is saved or sent anywhere.
+          </p>
+        </div>
+
+        <div class="panel panel--caution">
+          <h2 class="panel__title">The sentence to strike out</h2>
+          <p>
+            "With a large enough sample the data become normal" is wrong, and
+            it is wrong in a way that leads people to run the wrong tests. The
+            data are whatever the population made them. What becomes closer to
+            normal is the distribution of the sample <em>mean</em> across
+            repeated samples &mdash; a distribution nobody ever observes,
+            which is precisely why it has to be simulated to be seen.
+          </p>
+        </div>
+
+      </div>
+
+      <ol class="how-to">
+        <li>Answer the three prediction questions to open the simulator.</li>
+        <li>Draw one sample at a time first, and watch its mean land.</li>
+        <li>Then draw a thousand and compare the picture with the population above it.</li>
+        <li>Change n and check the observed spread against the standard error.</li>
+      </ol>
+
+    </div>
+  </section>
+
+  <!-- ================= Opening prediction ================= -->
+  <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="opening-heading">First, three predictions</h2>
+        <p class="prose">
+          A fictional population is strongly right-skewed: most values are
+          small, a long tail runs to the right, the mean is 40.0 and the
+          standard deviation is 20.0. Samples of <strong>25</strong> are drawn
+          from it over and over, and each sample's mean is written down.
+        </p>
+      </div>
+
+      <noscript>
+        <div class="placeholder">
+          <h3 class="placeholder__title">This part needs JavaScript</h3>
+          <p class="prose">
+            The simulator generates its samples in your browser, so it cannot
+            run with JavaScript switched off. The rest of this page is
+            readable without it.
+          </p>
+        </div>
+      </noscript>
+
+      <form class="panel prediction" id="opening-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            The <em>shape</em>: how will the distribution of those sample
+            means compare with the population?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="shape" value="less"> Less skewed than the population
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="shape" value="same"> Just as skewed as the population
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="shape" value="more"> More skewed than the population
+          </label>
+        </fieldset>
+
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            The <em>width</em>: how spread out will the sample means be?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="width" value="narrower"> Narrower than the population
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="width" value="samew"> About the same width
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="width" value="wider"> Wider than the population
+          </label>
+        </fieldset>
+
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            The <em>centre</em>: where will the sample means pile up?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="centre" value="mu"> Around 40.0, the population mean
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="centre" value="low"> Below 40.0, because most values are small
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="centre" value="high"> Above 40.0, because the tail pulls upwards
+          </label>
+        </fieldset>
+
+        <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Record my predictions and open the simulator
+          </button>
+          <button class="button button--secondary" type="button" data-action="skip-opening">
+            Skip &mdash; I am demonstrating this
+          </button>
+        </div>
+
+        <div class="feedback" data-opening-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Simulator ================= -->
+  <section class="section" id="sim-section" aria-labelledby="sim-heading" hidden>
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="sim-heading" tabindex="-1">The simulator</h2>
+        <p class="prose">
+          The upper panel is the population, with the most recent sample drawn
+          as ticks along its axis. The lower panel is the pile of sample
+          means. They are two different distributions, and keeping them apart
+          is most of the battle.
+        </p>
+      </div>
+
+      <section class="interactive" id="clt" data-interactive
+               data-reset-message="Everything cleared. Back to the opening predictions.">
+
+        <header class="interactive__header">
+          <h3 class="interactive__title">The population, one sample, and the means</h3>
+          <p class="interactive__brief">
+            Every mean in the lower panel came from one sample of n values
+            drawn from the population above it. Nobody ever sees the lower
+            panel in real research; that is what it is for.
+          </p>
+        </header>
+
+        <div class="interactive__body interactive__body--pinned">
+
+          <form class="interactive__controls" data-interactive-controls>
+
+            <fieldset>
+              <legend>The population</legend>
+              <div class="control">
+                <label class="control__label" for="pop-select">Shape</label>
+                <select id="pop-select">
+                  <option value="skewed" selected>Strongly right-skewed</option>
+                  <option value="normal">Normal</option>
+                  <option value="uniform">Uniform</option>
+                  <option value="bimodal">Bimodal</option>
+                </select>
+                <p class="control__hint">
+                  Changing the population clears the pile: those means came
+                  from somewhere else.
+                </p>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>The samples</legend>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="n-range">Size of each sample</label>
+                  <output class="control__value" for="n-range">25</output>
+                </div>
+                <input type="range" id="n-range" min="2" max="100" step="1" value="25">
+              </div>
+              <div class="control">
+                <label class="control__label" for="seed-input">Random seed</label>
+                <input type="number" id="seed-input" value="7311" step="1" min="1" max="999999">
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>How the lower panel is drawn</legend>
+              <div class="control">
+                <label class="control__label" for="zoom-select">Horizontal scale for the means</label>
+                <select id="zoom-select">
+                  <option value="shared">Same scale as the population</option>
+                  <option value="zoom">Zoomed to the means</option>
+                </select>
+                <p class="control__hint">
+                  Use the shared scale to see how much narrower the means are,
+                  then zoom in to see their shape.
+                </p>
+              </div>
+            </fieldset>
+
+          </form>
+
+          <div class="interactive__stage" data-interactive-stage>
+
+            <!-- Pinned: population above, sample means below, on one axis. -->
+            <div class="stage__primary">
+              <h4 class="stage__heading" data-chart-heading>
+                No samples drawn yet
+              </h4>
+              <figure class="chart">
+                <figcaption class="visually-hidden">
+                  Two stacked panels on the same value axis: the population
+                  density with the most recent sample drawn as ticks beneath
+                  it, and a histogram of the means of all samples drawn so far
+                </figcaption>
+                <svg class="chart__svg" data-clt viewBox="0 0 460 252"
+                     aria-hidden="true" focusable="false"></svg>
+                <div class="table-scroll">
+                  <table class="chart__table">
+                    <caption class="visually-hidden">
+                      What the theory predicts about the distribution of the
+                      sample mean, and what the simulation produced
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Property of the sample mean</th>
+                        <th scope="col">Predicted</th>
+                        <th scope="col">Simulated</th>
+                      </tr>
+                    </thead>
+                    <tbody data-theory-table></tbody>
+                  </table>
+                </div>
+              </figure>
+              <dl class="interactive__readout" data-readout></dl>
+            </div>
+
+            <div class="verdict" data-verdict>
+              <h4 class="verdict__title">Reading this correctly</h4>
+              <p class="verdict__body" data-interpretation></p>
+              <p class="verdict__note" data-convergence></p>
+            </div>
+
+            <details class="stage__more">
+              <summary>The population itself, for reference</summary>
+              <div class="table-scroll">
+                <table class="data-table">
+                  <caption class="visually-hidden">
+                    The exact properties of the population currently selected
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Property of the population</th>
+                      <th scope="col">Value</th>
+                    </tr>
+                  </thead>
+                  <tbody data-pop-table></tbody>
+                </table>
+              </div>
+            </details>
+
+          </div>
+
+        </div>
+
+        <p class="interactive__status" data-interactive-status role="status"></p>
+
+        <div class="interactive__actions">
+          <button type="button" data-action="draw-one">Draw one sample</button>
+          <button type="button" data-action="draw-many">Draw 1,000 samples</button>
+          <button type="button" data-variant="secondary" data-action="clear-pile">
+            Clear the pile
+          </button>
+          <button type="button" data-variant="secondary" data-interactive-reset>
+            Reset everything
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ================= Challenge ================= -->
+  <section class="section section--tinted" id="challenge" aria-labelledby="challenge-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="challenge-heading">Challenge &mdash; what the theorem says</h2>
+      </div>
+
+      <form class="panel challenge" id="challenge-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            Which statements are correct? Select all that apply &mdash; three
+            of the seven are.
+          </legend>
+          <label class="control--choice">
+            <input type="checkbox" name="challenge" value="means">
+            The distribution of sample means gets closer to normal as n grows
+          </label>
+          <label class="control--choice">
+            <input type="checkbox" name="challenge" value="data">
+            The data themselves get closer to normal as n grows
+          </label>
+          <label class="control--choice">
+            <input type="checkbox" name="challenge" value="samesd">
+            The sampling distribution has about the same standard deviation as the population
+          </label>
+          <label class="control--choice">
+            <input type="checkbox" name="challenge" value="centred">
+            The sample means are centred on the population mean however skewed the population is
+          </label>
+          <label class="control--choice">
+            <input type="checkbox" name="challenge" value="thirty">
+            With n = 30 the sampling distribution is normal for any population
+          </label>
+          <label class="control--choice">
+            <input type="checkbox" name="challenge" value="onesample">
+            The standard error is a property of the one sample you collected
+          </label>
+          <label class="control--choice">
+            <input type="checkbox" name="challenge" value="quadruple">
+            Quadrupling n halves the standard error
+          </label>
+        </fieldset>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">Check my answer</button>
+        </div>
+
+        <div class="feedback" data-challenge-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Debrief ================= -->
+  <section class="section" id="debrief" aria-labelledby="debrief-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="debrief-heading">What this demonstrates</h2>
+      </div>
+
+      <div class="split split--wide">
+
+        <div class="prose">
+          <h3>The sample mean is a random variable</h3>
+          <p>
+            Draw one sample and you get one mean; draw another and you get a
+            different one. That variation is not error in any everyday sense
+            &mdash; nothing was measured badly &mdash; it is the consequence of
+            having sampled rather than counted everybody. The lower panel is
+            the distribution of that variation, and it is a distribution no
+            real study ever observes, because a real study contributes exactly
+            one dot to it.
+          </p>
+
+          <h3>Centre, spread and shape, in that order</h3>
+          <p>
+            The means are centred on the population mean whatever shape the
+            population has: sampling is unbiased, and the skew does not drag
+            them. Their spread is the population standard deviation divided by
+            the square root of n, which is what the standard error is and why
+            quadrupling the sample only halves it. Their shape is the last
+            thing to arrive, and the only part that depends on the population
+            looking anything like normal.
+          </p>
+
+          <h3>How fast the shape arrives depends on the population</h3>
+          <p>
+            The skewness of the sample mean is the population's skewness
+            divided by the square root of n, and its excess kurtosis is the
+            population's divided by n. Both are printed in the table beside
+            their simulated counterparts. That makes "n = 30 is enough" into
+            something checkable rather than a rule to memorise: for the
+            strongly skewed population here, thirty is not enough for the
+            skewness to disappear, and for the bimodal population ten is
+            already plenty.
+          </p>
+
+          <h3>The data do not change</h3>
+          <p>
+            Nothing about the upper panel improves as n grows. The population
+            is what it is, and a larger sample simply describes it better. If
+            the analysis you plan requires the data to be roughly normal
+            &mdash; and many do not &mdash; a big sample does not supply that.
+            What a big sample supplies is a well-behaved sampling distribution
+            for the mean, which is a different claim and a narrower one.
+          </p>
+        </div>
+
+        <aside class="panel panel--caution" aria-labelledby="limits-heading">
+          <h3 class="panel__title" id="limits-heading">
+            What this does <em>not</em> demonstrate
+          </h3>
+          <ul>
+            <li>
+              <strong>Nothing here is real data.</strong> All four populations
+              are mathematical objects with exactly known means, standard
+              deviations, skewness and kurtosis, and the samples are generated
+              from a seeded random number generator.
+            </li>
+            <li>
+              <strong>The simulation does not prove the theorem.</strong> It
+              agrees with it. Both rest on the same assumptions, so agreement
+              checks the arithmetic rather than the world.
+            </li>
+            <li>
+              <strong>Independent, identically distributed draws.</strong>
+              Every sample here is a genuine random sample from a fixed
+              population. Clustered, time-ordered or self-selected data break
+              the theorem's conditions, and no sample size repairs that.
+            </li>
+            <li>
+              <strong>The theorem is about the mean.</strong> Medians,
+              variances, correlations and maxima have their own sampling
+              distributions with their own behaviour, and the maximum's does
+              not become normal at all.
+            </li>
+            <li>
+              <strong>Knowing &sigma; is a luxury.</strong> The standard error
+              printed here uses the population standard deviation, which the
+              simulation supplies. Real work estimates it from the sample, and
+              the cost of that estimate is the subject of the t-test tool
+              later in this module.
+            </li>
+          </ul>
+        </aside>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+<script>
+/* ---- components/interactive-shell.js ---- */
+/* =========================================================================
+   Open Psychology Interactives — interactive shell helper
+   -------------------------------------------------------------------------
+   A very small vanilla-JS helper that every interactive in this collection
+   uses. It deliberately does *not* draw anything or know anything about
+   statistics, personality or neuropsychology. Its job is the repetitive,
+   easy-to-get-wrong accessibility plumbing:
+
+     * announcing changes through a polite live region;
+     * keeping a range slider and its <output> in step;
+     * wiring the standard Reset button;
+     * reporting the reader's reduced-motion preference.
+
+   Usage (see docs/adapting-a-tool.md for the full markup contract):
+
+       <script src="../../components/interactive-shell.js" defer><\/script>
+       <script src="tool.js" defer><\/script>
+
+       // in tool.js
+       const shell = InteractiveShell.attach('#sampling-demo');
+       shell.onReset(() => { ...restore defaults...; draw(); });
+       shell.bindRange('#sample-size', { format: n => n + ' cases' });
+       shell.announce('Sample of 25 drawn. Mean 4.8.');
+
+   Every published interactive is written against this module.
+
+   Exposed as a global (window.InteractiveShell) rather than an ES module so
+   that a single interactive folder can be opened directly from disk over
+   file:// — ES modules are blocked by CORS in that situation, plain scripts
+   are not. That constraint is the whole reason for the older syntax here.
+   ========================================================================= */
+
+(function (global) {
+  "use strict";
+
+  /* -----------------------------------------------------------------------
+     Internal helpers
+     --------------------------------------------------------------------- */
+
+  /**
+   * Accept either a CSS selector or an element and return an element.
+   * @param {string|Element} target
+   * @param {ParentNode} [scope]
+   * @returns {Element|null}
+   */
+  function resolve(target, scope) {
+    if (!target) {
+      return null;
+    }
+    if (typeof target === "string") {
+      return (scope || document).querySelector(target);
+    }
+    return target;
+  }
+
+  /**
+   * True when the reader has asked the operating system to reduce motion.
+   * Interactives should check this before animating anything — for example
+   * by drawing a sampling distribution in one step instead of animating
+   * each draw.
+   * @returns {boolean}
+   */
+  function prefersReducedMotion() {
+    return (
+      typeof global.matchMedia === "function" &&
+      global.matchMedia("(prefers-reduced-motion: reduce)").matches
+    );
+  }
+
+  /* -----------------------------------------------------------------------
+     Shell controller
+     --------------------------------------------------------------------- */
+
+  /**
+   * Attach the shell behaviour to one `.interactive` element.
+   *
+   * @param {string|Element} target  Selector or element for the shell root.
+   * @returns {object|null}  Controller, or null if the root was not found.
+   */
+  function attach(target) {
+    var root = resolve(target);
+
+    if (!root) {
+      if (global.console && console.warn) {
+        console.warn("InteractiveShell: root element not found.", target);
+      }
+      return null;
+    }
+
+    var controls = root.querySelector("[data-interactive-controls]");
+    var stage = root.querySelector("[data-interactive-stage]");
+    var status = root.querySelector("[data-interactive-status]");
+    var resetButton = root.querySelector("[data-interactive-reset]");
+    var resetHandlers = [];
+    // Every range bound with bindRange() registers its sync function here, so
+    // that reset() can refresh the visible values after the tool's own reset
+    // handlers have restored the inputs. See reset() for why this is needed.
+    var rangeSyncs = [];
+
+    /* --- Live region ----------------------------------------------------
+       The status element is marked up as role="status" (implicitly
+       aria-live="polite"). Two details matter:
+
+         1. Assistive technology only announces *changes* to a live region,
+            so writing the same string twice is silently dropped. We add a
+            trailing zero-width space on repeat messages to force an
+            announcement when a student re-runs the same action.
+         2. Announcements are debounced. A slider dragged across its range
+            fires dozens of input events; without a delay a screen reader
+            would queue every intermediate value and fall far behind.
+       ------------------------------------------------------------------ */
+
+    var announceTimer = null;
+    var lastMessage = "";
+
+    /**
+     * Announce a short sentence describing what just changed.
+     * @param {string} message
+     * @param {object} [options]
+     * @param {boolean} [options.immediate]  Skip the debounce delay. Use for
+     *   discrete actions (button presses); leave off for continuous input.
+     */
+    function announce(message, options) {
+      if (!status) {
+        return;
+      }
+
+      var text = String(message == null ? "" : message);
+      var immediate = Boolean(options && options.immediate);
+
+      if (announceTimer !== null) {
+        global.clearTimeout(announceTimer);
+        announceTimer = null;
+      }
+
+      function write() {
+        // Force a change when the text is identical to last time.
+        status.textContent = text === lastMessage ? text + "​" : text;
+        lastMessage = text;
+      }
+
+      if (immediate) {
+        write();
+      } else {
+        announceTimer = global.setTimeout(write, 350);
+      }
+    }
+
+    /* --- Reset ---------------------------------------------------------- */
+
+    /**
+     * Register a callback to run when the Reset button is pressed.
+     * Several may be registered; they run in the order added.
+     * @param {Function} handler
+     */
+    function onReset(handler) {
+      if (typeof handler === "function") {
+        resetHandlers.push(handler);
+      }
+    }
+
+    /**
+     * Run the reset handlers. Called by the button and available directly so
+     * an interactive can reset itself on first load.
+     *
+     * Bound ranges are re-synced afterwards. A reset handler restores an
+     * input by assigning to `input.value`, and assigning to a value in script
+     * does not fire an `input` event — so without this step the slider would
+     * jump back to its default while its <output> went on showing the old
+     * number. Syncing here, after the handlers have run, also means the sync
+     * sees the restored values regardless of the order things were
+     * registered in.
+     *
+     * @param {object} [options]
+     * @param {boolean} [options.silent]  Suppress the status announcement.
+     */
+    function reset(options) {
+      resetHandlers.forEach(function (handler) {
+        handler();
+      });
+      rangeSyncs.forEach(function (sync) {
+        sync();
+      });
+      if (!options || !options.silent) {
+        announce(
+          root.getAttribute("data-reset-message") ||
+            "Reset to the starting values.",
+          { immediate: true }
+        );
+      }
+    }
+
+    if (resetButton) {
+      resetButton.addEventListener("click", function (event) {
+        // Reset buttons commonly sit inside the controls <form>; stop the
+        // browser's own form reset from fighting with ours.
+        event.preventDefault();
+        reset();
+      });
+    }
+
+    /* --- Range binding --------------------------------------------------
+       Keeps a slider's <output> in step with its value. The <output> must
+       carry `for="<input id>"`, which is what associates the two for
+       assistive technology; this only handles the visible text.
+
+       Optionally sets aria-valuetext, which is how you make a screen reader
+       say "25 cases" or "medium correlation" instead of a bare "25".
+       ------------------------------------------------------------------ */
+
+    /**
+     * @param {string|Element} inputTarget  The range (or number) input.
+     * @param {object} [options]
+     * @param {Function} [options.format]  value:number -> string shown in the
+     *   <output>. Defaults to the raw value.
+     * @param {Function} [options.describe]  value:number -> string used for
+     *   aria-valuetext. Defaults to options.format.
+     * @param {Function} [options.onInput]  value:number -> void, called after
+     *   the display has been updated. Use it to redraw.
+     * @returns {HTMLInputElement|null}
+     */
+    function bindRange(inputTarget, options) {
+      var input = resolve(inputTarget, root);
+      if (!input) {
+        return null;
+      }
+
+      var settings = options || {};
+      var format =
+        typeof settings.format === "function"
+          ? settings.format
+          : function (value) {
+              return String(value);
+            };
+      var describe =
+        typeof settings.describe === "function" ? settings.describe : format;
+
+      // <output for="the-input-id"> is the conventional pairing.
+      var output = input.id
+        ? root.querySelector('output[for="' + input.id + '"]')
+        : null;
+
+      function sync() {
+        var value = Number(input.value);
+        if (output) {
+          output.textContent = format(value);
+        }
+        // Only meaningful for widgets with an implicit or explicit slider
+        // role; harmless elsewhere.
+        input.setAttribute("aria-valuetext", describe(value));
+        if (typeof settings.onInput === "function") {
+          settings.onInput(value);
+        }
+      }
+
+      input.addEventListener("input", sync);
+      // Registered so reset() can refresh the display after the tool's own
+      // reset handlers have put the input back to its default.
+      rangeSyncs.push(sync);
+      sync();
+
+      return input;
+    }
+
+    /* --- Public surface -------------------------------------------------- */
+
+    return {
+      /** The `.interactive` root element. */
+      root: root,
+      /** The controls panel, or null if the shell has none. */
+      controls: controls,
+      /** The stage element where the visualisation is drawn. */
+      stage: stage,
+      /** The live-region element. */
+      status: status,
+      announce: announce,
+      onReset: onReset,
+      reset: reset,
+      bindRange: bindRange,
+      prefersReducedMotion: prefersReducedMotion
+    };
+  }
+
+  /* -----------------------------------------------------------------------
+     Export
+     --------------------------------------------------------------------- */
+
+  global.InteractiveShell = {
+    attach: attach,
+    prefersReducedMotion: prefersReducedMotion
+  };
+})(window);
+
+/* ---- modules/research-methods/tools/14-central-limit-theorem-simulator/tool.js ---- */
+/* =========================================================================
+   Central Limit Theorem Simulator
+   -------------------------------------------------------------------------
+   One picture, two panels, one shared value axis:
+
+     upper panel  the POPULATION density, with the most recent SAMPLE drawn
+                  as ticks along the axis beneath it;
+     lower panel  the histogram of the MEANS of every sample drawn so far.
+
+   Keeping those three objects visually distinct while sharing a scale is the
+   whole design: it is the confusion between them that the theorem is usually
+   taught through and rarely taught past.
+
+   THE FOUR POPULATIONS
+   --------------------
+   Each is a mathematical distribution with exactly known moments, so the
+   "predicted" column of the table is not an estimate:
+
+     normal    Normal(50, 12)                      skew 0      ex. kurtosis 0
+     skewed    20 + Exponential(mean 20)           skew 2      ex. kurtosis 6
+     uniform   Uniform(20, 80)                     skew 0      ex. kurtosis -1.2
+     bimodal   half Normal(30, 6), half Normal(70, 6)
+                                                   skew 0      ex. kurtosis -1.683
+
+   The bimodal figures come from its central moments: variance 20^2 + 6^2 =
+   436, fourth central moment 20^4 + 6*20^2*36 + 3*6^4 = 250288, so the excess
+   kurtosis is 250288/436^2 - 3.
+
+   WHAT THE THEORY PREDICTS FOR THE MEAN OF n DRAWS
+   ------------------------------------------------
+       centre           = mu
+       standard error   = sigma / sqrt(n)
+       skewness         = population skewness / sqrt(n)
+       excess kurtosis  = population excess kurtosis / n
+
+   All four are shown beside the values measured in the simulation. The last
+   two are what turns "n = 30 is enough" from a rule to memorise into
+   something checkable: for the skewed population, thirty leaves a skewness of
+   0.37, and for the bimodal population ten is already plenty.
+
+   WHAT DOES NOT HAPPEN
+   --------------------
+   The data do not become normal. The upper panel never changes shape however
+   large n gets; only the lower panel does. That distinction is the reason the
+   page exists.
+
+   Randomness is seeded (mulberry32, with Box-Muller normals and inverse-CDF
+   exponentials). No data leave the browser: no storage, no network request.
+   ========================================================================= */
+
+(function () {
+  "use strict";
+
+  var BIN_COUNT = 45;
+  var MAX_TICKS = 100;      // the sample size slider's maximum
+  var DEFAULTS = { pop: "skewed", n: 25, seed: 7311, zoom: "shared" };
+
+  var POPULATIONS = {
+    normal: {
+      label: "Normal", mu: 50, sigma: 12, skew: 0, exKurt: 0,
+      axis: [8, 92],
+      density: function (x) {
+        var z = (x - 50) / 12;
+        return Math.exp(-0.5 * z * z) / (12 * Math.sqrt(2 * Math.PI));
+      },
+      draw: function (random, normalDraw) { return 50 + normalDraw(random) * 12; },
+      note: "A normal population. The sample mean is exactly normal at every n, " +
+        "so there is nothing for the theorem to do."
+    },
+    skewed: {
+      label: "Strongly right-skewed", mu: 40, sigma: 20, skew: 2, exKurt: 6,
+      axis: [15, 145],
+      density: function (x) {
+        return x < 20 ? 0 : Math.exp(-(x - 20) / 20) / 20;
+      },
+      draw: function (random) { return 20 - 20 * Math.log(Math.max(random(), 1e-12)); },
+      note: "A shifted exponential: most values small, a long right tail, " +
+        "skewness exactly 2."
+    },
+    uniform: {
+      label: "Uniform", mu: 50, sigma: 17.3205, skew: 0, exKurt: -1.2,
+      axis: [8, 92],
+      density: function (x) { return x >= 20 && x <= 80 ? 1 / 60 : 0; },
+      draw: function (random) { return 20 + random() * 60; },
+      note: "Every value between 20 and 80 equally likely. Nothing like a bell, " +
+        "and the means are close to normal by n = 5."
+    },
+    bimodal: {
+      label: "Bimodal", mu: 50, sigma: 20.8806, skew: 0, exKurt: -1.6832,
+      axis: [8, 92],
+      density: function (x) {
+        var a = (x - 30) / 6;
+        var b = (x - 70) / 6;
+        return 0.5 * (Math.exp(-0.5 * a * a) + Math.exp(-0.5 * b * b)) /
+          (6 * Math.sqrt(2 * Math.PI));
+      },
+      draw: function (random, normalDraw) {
+        return (random() < 0.5 ? 30 : 70) + normalDraw(random) * 6;
+      },
+      note: "Two tight humps and nothing in the middle. At n = 2 the means are " +
+        "trimodal; by n = 10 they are already close to normal."
+    }
+  };
+
+  /* =======================================================================
+     Seeded randomness
+     ===================================================================== */
+
+  function mulberry32(seed) {
+    var a = seed >>> 0;
+    return function () {
+      a += 0x6d2b79f5;
+      var t = a;
+      t = Math.imul(t ^ (t >>> 15), t | 1);
+      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  function normal(random) {
+    var u = Math.max(random(), 1e-9);
+    return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * random());
+  }
+
+  /* =======================================================================
+     Small DOM helpers
+     ===================================================================== */
+
+  var NS = "http://www.w3.org/2000/svg";
+
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) { node.className = className; }
+    if (text !== undefined) { node.textContent = text; }
+    return node;
+  }
+
+  function svgNode(tag, attrs) {
+    var node = document.createElementNS(NS, tag);
+    Object.keys(attrs || {}).forEach(function (key) {
+      node.setAttribute(key, String(attrs[key]));
+    });
+    return node;
+  }
+
+  function svgText(attrs, text, className) {
+    var node = svgNode("text", attrs);
+    if (className) { node.setAttribute("class", className); }
+    node.textContent = text;
+    return node;
+  }
+
+  function clear(node) {
+    while (node.firstChild) { node.removeChild(node.firstChild); }
+  }
+
+  function fmt(value, places) {
+    return value.toFixed(places === undefined ? 2 : places);
+  }
+
+  function row(cells) {
+    var tr = make("tr");
+    cells.forEach(function (cell, i) {
+      if (i === 0) {
+        var th = make("th", null, cell);
+        th.setAttribute("scope", "row");
+        tr.appendChild(th);
+      } else {
+        tr.appendChild(make("td", null, cell));
+      }
+    });
+    return tr;
+  }
+
+  var page = document;
+  var $ = function (s, scope) { return (scope || page).querySelector(s); };
+  var $$ = function (s, scope) {
+    return Array.prototype.slice.call((scope || page).querySelectorAll(s));
+  };
+
+  function showFeedback(container, tone, verdictText, text) {
+    clear(container);
+    container.setAttribute("data-tone", tone);
+    var p = make("p");
+    p.appendChild(make("strong", "feedback__verdict", verdictText));
+    if (text) { p.appendChild(document.createTextNode(" " + text)); }
+    container.appendChild(p);
+    container.hidden = false;
+    return p;
+  }
+
+  /* =======================================================================
+     Wiring
+     ===================================================================== */
+
+  var shell = InteractiveShell.attach("#clt");
+  if (!shell) { return; }
+
+  var popSelect = $("#pop-select");
+  var nRange = $("#n-range");
+  var seedInput = $("#seed-input");
+  var zoomSelect = $("#zoom-select");
+  var chartHeading = $("[data-chart-heading]");
+  var cltSvg = $("[data-clt]");
+  var theoryTable = $("[data-theory-table]");
+  var popTable = $("[data-pop-table]");
+  var readout = $("[data-readout]");
+  var verdictBox = $("[data-verdict]");
+  var interpretation = $("[data-interpretation]");
+  var convergence = $("[data-convergence]");
+
+  var openingForm = $("#opening-form");
+  var openingError = $("[data-opening-error]");
+  var openingFeedback = $("[data-opening-feedback]");
+  var simSection = $("#sim-section");
+  var challengeForm = $("#challenge-form");
+  var challengeFeedback = $("[data-challenge-feedback]");
+
+  var means = [];
+  var lastSample = [];
+
+  function population() { return POPULATIONS[popSelect.value]; }
+  function sampleSize() { return Number(nRange.value); }
+
+  /* =======================================================================
+     Drawing samples
+     ===================================================================== */
+
+  function drawSamples(count) {
+    var pop = population();
+    var n = sampleSize();
+    var seed = Math.max(1, Math.round(Number(seedInput.value) || 1));
+    var random = mulberry32(seed + means.length * 7919);
+    for (var s = 0; s < count; s += 1) {
+      var values = [];
+      var total = 0;
+      for (var i = 0; i < n; i += 1) {
+        var value = pop.draw(random, normal);
+        values.push(value);
+        total += value;
+      }
+      means.push(total / n);
+      if (s === count - 1) { lastSample = values; }
+    }
+  }
+
+  function moments(values) {
+    if (values.length < 2) { return null; }
+    var m = values.reduce(function (a, b) { return a + b; }, 0) / values.length;
+    var s2 = 0;
+    var s3 = 0;
+    var s4 = 0;
+    values.forEach(function (v) {
+      var d = v - m;
+      s2 += d * d;
+      s3 += d * d * d;
+      s4 += d * d * d * d;
+    });
+    var variance = s2 / values.length;
+    var sd = Math.sqrt(variance);
+    return {
+      mean: m,
+      sd: Math.sqrt(s2 / (values.length - 1)),
+      skew: sd > 0 ? (s3 / values.length) / Math.pow(sd, 3) : 0,
+      exKurt: sd > 0 ? (s4 / values.length) / (variance * variance) - 3 : 0
+    };
+  }
+
+  /* =======================================================================
+     Drawing the picture
+     ===================================================================== */
+
+  function renderChart() {
+    var pop = population();
+    var n = sampleSize();
+    var left = 38;
+    var right = 448;
+    var topBase = 96;     // baseline of the population panel
+    var lowTop = 132;
+    var lowBase = 210;    // baseline of the sample-means panel
+
+    clear(cltSvg);
+
+    var axisLo = pop.axis[0];
+    var axisHi = pop.axis[1];
+    var X = function (v) {
+      return left + ((v - axisLo) / (axisHi - axisLo)) * (right - left);
+    };
+
+    /* --- Upper panel: the population ---------------------------------- */
+
+    var peak = 0;
+    var steps = 200;
+    var points = [];
+    for (var i = 0; i <= steps; i += 1) {
+      var x = axisLo + (axisHi - axisLo) * (i / steps);
+      var d = pop.density(x);
+      if (d > peak) { peak = d; }
+      points.push([x, d]);
+    }
+    var path = points.map(function (p, idx) {
+      return (idx === 0 ? "M" : "L") + fmt(X(p[0]), 1) + " " +
+        fmt(topBase - (p[1] / peak) * (topBase - 16), 1);
+    }).join(" ");
+    cltSvg.appendChild(svgNode("path", {
+      d: "M" + fmt(X(axisLo), 1) + " " + topBase + " " + path.slice(1) +
+        " L" + fmt(X(axisHi), 1) + " " + topBase + " Z",
+      class: "clt__pop"
+    }));
+    cltSvg.appendChild(svgNode("line",
+      { x1: left, y1: topBase, x2: right, y2: topBase, class: "clt__axis" }));
+    cltSvg.appendChild(svgText(
+      { x: left + 2, y: 24, "text-anchor": "start" },
+      "population (" + pop.label.toLowerCase() + ")", "chart__label"));
+
+    // The most recent sample, as ticks under the population axis.
+    lastSample.slice(0, MAX_TICKS).forEach(function (v) {
+      if (v < axisLo || v > axisHi) { return; }
+      cltSvg.appendChild(svgNode("line", {
+        x1: X(v), y1: topBase + 2, x2: X(v), y2: topBase + 12, class: "clt__tick"
+      }));
+    });
+    if (lastSample.length) {
+      cltSvg.appendChild(svgText(
+        { x: right, y: topBase + 24, "text-anchor": "end" },
+        "the most recent sample of " + lastSample.length, "chart__axis"));
+    }
+
+    cltSvg.appendChild(svgNode("line",
+      { x1: left, y1: 116, x2: right, y2: 116, class: "clt__divide" }));
+
+    /* --- Lower panel: the sample means -------------------------------- */
+
+    var se = pop.sigma / Math.sqrt(n);
+    var lo = axisLo;
+    var hi = axisHi;
+    if (zoomSelect.value === "zoom") {
+      lo = pop.mu - 4.2 * se;
+      hi = pop.mu + 4.2 * se;
+    }
+    var XL = function (v) {
+      return left + ((v - lo) / (hi - lo)) * (right - left);
+    };
+
+    if (means.length) {
+      var width = (hi - lo) / BIN_COUNT;
+      var bins = [];
+      for (var b = 0; b < BIN_COUNT; b += 1) { bins.push(0); }
+      means.forEach(function (m) {
+        var index = Math.floor((m - lo) / width);
+        if (index >= 0 && index < BIN_COUNT) { bins[index] += 1; }
+      });
+      var tallest = Math.max.apply(null, bins.concat([1]));
+      bins.forEach(function (count, index) {
+        if (!count) { return; }
+        var x0 = XL(lo + index * width);
+        var x1 = XL(lo + (index + 1) * width);
+        var h = (count / tallest) * (lowBase - lowTop);
+        cltSvg.appendChild(svgNode("rect", {
+          x: x0, y: lowBase - h, width: Math.max(1, x1 - x0 - 0.5), height: h,
+          class: "clt__bar"
+        }));
+      });
+    }
+
+    cltSvg.appendChild(svgNode("line",
+      { x1: XL(pop.mu), y1: lowTop - 6, x2: XL(pop.mu), y2: lowBase,
+        class: "clt__mu" }));
+    cltSvg.appendChild(svgText(
+      { x: left + 2, y: lowTop - 6, "text-anchor": "start" },
+      means.length
+        ? "means of " + means.length + " samples of " + n
+        : "means of samples of " + n + " — none drawn yet", "chart__label"));
+
+    cltSvg.appendChild(svgNode("line",
+      { x1: left, y1: lowBase, x2: right, y2: lowBase, class: "clt__axis" }));
+
+    var step = (hi - lo) > 80 ? 20 : (hi - lo) > 30 ? 10 : (hi - lo) > 12 ? 5 :
+      (hi - lo) > 5 ? 2 : 1;
+    var first = Math.ceil(lo / step) * step;
+    for (var v2 = first; v2 <= hi; v2 += step) {
+      cltSvg.appendChild(svgNode("line",
+        { x1: XL(v2), y1: lowBase, x2: XL(v2), y2: lowBase + 4, class: "clt__axis" }));
+      cltSvg.appendChild(svgText(
+        { x: XL(v2), y: lowBase + 16, "text-anchor": "middle" },
+        String(Math.round(v2 * 10) / 10), "chart__axis"));
+    }
+    cltSvg.appendChild(svgText(
+      { x: (left + right) / 2, y: lowBase + 32, "text-anchor": "middle" },
+      zoomSelect.value === "zoom"
+        ? "value — lower panel zoomed to the means, upper panel is not"
+        : "value — both panels on the same scale", "chart__axis"));
+  }
+
+  function renderTables() {
+    var pop = population();
+    var n = sampleSize();
+    var se = pop.sigma / Math.sqrt(n);
+    var observed = moments(means);
+
+    clear(theoryTable);
+    [
+      ["Centre", fmt(pop.mu, 1), observed ? fmt(observed.mean, 2) : "—"],
+      ["Standard deviation (the standard error)", fmt(se, 2),
+        observed ? fmt(observed.sd, 2) : "—"],
+      ["Skewness", fmt(pop.skew / Math.sqrt(n)),
+        observed ? fmt(observed.skew) : "—"],
+      ["Excess kurtosis", fmt(pop.exKurt / n),
+        observed ? fmt(observed.exKurt) : "—"]
+    ].forEach(function (cells) { theoryTable.appendChild(row(cells)); });
+
+    clear(popTable);
+    [
+      ["Shape", pop.label],
+      ["Mean", fmt(pop.mu, 1)],
+      ["Standard deviation", fmt(pop.sigma, 2)],
+      ["Skewness", fmt(pop.skew)],
+      ["Excess kurtosis", fmt(pop.exKurt)]
+    ].forEach(function (cells) { popTable.appendChild(row(cells)); });
+  }
+
+  function renderReadout() {
+    var pop = population();
+    var n = sampleSize();
+    var observed = moments(means);
+    clear(readout);
+    [
+      ["Population mean", fmt(pop.mu, 1)],
+      ["Mean of the means", observed ? fmt(observed.mean, 2) : "—"],
+      ["Standard error, predicted", fmt(pop.sigma / Math.sqrt(n))],
+      ["Spread of the means, observed", observed ? fmt(observed.sd) : "—"]
+    ].forEach(function (pair) {
+      var cell = make("div");
+      cell.appendChild(make("dt", null, pair[0]));
+      cell.appendChild(make("dd", null, pair[1]));
+      readout.appendChild(cell);
+    });
+  }
+
+  function renderVerdict() {
+    var pop = population();
+    var n = sampleSize();
+    var se = pop.sigma / Math.sqrt(n);
+    var predictedSkew = pop.skew / Math.sqrt(n);
+    var observed = moments(means);
+    var tone;
+    var text;
+
+    if (!means.length) {
+      tone = "caution";
+      text =
+        pop.note + " The theory says means of samples of " + n +
+        " should sit around " + fmt(pop.mu, 1) + " with a standard deviation " +
+        "of " + fmt(se) + " - " + fmt(pop.sigma / se, 1) + " times narrower " +
+        "than the population above. Draw a few and watch.";
+    } else if (means.length < 12) {
+      tone = "neutral";
+      text =
+        means.length + (means.length === 1 ? " sample" : " samples") +
+        " drawn so far. The ticks along the upper axis are what a real study " +
+        "would collect; the whole of the lower panel is what a real study " +
+        "never sees, because it contributes one mean and stops. The most " +
+        "recent mean was " + fmt(means[means.length - 1], 2) + ".";
+    } else {
+      tone = "good";
+      text =
+        means.length + " sample means, each from a fresh sample of " + n +
+        ". They are centred on " + fmt(observed.mean, 2) + " against a " +
+        "population mean of " + fmt(pop.mu, 1) + ", and their spread is " +
+        fmt(observed.sd) + " against a predicted standard error of " +
+        fmt(se) + ". The centre is right whatever the population looks like, " +
+        "and the spread is the population standard deviation divided by the " +
+        "square root of " + n + ".";
+    }
+
+    interpretation.textContent = text;
+    verdictBox.setAttribute("data-tone", tone);
+
+    var lines = [];
+    if (Math.abs(predictedSkew) > 0.35) {
+      lines.push(
+        "Shape: the predicted skewness of the mean is " + fmt(predictedSkew) +
+        " - the population's " + fmt(pop.skew) + " divided by the square root " +
+        "of " + n + " - so this sampling distribution is still visibly " +
+        "lopsided. Raising n is the only thing that fixes it, and it fixes it " +
+        "slowly, at one over the square root of n.");
+    } else if (Math.abs(pop.exKurt / n) > 0.3) {
+      lines.push(
+        "Shape: the predicted skewness is already " + fmt(predictedSkew) +
+        ", but the excess kurtosis of the mean is still " + fmt(pop.exKurt / n) +
+        ", so the sampling distribution is symmetric without yet being normal. " +
+        "Symmetry arrives before normality.");
+    } else {
+      lines.push(
+        "Shape: the predicted skewness of the mean is " + fmt(predictedSkew) +
+        " and its excess kurtosis " + fmt(pop.exKurt / n) + ", both close " +
+        "enough to zero that the sampling distribution is effectively normal " +
+        "at this sample size - however little the population above resembles " +
+        "one.");
+    }
+    lines.push(
+      "Nothing about the upper panel has changed and nothing about it will. " +
+      "The data are not becoming normal; the distribution of their mean is.");
+    if (means.length >= 100) {
+      lines.push(
+        "One caveat on the last two rows of the table: the simulated skewness " +
+        "and kurtosis use the ordinary sample formulae, which are biased " +
+        "downwards, so expect the measured figures to sit a little below the " +
+        "predicted ones even with a thousand means. The centre and the spread " +
+        "have no such problem.");
+    }
+    convergence.textContent = lines.join(" ");
+  }
+
+  function render() {
+    var pop = population();
+    chartHeading.textContent = means.length
+      ? means.length + " sample means from a " + pop.label.toLowerCase() +
+        " population"
+      : "No samples drawn yet";
+    renderChart();
+    renderTables();
+    renderReadout();
+    renderVerdict();
+  }
+
+  /* =======================================================================
+     Controls
+     ===================================================================== */
+
+  function invalidatePile() {
+    // Means drawn under a different population or sample size belong to a
+    // different sampling distribution, so the pile is cleared.
+    means = [];
+    lastSample = [];
+    render();
+  }
+
+  shell.bindRange(nRange, {
+    format: function (v) { return String(v); },
+    describe: function (v) { return "samples of " + v + " observations each"; },
+    onInput: invalidatePile
+  });
+
+  popSelect.addEventListener("change", function () {
+    invalidatePile();
+    shell.announce(
+      "Population changed to " + population().label.toLowerCase() +
+      ". The pile has been cleared, because those means came from a different " +
+      "population.", { immediate: true });
+  });
+
+  zoomSelect.addEventListener("change", function () {
+    render();
+    shell.announce(
+      zoomSelect.value === "zoom"
+        ? "Lower panel zoomed to the means. The upper panel is unchanged, so " +
+          "the two panels are no longer on the same scale."
+        : "Both panels back on the same scale.", { immediate: true });
+  });
+
+  seedInput.addEventListener("change", invalidatePile);
+
+  $('[data-action="draw-one"]').addEventListener("click", function () {
+    drawSamples(1);
+    render();
+    var m = means[means.length - 1];
+    shell.announce(
+      "Sample " + means.length + " drawn: " + sampleSize() +
+      " values with a mean of " + fmt(m, 2) + ". The population mean is " +
+      fmt(population().mu, 1) + ".", { immediate: true });
+  });
+
+  $('[data-action="draw-many"]').addEventListener("click", function () {
+    drawSamples(1000);
+    render();
+    var observed = moments(means);
+    shell.announce(
+      means.length + " sample means now in the pile, centred on " +
+      fmt(observed.mean, 2) + " with a spread of " + fmt(observed.sd) +
+      " against a predicted standard error of " +
+      fmt(population().sigma / Math.sqrt(sampleSize())) + ".",
+      { immediate: true });
+  });
+
+  $('[data-action="clear-pile"]').addEventListener("click", function () {
+    means = [];
+    lastSample = [];
+    render();
+    shell.announce("Pile cleared. The population and sample size are unchanged.",
+      { immediate: true });
+  });
+
+  /* =======================================================================
+     Opening predictions
+     ===================================================================== */
+
+  var TRUTH = { shape: "less", width: "narrower", centre: "mu" };
+
+  var WHY = {
+    shape:
+      "Shape: less skewed. The skewness of the sample mean is the " +
+      "population's skewness divided by the square root of n, so 2.00 becomes " +
+      "2 over the square root of 25, which is 0.40. Less skewed, and not yet " +
+      "symmetric - the familiar advice that thirty is enough is doing rather " +
+      "less than people think here.",
+    width:
+      "Width: narrower, and by a lot. The standard error is 20 divided by the " +
+      "square root of 25, which is 4.00 - one fifth of the population's " +
+      "standard deviation. Averaging is what does this: extreme values in a " +
+      "sample are diluted by the ordinary ones beside them.",
+    centre:
+      "Centre: on 40.0, the population mean. Sampling is unbiased, and the " +
+      "skew of the population does not drag the means either way. This is the " +
+      "part of the theorem that holds at every sample size, including n = 1."
+  };
+
+  function lockForm(form) {
+    $$("input, button, select", form).forEach(function (c) { c.disabled = true; });
+  }
+
+  function unlockForm(form) {
+    $$("input, button, select", form).forEach(function (c) { c.disabled = false; });
+    form.reset();
+  }
+
+  function openSimulator() {
+    simSection.hidden = false;
+    render();
+    $("#sim-heading").focus();
+    shell.announce(
+      "Simulator unlocked, showing the population from the predictions. No " +
+      "samples drawn yet.", { immediate: true });
+  }
+
+  openingForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answers = {};
+    var missing = false;
+    ["shape", "width", "centre"].forEach(function (name) {
+      var picked = $('input[name="' + name + '"]:checked', openingForm);
+      if (!picked) { missing = true; } else { answers[name] = picked.value; }
+    });
+    if (missing) {
+      openingError.textContent =
+        "Answer all three questions before opening the simulator.";
+      openingError.hidden = false;
+      return;
+    }
+    openingError.hidden = true;
+
+    var correct = ["shape", "width", "centre"].filter(function (name) {
+      return answers[name] === TRUTH[name];
+    }).length;
+    var tone = correct === 3 ? "good" : correct >= 2 ? "caution" : "warn";
+    var lead = correct === 3
+      ? "All three."
+      : correct + " of the three.";
+
+    clear(openingFeedback);
+    openingFeedback.setAttribute("data-tone", tone);
+    var p = make("p");
+    p.appendChild(make("strong", "feedback__verdict", lead));
+    p.appendChild(document.createTextNode(
+      " Centre, spread and shape behave quite differently, and the theorem is " +
+      "only really about the third."));
+    openingFeedback.appendChild(p);
+    var list = make("ul");
+    ["centre", "width", "shape"].forEach(function (name) {
+      var li = make("li");
+      li.appendChild(make("strong", null,
+        (answers[name] === TRUTH[name] ? "Correct. " : "Not quite. ")));
+      li.appendChild(document.createTextNode(WHY[name]));
+      list.appendChild(li);
+    });
+    openingFeedback.appendChild(list);
+    openingFeedback.hidden = false;
+
+    lockForm(openingForm);
+    openSimulator();
+  });
+
+  $('[data-action="skip-opening"]').addEventListener("click", function () {
+    openingError.hidden = true;
+    showFeedback(openingFeedback, "neutral",
+      "Predictions skipped — demonstration mode.", "");
+    lockForm(openingForm);
+    openSimulator();
+  });
+
+  /* =======================================================================
+     Challenge
+     ===================================================================== */
+
+  var CHALLENGE_NOTES = {
+    means: {
+      correct: true,
+      text:
+        "Correct, and it is the whole theorem. Note that it is a statement " +
+        "about a distribution nobody observes: the spread of the mean across " +
+        "repeated samples, which is what the lower panel simulates."
+    },
+    data: {
+      correct: false,
+      text:
+        "Wrong, and it is the error the page is built around. The upper panel " +
+        "never changes shape however large n gets. If an analysis needs the " +
+        "data to be roughly normal, a large sample does not supply that."
+    },
+    samesd: {
+      correct: false,
+      text:
+        "Wrong. The sampling distribution is narrower by a factor of the " +
+        "square root of n. With the skewed population at n = 25 the population " +
+        "SD is 20.00 and the standard error is 4.00; look at the two panels on " +
+        "the shared scale."
+    },
+    centred: {
+      correct: true,
+      text:
+        "Correct, and this part holds at every sample size, including n = 1. " +
+        "The skew of the population does not drag the means, because the " +
+        "sample mean is an unbiased estimator whatever the shape."
+    },
+    thirty: {
+      correct: false,
+      text:
+        "Wrong. Thirty is a rule of thumb, not a theorem, and the tool prints " +
+        "the number that decides it: with the skewed population at n = 30 the " +
+        "predicted skewness of the mean is still 0.37. For the bimodal " +
+        "population, n = 10 is already ample. The right question is always " +
+        "how far from normal the population is, not whether n has passed a " +
+        "line."
+    },
+    onesample: {
+      correct: false,
+      text:
+        "Wrong. The standard error is the standard deviation of the sampling " +
+        "distribution - a property of the procedure across repeated samples. " +
+        "It is estimated from one sample, which is a different thing from " +
+        "being a property of it, and confusing the two is what makes the " +
+        "standard error so hard to describe out loud."
+    },
+    quadruple: {
+      correct: true,
+      text:
+        "Correct, and it is the most practically important line in the " +
+        "theorem. Precision improves with the square root of n, so halving " +
+        "the standard error costs four times the participants. Set n to 25 " +
+        "and read the standard error, then set it to 100."
+    }
+  };
+
+  challengeForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var chosen = $$('input[name="challenge"]:checked', challengeForm)
+      .map(function (b) { return b.value; });
+
+    if (!chosen.length) {
+      showFeedback(challengeFeedback, "caution", "Select at least one statement.",
+        "Three of the seven are correct.");
+      return;
+    }
+
+    var wrongPicked = chosen.filter(function (v) {
+      return !CHALLENGE_NOTES[v].correct;
+    });
+    var missed = ["means", "centred", "quadruple"].filter(function (v) {
+      return chosen.indexOf(v) === -1;
+    });
+
+    var tone = wrongPicked.length ? "warn" : missed.length ? "caution" : "good";
+    var verdictText;
+    if (wrongPicked.length) {
+      verdictText = "At least one of these attaches the theorem to the data " +
+        "rather than to the mean.";
+    } else if (missed.length) {
+      verdictText = "Everything you picked is right, and " + missed.length +
+        " of the three correct statements is still unselected.";
+    } else {
+      verdictText = "Yes — all three, and none of the four misreadings.";
+    }
+
+    clear(challengeFeedback);
+    challengeFeedback.setAttribute("data-tone", tone);
+    var lead = make("p");
+    lead.appendChild(make("strong", "feedback__verdict", verdictText));
+    lead.appendChild(document.createTextNode(
+      " The four incorrect statements are the four ways the theorem is " +
+      "usually misquoted in methods sections."));
+    challengeFeedback.appendChild(lead);
+
+    var list = make("ul");
+    Object.keys(CHALLENGE_NOTES).forEach(function (value) {
+      var li = make("li");
+      li.appendChild(make("strong", null,
+        chosen.indexOf(value) !== -1
+          ? "You selected this. " : "You did not select this. "));
+      li.appendChild(document.createTextNode(CHALLENGE_NOTES[value].text));
+      list.appendChild(li);
+    });
+    challengeFeedback.appendChild(list);
+    challengeFeedback.hidden = false;
+    shell.announce(verdictText, { immediate: true });
+  });
+
+  /* =======================================================================
+     Reset and start-up
+     ===================================================================== */
+
+  shell.onReset(function () {
+    means = [];
+    lastSample = [];
+    unlockForm(openingForm);
+    openingFeedback.hidden = true;
+    openingError.hidden = true;
+    simSection.hidden = true;
+    challengeForm.reset();
+    challengeFeedback.hidden = true;
+    popSelect.value = DEFAULTS.pop;
+    nRange.value = String(DEFAULTS.n);
+    seedInput.value = String(DEFAULTS.seed);
+    zoomSelect.value = DEFAULTS.zoom;
+    render();
+  });
+
+  shell.reset({ silent: true });
+  shell.announce(
+    "Ready. Answer the three predictions above to open the simulator.",
+    { immediate: true });
+})();
+
+</script>
+</div>

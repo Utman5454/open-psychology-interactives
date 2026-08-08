@@ -1,0 +1,3362 @@
+<!-- Posner Spatial Cueing
+     From Open Psychology Interactives - https://github.com/utman5454/open-psychology-interactives
+     Self-contained: no stylesheets, scripts, fonts, images or network requests.
+     Styles are scoped to .opi-activity and do not affect the page around them.
+     Nothing is saved, sent or tracked. MIT licensed; please keep this notice.
+     Paste anywhere that accepts HTML, or save as a .html file and open it. -->
+<div class="opi-activity">
+<style>
+/* Defensive baseline. See scripts/build-standalone.py for why this
+   is `revert` rather than an enumerated reset, and how the specificity ladder
+   keeps the activity's own styling on top of it. */
+.opi-activity *:not(svg *) {
+  all: revert;
+}
+.opi-activity, .opi-activity *, .opi-activity *::before, .opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  text-transform: none;
+  text-indent: 0;
+  font-style: normal;
+  font-variant: normal;
+  letter-spacing: normal;
+  word-spacing: normal;
+  white-space: normal;
+  visibility: visible;
+  float: none;
+  max-width: none;
+}
+.opi-activity svg { max-width: 100%; }
+.opi-activity img { max-width: 100%; height: auto; }
+.opi-activity [hidden] { display: none !important; }
+
+/* assets/css/main.css */
+.opi-activity.opi-activity {
+  --colour-page: #ffffff;
+  --colour-surface: #f5f7fa;
+  --colour-surface-raised: #ffffff;
+  --colour-border: #d3d9e2;
+  --colour-border-strong: #aeb7c4;
+  --colour-text: #131820;
+  --colour-text-muted: #4c566a;
+  --colour-accent: #1a4fa0;
+  --colour-accent-hover: #123a7a;
+  --colour-accent-soft: #e8eefb;
+  --colour-on-accent: #ffffff;
+  --colour-focus: #b45309;
+  --colour-cognitive: #8a4b00;
+  --colour-research-methods: #1a4fa0;
+  --colour-neuropsychology: #145c53;
+  --colour-social-critical-psychology: #9e2f45;
+  --colour-personality-individual-differences: #7a2e6d;
+  --colour-status-bg: #f1ede3;
+  --colour-status-text: #5c4a1f;
+  --colour-status-border: #d9cdb0;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  --text-xs: 13px;
+  --text-sm: 15px;
+  --text-base: 17px;
+  --text-lg: 19px;
+  --text-xl: 23px;
+  --text-2xl: 28px;
+  --text-3xl: 36px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgb(19 24 32 / 0.06);
+  --shadow-md: 0 2px 8px rgb(19 24 32 / 0.08);
+  --measure: 68ch;
+  --container: 1152px;
+}
+@media (prefers-color-scheme: dark) {
+.opi-activity.opi-activity {
+  --colour-page: #0f141b;
+  --colour-surface: #161d27;
+  --colour-surface-raised: #1a2230;
+  --colour-border: #2c3644;
+  --colour-border-strong: #44506180;
+  --colour-text: #e9edf3;
+  --colour-text-muted: #a8b2c1;
+  --colour-accent: #8fb6ff;
+  --colour-accent-hover: #b3cdff;
+  --colour-accent-soft: #1b2740;
+  --colour-on-accent: #0f141b;
+  --colour-focus: #f0b429;
+  --colour-cognitive: #e2ab5f;
+  --colour-research-methods: #8fb6ff;
+  --colour-neuropsychology: #6fc3b4;
+  --colour-social-critical-psychology: #f19aa8;
+  --colour-personality-individual-differences: #db9ccd;
+  --colour-status-bg: #241f14;
+  --colour-status-text: #e2cf9f;
+  --colour-status-border: #4a4028;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 2px 10px rgb(0 0 0 / 0.45);
+}
+}
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity.opi-activity {
+  -webkit-text-size-adjust: 100%;
+}
+.opi-activity.opi-activity {
+  background-color: var(--colour-page);
+  color: var(--colour-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.65;
+}
+.opi-activity.opi-activity h1,
+.opi-activity.opi-activity h2,
+.opi-activity.opi-activity h3,
+.opi-activity.opi-activity h4 {
+  margin: 0 0 var(--space-3);
+  line-height: 1.25;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.opi-activity.opi-activity h1 {
+  font-size: var(--text-3xl);
+}
+.opi-activity.opi-activity h2 {
+  font-size: var(--text-2xl);
+}
+.opi-activity.opi-activity h3 {
+  font-size: var(--text-xl);
+}
+.opi-activity.opi-activity h4 {
+  font-size: var(--text-lg);
+}
+.opi-activity.opi-activity p,
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol,
+.opi-activity.opi-activity dl {
+  margin: 0 0 var(--space-4);
+}
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol {
+  padding-left: 1.35em;
+}
+.opi-activity.opi-activity li + li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity a {
+  color: var(--colour-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: max(1px, 0.06em);
+}
+.opi-activity.opi-activity a:hover {
+  color: var(--colour-accent-hover);
+  text-decoration-thickness: max(2px, 0.11em);
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid var(--colour-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+@supports not selector(:focus-visible) {
+.opi-activity.opi-activity :focus {
+  outline: 3px solid var(--colour-focus);
+    outline-offset: 2px;
+}
+}
+.opi-activity.opi-activity code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.35em;
+}
+.opi-activity.opi-activity hr {
+  border: 0;
+  border-top: 1px solid var(--colour-border);
+  margin: var(--space-6) 0;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+}
+.opi-activity.opi-activity .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.opi-activity.opi-activity .container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+@media (min-width: 40em) {
+.opi-activity.opi-activity .container {
+  padding-inline: var(--space-5);
+}
+}
+.opi-activity.opi-activity .prose {
+  max-width: var(--measure);
+}
+.opi-activity.opi-activity .text-muted {
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .section {
+  padding-block: var(--space-7);
+}
+.opi-activity.opi-activity .section--tinted {
+  background-color: var(--colour-surface);
+  border-block: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .section__header {
+  max-width: var(--measure);
+  margin-bottom: var(--space-5);
+}
+.opi-activity.opi-activity .section__header > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-7) var(--space-6);
+  border-bottom: 1px solid var(--colour-border);
+  
+  background-image: linear-gradient(
+    180deg,
+    var(--colour-accent-soft) 0%,
+    var(--colour-page) 100%
+  );
+}
+.opi-activity.opi-activity .hero__eyebrow {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .hero h1 {
+  max-width: 20ch;
+  margin-bottom: var(--space-4);
+}
+.opi-activity.opi-activity .hero__lead {
+  max-width: var(--measure);
+  font-size: var(--text-lg);
+  color: var(--colour-text-muted);
+}
+@media (min-width: 48em) {
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-8) var(--space-7);
+}
+.opi-activity.opi-activity .hero h1 {
+  font-size: 44px;
+}
+}
+.opi-activity.opi-activity .button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  
+  min-height: 44px;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .button--primary {
+  background-color: var(--colour-accent);
+  border-color: var(--colour-accent);
+  
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--primary:hover {
+  background-color: var(--colour-accent-hover);
+  border-color: var(--colour-accent-hover);
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--secondary {
+  background-color: transparent;
+  border-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .button--secondary:hover {
+  background-color: var(--colour-surface);
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+}
+.opi-activity.opi-activity .card--cognitive {
+  --card-accent: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .card--research-methods {
+  --card-accent: var(--colour-research-methods);
+}
+.opi-activity.opi-activity .card--neuropsychology {
+  --card-accent: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .card--social-critical-psychology {
+  --card-accent: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .card--personality-individual-differences {
+  --card-accent: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 650;
+  line-height: 1.4;
+  padding: 3.2px var(--space-3);
+  border-radius: 999px;
+  border: 1px solid var(--colour-status-border);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+}
+.opi-activity.opi-activity .badge__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex: none;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed var(--colour-border-strong);
+  border-radius: var(--radius-lg);
+  background-color: var(--colour-surface);
+  padding: var(--space-5);
+  text-align: left;
+}
+.opi-activity.opi-activity .placeholder__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+}
+.opi-activity.opi-activity .placeholder > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .split {
+  display: grid;
+  gap: var(--space-6);
+}
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split {
+  grid-template-columns: 3fr 2fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .panel {
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.opi-activity.opi-activity .panel > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .panel__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .section--tinted {
+  border-block: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .hero {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .button--primary {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .button--secondary {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .button:hover {
+  border-color: Highlight;
+}
+.opi-activity.opi-activity .panel {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed CanvasText;
+}
+.opi-activity.opi-activity .badge {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .badge__dot {
+  background-color: CanvasText;
+}
+.opi-activity.opi-activity code {
+  border-color: CanvasText;
+}
+.opi-activity.opi-activity hr {
+  border-top-color: CanvasText;
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+}
+@media print {
+.opi-activity.opi-activity {
+  color: #000;
+  background: #fff;
+}
+.opi-activity.opi-activity a[href^="http"]::after {
+  content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+}
+}
+
+/* components/interactive-shell.css */
+.opi-activity.opi-activity .interactive {
+  --shell-page: var(--colour-page, #ffffff);
+  --shell-surface: var(--colour-surface, #f5f7fa);
+  --shell-raised: var(--colour-surface-raised, #ffffff);
+  --shell-border: var(--colour-border, #d3d9e2);
+  --shell-border-strong: var(--colour-border-strong, #aeb7c4);
+  --shell-text: var(--colour-text, #131820);
+  --shell-muted: var(--colour-text-muted, #4c566a);
+  --shell-accent: var(--colour-accent, #1a4fa0);
+  --shell-accent-soft: var(--colour-accent-soft, #e8eefb);
+  
+  --shell-on-accent: var(--colour-on-accent, #ffffff);
+  --shell-focus: var(--colour-focus, #b45309);
+  --shell-radius: var(--radius-lg, 12px);
+  --shell-gap: var(--space-5, 24px);
+
+  display: block;
+  background-color: var(--shell-raised);
+  color: var(--shell-text);
+  border: 1px solid var(--shell-border);
+  border-radius: var(--shell-radius);
+  
+  overflow-x: clip;
+  overflow-y: visible;
+}
+.opi-activity.opi-activity .interactive__header {
+  padding: var(--shell-gap);
+  border-bottom: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 1.25;
+}
+.opi-activity.opi-activity .interactive__brief {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--shell-muted);
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__body {
+  display: grid;
+  gap: var(--shell-gap);
+  padding: var(--shell-gap);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body {
+  grid-template-columns: minmax(240px, 320px) 1fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .interactive__controls {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__controls fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .interactive__controls legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .control {
+  display: grid;
+  gap: 5.6px;
+}
+.opi-activity.opi-activity .control + .control {
+  margin-top: 16px;
+}
+.opi-activity.opi-activity .control__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.opi-activity.opi-activity .control__label {
+  font-size: 15px;
+  font-weight: 600;
+}
+.opi-activity.opi-activity .control__value {
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--shell-accent);
+}
+.opi-activity.opi-activity .control__hint {
+  font-size: 13px;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .interactive__controls input[type="range"] {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--shell-accent);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  width: 100%;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--shell-text);
+  background-color: var(--shell-raised);
+  border: 1px solid var(--shell-border-strong);
+  border-radius: var(--radius-sm, 4px);
+}
+.opi-activity.opi-activity .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+}
+.opi-activity.opi-activity .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  accent-color: var(--shell-accent);
+  flex: none;
+}
+.opi-activity.opi-activity .interactive__stage {
+  min-height: 256px;
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-page);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body--pinned {
+  align-items: stretch;
+}
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: sticky;
+    top: 0;
+    z-index: 2;
+    
+    margin: -16px -16px 0;
+    padding: 16px 16px 12px;
+    background-color: var(--shell-page);
+    border-bottom: 1px solid var(--shell-border);
+}
+}
+@media (min-width: 52em) and (max-height: 30em) {
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: static;
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
+}
+}
+.opi-activity.opi-activity .interactive__stage > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity :where(.interactive__stage) svg,
+.opi-activity.opi-activity :where(.interactive__stage) canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+.opi-activity.opi-activity .interactive__readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout div {
+  padding: 9.6px 12px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-sm, 4px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__readout dt {
+  font-size: 13px;
+  color: var(--shell-muted);
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout dd {
+  margin: 2.4px 0 0;
+  font-size: 18px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .interactive__status {
+  margin: 0;
+  padding: 12px var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+  font-size: 15px;
+  color: var(--shell-muted);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .interactive__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+}
+.opi-activity.opi-activity .interactive__actions button {
+  min-height: 44px;
+  padding: 6.4px 20px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--shell-on-accent);
+  background-color: var(--shell-accent);
+  border: 1px solid var(--shell-accent);
+  border-radius: var(--radius-md, 8px);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  color: var(--shell-text);
+  background-color: transparent;
+  border-color: var(--shell-border-strong);
+}
+.opi-activity.opi-activity .interactive__actions button:hover {
+  filter: brightness(1.08);
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__notes > summary {
+  padding: 13.6px var(--shell-gap);
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__notes > div {
+  padding: 0 var(--shell-gap) var(--shell-gap);
+  max-width: 68ch;
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__notes > div > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity .interactive *,
+.opi-activity.opi-activity .interactive *::before,
+.opi-activity.opi-activity .interactive *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+}
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .interactive,
+.opi-activity.opi-activity .interactive__controls,
+.opi-activity.opi-activity .interactive__stage,
+.opi-activity.opi-activity .interactive__readout div {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__header {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__status,
+.opi-activity.opi-activity .interactive__actions,
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__actions button {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  border-width: 1px;
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 1;
+    color: GrayText;
+    border-color: GrayText;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__stage svg {
+  forced-color-adjust: auto;
+}
+}
+
+/* components/tool-kit.css */
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split--wide {
+  grid-template-columns: 1fr 1fr;
+}
+}
+.opi-activity.opi-activity .how-to {
+  padding-left: 19.2px;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .how-to > li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .table-scroll {
+  overflow-x: auto;
+  
+  position: relative;
+}
+.opi-activity.opi-activity .prediction {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 832px;
+}
+.opi-activity.opi-activity .prediction > *,
+.opi-activity.opi-activity .challenge > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity .prediction__group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .prediction__legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-weight: 650;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .prediction .control--choice,
+.opi-activity.opi-activity .challenge .control--choice,
+.opi-activity.opi-activity .evidence .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .prediction .control--choice input,
+.opi-activity.opi-activity .challenge .control--choice input,
+.opi-activity.opi-activity .evidence .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .prediction__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .prediction__error {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-status-border);
+  border-left: 4px solid var(--colour-status-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .prediction__readback {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .feedback[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .feedback[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .feedback[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .feedback__verdict {
+  font-weight: 700;
+}
+.opi-activity.opi-activity .verdict {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .verdict__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict__body {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .verdict__body + .verdict__body {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .verdict__note {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .verdict[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .verdict[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .goal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .goal__label {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .goal__text {
+  flex: 1 1 256px;
+}
+.opi-activity.opi-activity .goal strong {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .goal__checks {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+  display: grid;
+  gap: 2.4px;
+}
+.opi-activity.opi-activity .goal__checks > li {
+  margin-top: 0;
+  padding-left: 22.4px;
+  position: relative;
+}
+.opi-activity.opi-activity .goal__checks > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 9.6px;
+  height: 9.6px;
+  border: 2px solid var(--colour-border-strong);
+  border-radius: 2px;
+}
+.opi-activity.opi-activity .goal__checks > li[data-met="yes"]::before {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .stage-track {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .stage-track > li {
+  margin-top: 0;
+  flex: 1 1 160px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-bottom: 3px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .stage-track > li > span {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.opi-activity.opi-activity .stage-track > li[data-state="done"] {
+  border-bottom-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border-bottom-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+  color: var(--colour-text);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .stage__heading {
+  margin: 0;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .data-table,
+.opi-activity.opi-activity .chart__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .data-table th,
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table th,
+.opi-activity.opi-activity .chart__table td {
+  padding: 6.4px 9.6px;
+  border: 1px solid var(--colour-border);
+  text-align: left;
+  vertical-align: top;
+}
+.opi-activity.opi-activity .data-table thead th,
+.opi-activity.opi-activity .chart__table thead th {
+  background-color: var(--colour-surface);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table td {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__table tbody th,
+.opi-activity.opi-activity .data-table tbody th {
+  font-weight: 550;
+}
+.opi-activity.opi-activity .data-table__total > th,
+.opi-activity.opi-activity .data-table__total > td {
+  border-top: 2px solid var(--colour-border-strong);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart {
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .chart__caption {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__svg {
+  max-width: 100%;
+  height: auto;
+}
+.opi-activity.opi-activity .chart__label,
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__inline,
+.opi-activity.opi-activity .chart__axis {
+  font-family: var(--font-body);
+  fill: var(--colour-text);
+  font-size: 13px;
+}
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__axis {
+  fill: var(--colour-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: var(--colour-on-accent);
+  font-size: 12px;
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__track {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__bar {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--one {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .chart__baseline,
+.opi-activity.opi-activity .chart__grid {
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__line {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: var(--colour-personality-individual-differences);
+  stroke-dasharray: 6 4;
+}
+.opi-activity.opi-activity .chart__point {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .reveal > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .reveal__lead {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+.opi-activity.opi-activity .reveal__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(176px, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+  padding: 0;
+  list-style: none;
+}
+.opi-activity.opi-activity .reveal__figures > li {
+  margin-top: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+.opi-activity.opi-activity .reveal__figure-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .reveal__figure-value {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .challenge {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+.opi-activity.opi-activity .challenge__locked {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .panel--caution {
+  background-color: var(--colour-status-bg);
+  border-color: var(--colour-status-border);
+}
+.opi-activity.opi-activity .panel--caution li + li {
+  margin-top: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .goal,
+.opi-activity.opi-activity .verdict,
+.opi-activity.opi-activity .feedback,
+.opi-activity.opi-activity .prediction__error,
+.opi-activity.opi-activity .prediction__readback,
+.opi-activity.opi-activity .stage-track > li,
+.opi-activity.opi-activity .reveal__figures > li {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border: 2px solid Highlight;
+}
+.opi-activity.opi-activity .chart__bar,
+.opi-activity.opi-activity .chart__bar--one {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: Canvas;
+}
+.opi-activity.opi-activity .chart__line {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: Highlight;
+}
+}
+.opi-activity.opi-activity .stage__more {
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .stage__more > summary {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .stage__more[open] > summary {
+  border-bottom: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .stage__more > *:not(summary) {
+  margin: var(--space-3);
+}
+
+/* modules/cognitive/tools/01-posner-spatial-cueing/tool.css */
+.opi-activity.opi-activity .table-scroll {
+  position: relative;
+}
+.opi-activity.opi-activity #posner .interactive__controls,
+.opi-activity.opi-activity #posner .interactive__stage {
+  min-width: 0;
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity #posner .interactive__body {
+  grid-template-columns: minmax(0, 304px) minmax(0, 1fr);
+}
+}
+.opi-activity.opi-activity #posner .control + .control {
+  margin-top: var(--space-4);
+}
+.opi-activity.opi-activity .display {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  justify-items: center;
+  gap: var(--space-4);
+  min-height: 176px;
+  padding: var(--space-5) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .display__fixation {
+  font-size: 36px;
+  line-height: 1;
+  font-weight: 700;
+  color: var(--colour-text);
+  
+  min-width: 32px;
+  text-align: center;
+  visibility: hidden;
+}
+.opi-activity.opi-activity .display[data-fixation-visible="yes"] .display__fixation {
+  visibility: visible;
+}
+.opi-activity.opi-activity .display__box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 120px;
+  height: 96px;
+  border: 2px solid var(--colour-border-strong);
+  border-radius: var(--radius-md);
+  background-color: var(--colour-page);
+}
+.opi-activity.opi-activity .display__box[data-cued="yes"] {
+  border-width: 6px;
+  border-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .display__box[data-cued="yes"]::after {
+  content: "▲";
+  position: absolute;
+  bottom: -23.2px;
+  font-size: 14.4px;
+  line-height: 1;
+  color: var(--colour-accent);
+}
+.opi-activity.opi-activity .display__target {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--colour-text);
+  visibility: hidden;
+}
+.opi-activity.opi-activity .display__box[data-target-visible="yes"] .display__target {
+  visibility: visible;
+}
+.opi-activity.opi-activity .display__caption {
+  margin: 0;
+  min-height: 40px;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+  text-align: center;
+}
+.opi-activity.opi-activity .responses {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  justify-content: center;
+}
+.opi-activity.opi-activity .response {
+  flex: 1 1 176px;
+  min-height: 56px;
+  font-size: var(--text-base);
+  font-weight: 650;
+}
+.opi-activity.opi-activity kbd {
+  padding: 0.8px 5.6px;
+  border: 1px solid var(--colour-border-strong);
+  border-bottom-width: 2px;
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+.opi-activity.opi-activity .posner-chart {
+  max-width: 480px;
+}
+.opi-activity.opi-activity .posner__dot {
+  fill: var(--colour-text-muted);
+  opacity: 0.5;
+}
+.opi-activity.opi-activity .posner__mean {
+  stroke: var(--colour-accent);
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+.opi-activity.opi-activity .posner__baseline {
+  stroke: var(--colour-text-muted);
+  stroke-width: 2;
+  stroke-dasharray: 6 4;
+}
+.opi-activity.opi-activity .challenge select {
+  width: 100%;
+  min-width: 208px;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  font-size: var(--text-sm);
+  color: var(--colour-text);
+  background-color: var(--colour-surface-raised);
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+}
+.opi-activity.opi-activity .challenge__mark {
+  display: block;
+  margin-top: var(--space-1);
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .display,
+.opi-activity.opi-activity .display__box {
+  border: 2px solid CanvasText;
+}
+.opi-activity.opi-activity .display__box[data-cued="yes"] {
+  border: 6px solid Highlight;
+}
+.opi-activity.opi-activity .display__box[data-cued="yes"]::after {
+  color: Highlight;
+}
+.opi-activity.opi-activity .display__target {
+  background-color: CanvasText;
+}
+.opi-activity.opi-activity .posner__dot {
+  fill: GrayText;
+    opacity: 1;
+}
+.opi-activity.opi-activity .posner__mean {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .posner__baseline {
+  stroke: GrayText;
+}
+.opi-activity.opi-activity .challenge select {
+  border: 1px solid ButtonText;
+}
+}
+</style>
+
+  <!-- ================= Title and purpose ================= -->
+  <section class="section card--cognitive" aria-labelledby="page-heading">
+    <div class="container">
+
+      <p class="hero__eyebrow" style="color: var(--colour-cognitive)">
+        Cognitive Psychology
+      </p>
+      <h1 id="page-heading">Posner Spatial Cueing</h1>
+      <p class="hero__lead">
+        Keep your eyes on the cross. A box brightens, then a target appears —
+        sometimes where the cue was, sometimes not. The difference between
+        those trials is attention moving without your eyes moving.
+      </p>
+
+      <p>
+        <span class="badge">
+          <span class="badge__dot" aria-hidden="true"></span>
+          Illustrative timing — a browser demonstration, not laboratory measurement
+        </span>
+      </p>
+
+      <div class="split split--wide">
+
+        <div class="panel">
+          <h2 class="panel__title">Learning objective</h2>
+          <p>
+            By the end you should be able to split a cueing effect into a
+            <em>benefit</em> and a <em>cost</em> using a neutral baseline, and
+            say why neither shows covert orienting on its own.
+          </p>
+          <p class="text-muted">
+            About 20 minutes. Nothing you do here is saved or sent anywhere.
+          </p>
+        </div>
+
+        <div class="panel panel--caution">
+          <h2 class="panel__title">What this browser cannot do</h2>
+          <p>
+            <strong>Your eye position is not measured.</strong> This page has
+            no access to a camera or an eye tracker, and it cannot tell
+            whether you kept fixation or simply looked at the cue. Asking you
+            to hold fixation is an instruction, not a control. Every result
+            here is compatible with covert orienting <em>and</em> with small
+            eye movements you did not notice making.
+          </p>
+          <p>
+            <strong>Browser timing is approximate.</strong> Display refresh,
+            keyboard latency and background processes add tens of
+            milliseconds. Treat the numbers as illustrative.
+          </p>
+        </div>
+
+      </div>
+
+      <ol class="how-to">
+        <li>Answer the prediction below — it unlocks the experiment.</li>
+        <li>Run the untimed practice trials first. They give feedback and are not scored.</li>
+        <li>Run a scored block. Keep looking at the central cross throughout.</li>
+        <li>Read your three condition means, then work out where the benefit and the cost are.</li>
+        <li>If you would rather not do a speeded task, load the worked example instead: it is a documented simulated dataset and reaches every conclusion on this page.</li>
+      </ol>
+
+    </div>
+  </section>
+
+  <!-- ================= Opening prediction ================= -->
+  <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="opening-heading">First, a prediction</h2>
+        <p class="prose">
+          In the experiment below, a cue brightens one of two boxes and then a
+          target appears in one of them. On <strong>valid</strong> trials the
+          target appears in the cued box; on <strong>invalid</strong> trials
+          it appears in the other one; on <strong>neutral</strong> trials both
+          boxes are cued, so the cue points nowhere. The cue is correct on
+          three out of every four cued trials, so it is worth using.
+        </p>
+      </div>
+
+      <noscript>
+        <div class="placeholder">
+          <h3 class="placeholder__title">This part needs JavaScript</h3>
+          <p class="prose">
+            The experiment runs trials and summarises reaction times in your
+            browser, so it cannot work with JavaScript switched off. The rest
+            of this page is readable without it.
+          </p>
+        </div>
+      </noscript>
+
+      <form class="panel prediction" id="opening-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            How will the three conditions order themselves, and where will
+            neutral sit?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="both">
+            Valid fastest, invalid slowest, neutral roughly between them
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="benefit">
+            Valid faster than neutral, but invalid no slower than neutral
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="cost">
+            Valid no faster than neutral, but invalid slower than neutral
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="none">
+            All three about the same — a cue you cannot look at should not help
+          </label>
+        </fieldset>
+
+        <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Record my answer and unlock the experiment
+          </button>
+          <button class="button button--secondary" type="button" data-action="skip-opening">
+            Skip — I am demonstrating this
+          </button>
+        </div>
+
+        <div class="feedback" data-opening-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= The experiment ================= -->
+  <section class="section" id="experiment" aria-labelledby="experiment-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="experiment-heading">The experiment</h2>
+        <p class="prose">
+          Look at the central cross and keep looking at it. When the target —
+          a filled disc — appears, say which box it is in: press
+          <kbd>Left arrow</kbd> or <kbd>Right arrow</kbd>, or use the two
+          buttons. No trial is timed out; the target waits for you.
+        </p>
+      </div>
+
+      <section class="interactive" id="posner" data-interactive
+               data-reset-message="Everything cleared. Back to the opening question.">
+
+        <header class="interactive__header">
+          <h3 class="interactive__title">Which box is the target in?</h3>
+          <p class="interactive__brief">
+            Six untimed practice trials with feedback, then a scored block
+            with no feedback until it ends. Results are deliberately withheld
+            until the block finishes, so that seeing them cannot change how
+            you respond.
+          </p>
+          <p class="goal">
+            <span class="goal__label">Status</span>
+            <span class="goal__text" data-trial-status>Not started.</span>
+          </p>
+        </header>
+
+        <div class="interactive__body">
+
+          <form class="interactive__controls" data-interactive-controls>
+
+            <fieldset>
+              <legend>Block settings</legend>
+
+              <div class="control">
+                <label class="control__label" for="block-length">
+                  Trials in the scored block
+                </label>
+                <select id="block-length">
+                  <option value="24">24 — quick, and visibly noisy</option>
+                  <option value="48" selected>48 — the usual choice here</option>
+                  <option value="72">72 — steadier, takes longer</option>
+                </select>
+                <p class="control__hint">
+                  A third are neutral; three in four of the rest are valid.
+                  So 48 trials gives 16 neutral, 24 valid, 8 invalid.
+                </p>
+              </div>
+
+              <div class="control">
+                <label class="control__label" for="soa-select">
+                  Cue-to-target interval
+                </label>
+                <select id="soa-select">
+                  <option value="100">About 100 ms — very short</option>
+                  <option value="400" selected>About 400 ms</option>
+                  <option value="700">About 700 ms</option>
+                </select>
+                <p class="control__hint">
+                  How long the cue is up before the target arrives. Comparing
+                  intervals needs a separate block for each; yours is
+                  recorded with your results so a class can pool them.
+                </p>
+              </div>
+
+            </fieldset>
+
+            <fieldset>
+              <legend>Run</legend>
+              <div class="control">
+                <button class="button button--secondary" type="button"
+                        data-action="start-practice" disabled>
+                  Start practice (untimed, with feedback)
+                </button>
+              </div>
+              <div class="control">
+                <button class="button button--primary" type="button"
+                        data-action="start-block" disabled>
+                  Start the scored block
+                </button>
+              </div>
+              <div class="control">
+                <button class="button button--secondary" type="button"
+                        data-action="worked-example">
+                  Load the worked example instead
+                </button>
+                <p class="control__hint">
+                  A documented simulated dataset, seeded so it is identical
+                  every time. Not anybody's data.
+                </p>
+              </div>
+            </fieldset>
+
+          </form>
+
+          <div class="interactive__stage" data-interactive-stage>
+
+            <!-- The trial display. Marked aria-hidden during a run because a
+                 live description of a 400 ms cue would arrive after the
+                 trial had ended; the worked example is the route that does
+                 not require seeing it. -->
+            <div class="display" data-display aria-hidden="true">
+              <div class="display__box" data-box="left">
+                <span class="display__target" data-target="left"></span>
+              </div>
+              <div class="display__fixation" data-fixation>+</div>
+              <div class="display__box" data-box="right">
+                <span class="display__target" data-target="right"></span>
+              </div>
+            </div>
+
+            <p class="display__caption" data-display-caption>
+              Answer the question above to unlock the experiment.
+            </p>
+
+            <div class="responses">
+              <button class="button button--secondary response" type="button"
+                      data-response="left" disabled>
+                ◀ Target on the left
+              </button>
+              <button class="button button--secondary response" type="button"
+                      data-response="right" disabled>
+                Target on the right ▶
+              </button>
+            </div>
+
+            <div class="feedback" data-task-feedback hidden></div>
+
+          </div>
+
+        </div>
+
+        <p class="interactive__status" data-interactive-status role="status"></p>
+
+        <div class="interactive__actions">
+          <button type="button" data-variant="secondary" data-interactive-reset>
+            Reset everything
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ================= Results ================= -->
+  <section class="section section--tinted" id="results" aria-labelledby="results-heading" hidden>
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="results-heading" tabindex="-1">Three conditions</h2>
+      </div>
+
+      <div class="panel reveal" data-results-body></div>
+
+      <div class="panel">
+        <figure class="chart">
+          <figcaption class="chart__caption" data-chart-caption>
+            Mean correct reaction time by cue type, with every scored trial
+            plotted behind it
+          </figcaption>
+          <svg class="chart__svg posner-chart" data-rt-chart viewBox="0 0 460 260"
+               aria-hidden="true" focusable="false"></svg>
+          <div class="table-scroll">
+            <table class="chart__table">
+              <caption class="visually-hidden">
+                Number of trials, accuracy, mean, median and spread of correct
+                reaction times for each cue type
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">Cue type</th>
+                  <th scope="col">Trials</th>
+                  <th scope="col">Correct</th>
+                  <th scope="col">Mean RT</th>
+                  <th scope="col">Median RT</th>
+                  <th scope="col">Spread (SD)</th>
+                </tr>
+              </thead>
+              <tbody data-rt-table></tbody>
+            </table>
+          </div>
+        </figure>
+      </div>
+
+      <div class="panel">
+        <h3 class="panel__title">Benefit, cost, and what they are not</h3>
+        <dl class="interactive__readout" data-effect-readout></dl>
+        <div class="verdict" data-effect-verdict>
+          <h4 class="verdict__title">Reading your pattern</h4>
+          <p class="verdict__body" data-effect-text></p>
+          <p class="verdict__note" data-effect-note></p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= Challenge ================= -->
+  <section class="section" id="challenge" aria-labelledby="challenge-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="challenge-heading">Challenge — benefit, cost, or neither?</h2>
+        <p class="prose">
+          Three fictional studies report mean reaction times for the same
+          three conditions. For each, decide what the pattern supports. The
+          neutral condition is the baseline: a cue can only be said to
+          <em>help</em> if valid beats neutral, and can only be said to
+          <em>hurt</em> if invalid is worse than neutral.
+        </p>
+      </div>
+
+      <form class="panel challenge" id="challenge-form">
+
+        <div class="table-scroll">
+          <table class="data-table">
+            <caption class="visually-hidden">
+              Fictional mean reaction times for three studies, with a
+              selection for what each pattern supports
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Study</th>
+                <th scope="col">Valid</th>
+                <th scope="col">Neutral</th>
+                <th scope="col">Invalid</th>
+                <th scope="col">What does this support?</th>
+              </tr>
+            </thead>
+            <tbody data-challenge-rows></tbody>
+          </table>
+        </div>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Check my answers
+          </button>
+        </div>
+
+        <div class="feedback" data-challenge-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Debrief ================= -->
+  <section class="section section--tinted" id="debrief" aria-labelledby="debrief-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="debrief-heading">What this demonstrates</h2>
+      </div>
+
+      <div class="split split--wide">
+
+        <div class="prose">
+          <h3>Attention can move while the eyes do not</h3>
+          <p>
+            The cueing paradigm was designed to show that the place you are
+            attending to and the place you are looking at can come apart. A
+            cue you are told to ignore, at a location your eyes never visit,
+            still changes how quickly you respond to what appears there. That
+            dissociation is the reason the word <em>covert</em> is used at
+            all: overt orienting is the eye movement, covert orienting is the
+            shift of attention that can happen without one.
+          </p>
+
+          <h3>A neutral baseline is what makes the effect readable</h3>
+          <p>
+            Valid trials minus invalid trials gives one number, and that
+            number hides two different things. Subtract the neutral baseline
+            instead and you get two: a <strong>benefit</strong>
+            (neutral minus valid) when attention is already in the right
+            place, and a <strong>cost</strong> (invalid minus neutral) when it
+            has to be disengaged from the wrong one. Studies that report only
+            valid against invalid cannot tell you which of the two produced
+            their effect, and the two have different theoretical
+            consequences.
+          </p>
+
+          <h3>Cost is usually the larger half</h3>
+          <p>
+            In the published literature the cost of an invalid cue is
+            typically bigger than the benefit of a valid one, which is part of
+            why disengagement became a topic in its own right. Whether your
+            own block shows that depends heavily on how many invalid trials
+            you ran — eight is not many.
+          </p>
+
+          <h3>Endogenous and exogenous cues are not the same thing</h3>
+          <p>
+            A peripheral flash, like the one used here, pulls attention
+            whether or not it is informative and does so within roughly a
+            tenth of a second. A central symbolic cue — an arrow at fixation
+            that you have to interpret — works more slowly and only when it is
+            worth using. This tool uses a peripheral cue that is also
+            predictive, so it mixes the two, which is a simplification made
+            for the sake of getting a visible effect in a classroom block.
+          </p>
+        </div>
+
+        <aside class="panel panel--caution" aria-labelledby="limits-heading">
+          <h3 class="panel__title" id="limits-heading">
+            What this does <em>not</em> demonstrate
+          </h3>
+          <ul>
+            <li>
+              <strong>It does not show covert orienting.</strong> Nothing here
+              measures eye position. If you moved your eyes to the cue, the
+              result would look identical. Demonstrating covert attention
+              requires an eye tracker or trials discarded on the basis of
+              recorded eye movements — this page has neither.
+            </li>
+            <li>
+              <strong>It does not measure your attention.</strong> One block
+              in a browser is not an assessment of anything about you: not
+              attentional ability, not concentration, not distractibility, and
+              nothing clinical or diagnostic.
+            </li>
+            <li>
+              <strong>The noise statements are approximate.</strong> They use
+              the standard error of each difference, which assumes trials are
+              independent. Fatigue and practice make trials within a block
+              correlated, so read them as a rough guide.
+            </li>
+            <li>
+              <strong>Browser timing is imprecise.</strong> Display refresh,
+              input latency and background load add tens of milliseconds of
+              noise. Reported intervals are approximate targets, not achieved
+              durations.
+            </li>
+            <li>
+              <strong>One block cannot settle a mechanism.</strong> Facilitation,
+              disengagement cost, and accounts in which the cue changes
+              response criteria rather than perception all predict faster
+              valid trials. Separating them needs converging designs, not a
+              larger version of this one.
+            </li>
+            <li>
+              <strong>The worked example is simulated.</strong> Its numbers
+              come from a documented generator with a fixed seed. They are not
+              a norm, a published effect size or anybody's data.
+            </li>
+            <li>
+              <strong>Cueing effects are context-dependent.</strong> Their size
+              and even their direction change with the interval, the
+              predictiveness of the cue, the task and the observer. At long
+              intervals with uninformative peripheral cues, responses to the
+              cued side can become <em>slower</em> — a separate phenomenon
+              this tool does not attempt to produce.
+            </li>
+          </ul>
+        </aside>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+<script>
+/* ---- components/interactive-shell.js ---- */
+/* =========================================================================
+   Open Psychology Interactives — interactive shell helper
+   -------------------------------------------------------------------------
+   A very small vanilla-JS helper that every interactive in this collection
+   uses. It deliberately does *not* draw anything or know anything about
+   statistics, personality or neuropsychology. Its job is the repetitive,
+   easy-to-get-wrong accessibility plumbing:
+
+     * announcing changes through a polite live region;
+     * keeping a range slider and its <output> in step;
+     * wiring the standard Reset button;
+     * reporting the reader's reduced-motion preference.
+
+   Usage (see docs/adapting-a-tool.md for the full markup contract):
+
+       <script src="../../components/interactive-shell.js" defer><\/script>
+       <script src="tool.js" defer><\/script>
+
+       // in tool.js
+       const shell = InteractiveShell.attach('#sampling-demo');
+       shell.onReset(() => { ...restore defaults...; draw(); });
+       shell.bindRange('#sample-size', { format: n => n + ' cases' });
+       shell.announce('Sample of 25 drawn. Mean 4.8.');
+
+   Every published interactive is written against this module.
+
+   Exposed as a global (window.InteractiveShell) rather than an ES module so
+   that a single interactive folder can be opened directly from disk over
+   file:// — ES modules are blocked by CORS in that situation, plain scripts
+   are not. That constraint is the whole reason for the older syntax here.
+   ========================================================================= */
+
+(function (global) {
+  "use strict";
+
+  /* -----------------------------------------------------------------------
+     Internal helpers
+     --------------------------------------------------------------------- */
+
+  /**
+   * Accept either a CSS selector or an element and return an element.
+   * @param {string|Element} target
+   * @param {ParentNode} [scope]
+   * @returns {Element|null}
+   */
+  function resolve(target, scope) {
+    if (!target) {
+      return null;
+    }
+    if (typeof target === "string") {
+      return (scope || document).querySelector(target);
+    }
+    return target;
+  }
+
+  /**
+   * True when the reader has asked the operating system to reduce motion.
+   * Interactives should check this before animating anything — for example
+   * by drawing a sampling distribution in one step instead of animating
+   * each draw.
+   * @returns {boolean}
+   */
+  function prefersReducedMotion() {
+    return (
+      typeof global.matchMedia === "function" &&
+      global.matchMedia("(prefers-reduced-motion: reduce)").matches
+    );
+  }
+
+  /* -----------------------------------------------------------------------
+     Shell controller
+     --------------------------------------------------------------------- */
+
+  /**
+   * Attach the shell behaviour to one `.interactive` element.
+   *
+   * @param {string|Element} target  Selector or element for the shell root.
+   * @returns {object|null}  Controller, or null if the root was not found.
+   */
+  function attach(target) {
+    var root = resolve(target);
+
+    if (!root) {
+      if (global.console && console.warn) {
+        console.warn("InteractiveShell: root element not found.", target);
+      }
+      return null;
+    }
+
+    var controls = root.querySelector("[data-interactive-controls]");
+    var stage = root.querySelector("[data-interactive-stage]");
+    var status = root.querySelector("[data-interactive-status]");
+    var resetButton = root.querySelector("[data-interactive-reset]");
+    var resetHandlers = [];
+    // Every range bound with bindRange() registers its sync function here, so
+    // that reset() can refresh the visible values after the tool's own reset
+    // handlers have restored the inputs. See reset() for why this is needed.
+    var rangeSyncs = [];
+
+    /* --- Live region ----------------------------------------------------
+       The status element is marked up as role="status" (implicitly
+       aria-live="polite"). Two details matter:
+
+         1. Assistive technology only announces *changes* to a live region,
+            so writing the same string twice is silently dropped. We add a
+            trailing zero-width space on repeat messages to force an
+            announcement when a student re-runs the same action.
+         2. Announcements are debounced. A slider dragged across its range
+            fires dozens of input events; without a delay a screen reader
+            would queue every intermediate value and fall far behind.
+       ------------------------------------------------------------------ */
+
+    var announceTimer = null;
+    var lastMessage = "";
+
+    /**
+     * Announce a short sentence describing what just changed.
+     * @param {string} message
+     * @param {object} [options]
+     * @param {boolean} [options.immediate]  Skip the debounce delay. Use for
+     *   discrete actions (button presses); leave off for continuous input.
+     */
+    function announce(message, options) {
+      if (!status) {
+        return;
+      }
+
+      var text = String(message == null ? "" : message);
+      var immediate = Boolean(options && options.immediate);
+
+      if (announceTimer !== null) {
+        global.clearTimeout(announceTimer);
+        announceTimer = null;
+      }
+
+      function write() {
+        // Force a change when the text is identical to last time.
+        status.textContent = text === lastMessage ? text + "​" : text;
+        lastMessage = text;
+      }
+
+      if (immediate) {
+        write();
+      } else {
+        announceTimer = global.setTimeout(write, 350);
+      }
+    }
+
+    /* --- Reset ---------------------------------------------------------- */
+
+    /**
+     * Register a callback to run when the Reset button is pressed.
+     * Several may be registered; they run in the order added.
+     * @param {Function} handler
+     */
+    function onReset(handler) {
+      if (typeof handler === "function") {
+        resetHandlers.push(handler);
+      }
+    }
+
+    /**
+     * Run the reset handlers. Called by the button and available directly so
+     * an interactive can reset itself on first load.
+     *
+     * Bound ranges are re-synced afterwards. A reset handler restores an
+     * input by assigning to `input.value`, and assigning to a value in script
+     * does not fire an `input` event — so without this step the slider would
+     * jump back to its default while its <output> went on showing the old
+     * number. Syncing here, after the handlers have run, also means the sync
+     * sees the restored values regardless of the order things were
+     * registered in.
+     *
+     * @param {object} [options]
+     * @param {boolean} [options.silent]  Suppress the status announcement.
+     */
+    function reset(options) {
+      resetHandlers.forEach(function (handler) {
+        handler();
+      });
+      rangeSyncs.forEach(function (sync) {
+        sync();
+      });
+      if (!options || !options.silent) {
+        announce(
+          root.getAttribute("data-reset-message") ||
+            "Reset to the starting values.",
+          { immediate: true }
+        );
+      }
+    }
+
+    if (resetButton) {
+      resetButton.addEventListener("click", function (event) {
+        // Reset buttons commonly sit inside the controls <form>; stop the
+        // browser's own form reset from fighting with ours.
+        event.preventDefault();
+        reset();
+      });
+    }
+
+    /* --- Range binding --------------------------------------------------
+       Keeps a slider's <output> in step with its value. The <output> must
+       carry `for="<input id>"`, which is what associates the two for
+       assistive technology; this only handles the visible text.
+
+       Optionally sets aria-valuetext, which is how you make a screen reader
+       say "25 cases" or "medium correlation" instead of a bare "25".
+       ------------------------------------------------------------------ */
+
+    /**
+     * @param {string|Element} inputTarget  The range (or number) input.
+     * @param {object} [options]
+     * @param {Function} [options.format]  value:number -> string shown in the
+     *   <output>. Defaults to the raw value.
+     * @param {Function} [options.describe]  value:number -> string used for
+     *   aria-valuetext. Defaults to options.format.
+     * @param {Function} [options.onInput]  value:number -> void, called after
+     *   the display has been updated. Use it to redraw.
+     * @returns {HTMLInputElement|null}
+     */
+    function bindRange(inputTarget, options) {
+      var input = resolve(inputTarget, root);
+      if (!input) {
+        return null;
+      }
+
+      var settings = options || {};
+      var format =
+        typeof settings.format === "function"
+          ? settings.format
+          : function (value) {
+              return String(value);
+            };
+      var describe =
+        typeof settings.describe === "function" ? settings.describe : format;
+
+      // <output for="the-input-id"> is the conventional pairing.
+      var output = input.id
+        ? root.querySelector('output[for="' + input.id + '"]')
+        : null;
+
+      function sync() {
+        var value = Number(input.value);
+        if (output) {
+          output.textContent = format(value);
+        }
+        // Only meaningful for widgets with an implicit or explicit slider
+        // role; harmless elsewhere.
+        input.setAttribute("aria-valuetext", describe(value));
+        if (typeof settings.onInput === "function") {
+          settings.onInput(value);
+        }
+      }
+
+      input.addEventListener("input", sync);
+      // Registered so reset() can refresh the display after the tool's own
+      // reset handlers have put the input back to its default.
+      rangeSyncs.push(sync);
+      sync();
+
+      return input;
+    }
+
+    /* --- Public surface -------------------------------------------------- */
+
+    return {
+      /** The `.interactive` root element. */
+      root: root,
+      /** The controls panel, or null if the shell has none. */
+      controls: controls,
+      /** The stage element where the visualisation is drawn. */
+      stage: stage,
+      /** The live-region element. */
+      status: status,
+      announce: announce,
+      onReset: onReset,
+      reset: reset,
+      bindRange: bindRange,
+      prefersReducedMotion: prefersReducedMotion
+    };
+  }
+
+  /* -----------------------------------------------------------------------
+     Export
+     --------------------------------------------------------------------- */
+
+  global.InteractiveShell = {
+    attach: attach,
+    prefersReducedMotion: prefersReducedMotion
+  };
+})(window);
+
+/* ---- modules/cognitive/tools/01-posner-spatial-cueing/tool.js ---- */
+/* =========================================================================
+   Posner Spatial Cueing
+   -------------------------------------------------------------------------
+   A spatial-cueing experiment the student performs, followed by a summary
+   that separates the BENEFIT of a valid cue from the COST of an invalid one
+   using the neutral condition as the baseline.
+
+   THE TRIAL
+   ---------
+       fixation only            500 ms
+       cue on (one box, or both on neutral trials)   = the cue-to-target
+                                                       interval, 100/400/700 ms
+       target on                until the learner responds — never timed out
+
+   The cue stays on once it appears and the target stays until answered, so
+   the display changes at most twice per trial and never faster than about
+   once a second. Nothing animates, nothing flashes, and there is therefore
+   nothing for a reduced-motion rule to switch off.
+
+   The cue is carried by three things at once — a much heavier border, the
+   accent colour, and a caret glyph printed under the box — so it is legible
+   in greyscale and in forced-colours mode.
+
+   THE DESIGN
+   ----------
+   A third of the trials are neutral. Of the remaining (cued) trials, three in
+   four are valid, so the cue is worth using. Target side is balanced within
+   every condition. A 48-trial block is therefore 16 neutral, 24 valid and 8
+   invalid — and the smallness of that last cell is a teaching point rather
+   than an oversight.
+
+   WHY RESULTS ARE WITHHELD UNTIL THE BLOCK ENDS
+   ---------------------------------------------
+   This is a deliberate exception to the usual rule that a learner should see
+   the consequence of what they are doing while they do it. Showing a running
+   condition mean during a speeded block would change how people respond to
+   the next trial. Practice trials give immediate feedback; scored trials give
+   none until the block is over.
+
+   THE NON-TIMED ROUTE
+   -------------------
+   Nobody has to perform the task. "Load the worked example" fills the same
+   results panel from a documented, seeded generator:
+
+       RT = 340 + condition offset + Normal(0, 45) + Exponential(mean 35)
+       condition offset:  valid -28, neutral 0, invalid +52
+       accuracy:          valid .98, neutral .97, invalid .94
+       n = 96 (48 valid, 32 neutral, 16 invalid), seed 20260823
+
+   Ninety-six trials is twice the default block, which is the point: the
+   worked example is meant to show the pattern the design is capable of
+   producing, and a learner's own 48-trial block is meant to show how much
+   noise sits on top of it.
+
+   Those numbers were chosen to make the benefit and the cost legible, with
+   the cost larger than the benefit as it usually is in the literature. They
+   are illustrative. They are not a norm, an effect size or anybody's data,
+   and the page says so wherever they appear.
+
+   ANTICIPATIONS AND LAPSES
+   ------------------------
+   Responses under 150 ms cannot be reactions to the target; responses over
+   2000 ms are lapses of a different kind. Both are counted, reported and kept
+   out of the condition means rather than silently averaged in.
+
+   WHAT THIS CANNOT DO
+   -------------------
+   It cannot measure eye position. Every result here is equally compatible
+   with covert orienting and with a small eye movement to the cue. The page
+   says so in the hero, in the debrief and in the teaching notes.
+
+   No data leave the browser. No storage, no network request.
+   ========================================================================= */
+
+(function () {
+  "use strict";
+
+  /* --- Trial timing (milliseconds). Approximate targets: the browser cannot
+     guarantee them, which is stated on the page. -------------------------- */
+  var FIXATION_MS = 500;
+  var PRACTICE_FEEDBACK_MS = 1100;
+  var INTER_TRIAL_MS = 350;
+  var PRACTICE_TRIALS = 6;
+
+  /* Cleaning bounds, documented in the teaching notes. */
+  var ANTICIPATION_MS = 150;
+  var LAPSE_MS = 2000;
+
+  /* Design proportions. */
+  var NEUTRAL_SHARE = 1 / 3;
+  var VALID_SHARE_OF_CUED = 0.75;
+
+  /* Worked-example generator constants. */
+  var SIM = {
+    seed: 20260823,
+    n: 96,
+    base: 340,
+    offsets: { valid: -28, neutral: 0, invalid: 52 },
+    sd: 45,
+    tailMean: 35,
+    accuracy: { valid: 0.98, neutral: 0.97, invalid: 0.94 },
+    floor: 180
+  };
+
+  var CONDITIONS = ["valid", "neutral", "invalid"];
+  var CONDITION_LABEL = {
+    valid: "Valid",
+    neutral: "Neutral",
+    invalid: "Invalid"
+  };
+
+  /* =======================================================================
+     Seeded randomness (copied rather than imported, so a downloaded folder
+     keeps working on its own)
+     ===================================================================== */
+
+  function mulberry32(seed) {
+    var a = seed >>> 0;
+    return function () {
+      a = (a + 0x6d2b79f5) >>> 0;
+      var t = a;
+      t = Math.imul(t ^ (t >>> 15), t | 1);
+      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  /* Box-Muller: one standard normal draw from two uniforms. */
+  function normal(rand) {
+    var u = 1 - rand();
+    var v = rand();
+    return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+  }
+
+  /* Exponential draw, used for the right tail that every reaction-time
+     distribution has. */
+  function exponential(rand, mean) {
+    return -mean * Math.log(1 - rand());
+  }
+
+  /* =======================================================================
+     Small helpers
+     ===================================================================== */
+
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) { node.className = className; }
+    if (text !== undefined) { node.textContent = text; }
+    return node;
+  }
+
+  function clear(node) {
+    while (node && node.firstChild) { node.removeChild(node.firstChild); }
+  }
+
+  function ms(value) {
+    return value === null || value === undefined || isNaN(value)
+      ? "—" : Math.round(value) + " ms";
+  }
+
+  function signedMs(value) {
+    if (value === null || value === undefined || isNaN(value)) { return "—"; }
+    var rounded = Math.round(value);
+    return (rounded > 0 ? "+" : "") + rounded + " ms";
+  }
+
+  function pct(value) {
+    return value === null || isNaN(value) ? "—" : Math.round(value * 100) + "%";
+  }
+
+  function mean(values) {
+    if (!values.length) { return null; }
+    return values.reduce(function (a, b) { return a + b; }, 0) / values.length;
+  }
+
+  function median(values) {
+    if (!values.length) { return null; }
+    var sorted = values.slice().sort(function (a, b) { return a - b; });
+    var mid = Math.floor(sorted.length / 2);
+    return sorted.length % 2 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
+  }
+
+  /* Sample standard deviation: these are estimates from a handful of trials,
+     so the n-1 denominator is the right one. */
+  function sd(values) {
+    if (values.length < 2) { return null; }
+    var m = mean(values);
+    var sum = values.reduce(function (t, x) { return t + (x - m) * (x - m); }, 0);
+    return Math.sqrt(sum / (values.length - 1));
+  }
+
+  function shuffle(items, rand) {
+    var draw = rand || Math.random;
+    for (var i = items.length - 1; i > 0; i -= 1) {
+      var j = Math.floor(draw() * (i + 1));
+      var tmp = items[i];
+      items[i] = items[j];
+      items[j] = tmp;
+    }
+    return items;
+  }
+
+  function now() {
+    return (window.performance && window.performance.now)
+      ? window.performance.now() : Date.now();
+  }
+
+  /* =======================================================================
+     Wiring
+     ===================================================================== */
+
+  var shell = InteractiveShell.attach("#posner");
+  if (!shell) { return; }
+
+  var $ = function (selector, scope) {
+    return (scope || document).querySelector(selector);
+  };
+
+  var display = $("[data-display]");
+  var displayCaption = $("[data-display-caption]");
+  var boxes = {
+    left: $('[data-box="left"]'),
+    right: $('[data-box="right"]')
+  };
+  var trialStatus = $("[data-trial-status]");
+  var taskFeedback = $("[data-task-feedback]");
+  var leftButton = $('[data-response="left"]');
+  var rightButton = $('[data-response="right"]');
+  var startPractice = $('[data-action="start-practice"]');
+  var startBlock = $('[data-action="start-block"]');
+  var workedExample = $('[data-action="worked-example"]');
+  var blockLength = $("#block-length");
+  var soaSelect = $("#soa-select");
+
+  var resultsSection = $("#results");
+  var resultsBody = $("[data-results-body]");
+  var chartCaption = $("[data-chart-caption]");
+  var rtChart = $("[data-rt-chart]");
+  var rtTable = $("[data-rt-table]");
+  var effectReadout = $("[data-effect-readout]");
+  var effectText = $("[data-effect-text]");
+  var effectNote = $("[data-effect-note]");
+
+  var openingForm = $("#opening-form");
+  var openingError = $("[data-opening-error]");
+  var openingFeedback = $("[data-opening-feedback]");
+  var skipOpening = $('[data-action="skip-opening"]');
+
+  var challengeForm = $("#challenge-form");
+  var challengeRows = $("[data-challenge-rows]");
+  var challengeFeedback = $("[data-challenge-feedback]");
+
+  var DEFAULTS = { blockLength: 48, soa: 400 };
+
+  var state = null;
+  var pending = [];   // outstanding setTimeout ids, so reset can cancel them
+
+  function later(fn, delay) {
+    var id = window.setTimeout(function () {
+      pending = pending.filter(function (other) { return other !== id; });
+      fn();
+    }, delay);
+    pending.push(id);
+    return id;
+  }
+
+  function cancelPending() {
+    pending.forEach(function (id) { window.clearTimeout(id); });
+    pending = [];
+  }
+
+  /* =======================================================================
+     The trial sequence
+     ===================================================================== */
+
+  /**
+   * Build a balanced, shuffled list of trials.
+   * @param {number} total  Number of trials in the block.
+   * @returns {Array<{condition:string, targetSide:string, cueSide:string}>}
+   */
+  function buildTrials(total) {
+    var neutralCount = Math.round(total * NEUTRAL_SHARE);
+    var cuedCount = total - neutralCount;
+    var validCount = Math.round(cuedCount * VALID_SHARE_OF_CUED);
+    var invalidCount = cuedCount - validCount;
+
+    var counts = {
+      valid: validCount,
+      neutral: neutralCount,
+      invalid: invalidCount
+    };
+
+    var trials = [];
+    CONDITIONS.forEach(function (condition) {
+      for (var i = 0; i < counts[condition]; i += 1) {
+        // Target side is balanced within each condition, so side carries no
+        // information about which condition a trial belongs to.
+        var targetSide = i % 2 === 0 ? "left" : "right";
+        var other = targetSide === "left" ? "right" : "left";
+        trials.push({
+          condition: condition,
+          targetSide: targetSide,
+          cueSide: condition === "valid" ? targetSide
+            : condition === "invalid" ? other : "both"
+        });
+      }
+    });
+
+    return shuffle(trials);
+  }
+
+  function practiceTrials() {
+    // Practice deliberately shows all three conditions, twice each, so the
+    // learner has met an invalid trial before anything is scored.
+    var trials = [];
+    CONDITIONS.forEach(function (condition) {
+      ["left", "right"].forEach(function (targetSide) {
+        var other = targetSide === "left" ? "right" : "left";
+        trials.push({
+          condition: condition,
+          targetSide: targetSide,
+          cueSide: condition === "valid" ? targetSide
+            : condition === "invalid" ? other : "both"
+        });
+      });
+    });
+    return shuffle(trials).slice(0, PRACTICE_TRIALS);
+  }
+
+  /* --- Display -------------------------------------------------------- */
+
+  function setFixation(visible) {
+    display.setAttribute("data-fixation-visible", visible ? "yes" : "no");
+  }
+
+  function setCue(side) {
+    boxes.left.setAttribute("data-cued",
+      side === "left" || side === "both" ? "yes" : "no");
+    boxes.right.setAttribute("data-cued",
+      side === "right" || side === "both" ? "yes" : "no");
+  }
+
+  function setTarget(side) {
+    boxes.left.setAttribute("data-target-visible", side === "left" ? "yes" : "no");
+    boxes.right.setAttribute("data-target-visible", side === "right" ? "yes" : "no");
+  }
+
+  function clearDisplay() {
+    setFixation(false);
+    setCue(null);
+    setTarget(null);
+  }
+
+  function setResponseEnabled(enabled) {
+    leftButton.disabled = !enabled;
+    rightButton.disabled = !enabled;
+  }
+
+  /* --- Running a block ------------------------------------------------- */
+
+  function totalTrials() {
+    return state.queue.length;
+  }
+
+  function updateTrialStatus() {
+    if (state.mode === "idle") {
+      trialStatus.textContent = state.blockDone
+        ? "Block complete. Reset to run another one."
+        : state.practiceDone
+          ? "Practice done. Start the scored block when you are ready."
+          : "Not started. Practice first — it is untimed and gives feedback.";
+      return;
+    }
+    trialStatus.textContent =
+      (state.mode === "practice" ? "Practice trial " : "Trial ") +
+      (state.index + 1) + " of " + totalTrials() +
+      ". Look at the cross; press Left or Right when the disc appears.";
+  }
+
+  function beginTrial() {
+    var trial = state.queue[state.index];
+    state.awaiting = null;
+    clearDisplay();
+    setFixation(true);
+    displayCaption.textContent = "Keep looking at the cross.";
+    updateTrialStatus();
+
+    later(function () {
+      setCue(trial.cueSide);
+      displayCaption.textContent = trial.cueSide === "both"
+        ? "Both boxes cued." : "One box cued.";
+      later(function () {
+        setTarget(trial.targetSide);
+        displayCaption.textContent =
+          "Target showing. Press Left or Right — there is no time limit.";
+        state.awaiting = trial;
+        state.shownAt = now();
+        setResponseEnabled(true);
+      }, state.soa);
+    }, FIXATION_MS);
+  }
+
+  function respond(side) {
+    if (!state.awaiting) { return; }
+    var trial = state.awaiting;
+    var rt = now() - state.shownAt;
+    var correct = side === trial.targetSide;
+
+    state.awaiting = null;
+    setResponseEnabled(false);
+    setTarget(null);
+    setCue(null);
+
+    if (state.mode === "practice") {
+      showFeedback(taskFeedback,
+        correct ? "good" : "caution",
+        correct ? "Correct." : "Other side.",
+        "That was " + (trial.condition === "neutral"
+          ? "a neutral trial — both boxes were cued, so the cue pointed nowhere."
+          : trial.condition === "valid"
+            ? "a valid trial — the target appeared in the cued box."
+            : "an invalid trial — the target appeared in the box that was not cued.") +
+        " Practice trials tell you straight away; scored trials will not.");
+    } else {
+      state.results.push({
+        condition: trial.condition,
+        rt: rt,
+        correct: correct
+      });
+    }
+
+    state.index += 1;
+
+    if (state.index >= totalTrials()) {
+      finishRun();
+    } else {
+      later(beginTrial,
+        state.mode === "practice" ? PRACTICE_FEEDBACK_MS : INTER_TRIAL_MS);
+      updateTrialStatus();
+    }
+  }
+
+  function finishRun() {
+    var wasPractice = state.mode === "practice";
+    state.mode = "idle";
+    setResponseEnabled(false);
+    clearDisplay();
+
+    if (wasPractice) {
+      state.practiceDone = true;
+      displayCaption.textContent = "Practice finished.";
+      showFeedback(taskFeedback, "good", "Practice finished.",
+        "The scored block gives no feedback until it ends, and still has no " +
+        "time limit on any trial.");
+      startBlock.disabled = false;
+      startPractice.disabled = false;
+      startBlock.focus();
+      shell.announce("Practice finished. The scored block is now available.",
+        { immediate: true });
+    } else {
+      state.blockDone = true;
+      displayCaption.textContent = "Block finished. Your results are below.";
+      taskFeedback.hidden = true;
+      startPractice.disabled = false;
+      startBlock.disabled = false;
+      showResults(summarise(state.results), {
+        source: "block",
+        soa: state.soa,
+        total: totalTrials()
+      });
+      shell.announce("Block finished. Your three condition means are below.",
+        { immediate: true });
+    }
+    updateTrialStatus();
+  }
+
+  /* =======================================================================
+     Summarising a set of trials
+     ===================================================================== */
+
+  /**
+   * @param {Array<{condition:string, rt:number, correct:boolean}>} trials
+   * @returns {object} per-condition statistics plus the cleaning counts
+   */
+  function summarise(trials) {
+    var anticipations = trials.filter(function (t) { return t.rt < ANTICIPATION_MS; });
+    var lapses = trials.filter(function (t) { return t.rt > LAPSE_MS; });
+    var usable = trials.filter(function (t) {
+      return t.rt >= ANTICIPATION_MS && t.rt <= LAPSE_MS;
+    });
+
+    var byCondition = {};
+    CONDITIONS.forEach(function (condition) {
+      var all = usable.filter(function (t) { return t.condition === condition; });
+      var correct = all.filter(function (t) { return t.correct; });
+      var rts = correct.map(function (t) { return t.rt; });
+      byCondition[condition] = {
+        n: all.length,
+        nCorrect: correct.length,
+        accuracy: all.length ? correct.length / all.length : null,
+        rts: rts,
+        mean: mean(rts),
+        median: median(rts),
+        sd: sd(rts)
+      };
+    });
+
+    var usableCorrect = usable.filter(function (t) { return t.correct; }).length;
+
+    return {
+      total: trials.length,
+      anticipations: anticipations.length,
+      lapses: lapses.length,
+      usable: usable.length,
+      incorrect: usable.length - usableCorrect,
+      byCondition: byCondition,
+      accuracy: usable.length ? usableCorrect / usable.length : null
+    };
+  }
+
+  /**
+   * Standard error of a difference between two independent condition means.
+   * Used to say honestly how much of an observed difference could be noise.
+   */
+  function seOfDifference(a, b) {
+    if (!a.sd || !b.sd || a.rts.length < 2 || b.rts.length < 2) { return null; }
+    return Math.sqrt(
+      (a.sd * a.sd) / a.rts.length + (b.sd * b.sd) / b.rts.length
+    );
+  }
+
+  /**
+   * A clause describing how a difference compares with the noise on it.
+   * Written to complete the sentence "... relative to neutral, <clause>."
+   */
+  function describeDifference(difference, se) {
+    if (difference === null || se === null) {
+      return "and there were too few usable trials to judge how much of that is noise";
+    }
+    var size = Math.abs(difference);
+    if (size < se) {
+      return "which is smaller than the trial-to-trial noise on it, so this block cannot tell it from zero";
+    }
+    if (size < 2 * se) {
+      return "which is about the size of the noise on it, so it is suggestive at best from one block";
+    }
+    return "which is comfortably larger than the noise on it in this block";
+  }
+
+  /* =======================================================================
+     The worked example
+     ===================================================================== */
+
+  function simulatedTrials() {
+    var rand = mulberry32(SIM.seed);
+    var neutralCount = Math.round(SIM.n * NEUTRAL_SHARE);
+    var cuedCount = SIM.n - neutralCount;
+    var validCount = Math.round(cuedCount * VALID_SHARE_OF_CUED);
+    var counts = {
+      valid: validCount,
+      neutral: neutralCount,
+      invalid: cuedCount - validCount
+    };
+
+    var trials = [];
+    CONDITIONS.forEach(function (condition) {
+      for (var i = 0; i < counts[condition]; i += 1) {
+        var rt = SIM.base + SIM.offsets[condition] +
+          normal(rand) * SIM.sd + exponential(rand, SIM.tailMean);
+        trials.push({
+          condition: condition,
+          rt: Math.max(SIM.floor, rt),
+          correct: rand() < SIM.accuracy[condition]
+        });
+      }
+    });
+    return trials;
+  }
+
+  /* =======================================================================
+     Rendering the results
+     ===================================================================== */
+
+  function showResults(stats, meta) {
+    $("#results-heading").textContent = meta.source === "simulated"
+      ? "Worked example — three conditions, simulated"
+      : "Your block — three conditions";
+    renderResultsProse(stats, meta);
+    renderChart(stats);
+    renderTable(stats);
+    renderEffects(stats, meta);
+    resultsSection.hidden = false;
+    $("#results-heading").focus();
+  }
+
+  function renderResultsProse(stats, meta) {
+    clear(resultsBody);
+
+    var simulated = meta.source === "simulated";
+    var valid = stats.byCondition.valid;
+    var neutral = stats.byCondition.neutral;
+    var invalid = stats.byCondition.invalid;
+
+    if (!valid.rts.length || !neutral.rts.length || !invalid.rts.length) {
+      resultsBody.appendChild(make("p", "reveal__lead",
+        "There are not enough usable trials in at least one condition to " +
+        "summarise this block."));
+      resultsBody.appendChild(make("p", null,
+        "Of " + stats.total + " trials, " + stats.anticipations +
+        " arrived in under " + ANTICIPATION_MS + " ms and " + stats.lapses +
+        " took longer than " + LAPSE_MS + " ms. Responses faster than the " +
+        "first bound cannot be reactions to the target, and both are kept " +
+        "out of the means rather than averaged in. Run the block again, or " +
+        "load the worked example, which reaches every conclusion on this " +
+        "page without performing the task."));
+      return;
+    }
+
+    resultsBody.appendChild(make("p", "reveal__lead",
+      simulated
+        ? "Simulated data, seed " + SIM.seed + ": valid " + ms(valid.mean) +
+          ", neutral " + ms(neutral.mean) + ", invalid " + ms(invalid.mean) + "."
+        : "Your means: valid " + ms(valid.mean) + ", neutral " +
+          ms(neutral.mean) + ", invalid " + ms(invalid.mean) + "."));
+
+    if (simulated) {
+      resultsBody.appendChild(make("p", null,
+        "These numbers were generated by the model documented at the top of " +
+        "tool.js, using a fixed seed so that they are identical every time " +
+        "this button is pressed. They are illustrative."));
+      resultsBody.appendChild(make("p", null,
+        "The example runs " + SIM.n + " trials — twice the default block. " +
+        "That is deliberate: it shows the pattern this design is capable of " +
+        "producing when there are enough trials to see it. A block you run " +
+        "yourself will be noisier, and comparing the two is the more useful " +
+        "exercise."));
+    } else {
+      resultsBody.appendChild(make("p", null,
+        "A " + meta.total + "-trial block at a cue-to-target interval of about " +
+        meta.soa + " ms, in a browser tab. Reaction times measured this way " +
+        "include display and input latency and are illustrative rather than " +
+        "psychophysical measurement."));
+    }
+
+    if (stats.anticipations || stats.lapses) {
+      resultsBody.appendChild(make("p", null,
+        stats.anticipations + " response" +
+        (stats.anticipations === 1 ? "" : "s") + " arrived in under " +
+        ANTICIPATION_MS + " ms and " + stats.lapses + " took longer than " +
+        LAPSE_MS + " ms. Nobody reacts to a target in under " +
+        ANTICIPATION_MS + " ms, so those are anticipations rather than " +
+        "reactions; the slow ones are lapses of attention of a different " +
+        "kind. Both are set aside before anything is averaged, and that " +
+        "decision is a researcher's choice rather than a measurement."));
+    }
+
+    resultsBody.appendChild(make("p", null,
+      "Only correct trials contribute to the means, which is the usual " +
+      "convention and also a choice: overall accuracy here was " +
+      pct(stats.accuracy) + ", so " + stats.incorrect +
+      " usable trial" + (stats.incorrect === 1 ? " was" : "s were") +
+      " dropped for being wrong."));
+  }
+
+  function renderChart(stats) {
+    var NS = "http://www.w3.org/2000/svg";
+    var W = 460, H = 260;
+    var PAD_L = 58, PAD_R = 18, PAD_T = 18, PAD_B = 48;
+    var plotW = W - PAD_L - PAD_R;
+    var plotH = H - PAD_T - PAD_B;
+
+    clear(rtChart);
+
+    var allRts = [];
+    CONDITIONS.forEach(function (condition) {
+      allRts = allRts.concat(stats.byCondition[condition].rts);
+    });
+    if (!allRts.length) { return; }
+
+    var lo = Math.min.apply(null, allRts);
+    var hi = Math.max.apply(null, allRts);
+    var pad = Math.max(20, (hi - lo) * 0.1);
+
+    // Round tick values, so the axis reads 300 / 400 / 500 rather than
+    // 306 / 412 / 519. Pick the smallest step that keeps the axis to about
+    // four or five gridlines.
+    var TICK_STEPS = [25, 50, 100, 150, 200, 250, 500];
+    var span = (hi + pad) - Math.max(0, lo - pad);
+    var step = TICK_STEPS[TICK_STEPS.length - 1];
+    for (var s = 0; s < TICK_STEPS.length; s += 1) {
+      if (span / TICK_STEPS[s] <= 5) { step = TICK_STEPS[s]; break; }
+    }
+    var yMin = Math.max(0, Math.floor((lo - pad) / step) * step);
+    var yMax = yMin + Math.ceil(((hi + pad) - yMin) / step) * step;
+    var tickCount = Math.round((yMax - yMin) / step);
+
+    var yAt = function (rt) {
+      return PAD_T + (1 - (rt - yMin) / (yMax - yMin)) * plotH;
+    };
+    var xAt = function (index) {
+      return PAD_L + (index + 0.5) * (plotW / CONDITIONS.length);
+    };
+
+    function add(tag, attributes, text) {
+      var node = document.createElementNS(NS, tag);
+      Object.keys(attributes).forEach(function (key) {
+        node.setAttribute(key, String(attributes[key]));
+      });
+      if (text !== undefined) { node.textContent = text; }
+      rtChart.appendChild(node);
+      return node;
+    }
+
+    // Y axis: gridlines at round millisecond values.
+    for (var g = 0; g <= tickCount; g += 1) {
+      var value = yMin + g * step;
+      add("line", {
+        x1: PAD_L, y1: yAt(value).toFixed(1),
+        x2: W - PAD_R, y2: yAt(value).toFixed(1),
+        class: "chart__grid"
+      });
+      add("text", {
+        x: PAD_L - 8, y: (yAt(value) + 4).toFixed(1),
+        "text-anchor": "end", class: "chart__axis"
+      }, Math.round(value) + "");
+    }
+
+    // The neutral mean, drawn right across the plot: this is the baseline
+    // that makes benefit and cost separable, so it is the one reference line
+    // the chart carries.
+    var neutralMean = stats.byCondition.neutral.mean;
+    if (neutralMean !== null) {
+      add("line", {
+        x1: PAD_L, y1: yAt(neutralMean).toFixed(1),
+        x2: W - PAD_R, y2: yAt(neutralMean).toFixed(1),
+        class: "posner__baseline"
+      });
+    }
+
+    CONDITIONS.forEach(function (condition, index) {
+      var cell = stats.byCondition[condition];
+      var cx = xAt(index);
+      var halfWidth = (plotW / CONDITIONS.length) * 0.3;
+
+      // Every scored trial as a dot, spread deterministically across the
+      // column so the trial-to-trial spread is visible rather than implied.
+      cell.rts.forEach(function (rt, i) {
+        var spread = cell.rts.length > 1 ? (i / (cell.rts.length - 1)) - 0.5 : 0;
+        add("circle", {
+          cx: (cx + spread * halfWidth * 1.6).toFixed(1),
+          cy: yAt(rt).toFixed(1),
+          r: 3.2,
+          class: "posner__dot"
+        });
+      });
+
+      if (cell.mean !== null) {
+        add("line", {
+          x1: (cx - halfWidth).toFixed(1), y1: yAt(cell.mean).toFixed(1),
+          x2: (cx + halfWidth).toFixed(1), y2: yAt(cell.mean).toFixed(1),
+          class: "posner__mean"
+        });
+        add("text", {
+          x: cx.toFixed(1), y: (yAt(cell.mean) - 10).toFixed(1),
+          "text-anchor": "middle", class: "chart__count"
+        }, ms(cell.mean));
+      }
+
+      add("text", {
+        x: cx.toFixed(1), y: H - 26,
+        "text-anchor": "middle", class: "chart__label"
+      }, CONDITION_LABEL[condition]);
+      add("text", {
+        x: cx.toFixed(1), y: H - 10,
+        "text-anchor": "middle", class: "chart__axis"
+      }, "n = " + cell.rts.length);
+    });
+
+    add("text", {
+      x: 14, y: PAD_T + plotH / 2,
+      "text-anchor": "middle", class: "chart__axis",
+      transform: "rotate(-90 14 " + (PAD_T + plotH / 2) + ")"
+    }, "Reaction time (ms)");
+  }
+
+  function renderTable(stats) {
+    clear(rtTable);
+    CONDITIONS.forEach(function (condition) {
+      var cell = stats.byCondition[condition];
+      var row = make("tr");
+      var head = make("th", null, CONDITION_LABEL[condition]);
+      head.setAttribute("scope", "row");
+      row.appendChild(head);
+      row.appendChild(make("td", null, String(cell.n)));
+      row.appendChild(make("td", null,
+        cell.n ? cell.nCorrect + " of " + cell.n + " (" + pct(cell.accuracy) + ")" : "—"));
+      row.appendChild(make("td", null, ms(cell.mean)));
+      row.appendChild(make("td", null, ms(cell.median)));
+      row.appendChild(make("td", null, cell.sd === null ? "—" : ms(cell.sd)));
+      rtTable.appendChild(row);
+    });
+  }
+
+  function renderEffects(stats, meta) {
+    var valid = stats.byCondition.valid;
+    var neutral = stats.byCondition.neutral;
+    var invalid = stats.byCondition.invalid;
+
+    var benefit = (neutral.mean !== null && valid.mean !== null)
+      ? neutral.mean - valid.mean : null;
+    var cost = (invalid.mean !== null && neutral.mean !== null)
+      ? invalid.mean - neutral.mean : null;
+    var total = (invalid.mean !== null && valid.mean !== null)
+      ? invalid.mean - valid.mean : null;
+
+    var benefitSe = seOfDifference(neutral, valid);
+    var costSe = seOfDifference(invalid, neutral);
+
+    clear(effectReadout);
+    [
+      ["Benefit (neutral − valid)", signedMs(benefit)],
+      ["Cost (invalid − neutral)", signedMs(cost)],
+      ["Total cueing effect (invalid − valid)", signedMs(total)],
+      ["Accuracy overall", pct(stats.accuracy)]
+    ].forEach(function (pair) {
+      var cellNode = make("div");
+      cellNode.appendChild(make("dt", null, pair[0]));
+      cellNode.appendChild(make("dd", null, pair[1]));
+      effectReadout.appendChild(cellNode);
+    });
+
+    chartCaption.textContent = (meta.source === "simulated"
+      ? "Simulated data (seed " + SIM.seed + "): mean"
+      : "Your block: mean") +
+      " correct reaction time by cue type, with every scored trial plotted " +
+      "behind it and the neutral mean drawn across as the baseline";
+
+    var sentences = [];
+    if (benefit === null || cost === null) {
+      sentences.push(
+        "At least one condition has too few usable trials to compare, which " +
+        "is itself worth noticing: the invalid cell is the smallest one in " +
+        "this design.");
+    } else {
+      sentences.push(
+        (benefit > 0
+          ? "Attention already in the right place saved " +
+            Math.round(benefit) + " ms relative to neutral, "
+          : "Valid trials were not faster than neutral here — " +
+            signedMs(benefit) + " on the benefit side, ") +
+        describeDifference(benefit, benefitSe) + ".");
+      sentences.push(
+        (cost > 0
+          ? "Having to leave the wrong place cost " +
+            Math.round(cost) + " ms relative to neutral, "
+          : "Invalid trials were not slower than neutral here — " +
+            signedMs(cost) + " on the cost side, ") +
+        describeDifference(cost, costSe) + ".");
+      sentences.push(
+        "Reporting valid against invalid alone would have given a single " +
+        "number, " + signedMs(total) + ", which conceals which of those two " +
+        "produced it.");
+    }
+    effectText.textContent = sentences.join(" ");
+
+    effectNote.textContent = meta.source === "simulated"
+      ? "Simulated from a fixed seed. Illustrative, not a published effect size."
+      : "One block, in a browser tab, with no record of where you were looking.";
+  }
+
+  /* =======================================================================
+     Feedback helper
+     ===================================================================== */
+
+  function showFeedback(container, tone, verdict, text) {
+    clear(container);
+    container.setAttribute("data-tone", tone);
+    var p = make("p");
+    p.appendChild(make("strong", "feedback__verdict", verdict));
+    if (text) { p.appendChild(document.createTextNode(" " + text)); }
+    container.appendChild(p);
+    container.hidden = false;
+    return p;
+  }
+
+  function lockForm(form) {
+    Array.prototype.forEach.call(form.querySelectorAll("input, button"),
+      function (control) { control.disabled = true; });
+  }
+
+  function unlockForm(form) {
+    Array.prototype.forEach.call(form.querySelectorAll("input, button"),
+      function (control) { control.disabled = false; });
+    form.reset();
+  }
+
+  /* =======================================================================
+     Opening prediction
+     ===================================================================== */
+
+  var OPENING = {
+    both: {
+      tone: "good",
+      verdict: "That is the usual finding.",
+      text:
+        "Valid fastest, invalid slowest, neutral between. Those are two " +
+        "separate effects. Run a block and see which half is larger in yours."
+    },
+    benefit: {
+      tone: "caution",
+      verdict: "Half of it, and usually the smaller half.",
+      text:
+        "The benefit is real. In most published work the cost of an invalid " +
+        "cue is the larger of the two. Watch for that asymmetry in your block."
+    },
+    cost: {
+      tone: "caution",
+      verdict: "Also half of it.",
+      text:
+        "Usually the larger half, so this is often nearer the truth than the " +
+        "opposite answer. A benefit is normally there too, and the neutral " +
+        "baseline is what lets you see both."
+    },
+    none: {
+      tone: "caution",
+      verdict: "This is the intuition the paradigm was built to test.",
+      text:
+        "A reasonable intuition, and the one the paradigm was built to test. " +
+        "A cue you never look at usually does matter. Whether your own block " +
+        "shows it is a separate question."
+    }
+  };
+
+  function unlockExperiment(message) {
+    startPractice.disabled = false;
+    startBlock.disabled = false;
+    displayCaption.textContent =
+      "Ready. Practice first if you have not done this before.";
+    shell.announce(message, { immediate: true });
+  }
+
+  openingForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answer = $('input[name="opening"]:checked', openingForm);
+    if (!answer) {
+      openingError.textContent =
+        "Choose one of the four patterns before starting.";
+      openingError.hidden = false;
+      return;
+    }
+    openingError.hidden = true;
+    var response = OPENING[answer.value];
+    showFeedback(openingFeedback, response.tone, response.verdict, response.text);
+    lockForm(openingForm);
+    unlockExperiment("Experiment unlocked. Practice is untimed and gives feedback.");
+  });
+
+  skipOpening.addEventListener("click", function () {
+    openingError.hidden = true;
+    showFeedback(openingFeedback, "neutral", "Prediction skipped.",
+      "The experiment is unlocked.");
+    lockForm(openingForm);
+    unlockExperiment("Prediction skipped. Experiment unlocked.");
+  });
+
+  /* =======================================================================
+     Running the task
+     ===================================================================== */
+
+  leftButton.addEventListener("click", function () { respond("left"); });
+  rightButton.addEventListener("click", function () { respond("right"); });
+
+  document.addEventListener("keydown", function (event) {
+    if (!state || !state.awaiting) { return; }
+    if (event.key === "ArrowLeft") { event.preventDefault(); respond("left"); }
+    if (event.key === "ArrowRight") { event.preventDefault(); respond("right"); }
+  });
+
+  startPractice.addEventListener("click", function () {
+    cancelPending();
+    state.mode = "practice";
+    state.index = 0;
+    state.queue = practiceTrials();
+    state.soa = Number(soaSelect.value);
+    taskFeedback.hidden = true;
+    startPractice.disabled = true;
+    startBlock.disabled = true;
+    beginTrial();
+    shell.announce("Practice started. Six untimed trials with feedback.",
+      { immediate: true });
+  });
+
+  startBlock.addEventListener("click", function () {
+    cancelPending();
+    state.mode = "block";
+    state.index = 0;
+    state.results = [];
+    state.queue = buildTrials(Number(blockLength.value));
+    state.soa = Number(soaSelect.value);
+    state.blockDone = false;
+    taskFeedback.hidden = true;
+    resultsSection.hidden = true;
+    startPractice.disabled = true;
+    startBlock.disabled = true;
+    beginTrial();
+    shell.announce(
+      "Block started. " + state.queue.length +
+      " trials, no feedback until the end, no time limit on any trial.",
+      { immediate: true });
+  });
+
+  workedExample.addEventListener("click", function () {
+    cancelPending();
+    state.mode = "idle";
+    state.awaiting = null;
+    setResponseEnabled(false);
+    clearDisplay();
+    displayCaption.textContent =
+      "Worked example loaded below. The task itself is still available.";
+    showResults(summarise(simulatedTrials()), { source: "simulated" });
+    shell.announce(
+      "Worked example loaded. Simulated data with a fixed seed, shown below.",
+      { immediate: true });
+  });
+
+  /* =======================================================================
+     Challenge — four fictional studies, one classification each
+     ===================================================================== */
+
+  var CHALLENGE_STUDIES = [
+    {
+      id: "a", name: "Study A", valid: 402, neutral: 404, invalid: 461,
+      answer: "cost",
+      why: "Valid is 2 ms faster than neutral, which is nothing. Invalid is " +
+        "57 ms slower than neutral. The cue did not help when it was right; " +
+        "it hurt when it was wrong. That is a disengagement cost with no " +
+        "detectable facilitation."
+    },
+    {
+      id: "b", name: "Study B", valid: 371, neutral: 405, invalid: 409,
+      answer: "benefit",
+      why: "Valid is 34 ms faster than neutral; invalid is only 4 ms slower. " +
+        "Attention already in the right place helped, and being in the wrong " +
+        "place cost almost nothing. That is facilitation with no detectable " +
+        "cost."
+    },
+    {
+      id: "c", name: "Study C", valid: 378, neutral: 404, invalid: 448,
+      answer: "both",
+      why: "Valid is 26 ms faster than neutral and invalid is 44 ms slower. " +
+        "Both halves are present, and the cost is the larger of the two — " +
+        "the pattern most often reported."
+    },
+    {
+      id: "d", name: "Study D", valid: 401, neutral: 403, invalid: 405,
+      answer: "neither",
+      why: "All three conditions are within 4 ms of each other. Note that " +
+        "invalid is still numerically slower than valid, so a study " +
+        "reporting only that comparison could describe a 4 ms 'cueing " +
+        "effect' — which is why the neutral baseline matters."
+    }
+  ];
+
+  var CHALLENGE_OPTIONS = [
+    ["", "Choose…"],
+    ["benefit", "A benefit of valid cueing only"],
+    ["cost", "A cost of invalid cueing only"],
+    ["both", "Both a benefit and a cost"],
+    ["neither", "Neither — no cueing effect worth the name"]
+  ];
+
+  function renderChallenge() {
+    clear(challengeRows);
+    CHALLENGE_STUDIES.forEach(function (study) {
+      var row = make("tr");
+      var head = make("th", null, study.name);
+      head.setAttribute("scope", "row");
+      row.appendChild(head);
+      row.appendChild(make("td", null, study.valid + " ms"));
+      row.appendChild(make("td", null, study.neutral + " ms"));
+      row.appendChild(make("td", null, study.invalid + " ms"));
+
+      var choiceCell = make("td");
+      var select = make("select");
+      select.id = "challenge-" + study.id;
+      select.setAttribute("data-study", study.id);
+      var label = make("label", "visually-hidden",
+        "What does the " + study.name + " pattern support?");
+      label.setAttribute("for", select.id);
+      CHALLENGE_OPTIONS.forEach(function (option) {
+        var node = make("option", null, option[1]);
+        node.value = option[0];
+        select.appendChild(node);
+      });
+      choiceCell.appendChild(label);
+      choiceCell.appendChild(select);
+      choiceCell.appendChild(make("span", "challenge__mark", ""));
+      row.appendChild(choiceCell);
+      challengeRows.appendChild(row);
+    });
+  }
+
+  challengeForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    var answered = 0;
+    var right = 0;
+    CHALLENGE_STUDIES.forEach(function (study) {
+      var select = $("#challenge-" + study.id, challengeForm);
+      var markNode = select.parentNode.querySelector(".challenge__mark");
+      if (!select.value) {
+        markNode.textContent = "Not answered yet.";
+        return;
+      }
+      answered += 1;
+      var correct = select.value === study.answer;
+      if (correct) { right += 1; }
+      markNode.textContent = correct ? "Correct." : "Not this one.";
+    });
+
+    if (!answered) {
+      showFeedback(challengeFeedback, "caution", "Nothing chosen yet.",
+        "Pick an answer for at least one study. Comparing each condition " +
+        "against the neutral row is the whole method here.");
+      return;
+    }
+
+    showFeedback(challengeFeedback,
+      right === CHALLENGE_STUDIES.length ? "good" : "caution",
+      right + " of " + CHALLENGE_STUDIES.length + " correct" +
+      (answered < CHALLENGE_STUDIES.length
+        ? " (" + (CHALLENGE_STUDIES.length - answered) + " left blank)." : "."),
+      "The method is the same every time: compare each condition against " +
+      "neutral, not against each other.");
+
+    var list = make("ul");
+    CHALLENGE_STUDIES.forEach(function (study) {
+      var item = make("li");
+      item.appendChild(make("strong", null, study.name + ": "));
+      item.appendChild(document.createTextNode(study.why));
+      list.appendChild(item);
+    });
+    challengeFeedback.appendChild(list);
+
+    challengeFeedback.appendChild(make("p", null,
+      "None of these four studies establishes a mechanism. Facilitation and " +
+      "disengagement are descriptions of where the effect sits relative to " +
+      "baseline; explaining why it sits there needs more than three means."));
+
+    shell.announce("Challenge marked: " + right + " of " +
+      CHALLENGE_STUDIES.length + " correct.", { immediate: true });
+  });
+
+  /* =======================================================================
+     Reset
+     ===================================================================== */
+
+  shell.onReset(function () {
+    cancelPending();
+    state = {
+      mode: "idle",
+      index: 0,
+      queue: [],
+      results: [],
+      awaiting: null,
+      shownAt: 0,
+      soa: DEFAULTS.soa,
+      practiceDone: false,
+      blockDone: false
+    };
+
+    unlockForm(openingForm);
+    openingFeedback.hidden = true;
+    openingError.hidden = true;
+    taskFeedback.hidden = true;
+    resultsSection.hidden = true;
+    challengeFeedback.hidden = true;
+
+    blockLength.value = String(DEFAULTS.blockLength);
+    soaSelect.value = String(DEFAULTS.soa);
+
+    startPractice.disabled = true;
+    startBlock.disabled = true;
+    setResponseEnabled(false);
+    clearDisplay();
+    displayCaption.textContent =
+      "Answer the question above to unlock the experiment.";
+
+    renderChallenge();
+    updateTrialStatus();
+  });
+
+  /* =======================================================================
+     Start-up
+     ===================================================================== */
+
+  shell.reset({ silent: true });
+  shell.announce(
+    "Ready. No trial is timed out, and the worked example reaches every " +
+      "conclusion on this page without performing the task.",
+    { immediate: true });
+})();
+
+</script>
+</div>

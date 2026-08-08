@@ -1,31 +1,50 @@
 #!/usr/bin/env python3
-"""Generate a self-contained `standalone.html` for one interactive.
+"""Generate a self-contained, embeddable copy of an interactive.
 
-    python scripts/build-standalone.py modules/research-methods/tools/20-.../
-    python scripts/build-standalone.py --check <tool-dir>   # verify, do not write
+    python scripts/build-standalone.py <tool-dir> [<tool-dir> ...]
+    python scripts/build-standalone.py --all
+    python scripts/build-standalone.py --all --check     # verify, do not write
 
 The published tool page links out to four shared stylesheets and two shared
 scripts. A lecturer who wants to reuse one activity on their own teaching page
 cannot take those links with them, so this script folds everything the activity
-actually needs into one file and drops everything it does not.
+needs into one block of HTML and drops everything it does not.
+
+The output is a *fragment*, not a document: one `<div class="opi-activity">`
+containing a `<style>`, the activity markup and a `<script>`. It can be pasted
+into a blank .html file or straight into an LMS page beside existing content.
+
+Embedding safely
+----------------
+Every selector is rewritten to sit under `.opi-activity`, so nothing the copy
+carries can restyle the page around it. `:root`, `html` and `body` map onto the
+wrapper; bare element selectors become descendants of it. The custom properties
+that the whole design rests on are declared on the wrapper and inherit inwards.
+
+Scoping also defends the activity against the host, because a scoped rule
+(`.opi-activity button`, specificity 0-1-1) outranks the ordinary host rule
+(`button`, 0-0-1). Where the design leans on a browser default rather than on a
+rule of its own, RESET_CSS restates it, so a host that flattens list padding or
+table borders does not flatten the activity's.
 
 What survives
-    the contents of <main>, minus the export control itself;
-    the shared design tokens, layout, component and tool styles;
+    the contents of <main>, minus the export control;
+    the shared design tokens, layout, component and tool styles, scoped;
     the interactive shell and the tool's own script;
-    every accessibility affordance in the markup - the skip link's target, the
-    live region, visually-hidden captions and table alternatives.
+    every accessibility affordance - live regions, visually-hidden captions,
+    table alternatives, reduced-motion, forced-colours and focus-visible rules.
 
 What is dropped
     site header, navigation, breadcrumbs and footer;
+    the export control itself, so a copy never carries its own copy button;
     assets/js/main.js in its entirety - it is nav, footer year and the
     catalogue fetch, none of which the activity calls, and the catalogue fetch
     would be a repository-relative dependency;
-    the site-chrome CSS those parts needed (see CHROME_SELECTORS);
-    <head> metadata: canonical, Open Graph, Twitter, theme-color.
+    the site-chrome CSS those parts needed (see CHROME_SELECTORS).
 
-The output is committed so that it can be reviewed in a diff and opened
-directly. Regenerate it whenever the tool's markup, script or styles change.
+Exports are committed so they can be reviewed in a diff and opened directly.
+`--check` exits non-zero if any committed export no longer matches its sources,
+which is what makes a stale copy a build failure rather than a surprise.
 """
 
 import argparse
@@ -34,6 +53,25 @@ import re
 import sys
 
 REPO = pathlib.Path(__file__).resolve().parent.parent
+
+#: The wrapper every exported activity is scoped under.
+ROOT = ".opi-activity"
+
+#: Site rules are scoped with the class repeated. That costs nothing visually
+#: and buys one level of specificity over the defensive reset in RESET_CSS,
+#: which has to sit above the host page's element rules and below the
+#: activity's own. See RESET_CSS for the full ladder.
+SITE_ROOT = ROOT + ROOT
+
+#: The site never sets a root font size, so `rem` resolves against the browser
+#: default of 16px in the canonical rendering. A host page very often does set
+#: one — `html { font-size: 62.5% }` is a widespread idiom — which would rescale
+#: the whole activity. Resolving rem to px at build time reproduces the
+#: canonical rendering exactly and makes it immune to that. Browser zoom, which
+#: is what WCAG 1.4.4 is tested with, scales px as readily as rem; what is given
+#: up is the reader's *default font size* preference, and an activity that
+#: renders at 62.5% respects that preference rather less.
+REM_BASE_PX = 16
 
 SHARED_CSS = [
     REPO / "assets" / "css" / "main.css",
@@ -47,71 +85,139 @@ SHARED_JS = [REPO / "components" / "interactive-shell.js"]
 # unrecognised selector is always kept. Keeping a dead rule costs a few bytes;
 # dropping a live one breaks the activity, and the asymmetry decides the rule.
 CHROME_SELECTORS = (
-    ".site-header",
-    ".site-nav",
-    ".site-footer",
-    ".nav-toggle",
-    ".brand",
-    ".breadcrumbs",
-    ".card-grid",
-    ".card",
-    ".hero__actions",
-    ".steps",
-    ".topic-list",
-    ".skip-link",
+    ".site-header", ".site-nav", ".site-footer", ".nav-toggle", ".brand",
+    ".breadcrumbs", ".card-grid", ".card", ".hero__actions", ".steps",
+    ".topic-list", ".skip-link",
     # The export control is removed from the markup, so its styling is dead
     # weight in the copy.
     ".activity-export",
 )
 
-# Selectors that start with a chrome prefix but are needed anyway. `.card--*`
-# modifiers only set --card-accent from the module palette, and the tool page
-# puts `card--research-methods` on its title section to colour the eyebrow.
+# `.card--*` modifiers only set --card-accent from the module palette, and a
+# tool page puts `card--<module>` on its title section to colour the eyebrow.
 CHROME_KEEP = (".card--",)
 
+# Declarations that belong to a page and must not travel to a wrapper <div>.
+# `body` is a flex column that fills the viewport; applied to a div inside
+# somebody else's page that would stretch the activity to full screen height
+# and re-flow whatever sits beside it.
+ROOT_DROP_DECLARATIONS = (
+    "margin", "min-height", "height", "display", "flex-direction",
+    "scroll-padding-top", "overflow-x", "overflow-y", "overflow",
+)
+
+# Shields the activity from the page around it.
+#
+# `all: revert` discards every author declaration for an element and falls back
+# to the browser's own stylesheet. Applied to each descendant it removes the
+# host's rules wholesale, while the activity's own rules — which are scoped
+# with a doubled class and so always outrank this — survive untouched.
+# Inherited properties revert to the value they inherit, which is the value the
+# wrapper sets, so typography flows from the activity and not from the host.
+#
+# The specificity ladder this depends on:
+#
+#     host element rule            h1              (0,0,1)   loses
+#     this reset                   .opi-activity * (0,1,0)   beats the host
+#     the activity's own rules     .opi-activity.opi-activity … (0,2,0)+  wins
+#
+# Elements *inside* an <svg> are excluded, because reverting there would drop
+# the presentation attributes the charts are drawn with. The <svg> element
+# itself is not excluded: a host page styling `svg { border; background }` is
+# ordinary, and the charts would otherwise wear it.
+RESET_CSS = """/* Defensive baseline. See scripts/build-standalone.py for why this
+   is `revert` rather than an enumerated reset, and how the specificity ladder
+   keeps the activity's own styling on top of it. */
+.opi-activity *:not(svg *) {
+  all: revert;
+}
+.opi-activity, .opi-activity *, .opi-activity *::before, .opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  text-transform: none;
+  text-indent: 0;
+  font-style: normal;
+  font-variant: normal;
+  letter-spacing: normal;
+  word-spacing: normal;
+  white-space: normal;
+  visibility: visible;
+  float: none;
+  max-width: none;
+}
+.opi-activity svg { max-width: 100%; }
+.opi-activity img { max-width: 100%; height: auto; }
+.opi-activity [hidden] { display: none !important; }"""
+
 
 # ---------------------------------------------------------------------------
-# CSS
+# CSS: lexing
 # ---------------------------------------------------------------------------
+
+def strip_comments(text):
+    """Remove /* ... */ comments, leaving string literals alone.
+
+    Stripping first is not tidiness. Two comments in this collection sit
+    *inside* a selector list, and one of those contains a `{`:
+
+        /* :where() keeps this at specificity (0,0,1) so `.some-chart {
+           max-width: 30rem }` can still cap an oversized SVG. */
+
+    A brace-counting parser reads that as the start of the rule body and every
+    subsequent boundary is wrong. Removing comments makes the grammar regular.
+    """
+    out = []
+    i, n = 0, len(text)
+    while i < n:
+        ch = text[i]
+        if ch in "\"'":
+            j = i + 1
+            while j < n:
+                if text[j] == "\\":
+                    j += 2
+                    continue
+                if text[j] == ch:
+                    j += 1
+                    break
+                j += 1
+            out.append(text[i:j])
+            i = j
+        elif text.startswith("/*", i):
+            end = text.find("*/", i + 2)
+            i = n if end == -1 else end + 2
+        else:
+            out.append(ch)
+            i += 1
+    return "".join(out)
+
 
 def split_css(text):
     """Split a stylesheet into top-level chunks.
 
-    Yields (kind, selector_or_atrule, body_or_none, raw). `kind` is one of
-    "comment", "at-block" (@media/@supports, body kept verbatim), "at-simple"
-    (@charset and friends) or "rule". Nesting inside an at-block is left
-    untouched and recursed into separately.
+    Yields (kind, prelude, body, raw) where kind is "at-block" (@media and
+    friends, body kept for recursion), "at-simple" (@charset and the like) or
+    "rule". Expects comments to have been stripped already.
     """
     i, n = 0, len(text)
     while i < n:
-        # Whitespace
         m = re.compile(r"\s+").match(text, i)
         if m:
             i = m.end()
             continue
-        # Comment
-        if text.startswith("/*", i):
-            end = text.find("*/", i + 2)
-            end = n if end == -1 else end + 2
-            yield ("comment", None, None, text[i:end])
-            i = end
-            continue
-        # At-rule
         if text[i] == "@":
             j = i
-            depth = 0
-            while j < n:
-                if text[j] == "{":
-                    depth += 1
-                    break
-                if text[j] == ";":
-                    yield ("at-simple", text[i:j].strip(), None, text[i:j + 1])
-                    i = j + 1
-                    break
+            while j < n and text[j] not in "{;":
                 j += 1
-            else:
+            if j >= n:
                 break
-            if j >= n or text[j] != "{":
+            if text[j] == ";":
+                yield ("at-simple", text[i:j].strip(), None, text[i:j + 1])
+                i = j + 1
                 continue
             prelude = text[i:j].strip()
             k, depth = j + 1, 1
@@ -124,7 +230,6 @@ def split_css(text):
             yield ("at-block", prelude, text[j + 1:k - 1], text[i:k])
             i = k
             continue
-        # Ordinary rule
         j = text.find("{", i)
         if j == -1:
             break
@@ -139,58 +244,152 @@ def split_css(text):
         i = k
 
 
+def split_selectors(selector_list):
+    """Split on top-level commas, ignoring those inside () and []."""
+    parts, depth, current = [], 0, []
+    for ch in selector_list:
+        if ch in "([":
+            depth += 1
+        elif ch in ")]":
+            depth -= 1
+        if ch == "," and depth == 0:
+            parts.append("".join(current).strip())
+            current = []
+        else:
+            current.append(ch)
+    tail = "".join(current).strip()
+    if tail:
+        parts.append(tail)
+    return [p for p in parts if p]
+
+
+# ---------------------------------------------------------------------------
+# CSS: pruning and scoping
+# ---------------------------------------------------------------------------
+
+#: What may follow a chrome class name and still belong to that block. The BEM
+#: element suffix `__` is included so `.site-header__inner` goes with
+#: `.site-header`; a bare letter or digit is not, so `.card` never claims
+#: `.cardigan`. `--` is excluded on purpose: the modifiers this collection uses
+#: (`.card--cognitive`) carry the module palette and are wanted, and they are
+#: listed in CHROME_KEEP.
+CHROME_BOUNDARY_RE = re.compile(r"(?:__|[\s>+~:.,\[]|$)")
+
+
 def is_chrome(selector_list):
     """True when every selector in the list is site chrome."""
-    selectors = [s.strip() for s in selector_list.split(",") if s.strip()]
+    selectors = split_selectors(selector_list)
     if not selectors:
         return False
     for sel in selectors:
         if any(sel.startswith(keep) for keep in CHROME_KEEP):
             return False
         if not any(
-            sel == pre or sel.startswith(pre + " ") or sel.startswith(pre + ":")
-            or sel.startswith(pre + "_") or sel.startswith(pre + "-")
-            or sel.startswith(pre + ">") or sel.startswith(pre + "[")
-            or sel.startswith(pre + ".")
+            sel.startswith(pre) and CHROME_BOUNDARY_RE.match(sel, len(pre))
             for pre in CHROME_SELECTORS
         ):
             return False
     return True
 
 
-def prune_css(text):
-    """Drop rule blocks that only style site chrome, recursing into at-blocks.
+ROOT_SELECTORS = (":root", "html", "body")
 
-    Section banner comments are kept, because they make the exported file
-    navigable for anyone who opens it — but only when something from that
-    section survives. A banner introducing a section that has been pruned away
-    entirely would describe styling the file no longer contains.
+
+def is_root_selector(sel):
+    return sel in ROOT_SELECTORS or any(
+        sel.startswith(r) and sel[len(r):len(r) + 1] in (" ", ">", ":", ",")
+        for r in ROOT_SELECTORS
+    )
+
+
+def scope_selector(sel, root=SITE_ROOT):
+    """Rewrite one selector so it can only match inside the wrapper."""
+    sel = sel.strip()
+    if not sel or sel.startswith(ROOT):
+        return sel
+
+    for r in ROOT_SELECTORS:
+        if sel == r:
+            return root
+        if sel.startswith(r) and sel[len(r):len(r) + 1] in (" ", ">"):
+            return root + " " + sel[len(r):].lstrip()
+        # `html.foo`, `body:focus-within` and similar: the qualifier applies to
+        # the page, not to us, so the wrapper simply takes its place.
+        if sel.startswith(r) and sel[len(r):len(r) + 1] in (".", ":", "["):
+            return root + sel[len(r):]
+
+    if sel == "*":
+        # The wrapper is itself part of "everything inside the activity".
+        return root + ", " + root + " *"
+    if sel.startswith("*"):
+        return root + " " + sel
+
+    return root + " " + sel
+
+
+REM_RE = re.compile(r"(-?\d*\.?\d+)rem\b")
+
+
+def rem_to_px(body):
+    """Resolve rem lengths against the site's real root size.
+
+    Only declaration bodies are converted. `rem` inside a media query prelude
+    is already immune to a host's root font size — media features always
+    resolve against the initial value — so converting there would be wrong.
     """
-    out = []
-    pending = []          # comments not yet known to introduce anything
-    for kind, prelude, body, raw in split_css(text):
-        if kind == "comment":
-            pending.append(raw)
+    def sub(m):
+        value = float(m.group(1)) * REM_BASE_PX
+        text = f"{value:.4f}".rstrip("0").rstrip(".")
+        return (text or "0") + "px"
+    return REM_RE.sub(sub, body)
+
+
+def filter_root_declarations(body):
+    """Strip page-layout declarations from a rule being mapped onto the wrapper."""
+    kept = []
+    for decl in body.split(";"):
+        name = decl.split(":", 1)[0].strip().lower()
+        if name and name in ROOT_DROP_DECLARATIONS:
             continue
+        if decl.strip():
+            kept.append(decl.strip())
+    return ";\n  ".join(kept) + (";" if kept else "")
+
+
+def scope_rule(prelude, body):
+    selectors = split_selectors(prelude)
+    if any(is_root_selector(s) for s in selectors):
+        body = filter_root_declarations(body)
+        if not body.strip():
+            return None
+    scoped = [scope_selector(s) for s in selectors]
+    return ",\n".join(scoped) + " {\n  " + rem_to_px(body.strip()) + "\n}"
+
+
+def transform_css(text, scope=True):
+    """Prune site chrome, then scope everything that is left under the wrapper."""
+    out = []
+    for kind, prelude, body, raw in split_css(text):
         if kind == "rule":
             if is_chrome(prelude):
-                # Whatever comments led up to this rule were describing it.
-                pending = []
                 continue
-            kept = raw
+            out.append(scope_rule(prelude, body) if scope else raw)
         elif kind == "at-block":
-            inner = prune_css(body)
-            if not inner.strip():
-                pending = []
+            head = prelude.split("{")[0].strip()
+            # Keyframe percentages are not selectors and must not be scoped.
+            # There are none in this collection today; the guard is here so
+            # that adding one does not silently produce broken CSS.
+            if head.lower().startswith(("@keyframes", "@font-face",
+                                        "@counter-style", "@property")):
+                out.append(raw)
                 continue
-            kept = "@" + prelude.lstrip("@") + " {\n" + inner + "\n}"
+            inner = transform_css(body, scope)
+            if not inner.strip():
+                continue
+            out.append(head + " {\n" + inner + "\n}")
         else:
-            kept = raw
-        out.extend(pending)
-        pending = []
-        out.append(kept)
-    # Trailing comments introduce nothing and are dropped with their section.
-    return "\n".join(out)
+            out.append(raw)
+    return "\n".join(x for x in out if x)
 
 
 # ---------------------------------------------------------------------------
@@ -203,17 +402,15 @@ def prune_css(text):
 #     <script src="../../components/interactive-shell.js" defer></script>
 #
 # Inlined unescaped, that string ends the block early and the rest of the file
-# is parsed as HTML — which is exactly what happened the first time this ran.
-#
-# `<\/script` is the standard neutralisation and is safe everywhere it can
-# legally appear: in a string literal `"<\/script>"` is identical to
-# `"</script>"`, and in a regular expression `\/` is an escaped solidus. The
-# same reasoning covers `<\!--`.
+# is parsed as HTML. `<\/script` is the standard neutralisation and is safe
+# everywhere it can legally appear: in a string literal `"<\/script>"` is
+# identical to `"</script>"`, and in a regular expression `\/` is an escaped
+# solidus. The same reasoning covers `<\!--`.
 #
 # `<script` on its own is only dangerous after a `<!--`, because that is the
 # only route into the parser's double-escaped state. It is left alone unless
 # such a comment is present, because the obvious escape (`<\script`) would
-# change the meaning of a regular expression — `\s` is a character class.
+# change the meaning of a regular expression - `\s` is a character class.
 
 SCRIPT_CLOSE_RE = re.compile(r"</(script)", re.I)
 HTML_COMMENT_OPEN_RE = re.compile(r"<!--")
@@ -225,44 +422,53 @@ def escape_for_script(text, origin):
     if HTML_COMMENT_OPEN_RE.search(text):
         text = HTML_COMMENT_OPEN_RE.sub(r"<\\!--", text)
         if SCRIPT_OPEN_RE.search(text):
-            print(
-                f"  warning: {origin} contains both '<!--' and '<script'. "
-                "Check the generated file parses as intended."
-            )
+            print(f"  warning: {origin} contains both '<!--' and '<script'.")
     return text
 
 
 def escape_for_style(text, origin):
     if re.search(r"</style", text, re.I):
-        print(f"  warning: {origin} contains '</style' — escaping it.")
+        print(f"  warning: {origin} contains '</style' - escaping it.")
     return re.sub(r"</(style)", r"<\\/\1", text, flags=re.I)
 
 
-def assert_self_contained(css, js, markup):
-    """Fail loudly rather than write a file that will not parse or will reach
-    for the network.
-
-    The three payloads are checked separately, because a `<script src=...>`
-    written inside a JavaScript comment is documentation and a
-    `<script src=...>` in the markup is a broken dependency, and only a check
-    that knows which is which can tell them apart.
-
-    This is the check that would have caught the escaping bug on the first
-    run instead of the second.
-    """
+def assert_self_contained(css, js, markup, tool):
+    """Refuse to write a copy that will not parse, will reach for the network,
+    or will leak styling into the page around it."""
     problems = []
 
-    # Unescaped terminators would end the inlined block early.
     if re.search(r"(?<!\\)</script", js, re.I):
-        problems.append("script payload still contains an unescaped '</script'")
+        problems.append("script payload has an unescaped '</script'")
     if re.search(r"(?<!\\)</style", css, re.I):
-        problems.append("style payload still contains an unescaped '</style'")
+        problems.append("style payload has an unescaped '</style'")
 
-    # The markup must not reach outside the file.
+    # Every selector must be scoped. Checking the payload rather than trusting
+    # the transformer is the point: this is what catches a selector shape the
+    # scoper did not anticipate. Comments are stripped first for the same
+    # reason they are stripped before transforming - the file markers this
+    # script writes would otherwise read as selectors.
+    for kind, prelude, body, raw in split_css(strip_comments(css)):
+        if kind == "rule":
+            for sel in split_selectors(prelude):
+                if not sel.startswith(ROOT):
+                    problems.append(f"unscoped selector: {sel[:60]}")
+        elif kind == "at-block":
+            head = prelude.split("{")[0].strip().lower()
+            if head.startswith(("@keyframes", "@font-face")):
+                continue
+            for k2, p2, b2, _ in split_css(body):
+                if k2 == "rule":
+                    for sel in split_selectors(p2):
+                        if not sel.startswith(ROOT):
+                            problems.append(
+                                f"unscoped selector in {head}: {sel[:50]}")
+
     if re.search(r"<script\b[^>]*\bsrc=", markup, re.I):
         problems.append("markup contains a <script src=...>")
     if re.search(r'<link\b[^>]*rel=["\']?\s*stylesheet', markup, re.I):
         problems.append("markup contains a <link rel=stylesheet>")
+    if re.search(r"data-activity-export|data-copy-activity", markup, re.I):
+        problems.append("markup still contains the export control")
     for m in re.finditer(r'\b(?:src|href)\s*=\s*"([^"]+)"', markup):
         value = m.group(1)
         if value.startswith(("data:", "#", "http://", "https://", "mailto:")):
@@ -270,37 +476,97 @@ def assert_self_contained(css, js, markup):
         problems.append(f"markup has a relative reference: {value}")
 
     if problems:
-        raise SystemExit("Generated file would not be self-contained:\n  - " +
-                         "\n  - ".join(problems))
+        raise SystemExit(
+            f"{tool}: export would not be self-contained:\n  - "
+            + "\n  - ".join(dict.fromkeys(problems)))
 
 
 # ---------------------------------------------------------------------------
 # HTML
 # ---------------------------------------------------------------------------
 
-def extract_main(html):
+def extract_main(html, tool):
     m = re.search(r"<main\b[^>]*>(.*)</main\s*>", html, re.S | re.I)
     if not m:
-        raise SystemExit("No <main> element found.")
+        raise SystemExit(f"{tool}: no <main> element found.")
     return m.group(1)
 
 
-def strip_export_control(markup):
-    """Remove the export block itself, so the copy never contains its own button.
+#: Blocks removed from every export, identified by an attribute on their
+#: outermost element.
+#:
+#:   data-activity-export   the Copy control itself. A copy must never arrive
+#:                          carrying a button that looks for a file beside it.
+#:   data-instructor-only   material addressed to whoever is running the
+#:                          session rather than to the learner. One tool, the
+#:                          Alpha Trap, predates the convention of keeping that
+#:                          in teaching-notes.md and has a "For educators"
+#:                          section on the page; it also carries the only
+#:                          repository-relative links in any tool's <main>.
+STRIP_ATTRIBUTES = ("data-activity-export", "data-instructor-only")
 
-    Takes any HTML comment sitting immediately above the block with it — that
-    comment explains the block to someone reading the source of *this*
-    repository, and means nothing once the block has gone.
+
+def strip_marked(markup, attribute):
+    """Remove elements carrying `attribute`, with any comment introducing them.
+
+    The element nests, so its close is found by counting rather than by a
+    non-greedy match: the block is a `<div class="section">` wrapping a
+    container wrapping the control, and `.*?</div>` would stop at the first
+    inner close and leave the outer two behind.
+
+    The comment above the block goes with it. That comment explains the block
+    to somebody reading this repository, and it names the very attribute the
+    exporter searches for — leaving it behind would both confuse a lecturer
+    and trip the self-containment check.
     """
-    pattern = re.compile(
-        r"(?:[ \t]*<!--(?:(?!-->).)*?-->\s*\n)?"
-        r"[ \t]*<div[^>]*\bdata-activity-export\b.*?</div>[ \t]*\n?",
-        re.S | re.I,
-    )
-    cleaned, count = pattern.subn("", markup)
-    if count == 0:
-        print("  note: no [data-activity-export] block found to strip")
-    return cleaned
+    open_tag_re = re.compile(
+        r"<(?P<tag>[a-zA-Z][\w-]*)\b[^>]*\b" + re.escape(attribute) + r"\b[^>]*>")
+    count = 0
+    while True:
+        m = open_tag_re.search(markup)
+        if not m:
+            break
+        tag = m.group("tag")
+        open_re = re.compile(r"<" + tag + r"\b", re.I)
+        close_re = re.compile(r"</" + tag + r"\s*>", re.I)
+        depth, pos = 1, m.end()
+        while depth and pos < len(markup):
+            nxt_open = open_re.search(markup, pos)
+            nxt_close = close_re.search(markup, pos)
+            if not nxt_close:
+                raise SystemExit("unbalanced export block markup")
+            if nxt_open and nxt_open.start() < nxt_close.start():
+                depth += 1
+                pos = nxt_open.end()
+            else:
+                depth -= 1
+                pos = nxt_close.end()
+        start = m.start()
+        # Take a comment immediately above it, and the blank line below.
+        prefix = markup[:start]
+        cm = re.search(r"(?:[ \t]*<!--(?:(?!-->).)*?-->[ \t]*\n)[ \t]*$",
+                       prefix, re.S)
+        if cm:
+            start = cm.start()
+        end = pos
+        trailing = re.match(r"[ \t]*\n", markup[end:])
+        if trailing:
+            end += trailing.end()
+        markup = markup[:start] + markup[end:]
+        count += 1
+    return markup, count
+
+
+def strip_export_control(markup):
+    """Remove every block marked for exclusion. Returns (markup, control_count)
+    where control_count counts only the export control, so the caller can warn
+    about a tool page that has not had one added yet."""
+    control_count = 0
+    for attribute in STRIP_ATTRIBUTES:
+        markup, n = strip_marked(markup, attribute)
+        if attribute == "data-activity-export":
+            control_count = n
+    return markup, control_count
 
 
 def page_title(html):
@@ -309,20 +575,7 @@ def page_title(html):
     return title.split("—")[0].strip()
 
 
-def page_description(html):
-    m = re.search(
-        r'<meta\s+name="description"\s+content="(.*?)"', html, re.S | re.I
-    )
-    return m.group(1).strip() if m else ""
-
-
-def favicon(html):
-    m = re.search(r'<link rel="icon"[^>]*>', html, re.I)
-    return m.group(0) if m else ""
-
-
 def reindent(markup, spaces):
-    """Re-indent a block that used to sit two levels deeper inside <main>."""
     lines = markup.split("\n")
     trimmed = [ln[4:] if ln.startswith("    ") else ln for ln in lines]
     pad = " " * spaces
@@ -333,113 +586,113 @@ def reindent(markup, spaces):
 # Build
 # ---------------------------------------------------------------------------
 
-BANNER = """<!--
-  {title}
-  Standalone copy of one activity from Open Psychology Interactives.
-  <https://github.com/utman5454/open-psychology-interactives>
-
-  Everything this activity needs is inside this file: no stylesheets, scripts,
-  fonts, images or network requests of any kind. Save it as a .html file and
-  open it, or paste it into a page that accepts HTML.
-
-  Nothing is saved, sent or tracked. Released under the MIT licence; please
-  keep this notice with any substantial reuse.
--->"""
+BANNER = """<!-- {title}
+     From Open Psychology Interactives - https://github.com/utman5454/open-psychology-interactives
+     Self-contained: no stylesheets, scripts, fonts, images or network requests.
+     Styles are scoped to .opi-activity and do not affect the page around them.
+     Nothing is saved, sent or tracked. MIT licensed; please keep this notice.
+     Paste anywhere that accepts HTML, or save as a .html file and open it. -->"""
 
 
 def build(tool_dir):
     tool_dir = pathlib.Path(tool_dir).resolve()
+    name = tool_dir.name
     index = tool_dir / "index.html"
     if not index.exists():
-        raise SystemExit(f"No index.html in {tool_dir}")
+        raise SystemExit(f"{name}: no index.html")
 
     html = index.read_text(encoding="utf-8")
 
-    css_sources = list(SHARED_CSS)
-    local_css = tool_dir / "tool.css"
-    if local_css.exists():
-        css_sources.append(local_css)
-
-    css_parts = []
-    for path in css_sources:
+    css_parts = [RESET_CSS]
+    for path in SHARED_CSS + [tool_dir / "tool.css"]:
+        if not path.exists():
+            continue
         rel = path.relative_to(REPO).as_posix()
-        raw = path.read_text(encoding="utf-8")
-        pruned = prune_css(raw) if path in SHARED_CSS else raw
-        css_parts.append(
-            f"/* ---- {rel} ---- */\n{escape_for_style(pruned, rel)}"
-        )
-
-    js_sources = list(SHARED_JS)
-    local_js = tool_dir / "tool.js"
-    if local_js.exists():
-        js_sources.append(local_js)
+        raw = strip_comments(path.read_text(encoding="utf-8"))
+        css_parts.append(f"/* {rel} */\n" + transform_css(raw))
 
     js_parts = []
-    for path in js_sources:
+    for path in SHARED_JS + [tool_dir / "tool.js"]:
+        if not path.exists():
+            continue
         rel = path.relative_to(REPO).as_posix()
         js_parts.append(
             f"/* ---- {rel} ---- */\n"
-            + escape_for_script(path.read_text(encoding="utf-8"), rel)
-        )
+            + escape_for_script(path.read_text(encoding="utf-8"), rel))
 
-    body = reindent(strip_export_control(extract_main(html)).strip("\n"), 2)
-    title = page_title(html)
+    markup, stripped = strip_export_control(extract_main(html, name))
+    if stripped == 0:
+        print(f"  note: {name} has no [data-activity-export] block")
+    body = reindent(markup.strip("\n"), 2)
 
-    css_payload = "\n".join(css_parts)
+    css_payload = escape_for_style("\n\n".join(css_parts), name)
     js_payload = "\n".join(js_parts)
-    assert_self_contained(css_payload, js_payload, body)
+    assert_self_contained(css_payload, js_payload, body, name)
 
-    doc = f"""<!DOCTYPE html>
-<html lang="en-GB">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{title}</title>
-<meta name="description" content="{page_description(html)}">
-{favicon(html)}
-{BANNER.format(title=title)}
+    return f"""{BANNER.format(title=page_title(html))}
+<div class="opi-activity">
 <style>
 {css_payload}
 </style>
-</head>
-<body>
 
-<main id="main">
 {body}
-</main>
 
 <script>
 {js_payload}
 </script>
-</body>
-</html>
+</div>
 """
-    return doc
+
+
+def tool_dirs():
+    return sorted(
+        p.parent for p in REPO.glob("modules/*/tools/*/index.html"))
 
 
 def main():
-    ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("tool", nargs="+", help="tool directory")
+    ap = argparse.ArgumentParser(
+        description=__doc__,
+        formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("tool", nargs="*", help="tool directory")
+    ap.add_argument("--all", action="store_true", help="every tool in modules/")
     ap.add_argument("--check", action="store_true",
-                    help="report whether the file on disk is up to date")
+                    help="report staleness and exit non-zero if any is stale")
+    ap.add_argument("--quiet", action="store_true", help="only report problems")
     args = ap.parse_args()
 
-    stale = 0
-    for target in args.tool:
-        tool_dir = pathlib.Path(target)
+    targets = tool_dirs() if args.all else [pathlib.Path(t) for t in args.tool]
+    if not targets:
+        ap.error("give one or more tool directories, or --all")
+
+    stale, written = [], 0
+    for tool_dir in targets:
         doc = build(tool_dir)
-        out = tool_dir / "standalone.html"
+        out = pathlib.Path(tool_dir) / "standalone.html"
         existing = out.read_text(encoding="utf-8") if out.exists() else None
         if args.check:
-            state = "up to date" if existing == doc else "STALE"
             if existing != doc:
-                stale += 1
-            print(f"{state}: {out}")
+                stale.append(out)
+                print(f"STALE: {out.relative_to(REPO) if out.is_absolute() else out}")
+            elif not args.quiet:
+                print(f"ok: {pathlib.Path(tool_dir).name}")
         else:
-            out.write_text(doc, encoding="utf-8", newline="\n")
-            kb = len(doc.encode("utf-8")) / 1024
-            print(f"wrote {out} ({kb:.0f} KB)")
-    return 1 if stale else 0
+            if existing != doc:
+                out.write_text(doc, encoding="utf-8", newline="\n")
+                written += 1
+            if not args.quiet:
+                kb = len(doc.encode("utf-8")) / 1024
+                print(f"{pathlib.Path(tool_dir).name}: {kb:.0f} KB")
+
+    if args.check:
+        if stale:
+            print(f"\n{len(stale)} of {len(targets)} exports are stale. "
+                  "Run scripts/build-standalone.py --all to rebuild.")
+            return 1
+        print(f"\nAll {len(targets)} exports are up to date.")
+        return 0
+
+    print(f"\n{written} written, {len(targets) - written} already current.")
+    return 0
 
 
 if __name__ == "__main__":

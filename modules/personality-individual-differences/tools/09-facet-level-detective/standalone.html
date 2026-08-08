@@ -1,0 +1,3241 @@
+<!-- Facet-Level Detective
+     From Open Psychology Interactives - https://github.com/utman5454/open-psychology-interactives
+     Self-contained: no stylesheets, scripts, fonts, images or network requests.
+     Styles are scoped to .opi-activity and do not affect the page around them.
+     Nothing is saved, sent or tracked. MIT licensed; please keep this notice.
+     Paste anywhere that accepts HTML, or save as a .html file and open it. -->
+<div class="opi-activity">
+<style>
+/* Defensive baseline. See scripts/build-standalone.py for why this
+   is `revert` rather than an enumerated reset, and how the specificity ladder
+   keeps the activity's own styling on top of it. */
+.opi-activity *:not(svg *) {
+  all: revert;
+}
+.opi-activity, .opi-activity *, .opi-activity *::before, .opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  text-transform: none;
+  text-indent: 0;
+  font-style: normal;
+  font-variant: normal;
+  letter-spacing: normal;
+  word-spacing: normal;
+  white-space: normal;
+  visibility: visible;
+  float: none;
+  max-width: none;
+}
+.opi-activity svg { max-width: 100%; }
+.opi-activity img { max-width: 100%; height: auto; }
+.opi-activity [hidden] { display: none !important; }
+
+/* assets/css/main.css */
+.opi-activity.opi-activity {
+  --colour-page: #ffffff;
+  --colour-surface: #f5f7fa;
+  --colour-surface-raised: #ffffff;
+  --colour-border: #d3d9e2;
+  --colour-border-strong: #aeb7c4;
+  --colour-text: #131820;
+  --colour-text-muted: #4c566a;
+  --colour-accent: #1a4fa0;
+  --colour-accent-hover: #123a7a;
+  --colour-accent-soft: #e8eefb;
+  --colour-on-accent: #ffffff;
+  --colour-focus: #b45309;
+  --colour-cognitive: #8a4b00;
+  --colour-research-methods: #1a4fa0;
+  --colour-neuropsychology: #145c53;
+  --colour-social-critical-psychology: #9e2f45;
+  --colour-personality-individual-differences: #7a2e6d;
+  --colour-status-bg: #f1ede3;
+  --colour-status-text: #5c4a1f;
+  --colour-status-border: #d9cdb0;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  --text-xs: 13px;
+  --text-sm: 15px;
+  --text-base: 17px;
+  --text-lg: 19px;
+  --text-xl: 23px;
+  --text-2xl: 28px;
+  --text-3xl: 36px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgb(19 24 32 / 0.06);
+  --shadow-md: 0 2px 8px rgb(19 24 32 / 0.08);
+  --measure: 68ch;
+  --container: 1152px;
+}
+@media (prefers-color-scheme: dark) {
+.opi-activity.opi-activity {
+  --colour-page: #0f141b;
+  --colour-surface: #161d27;
+  --colour-surface-raised: #1a2230;
+  --colour-border: #2c3644;
+  --colour-border-strong: #44506180;
+  --colour-text: #e9edf3;
+  --colour-text-muted: #a8b2c1;
+  --colour-accent: #8fb6ff;
+  --colour-accent-hover: #b3cdff;
+  --colour-accent-soft: #1b2740;
+  --colour-on-accent: #0f141b;
+  --colour-focus: #f0b429;
+  --colour-cognitive: #e2ab5f;
+  --colour-research-methods: #8fb6ff;
+  --colour-neuropsychology: #6fc3b4;
+  --colour-social-critical-psychology: #f19aa8;
+  --colour-personality-individual-differences: #db9ccd;
+  --colour-status-bg: #241f14;
+  --colour-status-text: #e2cf9f;
+  --colour-status-border: #4a4028;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 2px 10px rgb(0 0 0 / 0.45);
+}
+}
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity.opi-activity {
+  -webkit-text-size-adjust: 100%;
+}
+.opi-activity.opi-activity {
+  background-color: var(--colour-page);
+  color: var(--colour-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.65;
+}
+.opi-activity.opi-activity h1,
+.opi-activity.opi-activity h2,
+.opi-activity.opi-activity h3,
+.opi-activity.opi-activity h4 {
+  margin: 0 0 var(--space-3);
+  line-height: 1.25;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.opi-activity.opi-activity h1 {
+  font-size: var(--text-3xl);
+}
+.opi-activity.opi-activity h2 {
+  font-size: var(--text-2xl);
+}
+.opi-activity.opi-activity h3 {
+  font-size: var(--text-xl);
+}
+.opi-activity.opi-activity h4 {
+  font-size: var(--text-lg);
+}
+.opi-activity.opi-activity p,
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol,
+.opi-activity.opi-activity dl {
+  margin: 0 0 var(--space-4);
+}
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol {
+  padding-left: 1.35em;
+}
+.opi-activity.opi-activity li + li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity a {
+  color: var(--colour-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: max(1px, 0.06em);
+}
+.opi-activity.opi-activity a:hover {
+  color: var(--colour-accent-hover);
+  text-decoration-thickness: max(2px, 0.11em);
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid var(--colour-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+@supports not selector(:focus-visible) {
+.opi-activity.opi-activity :focus {
+  outline: 3px solid var(--colour-focus);
+    outline-offset: 2px;
+}
+}
+.opi-activity.opi-activity code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.35em;
+}
+.opi-activity.opi-activity hr {
+  border: 0;
+  border-top: 1px solid var(--colour-border);
+  margin: var(--space-6) 0;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+}
+.opi-activity.opi-activity .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.opi-activity.opi-activity .container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+@media (min-width: 40em) {
+.opi-activity.opi-activity .container {
+  padding-inline: var(--space-5);
+}
+}
+.opi-activity.opi-activity .prose {
+  max-width: var(--measure);
+}
+.opi-activity.opi-activity .text-muted {
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .section {
+  padding-block: var(--space-7);
+}
+.opi-activity.opi-activity .section--tinted {
+  background-color: var(--colour-surface);
+  border-block: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .section__header {
+  max-width: var(--measure);
+  margin-bottom: var(--space-5);
+}
+.opi-activity.opi-activity .section__header > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-7) var(--space-6);
+  border-bottom: 1px solid var(--colour-border);
+  
+  background-image: linear-gradient(
+    180deg,
+    var(--colour-accent-soft) 0%,
+    var(--colour-page) 100%
+  );
+}
+.opi-activity.opi-activity .hero__eyebrow {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .hero h1 {
+  max-width: 20ch;
+  margin-bottom: var(--space-4);
+}
+.opi-activity.opi-activity .hero__lead {
+  max-width: var(--measure);
+  font-size: var(--text-lg);
+  color: var(--colour-text-muted);
+}
+@media (min-width: 48em) {
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-8) var(--space-7);
+}
+.opi-activity.opi-activity .hero h1 {
+  font-size: 44px;
+}
+}
+.opi-activity.opi-activity .button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  
+  min-height: 44px;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .button--primary {
+  background-color: var(--colour-accent);
+  border-color: var(--colour-accent);
+  
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--primary:hover {
+  background-color: var(--colour-accent-hover);
+  border-color: var(--colour-accent-hover);
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--secondary {
+  background-color: transparent;
+  border-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .button--secondary:hover {
+  background-color: var(--colour-surface);
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+}
+.opi-activity.opi-activity .card--cognitive {
+  --card-accent: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .card--research-methods {
+  --card-accent: var(--colour-research-methods);
+}
+.opi-activity.opi-activity .card--neuropsychology {
+  --card-accent: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .card--social-critical-psychology {
+  --card-accent: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .card--personality-individual-differences {
+  --card-accent: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 650;
+  line-height: 1.4;
+  padding: 3.2px var(--space-3);
+  border-radius: 999px;
+  border: 1px solid var(--colour-status-border);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+}
+.opi-activity.opi-activity .badge__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex: none;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed var(--colour-border-strong);
+  border-radius: var(--radius-lg);
+  background-color: var(--colour-surface);
+  padding: var(--space-5);
+  text-align: left;
+}
+.opi-activity.opi-activity .placeholder__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+}
+.opi-activity.opi-activity .placeholder > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .split {
+  display: grid;
+  gap: var(--space-6);
+}
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split {
+  grid-template-columns: 3fr 2fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .panel {
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.opi-activity.opi-activity .panel > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .panel__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .section--tinted {
+  border-block: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .hero {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .button--primary {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .button--secondary {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .button:hover {
+  border-color: Highlight;
+}
+.opi-activity.opi-activity .panel {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed CanvasText;
+}
+.opi-activity.opi-activity .badge {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .badge__dot {
+  background-color: CanvasText;
+}
+.opi-activity.opi-activity code {
+  border-color: CanvasText;
+}
+.opi-activity.opi-activity hr {
+  border-top-color: CanvasText;
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+}
+@media print {
+.opi-activity.opi-activity {
+  color: #000;
+  background: #fff;
+}
+.opi-activity.opi-activity a[href^="http"]::after {
+  content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+}
+}
+
+/* components/interactive-shell.css */
+.opi-activity.opi-activity .interactive {
+  --shell-page: var(--colour-page, #ffffff);
+  --shell-surface: var(--colour-surface, #f5f7fa);
+  --shell-raised: var(--colour-surface-raised, #ffffff);
+  --shell-border: var(--colour-border, #d3d9e2);
+  --shell-border-strong: var(--colour-border-strong, #aeb7c4);
+  --shell-text: var(--colour-text, #131820);
+  --shell-muted: var(--colour-text-muted, #4c566a);
+  --shell-accent: var(--colour-accent, #1a4fa0);
+  --shell-accent-soft: var(--colour-accent-soft, #e8eefb);
+  
+  --shell-on-accent: var(--colour-on-accent, #ffffff);
+  --shell-focus: var(--colour-focus, #b45309);
+  --shell-radius: var(--radius-lg, 12px);
+  --shell-gap: var(--space-5, 24px);
+
+  display: block;
+  background-color: var(--shell-raised);
+  color: var(--shell-text);
+  border: 1px solid var(--shell-border);
+  border-radius: var(--shell-radius);
+  
+  overflow-x: clip;
+  overflow-y: visible;
+}
+.opi-activity.opi-activity .interactive__header {
+  padding: var(--shell-gap);
+  border-bottom: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 1.25;
+}
+.opi-activity.opi-activity .interactive__brief {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--shell-muted);
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__body {
+  display: grid;
+  gap: var(--shell-gap);
+  padding: var(--shell-gap);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body {
+  grid-template-columns: minmax(240px, 320px) 1fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .interactive__controls {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__controls fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .interactive__controls legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .control {
+  display: grid;
+  gap: 5.6px;
+}
+.opi-activity.opi-activity .control + .control {
+  margin-top: 16px;
+}
+.opi-activity.opi-activity .control__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.opi-activity.opi-activity .control__label {
+  font-size: 15px;
+  font-weight: 600;
+}
+.opi-activity.opi-activity .control__value {
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--shell-accent);
+}
+.opi-activity.opi-activity .control__hint {
+  font-size: 13px;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .interactive__controls input[type="range"] {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--shell-accent);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  width: 100%;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--shell-text);
+  background-color: var(--shell-raised);
+  border: 1px solid var(--shell-border-strong);
+  border-radius: var(--radius-sm, 4px);
+}
+.opi-activity.opi-activity .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+}
+.opi-activity.opi-activity .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  accent-color: var(--shell-accent);
+  flex: none;
+}
+.opi-activity.opi-activity .interactive__stage {
+  min-height: 256px;
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-page);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body--pinned {
+  align-items: stretch;
+}
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: sticky;
+    top: 0;
+    z-index: 2;
+    
+    margin: -16px -16px 0;
+    padding: 16px 16px 12px;
+    background-color: var(--shell-page);
+    border-bottom: 1px solid var(--shell-border);
+}
+}
+@media (min-width: 52em) and (max-height: 30em) {
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: static;
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
+}
+}
+.opi-activity.opi-activity .interactive__stage > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity :where(.interactive__stage) svg,
+.opi-activity.opi-activity :where(.interactive__stage) canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+.opi-activity.opi-activity .interactive__readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout div {
+  padding: 9.6px 12px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-sm, 4px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__readout dt {
+  font-size: 13px;
+  color: var(--shell-muted);
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout dd {
+  margin: 2.4px 0 0;
+  font-size: 18px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .interactive__status {
+  margin: 0;
+  padding: 12px var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+  font-size: 15px;
+  color: var(--shell-muted);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .interactive__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+}
+.opi-activity.opi-activity .interactive__actions button {
+  min-height: 44px;
+  padding: 6.4px 20px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--shell-on-accent);
+  background-color: var(--shell-accent);
+  border: 1px solid var(--shell-accent);
+  border-radius: var(--radius-md, 8px);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  color: var(--shell-text);
+  background-color: transparent;
+  border-color: var(--shell-border-strong);
+}
+.opi-activity.opi-activity .interactive__actions button:hover {
+  filter: brightness(1.08);
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__notes > summary {
+  padding: 13.6px var(--shell-gap);
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__notes > div {
+  padding: 0 var(--shell-gap) var(--shell-gap);
+  max-width: 68ch;
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__notes > div > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity .interactive *,
+.opi-activity.opi-activity .interactive *::before,
+.opi-activity.opi-activity .interactive *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+}
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .interactive,
+.opi-activity.opi-activity .interactive__controls,
+.opi-activity.opi-activity .interactive__stage,
+.opi-activity.opi-activity .interactive__readout div {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__header {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__status,
+.opi-activity.opi-activity .interactive__actions,
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__actions button {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  border-width: 1px;
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 1;
+    color: GrayText;
+    border-color: GrayText;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__stage svg {
+  forced-color-adjust: auto;
+}
+}
+
+/* components/tool-kit.css */
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split--wide {
+  grid-template-columns: 1fr 1fr;
+}
+}
+.opi-activity.opi-activity .how-to {
+  padding-left: 19.2px;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .how-to > li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .table-scroll {
+  overflow-x: auto;
+  
+  position: relative;
+}
+.opi-activity.opi-activity .prediction {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 832px;
+}
+.opi-activity.opi-activity .prediction > *,
+.opi-activity.opi-activity .challenge > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity .prediction__group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .prediction__legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-weight: 650;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .prediction .control--choice,
+.opi-activity.opi-activity .challenge .control--choice,
+.opi-activity.opi-activity .evidence .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .prediction .control--choice input,
+.opi-activity.opi-activity .challenge .control--choice input,
+.opi-activity.opi-activity .evidence .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .prediction__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .prediction__error {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-status-border);
+  border-left: 4px solid var(--colour-status-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .prediction__readback {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .feedback[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .feedback[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .feedback[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .feedback__verdict {
+  font-weight: 700;
+}
+.opi-activity.opi-activity .verdict {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .verdict__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict__body {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .verdict__body + .verdict__body {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .verdict__note {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .verdict[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .verdict[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .goal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .goal__label {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .goal__text {
+  flex: 1 1 256px;
+}
+.opi-activity.opi-activity .goal strong {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .goal__checks {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+  display: grid;
+  gap: 2.4px;
+}
+.opi-activity.opi-activity .goal__checks > li {
+  margin-top: 0;
+  padding-left: 22.4px;
+  position: relative;
+}
+.opi-activity.opi-activity .goal__checks > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 9.6px;
+  height: 9.6px;
+  border: 2px solid var(--colour-border-strong);
+  border-radius: 2px;
+}
+.opi-activity.opi-activity .goal__checks > li[data-met="yes"]::before {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .stage-track {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .stage-track > li {
+  margin-top: 0;
+  flex: 1 1 160px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-bottom: 3px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .stage-track > li > span {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.opi-activity.opi-activity .stage-track > li[data-state="done"] {
+  border-bottom-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border-bottom-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+  color: var(--colour-text);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .stage__heading {
+  margin: 0;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .data-table,
+.opi-activity.opi-activity .chart__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .data-table th,
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table th,
+.opi-activity.opi-activity .chart__table td {
+  padding: 6.4px 9.6px;
+  border: 1px solid var(--colour-border);
+  text-align: left;
+  vertical-align: top;
+}
+.opi-activity.opi-activity .data-table thead th,
+.opi-activity.opi-activity .chart__table thead th {
+  background-color: var(--colour-surface);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table td {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__table tbody th,
+.opi-activity.opi-activity .data-table tbody th {
+  font-weight: 550;
+}
+.opi-activity.opi-activity .data-table__total > th,
+.opi-activity.opi-activity .data-table__total > td {
+  border-top: 2px solid var(--colour-border-strong);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart {
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .chart__caption {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__svg {
+  max-width: 100%;
+  height: auto;
+}
+.opi-activity.opi-activity .chart__label,
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__inline,
+.opi-activity.opi-activity .chart__axis {
+  font-family: var(--font-body);
+  fill: var(--colour-text);
+  font-size: 13px;
+}
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__axis {
+  fill: var(--colour-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: var(--colour-on-accent);
+  font-size: 12px;
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__track {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__bar {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--one {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .chart__baseline,
+.opi-activity.opi-activity .chart__grid {
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__line {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: var(--colour-personality-individual-differences);
+  stroke-dasharray: 6 4;
+}
+.opi-activity.opi-activity .chart__point {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .reveal > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .reveal__lead {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+.opi-activity.opi-activity .reveal__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(176px, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+  padding: 0;
+  list-style: none;
+}
+.opi-activity.opi-activity .reveal__figures > li {
+  margin-top: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+.opi-activity.opi-activity .reveal__figure-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .reveal__figure-value {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .challenge {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+.opi-activity.opi-activity .challenge__locked {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .panel--caution {
+  background-color: var(--colour-status-bg);
+  border-color: var(--colour-status-border);
+}
+.opi-activity.opi-activity .panel--caution li + li {
+  margin-top: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .goal,
+.opi-activity.opi-activity .verdict,
+.opi-activity.opi-activity .feedback,
+.opi-activity.opi-activity .prediction__error,
+.opi-activity.opi-activity .prediction__readback,
+.opi-activity.opi-activity .stage-track > li,
+.opi-activity.opi-activity .reveal__figures > li {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border: 2px solid Highlight;
+}
+.opi-activity.opi-activity .chart__bar,
+.opi-activity.opi-activity .chart__bar--one {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: Canvas;
+}
+.opi-activity.opi-activity .chart__line {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: Highlight;
+}
+}
+.opi-activity.opi-activity .stage__more {
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .stage__more > summary {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .stage__more[open] > summary {
+  border-bottom: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .stage__more > *:not(summary) {
+  margin: var(--space-3);
+}
+
+/* modules/personality-individual-differences/tools/09-facet-level-detective/tool.css */
+.opi-activity.opi-activity #facet-detective .interactive__controls,
+.opi-activity.opi-activity #facet-detective .interactive__stage {
+  min-width: 0;
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity #facet-detective .interactive__body {
+  grid-template-columns: minmax(0, 272px) minmax(0, 1fr);
+}
+}
+.opi-activity.opi-activity .evidence-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .evidence-list > li {
+  margin-top: 0;
+}
+.opi-activity.opi-activity .evidence__group {
+  margin: 0;
+  
+  padding: 0 var(--space-4) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .evidence__text {
+  float: left;
+  width: 100%;
+  padding: var(--space-3) 0 0;
+  font-size: var(--text-sm);
+  line-height: 1.45;
+  max-width: 60ch;
+}
+.opi-activity.opi-activity .evidence__choices {
+  clear: both;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .evidence__choices .control--choice {
+  font-weight: 600;
+}
+.opi-activity.opi-activity .evidence__verdict {
+  margin: var(--space-2) 0 0;
+  padding-left: var(--space-3);
+  border-left: 3px solid var(--colour-border-strong);
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .evidence__verdict[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .evidence__verdict[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .studio-controls {
+  display: grid;
+  gap: var(--space-5);
+  align-content: start;
+  padding: var(--space-5);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .studio-controls fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .studio-controls .control + .control {
+  margin-top: var(--space-4);
+}
+.opi-activity.opi-activity .studio-controls input[type="range"] {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--colour-accent);
+  cursor: pointer;
+}
+.opi-activity.opi-activity #mix input[type="range"] {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--colour-accent);
+  cursor: pointer;
+}
+.opi-activity.opi-activity #mix .control__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity #mix .control__label,
+.opi-activity.opi-activity .studio-controls .control__label {
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+.opi-activity.opi-activity #mix .control__value,
+.opi-activity.opi-activity .studio-controls .control__value {
+  font-variant-numeric: tabular-nums;
+  font-weight: 650;
+  color: var(--colour-accent);
+}
+.opi-activity.opi-activity #mix .control__hint {
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+  margin-top: var(--space-1);
+}
+.opi-activity.opi-activity #mix .interactive__readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+}
+.opi-activity.opi-activity #mix .interactive__readout div {
+  padding: 9.6px 12px;
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+.opi-activity.opi-activity #mix .interactive__readout dt {
+  margin: 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity #mix .interactive__readout dd {
+  margin: 2.4px 0 0;
+  font-size: var(--text-lg);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .evidence__group,
+.opi-activity.opi-activity .studio-controls,
+.opi-activity.opi-activity #mix .interactive__readout div {
+  border: 1px solid CanvasText;
+}
+}
+</style>
+
+  <!-- ================= Title and purpose ================= -->
+  <section class="section card--personality-individual-differences" aria-labelledby="page-heading">
+    <div class="container">
+
+      <p class="hero__eyebrow" style="color: var(--colour-personality-individual-differences)">
+        Personality and Individual Differences
+      </p>
+      <h1 id="page-heading">Facet-Level Detective</h1>
+      <p class="hero__lead">
+        Two people, the same broad trait score, and behaviour that looks
+        nothing alike. Work out what the broad score is hiding.
+      </p>
+
+      <p>
+        <span class="badge">
+          <span class="badge__dot" aria-hidden="true"></span>
+          Simulated data — fictional people, illustrative scores
+        </span>
+      </p>
+
+      <div class="split split--wide">
+
+        <div class="panel">
+          <h2 class="panel__title">Learning objective</h2>
+          <p>
+            By the end you should be able to say what a broad domain score
+            averages away, and why two people with the same score can behave
+            differently.
+          </p>
+          <p class="text-muted">
+            About 20 minutes. Nothing you do here is saved or sent anywhere.
+          </p>
+        </div>
+
+        <div class="panel">
+          <h2 class="panel__title">How to use this</h2>
+          <ol class="how-to">
+            <li>Commit to an explanation before seeing any facet scores.</li>
+            <li>
+              Read four observations and decide, from behaviour alone, which
+              of the two people each one describes.
+            </li>
+            <li>Reveal the facets and check your reasoning.</li>
+            <li>Build your own pair of profiles in the studio.</li>
+            <li>
+              Finally, change the questionnaire rather than the people, and
+              watch the "fixed" broad score move.
+            </li>
+          </ol>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= Opening prediction ================= -->
+  <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="opening-heading">First, a judgement</h2>
+        <p class="prose">
+          Two fictional people complete the same personality questionnaire.
+          Their broad scores on one domain come out within a point of each
+          other. Watched over several weeks, they behave quite differently
+          in ways everyone who knows them recognises.
+        </p>
+      </div>
+
+      <form class="panel prediction" id="opening-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            What is the most likely explanation?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="unreliable">
+            The questionnaire is unreliable, so the scores are not really equal
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="situations">
+            They are in different situations, so the trait never gets a chance to show
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="facets">
+            The broad score is an average of narrower traits, and they differ on those
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="faking">
+            At least one of them answered dishonestly
+          </label>
+        </fieldset>
+
+        <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Record my answer and investigate
+          </button>
+          <button class="button button--secondary" type="button" data-action="skip-opening">
+            Skip — I am demonstrating this
+          </button>
+        </div>
+
+        <div class="feedback" data-opening-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= The investigation ================= -->
+  <section class="section" aria-labelledby="investigation-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="investigation-heading">The evidence</h2>
+      </div>
+
+      <noscript>
+        <div class="placeholder">
+          <h3 class="placeholder__title">This part needs JavaScript</h3>
+          <p class="prose">
+            The investigation compares two profiles and recomputes scores in
+            your browser as you work, so it cannot run with JavaScript
+            switched off. The rest of this page — what the demonstration
+            shows and its limitations — is readable without it.
+          </p>
+        </div>
+      </noscript>
+
+      <section class="interactive" id="facet-detective" data-interactive
+               data-reset-message="Everything cleared. Back to the opening question.">
+
+        <header class="interactive__header">
+          <h3 class="interactive__title">Two people, one broad score</h3>
+          <p class="interactive__brief">
+            Every score here is an illustrative value on an arbitrary 0–100
+            scale, produced by a model written for teaching. Nobody was
+            measured.
+          </p>
+          <p class="goal">
+            <span class="goal__label">Task</span>
+            <span class="goal__text" data-assign-hint>
+              Answer the question above to unlock the evidence.
+            </span>
+          </p>
+        </header>
+
+        <div class="interactive__body">
+
+          <form class="interactive__controls" data-interactive-controls>
+            <fieldset>
+              <legend>Case</legend>
+              <div class="control">
+                <label class="control__label" for="case-select">
+                  Which domain to investigate
+                </label>
+                <select id="case-select" data-case-select></select>
+                <p class="control__hint" data-case-note></p>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Broad scores</legend>
+              <dl class="interactive__readout" data-domain-readout></dl>
+              <p class="control__hint">
+                Equal by construction. That is the situation being examined,
+                not a coincidence.
+              </p>
+            </fieldset>
+          </form>
+
+          <div class="interactive__stage" data-interactive-stage>
+
+            <h4 class="stage__heading">
+              Which person does each observation describe?
+            </h4>
+            <ul class="evidence-list" data-evidence-list></ul>
+
+            <div data-profile-wrap hidden>
+              <figure class="chart">
+                <figcaption class="chart__caption">Facet profiles</figcaption>
+                <svg class="chart__svg" data-profile-chart viewBox="0 0 460 140"
+                     aria-hidden="true" focusable="false"></svg>
+                <div class="table-scroll">
+                  <table class="chart__table">
+                    <caption class="visually-hidden">
+                      Facet scores for both people, and the difference between
+                      them
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Facet</th>
+                        <th scope="col">Person 1</th>
+                        <th scope="col">Person 2</th>
+                        <th scope="col">Difference</th>
+                      </tr>
+                    </thead>
+                    <tbody data-profile-table></tbody>
+                  </table>
+                </div>
+              </figure>
+            </div>
+
+          </div>
+
+        </div>
+
+        <p class="interactive__status" data-interactive-status role="status"></p>
+
+        <div class="interactive__actions">
+          <button type="button" data-action="advance" disabled>
+            Reveal the facet profiles
+          </button>
+          <button type="button" data-variant="secondary" data-action="example">
+            Show me a worked example
+          </button>
+          <button type="button" data-variant="secondary" data-interactive-reset>
+            Reset everything
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ================= Verdict ================= -->
+  <section class="section section--tinted" id="verdict" aria-labelledby="verdict-heading" hidden>
+    <div class="container">
+      <div class="section__header">
+        <h2 id="verdict-heading" tabindex="-1">What the facets show</h2>
+      </div>
+      <div class="panel reveal" data-verdict-body></div>
+
+      <div class="panel">
+        <h3 class="panel__title">
+          Two ways to predict the same four behaviours
+        </h3>
+        <div class="table-scroll">
+          <table class="data-table">
+            <caption class="visually-hidden">
+              Model-implied tendency for each observation, predicted from the
+              broad score and from the facet scores
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col" rowspan="2">Observation</th>
+                <th scope="col" colspan="2">From the broad score</th>
+                <th scope="col" colspan="2">From the facets</th>
+                <th scope="col" rowspan="2">Model says</th>
+              </tr>
+              <tr>
+                <th scope="col">Person 1</th>
+                <th scope="col">Person 2</th>
+                <th scope="col">Person 1</th>
+                <th scope="col">Person 2</th>
+              </tr>
+            </thead>
+            <tbody data-prediction-table></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Studio ================= -->
+  <section class="section" id="studio" aria-labelledby="studio-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="studio-heading">Build your own pair</h2>
+        <p class="prose">
+          Design two profiles that share a broad score but describe different
+          people. The broad score is the average of the two facets, so the
+          trick is to trade one against the other.
+        </p>
+      </div>
+
+      <div class="split split--wide">
+
+        <form class="panel studio-controls">
+          <fieldset>
+            <legend class="prediction__legend">Profile 1</legend>
+            <div class="control">
+              <div class="control__header">
+                <label class="control__label" for="studio-a1">First facet</label>
+                <output class="control__value" for="studio-a1">80</output>
+              </div>
+              <input type="range" id="studio-a1" min="0" max="100" step="1" value="80">
+            </div>
+            <div class="control">
+              <div class="control__header">
+                <label class="control__label" for="studio-b1">Second facet</label>
+                <output class="control__value" for="studio-b1">50</output>
+              </div>
+              <input type="range" id="studio-b1" min="0" max="100" step="1" value="50">
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend class="prediction__legend">Profile 2</legend>
+            <div class="control">
+              <div class="control__header">
+                <label class="control__label" for="studio-a2">First facet</label>
+                <output class="control__value" for="studio-a2">50</output>
+              </div>
+              <input type="range" id="studio-a2" min="0" max="100" step="1" value="50">
+            </div>
+            <div class="control">
+              <div class="control__header">
+                <label class="control__label" for="studio-b2">Second facet</label>
+                <output class="control__value" for="studio-b2">80</output>
+              </div>
+              <input type="range" id="studio-b2" min="0" max="100" step="1" value="80">
+            </div>
+          </fieldset>
+        </form>
+
+        <div class="panel">
+          <figure class="chart">
+            <figcaption class="chart__caption">Your two profiles</figcaption>
+            <svg class="chart__svg" data-studio-chart viewBox="0 0 460 200"
+                 aria-hidden="true" focusable="false"></svg>
+            <div class="table-scroll">
+              <table class="chart__table">
+                <caption class="visually-hidden">
+                  Facet and broad scores for the two profiles you have built
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Score</th>
+                    <th scope="col">Profile 1</th>
+                    <th scope="col">Profile 2</th>
+                    <th scope="col">Difference</th>
+                  </tr>
+                </thead>
+                <tbody data-studio-table></tbody>
+              </table>
+            </div>
+          </figure>
+          <p class="verdict verdict__body" data-studio-verdict></p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= Item mix ================= -->
+  <section class="section section--tinted" id="mix" aria-labelledby="mix-heading" hidden>
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="mix-heading">Now change the questionnaire, not the people</h2>
+        <p class="prose">
+          The two people in your case have a broad score built from an equal
+          mix of items on each facet. Real questionnaires measuring the
+          "same" domain do not all use the same mix.
+        </p>
+      </div>
+
+      <form class="panel prediction" id="mix-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            If a different questionnaire drew 80% of its items from the first
+            facet, what happens to the two broad scores?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="mix-prediction" value="same">
+            Nothing — the people have not changed
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="mix-prediction" value="both">
+            Both rise or both fall together
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="mix-prediction" value="flips">
+            They separate, and the rank order can reverse
+          </label>
+        </fieldset>
+
+        <p class="prediction__error" data-mix-error role="alert" hidden></p>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Record my prediction
+          </button>
+        </div>
+
+        <div class="feedback" data-mix-feedback hidden></div>
+      </form>
+
+      <div class="panel">
+        <div class="control">
+          <div class="control__header">
+            <label class="control__label" for="mix-range">
+              Percentage of items drawn from the first facet
+            </label>
+            <output class="control__value" for="mix-range">50%</output>
+          </div>
+          <input type="range" id="mix-range" min="0" max="100" step="1" value="50" disabled>
+          <p class="control__hint">
+            Unlocks once you have recorded a prediction above.
+          </p>
+        </div>
+
+        <figure class="chart">
+          <figcaption class="chart__caption">Broad score at this item mix</figcaption>
+          <svg class="chart__svg" data-mix-chart viewBox="0 0 460 80"
+               aria-hidden="true" focusable="false"></svg>
+        </figure>
+
+        <dl class="interactive__readout" data-mix-readout></dl>
+        <p class="verdict verdict__body" data-mix-verdict></p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= Debrief ================= -->
+  <section class="section" id="debrief" aria-labelledby="debrief-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="debrief-heading">What this demonstrates</h2>
+      </div>
+
+      <div class="split split--wide">
+
+        <div class="prose">
+          <h3>A broad score is an average, and averages destroy information</h3>
+          <p>
+            This is arithmetic before it is psychology. If a domain score is
+            the mean of narrower scores, then every pair of facet values with
+            the same mean produces the same domain score. The broad score is
+            not failing when it treats these two people identically; it is
+            doing exactly what an average does.
+          </p>
+
+          <h3>Breadth buys prediction of breadth</h3>
+          <p>
+            None of this makes broad traits useless. Broad scores predict
+            broad outcomes — aggregates of many behaviours over long periods —
+            better than any single facet does, and they are more stable and
+            more replicable. The mistake is using a broad score to predict a
+            narrow, specific behaviour, which is the one job it is worst at.
+            Matching the breadth of your predictor to the breadth of what you
+            want to predict is the whole of the bandwidth–fidelity trade-off.
+          </p>
+
+          <h3>The narrow level is less stable than it looks</h3>
+          <p>
+            Facets are not simply a better version of domains. There is less
+            agreement about how many facets a domain has and where the
+            boundaries fall; facet scores are usually built from fewer items
+            and so are measured less reliably; and facet findings replicate
+            less consistently. Going narrower buys specificity and pays for it
+            in precision and in consensus.
+          </p>
+
+          <h3>The broad score belongs to the questionnaire as well as the person</h3>
+          <p>
+            The final stage is the uncomfortable one. Two published measures
+            of the same domain that sample its facets in different
+            proportions can rank the same two people in opposite orders, and
+            both can be perfectly reliable. When a study reports a domain
+            score, part of what it reports is a decision about item sampling
+            made by whoever wrote the questionnaire.
+          </p>
+        </div>
+
+        <aside class="panel panel--caution" aria-labelledby="limits-heading">
+          <h3 class="panel__title" id="limits-heading">
+            What this does <em>not</em> demonstrate
+          </h3>
+          <ul>
+            <li>
+              <strong>These are not data.</strong> The people are invented and
+              the scores are illustrative values on an arbitrary scale, with
+              no norms, no standard error and no reference sample. Nobody was
+              measured.
+            </li>
+            <li>
+              <strong>Two facets per domain is a simplification.</strong> Facet
+              systems in use have between two and six per domain, and they do
+              not agree with each other. The two-facet structure here is
+              enough to make the arithmetic visible and no more.
+            </li>
+            <li>
+              <strong>Behaviour is not this tidy.</strong> The model turns
+              facet scores into behavioural tendencies with a straight line
+              and no error, no situation and no interaction between traits.
+              Real behaviour has all three — the Person–Situation Interaction
+              Theatre in this module is where situations enter.
+            </li>
+            <li>
+              <strong>Facets are not more "real" than domains.</strong> Nothing
+              here shows that the narrow level is the true one. Both levels
+              are descriptions at a chosen grain, and which is appropriate
+              depends on what you are trying to predict.
+            </li>
+            <li>
+              <strong>No one is being assessed.</strong> You are reading about
+              fictional people, not answering anything about yourself. The tool
+              produces no score for its user and no personality description of
+              anybody real.
+            </li>
+            <li>
+              <strong>Facet names are borrowed, values are invented.</strong>
+              The facet pairs are named after a published two-aspect account of
+              the Big Five so that students learn vocabulary that exists. No
+              published item, norm or finding is reproduced.
+            </li>
+          </ul>
+        </aside>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+<script>
+/* ---- components/interactive-shell.js ---- */
+/* =========================================================================
+   Open Psychology Interactives — interactive shell helper
+   -------------------------------------------------------------------------
+   A very small vanilla-JS helper that every interactive in this collection
+   uses. It deliberately does *not* draw anything or know anything about
+   statistics, personality or neuropsychology. Its job is the repetitive,
+   easy-to-get-wrong accessibility plumbing:
+
+     * announcing changes through a polite live region;
+     * keeping a range slider and its <output> in step;
+     * wiring the standard Reset button;
+     * reporting the reader's reduced-motion preference.
+
+   Usage (see docs/adapting-a-tool.md for the full markup contract):
+
+       <script src="../../components/interactive-shell.js" defer><\/script>
+       <script src="tool.js" defer><\/script>
+
+       // in tool.js
+       const shell = InteractiveShell.attach('#sampling-demo');
+       shell.onReset(() => { ...restore defaults...; draw(); });
+       shell.bindRange('#sample-size', { format: n => n + ' cases' });
+       shell.announce('Sample of 25 drawn. Mean 4.8.');
+
+   Every published interactive is written against this module.
+
+   Exposed as a global (window.InteractiveShell) rather than an ES module so
+   that a single interactive folder can be opened directly from disk over
+   file:// — ES modules are blocked by CORS in that situation, plain scripts
+   are not. That constraint is the whole reason for the older syntax here.
+   ========================================================================= */
+
+(function (global) {
+  "use strict";
+
+  /* -----------------------------------------------------------------------
+     Internal helpers
+     --------------------------------------------------------------------- */
+
+  /**
+   * Accept either a CSS selector or an element and return an element.
+   * @param {string|Element} target
+   * @param {ParentNode} [scope]
+   * @returns {Element|null}
+   */
+  function resolve(target, scope) {
+    if (!target) {
+      return null;
+    }
+    if (typeof target === "string") {
+      return (scope || document).querySelector(target);
+    }
+    return target;
+  }
+
+  /**
+   * True when the reader has asked the operating system to reduce motion.
+   * Interactives should check this before animating anything — for example
+   * by drawing a sampling distribution in one step instead of animating
+   * each draw.
+   * @returns {boolean}
+   */
+  function prefersReducedMotion() {
+    return (
+      typeof global.matchMedia === "function" &&
+      global.matchMedia("(prefers-reduced-motion: reduce)").matches
+    );
+  }
+
+  /* -----------------------------------------------------------------------
+     Shell controller
+     --------------------------------------------------------------------- */
+
+  /**
+   * Attach the shell behaviour to one `.interactive` element.
+   *
+   * @param {string|Element} target  Selector or element for the shell root.
+   * @returns {object|null}  Controller, or null if the root was not found.
+   */
+  function attach(target) {
+    var root = resolve(target);
+
+    if (!root) {
+      if (global.console && console.warn) {
+        console.warn("InteractiveShell: root element not found.", target);
+      }
+      return null;
+    }
+
+    var controls = root.querySelector("[data-interactive-controls]");
+    var stage = root.querySelector("[data-interactive-stage]");
+    var status = root.querySelector("[data-interactive-status]");
+    var resetButton = root.querySelector("[data-interactive-reset]");
+    var resetHandlers = [];
+    // Every range bound with bindRange() registers its sync function here, so
+    // that reset() can refresh the visible values after the tool's own reset
+    // handlers have restored the inputs. See reset() for why this is needed.
+    var rangeSyncs = [];
+
+    /* --- Live region ----------------------------------------------------
+       The status element is marked up as role="status" (implicitly
+       aria-live="polite"). Two details matter:
+
+         1. Assistive technology only announces *changes* to a live region,
+            so writing the same string twice is silently dropped. We add a
+            trailing zero-width space on repeat messages to force an
+            announcement when a student re-runs the same action.
+         2. Announcements are debounced. A slider dragged across its range
+            fires dozens of input events; without a delay a screen reader
+            would queue every intermediate value and fall far behind.
+       ------------------------------------------------------------------ */
+
+    var announceTimer = null;
+    var lastMessage = "";
+
+    /**
+     * Announce a short sentence describing what just changed.
+     * @param {string} message
+     * @param {object} [options]
+     * @param {boolean} [options.immediate]  Skip the debounce delay. Use for
+     *   discrete actions (button presses); leave off for continuous input.
+     */
+    function announce(message, options) {
+      if (!status) {
+        return;
+      }
+
+      var text = String(message == null ? "" : message);
+      var immediate = Boolean(options && options.immediate);
+
+      if (announceTimer !== null) {
+        global.clearTimeout(announceTimer);
+        announceTimer = null;
+      }
+
+      function write() {
+        // Force a change when the text is identical to last time.
+        status.textContent = text === lastMessage ? text + "​" : text;
+        lastMessage = text;
+      }
+
+      if (immediate) {
+        write();
+      } else {
+        announceTimer = global.setTimeout(write, 350);
+      }
+    }
+
+    /* --- Reset ---------------------------------------------------------- */
+
+    /**
+     * Register a callback to run when the Reset button is pressed.
+     * Several may be registered; they run in the order added.
+     * @param {Function} handler
+     */
+    function onReset(handler) {
+      if (typeof handler === "function") {
+        resetHandlers.push(handler);
+      }
+    }
+
+    /**
+     * Run the reset handlers. Called by the button and available directly so
+     * an interactive can reset itself on first load.
+     *
+     * Bound ranges are re-synced afterwards. A reset handler restores an
+     * input by assigning to `input.value`, and assigning to a value in script
+     * does not fire an `input` event — so without this step the slider would
+     * jump back to its default while its <output> went on showing the old
+     * number. Syncing here, after the handlers have run, also means the sync
+     * sees the restored values regardless of the order things were
+     * registered in.
+     *
+     * @param {object} [options]
+     * @param {boolean} [options.silent]  Suppress the status announcement.
+     */
+    function reset(options) {
+      resetHandlers.forEach(function (handler) {
+        handler();
+      });
+      rangeSyncs.forEach(function (sync) {
+        sync();
+      });
+      if (!options || !options.silent) {
+        announce(
+          root.getAttribute("data-reset-message") ||
+            "Reset to the starting values.",
+          { immediate: true }
+        );
+      }
+    }
+
+    if (resetButton) {
+      resetButton.addEventListener("click", function (event) {
+        // Reset buttons commonly sit inside the controls <form>; stop the
+        // browser's own form reset from fighting with ours.
+        event.preventDefault();
+        reset();
+      });
+    }
+
+    /* --- Range binding --------------------------------------------------
+       Keeps a slider's <output> in step with its value. The <output> must
+       carry `for="<input id>"`, which is what associates the two for
+       assistive technology; this only handles the visible text.
+
+       Optionally sets aria-valuetext, which is how you make a screen reader
+       say "25 cases" or "medium correlation" instead of a bare "25".
+       ------------------------------------------------------------------ */
+
+    /**
+     * @param {string|Element} inputTarget  The range (or number) input.
+     * @param {object} [options]
+     * @param {Function} [options.format]  value:number -> string shown in the
+     *   <output>. Defaults to the raw value.
+     * @param {Function} [options.describe]  value:number -> string used for
+     *   aria-valuetext. Defaults to options.format.
+     * @param {Function} [options.onInput]  value:number -> void, called after
+     *   the display has been updated. Use it to redraw.
+     * @returns {HTMLInputElement|null}
+     */
+    function bindRange(inputTarget, options) {
+      var input = resolve(inputTarget, root);
+      if (!input) {
+        return null;
+      }
+
+      var settings = options || {};
+      var format =
+        typeof settings.format === "function"
+          ? settings.format
+          : function (value) {
+              return String(value);
+            };
+      var describe =
+        typeof settings.describe === "function" ? settings.describe : format;
+
+      // <output for="the-input-id"> is the conventional pairing.
+      var output = input.id
+        ? root.querySelector('output[for="' + input.id + '"]')
+        : null;
+
+      function sync() {
+        var value = Number(input.value);
+        if (output) {
+          output.textContent = format(value);
+        }
+        // Only meaningful for widgets with an implicit or explicit slider
+        // role; harmless elsewhere.
+        input.setAttribute("aria-valuetext", describe(value));
+        if (typeof settings.onInput === "function") {
+          settings.onInput(value);
+        }
+      }
+
+      input.addEventListener("input", sync);
+      // Registered so reset() can refresh the display after the tool's own
+      // reset handlers have put the input back to its default.
+      rangeSyncs.push(sync);
+      sync();
+
+      return input;
+    }
+
+    /* --- Public surface -------------------------------------------------- */
+
+    return {
+      /** The `.interactive` root element. */
+      root: root,
+      /** The controls panel, or null if the shell has none. */
+      controls: controls,
+      /** The stage element where the visualisation is drawn. */
+      stage: stage,
+      /** The live-region element. */
+      status: status,
+      announce: announce,
+      onReset: onReset,
+      reset: reset,
+      bindRange: bindRange,
+      prefersReducedMotion: prefersReducedMotion
+    };
+  }
+
+  /* -----------------------------------------------------------------------
+     Export
+     --------------------------------------------------------------------- */
+
+  global.InteractiveShell = {
+    attach: attach,
+    prefersReducedMotion: prefersReducedMotion
+  };
+})(window);
+
+/* ---- modules/personality-individual-differences/tools/09-facet-level-detective/tool.js ---- */
+/* =========================================================================
+   Facet-Level Detective
+   -------------------------------------------------------------------------
+   Two fictional people share a broad domain score almost exactly, and behave
+   quite differently. Students work out why before the facet scores are shown,
+   then build a pair of profiles themselves, then discover that the domain
+   score they have been treating as fixed moves when the questionnaire's item
+   mix changes.
+
+   THE EDUCATIONAL MODEL
+   ---------------------
+   Each domain here has two narrower facets. A person is defined by their two
+   facet scores on a 0-100 scale, and the broad domain score is the weighted
+   mean of them:
+
+       domain = mix * facetA  +  (1 - mix) * facetB
+
+   with mix = 0.5 for the "balanced" questionnaire the cases assume.
+
+   Each behavioural observation carries weights on the two facets. The
+   model-implied tendency to show that behaviour is
+
+       tendency = wA * facetA  +  wB * facetB          (wA + wB = 1)
+
+   Two predictions are therefore available for every behaviour:
+
+     * the FACET prediction, using the person's two facet scores;
+     * the DOMAIN prediction, which replaces both facet scores with the single
+       domain score. Because the pairs are constructed to share a domain
+       score, the domain prediction is necessarily identical for both people —
+       so it cannot distinguish behaviour that plainly differs. That identity
+       is the demonstration, not a coincidence of the numbers.
+
+   The final stage varies `mix`. Because the two people trade one facet off
+   against the other, changing the proportion of items drawn from each facet
+   moves their domain scores in opposite directions, and past a crossover
+   point their rank order reverses. Nothing about either person has changed;
+   only the questionnaire has.
+
+   DELIBERATE SIMPLIFICATIONS
+   --------------------------
+   * Two facets per domain, not six. The domain/facet distinction survives the
+     simplification; the arithmetic stays legible in a seminar.
+   * Behaviour is modelled as a linear function of facet scores with no error
+     term, no situational input and no interaction. Real behaviour is none of
+     these things; tool 03 in this module is the one that adds situations.
+   * Scores are on an arbitrary 0-100 scale with no norms, no standard error
+     and no reference sample. They are illustrative values, not measurements.
+   * The facet pairs are named after a real two-aspect account of the Big Five,
+     because inventing fake facet names would teach a vocabulary that does not
+     exist. The PEOPLE and their SCORES are entirely fictional.
+
+   No data leave the browser. There is no storage and no network request.
+   ========================================================================= */
+
+(function () {
+  "use strict";
+
+  /* =======================================================================
+     1. Cases
+     ===================================================================== */
+
+  var BALANCED_MIX = 0.5;
+
+  /* Each case: one domain, two facets, two fictional people whose facet
+     scores average to the same domain score, and four observations whose
+     facet weights differ. */
+  var CASES = [
+    {
+      id: "extraversion",
+      domain: "Extraversion",
+      facetA: { key: "assertiveness", name: "Assertiveness" },
+      facetB: { key: "enthusiasm", name: "Enthusiasm" },
+      people: [
+        { id: "A", name: "Rowan", a: 82, b: 54 },
+        { id: "B", name: "Devi", a: 55, b: 81 }
+      ],
+      observations: [
+        {
+          id: "e1",
+          text: "In a meeting where nobody wants to go first, they start the discussion and set the agenda.",
+          wA: 0.85
+        },
+        {
+          id: "e2",
+          text: "Greets a friend's good news with delight, and talks about it for the rest of the afternoon.",
+          wA: 0.12
+        },
+        {
+          id: "e3",
+          text: "Pushes back, repeatedly and comfortably, when a supervisor proposes an unfair deadline.",
+          wA: 0.88
+        },
+        {
+          id: "e4",
+          text: "Is the person a party warms up around — laughing easily, drawing others in.",
+          wA: 0.15
+        }
+      ],
+      note:
+        "Both are described as sociable, and a broad Extraversion score says so. It does not say which kind."
+    },
+    {
+      id: "conscientiousness",
+      domain: "Conscientiousness",
+      facetA: { key: "industriousness", name: "Industriousness" },
+      facetB: { key: "orderliness", name: "Orderliness" },
+      people: [
+        { id: "A", name: "Sam", a: 84, b: 48 },
+        { id: "B", name: "Priya", a: 50, b: 82 }
+      ],
+      observations: [
+        {
+          id: "c1",
+          text: "Works through a hard, unrewarding task for six hours without being asked to.",
+          wA: 0.87
+        },
+        {
+          id: "c2",
+          text: "Keeps a labelled filing system that anyone else could navigate.",
+          wA: 0.12
+        },
+        {
+          id: "c3",
+          text: "Their desk is chaos, and the work leaves it finished and on time.",
+          wA: 0.82
+        },
+        {
+          id: "c4",
+          text: "Is visibly unsettled when a plan changes at short notice.",
+          wA: 0.15
+        }
+      ],
+      note:
+        "A single Conscientiousness score is often read as \"reliable\". Two quite different people can produce it."
+    },
+    {
+      id: "agreeableness",
+      domain: "Agreeableness",
+      facetA: { key: "compassion", name: "Compassion" },
+      facetB: { key: "politeness", name: "Politeness" },
+      people: [
+        { id: "A", name: "Iris", a: 83, b: 51 },
+        { id: "B", name: "Tomas", a: 52, b: 80 }
+      ],
+      observations: [
+        {
+          id: "a1",
+          text: "Notices a colleague is struggling and asks about it before anyone else has seen anything.",
+          wA: 0.86
+        },
+        {
+          id: "a2",
+          text: "Will not interrupt, even when the meeting is going badly wrong.",
+          wA: 0.12
+        },
+        {
+          id: "a3",
+          text: "Confronts a manager directly because a junior member of staff was treated badly.",
+          wA: 0.80
+        },
+        {
+          id: "a4",
+          text: "Defers to seniority in a disagreement, and says afterwards that it was not their place.",
+          wA: 0.10
+        }
+      ],
+      note:
+        "Compassion is care for others; politeness is reluctance to impose. They usually correlate, and they are not the same thing."
+    },
+    {
+      id: "openness",
+      domain: "Openness to experience",
+      facetA: { key: "intellect", name: "Intellect" },
+      facetB: { key: "aesthetic", name: "Aesthetic openness" },
+      people: [
+        { id: "A", name: "Nadia", a: 85, b: 53 },
+        { id: "B", name: "Callum", a: 54, b: 84 }
+      ],
+      observations: [
+        {
+          id: "o1",
+          text: "Reads an argument they disagree with twice, to be sure they have understood it.",
+          wA: 0.85
+        },
+        {
+          id: "o2",
+          text: "Is moved, visibly, by a piece of music they have heard a hundred times.",
+          wA: 0.10
+        },
+        {
+          id: "o3",
+          text: "Enjoys an abstract problem for its own sake, with no application in view.",
+          wA: 0.86
+        },
+        {
+          id: "o4",
+          text: "Rearranges a room repeatedly until the proportions feel right.",
+          wA: 0.14
+        }
+      ],
+      note:
+        "Openness is the least unified of the five, and the aspect that gets measured varies more between questionnaires than most people assume."
+    }
+  ];
+
+  /* =======================================================================
+     2. Model
+     ===================================================================== */
+
+  /** Broad domain score for a person under a given item mix. */
+  function domainScore(person, mix) {
+    return mix * person.a + (1 - mix) * person.b;
+  }
+
+  /** Model-implied tendency to show an observation, from the facet scores. */
+  function facetTendency(person, observation) {
+    return observation.wA * person.a + (1 - observation.wA) * person.b;
+  }
+
+  /**
+   * Model-implied tendency computed from the broad score alone — the score
+   * replaces both facets, which is exactly what using a domain score does.
+   */
+  function domainTendency(person, observation, mix) {
+    var d = domainScore(person, mix);
+    return observation.wA * d + (1 - observation.wA) * d; // === d
+  }
+
+  /** Which person the model says is more likely to show this behaviour. */
+  function likelierPerson(theCase, observation) {
+    var one = facetTendency(theCase.people[0], observation);
+    var two = facetTendency(theCase.people[1], observation);
+    return one >= two ? theCase.people[0].id : theCase.people[1].id;
+  }
+
+  /** The item mix at which the two people's domain scores are equal. */
+  function crossoverMix(people) {
+    // mix*a1 + (1-mix)*b1 = mix*a2 + (1-mix)*b2
+    var one = people[0];
+    var two = people[1];
+    var denominator = one.a - one.b - (two.a - two.b);
+    if (Math.abs(denominator) < 1e-9) {
+      return null;
+    }
+    return (two.b - one.b) / denominator;
+  }
+
+  /* =======================================================================
+     3. Helpers
+     ===================================================================== */
+
+  function fmt(value, places) {
+    return value === null || value === undefined || isNaN(value)
+      ? "—"
+      : value.toFixed(places === undefined ? 0 : places);
+  }
+
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) {
+      node.className = className;
+    }
+    if (text !== undefined) {
+      node.textContent = text;
+    }
+    return node;
+  }
+
+  function clear(node) {
+    while (node.firstChild) {
+      node.removeChild(node.firstChild);
+    }
+  }
+
+  function caseById(id) {
+    return CASES.filter(function (c) {
+      return c.id === id;
+    })[0];
+  }
+
+  /* Local equivalent of shell.bindRange for the sliders that live outside the
+     .interactive root. The shell's version resolves an <output for="..."> by
+     searching inside the shell only, so it cannot reach the studio and
+     item-mix panels, which are page sections in their own right. Behaviour is
+     otherwise identical: keep the <output> in step, set aria-valuetext, and
+     re-sync after a reset. */
+  var rangeSyncs = [];
+
+  function bindRange(input, options) {
+    var settings = options || {};
+    var output = document.querySelector('output[for="' + input.id + '"]');
+
+    function sync() {
+      var value = Number(input.value);
+      if (output) {
+        output.textContent = settings.format
+          ? settings.format(value)
+          : String(value);
+      }
+      input.setAttribute(
+        "aria-valuetext",
+        (settings.describe || settings.format || String)(value)
+      );
+      if (settings.onInput) {
+        settings.onInput(value);
+      }
+    }
+
+    input.addEventListener("input", sync);
+    rangeSyncs.push(sync);
+    return sync;
+  }
+
+  function syncAllRanges() {
+    rangeSyncs.forEach(function (sync) {
+      sync();
+    });
+  }
+
+  /* =======================================================================
+     4. Wiring
+     ===================================================================== */
+
+  var shell = InteractiveShell.attach("#facet-detective");
+  if (!shell) {
+    return;
+  }
+
+  var root = shell.root;
+  var page = document;
+  var $ = function (selector, scope) {
+    return (scope || page).querySelector(selector);
+  };
+
+  var caseSelect = $("[data-case-select]");
+  var caseNote = $("[data-case-note]");
+  var domainReadout = $("[data-domain-readout]");
+  var evidenceList = $("[data-evidence-list]");
+  var profileChart = $("[data-profile-chart]");
+  var profileTable = $("[data-profile-table]");
+  var profileWrap = $("[data-profile-wrap]");
+  var advanceButton = $('[data-action="advance"]');
+  var exampleButton = $('[data-action="example"]');
+
+  var openingForm = $("#opening-form");
+  var openingError = $("[data-opening-error]");
+  var openingFeedback = $("[data-opening-feedback]");
+  var skipOpening = $('[data-action="skip-opening"]');
+
+  var verdictSection = $("#verdict");
+  var verdictBody = $("[data-verdict-body]");
+  var predictionTable = $("[data-prediction-table]");
+
+  var studioSection = $("#studio");
+  var studioChart = $("[data-studio-chart]");
+  var studioTable = $("[data-studio-table]");
+  var studioVerdict = $("[data-studio-verdict]");
+
+  var mixSection = $("#mix");
+  var mixChart = $("[data-mix-chart]");
+  var mixReadout = $("[data-mix-readout]");
+  var mixVerdictBox = $("[data-mix-verdict]");
+  var mixForm = $("#mix-form");
+  var mixError = $("[data-mix-error]");
+  var mixFeedback = $("[data-mix-feedback]");
+
+  var INITIAL = {
+    stage: "opening",
+    caseId: CASES[0].id,
+    assignments: {},
+    openingAnswer: null,
+    revealed: false,
+    studio: { a1: 80, b1: 50, a2: 50, b2: 80 },
+    mix: BALANCED_MIX,
+    mixPredicted: false
+  };
+
+  var state = null;
+
+  /* --- Case selector ---------------------------------------------------- */
+
+  CASES.forEach(function (theCase) {
+    var option = make("option", null, theCase.domain);
+    option.value = theCase.id;
+    caseSelect.appendChild(option);
+  });
+
+  caseSelect.addEventListener("change", function () {
+    state.caseId = caseSelect.value;
+    state.assignments = {};
+    state.revealed = false;
+    verdictSection.hidden = true;
+    mixSection.hidden = true;
+    renderCase();
+    shell.announce(
+      "Case changed to " + caseById(state.caseId).domain +
+        ". Assignments cleared.",
+      { immediate: true }
+    );
+  });
+
+  /* --- Evidence assignment ---------------------------------------------- */
+
+  function renderCase() {
+    var theCase = caseById(state.caseId);
+    var people = theCase.people;
+
+    caseNote.textContent = theCase.note;
+
+    // Broad scores, which are equal by construction at the balanced mix.
+    clear(domainReadout);
+    people.forEach(function (person) {
+      var cell = make("div");
+      cell.appendChild(make("dt", null, person.name + " — " + theCase.domain));
+      cell.appendChild(
+        make("dd", null, fmt(domainScore(person, BALANCED_MIX)))
+      );
+      domainReadout.appendChild(cell);
+    });
+
+    renderEvidence(theCase);
+    renderProfile(theCase);
+    renderActions();
+  }
+
+  function renderEvidence(theCase) {
+    clear(evidenceList);
+
+    theCase.observations.forEach(function (observation, index) {
+      var item = make("li", "evidence");
+      var group = make("fieldset", "evidence__group");
+      var legend = make("legend", "evidence__text");
+      legend.textContent = "Observation " + (index + 1) + ". " + observation.text;
+      group.appendChild(legend);
+
+      var choices = make("div", "evidence__choices");
+      theCase.people.forEach(function (person) {
+        var label = make("label", "control--choice");
+        var input = document.createElement("input");
+        input.type = "radio";
+        input.name = "evidence-" + observation.id;
+        input.value = person.id;
+        input.checked = state.assignments[observation.id] === person.id;
+        input.disabled = state.revealed;
+        input.addEventListener("change", function () {
+          state.assignments[observation.id] = person.id;
+          renderActions();
+          shell.announce(
+            "Observation " + (index + 1) + " assigned to " + person.name + ". " +
+              countAssigned() + " of " + theCase.observations.length + " assigned."
+          );
+        });
+        label.appendChild(input);
+        label.appendChild(make("span", null, person.name));
+        choices.appendChild(label);
+      });
+      group.appendChild(choices);
+
+      // After the reveal each observation carries its own verdict in text.
+      if (state.revealed) {
+        var correct = likelierPerson(theCase, observation);
+        var chosen = state.assignments[observation.id];
+        var person = theCase.people.filter(function (p) {
+          return p.id === correct;
+        })[0];
+        var mark = make("p", "evidence__verdict");
+        mark.setAttribute("data-tone", chosen === correct ? "good" : "caution");
+        mark.textContent =
+          (chosen === correct ? "Correct. " : "Not this one. ") +
+          "The model makes " + person.name + " more likely to do this, because " +
+          "it loads mostly on " +
+          (observation.wA >= 0.5 ? theCase.facetA.name : theCase.facetB.name) +
+          " (" + Math.round((observation.wA >= 0.5 ? observation.wA : 1 - observation.wA) * 100) +
+          "% of the behaviour's weight).";
+        group.appendChild(mark);
+      }
+
+      item.appendChild(group);
+      evidenceList.appendChild(item);
+    });
+  }
+
+  function countAssigned() {
+    return Object.keys(state.assignments).length;
+  }
+
+  /* --- Profile chart ----------------------------------------------------
+     Hidden until the reveal: showing the facets is the answer. */
+
+  function renderProfile(theCase) {
+    profileWrap.hidden = !state.revealed;
+    if (!state.revealed) {
+      return;
+    }
+
+    var facets = [theCase.facetA, theCase.facetB];
+    drawGroupedBars(profileChart, facets.map(function (facet, i) {
+      return {
+        label: facet.name,
+        values: theCase.people.map(function (person) {
+          return { name: person.name, value: i === 0 ? person.a : person.b };
+        })
+      };
+    }));
+
+    clear(profileTable);
+    facets.forEach(function (facet, i) {
+      var row = make("tr");
+      var th = make("th", null, facet.name);
+      th.setAttribute("scope", "row");
+      row.appendChild(th);
+      theCase.people.forEach(function (person) {
+        row.appendChild(make("td", null, fmt(i === 0 ? person.a : person.b)));
+      });
+      row.appendChild(
+        make("td", null,
+          fmt(Math.abs(
+            (i === 0 ? theCase.people[0].a : theCase.people[0].b) -
+            (i === 0 ? theCase.people[1].a : theCase.people[1].b)
+          )))
+      );
+      profileTable.appendChild(row);
+    });
+
+    var domainRow = make("tr", "data-table__total");
+    var domainTh = make("th", null, theCase.domain + " (broad score)");
+    domainTh.setAttribute("scope", "row");
+    domainRow.appendChild(domainTh);
+    theCase.people.forEach(function (person) {
+      domainRow.appendChild(
+        make("td", null, fmt(domainScore(person, BALANCED_MIX)))
+      );
+    });
+    domainRow.appendChild(make("td", null, "0"));
+    profileTable.appendChild(domainRow);
+  }
+
+  /* --- Grouped bar chart -------------------------------------------------
+     Two series. The SVG is hidden from assistive technology and paired with
+     a table; each bar also carries its value as text, so the chart does not
+     depend on the colour difference between the two people. */
+
+  function drawGroupedBars(svg, groups) {
+    var NS = "http://www.w3.org/2000/svg";
+    var ROW = 62;
+    var BAR = 20;
+    var LEFT = 150;
+    var SCALE = 2.4; // pixels per point, 100 points -> 240px
+
+    clear(svg);
+    svg.setAttribute("viewBox", "0 0 460 " + (groups.length * ROW + 16));
+
+    groups.forEach(function (group, gi) {
+      var top = 10 + gi * ROW;
+
+      var label = document.createElementNS(NS, "text");
+      label.setAttribute("x", String(LEFT - 10));
+      label.setAttribute("y", String(top + BAR + 4));
+      label.setAttribute("text-anchor", "end");
+      label.setAttribute("class", "chart__label");
+      label.textContent = group.label;
+      svg.appendChild(label);
+
+      group.values.forEach(function (entry, vi) {
+        var y = top + vi * (BAR + 4);
+
+        var track = document.createElementNS(NS, "rect");
+        track.setAttribute("x", String(LEFT));
+        track.setAttribute("y", String(y));
+        track.setAttribute("width", String(100 * SCALE));
+        track.setAttribute("height", String(BAR));
+        track.setAttribute("class", "chart__track");
+        svg.appendChild(track);
+
+        var bar = document.createElementNS(NS, "rect");
+        bar.setAttribute("x", String(LEFT));
+        bar.setAttribute("y", String(y));
+        bar.setAttribute("width", String(Math.max(0, entry.value) * SCALE));
+        bar.setAttribute("height", String(BAR));
+        bar.setAttribute("class", "chart__bar chart__bar--" + (vi === 0 ? "one" : "two"));
+        svg.appendChild(bar);
+
+        var value = document.createElementNS(NS, "text");
+        value.setAttribute("x", String(LEFT + 6));
+        value.setAttribute("y", String(y + BAR - 5));
+        value.setAttribute("class", "chart__inline");
+        value.textContent = entry.name + " " + fmt(entry.value);
+        svg.appendChild(value);
+      });
+    });
+  }
+
+  /* --- Reveal ------------------------------------------------------------ */
+
+  function reveal() {
+    var theCase = caseById(state.caseId);
+    state.revealed = true;
+
+    renderEvidence(theCase);
+    renderProfile(theCase);
+    buildVerdict(theCase);
+    verdictSection.hidden = false;
+    mixSection.hidden = false;
+    renderMix();
+    renderActions();
+
+    $("#verdict-heading").focus();
+
+    var right = theCase.observations.filter(function (observation) {
+      return state.assignments[observation.id] === likelierPerson(theCase, observation);
+    }).length;
+    shell.announce(
+      "Facets revealed. " + right + " of " + theCase.observations.length +
+        " observations matched the model.",
+      { immediate: true }
+    );
+  }
+
+  function buildVerdict(theCase) {
+    clear(verdictBody);
+
+    var right = theCase.observations.filter(function (observation) {
+      return state.assignments[observation.id] === likelierPerson(theCase, observation);
+    }).length;
+    var total = theCase.observations.length;
+
+    var lead =
+      right === total
+        ? "All " + total + " correct. You separated two people whose broad " +
+          theCase.domain + " scores are identical."
+        : right === 0
+        ? "None matched — which is worth sitting with, because the broad score " +
+          "gave you nothing to go on."
+        : right + " of " + total + " matched the model.";
+    verdictBody.appendChild(make("p", "reveal__lead", lead));
+
+    verdictBody.appendChild(
+      make("p", null,
+        theCase.people[0].name + " is higher on " + theCase.facetA.name +
+        "; " + theCase.people[1].name + " is higher on " + theCase.facetB.name +
+        ". Both average out to a " + theCase.domain + " score of " +
+        fmt(domainScore(theCase.people[0], BALANCED_MIX)) +
+        ", so the broad score is blind to the difference by construction — " +
+        "it is the average of the two things that differ.")
+    );
+
+    // The two predictions, side by side, per observation.
+    clear(predictionTable);
+    theCase.observations.forEach(function (observation, index) {
+      var row = make("tr");
+      var th = make("th", null, "Observation " + (index + 1));
+      th.setAttribute("scope", "row");
+      row.appendChild(th);
+      theCase.people.forEach(function (person) {
+        row.appendChild(
+          make("td", null, fmt(domainTendency(person, observation, BALANCED_MIX)))
+        );
+      });
+      theCase.people.forEach(function (person) {
+        row.appendChild(make("td", null, fmt(facetTendency(person, observation))));
+      });
+      var winner = theCase.people.filter(function (p) {
+        return p.id === likelierPerson(theCase, observation);
+      })[0];
+      row.appendChild(make("td", null, winner.name));
+      predictionTable.appendChild(row);
+    });
+
+    verdictBody.appendChild(
+      make("p", null,
+        "The two domain-score columns are identical: both people have the same " +
+        "domain score, and a domain score is one number. The facet columns " +
+        "separate them. A prediction from the broad score alone cannot beat " +
+        "guessing here, however reliable that score is.")
+    );
+
+    verdictBody.appendChild(
+      make("p", "verdict__note",
+        "All scores are illustrative values on an arbitrary 0–100 scale. They " +
+        "are not norms, not standardised, and carry no standard error, because " +
+        "no one was measured.")
+    );
+  }
+
+  /* --- Studio: build your own pair --------------------------------------- */
+
+  var studioInputs = {};
+
+  ["a1", "b1", "a2", "b2"].forEach(function (key) {
+    var input = $("#studio-" + key);
+    studioInputs[key] = input;
+    bindRange(input, {
+      format: function (value) {
+        return String(value);
+      },
+      describe: function (value) {
+        return value + " out of 100";
+      },
+      onInput: function (value) {
+        state.studio[key] = value;
+        renderStudio();
+      }
+    });
+  });
+
+  function renderStudio() {
+    var theCase = caseById(state.caseId);
+    var one = { name: "Profile 1", a: state.studio.a1, b: state.studio.b1 };
+    var two = { name: "Profile 2", a: state.studio.a2, b: state.studio.b2 };
+
+    var d1 = domainScore(one, BALANCED_MIX);
+    var d2 = domainScore(two, BALANCED_MIX);
+    var gap = Math.abs(d1 - d2);
+
+    // How different are they where it matters?
+    var facetGap = (Math.abs(one.a - two.a) + Math.abs(one.b - two.b)) / 2;
+
+    drawGroupedBars(studioChart, [
+      {
+        label: theCase.facetA.name,
+        values: [
+          { name: "Profile 1", value: one.a },
+          { name: "Profile 2", value: two.a }
+        ]
+      },
+      {
+        label: theCase.facetB.name,
+        values: [
+          { name: "Profile 1", value: one.b },
+          { name: "Profile 2", value: two.b }
+        ]
+      },
+      {
+        label: "Broad score",
+        values: [
+          { name: "Profile 1", value: d1 },
+          { name: "Profile 2", value: d2 }
+        ]
+      }
+    ]);
+
+    clear(studioTable);
+    [
+      [theCase.facetA.name, one.a, two.a],
+      [theCase.facetB.name, one.b, two.b],
+      [theCase.domain + " (broad)", d1, d2]
+    ].forEach(function (row) {
+      var tr = make("tr");
+      var th = make("th", null, row[0]);
+      th.setAttribute("scope", "row");
+      tr.appendChild(th);
+      tr.appendChild(make("td", null, fmt(row[1], 1)));
+      tr.appendChild(make("td", null, fmt(row[2], 1)));
+      tr.appendChild(make("td", null, fmt(Math.abs(row[1] - row[2]), 1)));
+      studioTable.appendChild(tr);
+    });
+
+    var tone;
+    var text;
+    if (gap <= 1 && facetGap >= 20) {
+      tone = "good";
+      text =
+        "That is the effect. The broad scores differ by " + fmt(gap, 1) +
+        " point" + (Math.round(gap) === 1 ? "" : "s") +
+        " — indistinguishable in practice — while the facets differ by " +
+        fmt(facetGap, 1) + " on average. Any report quoting only the broad " +
+        "score would describe these two people identically.";
+    } else if (gap <= 1) {
+      tone = "caution";
+      text =
+        "The broad scores now match (within " + fmt(gap, 1) + "), but the " +
+        "profiles are still close together, so there is little for the broad " +
+        "score to conceal. Push one facet up and the other down to open a gap.";
+    } else {
+      tone = "neutral";
+      text =
+        "The broad scores differ by " + fmt(gap, 1) + " points. To make the " +
+        "point, get them within a point of each other while keeping the facets " +
+        "far apart: raise one profile's " + theCase.facetA.name + " and lower " +
+        "its " + theCase.facetB.name + " by the same amount.";
+    }
+    studioVerdict.setAttribute("data-tone", tone);
+    studioVerdict.textContent = text;
+  }
+
+  /* --- The item-mix stage -------------------------------------------------
+     The stage that makes the instability concrete: the "same" broad score
+     moves when the questionnaire's item mix changes. */
+
+  var mixRange = $("#mix-range");
+  bindRange(mixRange, {
+    format: function (value) {
+      return value + "%";
+    },
+    describe: function (value) {
+      var theCase = caseById(state.caseId);
+      return value + " per cent " + theCase.facetA.name + " items, " +
+        (100 - value) + " per cent " + theCase.facetB.name + " items";
+    },
+    onInput: function (value) {
+      state.mix = value / 100;
+      renderMix();
+    }
+  });
+
+  function renderMix() {
+    if (mixSection.hidden) {
+      return;
+    }
+    var theCase = caseById(state.caseId);
+    var people = theCase.people;
+    var mix = state.mix;
+
+    var scores = people.map(function (person) {
+      return domainScore(person, mix);
+    });
+
+    drawGroupedBars(mixChart, [
+      {
+        label: "Broad score at this mix",
+        values: people.map(function (person, i) {
+          return { name: person.name, value: scores[i] };
+        })
+      }
+    ]);
+
+    clear(mixReadout);
+    people.forEach(function (person, i) {
+      var cell = make("div");
+      cell.appendChild(make("dt", null, person.name));
+      cell.appendChild(make("dd", null, fmt(scores[i], 1)));
+      mixReadout.appendChild(cell);
+    });
+    var gapCell = make("div");
+    gapCell.appendChild(make("dt", null, "Difference"));
+    gapCell.appendChild(make("dd", null, fmt(Math.abs(scores[0] - scores[1]), 1)));
+    mixReadout.appendChild(gapCell);
+
+    var leader =
+      Math.abs(scores[0] - scores[1]) < 0.5
+        ? "level"
+        : scores[0] > scores[1]
+        ? people[0].name
+        : people[1].name;
+
+    var crossover = crossoverMix(people);
+    var text =
+      leader === "level"
+        ? "At this mix the two score the same. This is the crossover — the " +
+          "only item mix at which the questionnaire cannot tell them apart."
+        : leader + " now scores higher on " + theCase.domain + ", by " +
+          fmt(Math.abs(scores[0] - scores[1]), 1) + " points. Neither person " +
+          "has changed. Only the proportion of items drawn from each facet has.";
+
+    mixVerdictBox.textContent = text;
+    mixVerdictBox.setAttribute(
+      "data-tone", leader === "level" ? "caution" : "warn");
+
+    if (crossover !== null) {
+      mixVerdictBox.textContent +=
+        " The rank order flips at about " + fmt(crossover * 100) +
+        "% " + theCase.facetA.name + " items.";
+    }
+  }
+
+  mixForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answer = $('input[name="mix-prediction"]:checked', mixForm);
+    if (!answer) {
+      mixError.textContent = "Choose an answer first — the prediction is the point.";
+      mixError.hidden = false;
+      return;
+    }
+    mixError.hidden = true;
+    state.mixPredicted = true;
+
+    var tone = answer.value === "flips" ? "good" : "caution";
+    var verdict = answer.value === "flips" ? "Yes." : "Not quite.";
+    var text =
+      "Drag the slider and watch. The two people trade one facet against the " +
+      "other, so moving the item mix moves their scores in opposite " +
+      "directions. A broad score is not a property of a person alone: it " +
+      "belongs to the questionnaire that produced it as well.";
+    showFeedback(mixFeedback, tone, verdict, text);
+    mixRange.disabled = false;
+    shell.announce("Prediction recorded. The item-mix slider is now active.", {
+      immediate: true
+    });
+  });
+
+  /* --- Opening prediction ------------------------------------------------ */
+
+  var OPENING = {
+    unreliable: {
+      tone: "caution",
+      verdict: "Not the best account.",
+      text:
+        "Unreliability would make the scores noisy, but it would not produce " +
+        "two people who differ consistently and in a patterned way. Both " +
+        "scores here could be perfectly reliable and the problem would remain."
+    },
+    situations: {
+      tone: "caution",
+      verdict: "Reasonable, but not what is happening here.",
+      text:
+        "Situations matter enormously — that is the subject of the " +
+        "Person–Situation Interaction Theatre in this module. But these " +
+        "observations come from the same range of situations for both people. " +
+        "Something about the people differs, and the broad score is hiding it."
+    },
+    facets: {
+      tone: "good",
+      verdict: "Yes.",
+      text:
+        "A broad score is an average of narrower ones. Two people can reach " +
+        "the same average from opposite directions, and the average is exactly " +
+        "the operation that throws away the difference between them."
+    },
+    faking: {
+      tone: "caution",
+      verdict: "Not needed here.",
+      text:
+        "Impression management is a real problem in self-report — the " +
+        "Response-Style Simulator in this module is about it. But you do not " +
+        "need anyone to be misreporting for this to happen. Honest, accurate " +
+        "scores produce it."
+    }
+  };
+
+  openingForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answer = $('input[name="opening"]:checked', openingForm);
+    if (!answer) {
+      openingError.textContent =
+        "Choose an explanation before going on. Committing to an answer first " +
+        "is what makes the reveal worth seeing.";
+      openingError.hidden = false;
+      return;
+    }
+    openingError.hidden = true;
+    state.openingAnswer = answer.value;
+    state.stage = "investigate";
+
+    var feedback = OPENING[answer.value];
+    showFeedback(openingFeedback, feedback.tone, feedback.verdict, feedback.text);
+    lockForm(openingForm);
+    renderActions();
+    root.scrollIntoView({ block: "start" });
+    shell.announce("Investigation unlocked. Assign each observation to a person.", {
+      immediate: true
+    });
+  });
+
+  skipOpening.addEventListener("click", function () {
+    openingError.hidden = true;
+    state.openingAnswer = null;
+    state.stage = "investigate";
+    showFeedback(
+      openingFeedback, "neutral", "Prediction skipped — demonstration mode.",
+      "With a class, ask the question aloud and take a show of hands before " +
+        "unlocking the investigation."
+    );
+    lockForm(openingForm);
+    renderActions();
+    shell.announce("Investigation unlocked.", { immediate: true });
+  });
+
+  function lockForm(form) {
+    Array.prototype.forEach.call(
+      form.querySelectorAll("input, button"),
+      function (control) {
+        control.disabled = true;
+      }
+    );
+  }
+
+  function unlockForm(form) {
+    Array.prototype.forEach.call(
+      form.querySelectorAll("input, button"),
+      function (control) {
+        control.disabled = false;
+      }
+    );
+    form.reset();
+  }
+
+  function showFeedback(container, tone, verdict, text) {
+    clear(container);
+    container.setAttribute("data-tone", tone);
+    var paragraph = make("p");
+    paragraph.appendChild(make("strong", "feedback__verdict", verdict));
+    if (text) {
+      paragraph.appendChild(document.createTextNode(" " + text));
+    }
+    container.appendChild(paragraph);
+    container.hidden = false;
+  }
+
+  /* --- Actions ----------------------------------------------------------- */
+
+  function renderActions() {
+    var theCase = caseById(state.caseId);
+    var investigating = state.stage === "investigate";
+    var complete = countAssigned() === theCase.observations.length;
+
+    advanceButton.disabled = !investigating || !complete || state.revealed;
+    advanceButton.textContent = state.revealed
+      ? "Facets revealed"
+      : "Reveal the facet profiles";
+
+    exampleButton.disabled = !investigating || state.revealed;
+    caseSelect.disabled = !investigating || state.revealed;
+
+    var hint = $("[data-assign-hint]");
+    hint.textContent = state.revealed
+      ? "Facets revealed. Change case, or reset, to run another."
+      : !investigating
+      ? "Answer the question above to unlock the evidence."
+      : complete
+      ? "All observations assigned. Reveal when ready."
+      : countAssigned() + " of " + theCase.observations.length +
+        " observations assigned.";
+  }
+
+  advanceButton.addEventListener("click", function () {
+    if (!state.revealed) {
+      reveal();
+    }
+  });
+
+  exampleButton.addEventListener("click", function () {
+    var theCase = caseById(state.caseId);
+    // The worked example assigns each observation as the model would.
+    theCase.observations.forEach(function (observation) {
+      state.assignments[observation.id] = likelierPerson(theCase, observation);
+    });
+    renderEvidence(theCase);
+    renderActions();
+    shell.announce(
+      "Worked example: every observation assigned to the person the model " +
+        "makes more likely. Reveal to see why.",
+      { immediate: true }
+    );
+  });
+
+  /* --- Reset -------------------------------------------------------------- */
+
+  shell.onReset(function () {
+    state = JSON.parse(JSON.stringify(INITIAL));
+
+    caseSelect.value = state.caseId;
+    unlockForm(openingForm);
+    openingFeedback.hidden = true;
+    openingError.hidden = true;
+
+    verdictSection.hidden = true;
+    mixSection.hidden = true;
+    mixFeedback.hidden = true;
+    mixError.hidden = true;
+    mixForm.reset();
+    mixRange.value = String(Math.round(BALANCED_MIX * 100));
+    mixRange.disabled = true;
+
+    ["a1", "b1", "a2", "b2"].forEach(function (key) {
+      studioInputs[key].value = String(INITIAL.studio[key]);
+    });
+
+    renderCase();
+    // Assigning to .value does not fire an input event, so the <output>s and
+    // aria-valuetext have to be refreshed explicitly after a reset.
+    syncAllRanges();
+  });
+
+  /* --- Start-up ----------------------------------------------------------- */
+
+  shell.reset({ silent: true });
+  shell.announce(
+    "Ready. Answer the question above to unlock the evidence.",
+    { immediate: true }
+  );
+})();
+
+</script>
+</div>

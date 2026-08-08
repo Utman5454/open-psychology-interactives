@@ -1,0 +1,2768 @@
+<!-- Twin-Study Simulator
+     From Open Psychology Interactives - https://github.com/utman5454/open-psychology-interactives
+     Self-contained: no stylesheets, scripts, fonts, images or network requests.
+     Styles are scoped to .opi-activity and do not affect the page around them.
+     Nothing is saved, sent or tracked. MIT licensed; please keep this notice.
+     Paste anywhere that accepts HTML, or save as a .html file and open it. -->
+<div class="opi-activity">
+<style>
+/* Defensive baseline. See scripts/build-standalone.py for why this
+   is `revert` rather than an enumerated reset, and how the specificity ladder
+   keeps the activity's own styling on top of it. */
+.opi-activity *:not(svg *) {
+  all: revert;
+}
+.opi-activity, .opi-activity *, .opi-activity *::before, .opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  text-transform: none;
+  text-indent: 0;
+  font-style: normal;
+  font-variant: normal;
+  letter-spacing: normal;
+  word-spacing: normal;
+  white-space: normal;
+  visibility: visible;
+  float: none;
+  max-width: none;
+}
+.opi-activity svg { max-width: 100%; }
+.opi-activity img { max-width: 100%; height: auto; }
+.opi-activity [hidden] { display: none !important; }
+
+/* assets/css/main.css */
+.opi-activity.opi-activity {
+  --colour-page: #ffffff;
+  --colour-surface: #f5f7fa;
+  --colour-surface-raised: #ffffff;
+  --colour-border: #d3d9e2;
+  --colour-border-strong: #aeb7c4;
+  --colour-text: #131820;
+  --colour-text-muted: #4c566a;
+  --colour-accent: #1a4fa0;
+  --colour-accent-hover: #123a7a;
+  --colour-accent-soft: #e8eefb;
+  --colour-on-accent: #ffffff;
+  --colour-focus: #b45309;
+  --colour-cognitive: #8a4b00;
+  --colour-research-methods: #1a4fa0;
+  --colour-neuropsychology: #145c53;
+  --colour-social-critical-psychology: #9e2f45;
+  --colour-personality-individual-differences: #7a2e6d;
+  --colour-status-bg: #f1ede3;
+  --colour-status-text: #5c4a1f;
+  --colour-status-border: #d9cdb0;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  --text-xs: 13px;
+  --text-sm: 15px;
+  --text-base: 17px;
+  --text-lg: 19px;
+  --text-xl: 23px;
+  --text-2xl: 28px;
+  --text-3xl: 36px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgb(19 24 32 / 0.06);
+  --shadow-md: 0 2px 8px rgb(19 24 32 / 0.08);
+  --measure: 68ch;
+  --container: 1152px;
+}
+@media (prefers-color-scheme: dark) {
+.opi-activity.opi-activity {
+  --colour-page: #0f141b;
+  --colour-surface: #161d27;
+  --colour-surface-raised: #1a2230;
+  --colour-border: #2c3644;
+  --colour-border-strong: #44506180;
+  --colour-text: #e9edf3;
+  --colour-text-muted: #a8b2c1;
+  --colour-accent: #8fb6ff;
+  --colour-accent-hover: #b3cdff;
+  --colour-accent-soft: #1b2740;
+  --colour-on-accent: #0f141b;
+  --colour-focus: #f0b429;
+  --colour-cognitive: #e2ab5f;
+  --colour-research-methods: #8fb6ff;
+  --colour-neuropsychology: #6fc3b4;
+  --colour-social-critical-psychology: #f19aa8;
+  --colour-personality-individual-differences: #db9ccd;
+  --colour-status-bg: #241f14;
+  --colour-status-text: #e2cf9f;
+  --colour-status-border: #4a4028;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 2px 10px rgb(0 0 0 / 0.45);
+}
+}
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity.opi-activity {
+  -webkit-text-size-adjust: 100%;
+}
+.opi-activity.opi-activity {
+  background-color: var(--colour-page);
+  color: var(--colour-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.65;
+}
+.opi-activity.opi-activity h1,
+.opi-activity.opi-activity h2,
+.opi-activity.opi-activity h3,
+.opi-activity.opi-activity h4 {
+  margin: 0 0 var(--space-3);
+  line-height: 1.25;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.opi-activity.opi-activity h1 {
+  font-size: var(--text-3xl);
+}
+.opi-activity.opi-activity h2 {
+  font-size: var(--text-2xl);
+}
+.opi-activity.opi-activity h3 {
+  font-size: var(--text-xl);
+}
+.opi-activity.opi-activity h4 {
+  font-size: var(--text-lg);
+}
+.opi-activity.opi-activity p,
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol,
+.opi-activity.opi-activity dl {
+  margin: 0 0 var(--space-4);
+}
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol {
+  padding-left: 1.35em;
+}
+.opi-activity.opi-activity li + li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity a {
+  color: var(--colour-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: max(1px, 0.06em);
+}
+.opi-activity.opi-activity a:hover {
+  color: var(--colour-accent-hover);
+  text-decoration-thickness: max(2px, 0.11em);
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid var(--colour-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+@supports not selector(:focus-visible) {
+.opi-activity.opi-activity :focus {
+  outline: 3px solid var(--colour-focus);
+    outline-offset: 2px;
+}
+}
+.opi-activity.opi-activity code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.35em;
+}
+.opi-activity.opi-activity hr {
+  border: 0;
+  border-top: 1px solid var(--colour-border);
+  margin: var(--space-6) 0;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+}
+.opi-activity.opi-activity .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.opi-activity.opi-activity .container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+@media (min-width: 40em) {
+.opi-activity.opi-activity .container {
+  padding-inline: var(--space-5);
+}
+}
+.opi-activity.opi-activity .prose {
+  max-width: var(--measure);
+}
+.opi-activity.opi-activity .text-muted {
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .section {
+  padding-block: var(--space-7);
+}
+.opi-activity.opi-activity .section--tinted {
+  background-color: var(--colour-surface);
+  border-block: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .section__header {
+  max-width: var(--measure);
+  margin-bottom: var(--space-5);
+}
+.opi-activity.opi-activity .section__header > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-7) var(--space-6);
+  border-bottom: 1px solid var(--colour-border);
+  
+  background-image: linear-gradient(
+    180deg,
+    var(--colour-accent-soft) 0%,
+    var(--colour-page) 100%
+  );
+}
+.opi-activity.opi-activity .hero__eyebrow {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .hero h1 {
+  max-width: 20ch;
+  margin-bottom: var(--space-4);
+}
+.opi-activity.opi-activity .hero__lead {
+  max-width: var(--measure);
+  font-size: var(--text-lg);
+  color: var(--colour-text-muted);
+}
+@media (min-width: 48em) {
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-8) var(--space-7);
+}
+.opi-activity.opi-activity .hero h1 {
+  font-size: 44px;
+}
+}
+.opi-activity.opi-activity .button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  
+  min-height: 44px;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .button--primary {
+  background-color: var(--colour-accent);
+  border-color: var(--colour-accent);
+  
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--primary:hover {
+  background-color: var(--colour-accent-hover);
+  border-color: var(--colour-accent-hover);
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--secondary {
+  background-color: transparent;
+  border-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .button--secondary:hover {
+  background-color: var(--colour-surface);
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+}
+.opi-activity.opi-activity .card--cognitive {
+  --card-accent: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .card--research-methods {
+  --card-accent: var(--colour-research-methods);
+}
+.opi-activity.opi-activity .card--neuropsychology {
+  --card-accent: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .card--social-critical-psychology {
+  --card-accent: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .card--personality-individual-differences {
+  --card-accent: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 650;
+  line-height: 1.4;
+  padding: 3.2px var(--space-3);
+  border-radius: 999px;
+  border: 1px solid var(--colour-status-border);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+}
+.opi-activity.opi-activity .badge__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex: none;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed var(--colour-border-strong);
+  border-radius: var(--radius-lg);
+  background-color: var(--colour-surface);
+  padding: var(--space-5);
+  text-align: left;
+}
+.opi-activity.opi-activity .placeholder__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+}
+.opi-activity.opi-activity .placeholder > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .split {
+  display: grid;
+  gap: var(--space-6);
+}
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split {
+  grid-template-columns: 3fr 2fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .panel {
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.opi-activity.opi-activity .panel > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .panel__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .section--tinted {
+  border-block: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .hero {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .button--primary {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .button--secondary {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .button:hover {
+  border-color: Highlight;
+}
+.opi-activity.opi-activity .panel {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed CanvasText;
+}
+.opi-activity.opi-activity .badge {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .badge__dot {
+  background-color: CanvasText;
+}
+.opi-activity.opi-activity code {
+  border-color: CanvasText;
+}
+.opi-activity.opi-activity hr {
+  border-top-color: CanvasText;
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+}
+@media print {
+.opi-activity.opi-activity {
+  color: #000;
+  background: #fff;
+}
+.opi-activity.opi-activity a[href^="http"]::after {
+  content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+}
+}
+
+/* components/interactive-shell.css */
+.opi-activity.opi-activity .interactive {
+  --shell-page: var(--colour-page, #ffffff);
+  --shell-surface: var(--colour-surface, #f5f7fa);
+  --shell-raised: var(--colour-surface-raised, #ffffff);
+  --shell-border: var(--colour-border, #d3d9e2);
+  --shell-border-strong: var(--colour-border-strong, #aeb7c4);
+  --shell-text: var(--colour-text, #131820);
+  --shell-muted: var(--colour-text-muted, #4c566a);
+  --shell-accent: var(--colour-accent, #1a4fa0);
+  --shell-accent-soft: var(--colour-accent-soft, #e8eefb);
+  
+  --shell-on-accent: var(--colour-on-accent, #ffffff);
+  --shell-focus: var(--colour-focus, #b45309);
+  --shell-radius: var(--radius-lg, 12px);
+  --shell-gap: var(--space-5, 24px);
+
+  display: block;
+  background-color: var(--shell-raised);
+  color: var(--shell-text);
+  border: 1px solid var(--shell-border);
+  border-radius: var(--shell-radius);
+  
+  overflow-x: clip;
+  overflow-y: visible;
+}
+.opi-activity.opi-activity .interactive__header {
+  padding: var(--shell-gap);
+  border-bottom: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 1.25;
+}
+.opi-activity.opi-activity .interactive__brief {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--shell-muted);
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__body {
+  display: grid;
+  gap: var(--shell-gap);
+  padding: var(--shell-gap);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body {
+  grid-template-columns: minmax(240px, 320px) 1fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .interactive__controls {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__controls fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .interactive__controls legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .control {
+  display: grid;
+  gap: 5.6px;
+}
+.opi-activity.opi-activity .control + .control {
+  margin-top: 16px;
+}
+.opi-activity.opi-activity .control__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.opi-activity.opi-activity .control__label {
+  font-size: 15px;
+  font-weight: 600;
+}
+.opi-activity.opi-activity .control__value {
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--shell-accent);
+}
+.opi-activity.opi-activity .control__hint {
+  font-size: 13px;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .interactive__controls input[type="range"] {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--shell-accent);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  width: 100%;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--shell-text);
+  background-color: var(--shell-raised);
+  border: 1px solid var(--shell-border-strong);
+  border-radius: var(--radius-sm, 4px);
+}
+.opi-activity.opi-activity .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+}
+.opi-activity.opi-activity .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  accent-color: var(--shell-accent);
+  flex: none;
+}
+.opi-activity.opi-activity .interactive__stage {
+  min-height: 256px;
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-page);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body--pinned {
+  align-items: stretch;
+}
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: sticky;
+    top: 0;
+    z-index: 2;
+    
+    margin: -16px -16px 0;
+    padding: 16px 16px 12px;
+    background-color: var(--shell-page);
+    border-bottom: 1px solid var(--shell-border);
+}
+}
+@media (min-width: 52em) and (max-height: 30em) {
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: static;
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
+}
+}
+.opi-activity.opi-activity .interactive__stage > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity :where(.interactive__stage) svg,
+.opi-activity.opi-activity :where(.interactive__stage) canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+.opi-activity.opi-activity .interactive__readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout div {
+  padding: 9.6px 12px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-sm, 4px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__readout dt {
+  font-size: 13px;
+  color: var(--shell-muted);
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout dd {
+  margin: 2.4px 0 0;
+  font-size: 18px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .interactive__status {
+  margin: 0;
+  padding: 12px var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+  font-size: 15px;
+  color: var(--shell-muted);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .interactive__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+}
+.opi-activity.opi-activity .interactive__actions button {
+  min-height: 44px;
+  padding: 6.4px 20px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--shell-on-accent);
+  background-color: var(--shell-accent);
+  border: 1px solid var(--shell-accent);
+  border-radius: var(--radius-md, 8px);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  color: var(--shell-text);
+  background-color: transparent;
+  border-color: var(--shell-border-strong);
+}
+.opi-activity.opi-activity .interactive__actions button:hover {
+  filter: brightness(1.08);
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__notes > summary {
+  padding: 13.6px var(--shell-gap);
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__notes > div {
+  padding: 0 var(--shell-gap) var(--shell-gap);
+  max-width: 68ch;
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__notes > div > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity .interactive *,
+.opi-activity.opi-activity .interactive *::before,
+.opi-activity.opi-activity .interactive *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+}
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .interactive,
+.opi-activity.opi-activity .interactive__controls,
+.opi-activity.opi-activity .interactive__stage,
+.opi-activity.opi-activity .interactive__readout div {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__header {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__status,
+.opi-activity.opi-activity .interactive__actions,
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__actions button {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  border-width: 1px;
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 1;
+    color: GrayText;
+    border-color: GrayText;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__stage svg {
+  forced-color-adjust: auto;
+}
+}
+
+/* components/tool-kit.css */
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split--wide {
+  grid-template-columns: 1fr 1fr;
+}
+}
+.opi-activity.opi-activity .how-to {
+  padding-left: 19.2px;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .how-to > li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .table-scroll {
+  overflow-x: auto;
+  
+  position: relative;
+}
+.opi-activity.opi-activity .prediction {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 832px;
+}
+.opi-activity.opi-activity .prediction > *,
+.opi-activity.opi-activity .challenge > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity .prediction__group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .prediction__legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-weight: 650;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .prediction .control--choice,
+.opi-activity.opi-activity .challenge .control--choice,
+.opi-activity.opi-activity .evidence .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .prediction .control--choice input,
+.opi-activity.opi-activity .challenge .control--choice input,
+.opi-activity.opi-activity .evidence .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .prediction__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .prediction__error {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-status-border);
+  border-left: 4px solid var(--colour-status-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .prediction__readback {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .feedback[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .feedback[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .feedback[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .feedback__verdict {
+  font-weight: 700;
+}
+.opi-activity.opi-activity .verdict {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .verdict__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict__body {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .verdict__body + .verdict__body {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .verdict__note {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .verdict[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .verdict[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .goal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .goal__label {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .goal__text {
+  flex: 1 1 256px;
+}
+.opi-activity.opi-activity .goal strong {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .goal__checks {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+  display: grid;
+  gap: 2.4px;
+}
+.opi-activity.opi-activity .goal__checks > li {
+  margin-top: 0;
+  padding-left: 22.4px;
+  position: relative;
+}
+.opi-activity.opi-activity .goal__checks > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 9.6px;
+  height: 9.6px;
+  border: 2px solid var(--colour-border-strong);
+  border-radius: 2px;
+}
+.opi-activity.opi-activity .goal__checks > li[data-met="yes"]::before {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .stage-track {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .stage-track > li {
+  margin-top: 0;
+  flex: 1 1 160px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-bottom: 3px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .stage-track > li > span {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.opi-activity.opi-activity .stage-track > li[data-state="done"] {
+  border-bottom-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border-bottom-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+  color: var(--colour-text);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .stage__heading {
+  margin: 0;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .data-table,
+.opi-activity.opi-activity .chart__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .data-table th,
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table th,
+.opi-activity.opi-activity .chart__table td {
+  padding: 6.4px 9.6px;
+  border: 1px solid var(--colour-border);
+  text-align: left;
+  vertical-align: top;
+}
+.opi-activity.opi-activity .data-table thead th,
+.opi-activity.opi-activity .chart__table thead th {
+  background-color: var(--colour-surface);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table td {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__table tbody th,
+.opi-activity.opi-activity .data-table tbody th {
+  font-weight: 550;
+}
+.opi-activity.opi-activity .data-table__total > th,
+.opi-activity.opi-activity .data-table__total > td {
+  border-top: 2px solid var(--colour-border-strong);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart {
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .chart__caption {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__svg {
+  max-width: 100%;
+  height: auto;
+}
+.opi-activity.opi-activity .chart__label,
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__inline,
+.opi-activity.opi-activity .chart__axis {
+  font-family: var(--font-body);
+  fill: var(--colour-text);
+  font-size: 13px;
+}
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__axis {
+  fill: var(--colour-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: var(--colour-on-accent);
+  font-size: 12px;
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__track {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__bar {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--one {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .chart__baseline,
+.opi-activity.opi-activity .chart__grid {
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__line {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: var(--colour-personality-individual-differences);
+  stroke-dasharray: 6 4;
+}
+.opi-activity.opi-activity .chart__point {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .reveal > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .reveal__lead {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+.opi-activity.opi-activity .reveal__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(176px, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+  padding: 0;
+  list-style: none;
+}
+.opi-activity.opi-activity .reveal__figures > li {
+  margin-top: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+.opi-activity.opi-activity .reveal__figure-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .reveal__figure-value {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .challenge {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+.opi-activity.opi-activity .challenge__locked {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .panel--caution {
+  background-color: var(--colour-status-bg);
+  border-color: var(--colour-status-border);
+}
+.opi-activity.opi-activity .panel--caution li + li {
+  margin-top: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .goal,
+.opi-activity.opi-activity .verdict,
+.opi-activity.opi-activity .feedback,
+.opi-activity.opi-activity .prediction__error,
+.opi-activity.opi-activity .prediction__readback,
+.opi-activity.opi-activity .stage-track > li,
+.opi-activity.opi-activity .reveal__figures > li {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border: 2px solid Highlight;
+}
+.opi-activity.opi-activity .chart__bar,
+.opi-activity.opi-activity .chart__bar--one {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: Canvas;
+}
+.opi-activity.opi-activity .chart__line {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: Highlight;
+}
+}
+.opi-activity.opi-activity .stage__more {
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .stage__more > summary {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .stage__more[open] > summary {
+  border-bottom: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .stage__more > *:not(summary) {
+  margin: var(--space-3);
+}
+
+/* modules/personality-individual-differences/tools/39-twin-study-simulator/tool.css */
+.opi-activity.opi-activity #twins .interactive__controls,
+.opi-activity.opi-activity #twins .interactive__stage {
+  min-width: 0;
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity #twins .interactive__body {
+  grid-template-columns: minmax(0, 304px) minmax(0, 1fr);
+}
+}
+.opi-activity.opi-activity #twins .control + .control {
+  margin-top: var(--space-4);
+}
+.opi-activity.opi-activity #twins input[type="number"] {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .scatter__points {
+  stroke: var(--colour-accent);
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-opacity: 0.5;
+  fill: none;
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .scatter__points {
+  stroke: CanvasText;
+    stroke-opacity: 1;
+}
+}
+</style>
+
+  <!-- ================= Title and purpose ================= -->
+  <section class="section card--personality-individual-differences" aria-labelledby="page-heading">
+    <div class="container">
+
+      <p class="hero__eyebrow" style="color: var(--colour-personality-individual-differences)">
+        Personality and Individual Differences
+      </p>
+      <h1 id="page-heading">Twin-Study Simulator</h1>
+      <p class="hero__lead">
+        Set the truth, generate fictional twin pairs, estimate it back — and
+        then break the assumptions one at a time and watch the estimates go
+        wrong in specific directions.
+      </p>
+
+      <p>
+        <span class="badge">
+          <span class="badge__dot" aria-hidden="true"></span>
+          Simulated — fictional pairs from a seeded generator, no real study
+        </span>
+      </p>
+
+      <div class="split split--wide">
+
+        <div class="panel">
+          <h2 class="panel__title">Learning objective</h2>
+          <p>
+            By the end you should be able to say what heritability is a
+            property of, and which way each assumption pushes the estimate
+            when it fails.
+          </p>
+          <p class="text-muted">
+            About 30 minutes. Nothing you do here is saved or sent anywhere.
+          </p>
+        </div>
+
+        <div class="panel panel--caution">
+          <h2 class="panel__title">The one sentence to take away</h2>
+          <p>
+            Heritability is the proportion of <strong>variance in a
+            population</strong> attributable to genetic variance in
+            <strong>that</strong> population under <strong>those</strong>
+            environmental conditions. It is <strong>not</strong> the
+            proportion of any individual's trait caused by their genes, and
+            it says nothing about whether a trait can be changed.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= Opening prediction ================= -->
+  <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="opening-heading">First, the definition</h2>
+        <p class="prose">
+          A study reports that a trait has a heritability of 0.50.
+        </p>
+      </div>
+
+      <noscript>
+        <div class="placeholder">
+          <h3 class="placeholder__title">This part needs JavaScript</h3>
+          <p class="prose">
+            The simulator generates fictional twin data in your browser, so it
+            cannot run with JavaScript switched off. The rest of this page is
+            readable without it.
+          </p>
+        </div>
+      </noscript>
+
+      <form class="panel prediction" id="opening-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">What does that mean?</legend>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="individual">
+            For each person, half of the trait was caused by their genes
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="population">
+            Half the variation between people in this population, in these environments, is associated with genetic variation
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="fixed">
+            The trait is half fixed and only half open to change
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="genes">
+            Half the relevant genes have been identified
+          </label>
+        </fieldset>
+
+        <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Record my answer and open the simulator
+          </button>
+          <button class="button button--secondary" type="button" data-action="skip-opening">
+            Skip — I am demonstrating this
+          </button>
+        </div>
+
+        <div class="feedback" data-opening-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Simulator ================= -->
+  <section class="section" id="simulator-section" aria-labelledby="simulator-heading" hidden>
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="simulator-heading" tabindex="-1">The simulator</h2>
+        <p class="prose">
+          You set the true variance components. The simulator generates 250
+          pairs in each group from them, and Falconer's formulae estimate
+          them back from the correlations. Real studies only ever see the
+          right-hand column.
+        </p>
+      </div>
+
+      <section class="interactive" id="twins" data-interactive
+               data-reset-message="Everything cleared. Back to the definition question.">
+
+        <header class="interactive__header">
+          <h3 class="interactive__title">Fictional twin and sibling pairs</h3>
+          <p class="interactive__brief">
+            250 pairs per group, generated from a seed. No real family, study
+            or dataset is involved.
+          </p>
+        </header>
+
+        <div class="interactive__body interactive__body--pinned">
+
+          <form class="interactive__controls" data-interactive-controls>
+
+            <fieldset>
+              <legend>The truth you are setting</legend>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="a2-range">A — additive genetic</label>
+                  <output class="control__value" for="a2-range">0.40</output>
+                </div>
+                <input type="range" id="a2-range" min="0" max="100" step="5" value="40">
+              </div>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="c2-range">C — shared environment</label>
+                  <output class="control__value" for="c2-range">0.35</output>
+                </div>
+                <input type="range" id="c2-range" min="0" max="100" step="5" value="35">
+              </div>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="e2-range">E — non-shared environment</label>
+                  <output class="control__value" for="e2-range">0.20</output>
+                </div>
+                <input type="range" id="e2-range" min="0" max="100" step="5" value="20">
+              </div>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="m2-range">Measurement error</label>
+                  <output class="control__value" for="m2-range">0.05</output>
+                </div>
+                <input type="range" id="m2-range" min="0" max="100" step="5" value="5">
+                <p class="control__hint">
+                  The four are renormalised to sum to 1. Error is generated
+                  separately but cannot be separated from E by this model.
+                </p>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Break the assumptions</legend>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="unequal-range">Unequal environments</label>
+                  <output class="control__value" for="unequal-range">0.00</output>
+                </div>
+                <input type="range" id="unequal-range" min="0" max="60" step="5" value="0">
+                <p class="control__hint">
+                  Identical twins share more environment than fraternal twins.
+                </p>
+              </div>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="assortative-range">Assortative mating</label>
+                  <output class="control__value" for="assortative-range">0.00</output>
+                </div>
+                <input type="range" id="assortative-range" min="0" max="60" step="5" value="0">
+                <p class="control__hint">
+                  Parents resemble each other, so non-identical pairs share more than half of A.
+                </p>
+              </div>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="gxe-range">Gene–environment correlation</label>
+                  <output class="control__value" for="gxe-range">0.00</output>
+                </div>
+                <input type="range" id="gxe-range" min="0" max="70" step="5" value="0">
+                <p class="control__hint">
+                  The environment a pair meets depends partly on their own characteristics.
+                </p>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Sampling</legend>
+              <div class="control">
+                <label class="control__label" for="seed-input">Random seed</label>
+                <input type="number" id="seed-input" value="4471" step="1">
+              </div>
+              <div class="control">
+                <button class="button button--secondary" type="button" data-action="resample">
+                  Draw a new sample
+                </button>
+              </div>
+            </fieldset>
+
+          </form>
+
+          <div class="interactive__stage" data-interactive-stage>
+
+            <!-- Pinned: pair resemblance and the headline estimate, which every slider moves. -->
+            <div class="stage__primary">
+              <h4 class="stage__heading">Pair resemblance</h4>
+              <figure class="chart">
+                <figcaption class="visually-hidden">
+                  Scatterplots of one pair member against the other, for each
+                  group
+                </figcaption>
+                <svg class="chart__svg" data-scatter viewBox="0 0 486 190"
+                     aria-hidden="true" focusable="false"></svg>
+                <div class="table-scroll">
+                  <table class="chart__table">
+                    <caption class="visually-hidden">
+                      Number of pairs and observed within-pair correlation for
+                      each group
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Group</th>
+                        <th scope="col">Pairs</th>
+                        <th scope="col">Correlation</th>
+                      </tr>
+                    </thead>
+                    <tbody data-scatter-table></tbody>
+                  </table>
+                </div>
+              </figure>
+
+              <dl class="interactive__readout" data-readout></dl>
+            </div>
+
+            <h4 class="stage__heading">Truth against estimate</h4>
+            <div class="table-scroll">
+              <table class="data-table">
+                <caption class="visually-hidden">
+                  The variance components you set, the values Falconer's
+                  formulae recover, and the error in each
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Component</th>
+                    <th scope="col">Truth</th>
+                    <th scope="col">Estimated</th>
+                    <th scope="col">Error</th>
+                  </tr>
+                </thead>
+                <tbody data-estimate-table></tbody>
+              </table>
+            </div>
+            <p class="verdict verdict__body" data-estimate-note></p>
+
+            <div class="verdict" data-violation-note-wrap>
+              <h4 class="verdict__title">What the violations are doing</h4>
+              <p class="verdict__body" data-violation-note></p>
+            </div>
+
+          </div>
+
+        </div>
+
+        <p class="interactive__status" data-interactive-status role="status"></p>
+
+        <div class="interactive__actions">
+          <button type="button" data-action="equalise">
+            Equalise everyone's environment
+          </button>
+          <button type="button" data-variant="secondary" data-interactive-reset>
+            Reset everything
+          </button>
+        </div>
+
+      </section>
+
+      <div class="panel">
+        <p class="verdict verdict__body" data-env-note hidden></p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= Challenge ================= -->
+  <section class="section section--tinted" id="challenge" aria-labelledby="challenge-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="challenge-heading">Challenge — diagnose the inflation</h2>
+      </div>
+
+      <form class="panel challenge" id="challenge-form">
+        <p>
+          A study reports a heritability well above the truth, and a
+          shared-environment estimate near zero. Which assumption failure
+          produces exactly that pattern?
+        </p>
+
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">Your answer</legend>
+          <label class="control--choice">
+            <input type="radio" name="challenge" value="unequal">
+            Identical twins share more of their environment than fraternal twins do
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="challenge" value="assortative">
+            Parents resemble each other on the trait
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="challenge" value="error">
+            The measure is unreliable
+          </label>
+        </fieldset>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Check my answer
+          </button>
+        </div>
+
+        <div class="feedback" data-challenge-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Debrief ================= -->
+  <section class="section" id="debrief" aria-labelledby="debrief-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="debrief-heading">What this demonstrates</h2>
+      </div>
+
+      <div class="split split--wide">
+
+        <div class="prose">
+          <h3>Heritability is a ratio, and ratios have denominators</h3>
+          <p>
+            h² is genetic variance divided by total variance in a particular
+            population. Shrink the environmental variance — equalise
+            schooling, nutrition, income — and heritability rises without a
+            single gene changing. It follows that a high heritability may
+            describe a society that has succeeded in making environments more
+            similar, and a low one may describe a society where environments
+            differ enormously. The number is as much about the population as
+            about the trait.
+          </p>
+
+          <h3>It is not about individuals, at all</h3>
+          <p>
+            There is no coherent way to divide one person's characteristic
+            into a genetic portion and an environmental portion. They had one
+            genome and one life, and both were necessary for all of it. A
+            statement about the sources of <em>variation between</em> people
+            is not a statement about the <em>composition of</em> any one of
+            them.
+          </p>
+
+          <h3>It says nothing about malleability</h3>
+          <p>
+            Height is highly heritable and rose substantially across the
+            twentieth century through nutrition. Needing spectacles is highly
+            heritable and is corrected with a pair of spectacles. A heritable
+            trait is not a fixed one, and the inference from one to the other
+            has caused real harm.
+          </p>
+
+          <h3>The assumptions are the argument</h3>
+          <p>
+            Falconer's formulae are three lines of arithmetic resting on
+            substantive claims: that identical and fraternal twins share
+            their environments to the same extent, that parents pair at
+            random with respect to the trait, and that genetic and
+            environmental influences are independent. All three are known to
+            fail to some degree, and they do not all fail in the same
+            direction — which is why the responsible reading of a
+            heritability estimate is as a rough indication with a direction
+            of likely bias attached.
+          </p>
+        </div>
+
+        <aside class="panel panel--caution" aria-labelledby="limits-heading">
+          <h3 class="panel__title" id="limits-heading">
+            What this does <em>not</em> demonstrate
+          </h3>
+          <ul>
+            <li>
+              <strong>These are not data.</strong> Fictional pairs from a
+              seeded generator. No real twin study, family or dataset is
+              represented, and no trait is named — deliberately, because the
+              argument is about the method.
+            </li>
+            <li>
+              <strong>Nothing here concerns any group of people.</strong> The
+              simulation has one undifferentiated population. It makes no
+              claim, and can make no claim, about differences between
+              populations — a question to which heritability within groups is
+              simply not the relevant evidence.
+            </li>
+            <li>
+              <strong>The model is the simplest possible one.</strong> Purely
+              additive genetic effects: no dominance, no epistasis, no sex
+              differences, no age moderation, no gene–environment
+              <em>interaction</em> (as distinct from correlation, which is
+              modelled). Real behaviour-genetic models fit many more
+              parameters.
+            </li>
+            <li>
+              <strong>Falconer's method is not what modern studies use.</strong>
+              It is shown because it makes the logic visible in three lines.
+              Current work uses structural equation models over many family
+              relationships, with confidence intervals and model comparison.
+            </li>
+            <li>
+              <strong>No confidence intervals are shown.</strong> Press "draw
+              a new sample" repeatedly to see how much the estimates move
+              between samples of this size — that movement is what an interval
+              would summarise.
+            </li>
+            <li>
+              <strong>Nobody is assessed.</strong> You set parameters and read
+              estimates. The tool asks nothing about you or your family.
+            </li>
+          </ul>
+        </aside>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+<script>
+/* ---- components/interactive-shell.js ---- */
+/* =========================================================================
+   Open Psychology Interactives — interactive shell helper
+   -------------------------------------------------------------------------
+   A very small vanilla-JS helper that every interactive in this collection
+   uses. It deliberately does *not* draw anything or know anything about
+   statistics, personality or neuropsychology. Its job is the repetitive,
+   easy-to-get-wrong accessibility plumbing:
+
+     * announcing changes through a polite live region;
+     * keeping a range slider and its <output> in step;
+     * wiring the standard Reset button;
+     * reporting the reader's reduced-motion preference.
+
+   Usage (see docs/adapting-a-tool.md for the full markup contract):
+
+       <script src="../../components/interactive-shell.js" defer><\/script>
+       <script src="tool.js" defer><\/script>
+
+       // in tool.js
+       const shell = InteractiveShell.attach('#sampling-demo');
+       shell.onReset(() => { ...restore defaults...; draw(); });
+       shell.bindRange('#sample-size', { format: n => n + ' cases' });
+       shell.announce('Sample of 25 drawn. Mean 4.8.');
+
+   Every published interactive is written against this module.
+
+   Exposed as a global (window.InteractiveShell) rather than an ES module so
+   that a single interactive folder can be opened directly from disk over
+   file:// — ES modules are blocked by CORS in that situation, plain scripts
+   are not. That constraint is the whole reason for the older syntax here.
+   ========================================================================= */
+
+(function (global) {
+  "use strict";
+
+  /* -----------------------------------------------------------------------
+     Internal helpers
+     --------------------------------------------------------------------- */
+
+  /**
+   * Accept either a CSS selector or an element and return an element.
+   * @param {string|Element} target
+   * @param {ParentNode} [scope]
+   * @returns {Element|null}
+   */
+  function resolve(target, scope) {
+    if (!target) {
+      return null;
+    }
+    if (typeof target === "string") {
+      return (scope || document).querySelector(target);
+    }
+    return target;
+  }
+
+  /**
+   * True when the reader has asked the operating system to reduce motion.
+   * Interactives should check this before animating anything — for example
+   * by drawing a sampling distribution in one step instead of animating
+   * each draw.
+   * @returns {boolean}
+   */
+  function prefersReducedMotion() {
+    return (
+      typeof global.matchMedia === "function" &&
+      global.matchMedia("(prefers-reduced-motion: reduce)").matches
+    );
+  }
+
+  /* -----------------------------------------------------------------------
+     Shell controller
+     --------------------------------------------------------------------- */
+
+  /**
+   * Attach the shell behaviour to one `.interactive` element.
+   *
+   * @param {string|Element} target  Selector or element for the shell root.
+   * @returns {object|null}  Controller, or null if the root was not found.
+   */
+  function attach(target) {
+    var root = resolve(target);
+
+    if (!root) {
+      if (global.console && console.warn) {
+        console.warn("InteractiveShell: root element not found.", target);
+      }
+      return null;
+    }
+
+    var controls = root.querySelector("[data-interactive-controls]");
+    var stage = root.querySelector("[data-interactive-stage]");
+    var status = root.querySelector("[data-interactive-status]");
+    var resetButton = root.querySelector("[data-interactive-reset]");
+    var resetHandlers = [];
+    // Every range bound with bindRange() registers its sync function here, so
+    // that reset() can refresh the visible values after the tool's own reset
+    // handlers have restored the inputs. See reset() for why this is needed.
+    var rangeSyncs = [];
+
+    /* --- Live region ----------------------------------------------------
+       The status element is marked up as role="status" (implicitly
+       aria-live="polite"). Two details matter:
+
+         1. Assistive technology only announces *changes* to a live region,
+            so writing the same string twice is silently dropped. We add a
+            trailing zero-width space on repeat messages to force an
+            announcement when a student re-runs the same action.
+         2. Announcements are debounced. A slider dragged across its range
+            fires dozens of input events; without a delay a screen reader
+            would queue every intermediate value and fall far behind.
+       ------------------------------------------------------------------ */
+
+    var announceTimer = null;
+    var lastMessage = "";
+
+    /**
+     * Announce a short sentence describing what just changed.
+     * @param {string} message
+     * @param {object} [options]
+     * @param {boolean} [options.immediate]  Skip the debounce delay. Use for
+     *   discrete actions (button presses); leave off for continuous input.
+     */
+    function announce(message, options) {
+      if (!status) {
+        return;
+      }
+
+      var text = String(message == null ? "" : message);
+      var immediate = Boolean(options && options.immediate);
+
+      if (announceTimer !== null) {
+        global.clearTimeout(announceTimer);
+        announceTimer = null;
+      }
+
+      function write() {
+        // Force a change when the text is identical to last time.
+        status.textContent = text === lastMessage ? text + "​" : text;
+        lastMessage = text;
+      }
+
+      if (immediate) {
+        write();
+      } else {
+        announceTimer = global.setTimeout(write, 350);
+      }
+    }
+
+    /* --- Reset ---------------------------------------------------------- */
+
+    /**
+     * Register a callback to run when the Reset button is pressed.
+     * Several may be registered; they run in the order added.
+     * @param {Function} handler
+     */
+    function onReset(handler) {
+      if (typeof handler === "function") {
+        resetHandlers.push(handler);
+      }
+    }
+
+    /**
+     * Run the reset handlers. Called by the button and available directly so
+     * an interactive can reset itself on first load.
+     *
+     * Bound ranges are re-synced afterwards. A reset handler restores an
+     * input by assigning to `input.value`, and assigning to a value in script
+     * does not fire an `input` event — so without this step the slider would
+     * jump back to its default while its <output> went on showing the old
+     * number. Syncing here, after the handlers have run, also means the sync
+     * sees the restored values regardless of the order things were
+     * registered in.
+     *
+     * @param {object} [options]
+     * @param {boolean} [options.silent]  Suppress the status announcement.
+     */
+    function reset(options) {
+      resetHandlers.forEach(function (handler) {
+        handler();
+      });
+      rangeSyncs.forEach(function (sync) {
+        sync();
+      });
+      if (!options || !options.silent) {
+        announce(
+          root.getAttribute("data-reset-message") ||
+            "Reset to the starting values.",
+          { immediate: true }
+        );
+      }
+    }
+
+    if (resetButton) {
+      resetButton.addEventListener("click", function (event) {
+        // Reset buttons commonly sit inside the controls <form>; stop the
+        // browser's own form reset from fighting with ours.
+        event.preventDefault();
+        reset();
+      });
+    }
+
+    /* --- Range binding --------------------------------------------------
+       Keeps a slider's <output> in step with its value. The <output> must
+       carry `for="<input id>"`, which is what associates the two for
+       assistive technology; this only handles the visible text.
+
+       Optionally sets aria-valuetext, which is how you make a screen reader
+       say "25 cases" or "medium correlation" instead of a bare "25".
+       ------------------------------------------------------------------ */
+
+    /**
+     * @param {string|Element} inputTarget  The range (or number) input.
+     * @param {object} [options]
+     * @param {Function} [options.format]  value:number -> string shown in the
+     *   <output>. Defaults to the raw value.
+     * @param {Function} [options.describe]  value:number -> string used for
+     *   aria-valuetext. Defaults to options.format.
+     * @param {Function} [options.onInput]  value:number -> void, called after
+     *   the display has been updated. Use it to redraw.
+     * @returns {HTMLInputElement|null}
+     */
+    function bindRange(inputTarget, options) {
+      var input = resolve(inputTarget, root);
+      if (!input) {
+        return null;
+      }
+
+      var settings = options || {};
+      var format =
+        typeof settings.format === "function"
+          ? settings.format
+          : function (value) {
+              return String(value);
+            };
+      var describe =
+        typeof settings.describe === "function" ? settings.describe : format;
+
+      // <output for="the-input-id"> is the conventional pairing.
+      var output = input.id
+        ? root.querySelector('output[for="' + input.id + '"]')
+        : null;
+
+      function sync() {
+        var value = Number(input.value);
+        if (output) {
+          output.textContent = format(value);
+        }
+        // Only meaningful for widgets with an implicit or explicit slider
+        // role; harmless elsewhere.
+        input.setAttribute("aria-valuetext", describe(value));
+        if (typeof settings.onInput === "function") {
+          settings.onInput(value);
+        }
+      }
+
+      input.addEventListener("input", sync);
+      // Registered so reset() can refresh the display after the tool's own
+      // reset handlers have put the input back to its default.
+      rangeSyncs.push(sync);
+      sync();
+
+      return input;
+    }
+
+    /* --- Public surface -------------------------------------------------- */
+
+    return {
+      /** The `.interactive` root element. */
+      root: root,
+      /** The controls panel, or null if the shell has none. */
+      controls: controls,
+      /** The stage element where the visualisation is drawn. */
+      stage: stage,
+      /** The live-region element. */
+      status: status,
+      announce: announce,
+      onReset: onReset,
+      reset: reset,
+      bindRange: bindRange,
+      prefersReducedMotion: prefersReducedMotion
+    };
+  }
+
+  /* -----------------------------------------------------------------------
+     Export
+     --------------------------------------------------------------------- */
+
+  global.InteractiveShell = {
+    attach: attach,
+    prefersReducedMotion: prefersReducedMotion
+  };
+})(window);
+
+/* ---- modules/personality-individual-differences/tools/39-twin-study-simulator/tool.js ---- */
+/* =========================================================================
+   Twin-Study Simulator
+   -------------------------------------------------------------------------
+   Students set the true variance components, generate clearly fictional twin
+   and sibling pairs, read the correlations off, and estimate ACE back out
+   with Falconer's formulae. Then they switch on assumption violations and
+   watch the estimates go wrong in specific, predictable directions while the
+   truth stays where it was put.
+
+   THE EDUCATIONAL MODEL
+   ---------------------
+   Each person's phenotype is
+
+       P = a·A + c·C + e·E + m·M
+
+   where A is additive genetic value, C the environment shared by a pair, E
+   the non-shared environment, and M measurement error. The squared
+   coefficients are the variance components and sum to 1.
+
+   Pair resemblance is generated by how much of A and C the two members share:
+
+       MZ twins     share A completely (r = 1) and C completely
+       DZ twins     share A on average one half, and C completely
+       Full sibs    share A on average one half, and C completely
+                    (they differ from DZ twins only through the violations)
+
+   E and M are never shared. Expected correlations are therefore
+
+       r(MZ) = a² + c²
+       r(DZ) = 0.5·a² + c²
+
+   and Falconer's estimates run the other way:
+
+       h²  = 2·(r_MZ − r_DZ)
+       c²  = 2·r_DZ − r_MZ
+       e²  = 1 − r_MZ            (which absorbs measurement error)
+
+   VIOLATIONS
+   ----------
+   Three are offered, each with a specific, directional consequence:
+
+     unequal environments   MZ pairs share more C than DZ pairs. Inflates
+                            r(MZ) only, so h² is overestimated and c²
+                            underestimated.
+     assortative mating     parents resemble each other, so DZ pairs share
+                            more than half of A. Raises r(DZ), so the doubled
+                            difference shrinks and h² is UNDERestimated.
+     gene-environment       A and C correlate, so genetic and shared-
+     correlation            environmental influence cannot be cleanly
+                            separated; the model attributes the covariance to
+                            whichever term the formula reaches first.
+
+   Everything is generated with a seeded generator; the seed is shown and
+   settable so a class demonstration is exactly reproducible.
+
+   WHAT HERITABILITY IS NOT
+   ------------------------
+   Stated on the page, in the debrief and here: h² is the proportion of
+   VARIANCE IN A POPULATION attributable to genetic variance in THAT
+   population under THOSE environmental conditions. It is not the proportion
+   of any individual's trait caused by genes; it says nothing about whether a
+   trait can be changed; and it changes when the environment changes, without
+   any gene changing. The tool includes a control that demonstrates the last
+   point directly.
+
+   No data leave the browser. There is no storage and no network request.
+   ========================================================================= */
+
+(function () {
+  "use strict";
+
+  var PAIRS_PER_GROUP = 250;
+
+  var GROUPS = [
+    { id: "mz", name: "Identical (MZ) twins", shareA: 1.0, shareC: 1.0 },
+    { id: "dz", name: "Fraternal (DZ) twins", shareA: 0.5, shareC: 1.0 },
+    { id: "sib", name: "Non-twin siblings", shareA: 0.5, shareC: 1.0 }
+  ];
+
+  /* =======================================================================
+     Seeded randomness
+     ===================================================================== */
+
+  function mulberry32(seed) {
+    var a = seed >>> 0;
+    return function () {
+      a += 0x6d2b79f5;
+      var t = a;
+      t = Math.imul(t ^ (t >>> 15), t | 1);
+      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  function makeNormal(random) {
+    var u = Math.max(random(), 1e-9);
+    var v = random();
+    return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+  }
+
+  /* =======================================================================
+     Generation
+     ===================================================================== */
+
+  function clamp(value, low, high) {
+    return Math.max(low, Math.min(high, value));
+  }
+
+  /**
+   * Generate pairs for one group.
+   * @param {function} random
+   * @param {object} group
+   * @param {object} truth   { a2, c2, e2, m2 }
+   * @param {object} violations { unequalEnv, assortative, gxeCorr }
+   */
+  function generateGroup(random, group, truth, violations) {
+    var a = Math.sqrt(truth.a2);
+    var c = Math.sqrt(truth.c2);
+    var e = Math.sqrt(truth.e2);
+    var m = Math.sqrt(truth.m2);
+
+    // Violation 1: MZ pairs share more of C than DZ/sibling pairs do.
+    var shareC = group.shareC;
+    if (violations.unequalEnv > 0 && group.id !== "mz") {
+      shareC = clamp(group.shareC - violations.unequalEnv, 0, 1);
+    }
+
+    // Violation 2: assortative mating raises the genetic sharing of pairs who
+    // are not identical, because the parents themselves resemble each other.
+    var shareA = group.shareA;
+    if (violations.assortative > 0 && group.id !== "mz") {
+      shareA = clamp(group.shareA + violations.assortative * 0.5, 0, 1);
+    }
+
+    // Non-twin siblings additionally share less environment than twins do:
+    // they are not the same age and are not in the same class or cohort.
+    if (group.id === "sib") {
+      shareC = clamp(shareC - 0.25, 0, 1);
+    }
+
+    var one = [];
+    var two = [];
+
+    for (var i = 0; i < PAIRS_PER_GROUP; i += 1) {
+      // Shared and unshared parts of A.
+      var aCommon = makeNormal(random);
+      var aUnique1 = makeNormal(random);
+      var aUnique2 = makeNormal(random);
+      var a1 = Math.sqrt(shareA) * aCommon + Math.sqrt(1 - shareA) * aUnique1;
+      var a2v = Math.sqrt(shareA) * aCommon + Math.sqrt(1 - shareA) * aUnique2;
+
+      // Shared and unshared parts of C.
+      var cCommon = makeNormal(random);
+      var cUnique1 = makeNormal(random);
+      var cUnique2 = makeNormal(random);
+      var c1 = Math.sqrt(shareC) * cCommon + Math.sqrt(1 - shareC) * cUnique1;
+      var c2v = Math.sqrt(shareC) * cCommon + Math.sqrt(1 - shareC) * cUnique2;
+
+      // Violation 3: gene-environment correlation. The shared environment
+      // partly follows the genetic value, so A and C are no longer
+      // independent and the two cannot be cleanly apportioned.
+      if (violations.gxeCorr > 0) {
+        var r = violations.gxeCorr;
+        c1 = r * a1 + Math.sqrt(1 - r * r) * c1;
+        c2v = r * a2v + Math.sqrt(1 - r * r) * c2v;
+      }
+
+      one.push(
+        a * a1 + c * c1 + e * makeNormal(random) + m * makeNormal(random));
+      two.push(
+        a * a2v + c * c2v + e * makeNormal(random) + m * makeNormal(random));
+    }
+
+    return { one: one, two: two };
+  }
+
+  function correlation(x, y) {
+    var n = x.length;
+    var mx = x.reduce(function (a, b) { return a + b; }, 0) / n;
+    var my = y.reduce(function (a, b) { return a + b; }, 0) / n;
+    var sxy = 0;
+    var sxx = 0;
+    var syy = 0;
+    for (var i = 0; i < n; i += 1) {
+      var dx = x[i] - mx;
+      var dy = y[i] - my;
+      sxy += dx * dy;
+      sxx += dx * dx;
+      syy += dy * dy;
+    }
+    return sxx > 0 && syy > 0 ? sxy / Math.sqrt(sxx * syy) : 0;
+  }
+
+  function generate(settings) {
+    var random = mulberry32(settings.seed);
+    var result = {};
+    GROUPS.forEach(function (group) {
+      var pairs = generateGroup(random, group, settings.truth, settings.violations);
+      result[group.id] = {
+        pairs: pairs,
+        r: correlation(pairs.one, pairs.two)
+      };
+    });
+    return result;
+  }
+
+  /** Falconer's estimates from the observed twin correlations. */
+  function falconer(rMz, rDz) {
+    var h2 = clamp(2 * (rMz - rDz), 0, 1);
+    var c2 = clamp(2 * rDz - rMz, 0, 1);
+    var e2 = clamp(1 - rMz, 0, 1);
+    return { h2: h2, c2: c2, e2: e2 };
+  }
+
+  /* =======================================================================
+     Helpers
+     ===================================================================== */
+
+  function fmt(value, places) {
+    return value === null || value === undefined || isNaN(value)
+      ? "—"
+      : value.toFixed(places === undefined ? 2 : places);
+  }
+
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) {
+      node.className = className;
+    }
+    if (text !== undefined) {
+      node.textContent = text;
+    }
+    return node;
+  }
+
+  function clear(node) {
+    while (node.firstChild) {
+      node.removeChild(node.firstChild);
+    }
+  }
+
+  /* =======================================================================
+     Wiring
+     ===================================================================== */
+
+  var shell = InteractiveShell.attach("#twins");
+  if (!shell) {
+    return;
+  }
+
+  var page = document;
+  var $ = function (selector, scope) {
+    return (scope || page).querySelector(selector);
+  };
+
+  var scatterChart = $("[data-scatter]");
+  var scatterTable = $("[data-scatter-table]");
+  var readout = $("[data-readout]");
+  var estimateTable = $("[data-estimate-table]");
+  var estimateNote = $("[data-estimate-note]");
+  var violationNote = $("[data-violation-note]");
+  var seedInput = $("#seed-input");
+
+  var openingForm = $("#opening-form");
+  var openingError = $("[data-opening-error]");
+  var openingFeedback = $("[data-opening-feedback]");
+  var skipOpening = $('[data-action="skip-opening"]');
+  var mainSection = $("#simulator-section");
+
+  var challengeForm = $("#challenge-form");
+  var challengeFeedback = $("[data-challenge-feedback]");
+  var envButton = $('[data-action="equalise"]');
+  var envNote = $("[data-env-note]");
+
+  /* The default has a substantial shared-environment share on purpose. The
+     "equalise everyone's environment" demonstration works by removing C and
+     showing h² rise as a consequence of the denominator shrinking — and if C
+     starts small there is nothing to remove and the rise is too slight to
+     make the point. With C at 0.35 the estimate moves by around 0.20. */
+  var INITIAL = {
+    seed: 4471,
+    truth: { a2: 0.40, c2: 0.35, e2: 0.20, m2: 0.05 },
+    violations: { unequalEnv: 0, assortative: 0, gxeCorr: 0 },
+    envEqualised: false
+  };
+  var state = null;
+  var data = null;
+  var rangeSyncs = [];
+
+  function bindRange(input, options) {
+    var settings = options || {};
+    var output = page.querySelector('output[for="' + input.id + '"]');
+    function sync() {
+      var value = Number(input.value);
+      if (output) {
+        output.textContent = settings.format ? settings.format(value) : String(value);
+      }
+      input.setAttribute(
+        "aria-valuetext", (settings.describe || settings.format || String)(value));
+      if (settings.onInput) {
+        settings.onInput(value);
+      }
+    }
+    input.addEventListener("input", sync);
+    rangeSyncs.push(sync);
+    return sync;
+  }
+
+  function syncRanges() {
+    rangeSyncs.forEach(function (sync) { sync(); });
+  }
+
+  /* --- The variance components -------------------------------------------
+     Three sliders for A, C and E; measurement error is separate. They are
+     renormalised so the four always sum to 1, and the normalised values are
+     what the page reports as the truth. */
+
+  function normaliseTruth() {
+    var raw = state.truth;
+    var total = raw.a2 + raw.c2 + raw.e2 + raw.m2;
+    if (total <= 0) {
+      return { a2: 0.25, c2: 0.25, e2: 0.25, m2: 0.25 };
+    }
+    return {
+      a2: raw.a2 / total,
+      c2: raw.c2 / total,
+      e2: raw.e2 / total,
+      m2: raw.m2 / total
+    };
+  }
+
+  ["a2", "c2", "e2", "m2"].forEach(function (key) {
+    bindRange($("#" + key + "-range"), {
+      format: function (value) {
+        return (value / 100).toFixed(2);
+      },
+      describe: function (value) {
+        return (value / 100).toFixed(2) + " before renormalising";
+      },
+      onInput: function (value) {
+        state.truth[key] = value / 100;
+        regenerate();
+        render();
+      }
+    });
+  });
+
+  [
+    ["unequalEnv", "#unequal-range"],
+    ["assortative", "#assortative-range"],
+    ["gxeCorr", "#gxe-range"]
+  ].forEach(function (entry) {
+    bindRange($(entry[1]), {
+      format: function (value) {
+        return (value / 100).toFixed(2);
+      },
+      describe: function (value) {
+        return value === 0 ? "assumption held" : "violation set to " + (value / 100).toFixed(2);
+      },
+      onInput: function (value) {
+        state.violations[entry[0]] = value / 100;
+        regenerate();
+        render();
+      }
+    });
+  });
+
+  seedInput.addEventListener("change", function () {
+    var value = parseInt(seedInput.value, 10);
+    if (isNaN(value)) {
+      seedInput.value = String(state.seed);
+      return;
+    }
+    state.seed = value;
+    regenerate();
+    render();
+    shell.announce("Seed " + value + ". New sample drawn.", { immediate: true });
+  });
+
+  $('[data-action="resample"]').addEventListener("click", function () {
+    state.seed = (state.seed * 1103515245 + 12345) % 2147483647;
+    if (state.seed < 0) {
+      state.seed += 2147483647;
+    }
+    seedInput.value = String(state.seed);
+    regenerate();
+    render();
+    shell.announce(
+      "New sample of " + PAIRS_PER_GROUP + " pairs per group, seed " +
+        state.seed + ".",
+      { immediate: true });
+  });
+
+  function regenerate() {
+    data = generate({
+      seed: state.seed,
+      truth: normaliseTruth(),
+      violations: state.violations
+    });
+  }
+
+  /* --- Rendering ------------------------------------------------------------ */
+
+  function render() {
+    if (mainSection.hidden) {
+      return;
+    }
+    var truth = normaliseTruth();
+    renderScatter();
+    renderReadout(truth);
+    renderEstimates(truth);
+    renderViolationNote(truth);
+  }
+
+  function renderScatter() {
+    var NS = "http://www.w3.org/2000/svg";
+    var SIZE = 150;
+    var GAP = 12;
+    var TOP = 18;
+
+    clear(scatterChart);
+    scatterChart.setAttribute(
+      "viewBox", "0 0 " + (GROUPS.length * (SIZE + GAP)) + " " + (SIZE + TOP + 22));
+
+    GROUPS.forEach(function (group, index) {
+      var left = index * (SIZE + GAP);
+      var entry = data[group.id];
+
+      var title = document.createElementNS(NS, "text");
+      title.setAttribute("x", String(left + SIZE / 2));
+      title.setAttribute("y", "12");
+      title.setAttribute("text-anchor", "middle");
+      title.setAttribute("class", "chart__label");
+      title.textContent = group.id.toUpperCase();
+      scatterChart.appendChild(title);
+
+      var frame = document.createElementNS(NS, "rect");
+      frame.setAttribute("x", String(left));
+      frame.setAttribute("y", String(TOP));
+      frame.setAttribute("width", String(SIZE));
+      frame.setAttribute("height", String(SIZE));
+      frame.setAttribute("class", "chart__track");
+      scatterChart.appendChild(frame);
+
+      // Points, clipped to +/- 3 SD.
+      var points = [];
+      for (var i = 0; i < entry.pairs.one.length; i += 1) {
+        var x = clamp(entry.pairs.one[i], -3, 3);
+        var y = clamp(entry.pairs.two[i], -3, 3);
+        points.push(
+          "M " + (left + ((x + 3) / 6) * SIZE).toFixed(1) + " " +
+          (TOP + (1 - (y + 3) / 6) * SIZE).toFixed(1) + " l 0.01 0");
+      }
+      var dots = document.createElementNS(NS, "path");
+      dots.setAttribute("d", points.join(" "));
+      dots.setAttribute("class", "scatter__points");
+      scatterChart.appendChild(dots);
+
+      var label = document.createElementNS(NS, "text");
+      label.setAttribute("x", String(left + SIZE / 2));
+      label.setAttribute("y", String(TOP + SIZE + 16));
+      label.setAttribute("text-anchor", "middle");
+      label.setAttribute("class", "chart__count");
+      label.textContent = "r = " + fmt(entry.r);
+      scatterChart.appendChild(label);
+    });
+
+    clear(scatterTable);
+    GROUPS.forEach(function (group) {
+      var row = make("tr");
+      var th = make("th", null, group.name);
+      th.setAttribute("scope", "row");
+      row.appendChild(th);
+      row.appendChild(make("td", null, String(PAIRS_PER_GROUP)));
+      row.appendChild(make("td", null, fmt(data[group.id].r)));
+      scatterTable.appendChild(row);
+    });
+  }
+
+  function renderReadout(truth) {
+    clear(readout);
+    [
+      ["True A (additive genetic)", fmt(truth.a2)],
+      ["True C (shared environment)", fmt(truth.c2)],
+      ["True E (non-shared)", fmt(truth.e2)],
+      ["True measurement error", fmt(truth.m2)]
+    ].forEach(function (pair) {
+      var cell = make("div");
+      cell.appendChild(make("dt", null, pair[0]));
+      cell.appendChild(make("dd", null, pair[1]));
+      readout.appendChild(cell);
+    });
+  }
+
+  function renderEstimates(truth) {
+    var rMz = data.mz.r;
+    var rDz = data.dz.r;
+    var est = falconer(rMz, rDz);
+
+    clear(estimateTable);
+    [
+      ["A — additive genetic (h²)", truth.a2, est.h2],
+      ["C — shared environment (c²)", truth.c2, est.c2],
+      ["E — non-shared + error (e²)", truth.e2 + truth.m2, est.e2]
+    ].forEach(function (row) {
+      var tr = make("tr");
+      var th = make("th", null, row[0]);
+      th.setAttribute("scope", "row");
+      tr.appendChild(th);
+      tr.appendChild(make("td", null, fmt(row[1])));
+      tr.appendChild(make("td", null, fmt(row[2])));
+      var diff = row[2] - row[1];
+      tr.appendChild(
+        make("td", null,
+          (diff > 0 ? "+" : "") + fmt(diff) +
+          (Math.abs(diff) < 0.06 ? " (close)"
+            : diff > 0 ? " (overestimate)" : " (underestimate)")));
+      estimateTable.appendChild(tr);
+    });
+
+    estimateNote.textContent =
+      "Falconer's estimates: h² = 2(r_MZ − r_DZ) = 2(" + fmt(rMz) + " − " +
+      fmt(rDz) + ") = " + fmt(est.h2) + "; c² = 2r_DZ − r_MZ = " + fmt(est.c2) +
+      "; e² = 1 − r_MZ = " + fmt(est.e2) + ". Note that e² absorbs measurement " +
+      "error: anything unreliable in the measure is counted as non-shared " +
+      "environment by this model.";
+  }
+
+  function renderViolationNote(truth) {
+    var v = state.violations;
+    var notes = [];
+
+    if (v.unequalEnv > 0) {
+      notes.push(
+        "Unequal environments: identical twins are sharing more of their " +
+        "environment than fraternal twins are. That raises r(MZ) without " +
+        "raising r(DZ), and since h² is twice the gap, it inflates the " +
+        "genetic estimate and shrinks the shared-environment estimate. The " +
+        "equal-environments assumption is the one twin studies are most often " +
+        "criticised for, and this is what its failure does."
+      );
+    }
+    if (v.assortative > 0) {
+      notes.push(
+        "Assortative mating: parents resemble each other on the trait, so " +
+        "fraternal twins and siblings share more than half their additive " +
+        "genetic value. That raises r(DZ), narrows the gap, and makes h² an " +
+        "UNDERestimate — the opposite direction from the previous violation, " +
+        "which is why the two can partly mask each other."
+      );
+    }
+    if (v.gxeCorr > 0) {
+      notes.push(
+        "Gene–environment correlation: the environment a pair experiences now " +
+        "depends partly on their genetic value. A and C are no longer " +
+        "independent, so the covariance between them has to be assigned " +
+        "somewhere, and the model assigns it to the genetic term by " +
+        "construction. \"Heritable\" here includes the environments that " +
+        "people's own characteristics helped bring about."
+      );
+    }
+
+    if (!notes.length) {
+      notes.push(
+        "All three assumptions currently hold, which is why the estimates are " +
+        "close to the truth. Real twin studies cannot switch them on and off, " +
+        "and cannot see the truth column at all."
+      );
+    }
+
+    violationNote.textContent = notes.join(" ");
+    violationNote.setAttribute(
+      "data-tone",
+      v.unequalEnv + v.assortative + v.gxeCorr > 0 ? "warn" : "good");
+  }
+
+  /* --- The environment demonstration ---------------------------------------
+     Heritability changes when the environment changes, with no gene changing.
+     Pressing the button collapses shared-environment variance towards zero,
+     which raises h² — because h² is a ratio, and the denominator shrank. */
+
+  envButton.addEventListener("click", function () {
+    // Capture the estimate before the change, so the note can quote the real
+    // figures rather than an assumed starting point.
+    var beforeH2 = falconer(data.mz.r, data.dz.r).h2;
+
+    state.envEqualised = !state.envEqualised;
+    if (state.envEqualised) {
+      state.truth.c2 = 0.02;
+      state.truth.e2 = INITIAL.truth.e2;
+    } else {
+      state.truth.c2 = INITIAL.truth.c2;
+      state.truth.e2 = INITIAL.truth.e2;
+    }
+    $("#c2-range").value = String(Math.round(state.truth.c2 * 100));
+    $("#e2-range").value = String(Math.round(state.truth.e2 * 100));
+    syncRanges();
+    regenerate();
+    render();
+
+    var truth = normaliseTruth();
+    var est = falconer(data.mz.r, data.dz.r);
+    envNote.textContent = state.envEqualised
+      ? "Shared-environment variance has been almost removed — imagine every " +
+        "family given the same resources. No gene has changed, and the " +
+        "genetic slider has not moved. Heritability has gone from " +
+        fmt(beforeH2) + " to " + fmt(est.h2) + ", because h² is a ratio and " +
+        "the denominator just shrank. A high heritability can therefore be a " +
+        "sign that environments have been made more equal, which is close to " +
+        "the reverse of how the number is usually reported."
+      : "Shared-environment variance restored. Heritability has gone from " +
+        fmt(beforeH2) + " back to " + fmt(est.h2) + ". The genes never moved " +
+        "in either direction.";
+    envNote.hidden = false;
+    envButton.textContent = state.envEqualised
+      ? "Restore the original environment"
+      : "Equalise everyone's environment";
+
+    shell.announce(
+      "Environment " + (state.envEqualised ? "equalised" : "restored") +
+        ". Heritability estimate now " + fmt(est.h2) + ".",
+      { immediate: true });
+  });
+
+  /* --- Opening prediction ---------------------------------------------------- */
+
+  var OPENING = {
+    individual: {
+      tone: "warn",
+      verdict: "No — and this is the single most common error about it.",
+      text:
+        "Heritability is a property of variance in a population, not of a " +
+        "person. \"h² = 0.5\" does not mean half of anybody's trait was caused " +
+        "by their genes. There is no coherent way to divide one individual's " +
+        "characteristic into a genetic half and an environmental half: they " +
+        "had one set of genes and one life, and both were necessary for all " +
+        "of it."
+    },
+    population: {
+      tone: "good",
+      verdict: "Yes.",
+      text:
+        "The proportion of variance in a particular population, measured in " +
+        "particular environments at a particular time. Change the population " +
+        "or the range of environments and the number changes, without any " +
+        "gene changing. The tool has a control that demonstrates exactly that."
+    },
+    fixed: {
+      tone: "warn",
+      verdict: "No.",
+      text:
+        "Heritability says nothing about malleability. Height is highly " +
+        "heritable and has risen substantially in a century through nutrition. " +
+        "Requiring spectacles is a highly heritable trait with a trivially " +
+        "effective environmental intervention."
+    },
+    genes: {
+      tone: "caution",
+      verdict: "Not quite.",
+      text:
+        "It does not tell you which genes, how many, or what they do. It is a " +
+        "variance ratio estimated from resemblance between relatives, and it " +
+        "is entirely compatible with thousands of variants of tiny effect, " +
+        "with none of them identified."
+    }
+  };
+
+  openingForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answer = $('input[name="opening"]:checked', openingForm);
+    if (!answer) {
+      openingError.textContent =
+        "Choose an answer before the simulator opens. This is the definition " +
+        "everything else depends on.";
+      openingError.hidden = false;
+      return;
+    }
+    openingError.hidden = true;
+    var feedback = OPENING[answer.value];
+    showFeedback(openingFeedback, feedback.tone, feedback.verdict, feedback.text);
+    lockForm(openingForm);
+    mainSection.hidden = false;
+    regenerate();
+    render();
+    $("#simulator-heading").focus();
+    shell.announce("Simulator unlocked.", { immediate: true });
+  });
+
+  skipOpening.addEventListener("click", function () {
+    openingError.hidden = true;
+    showFeedback(
+      openingFeedback, "neutral", "Prediction skipped — demonstration mode.",
+      "With a class, ask the definition question aloud before opening the " +
+        "simulator.");
+    lockForm(openingForm);
+    mainSection.hidden = false;
+    regenerate();
+    render();
+    shell.announce("Simulator unlocked.", { immediate: true });
+  });
+
+  /* --- Challenge -------------------------------------------------------------- */
+
+  challengeForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answer = $('input[name="challenge"]:checked', challengeForm);
+    if (!answer) {
+      showFeedback(challengeFeedback, "caution", "Choose an answer first.", "");
+      return;
+    }
+    var correct = answer.value === "unequal";
+    showFeedback(
+      challengeFeedback,
+      correct ? "good" : "caution",
+      correct ? "Yes." : "Not this one.",
+      "Set the unequal-environments slider above zero on its own and watch " +
+        "the estimate table: h² rises above the truth and c² falls below it. " +
+        "That violation raises the MZ correlation without touching the DZ " +
+        "correlation, and h² is twice the gap between them. Assortative mating " +
+        "pushes the other way, so a study with both violations can report a " +
+        "heritability that looks unremarkable while being wrong twice over."
+    );
+    shell.announce("Challenge answered.", { immediate: true });
+  });
+
+  function showFeedback(container, tone, verdict, text) {
+    clear(container);
+    container.setAttribute("data-tone", tone);
+    var paragraph = make("p");
+    paragraph.appendChild(make("strong", "feedback__verdict", verdict));
+    if (text) {
+      paragraph.appendChild(document.createTextNode(" " + text));
+    }
+    container.appendChild(paragraph);
+    container.hidden = false;
+  }
+
+  function lockForm(form) {
+    Array.prototype.forEach.call(
+      form.querySelectorAll("input, button"),
+      function (control) { control.disabled = true; });
+  }
+
+  function unlockForm(form) {
+    Array.prototype.forEach.call(
+      form.querySelectorAll("input, button"),
+      function (control) { control.disabled = false; });
+    form.reset();
+  }
+
+  /* --- Reset -------------------------------------------------------------------- */
+
+  shell.onReset(function () {
+    state = JSON.parse(JSON.stringify(INITIAL));
+
+    unlockForm(openingForm);
+    openingFeedback.hidden = true;
+    openingError.hidden = true;
+    mainSection.hidden = true;
+
+    challengeForm.reset();
+    challengeFeedback.hidden = true;
+    envNote.hidden = true;
+    envButton.textContent = "Equalise everyone's environment";
+
+    seedInput.value = String(state.seed);
+    $("#a2-range").value = String(Math.round(state.truth.a2 * 100));
+    $("#c2-range").value = String(Math.round(state.truth.c2 * 100));
+    $("#e2-range").value = String(Math.round(state.truth.e2 * 100));
+    $("#m2-range").value = String(Math.round(state.truth.m2 * 100));
+    $("#unequal-range").value = "0";
+    $("#assortative-range").value = "0";
+    $("#gxe-range").value = "0";
+
+    regenerate();
+    syncRanges();
+  });
+
+  /* --- Start-up ------------------------------------------------------------------ */
+
+  shell.reset({ silent: true });
+  shell.announce(
+    "Ready. Answer the definition question above to open the simulator.",
+    { immediate: true });
+})();
+
+</script>
+</div>

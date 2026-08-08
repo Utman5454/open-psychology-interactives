@@ -1,0 +1,2911 @@
+<!-- Operationalisation Laboratory
+     From Open Psychology Interactives - https://github.com/utman5454/open-psychology-interactives
+     Self-contained: no stylesheets, scripts, fonts, images or network requests.
+     Styles are scoped to .opi-activity and do not affect the page around them.
+     Nothing is saved, sent or tracked. MIT licensed; please keep this notice.
+     Paste anywhere that accepts HTML, or save as a .html file and open it. -->
+<div class="opi-activity">
+<style>
+/* Defensive baseline. See scripts/build-standalone.py for why this
+   is `revert` rather than an enumerated reset, and how the specificity ladder
+   keeps the activity's own styling on top of it. */
+.opi-activity *:not(svg *) {
+  all: revert;
+}
+.opi-activity, .opi-activity *, .opi-activity *::before, .opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  text-transform: none;
+  text-indent: 0;
+  font-style: normal;
+  font-variant: normal;
+  letter-spacing: normal;
+  word-spacing: normal;
+  white-space: normal;
+  visibility: visible;
+  float: none;
+  max-width: none;
+}
+.opi-activity svg { max-width: 100%; }
+.opi-activity img { max-width: 100%; height: auto; }
+.opi-activity [hidden] { display: none !important; }
+
+/* assets/css/main.css */
+.opi-activity.opi-activity {
+  --colour-page: #ffffff;
+  --colour-surface: #f5f7fa;
+  --colour-surface-raised: #ffffff;
+  --colour-border: #d3d9e2;
+  --colour-border-strong: #aeb7c4;
+  --colour-text: #131820;
+  --colour-text-muted: #4c566a;
+  --colour-accent: #1a4fa0;
+  --colour-accent-hover: #123a7a;
+  --colour-accent-soft: #e8eefb;
+  --colour-on-accent: #ffffff;
+  --colour-focus: #b45309;
+  --colour-cognitive: #8a4b00;
+  --colour-research-methods: #1a4fa0;
+  --colour-neuropsychology: #145c53;
+  --colour-social-critical-psychology: #9e2f45;
+  --colour-personality-individual-differences: #7a2e6d;
+  --colour-status-bg: #f1ede3;
+  --colour-status-text: #5c4a1f;
+  --colour-status-border: #d9cdb0;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  --text-xs: 13px;
+  --text-sm: 15px;
+  --text-base: 17px;
+  --text-lg: 19px;
+  --text-xl: 23px;
+  --text-2xl: 28px;
+  --text-3xl: 36px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgb(19 24 32 / 0.06);
+  --shadow-md: 0 2px 8px rgb(19 24 32 / 0.08);
+  --measure: 68ch;
+  --container: 1152px;
+}
+@media (prefers-color-scheme: dark) {
+.opi-activity.opi-activity {
+  --colour-page: #0f141b;
+  --colour-surface: #161d27;
+  --colour-surface-raised: #1a2230;
+  --colour-border: #2c3644;
+  --colour-border-strong: #44506180;
+  --colour-text: #e9edf3;
+  --colour-text-muted: #a8b2c1;
+  --colour-accent: #8fb6ff;
+  --colour-accent-hover: #b3cdff;
+  --colour-accent-soft: #1b2740;
+  --colour-on-accent: #0f141b;
+  --colour-focus: #f0b429;
+  --colour-cognitive: #e2ab5f;
+  --colour-research-methods: #8fb6ff;
+  --colour-neuropsychology: #6fc3b4;
+  --colour-social-critical-psychology: #f19aa8;
+  --colour-personality-individual-differences: #db9ccd;
+  --colour-status-bg: #241f14;
+  --colour-status-text: #e2cf9f;
+  --colour-status-border: #4a4028;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 2px 10px rgb(0 0 0 / 0.45);
+}
+}
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity.opi-activity {
+  -webkit-text-size-adjust: 100%;
+}
+.opi-activity.opi-activity {
+  background-color: var(--colour-page);
+  color: var(--colour-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.65;
+}
+.opi-activity.opi-activity h1,
+.opi-activity.opi-activity h2,
+.opi-activity.opi-activity h3,
+.opi-activity.opi-activity h4 {
+  margin: 0 0 var(--space-3);
+  line-height: 1.25;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.opi-activity.opi-activity h1 {
+  font-size: var(--text-3xl);
+}
+.opi-activity.opi-activity h2 {
+  font-size: var(--text-2xl);
+}
+.opi-activity.opi-activity h3 {
+  font-size: var(--text-xl);
+}
+.opi-activity.opi-activity h4 {
+  font-size: var(--text-lg);
+}
+.opi-activity.opi-activity p,
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol,
+.opi-activity.opi-activity dl {
+  margin: 0 0 var(--space-4);
+}
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol {
+  padding-left: 1.35em;
+}
+.opi-activity.opi-activity li + li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity a {
+  color: var(--colour-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: max(1px, 0.06em);
+}
+.opi-activity.opi-activity a:hover {
+  color: var(--colour-accent-hover);
+  text-decoration-thickness: max(2px, 0.11em);
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid var(--colour-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+@supports not selector(:focus-visible) {
+.opi-activity.opi-activity :focus {
+  outline: 3px solid var(--colour-focus);
+    outline-offset: 2px;
+}
+}
+.opi-activity.opi-activity code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.35em;
+}
+.opi-activity.opi-activity hr {
+  border: 0;
+  border-top: 1px solid var(--colour-border);
+  margin: var(--space-6) 0;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+}
+.opi-activity.opi-activity .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.opi-activity.opi-activity .container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+@media (min-width: 40em) {
+.opi-activity.opi-activity .container {
+  padding-inline: var(--space-5);
+}
+}
+.opi-activity.opi-activity .prose {
+  max-width: var(--measure);
+}
+.opi-activity.opi-activity .text-muted {
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .section {
+  padding-block: var(--space-7);
+}
+.opi-activity.opi-activity .section--tinted {
+  background-color: var(--colour-surface);
+  border-block: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .section__header {
+  max-width: var(--measure);
+  margin-bottom: var(--space-5);
+}
+.opi-activity.opi-activity .section__header > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-7) var(--space-6);
+  border-bottom: 1px solid var(--colour-border);
+  
+  background-image: linear-gradient(
+    180deg,
+    var(--colour-accent-soft) 0%,
+    var(--colour-page) 100%
+  );
+}
+.opi-activity.opi-activity .hero__eyebrow {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .hero h1 {
+  max-width: 20ch;
+  margin-bottom: var(--space-4);
+}
+.opi-activity.opi-activity .hero__lead {
+  max-width: var(--measure);
+  font-size: var(--text-lg);
+  color: var(--colour-text-muted);
+}
+@media (min-width: 48em) {
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-8) var(--space-7);
+}
+.opi-activity.opi-activity .hero h1 {
+  font-size: 44px;
+}
+}
+.opi-activity.opi-activity .button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  
+  min-height: 44px;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .button--primary {
+  background-color: var(--colour-accent);
+  border-color: var(--colour-accent);
+  
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--primary:hover {
+  background-color: var(--colour-accent-hover);
+  border-color: var(--colour-accent-hover);
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--secondary {
+  background-color: transparent;
+  border-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .button--secondary:hover {
+  background-color: var(--colour-surface);
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+}
+.opi-activity.opi-activity .card--cognitive {
+  --card-accent: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .card--research-methods {
+  --card-accent: var(--colour-research-methods);
+}
+.opi-activity.opi-activity .card--neuropsychology {
+  --card-accent: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .card--social-critical-psychology {
+  --card-accent: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .card--personality-individual-differences {
+  --card-accent: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 650;
+  line-height: 1.4;
+  padding: 3.2px var(--space-3);
+  border-radius: 999px;
+  border: 1px solid var(--colour-status-border);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+}
+.opi-activity.opi-activity .badge__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex: none;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed var(--colour-border-strong);
+  border-radius: var(--radius-lg);
+  background-color: var(--colour-surface);
+  padding: var(--space-5);
+  text-align: left;
+}
+.opi-activity.opi-activity .placeholder__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+}
+.opi-activity.opi-activity .placeholder > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .split {
+  display: grid;
+  gap: var(--space-6);
+}
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split {
+  grid-template-columns: 3fr 2fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .panel {
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.opi-activity.opi-activity .panel > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .panel__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .section--tinted {
+  border-block: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .hero {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .button--primary {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .button--secondary {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .button:hover {
+  border-color: Highlight;
+}
+.opi-activity.opi-activity .panel {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed CanvasText;
+}
+.opi-activity.opi-activity .badge {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .badge__dot {
+  background-color: CanvasText;
+}
+.opi-activity.opi-activity code {
+  border-color: CanvasText;
+}
+.opi-activity.opi-activity hr {
+  border-top-color: CanvasText;
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+}
+@media print {
+.opi-activity.opi-activity {
+  color: #000;
+  background: #fff;
+}
+.opi-activity.opi-activity a[href^="http"]::after {
+  content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+}
+}
+
+/* components/interactive-shell.css */
+.opi-activity.opi-activity .interactive {
+  --shell-page: var(--colour-page, #ffffff);
+  --shell-surface: var(--colour-surface, #f5f7fa);
+  --shell-raised: var(--colour-surface-raised, #ffffff);
+  --shell-border: var(--colour-border, #d3d9e2);
+  --shell-border-strong: var(--colour-border-strong, #aeb7c4);
+  --shell-text: var(--colour-text, #131820);
+  --shell-muted: var(--colour-text-muted, #4c566a);
+  --shell-accent: var(--colour-accent, #1a4fa0);
+  --shell-accent-soft: var(--colour-accent-soft, #e8eefb);
+  
+  --shell-on-accent: var(--colour-on-accent, #ffffff);
+  --shell-focus: var(--colour-focus, #b45309);
+  --shell-radius: var(--radius-lg, 12px);
+  --shell-gap: var(--space-5, 24px);
+
+  display: block;
+  background-color: var(--shell-raised);
+  color: var(--shell-text);
+  border: 1px solid var(--shell-border);
+  border-radius: var(--shell-radius);
+  
+  overflow-x: clip;
+  overflow-y: visible;
+}
+.opi-activity.opi-activity .interactive__header {
+  padding: var(--shell-gap);
+  border-bottom: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 1.25;
+}
+.opi-activity.opi-activity .interactive__brief {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--shell-muted);
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__body {
+  display: grid;
+  gap: var(--shell-gap);
+  padding: var(--shell-gap);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body {
+  grid-template-columns: minmax(240px, 320px) 1fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .interactive__controls {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__controls fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .interactive__controls legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .control {
+  display: grid;
+  gap: 5.6px;
+}
+.opi-activity.opi-activity .control + .control {
+  margin-top: 16px;
+}
+.opi-activity.opi-activity .control__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.opi-activity.opi-activity .control__label {
+  font-size: 15px;
+  font-weight: 600;
+}
+.opi-activity.opi-activity .control__value {
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--shell-accent);
+}
+.opi-activity.opi-activity .control__hint {
+  font-size: 13px;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .interactive__controls input[type="range"] {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--shell-accent);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  width: 100%;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--shell-text);
+  background-color: var(--shell-raised);
+  border: 1px solid var(--shell-border-strong);
+  border-radius: var(--radius-sm, 4px);
+}
+.opi-activity.opi-activity .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+}
+.opi-activity.opi-activity .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  accent-color: var(--shell-accent);
+  flex: none;
+}
+.opi-activity.opi-activity .interactive__stage {
+  min-height: 256px;
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-page);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body--pinned {
+  align-items: stretch;
+}
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: sticky;
+    top: 0;
+    z-index: 2;
+    
+    margin: -16px -16px 0;
+    padding: 16px 16px 12px;
+    background-color: var(--shell-page);
+    border-bottom: 1px solid var(--shell-border);
+}
+}
+@media (min-width: 52em) and (max-height: 30em) {
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: static;
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
+}
+}
+.opi-activity.opi-activity .interactive__stage > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity :where(.interactive__stage) svg,
+.opi-activity.opi-activity :where(.interactive__stage) canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+.opi-activity.opi-activity .interactive__readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout div {
+  padding: 9.6px 12px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-sm, 4px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__readout dt {
+  font-size: 13px;
+  color: var(--shell-muted);
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout dd {
+  margin: 2.4px 0 0;
+  font-size: 18px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .interactive__status {
+  margin: 0;
+  padding: 12px var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+  font-size: 15px;
+  color: var(--shell-muted);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .interactive__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+}
+.opi-activity.opi-activity .interactive__actions button {
+  min-height: 44px;
+  padding: 6.4px 20px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--shell-on-accent);
+  background-color: var(--shell-accent);
+  border: 1px solid var(--shell-accent);
+  border-radius: var(--radius-md, 8px);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  color: var(--shell-text);
+  background-color: transparent;
+  border-color: var(--shell-border-strong);
+}
+.opi-activity.opi-activity .interactive__actions button:hover {
+  filter: brightness(1.08);
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__notes > summary {
+  padding: 13.6px var(--shell-gap);
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__notes > div {
+  padding: 0 var(--shell-gap) var(--shell-gap);
+  max-width: 68ch;
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__notes > div > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity .interactive *,
+.opi-activity.opi-activity .interactive *::before,
+.opi-activity.opi-activity .interactive *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+}
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .interactive,
+.opi-activity.opi-activity .interactive__controls,
+.opi-activity.opi-activity .interactive__stage,
+.opi-activity.opi-activity .interactive__readout div {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__header {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__status,
+.opi-activity.opi-activity .interactive__actions,
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__actions button {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  border-width: 1px;
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 1;
+    color: GrayText;
+    border-color: GrayText;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__stage svg {
+  forced-color-adjust: auto;
+}
+}
+
+/* components/tool-kit.css */
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split--wide {
+  grid-template-columns: 1fr 1fr;
+}
+}
+.opi-activity.opi-activity .how-to {
+  padding-left: 19.2px;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .how-to > li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .table-scroll {
+  overflow-x: auto;
+  
+  position: relative;
+}
+.opi-activity.opi-activity .prediction {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 832px;
+}
+.opi-activity.opi-activity .prediction > *,
+.opi-activity.opi-activity .challenge > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity .prediction__group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .prediction__legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-weight: 650;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .prediction .control--choice,
+.opi-activity.opi-activity .challenge .control--choice,
+.opi-activity.opi-activity .evidence .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .prediction .control--choice input,
+.opi-activity.opi-activity .challenge .control--choice input,
+.opi-activity.opi-activity .evidence .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .prediction__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .prediction__error {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-status-border);
+  border-left: 4px solid var(--colour-status-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .prediction__readback {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .feedback[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .feedback[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .feedback[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .feedback__verdict {
+  font-weight: 700;
+}
+.opi-activity.opi-activity .verdict {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .verdict__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict__body {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .verdict__body + .verdict__body {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .verdict__note {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .verdict[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .verdict[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .goal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .goal__label {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .goal__text {
+  flex: 1 1 256px;
+}
+.opi-activity.opi-activity .goal strong {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .goal__checks {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+  display: grid;
+  gap: 2.4px;
+}
+.opi-activity.opi-activity .goal__checks > li {
+  margin-top: 0;
+  padding-left: 22.4px;
+  position: relative;
+}
+.opi-activity.opi-activity .goal__checks > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 9.6px;
+  height: 9.6px;
+  border: 2px solid var(--colour-border-strong);
+  border-radius: 2px;
+}
+.opi-activity.opi-activity .goal__checks > li[data-met="yes"]::before {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .stage-track {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .stage-track > li {
+  margin-top: 0;
+  flex: 1 1 160px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-bottom: 3px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .stage-track > li > span {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.opi-activity.opi-activity .stage-track > li[data-state="done"] {
+  border-bottom-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border-bottom-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+  color: var(--colour-text);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .stage__heading {
+  margin: 0;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .data-table,
+.opi-activity.opi-activity .chart__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .data-table th,
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table th,
+.opi-activity.opi-activity .chart__table td {
+  padding: 6.4px 9.6px;
+  border: 1px solid var(--colour-border);
+  text-align: left;
+  vertical-align: top;
+}
+.opi-activity.opi-activity .data-table thead th,
+.opi-activity.opi-activity .chart__table thead th {
+  background-color: var(--colour-surface);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table td {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__table tbody th,
+.opi-activity.opi-activity .data-table tbody th {
+  font-weight: 550;
+}
+.opi-activity.opi-activity .data-table__total > th,
+.opi-activity.opi-activity .data-table__total > td {
+  border-top: 2px solid var(--colour-border-strong);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart {
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .chart__caption {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__svg {
+  max-width: 100%;
+  height: auto;
+}
+.opi-activity.opi-activity .chart__label,
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__inline,
+.opi-activity.opi-activity .chart__axis {
+  font-family: var(--font-body);
+  fill: var(--colour-text);
+  font-size: 13px;
+}
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__axis {
+  fill: var(--colour-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: var(--colour-on-accent);
+  font-size: 12px;
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__track {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__bar {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--one {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .chart__baseline,
+.opi-activity.opi-activity .chart__grid {
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__line {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: var(--colour-personality-individual-differences);
+  stroke-dasharray: 6 4;
+}
+.opi-activity.opi-activity .chart__point {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .reveal > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .reveal__lead {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+.opi-activity.opi-activity .reveal__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(176px, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+  padding: 0;
+  list-style: none;
+}
+.opi-activity.opi-activity .reveal__figures > li {
+  margin-top: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+.opi-activity.opi-activity .reveal__figure-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .reveal__figure-value {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .challenge {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+.opi-activity.opi-activity .challenge__locked {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .panel--caution {
+  background-color: var(--colour-status-bg);
+  border-color: var(--colour-status-border);
+}
+.opi-activity.opi-activity .panel--caution li + li {
+  margin-top: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .goal,
+.opi-activity.opi-activity .verdict,
+.opi-activity.opi-activity .feedback,
+.opi-activity.opi-activity .prediction__error,
+.opi-activity.opi-activity .prediction__readback,
+.opi-activity.opi-activity .stage-track > li,
+.opi-activity.opi-activity .reveal__figures > li {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border: 2px solid Highlight;
+}
+.opi-activity.opi-activity .chart__bar,
+.opi-activity.opi-activity .chart__bar--one {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: Canvas;
+}
+.opi-activity.opi-activity .chart__line {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: Highlight;
+}
+}
+.opi-activity.opi-activity .stage__more {
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .stage__more > summary {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .stage__more[open] > summary {
+  border-bottom: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .stage__more > *:not(summary) {
+  margin: var(--space-3);
+}
+
+/* modules/research-methods/tools/02-operationalisation-laboratory/tool.css */
+.opi-activity.opi-activity #page-heading {
+  overflow-wrap: break-word;
+}
+.opi-activity.opi-activity #operationalise .interactive__controls,
+.opi-activity.opi-activity #operationalise .interactive__stage {
+  min-width: 0;
+}
+.opi-activity.opi-activity #operationalise .interactive__stage > * {
+  min-width: 0;
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity #operationalise .interactive__body {
+  grid-template-columns: minmax(0, 336px) minmax(0, 1fr);
+}
+}
+.opi-activity.opi-activity .measure {
+  display: block;
+  padding: var(--space-2) 0;
+  border-top: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .measure:first-child {
+  border-top: 0;
+}
+.opi-activity.opi-activity .measure__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 9.6px;
+  min-height: 44px;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .measure__row input {
+  width: 18.4px;
+  height: 18.4px;
+  flex: none;
+  margin-top: 8.8px;
+  accent-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .measure__name {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  line-height: 1.4;
+  padding-top: 5.6px;
+}
+.opi-activity.opi-activity .measure__family {
+  display: block;
+  font-weight: 400;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.opi-activity.opi-activity .coverage {
+  display: grid;
+  gap: 6.4px;
+  margin-bottom: var(--space-4);
+}
+.opi-activity.opi-activity .coverage__row {
+  display: grid;
+  grid-template-columns: minmax(96px, 160px) 1fr;
+  gap: 4px var(--space-3);
+  align-items: center;
+  font-size: var(--text-sm);
+}
+@media (max-width: 30em) {
+.opi-activity.opi-activity .coverage__row {
+  grid-template-columns: 1fr;
+}
+}
+.opi-activity.opi-activity .coverage__facet {
+  font-weight: 600;
+}
+.opi-activity.opi-activity .coverage__meter {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .coverage__track {
+  flex: 1 1 64px;
+  min-width: 48px;
+  height: 13.6px;
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  overflow: hidden;
+}
+.opi-activity.opi-activity .coverage__fill {
+  display: block;
+  height: 100%;
+  background-color: var(--colour-accent);
+  transition: width 180ms ease-out;
+}
+.opi-activity.opi-activity .coverage__row[data-level="0"] .coverage__fill {
+  background-color: transparent;
+}
+.opi-activity.opi-activity .coverage__word {
+  flex: 0 0 auto;
+  font-size: var(--text-xs);
+  font-variant: small-caps;
+  letter-spacing: 0.03em;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .coverage__row[data-level="0"] .coverage__word {
+  color: var(--colour-status-text);
+  font-weight: 700;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity .coverage__fill {
+  transition: none;
+}
+}
+.opi-activity.opi-activity .contam {
+  margin: 0 0 var(--space-3);
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-cognitive);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .contam:last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .contam__name {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+.opi-activity.opi-activity .contam__list {
+  margin: 0;
+  padding-left: 19.2px;
+}
+.opi-activity.opi-activity .contam__list li + li {
+  margin-top: 3.2px;
+}
+.opi-activity.opi-activity .contam__empty {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .coverage__track,
+.opi-activity.opi-activity .contam,
+.opi-activity.opi-activity .measure {
+  border-color: CanvasText;
+}
+.opi-activity.opi-activity .coverage__fill {
+  background-color: Highlight;
+}
+}
+</style>
+
+  <!-- ================= Title and purpose ================= -->
+  <section class="section card--research-methods" aria-labelledby="page-heading">
+    <div class="container">
+
+      <p class="hero__eyebrow" style="color: var(--colour-research-methods)">
+        Research Methods
+      </p>
+      <h1 id="page-heading">Operationalisation Laboratory</h1>
+      <p class="hero__lead">
+        Choose a construct, choose how you would measure it, and watch what
+        your measure reaches, what it misses, and what else it quietly picks
+        up instead.
+      </p>
+
+      <p>
+        <span class="badge">
+          <span class="badge__dot" aria-hidden="true"></span>
+          Simulated — illustrative measures and facet models, no real instrument
+        </span>
+      </p>
+
+      <div class="split split--wide">
+
+        <div class="panel">
+          <h2 class="panel__title">Learning objective</h2>
+          <p>
+            By the end you should be able to say why an operational
+            definition is a claim about a construct rather than a neutral
+            translation of it.
+          </p>
+          <p class="text-muted">
+            About 20 minutes. Nothing you do here is saved or sent anywhere.
+          </p>
+        </div>
+
+        <div class="panel panel--caution">
+          <h2 class="panel__title">The facet lists are a model, not a fact</h2>
+          <p>
+            Each construct here is broken into five named facets so that
+            coverage can be shown. Those lists are teaching simplifications.
+            Which facets a construct has — and whether it has facets at all —
+            is itself contested, and the coverage figure inherits every
+            assumption in the list it is measured against.
+          </p>
+        </div>
+
+      </div>
+
+      <ol class="how-to">
+        <li>Answer the opening question to unlock the laboratory.</li>
+        <li>Choose a construct, then tick the measures you would use.</li>
+        <li>Watch the coverage map at the top of the stage as you tick.</li>
+        <li>Read what each measure also picks up, then try the challenge.</li>
+      </ol>
+
+    </div>
+  </section>
+
+  <!-- ================= Opening prediction ================= -->
+  <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="opening-heading">First, a judgement</h2>
+      </div>
+
+      <noscript>
+        <div class="placeholder">
+          <h3 class="placeholder__title">This part needs JavaScript</h3>
+          <p class="prose">
+            The laboratory builds its coverage map in your browser, so it
+            cannot run with JavaScript switched off. The rest of this page is
+            readable without it.
+          </p>
+        </div>
+      </noscript>
+
+      <form class="panel prediction" id="opening-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            A study needs a measure of <em>academic engagement</em>. Which
+            single measure would come closest to capturing it?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="selfreport">
+            A validated multi-item self-report engagement scale
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="attendance">
+            Lecture attendance records
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="observation">
+            Trained observation of on-task behaviour in seminars
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="vle">
+            Hours logged on the virtual learning environment
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="none">
+            None of them on its own comes close
+          </label>
+        </fieldset>
+
+        <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Record my answer and open the laboratory
+          </button>
+          <button class="button button--secondary" type="button" data-action="skip-opening">
+            Skip — I am demonstrating this
+          </button>
+        </div>
+
+        <div class="feedback" data-opening-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Laboratory ================= -->
+  <section class="section" id="lab-section" aria-labelledby="lab-heading" hidden>
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="lab-heading" tabindex="-1">The laboratory</h2>
+        <p class="prose">
+          The coverage map at the top of the stage is the thing to watch. Each
+          bar is one facet of the construct, and each bar prints in words how
+          well your current selection reaches it.
+        </p>
+      </div>
+
+      <section class="interactive" id="operationalise" data-interactive
+               data-reset-message="Everything cleared. Back to the opening question.">
+
+        <header class="interactive__header">
+          <h3 class="interactive__title">One construct, six ways to measure it</h3>
+          <p class="interactive__brief">
+            Tick as many measures as you like. Every one of them buys coverage
+            and costs something else.
+          </p>
+        </header>
+
+        <div class="interactive__body interactive__body--pinned">
+
+          <form class="interactive__controls" data-interactive-controls>
+
+            <fieldset>
+              <legend>The construct</legend>
+              <div class="control">
+                <label class="control__label" for="construct-select">
+                  What are you trying to measure?
+                </label>
+                <select id="construct-select">
+                  <option value="engagement">Academic engagement</option>
+                  <option value="stress">Stress</option>
+                  <option value="connection">Social connection</option>
+                </select>
+                <p class="control__hint" data-construct-note></p>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Your measures</legend>
+              <div data-measure-list></div>
+            </fieldset>
+
+          </form>
+
+          <div class="interactive__stage" data-interactive-stage>
+
+            <!-- Pinned: the coverage map. This is what every checkbox moves,
+                 and it must stay visible while the list below is worked
+                 through. -->
+            <div class="stage__primary">
+              <h4 class="stage__heading" data-coverage-heading>Facet coverage</h4>
+              <div class="coverage" data-coverage></div>
+              <dl class="interactive__readout" data-readout></dl>
+            </div>
+
+            <div class="verdict" data-verdict>
+              <h4 class="verdict__title">What this measurement plan is doing</h4>
+              <p class="verdict__body" data-interpretation></p>
+            </div>
+
+            <h4 class="stage__heading">What each chosen measure also picks up</h4>
+            <div data-contamination></div>
+
+            <details class="stage__more">
+              <summary>Every measure, side by side</summary>
+              <div class="table-scroll">
+                <table class="data-table">
+                  <caption class="visually-hidden">
+                    Each candidate measure, the facets it reaches, its
+                    reactivity and its feasibility
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Measure</th>
+                      <th scope="col">Family</th>
+                      <th scope="col">Facets reached</th>
+                      <th scope="col">Reactivity</th>
+                      <th scope="col">Feasibility</th>
+                    </tr>
+                  </thead>
+                  <tbody data-compare-table></tbody>
+                </table>
+              </div>
+            </details>
+
+          </div>
+
+        </div>
+
+        <p class="interactive__status" data-interactive-status role="status"></p>
+
+        <div class="interactive__actions">
+          <button type="button" data-action="worked">Show a defensible plan</button>
+          <button type="button" data-variant="secondary" data-action="everything">
+            Tick everything
+          </button>
+          <button type="button" data-variant="secondary" data-interactive-reset>
+            Reset everything
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ================= Challenge ================= -->
+  <section class="section section--tinted" id="challenge" aria-labelledby="challenge-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="challenge-heading">Challenge — the intervention that measures itself</h2>
+        <p class="prose">
+          A department introduces weekly online quizzes to raise academic
+          engagement. Engagement is measured before and after by hours logged
+          on the virtual learning environment. Hours rise by 40%.
+        </p>
+      </div>
+
+      <form class="panel challenge" id="challenge-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            What has been shown? Select every statement you would defend.
+          </legend>
+          <label class="control--choice">
+            <input type="checkbox" name="challenge" value="loggedin">
+            Students spent more time logged in after the quizzes were introduced
+          </label>
+          <label class="control--choice">
+            <input type="checkbox" name="challenge" value="engaged">
+            Academic engagement rose
+          </label>
+          <label class="control--choice">
+            <input type="checkbox" name="challenge" value="contamination">
+            The intervention acts directly on the measure, so a rise was close to guaranteed
+          </label>
+          <label class="control--choice">
+            <input type="checkbox" name="challenge" value="cognitive">
+            The measure says nothing about whether students thought harder about the material
+          </label>
+          <label class="control--choice">
+            <input type="checkbox" name="challenge" value="second">
+            A second measure from a different family would make the claim much safer
+          </label>
+        </fieldset>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">Check my answer</button>
+        </div>
+
+        <div class="feedback" data-challenge-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Debrief ================= -->
+  <section class="section" id="debrief" aria-labelledby="debrief-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="debrief-heading">What this demonstrates</h2>
+      </div>
+
+      <div class="split split--wide">
+
+        <div class="prose">
+          <h3>An operational definition is a claim, not a translation</h3>
+          <p>
+            Writing "engagement was operationalised as hours logged on the
+            virtual learning environment" looks like a technical step. It is
+            an argument: that the hours stand in for the construct well enough
+            for the claim being made. Every measure in this laboratory makes
+            such an argument, and every one of them can be attacked.
+          </p>
+
+          <h3>Two ways a measure goes wrong, and they pull in opposite directions</h3>
+          <p>
+            <strong>Construct under-representation</strong> is missing parts of
+            the construct: attendance records say nothing about whether anyone
+            thought about the lecture. <strong>Construct-irrelevant variance</strong>
+            is picking up things that are not the construct: attendance
+            records also measure commuting distance, timetable clashes and
+            whether the lecture was recorded. Fixing one usually worsens the
+            other, which is why measurement is a set of trade-offs rather than
+            a problem with a solution.
+          </p>
+
+          <h3>Reactivity is measurement changing the thing measured</h3>
+          <p>
+            An observer in a seminar changes the seminar. A prompt asking how
+            engaged you feel interrupts what it is asking about. These are not
+            flaws to be designed away; they are what it costs to get close to
+            a construct that lives inside an activity.
+          </p>
+
+          <h3>Combining measures buys coverage, and does not buy the construct</h3>
+          <p>
+            Three measures reach more facets than one and give you somewhere to
+            stand when a critic says your measure was the wrong one. They also
+            cost more, burden participants more, and can disagree — which is
+            information, not a nuisance. What they never do is turn into the
+            construct, because the construct is a theoretical idea and the
+            measures are records of things people did.
+          </p>
+        </div>
+
+        <aside class="panel panel--caution" aria-labelledby="limits-heading">
+          <h3 class="panel__title" id="limits-heading">
+            What this does <em>not</em> demonstrate
+          </h3>
+          <ul>
+            <li>
+              <strong>The coverage percentage is not a validity coefficient.</strong>
+              It is arithmetic on the facet list above it. It is not evidence
+              about any real instrument and should never be quoted as such.
+            </li>
+            <li>
+              <strong>No real instruments.</strong> Measures are described
+              generically. No published scale, item or proprietary assessment
+              appears here.
+            </li>
+            <li>
+              <strong>Reactivity and feasibility are three-level labels.</strong>
+              In a real study both depend on the setting, the population and
+              the resources, and neither is a property of a measure alone.
+            </li>
+            <li>
+              <strong>Nothing here validates a measure.</strong> Validation is
+              an accumulating argument from evidence of several kinds. This is
+              a way of seeing what the argument would have to cover.
+            </li>
+          </ul>
+        </aside>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+<script>
+/* ---- components/interactive-shell.js ---- */
+/* =========================================================================
+   Open Psychology Interactives — interactive shell helper
+   -------------------------------------------------------------------------
+   A very small vanilla-JS helper that every interactive in this collection
+   uses. It deliberately does *not* draw anything or know anything about
+   statistics, personality or neuropsychology. Its job is the repetitive,
+   easy-to-get-wrong accessibility plumbing:
+
+     * announcing changes through a polite live region;
+     * keeping a range slider and its <output> in step;
+     * wiring the standard Reset button;
+     * reporting the reader's reduced-motion preference.
+
+   Usage (see docs/adapting-a-tool.md for the full markup contract):
+
+       <script src="../../components/interactive-shell.js" defer><\/script>
+       <script src="tool.js" defer><\/script>
+
+       // in tool.js
+       const shell = InteractiveShell.attach('#sampling-demo');
+       shell.onReset(() => { ...restore defaults...; draw(); });
+       shell.bindRange('#sample-size', { format: n => n + ' cases' });
+       shell.announce('Sample of 25 drawn. Mean 4.8.');
+
+   Every published interactive is written against this module.
+
+   Exposed as a global (window.InteractiveShell) rather than an ES module so
+   that a single interactive folder can be opened directly from disk over
+   file:// — ES modules are blocked by CORS in that situation, plain scripts
+   are not. That constraint is the whole reason for the older syntax here.
+   ========================================================================= */
+
+(function (global) {
+  "use strict";
+
+  /* -----------------------------------------------------------------------
+     Internal helpers
+     --------------------------------------------------------------------- */
+
+  /**
+   * Accept either a CSS selector or an element and return an element.
+   * @param {string|Element} target
+   * @param {ParentNode} [scope]
+   * @returns {Element|null}
+   */
+  function resolve(target, scope) {
+    if (!target) {
+      return null;
+    }
+    if (typeof target === "string") {
+      return (scope || document).querySelector(target);
+    }
+    return target;
+  }
+
+  /**
+   * True when the reader has asked the operating system to reduce motion.
+   * Interactives should check this before animating anything — for example
+   * by drawing a sampling distribution in one step instead of animating
+   * each draw.
+   * @returns {boolean}
+   */
+  function prefersReducedMotion() {
+    return (
+      typeof global.matchMedia === "function" &&
+      global.matchMedia("(prefers-reduced-motion: reduce)").matches
+    );
+  }
+
+  /* -----------------------------------------------------------------------
+     Shell controller
+     --------------------------------------------------------------------- */
+
+  /**
+   * Attach the shell behaviour to one `.interactive` element.
+   *
+   * @param {string|Element} target  Selector or element for the shell root.
+   * @returns {object|null}  Controller, or null if the root was not found.
+   */
+  function attach(target) {
+    var root = resolve(target);
+
+    if (!root) {
+      if (global.console && console.warn) {
+        console.warn("InteractiveShell: root element not found.", target);
+      }
+      return null;
+    }
+
+    var controls = root.querySelector("[data-interactive-controls]");
+    var stage = root.querySelector("[data-interactive-stage]");
+    var status = root.querySelector("[data-interactive-status]");
+    var resetButton = root.querySelector("[data-interactive-reset]");
+    var resetHandlers = [];
+    // Every range bound with bindRange() registers its sync function here, so
+    // that reset() can refresh the visible values after the tool's own reset
+    // handlers have restored the inputs. See reset() for why this is needed.
+    var rangeSyncs = [];
+
+    /* --- Live region ----------------------------------------------------
+       The status element is marked up as role="status" (implicitly
+       aria-live="polite"). Two details matter:
+
+         1. Assistive technology only announces *changes* to a live region,
+            so writing the same string twice is silently dropped. We add a
+            trailing zero-width space on repeat messages to force an
+            announcement when a student re-runs the same action.
+         2. Announcements are debounced. A slider dragged across its range
+            fires dozens of input events; without a delay a screen reader
+            would queue every intermediate value and fall far behind.
+       ------------------------------------------------------------------ */
+
+    var announceTimer = null;
+    var lastMessage = "";
+
+    /**
+     * Announce a short sentence describing what just changed.
+     * @param {string} message
+     * @param {object} [options]
+     * @param {boolean} [options.immediate]  Skip the debounce delay. Use for
+     *   discrete actions (button presses); leave off for continuous input.
+     */
+    function announce(message, options) {
+      if (!status) {
+        return;
+      }
+
+      var text = String(message == null ? "" : message);
+      var immediate = Boolean(options && options.immediate);
+
+      if (announceTimer !== null) {
+        global.clearTimeout(announceTimer);
+        announceTimer = null;
+      }
+
+      function write() {
+        // Force a change when the text is identical to last time.
+        status.textContent = text === lastMessage ? text + "​" : text;
+        lastMessage = text;
+      }
+
+      if (immediate) {
+        write();
+      } else {
+        announceTimer = global.setTimeout(write, 350);
+      }
+    }
+
+    /* --- Reset ---------------------------------------------------------- */
+
+    /**
+     * Register a callback to run when the Reset button is pressed.
+     * Several may be registered; they run in the order added.
+     * @param {Function} handler
+     */
+    function onReset(handler) {
+      if (typeof handler === "function") {
+        resetHandlers.push(handler);
+      }
+    }
+
+    /**
+     * Run the reset handlers. Called by the button and available directly so
+     * an interactive can reset itself on first load.
+     *
+     * Bound ranges are re-synced afterwards. A reset handler restores an
+     * input by assigning to `input.value`, and assigning to a value in script
+     * does not fire an `input` event — so without this step the slider would
+     * jump back to its default while its <output> went on showing the old
+     * number. Syncing here, after the handlers have run, also means the sync
+     * sees the restored values regardless of the order things were
+     * registered in.
+     *
+     * @param {object} [options]
+     * @param {boolean} [options.silent]  Suppress the status announcement.
+     */
+    function reset(options) {
+      resetHandlers.forEach(function (handler) {
+        handler();
+      });
+      rangeSyncs.forEach(function (sync) {
+        sync();
+      });
+      if (!options || !options.silent) {
+        announce(
+          root.getAttribute("data-reset-message") ||
+            "Reset to the starting values.",
+          { immediate: true }
+        );
+      }
+    }
+
+    if (resetButton) {
+      resetButton.addEventListener("click", function (event) {
+        // Reset buttons commonly sit inside the controls <form>; stop the
+        // browser's own form reset from fighting with ours.
+        event.preventDefault();
+        reset();
+      });
+    }
+
+    /* --- Range binding --------------------------------------------------
+       Keeps a slider's <output> in step with its value. The <output> must
+       carry `for="<input id>"`, which is what associates the two for
+       assistive technology; this only handles the visible text.
+
+       Optionally sets aria-valuetext, which is how you make a screen reader
+       say "25 cases" or "medium correlation" instead of a bare "25".
+       ------------------------------------------------------------------ */
+
+    /**
+     * @param {string|Element} inputTarget  The range (or number) input.
+     * @param {object} [options]
+     * @param {Function} [options.format]  value:number -> string shown in the
+     *   <output>. Defaults to the raw value.
+     * @param {Function} [options.describe]  value:number -> string used for
+     *   aria-valuetext. Defaults to options.format.
+     * @param {Function} [options.onInput]  value:number -> void, called after
+     *   the display has been updated. Use it to redraw.
+     * @returns {HTMLInputElement|null}
+     */
+    function bindRange(inputTarget, options) {
+      var input = resolve(inputTarget, root);
+      if (!input) {
+        return null;
+      }
+
+      var settings = options || {};
+      var format =
+        typeof settings.format === "function"
+          ? settings.format
+          : function (value) {
+              return String(value);
+            };
+      var describe =
+        typeof settings.describe === "function" ? settings.describe : format;
+
+      // <output for="the-input-id"> is the conventional pairing.
+      var output = input.id
+        ? root.querySelector('output[for="' + input.id + '"]')
+        : null;
+
+      function sync() {
+        var value = Number(input.value);
+        if (output) {
+          output.textContent = format(value);
+        }
+        // Only meaningful for widgets with an implicit or explicit slider
+        // role; harmless elsewhere.
+        input.setAttribute("aria-valuetext", describe(value));
+        if (typeof settings.onInput === "function") {
+          settings.onInput(value);
+        }
+      }
+
+      input.addEventListener("input", sync);
+      // Registered so reset() can refresh the display after the tool's own
+      // reset handlers have put the input back to its default.
+      rangeSyncs.push(sync);
+      sync();
+
+      return input;
+    }
+
+    /* --- Public surface -------------------------------------------------- */
+
+    return {
+      /** The `.interactive` root element. */
+      root: root,
+      /** The controls panel, or null if the shell has none. */
+      controls: controls,
+      /** The stage element where the visualisation is drawn. */
+      stage: stage,
+      /** The live-region element. */
+      status: status,
+      announce: announce,
+      onReset: onReset,
+      reset: reset,
+      bindRange: bindRange,
+      prefersReducedMotion: prefersReducedMotion
+    };
+  }
+
+  /* -----------------------------------------------------------------------
+     Export
+     --------------------------------------------------------------------- */
+
+  global.InteractiveShell = {
+    attach: attach,
+    prefersReducedMotion: prefersReducedMotion
+  };
+})(window);
+
+/* ---- modules/research-methods/tools/02-operationalisation-laboratory/tool.js ---- */
+/* =========================================================================
+   Operationalisation Laboratory
+   -------------------------------------------------------------------------
+   Three fictional constructs, each modelled as five named facets, and six
+   candidate operational definitions per construct drawn from four families:
+   self-report, behavioural trace, observational and performance-based.
+
+   THE EDUCATIONAL MODEL
+   ---------------------
+   Each measure carries, for each facet, a coverage level:
+
+       0  does not reach this facet
+       1  reaches it partly
+       2  reaches it well
+
+   For a selected set of measures the facet level is the MAXIMUM across the
+   selection, not the sum. Two measures that both reach a facet partly do not
+   add up to reaching it well: they give you two partial views of the same
+   thing, which is worth something but is not the same as a good measure of it.
+
+   Coverage is reported as the sum of facet levels over the maximum possible
+   (2 x 5 = 10). It is arithmetic on a facet list somebody wrote down, and the
+   tool says so on screen. It is NOT a validity coefficient and must never be
+   read as one.
+
+   Reactivity for a plan is the HIGHEST reactivity among the selected measures:
+   one intrusive measure makes the whole protocol intrusive. Feasibility is the
+   LOWEST among them, then reduced one further step for every measure beyond
+   two, because burden accumulates.
+
+   Every measure also carries a list of what else it picks up -
+   construct-irrelevant variance - written in plain terms.
+
+   WHAT THIS DOES NOT CLAIM
+   ------------------------
+   The facet lists are teaching simplifications. Which facets a construct has,
+   and whether facets are the right model at all, is contested for all three
+   constructs here. No published instrument, item or proprietary assessment is
+   reproduced; the measures are described generically.
+
+   No data leave the browser. There is no storage and no network request.
+   ========================================================================= */
+
+(function () {
+  "use strict";
+
+  var LEVEL_WORD = ["not reached", "partly reached", "well reached"];
+  var RATING_WORD = { 1: "low", 2: "moderate", 3: "high" };
+
+  /* =======================================================================
+     Constructs, facets and measures
+     ===================================================================== */
+
+  var CONSTRUCTS = {
+    engagement: {
+      name: "Academic engagement",
+      note:
+        "Modelled here as five facets. Other accounts use three, or four, or " +
+        "argue that engagement is a property of a situation rather than of a " +
+        "student.",
+      facets: [
+        "Behavioural — turning up, taking part, submitting",
+        "Cognitive — effort, depth of processing, self-regulation",
+        "Emotional — interest, belonging, enthusiasm",
+        "Agentic — asking, shaping one's own learning",
+        "Persistence — continuing when the work gets hard"
+      ],
+      measures: [
+        {
+          id: "attendance",
+          name: "Lecture attendance records",
+          family: "Behavioural trace",
+          cover: [2, 0, 0, 0, 0],
+          reactivity: 1,
+          feasibility: 3,
+          picks: [
+            "timetable clashes and part-time work",
+            "commuting distance and cost",
+            "whether the lecture was recorded, which changes attendance without changing engagement",
+            "illness and caring responsibilities"
+          ]
+        },
+        {
+          id: "vle",
+          name: "Hours logged on the virtual learning environment",
+          family: "Behavioural trace",
+          cover: [1, 0, 0, 0, 1],
+          reactivity: 1,
+          feasibility: 3,
+          picks: [
+            "connection speed and device: slow loading inflates the hours",
+            "students who download everything and work offline, who score zero",
+            "a tab left open over lunch",
+            "how much of the course is hosted there at all"
+          ]
+        },
+        {
+          id: "scale",
+          name: "Multi-item self-report engagement scale",
+          family: "Self-report",
+          cover: [1, 2, 2, 1, 1],
+          reactivity: 2,
+          feasibility: 3,
+          picks: [
+            "how the student reads the word 'engaged', which differs by background",
+            "socially desirable responding, especially if a tutor will see it",
+            "mood on the day of completion",
+            "acquiescence and extreme-responding styles"
+          ]
+        },
+        {
+          id: "observe",
+          name: "Observed on-task behaviour in seminars",
+          family: "Observational",
+          cover: [2, 0, 0, 1, 0],
+          reactivity: 3,
+          feasibility: 1,
+          picks: [
+            "the observer's presence, which changes the seminar being observed",
+            "the seminar leader's style, which may matter more than the student",
+            "who else is in the group that week",
+            "what 'on task' was defined as by whoever wrote the coding scheme"
+          ]
+        },
+        {
+          id: "task",
+          name: "Depth-of-processing task: summarise and elaborate a reading",
+          family: "Performance-based",
+          cover: [0, 2, 0, 0, 1],
+          reactivity: 2,
+          feasibility: 2,
+          picks: [
+            "prior knowledge of the topic",
+            "reading speed and writing fluency",
+            "whether the student has met this kind of task before",
+            "language of instruction"
+          ]
+        },
+        {
+          id: "esm",
+          name: "Experience sampling during study sessions",
+          family: "Self-report",
+          cover: [0, 1, 2, 0, 2],
+          reactivity: 3,
+          feasibility: 1,
+          picks: [
+            "the prompt itself, which interrupts the state it is asking about",
+            "who is willing to be interrupted six times a day - and who drops out",
+            "time of day and what else was happening",
+            "the phone the student happens to own"
+          ]
+        }
+      ]
+    },
+
+    stress: {
+      name: "Stress",
+      note:
+        "Modelled here as five facets. Whether stress is best treated as a " +
+        "stimulus, a response, or a transaction between person and situation " +
+        "is an old and unresolved argument.",
+      facets: [
+        "Appraised demand — judging what is being asked of you",
+        "Physiological arousal — the body's response",
+        "Emotional distress — how it feels",
+        "Coping behaviour — what you do about it",
+        "Chronicity — how long it has gone on"
+      ],
+      measures: [
+        {
+          id: "perceived",
+          name: "Self-report perceived stress questionnaire",
+          family: "Self-report",
+          cover: [2, 0, 2, 1, 1],
+          reactivity: 2,
+          feasibility: 3,
+          picks: [
+            "current mood, which colours retrospective judgement",
+            "willingness to describe oneself as stressed, which varies by setting and culture",
+            "the recall window the questions happen to use",
+            "negative affectivity as a stable disposition"
+          ]
+        },
+        {
+          id: "cortisol",
+          name: "Salivary cortisol sampling",
+          family: "Performance-based",
+          cover: [0, 2, 0, 0, 1],
+          reactivity: 2,
+          feasibility: 1,
+          picks: [
+            "time of day, which dominates the signal",
+            "caffeine, nicotine, food and exercise in the previous hour",
+            "hormonal contraceptives and several common medications",
+            "waking time, which shifts the whole curve"
+          ]
+        },
+        {
+          id: "hrv",
+          name: "Heart-rate variability from a wearable",
+          family: "Behavioural trace",
+          cover: [0, 2, 0, 0, 2],
+          reactivity: 1,
+          feasibility: 2,
+          picks: [
+            "fitness, age and posture",
+            "movement artefacts and poor sensor contact",
+            "breathing rate, which the participant can change deliberately",
+            "whether the person is asleep"
+          ]
+        },
+        {
+          id: "events",
+          name: "Life-events checklist",
+          family: "Self-report",
+          cover: [1, 0, 0, 0, 2],
+          reactivity: 1,
+          feasibility: 3,
+          picks: [
+            "how events are remembered and dated, which drifts badly",
+            "the assumption that a listed event means the same to everyone",
+            "events the list happens to include, and the ones it omits",
+            "a bereavement and a house move counted on the same scale"
+          ]
+        },
+        {
+          id: "diary",
+          name: "Daily diary of demands and responses",
+          family: "Self-report",
+          cover: [2, 0, 2, 2, 2],
+          reactivity: 3,
+          feasibility: 1,
+          picks: [
+            "the act of writing daily, which is itself a coping intervention",
+            "who completes 21 consecutive diaries - and who stops after four",
+            "entries written in a batch on Sunday night",
+            "growing practice at answering the same questions"
+          ]
+        },
+        {
+          id: "observer",
+          name: "Observer rating of visible tension during a task",
+          family: "Observational",
+          cover: [0, 1, 1, 1, 0],
+          reactivity: 3,
+          feasibility: 2,
+          picks: [
+            "how expressive the person is, which is not how stressed they are",
+            "the observer's expectations about who looks stressed",
+            "the task chosen, which sets the range of behaviour available",
+            "being watched, which is a stressor in its own right"
+          ]
+        }
+      ]
+    },
+
+    connection: {
+      name: "Social connection",
+      note:
+        "Modelled here as five facets. Structural accounts count ties; " +
+        "subjective accounts ask how connected a person feels; the two " +
+        "correlate far less than students expect.",
+      facets: [
+        "Network size — how many people there are",
+        "Contact frequency — how often you are in touch",
+        "Felt closeness — how much the ties matter",
+        "Perceived support — believing help would be there",
+        "Absence of loneliness — not feeling alone"
+      ],
+      measures: [
+        {
+          id: "generator",
+          name: "Name generator: who do you discuss important matters with?",
+          family: "Self-report",
+          cover: [2, 0, 1, 1, 0],
+          reactivity: 1,
+          feasibility: 3,
+          picks: [
+            "how many names the form has room for",
+            "who comes to mind first, which is not who matters most",
+            "what counts as an 'important matter' to this person",
+            "whether ties are with people the respondent would rather not list"
+          ]
+        },
+        {
+          id: "logs",
+          name: "Message and call logs from a phone",
+          family: "Behavioural trace",
+          cover: [1, 2, 0, 0, 0],
+          reactivity: 1,
+          feasibility: 1,
+          picks: [
+            "which app the person's friends use",
+            "work and delivery messages counted alongside friendships",
+            "one long conversation and forty one-word replies scored the same way",
+            "serious privacy costs that change who agrees to take part"
+          ]
+        },
+        {
+          id: "loneliness",
+          name: "Self-report loneliness scale",
+          family: "Self-report",
+          cover: [0, 0, 1, 1, 2],
+          reactivity: 2,
+          feasibility: 3,
+          picks: [
+            "willingness to describe oneself as lonely, which carries stigma",
+            "current mood",
+            "what the respondent compares themselves with",
+            "an item wording that presumes a particular kind of social life"
+          ]
+        },
+        {
+          id: "ema",
+          name: "Momentary prompts: who are you with right now?",
+          family: "Self-report",
+          cover: [1, 2, 1, 0, 1],
+          reactivity: 3,
+          feasibility: 1,
+          picks: [
+            "the prompt, which arrives in the middle of the interaction it asks about",
+            "who agrees to be interrupted, and for how many days",
+            "sampling hours, which decide whose social life is visible",
+            "co-presence recorded as company, whatever it felt like"
+          ]
+        },
+        {
+          id: "societies",
+          name: "Number of society and club memberships",
+          family: "Behavioural trace",
+          cover: [1, 1, 0, 0, 0],
+          reactivity: 1,
+          feasibility: 3,
+          picks: [
+            "membership paid for and never used",
+            "money and time, which decide who can join anything",
+            "societies as the only kind of belonging the institution records",
+            "commuting and caring students, who are systematically invisible here"
+          ]
+        },
+        {
+          id: "commonroom",
+          name: "Observed interaction in a shared common room",
+          family: "Observational",
+          cover: [0, 1, 1, 0, 0],
+          reactivity: 3,
+          feasibility: 1,
+          picks: [
+            "who uses that room, and who never goes there",
+            "the observer, who changes the room",
+            "the hour and the week of term",
+            "talking counted as connection, and sitting quietly with a friend not"
+          ]
+        }
+      ]
+    }
+  };
+
+  /* =======================================================================
+     Small DOM helpers
+     ===================================================================== */
+
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) { node.className = className; }
+    if (text !== undefined) { node.textContent = text; }
+    return node;
+  }
+
+  function clear(node) {
+    while (node.firstChild) { node.removeChild(node.firstChild); }
+  }
+
+  /* =======================================================================
+     Wiring
+     ===================================================================== */
+
+  var shell = InteractiveShell.attach("#operationalise");
+  if (!shell) { return; }
+
+  var page = document;
+  var $ = function (s, scope) { return (scope || page).querySelector(s); };
+  var $$ = function (s, scope) {
+    return Array.prototype.slice.call((scope || page).querySelectorAll(s));
+  };
+
+  var constructSelect = $("#construct-select");
+  var constructNote = $("[data-construct-note]");
+  var measureList = $("[data-measure-list]");
+  var coverageHeading = $("[data-coverage-heading]");
+  var coverage = $("[data-coverage]");
+  var readout = $("[data-readout]");
+  var interpretation = $("[data-interpretation]");
+  var verdict = $("[data-verdict]");
+  var contamination = $("[data-contamination]");
+  var compareTable = $("[data-compare-table]");
+
+  var openingForm = $("#opening-form");
+  var openingError = $("[data-opening-error]");
+  var openingFeedback = $("[data-opening-feedback]");
+  var labSection = $("#lab-section");
+
+  var challengeForm = $("#challenge-form");
+  var challengeFeedback = $("[data-challenge-feedback]");
+
+  var DEFAULT_CONSTRUCT = "engagement";
+
+  function current() { return CONSTRUCTS[constructSelect.value]; }
+
+  function selectedIds() {
+    return $$('input[name="measure"]:checked', measureList)
+      .map(function (b) { return b.value; });
+  }
+
+  function selectedMeasures() {
+    var ids = selectedIds();
+    return current().measures.filter(function (m) { return ids.indexOf(m.id) !== -1; });
+  }
+
+  /* --- Building the measure list ------------------------------------------ */
+
+  function buildMeasureList() {
+    clear(measureList);
+    current().measures.forEach(function (measure) {
+      var wrap = make("div", "measure");
+      var label = make("label", "measure__row");
+      var input = document.createElement("input");
+      input.type = "checkbox";
+      input.name = "measure";
+      input.value = measure.id;
+      label.appendChild(input);
+      var name = make("span", "measure__name");
+      name.appendChild(make("span", "measure__family", measure.family));
+      name.appendChild(document.createTextNode(measure.name));
+      label.appendChild(name);
+      wrap.appendChild(label);
+      measureList.appendChild(wrap);
+      input.addEventListener("change", function () {
+        render();
+        shell.announce(
+          (input.checked ? "Added: " : "Removed: ") + measure.name + ". " +
+          summarySentence());
+      });
+    });
+  }
+
+  /* --- Model -------------------------------------------------------------- */
+
+  /**
+   * Facet levels for a plan: the maximum across selected measures, never the
+   * sum. Two partial measures of the same facet do not make a good one.
+   */
+  function facetLevels(measures) {
+    return current().facets.map(function (_, i) {
+      return measures.reduce(function (best, m) {
+        return Math.max(best, m.cover[i]);
+      }, 0);
+    });
+  }
+
+  function planStats(measures) {
+    var levels = facetLevels(measures);
+    var total = levels.reduce(function (s, v) { return s + v; }, 0);
+    var maximum = current().facets.length * 2;
+    var missed = levels.filter(function (v) { return v === 0; }).length;
+    var reactivity = measures.reduce(function (worst, m) {
+      return Math.max(worst, m.reactivity);
+    }, 0);
+    // Feasibility is the weakest link, reduced further as burden accumulates.
+    var feasibility = measures.length
+      ? measures.reduce(function (worst, m) { return Math.min(worst, m.feasibility); }, 3)
+      : 0;
+    if (measures.length > 2) {
+      feasibility = Math.max(1, feasibility - (measures.length - 2));
+    }
+    return {
+      levels: levels,
+      total: total,
+      maximum: maximum,
+      percent: Math.round((total / maximum) * 100),
+      missed: missed,
+      reactivity: reactivity,
+      feasibility: feasibility
+    };
+  }
+
+  /* --- Rendering ----------------------------------------------------------- */
+
+  function renderCoverage(stats) {
+    coverageHeading.textContent =
+      "Facet coverage — " + current().name;
+    clear(coverage);
+    current().facets.forEach(function (facet, i) {
+      var level = stats.levels[i];
+      var row = make("div", "coverage__row");
+      row.setAttribute("data-level", String(level));
+      row.appendChild(make("div", "coverage__facet", facet));
+      var meter = make("div", "coverage__meter");
+      var track = make("span", "coverage__track");
+      var fill = make("span", "coverage__fill");
+      fill.style.width = (level / 2) * 100 + "%";
+      track.appendChild(fill);
+      meter.appendChild(track);
+      meter.appendChild(make("span", "coverage__word", LEVEL_WORD[level]));
+      row.appendChild(meter);
+      coverage.appendChild(row);
+    });
+  }
+
+  function renderReadout(stats, measures) {
+    clear(readout);
+    [
+      ["Facets reached", stats.total + " of " + stats.maximum + " points"],
+      ["Facets missed entirely", String(stats.missed)],
+      ["Reactivity of the plan", measures.length ? RATING_WORD[stats.reactivity] : "—"],
+      ["Feasibility of the plan", measures.length ? RATING_WORD[stats.feasibility] : "—"]
+    ].forEach(function (pair) {
+      var cell = make("div");
+      cell.appendChild(make("dt", null, pair[0]));
+      cell.appendChild(make("dd", null, pair[1]));
+      readout.appendChild(cell);
+    });
+  }
+
+  function renderContamination(measures) {
+    clear(contamination);
+    if (!measures.length) {
+      contamination.appendChild(make("p", "contam__empty",
+        "Nothing selected yet. Tick a measure to see what else it records."));
+      return;
+    }
+    measures.forEach(function (measure) {
+      var card = make("div", "contam");
+      card.appendChild(make("h5", "contam__name",
+        measure.name + " also records:"));
+      var list = make("ul", "contam__list");
+      measure.picks.forEach(function (item) {
+        list.appendChild(make("li", null, item));
+      });
+      card.appendChild(list);
+      contamination.appendChild(card);
+    });
+  }
+
+  function renderCompare() {
+    clear(compareTable);
+    current().measures.forEach(function (measure) {
+      var reached = current().facets.filter(function (_, i) {
+        return measure.cover[i] > 0;
+      }).map(function (f) { return f.split(" — ")[0]; });
+      var row = make("tr");
+      var th = make("th", null, measure.name);
+      th.setAttribute("scope", "row");
+      row.appendChild(th);
+      row.appendChild(make("td", null, measure.family));
+      row.appendChild(make("td", null, reached.length ? reached.join(", ") : "none"));
+      row.appendChild(make("td", null, RATING_WORD[measure.reactivity]));
+      row.appendChild(make("td", null, RATING_WORD[measure.feasibility]));
+      compareTable.appendChild(row);
+    });
+  }
+
+  function summarySentence() {
+    var measures = selectedMeasures();
+    var stats = planStats(measures);
+    if (!measures.length) { return "No measure selected."; }
+    return measures.length + " measure" + (measures.length === 1 ? "" : "s") +
+      ", " + stats.total + " of " + stats.maximum + " coverage points, " +
+      stats.missed + " facet" + (stats.missed === 1 ? "" : "s") +
+      " not reached at all.";
+  }
+
+  function renderInterpretation(stats, measures) {
+    var text;
+    var tone;
+    var families = {};
+    measures.forEach(function (m) { families[m.family] = true; });
+    var familyCount = Object.keys(families).length;
+
+    if (!measures.length) {
+      tone = "caution";
+      text =
+        "Nothing is selected, so nothing is being measured. Every facet above " +
+        "reads 'not reached', which is the honest description of a study with " +
+        "no operational definition.";
+    } else if (measures.length === 1) {
+      var missedNames = current().facets.filter(function (_, i) {
+        return stats.levels[i] === 0;
+      }).map(function (f) { return f.split(" — ")[0].toLowerCase(); });
+      tone = stats.missed >= 3 ? "warn" : "caution";
+      text =
+        "One measure. It reaches " + stats.total + " of " + stats.maximum +
+        " coverage points and leaves " +
+        (missedNames.length
+          ? missedNames.join(", ") + " untouched"
+          : "no facet completely untouched") +
+        ". That gap is construct under-representation: a number from this " +
+        "study carries no information at all about the parts it misses. The " +
+        "list beneath is the other half of the problem.";
+    } else if (familyCount === 1) {
+      tone = "caution";
+      text =
+        measures.length + " measures, all from the same family (" +
+        measures[0].family.toLowerCase() + "). Coverage is up, at " +
+        stats.total + " of " + stats.maximum +
+        " points - but measures from one family share the same irrelevant " +
+        "influences, so agreement between them is weaker evidence than it " +
+        "looks.";
+    } else if (stats.missed === 0) {
+      tone = stats.feasibility === 1 ? "caution" : "good";
+      text =
+        measures.length + " measures from " + familyCount +
+        " families, reaching every facet at least partly (" + stats.total +
+        " of " + stats.maximum + " points). Disagreement between families is " +
+        "usually informative rather than a failure. The cost is on screen: " +
+        "reactivity " + RATING_WORD[stats.reactivity].toLowerCase() +
+        ", feasibility " + RATING_WORD[stats.feasibility].toLowerCase() +
+        ". And full coverage of a facet list is still not the construct.";
+    } else {
+      tone = "caution";
+      text =
+        measures.length + " measures from " + familyCount + " families, " +
+        stats.total + " of " + stats.maximum + " points, with " + stats.missed +
+        " facet" + (stats.missed === 1 ? "" : "s") +
+        " still not reached at all. Mixing families is the right instinct, " +
+        "but the uncovered facets are missing from any claim this study can " +
+        "make.";
+    }
+
+    interpretation.textContent = text;
+    verdict.setAttribute("data-tone", tone);
+  }
+
+  function render() {
+    var measures = selectedMeasures();
+    var stats = planStats(measures);
+    renderCoverage(stats);
+    renderReadout(stats, measures);
+    renderInterpretation(stats, measures);
+    renderContamination(measures);
+    renderCompare();
+  }
+
+  /* --- Construct switching -------------------------------------------------- */
+
+  function loadConstruct() {
+    constructNote.textContent = current().note;
+    buildMeasureList();
+    render();
+  }
+
+  constructSelect.addEventListener("change", function () {
+    loadConstruct();
+    shell.announce(current().name + " loaded. No measures selected.",
+      { immediate: true });
+  });
+
+  /* --- Buttons --------------------------------------------------------------- */
+
+  /* A defensible plan per construct: measures from more than one family, every
+     facet reached at least partly, and feasibility no worse than moderate.
+     Deliberately NOT the maximum-coverage plan — the point is that the best
+     affordable plan and the most complete plan are different objects. */
+  var WORKED = {
+    engagement: ["attendance", "scale"],
+    stress: ["perceived", "hrv"],
+    connection: ["generator", "loneliness", "societies"]
+  };
+
+  $('[data-action="worked"]').addEventListener("click", function () {
+    var wanted = WORKED[constructSelect.value];
+    $$('input[name="measure"]', measureList).forEach(function (b) {
+      b.checked = wanted.indexOf(b.value) !== -1;
+    });
+    render();
+    shell.announce(
+      "A defensible plan loaded: measures from more than one family, so that " +
+      "no single family's irrelevant influences run through the whole study, " +
+      "and every facet reached at least partly. It is not the " +
+      "maximum-coverage plan. " + summarySentence(), { immediate: true });
+  });
+
+  $('[data-action="everything"]').addEventListener("click", function () {
+    $$('input[name="measure"]', measureList).forEach(function (b) { b.checked = true; });
+    render();
+    shell.announce(
+      "All six measures selected. Coverage is at its maximum and so is " +
+      "reactivity; feasibility is at its minimum. " + summarySentence(),
+      { immediate: true });
+  });
+
+  /* --- Opening prediction ---------------------------------------------------- */
+
+  var OPENING = {
+    selfreport: {
+      tone: "caution",
+      verdict: "The broadest single measure, and still not close.",
+      text:
+        "A multi-item scale does reach more facets than anything else here. " +
+        "What it cannot do is tell you what a student actually did, and " +
+        "everything it records passes through one filter: how that person " +
+        "reads the questions, on that day."
+    },
+    attendance: {
+      tone: "warn",
+      verdict: "Cheap, objective, and about one facet only.",
+      text:
+        "Attendance is a real behavioural signal and it is easy to collect. It " +
+        "says nothing about whether anyone thought about the lecture, cared " +
+        "about it, asked anything, or persisted afterwards - and it also " +
+        "records commuting distance, timetable clashes and whether the session " +
+        "was recorded."
+    },
+    observation: {
+      tone: "caution",
+      verdict: "The closest to the behaviour, and the most disturbed by looking.",
+      text:
+        "Observation gets nearest to what actually happens in the room. It is " +
+        "also the most reactive measure here - the observer changes the " +
+        "seminar - and the least feasible, and it still reaches only two of " +
+        "the five facets."
+    },
+    vle: {
+      tone: "warn",
+      verdict: "The one most often used, and the weakest.",
+      text:
+        "Logged hours are convenient because the system records them anyway. " +
+        "They confuse time with effort, score a student who downloads " +
+        "everything and works offline at zero, and rise when a tab is left " +
+        "open at lunch."
+    },
+    none: {
+      tone: "good",
+      verdict: "Yes, and that is the whole tool.",
+      text:
+        "No operational definition is the construct. Each reaches part of it " +
+        "and brings something irrelevant along. The question is not which " +
+        "measure is right, but what a measure would let you claim."
+    }
+  };
+
+  function showFeedback(container, tone, verdictText, text) {
+    clear(container);
+    container.setAttribute("data-tone", tone);
+    var p = make("p");
+    p.appendChild(make("strong", "feedback__verdict", verdictText));
+    if (text) { p.appendChild(document.createTextNode(" " + text)); }
+    container.appendChild(p);
+    container.hidden = false;
+  }
+
+  function lockForm(form) {
+    $$("input, button, select", form).forEach(function (c) { c.disabled = true; });
+  }
+
+  function unlockForm(form) {
+    $$("input, button, select", form).forEach(function (c) { c.disabled = false; });
+    form.reset();
+  }
+
+  function openLab() {
+    labSection.hidden = false;
+    render();
+    $("#lab-heading").focus();
+    shell.announce("Laboratory unlocked. Nothing selected yet.", { immediate: true });
+  }
+
+  openingForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answer = $('input[name="opening"]:checked', openingForm);
+    if (!answer) {
+      openingError.textContent = "Choose an answer before opening the laboratory.";
+      openingError.hidden = false;
+      return;
+    }
+    openingError.hidden = true;
+    var feedback = OPENING[answer.value];
+    showFeedback(openingFeedback, feedback.tone, feedback.verdict, feedback.text);
+    lockForm(openingForm);
+    openLab();
+  });
+
+  $('[data-action="skip-opening"]').addEventListener("click", function () {
+    openingError.hidden = true;
+    showFeedback(openingFeedback, "neutral",
+      "Prediction skipped — demonstration mode.", "");
+    lockForm(openingForm);
+    openLab();
+  });
+
+  /* --- Challenge -------------------------------------------------------------- */
+
+  var CHALLENGE_NOTES = {
+    loggedin: {
+      defensible: true,
+      text:
+        "Defensible, and it is very nearly all that has been shown. The number " +
+        "went up; that is a fact about logged hours."
+    },
+    engaged: {
+      defensible: false,
+      text:
+        "Not defensible. The claim substitutes the construct for the measure. " +
+        "Logged hours reach one facet of engagement partly and four not at all, " +
+        "so a 40% rise in hours is consistent with no change in cognitive, " +
+        "emotional or agentic engagement whatsoever."
+    },
+    contamination: {
+      defensible: true,
+      text:
+        "Defensible, and the sharpest point available. The intervention is " +
+        "delivered through the same system that produces the outcome measure. " +
+        "Adding a compulsory weekly online activity raises logged hours by " +
+        "construction, whatever it does to engagement. The design cannot " +
+        "distinguish the effect from the artefact."
+    },
+    cognitive: {
+      defensible: true,
+      text:
+        "Defensible. Time on a system is not depth of processing. A student " +
+        "who reads carefully for 20 minutes and one who leaves the page open " +
+        "for two hours are scored in the wrong order."
+    },
+    second: {
+      defensible: true,
+      text:
+        "Defensible - with a condition. A second measure helps only if it is " +
+        "from a different family and is not itself acted on by the " +
+        "intervention. Another trace from the same system would not help; a " +
+        "depth-of-processing task or a self-report would."
+    }
+  };
+
+  challengeForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var chosen = $$('input[name="challenge"]:checked', challengeForm)
+      .map(function (b) { return b.value; });
+
+    if (!chosen.length) {
+      showFeedback(challengeFeedback, "caution", "Select at least one statement.",
+        "Four of the five can be defended.");
+      return;
+    }
+
+    var wrongPicked = chosen.filter(function (v) { return !CHALLENGE_NOTES[v].defensible; });
+    var rightMissed = Object.keys(CHALLENGE_NOTES).filter(function (v) {
+      return CHALLENGE_NOTES[v].defensible && chosen.indexOf(v) === -1;
+    });
+
+    var tone = wrongPicked.length ? "warn" : rightMissed.length ? "caution" : "good";
+    var verdictText = wrongPicked.length
+      ? "One of these swaps the measure for the construct."
+      : rightMissed.length
+        ? "Everything you chose stands; there is more that does."
+        : "Yes — all four defensible statements, and not the one that fails.";
+
+    clear(challengeFeedback);
+    challengeFeedback.setAttribute("data-tone", tone);
+    var lead = make("p");
+    lead.appendChild(make("strong", "feedback__verdict", verdictText));
+    challengeFeedback.appendChild(lead);
+
+    var list = make("ul");
+    Object.keys(CHALLENGE_NOTES).forEach(function (value) {
+      var note = CHALLENGE_NOTES[value];
+      var picked = chosen.indexOf(value) !== -1;
+      var li = make("li");
+      li.appendChild(make("strong", null,
+        picked ? "You selected this. " : "You did not select this. "));
+      li.appendChild(document.createTextNode(note.text));
+      list.appendChild(li);
+    });
+    challengeFeedback.appendChild(list);
+    challengeFeedback.hidden = false;
+    shell.announce(verdictText, { immediate: true });
+  });
+
+  /* --- Reset ------------------------------------------------------------------- */
+
+  shell.onReset(function () {
+    unlockForm(openingForm);
+    openingFeedback.hidden = true;
+    openingError.hidden = true;
+    labSection.hidden = true;
+    challengeForm.reset();
+    challengeFeedback.hidden = true;
+    constructSelect.value = DEFAULT_CONSTRUCT;
+    loadConstruct();
+  });
+
+  /* --- Start-up ----------------------------------------------------------------- */
+
+  shell.reset({ silent: true });
+  shell.announce("Ready. Answer the question above to unlock the laboratory.",
+    { immediate: true });
+})();
+
+</script>
+</div>

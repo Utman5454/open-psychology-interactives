@@ -1,0 +1,3299 @@
+<!-- Confidence Interval Laboratory
+     From Open Psychology Interactives - https://github.com/utman5454/open-psychology-interactives
+     Self-contained: no stylesheets, scripts, fonts, images or network requests.
+     Styles are scoped to .opi-activity and do not affect the page around them.
+     Nothing is saved, sent or tracked. MIT licensed; please keep this notice.
+     Paste anywhere that accepts HTML, or save as a .html file and open it. -->
+<div class="opi-activity">
+<style>
+/* Defensive baseline. See scripts/build-standalone.py for why this
+   is `revert` rather than an enumerated reset, and how the specificity ladder
+   keeps the activity's own styling on top of it. */
+.opi-activity *:not(svg *) {
+  all: revert;
+}
+.opi-activity, .opi-activity *, .opi-activity *::before, .opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  text-transform: none;
+  text-indent: 0;
+  font-style: normal;
+  font-variant: normal;
+  letter-spacing: normal;
+  word-spacing: normal;
+  white-space: normal;
+  visibility: visible;
+  float: none;
+  max-width: none;
+}
+.opi-activity svg { max-width: 100%; }
+.opi-activity img { max-width: 100%; height: auto; }
+.opi-activity [hidden] { display: none !important; }
+
+/* assets/css/main.css */
+.opi-activity.opi-activity {
+  --colour-page: #ffffff;
+  --colour-surface: #f5f7fa;
+  --colour-surface-raised: #ffffff;
+  --colour-border: #d3d9e2;
+  --colour-border-strong: #aeb7c4;
+  --colour-text: #131820;
+  --colour-text-muted: #4c566a;
+  --colour-accent: #1a4fa0;
+  --colour-accent-hover: #123a7a;
+  --colour-accent-soft: #e8eefb;
+  --colour-on-accent: #ffffff;
+  --colour-focus: #b45309;
+  --colour-cognitive: #8a4b00;
+  --colour-research-methods: #1a4fa0;
+  --colour-neuropsychology: #145c53;
+  --colour-social-critical-psychology: #9e2f45;
+  --colour-personality-individual-differences: #7a2e6d;
+  --colour-status-bg: #f1ede3;
+  --colour-status-text: #5c4a1f;
+  --colour-status-border: #d9cdb0;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  --text-xs: 13px;
+  --text-sm: 15px;
+  --text-base: 17px;
+  --text-lg: 19px;
+  --text-xl: 23px;
+  --text-2xl: 28px;
+  --text-3xl: 36px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgb(19 24 32 / 0.06);
+  --shadow-md: 0 2px 8px rgb(19 24 32 / 0.08);
+  --measure: 68ch;
+  --container: 1152px;
+}
+@media (prefers-color-scheme: dark) {
+.opi-activity.opi-activity {
+  --colour-page: #0f141b;
+  --colour-surface: #161d27;
+  --colour-surface-raised: #1a2230;
+  --colour-border: #2c3644;
+  --colour-border-strong: #44506180;
+  --colour-text: #e9edf3;
+  --colour-text-muted: #a8b2c1;
+  --colour-accent: #8fb6ff;
+  --colour-accent-hover: #b3cdff;
+  --colour-accent-soft: #1b2740;
+  --colour-on-accent: #0f141b;
+  --colour-focus: #f0b429;
+  --colour-cognitive: #e2ab5f;
+  --colour-research-methods: #8fb6ff;
+  --colour-neuropsychology: #6fc3b4;
+  --colour-social-critical-psychology: #f19aa8;
+  --colour-personality-individual-differences: #db9ccd;
+  --colour-status-bg: #241f14;
+  --colour-status-text: #e2cf9f;
+  --colour-status-border: #4a4028;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 2px 10px rgb(0 0 0 / 0.45);
+}
+}
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity.opi-activity {
+  -webkit-text-size-adjust: 100%;
+}
+.opi-activity.opi-activity {
+  background-color: var(--colour-page);
+  color: var(--colour-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.65;
+}
+.opi-activity.opi-activity h1,
+.opi-activity.opi-activity h2,
+.opi-activity.opi-activity h3,
+.opi-activity.opi-activity h4 {
+  margin: 0 0 var(--space-3);
+  line-height: 1.25;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.opi-activity.opi-activity h1 {
+  font-size: var(--text-3xl);
+}
+.opi-activity.opi-activity h2 {
+  font-size: var(--text-2xl);
+}
+.opi-activity.opi-activity h3 {
+  font-size: var(--text-xl);
+}
+.opi-activity.opi-activity h4 {
+  font-size: var(--text-lg);
+}
+.opi-activity.opi-activity p,
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol,
+.opi-activity.opi-activity dl {
+  margin: 0 0 var(--space-4);
+}
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol {
+  padding-left: 1.35em;
+}
+.opi-activity.opi-activity li + li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity a {
+  color: var(--colour-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: max(1px, 0.06em);
+}
+.opi-activity.opi-activity a:hover {
+  color: var(--colour-accent-hover);
+  text-decoration-thickness: max(2px, 0.11em);
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid var(--colour-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+@supports not selector(:focus-visible) {
+.opi-activity.opi-activity :focus {
+  outline: 3px solid var(--colour-focus);
+    outline-offset: 2px;
+}
+}
+.opi-activity.opi-activity code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.35em;
+}
+.opi-activity.opi-activity hr {
+  border: 0;
+  border-top: 1px solid var(--colour-border);
+  margin: var(--space-6) 0;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+}
+.opi-activity.opi-activity .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.opi-activity.opi-activity .container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+@media (min-width: 40em) {
+.opi-activity.opi-activity .container {
+  padding-inline: var(--space-5);
+}
+}
+.opi-activity.opi-activity .prose {
+  max-width: var(--measure);
+}
+.opi-activity.opi-activity .text-muted {
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .section {
+  padding-block: var(--space-7);
+}
+.opi-activity.opi-activity .section--tinted {
+  background-color: var(--colour-surface);
+  border-block: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .section__header {
+  max-width: var(--measure);
+  margin-bottom: var(--space-5);
+}
+.opi-activity.opi-activity .section__header > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-7) var(--space-6);
+  border-bottom: 1px solid var(--colour-border);
+  
+  background-image: linear-gradient(
+    180deg,
+    var(--colour-accent-soft) 0%,
+    var(--colour-page) 100%
+  );
+}
+.opi-activity.opi-activity .hero__eyebrow {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .hero h1 {
+  max-width: 20ch;
+  margin-bottom: var(--space-4);
+}
+.opi-activity.opi-activity .hero__lead {
+  max-width: var(--measure);
+  font-size: var(--text-lg);
+  color: var(--colour-text-muted);
+}
+@media (min-width: 48em) {
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-8) var(--space-7);
+}
+.opi-activity.opi-activity .hero h1 {
+  font-size: 44px;
+}
+}
+.opi-activity.opi-activity .button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  
+  min-height: 44px;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .button--primary {
+  background-color: var(--colour-accent);
+  border-color: var(--colour-accent);
+  
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--primary:hover {
+  background-color: var(--colour-accent-hover);
+  border-color: var(--colour-accent-hover);
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--secondary {
+  background-color: transparent;
+  border-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .button--secondary:hover {
+  background-color: var(--colour-surface);
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+}
+.opi-activity.opi-activity .card--cognitive {
+  --card-accent: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .card--research-methods {
+  --card-accent: var(--colour-research-methods);
+}
+.opi-activity.opi-activity .card--neuropsychology {
+  --card-accent: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .card--social-critical-psychology {
+  --card-accent: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .card--personality-individual-differences {
+  --card-accent: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 650;
+  line-height: 1.4;
+  padding: 3.2px var(--space-3);
+  border-radius: 999px;
+  border: 1px solid var(--colour-status-border);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+}
+.opi-activity.opi-activity .badge__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex: none;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed var(--colour-border-strong);
+  border-radius: var(--radius-lg);
+  background-color: var(--colour-surface);
+  padding: var(--space-5);
+  text-align: left;
+}
+.opi-activity.opi-activity .placeholder__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+}
+.opi-activity.opi-activity .placeholder > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .split {
+  display: grid;
+  gap: var(--space-6);
+}
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split {
+  grid-template-columns: 3fr 2fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .panel {
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.opi-activity.opi-activity .panel > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .panel__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .section--tinted {
+  border-block: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .hero {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .button--primary {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .button--secondary {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .button:hover {
+  border-color: Highlight;
+}
+.opi-activity.opi-activity .panel {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed CanvasText;
+}
+.opi-activity.opi-activity .badge {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .badge__dot {
+  background-color: CanvasText;
+}
+.opi-activity.opi-activity code {
+  border-color: CanvasText;
+}
+.opi-activity.opi-activity hr {
+  border-top-color: CanvasText;
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+}
+@media print {
+.opi-activity.opi-activity {
+  color: #000;
+  background: #fff;
+}
+.opi-activity.opi-activity a[href^="http"]::after {
+  content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+}
+}
+
+/* components/interactive-shell.css */
+.opi-activity.opi-activity .interactive {
+  --shell-page: var(--colour-page, #ffffff);
+  --shell-surface: var(--colour-surface, #f5f7fa);
+  --shell-raised: var(--colour-surface-raised, #ffffff);
+  --shell-border: var(--colour-border, #d3d9e2);
+  --shell-border-strong: var(--colour-border-strong, #aeb7c4);
+  --shell-text: var(--colour-text, #131820);
+  --shell-muted: var(--colour-text-muted, #4c566a);
+  --shell-accent: var(--colour-accent, #1a4fa0);
+  --shell-accent-soft: var(--colour-accent-soft, #e8eefb);
+  
+  --shell-on-accent: var(--colour-on-accent, #ffffff);
+  --shell-focus: var(--colour-focus, #b45309);
+  --shell-radius: var(--radius-lg, 12px);
+  --shell-gap: var(--space-5, 24px);
+
+  display: block;
+  background-color: var(--shell-raised);
+  color: var(--shell-text);
+  border: 1px solid var(--shell-border);
+  border-radius: var(--shell-radius);
+  
+  overflow-x: clip;
+  overflow-y: visible;
+}
+.opi-activity.opi-activity .interactive__header {
+  padding: var(--shell-gap);
+  border-bottom: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 1.25;
+}
+.opi-activity.opi-activity .interactive__brief {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--shell-muted);
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__body {
+  display: grid;
+  gap: var(--shell-gap);
+  padding: var(--shell-gap);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body {
+  grid-template-columns: minmax(240px, 320px) 1fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .interactive__controls {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__controls fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .interactive__controls legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .control {
+  display: grid;
+  gap: 5.6px;
+}
+.opi-activity.opi-activity .control + .control {
+  margin-top: 16px;
+}
+.opi-activity.opi-activity .control__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.opi-activity.opi-activity .control__label {
+  font-size: 15px;
+  font-weight: 600;
+}
+.opi-activity.opi-activity .control__value {
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--shell-accent);
+}
+.opi-activity.opi-activity .control__hint {
+  font-size: 13px;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .interactive__controls input[type="range"] {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--shell-accent);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  width: 100%;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--shell-text);
+  background-color: var(--shell-raised);
+  border: 1px solid var(--shell-border-strong);
+  border-radius: var(--radius-sm, 4px);
+}
+.opi-activity.opi-activity .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+}
+.opi-activity.opi-activity .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  accent-color: var(--shell-accent);
+  flex: none;
+}
+.opi-activity.opi-activity .interactive__stage {
+  min-height: 256px;
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-page);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body--pinned {
+  align-items: stretch;
+}
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: sticky;
+    top: 0;
+    z-index: 2;
+    
+    margin: -16px -16px 0;
+    padding: 16px 16px 12px;
+    background-color: var(--shell-page);
+    border-bottom: 1px solid var(--shell-border);
+}
+}
+@media (min-width: 52em) and (max-height: 30em) {
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: static;
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
+}
+}
+.opi-activity.opi-activity .interactive__stage > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity :where(.interactive__stage) svg,
+.opi-activity.opi-activity :where(.interactive__stage) canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+.opi-activity.opi-activity .interactive__readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout div {
+  padding: 9.6px 12px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-sm, 4px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__readout dt {
+  font-size: 13px;
+  color: var(--shell-muted);
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout dd {
+  margin: 2.4px 0 0;
+  font-size: 18px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .interactive__status {
+  margin: 0;
+  padding: 12px var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+  font-size: 15px;
+  color: var(--shell-muted);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .interactive__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+}
+.opi-activity.opi-activity .interactive__actions button {
+  min-height: 44px;
+  padding: 6.4px 20px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--shell-on-accent);
+  background-color: var(--shell-accent);
+  border: 1px solid var(--shell-accent);
+  border-radius: var(--radius-md, 8px);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  color: var(--shell-text);
+  background-color: transparent;
+  border-color: var(--shell-border-strong);
+}
+.opi-activity.opi-activity .interactive__actions button:hover {
+  filter: brightness(1.08);
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__notes > summary {
+  padding: 13.6px var(--shell-gap);
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__notes > div {
+  padding: 0 var(--shell-gap) var(--shell-gap);
+  max-width: 68ch;
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__notes > div > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity .interactive *,
+.opi-activity.opi-activity .interactive *::before,
+.opi-activity.opi-activity .interactive *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+}
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .interactive,
+.opi-activity.opi-activity .interactive__controls,
+.opi-activity.opi-activity .interactive__stage,
+.opi-activity.opi-activity .interactive__readout div {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__header {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__status,
+.opi-activity.opi-activity .interactive__actions,
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__actions button {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  border-width: 1px;
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 1;
+    color: GrayText;
+    border-color: GrayText;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__stage svg {
+  forced-color-adjust: auto;
+}
+}
+
+/* components/tool-kit.css */
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split--wide {
+  grid-template-columns: 1fr 1fr;
+}
+}
+.opi-activity.opi-activity .how-to {
+  padding-left: 19.2px;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .how-to > li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .table-scroll {
+  overflow-x: auto;
+  
+  position: relative;
+}
+.opi-activity.opi-activity .prediction {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 832px;
+}
+.opi-activity.opi-activity .prediction > *,
+.opi-activity.opi-activity .challenge > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity .prediction__group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .prediction__legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-weight: 650;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .prediction .control--choice,
+.opi-activity.opi-activity .challenge .control--choice,
+.opi-activity.opi-activity .evidence .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .prediction .control--choice input,
+.opi-activity.opi-activity .challenge .control--choice input,
+.opi-activity.opi-activity .evidence .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .prediction__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .prediction__error {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-status-border);
+  border-left: 4px solid var(--colour-status-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .prediction__readback {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .feedback[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .feedback[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .feedback[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .feedback__verdict {
+  font-weight: 700;
+}
+.opi-activity.opi-activity .verdict {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .verdict__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict__body {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .verdict__body + .verdict__body {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .verdict__note {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .verdict[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .verdict[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .goal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .goal__label {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .goal__text {
+  flex: 1 1 256px;
+}
+.opi-activity.opi-activity .goal strong {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .goal__checks {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+  display: grid;
+  gap: 2.4px;
+}
+.opi-activity.opi-activity .goal__checks > li {
+  margin-top: 0;
+  padding-left: 22.4px;
+  position: relative;
+}
+.opi-activity.opi-activity .goal__checks > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 9.6px;
+  height: 9.6px;
+  border: 2px solid var(--colour-border-strong);
+  border-radius: 2px;
+}
+.opi-activity.opi-activity .goal__checks > li[data-met="yes"]::before {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .stage-track {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .stage-track > li {
+  margin-top: 0;
+  flex: 1 1 160px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-bottom: 3px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .stage-track > li > span {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.opi-activity.opi-activity .stage-track > li[data-state="done"] {
+  border-bottom-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border-bottom-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+  color: var(--colour-text);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .stage__heading {
+  margin: 0;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .data-table,
+.opi-activity.opi-activity .chart__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .data-table th,
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table th,
+.opi-activity.opi-activity .chart__table td {
+  padding: 6.4px 9.6px;
+  border: 1px solid var(--colour-border);
+  text-align: left;
+  vertical-align: top;
+}
+.opi-activity.opi-activity .data-table thead th,
+.opi-activity.opi-activity .chart__table thead th {
+  background-color: var(--colour-surface);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table td {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__table tbody th,
+.opi-activity.opi-activity .data-table tbody th {
+  font-weight: 550;
+}
+.opi-activity.opi-activity .data-table__total > th,
+.opi-activity.opi-activity .data-table__total > td {
+  border-top: 2px solid var(--colour-border-strong);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart {
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .chart__caption {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__svg {
+  max-width: 100%;
+  height: auto;
+}
+.opi-activity.opi-activity .chart__label,
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__inline,
+.opi-activity.opi-activity .chart__axis {
+  font-family: var(--font-body);
+  fill: var(--colour-text);
+  font-size: 13px;
+}
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__axis {
+  fill: var(--colour-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: var(--colour-on-accent);
+  font-size: 12px;
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__track {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__bar {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--one {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .chart__baseline,
+.opi-activity.opi-activity .chart__grid {
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__line {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: var(--colour-personality-individual-differences);
+  stroke-dasharray: 6 4;
+}
+.opi-activity.opi-activity .chart__point {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .reveal > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .reveal__lead {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+.opi-activity.opi-activity .reveal__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(176px, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+  padding: 0;
+  list-style: none;
+}
+.opi-activity.opi-activity .reveal__figures > li {
+  margin-top: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+.opi-activity.opi-activity .reveal__figure-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .reveal__figure-value {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .challenge {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+.opi-activity.opi-activity .challenge__locked {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .panel--caution {
+  background-color: var(--colour-status-bg);
+  border-color: var(--colour-status-border);
+}
+.opi-activity.opi-activity .panel--caution li + li {
+  margin-top: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .goal,
+.opi-activity.opi-activity .verdict,
+.opi-activity.opi-activity .feedback,
+.opi-activity.opi-activity .prediction__error,
+.opi-activity.opi-activity .prediction__readback,
+.opi-activity.opi-activity .stage-track > li,
+.opi-activity.opi-activity .reveal__figures > li {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border: 2px solid Highlight;
+}
+.opi-activity.opi-activity .chart__bar,
+.opi-activity.opi-activity .chart__bar--one {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: Canvas;
+}
+.opi-activity.opi-activity .chart__line {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: Highlight;
+}
+}
+.opi-activity.opi-activity .stage__more {
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .stage__more > summary {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .stage__more[open] > summary {
+  border-bottom: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .stage__more > *:not(summary) {
+  margin: var(--space-3);
+}
+
+/* modules/research-methods/tools/09-confidence-interval-laboratory/tool.css */
+.opi-activity.opi-activity #coverage .interactive__controls,
+.opi-activity.opi-activity #coverage .interactive__stage,
+.opi-activity.opi-activity #claims .interactive__controls,
+.opi-activity.opi-activity #claims .interactive__stage {
+  min-width: 0;
+}
+.opi-activity.opi-activity #coverage .interactive__stage > *,
+.opi-activity.opi-activity #claims .interactive__stage > * {
+  min-width: 0;
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity #coverage .interactive__body,
+.opi-activity.opi-activity #claims .interactive__body {
+  grid-template-columns: minmax(0, 304px) minmax(0, 1fr);
+}
+}
+.opi-activity.opi-activity .interactive__stage [data-caterpillar] {
+  max-width: 480px;
+}
+.opi-activity.opi-activity .interactive__stage [data-claim-chart] {
+  max-width: 480px;
+}
+.opi-activity.opi-activity #coverage .interactive__readout,
+.opi-activity.opi-activity #claims .interactive__readout {
+  grid-template-columns: repeat(auto-fit, minmax(112px, 1fr));
+  gap: 6.4px;
+}
+.opi-activity.opi-activity #coverage .interactive__readout div {
+  padding: 6.4px 8px;
+}
+.opi-activity.opi-activity #coverage .interactive__readout dd {
+  font-size: 16px;
+}
+.opi-activity.opi-activity #claims .control--choice {
+  align-items: flex-start;
+  gap: 9.6px;
+  padding: 5.6px 0;
+  font-size: 14px;
+  line-height: 1.4;
+}
+.opi-activity.opi-activity #claims .control--choice input {
+  margin-top: 4.8px;
+}
+.opi-activity.opi-activity #claims .control--choice label {
+  cursor: pointer;
+}
+.opi-activity.opi-activity .ci__bar {
+  stroke: var(--colour-accent);
+  stroke-linecap: butt;
+}
+.opi-activity.opi-activity .ci__bar--miss {
+  stroke: var(--colour-social-critical-psychology);
+  stroke-dasharray: 4 2;
+}
+.opi-activity.opi-activity .ci__miss-mark {
+  stroke: var(--colour-social-critical-psychology);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+}
+.opi-activity.opi-activity .ci__truth {
+  stroke: var(--colour-text);
+  stroke-width: 2;
+}
+.opi-activity.opi-activity .ci__axis {
+  stroke: var(--colour-border-strong);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .claim__band {
+  fill: var(--colour-accent-soft);
+  stroke: var(--colour-accent);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .claim__hatch {
+  stroke: var(--colour-accent);
+  stroke-width: 1;
+  opacity: 0.45;
+}
+.opi-activity.opi-activity .claim__zero {
+  stroke: var(--colour-text-muted);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 3;
+}
+.opi-activity.opi-activity .claim__interval {
+  stroke: var(--colour-text);
+  stroke-width: 4;
+  stroke-linecap: butt;
+}
+.opi-activity.opi-activity .claim__cap {
+  stroke: var(--colour-text);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .claim__point {
+  fill: var(--colour-research-methods, var(--colour-accent));
+  stroke: var(--colour-text);
+  stroke-width: 1;
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .ci__bar {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .ci__bar--miss {
+  stroke: Highlight;
+}
+.opi-activity.opi-activity .ci__miss-mark {
+  stroke: Highlight;
+}
+.opi-activity.opi-activity .ci__truth {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .ci__axis {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .claim__band {
+  fill: Canvas; stroke: CanvasText;
+}
+.opi-activity.opi-activity .claim__hatch {
+  stroke: CanvasText; opacity: 1;
+}
+.opi-activity.opi-activity .claim__zero {
+  stroke: GrayText;
+}
+.opi-activity.opi-activity .claim__interval,
+.opi-activity.opi-activity .claim__cap {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .claim__point {
+  fill: Highlight; stroke: CanvasText;
+}
+}
+</style>
+
+  <!-- ================= Title and purpose ================= -->
+  <section class="section card--research-methods" aria-labelledby="page-heading">
+    <div class="container">
+
+      <p class="hero__eyebrow" style="color: var(--colour-research-methods)">
+        Research Methods
+      </p>
+      <h1 id="page-heading">Confidence Interval Laboratory</h1>
+      <p class="hero__lead">
+        The truth stays exactly where it is. The intervals jump about. Count
+        how many of them catch it &mdash; then work out whether catching it is
+        the same thing as saying something worth knowing.
+      </p>
+
+      <p>
+        <span class="badge">
+          <span class="badge__dot" aria-hidden="true"></span>
+          Simulated &mdash; a generated population and four fictional trials
+        </span>
+      </p>
+
+      <div class="split split--wide">
+
+        <div class="panel">
+          <h2 class="panel__title">Learning objective</h2>
+          <p>
+            By the end you should be able to say what the 95% in a
+            confidence interval is a property of, and why it is not a claim
+            about the interval on screen.
+          </p>
+          <p class="text-muted">
+            About 25 minutes. Nothing you do here is saved or sent anywhere.
+          </p>
+        </div>
+
+        <div class="panel panel--caution">
+          <h2 class="panel__title">The sentence to be careful with</h2>
+          <p>
+            "There is a 95% probability that the true value lies inside this
+            interval" is the phrasing almost everyone reaches for, and it is
+            not what the method delivers. The 95% describes how often
+            <em>the procedure</em> catches the truth when the whole study is
+            repeated. Any single interval either contains the true value or it
+            does not, and in a real study nobody knows which. This laboratory
+            can show you which only because it invented the truth first.
+          </p>
+        </div>
+
+      </div>
+
+      <ol class="how-to">
+        <li>Answer the prediction question to open Experiment 1.</li>
+        <li>Draw studies one at a time, then a hundred at once, and count the misses.</li>
+        <li>Change the sample size and confidence level, and watch which number moves and which does not.</li>
+        <li>In Experiment 2, set what counts as a difference worth having, then judge four fictional findings against it.</li>
+      </ol>
+
+    </div>
+  </section>
+
+  <!-- ================= Opening prediction ================= -->
+  <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="opening-heading">First, a prediction</h2>
+        <p class="prose">
+          One hundred fictional research teams each run the same study on the
+          same population and each reports a 95% confidence interval for the
+          population mean. Because the population is simulated, we know the
+          true mean exactly, so we can check every interval.
+        </p>
+      </div>
+
+      <noscript>
+        <div class="placeholder">
+          <h3 class="placeholder__title">This part needs JavaScript</h3>
+          <p class="prose">
+            The laboratory generates its samples in your browser, so it cannot
+            run with JavaScript switched off. The rest of this page is
+            readable without it.
+          </p>
+        </div>
+      </noscript>
+
+      <form class="panel prediction" id="opening-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            How many of the 100 intervals will contain the true population
+            mean?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="all">
+            All 100 &mdash; that is what a confidence interval is for
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="ninetyfive">
+            About 95, whatever the sample size is
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="depends">
+            It depends on the sample size &mdash; bigger samples catch it more often
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="sixtyeight">
+            About 68, because that is one standard error either side
+          </label>
+        </fieldset>
+
+        <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Record my prediction and open Experiment 1
+          </button>
+          <button class="button button--secondary" type="button" data-action="skip-opening">
+            Skip &mdash; I am demonstrating this
+          </button>
+        </div>
+
+        <div class="feedback" data-opening-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Experiment 1 ================= -->
+  <section class="section" id="coverage-section" aria-labelledby="coverage-heading" hidden>
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="coverage-heading" tabindex="-1">Experiment 1 &mdash; count the misses</h2>
+        <p class="prose">
+          A fictional walking-reminder app is tested on a simulated
+          population whose true mean change is exactly
+          <strong>12.0 minutes of walking per day</strong>. Every study drawn
+          below samples from that same population and reports an interval. The
+          truth never moves; the intervals do.
+        </p>
+      </div>
+
+      <section class="interactive" id="coverage" data-interactive
+               data-reset-message="Everything cleared. Back to the opening prediction.">
+
+        <header class="interactive__header">
+          <h3 class="interactive__title">One hundred teams, one population</h3>
+          <p class="interactive__brief">
+            Each horizontal bar is one study's confidence interval. The
+            vertical rule is the true population mean, which the studies
+            themselves never get to see.
+          </p>
+        </header>
+
+        <div class="interactive__body interactive__body--pinned">
+
+          <form class="interactive__controls" data-interactive-controls>
+
+            <fieldset>
+              <legend>The study design</legend>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="n-range">Participants per study</label>
+                  <output class="control__value" for="n-range">25</output>
+                </div>
+                <input type="range" id="n-range" min="5" max="200" step="5" value="25">
+              </div>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="sd-range">Population standard deviation</label>
+                  <output class="control__value" for="sd-range">20</output>
+                </div>
+                <input type="range" id="sd-range" min="5" max="40" step="1" value="20">
+                <p class="control__hint">
+                  Both of these change how wide every interval is. Watch
+                  whether either of them changes how often the intervals
+                  catch the truth.
+                </p>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>The reporting convention</legend>
+              <div class="control">
+                <label class="control__label" for="level-select">Confidence level</label>
+                <select id="level-select">
+                  <option value="80">80%</option>
+                  <option value="90">90%</option>
+                  <option value="95" selected>95%</option>
+                  <option value="99">99%</option>
+                </select>
+                <p class="control__hint">
+                  Changing any setting clears the pile: those studies came
+                  from a different procedure.
+                </p>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Sampling</legend>
+              <div class="control">
+                <label class="control__label" for="seed-input">Random seed</label>
+                <input type="number" id="seed-input" value="2109" step="1" min="1" max="999999">
+              </div>
+            </fieldset>
+
+          </form>
+
+          <div class="interactive__stage" data-interactive-stage>
+
+            <!-- Pinned: the caterpillar plot plus the four figures that
+                 answer "did it catch the truth?". Every control moves it. -->
+            <div class="stage__primary">
+              <h4 class="stage__heading" data-chart-heading>
+                No studies drawn yet
+              </h4>
+              <figure class="chart">
+                <figcaption class="visually-hidden">
+                  Stacked confidence intervals from repeated simulated
+                  studies, with a vertical rule marking the true population
+                  mean and a cross marking every interval that missed it
+                </figcaption>
+                <svg class="chart__svg" data-caterpillar viewBox="0 0 460 210"
+                     aria-hidden="true" focusable="false"></svg>
+                <div class="table-scroll">
+                  <table class="chart__table">
+                    <caption class="visually-hidden">
+                      How many simulated intervals contained the true
+                      population mean
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Outcome</th>
+                        <th scope="col">Intervals</th>
+                        <th scope="col">Share</th>
+                      </tr>
+                    </thead>
+                    <tbody data-outcome-table></tbody>
+                  </table>
+                </div>
+              </figure>
+              <dl class="interactive__readout" data-readout></dl>
+            </div>
+
+            <div class="verdict" data-verdict>
+              <h4 class="verdict__title">Reading this correctly</h4>
+              <p class="verdict__body" data-interpretation></p>
+            </div>
+
+            <details class="stage__more">
+              <summary>The last ten studies, one row each</summary>
+              <div class="table-scroll">
+                <table class="data-table">
+                  <caption class="visually-hidden">
+                    The ten most recent simulated studies with their sample
+                    means, interval limits and whether they contained the true
+                    mean
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Study</th>
+                      <th scope="col">Sample mean</th>
+                      <th scope="col">Interval</th>
+                      <th scope="col">Contained 12.0?</th>
+                    </tr>
+                  </thead>
+                  <tbody data-recent-table></tbody>
+                </table>
+              </div>
+            </details>
+
+          </div>
+
+        </div>
+
+        <p class="interactive__status" data-interactive-status role="status"></p>
+
+        <div class="interactive__actions">
+          <button type="button" data-action="draw-one">Draw one study</button>
+          <button type="button" data-action="draw-hundred">Run 100 studies</button>
+          <button type="button" data-variant="secondary" data-action="clear-pile">
+            Clear the pile
+          </button>
+          <button type="button" data-variant="secondary" data-interactive-reset>
+            Reset everything
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ================= Experiment 2 ================= -->
+  <section class="section section--tinted" id="claims-section"
+           aria-labelledby="claims-heading" hidden>
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="claims-heading" tabindex="-1">Experiment 2 &mdash; precise, important, both or neither</h2>
+        <p class="prose">
+          Four fictional trials of four different walking apps, each reporting
+          a mean change in minutes walked per day with a 95% confidence
+          interval. Before you judge them, you have to say what would count as
+          a change worth having. That number does not come out of the data.
+        </p>
+      </div>
+
+      <section class="interactive" id="claims" data-interactive
+               data-reset-message="Experiment 2 reset. Back to the first claim.">
+
+        <header class="interactive__header">
+          <h3 class="interactive__title">Judge the finding, not the asterisk</h3>
+          <p class="interactive__brief" data-claim-brief>
+            Set your threshold, then decide what this interval does and does
+            not rule out.
+          </p>
+        </header>
+
+        <div class="interactive__body interactive__body--pinned">
+
+          <form class="interactive__controls" data-interactive-controls>
+
+            <fieldset>
+              <legend>What would count as worth having</legend>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="threshold-range">Smallest change that matters</label>
+                  <output class="control__value" for="threshold-range">10</output>
+                </div>
+                <input type="range" id="threshold-range" min="2" max="30" step="1" value="10">
+                <p class="control__hint">
+                  Minutes of extra walking per day. This is a judgement about
+                  walking, cost and effort. No amount of data can supply it,
+                  and moving it changes which findings count as useful.
+                </p>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Your verdict on this claim</legend>
+              <div class="control--choice">
+                <input type="radio" name="verdict" id="verdict-important" value="important">
+                <label for="verdict-important">
+                  Beats the threshold &mdash; the whole interval sits at or above it
+                </label>
+              </div>
+              <div class="control--choice">
+                <input type="radio" name="verdict" id="verdict-trivial" value="trivial">
+                <label for="verdict-trivial">
+                  Rules out no change, but the whole interval sits below the threshold
+                </label>
+              </div>
+              <div class="control--choice">
+                <input type="radio" name="verdict" id="verdict-inconclusive" value="inconclusive">
+                <label for="verdict-inconclusive">
+                  Too wide to decide &mdash; the interval straddles the threshold
+                </label>
+              </div>
+              <div class="control--choice">
+                <input type="radio" name="verdict" id="verdict-null" value="null">
+                <label for="verdict-null">
+                  Compatible with no change, and with nothing big enough to matter
+                </label>
+              </div>
+              <p class="prediction__error" data-claim-error role="alert" hidden></p>
+            </fieldset>
+
+          </form>
+
+          <div class="interactive__stage" data-interactive-stage>
+
+            <!-- Pinned: the interval for the claim currently being judged,
+                 drawn against zero and against the threshold band. -->
+            <div class="stage__primary">
+              <h4 class="stage__heading" data-claim-heading>Claim 1 of 4</h4>
+              <figure class="chart">
+                <figcaption class="visually-hidden">
+                  The reported mean change and its 95% confidence interval,
+                  drawn against a line at zero and a shaded band covering
+                  every change at or above the threshold you set
+                </figcaption>
+                <svg class="chart__svg" data-claim-chart viewBox="0 0 460 132"
+                     aria-hidden="true" focusable="false"></svg>
+                <div class="table-scroll">
+                  <table class="chart__table">
+                    <caption class="visually-hidden">
+                      The numbers behind the picture for this claim
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Minutes per day</th>
+                      </tr>
+                    </thead>
+                    <tbody data-claim-table></tbody>
+                  </table>
+                </div>
+              </figure>
+            </div>
+
+            <div class="feedback" data-claim-feedback hidden></div>
+
+            <details class="stage__more">
+              <summary>All four trials side by side</summary>
+              <div class="table-scroll">
+                <table class="data-table">
+                  <caption class="visually-hidden">
+                    Every fictional trial in this experiment, with its sample
+                    size, reported change and interval
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Trial</th>
+                      <th scope="col">n</th>
+                      <th scope="col">Reported change</th>
+                      <th scope="col">95% interval</th>
+                    </tr>
+                  </thead>
+                  <tbody data-all-claims-table></tbody>
+                </table>
+              </div>
+            </details>
+
+          </div>
+
+        </div>
+
+        <p class="interactive__status" data-interactive-status role="status"></p>
+
+        <div class="interactive__actions">
+          <button type="button" data-action="check-claim">Check my verdict</button>
+          <button type="button" data-action="next-claim" disabled>Next claim</button>
+          <button type="button" data-variant="secondary" data-interactive-reset>
+            Start Experiment 2 again
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ================= Challenge ================= -->
+  <section class="section" id="challenge" aria-labelledby="challenge-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="challenge-heading">Challenge &mdash; what the interval says</h2>
+        <p class="prose">
+          A fictional study of 60 people reports a mean change of 4.8 minutes
+          of walking per day, 95% confidence interval [1.2, 8.4].
+        </p>
+      </div>
+
+      <form class="panel challenge" id="challenge-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            Which statements are correct? Select all that apply &mdash; more
+            than one is.
+          </legend>
+          <label class="control--choice">
+            <input type="checkbox" name="challenge" value="procedure">
+            If this whole study were repeated many times, about 95% of the intervals produced would contain the true population value
+          </label>
+          <label class="control--choice">
+            <input type="checkbox" name="challenge" value="prob">
+            There is a 95% probability that the true population value lies between 1.2 and 8.4
+          </label>
+          <label class="control--choice">
+            <input type="checkbox" name="challenge" value="people">
+            95% of the individual participants changed by between 1.2 and 8.4 minutes
+          </label>
+          <label class="control--choice">
+            <input type="checkbox" name="challenge" value="future">
+            95% of the sample means from future studies would fall between 1.2 and 8.4
+          </label>
+          <label class="control--choice">
+            <input type="checkbox" name="challenge" value="important">
+            Because the interval excludes zero, the change is important
+          </label>
+          <label class="control--choice">
+            <input type="checkbox" name="challenge" value="ruledout">
+            Values outside the interval have been ruled out
+          </label>
+          <label class="control--choice">
+            <input type="checkbox" name="challenge" value="width">
+            With everything else held constant, a study of 15 people would have produced a wider interval
+          </label>
+        </fieldset>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">Check my answer</button>
+        </div>
+
+        <div class="feedback" data-challenge-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Debrief ================= -->
+  <section class="section section--tinted" id="debrief" aria-labelledby="debrief-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="debrief-heading">What this demonstrates</h2>
+      </div>
+
+      <div class="split split--wide">
+
+        <div class="prose">
+          <h3>The 95% belongs to the method, not to your interval</h3>
+          <p>
+            Nothing in the calculation is random once the sample has been
+            collected: the limits are fixed numbers, and the population mean is
+            a fixed number, so the interval either contains it or it does not.
+            What repeats is the procedure. Run it a hundred times and about
+            ninety-five of the intervals it produces will contain the truth
+            &mdash; which is a guarantee about the long run, and says nothing
+            about which of the hundred you happen to be holding.
+          </p>
+
+          <h3>Width and coverage are different properties</h3>
+          <p>
+            Sample size and variability change how wide the intervals are.
+            They do not change how often the intervals catch the truth: a
+            95% procedure covers about 95% of the time whether the intervals
+            are enormous or tiny. The confidence level is the only control that
+            moves coverage, and it buys that coverage with width. A 99%
+            interval catches the truth more often precisely because it is less
+            informative.
+          </p>
+
+          <h3>Excluding zero is a low bar</h3>
+          <p>
+            An interval that excludes zero tells you the data are hard to
+            reconcile with exactly no difference. That is a weaker claim than
+            it sounds, because exactly no difference is rarely the interesting
+            hypothesis. The second fictional trial excludes zero with great
+            precision and reports a change nobody would install an app for.
+            Deciding what would count as worth having is a judgement made
+            before the data arrive, and it is what turns an interval into a
+            conclusion.
+          </p>
+
+          <h3>A wide interval is not a negative finding</h3>
+          <p>
+            The third trial's interval runs from &minus;6 to &plus;34. It is
+            routinely written up as "no significant effect", and it is
+            compatible with no effect, with a small effect and with an effect
+            far larger than anyone predicted. The correct description is that
+            the study was too small to distinguish between them. Reporting the
+            interval makes that obvious; reporting only whether it crossed zero
+            hides it.
+          </p>
+        </div>
+
+        <aside class="panel panel--caution" aria-labelledby="limits-heading">
+          <h3 class="panel__title" id="limits-heading">
+            What this does <em>not</em> demonstrate
+          </h3>
+          <ul>
+            <li>
+              <strong>No real data.</strong> The population, the samples and
+              all four trials are generated or invented. None of the numbers
+              is an estimate of anything about real walking, real apps or real
+              people.
+            </li>
+            <li>
+              <strong>The simulation knows σ; a real study does not.</strong>
+              Every interval here is the sample mean plus or minus z times
+              σ/&radic;n, with σ supplied by the model. Real intervals estimate
+              the standard deviation from the sample and use the t
+              distribution, which makes them a little wider at small n. That
+              estimation is the subject of a later tool in this module.
+            </li>
+            <li>
+              <strong>Nominal coverage is a promise from the model, not from
+              the world.</strong> Ninety-five per cent coverage holds because
+              the simulated samples really are independent draws from the
+              stated distribution. Non-response, clustering, measurement error
+              or an analysis chosen after looking at the data all break it, and
+              the interval will not tell you that they have.
+            </li>
+            <li>
+              <strong>The threshold slider is not a finding.</strong> "Ten
+              minutes a day" is a placeholder to make the argument visible.
+              Setting a smallest difference that matters in a real field is a
+              substantive, contested and often collaborative task.
+            </li>
+            <li>
+              <strong>This is one school of thought.</strong> Frequentist
+              intervals answer a question about procedures; a Bayesian
+              credible interval answers a question about the parameter. The
+              two are sometimes numerically similar and they are not the same
+              claim.
+            </li>
+          </ul>
+        </aside>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+<script>
+/* ---- components/interactive-shell.js ---- */
+/* =========================================================================
+   Open Psychology Interactives — interactive shell helper
+   -------------------------------------------------------------------------
+   A very small vanilla-JS helper that every interactive in this collection
+   uses. It deliberately does *not* draw anything or know anything about
+   statistics, personality or neuropsychology. Its job is the repetitive,
+   easy-to-get-wrong accessibility plumbing:
+
+     * announcing changes through a polite live region;
+     * keeping a range slider and its <output> in step;
+     * wiring the standard Reset button;
+     * reporting the reader's reduced-motion preference.
+
+   Usage (see docs/adapting-a-tool.md for the full markup contract):
+
+       <script src="../../components/interactive-shell.js" defer><\/script>
+       <script src="tool.js" defer><\/script>
+
+       // in tool.js
+       const shell = InteractiveShell.attach('#sampling-demo');
+       shell.onReset(() => { ...restore defaults...; draw(); });
+       shell.bindRange('#sample-size', { format: n => n + ' cases' });
+       shell.announce('Sample of 25 drawn. Mean 4.8.');
+
+   Every published interactive is written against this module.
+
+   Exposed as a global (window.InteractiveShell) rather than an ES module so
+   that a single interactive folder can be opened directly from disk over
+   file:// — ES modules are blocked by CORS in that situation, plain scripts
+   are not. That constraint is the whole reason for the older syntax here.
+   ========================================================================= */
+
+(function (global) {
+  "use strict";
+
+  /* -----------------------------------------------------------------------
+     Internal helpers
+     --------------------------------------------------------------------- */
+
+  /**
+   * Accept either a CSS selector or an element and return an element.
+   * @param {string|Element} target
+   * @param {ParentNode} [scope]
+   * @returns {Element|null}
+   */
+  function resolve(target, scope) {
+    if (!target) {
+      return null;
+    }
+    if (typeof target === "string") {
+      return (scope || document).querySelector(target);
+    }
+    return target;
+  }
+
+  /**
+   * True when the reader has asked the operating system to reduce motion.
+   * Interactives should check this before animating anything — for example
+   * by drawing a sampling distribution in one step instead of animating
+   * each draw.
+   * @returns {boolean}
+   */
+  function prefersReducedMotion() {
+    return (
+      typeof global.matchMedia === "function" &&
+      global.matchMedia("(prefers-reduced-motion: reduce)").matches
+    );
+  }
+
+  /* -----------------------------------------------------------------------
+     Shell controller
+     --------------------------------------------------------------------- */
+
+  /**
+   * Attach the shell behaviour to one `.interactive` element.
+   *
+   * @param {string|Element} target  Selector or element for the shell root.
+   * @returns {object|null}  Controller, or null if the root was not found.
+   */
+  function attach(target) {
+    var root = resolve(target);
+
+    if (!root) {
+      if (global.console && console.warn) {
+        console.warn("InteractiveShell: root element not found.", target);
+      }
+      return null;
+    }
+
+    var controls = root.querySelector("[data-interactive-controls]");
+    var stage = root.querySelector("[data-interactive-stage]");
+    var status = root.querySelector("[data-interactive-status]");
+    var resetButton = root.querySelector("[data-interactive-reset]");
+    var resetHandlers = [];
+    // Every range bound with bindRange() registers its sync function here, so
+    // that reset() can refresh the visible values after the tool's own reset
+    // handlers have restored the inputs. See reset() for why this is needed.
+    var rangeSyncs = [];
+
+    /* --- Live region ----------------------------------------------------
+       The status element is marked up as role="status" (implicitly
+       aria-live="polite"). Two details matter:
+
+         1. Assistive technology only announces *changes* to a live region,
+            so writing the same string twice is silently dropped. We add a
+            trailing zero-width space on repeat messages to force an
+            announcement when a student re-runs the same action.
+         2. Announcements are debounced. A slider dragged across its range
+            fires dozens of input events; without a delay a screen reader
+            would queue every intermediate value and fall far behind.
+       ------------------------------------------------------------------ */
+
+    var announceTimer = null;
+    var lastMessage = "";
+
+    /**
+     * Announce a short sentence describing what just changed.
+     * @param {string} message
+     * @param {object} [options]
+     * @param {boolean} [options.immediate]  Skip the debounce delay. Use for
+     *   discrete actions (button presses); leave off for continuous input.
+     */
+    function announce(message, options) {
+      if (!status) {
+        return;
+      }
+
+      var text = String(message == null ? "" : message);
+      var immediate = Boolean(options && options.immediate);
+
+      if (announceTimer !== null) {
+        global.clearTimeout(announceTimer);
+        announceTimer = null;
+      }
+
+      function write() {
+        // Force a change when the text is identical to last time.
+        status.textContent = text === lastMessage ? text + "​" : text;
+        lastMessage = text;
+      }
+
+      if (immediate) {
+        write();
+      } else {
+        announceTimer = global.setTimeout(write, 350);
+      }
+    }
+
+    /* --- Reset ---------------------------------------------------------- */
+
+    /**
+     * Register a callback to run when the Reset button is pressed.
+     * Several may be registered; they run in the order added.
+     * @param {Function} handler
+     */
+    function onReset(handler) {
+      if (typeof handler === "function") {
+        resetHandlers.push(handler);
+      }
+    }
+
+    /**
+     * Run the reset handlers. Called by the button and available directly so
+     * an interactive can reset itself on first load.
+     *
+     * Bound ranges are re-synced afterwards. A reset handler restores an
+     * input by assigning to `input.value`, and assigning to a value in script
+     * does not fire an `input` event — so without this step the slider would
+     * jump back to its default while its <output> went on showing the old
+     * number. Syncing here, after the handlers have run, also means the sync
+     * sees the restored values regardless of the order things were
+     * registered in.
+     *
+     * @param {object} [options]
+     * @param {boolean} [options.silent]  Suppress the status announcement.
+     */
+    function reset(options) {
+      resetHandlers.forEach(function (handler) {
+        handler();
+      });
+      rangeSyncs.forEach(function (sync) {
+        sync();
+      });
+      if (!options || !options.silent) {
+        announce(
+          root.getAttribute("data-reset-message") ||
+            "Reset to the starting values.",
+          { immediate: true }
+        );
+      }
+    }
+
+    if (resetButton) {
+      resetButton.addEventListener("click", function (event) {
+        // Reset buttons commonly sit inside the controls <form>; stop the
+        // browser's own form reset from fighting with ours.
+        event.preventDefault();
+        reset();
+      });
+    }
+
+    /* --- Range binding --------------------------------------------------
+       Keeps a slider's <output> in step with its value. The <output> must
+       carry `for="<input id>"`, which is what associates the two for
+       assistive technology; this only handles the visible text.
+
+       Optionally sets aria-valuetext, which is how you make a screen reader
+       say "25 cases" or "medium correlation" instead of a bare "25".
+       ------------------------------------------------------------------ */
+
+    /**
+     * @param {string|Element} inputTarget  The range (or number) input.
+     * @param {object} [options]
+     * @param {Function} [options.format]  value:number -> string shown in the
+     *   <output>. Defaults to the raw value.
+     * @param {Function} [options.describe]  value:number -> string used for
+     *   aria-valuetext. Defaults to options.format.
+     * @param {Function} [options.onInput]  value:number -> void, called after
+     *   the display has been updated. Use it to redraw.
+     * @returns {HTMLInputElement|null}
+     */
+    function bindRange(inputTarget, options) {
+      var input = resolve(inputTarget, root);
+      if (!input) {
+        return null;
+      }
+
+      var settings = options || {};
+      var format =
+        typeof settings.format === "function"
+          ? settings.format
+          : function (value) {
+              return String(value);
+            };
+      var describe =
+        typeof settings.describe === "function" ? settings.describe : format;
+
+      // <output for="the-input-id"> is the conventional pairing.
+      var output = input.id
+        ? root.querySelector('output[for="' + input.id + '"]')
+        : null;
+
+      function sync() {
+        var value = Number(input.value);
+        if (output) {
+          output.textContent = format(value);
+        }
+        // Only meaningful for widgets with an implicit or explicit slider
+        // role; harmless elsewhere.
+        input.setAttribute("aria-valuetext", describe(value));
+        if (typeof settings.onInput === "function") {
+          settings.onInput(value);
+        }
+      }
+
+      input.addEventListener("input", sync);
+      // Registered so reset() can refresh the display after the tool's own
+      // reset handlers have put the input back to its default.
+      rangeSyncs.push(sync);
+      sync();
+
+      return input;
+    }
+
+    /* --- Public surface -------------------------------------------------- */
+
+    return {
+      /** The `.interactive` root element. */
+      root: root,
+      /** The controls panel, or null if the shell has none. */
+      controls: controls,
+      /** The stage element where the visualisation is drawn. */
+      stage: stage,
+      /** The live-region element. */
+      status: status,
+      announce: announce,
+      onReset: onReset,
+      reset: reset,
+      bindRange: bindRange,
+      prefersReducedMotion: prefersReducedMotion
+    };
+  }
+
+  /* -----------------------------------------------------------------------
+     Export
+     --------------------------------------------------------------------- */
+
+  global.InteractiveShell = {
+    attach: attach,
+    prefersReducedMotion: prefersReducedMotion
+  };
+})(window);
+
+/* ---- modules/research-methods/tools/09-confidence-interval-laboratory/tool.js ---- */
+/* =========================================================================
+   Confidence Interval Laboratory
+   -------------------------------------------------------------------------
+   Two staged experiments, each with its own controls and its own single
+   primary picture, so that nothing on screen competes with the thing being
+   manipulated.
+
+   EXPERIMENT 1 — coverage
+   -----------------------
+   A simulated population has a true mean change of exactly TRUE_MEAN minutes
+   of walking per day. Each "study" draws n observations from
+   Normal(TRUE_MEAN, sigma) and reports
+
+       interval = sample mean  +/-  z(level) * sigma / sqrt(n)
+
+   Sigma is treated as KNOWN because the simulation states it, which is why
+   the multiplier is a normal quantile rather than a t quantile. A real study
+   estimates sigma from its own sample and uses t, which widens the interval
+   at small n; that estimation is the subject of a later tool in this module,
+   and the page says so in its limitations.
+
+   Because sigma is known, every interval in a run has exactly the same width.
+   That is pedagogically useful: the only thing that varies from study to
+   study is where the interval sits, so the picture shows the intervals moving
+   around a truth that does not.
+
+   Nominal coverage is exact under this model, so about level% of the
+   intervals contain TRUE_MEAN whatever n and sigma are. Changing n or sigma
+   changes WIDTH; only the confidence level changes COVERAGE. Separating those
+   two is the point of the experiment.
+
+   EXPERIMENT 2 — precision against importance
+   -------------------------------------------
+   Four fictional trials, each a fixed reported mean and 95% interval. The
+   learner sets a "smallest change that matters" threshold and classifies each
+   interval into one of four patterns:
+
+       lower limit >= threshold                 -> important
+       upper limit >= threshold (but not above) -> inconclusive
+       upper limit <  threshold, excludes zero  -> trivial but real
+       upper limit <  threshold, includes zero  -> informative null
+
+   The correct answer therefore depends on the threshold, which is exactly the
+   teaching point: importance is a judgement supplied from outside the data.
+
+   WHAT A CONFIDENCE INTERVAL IS NOT
+   ---------------------------------
+   The 95% is a property of the procedure across repeated samples. It is not
+   the probability that this interval contains the parameter, not a range
+   containing 95% of individuals, not a prediction interval for future means,
+   and not a statement that values outside it have been ruled out.
+
+   Randomness is seeded (mulberry32 with Box-Muller normals) so a run is
+   reproducible. No data leave the browser: no storage, no network request.
+   ========================================================================= */
+
+(function () {
+  "use strict";
+
+  /* The simulated population, and the multipliers for each offered level. */
+  var TRUE_MEAN = 12.0;
+  var Z = { 80: 1.2816, 90: 1.6449, 95: 1.9600, 99: 2.5758 };
+  var MAX_ROWS = 100;    // intervals drawn in the caterpillar plot
+  var RECENT_ROWS = 10;  // studies listed in the disclosure table
+
+  var DEFAULTS = { n: 25, sd: 20, level: "95", seed: 2109, threshold: 10 };
+
+  /* =======================================================================
+     Seeded randomness
+     ===================================================================== */
+
+  function mulberry32(seed) {
+    var a = seed >>> 0;
+    return function () {
+      a += 0x6d2b79f5;
+      var t = a;
+      t = Math.imul(t ^ (t >>> 15), t | 1);
+      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  function normal(random) {
+    var u = Math.max(random(), 1e-9);
+    return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * random());
+  }
+
+  /* =======================================================================
+     Small DOM helpers
+     ===================================================================== */
+
+  var NS = "http://www.w3.org/2000/svg";
+
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) { node.className = className; }
+    if (text !== undefined) { node.textContent = text; }
+    return node;
+  }
+
+  function svgNode(tag, attrs) {
+    var node = document.createElementNS(NS, tag);
+    Object.keys(attrs || {}).forEach(function (key) {
+      node.setAttribute(key, String(attrs[key]));
+    });
+    return node;
+  }
+
+  function svgText(attrs, text, className) {
+    var node = svgNode("text", attrs);
+    if (className) { node.setAttribute("class", className); }
+    node.textContent = text;
+    return node;
+  }
+
+  function clear(node) {
+    while (node.firstChild) { node.removeChild(node.firstChild); }
+  }
+
+  function fmt(value, places) {
+    return value.toFixed(places === undefined ? 1 : places);
+  }
+
+  function row(cells, headerFirst) {
+    var tr = make("tr");
+    cells.forEach(function (cell, i) {
+      if (i === 0 && headerFirst !== false) {
+        var th = make("th", null, cell);
+        th.setAttribute("scope", "row");
+        tr.appendChild(th);
+      } else {
+        tr.appendChild(make("td", null, cell));
+      }
+    });
+    return tr;
+  }
+
+  var page = document;
+  var $ = function (s, scope) { return (scope || page).querySelector(s); };
+  var $$ = function (s, scope) {
+    return Array.prototype.slice.call((scope || page).querySelectorAll(s));
+  };
+
+  function showFeedback(container, tone, verdictText, text) {
+    clear(container);
+    container.setAttribute("data-tone", tone);
+    var p = make("p");
+    p.appendChild(make("strong", "feedback__verdict", verdictText));
+    if (text) { p.appendChild(document.createTextNode(" " + text)); }
+    container.appendChild(p);
+    container.hidden = false;
+    return p;
+  }
+
+  /* =======================================================================
+     Wiring
+     ===================================================================== */
+
+  var coverShell = InteractiveShell.attach("#coverage");
+  var claimShell = InteractiveShell.attach("#claims");
+  if (!coverShell || !claimShell) { return; }
+
+  var nRange = $("#n-range");
+  var sdRange = $("#sd-range");
+  var levelSelect = $("#level-select");
+  var seedInput = $("#seed-input");
+  var chartHeading = $("[data-chart-heading]");
+  var caterpillar = $("[data-caterpillar]");
+  var outcomeTable = $("[data-outcome-table]");
+  var readout = $("[data-readout]");
+  var verdictBox = $("[data-verdict]");
+  var interpretation = $("[data-interpretation]");
+  var recentTable = $("[data-recent-table]");
+
+  var openingForm = $("#opening-form");
+  var openingError = $("[data-opening-error]");
+  var openingFeedback = $("[data-opening-feedback]");
+  var coverSection = $("#coverage-section");
+  var claimsSection = $("#claims-section");
+
+  var thresholdRange = $("#threshold-range");
+  var claimHeading = $("[data-claim-heading]");
+  var claimBrief = $("[data-claim-brief]");
+  var claimChart = $("[data-claim-chart]");
+  var claimTable = $("[data-claim-table]");
+  var claimFeedback = $("[data-claim-feedback]");
+  var claimError = $("[data-claim-error]");
+  var allClaimsTable = $("[data-all-claims-table]");
+  var checkButton = $('[data-action="check-claim"]');
+  var nextButton = $('[data-action="next-claim"]');
+
+  var challengeForm = $("#challenge-form");
+  var challengeFeedback = $("[data-challenge-feedback]");
+
+  /* =======================================================================
+     Experiment 1 — repeated intervals
+     ===================================================================== */
+
+  var intervals = [];
+
+  function settings() {
+    return {
+      n: Number(nRange.value),
+      sd: Number(sdRange.value),
+      level: Number(levelSelect.value)
+    };
+  }
+
+  function halfWidth(s) {
+    return Z[s.level] * s.sd / Math.sqrt(s.n);
+  }
+
+  function onDesignChange() {
+    // Studies drawn under a different design belong to a different
+    // procedure, so the pile is not comparable and is cleared.
+    intervals = [];
+    renderCoverage();
+  }
+
+  coverShell.bindRange(nRange, {
+    format: function (v) { return String(v); },
+    describe: function (v) { return v + " participants in each study"; },
+    onInput: onDesignChange
+  });
+
+  coverShell.bindRange(sdRange, {
+    format: function (v) { return String(v); },
+    describe: function (v) {
+      return "population standard deviation " + v + " minutes";
+    },
+    onInput: onDesignChange
+  });
+
+  levelSelect.addEventListener("change", function () {
+    onDesignChange();
+    coverShell.announce(
+      "Confidence level set to " + levelSelect.value +
+      " per cent. The pile has been cleared, because those studies used a " +
+      "different procedure.", { immediate: true });
+  });
+
+  function drawStudies(count) {
+    var s = settings();
+    var half = halfWidth(s);
+    var seed = Math.max(1, Math.round(Number(seedInput.value) || 1));
+    var random = mulberry32(seed + intervals.length * 7919);
+    for (var i = 0; i < count; i += 1) {
+      var sum = 0;
+      for (var j = 0; j < s.n; j += 1) {
+        sum += TRUE_MEAN + normal(random) * s.sd;
+      }
+      var mean = sum / s.n;
+      var lo = mean - half;
+      var hi = mean + half;
+      intervals.push({ mean: mean, lo: lo, hi: hi, hit: lo <= TRUE_MEAN && TRUE_MEAN <= hi });
+    }
+  }
+
+  function hitCount() {
+    var hits = 0;
+    intervals.forEach(function (iv) { if (iv.hit) { hits += 1; } });
+    return hits;
+  }
+
+  function renderCaterpillar() {
+    var left = 34;
+    var right = 448;
+    var top = 12;
+    var base = 166;
+    var s = settings();
+    var half = halfWidth(s);
+    var se = s.sd / Math.sqrt(s.n);
+    // Wide enough for the most extreme sample mean plus a whole interval.
+    var span = 3.4 * se + half;
+
+    clear(caterpillar);
+
+    var x = function (value) {
+      return left + ((value - (TRUE_MEAN - span)) / (2 * span)) * (right - left);
+    };
+
+    var shown = intervals.slice(-MAX_ROWS);
+    var slots = Math.max(shown.length, 8);
+    var rowH = (base - top) / slots;
+    var thickness = Math.max(1.2, Math.min(7, rowH * 0.55));
+
+    shown.forEach(function (iv, i) {
+      var y = top + (i + 0.5) * rowH;
+      caterpillar.appendChild(svgNode("line", {
+        x1: Math.max(left, x(iv.lo)), y1: y,
+        x2: Math.min(right, x(iv.hi)), y2: y,
+        "stroke-width": thickness,
+        class: "ci__bar" + (iv.hit ? "" : " ci__bar--miss")
+      }));
+      // A cross drawn at the true value on the same row, so a miss is marked
+      // by shape as well as by colour and dashing.
+      if (!iv.hit) {
+        var m = Math.max(2.4, Math.min(4, rowH * 0.5));
+        caterpillar.appendChild(svgNode("line", {
+          x1: x(TRUE_MEAN) - m, y1: y - m, x2: x(TRUE_MEAN) + m, y2: y + m,
+          class: "ci__miss-mark"
+        }));
+        caterpillar.appendChild(svgNode("line", {
+          x1: x(TRUE_MEAN) - m, y1: y + m, x2: x(TRUE_MEAN) + m, y2: y - m,
+          class: "ci__miss-mark"
+        }));
+      }
+    });
+
+    // The truth, and the axis.
+    caterpillar.appendChild(svgNode("line", {
+      x1: x(TRUE_MEAN), y1: top - 6, x2: x(TRUE_MEAN), y2: base + 4,
+      class: "ci__truth"
+    }));
+    caterpillar.appendChild(svgNode("line", {
+      x1: left, y1: base, x2: right, y2: base, class: "ci__axis"
+    }));
+
+    var step = span > 20 ? 10 : span > 8 ? 5 : span > 4 ? 2 : 1;
+    var start = Math.ceil((TRUE_MEAN - span) / step) * step;
+    for (var v = start; v <= TRUE_MEAN + span; v += step) {
+      caterpillar.appendChild(svgNode("line", {
+        x1: x(v), y1: base, x2: x(v), y2: base + 4, class: "ci__axis"
+      }));
+      caterpillar.appendChild(svgText(
+        { x: x(v), y: base + 17, "text-anchor": "middle" },
+        String(Math.round(v * 10) / 10), "chart__axis"));
+    }
+
+    caterpillar.appendChild(svgText(
+      { x: x(TRUE_MEAN), y: base + 33, "text-anchor": "middle" },
+      "true mean " + fmt(TRUE_MEAN) + " minutes per day", "chart__label"));
+  }
+
+  function renderOutcomeTable() {
+    var total = intervals.length;
+    var hits = hitCount();
+    clear(outcomeTable);
+    [
+      ["Contained the true mean", hits],
+      ["Missed the true mean", total - hits]
+    ].forEach(function (pair) {
+      outcomeTable.appendChild(row([
+        pair[0],
+        String(pair[1]),
+        total ? (100 * pair[1] / total).toFixed(1) + "%" : "—"
+      ]));
+    });
+  }
+
+  function renderReadout() {
+    var s = settings();
+    var total = intervals.length;
+    var hits = hitCount();
+    clear(readout);
+    [
+      ["Confidence level", s.level + "%"],
+      ["Interval width", fmt(2 * halfWidth(s)) + " min"],
+      ["Studies drawn", String(total)],
+      ["Coverage so far", total ? (100 * hits / total).toFixed(1) + "%" : "—"]
+    ].forEach(function (pair) {
+      var cell = make("div");
+      cell.appendChild(make("dt", null, pair[0]));
+      cell.appendChild(make("dd", null, pair[1]));
+      readout.appendChild(cell);
+    });
+  }
+
+  function renderRecent() {
+    clear(recentTable);
+    var recent = intervals.slice(-RECENT_ROWS);
+    if (!recent.length) {
+      var tr = make("tr");
+      var td = make("td", null, "No studies drawn yet.");
+      td.setAttribute("colspan", "4");
+      tr.appendChild(td);
+      recentTable.appendChild(tr);
+      return;
+    }
+    recent.forEach(function (iv, i) {
+      var number = intervals.length - recent.length + i + 1;
+      recentTable.appendChild(row([
+        "Study " + number,
+        fmt(iv.mean),
+        "[" + fmt(iv.lo) + ", " + fmt(iv.hi) + "]",
+        iv.hit ? "Yes" : "No — missed"
+      ]));
+    });
+  }
+
+  function renderInterpretation() {
+    var s = settings();
+    var total = intervals.length;
+    var hits = hitCount();
+    var coverage = total ? 100 * hits / total : 0;
+    var tone;
+    var text;
+
+    if (!total) {
+      tone = "caution";
+      text =
+        "Nothing drawn yet. At " + s.n + " participants and a population " +
+        "standard deviation of " + s.sd + ", every interval this procedure " +
+        "produces will be " + fmt(2 * halfWidth(s)) + " minutes wide. Draw a " +
+        "few studies one at a time and watch where they land.";
+    } else if (total < 10) {
+      tone = "neutral";
+      text =
+        total + (total === 1 ? " study" : " studies") + " drawn, " + hits +
+        " of them containing the true mean of " + fmt(TRUE_MEAN) + ". With so " +
+        "few the running percentage means nothing. Notice instead that you " +
+        "can only tell which ones missed because the simulation told you the " +
+        "truth first. A real team sees one bar.";
+    } else if (Math.abs(coverage - s.level) <= 6) {
+      tone = "good";
+      text =
+        hits + " of " + total + " intervals contained the true mean: " +
+        coverage.toFixed(1) + "% against a nominal " + s.level + "%. That is " +
+        "what the confidence level is a statement about: the long-run " +
+        "behaviour of the procedure, not the interval in front of you. Now " +
+        "drag the sample size. The bars change length; this percentage does " +
+        "not.";
+    } else {
+      tone = "caution";
+      text =
+        hits + " of " + total + " intervals contained the true mean: " +
+        coverage.toFixed(1) + "% against a nominal " + s.level + "%. A gap " +
+        "this size at " + total + " studies is sampling noise in the coverage " +
+        "estimate itself. Run more and it settles towards " + s.level + "%.";
+    }
+
+    interpretation.textContent = text;
+    verdictBox.setAttribute("data-tone", tone);
+  }
+
+  function renderCoverage() {
+    chartHeading.textContent = intervals.length
+      ? intervals.length + " interval" + (intervals.length === 1 ? "" : "s") +
+        " drawn" + (intervals.length > MAX_ROWS
+          ? " (most recent " + MAX_ROWS + " shown)" : "")
+      : "No studies drawn yet";
+    renderCaterpillar();
+    renderOutcomeTable();
+    renderReadout();
+    renderRecent();
+    renderInterpretation();
+  }
+
+  $('[data-action="draw-one"]').addEventListener("click", function () {
+    drawStudies(1);
+    renderCoverage();
+    var iv = intervals[intervals.length - 1];
+    coverShell.announce(
+      "Study " + intervals.length + ": sample mean " + fmt(iv.mean) +
+      ", interval " + fmt(iv.lo) + " to " + fmt(iv.hi) + ". It " +
+      (iv.hit ? "contains" : "misses") + " the true mean of " + fmt(TRUE_MEAN) +
+      ".", { immediate: true });
+  });
+
+  $('[data-action="draw-hundred"]').addEventListener("click", function () {
+    drawStudies(100);
+    renderCoverage();
+    var hits = hitCount();
+    coverShell.announce(
+      intervals.length + " intervals now drawn, " + hits + " of them " +
+      "containing the true mean: " +
+      (100 * hits / intervals.length).toFixed(1) + "% coverage against a " +
+      "nominal " + settings().level + "%.", { immediate: true });
+    openClaims();
+  });
+
+  $('[data-action="clear-pile"]').addEventListener("click", function () {
+    intervals = [];
+    renderCoverage();
+    coverShell.announce("Pile cleared. The design is unchanged.",
+      { immediate: true });
+  });
+
+  /* =======================================================================
+     Experiment 2 — precision against importance
+     ===================================================================== */
+
+  /* Four invented trials. The numbers are chosen to occupy the four corners
+     of the precision-by-importance space and are not estimates of anything. */
+  var CLAIMS = [
+    {
+      name: "StepUp",
+      n: 300,
+      mean: 22.0, lo: 18.0, hi: 26.0,
+      blurb: "A large trial of a reminder app, reporting a substantial change with narrow limits."
+    },
+    {
+      name: "PaceMate",
+      n: 2400,
+      mean: 3.0, lo: 1.2, hi: 4.8,
+      blurb: "A very large trial. The interval is nowhere near zero, and the write-up calls the result highly significant."
+    },
+    {
+      name: "WalkWell",
+      n: 18,
+      mean: 14.0, lo: -6.0, hi: 34.0,
+      blurb: "A small pilot. The interval includes zero, and the write-up concludes that the app did not work."
+    },
+    {
+      name: "StrideAlong",
+      n: 1900,
+      mean: 0.5, lo: -1.5, hi: 2.5,
+      blurb: "A large trial whose interval includes zero. The write-up reports a null result and stops there."
+    }
+  ];
+
+  var VERDICT_LABEL = {
+    important: "beats the threshold",
+    trivial: "real but too small to matter",
+    inconclusive: "too wide to decide",
+    "null": "compatible with nothing worth having"
+  };
+
+  var claimIndex = 0;
+  var claimChoice = null;   // the option checked when the verdict was last checked
+  var claimChecked = false;
+
+  function threshold() { return Number(thresholdRange.value); }
+
+  /** The four patterns are mutually exclusive and exhaustive for lo < hi. */
+  function classify(claim, t) {
+    if (claim.lo >= t) { return "important"; }
+    if (claim.hi >= t) { return "inconclusive"; }
+    return claim.lo > 0 ? "trivial" : "null";
+  }
+
+  function renderClaimChart() {
+    var left = 34;
+    var right = 448;
+    var top = 14;
+    var mid = 54;
+    var base = 92;
+    var AXIS_LO = -16;
+    var AXIS_HI = 40;
+    var claim = CLAIMS[claimIndex];
+    var t = threshold();
+
+    clear(claimChart);
+
+    var x = function (value) {
+      return left + ((value - AXIS_LO) / (AXIS_HI - AXIS_LO)) * (right - left);
+    };
+
+    // The band of changes big enough to matter, tinted and hatched.
+    var bandX = x(t);
+    claimChart.appendChild(svgNode("rect", {
+      x: bandX, y: top, width: Math.max(0, right - bandX), height: base - top,
+      class: "claim__band"
+    }));
+    // 45-degree hatch, clipped analytically to the band so it never spills
+    // past the edges of the region it is marking.
+    var rise = base - top;
+    for (var x0 = bandX - rise; x0 < right; x0 += 10) {
+      var xa = Math.max(x0, bandX);
+      var xb = Math.min(x0 + rise, right);
+      if (xb - xa < 1) { continue; }
+      claimChart.appendChild(svgNode("line", {
+        x1: xa, y1: base - (xa - x0), x2: xb, y2: base - (xb - x0),
+        class: "claim__hatch"
+      }));
+    }
+    claimChart.appendChild(svgText(
+      { x: Math.min(bandX + 5, right - 4), y: top + 11, "text-anchor": "start" },
+      "worth having (" + t + "+)", "chart__label"));
+
+    // Zero.
+    claimChart.appendChild(svgNode("line", {
+      x1: x(0), y1: top, x2: x(0), y2: base, class: "claim__zero"
+    }));
+    claimChart.appendChild(svgText(
+      { x: x(0), y: base - 3, "text-anchor": "middle" },
+      "no change", "chart__axis"));
+
+    // The interval itself.
+    claimChart.appendChild(svgNode("line", {
+      x1: x(claim.lo), y1: mid, x2: x(claim.hi), y2: mid, class: "claim__interval"
+    }));
+    [claim.lo, claim.hi].forEach(function (v) {
+      claimChart.appendChild(svgNode("line", {
+        x1: x(v), y1: mid - 7, x2: x(v), y2: mid + 7, class: "claim__cap"
+      }));
+    });
+    claimChart.appendChild(svgNode("circle", {
+      cx: x(claim.mean), cy: mid, r: 5, class: "claim__point"
+    }));
+
+    claimChart.appendChild(svgText(
+      { x: x(claim.lo), y: mid - 12, "text-anchor": "middle" },
+      fmt(claim.lo), "chart__axis"));
+    claimChart.appendChild(svgText(
+      { x: x(claim.hi), y: mid - 12, "text-anchor": "middle" },
+      fmt(claim.hi), "chart__axis"));
+
+    // Axis.
+    claimChart.appendChild(svgNode("line", {
+      x1: left, y1: base, x2: right, y2: base, class: "ci__axis"
+    }));
+    for (var v2 = -10; v2 <= 40; v2 += 10) {
+      claimChart.appendChild(svgNode("line", {
+        x1: x(v2), y1: base, x2: x(v2), y2: base + 4, class: "ci__axis"
+      }));
+      claimChart.appendChild(svgText(
+        { x: x(v2), y: base + 17, "text-anchor": "middle" },
+        String(v2), "chart__axis"));
+    }
+    claimChart.appendChild(svgText(
+      { x: (left + right) / 2, y: base + 33, "text-anchor": "middle" },
+      "change in minutes walked per day", "chart__axis"));
+  }
+
+  function renderClaimTable() {
+    var claim = CLAIMS[claimIndex];
+    clear(claimTable);
+    [
+      ["Reported mean change", fmt(claim.mean)],
+      ["Lower limit of the 95% interval", fmt(claim.lo)],
+      ["Upper limit of the 95% interval", fmt(claim.hi)],
+      ["Your threshold for a change worth having", fmt(threshold(), 0)]
+    ].forEach(function (pair) {
+      claimTable.appendChild(row(pair));
+    });
+  }
+
+  function renderClaim() {
+    var claim = CLAIMS[claimIndex];
+    claimHeading.textContent =
+      "Claim " + (claimIndex + 1) + " of " + CLAIMS.length + " — the " +
+      claim.name + " trial, n = " + claim.n;
+    claimBrief.textContent = claim.blurb;
+    renderClaimChart();
+    renderClaimTable();
+  }
+
+  function whyNot(chosen, claim, t) {
+    if (chosen === "important") {
+      return "The lower limit of " + fmt(claim.lo) + " is below your threshold " +
+        "of " + t + ", so the interval does not sit entirely at or above it.";
+    }
+    if (chosen === "trivial") {
+      if (claim.lo <= 0) {
+        return "The interval reaches " + fmt(claim.lo) + ", so it does not rule " +
+          "out no change at all.";
+      }
+      return "The upper limit of " + fmt(claim.hi) + " reaches your threshold " +
+        "of " + t + ", so the interval is not entirely below it.";
+    }
+    if (chosen === "inconclusive") {
+      return "Your threshold of " + t + " lies outside the interval [" +
+        fmt(claim.lo) + ", " + fmt(claim.hi) + "], so the interval does not " +
+        "straddle it. The study is precise enough to decide.";
+    }
+    if (claim.lo > 0) {
+      return "The interval starts at " + fmt(claim.lo) + ", above zero, so it " +
+        "is not compatible with no change.";
+    }
+    return "The upper limit of " + fmt(claim.hi) + " reaches your threshold of " +
+      t + ", so a change worth having has not been ruled out.";
+  }
+
+  function explain(claim, t, category) {
+    if (category === "important") {
+      return "The whole interval, from " + fmt(claim.lo) + " to " +
+        fmt(claim.hi) + ", sits at or above your threshold of " + t + ". The " +
+        "data are hard to reconcile both with no change and with any change " +
+        "too small to be worth having. This is the only one of the four " +
+        "patterns that supports a recommendation, and note that it takes both " +
+        "a decent effect and enough precision to get there.";
+    }
+    if (category === "trivial") {
+      return "The interval excludes zero, so something is going on, and its " +
+        "upper limit of " + fmt(claim.hi) + " is still below your threshold " +
+        "of " + t + ". With n = " + claim.n + " the trial is precise enough to " +
+        "establish both that the change is real and that it is too small to " +
+        "matter. This is the case that separates statistical significance from " +
+        "practical importance, and the two are separate questions in every " +
+        "study, not only this one.";
+    }
+    if (category === "inconclusive") {
+      return "The interval runs from " + fmt(claim.lo) + " to " + fmt(claim.hi) +
+        ", and your threshold of " + t + " sits inside it. The data are " +
+        "compatible with a change worth having and with one that is not" +
+        (claim.lo <= 0 ? ", and with no change at all" : "") + ". The honest " +
+        "conclusion is that this study cannot tell them apart - which is not " +
+        "the same conclusion as nothing happened. A study reporting this and " +
+        "concluding that the app failed has confused an absence of evidence " +
+        "with evidence of absence.";
+    }
+    return "The interval includes zero and its upper limit of " + fmt(claim.hi) +
+      " lies below your threshold of " + t + ". That is genuinely informative: " +
+      "this study is precise enough to rule out anything worth having. Compare " +
+      "it with the wide interval in the WalkWell trial. Both would be written " +
+      "up as \"no significant effect\", and only one of them has actually " +
+      "established something.";
+  }
+
+  function evaluateClaim(chosen) {
+    var claim = CLAIMS[claimIndex];
+    var t = threshold();
+    var correct = classify(claim, t);
+    var right = chosen === correct;
+
+    var lead = right
+      ? "Yes - " + VERDICT_LABEL[correct] + "."
+      : "Not this one. The interval " + VERDICT_LABEL[correct] + ".";
+
+    var p = showFeedback(claimFeedback, right ? "good" : "caution", lead,
+      explain(claim, t, correct));
+
+    if (!right) {
+      var extra = make("p");
+      extra.appendChild(make("strong", null, "Why your choice does not fit. "));
+      extra.appendChild(document.createTextNode(whyNot(chosen, claim, t)));
+      claimFeedback.appendChild(extra);
+    }
+
+    var note = make("p");
+    note.appendChild(make("strong", null, "Move the threshold. "));
+    note.appendChild(document.createTextNode(
+      "The interval is fixed data; the threshold is a judgement you supplied. " +
+      "Drag it and watch the correct verdict for this same finding change. " +
+      "Nothing about the study has altered."));
+    claimFeedback.appendChild(note);
+
+    return { right: right, correct: correct, lead: lead, para: p };
+  }
+
+  claimShell.bindRange(thresholdRange, {
+    format: function (v) { return String(v); },
+    describe: function (v) {
+      return v + " minutes of extra walking per day counts as worth having";
+    },
+    onInput: function () {
+      renderClaimChart();
+      renderClaimTable();
+      if (claimChecked && claimChoice) {
+        // Re-mark against the new threshold: this is the demonstration, not a
+        // side effect. The finding has not changed; the verdict may have.
+        evaluateClaim(claimChoice);
+      }
+    }
+  });
+
+  checkButton.addEventListener("click", function () {
+    var chosen = $('input[name="verdict"]:checked', claimShell.controls);
+    if (!chosen) {
+      claimError.textContent =
+        "Choose one of the four verdicts before checking.";
+      claimError.hidden = false;
+      return;
+    }
+    claimError.hidden = true;
+    claimChoice = chosen.value;
+    claimChecked = true;
+    var result = evaluateClaim(claimChoice);
+    nextButton.disabled = claimIndex >= CLAIMS.length - 1;
+    claimShell.announce(result.lead, { immediate: true });
+    if (claimIndex >= CLAIMS.length - 1) {
+      var done = make("p");
+      done.appendChild(make("strong", null, "All four judged. "));
+      done.appendChild(document.createTextNode(
+        "Two of these trials excluded zero and two did not, and that split " +
+        "does not line up with which of them said anything useful. Open " +
+        "\"All four trials side by side\" and read them as a set."));
+      claimFeedback.appendChild(done);
+    }
+  });
+
+  nextButton.addEventListener("click", function () {
+    if (claimIndex >= CLAIMS.length - 1) { return; }
+    claimIndex += 1;
+    claimChecked = false;
+    claimChoice = null;
+    claimFeedback.hidden = true;
+    claimError.hidden = true;
+    $$('input[name="verdict"]', claimShell.controls).forEach(function (input) {
+      input.checked = false;
+    });
+    nextButton.disabled = true;
+    renderClaim();
+    claimShell.announce(
+      "Claim " + (claimIndex + 1) + " of " + CLAIMS.length + ": the " +
+      CLAIMS[claimIndex].name + " trial reported " + fmt(CLAIMS[claimIndex].mean) +
+      " minutes, interval " + fmt(CLAIMS[claimIndex].lo) + " to " +
+      fmt(CLAIMS[claimIndex].hi) + ".", { immediate: true });
+  });
+
+  function fillAllClaims() {
+    clear(allClaimsTable);
+    CLAIMS.forEach(function (claim) {
+      allClaimsTable.appendChild(row([
+        claim.name,
+        String(claim.n),
+        fmt(claim.mean),
+        "[" + fmt(claim.lo) + ", " + fmt(claim.hi) + "]"
+      ]));
+    });
+  }
+
+  function resetClaims() {
+    claimIndex = 0;
+    claimChecked = false;
+    claimChoice = null;
+    thresholdRange.value = String(DEFAULTS.threshold);
+    $$('input[name="verdict"]', claimShell.controls).forEach(function (input) {
+      input.checked = false;
+    });
+    claimFeedback.hidden = true;
+    claimError.hidden = true;
+    nextButton.disabled = true;
+    renderClaim();
+  }
+
+  claimShell.onReset(function () {
+    resetClaims();
+  });
+
+  function openClaims() {
+    if (!claimsSection.hidden) { return; }
+    claimsSection.hidden = false;
+    renderClaim();
+    claimShell.announce(
+      "Experiment 2 has opened below Experiment 1. Four fictional trials are " +
+      "waiting to be judged.", { immediate: true });
+  }
+
+  /* =======================================================================
+     Opening prediction
+     ===================================================================== */
+
+  var OPENING = {
+    all: {
+      tone: "caution",
+      verdict: "No - and the reason matters.",
+      text:
+        "A procedure that caught the truth every time would have to produce " +
+        "intervals wide enough to be useless. The confidence level is the " +
+        "price list: 95% coverage buys a certain width, 99% buys a wider one, " +
+        "and 100% would take you to minus infinity, plus infinity. Run the " +
+        "hundred and count the misses."
+    },
+    ninetyfive: {
+      tone: "good",
+      verdict: "Yes, and the second half of that is the important half.",
+      text:
+        "About 95, whatever n is. Sample size changes how wide the intervals " +
+        "are, not how often they catch the truth. Run the hundred, then drag " +
+        "the sample size from 25 to 200 and watch which number moves."
+    },
+    depends: {
+      tone: "caution",
+      verdict: "The most instructive wrong answer here.",
+      text:
+        "Larger samples do give narrower intervals, which is a real gain in " +
+        "precision. But coverage is fixed by the confidence level, not by n: " +
+        "a 95% procedure catches the truth about 95% of the time whether its " +
+        "intervals are enormous or tiny. Run the hundred at n = 25 and again " +
+        "at n = 200."
+    },
+    sixtyeight: {
+      tone: "caution",
+      verdict: "That is the one-standard-error interval, not this one.",
+      text:
+        "Sixty-eight per cent is roughly the coverage of mean plus or minus " +
+        "one standard error. A 95% interval uses about 1.96 standard errors, " +
+        "which is where the familiar factor comes from. Set the level to 80% " +
+        "and then 99% and watch both the width and the coverage respond."
+    }
+  };
+
+  function lockForm(form) {
+    $$("input, button, select", form).forEach(function (c) { c.disabled = true; });
+  }
+
+  function unlockForm(form) {
+    $$("input, button, select", form).forEach(function (c) { c.disabled = false; });
+    form.reset();
+  }
+
+  function openCoverage() {
+    coverSection.hidden = false;
+    renderCoverage();
+    $("#coverage-heading").focus();
+    coverShell.announce(
+      "Experiment 1 unlocked. No studies drawn yet.", { immediate: true });
+  }
+
+  openingForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answer = $('input[name="opening"]:checked', openingForm);
+    if (!answer) {
+      openingError.textContent =
+        "Choose a prediction before opening the experiment.";
+      openingError.hidden = false;
+      return;
+    }
+    openingError.hidden = true;
+    var feedback = OPENING[answer.value];
+    showFeedback(openingFeedback, feedback.tone, feedback.verdict, feedback.text);
+    lockForm(openingForm);
+    openCoverage();
+  });
+
+  $('[data-action="skip-opening"]').addEventListener("click", function () {
+    openingError.hidden = true;
+    showFeedback(openingFeedback, "neutral",
+      "Prediction skipped — demonstration mode.", "");
+    lockForm(openingForm);
+    openCoverage();
+  });
+
+  /* =======================================================================
+     Challenge
+     ===================================================================== */
+
+  var CHALLENGE_NOTES = {
+    procedure: {
+      correct: true,
+      text:
+        "Correct, and it is very nearly the whole of what the 95% means. The " +
+        "guarantee attaches to the method across repeated samples from the " +
+        "same model, which is why Experiment 1 has to run a hundred studies to " +
+        "show it at all."
+    },
+    prob: {
+      correct: false,
+      text:
+        "Wrong, though it is the phrasing almost everyone uses. Once the " +
+        "sample is collected, the limits 1.2 and 8.4 are fixed numbers and the " +
+        "population value is a fixed number: the interval either contains it " +
+        "or it does not, and no probability is left to attach. A probability " +
+        "statement about where the parameter lies is a credible interval, " +
+        "which needs a prior that this method never supplies."
+    },
+    people: {
+      correct: false,
+      text:
+        "Wrong, and this one is a change of subject rather than a subtlety. " +
+        "The interval is about the population mean, not about individuals. " +
+        "Individual changes here are far more variable than the mean; the " +
+        "range containing 95% of people would be several times wider."
+    },
+    future: {
+      correct: false,
+      text:
+        "Wrong. That describes a prediction interval for a future sample mean, " +
+        "which is a different and wider quantity. Roughly 83% of future means " +
+        "would land inside a 95% confidence interval, not 95%, because the " +
+        "future mean carries its own sampling error on top of this one's."
+    },
+    important: {
+      correct: false,
+      text:
+        "Wrong, and Experiment 2 is built around it. Excluding zero says the " +
+        "data are hard to reconcile with exactly no change. Whether 4.8 extra " +
+        "minutes of walking a day is worth anything is a judgement about " +
+        "walking, and no interval can make it."
+    },
+    ruledout: {
+      correct: false,
+      text:
+        "Wrong, though it is closer than the others. The interval collects the " +
+        "values the data are reasonably compatible with under this model. A " +
+        "value just outside it is only slightly less compatible than one just " +
+        "inside; nothing has been ruled out, and the boundary is a convention " +
+        "rather than a cliff."
+    },
+    width: {
+      correct: true,
+      text:
+        "Correct. Width is proportional to one over the square root of n, so " +
+        "a quarter of the sample gives roughly double the width. That is the " +
+        "property Experiment 1 lets you drag - and note that it is a statement " +
+        "about width alone, because coverage would still be about 95%."
+    }
+  };
+
+  challengeForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var chosen = $$('input[name="challenge"]:checked', challengeForm)
+      .map(function (b) { return b.value; });
+
+    if (!chosen.length) {
+      showFeedback(challengeFeedback, "caution",
+        "Select at least one statement.",
+        "Two of the seven are correct.");
+      return;
+    }
+
+    var wrongPicked = chosen.filter(function (v) {
+      return !CHALLENGE_NOTES[v].correct;
+    });
+    var rightMissed = ["procedure", "width"].filter(function (v) {
+      return chosen.indexOf(v) === -1;
+    });
+
+    var tone = wrongPicked.length ? "warn" : rightMissed.length ? "caution" : "good";
+    var verdictText;
+    if (wrongPicked.length) {
+      verdictText = "At least one of these attaches a probability to the " +
+        "interval, changes the subject to individuals, or reads importance " +
+        "off a boundary.";
+    } else if (rightMissed.length) {
+      verdictText = "Everything you picked is right, and you have missed one " +
+        "of the two correct statements.";
+    } else {
+      verdictText = "Yes - both correct statements, and none of the five " +
+        "misreadings.";
+    }
+
+    clear(challengeFeedback);
+    challengeFeedback.setAttribute("data-tone", tone);
+    var lead = make("p");
+    lead.appendChild(make("strong", "feedback__verdict", verdictText));
+    lead.appendChild(document.createTextNode(
+      " Every one of the five incorrect statements appears regularly in " +
+      "published papers and in textbooks, so recognising them matters more " +
+      "than memorising a form of words."));
+    challengeFeedback.appendChild(lead);
+
+    var list = make("ul");
+    Object.keys(CHALLENGE_NOTES).forEach(function (value) {
+      var li = make("li");
+      li.appendChild(make("strong", null,
+        chosen.indexOf(value) !== -1
+          ? "You selected this. " : "You did not select this. "));
+      li.appendChild(document.createTextNode(CHALLENGE_NOTES[value].text));
+      list.appendChild(li);
+    });
+    challengeFeedback.appendChild(list);
+    challengeFeedback.hidden = false;
+    coverShell.announce(verdictText, { immediate: true });
+  });
+
+  /* =======================================================================
+     Reset and start-up
+     ===================================================================== */
+
+  coverShell.onReset(function () {
+    intervals = [];
+    unlockForm(openingForm);
+    openingFeedback.hidden = true;
+    openingError.hidden = true;
+    coverSection.hidden = true;
+    claimsSection.hidden = true;
+    challengeForm.reset();
+    challengeFeedback.hidden = true;
+    nRange.value = String(DEFAULTS.n);
+    sdRange.value = String(DEFAULTS.sd);
+    levelSelect.value = DEFAULTS.level;
+    seedInput.value = String(DEFAULTS.seed);
+    // Through the shell rather than directly, so the threshold slider's
+    // <output> is re-synced along with the state behind it.
+    claimShell.reset({ silent: true });
+    renderCoverage();
+  });
+
+  fillAllClaims();
+  coverShell.reset({ silent: true });
+  coverShell.announce(
+    "Ready. Answer the prediction above to open Experiment 1.",
+    { immediate: true });
+})();
+
+</script>
+</div>

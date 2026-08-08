@@ -1,0 +1,2984 @@
+<!-- Conformity Under Context
+     From Open Psychology Interactives - https://github.com/utman5454/open-psychology-interactives
+     Self-contained: no stylesheets, scripts, fonts, images or network requests.
+     Styles are scoped to .opi-activity and do not affect the page around them.
+     Nothing is saved, sent or tracked. MIT licensed; please keep this notice.
+     Paste anywhere that accepts HTML, or save as a .html file and open it. -->
+<div class="opi-activity">
+<style>
+/* Defensive baseline. See scripts/build-standalone.py for why this
+   is `revert` rather than an enumerated reset, and how the specificity ladder
+   keeps the activity's own styling on top of it. */
+.opi-activity *:not(svg *) {
+  all: revert;
+}
+.opi-activity, .opi-activity *, .opi-activity *::before, .opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  text-transform: none;
+  text-indent: 0;
+  font-style: normal;
+  font-variant: normal;
+  letter-spacing: normal;
+  word-spacing: normal;
+  white-space: normal;
+  visibility: visible;
+  float: none;
+  max-width: none;
+}
+.opi-activity svg { max-width: 100%; }
+.opi-activity img { max-width: 100%; height: auto; }
+.opi-activity [hidden] { display: none !important; }
+
+/* assets/css/main.css */
+.opi-activity.opi-activity {
+  --colour-page: #ffffff;
+  --colour-surface: #f5f7fa;
+  --colour-surface-raised: #ffffff;
+  --colour-border: #d3d9e2;
+  --colour-border-strong: #aeb7c4;
+  --colour-text: #131820;
+  --colour-text-muted: #4c566a;
+  --colour-accent: #1a4fa0;
+  --colour-accent-hover: #123a7a;
+  --colour-accent-soft: #e8eefb;
+  --colour-on-accent: #ffffff;
+  --colour-focus: #b45309;
+  --colour-cognitive: #8a4b00;
+  --colour-research-methods: #1a4fa0;
+  --colour-neuropsychology: #145c53;
+  --colour-social-critical-psychology: #9e2f45;
+  --colour-personality-individual-differences: #7a2e6d;
+  --colour-status-bg: #f1ede3;
+  --colour-status-text: #5c4a1f;
+  --colour-status-border: #d9cdb0;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  --text-xs: 13px;
+  --text-sm: 15px;
+  --text-base: 17px;
+  --text-lg: 19px;
+  --text-xl: 23px;
+  --text-2xl: 28px;
+  --text-3xl: 36px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgb(19 24 32 / 0.06);
+  --shadow-md: 0 2px 8px rgb(19 24 32 / 0.08);
+  --measure: 68ch;
+  --container: 1152px;
+}
+@media (prefers-color-scheme: dark) {
+.opi-activity.opi-activity {
+  --colour-page: #0f141b;
+  --colour-surface: #161d27;
+  --colour-surface-raised: #1a2230;
+  --colour-border: #2c3644;
+  --colour-border-strong: #44506180;
+  --colour-text: #e9edf3;
+  --colour-text-muted: #a8b2c1;
+  --colour-accent: #8fb6ff;
+  --colour-accent-hover: #b3cdff;
+  --colour-accent-soft: #1b2740;
+  --colour-on-accent: #0f141b;
+  --colour-focus: #f0b429;
+  --colour-cognitive: #e2ab5f;
+  --colour-research-methods: #8fb6ff;
+  --colour-neuropsychology: #6fc3b4;
+  --colour-social-critical-psychology: #f19aa8;
+  --colour-personality-individual-differences: #db9ccd;
+  --colour-status-bg: #241f14;
+  --colour-status-text: #e2cf9f;
+  --colour-status-border: #4a4028;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 2px 10px rgb(0 0 0 / 0.45);
+}
+}
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity.opi-activity {
+  -webkit-text-size-adjust: 100%;
+}
+.opi-activity.opi-activity {
+  background-color: var(--colour-page);
+  color: var(--colour-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.65;
+}
+.opi-activity.opi-activity h1,
+.opi-activity.opi-activity h2,
+.opi-activity.opi-activity h3,
+.opi-activity.opi-activity h4 {
+  margin: 0 0 var(--space-3);
+  line-height: 1.25;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.opi-activity.opi-activity h1 {
+  font-size: var(--text-3xl);
+}
+.opi-activity.opi-activity h2 {
+  font-size: var(--text-2xl);
+}
+.opi-activity.opi-activity h3 {
+  font-size: var(--text-xl);
+}
+.opi-activity.opi-activity h4 {
+  font-size: var(--text-lg);
+}
+.opi-activity.opi-activity p,
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol,
+.opi-activity.opi-activity dl {
+  margin: 0 0 var(--space-4);
+}
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol {
+  padding-left: 1.35em;
+}
+.opi-activity.opi-activity li + li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity a {
+  color: var(--colour-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: max(1px, 0.06em);
+}
+.opi-activity.opi-activity a:hover {
+  color: var(--colour-accent-hover);
+  text-decoration-thickness: max(2px, 0.11em);
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid var(--colour-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+@supports not selector(:focus-visible) {
+.opi-activity.opi-activity :focus {
+  outline: 3px solid var(--colour-focus);
+    outline-offset: 2px;
+}
+}
+.opi-activity.opi-activity code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.35em;
+}
+.opi-activity.opi-activity hr {
+  border: 0;
+  border-top: 1px solid var(--colour-border);
+  margin: var(--space-6) 0;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+}
+.opi-activity.opi-activity .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.opi-activity.opi-activity .container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+@media (min-width: 40em) {
+.opi-activity.opi-activity .container {
+  padding-inline: var(--space-5);
+}
+}
+.opi-activity.opi-activity .prose {
+  max-width: var(--measure);
+}
+.opi-activity.opi-activity .text-muted {
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .section {
+  padding-block: var(--space-7);
+}
+.opi-activity.opi-activity .section--tinted {
+  background-color: var(--colour-surface);
+  border-block: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .section__header {
+  max-width: var(--measure);
+  margin-bottom: var(--space-5);
+}
+.opi-activity.opi-activity .section__header > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-7) var(--space-6);
+  border-bottom: 1px solid var(--colour-border);
+  
+  background-image: linear-gradient(
+    180deg,
+    var(--colour-accent-soft) 0%,
+    var(--colour-page) 100%
+  );
+}
+.opi-activity.opi-activity .hero__eyebrow {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .hero h1 {
+  max-width: 20ch;
+  margin-bottom: var(--space-4);
+}
+.opi-activity.opi-activity .hero__lead {
+  max-width: var(--measure);
+  font-size: var(--text-lg);
+  color: var(--colour-text-muted);
+}
+@media (min-width: 48em) {
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-8) var(--space-7);
+}
+.opi-activity.opi-activity .hero h1 {
+  font-size: 44px;
+}
+}
+.opi-activity.opi-activity .button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  
+  min-height: 44px;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .button--primary {
+  background-color: var(--colour-accent);
+  border-color: var(--colour-accent);
+  
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--primary:hover {
+  background-color: var(--colour-accent-hover);
+  border-color: var(--colour-accent-hover);
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--secondary {
+  background-color: transparent;
+  border-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .button--secondary:hover {
+  background-color: var(--colour-surface);
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+}
+.opi-activity.opi-activity .card--cognitive {
+  --card-accent: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .card--research-methods {
+  --card-accent: var(--colour-research-methods);
+}
+.opi-activity.opi-activity .card--neuropsychology {
+  --card-accent: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .card--social-critical-psychology {
+  --card-accent: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .card--personality-individual-differences {
+  --card-accent: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 650;
+  line-height: 1.4;
+  padding: 3.2px var(--space-3);
+  border-radius: 999px;
+  border: 1px solid var(--colour-status-border);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+}
+.opi-activity.opi-activity .badge__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex: none;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed var(--colour-border-strong);
+  border-radius: var(--radius-lg);
+  background-color: var(--colour-surface);
+  padding: var(--space-5);
+  text-align: left;
+}
+.opi-activity.opi-activity .placeholder__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+}
+.opi-activity.opi-activity .placeholder > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .split {
+  display: grid;
+  gap: var(--space-6);
+}
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split {
+  grid-template-columns: 3fr 2fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .panel {
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.opi-activity.opi-activity .panel > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .panel__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .section--tinted {
+  border-block: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .hero {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .button--primary {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .button--secondary {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .button:hover {
+  border-color: Highlight;
+}
+.opi-activity.opi-activity .panel {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed CanvasText;
+}
+.opi-activity.opi-activity .badge {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .badge__dot {
+  background-color: CanvasText;
+}
+.opi-activity.opi-activity code {
+  border-color: CanvasText;
+}
+.opi-activity.opi-activity hr {
+  border-top-color: CanvasText;
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+}
+@media print {
+.opi-activity.opi-activity {
+  color: #000;
+  background: #fff;
+}
+.opi-activity.opi-activity a[href^="http"]::after {
+  content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+}
+}
+
+/* components/interactive-shell.css */
+.opi-activity.opi-activity .interactive {
+  --shell-page: var(--colour-page, #ffffff);
+  --shell-surface: var(--colour-surface, #f5f7fa);
+  --shell-raised: var(--colour-surface-raised, #ffffff);
+  --shell-border: var(--colour-border, #d3d9e2);
+  --shell-border-strong: var(--colour-border-strong, #aeb7c4);
+  --shell-text: var(--colour-text, #131820);
+  --shell-muted: var(--colour-text-muted, #4c566a);
+  --shell-accent: var(--colour-accent, #1a4fa0);
+  --shell-accent-soft: var(--colour-accent-soft, #e8eefb);
+  
+  --shell-on-accent: var(--colour-on-accent, #ffffff);
+  --shell-focus: var(--colour-focus, #b45309);
+  --shell-radius: var(--radius-lg, 12px);
+  --shell-gap: var(--space-5, 24px);
+
+  display: block;
+  background-color: var(--shell-raised);
+  color: var(--shell-text);
+  border: 1px solid var(--shell-border);
+  border-radius: var(--shell-radius);
+  
+  overflow-x: clip;
+  overflow-y: visible;
+}
+.opi-activity.opi-activity .interactive__header {
+  padding: var(--shell-gap);
+  border-bottom: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 1.25;
+}
+.opi-activity.opi-activity .interactive__brief {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--shell-muted);
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__body {
+  display: grid;
+  gap: var(--shell-gap);
+  padding: var(--shell-gap);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body {
+  grid-template-columns: minmax(240px, 320px) 1fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .interactive__controls {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__controls fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .interactive__controls legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .control {
+  display: grid;
+  gap: 5.6px;
+}
+.opi-activity.opi-activity .control + .control {
+  margin-top: 16px;
+}
+.opi-activity.opi-activity .control__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.opi-activity.opi-activity .control__label {
+  font-size: 15px;
+  font-weight: 600;
+}
+.opi-activity.opi-activity .control__value {
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--shell-accent);
+}
+.opi-activity.opi-activity .control__hint {
+  font-size: 13px;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .interactive__controls input[type="range"] {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--shell-accent);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  width: 100%;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--shell-text);
+  background-color: var(--shell-raised);
+  border: 1px solid var(--shell-border-strong);
+  border-radius: var(--radius-sm, 4px);
+}
+.opi-activity.opi-activity .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+}
+.opi-activity.opi-activity .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  accent-color: var(--shell-accent);
+  flex: none;
+}
+.opi-activity.opi-activity .interactive__stage {
+  min-height: 256px;
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-page);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body--pinned {
+  align-items: stretch;
+}
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: sticky;
+    top: 0;
+    z-index: 2;
+    
+    margin: -16px -16px 0;
+    padding: 16px 16px 12px;
+    background-color: var(--shell-page);
+    border-bottom: 1px solid var(--shell-border);
+}
+}
+@media (min-width: 52em) and (max-height: 30em) {
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: static;
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
+}
+}
+.opi-activity.opi-activity .interactive__stage > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity :where(.interactive__stage) svg,
+.opi-activity.opi-activity :where(.interactive__stage) canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+.opi-activity.opi-activity .interactive__readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout div {
+  padding: 9.6px 12px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-sm, 4px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__readout dt {
+  font-size: 13px;
+  color: var(--shell-muted);
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout dd {
+  margin: 2.4px 0 0;
+  font-size: 18px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .interactive__status {
+  margin: 0;
+  padding: 12px var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+  font-size: 15px;
+  color: var(--shell-muted);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .interactive__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+}
+.opi-activity.opi-activity .interactive__actions button {
+  min-height: 44px;
+  padding: 6.4px 20px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--shell-on-accent);
+  background-color: var(--shell-accent);
+  border: 1px solid var(--shell-accent);
+  border-radius: var(--radius-md, 8px);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  color: var(--shell-text);
+  background-color: transparent;
+  border-color: var(--shell-border-strong);
+}
+.opi-activity.opi-activity .interactive__actions button:hover {
+  filter: brightness(1.08);
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__notes > summary {
+  padding: 13.6px var(--shell-gap);
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__notes > div {
+  padding: 0 var(--shell-gap) var(--shell-gap);
+  max-width: 68ch;
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__notes > div > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity .interactive *,
+.opi-activity.opi-activity .interactive *::before,
+.opi-activity.opi-activity .interactive *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+}
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .interactive,
+.opi-activity.opi-activity .interactive__controls,
+.opi-activity.opi-activity .interactive__stage,
+.opi-activity.opi-activity .interactive__readout div {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__header {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__status,
+.opi-activity.opi-activity .interactive__actions,
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__actions button {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  border-width: 1px;
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 1;
+    color: GrayText;
+    border-color: GrayText;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__stage svg {
+  forced-color-adjust: auto;
+}
+}
+
+/* components/tool-kit.css */
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split--wide {
+  grid-template-columns: 1fr 1fr;
+}
+}
+.opi-activity.opi-activity .how-to {
+  padding-left: 19.2px;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .how-to > li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .table-scroll {
+  overflow-x: auto;
+  
+  position: relative;
+}
+.opi-activity.opi-activity .prediction {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 832px;
+}
+.opi-activity.opi-activity .prediction > *,
+.opi-activity.opi-activity .challenge > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity .prediction__group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .prediction__legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-weight: 650;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .prediction .control--choice,
+.opi-activity.opi-activity .challenge .control--choice,
+.opi-activity.opi-activity .evidence .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .prediction .control--choice input,
+.opi-activity.opi-activity .challenge .control--choice input,
+.opi-activity.opi-activity .evidence .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .prediction__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .prediction__error {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-status-border);
+  border-left: 4px solid var(--colour-status-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .prediction__readback {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .feedback[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .feedback[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .feedback[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .feedback__verdict {
+  font-weight: 700;
+}
+.opi-activity.opi-activity .verdict {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .verdict__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict__body {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .verdict__body + .verdict__body {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .verdict__note {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .verdict[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .verdict[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .goal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .goal__label {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .goal__text {
+  flex: 1 1 256px;
+}
+.opi-activity.opi-activity .goal strong {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .goal__checks {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+  display: grid;
+  gap: 2.4px;
+}
+.opi-activity.opi-activity .goal__checks > li {
+  margin-top: 0;
+  padding-left: 22.4px;
+  position: relative;
+}
+.opi-activity.opi-activity .goal__checks > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 9.6px;
+  height: 9.6px;
+  border: 2px solid var(--colour-border-strong);
+  border-radius: 2px;
+}
+.opi-activity.opi-activity .goal__checks > li[data-met="yes"]::before {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .stage-track {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .stage-track > li {
+  margin-top: 0;
+  flex: 1 1 160px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-bottom: 3px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .stage-track > li > span {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.opi-activity.opi-activity .stage-track > li[data-state="done"] {
+  border-bottom-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border-bottom-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+  color: var(--colour-text);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .stage__heading {
+  margin: 0;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .data-table,
+.opi-activity.opi-activity .chart__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .data-table th,
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table th,
+.opi-activity.opi-activity .chart__table td {
+  padding: 6.4px 9.6px;
+  border: 1px solid var(--colour-border);
+  text-align: left;
+  vertical-align: top;
+}
+.opi-activity.opi-activity .data-table thead th,
+.opi-activity.opi-activity .chart__table thead th {
+  background-color: var(--colour-surface);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table td {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__table tbody th,
+.opi-activity.opi-activity .data-table tbody th {
+  font-weight: 550;
+}
+.opi-activity.opi-activity .data-table__total > th,
+.opi-activity.opi-activity .data-table__total > td {
+  border-top: 2px solid var(--colour-border-strong);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart {
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .chart__caption {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__svg {
+  max-width: 100%;
+  height: auto;
+}
+.opi-activity.opi-activity .chart__label,
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__inline,
+.opi-activity.opi-activity .chart__axis {
+  font-family: var(--font-body);
+  fill: var(--colour-text);
+  font-size: 13px;
+}
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__axis {
+  fill: var(--colour-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: var(--colour-on-accent);
+  font-size: 12px;
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__track {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__bar {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--one {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .chart__baseline,
+.opi-activity.opi-activity .chart__grid {
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__line {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: var(--colour-personality-individual-differences);
+  stroke-dasharray: 6 4;
+}
+.opi-activity.opi-activity .chart__point {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .reveal > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .reveal__lead {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+.opi-activity.opi-activity .reveal__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(176px, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+  padding: 0;
+  list-style: none;
+}
+.opi-activity.opi-activity .reveal__figures > li {
+  margin-top: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+.opi-activity.opi-activity .reveal__figure-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .reveal__figure-value {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .challenge {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+.opi-activity.opi-activity .challenge__locked {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .panel--caution {
+  background-color: var(--colour-status-bg);
+  border-color: var(--colour-status-border);
+}
+.opi-activity.opi-activity .panel--caution li + li {
+  margin-top: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .goal,
+.opi-activity.opi-activity .verdict,
+.opi-activity.opi-activity .feedback,
+.opi-activity.opi-activity .prediction__error,
+.opi-activity.opi-activity .prediction__readback,
+.opi-activity.opi-activity .stage-track > li,
+.opi-activity.opi-activity .reveal__figures > li {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border: 2px solid Highlight;
+}
+.opi-activity.opi-activity .chart__bar,
+.opi-activity.opi-activity .chart__bar--one {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: Canvas;
+}
+.opi-activity.opi-activity .chart__line {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: Highlight;
+}
+}
+.opi-activity.opi-activity .stage__more {
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .stage__more > summary {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .stage__more[open] > summary {
+  border-bottom: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .stage__more > *:not(summary) {
+  margin: var(--space-3);
+}
+
+/* modules/social-critical-psychology/tools/04-conformity-under-context/tool.css */
+.opi-activity.opi-activity #conformity-lab .interactive__controls,
+.opi-activity.opi-activity #conformity-lab .interactive__stage {
+  min-width: 0;
+}
+.opi-activity.opi-activity #conformity-lab .interactive__stage > * {
+  min-width: 0;
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity #conformity-lab .interactive__body {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+}
+@media (min-width: 76em) {
+.opi-activity.opi-activity #conformity-lab .interactive__body {
+  grid-template-columns: minmax(0, 400px) minmax(0, 1fr);
+}
+}
+.opi-activity.opi-activity .preset-buttons {
+  display: grid;
+  gap: var(--space-2);
+}
+.opi-activity.opi-activity .preset-buttons .button {
+  min-height: 44px;
+  text-align: left;
+}
+.opi-activity.opi-activity .stage-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.opi-activity.opi-activity .stage-nav .button {
+  min-height: 44px;
+}
+.opi-activity.opi-activity .prevalence {
+  margin: 0;
+  font-size: var(--text-lg);
+  font-weight: 650;
+  line-height: 1.3;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .driver {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .spec__coherence {
+  margin: 0;
+  padding: var(--space-2) var(--space-3);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity #conformity-lab .route-chart {
+  max-width: 416px;
+}
+.opi-activity.opi-activity .histogram {
+  max-width: 416px;
+}
+.opi-activity.opi-activity .bar--normative {
+  fill: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .bar--informational {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .bar--never {
+  fill: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .claims__results {
+  margin: var(--space-3) 0 0;
+  padding-left: 19.2px;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .claims__results > li {
+  margin-top: 0;
+  padding-left: var(--space-3);
+  border-left: 3px solid var(--colour-border-strong);
+}
+.opi-activity.opi-activity .claims__results > li[data-agreed="yes"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .claims__results > li[data-agreed="no"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .claims__result-head {
+  margin: 0 0 var(--space-1);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .spec__coherence,
+.opi-activity.opi-activity .claims__results > li {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .bar--normative,
+.opi-activity.opi-activity .bar--never {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .bar--informational {
+  fill: Highlight;
+}
+}
+</style>
+
+  <!-- ================= Title and purpose ================= -->
+  <section class="section card--social-critical-psychology" aria-labelledby="page-heading">
+    <div class="container">
+
+      <p class="hero__eyebrow" style="color: var(--colour-social-critical-psychology)">
+        Social and Critical Psychology
+      </p>
+      <h1 id="page-heading">Conformity Under Context</h1>
+      <p class="hero__lead">
+        Six things you can change about a fictional group judgement, two
+        different routes by which people end up agreeing, and the distribution
+        that every headline conformity percentage is hiding.
+      </p>
+
+      <p>
+        <span class="badge">
+          <span class="badge__dot" aria-hidden="true"></span>
+          Simulated - a fictional task, a model with visible parameters, no historical dataset reproduced
+        </span>
+      </p>
+
+      <div class="split split--wide">
+
+        <div class="panel">
+          <h2 class="panel__title">Learning objective</h2>
+          <p>
+            By the end you should be able to tell informational from
+            normative influence by what moves each, and say why “people
+            conform” is not a finding without a context.
+          </p>
+          <p class="text-muted">
+            About 30 minutes. Nothing you do here is saved or sent anywhere.
+          </p>
+        </div>
+
+        <div class="panel panel--caution">
+          <h2 class="panel__title">The task, and what it is not</h2>
+          <p>
+            Six people look at a fictional display and say how many marks it
+            contains. The original studies used line lengths and points of
+            light; nothing here reproduces their stimuli, their procedure or
+            their data. The percentages come from a small two-route model
+            whose parameters are printed on screen. They are chosen to put the
+            classic conditions in roughly the right order of magnitude, which
+            is a teaching decision, not a replication.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="how-to">
+        <h2 class="panel__title">How to use this</h2>
+        <ol>
+          <li>Commit to a percentage before you see any conditions.</li>
+          <li>
+            Experiment 1: load the classic condition, then change one thing at
+            a time. Every condition you run is kept in the comparison table.
+          </li>
+          <li>
+            Watch the split between the two routes, not only the total.
+          </li>
+          <li>
+            Experiment 2: look at the 100 simulated participants behind the
+            percentage you have been reading.
+          </li>
+        </ol>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= Opening prediction ================= -->
+  <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="opening-heading">First, a judgement</h2>
+        <p class="prose">
+          A fictional participant sits with five other people. They are shown a
+          display and asked in turn how many marks it contains. The answer is
+          obvious. On twelve of the eighteen rounds, all five of the others
+          give the same clearly wrong answer out loud before the participant
+          replies.
+        </p>
+      </div>
+
+      <noscript>
+        <div class="placeholder">
+          <h3 class="placeholder__title">This part needs JavaScript</h3>
+          <p class="prose">
+            The laboratory computes conformity rates and simulates participants
+            in your browser, so it cannot run with JavaScript switched off. The
+            rest of this page is readable without it.
+          </p>
+        </div>
+      </noscript>
+
+      <form class="panel prediction" id="opening-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            On what percentage of those twelve rounds will the participant go
+            along with the group?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="low">
+            Under 10% - people can see what is in front of them
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="third">
+            Around a third
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="most">
+            Two thirds or more - the pressure is enormous
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="depends">
+            The question is not answerable until I know more about the situation
+          </label>
+        </fieldset>
+
+        <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Record my answer and open the laboratory
+          </button>
+          <button class="button button--secondary" type="button" data-action="skip-opening">
+            Skip - I am demonstrating this
+          </button>
+        </div>
+
+        <div class="feedback" data-opening-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= The laboratory ================= -->
+  <section class="section" id="lab-section" aria-labelledby="lab-heading" hidden>
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="lab-heading" tabindex="-1">The laboratory</h2>
+      </div>
+
+      <section class="interactive" id="conformity-lab" data-interactive
+               data-reset-message="Everything cleared. Back to the opening judgement.">
+
+        <header class="interactive__header">
+          <h3 class="interactive__title">Two routes, six conditions</h3>
+          <p class="interactive__brief">
+            The figure at the top of the result is the percentage of critical
+            rounds on which the average simulated participant goes along. The
+            two bars under it are why.
+          </p>
+          <ol class="stage-track" data-stage-track>
+            <li data-stage="1"><span>1.</span> Build a condition</li>
+            <li data-stage="2"><span>2.</span> The people behind the percentage</li>
+          </ol>
+        </header>
+
+        <div class="interactive__body interactive__body--pinned">
+
+          <form class="interactive__controls" data-interactive-controls>
+
+            <fieldset data-stage="1">
+              <legend>Classic conditions</legend>
+              <p class="control__hint">
+                Each button loads a recognisable set-up. Loading one records it
+                in the comparison table underneath the result.
+              </p>
+              <div class="preset-buttons" data-presets></div>
+            </fieldset>
+
+            <fieldset data-stage="1">
+              <legend>The situation</legend>
+              <div data-controls></div>
+            </fieldset>
+
+            <fieldset data-stage="2">
+              <legend>Experiment 2. One percentage, one hundred people</legend>
+              <p class="control__hint">
+                The condition is whatever you left it as in experiment 1. This
+                experiment does not change it - it opens it up.
+              </p>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="trials-range">
+                    Critical rounds per participant
+                  </label>
+                  <output class="control__value" for="trials-range">12</output>
+                </div>
+                <input type="range" id="trials-range" min="3" max="24" step="1" value="12">
+                <p class="control__hint">
+                  More rounds gives a steadier estimate for each person and
+                  changes nothing about the group average.
+                </p>
+              </div>
+            </fieldset>
+
+            <div class="stage-nav">
+              <button class="button button--secondary" type="button" data-action="prev">
+                Previous experiment
+              </button>
+              <button class="button button--primary" type="button" data-action="next">
+                Next experiment
+              </button>
+            </div>
+
+          </form>
+
+          <div class="interactive__stage" data-interactive-stage>
+
+            <div class="stage__primary" data-stage="1">
+              <h4 class="stage__heading">Conformity on critical rounds</h4>
+              <p class="prevalence" data-rate></p>
+              <figure class="chart">
+                <figcaption class="visually-hidden">
+                  The share of the conformity attributable to each route
+                </figcaption>
+                <svg class="chart__svg route-chart" data-routes viewBox="0 0 320 76"
+                     aria-hidden="true" focusable="false"></svg>
+                <p class="chart__caption" data-routes-text></p>
+              </figure>
+            </div>
+
+            <div class="stage__primary" data-stage="2" hidden>
+              <h4 class="stage__heading">The 100 people behind it</h4>
+              <p class="prevalence" data-distribution-lead></p>
+              <p class="driver" data-distribution-note></p>
+            </div>
+
+            <div data-stage="1">
+              <h4 class="stage__heading">Conditions you have run</h4>
+              <div class="table-scroll">
+                <table class="data-table">
+                  <caption class="visually-hidden">
+                    Each condition run so far, with its conformity rate and the
+                    contribution of each route
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Condition</th>
+                      <th scope="col">Conformity</th>
+                      <th scope="col">Normative</th>
+                      <th scope="col">Informational</th>
+                    </tr>
+                  </thead>
+                  <tbody data-history></tbody>
+                </table>
+              </div>
+              <p class="spec__coherence" data-history-note></p>
+            </div>
+
+            <div data-stage="2" hidden>
+              <figure class="chart">
+                <figcaption class="chart__caption">
+                  How many of the 100 conformed how often
+                </figcaption>
+                <svg class="chart__svg histogram" data-histogram viewBox="0 0 320 150"
+                     aria-hidden="true" focusable="false"></svg>
+                <div class="table-scroll">
+                  <table class="chart__table">
+                    <caption class="visually-hidden">
+                      Number of simulated participants conforming on each share
+                      of critical rounds
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Conformed on</th>
+                        <th scope="col">People</th>
+                      </tr>
+                    </thead>
+                    <tbody data-histogram-table></tbody>
+                  </table>
+                </div>
+              </figure>
+              <div class="verdict" data-distribution-verdict></div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <p class="interactive__status" data-interactive-status role="status"></p>
+
+        <div class="interactive__actions">
+          <button type="button" data-action="worked">
+            Worked example
+          </button>
+          <button type="button" data-variant="secondary" data-action="clear-history">
+            Clear the comparison table
+          </button>
+          <button type="button" data-variant="secondary" data-interactive-reset>
+            Reset everything
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ================= Challenge ================= -->
+  <section class="section section--tinted" id="challenge" aria-labelledby="challenge-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="challenge-heading">Challenge - which route is being manipulated?</h2>
+        <p class="prose">
+          Each change below would move the conformity rate. Say whether it acts
+          mainly through the normative route, mainly through the informational
+          route, or through both.
+        </p>
+      </div>
+
+      <form class="panel challenge" id="claims-form">
+        <div data-claims-list></div>
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Check my judgements
+          </button>
+        </div>
+        <div class="feedback" data-claims-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Debrief ================= -->
+  <section class="section" id="debrief" aria-labelledby="debrief-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="debrief-heading">What this demonstrates</h2>
+      </div>
+
+      <div class="split split--wide">
+
+        <div class="prose">
+          <h3>Two routes, distinguished by what moves them</h3>
+          <p>
+            Informational influence is a response to uncertainty: other people
+            are evidence about what is the case, and the harder the judgement
+            the better evidence they are. Normative influence is a response to
+            the social consequences of dissenting: it needs an audience. The
+            manipulation that separates them is not a debate about
+            definitions - it is the private response condition, which strips
+            out the audience and leaves the evidence. Where private responding
+            barely helps, the person is not caving in; they have been
+            persuaded.
+          </p>
+
+          <h3>Unanimity is not a headcount</h3>
+          <p>
+            Adding a fourth, fifth or sixth confederate does very little.
+            Removing the unanimity does a great deal, and the size of the
+            remaining majority hardly matters. What a single dissenter changes
+            is not the arithmetic of the group but the availability of another
+            answer: once one person has said something else out loud, the
+            majority position stops being the only thing it is possible to say.
+          </p>
+
+          <h3>It matters who the group is</h3>
+          <p>
+            The classic account represents the others as an audience and as a
+            source of information, and is silent about whether they are
+            <em>your</em> group. Turn identification down and the normative
+            route weakens sharply even with everything else held constant.
+            This is the social-identity amendment: influence flows along the
+            lines of who counts as us, and a unanimous majority of people you
+            do not regard as comparable to yourself is a much weaker thing than
+            the number suggests.
+          </p>
+
+          <h3>The headline percentage is a distribution</h3>
+          <p>
+            A rate of a third across critical rounds is compatible with
+            everybody conforming a third of the time, and it is also
+            compatible - which is closer to what happens - with a quarter of
+            people never conforming at all, a middle group conforming
+            occasionally, and a minority conforming most of the time.
+            Experiment 2 shows the distribution behind whatever number you have
+            been reading. "People conform" and "most people mostly resisted"
+            can be two descriptions of the same result.
+          </p>
+
+          <h3>Classic effects are not constants</h3>
+          <p>
+            The rates in the original studies are not physical constants of the
+            species. They depend on how ambiguous the task is, who the majority
+            are taken to be, what dissent costs in that setting, and what the
+            participants think the study is for. Later replications in
+            different decades and countries have produced a wide range of
+            figures, and reading that variation as noise around a true value
+            gets the situation backwards: the variation is the finding.
+          </p>
+        </div>
+
+        <aside class="panel panel--caution" aria-labelledby="limits-heading">
+          <h3 class="panel__title" id="limits-heading">
+            What this does <em>not</em> demonstrate
+          </h3>
+          <ul>
+            <li>
+              <strong>No historical study is reproduced.</strong> The task, the
+              stimuli, the procedure and the numbers are invented. The presets
+              are named after recognisable set-ups so the comparison is
+              legible; they are not those experiments and their outputs are not
+              those results.
+            </li>
+            <li>
+              <strong>Two routes is a simplification.</strong> Referent
+              informational influence, self-categorisation, obedience to a
+              perceived experimenter demand, politeness and simple boredom are
+              all absent from the model.
+            </li>
+            <li>
+              <strong>Going along is not the same as believing.</strong> The
+              model estimates a public response. Whether the person's private
+              judgement changed is a separate question, and the private
+              condition is the closest this tool gets to it.
+            </li>
+            <li>
+              <strong>Conformity is not a character flaw.</strong> Agreeing
+              with five other people who all say the same thing is often
+              sensible, and the ability of a group to converge is the basis of
+              most of what people know. The interesting question is when it
+              goes wrong.
+            </li>
+            <li>
+              <strong>Nobody is assessed.</strong> No task is administered to
+              the person using the tool, and the simulated participants are not
+              modelled on anybody.
+            </li>
+          </ul>
+        </aside>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+<script>
+/* ---- components/interactive-shell.js ---- */
+/* =========================================================================
+   Open Psychology Interactives — interactive shell helper
+   -------------------------------------------------------------------------
+   A very small vanilla-JS helper that every interactive in this collection
+   uses. It deliberately does *not* draw anything or know anything about
+   statistics, personality or neuropsychology. Its job is the repetitive,
+   easy-to-get-wrong accessibility plumbing:
+
+     * announcing changes through a polite live region;
+     * keeping a range slider and its <output> in step;
+     * wiring the standard Reset button;
+     * reporting the reader's reduced-motion preference.
+
+   Usage (see docs/adapting-a-tool.md for the full markup contract):
+
+       <script src="../../components/interactive-shell.js" defer><\/script>
+       <script src="tool.js" defer><\/script>
+
+       // in tool.js
+       const shell = InteractiveShell.attach('#sampling-demo');
+       shell.onReset(() => { ...restore defaults...; draw(); });
+       shell.bindRange('#sample-size', { format: n => n + ' cases' });
+       shell.announce('Sample of 25 drawn. Mean 4.8.');
+
+   Every published interactive is written against this module.
+
+   Exposed as a global (window.InteractiveShell) rather than an ES module so
+   that a single interactive folder can be opened directly from disk over
+   file:// — ES modules are blocked by CORS in that situation, plain scripts
+   are not. That constraint is the whole reason for the older syntax here.
+   ========================================================================= */
+
+(function (global) {
+  "use strict";
+
+  /* -----------------------------------------------------------------------
+     Internal helpers
+     --------------------------------------------------------------------- */
+
+  /**
+   * Accept either a CSS selector or an element and return an element.
+   * @param {string|Element} target
+   * @param {ParentNode} [scope]
+   * @returns {Element|null}
+   */
+  function resolve(target, scope) {
+    if (!target) {
+      return null;
+    }
+    if (typeof target === "string") {
+      return (scope || document).querySelector(target);
+    }
+    return target;
+  }
+
+  /**
+   * True when the reader has asked the operating system to reduce motion.
+   * Interactives should check this before animating anything — for example
+   * by drawing a sampling distribution in one step instead of animating
+   * each draw.
+   * @returns {boolean}
+   */
+  function prefersReducedMotion() {
+    return (
+      typeof global.matchMedia === "function" &&
+      global.matchMedia("(prefers-reduced-motion: reduce)").matches
+    );
+  }
+
+  /* -----------------------------------------------------------------------
+     Shell controller
+     --------------------------------------------------------------------- */
+
+  /**
+   * Attach the shell behaviour to one `.interactive` element.
+   *
+   * @param {string|Element} target  Selector or element for the shell root.
+   * @returns {object|null}  Controller, or null if the root was not found.
+   */
+  function attach(target) {
+    var root = resolve(target);
+
+    if (!root) {
+      if (global.console && console.warn) {
+        console.warn("InteractiveShell: root element not found.", target);
+      }
+      return null;
+    }
+
+    var controls = root.querySelector("[data-interactive-controls]");
+    var stage = root.querySelector("[data-interactive-stage]");
+    var status = root.querySelector("[data-interactive-status]");
+    var resetButton = root.querySelector("[data-interactive-reset]");
+    var resetHandlers = [];
+    // Every range bound with bindRange() registers its sync function here, so
+    // that reset() can refresh the visible values after the tool's own reset
+    // handlers have restored the inputs. See reset() for why this is needed.
+    var rangeSyncs = [];
+
+    /* --- Live region ----------------------------------------------------
+       The status element is marked up as role="status" (implicitly
+       aria-live="polite"). Two details matter:
+
+         1. Assistive technology only announces *changes* to a live region,
+            so writing the same string twice is silently dropped. We add a
+            trailing zero-width space on repeat messages to force an
+            announcement when a student re-runs the same action.
+         2. Announcements are debounced. A slider dragged across its range
+            fires dozens of input events; without a delay a screen reader
+            would queue every intermediate value and fall far behind.
+       ------------------------------------------------------------------ */
+
+    var announceTimer = null;
+    var lastMessage = "";
+
+    /**
+     * Announce a short sentence describing what just changed.
+     * @param {string} message
+     * @param {object} [options]
+     * @param {boolean} [options.immediate]  Skip the debounce delay. Use for
+     *   discrete actions (button presses); leave off for continuous input.
+     */
+    function announce(message, options) {
+      if (!status) {
+        return;
+      }
+
+      var text = String(message == null ? "" : message);
+      var immediate = Boolean(options && options.immediate);
+
+      if (announceTimer !== null) {
+        global.clearTimeout(announceTimer);
+        announceTimer = null;
+      }
+
+      function write() {
+        // Force a change when the text is identical to last time.
+        status.textContent = text === lastMessage ? text + "​" : text;
+        lastMessage = text;
+      }
+
+      if (immediate) {
+        write();
+      } else {
+        announceTimer = global.setTimeout(write, 350);
+      }
+    }
+
+    /* --- Reset ---------------------------------------------------------- */
+
+    /**
+     * Register a callback to run when the Reset button is pressed.
+     * Several may be registered; they run in the order added.
+     * @param {Function} handler
+     */
+    function onReset(handler) {
+      if (typeof handler === "function") {
+        resetHandlers.push(handler);
+      }
+    }
+
+    /**
+     * Run the reset handlers. Called by the button and available directly so
+     * an interactive can reset itself on first load.
+     *
+     * Bound ranges are re-synced afterwards. A reset handler restores an
+     * input by assigning to `input.value`, and assigning to a value in script
+     * does not fire an `input` event — so without this step the slider would
+     * jump back to its default while its <output> went on showing the old
+     * number. Syncing here, after the handlers have run, also means the sync
+     * sees the restored values regardless of the order things were
+     * registered in.
+     *
+     * @param {object} [options]
+     * @param {boolean} [options.silent]  Suppress the status announcement.
+     */
+    function reset(options) {
+      resetHandlers.forEach(function (handler) {
+        handler();
+      });
+      rangeSyncs.forEach(function (sync) {
+        sync();
+      });
+      if (!options || !options.silent) {
+        announce(
+          root.getAttribute("data-reset-message") ||
+            "Reset to the starting values.",
+          { immediate: true }
+        );
+      }
+    }
+
+    if (resetButton) {
+      resetButton.addEventListener("click", function (event) {
+        // Reset buttons commonly sit inside the controls <form>; stop the
+        // browser's own form reset from fighting with ours.
+        event.preventDefault();
+        reset();
+      });
+    }
+
+    /* --- Range binding --------------------------------------------------
+       Keeps a slider's <output> in step with its value. The <output> must
+       carry `for="<input id>"`, which is what associates the two for
+       assistive technology; this only handles the visible text.
+
+       Optionally sets aria-valuetext, which is how you make a screen reader
+       say "25 cases" or "medium correlation" instead of a bare "25".
+       ------------------------------------------------------------------ */
+
+    /**
+     * @param {string|Element} inputTarget  The range (or number) input.
+     * @param {object} [options]
+     * @param {Function} [options.format]  value:number -> string shown in the
+     *   <output>. Defaults to the raw value.
+     * @param {Function} [options.describe]  value:number -> string used for
+     *   aria-valuetext. Defaults to options.format.
+     * @param {Function} [options.onInput]  value:number -> void, called after
+     *   the display has been updated. Use it to redraw.
+     * @returns {HTMLInputElement|null}
+     */
+    function bindRange(inputTarget, options) {
+      var input = resolve(inputTarget, root);
+      if (!input) {
+        return null;
+      }
+
+      var settings = options || {};
+      var format =
+        typeof settings.format === "function"
+          ? settings.format
+          : function (value) {
+              return String(value);
+            };
+      var describe =
+        typeof settings.describe === "function" ? settings.describe : format;
+
+      // <output for="the-input-id"> is the conventional pairing.
+      var output = input.id
+        ? root.querySelector('output[for="' + input.id + '"]')
+        : null;
+
+      function sync() {
+        var value = Number(input.value);
+        if (output) {
+          output.textContent = format(value);
+        }
+        // Only meaningful for widgets with an implicit or explicit slider
+        // role; harmless elsewhere.
+        input.setAttribute("aria-valuetext", describe(value));
+        if (typeof settings.onInput === "function") {
+          settings.onInput(value);
+        }
+      }
+
+      input.addEventListener("input", sync);
+      // Registered so reset() can refresh the display after the tool's own
+      // reset handlers have put the input back to its default.
+      rangeSyncs.push(sync);
+      sync();
+
+      return input;
+    }
+
+    /* --- Public surface -------------------------------------------------- */
+
+    return {
+      /** The `.interactive` root element. */
+      root: root,
+      /** The controls panel, or null if the shell has none. */
+      controls: controls,
+      /** The stage element where the visualisation is drawn. */
+      stage: stage,
+      /** The live-region element. */
+      status: status,
+      announce: announce,
+      onReset: onReset,
+      reset: reset,
+      bindRange: bindRange,
+      prefersReducedMotion: prefersReducedMotion
+    };
+  }
+
+  /* -----------------------------------------------------------------------
+     Export
+     --------------------------------------------------------------------- */
+
+  global.InteractiveShell = {
+    attach: attach,
+    prefersReducedMotion: prefersReducedMotion
+  };
+})(window);
+
+/* ---- modules/social-critical-psychology/tools/04-conformity-under-context/tool.js ---- */
+/* =========================================================================
+   Conformity Under Context
+   -------------------------------------------------------------------------
+   A fictional group judgement task, six things about the situation that can be
+   changed, and a model that splits the resulting conformity into two routes.
+
+       1. Build a condition   - and keep every condition you run for comparison
+       2. The people behind it- the distribution hiding inside the percentage
+
+   THE EDUCATIONAL MODEL
+   ---------------------
+   Conformity on a critical round is treated as two independent routes that can
+   each produce agreement:
+
+       normative     = Bn x unanimityN x audience x identification x normClarity
+       informational = Bi x ambiguity x (0.4 + 0.6 x majorityStatus) x unanimityI
+       p             = 1 - (1 - normative) x (1 - informational)
+
+   Two features do the teaching:
+
+     * AUDIENCE only appears in the normative term. Making the response private
+       collapses the normative route and leaves the informational route almost
+       untouched, which is exactly the manipulation that distinguishes them.
+     * UNANIMITY is a step function, not a headcount. Going from five to four
+       confederates changes almost nothing; going from a unanimous majority to
+       one with a single dissenter changes a great deal, and the model encodes
+       that as 1.00 -> 0.30 for the normative route rather than as a proportion.
+
+   IDENTIFICATION is the social-identity amendment the classic two-route account
+   does not contain: a unanimous majority of people you do not regard as
+   comparable to yourself exerts much less normative pull than the number
+   suggests.
+
+   Experiment 2 draws 100 simulated participants from a seeded generator
+   (mulberry32, seed 20260311). Each has a susceptibility multiplier drawn from
+   a skewed distribution; their per-round probability is p x susceptibility,
+   clipped to the unit interval, and their rounds are Bernoulli draws. The group
+   mean returns the headline figure; the distribution shows that the same figure
+   is compatible with a substantial group who never conform at all.
+
+   WHAT THIS IS NOT
+   ----------------
+   No historical study is reproduced: not its stimuli, not its procedure, not
+   its data. The presets are named after recognisable set-ups so the comparison
+   is legible, and their outputs are not those results. The parameters are chosen
+   to put the classic conditions in roughly the right order of magnitude - a
+   teaching decision, not a replication. Classic rates are not constants of the
+   species, and the tool says so.
+
+   No data leave the browser. There is no storage and no network request.
+   ========================================================================= */
+
+(function () {
+  "use strict";
+
+  var B_NORMATIVE = 0.68;
+  var B_INFORMATIONAL = 0.75;
+
+  /* Unanimity is a step, not a proportion. Index = number of confederates who
+     break with the majority answer. */
+  var UNANIMITY_NORMATIVE = [1.00, 0.30, 0.22, 0.18];
+  var UNANIMITY_INFORMATIONAL = [1.00, 0.60, 0.50, 0.45];
+
+  var AUDIENCE = {
+    aloud: { factor: 1.00, label: "aloud, in front of the group" },
+    written: { factor: 0.35, label: "written, seen by the experimenter only" },
+    anonymous: { factor: 0.15, label: "anonymous, seen by nobody" }
+  };
+
+  var CONTROLS = [
+    {
+      id: "dissenters", type: "range", min: 0, max: 3, step: 1, value: 0,
+      label: "Confederates who break with the majority",
+      hint: "Of the five others. The majority is still large at one dissenter - watch what happens anyway.",
+      describe: function (v) {
+        return v === 0 ? "none - the majority is unanimous"
+          : v + " of the five gives a different answer first";
+      }
+    },
+    {
+      id: "identification", type: "range", min: 0, max: 100, step: 1, value: 55,
+      label: "Identification with the group",
+      hint: "How far the participant regards these five as people like themselves whose opinion is relevant to them.",
+      describe: function (v) {
+        return v + " per cent, between strangers with nothing in common and a group the participant belongs to"; }
+    },
+    {
+      id: "audience", type: "select", value: "aloud",
+      label: "How the participant answers",
+      hint: "The manipulation that separates the two routes. Private responding removes the audience and leaves the evidence.",
+      options: [
+        ["aloud", "Aloud, after the others, in the room"],
+        ["written", "Written down, seen by the experimenter only"],
+        ["anonymous", "Anonymously, seen by nobody"]
+      ]
+    },
+    {
+      id: "ambiguity", type: "range", min: 0, max: 100, step: 1, value: 5,
+      label: "Ambiguity of the judgement",
+      hint: "How hard the display is to judge. At the bottom the right answer is obvious; at the top nobody could be sure.",
+      describe: function (v) {
+        return v + " per cent, between an obvious answer and one nobody could be sure of"; }
+    },
+    {
+      id: "status", type: "range", min: 0, max: 100, step: 1, value: 50,
+      label: "Standing of the majority",
+      hint: "Whether the others appear to know what they are doing. Feeds the informational route only.",
+      describe: function (v) {
+        return v + " per cent, between visibly no better placed than the participant and clearly expert"; }
+    },
+    {
+      id: "clarity", type: "range", min: 0, max: 100, step: 1, value: 90,
+      label: "Clarity of what the group expects",
+      hint: "How obvious it is what agreeing and disagreeing would mean here. Feeds the normative route only.",
+      describe: function (v) {
+        return v + " per cent, between no discernible expectation and an unmistakable one"; }
+    }
+  ];
+
+  var PRESETS = [
+    {
+      id: "classic", label: "Classic public unanimous",
+      values: { dissenters: 0, identification: 55, audience: "aloud", ambiguity: 5, status: 50, clarity: 90 },
+      note:
+        "An unambiguous judgement, five unanimous others, answers given aloud. " +
+        "The set-up everybody remembers - and, in this model as in the " +
+        "original, most rounds are still answered correctly."
+    },
+    {
+      id: "ally", label: "One person disagrees first",
+      values: { dissenters: 1, identification: 55, audience: "aloud", ambiguity: 5, status: 50, clarity: 90 },
+      note:
+        "The majority is still four to one. The rate collapses anyway, because " +
+        "what has changed is not the arithmetic but whether another answer is " +
+        "sayable."
+    },
+    {
+      id: "private", label: "Private written response",
+      values: { dissenters: 0, identification: 55, audience: "written", ambiguity: 5, status: 50, clarity: 90 },
+      note:
+        "Everything else identical. Compare the two bars with the classic " +
+        "condition: the normative one falls away and the informational one, " +
+        "which was small to begin with, does not move."
+    },
+    {
+      id: "ambiguous", label: "Genuinely ambiguous display",
+      values: { dissenters: 0, identification: 55, audience: "aloud", ambiguity: 92, status: 50, clarity: 90 },
+      note:
+        "Now the others are evidence rather than an audience. Try switching " +
+        "this condition to a private written response: it barely helps, which " +
+        "is the clearest sign that a different route is doing the work."
+    },
+    {
+      id: "outgroup", label: "A group the participant is not part of",
+      values: { dissenters: 0, identification: 8, audience: "aloud", ambiguity: 5, status: 50, clarity: 90 },
+      note:
+        "Five unanimous people, answering aloud, and the rate falls a long way. " +
+        "The classic two-route account has no term for this; social identity " +
+        "theory is the amendment that supplies one."
+    },
+    {
+      id: "expert", label: "A visibly expert majority",
+      values: { dissenters: 0, identification: 55, audience: "aloud", ambiguity: 70, status: 95, clarity: 90 },
+      note:
+        "A hard judgement made by people who look as though they know. Almost " +
+        "all of the resulting agreement is informational - and in this case, " +
+        "quite possibly correct."
+    }
+  ];
+
+  /* =======================================================================
+     Model
+     ===================================================================== */
+
+  function routes(values) {
+    var normative =
+      B_NORMATIVE *
+      UNANIMITY_NORMATIVE[values.dissenters] *
+      AUDIENCE[values.audience].factor *
+      (values.identification / 100) *
+      (values.clarity / 100);
+    var informational =
+      B_INFORMATIONAL *
+      (values.ambiguity / 100) *
+      (0.4 + 0.6 * (values.status / 100)) *
+      UNANIMITY_INFORMATIONAL[values.dissenters];
+    var total = 1 - (1 - normative) * (1 - informational);
+    return { normative: normative, informational: informational, total: total };
+  }
+
+  /* =======================================================================
+     Simulated participants
+     ===================================================================== */
+
+  var SEED = 20260311;
+  var PEOPLE = 100;
+
+  function mulberry32(a) {
+    return function () {
+      a |= 0; a = (a + 0x6D2B79F5) | 0;
+      var t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  /* Susceptibility is drawn once and reused, so switching conditions cannot be
+     confounded with a different set of people. The distribution is skewed:
+     most people are near the middle, a minority are markedly more and
+     markedly less susceptible than average. */
+  var SUSCEPTIBILITY = (function () {
+    var rand = mulberry32(SEED);
+    var values = [];
+    for (var i = 0; i < PEOPLE; i += 1) {
+      var u = rand();
+      values.push(0.15 + 1.85 * u * u);
+    }
+    /* Normalised to a mean of exactly one, so that the average of the 100
+       simulated people reproduces the headline rate from experiment 1 rather
+       than sitting systematically below it. */
+    var mean = values.reduce(function (t, v) { return t + v; }, 0) / values.length;
+    return values.map(function (v) { return v / mean; });
+  })();
+
+  var ROUND_DRAWS = (function () {
+    var rand = mulberry32(SEED + 7);
+    var rows = [];
+    for (var i = 0; i < PEOPLE; i += 1) {
+      var person = [];
+      for (var t = 0; t < 24; t += 1) { person.push(rand()); }
+      rows.push(person);
+    }
+    return rows;
+  })();
+
+  function simulate(p, trials) {
+    var counts = [];
+    for (var i = 0; i < PEOPLE; i += 1) {
+      var personP = Math.min(1, Math.max(0, p * SUSCEPTIBILITY[i]));
+      var conformed = 0;
+      for (var t = 0; t < trials; t += 1) {
+        if (ROUND_DRAWS[i][t] < personP) { conformed += 1; }
+      }
+      counts.push(conformed);
+    }
+    return counts;
+  }
+
+  /* =======================================================================
+     Helpers
+     ===================================================================== */
+
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) { node.className = className; }
+    if (text !== undefined) { node.textContent = text; }
+    return node;
+  }
+
+  function clear(node) {
+    while (node.firstChild) { node.removeChild(node.firstChild); }
+  }
+
+  function pct(p) { return Math.round(p * 100) + "%"; }
+
+  /* =======================================================================
+     Wiring
+     ===================================================================== */
+
+  var shell = InteractiveShell.attach("#conformity-lab");
+  if (!shell) { return; }
+
+  var $ = function (s, scope) { return (scope || document).querySelector(s); };
+  var $$ = function (s, scope) {
+    return Array.prototype.slice.call((scope || document).querySelectorAll(s));
+  };
+
+  var openingForm = $("#opening-form");
+  var openingError = $("[data-opening-error]");
+  var openingFeedback = $("[data-opening-feedback]");
+  var labSection = $("#lab-section");
+
+  var presetBox = $("[data-presets]");
+  var controlBox = $("[data-controls]");
+  var rateLine = $("[data-rate]");
+  var routeSvg = $("[data-routes]");
+  var routeText = $("[data-routes-text]");
+  var historyBody = $("[data-history]");
+  var historyNote = $("[data-history-note]");
+  var trialsRange = $("#trials-range");
+  var distributionLead = $("[data-distribution-lead]");
+  var distributionNote = $("[data-distribution-note]");
+  var histogramSvg = $("[data-histogram]");
+  var histogramTable = $("[data-histogram-table]");
+  var distributionVerdict = $("[data-distribution-verdict]");
+  var stageTrack = $("[data-stage-track]");
+
+  var claimsForm = $("#claims-form");
+  var claimsList = $("[data-claims-list]");
+  var claimsFeedback = $("[data-claims-feedback]");
+
+  var STAGE_COUNT = 2;
+
+  var INITIAL = {
+    stage: 1,
+    unlocked: false,
+    values: {
+      dissenters: 0, identification: 55, audience: "aloud",
+      ambiguity: 5, status: 50, clarity: 90
+    },
+    label: "Your own settings",
+    trials: 12,
+    history: []
+  };
+  var state = null;
+
+  /* --- Controls ------------------------------------------------------------ */
+
+  function buildPresets() {
+    clear(presetBox);
+    PRESETS.forEach(function (preset) {
+      var button = make("button", "button button--secondary", preset.label);
+      button.type = "button";
+      button.addEventListener("click", function () {
+        Object.keys(preset.values).forEach(function (key) {
+          state.values[key] = preset.values[key];
+        });
+        state.label = preset.label;
+        record(preset.label);
+        syncControls();
+        renderStage1();
+        renderStage2();
+        shell.announce(preset.label + " loaded. " + rateLine.textContent + " " +
+          preset.note, { immediate: true });
+        historyNote.textContent = preset.note;
+      });
+      presetBox.appendChild(button);
+    });
+  }
+
+  function buildControls() {
+    clear(controlBox);
+    CONTROLS.forEach(function (control) {
+      var wrap = make("div", "control");
+      var header = make("div", "control__header");
+      var label = make("label", "control__label", control.label);
+      label.setAttribute("for", "c-" + control.id);
+      header.appendChild(label);
+      if (control.type === "range") {
+        var output = document.createElement("output");
+        output.className = "control__value";
+        output.setAttribute("for", "c-" + control.id);
+        output.setAttribute("data-output", control.id);
+        header.appendChild(output);
+      }
+      wrap.appendChild(header);
+
+      var input;
+      if (control.type === "range") {
+        input = document.createElement("input");
+        input.type = "range";
+        input.min = String(control.min); input.max = String(control.max);
+        input.step = String(control.step);
+      } else {
+        input = document.createElement("select");
+        control.options.forEach(function (option) {
+          var node = document.createElement("option");
+          node.value = option[0];
+          node.textContent = option[1];
+          input.appendChild(node);
+        });
+      }
+      input.id = "c-" + control.id;
+      input.addEventListener("input", function () { onControl(control, input); });
+      input.addEventListener("change", function () { onControl(control, input); });
+      wrap.appendChild(input);
+      wrap.appendChild(make("p", "control__hint", control.hint));
+      controlBox.appendChild(wrap);
+    });
+  }
+
+  function onControl(control, input) {
+    state.values[control.id] =
+      control.type === "range" ? Number(input.value) : input.value;
+    state.label = "Your own settings";
+    syncControls();
+    renderStage1();
+    renderStage2();
+    shell.announce(control.label + " changed. " + rateLine.textContent);
+  }
+
+  function syncControls() {
+    CONTROLS.forEach(function (control) {
+      var input = $("#c-" + control.id);
+      var value = state.values[control.id];
+      input.value = String(value);
+      if (control.type === "range") {
+        var output = $('[data-output="' + control.id + '"]');
+        output.textContent = control.id === "dissenters"
+          ? String(value) : value + "%";
+        input.setAttribute("aria-valuetext", control.describe(value));
+      }
+    });
+    trialsRange.value = String(state.trials);
+  }
+
+  /* --- Experiment 1 --------------------------------------------------------- */
+
+  function record(label) {
+    var r = routes(state.values);
+    state.history = state.history.filter(function (row) {
+      return row.label !== label;
+    });
+    state.history.push({
+      label: label,
+      total: r.total, normative: r.normative, informational: r.informational
+    });
+    renderHistory();
+  }
+
+  function renderHistory() {
+    clear(historyBody);
+    if (!state.history.length) {
+      var row = make("tr");
+      var cell = make("td", null,
+        "Nothing recorded yet. Load a classic condition to start the " +
+        "comparison, or press \"Record this condition\" under the sliders.");
+      cell.colSpan = 4;
+      row.appendChild(cell);
+      historyBody.appendChild(row);
+      return;
+    }
+    state.history.forEach(function (entry) {
+      var row = make("tr");
+      var th = make("th", null, entry.label);
+      th.setAttribute("scope", "row");
+      row.appendChild(th);
+      row.appendChild(make("td", null, pct(entry.total)));
+      row.appendChild(make("td", null, pct(entry.normative)));
+      row.appendChild(make("td", null, pct(entry.informational)));
+      historyBody.appendChild(row);
+    });
+  }
+
+  function renderStage1() {
+    var r = routes(state.values);
+    rateLine.textContent =
+      pct(r.total) + " of critical rounds - the average simulated participant.";
+
+    var NS = "http://www.w3.org/2000/svg";
+    clear(routeSvg);
+    [
+      { label: "Normative", value: r.normative, cls: "bar--normative" },
+      { label: "Informational", value: r.informational, cls: "bar--informational" }
+    ].forEach(function (route, index) {
+      var y = 8 + index * 32;
+      var track = document.createElementNS(NS, "rect");
+      track.setAttribute("x", "104"); track.setAttribute("y", String(y));
+      track.setAttribute("width", "170"); track.setAttribute("height", "18");
+      track.setAttribute("class", "chart__track");
+      routeSvg.appendChild(track);
+
+      var bar = document.createElementNS(NS, "rect");
+      bar.setAttribute("x", "104"); bar.setAttribute("y", String(y));
+      bar.setAttribute("width", String(Math.max(1, route.value * 170)));
+      bar.setAttribute("height", "18");
+      bar.setAttribute("class", route.cls);
+      routeSvg.appendChild(bar);
+
+      var name = document.createElementNS(NS, "text");
+      name.setAttribute("x", "100"); name.setAttribute("y", String(y + 13));
+      name.setAttribute("text-anchor", "end");
+      name.setAttribute("class", "chart__label");
+      name.textContent = route.label;
+      routeSvg.appendChild(name);
+
+      var value = document.createElementNS(NS, "text");
+      value.setAttribute("x", String(104 + Math.max(1, route.value * 170) + 5));
+      value.setAttribute("y", String(y + 13));
+      value.setAttribute("class", "chart__count");
+      value.textContent = pct(route.value);
+      routeSvg.appendChild(value);
+    });
+
+    var dominant = r.normative > r.informational * 1.5 ? "normative"
+      : r.informational > r.normative * 1.5 ? "informational" : "neither";
+    routeText.textContent =
+      "Normative route " + pct(r.normative) + ", informational route " +
+      pct(r.informational) + ", combined " + pct(r.total) + ". " +
+      (dominant === "normative"
+        ? "Agreement here is mostly about the audience. Switch the response to " +
+          "written and watch this fall while the other bar stays put."
+        : dominant === "informational"
+        ? "Agreement here is mostly about uncertainty. Making the response " +
+          "private will barely help, because there is no audience effect to " +
+          "remove - these people are being persuaded rather than pressed."
+        : "Both routes are contributing. This is the condition in which the " +
+          "usual classroom argument about \"did they really believe it\" cannot " +
+          "be settled from the rate alone.");
+  }
+
+  /* --- Experiment 2 --------------------------------------------------------- */
+
+  function renderStage2() {
+    var r = routes(state.values);
+    var counts = simulate(r.total, state.trials);
+    var mean = counts.reduce(function (t, c) { return t + c; }, 0) /
+      (PEOPLE * state.trials);
+    var never = counts.filter(function (c) { return c === 0; }).length;
+    var most = counts.filter(function (c) { return c > state.trials / 2; }).length;
+
+    distributionLead.textContent =
+      pct(mean) + " of rounds overall - and " + never + " of the 100 never " +
+      "conformed once.";
+    distributionNote.textContent =
+      most + " of the 100 conformed on more than half their rounds. Condition: " +
+      state.label.toLowerCase() + ", " + state.trials + " critical rounds each.";
+
+    /* Histogram over proportion-of-rounds bands. */
+    var bands = [0, 0, 0, 0, 0];
+    counts.forEach(function (count) {
+      var share = count / state.trials;
+      var index = share === 0 ? 0
+        : share <= 0.25 ? 1
+        : share <= 0.5 ? 2
+        : share <= 0.75 ? 3 : 4;
+      bands[index] += 1;
+    });
+    var labels = ["none", "1-25%", "26-50%", "51-75%", "76-100%"];
+
+    var NS = "http://www.w3.org/2000/svg";
+    clear(histogramSvg);
+    var maxBand = Math.max.apply(null, bands) || 1;
+    bands.forEach(function (value, index) {
+      var x = 26 + index * 58;
+      var height = (value / maxBand) * 92;
+      var bar = document.createElementNS(NS, "rect");
+      bar.setAttribute("x", String(x)); bar.setAttribute("y", String(110 - height));
+      bar.setAttribute("width", "42"); bar.setAttribute("height", String(Math.max(1, height)));
+      bar.setAttribute("class", index === 0 ? "bar--never" : "chart__bar");
+      histogramSvg.appendChild(bar);
+
+      var count = document.createElementNS(NS, "text");
+      count.setAttribute("x", String(x + 21)); count.setAttribute("y", String(104 - height));
+      count.setAttribute("text-anchor", "middle");
+      count.setAttribute("class", "chart__count");
+      count.textContent = String(value);
+      histogramSvg.appendChild(count);
+
+      var name = document.createElementNS(NS, "text");
+      name.setAttribute("x", String(x + 21)); name.setAttribute("y", "126");
+      name.setAttribute("text-anchor", "middle");
+      name.setAttribute("class", "chart__label");
+      name.textContent = labels[index];
+      histogramSvg.appendChild(name);
+    });
+    var axis = document.createElementNS(NS, "text");
+    axis.setAttribute("x", "160"); axis.setAttribute("y", "144");
+    axis.setAttribute("text-anchor", "middle");
+    axis.setAttribute("class", "chart__axis");
+    axis.textContent = "share of critical rounds on which the person conformed";
+    histogramSvg.appendChild(axis);
+
+    clear(histogramTable);
+    bands.forEach(function (value, index) {
+      var row = make("tr");
+      var th = make("th", null, labels[index] + " of rounds");
+      th.setAttribute("scope", "row");
+      row.appendChild(th);
+      row.appendChild(make("td", null, String(value)));
+      histogramTable.appendChild(row);
+    });
+
+    clear(distributionVerdict);
+    distributionVerdict.setAttribute("data-tone", "neutral");
+    distributionVerdict.appendChild(make("h5", "verdict__title",
+      "Two true sentences about the same result"));
+    distributionVerdict.appendChild(make("p", "verdict__body",
+      "\"Participants conformed on " + pct(mean) + " of critical rounds.\""));
+    distributionVerdict.appendChild(make("p", "verdict__body",
+      "\"" + never + " per cent of participants never conformed at all, and " +
+      (100 - most) + " per cent conformed on half their rounds or fewer.\""));
+    distributionVerdict.appendChild(make("p", "verdict__note",
+      "Both are accurate summaries of the same 100 simulated people. They " +
+      "leave very different impressions, and only the first one is usually " +
+      "quoted."));
+  }
+
+  /* --- Stage plumbing -------------------------------------------------------- */
+
+  function setStage(next) {
+    state.stage = Math.max(1, Math.min(STAGE_COUNT, next));
+    render();
+    var heading = $('.stage__primary[data-stage="' + state.stage + '"] .stage__heading');
+    if (heading) {
+      heading.setAttribute("tabindex", "-1");
+      heading.focus();
+    }
+    shell.announce("Experiment " + state.stage + " of 2.", { immediate: true });
+  }
+
+  $('[data-action="next"]').addEventListener("click", function () {
+    setStage(state.stage + 1);
+  });
+  $('[data-action="prev"]').addEventListener("click", function () {
+    setStage(state.stage - 1);
+  });
+
+  function render() {
+    $$("[data-stage]", shell.root).forEach(function (node) {
+      if (node.parentNode === stageTrack) { return; }
+      node.hidden = node.getAttribute("data-stage") !== String(state.stage);
+    });
+    $$("li", stageTrack).forEach(function (node) {
+      var index = Number(node.getAttribute("data-stage"));
+      node.removeAttribute("aria-current");
+      node.removeAttribute("data-state");
+      if (index === state.stage) {
+        node.setAttribute("aria-current", "step");
+      } else if (index < state.stage) {
+        node.setAttribute("data-state", "done");
+      }
+    });
+    $('[data-action="prev"]').disabled = state.stage === 1;
+    $('[data-action="next"]').disabled = state.stage === STAGE_COUNT;
+
+    syncControls();
+    renderStage1();
+    renderStage2();
+    renderHistory();
+  }
+
+  shell.bindRange("#trials-range", {
+    format: function (value) { return String(value); },
+    describe: function (value) { return value + " critical rounds per participant"; },
+    onInput: function (value) {
+      if (!state) { return; }
+      state.trials = value;
+      renderStage2();
+    }
+  });
+
+  /* --- Record button --------------------------------------------------------- */
+
+  var recordButton = make("button", "button button--secondary", "Record this condition");
+  recordButton.type = "button";
+  recordButton.addEventListener("click", function () {
+    var name = state.label === "Your own settings"
+      ? "Custom " + (state.history.filter(function (row) {
+          return row.label.indexOf("Custom") === 0;
+        }).length + 1)
+      : state.label;
+    record(name);
+    historyNote.textContent =
+      "Recorded as \"" + name + "\". Change one thing and record again - the " +
+      "comparison is more use than any single row.";
+    shell.announce("Condition recorded: " + name + ". " + rateLine.textContent,
+      { immediate: true });
+  });
+
+  /* --- Challenge -------------------------------------------------------------- */
+
+  var CLAIM_OPTIONS = [
+    { value: "normative", label: "Mainly the normative route" },
+    { value: "informational", label: "Mainly the informational route" },
+    { value: "both", label: "Both, substantially" }
+  ];
+
+  var CLAIMS = [
+    {
+      id: "written",
+      text: "The participant writes the answer down instead of saying it aloud.",
+      answer: "normative",
+      why:
+        "Private responding removes the audience and leaves the evidence " +
+        "untouched. In the model the audience factor enters only the normative " +
+        "term - which is what makes the two routes different claims rather " +
+        "than two words."
+    },
+    {
+      id: "harder",
+      text: "The display is made genuinely hard to judge.",
+      answer: "informational",
+      why:
+        "Uncertainty is what makes other people worth attending to as evidence. " +
+        "Ambiguity does not change what disagreeing would cost, so the " +
+        "normative term is unmoved. Run the ambiguous preset and then switch to " +
+        "a private response: the rate barely falls."
+    },
+    {
+      id: "ally",
+      text: "One of the five gives a different answer before the participant replies.",
+      answer: "both",
+      why:
+        "A dissenter does two things at once. Socially, another answer becomes " +
+        "sayable, so the cost of departing from the majority drops sharply. " +
+        "Evidentially, the majority stops being a united body of testimony. The " +
+        "model reduces both terms, and the normative one much more."
+    },
+    {
+      id: "outgroup",
+      text:
+        "The five others turn out to be from a group the participant regards as " +
+        "having nothing to do with them.",
+      answer: "normative",
+      why:
+        "Identification enters the normative term only - the amendment the " +
+        "classic two-route account lacks. Conformity stops looking like a " +
+        "property of people in groups and starts looking like a property of a " +
+        "relationship between particular groups."
+    },
+    {
+      id: "expert",
+      text: "The five others are visibly better placed to judge than the participant.",
+      answer: "informational",
+      why:
+        "Standing feeds the informational term: better-placed people are " +
+        "better evidence. Note that when the judgement is easy this changes " +
+        "almost nothing, because there is no uncertainty for the evidence to " +
+        "act on - status and ambiguity multiply rather than add."
+    }
+  ];
+
+  var CLAIM_LABELS = {};
+  CLAIM_OPTIONS.forEach(function (o) { CLAIM_LABELS[o.value] = o.label; });
+
+  function buildClaims() {
+    clear(claimsList);
+    CLAIMS.forEach(function (claim, index) {
+      var group = make("fieldset", "prediction__group");
+      group.appendChild(make("legend", "prediction__legend",
+        (index + 1) + ". " + claim.text));
+      CLAIM_OPTIONS.forEach(function (option) {
+        var label = make("label", "control--choice");
+        var input = document.createElement("input");
+        input.type = "radio";
+        input.name = "claim-" + claim.id;
+        input.value = option.value;
+        label.appendChild(input);
+        label.appendChild(make("span", null, option.label));
+        group.appendChild(label);
+      });
+      claimsList.appendChild(group);
+    });
+  }
+
+  claimsForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answers = CLAIMS.map(function (claim) {
+      var picked = $('input[name="claim-' + claim.id + '"]:checked', claimsForm);
+      return picked ? picked.value : null;
+    });
+    if (answers.indexOf(null) !== -1) {
+      showFeedback(claimsFeedback, "caution", "One answer per item, please.",
+        "A blank is not a judgement.");
+      return;
+    }
+    var right = 0;
+    CLAIMS.forEach(function (claim, index) {
+      if (answers[index] === claim.answer) { right += 1; }
+    });
+    clear(claimsFeedback);
+    claimsFeedback.setAttribute("data-tone", right >= 4 ? "good" : "caution");
+    var lead = make("p");
+    lead.appendChild(make("strong", "feedback__verdict",
+      right + " of 5 match the model."));
+    lead.appendChild(document.createTextNode(
+      " Every one of these can be checked by moving the relevant control and " +
+      "watching which bar changes."));
+    claimsFeedback.appendChild(lead);
+    var list = make("ol", "claims__results");
+    CLAIMS.forEach(function (claim, index) {
+      var li = make("li");
+      var agreed = answers[index] === claim.answer;
+      li.setAttribute("data-agreed", agreed ? "yes" : "no");
+      var head = make("p", "claims__result-head");
+      head.appendChild(make("strong", null,
+        (index + 1) + ": " + CLAIM_LABELS[claim.answer] + "."));
+      head.appendChild(document.createTextNode(
+        agreed ? " That is what you said."
+          : " You said: " + CLAIM_LABELS[answers[index]].toLowerCase() + "."));
+      li.appendChild(head);
+      li.appendChild(make("p", null, claim.why));
+      list.appendChild(li);
+    });
+    claimsFeedback.appendChild(list);
+    claimsFeedback.hidden = false;
+    shell.announce("Five items judged. " + right + " match.", { immediate: true });
+  });
+
+  /* --- Opening prediction ------------------------------------------------------ */
+
+  var OPENING = {
+    low: {
+      tone: "caution",
+      verdict: "Higher than that, in this set-up.",
+      text:
+        "People can see what is in front of them, and a substantial minority " +
+        "of rounds is nevertheless answered with the group. But note what your " +
+        "answer gets right: most rounds are still answered correctly, which is " +
+        "the half of the classic result that rarely gets quoted."
+    },
+    third: {
+      tone: "good",
+      verdict: "That is the order of magnitude for this particular set-up.",
+      text:
+        "And it is worth being precise about what \"a third\" describes: a " +
+        "third of rounds, averaged over people, in a public, unanimous, " +
+        "unambiguous condition. Change any one of those words and the figure " +
+        "moves a long way. Experiment 2 shows what the average is hiding."
+    },
+    most: {
+      tone: "caution",
+      verdict: "Too high, and the overestimate is itself interesting.",
+      text:
+        "The situation feels overwhelming when it is described, which is " +
+        "probably why the classic study is remembered as showing that people " +
+        "cave in. Most rounds, in this model as in the original, are answered " +
+        "correctly."
+    },
+    depends: {
+      tone: "good",
+      verdict: "Strictly right, and the laboratory is built on that answer.",
+      text:
+        "The description does fix quite a lot: unambiguous judgement, unanimous " +
+        "majority, public response. Those three settings put the figure in the " +
+        "region of a third in this model. Every other feature of the situation " +
+        "is unspecified, and the six controls show how much each one is worth."
+    }
+  };
+
+  function showFeedback(container, tone, verdict, text) {
+    clear(container);
+    container.setAttribute("data-tone", tone);
+    var p = make("p");
+    p.appendChild(make("strong", "feedback__verdict", verdict));
+    if (text) { p.appendChild(document.createTextNode(" " + text)); }
+    container.appendChild(p);
+    container.hidden = false;
+  }
+
+  function lockForm(form) {
+    $$("input, button, select", form).forEach(function (c) { c.disabled = true; });
+  }
+
+  function unlockForm(form) {
+    $$("input, button, select", form).forEach(function (c) { c.disabled = false; });
+    form.reset();
+  }
+
+  function unlockLab() {
+    state.unlocked = true;
+    labSection.hidden = false;
+    render();
+    shell.announce("Laboratory open. Load a classic condition to begin.",
+      { immediate: true });
+  }
+
+  openingForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answer = $('input[name="opening"]:checked', openingForm);
+    if (!answer) {
+      openingError.textContent = "Choose an answer before opening the laboratory.";
+      openingError.hidden = false;
+      return;
+    }
+    openingError.hidden = true;
+    var feedback = OPENING[answer.value];
+    showFeedback(openingFeedback, feedback.tone, feedback.verdict, feedback.text);
+    lockForm(openingForm);
+    unlockLab();
+    $("#lab-heading").focus();
+  });
+
+  $('[data-action="skip-opening"]').addEventListener("click", function () {
+    openingError.hidden = true;
+    showFeedback(openingFeedback, "neutral",
+      "Prediction skipped - demonstration mode.", "");
+    lockForm(openingForm);
+    unlockLab();
+  });
+
+  /* --- Actions ------------------------------------------------------------------ */
+
+  $('[data-action="worked"]').addEventListener("click", function () {
+    state.history = [];
+    ["classic", "ally", "private", "ambiguous", "outgroup"].forEach(function (id) {
+      var preset = PRESETS.filter(function (p) { return p.id === id; })[0];
+      Object.keys(preset.values).forEach(function (key) {
+        state.values[key] = preset.values[key];
+      });
+      state.label = preset.label;
+      record(preset.label);
+    });
+    state.stage = 1;
+    render();
+    historyNote.textContent =
+      "Five conditions recorded. Read the two right-hand columns rather than " +
+      "the totals: the classic condition is almost entirely normative, the " +
+      "ambiguous one is mostly informational, and the private and the " +
+      "one-dissenter conditions arrive at nearly the same total by cutting the " +
+      "normative route in two quite different ways.";
+    shell.announce(
+      "Worked example: five classic conditions recorded, ending on the " +
+      "low-identification one at " + rateLine.textContent,
+      { immediate: true });
+  });
+
+  $('[data-action="clear-history"]').addEventListener("click", function () {
+    state.history = [];
+    renderHistory();
+    historyNote.textContent = "Comparison table cleared.";
+    shell.announce("Comparison table cleared.", { immediate: true });
+  });
+
+  /* --- Reset and start-up -------------------------------------------------------- */
+
+  shell.onReset(function () {
+    state = JSON.parse(JSON.stringify(INITIAL));
+    unlockForm(openingForm);
+    openingFeedback.hidden = true;
+    openingError.hidden = true;
+    labSection.hidden = true;
+    claimsForm.reset();
+    claimsFeedback.hidden = true;
+    historyNote.textContent =
+      "Load a condition, or set the six controls yourself and press \"Record " +
+      "this condition\".";
+    render();
+  });
+
+  buildPresets();
+  buildControls();
+  buildClaims();
+  controlBox.appendChild(recordButton);
+
+  shell.reset({ silent: true });
+  shell.announce(
+    "Ready. Answer the question above to open the laboratory.",
+    { immediate: true });
+})();
+
+</script>
+</div>

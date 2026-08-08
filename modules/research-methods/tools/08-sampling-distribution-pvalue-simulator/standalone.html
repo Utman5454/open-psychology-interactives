@@ -1,0 +1,2718 @@
+<!-- Sampling Distribution and p-Value Simulator
+     From Open Psychology Interactives - https://github.com/utman5454/open-psychology-interactives
+     Self-contained: no stylesheets, scripts, fonts, images or network requests.
+     Styles are scoped to .opi-activity and do not affect the page around them.
+     Nothing is saved, sent or tracked. MIT licensed; please keep this notice.
+     Paste anywhere that accepts HTML, or save as a .html file and open it. -->
+<div class="opi-activity">
+<style>
+/* Defensive baseline. See scripts/build-standalone.py for why this
+   is `revert` rather than an enumerated reset, and how the specificity ladder
+   keeps the activity's own styling on top of it. */
+.opi-activity *:not(svg *) {
+  all: revert;
+}
+.opi-activity, .opi-activity *, .opi-activity *::before, .opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  text-transform: none;
+  text-indent: 0;
+  font-style: normal;
+  font-variant: normal;
+  letter-spacing: normal;
+  word-spacing: normal;
+  white-space: normal;
+  visibility: visible;
+  float: none;
+  max-width: none;
+}
+.opi-activity svg { max-width: 100%; }
+.opi-activity img { max-width: 100%; height: auto; }
+.opi-activity [hidden] { display: none !important; }
+
+/* assets/css/main.css */
+.opi-activity.opi-activity {
+  --colour-page: #ffffff;
+  --colour-surface: #f5f7fa;
+  --colour-surface-raised: #ffffff;
+  --colour-border: #d3d9e2;
+  --colour-border-strong: #aeb7c4;
+  --colour-text: #131820;
+  --colour-text-muted: #4c566a;
+  --colour-accent: #1a4fa0;
+  --colour-accent-hover: #123a7a;
+  --colour-accent-soft: #e8eefb;
+  --colour-on-accent: #ffffff;
+  --colour-focus: #b45309;
+  --colour-cognitive: #8a4b00;
+  --colour-research-methods: #1a4fa0;
+  --colour-neuropsychology: #145c53;
+  --colour-social-critical-psychology: #9e2f45;
+  --colour-personality-individual-differences: #7a2e6d;
+  --colour-status-bg: #f1ede3;
+  --colour-status-text: #5c4a1f;
+  --colour-status-border: #d9cdb0;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  --text-xs: 13px;
+  --text-sm: 15px;
+  --text-base: 17px;
+  --text-lg: 19px;
+  --text-xl: 23px;
+  --text-2xl: 28px;
+  --text-3xl: 36px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgb(19 24 32 / 0.06);
+  --shadow-md: 0 2px 8px rgb(19 24 32 / 0.08);
+  --measure: 68ch;
+  --container: 1152px;
+}
+@media (prefers-color-scheme: dark) {
+.opi-activity.opi-activity {
+  --colour-page: #0f141b;
+  --colour-surface: #161d27;
+  --colour-surface-raised: #1a2230;
+  --colour-border: #2c3644;
+  --colour-border-strong: #44506180;
+  --colour-text: #e9edf3;
+  --colour-text-muted: #a8b2c1;
+  --colour-accent: #8fb6ff;
+  --colour-accent-hover: #b3cdff;
+  --colour-accent-soft: #1b2740;
+  --colour-on-accent: #0f141b;
+  --colour-focus: #f0b429;
+  --colour-cognitive: #e2ab5f;
+  --colour-research-methods: #8fb6ff;
+  --colour-neuropsychology: #6fc3b4;
+  --colour-social-critical-psychology: #f19aa8;
+  --colour-personality-individual-differences: #db9ccd;
+  --colour-status-bg: #241f14;
+  --colour-status-text: #e2cf9f;
+  --colour-status-border: #4a4028;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 2px 10px rgb(0 0 0 / 0.45);
+}
+}
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity.opi-activity {
+  -webkit-text-size-adjust: 100%;
+}
+.opi-activity.opi-activity {
+  background-color: var(--colour-page);
+  color: var(--colour-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.65;
+}
+.opi-activity.opi-activity h1,
+.opi-activity.opi-activity h2,
+.opi-activity.opi-activity h3,
+.opi-activity.opi-activity h4 {
+  margin: 0 0 var(--space-3);
+  line-height: 1.25;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.opi-activity.opi-activity h1 {
+  font-size: var(--text-3xl);
+}
+.opi-activity.opi-activity h2 {
+  font-size: var(--text-2xl);
+}
+.opi-activity.opi-activity h3 {
+  font-size: var(--text-xl);
+}
+.opi-activity.opi-activity h4 {
+  font-size: var(--text-lg);
+}
+.opi-activity.opi-activity p,
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol,
+.opi-activity.opi-activity dl {
+  margin: 0 0 var(--space-4);
+}
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol {
+  padding-left: 1.35em;
+}
+.opi-activity.opi-activity li + li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity a {
+  color: var(--colour-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: max(1px, 0.06em);
+}
+.opi-activity.opi-activity a:hover {
+  color: var(--colour-accent-hover);
+  text-decoration-thickness: max(2px, 0.11em);
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid var(--colour-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+@supports not selector(:focus-visible) {
+.opi-activity.opi-activity :focus {
+  outline: 3px solid var(--colour-focus);
+    outline-offset: 2px;
+}
+}
+.opi-activity.opi-activity code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.35em;
+}
+.opi-activity.opi-activity hr {
+  border: 0;
+  border-top: 1px solid var(--colour-border);
+  margin: var(--space-6) 0;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+}
+.opi-activity.opi-activity .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.opi-activity.opi-activity .container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+@media (min-width: 40em) {
+.opi-activity.opi-activity .container {
+  padding-inline: var(--space-5);
+}
+}
+.opi-activity.opi-activity .prose {
+  max-width: var(--measure);
+}
+.opi-activity.opi-activity .text-muted {
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .section {
+  padding-block: var(--space-7);
+}
+.opi-activity.opi-activity .section--tinted {
+  background-color: var(--colour-surface);
+  border-block: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .section__header {
+  max-width: var(--measure);
+  margin-bottom: var(--space-5);
+}
+.opi-activity.opi-activity .section__header > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-7) var(--space-6);
+  border-bottom: 1px solid var(--colour-border);
+  
+  background-image: linear-gradient(
+    180deg,
+    var(--colour-accent-soft) 0%,
+    var(--colour-page) 100%
+  );
+}
+.opi-activity.opi-activity .hero__eyebrow {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .hero h1 {
+  max-width: 20ch;
+  margin-bottom: var(--space-4);
+}
+.opi-activity.opi-activity .hero__lead {
+  max-width: var(--measure);
+  font-size: var(--text-lg);
+  color: var(--colour-text-muted);
+}
+@media (min-width: 48em) {
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-8) var(--space-7);
+}
+.opi-activity.opi-activity .hero h1 {
+  font-size: 44px;
+}
+}
+.opi-activity.opi-activity .button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  
+  min-height: 44px;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .button--primary {
+  background-color: var(--colour-accent);
+  border-color: var(--colour-accent);
+  
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--primary:hover {
+  background-color: var(--colour-accent-hover);
+  border-color: var(--colour-accent-hover);
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--secondary {
+  background-color: transparent;
+  border-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .button--secondary:hover {
+  background-color: var(--colour-surface);
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+}
+.opi-activity.opi-activity .card--cognitive {
+  --card-accent: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .card--research-methods {
+  --card-accent: var(--colour-research-methods);
+}
+.opi-activity.opi-activity .card--neuropsychology {
+  --card-accent: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .card--social-critical-psychology {
+  --card-accent: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .card--personality-individual-differences {
+  --card-accent: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 650;
+  line-height: 1.4;
+  padding: 3.2px var(--space-3);
+  border-radius: 999px;
+  border: 1px solid var(--colour-status-border);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+}
+.opi-activity.opi-activity .badge__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex: none;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed var(--colour-border-strong);
+  border-radius: var(--radius-lg);
+  background-color: var(--colour-surface);
+  padding: var(--space-5);
+  text-align: left;
+}
+.opi-activity.opi-activity .placeholder__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+}
+.opi-activity.opi-activity .placeholder > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .split {
+  display: grid;
+  gap: var(--space-6);
+}
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split {
+  grid-template-columns: 3fr 2fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .panel {
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.opi-activity.opi-activity .panel > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .panel__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .section--tinted {
+  border-block: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .hero {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .button--primary {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .button--secondary {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .button:hover {
+  border-color: Highlight;
+}
+.opi-activity.opi-activity .panel {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed CanvasText;
+}
+.opi-activity.opi-activity .badge {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .badge__dot {
+  background-color: CanvasText;
+}
+.opi-activity.opi-activity code {
+  border-color: CanvasText;
+}
+.opi-activity.opi-activity hr {
+  border-top-color: CanvasText;
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+}
+@media print {
+.opi-activity.opi-activity {
+  color: #000;
+  background: #fff;
+}
+.opi-activity.opi-activity a[href^="http"]::after {
+  content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+}
+}
+
+/* components/interactive-shell.css */
+.opi-activity.opi-activity .interactive {
+  --shell-page: var(--colour-page, #ffffff);
+  --shell-surface: var(--colour-surface, #f5f7fa);
+  --shell-raised: var(--colour-surface-raised, #ffffff);
+  --shell-border: var(--colour-border, #d3d9e2);
+  --shell-border-strong: var(--colour-border-strong, #aeb7c4);
+  --shell-text: var(--colour-text, #131820);
+  --shell-muted: var(--colour-text-muted, #4c566a);
+  --shell-accent: var(--colour-accent, #1a4fa0);
+  --shell-accent-soft: var(--colour-accent-soft, #e8eefb);
+  
+  --shell-on-accent: var(--colour-on-accent, #ffffff);
+  --shell-focus: var(--colour-focus, #b45309);
+  --shell-radius: var(--radius-lg, 12px);
+  --shell-gap: var(--space-5, 24px);
+
+  display: block;
+  background-color: var(--shell-raised);
+  color: var(--shell-text);
+  border: 1px solid var(--shell-border);
+  border-radius: var(--shell-radius);
+  
+  overflow-x: clip;
+  overflow-y: visible;
+}
+.opi-activity.opi-activity .interactive__header {
+  padding: var(--shell-gap);
+  border-bottom: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 1.25;
+}
+.opi-activity.opi-activity .interactive__brief {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--shell-muted);
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__body {
+  display: grid;
+  gap: var(--shell-gap);
+  padding: var(--shell-gap);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body {
+  grid-template-columns: minmax(240px, 320px) 1fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .interactive__controls {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__controls fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .interactive__controls legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .control {
+  display: grid;
+  gap: 5.6px;
+}
+.opi-activity.opi-activity .control + .control {
+  margin-top: 16px;
+}
+.opi-activity.opi-activity .control__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.opi-activity.opi-activity .control__label {
+  font-size: 15px;
+  font-weight: 600;
+}
+.opi-activity.opi-activity .control__value {
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--shell-accent);
+}
+.opi-activity.opi-activity .control__hint {
+  font-size: 13px;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .interactive__controls input[type="range"] {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--shell-accent);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  width: 100%;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--shell-text);
+  background-color: var(--shell-raised);
+  border: 1px solid var(--shell-border-strong);
+  border-radius: var(--radius-sm, 4px);
+}
+.opi-activity.opi-activity .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+}
+.opi-activity.opi-activity .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  accent-color: var(--shell-accent);
+  flex: none;
+}
+.opi-activity.opi-activity .interactive__stage {
+  min-height: 256px;
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-page);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body--pinned {
+  align-items: stretch;
+}
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: sticky;
+    top: 0;
+    z-index: 2;
+    
+    margin: -16px -16px 0;
+    padding: 16px 16px 12px;
+    background-color: var(--shell-page);
+    border-bottom: 1px solid var(--shell-border);
+}
+}
+@media (min-width: 52em) and (max-height: 30em) {
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: static;
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
+}
+}
+.opi-activity.opi-activity .interactive__stage > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity :where(.interactive__stage) svg,
+.opi-activity.opi-activity :where(.interactive__stage) canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+.opi-activity.opi-activity .interactive__readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout div {
+  padding: 9.6px 12px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-sm, 4px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__readout dt {
+  font-size: 13px;
+  color: var(--shell-muted);
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout dd {
+  margin: 2.4px 0 0;
+  font-size: 18px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .interactive__status {
+  margin: 0;
+  padding: 12px var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+  font-size: 15px;
+  color: var(--shell-muted);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .interactive__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+}
+.opi-activity.opi-activity .interactive__actions button {
+  min-height: 44px;
+  padding: 6.4px 20px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--shell-on-accent);
+  background-color: var(--shell-accent);
+  border: 1px solid var(--shell-accent);
+  border-radius: var(--radius-md, 8px);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  color: var(--shell-text);
+  background-color: transparent;
+  border-color: var(--shell-border-strong);
+}
+.opi-activity.opi-activity .interactive__actions button:hover {
+  filter: brightness(1.08);
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__notes > summary {
+  padding: 13.6px var(--shell-gap);
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__notes > div {
+  padding: 0 var(--shell-gap) var(--shell-gap);
+  max-width: 68ch;
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__notes > div > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity .interactive *,
+.opi-activity.opi-activity .interactive *::before,
+.opi-activity.opi-activity .interactive *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+}
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .interactive,
+.opi-activity.opi-activity .interactive__controls,
+.opi-activity.opi-activity .interactive__stage,
+.opi-activity.opi-activity .interactive__readout div {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__header {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__status,
+.opi-activity.opi-activity .interactive__actions,
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__actions button {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  border-width: 1px;
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 1;
+    color: GrayText;
+    border-color: GrayText;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__stage svg {
+  forced-color-adjust: auto;
+}
+}
+
+/* components/tool-kit.css */
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split--wide {
+  grid-template-columns: 1fr 1fr;
+}
+}
+.opi-activity.opi-activity .how-to {
+  padding-left: 19.2px;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .how-to > li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .table-scroll {
+  overflow-x: auto;
+  
+  position: relative;
+}
+.opi-activity.opi-activity .prediction {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 832px;
+}
+.opi-activity.opi-activity .prediction > *,
+.opi-activity.opi-activity .challenge > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity .prediction__group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .prediction__legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-weight: 650;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .prediction .control--choice,
+.opi-activity.opi-activity .challenge .control--choice,
+.opi-activity.opi-activity .evidence .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .prediction .control--choice input,
+.opi-activity.opi-activity .challenge .control--choice input,
+.opi-activity.opi-activity .evidence .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .prediction__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .prediction__error {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-status-border);
+  border-left: 4px solid var(--colour-status-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .prediction__readback {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .feedback[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .feedback[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .feedback[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .feedback__verdict {
+  font-weight: 700;
+}
+.opi-activity.opi-activity .verdict {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .verdict__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict__body {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .verdict__body + .verdict__body {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .verdict__note {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .verdict[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .verdict[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .goal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .goal__label {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .goal__text {
+  flex: 1 1 256px;
+}
+.opi-activity.opi-activity .goal strong {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .goal__checks {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+  display: grid;
+  gap: 2.4px;
+}
+.opi-activity.opi-activity .goal__checks > li {
+  margin-top: 0;
+  padding-left: 22.4px;
+  position: relative;
+}
+.opi-activity.opi-activity .goal__checks > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 9.6px;
+  height: 9.6px;
+  border: 2px solid var(--colour-border-strong);
+  border-radius: 2px;
+}
+.opi-activity.opi-activity .goal__checks > li[data-met="yes"]::before {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .stage-track {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .stage-track > li {
+  margin-top: 0;
+  flex: 1 1 160px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-bottom: 3px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .stage-track > li > span {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.opi-activity.opi-activity .stage-track > li[data-state="done"] {
+  border-bottom-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border-bottom-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+  color: var(--colour-text);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .stage__heading {
+  margin: 0;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .data-table,
+.opi-activity.opi-activity .chart__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .data-table th,
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table th,
+.opi-activity.opi-activity .chart__table td {
+  padding: 6.4px 9.6px;
+  border: 1px solid var(--colour-border);
+  text-align: left;
+  vertical-align: top;
+}
+.opi-activity.opi-activity .data-table thead th,
+.opi-activity.opi-activity .chart__table thead th {
+  background-color: var(--colour-surface);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table td {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__table tbody th,
+.opi-activity.opi-activity .data-table tbody th {
+  font-weight: 550;
+}
+.opi-activity.opi-activity .data-table__total > th,
+.opi-activity.opi-activity .data-table__total > td {
+  border-top: 2px solid var(--colour-border-strong);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart {
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .chart__caption {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__svg {
+  max-width: 100%;
+  height: auto;
+}
+.opi-activity.opi-activity .chart__label,
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__inline,
+.opi-activity.opi-activity .chart__axis {
+  font-family: var(--font-body);
+  fill: var(--colour-text);
+  font-size: 13px;
+}
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__axis {
+  fill: var(--colour-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: var(--colour-on-accent);
+  font-size: 12px;
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__track {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__bar {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--one {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .chart__baseline,
+.opi-activity.opi-activity .chart__grid {
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__line {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: var(--colour-personality-individual-differences);
+  stroke-dasharray: 6 4;
+}
+.opi-activity.opi-activity .chart__point {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .reveal > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .reveal__lead {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+.opi-activity.opi-activity .reveal__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(176px, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+  padding: 0;
+  list-style: none;
+}
+.opi-activity.opi-activity .reveal__figures > li {
+  margin-top: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+.opi-activity.opi-activity .reveal__figure-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .reveal__figure-value {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .challenge {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+.opi-activity.opi-activity .challenge__locked {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .panel--caution {
+  background-color: var(--colour-status-bg);
+  border-color: var(--colour-status-border);
+}
+.opi-activity.opi-activity .panel--caution li + li {
+  margin-top: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .goal,
+.opi-activity.opi-activity .verdict,
+.opi-activity.opi-activity .feedback,
+.opi-activity.opi-activity .prediction__error,
+.opi-activity.opi-activity .prediction__readback,
+.opi-activity.opi-activity .stage-track > li,
+.opi-activity.opi-activity .reveal__figures > li {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border: 2px solid Highlight;
+}
+.opi-activity.opi-activity .chart__bar,
+.opi-activity.opi-activity .chart__bar--one {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: Canvas;
+}
+.opi-activity.opi-activity .chart__line {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: Highlight;
+}
+}
+.opi-activity.opi-activity .stage__more {
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .stage__more > summary {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .stage__more[open] > summary {
+  border-bottom: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .stage__more > *:not(summary) {
+  margin: var(--space-3);
+}
+
+/* modules/research-methods/tools/08-sampling-distribution-pvalue-simulator/tool.css */
+.opi-activity.opi-activity #pvalue .interactive__controls,
+.opi-activity.opi-activity #pvalue .interactive__stage {
+  min-width: 0;
+}
+.opi-activity.opi-activity #pvalue .interactive__stage > * {
+  min-width: 0;
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity #pvalue .interactive__body {
+  grid-template-columns: minmax(0, 304px) minmax(0, 1fr);
+}
+}
+.opi-activity.opi-activity [data-hist] {
+  max-width: 416px;
+}
+.opi-activity.opi-activity #pvalue .interactive__readout {
+  grid-template-columns: repeat(auto-fit, minmax(112px, 1fr));
+  gap: 6.4px;
+}
+.opi-activity.opi-activity #pvalue .interactive__readout div {
+  padding: 6.4px 8px;
+}
+.opi-activity.opi-activity #pvalue .interactive__readout dd {
+  font-size: 16px;
+}
+.opi-activity.opi-activity .hist__bar {
+  fill: var(--colour-accent-soft);
+  stroke: var(--colour-accent);
+  stroke-width: 0.6;
+}
+.opi-activity.opi-activity .hist__bar--tail {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .hist__hatch {
+  stroke: var(--colour-on-accent);
+  stroke-width: 1;
+  opacity: 0.55;
+}
+.opi-activity.opi-activity .hist__zero {
+  stroke: var(--colour-text-muted);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+.opi-activity.opi-activity .hist__observed {
+  stroke: var(--colour-social-critical-psychology);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .hist__axis {
+  stroke: var(--colour-border-strong);
+  stroke-width: 1;
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .hist__bar {
+  fill: Canvas; stroke: CanvasText;
+}
+.opi-activity.opi-activity .hist__bar--tail {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .hist__hatch {
+  stroke: Canvas; opacity: 1;
+}
+.opi-activity.opi-activity .hist__zero {
+  stroke: GrayText;
+}
+.opi-activity.opi-activity .hist__observed {
+  stroke: CanvasText; stroke-width: 3;
+}
+.opi-activity.opi-activity .hist__axis {
+  stroke: CanvasText;
+}
+}
+</style>
+
+  <!-- ================= Title and purpose ================= -->
+  <section class="section card--research-methods" aria-labelledby="page-heading">
+    <div class="container">
+
+      <p class="hero__eyebrow" style="color: var(--colour-research-methods)">
+        Research Methods
+      </p>
+      <h1 id="page-heading">Sampling Distribution and p-Value Simulator</h1>
+      <p class="hero__lead">
+        Run a study whose true effect is exactly zero, several thousand times,
+        and watch what "nothing is going on" actually looks like. The p-value
+        is the tail area of that picture — and nothing else.
+      </p>
+
+      <p>
+        <span class="badge">
+          <span class="badge__dot" aria-hidden="true"></span>
+          Simulated — a generated null model, drawn from a documented seed
+        </span>
+      </p>
+
+      <div class="split split--wide">
+
+        <div class="panel">
+          <h2 class="panel__title">Learning objective</h2>
+          <p>
+            By the end you should be able to describe a sampling
+            distribution, and say what a p-value is and is not the
+            probability of.
+          </p>
+          <p class="text-muted">
+            About 25 minutes. Nothing you do here is saved or sent anywhere.
+          </p>
+        </div>
+
+        <div class="panel panel--caution">
+          <h2 class="panel__title">What a p-value is conditional on</h2>
+          <p>
+            Everything on this page is computed <em>assuming</em> the null
+            model is true, the samples are independent draws from it, the
+            analysis was decided in advance, and this is the only test being
+            run. A p-value is a statement about data under a model. It is not
+            the probability that the null hypothesis is true, not the
+            probability the result happened by chance, and not a measure of
+            how large or important an effect is.
+          </p>
+        </div>
+
+      </div>
+
+      <ol class="how-to">
+        <li>Answer the prediction question to unlock the simulator.</li>
+        <li>Press <em>Run 1,000 null studies</em> and watch the pile build.</li>
+        <li>Move the observed difference and watch the shaded tails change.</li>
+        <li>Change n and &sigma; and see the whole distribution rescale.</li>
+      </ol>
+
+    </div>
+  </section>
+
+  <!-- ================= Opening prediction ================= -->
+  <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="opening-heading">First, a prediction</h2>
+        <p class="prose">
+          Two groups of 40 fictional participants are drawn from exactly the
+          same population, so the true difference between them is zero. Scores
+          have a standard deviation of 15.
+        </p>
+      </div>
+
+      <noscript>
+        <div class="placeholder">
+          <h3 class="placeholder__title">This part needs JavaScript</h3>
+          <p class="prose">
+            The simulator generates its studies in your browser, so it cannot
+            run with JavaScript switched off. The rest of this page is
+            readable without it.
+          </p>
+        </div>
+      </noscript>
+
+      <form class="panel prediction" id="opening-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            How often will such a study produce a difference of 5 points or
+            more, in either direction, purely from which people happened to be
+            sampled?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="never">
+            Less than one study in a hundred
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="twenty">
+            About one study in twenty
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="seven">
+            About one study in seven
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="three">
+            About one study in three
+          </label>
+        </fieldset>
+
+        <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Record my prediction and open the simulator
+          </button>
+          <button class="button button--secondary" type="button" data-action="skip-opening">
+            Skip — I am demonstrating this
+          </button>
+        </div>
+
+        <div class="feedback" data-opening-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Simulator ================= -->
+  <section class="section" id="sim-section" aria-labelledby="sim-heading" hidden>
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="sim-heading" tabindex="-1">The simulator</h2>
+        <p class="prose">
+          Every study in the pile has a true effect of exactly zero. The
+          spread you see is what sampling alone produces.
+        </p>
+      </div>
+
+      <section class="interactive" id="pvalue" data-interactive
+               data-reset-message="Everything cleared. Back to the opening prediction.">
+
+        <header class="interactive__header">
+          <h3 class="interactive__title">A world in which nothing is going on</h3>
+          <p class="interactive__brief">
+            Two groups of n fictional participants, drawn from the same
+            population. The statistic is the difference between their means.
+          </p>
+        </header>
+
+        <div class="interactive__body interactive__body--pinned">
+
+          <form class="interactive__controls" data-interactive-controls>
+
+            <fieldset>
+              <legend>The null model</legend>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="n-range">Participants per group</label>
+                  <output class="control__value" for="n-range">40</output>
+                </div>
+                <input type="range" id="n-range" min="10" max="200" step="5" value="40">
+              </div>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="sd-range">Population standard deviation</label>
+                  <output class="control__value" for="sd-range">15</output>
+                </div>
+                <input type="range" id="sd-range" min="5" max="30" step="1" value="15">
+                <p class="control__hint">
+                  The true difference between the groups is fixed at zero and
+                  cannot be changed. That is what makes this the null model.
+                </p>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Your study's result</legend>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="obs-range">Observed difference</label>
+                  <output class="control__value" for="obs-range">5.0</output>
+                </div>
+                <input type="range" id="obs-range" min="0" max="20" step="0.5" value="5">
+                <p class="control__hint">
+                  One real study reported this. Everything shaded lies at least
+                  this far from zero.
+                </p>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Sampling</legend>
+              <div class="control">
+                <label class="control__label" for="seed-input">Random seed</label>
+                <input type="number" id="seed-input" value="5140" step="1" min="1" max="999999">
+              </div>
+            </fieldset>
+
+          </form>
+
+          <div class="interactive__stage" data-interactive-stage>
+
+            <!-- Pinned: the null distribution with the observed value marked.
+                 Every control on the left moves it. -->
+            <div class="stage__primary">
+              <h4 class="stage__heading" data-chart-heading>
+                Differences from 0 null studies
+              </h4>
+              <figure class="chart">
+                <figcaption class="visually-hidden">
+                  Histogram of mean differences from repeated simulated studies
+                  in which the true difference is zero, with the observed
+                  difference marked and the tails at least that far from zero
+                  shaded
+                </figcaption>
+                <svg class="chart__svg" data-hist viewBox="0 0 460 190"
+                     aria-hidden="true" focusable="false"></svg>
+                <div class="table-scroll">
+                  <table class="chart__table">
+                    <caption class="visually-hidden">
+                      How many simulated null studies fell in each region
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Region</th>
+                        <th scope="col">Null studies</th>
+                        <th scope="col">Share</th>
+                      </tr>
+                    </thead>
+                    <tbody data-region-table></tbody>
+                  </table>
+                </div>
+              </figure>
+              <dl class="interactive__readout" data-readout></dl>
+            </div>
+
+            <div class="verdict" data-verdict>
+              <h4 class="verdict__title">Reading this correctly</h4>
+              <p class="verdict__body" data-interpretation></p>
+            </div>
+
+            <details class="stage__more">
+              <summary>Theory beside simulation</summary>
+              <div class="table-scroll">
+                <table class="data-table">
+                  <caption class="visually-hidden">
+                    Quantities predicted by the model and the same quantities
+                    measured in the simulation
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Quantity</th>
+                      <th scope="col">Predicted by the model</th>
+                      <th scope="col">Observed in the simulation</th>
+                    </tr>
+                  </thead>
+                  <tbody data-theory-table></tbody>
+                </table>
+              </div>
+            </details>
+
+          </div>
+
+        </div>
+
+        <p class="interactive__status" data-interactive-status role="status"></p>
+
+        <div class="interactive__actions">
+          <button type="button" data-action="run1000">Run 1,000 null studies</button>
+          <button type="button" data-variant="secondary" data-action="run20">
+            Run 20 more, slowly
+          </button>
+          <button type="button" data-variant="secondary" data-action="clear">
+            Clear the pile
+          </button>
+          <button type="button" data-variant="secondary" data-interactive-reset>
+            Reset everything
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ================= Challenge ================= -->
+  <section class="section section--tinted" id="challenge" aria-labelledby="challenge-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="challenge-heading">Challenge — say what p means</h2>
+        <p class="prose">
+          A study reports a difference of 5.0 points between two groups, with
+          <em>p</em> = .14.
+        </p>
+      </div>
+
+      <form class="panel challenge" id="challenge-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            Which statements are correct? Select all that apply.
+          </legend>
+          <label class="control--choice">
+            <input type="checkbox" name="challenge" value="tail">
+            If the null model were true, about 14% of studies like this one would produce a difference at least this far from zero
+          </label>
+          <label class="control--choice">
+            <input type="checkbox" name="challenge" value="prob-null">
+            There is a 14% probability that the null hypothesis is true
+          </label>
+          <label class="control--choice">
+            <input type="checkbox" name="challenge" value="chance">
+            There is a 14% probability the result was due to chance
+          </label>
+          <label class="control--choice">
+            <input type="checkbox" name="challenge" value="noeffect">
+            The study shows there is no effect
+          </label>
+          <label class="control--choice">
+            <input type="checkbox" name="challenge" value="small">
+            The effect is small
+          </label>
+          <label class="control--choice">
+            <input type="checkbox" name="challenge" value="replicate">
+            If the study were repeated, there is an 86% chance of a significant result
+          </label>
+        </fieldset>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">Check my answer</button>
+        </div>
+
+        <div class="feedback" data-challenge-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Debrief ================= -->
+  <section class="section" id="debrief" aria-labelledby="debrief-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="debrief-heading">What this demonstrates</h2>
+      </div>
+
+      <div class="split split--wide">
+
+        <div class="prose">
+          <h3>A sampling distribution is a picture of repetition</h3>
+          <p>
+            Every bar in the histogram is a study that was never run. The
+            distribution says what results a stated model would produce if you
+            repeated the whole procedure, and it is the reference against which
+            one real result is judged. Nothing about it is a property of your
+            data.
+          </p>
+
+          <h3>The p-value is a tail area, and it points backwards</h3>
+          <p>
+            It answers: <em>given the model, how often would data at least this
+            extreme appear?</em> It cannot answer the question people actually
+            want — how likely the hypothesis is — because that would require
+            starting from something other than the data, and the calculation
+            never does. Reversing the conditional is the single most common
+            error in statistical reporting, and it is the one the challenge
+            above is built around.
+          </p>
+
+          <h3>The same difference gives different p-values</h3>
+          <p>
+            Hold the observed difference at 5.0 and change the sample size.
+            The number the study reported has not moved, and the p-value
+            travels from about .5 to below .001. A p-value is therefore not a
+            measure of how big anything is; it confounds size, variability and
+            sample size into one figure, which is why effect sizes are reported
+            alongside it rather than instead of it.
+          </p>
+
+          <h3>Everything here is conditional on a model nobody checked</h3>
+          <p>
+            The tail area is exact only if the samples really are independent
+            draws from the stated distribution, the analysis was fixed in
+            advance, and this is the only comparison being made. Break any of
+            those and the number on screen stops meaning what it says — which
+            is the subject of the multiple-comparisons tool later in this
+            module.
+          </p>
+        </div>
+
+        <aside class="panel panel--caution" aria-labelledby="limits-heading">
+          <h3 class="panel__title" id="limits-heading">
+            What this does <em>not</em> demonstrate
+          </h3>
+          <ul>
+            <li>
+              <strong>No real data.</strong> Every study in the pile is
+              generated from a seeded random number generator, and the
+              observed difference is a slider rather than a finding.
+            </li>
+            <li>
+              <strong>The null model here is unusually clean.</strong> Normal
+              populations, equal and known variances, no measurement error, no
+              dropouts, no dependence. Real reference distributions are
+              approximations to something messier.
+            </li>
+            <li>
+              <strong>The reference distribution is normal, not <em>t</em>.</strong>
+              Because the model treats the population standard deviation as
+              known, z is exactly right here. A real t-test estimates it from
+              the sample and pays for that with heavier tails — the subject of
+              a later tool in this module.
+            </li>
+            <li>
+              <strong>A small p-value does not identify what is wrong with
+              the model.</strong> It says only that the data sit far into the
+              tail of <em>this</em> model, and every assumption in the model
+              is a candidate for what went wrong.
+            </li>
+            <li>
+              <strong>Nothing here justifies a threshold.</strong> The
+              simulator never mentions .05, because whether a tail area of a
+              particular size should change what anybody does is a decision,
+              not a statistical fact.
+            </li>
+          </ul>
+        </aside>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+<script>
+/* ---- components/interactive-shell.js ---- */
+/* =========================================================================
+   Open Psychology Interactives — interactive shell helper
+   -------------------------------------------------------------------------
+   A very small vanilla-JS helper that every interactive in this collection
+   uses. It deliberately does *not* draw anything or know anything about
+   statistics, personality or neuropsychology. Its job is the repetitive,
+   easy-to-get-wrong accessibility plumbing:
+
+     * announcing changes through a polite live region;
+     * keeping a range slider and its <output> in step;
+     * wiring the standard Reset button;
+     * reporting the reader's reduced-motion preference.
+
+   Usage (see docs/adapting-a-tool.md for the full markup contract):
+
+       <script src="../../components/interactive-shell.js" defer><\/script>
+       <script src="tool.js" defer><\/script>
+
+       // in tool.js
+       const shell = InteractiveShell.attach('#sampling-demo');
+       shell.onReset(() => { ...restore defaults...; draw(); });
+       shell.bindRange('#sample-size', { format: n => n + ' cases' });
+       shell.announce('Sample of 25 drawn. Mean 4.8.');
+
+   Every published interactive is written against this module.
+
+   Exposed as a global (window.InteractiveShell) rather than an ES module so
+   that a single interactive folder can be opened directly from disk over
+   file:// — ES modules are blocked by CORS in that situation, plain scripts
+   are not. That constraint is the whole reason for the older syntax here.
+   ========================================================================= */
+
+(function (global) {
+  "use strict";
+
+  /* -----------------------------------------------------------------------
+     Internal helpers
+     --------------------------------------------------------------------- */
+
+  /**
+   * Accept either a CSS selector or an element and return an element.
+   * @param {string|Element} target
+   * @param {ParentNode} [scope]
+   * @returns {Element|null}
+   */
+  function resolve(target, scope) {
+    if (!target) {
+      return null;
+    }
+    if (typeof target === "string") {
+      return (scope || document).querySelector(target);
+    }
+    return target;
+  }
+
+  /**
+   * True when the reader has asked the operating system to reduce motion.
+   * Interactives should check this before animating anything — for example
+   * by drawing a sampling distribution in one step instead of animating
+   * each draw.
+   * @returns {boolean}
+   */
+  function prefersReducedMotion() {
+    return (
+      typeof global.matchMedia === "function" &&
+      global.matchMedia("(prefers-reduced-motion: reduce)").matches
+    );
+  }
+
+  /* -----------------------------------------------------------------------
+     Shell controller
+     --------------------------------------------------------------------- */
+
+  /**
+   * Attach the shell behaviour to one `.interactive` element.
+   *
+   * @param {string|Element} target  Selector or element for the shell root.
+   * @returns {object|null}  Controller, or null if the root was not found.
+   */
+  function attach(target) {
+    var root = resolve(target);
+
+    if (!root) {
+      if (global.console && console.warn) {
+        console.warn("InteractiveShell: root element not found.", target);
+      }
+      return null;
+    }
+
+    var controls = root.querySelector("[data-interactive-controls]");
+    var stage = root.querySelector("[data-interactive-stage]");
+    var status = root.querySelector("[data-interactive-status]");
+    var resetButton = root.querySelector("[data-interactive-reset]");
+    var resetHandlers = [];
+    // Every range bound with bindRange() registers its sync function here, so
+    // that reset() can refresh the visible values after the tool's own reset
+    // handlers have restored the inputs. See reset() for why this is needed.
+    var rangeSyncs = [];
+
+    /* --- Live region ----------------------------------------------------
+       The status element is marked up as role="status" (implicitly
+       aria-live="polite"). Two details matter:
+
+         1. Assistive technology only announces *changes* to a live region,
+            so writing the same string twice is silently dropped. We add a
+            trailing zero-width space on repeat messages to force an
+            announcement when a student re-runs the same action.
+         2. Announcements are debounced. A slider dragged across its range
+            fires dozens of input events; without a delay a screen reader
+            would queue every intermediate value and fall far behind.
+       ------------------------------------------------------------------ */
+
+    var announceTimer = null;
+    var lastMessage = "";
+
+    /**
+     * Announce a short sentence describing what just changed.
+     * @param {string} message
+     * @param {object} [options]
+     * @param {boolean} [options.immediate]  Skip the debounce delay. Use for
+     *   discrete actions (button presses); leave off for continuous input.
+     */
+    function announce(message, options) {
+      if (!status) {
+        return;
+      }
+
+      var text = String(message == null ? "" : message);
+      var immediate = Boolean(options && options.immediate);
+
+      if (announceTimer !== null) {
+        global.clearTimeout(announceTimer);
+        announceTimer = null;
+      }
+
+      function write() {
+        // Force a change when the text is identical to last time.
+        status.textContent = text === lastMessage ? text + "​" : text;
+        lastMessage = text;
+      }
+
+      if (immediate) {
+        write();
+      } else {
+        announceTimer = global.setTimeout(write, 350);
+      }
+    }
+
+    /* --- Reset ---------------------------------------------------------- */
+
+    /**
+     * Register a callback to run when the Reset button is pressed.
+     * Several may be registered; they run in the order added.
+     * @param {Function} handler
+     */
+    function onReset(handler) {
+      if (typeof handler === "function") {
+        resetHandlers.push(handler);
+      }
+    }
+
+    /**
+     * Run the reset handlers. Called by the button and available directly so
+     * an interactive can reset itself on first load.
+     *
+     * Bound ranges are re-synced afterwards. A reset handler restores an
+     * input by assigning to `input.value`, and assigning to a value in script
+     * does not fire an `input` event — so without this step the slider would
+     * jump back to its default while its <output> went on showing the old
+     * number. Syncing here, after the handlers have run, also means the sync
+     * sees the restored values regardless of the order things were
+     * registered in.
+     *
+     * @param {object} [options]
+     * @param {boolean} [options.silent]  Suppress the status announcement.
+     */
+    function reset(options) {
+      resetHandlers.forEach(function (handler) {
+        handler();
+      });
+      rangeSyncs.forEach(function (sync) {
+        sync();
+      });
+      if (!options || !options.silent) {
+        announce(
+          root.getAttribute("data-reset-message") ||
+            "Reset to the starting values.",
+          { immediate: true }
+        );
+      }
+    }
+
+    if (resetButton) {
+      resetButton.addEventListener("click", function (event) {
+        // Reset buttons commonly sit inside the controls <form>; stop the
+        // browser's own form reset from fighting with ours.
+        event.preventDefault();
+        reset();
+      });
+    }
+
+    /* --- Range binding --------------------------------------------------
+       Keeps a slider's <output> in step with its value. The <output> must
+       carry `for="<input id>"`, which is what associates the two for
+       assistive technology; this only handles the visible text.
+
+       Optionally sets aria-valuetext, which is how you make a screen reader
+       say "25 cases" or "medium correlation" instead of a bare "25".
+       ------------------------------------------------------------------ */
+
+    /**
+     * @param {string|Element} inputTarget  The range (or number) input.
+     * @param {object} [options]
+     * @param {Function} [options.format]  value:number -> string shown in the
+     *   <output>. Defaults to the raw value.
+     * @param {Function} [options.describe]  value:number -> string used for
+     *   aria-valuetext. Defaults to options.format.
+     * @param {Function} [options.onInput]  value:number -> void, called after
+     *   the display has been updated. Use it to redraw.
+     * @returns {HTMLInputElement|null}
+     */
+    function bindRange(inputTarget, options) {
+      var input = resolve(inputTarget, root);
+      if (!input) {
+        return null;
+      }
+
+      var settings = options || {};
+      var format =
+        typeof settings.format === "function"
+          ? settings.format
+          : function (value) {
+              return String(value);
+            };
+      var describe =
+        typeof settings.describe === "function" ? settings.describe : format;
+
+      // <output for="the-input-id"> is the conventional pairing.
+      var output = input.id
+        ? root.querySelector('output[for="' + input.id + '"]')
+        : null;
+
+      function sync() {
+        var value = Number(input.value);
+        if (output) {
+          output.textContent = format(value);
+        }
+        // Only meaningful for widgets with an implicit or explicit slider
+        // role; harmless elsewhere.
+        input.setAttribute("aria-valuetext", describe(value));
+        if (typeof settings.onInput === "function") {
+          settings.onInput(value);
+        }
+      }
+
+      input.addEventListener("input", sync);
+      // Registered so reset() can refresh the display after the tool's own
+      // reset handlers have put the input back to its default.
+      rangeSyncs.push(sync);
+      sync();
+
+      return input;
+    }
+
+    /* --- Public surface -------------------------------------------------- */
+
+    return {
+      /** The `.interactive` root element. */
+      root: root,
+      /** The controls panel, or null if the shell has none. */
+      controls: controls,
+      /** The stage element where the visualisation is drawn. */
+      stage: stage,
+      /** The live-region element. */
+      status: status,
+      announce: announce,
+      onReset: onReset,
+      reset: reset,
+      bindRange: bindRange,
+      prefersReducedMotion: prefersReducedMotion
+    };
+  }
+
+  /* -----------------------------------------------------------------------
+     Export
+     --------------------------------------------------------------------- */
+
+  global.InteractiveShell = {
+    attach: attach,
+    prefersReducedMotion: prefersReducedMotion
+  };
+})(window);
+
+/* ---- modules/research-methods/tools/08-sampling-distribution-pvalue-simulator/tool.js ---- */
+/* =========================================================================
+   Sampling Distribution and p-Value Simulator
+   -------------------------------------------------------------------------
+   Two groups of n fictional participants are drawn from the SAME normal
+   population, so the true difference is exactly zero. Repeating that gives the
+   sampling distribution of the mean difference under the null model. One
+   observed difference is marked on it, and the p-value is read off as the
+   combined area at least that far from zero.
+
+   THE MODEL
+   ---------
+       group A ~ Normal(0, sigma),  group B ~ Normal(0, sigma),  n per group
+       statistic  = mean(A) - mean(B)
+       SE         = sigma * sqrt(2/n)
+       reference  = Normal(0, SE)
+
+   The population standard deviation is treated as KNOWN, because the null
+   model states it. That is why the reference distribution is normal rather
+   than t: nothing is being estimated from the sample. A real t-test estimates
+   sigma and pays for that with heavier tails, which is a later tool.
+
+       theoretical p = 2 * (1 - Phi(|observed| / SE))
+       simulated  p  = share of simulated null studies with |difference| >= |observed|
+
+   Both are shown, because the agreement between them is the demonstration
+   that the tail area is not a convention but a count.
+
+   WHAT A P-VALUE IS NOT
+   ---------------------
+   Everything here is computed ASSUMING the null model, independent sampling,
+   a pre-specified analysis and a single comparison. The p-value is therefore:
+
+     * NOT the probability that the null hypothesis is true;
+     * NOT the probability that the result happened by chance;
+     * NOT a measure of the size or importance of an effect;
+     * NOT evidence of no effect when it is large.
+
+   The tool never mentions 0.05 as a threshold, because whether a tail area of
+   a particular size should change anybody's behaviour is a decision rather
+   than a statistical fact.
+
+   Randomness is seeded (mulberry32 with Box-Muller normals) so a whole run is
+   reproducible. No data leave the browser: there is no storage and no network
+   request.
+   ========================================================================= */
+
+(function () {
+  "use strict";
+
+  var BIN_COUNT = 41;
+  var AXIS_SE = 4.2; // half-width of the plotted axis, in standard errors
+
+  /* =======================================================================
+     Seeded randomness
+     ===================================================================== */
+
+  function mulberry32(seed) {
+    var a = seed >>> 0;
+    return function () {
+      a += 0x6d2b79f5;
+      var t = a;
+      t = Math.imul(t ^ (t >>> 15), t | 1);
+      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  function normal(random) {
+    var u = Math.max(random(), 1e-9);
+    return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * random());
+  }
+
+  /** Standard normal cumulative distribution, Abramowitz and Stegun 26.2.17. */
+  function phi(z) {
+    var sign = z < 0 ? -1 : 1;
+    var x = Math.abs(z) / Math.SQRT2;
+    var t = 1 / (1 + 0.3275911 * x);
+    var y = 1 - (((((1.061405429 * t - 1.453152027) * t) + 1.421413741) * t -
+      0.284496736) * t + 0.254829592) * t * Math.exp(-x * x);
+    return 0.5 * (1 + sign * y);
+  }
+
+  /* =======================================================================
+     Small DOM helpers
+     ===================================================================== */
+
+  var NS = "http://www.w3.org/2000/svg";
+
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) { node.className = className; }
+    if (text !== undefined) { node.textContent = text; }
+    return node;
+  }
+
+  function svgNode(tag, attrs) {
+    var node = document.createElementNS(NS, tag);
+    Object.keys(attrs || {}).forEach(function (key) {
+      node.setAttribute(key, String(attrs[key]));
+    });
+    return node;
+  }
+
+  function clear(node) {
+    while (node.firstChild) { node.removeChild(node.firstChild); }
+  }
+
+  function fmt(value, places) {
+    return value.toFixed(places === undefined ? 2 : places);
+  }
+
+  /** p-values below .001 are reported as such rather than as a spurious digit. */
+  function fmtP(p) {
+    if (p < 0.0001) { return "< .0001"; }
+    if (p < 0.001) { return "< .001"; }
+    return "= " + p.toFixed(3).replace(/^0/, "");
+  }
+
+  /* =======================================================================
+     Wiring
+     ===================================================================== */
+
+  var shell = InteractiveShell.attach("#pvalue");
+  if (!shell) { return; }
+
+  var page = document;
+  var $ = function (s, scope) { return (scope || page).querySelector(s); };
+  var $$ = function (s, scope) {
+    return Array.prototype.slice.call((scope || page).querySelectorAll(s));
+  };
+
+  var nRange = $("#n-range");
+  var sdRange = $("#sd-range");
+  var obsRange = $("#obs-range");
+  var seedInput = $("#seed-input");
+  var chartHeading = $("[data-chart-heading]");
+  var hist = $("[data-hist]");
+  var regionTable = $("[data-region-table]");
+  var readout = $("[data-readout]");
+  var verdict = $("[data-verdict]");
+  var interpretation = $("[data-interpretation]");
+  var theoryTable = $("[data-theory-table]");
+
+  var openingForm = $("#opening-form");
+  var openingError = $("[data-opening-error]");
+  var openingFeedback = $("[data-opening-feedback]");
+  var simSection = $("#sim-section");
+  var challengeForm = $("#challenge-form");
+  var challengeFeedback = $("[data-challenge-feedback]");
+
+  var DEFAULTS = { n: 40, sd: 15, obs: 5, seed: 5140 };
+  var draws = [];
+
+  function settings() {
+    return {
+      n: Number(nRange.value),
+      sd: Number(sdRange.value),
+      obs: Number(obsRange.value)
+    };
+  }
+
+  function standardError(s) { return s.sd * Math.sqrt(2 / s.n); }
+
+  /* --- Ranges --------------------------------------------------------------- */
+
+  function onModelChange() {
+    // Changing the model invalidates the pile: those studies came from a
+    // different null world.
+    draws = [];
+    render();
+  }
+
+  shell.bindRange(nRange, {
+    format: function (v) { return String(v); },
+    describe: function (v) { return v + " participants in each group"; },
+    onInput: onModelChange
+  });
+
+  shell.bindRange(sdRange, {
+    format: function (v) { return String(v); },
+    describe: function (v) { return "population standard deviation " + v + " points"; },
+    onInput: onModelChange
+  });
+
+  shell.bindRange(obsRange, {
+    format: function (v) { return fmt(v, 1); },
+    describe: function (v) {
+      return "the study reported a difference of " + fmt(v, 1) + " points";
+    },
+    onInput: function () { render(); }
+  });
+
+  /* --- Running studies -------------------------------------------------------- */
+
+  function runStudies(count) {
+    var s = settings();
+    var seed = Math.max(1, Math.round(Number(seedInput.value) || 1));
+    var random = mulberry32(seed + draws.length * 7919);
+    for (var i = 0; i < count; i += 1) {
+      var sumA = 0;
+      var sumB = 0;
+      for (var j = 0; j < s.n; j += 1) {
+        sumA += normal(random) * s.sd;
+        sumB += normal(random) * s.sd;
+      }
+      draws.push(sumA / s.n - sumB / s.n);
+    }
+  }
+
+  /* --- Rendering --------------------------------------------------------------- */
+
+  function counts() {
+    var s = settings();
+    var se = standardError(s);
+    var limit = AXIS_SE * se;
+    var width = (2 * limit) / BIN_COUNT;
+    var bins = [];
+    var i;
+    for (i = 0; i < BIN_COUNT; i += 1) { bins.push(0); }
+    var below = 0;
+    var above = 0;
+    var between = 0;
+    draws.forEach(function (value) {
+      var index = Math.floor((value + limit) / width);
+      if (index >= 0 && index < BIN_COUNT) { bins[index] += 1; }
+      if (value <= -s.obs) { below += 1; }
+      else if (value >= s.obs) { above += 1; }
+      else { between += 1; }
+    });
+    return {
+      bins: bins, width: width, limit: limit, se: se,
+      below: below, above: above, between: between
+    };
+  }
+
+  function renderHistogram(data) {
+    var W = 460;
+    var H = 190;
+    var left = 30;
+    var right = W - 12;
+    var top = 14;
+    var base = H - 40;
+    var s = settings();
+
+    clear(hist);
+
+    var x = function (value) {
+      return left + ((value + data.limit) / (2 * data.limit)) * (right - left);
+    };
+    var peak = Math.max.apply(null, data.bins.concat([1]));
+    var y = function (count) { return base - (count / peak) * (base - top); };
+
+    // Bars.
+    data.bins.forEach(function (count, i) {
+      if (!count) { return; }
+      var lo = -data.limit + i * data.width;
+      var hi = lo + data.width;
+      var centre = (lo + hi) / 2;
+      var isTail = Math.abs(centre) >= s.obs;
+      var barX = x(lo);
+      var barW = Math.max(1, x(hi) - x(lo) - 0.6);
+      hist.appendChild(svgNode("rect", {
+        x: barX, y: y(count), width: barW, height: base - y(count),
+        class: "hist__bar" + (isTail ? " hist__bar--tail" : "")
+      }));
+      // Diagonal hatch on tail bars, so the shading is not carried by fill
+      // alone in greyscale.
+      if (isTail && base - y(count) > 4) {
+        hist.appendChild(svgNode("line", {
+          x1: barX, y1: base, x2: barX + barW, y2: y(count),
+          class: "hist__hatch"
+        }));
+      }
+    });
+
+    // Axis, zero line, observed markers.
+    hist.appendChild(svgNode("line", {
+      x1: left, y1: base, x2: right, y2: base, class: "hist__axis"
+    }));
+    hist.appendChild(svgNode("line", {
+      x1: x(0), y1: top - 4, x2: x(0), y2: base, class: "hist__zero"
+    }));
+
+    [-s.obs, s.obs].forEach(function (value) {
+      if (Math.abs(value) > data.limit) { return; }
+      hist.appendChild(svgNode("line", {
+        x1: x(value), y1: top - 6, x2: x(value), y2: base + 5,
+        class: "hist__observed"
+      }));
+    });
+
+    var obsLabel = svgNode("text", {
+      x: Math.min(x(s.obs) + 5, right - 2), y: top,
+      "text-anchor": x(s.obs) > (left + right) * 0.6 ? "end" : "start",
+      class: "chart__label"
+    });
+    obsLabel.textContent = "observed " + fmt(s.obs, 1);
+    hist.appendChild(obsLabel);
+
+    // Tick marks in whole points.
+    var step = data.limit > 12 ? 5 : data.limit > 6 ? 2 : 1;
+    for (var v = -Math.floor(data.limit / step) * step;
+         v <= data.limit; v += step) {
+      hist.appendChild(svgNode("line", {
+        x1: x(v), y1: base, x2: x(v), y2: base + 4, class: "hist__axis"
+      }));
+      var tick = svgNode("text", {
+        x: x(v), y: base + 17, "text-anchor": "middle", class: "chart__axis"
+      });
+      tick.textContent = String(v);
+      hist.appendChild(tick);
+    }
+    var axisLabel = svgNode("text", {
+      x: (left + right) / 2, y: base + 33, "text-anchor": "middle",
+      class: "chart__axis"
+    });
+    axisLabel.textContent =
+      "difference between group means, when the true difference is zero";
+    hist.appendChild(axisLabel);
+  }
+
+  function renderRegions(data) {
+    var s = settings();
+    var total = draws.length;
+    clear(regionTable);
+    [
+      ["At or below −" + fmt(s.obs, 1), data.below],
+      ["Between −" + fmt(s.obs, 1) + " and " + fmt(s.obs, 1), data.between],
+      ["At or above " + fmt(s.obs, 1), data.above]
+    ].forEach(function (row) {
+      var tr = make("tr");
+      var th = make("th", null, row[0]);
+      th.setAttribute("scope", "row");
+      tr.appendChild(th);
+      tr.appendChild(make("td", null, String(row[1])));
+      tr.appendChild(make("td", null,
+        total ? (100 * row[1] / total).toFixed(1) + "%" : "—"));
+      regionTable.appendChild(tr);
+    });
+  }
+
+  function renderReadout(data) {
+    var s = settings();
+    var se = standardError(s);
+    var z = s.obs / se;
+    var theoretical = 2 * (1 - phi(z));
+    var simulated = draws.length
+      ? (data.below + data.above) / draws.length
+      : null;
+
+    clear(readout);
+    [
+      ["Standard error", fmt(se) + " points"],
+      ["Observed, in SE", fmt(z) + " SE"],
+      ["Tail area: model", "p " + fmtP(theoretical)],
+      ["Tail area: counted",
+        simulated === null ? "none run" : "p " + fmtP(simulated)]
+    ].forEach(function (pair) {
+      var cell = make("div");
+      cell.appendChild(make("dt", null, pair[0]));
+      cell.appendChild(make("dd", null, pair[1]));
+      readout.appendChild(cell);
+    });
+  }
+
+  function renderTheory(data) {
+    var s = settings();
+    var se = standardError(s);
+    var observedSd = 0;
+    var observedMean = 0;
+    if (draws.length > 1) {
+      observedMean = draws.reduce(function (a, b) { return a + b; }, 0) / draws.length;
+      var ss = draws.reduce(function (a, b) {
+        return a + (b - observedMean) * (b - observedMean);
+      }, 0);
+      observedSd = Math.sqrt(ss / (draws.length - 1));
+    }
+    clear(theoryTable);
+    [
+      ["Centre of the distribution", "0.00 points",
+        draws.length > 1 ? fmt(observedMean) + " points" : "—"],
+      ["Spread of the distribution", fmt(se) + " points",
+        draws.length > 1 ? fmt(observedSd) + " points" : "—"],
+      ["Share beyond ±" + fmt(s.obs, 1),
+        fmtP(2 * (1 - phi(s.obs / se))).replace("= ", "").replace("< ", "under "),
+        draws.length
+          ? ((data.below + data.above) / draws.length).toFixed(3).replace(/^0/, "")
+          : "—"]
+    ].forEach(function (row) {
+      var tr = make("tr");
+      var th = make("th", null, row[0]);
+      th.setAttribute("scope", "row");
+      tr.appendChild(th);
+      tr.appendChild(make("td", null, row[1]));
+      tr.appendChild(make("td", null, row[2]));
+      theoryTable.appendChild(tr);
+    });
+  }
+
+  function renderInterpretation(data) {
+    var s = settings();
+    var se = standardError(s);
+    var theoretical = 2 * (1 - phi(s.obs / se));
+    var tone;
+    var text;
+
+    if (!draws.length) {
+      tone = "caution";
+      text =
+        "Nothing run yet. The model puts the difference around zero with a " +
+        "standard error of " + fmt(se) + " points, so a reported difference " +
+        "of " + fmt(s.obs, 1) + " is " + fmt(s.obs / se) + " standard errors " +
+        "out. Run twenty and watch where they land.";
+    } else if (s.obs === 0) {
+      tone = "caution";
+      text =
+        "With the observed difference set to zero, every simulated study is at " +
+        "least as far from zero as yours, so the tail area is the whole " +
+        "distribution and p is 1. That is not evidence for the null model; it " +
+        "is what a tail area does when nothing is in the tail.";
+    } else if (theoretical > 0.2) {
+      tone = "neutral";
+      text =
+        "Of " + draws.length + " studies in which the true difference was " +
+        "exactly zero, " + (data.below + data.above) + " produced a difference " +
+        "at least as far from zero as " + fmt(s.obs, 1) + " points. That is p " +
+        fmtP((data.below + data.above) / draws.length) +
+        ". A result this size is unremarkable in a world where nothing is " +
+        "going on. That is not the same as nothing going on - this design " +
+        "could not tell the two apart.";
+    } else if (theoretical > 0.02) {
+      tone = "caution";
+      text =
+        (data.below + data.above) + " of " + draws.length +
+        " null studies reached " + fmt(s.obs, 1) + " points or further from " +
+        "zero, giving p " + fmtP((data.below + data.above) / draws.length) +
+        ". The honest sentence: data like these would be somewhat unusual if " +
+        "the null model held. Not \"there is a " +
+        Math.round(theoretical * 100) + "% chance the null is true\" - that " +
+        "reverses the conditional.";
+    } else {
+      tone = "good";
+      text =
+        "Only " + (data.below + data.above) + " of " + draws.length +
+        " null studies reached " + fmt(s.obs, 1) + " points or further from " +
+        "zero: p " + fmtP((data.below + data.above) / draws.length) +
+        ". Rare under the null model. An effect is one explanation; " +
+        "dependence between observations, a skewed population and a " +
+        "comparison chosen after looking are others, and a tail area cannot " +
+        "separate them. Drag the sample size: p moves and the " +
+        fmt(s.obs, 1) + "-point difference does not.";
+    }
+
+    interpretation.textContent = text;
+    verdict.setAttribute("data-tone", tone);
+  }
+
+  function render() {
+    var data = counts();
+    chartHeading.textContent =
+      "Differences from " + draws.length + " null stud" +
+      (draws.length === 1 ? "y" : "ies");
+    renderHistogram(data);
+    renderRegions(data);
+    renderReadout(data);
+    renderTheory(data);
+    renderInterpretation(data);
+  }
+
+  /* --- Buttons ---------------------------------------------------------------- */
+
+  function announceRun() {
+    var s = settings();
+    var data = counts();
+    var p = draws.length ? (data.below + data.above) / draws.length : 1;
+    shell.announce(
+      draws.length + " null studies now in the pile. " +
+      (data.below + data.above) + " of them reached " + fmt(s.obs, 1) +
+      " points or further from zero, giving a simulated p " + fmtP(p) + ".",
+      { immediate: true });
+  }
+
+  $('[data-action="run1000"]').addEventListener("click", function () {
+    runStudies(1000);
+    render();
+    announceRun();
+  });
+
+  $('[data-action="run20"]').addEventListener("click", function () {
+    runStudies(20);
+    render();
+    var last = draws.slice(-5).map(function (v) { return fmt(v, 1); }).join(", ");
+    shell.announce(
+      "Twenty more null studies run. The last five differences were " + last +
+      ", every one of them from a world where the true difference is zero.",
+      { immediate: true });
+  });
+
+  $('[data-action="clear"]').addEventListener("click", function () {
+    draws = [];
+    render();
+    shell.announce("Pile cleared. The model is unchanged.", { immediate: true });
+  });
+
+  /* --- Opening prediction ------------------------------------------------------- */
+
+  var OPENING = {
+    never: {
+      tone: "caution",
+      verdict: "Far too rare.",
+      text:
+        "With 40 per group and a standard deviation of 15, the standard error " +
+        "of the difference is about 3.35 points, so 5 points is only about 1.5 " +
+        "standard errors from zero. Differences of that size are ordinary. " +
+        "Run the simulator and count them."
+    },
+    twenty: {
+      tone: "caution",
+      verdict: "The reflex answer, and it is the wrong one.",
+      text:
+        "One in twenty is where the conventional threshold sits, which is " +
+        "probably why it came to mind - but the threshold is a decision, not a " +
+        "property of this study. Here the answer is about one in seven, and " +
+        "you are about to count them."
+    },
+    seven: {
+      tone: "good",
+      verdict: "Yes, close to it.",
+      text:
+        "The standard error of the difference is 15 x sqrt(2/40) = 3.35 " +
+        "points, so 5 points is 1.49 standard errors out and the two-tailed " +
+        "area is about .136 - roughly one study in seven. Sampling alone " +
+        "produces differences of this size routinely, which is exactly why a " +
+        "reference distribution is needed at all."
+    },
+    three: {
+      tone: "caution",
+      verdict: "Too common, though the instinct is right.",
+      text:
+        "You have the direction correct: differences of 5 points are not rare. " +
+        "One in three would require the standard error to be nearer 5 points " +
+        "than 3.35. Run the simulator, and try dragging the sample size down " +
+        "to 20 to see what would make one in three the right answer."
+    }
+  };
+
+  function showFeedback(container, tone, verdictText, text) {
+    clear(container);
+    container.setAttribute("data-tone", tone);
+    var p = make("p");
+    p.appendChild(make("strong", "feedback__verdict", verdictText));
+    if (text) { p.appendChild(document.createTextNode(" " + text)); }
+    container.appendChild(p);
+    container.hidden = false;
+  }
+
+  function lockForm(form) {
+    $$("input, button, select", form).forEach(function (c) { c.disabled = true; });
+  }
+
+  function unlockForm(form) {
+    $$("input, button, select", form).forEach(function (c) { c.disabled = false; });
+    form.reset();
+  }
+
+  function openSimulator() {
+    simSection.hidden = false;
+    render();
+    $("#sim-heading").focus();
+    shell.announce("Simulator unlocked. No studies run yet.", { immediate: true });
+  }
+
+  openingForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answer = $('input[name="opening"]:checked', openingForm);
+    if (!answer) {
+      openingError.textContent = "Choose a prediction before opening the simulator.";
+      openingError.hidden = false;
+      return;
+    }
+    openingError.hidden = true;
+    var feedback = OPENING[answer.value];
+    showFeedback(openingFeedback, feedback.tone, feedback.verdict, feedback.text);
+    lockForm(openingForm);
+    openSimulator();
+  });
+
+  $('[data-action="skip-opening"]').addEventListener("click", function () {
+    openingError.hidden = true;
+    showFeedback(openingFeedback, "neutral",
+      "Prediction skipped — demonstration mode.", "");
+    lockForm(openingForm);
+    openSimulator();
+  });
+
+  /* --- Challenge ------------------------------------------------------------------ */
+
+  var CHALLENGE_NOTES = {
+    tail: {
+      correct: true,
+      text:
+        "Correct, and it is very nearly the whole of what a p-value says. Note " +
+        "every condition packed into \"studies like this one\": the same null " +
+        "model, the same design, the same analysis fixed in advance, and this " +
+        "as the only comparison."
+    },
+    "prob-null": {
+      correct: false,
+      text:
+        "Wrong, and the most common error in the literature. The calculation " +
+        "starts by assuming the null model and asks what data it would " +
+        "produce. It cannot end by telling you how likely that assumption " +
+        "was: a probability for a hypothesis needs a prior, and none entered."
+    },
+    chance: {
+      correct: false,
+      text:
+        "Wrong, and it is the same error in friendlier clothing. Every result " +
+        "in the histogram was produced by chance - that is what the simulation " +
+        "does. The p-value does not partition your result into a chance part " +
+        "and a real part; it says how often chance alone would go this far."
+    },
+    noeffect: {
+      correct: false,
+      text:
+        "Wrong. A large p-value says the data are compatible with the null " +
+        "model. They are also compatible with a small effect, and often with a " +
+        "moderate one. Set the observed difference to 5 with 20 per group and " +
+        "then with 200: the same difference is unremarkable in one design and " +
+        "extremely rare in the other. Absence of evidence is not evidence of " +
+        "absence."
+    },
+    small: {
+      correct: false,
+      text:
+        "Wrong. The p-value confounds the size of the difference, the " +
+        "variability and the sample size into one number. A 5-point difference " +
+        "with p = .14 at n = 40 becomes p < .001 at n = 400, and the difference " +
+        "has not changed by a hundredth of a point. Size is what an effect-size " +
+        "measure is for."
+    },
+    replicate: {
+      correct: false,
+      text:
+        "Wrong. 1 - p is not the probability of replication. What a repeat " +
+        "study would do depends on the true effect, which is unknown, and on " +
+        "the new study's sample size. That is a power calculation, and it " +
+        "needs an assumed effect the p-value does not supply."
+    }
+  };
+
+  challengeForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var chosen = $$('input[name="challenge"]:checked', challengeForm)
+      .map(function (b) { return b.value; });
+
+    if (!chosen.length) {
+      showFeedback(challengeFeedback, "caution", "Select at least one statement.",
+        "Exactly one of the six is correct.");
+      return;
+    }
+
+    var wrongPicked = chosen.filter(function (v) { return !CHALLENGE_NOTES[v].correct; });
+    var gotRight = chosen.indexOf("tail") !== -1;
+
+    var tone = wrongPicked.length ? "warn" : gotRight ? "good" : "caution";
+    var verdictText = wrongPicked.length
+      ? "At least one of these reverses the conditional or reads size off a tail area."
+      : "Yes — exactly one of the six is correct, and you have it.";
+
+    clear(challengeFeedback);
+    challengeFeedback.setAttribute("data-tone", tone);
+    var lead = make("p");
+    lead.appendChild(make("strong", "feedback__verdict", verdictText));
+    lead.appendChild(document.createTextNode(
+      " Every one of the five wrong statements appears regularly in published " +
+      "papers, so recognising them is more useful than memorising the correct " +
+      "phrasing."));
+    challengeFeedback.appendChild(lead);
+    var list = make("ul");
+    Object.keys(CHALLENGE_NOTES).forEach(function (value) {
+      var li = make("li");
+      li.appendChild(make("strong", null,
+        chosen.indexOf(value) !== -1
+          ? "You selected this. " : "You did not select this. "));
+      li.appendChild(document.createTextNode(CHALLENGE_NOTES[value].text));
+      list.appendChild(li);
+    });
+    challengeFeedback.appendChild(list);
+    challengeFeedback.hidden = false;
+    shell.announce(verdictText, { immediate: true });
+  });
+
+  /* --- Reset ------------------------------------------------------------------------ */
+
+  shell.onReset(function () {
+    draws = [];
+    unlockForm(openingForm);
+    openingFeedback.hidden = true;
+    openingError.hidden = true;
+    simSection.hidden = true;
+    challengeForm.reset();
+    challengeFeedback.hidden = true;
+    nRange.value = String(DEFAULTS.n);
+    sdRange.value = String(DEFAULTS.sd);
+    obsRange.value = String(DEFAULTS.obs);
+    seedInput.value = String(DEFAULTS.seed);
+    render();
+  });
+
+  /* --- Start-up --------------------------------------------------------------------- */
+
+  shell.reset({ silent: true });
+  shell.announce("Ready. Answer the prediction above to unlock the simulator.",
+    { immediate: true });
+})();
+
+</script>
+</div>

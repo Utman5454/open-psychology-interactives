@@ -1,0 +1,2815 @@
+<!-- Memory Systems Detective
+     From Open Psychology Interactives - https://github.com/utman5454/open-psychology-interactives
+     Self-contained: no stylesheets, scripts, fonts, images or network requests.
+     Styles are scoped to .opi-activity and do not affect the page around them.
+     Nothing is saved, sent or tracked. MIT licensed; please keep this notice.
+     Paste anywhere that accepts HTML, or save as a .html file and open it. -->
+<div class="opi-activity">
+<style>
+/* Defensive baseline. See scripts/build-standalone.py for why this
+   is `revert` rather than an enumerated reset, and how the specificity ladder
+   keeps the activity's own styling on top of it. */
+.opi-activity *:not(svg *) {
+  all: revert;
+}
+.opi-activity, .opi-activity *, .opi-activity *::before, .opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  text-transform: none;
+  text-indent: 0;
+  font-style: normal;
+  font-variant: normal;
+  letter-spacing: normal;
+  word-spacing: normal;
+  white-space: normal;
+  visibility: visible;
+  float: none;
+  max-width: none;
+}
+.opi-activity svg { max-width: 100%; }
+.opi-activity img { max-width: 100%; height: auto; }
+.opi-activity [hidden] { display: none !important; }
+
+/* assets/css/main.css */
+.opi-activity.opi-activity {
+  --colour-page: #ffffff;
+  --colour-surface: #f5f7fa;
+  --colour-surface-raised: #ffffff;
+  --colour-border: #d3d9e2;
+  --colour-border-strong: #aeb7c4;
+  --colour-text: #131820;
+  --colour-text-muted: #4c566a;
+  --colour-accent: #1a4fa0;
+  --colour-accent-hover: #123a7a;
+  --colour-accent-soft: #e8eefb;
+  --colour-on-accent: #ffffff;
+  --colour-focus: #b45309;
+  --colour-cognitive: #8a4b00;
+  --colour-research-methods: #1a4fa0;
+  --colour-neuropsychology: #145c53;
+  --colour-social-critical-psychology: #9e2f45;
+  --colour-personality-individual-differences: #7a2e6d;
+  --colour-status-bg: #f1ede3;
+  --colour-status-text: #5c4a1f;
+  --colour-status-border: #d9cdb0;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  --text-xs: 13px;
+  --text-sm: 15px;
+  --text-base: 17px;
+  --text-lg: 19px;
+  --text-xl: 23px;
+  --text-2xl: 28px;
+  --text-3xl: 36px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgb(19 24 32 / 0.06);
+  --shadow-md: 0 2px 8px rgb(19 24 32 / 0.08);
+  --measure: 68ch;
+  --container: 1152px;
+}
+@media (prefers-color-scheme: dark) {
+.opi-activity.opi-activity {
+  --colour-page: #0f141b;
+  --colour-surface: #161d27;
+  --colour-surface-raised: #1a2230;
+  --colour-border: #2c3644;
+  --colour-border-strong: #44506180;
+  --colour-text: #e9edf3;
+  --colour-text-muted: #a8b2c1;
+  --colour-accent: #8fb6ff;
+  --colour-accent-hover: #b3cdff;
+  --colour-accent-soft: #1b2740;
+  --colour-on-accent: #0f141b;
+  --colour-focus: #f0b429;
+  --colour-cognitive: #e2ab5f;
+  --colour-research-methods: #8fb6ff;
+  --colour-neuropsychology: #6fc3b4;
+  --colour-social-critical-psychology: #f19aa8;
+  --colour-personality-individual-differences: #db9ccd;
+  --colour-status-bg: #241f14;
+  --colour-status-text: #e2cf9f;
+  --colour-status-border: #4a4028;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 2px 10px rgb(0 0 0 / 0.45);
+}
+}
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity.opi-activity {
+  -webkit-text-size-adjust: 100%;
+}
+.opi-activity.opi-activity {
+  background-color: var(--colour-page);
+  color: var(--colour-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.65;
+}
+.opi-activity.opi-activity h1,
+.opi-activity.opi-activity h2,
+.opi-activity.opi-activity h3,
+.opi-activity.opi-activity h4 {
+  margin: 0 0 var(--space-3);
+  line-height: 1.25;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.opi-activity.opi-activity h1 {
+  font-size: var(--text-3xl);
+}
+.opi-activity.opi-activity h2 {
+  font-size: var(--text-2xl);
+}
+.opi-activity.opi-activity h3 {
+  font-size: var(--text-xl);
+}
+.opi-activity.opi-activity h4 {
+  font-size: var(--text-lg);
+}
+.opi-activity.opi-activity p,
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol,
+.opi-activity.opi-activity dl {
+  margin: 0 0 var(--space-4);
+}
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol {
+  padding-left: 1.35em;
+}
+.opi-activity.opi-activity li + li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity a {
+  color: var(--colour-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: max(1px, 0.06em);
+}
+.opi-activity.opi-activity a:hover {
+  color: var(--colour-accent-hover);
+  text-decoration-thickness: max(2px, 0.11em);
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid var(--colour-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+@supports not selector(:focus-visible) {
+.opi-activity.opi-activity :focus {
+  outline: 3px solid var(--colour-focus);
+    outline-offset: 2px;
+}
+}
+.opi-activity.opi-activity code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.35em;
+}
+.opi-activity.opi-activity hr {
+  border: 0;
+  border-top: 1px solid var(--colour-border);
+  margin: var(--space-6) 0;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+}
+.opi-activity.opi-activity .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.opi-activity.opi-activity .container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+@media (min-width: 40em) {
+.opi-activity.opi-activity .container {
+  padding-inline: var(--space-5);
+}
+}
+.opi-activity.opi-activity .prose {
+  max-width: var(--measure);
+}
+.opi-activity.opi-activity .text-muted {
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .section {
+  padding-block: var(--space-7);
+}
+.opi-activity.opi-activity .section--tinted {
+  background-color: var(--colour-surface);
+  border-block: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .section__header {
+  max-width: var(--measure);
+  margin-bottom: var(--space-5);
+}
+.opi-activity.opi-activity .section__header > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-7) var(--space-6);
+  border-bottom: 1px solid var(--colour-border);
+  
+  background-image: linear-gradient(
+    180deg,
+    var(--colour-accent-soft) 0%,
+    var(--colour-page) 100%
+  );
+}
+.opi-activity.opi-activity .hero__eyebrow {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .hero h1 {
+  max-width: 20ch;
+  margin-bottom: var(--space-4);
+}
+.opi-activity.opi-activity .hero__lead {
+  max-width: var(--measure);
+  font-size: var(--text-lg);
+  color: var(--colour-text-muted);
+}
+@media (min-width: 48em) {
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-8) var(--space-7);
+}
+.opi-activity.opi-activity .hero h1 {
+  font-size: 44px;
+}
+}
+.opi-activity.opi-activity .button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  
+  min-height: 44px;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .button--primary {
+  background-color: var(--colour-accent);
+  border-color: var(--colour-accent);
+  
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--primary:hover {
+  background-color: var(--colour-accent-hover);
+  border-color: var(--colour-accent-hover);
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--secondary {
+  background-color: transparent;
+  border-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .button--secondary:hover {
+  background-color: var(--colour-surface);
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+}
+.opi-activity.opi-activity .card--cognitive {
+  --card-accent: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .card--research-methods {
+  --card-accent: var(--colour-research-methods);
+}
+.opi-activity.opi-activity .card--neuropsychology {
+  --card-accent: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .card--social-critical-psychology {
+  --card-accent: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .card--personality-individual-differences {
+  --card-accent: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 650;
+  line-height: 1.4;
+  padding: 3.2px var(--space-3);
+  border-radius: 999px;
+  border: 1px solid var(--colour-status-border);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+}
+.opi-activity.opi-activity .badge__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex: none;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed var(--colour-border-strong);
+  border-radius: var(--radius-lg);
+  background-color: var(--colour-surface);
+  padding: var(--space-5);
+  text-align: left;
+}
+.opi-activity.opi-activity .placeholder__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+}
+.opi-activity.opi-activity .placeholder > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .split {
+  display: grid;
+  gap: var(--space-6);
+}
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split {
+  grid-template-columns: 3fr 2fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .panel {
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.opi-activity.opi-activity .panel > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .panel__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .section--tinted {
+  border-block: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .hero {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .button--primary {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .button--secondary {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .button:hover {
+  border-color: Highlight;
+}
+.opi-activity.opi-activity .panel {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed CanvasText;
+}
+.opi-activity.opi-activity .badge {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .badge__dot {
+  background-color: CanvasText;
+}
+.opi-activity.opi-activity code {
+  border-color: CanvasText;
+}
+.opi-activity.opi-activity hr {
+  border-top-color: CanvasText;
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+}
+@media print {
+.opi-activity.opi-activity {
+  color: #000;
+  background: #fff;
+}
+.opi-activity.opi-activity a[href^="http"]::after {
+  content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+}
+}
+
+/* components/interactive-shell.css */
+.opi-activity.opi-activity .interactive {
+  --shell-page: var(--colour-page, #ffffff);
+  --shell-surface: var(--colour-surface, #f5f7fa);
+  --shell-raised: var(--colour-surface-raised, #ffffff);
+  --shell-border: var(--colour-border, #d3d9e2);
+  --shell-border-strong: var(--colour-border-strong, #aeb7c4);
+  --shell-text: var(--colour-text, #131820);
+  --shell-muted: var(--colour-text-muted, #4c566a);
+  --shell-accent: var(--colour-accent, #1a4fa0);
+  --shell-accent-soft: var(--colour-accent-soft, #e8eefb);
+  
+  --shell-on-accent: var(--colour-on-accent, #ffffff);
+  --shell-focus: var(--colour-focus, #b45309);
+  --shell-radius: var(--radius-lg, 12px);
+  --shell-gap: var(--space-5, 24px);
+
+  display: block;
+  background-color: var(--shell-raised);
+  color: var(--shell-text);
+  border: 1px solid var(--shell-border);
+  border-radius: var(--shell-radius);
+  
+  overflow-x: clip;
+  overflow-y: visible;
+}
+.opi-activity.opi-activity .interactive__header {
+  padding: var(--shell-gap);
+  border-bottom: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 1.25;
+}
+.opi-activity.opi-activity .interactive__brief {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--shell-muted);
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__body {
+  display: grid;
+  gap: var(--shell-gap);
+  padding: var(--shell-gap);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body {
+  grid-template-columns: minmax(240px, 320px) 1fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .interactive__controls {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__controls fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .interactive__controls legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .control {
+  display: grid;
+  gap: 5.6px;
+}
+.opi-activity.opi-activity .control + .control {
+  margin-top: 16px;
+}
+.opi-activity.opi-activity .control__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.opi-activity.opi-activity .control__label {
+  font-size: 15px;
+  font-weight: 600;
+}
+.opi-activity.opi-activity .control__value {
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--shell-accent);
+}
+.opi-activity.opi-activity .control__hint {
+  font-size: 13px;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .interactive__controls input[type="range"] {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--shell-accent);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  width: 100%;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--shell-text);
+  background-color: var(--shell-raised);
+  border: 1px solid var(--shell-border-strong);
+  border-radius: var(--radius-sm, 4px);
+}
+.opi-activity.opi-activity .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+}
+.opi-activity.opi-activity .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  accent-color: var(--shell-accent);
+  flex: none;
+}
+.opi-activity.opi-activity .interactive__stage {
+  min-height: 256px;
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-page);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body--pinned {
+  align-items: stretch;
+}
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: sticky;
+    top: 0;
+    z-index: 2;
+    
+    margin: -16px -16px 0;
+    padding: 16px 16px 12px;
+    background-color: var(--shell-page);
+    border-bottom: 1px solid var(--shell-border);
+}
+}
+@media (min-width: 52em) and (max-height: 30em) {
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: static;
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
+}
+}
+.opi-activity.opi-activity .interactive__stage > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity :where(.interactive__stage) svg,
+.opi-activity.opi-activity :where(.interactive__stage) canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+.opi-activity.opi-activity .interactive__readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout div {
+  padding: 9.6px 12px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-sm, 4px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__readout dt {
+  font-size: 13px;
+  color: var(--shell-muted);
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout dd {
+  margin: 2.4px 0 0;
+  font-size: 18px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .interactive__status {
+  margin: 0;
+  padding: 12px var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+  font-size: 15px;
+  color: var(--shell-muted);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .interactive__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+}
+.opi-activity.opi-activity .interactive__actions button {
+  min-height: 44px;
+  padding: 6.4px 20px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--shell-on-accent);
+  background-color: var(--shell-accent);
+  border: 1px solid var(--shell-accent);
+  border-radius: var(--radius-md, 8px);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  color: var(--shell-text);
+  background-color: transparent;
+  border-color: var(--shell-border-strong);
+}
+.opi-activity.opi-activity .interactive__actions button:hover {
+  filter: brightness(1.08);
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__notes > summary {
+  padding: 13.6px var(--shell-gap);
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__notes > div {
+  padding: 0 var(--shell-gap) var(--shell-gap);
+  max-width: 68ch;
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__notes > div > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity .interactive *,
+.opi-activity.opi-activity .interactive *::before,
+.opi-activity.opi-activity .interactive *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+}
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .interactive,
+.opi-activity.opi-activity .interactive__controls,
+.opi-activity.opi-activity .interactive__stage,
+.opi-activity.opi-activity .interactive__readout div {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__header {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__status,
+.opi-activity.opi-activity .interactive__actions,
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__actions button {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  border-width: 1px;
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 1;
+    color: GrayText;
+    border-color: GrayText;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__stage svg {
+  forced-color-adjust: auto;
+}
+}
+
+/* components/tool-kit.css */
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split--wide {
+  grid-template-columns: 1fr 1fr;
+}
+}
+.opi-activity.opi-activity .how-to {
+  padding-left: 19.2px;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .how-to > li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .table-scroll {
+  overflow-x: auto;
+  
+  position: relative;
+}
+.opi-activity.opi-activity .prediction {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 832px;
+}
+.opi-activity.opi-activity .prediction > *,
+.opi-activity.opi-activity .challenge > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity .prediction__group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .prediction__legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-weight: 650;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .prediction .control--choice,
+.opi-activity.opi-activity .challenge .control--choice,
+.opi-activity.opi-activity .evidence .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .prediction .control--choice input,
+.opi-activity.opi-activity .challenge .control--choice input,
+.opi-activity.opi-activity .evidence .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .prediction__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .prediction__error {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-status-border);
+  border-left: 4px solid var(--colour-status-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .prediction__readback {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .feedback[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .feedback[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .feedback[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .feedback__verdict {
+  font-weight: 700;
+}
+.opi-activity.opi-activity .verdict {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .verdict__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict__body {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .verdict__body + .verdict__body {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .verdict__note {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .verdict[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .verdict[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .goal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .goal__label {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .goal__text {
+  flex: 1 1 256px;
+}
+.opi-activity.opi-activity .goal strong {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .goal__checks {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+  display: grid;
+  gap: 2.4px;
+}
+.opi-activity.opi-activity .goal__checks > li {
+  margin-top: 0;
+  padding-left: 22.4px;
+  position: relative;
+}
+.opi-activity.opi-activity .goal__checks > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 9.6px;
+  height: 9.6px;
+  border: 2px solid var(--colour-border-strong);
+  border-radius: 2px;
+}
+.opi-activity.opi-activity .goal__checks > li[data-met="yes"]::before {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .stage-track {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .stage-track > li {
+  margin-top: 0;
+  flex: 1 1 160px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-bottom: 3px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .stage-track > li > span {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.opi-activity.opi-activity .stage-track > li[data-state="done"] {
+  border-bottom-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border-bottom-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+  color: var(--colour-text);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .stage__heading {
+  margin: 0;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .data-table,
+.opi-activity.opi-activity .chart__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .data-table th,
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table th,
+.opi-activity.opi-activity .chart__table td {
+  padding: 6.4px 9.6px;
+  border: 1px solid var(--colour-border);
+  text-align: left;
+  vertical-align: top;
+}
+.opi-activity.opi-activity .data-table thead th,
+.opi-activity.opi-activity .chart__table thead th {
+  background-color: var(--colour-surface);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table td {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__table tbody th,
+.opi-activity.opi-activity .data-table tbody th {
+  font-weight: 550;
+}
+.opi-activity.opi-activity .data-table__total > th,
+.opi-activity.opi-activity .data-table__total > td {
+  border-top: 2px solid var(--colour-border-strong);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart {
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .chart__caption {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__svg {
+  max-width: 100%;
+  height: auto;
+}
+.opi-activity.opi-activity .chart__label,
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__inline,
+.opi-activity.opi-activity .chart__axis {
+  font-family: var(--font-body);
+  fill: var(--colour-text);
+  font-size: 13px;
+}
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__axis {
+  fill: var(--colour-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: var(--colour-on-accent);
+  font-size: 12px;
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__track {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__bar {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--one {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .chart__baseline,
+.opi-activity.opi-activity .chart__grid {
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__line {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: var(--colour-personality-individual-differences);
+  stroke-dasharray: 6 4;
+}
+.opi-activity.opi-activity .chart__point {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .reveal > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .reveal__lead {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+.opi-activity.opi-activity .reveal__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(176px, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+  padding: 0;
+  list-style: none;
+}
+.opi-activity.opi-activity .reveal__figures > li {
+  margin-top: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+.opi-activity.opi-activity .reveal__figure-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .reveal__figure-value {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .challenge {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+.opi-activity.opi-activity .challenge__locked {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .panel--caution {
+  background-color: var(--colour-status-bg);
+  border-color: var(--colour-status-border);
+}
+.opi-activity.opi-activity .panel--caution li + li {
+  margin-top: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .goal,
+.opi-activity.opi-activity .verdict,
+.opi-activity.opi-activity .feedback,
+.opi-activity.opi-activity .prediction__error,
+.opi-activity.opi-activity .prediction__readback,
+.opi-activity.opi-activity .stage-track > li,
+.opi-activity.opi-activity .reveal__figures > li {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border: 2px solid Highlight;
+}
+.opi-activity.opi-activity .chart__bar,
+.opi-activity.opi-activity .chart__bar--one {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: Canvas;
+}
+.opi-activity.opi-activity .chart__line {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: Highlight;
+}
+}
+.opi-activity.opi-activity .stage__more {
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .stage__more > summary {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .stage__more[open] > summary {
+  border-bottom: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .stage__more > *:not(summary) {
+  margin: var(--space-3);
+}
+
+/* modules/neuropsychology/tools/06-memory-systems-amnesia-detective/tool.css */
+.opi-activity.opi-activity #memory .interactive__controls,
+.opi-activity.opi-activity #memory .interactive__stage {
+  min-width: 0;
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity #memory .interactive__body {
+  grid-template-columns: minmax(0, 336px) minmax(0, 1fr);
+}
+}
+.opi-activity.opi-activity #memory .control--choice {
+  font-size: var(--text-sm);
+  line-height: 1.3;
+  align-items: flex-start;
+  padding: 4.8px 0;
+}
+.opi-activity.opi-activity #memory .control--choice input {
+  margin-top: 8.8px;
+}
+.opi-activity.opi-activity #memory .goal {
+  margin-top: var(--space-4);
+}
+.opi-activity.opi-activity #memory [data-profile] {
+  max-width: 512px;
+}
+.opi-activity.opi-activity .mem__band {
+  fill: var(--colour-accent-soft);
+}
+.opi-activity.opi-activity .mem__zero {
+  stroke: var(--colour-border-strong);
+  stroke-width: 1.5;
+}
+.opi-activity.opi-activity .mem__bar {
+  fill: var(--colour-border-strong);
+}
+.opi-activity.opi-activity .mem__bar--below {
+  fill: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .data-table td[data-mark="below"],
+.opi-activity.opi-activity .chart__table td[data-mark="below"] {
+  background-color: var(--colour-status-bg);
+}
+.opi-activity.opi-activity .data-table td[data-mark="hit"] {
+  background-color: var(--colour-accent-soft);
+}
+.opi-activity.opi-activity .data-table td[data-mark="miss"] {
+  background-color: var(--colour-status-bg);
+}
+.opi-activity.opi-activity #memory [data-grid-table] th[scope="row"] {
+  font-weight: 550;
+  min-width: 224px;
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .mem__band {
+  fill: Canvas;
+    stroke: GrayText;
+    stroke-dasharray: 4 3;
+}
+.opi-activity.opi-activity .mem__zero {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .mem__bar {
+  fill: GrayText;
+}
+.opi-activity.opi-activity .mem__bar--below {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .data-table td[data-mark],
+.opi-activity.opi-activity .chart__table td[data-mark] {
+  background-color: Canvas;
+    border: 2px solid Highlight;
+}
+}
+</style>
+
+  <!-- ================= Title and purpose ================= -->
+  <section class="section card--neuropsychology" aria-labelledby="page-heading">
+    <div class="container">
+
+      <p class="hero__eyebrow" style="color: var(--colour-neuropsychology)">
+        Neuropsychology
+      </p>
+      <h1 id="page-heading">Memory Systems Detective</h1>
+      <p class="hero__lead">
+        Five fictional profiles across seven memory measures, and five claims
+        about separable systems. For each claim on each profile there are
+        three honest answers, and one of them is used more than the others.
+      </p>
+
+      <p>
+        <span class="badge">
+          <span class="badge__dot" aria-hidden="true"></span>
+          Simulated — invented people, invented measures, invented control groups
+        </span>
+      </p>
+
+      <div class="split split--wide">
+
+        <div class="panel">
+          <h2 class="panel__title">Learning objective</h2>
+          <p>
+            By the end you should be able to say what a profile must contain
+            before it supports a dissociation between memory systems.
+          </p>
+          <p class="text-muted">
+            About 35 minutes for all five profiles. Nothing you do here is
+            saved or sent anywhere.
+          </p>
+        </div>
+
+        <div class="panel panel--caution">
+          <h2 class="panel__title">Nobody here is a patient</h2>
+          <p>
+            Five invented profiles with invented numbers, written to make
+            particular inferences possible or impossible. No real person,
+            published case or clinical instrument is described, no syndrome
+            is named, and nothing here diagnoses, assesses or gives a
+            prognosis for anybody. Memory difficulty is described in terms of
+            tasks, never as a description of a person.
+          </p>
+        </div>
+
+      </div>
+
+      <ol class="how-to">
+        <li>Read the profile - all seven measures, against their own controls.</li>
+        <li>
+          Judge the claim in the banner: does <em>this profile</em> support
+          it, count against it, or fail to decide it?
+        </li>
+        <li>
+          Work through all five claims on all five profiles, then read the
+          grid.
+        </li>
+      </ol>
+
+    </div>
+  </section>
+
+  <!-- ================= Opening prediction ================= -->
+  <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="opening-heading">First, a judgement</h2>
+        <p class="prose">
+          A fictional person can repeat a list of digits back normally, and
+          cannot recall a word list thirty minutes after learning it.
+        </p>
+      </div>
+
+      <noscript>
+        <div class="placeholder">
+          <h3 class="placeholder__title">This part needs JavaScript</h3>
+          <p class="prose">
+            The profiles are drawn and the claims marked in your browser, so
+            they cannot run with JavaScript switched off. The rest of this
+            page is readable without it.
+          </p>
+        </div>
+      </noscript>
+
+      <form class="panel prediction" id="opening-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            What does that pattern establish about memory?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="systems">
+            That short-term and long-term memory are separate systems
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="separable">
+            That the two tasks do not depend on all the same things - which is
+            less than "separate systems" and is what the evidence gives
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="harder">
+            Only that recalling a list after thirty minutes is harder
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="nothing">
+            Nothing until you know what the control group did on each task
+          </label>
+        </fieldset>
+
+        <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Record my answer and open the profiles
+          </button>
+          <button class="button button--secondary" type="button" data-action="skip-opening">
+            Skip - I am demonstrating this
+          </button>
+        </div>
+
+        <div class="feedback" data-opening-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= The profiles ================= -->
+  <section class="section" id="profiles-section" aria-labelledby="profiles-heading" hidden>
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="profiles-heading" tabindex="-1">The profiles</h2>
+      </div>
+
+      <section class="interactive" id="memory" data-interactive
+               data-reset-message="All five profiles cleared. Back to the opening question.">
+
+        <header class="interactive__header">
+          <h3 class="interactive__title" data-case-title>Profile A</h3>
+          <p class="interactive__brief" data-case-brief></p>
+          <p class="goal">
+            <span class="goal__label" data-claim-label>Claim 1 of 5</span>
+            <span class="goal__text" data-claim-text></span>
+          </p>
+        </header>
+
+        <div class="interactive__body interactive__body--pinned">
+
+          <form class="interactive__controls" data-interactive-controls>
+
+            <fieldset>
+              <legend>Profile</legend>
+              <div data-case-controls></div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Your judgement on this claim</legend>
+              <div data-verdict-controls></div>
+              <div class="prediction__actions">
+                <button class="button button--primary" type="submit">
+                  Judge this claim
+                </button>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Move on</legend>
+              <div class="prediction__actions">
+                <button class="button button--secondary" type="button"
+                        data-action="prev-claim">Previous claim</button>
+                <button class="button button--secondary" type="button"
+                        data-action="next-claim">Next claim</button>
+              </div>
+              <p class="control__hint" data-progress></p>
+            </fieldset>
+
+          </form>
+
+          <div class="interactive__stage" data-interactive-stage>
+
+            <!-- Pinned: the profile. Everything the claim is judged against
+                 is in this block. -->
+            <div class="stage__primary">
+              <h4 class="stage__heading">
+                How far this profile sits from its control groups
+              </h4>
+              <figure class="chart">
+                <figcaption class="visually-hidden">
+                  Seven memory measures, each expressed as a distance from the
+                  average of its own fictional control group
+                </figcaption>
+                <svg class="chart__svg" data-profile viewBox="0 0 460 210"
+                     aria-hidden="true" focusable="false"></svg>
+              </figure>
+            </div>
+
+            <div class="feedback" data-claim-feedback hidden></div>
+
+            <h4 class="stage__heading">The seven measures</h4>
+            <div class="table-scroll">
+              <table class="chart__table">
+                <caption class="visually-hidden">
+                  Each measure, what it asks the person to do, and how far
+                  this profile sits from its control group
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Measure</th>
+                    <th scope="col">What it asks for</th>
+                    <th scope="col">Distance from controls</th>
+                    <th scope="col">Standing</th>
+                  </tr>
+                </thead>
+                <tbody data-measure-table></tbody>
+              </table>
+            </div>
+
+            <div class="verdict" data-case-notes>
+              <h4 class="verdict__title">Background</h4>
+              <p class="verdict__body" data-notes-body></p>
+            </div>
+
+            <details class="stage__more" data-grid-details>
+              <summary>Your grid so far - five claims by five profiles</summary>
+              <div class="table-scroll">
+                <table class="data-table">
+                  <caption class="visually-hidden">
+                    Every claim against every profile, with your judgement and
+                    the intended one
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Claim</th>
+                      <th scope="col">A</th>
+                      <th scope="col">B</th>
+                      <th scope="col">C</th>
+                      <th scope="col">D</th>
+                      <th scope="col">E</th>
+                    </tr>
+                  </thead>
+                  <tbody data-grid-table></tbody>
+                </table>
+              </div>
+              <p class="text-muted" data-grid-note></p>
+            </details>
+
+          </div>
+
+        </div>
+
+        <p class="interactive__status" data-interactive-status role="status"></p>
+
+        <div class="interactive__actions">
+          <button type="button" data-variant="secondary" data-interactive-reset>
+            Reset everything
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ================= Challenge ================= -->
+  <section class="section section--tinted" id="challenge" aria-labelledby="challenge-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="challenge-heading">Challenge - designing the missing test</h2>
+      </div>
+
+      <form class="panel challenge" id="challenge-form">
+        <p>
+          Profile C recalls nothing after thirty minutes and recognises
+          normally. You want to know whether the difficulty is at retrieval
+          or at storage.
+        </p>
+
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            Which addition would come closest to deciding it?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="challenge" value="longer">
+            Give the recall test again after a longer delay
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="challenge" value="matched">
+            Make the recognition test hard enough that healthy controls score
+            the same on it as they do on recall
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="challenge" value="more">
+            Test recall with more words
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="challenge" value="imaging">
+            Scan the person and see which structures are damaged
+          </label>
+        </fieldset>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Check my answer
+          </button>
+        </div>
+
+        <div class="feedback" data-challenge-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Debrief ================= -->
+  <section class="section" id="debrief" aria-labelledby="debrief-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="debrief-heading">What this demonstrates</h2>
+      </div>
+
+      <div class="split split--wide">
+
+        <div class="prose">
+          <h3>"Cannot decide" is the commonest right answer</h3>
+          <p>
+            Twelve of the twenty-five cells in the grid cannot be settled by
+            the profile in front of you. That is not a defect of the exercise;
+            it is what most real profiles are like. A profile decides a
+            distinction only when one measure is clearly below its controls
+            while another, comparable one is clearly not - and "comparable" is
+            doing a great deal of work in that sentence.
+          </p>
+
+          <h3>Separable is a weaker claim than separate</h3>
+          <p>
+            Evidence that two tasks come apart shows that they do not depend
+            on all the same things. It does not show that there are two
+            systems, that each has a location, or that either is a natural
+            kind. The multiple-systems account of memory is a good theory
+            supported by convergent evidence from many sources; no single
+            profile establishes it, and the wording is worth keeping honest.
+          </p>
+
+          <h3>Recall against recognition does not settle retrieval</h3>
+          <p>
+            The pattern in profile C - recall at floor, recognition normal -
+            is the one always cited for a difficulty at retrieval rather than
+            at storage. It does not establish it, because recognition is the
+            easier task: a memory trace too weak to be produced from nothing
+            can still be strong enough to be picked out of two options. The
+            two tasks would have to be matched for difficulty in healthy
+            people before the comparison meant what it appears to mean, and
+            matching them is genuinely hard.
+          </p>
+
+          <h3>Every measure is impure, and some are impure together</h3>
+          <p>
+            Profile D is impaired on every verbal measure, including word
+            knowledge. Its episodic scores are therefore not readings of
+            episodic memory: they are readings of episodic memory for material
+            the person no longer knows well. And the one intact measure -
+            skill learning - differs from the impaired ones in system
+            <em>and</em> in material and response, so even that contrast
+            cannot be pinned on the distinction it appears to show.
+          </p>
+
+          <h3>A low score has several explanations before "damage"</h3>
+          <p>
+            Profile E is mildly below controls on everything and selectively
+            below on nothing. Reduced effort, fatigue, poor sleep, pain,
+            medication, low mood, anxiety about being tested, a language
+            other than the one being tested in, uncorrected hearing, and
+            simply having a lower starting point than the control group all
+            produce that shape. So does a genuine general slowing. Nothing in
+            the profile chooses between them, and reaching for a memory system
+            is the least well-supported move available.
+          </p>
+
+          <h3>A behavioural profile is not a map</h3>
+          <p>
+            None of this page mentions anatomy, on purpose. The distinctions
+            these profiles bear on are between what tasks require, not between
+            structures. Structures matter, and the mapping between a profile
+            and a structure is many-to-many: the same profile follows damage
+            in several places, and damage in one place produces several
+            profiles depending on extent, connections and what else went with
+            it.
+          </p>
+        </div>
+
+        <aside class="panel panel--caution" aria-labelledby="limits-heading">
+          <h3 class="panel__title" id="limits-heading">
+            What this does <em>not</em> demonstrate
+          </h3>
+          <ul>
+            <li>
+              <strong>No syndrome is named.</strong> Several profiles
+              resemble textbook descriptions. Naming them would encourage
+              reading a profile as a label rather than as evidence.
+            </li>
+            <li>
+              <strong>The intended answers are judgements.</strong> Reasonable
+              people would argue about several cells, particularly the
+              retrieval row.
+            </li>
+            <li>
+              <strong>Seven measures is very few.</strong> Real batteries use
+              many more, and would separate several things this tool merges -
+              recall of stories from recall of word lists, recognition of
+              faces from recognition of words, familiarity from recollection.
+            </li>
+            <li>
+              <strong>No anatomy, and no prognosis.</strong> Nothing here says
+              where anything is or what will happen to anybody.
+            </li>
+            <li>
+              <strong>Control-referenced scores are not diagnoses.</strong> A
+              score below a control average is a position in a distribution.
+              It becomes a clinical statement only with a great deal of
+              context that no number on this page contains.
+            </li>
+          </ul>
+        </aside>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+<script>
+/* ---- components/interactive-shell.js ---- */
+/* =========================================================================
+   Open Psychology Interactives — interactive shell helper
+   -------------------------------------------------------------------------
+   A very small vanilla-JS helper that every interactive in this collection
+   uses. It deliberately does *not* draw anything or know anything about
+   statistics, personality or neuropsychology. Its job is the repetitive,
+   easy-to-get-wrong accessibility plumbing:
+
+     * announcing changes through a polite live region;
+     * keeping a range slider and its <output> in step;
+     * wiring the standard Reset button;
+     * reporting the reader's reduced-motion preference.
+
+   Usage (see docs/adapting-a-tool.md for the full markup contract):
+
+       <script src="../../components/interactive-shell.js" defer><\/script>
+       <script src="tool.js" defer><\/script>
+
+       // in tool.js
+       const shell = InteractiveShell.attach('#sampling-demo');
+       shell.onReset(() => { ...restore defaults...; draw(); });
+       shell.bindRange('#sample-size', { format: n => n + ' cases' });
+       shell.announce('Sample of 25 drawn. Mean 4.8.');
+
+   Every published interactive is written against this module.
+
+   Exposed as a global (window.InteractiveShell) rather than an ES module so
+   that a single interactive folder can be opened directly from disk over
+   file:// — ES modules are blocked by CORS in that situation, plain scripts
+   are not. That constraint is the whole reason for the older syntax here.
+   ========================================================================= */
+
+(function (global) {
+  "use strict";
+
+  /* -----------------------------------------------------------------------
+     Internal helpers
+     --------------------------------------------------------------------- */
+
+  /**
+   * Accept either a CSS selector or an element and return an element.
+   * @param {string|Element} target
+   * @param {ParentNode} [scope]
+   * @returns {Element|null}
+   */
+  function resolve(target, scope) {
+    if (!target) {
+      return null;
+    }
+    if (typeof target === "string") {
+      return (scope || document).querySelector(target);
+    }
+    return target;
+  }
+
+  /**
+   * True when the reader has asked the operating system to reduce motion.
+   * Interactives should check this before animating anything — for example
+   * by drawing a sampling distribution in one step instead of animating
+   * each draw.
+   * @returns {boolean}
+   */
+  function prefersReducedMotion() {
+    return (
+      typeof global.matchMedia === "function" &&
+      global.matchMedia("(prefers-reduced-motion: reduce)").matches
+    );
+  }
+
+  /* -----------------------------------------------------------------------
+     Shell controller
+     --------------------------------------------------------------------- */
+
+  /**
+   * Attach the shell behaviour to one `.interactive` element.
+   *
+   * @param {string|Element} target  Selector or element for the shell root.
+   * @returns {object|null}  Controller, or null if the root was not found.
+   */
+  function attach(target) {
+    var root = resolve(target);
+
+    if (!root) {
+      if (global.console && console.warn) {
+        console.warn("InteractiveShell: root element not found.", target);
+      }
+      return null;
+    }
+
+    var controls = root.querySelector("[data-interactive-controls]");
+    var stage = root.querySelector("[data-interactive-stage]");
+    var status = root.querySelector("[data-interactive-status]");
+    var resetButton = root.querySelector("[data-interactive-reset]");
+    var resetHandlers = [];
+    // Every range bound with bindRange() registers its sync function here, so
+    // that reset() can refresh the visible values after the tool's own reset
+    // handlers have restored the inputs. See reset() for why this is needed.
+    var rangeSyncs = [];
+
+    /* --- Live region ----------------------------------------------------
+       The status element is marked up as role="status" (implicitly
+       aria-live="polite"). Two details matter:
+
+         1. Assistive technology only announces *changes* to a live region,
+            so writing the same string twice is silently dropped. We add a
+            trailing zero-width space on repeat messages to force an
+            announcement when a student re-runs the same action.
+         2. Announcements are debounced. A slider dragged across its range
+            fires dozens of input events; without a delay a screen reader
+            would queue every intermediate value and fall far behind.
+       ------------------------------------------------------------------ */
+
+    var announceTimer = null;
+    var lastMessage = "";
+
+    /**
+     * Announce a short sentence describing what just changed.
+     * @param {string} message
+     * @param {object} [options]
+     * @param {boolean} [options.immediate]  Skip the debounce delay. Use for
+     *   discrete actions (button presses); leave off for continuous input.
+     */
+    function announce(message, options) {
+      if (!status) {
+        return;
+      }
+
+      var text = String(message == null ? "" : message);
+      var immediate = Boolean(options && options.immediate);
+
+      if (announceTimer !== null) {
+        global.clearTimeout(announceTimer);
+        announceTimer = null;
+      }
+
+      function write() {
+        // Force a change when the text is identical to last time.
+        status.textContent = text === lastMessage ? text + "​" : text;
+        lastMessage = text;
+      }
+
+      if (immediate) {
+        write();
+      } else {
+        announceTimer = global.setTimeout(write, 350);
+      }
+    }
+
+    /* --- Reset ---------------------------------------------------------- */
+
+    /**
+     * Register a callback to run when the Reset button is pressed.
+     * Several may be registered; they run in the order added.
+     * @param {Function} handler
+     */
+    function onReset(handler) {
+      if (typeof handler === "function") {
+        resetHandlers.push(handler);
+      }
+    }
+
+    /**
+     * Run the reset handlers. Called by the button and available directly so
+     * an interactive can reset itself on first load.
+     *
+     * Bound ranges are re-synced afterwards. A reset handler restores an
+     * input by assigning to `input.value`, and assigning to a value in script
+     * does not fire an `input` event — so without this step the slider would
+     * jump back to its default while its <output> went on showing the old
+     * number. Syncing here, after the handlers have run, also means the sync
+     * sees the restored values regardless of the order things were
+     * registered in.
+     *
+     * @param {object} [options]
+     * @param {boolean} [options.silent]  Suppress the status announcement.
+     */
+    function reset(options) {
+      resetHandlers.forEach(function (handler) {
+        handler();
+      });
+      rangeSyncs.forEach(function (sync) {
+        sync();
+      });
+      if (!options || !options.silent) {
+        announce(
+          root.getAttribute("data-reset-message") ||
+            "Reset to the starting values.",
+          { immediate: true }
+        );
+      }
+    }
+
+    if (resetButton) {
+      resetButton.addEventListener("click", function (event) {
+        // Reset buttons commonly sit inside the controls <form>; stop the
+        // browser's own form reset from fighting with ours.
+        event.preventDefault();
+        reset();
+      });
+    }
+
+    /* --- Range binding --------------------------------------------------
+       Keeps a slider's <output> in step with its value. The <output> must
+       carry `for="<input id>"`, which is what associates the two for
+       assistive technology; this only handles the visible text.
+
+       Optionally sets aria-valuetext, which is how you make a screen reader
+       say "25 cases" or "medium correlation" instead of a bare "25".
+       ------------------------------------------------------------------ */
+
+    /**
+     * @param {string|Element} inputTarget  The range (or number) input.
+     * @param {object} [options]
+     * @param {Function} [options.format]  value:number -> string shown in the
+     *   <output>. Defaults to the raw value.
+     * @param {Function} [options.describe]  value:number -> string used for
+     *   aria-valuetext. Defaults to options.format.
+     * @param {Function} [options.onInput]  value:number -> void, called after
+     *   the display has been updated. Use it to redraw.
+     * @returns {HTMLInputElement|null}
+     */
+    function bindRange(inputTarget, options) {
+      var input = resolve(inputTarget, root);
+      if (!input) {
+        return null;
+      }
+
+      var settings = options || {};
+      var format =
+        typeof settings.format === "function"
+          ? settings.format
+          : function (value) {
+              return String(value);
+            };
+      var describe =
+        typeof settings.describe === "function" ? settings.describe : format;
+
+      // <output for="the-input-id"> is the conventional pairing.
+      var output = input.id
+        ? root.querySelector('output[for="' + input.id + '"]')
+        : null;
+
+      function sync() {
+        var value = Number(input.value);
+        if (output) {
+          output.textContent = format(value);
+        }
+        // Only meaningful for widgets with an implicit or explicit slider
+        // role; harmless elsewhere.
+        input.setAttribute("aria-valuetext", describe(value));
+        if (typeof settings.onInput === "function") {
+          settings.onInput(value);
+        }
+      }
+
+      input.addEventListener("input", sync);
+      // Registered so reset() can refresh the display after the tool's own
+      // reset handlers have put the input back to its default.
+      rangeSyncs.push(sync);
+      sync();
+
+      return input;
+    }
+
+    /* --- Public surface -------------------------------------------------- */
+
+    return {
+      /** The `.interactive` root element. */
+      root: root,
+      /** The controls panel, or null if the shell has none. */
+      controls: controls,
+      /** The stage element where the visualisation is drawn. */
+      stage: stage,
+      /** The live-region element. */
+      status: status,
+      announce: announce,
+      onReset: onReset,
+      reset: reset,
+      bindRange: bindRange,
+      prefersReducedMotion: prefersReducedMotion
+    };
+  }
+
+  /* -----------------------------------------------------------------------
+     Export
+     --------------------------------------------------------------------- */
+
+  global.InteractiveShell = {
+    attach: attach,
+    prefersReducedMotion: prefersReducedMotion
+  };
+})(window);
+
+/* ---- modules/neuropsychology/tools/06-memory-systems-amnesia-detective/tool.js ---- */
+/* =========================================================================
+   Memory Systems Detective
+   -------------------------------------------------------------------------
+   Five fictional profiles across seven memory measures, and five claims about
+   separable memory systems. For each claim on each profile the learner decides
+   whether the profile supports it, counts against it, or cannot decide it.
+
+   THE EDUCATIONAL MODEL
+   ---------------------
+   Scores are control-referenced: each number is how far this fictional person
+   sits from the average of that measure's own fictional control group, in
+   control standard deviations. A measure is treated as clearly below its
+   controls at -2 or lower and as within range above about -1.
+
+   A claim is supported by a profile only when one measure is clearly below its
+   controls while a COMPARABLE measure clearly is not. It is counted against
+   when the profile shows the opposite of what the claim predicts. Otherwise
+   the profile cannot decide it - which is true of twelve of the twenty-five
+   cells, and is the point of the exercise.
+
+   The intended grid (rows are claims, columns profiles A to E):
+
+                                  A         B         C         D         E
+     1 short-term vs episodic   support   support   support   cannot    cannot
+     2 episodic vs semantic     support   cannot    support   cannot    cannot
+     3 episodic vs skill        support   cannot    support   cannot    cannot
+     4 retrieval vs storage     cannot    cannot    cannot    cannot    cannot
+     5 one general reduction    against   against   against   against   support
+
+   Row 4 is never supported anywhere, deliberately. The pattern always cited
+   for a retrieval account - recall at floor with normal recognition - does not
+   establish one, because recognition is the easier task and a trace too weak
+   to be recalled can still be strong enough to be recognised.
+
+   DELIBERATE SIMPLIFICATIONS
+   --------------------------
+   Seven measures is very few; real batteries separate several things merged
+   here. The intended answers are judgements, and reasonable people would argue
+   about several cells - which the tool says out loud. No anatomy appears
+   anywhere, because these distinctions are between what tasks require. No real
+   person, published case, clinical instrument or syndrome name is used.
+
+   No data leave the browser. There is no storage and no network request.
+   ========================================================================= */
+
+(function () {
+  "use strict";
+
+  var CLEARLY_BELOW = -2.0;   /* at or below this counts as clearly impaired */
+  var WITHIN_RANGE = -1.2;    /* above this counts as within the control range */
+
+  /* =======================================================================
+     The seven measures
+     ===================================================================== */
+
+  var MEASURES = [
+    { id: "span", name: "Immediate span",
+      asks: "Repeat a list of digits back straight away" },
+    { id: "working", name: "Span with manipulation",
+      asks: "Repeat the same list back in reverse order" },
+    { id: "learning", name: "Learning across trials",
+      asks: "How many of sixteen words are recalled by the fifth learning trial" },
+    { id: "recall", name: "Free recall after 30 minutes",
+      asks: "Say back as many of those words as possible, with no cues" },
+    { id: "recognition", name: "Recognition after 30 minutes",
+      asks: "Pick each of those words out from a word that was not on the list" },
+    { id: "semantic", name: "Word knowledge",
+      asks: "Name pictured objects and say what unusual words mean" },
+    { id: "skill", name: "Skill learning across sessions",
+      asks: "Keep a moving target under a stylus, over five sessions on five days" }
+  ];
+
+  /* =======================================================================
+     The five fictional profiles
+     ===================================================================== */
+
+  var CASES = [
+    {
+      id: "A", title: "Profile A",
+      brief:
+        "Severely impaired on everything after the moment, and unimpaired " +
+        "before it.",
+      scores: { span: 0.2, working: -0.3, learning: -3.8, recall: -4.5,
+        recognition: -3.6, semantic: 0.1, skill: -0.2 },
+      notes:
+        "A fictional person of 54, tested eighteen months after an illness " +
+        "affecting the brain. Education to degree level. No difficulty with " +
+        "hearing or vision, engaged and cooperative throughout, and no reported " +
+        "low mood. Knows their own history up to about two years ago and " +
+        "reports remembering nothing of the testing session an hour later."
+    },
+    {
+      id: "B", title: "Profile B",
+      brief:
+        "The reverse shape: very poor at holding material for seconds, and " +
+        "nearly normal thirty minutes later.",
+      scores: { span: -3.4, working: -3.0, learning: -1.1, recall: -0.9,
+        recognition: -0.2, semantic: 0.3, skill: 0.1 },
+      notes:
+        "A fictional person of 47, tested a year after a stroke. Left school " +
+        "at 18. Repeating even three digits is effortful and error-prone. " +
+        "Reports no difficulty following conversation or remembering the day's " +
+        "events. Tested in their first language, with hearing checked."
+    },
+    {
+      id: "C", title: "Profile C",
+      brief:
+        "Nothing recalled after thirty minutes, and recognition entirely " +
+        "normal.",
+      scores: { span: -0.1, working: -0.4, learning: -2.9, recall: -4.1,
+        recognition: -0.3, semantic: 0.2, skill: -0.1 },
+      notes:
+        "A fictional person of 61, tested two years after an injury. Recall " +
+        "produces almost nothing; shown a word beside one that was not on the " +
+        "list, they pick correctly nearly every time and say they are guessing. " +
+        "Good effort throughout, no reported low mood, no medication affecting " +
+        "alertness."
+    },
+    {
+      id: "D", title: "Profile D",
+      brief:
+        "Word knowledge itself has gone, and every measure that uses words has " +
+        "gone with it.",
+      scores: { span: -0.3, working: -0.6, learning: -2.4, recall: -2.8,
+        recognition: -2.2, semantic: -4.2, skill: -0.2 },
+      notes:
+        "A fictional person of 66, tested during a slowly progressive illness. " +
+        "Struggles to name common objects and cannot define words they used " +
+        "routinely two years ago. Day-to-day events are recounted accurately " +
+        "and in order. Everything except the skill task in this battery is " +
+        "made of words."
+    },
+    {
+      id: "E", title: "Profile E",
+      brief:
+        "A little below the control average on all seven measures, and " +
+        "selectively below on none.",
+      scores: { span: -1.1, working: -1.3, learning: -1.2, recall: -1.4,
+        recognition: -1.0, semantic: -0.9, skill: -1.2 },
+      notes:
+        "A fictional person of 39, referred after reporting that their memory " +
+        "is not what it was. Working long shifts, sleeping about five hours, " +
+        "in pain from an unrelated injury and taking medication for it, and " +
+        "describing themselves as low in mood since the injury. Left school at " +
+        "16; the control group for this battery was recruited from a " +
+        "university. Tested late in the afternoon after a two-hour session."
+    }
+  ];
+
+  /* =======================================================================
+     The five claims, and the intended verdict on each profile
+     ===================================================================== */
+
+  var VERDICTS = [
+    { id: "support", label: "This profile supports it" },
+    { id: "against", label: "This profile counts against it" },
+    { id: "cannot", label: "This profile cannot decide it" }
+  ];
+
+  var CLAIMS = [
+    {
+      id: "stm",
+      text:
+        "Holding material for seconds and remembering it for half an hour do " +
+        "not depend on all the same things.",
+      answers: {
+        A: "support", B: "support", C: "support", D: "cannot", E: "cannot"
+      },
+      why: {
+        A:
+          "Span at the control average, delayed recall four and a half SDs " +
+          "below. One measure clearly intact, a comparable one clearly not. " +
+          "It is a single dissociation, so delayed recall being the more " +
+          "demanding task survives as an explanation.",
+        B:
+          "The reverse shape, and worth more than profile A: span three and a " +
+          "half SDs below, delayed recall within the control range. Put A and " +
+          "B together and you have a crossover.",
+        C:
+          "Span at the control average, delayed recall four SDs below. Same " +
+          "structure of evidence as profile A.",
+        D:
+          "Span is normal and delayed recall is nearly three SDs below, which " +
+          "looks like support - until you notice that word knowledge is more " +
+          "impaired than either. The delayed recall task is made of words this " +
+          "person no longer knows well, so its score is not a reading of " +
+          "delayed memory alone.",
+        E:
+          "Everything is about one SD below and nothing is clearly below. There " +
+          "is no contrast here to support anything."
+      }
+    },
+    {
+      id: "semantic",
+      text:
+        "Remembering an episode and knowing what a word means do not depend on " +
+        "all the same things.",
+      answers: {
+        A: "support", B: "cannot", C: "support", D: "cannot", E: "cannot"
+      },
+      why: {
+        A:
+          "Word knowledge sits at the control average while learning and recall " +
+          "are around four SDs below. A person who cannot retain anything new " +
+          "and can still define words shows that the two do not require all the " +
+          "same things.",
+        B:
+          "Word knowledge is normal, and so is delayed recall. With neither " +
+          "clearly impaired there is no contrast to read.",
+        C:
+          "Same structure as profile A: word knowledge intact, learning and " +
+          "recall at floor.",
+        D:
+          "Both are impaired, which supports nothing either way. Worse, the " +
+          "episodic measures here are made of words, so their impairment may " +
+          "be a consequence of the word-knowledge loss rather than independent " +
+          "of it.",
+        E:
+          "Nothing is clearly impaired, so nothing is contrasted."
+      }
+    },
+    {
+      id: "skill",
+      text:
+        "Learning a new fact and getting better at a physical skill do not " +
+        "depend on all the same things.",
+      answers: {
+        A: "support", B: "cannot", C: "support", D: "cannot", E: "cannot"
+      },
+      why: {
+        A:
+          "Skill learning improves normally across five sessions while the same " +
+          "person retains nothing of the word list - and often nothing of " +
+          "having done the skill task before. That contrast is one of the " +
+          "strongest pieces of evidence in the whole memory literature.",
+        B:
+          "Skill learning is normal, and so is delayed recall. No contrast, so " +
+          "nothing supported.",
+        C:
+          "Skill learning normal, learning and recall at floor. Same structure " +
+          "as profile A.",
+        D:
+          "Skill learning is intact and the verbal measures are not - but the " +
+          "skill task differs from them in the memory it is supposed to tap " +
+          "AND in its material and its response. Task impurity in its purest " +
+          "form: a contrast that varies two things cannot be pinned on either.",
+        E:
+          "Nothing is clearly impaired, so nothing is contrasted."
+      }
+    },
+    {
+      id: "retrieval",
+      text:
+        "Where a profile shows poor recall, the difficulty is at retrieval " +
+        "rather than at storage.",
+      answers: {
+        A: "cannot", B: "cannot", C: "cannot", D: "cannot", E: "cannot"
+      },
+      why: {
+        A:
+          "Recognition is nearly as impaired as recall, so there is no evidence " +
+          "here of a difficulty specific to producing the material. That is " +
+          "compatible with a storage problem and also with a retrieval problem " +
+          "severe enough to defeat both tasks.",
+        B:
+          "Neither recall nor recognition is clearly impaired, so the question " +
+          "does not arise for this profile.",
+        C:
+          "This is the pattern the retrieval account is always argued from, " +
+          "and it does not establish it. Recognition is the easier task: a " +
+          "trace too weak to be produced from nothing can still be strong " +
+          "enough to be picked out of two options. Suggestive, not decisive.",
+        D:
+          "Recall and recognition are impaired to a similar degree, and both " +
+          "use words this person no longer knows well. Nothing here separates " +
+          "retrieval from storage.",
+        E:
+          "Nothing is clearly impaired, so there is no poor recall to explain."
+      }
+    },
+    {
+      id: "general",
+      text:
+        "This profile is better explained by one general reduction in capacity " +
+        "than by any selective loss.",
+      answers: {
+        A: "against", B: "against", C: "against", D: "against", E: "support"
+      },
+      why: {
+        A:
+          "Span, word knowledge and skill learning all sit at the control " +
+          "average while three measures are around four SDs below. A general " +
+          "reduction cannot leave four measures untouched.",
+        B:
+          "Span is three and a half SDs below and four other measures are at or " +
+          "above the control average. The impairment is confined to one end of " +
+          "the battery.",
+        C:
+          "Recognition, span, word knowledge and skill learning are all normal. " +
+          "Whatever is wrong is not general.",
+        D:
+          "The one thing this profile is not is uniform: word knowledge is four " +
+          "SDs below and span and skill learning are at the control average. " +
+          "The impairment is broad and it is still selective.",
+        E:
+          "Every measure sits between 0.9 and 1.4 SDs below its controls and " +
+          "none is clearly below. That shape is what a general reduction looks " +
+          "like - and a general reduction is not the same as brain damage. " +
+          "Five hours of sleep, pain, medication, low mood, the end of a long " +
+          "afternoon, and a control group recruited from a university all " +
+          "produce it too. Read the case notes."
+      }
+    }
+  ];
+
+  var VERDICT_SHORT = { support: "supports", against: "against", cannot: "cannot decide" };
+
+  /* =======================================================================
+     Helpers
+     ===================================================================== */
+
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) { node.className = className; }
+    if (text !== undefined) { node.textContent = text; }
+    return node;
+  }
+
+  function clear(node) {
+    while (node.firstChild) { node.removeChild(node.firstChild); }
+  }
+
+  var NS = "http://www.w3.org/2000/svg";
+
+  function svgEl(name, attrs) {
+    var node = document.createElementNS(NS, name);
+    Object.keys(attrs).forEach(function (key) {
+      node.setAttribute(key, String(attrs[key]));
+    });
+    return node;
+  }
+
+  function svgText(x, y, className, anchor, text) {
+    var node = svgEl("text", { x: x, y: y, class: className, "text-anchor": anchor });
+    node.textContent = text;
+    return node;
+  }
+
+  function signed(v) {
+    return (v >= 0 ? "+" : "−") + Math.abs(v).toFixed(1);
+  }
+
+  function standing(z) {
+    if (z <= CLEARLY_BELOW) { return "clearly below the control range"; }
+    if (z <= WITHIN_RANGE) { return "below average, not clearly outside the range"; }
+    return "within the control range";
+  }
+
+  /* =======================================================================
+     Wiring
+     ===================================================================== */
+
+  var shell = InteractiveShell.attach("#memory");
+  if (!shell) { return; }
+
+  var $ = function (selector, scope) {
+    return (scope || document).querySelector(selector);
+  };
+
+  var caseControls = $("[data-case-controls]");
+  var verdictControls = $("[data-verdict-controls]");
+  var caseTitle = $("[data-case-title]");
+  var caseBrief = $("[data-case-brief]");
+  var claimLabel = $("[data-claim-label]");
+  var claimText = $("[data-claim-text]");
+  var profileSvg = $("[data-profile]");
+  var measureTable = $("[data-measure-table]");
+  var notesBody = $("[data-notes-body]");
+  var claimFeedback = $("[data-claim-feedback]");
+  var gridTable = $("[data-grid-table]");
+  var gridNote = $("[data-grid-note]");
+  var progress = $("[data-progress]");
+  var controlsForm = $("[data-interactive-controls]");
+  var gridDetails = $("[data-grid-details]");
+
+  var openingForm = $("#opening-form");
+  var openingError = $("[data-opening-error]");
+  var openingFeedback = $("[data-opening-feedback]");
+  var profilesSection = $("#profiles-section");
+
+  var challengeForm = $("#challenge-form");
+  var challengeFeedback = $("[data-challenge-feedback]");
+
+  /* answers["A"]["stm"] = "support" | "against" | "cannot" */
+  var state = { caseIndex: 0, claimIndex: 0, answers: {} };
+
+  function currentCase() { return CASES[state.caseIndex]; }
+  function currentClaim() { return CLAIMS[state.claimIndex]; }
+
+  /* --- Controls, built once --------------------------------------------- */
+
+  CASES.forEach(function (item, index) {
+    var label = make("label", "control--choice");
+    var input = document.createElement("input");
+    input.type = "radio";
+    input.name = "profile";
+    input.value = item.id;
+    input.checked = index === 0;
+    input.addEventListener("change", function () {
+      state.caseIndex = index;
+      claimFeedback.hidden = true;
+      syncVerdictRadios();
+      render();
+      shell.announce(item.title + ". " + item.brief, { immediate: true });
+    });
+    label.appendChild(input);
+    label.appendChild(document.createTextNode(item.title + " - " + shortLabel(item)));
+    caseControls.appendChild(label);
+  });
+
+  function shortLabel(item) {
+    return item.brief.split(/[,.]/)[0].toLowerCase();
+  }
+
+  VERDICTS.forEach(function (verdict) {
+    var label = make("label", "control--choice");
+    var input = document.createElement("input");
+    input.type = "radio";
+    input.name = "verdict";
+    input.value = verdict.id;
+    label.appendChild(input);
+    label.appendChild(document.createTextNode(verdict.label));
+    verdictControls.appendChild(label);
+  });
+
+  controlsForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    judge();
+  });
+
+  $('[data-action="next-claim"]').addEventListener("click", function () {
+    step(1);
+  });
+  $('[data-action="prev-claim"]').addEventListener("click", function () {
+    step(-1);
+  });
+
+  function step(direction) {
+    state.claimIndex = (state.claimIndex + direction + CLAIMS.length) % CLAIMS.length;
+    claimFeedback.hidden = true;
+    syncVerdictRadios();
+    render();
+    shell.announce(
+      "Claim " + (state.claimIndex + 1) + " of " + CLAIMS.length + ": " +
+      currentClaim().text, { immediate: true });
+  }
+
+  function syncVerdictRadios() {
+    var stored = (state.answers[currentCase().id] || {})[currentClaim().id];
+    Array.prototype.forEach.call(
+      verdictControls.querySelectorAll("input"),
+      function (input) { input.checked = input.value === stored; });
+  }
+
+  /* --- Rendering -------------------------------------------------------- */
+
+  function render() {
+    var item = currentCase();
+    var claim = currentClaim();
+
+    caseTitle.textContent = item.title;
+    caseBrief.textContent = item.brief;
+    claimLabel.textContent = "Claim " + (state.claimIndex + 1) + " of " + CLAIMS.length;
+    claimText.textContent = claim.text;
+    notesBody.textContent = item.notes;
+
+    drawProfile(item);
+    renderMeasureTable(item);
+    renderGrid();
+
+    var answered = countAnswered();
+    progress.textContent = answered + " of " + (CASES.length * CLAIMS.length) +
+      " cells in the grid judged.";
+  }
+
+  function countAnswered() {
+    return CASES.reduce(function (total, item) {
+      var row = state.answers[item.id] || {};
+      return total + Object.keys(row).length;
+    }, 0);
+  }
+
+  /* Horizontal bars from the control average, drawn leftwards. Every bar
+     prints its own value and the table repeats it, so the fill is redundant;
+     a bar that reaches past the shaded control band also carries a marker. */
+  function drawProfile(item) {
+    var LEFT = 168, AXIS_START = 176, AXIS_END = 400;
+    var Z_MIN = -5, Z_MAX = 1;
+    var ROW = 25, TOP = 8;
+
+    function xOf(z) {
+      var clamped = Math.max(Z_MIN, Math.min(Z_MAX, z));
+      return AXIS_START + ((clamped - Z_MIN) / (Z_MAX - Z_MIN)) * (AXIS_END - AXIS_START);
+    }
+
+    var axisY = TOP + MEASURES.length * ROW + 6;
+    clear(profileSvg);
+    profileSvg.setAttribute("viewBox", "0 0 460 " + (axisY + 30));
+
+    profileSvg.appendChild(svgEl("rect", {
+      x: xOf(-1.65), y: TOP - 4,
+      width: xOf(Z_MAX) - xOf(-1.65), height: axisY - TOP + 4,
+      class: "mem__band"
+    }));
+    profileSvg.appendChild(svgEl("line", {
+      x1: xOf(0), y1: TOP - 4, x2: xOf(0), y2: axisY, class: "mem__zero"
+    }));
+
+    MEASURES.forEach(function (measure, index) {
+      var z = item.scores[measure.id];
+      var y = TOP + index * ROW;
+      var mid = y + ROW / 2;
+
+      profileSvg.appendChild(
+        svgText(LEFT, mid + 4, "chart__count", "end", measure.name));
+
+      var from = Math.min(xOf(0), xOf(z));
+      var to = Math.max(xOf(0), xOf(z));
+      profileSvg.appendChild(svgEl("rect", {
+        x: from, y: mid - 7, width: Math.max(1.5, to - from), height: 14,
+        class: "mem__bar" + (z <= CLEARLY_BELOW ? " mem__bar--below" : "")
+      }));
+
+      profileSvg.appendChild(
+        svgText(xOf(z) - 6, mid + 4, "chart__count",
+          z < 0 ? "end" : "start", signed(z)));
+    });
+
+    profileSvg.appendChild(svgEl("line", {
+      x1: AXIS_START, y1: axisY, x2: AXIS_END, y2: axisY, class: "chart__baseline"
+    }));
+    [-4, -3, -2, -1, 0].forEach(function (tick) {
+      profileSvg.appendChild(
+        svgText(xOf(tick), axisY + 15, "chart__axis", "middle", String(tick)));
+    });
+    profileSvg.appendChild(
+      svgText(xOf(0), axisY + 28, "chart__axis", "middle", "control average"));
+    profileSvg.appendChild(
+      svgText(0, axisY + 15, "chart__axis", "start", "control SDs"));
+  }
+
+  function renderMeasureTable(item) {
+    clear(measureTable);
+    MEASURES.forEach(function (measure) {
+      var z = item.scores[measure.id];
+      var tr = make("tr");
+      var th = make("th", null, measure.name);
+      th.setAttribute("scope", "row");
+      tr.appendChild(th);
+      tr.appendChild(make("td", null, measure.asks));
+      tr.appendChild(make("td", null, signed(z) + " SD"));
+      var cell = make("td", null, standing(z));
+      if (z <= CLEARLY_BELOW) { cell.setAttribute("data-mark", "below"); }
+      tr.appendChild(cell);
+      measureTable.appendChild(tr);
+    });
+  }
+
+  function renderGrid() {
+    clear(gridTable);
+    CLAIMS.forEach(function (claim, claimIndex) {
+      var tr = make("tr");
+      var th = make("th", null, (claimIndex + 1) + ". " + claim.text);
+      th.setAttribute("scope", "row");
+      tr.appendChild(th);
+      CASES.forEach(function (item) {
+        var given = (state.answers[item.id] || {})[claim.id];
+        var intended = claim.answers[item.id];
+        var cell = make("td", null,
+          given
+            ? VERDICT_SHORT[given] + (given === intended ? "" : " (intended: " + VERDICT_SHORT[intended] + ")")
+            : "-");
+        if (given) { cell.setAttribute("data-mark", given === intended ? "hit" : "miss"); }
+        tr.appendChild(cell);
+      });
+      gridTable.appendChild(tr);
+    });
+
+    var answered = countAnswered();
+    gridNote.textContent = answered < CASES.length * CLAIMS.length
+      ? "Cells you have not judged yet show a dash."
+      : "All twenty-five judged. Eight cells support a claim, five count " +
+        "against one, twelve cannot decide - and row 4 is never supported " +
+        "anywhere.";
+  }
+
+  /* --- Judging ---------------------------------------------------------- */
+
+  function judge() {
+    var chosen = $('input[name="verdict"]:checked', verdictControls);
+    if (!chosen) {
+      showFeedback(claimFeedback, "caution", "Choose one of the three first.", "");
+      return;
+    }
+
+    var item = currentCase();
+    var claim = currentClaim();
+    var intended = claim.answers[item.id];
+    var right = chosen.value === intended;
+
+    if (!state.answers[item.id]) { state.answers[item.id] = {}; }
+    state.answers[item.id][claim.id] = chosen.value;
+
+    clear(claimFeedback);
+    var lead = make("p");
+    lead.appendChild(make("strong", "feedback__verdict",
+      right ? "Agreed." : "The intended answer is: " +
+        VERDICTS.filter(function (v) { return v.id === intended; })[0].label + "."));
+    lead.appendChild(document.createTextNode(" " + claim.why[item.id]));
+    claimFeedback.appendChild(lead);
+
+    if (!right) {
+      claimFeedback.appendChild(make("p", "text-muted",
+        "The grid is a position to argue with, not a key. If you can make the " +
+        "case for your answer from the numbers on screen, make it."));
+    }
+
+    claimFeedback.setAttribute("data-tone", right ? "good" : "caution");
+    claimFeedback.hidden = false;
+
+    renderGrid();
+    progress.textContent = countAnswered() + " of " +
+      (CASES.length * CLAIMS.length) + " cells in the grid judged.";
+
+    if (countAnswered() === CASES.length * CLAIMS.length) { gridDetails.open = true; }
+
+    shell.announce(
+      (right ? "Agreed. " : "Intended answer: " + VERDICT_SHORT[intended] + ". ") +
+      countAnswered() + " of 25 cells judged.", { immediate: true });
+  }
+
+  /* --- Opening prediction ----------------------------------------------- */
+
+  var OPENING = {
+    systems: {
+      tone: "caution",
+      verdict: "One word too strong.",
+      text:
+        "The evidence shows that the two tasks do not depend on all the same " +
+        "things. \"Separate systems\" adds a claim about how memory is " +
+        "organised that a pair of scores cannot deliver. Good theory, more " +
+        "than one profile's worth of evidence required."
+    },
+    separable: {
+      tone: "good",
+      verdict: "Yes - and the wording is the lesson.",
+      text:
+        "Separable is what dissociation evidence gives you: these two tasks do " +
+        "not require all the same things. Whether that means two systems, two " +
+        "processes within one system, or one process used differently is a " +
+        "further question that needs evidence from outside the profile."
+    },
+    harder: {
+      tone: "caution",
+      verdict: "A live rival, and not the answer.",
+      text:
+        "Delayed recall probably is the harder task, and that is exactly why " +
+        "one profile cannot settle it. What settles it is a second person with " +
+        "the opposite shape - poor span, near-normal delayed recall. Profile B " +
+        "in the tool below is that person."
+    },
+    nothing: {
+      tone: "good",
+      verdict: "The right instinct, slightly overstated.",
+      text:
+        "Every score in this tool is referenced to its own control group for " +
+        "exactly that reason - raw scores on two different tasks are readings " +
+        "from different rulers. Once they are referenced, the profile does " +
+        "establish something; it just establishes less than it looks like."
+    }
+  };
+
+  openingForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answer = $('input[name="opening"]:checked', openingForm);
+    if (!answer) {
+      openingError.textContent = "Choose an answer before opening the profiles.";
+      openingError.hidden = false;
+      return;
+    }
+    openingError.hidden = true;
+    var entry = OPENING[answer.value];
+    showFeedback(openingFeedback, entry.tone, entry.verdict, entry.text);
+    unlockProfiles();
+  });
+
+  $('[data-action="skip-opening"]').addEventListener("click", function () {
+    openingError.hidden = true;
+    showFeedback(openingFeedback, "neutral",
+      "Prediction skipped - demonstration mode.", "");
+    unlockProfiles();
+  });
+
+  function unlockProfiles() {
+    lockForm(openingForm);
+    profilesSection.hidden = false;
+    render();
+    $("#profiles-heading").focus();
+    shell.announce("Profiles open. Profile A, claim 1 of 5.", { immediate: true });
+  }
+
+  /* --- Challenge -------------------------------------------------------- */
+
+  var CHALLENGE = {
+    longer: {
+      tone: "caution",
+      verdict: "It would tell you about forgetting, not about the mechanism.",
+      text:
+        "A longer delay makes both tasks harder and leaves the comparison " +
+        "between them exactly where it was. If recognition is easier than " +
+        "recall at thirty minutes it will still be easier at a day."
+    },
+    matched: {
+      tone: "good",
+      verdict: "Yes - this is the one that changes the argument.",
+      text:
+        "The problem is that recognition is the easier task. Make it hard " +
+        "enough that healthy controls score no better on it than on recall - " +
+        "more similar foils, more items - and the comparison becomes one " +
+        "between processes rather than between difficulties. If recognition " +
+        "is still spared once difficulty is equated, the retrieval account " +
+        "has evidence."
+    },
+    more: {
+      tone: "caution",
+      verdict: "More of the same evidence.",
+      text:
+        "Extra words would give a more precise estimate of a recall score that " +
+        "is already clearly at floor. Precision is not the problem here; the " +
+        "comparison is."
+    },
+    imaging: {
+      tone: "caution",
+      verdict: "Useful, and not for this question.",
+      text:
+        "Imaging tells you what is damaged. It does not tell you whether a " +
+        "behavioural difference between two tasks reflects two processes or " +
+        "two levels of difficulty, because that is a question about the tasks. " +
+        "You would still have to match them."
+    }
+  };
+
+  challengeForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answer = $('input[name="challenge"]:checked', challengeForm);
+    if (!answer) {
+      showFeedback(challengeFeedback, "caution", "Choose an answer first.", "");
+      return;
+    }
+    var entry = CHALLENGE[answer.value];
+    showFeedback(challengeFeedback, entry.tone, entry.verdict, entry.text);
+    shell.announce("Challenge answered.", { immediate: true });
+  });
+
+  /* --- Feedback plumbing ------------------------------------------------ */
+
+  function showFeedback(container, tone, verdict, text) {
+    clear(container);
+    container.setAttribute("data-tone", tone);
+    var p = make("p");
+    p.appendChild(make("strong", "feedback__verdict", verdict));
+    if (text) { p.appendChild(document.createTextNode(" " + text)); }
+    container.appendChild(p);
+    container.hidden = false;
+  }
+
+  function lockForm(form) {
+    Array.prototype.forEach.call(form.querySelectorAll("input, button"),
+      function (control) { control.disabled = true; });
+  }
+
+  function unlockForm(form) {
+    Array.prototype.forEach.call(form.querySelectorAll("input, button"),
+      function (control) { control.disabled = false; });
+    form.reset();
+  }
+
+  /* --- Reset ------------------------------------------------------------ */
+
+  shell.onReset(function () {
+    state = { caseIndex: 0, claimIndex: 0, answers: {} };
+    Array.prototype.forEach.call(
+      caseControls.querySelectorAll("input"),
+      function (input) { input.checked = input.value === "A"; });
+    syncVerdictRadios();
+    gridDetails.open = false;
+    unlockForm(openingForm);
+    openingFeedback.hidden = true;
+    openingError.hidden = true;
+    profilesSection.hidden = true;
+    claimFeedback.hidden = true;
+    challengeForm.reset();
+    challengeFeedback.hidden = true;
+    render();
+  });
+
+  /* --- Start-up --------------------------------------------------------- */
+
+  shell.reset({ silent: true });
+  shell.announce(
+    "Ready. Answer the question above to open the profiles.",
+    { immediate: true });
+})();
+
+</script>
+</div>

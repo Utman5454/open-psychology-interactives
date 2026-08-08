@@ -1,0 +1,3036 @@
+<!-- Lesion-Symptom Inference Trap
+     From Open Psychology Interactives - https://github.com/utman5454/open-psychology-interactives
+     Self-contained: no stylesheets, scripts, fonts, images or network requests.
+     Styles are scoped to .opi-activity and do not affect the page around them.
+     Nothing is saved, sent or tracked. MIT licensed; please keep this notice.
+     Paste anywhere that accepts HTML, or save as a .html file and open it. -->
+<div class="opi-activity">
+<style>
+/* Defensive baseline. See scripts/build-standalone.py for why this
+   is `revert` rather than an enumerated reset, and how the specificity ladder
+   keeps the activity's own styling on top of it. */
+.opi-activity *:not(svg *) {
+  all: revert;
+}
+.opi-activity, .opi-activity *, .opi-activity *::before, .opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  text-transform: none;
+  text-indent: 0;
+  font-style: normal;
+  font-variant: normal;
+  letter-spacing: normal;
+  word-spacing: normal;
+  white-space: normal;
+  visibility: visible;
+  float: none;
+  max-width: none;
+}
+.opi-activity svg { max-width: 100%; }
+.opi-activity img { max-width: 100%; height: auto; }
+.opi-activity [hidden] { display: none !important; }
+
+/* assets/css/main.css */
+.opi-activity.opi-activity {
+  --colour-page: #ffffff;
+  --colour-surface: #f5f7fa;
+  --colour-surface-raised: #ffffff;
+  --colour-border: #d3d9e2;
+  --colour-border-strong: #aeb7c4;
+  --colour-text: #131820;
+  --colour-text-muted: #4c566a;
+  --colour-accent: #1a4fa0;
+  --colour-accent-hover: #123a7a;
+  --colour-accent-soft: #e8eefb;
+  --colour-on-accent: #ffffff;
+  --colour-focus: #b45309;
+  --colour-cognitive: #8a4b00;
+  --colour-research-methods: #1a4fa0;
+  --colour-neuropsychology: #145c53;
+  --colour-social-critical-psychology: #9e2f45;
+  --colour-personality-individual-differences: #7a2e6d;
+  --colour-status-bg: #f1ede3;
+  --colour-status-text: #5c4a1f;
+  --colour-status-border: #d9cdb0;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  --text-xs: 13px;
+  --text-sm: 15px;
+  --text-base: 17px;
+  --text-lg: 19px;
+  --text-xl: 23px;
+  --text-2xl: 28px;
+  --text-3xl: 36px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgb(19 24 32 / 0.06);
+  --shadow-md: 0 2px 8px rgb(19 24 32 / 0.08);
+  --measure: 68ch;
+  --container: 1152px;
+}
+@media (prefers-color-scheme: dark) {
+.opi-activity.opi-activity {
+  --colour-page: #0f141b;
+  --colour-surface: #161d27;
+  --colour-surface-raised: #1a2230;
+  --colour-border: #2c3644;
+  --colour-border-strong: #44506180;
+  --colour-text: #e9edf3;
+  --colour-text-muted: #a8b2c1;
+  --colour-accent: #8fb6ff;
+  --colour-accent-hover: #b3cdff;
+  --colour-accent-soft: #1b2740;
+  --colour-on-accent: #0f141b;
+  --colour-focus: #f0b429;
+  --colour-cognitive: #e2ab5f;
+  --colour-research-methods: #8fb6ff;
+  --colour-neuropsychology: #6fc3b4;
+  --colour-social-critical-psychology: #f19aa8;
+  --colour-personality-individual-differences: #db9ccd;
+  --colour-status-bg: #241f14;
+  --colour-status-text: #e2cf9f;
+  --colour-status-border: #4a4028;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 2px 10px rgb(0 0 0 / 0.45);
+}
+}
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity.opi-activity {
+  -webkit-text-size-adjust: 100%;
+}
+.opi-activity.opi-activity {
+  background-color: var(--colour-page);
+  color: var(--colour-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.65;
+}
+.opi-activity.opi-activity h1,
+.opi-activity.opi-activity h2,
+.opi-activity.opi-activity h3,
+.opi-activity.opi-activity h4 {
+  margin: 0 0 var(--space-3);
+  line-height: 1.25;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.opi-activity.opi-activity h1 {
+  font-size: var(--text-3xl);
+}
+.opi-activity.opi-activity h2 {
+  font-size: var(--text-2xl);
+}
+.opi-activity.opi-activity h3 {
+  font-size: var(--text-xl);
+}
+.opi-activity.opi-activity h4 {
+  font-size: var(--text-lg);
+}
+.opi-activity.opi-activity p,
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol,
+.opi-activity.opi-activity dl {
+  margin: 0 0 var(--space-4);
+}
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol {
+  padding-left: 1.35em;
+}
+.opi-activity.opi-activity li + li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity a {
+  color: var(--colour-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: max(1px, 0.06em);
+}
+.opi-activity.opi-activity a:hover {
+  color: var(--colour-accent-hover);
+  text-decoration-thickness: max(2px, 0.11em);
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid var(--colour-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+@supports not selector(:focus-visible) {
+.opi-activity.opi-activity :focus {
+  outline: 3px solid var(--colour-focus);
+    outline-offset: 2px;
+}
+}
+.opi-activity.opi-activity code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.35em;
+}
+.opi-activity.opi-activity hr {
+  border: 0;
+  border-top: 1px solid var(--colour-border);
+  margin: var(--space-6) 0;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+}
+.opi-activity.opi-activity .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.opi-activity.opi-activity .container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+@media (min-width: 40em) {
+.opi-activity.opi-activity .container {
+  padding-inline: var(--space-5);
+}
+}
+.opi-activity.opi-activity .prose {
+  max-width: var(--measure);
+}
+.opi-activity.opi-activity .text-muted {
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .section {
+  padding-block: var(--space-7);
+}
+.opi-activity.opi-activity .section--tinted {
+  background-color: var(--colour-surface);
+  border-block: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .section__header {
+  max-width: var(--measure);
+  margin-bottom: var(--space-5);
+}
+.opi-activity.opi-activity .section__header > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-7) var(--space-6);
+  border-bottom: 1px solid var(--colour-border);
+  
+  background-image: linear-gradient(
+    180deg,
+    var(--colour-accent-soft) 0%,
+    var(--colour-page) 100%
+  );
+}
+.opi-activity.opi-activity .hero__eyebrow {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .hero h1 {
+  max-width: 20ch;
+  margin-bottom: var(--space-4);
+}
+.opi-activity.opi-activity .hero__lead {
+  max-width: var(--measure);
+  font-size: var(--text-lg);
+  color: var(--colour-text-muted);
+}
+@media (min-width: 48em) {
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-8) var(--space-7);
+}
+.opi-activity.opi-activity .hero h1 {
+  font-size: 44px;
+}
+}
+.opi-activity.opi-activity .button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  
+  min-height: 44px;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .button--primary {
+  background-color: var(--colour-accent);
+  border-color: var(--colour-accent);
+  
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--primary:hover {
+  background-color: var(--colour-accent-hover);
+  border-color: var(--colour-accent-hover);
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--secondary {
+  background-color: transparent;
+  border-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .button--secondary:hover {
+  background-color: var(--colour-surface);
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+}
+.opi-activity.opi-activity .card--cognitive {
+  --card-accent: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .card--research-methods {
+  --card-accent: var(--colour-research-methods);
+}
+.opi-activity.opi-activity .card--neuropsychology {
+  --card-accent: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .card--social-critical-psychology {
+  --card-accent: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .card--personality-individual-differences {
+  --card-accent: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 650;
+  line-height: 1.4;
+  padding: 3.2px var(--space-3);
+  border-radius: 999px;
+  border: 1px solid var(--colour-status-border);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+}
+.opi-activity.opi-activity .badge__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex: none;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed var(--colour-border-strong);
+  border-radius: var(--radius-lg);
+  background-color: var(--colour-surface);
+  padding: var(--space-5);
+  text-align: left;
+}
+.opi-activity.opi-activity .placeholder__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+}
+.opi-activity.opi-activity .placeholder > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .split {
+  display: grid;
+  gap: var(--space-6);
+}
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split {
+  grid-template-columns: 3fr 2fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .panel {
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.opi-activity.opi-activity .panel > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .panel__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .section--tinted {
+  border-block: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .hero {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .button--primary {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .button--secondary {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .button:hover {
+  border-color: Highlight;
+}
+.opi-activity.opi-activity .panel {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed CanvasText;
+}
+.opi-activity.opi-activity .badge {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .badge__dot {
+  background-color: CanvasText;
+}
+.opi-activity.opi-activity code {
+  border-color: CanvasText;
+}
+.opi-activity.opi-activity hr {
+  border-top-color: CanvasText;
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+}
+@media print {
+.opi-activity.opi-activity {
+  color: #000;
+  background: #fff;
+}
+.opi-activity.opi-activity a[href^="http"]::after {
+  content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+}
+}
+
+/* components/interactive-shell.css */
+.opi-activity.opi-activity .interactive {
+  --shell-page: var(--colour-page, #ffffff);
+  --shell-surface: var(--colour-surface, #f5f7fa);
+  --shell-raised: var(--colour-surface-raised, #ffffff);
+  --shell-border: var(--colour-border, #d3d9e2);
+  --shell-border-strong: var(--colour-border-strong, #aeb7c4);
+  --shell-text: var(--colour-text, #131820);
+  --shell-muted: var(--colour-text-muted, #4c566a);
+  --shell-accent: var(--colour-accent, #1a4fa0);
+  --shell-accent-soft: var(--colour-accent-soft, #e8eefb);
+  
+  --shell-on-accent: var(--colour-on-accent, #ffffff);
+  --shell-focus: var(--colour-focus, #b45309);
+  --shell-radius: var(--radius-lg, 12px);
+  --shell-gap: var(--space-5, 24px);
+
+  display: block;
+  background-color: var(--shell-raised);
+  color: var(--shell-text);
+  border: 1px solid var(--shell-border);
+  border-radius: var(--shell-radius);
+  
+  overflow-x: clip;
+  overflow-y: visible;
+}
+.opi-activity.opi-activity .interactive__header {
+  padding: var(--shell-gap);
+  border-bottom: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 1.25;
+}
+.opi-activity.opi-activity .interactive__brief {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--shell-muted);
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__body {
+  display: grid;
+  gap: var(--shell-gap);
+  padding: var(--shell-gap);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body {
+  grid-template-columns: minmax(240px, 320px) 1fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .interactive__controls {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__controls fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .interactive__controls legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .control {
+  display: grid;
+  gap: 5.6px;
+}
+.opi-activity.opi-activity .control + .control {
+  margin-top: 16px;
+}
+.opi-activity.opi-activity .control__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.opi-activity.opi-activity .control__label {
+  font-size: 15px;
+  font-weight: 600;
+}
+.opi-activity.opi-activity .control__value {
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--shell-accent);
+}
+.opi-activity.opi-activity .control__hint {
+  font-size: 13px;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .interactive__controls input[type="range"] {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--shell-accent);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  width: 100%;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--shell-text);
+  background-color: var(--shell-raised);
+  border: 1px solid var(--shell-border-strong);
+  border-radius: var(--radius-sm, 4px);
+}
+.opi-activity.opi-activity .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+}
+.opi-activity.opi-activity .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  accent-color: var(--shell-accent);
+  flex: none;
+}
+.opi-activity.opi-activity .interactive__stage {
+  min-height: 256px;
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-page);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body--pinned {
+  align-items: stretch;
+}
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: sticky;
+    top: 0;
+    z-index: 2;
+    
+    margin: -16px -16px 0;
+    padding: 16px 16px 12px;
+    background-color: var(--shell-page);
+    border-bottom: 1px solid var(--shell-border);
+}
+}
+@media (min-width: 52em) and (max-height: 30em) {
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: static;
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
+}
+}
+.opi-activity.opi-activity .interactive__stage > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity :where(.interactive__stage) svg,
+.opi-activity.opi-activity :where(.interactive__stage) canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+.opi-activity.opi-activity .interactive__readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout div {
+  padding: 9.6px 12px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-sm, 4px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__readout dt {
+  font-size: 13px;
+  color: var(--shell-muted);
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout dd {
+  margin: 2.4px 0 0;
+  font-size: 18px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .interactive__status {
+  margin: 0;
+  padding: 12px var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+  font-size: 15px;
+  color: var(--shell-muted);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .interactive__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+}
+.opi-activity.opi-activity .interactive__actions button {
+  min-height: 44px;
+  padding: 6.4px 20px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--shell-on-accent);
+  background-color: var(--shell-accent);
+  border: 1px solid var(--shell-accent);
+  border-radius: var(--radius-md, 8px);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  color: var(--shell-text);
+  background-color: transparent;
+  border-color: var(--shell-border-strong);
+}
+.opi-activity.opi-activity .interactive__actions button:hover {
+  filter: brightness(1.08);
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__notes > summary {
+  padding: 13.6px var(--shell-gap);
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__notes > div {
+  padding: 0 var(--shell-gap) var(--shell-gap);
+  max-width: 68ch;
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__notes > div > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity .interactive *,
+.opi-activity.opi-activity .interactive *::before,
+.opi-activity.opi-activity .interactive *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+}
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .interactive,
+.opi-activity.opi-activity .interactive__controls,
+.opi-activity.opi-activity .interactive__stage,
+.opi-activity.opi-activity .interactive__readout div {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__header {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__status,
+.opi-activity.opi-activity .interactive__actions,
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__actions button {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  border-width: 1px;
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 1;
+    color: GrayText;
+    border-color: GrayText;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__stage svg {
+  forced-color-adjust: auto;
+}
+}
+
+/* components/tool-kit.css */
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split--wide {
+  grid-template-columns: 1fr 1fr;
+}
+}
+.opi-activity.opi-activity .how-to {
+  padding-left: 19.2px;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .how-to > li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .table-scroll {
+  overflow-x: auto;
+  
+  position: relative;
+}
+.opi-activity.opi-activity .prediction {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 832px;
+}
+.opi-activity.opi-activity .prediction > *,
+.opi-activity.opi-activity .challenge > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity .prediction__group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .prediction__legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-weight: 650;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .prediction .control--choice,
+.opi-activity.opi-activity .challenge .control--choice,
+.opi-activity.opi-activity .evidence .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .prediction .control--choice input,
+.opi-activity.opi-activity .challenge .control--choice input,
+.opi-activity.opi-activity .evidence .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .prediction__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .prediction__error {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-status-border);
+  border-left: 4px solid var(--colour-status-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .prediction__readback {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .feedback[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .feedback[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .feedback[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .feedback__verdict {
+  font-weight: 700;
+}
+.opi-activity.opi-activity .verdict {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .verdict__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict__body {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .verdict__body + .verdict__body {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .verdict__note {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .verdict[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .verdict[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .goal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .goal__label {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .goal__text {
+  flex: 1 1 256px;
+}
+.opi-activity.opi-activity .goal strong {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .goal__checks {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+  display: grid;
+  gap: 2.4px;
+}
+.opi-activity.opi-activity .goal__checks > li {
+  margin-top: 0;
+  padding-left: 22.4px;
+  position: relative;
+}
+.opi-activity.opi-activity .goal__checks > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 9.6px;
+  height: 9.6px;
+  border: 2px solid var(--colour-border-strong);
+  border-radius: 2px;
+}
+.opi-activity.opi-activity .goal__checks > li[data-met="yes"]::before {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .stage-track {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .stage-track > li {
+  margin-top: 0;
+  flex: 1 1 160px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-bottom: 3px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .stage-track > li > span {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.opi-activity.opi-activity .stage-track > li[data-state="done"] {
+  border-bottom-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border-bottom-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+  color: var(--colour-text);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .stage__heading {
+  margin: 0;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .data-table,
+.opi-activity.opi-activity .chart__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .data-table th,
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table th,
+.opi-activity.opi-activity .chart__table td {
+  padding: 6.4px 9.6px;
+  border: 1px solid var(--colour-border);
+  text-align: left;
+  vertical-align: top;
+}
+.opi-activity.opi-activity .data-table thead th,
+.opi-activity.opi-activity .chart__table thead th {
+  background-color: var(--colour-surface);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table td {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__table tbody th,
+.opi-activity.opi-activity .data-table tbody th {
+  font-weight: 550;
+}
+.opi-activity.opi-activity .data-table__total > th,
+.opi-activity.opi-activity .data-table__total > td {
+  border-top: 2px solid var(--colour-border-strong);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart {
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .chart__caption {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__svg {
+  max-width: 100%;
+  height: auto;
+}
+.opi-activity.opi-activity .chart__label,
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__inline,
+.opi-activity.opi-activity .chart__axis {
+  font-family: var(--font-body);
+  fill: var(--colour-text);
+  font-size: 13px;
+}
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__axis {
+  fill: var(--colour-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: var(--colour-on-accent);
+  font-size: 12px;
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__track {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__bar {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--one {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .chart__baseline,
+.opi-activity.opi-activity .chart__grid {
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__line {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: var(--colour-personality-individual-differences);
+  stroke-dasharray: 6 4;
+}
+.opi-activity.opi-activity .chart__point {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .reveal > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .reveal__lead {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+.opi-activity.opi-activity .reveal__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(176px, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+  padding: 0;
+  list-style: none;
+}
+.opi-activity.opi-activity .reveal__figures > li {
+  margin-top: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+.opi-activity.opi-activity .reveal__figure-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .reveal__figure-value {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .challenge {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+.opi-activity.opi-activity .challenge__locked {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .panel--caution {
+  background-color: var(--colour-status-bg);
+  border-color: var(--colour-status-border);
+}
+.opi-activity.opi-activity .panel--caution li + li {
+  margin-top: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .goal,
+.opi-activity.opi-activity .verdict,
+.opi-activity.opi-activity .feedback,
+.opi-activity.opi-activity .prediction__error,
+.opi-activity.opi-activity .prediction__readback,
+.opi-activity.opi-activity .stage-track > li,
+.opi-activity.opi-activity .reveal__figures > li {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border: 2px solid Highlight;
+}
+.opi-activity.opi-activity .chart__bar,
+.opi-activity.opi-activity .chart__bar--one {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: Canvas;
+}
+.opi-activity.opi-activity .chart__line {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: Highlight;
+}
+}
+.opi-activity.opi-activity .stage__more {
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .stage__more > summary {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .stage__more[open] > summary {
+  border-bottom: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .stage__more > *:not(summary) {
+  margin: var(--space-3);
+}
+
+/* modules/neuropsychology/tools/02-lesion-symptom-inference-trap/tool.css */
+.opi-activity.opi-activity #lesion-trap .interactive__controls,
+.opi-activity.opi-activity #lesion-trap .interactive__stage {
+  min-width: 0;
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity #lesion-trap .interactive__body {
+  grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
+}
+}
+.opi-activity.opi-activity .trap__primary {
+  display: grid;
+  gap: var(--space-4);
+  align-items: start;
+}
+@media (min-width: 60em) {
+.opi-activity.opi-activity .trap__primary {
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+}
+}
+.opi-activity.opi-activity .trap__primary > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity .trap__map [data-map],
+.opi-activity.opi-activity .trap__gauge [data-gauge] {
+  max-width: 416px;
+}
+.opi-activity.opi-activity .trap__legend {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+  line-height: 1.4;
+}
+.opi-activity.opi-activity .trap__gauge .stage__heading {
+  margin-bottom: var(--space-2);
+}
+.opi-activity.opi-activity .trap__verdict {
+  margin: var(--space-2) 0 0;
+  padding-left: 11.2px;
+  border-left: 4px solid var(--colour-border-strong);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .trap__verdict[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .trap__verdict[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .trap__verdict[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .trap__outline {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border-strong);
+  stroke-width: 2;
+}
+.opi-activity.opi-activity .trap__fissure {
+  fill: none;
+  stroke: var(--colour-border-strong);
+  stroke-width: 1.5;
+}
+.opi-activity.opi-activity .trap__core {
+  fill: var(--colour-neuropsychology);
+  stroke: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .trap__extent {
+  fill: var(--colour-neuropsychology);
+  fill-opacity: 0.35;
+  stroke: var(--colour-neuropsychology);
+  stroke-width: 1.5;
+}
+.opi-activity.opi-activity .trap__territory {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2;
+  stroke-dasharray: 7 5;
+}
+.opi-activity.opi-activity .trap__diaschisis {
+  fill: var(--colour-accent-soft);
+  stroke: var(--colour-accent);
+  stroke-width: 1.5;
+  stroke-dasharray: 2 3;
+}
+.opi-activity.opi-activity .trap__old {
+  fill: var(--colour-text-muted);
+  stroke: var(--colour-text);
+  stroke-width: 1.5;
+}
+.opi-activity.opi-activity .trap__uncertain {
+  fill: none;
+  stroke: var(--colour-cognitive);
+  stroke-width: 3;
+  stroke-dasharray: 3 6;
+}
+.opi-activity.opi-activity .trap__mark {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
+  fill: var(--colour-text);
+  paint-order: stroke;
+  stroke: var(--colour-page);
+  stroke-width: 3.5;
+  stroke-linejoin: round;
+}
+.opi-activity.opi-activity .trap__bar--yours {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .trap__bar--ceiling {
+  fill: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .trap__overshoot {
+  fill: none;
+  stroke: var(--colour-social-critical-psychology);
+  stroke-width: 2;
+  stroke-dasharray: 4 3;
+}
+.opi-activity.opi-activity .trap__ceiling-point {
+  fill: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .trap__list {
+  margin: 0;
+  padding-left: 17.6px;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .trap__list > li + li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .trap__list-empty {
+  list-style: none;
+  margin-left: -17.6px;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .trap__synthesis {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-3) 0 0;
+  display: grid;
+  gap: var(--space-2);
+}
+.opi-activity.opi-activity .trap__synthesis > li {
+  margin-top: 0;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .trap__synthesis > li[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .trap__synthesis > li[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .trap__synthesis > li[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .trap__claims {
+  display: grid;
+  gap: var(--space-5);
+}
+.opi-activity.opi-activity .trap__claim {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .trap__claim > .prediction__legend {
+  font-weight: 600;
+  font-size: var(--text-sm);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .trap__outline {
+  fill: Canvas;
+    stroke: CanvasText;
+}
+.opi-activity.opi-activity .trap__fissure,
+.opi-activity.opi-activity .trap__territory,
+.opi-activity.opi-activity .trap__diaschisis,
+.opi-activity.opi-activity .trap__uncertain {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .trap__diaschisis {
+  fill: Canvas;
+}
+.opi-activity.opi-activity .trap__core,
+.opi-activity.opi-activity .trap__old,
+.opi-activity.opi-activity .trap__ceiling-point {
+  fill: CanvasText;
+    stroke: CanvasText;
+}
+.opi-activity.opi-activity .trap__extent {
+  fill: Canvas;
+    stroke: CanvasText;
+}
+.opi-activity.opi-activity .trap__mark {
+  fill: CanvasText;
+    stroke: Canvas;
+}
+.opi-activity.opi-activity .trap__bar--yours {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .trap__bar--ceiling {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .trap__overshoot {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .trap__claim,
+.opi-activity.opi-activity .trap__synthesis > li {
+  border: 1px solid CanvasText;
+}
+}
+</style>
+
+  <!-- ================= Title and purpose ================= -->
+  <section class="section card--neuropsychology" aria-labelledby="page-heading">
+    <div class="container">
+
+      <p class="hero__eyebrow" style="color: var(--colour-neuropsychology)">
+        Neuropsychology
+      </p>
+      <h1 id="page-heading">Lesion-Symptom Inference Trap</h1>
+      <p class="hero__lead">
+        One fictional case, one tempting inference, and six complications
+        that arrive after you have already made it.
+      </p>
+
+      <p>
+        <span class="badge">
+          <span class="badge__dot" aria-hidden="true"></span>
+          Simulated — an invented case, an invented scan, a schematic map rather than an atlas
+        </span>
+      </p>
+
+      <div class="split split--wide">
+
+        <div class="panel">
+          <h2 class="panel__title">Learning objective</h2>
+          <p>
+            By the end you should be able to say why a lesion is evidence
+            about what a task needs, not a label for what a region does.
+          </p>
+          <p class="text-muted">
+            About 30 minutes. Nothing you do here is saved or sent anywhere.
+          </p>
+        </div>
+
+        <div class="panel panel--caution">
+          <h2 class="panel__title">Localisation is not the villain</h2>
+          <p>
+            This is not an argument that lesion evidence is worthless. Lesion
+            studies are among the few methods that speak to <em>necessity</em>
+            rather than mere involvement. The argument is narrower: the step
+            from "damage here, difficulty there" to "this region does that"
+            needs converging evidence.
+          </p>
+        </div>
+
+      </div>
+
+      <ol class="how-to">
+        <li>Make an initial localisation inference and commit to a confidence.</li>
+        <li>
+          Reveal the complications one at a time. After each, re-rate how
+          confident you are in the general claim.
+        </li>
+        <li>
+          Watch the gap between your line and the ceiling that the evidence
+          can actually carry.
+        </li>
+      </ol>
+
+    </div>
+  </section>
+
+  <!-- ================= Opening prediction ================= -->
+  <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="opening-heading">The referral</h2>
+        <p class="prose">
+          <strong>Person M is fictional.</strong> She is 68 and was admitted
+          after a sudden onset of difficulty producing speech. Two weeks
+          later her speech is effortful, short and produced with obvious
+          effort; she understands conversation on the ward without apparent
+          difficulty. A scan report describes damage centred on the left
+          inferior frontal region.
+        </p>
+      </div>
+
+      <noscript>
+        <div class="placeholder">
+          <h3 class="placeholder__title">This part needs JavaScript</h3>
+          <p class="prose">
+            The evidence room reveals complications and redraws the map and
+            the confidence trace in your browser, so it cannot run with
+            JavaScript switched off. The rest of this page is readable
+            without it.
+          </p>
+        </div>
+      </noscript>
+
+      <form class="panel prediction" id="opening-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            What does this case, as described so far, support?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="produces">
+            That the left inferior frontal region produces speech
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="necessary">
+            That tissue in the damaged area was necessary for fluent speech
+            output in this person
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="general">
+            That damage to this region causes effortful speech in general
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="nothing">
+            Nothing - imaging and behaviour cannot be linked in a single case
+          </label>
+        </fieldset>
+
+        <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Record my answer and open the evidence room
+          </button>
+          <button class="button button--secondary" type="button" data-action="skip-opening">
+            Skip - I am demonstrating this
+          </button>
+        </div>
+
+        <div class="feedback" data-opening-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Evidence room ================= -->
+  <section class="section" id="evidence-section" aria-labelledby="evidence-heading" hidden>
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="evidence-heading" tabindex="-1">The evidence room</h2>
+        <p class="prose">
+          The claim you are rating throughout is the general one:
+          <strong data-claim-text>fluent speech output is localised to the
+          left inferior frontal region</strong>.
+        </p>
+      </div>
+
+      <section class="interactive" id="lesion-trap" data-interactive
+               data-reset-message="Evidence room cleared. Back to the referral, with nothing revealed.">
+
+        <header class="interactive__header">
+          <h3 class="interactive__title" data-step-title>Step 0 - the referral</h3>
+          <p class="interactive__brief">
+            Set your confidence in the general claim, then reveal what the
+            notes did not say. Each complication changes what the evidence
+            can carry, whether or not it changes your mind.
+          </p>
+        </header>
+
+        <div class="interactive__body interactive__body--pinned">
+
+          <form class="interactive__controls" data-interactive-controls>
+
+            <fieldset>
+              <legend>Your confidence</legend>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="confidence-range">
+                    Confidence in the general claim
+                  </label>
+                  <output class="control__value" for="confidence-range">70%</output>
+                </div>
+                <input type="range" id="confidence-range" min="0" max="100" step="5" value="70">
+                <p class="control__hint">
+                  How strongly would you assert, to a colleague, that fluent
+                  speech output is localised to this region?
+                </p>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>The evidence</legend>
+              <div class="prediction__actions">
+                <button class="button button--primary" type="submit" data-action="reveal">
+                  Lock this rating and reveal the next complication
+                </button>
+              </div>
+              <p class="control__hint" data-remaining></p>
+            </fieldset>
+
+            <fieldset>
+              <legend>Revealed so far</legend>
+              <ol class="trap__list" data-revealed-list>
+                <li class="trap__list-empty">Nothing yet - only the referral.</li>
+              </ol>
+            </fieldset>
+
+          </form>
+
+          <div class="interactive__stage" data-interactive-stage>
+
+            <!-- Pinned: the map, which the reveals change, beside the one
+                 comparison that the slider changes. Everything else on the
+                 stage is reading. -->
+            <div class="stage__primary">
+              <div class="trap__primary">
+
+                <figure class="chart trap__map">
+                  <figcaption class="chart__caption">The scan, schematically</figcaption>
+                  <svg class="chart__svg" data-map viewBox="0 0 380 214"
+                       aria-hidden="true" focusable="false"></svg>
+                  <p class="trap__legend" data-map-legend></p>
+                </figure>
+
+                <div class="trap__gauge">
+                  <h4 class="stage__heading">Your claim against the evidence</h4>
+                  <figure class="chart">
+                    <figcaption class="visually-hidden">
+                      Your stated confidence compared with the most the
+                      evidence revealed so far can carry
+                    </figcaption>
+                    <svg class="chart__svg" data-gauge viewBox="0 0 300 92"
+                         aria-hidden="true" focusable="false"></svg>
+                  </figure>
+                  <p class="trap__verdict" data-gauge-verdict></p>
+                </div>
+
+              </div>
+            </div>
+
+            <h4 class="stage__heading" data-card-heading>The referral, as written</h4>
+            <div class="verdict" data-card>
+              <p class="verdict__body" data-card-body></p>
+              <p class="verdict__note" data-card-effect></p>
+            </div>
+
+            <div class="panel reveal" data-synthesis hidden></div>
+
+            <details class="stage__more">
+              <summary>How your confidence has moved</summary>
+              <figure class="chart">
+                <figcaption class="visually-hidden">
+                  Your confidence at each step against the ceiling the
+                  evidence supports
+                </figcaption>
+                <svg class="chart__svg" data-trace viewBox="0 0 440 200"
+                     aria-hidden="true" focusable="false"></svg>
+                <div class="table-scroll">
+                  <table class="chart__table">
+                    <caption class="visually-hidden">
+                      Each step, the complication revealed, your confidence
+                      and the most the evidence can carry
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Step</th>
+                        <th scope="col">What was revealed</th>
+                        <th scope="col">Your confidence</th>
+                        <th scope="col">Evidence supports at most</th>
+                      </tr>
+                    </thead>
+                    <tbody data-trace-table></tbody>
+                  </table>
+                </div>
+              </figure>
+            </details>
+
+            <details class="stage__more">
+              <summary>What is on the map, in words</summary>
+              <div class="table-scroll">
+                <table class="data-table">
+                  <caption class="visually-hidden">
+                    Every feature currently drawn on the schematic map
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Mark</th>
+                      <th scope="col">Feature</th>
+                      <th scope="col">What it means</th>
+                    </tr>
+                  </thead>
+                  <tbody data-map-table></tbody>
+                </table>
+              </div>
+              <p class="text-muted">
+                The outline is a schematic drawn for teaching. It is not an
+                atlas, the shapes are not to scale, and no real scan, image or
+                template is reproduced.
+              </p>
+            </details>
+
+          </div>
+
+        </div>
+
+        <p class="interactive__status" data-interactive-status role="status"></p>
+
+        <div class="interactive__actions">
+          <button type="button" data-variant="secondary" data-interactive-reset>
+            Reset everything
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ================= Challenge ================= -->
+  <section class="section section--tinted" id="challenge" aria-labelledby="challenge-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="challenge-heading">Challenge - which claims survived?</h2>
+        <p class="prose">
+          All six complications are on the table. Sort these four claims by
+          how well this one case supports them.
+        </p>
+      </div>
+
+      <form class="panel challenge" id="challenge-form">
+        <div class="trap__claims" data-claims></div>
+
+        <p class="prediction__error" data-challenge-error role="alert" hidden></p>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Check my sorting
+          </button>
+        </div>
+
+        <div class="feedback" data-challenge-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Debrief ================= -->
+  <section class="section" id="debrief" aria-labelledby="debrief-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="debrief-heading">What this demonstrates</h2>
+      </div>
+
+      <div class="split split--wide">
+
+        <div class="prose">
+          <h3>A lesion answers a necessity question</h3>
+          <p>
+            What damage can tell you is that a task could not be done without
+            this tissue, in this person, on this occasion. That is a genuine
+            and hard-won kind of evidence, and functional imaging on its own
+            cannot supply it: activation shows involvement, not necessity.
+            What a lesion cannot tell you is what the tissue was
+            <em>doing</em>. Necessary is not the same as responsible, and
+            "region X does Y" is a different claim from "Y needs X".
+          </p>
+
+          <h3>A one-word label describes a volume</h3>
+          <p>
+            Lesion reports name a region because a name is useful, but the
+            damage is a volume that crosses whatever boundaries were drawn on
+            it, and two cases with the same label can have very different
+            lesions. The white matter underneath is damaged in almost every
+            cortical stroke, and it is often what matters. Worse, the volume
+            is not random: strokes take the shape of the vessel that failed,
+            and one vascular territory supplies several functionally distinct
+            regions together. That co-occurrence is systematic, so it does not
+            average away as the sample grows. Voxel-based lesion-symptom
+            mapping has to model it explicitly, and even then the resulting
+            maps are biased towards the middle of common territories.
+          </p>
+
+          <h3>The deficit you measure is not the lesion alone</h3>
+          <p>
+            Early after an injury, swelling compresses structurally intact
+            tissue, and regions connected to the damaged area show reduced
+            activity without being damaged at all. Deficits measured in the
+            first weeks therefore overstate what the lesion accounts for, and
+            some of the recovery that follows is those effects resolving
+            rather than anything reorganising. The other end of the
+            measurement is just as loose: premorbid level does not appear on
+            any scan, so a score at the population average can be a
+            substantial loss for one person and unremarkable for another.
+            Education, language background, sensory function, mood, fatigue
+            and effort all sit between a low score and any statement about
+            tissue - and language organisation itself varies between people,
+            more so in left-handers.
+          </p>
+
+          <h3>The dissociation can be a property of the questions</h3>
+          <p>
+            "Comprehension seems good" is a claim about ward conversation,
+            where context, gesture and expectation do a great deal of the
+            work. Tested with sentences whose meaning depends on word order,
+            the same person can be well below the control range. Two tasks
+            with the same name are not interchangeable evidence, and the
+            cleanest dissociation on a case summary is sometimes an artefact
+            of how one side of it was measured.
+          </p>
+        </div>
+
+        <aside class="panel panel--caution" aria-labelledby="limits-heading">
+          <h3 class="panel__title" id="limits-heading">
+            What this does <em>not</em> demonstrate
+          </h3>
+          <ul>
+            <li>
+              <strong>Not an argument against lesion studies.</strong> They
+              remain one of the few sources of evidence about necessity, and
+              the six complications are a design agenda, not a refutation.
+              Group studies, lesion-symptom mapping, disconnection modelling
+              and longitudinal testing exist because these problems are
+              known.
+            </li>
+            <li>
+              <strong>The ceiling is a teaching device.</strong> The numbers
+              encode a judgement about how much a single case can carry. They
+              are not calculated from anything, no percentage on this page is
+              a probability or a prevalence, and a reasonable person could
+              argue for different ones.
+            </li>
+            <li>
+              <strong>Person M does not exist.</strong> The history, the scan,
+              the testing and the complications were written to teach the
+              inference. No real patient, published case or clinical record is
+              described, and nothing here diagnoses anyone or offers a
+              prognosis.
+            </li>
+            <li>
+              <strong>No claim about aphasia classification.</strong> The case
+              deliberately avoids syndrome labels, because the point is the
+              inference from damage to function, not the naming of a profile.
+            </li>
+          </ul>
+        </aside>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+<script>
+/* ---- components/interactive-shell.js ---- */
+/* =========================================================================
+   Open Psychology Interactives — interactive shell helper
+   -------------------------------------------------------------------------
+   A very small vanilla-JS helper that every interactive in this collection
+   uses. It deliberately does *not* draw anything or know anything about
+   statistics, personality or neuropsychology. Its job is the repetitive,
+   easy-to-get-wrong accessibility plumbing:
+
+     * announcing changes through a polite live region;
+     * keeping a range slider and its <output> in step;
+     * wiring the standard Reset button;
+     * reporting the reader's reduced-motion preference.
+
+   Usage (see docs/adapting-a-tool.md for the full markup contract):
+
+       <script src="../../components/interactive-shell.js" defer><\/script>
+       <script src="tool.js" defer><\/script>
+
+       // in tool.js
+       const shell = InteractiveShell.attach('#sampling-demo');
+       shell.onReset(() => { ...restore defaults...; draw(); });
+       shell.bindRange('#sample-size', { format: n => n + ' cases' });
+       shell.announce('Sample of 25 drawn. Mean 4.8.');
+
+   Every published interactive is written against this module.
+
+   Exposed as a global (window.InteractiveShell) rather than an ES module so
+   that a single interactive folder can be opened directly from disk over
+   file:// — ES modules are blocked by CORS in that situation, plain scripts
+   are not. That constraint is the whole reason for the older syntax here.
+   ========================================================================= */
+
+(function (global) {
+  "use strict";
+
+  /* -----------------------------------------------------------------------
+     Internal helpers
+     --------------------------------------------------------------------- */
+
+  /**
+   * Accept either a CSS selector or an element and return an element.
+   * @param {string|Element} target
+   * @param {ParentNode} [scope]
+   * @returns {Element|null}
+   */
+  function resolve(target, scope) {
+    if (!target) {
+      return null;
+    }
+    if (typeof target === "string") {
+      return (scope || document).querySelector(target);
+    }
+    return target;
+  }
+
+  /**
+   * True when the reader has asked the operating system to reduce motion.
+   * Interactives should check this before animating anything — for example
+   * by drawing a sampling distribution in one step instead of animating
+   * each draw.
+   * @returns {boolean}
+   */
+  function prefersReducedMotion() {
+    return (
+      typeof global.matchMedia === "function" &&
+      global.matchMedia("(prefers-reduced-motion: reduce)").matches
+    );
+  }
+
+  /* -----------------------------------------------------------------------
+     Shell controller
+     --------------------------------------------------------------------- */
+
+  /**
+   * Attach the shell behaviour to one `.interactive` element.
+   *
+   * @param {string|Element} target  Selector or element for the shell root.
+   * @returns {object|null}  Controller, or null if the root was not found.
+   */
+  function attach(target) {
+    var root = resolve(target);
+
+    if (!root) {
+      if (global.console && console.warn) {
+        console.warn("InteractiveShell: root element not found.", target);
+      }
+      return null;
+    }
+
+    var controls = root.querySelector("[data-interactive-controls]");
+    var stage = root.querySelector("[data-interactive-stage]");
+    var status = root.querySelector("[data-interactive-status]");
+    var resetButton = root.querySelector("[data-interactive-reset]");
+    var resetHandlers = [];
+    // Every range bound with bindRange() registers its sync function here, so
+    // that reset() can refresh the visible values after the tool's own reset
+    // handlers have restored the inputs. See reset() for why this is needed.
+    var rangeSyncs = [];
+
+    /* --- Live region ----------------------------------------------------
+       The status element is marked up as role="status" (implicitly
+       aria-live="polite"). Two details matter:
+
+         1. Assistive technology only announces *changes* to a live region,
+            so writing the same string twice is silently dropped. We add a
+            trailing zero-width space on repeat messages to force an
+            announcement when a student re-runs the same action.
+         2. Announcements are debounced. A slider dragged across its range
+            fires dozens of input events; without a delay a screen reader
+            would queue every intermediate value and fall far behind.
+       ------------------------------------------------------------------ */
+
+    var announceTimer = null;
+    var lastMessage = "";
+
+    /**
+     * Announce a short sentence describing what just changed.
+     * @param {string} message
+     * @param {object} [options]
+     * @param {boolean} [options.immediate]  Skip the debounce delay. Use for
+     *   discrete actions (button presses); leave off for continuous input.
+     */
+    function announce(message, options) {
+      if (!status) {
+        return;
+      }
+
+      var text = String(message == null ? "" : message);
+      var immediate = Boolean(options && options.immediate);
+
+      if (announceTimer !== null) {
+        global.clearTimeout(announceTimer);
+        announceTimer = null;
+      }
+
+      function write() {
+        // Force a change when the text is identical to last time.
+        status.textContent = text === lastMessage ? text + "​" : text;
+        lastMessage = text;
+      }
+
+      if (immediate) {
+        write();
+      } else {
+        announceTimer = global.setTimeout(write, 350);
+      }
+    }
+
+    /* --- Reset ---------------------------------------------------------- */
+
+    /**
+     * Register a callback to run when the Reset button is pressed.
+     * Several may be registered; they run in the order added.
+     * @param {Function} handler
+     */
+    function onReset(handler) {
+      if (typeof handler === "function") {
+        resetHandlers.push(handler);
+      }
+    }
+
+    /**
+     * Run the reset handlers. Called by the button and available directly so
+     * an interactive can reset itself on first load.
+     *
+     * Bound ranges are re-synced afterwards. A reset handler restores an
+     * input by assigning to `input.value`, and assigning to a value in script
+     * does not fire an `input` event — so without this step the slider would
+     * jump back to its default while its <output> went on showing the old
+     * number. Syncing here, after the handlers have run, also means the sync
+     * sees the restored values regardless of the order things were
+     * registered in.
+     *
+     * @param {object} [options]
+     * @param {boolean} [options.silent]  Suppress the status announcement.
+     */
+    function reset(options) {
+      resetHandlers.forEach(function (handler) {
+        handler();
+      });
+      rangeSyncs.forEach(function (sync) {
+        sync();
+      });
+      if (!options || !options.silent) {
+        announce(
+          root.getAttribute("data-reset-message") ||
+            "Reset to the starting values.",
+          { immediate: true }
+        );
+      }
+    }
+
+    if (resetButton) {
+      resetButton.addEventListener("click", function (event) {
+        // Reset buttons commonly sit inside the controls <form>; stop the
+        // browser's own form reset from fighting with ours.
+        event.preventDefault();
+        reset();
+      });
+    }
+
+    /* --- Range binding --------------------------------------------------
+       Keeps a slider's <output> in step with its value. The <output> must
+       carry `for="<input id>"`, which is what associates the two for
+       assistive technology; this only handles the visible text.
+
+       Optionally sets aria-valuetext, which is how you make a screen reader
+       say "25 cases" or "medium correlation" instead of a bare "25".
+       ------------------------------------------------------------------ */
+
+    /**
+     * @param {string|Element} inputTarget  The range (or number) input.
+     * @param {object} [options]
+     * @param {Function} [options.format]  value:number -> string shown in the
+     *   <output>. Defaults to the raw value.
+     * @param {Function} [options.describe]  value:number -> string used for
+     *   aria-valuetext. Defaults to options.format.
+     * @param {Function} [options.onInput]  value:number -> void, called after
+     *   the display has been updated. Use it to redraw.
+     * @returns {HTMLInputElement|null}
+     */
+    function bindRange(inputTarget, options) {
+      var input = resolve(inputTarget, root);
+      if (!input) {
+        return null;
+      }
+
+      var settings = options || {};
+      var format =
+        typeof settings.format === "function"
+          ? settings.format
+          : function (value) {
+              return String(value);
+            };
+      var describe =
+        typeof settings.describe === "function" ? settings.describe : format;
+
+      // <output for="the-input-id"> is the conventional pairing.
+      var output = input.id
+        ? root.querySelector('output[for="' + input.id + '"]')
+        : null;
+
+      function sync() {
+        var value = Number(input.value);
+        if (output) {
+          output.textContent = format(value);
+        }
+        // Only meaningful for widgets with an implicit or explicit slider
+        // role; harmless elsewhere.
+        input.setAttribute("aria-valuetext", describe(value));
+        if (typeof settings.onInput === "function") {
+          settings.onInput(value);
+        }
+      }
+
+      input.addEventListener("input", sync);
+      // Registered so reset() can refresh the display after the tool's own
+      // reset handlers have put the input back to its default.
+      rangeSyncs.push(sync);
+      sync();
+
+      return input;
+    }
+
+    /* --- Public surface -------------------------------------------------- */
+
+    return {
+      /** The `.interactive` root element. */
+      root: root,
+      /** The controls panel, or null if the shell has none. */
+      controls: controls,
+      /** The stage element where the visualisation is drawn. */
+      stage: stage,
+      /** The live-region element. */
+      status: status,
+      announce: announce,
+      onReset: onReset,
+      reset: reset,
+      bindRange: bindRange,
+      prefersReducedMotion: prefersReducedMotion
+    };
+  }
+
+  /* -----------------------------------------------------------------------
+     Export
+     --------------------------------------------------------------------- */
+
+  global.InteractiveShell = {
+    attach: attach,
+    prefersReducedMotion: prefersReducedMotion
+  };
+})(window);
+
+/* ---- modules/neuropsychology/tools/02-lesion-symptom-inference-trap/tool.js ---- */
+/* =========================================================================
+   Lesion–Symptom Inference Trap
+   -------------------------------------------------------------------------
+   One fictional case. The learner states how confident they are in a general
+   localisation claim, then reveals six complications one at a time, re-rating
+   after each. A schematic map redraws as the complications arrive, and a
+   gauge compares the learner's confidence with a ceiling representing how
+   much the evidence on the table can carry.
+
+   THE EDUCATIONAL MODEL
+   ---------------------
+   The ceiling is a TEACHING DEVICE, not a calculation. It encodes the
+   judgement that a single case with a large, multi-region lesion inside a
+   systematic vascular territory, measured early, in a person whose premorbid
+   level and language organisation are unknown, cannot carry a general claim
+   about what a region does. It starts at 50 and falls to 12:
+
+       0  referral only                                    50
+       1  the lesion is larger than the label              40
+       2  the lesion follows a vascular territory          32
+       3  oedema and diaschisis                            26
+       4  premorbid level and individual variation         21
+       5  a second, older lesion                           17
+       6  the dissociation depended on how it was probed   12
+
+   The specific claim - that tissue in the damaged area was necessary for
+   fluent speech output in THIS person, at THIS time, on THESE tasks - is
+   treated as remaining well supported throughout. Making that contrast
+   visible is the point of the exercise: the complications bear far harder on
+   the general claim than on the specific one.
+
+   Nothing here is a probability, a prevalence or a published value. The case,
+   the scan and the testing are invented, and the map is a schematic rather
+   than an atlas.
+
+   No data leave the browser. There is no storage and no network request.
+   ========================================================================= */
+
+(function () {
+  "use strict";
+
+  /* =======================================================================
+     The case, step by step - all fictional
+     ===================================================================== */
+
+  var REFERRAL = {
+    title: "Step 0 - the referral",
+    heading: "The referral, as written",
+    body:
+      "Person M, 68, admitted after a sudden onset of difficulty producing " +
+      "speech. Two weeks on, her speech is effortful and short. She appears to " +
+      "understand ward conversation without difficulty. The scan report " +
+      "describes damage centred on the left inferior frontal region.",
+    effect:
+      "This is the version of the case that invites the inference. Everything " +
+      "that follows was in the notes; none of it was in the summary.",
+    ceiling: 50,
+    /* Which map features are visible once this step has been reached. */
+    marks: ["core"]
+  };
+
+  var COMPLICATIONS = [
+    {
+      short: "The lesion is larger than its label",
+      title: "Complication 1 - lesion extent",
+      heading: "The lesion is larger than its label",
+      body:
+        "The damage is not confined to the inferior frontal region. On the " +
+        "scan it extends backwards into the insula and downwards into the " +
+        "white matter beneath, with a total volume of roughly 24 cubic " +
+        "centimetres. A one-region label names the centre of a lesion, not " +
+        "its extent.",
+      effect:
+        "Any of the damaged tissue could be responsible, including the white " +
+        "matter, which carries connections to regions that are themselves " +
+        "undamaged. Two cases carrying the same label can have very different " +
+        "lesions.",
+      ceiling: 40,
+      marks: ["core", "extent"]
+    },
+    {
+      short: "It follows a vascular territory",
+      title: "Complication 2 - vascular territory",
+      heading: "The lesion follows a blood supply, not a function",
+      body:
+        "The shape of the damage matches the territory of the superior " +
+        "division of the left middle cerebral artery. Strokes take the shape " +
+        "of the vessel that failed, and one vessel supplies several " +
+        "functionally distinct regions together.",
+      effect:
+        "Those regions are damaged together in case after case. The " +
+        "co-occurrence is systematic rather than random, so it does not " +
+        "average away as the sample grows.",
+      ceiling: 32,
+      marks: ["core", "extent", "territory"]
+    },
+    {
+      short: "Some affected tissue is not damaged",
+      title: "Complication 3 - oedema and diaschisis",
+      heading: "Some of the affected tissue is not damaged at all",
+      body:
+        "At two weeks there is still swelling around the lesion, compressing " +
+        "tissue that is structurally intact. Metabolic activity is also " +
+        "reduced in undamaged left temporal cortex connected to the damaged " +
+        "area - remote functional depression, or diaschisis.",
+      effect:
+        "Part of what she cannot do reflects tissue that is intact but " +
+        "temporarily not working. A deficit measured now overstates what the " +
+        "lesion itself accounts for.",
+      ceiling: 26,
+      marks: ["core", "extent", "territory", "diaschisis"]
+    },
+    {
+      short: "She was not an average brain, or an average baseline",
+      title: "Complication 4 - premorbid level and individual variation",
+      heading: "She was not an average brain, or an average baseline",
+      body:
+        "She is left-handed, with left-handedness in her family. She taught " +
+        "English for 38 years and read constantly. Language organisation " +
+        "varies between people and varies more in left-handers, and premorbid " +
+        "level does not appear on any scan.",
+      effect:
+        "\"Comprehension appears good\" means good against a general standard, " +
+        "not against hers: a score at the population average may be a large " +
+        "loss for this person. And if her language organisation is atypical, " +
+        "the region-to-function mapping the inference assumes may not be hers.",
+      ceiling: 21,
+      marks: ["core", "extent", "territory", "diaschisis", "atypical"]
+    },
+    {
+      short: "There is a second, older lesion",
+      title: "Complication 5 - co-occurring damage",
+      heading: "There is a second lesion, and nobody mentioned it",
+      body:
+        "The same scan shows a small, old right-hemisphere lesion in the " +
+        "posterior parietal region, with no matching entry in her history. It " +
+        "may be decades old and it may never have produced a noticed " +
+        "difficulty.",
+      effect:
+        "Silent damage is common in this age group. It means the current " +
+        "picture is a new lesion on top of a brain that had already changed, " +
+        "and it removes the assumption that everything except the labelled " +
+        "region was intact.",
+      ceiling: 17,
+      marks: ["core", "extent", "territory", "diaschisis", "atypical", "old"]
+    },
+    {
+      short: "The dissociation depended on the questions",
+      title: "Complication 6 - task demands",
+      heading: "The dissociation was partly a property of the questions",
+      body:
+        "\"Understands conversation\" came from the ward, where context, " +
+        "gesture and expectation carry much of the meaning. Tested formally " +
+        "with sentences whose meaning depends on word order - the sort where " +
+        "who did what to whom cannot be guessed - she is well below the " +
+        "control range.",
+      effect:
+        "The production-versus-comprehension dissociation that motivated the " +
+        "whole inference is much smaller than the summary suggested. Two tasks " +
+        "with the same name are not interchangeable evidence.",
+      ceiling: 12,
+      marks: ["core", "extent", "territory", "diaschisis", "atypical", "old"]
+    }
+  ];
+
+  var MAP_MARKS = {
+    core: {
+      letter: "L",
+      name: "Lesion core",
+      meaning: "The area named in the scan report - left inferior frontal region"
+    },
+    extent: {
+      letter: "E",
+      name: "Full lesion extent",
+      meaning: "Damage reaching the insula and the white matter underneath"
+    },
+    territory: {
+      letter: "T",
+      name: "Vascular territory",
+      meaning: "Superior division of the left middle cerebral artery, drawn with a dashed outline"
+    },
+    diaschisis: {
+      letter: "D",
+      name: "Remote functional depression",
+      meaning: "Undamaged left temporal cortex working below par, drawn with hatching"
+    },
+    atypical: {
+      letter: "?",
+      name: "Language organisation unknown",
+      meaning: "Left-handed; the usual left-hemisphere assumption may not hold"
+    },
+    old: {
+      letter: "O",
+      name: "Older right-hemisphere lesion",
+      meaning: "Small, posterior parietal, no matching history"
+    }
+  };
+
+  var SYNTHESIS = [
+    {
+      tone: "good",
+      claim: "Tissue in the damaged area was necessary for fluent speech output in this person.",
+      standing: "Well supported."
+    },
+    {
+      tone: "good",
+      claim: "Her effortful speech is not explained by weakness of the mouth or tongue alone.",
+      standing: "Supported, given the rest of the examination."
+    },
+    {
+      tone: "caution",
+      claim: "The lesion is a reasonable place to start looking for what fluent speech output needs.",
+      standing: "Supported as a starting point, not as a conclusion."
+    },
+    {
+      tone: "warn",
+      claim: "Fluent speech output is localised to the left inferior frontal region.",
+      standing: "Not supported by this case, and not the kind of claim one case can settle."
+    }
+  ];
+
+  /* =======================================================================
+     The challenge
+     ===================================================================== */
+
+  var CLAIMS = [
+    {
+      id: "necessary",
+      text:
+        "Tissue somewhere in the damaged volume was necessary for fluent " +
+        "speech output in Person M, at two weeks, on the tasks she was given.",
+      answer: "well",
+      why:
+        "The claim lesion evidence is built to support: one person, one time, " +
+        "the tasks actually used. Every complication above leaves it standing."
+    },
+    {
+      id: "region",
+      text:
+        "The left inferior frontal region is where fluent speech output is " +
+        "produced.",
+      answer: "not",
+      why:
+        "The lesion is bigger than the label, sits in a territory that damages " +
+        "several regions together, and includes white matter connecting to " +
+        "undamaged tissue. Even a hundred such cases would not resolve the " +
+        "vascular co-occurrence. And \"is where X is produced\" is a claim " +
+        "about function, which necessity evidence does not deliver."
+    },
+    {
+      id: "predict",
+      text:
+        "A lesion in this territory predicts effortful speech in most people.",
+      answer: "partly",
+      why:
+        "A population claim, and a reasonable hypothesis - lesions in this " +
+        "territory are associated with effortful speech often enough for the " +
+        "association to be worth studying. One case cannot establish how " +
+        "often, and this case has an unusually uncertain baseline. Testable, " +
+        "not tested."
+    },
+    {
+      id: "comprehension",
+      text:
+        "Her comprehension is intact.",
+      answer: "not",
+      why:
+        "This was true of ward conversation and false of formal testing with " +
+        "reversible sentences. The claim is not so much unsupported as " +
+        "under-specified: comprehension of what, measured how? The original " +
+        "dissociation shrank once the question was asked properly."
+    }
+  ];
+
+  var CLAIM_OPTIONS = [
+    { value: "well", label: "Well supported by this case" },
+    { value: "partly", label: "Partly supported - a reasonable hypothesis" },
+    { value: "not", label: "Not supported by this case" }
+  ];
+
+  /* =======================================================================
+     Small helpers
+     ===================================================================== */
+
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) { node.className = className; }
+    if (text !== undefined) { node.textContent = text; }
+    return node;
+  }
+
+  function clear(node) {
+    while (node.firstChild) { node.removeChild(node.firstChild); }
+  }
+
+  var NS = "http://www.w3.org/2000/svg";
+
+  function svgEl(name, attrs) {
+    var node = document.createElementNS(NS, name);
+    Object.keys(attrs).forEach(function (key) {
+      node.setAttribute(key, String(attrs[key]));
+    });
+    return node;
+  }
+
+  function svgText(x, y, className, anchor, text) {
+    var node = svgEl("text", { x: x, y: y, class: className, "text-anchor": anchor });
+    node.textContent = text;
+    return node;
+  }
+
+  /* =======================================================================
+     Wiring
+     ===================================================================== */
+
+  var shell = InteractiveShell.attach("#lesion-trap");
+  if (!shell) { return; }
+
+  var $ = function (selector, scope) {
+    return (scope || document).querySelector(selector);
+  };
+
+  var confidenceRange = $("#confidence-range");
+  var revealButton = $('[data-action="reveal"]');
+  var remaining = $("[data-remaining]");
+  var revealedList = $("[data-revealed-list]");
+  var stepTitle = $("[data-step-title]");
+  var cardHeading = $("[data-card-heading]");
+  var cardBody = $("[data-card-body]");
+  var cardEffect = $("[data-card-effect]");
+  var mapSvg = $("[data-map]");
+  var mapTable = $("[data-map-table]");
+  var mapLegend = $("[data-map-legend]");
+  var gaugeSvg = $("[data-gauge]");
+  var gaugeVerdict = $("[data-gauge-verdict]");
+  var traceSvg = $("[data-trace]");
+  var traceTable = $("[data-trace-table]");
+  var synthesis = $("[data-synthesis]");
+  var controlsForm = $("[data-interactive-controls]");
+
+  var openingForm = $("#opening-form");
+  var openingError = $("[data-opening-error]");
+  var openingFeedback = $("[data-opening-feedback]");
+  var evidenceSection = $("#evidence-section");
+
+  var challengeForm = $("#challenge-form");
+  var claimsHost = $("[data-claims]");
+  var challengeError = $("[data-challenge-error]");
+  var challengeFeedback = $("[data-challenge-feedback]");
+
+  /* step 0 = referral; step k = COMPLICATIONS[k - 1]. `locked` holds the
+     confidence the learner committed to at each step already passed. */
+  var state = { step: 0, confidence: 70, locked: [] };
+
+  function currentCard() {
+    return state.step === 0 ? REFERRAL : COMPLICATIONS[state.step - 1];
+  }
+
+  /* --- Controls --------------------------------------------------------- */
+
+  shell.bindRange(confidenceRange, {
+    format: function (v) { return v + "%"; },
+    describe: function (v) {
+      return v + " per cent confident in the general localisation claim";
+    },
+    onInput: function (v) {
+      state.confidence = v;
+      renderGauge();
+    }
+  });
+
+  controlsForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    reveal();
+  });
+
+  function reveal() {
+    if (state.step >= COMPLICATIONS.length) { return; }
+    state.locked[state.step] = state.confidence;
+    state.step += 1;
+    render();
+    var card = currentCard();
+    shell.announce(card.title + ". " + card.heading + ".", { immediate: true });
+  }
+
+  /* --- Rendering -------------------------------------------------------- */
+
+  function render() {
+    var card = currentCard();
+    var done = state.step >= COMPLICATIONS.length;
+
+    stepTitle.textContent = card.title;
+    cardHeading.textContent = card.heading;
+    cardBody.textContent = card.body;
+    cardEffect.textContent = card.effect;
+
+    revealButton.disabled = done;
+    revealButton.textContent = done
+      ? "All six complications revealed"
+      : "Lock this rating and reveal the next complication";
+    remaining.textContent = done
+      ? "Nothing further. Your last rating still counts."
+      : (COMPLICATIONS.length - state.step) + " of " + COMPLICATIONS.length +
+        " complications still unrevealed.";
+
+    renderRevealedList();
+    renderMap(card.marks);
+    renderGauge();
+    renderTrace();
+    renderSynthesis(done);
+  }
+
+  function renderRevealedList() {
+    clear(revealedList);
+    if (state.step === 0) {
+      revealedList.appendChild(
+        make("li", "trap__list-empty", "Nothing yet - only the referral."));
+      return;
+    }
+    COMPLICATIONS.slice(0, state.step).forEach(function (item) {
+      revealedList.appendChild(make("li", null, item.short));
+    });
+  }
+
+  /* The schematic. Two rounded hemisphere outlines with labelled blobs. It is
+     drawn afresh on every step so that the marks and the table can never
+     disagree. Every mark carries a letter, decoded in the table beneath, so
+     nothing depends on fill colour. */
+  function renderMap(marks) {
+    var shown = {};
+    marks.forEach(function (key) { shown[key] = true; });
+
+    clear(mapSvg);
+
+    var OUTLINE =
+      "M 22 104 C 22 58, 58 30, 100 30 C 146 30, 176 58, 178 100 " +
+      "C 180 142, 148 168, 100 170 C 58 171, 22 150, 22 104 Z";
+
+    function hemisphere(transform, label) {
+      var group = svgEl("g", transform ? { transform: transform } : {});
+      group.appendChild(svgEl("path", { d: OUTLINE, class: "trap__outline" }));
+      /* A single fissure line, purely to orient the reader. */
+      group.appendChild(svgEl("path", {
+        d: "M 42 116 C 70 106, 108 102, 150 108",
+        class: "trap__fissure"
+      }));
+      return group;
+    }
+
+    var left = hemisphere(null);
+    mapSvg.appendChild(left);
+
+    if (shown.territory) {
+      left.appendChild(svgEl("ellipse", {
+        cx: 88, cy: 92, rx: 54, ry: 44, class: "trap__territory"
+      }));
+    }
+    if (shown.diaschisis) {
+      left.appendChild(svgEl("ellipse", {
+        cx: 122, cy: 132, rx: 27, ry: 16, class: "trap__diaschisis"
+      }));
+    }
+    if (shown.extent) {
+      left.appendChild(svgEl("ellipse", {
+        cx: 76, cy: 102, rx: 32, ry: 26, class: "trap__extent"
+      }));
+    }
+    left.appendChild(svgEl("ellipse", {
+      cx: 66, cy: 99, rx: 20, ry: 17, class: "trap__core"
+    }));
+
+    /* Letters, placed after the shapes so they sit on top. */
+    left.appendChild(svgText(66, 104, "trap__mark", "middle", "L"));
+    if (shown.extent) { left.appendChild(svgText(100, 116, "trap__mark", "middle", "E")); }
+    if (shown.territory) { left.appendChild(svgText(124, 58, "trap__mark", "middle", "T")); }
+    if (shown.diaschisis) { left.appendChild(svgText(132, 137, "trap__mark", "middle", "D")); }
+
+    /* Right hemisphere: the same outline mirrored, so the front of each brain
+       faces outwards, as in a standard pair of lateral views. */
+    var right = hemisphere("translate(380,0) scale(-1,1)");
+    mapSvg.appendChild(right);
+
+    if (shown.old) {
+      right.appendChild(svgEl("ellipse", {
+        cx: 140, cy: 74, rx: 14, ry: 12, class: "trap__old"
+      }));
+    }
+    if (shown.atypical) {
+      right.appendChild(svgEl("path", { d: OUTLINE, class: "trap__uncertain" }));
+    }
+
+    /* Mirrored text would read backwards, so the letters for the right-hand
+       outline are drawn in page coordinates instead. */
+    if (shown.old) { mapSvg.appendChild(svgText(240, 79, "trap__mark", "middle", "O")); }
+    if (shown.atypical) { mapSvg.appendChild(svgText(292, 152, "trap__mark", "middle", "?")); }
+
+    mapSvg.appendChild(svgText(100, 190, "chart__axis", "middle", "left hemisphere"));
+    mapSvg.appendChild(svgText(280, 190, "chart__axis", "middle", "right hemisphere"));
+    mapSvg.appendChild(
+      svgText(190, 208, "chart__axis", "middle", "schematic - not an atlas, not to scale"));
+
+    /* The visible text equivalent of the drawing: every letter currently on
+       the map, named, so the figure never depends on the shapes alone. The
+       fuller meanings are in the table below the stage. */
+    mapLegend.textContent = "On the map now: " + marks.map(function (key) {
+      return MAP_MARKS[key].letter + " - " + MAP_MARKS[key].name.toLowerCase();
+    }).join("; ") + ".";
+
+    clear(mapTable);
+    marks.forEach(function (key) {
+      var mark = MAP_MARKS[key];
+      var tr = make("tr");
+      var th = make("th", null, mark.letter);
+      th.setAttribute("scope", "row");
+      tr.appendChild(th);
+      tr.appendChild(make("td", null, mark.name));
+      tr.appendChild(make("td", null, mark.meaning));
+      mapTable.appendChild(tr);
+    });
+  }
+
+  /* Two bars: what the learner claims, and the most the evidence can carry.
+     The overshoot is drawn as a separate hatched segment and named in the
+     sentence underneath, so the comparison never depends on colour. */
+  function renderGauge() {
+    var ceiling = currentCard().ceiling;
+    var yours = state.confidence;
+    var SCALE = 200;
+    var LEFT = 92;
+
+    clear(gaugeSvg);
+
+    [
+      { label: "Your claim", value: yours, y: 14, cls: "trap__bar--yours" },
+      { label: "Evidence", value: ceiling, y: 50, cls: "trap__bar--ceiling" }
+    ].forEach(function (row) {
+      gaugeSvg.appendChild(
+        svgText(LEFT - 8, row.y + 15, "chart__count", "end", row.label));
+      gaugeSvg.appendChild(svgEl("rect", {
+        x: LEFT, y: row.y, width: SCALE, height: 21, class: "chart__track"
+      }));
+      gaugeSvg.appendChild(svgEl("rect", {
+        x: LEFT, y: row.y, width: (row.value / 100) * SCALE, height: 21,
+        class: "chart__bar " + row.cls
+      }));
+      gaugeSvg.appendChild(
+        svgText(LEFT + SCALE + 6, row.y + 15, "chart__count", "start", row.value + "%"));
+    });
+
+    /* The overshoot, marked on the upper bar. */
+    if (yours > ceiling) {
+      gaugeSvg.appendChild(svgEl("rect", {
+        x: LEFT + (ceiling / 100) * SCALE, y: 14,
+        width: ((yours - ceiling) / 100) * SCALE, height: 21,
+        class: "trap__overshoot"
+      }));
+    }
+
+    gaugeSvg.appendChild(
+      svgText(LEFT, 86, "chart__axis", "start", "0%"));
+    gaugeSvg.appendChild(
+      svgText(LEFT + SCALE, 86, "chart__axis", "end", "100%"));
+
+    var gap = yours - ceiling;
+    if (gap > 20) {
+      gaugeVerdict.textContent =
+        "You are " + gap + " points beyond what this evidence can carry - " +
+        "that gap is the part of the claim you are making on your own account, " +
+        "not the case's.";
+      gaugeVerdict.setAttribute("data-tone", "warn");
+    } else if (gap > 5) {
+      gaugeVerdict.textContent =
+        "You are " + gap + " points beyond the ceiling - a stretch rather than " +
+        "a leap, but a stretch you would have to defend.";
+      gaugeVerdict.setAttribute("data-tone", "caution");
+    } else if (gap >= -10) {
+      gaugeVerdict.textContent =
+        "Your confidence is roughly what the evidence on the table supports " +
+        "for the general claim.";
+      gaugeVerdict.setAttribute("data-tone", "good");
+    } else {
+      gaugeVerdict.textContent =
+        "You are " + Math.abs(gap) + " points below the ceiling. Caution is " +
+        "fine, but the case does support something: the specific claim about " +
+        "this person's tissue is not in doubt.";
+      gaugeVerdict.setAttribute("data-tone", "neutral");
+    }
+  }
+
+  /* The trajectory: locked ratings against the ceiling at each step. */
+  function renderTrace() {
+    var LEFT = 46, RIGHT = 424, TOP = 14, BOTTOM = 150;
+    var steps = COMPLICATIONS.length;
+
+    function xOf(step) { return LEFT + (step / steps) * (RIGHT - LEFT); }
+    function yOf(value) { return BOTTOM - (value / 100) * (BOTTOM - TOP); }
+
+    clear(traceSvg);
+
+    [0, 25, 50, 75, 100].forEach(function (value) {
+      traceSvg.appendChild(svgEl("line", {
+        x1: LEFT, y1: yOf(value), x2: RIGHT, y2: yOf(value), class: "chart__grid"
+      }));
+      traceSvg.appendChild(
+        svgText(LEFT - 6, yOf(value) + 4, "chart__axis", "end", value + "%"));
+    });
+
+    var ceilingPoints = [];
+    var yourPoints = [];
+    for (var step = 0; step <= state.step; step += 1) {
+      var card = step === 0 ? REFERRAL : COMPLICATIONS[step - 1];
+      ceilingPoints.push([xOf(step), yOf(card.ceiling)]);
+      var value = step < state.locked.length && state.locked[step] !== undefined
+        ? state.locked[step]
+        : state.confidence;
+      yourPoints.push([xOf(step), yOf(value)]);
+    }
+
+    function polyline(points, className) {
+      return svgEl("polyline", {
+        points: points.map(function (p) {
+          return p[0].toFixed(1) + "," + p[1].toFixed(1);
+        }).join(" "),
+        class: className
+      });
+    }
+
+    traceSvg.appendChild(polyline(ceilingPoints, "chart__line chart__line--two"));
+    traceSvg.appendChild(polyline(yourPoints, "chart__line"));
+
+    yourPoints.forEach(function (point) {
+      traceSvg.appendChild(svgEl("circle", {
+        cx: point[0], cy: point[1], r: 4, class: "chart__point"
+      }));
+    });
+    ceilingPoints.forEach(function (point) {
+      traceSvg.appendChild(svgEl("rect", {
+        x: point[0] - 3.5, y: point[1] - 3.5, width: 7, height: 7,
+        class: "trap__ceiling-point"
+      }));
+    });
+
+    for (var tick = 0; tick <= steps; tick += 1) {
+      traceSvg.appendChild(
+        svgText(xOf(tick), BOTTOM + 16, "chart__axis", "middle", String(tick)));
+    }
+    traceSvg.appendChild(
+      svgText((LEFT + RIGHT) / 2, BOTTOM + 34, "chart__axis", "middle",
+        "complications revealed"));
+    traceSvg.appendChild(
+      svgText(LEFT, BOTTOM + 52, "chart__axis", "start",
+        "round markers: your confidence   square markers: what the evidence carries"));
+
+    clear(traceTable);
+    for (var row = 0; row <= state.step; row += 1) {
+      var entry = row === 0 ? REFERRAL : COMPLICATIONS[row - 1];
+      var tr = make("tr");
+      var th = make("th", null, String(row));
+      th.setAttribute("scope", "row");
+      tr.appendChild(th);
+      tr.appendChild(make("td", null, row === 0 ? "The referral only" : entry.short));
+      var locked = state.locked[row];
+      tr.appendChild(make("td", null,
+        (locked === undefined ? state.confidence : locked) + "%" +
+        (locked === undefined ? " (not yet locked)" : "")));
+      tr.appendChild(make("td", null, entry.ceiling + "%"));
+      traceTable.appendChild(tr);
+    }
+  }
+
+  function renderSynthesis(done) {
+    if (!done) {
+      synthesis.hidden = true;
+      return;
+    }
+    clear(synthesis);
+    synthesis.appendChild(make("h4", "stage__heading", "What the case still supports"));
+    synthesis.appendChild(make("p", null,
+      "The complications bear far harder on the general claim than on the " +
+      "specific one. That asymmetry is the point: lesion evidence is strong " +
+      "about necessity in a person and weak about what a region does."));
+    var list = make("ul", "trap__synthesis");
+    SYNTHESIS.forEach(function (item) {
+      var li = make("li");
+      li.setAttribute("data-tone", item.tone);
+      li.appendChild(make("strong", null, item.standing + " "));
+      li.appendChild(document.createTextNode(item.claim));
+      list.appendChild(li);
+    });
+    synthesis.appendChild(list);
+    synthesis.hidden = false;
+  }
+
+  /* --- Opening prediction ----------------------------------------------- */
+
+  var OPENING = {
+    produces: {
+      tone: "caution",
+      verdict: "That is the sentence the tool is about.",
+      text:
+        "The natural reading of the notes, and a claim about what tissue " +
+        "does - which damage cannot deliver. A lesion speaks to necessity: " +
+        "the task could not be done without this tissue. What the tissue " +
+        "contributes is a further question."
+    },
+    necessary: {
+      tone: "good",
+      verdict: "Yes - and hold onto the wording.",
+      text:
+        "\"Necessary, in this person\" is the claim lesion evidence supports, " +
+        "and it survives everything you are about to read. The exercise is " +
+        "about how much distance there is between that claim and the one it " +
+        "gets reported as."
+    },
+    general: {
+      tone: "caution",
+      verdict: "A step beyond the case.",
+      text:
+        "A population claim, and one case cannot establish how often anything " +
+        "happens. It is a good hypothesis and worth testing - the " +
+        "complications below explain why testing it takes more than collecting " +
+        "more patients."
+    },
+    nothing: {
+      tone: "caution",
+      verdict: "Too strong the other way.",
+      text:
+        "A lesion is one of very few sources of evidence about necessity, " +
+        "which is exactly what functional imaging cannot supply: activation " +
+        "shows involvement, not indispensability. The case supports " +
+        "something. The exercise is establishing what."
+    }
+  };
+
+  openingForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answer = $('input[name="opening"]:checked', openingForm);
+    if (!answer) {
+      openingError.textContent = "Choose an answer before opening the evidence room.";
+      openingError.hidden = false;
+      return;
+    }
+    openingError.hidden = true;
+    var entry = OPENING[answer.value];
+    showFeedback(openingFeedback, entry.tone, entry.verdict, entry.text);
+    unlockEvidence();
+  });
+
+  $('[data-action="skip-opening"]').addEventListener("click", function () {
+    openingError.hidden = true;
+    showFeedback(openingFeedback, "neutral",
+      "Prediction skipped - demonstration mode.", "");
+    unlockEvidence();
+  });
+
+  function unlockEvidence() {
+    lockForm(openingForm);
+    evidenceSection.hidden = false;
+    render();
+    $("#evidence-heading").focus();
+    shell.announce(
+      "Evidence room open. Six complications to reveal.", { immediate: true });
+  }
+
+  /* --- Challenge -------------------------------------------------------- */
+
+  CLAIMS.forEach(function (claim) {
+    var fieldset = make("fieldset", "prediction__group trap__claim");
+    var legend = make("legend", "prediction__legend", claim.text);
+    fieldset.appendChild(legend);
+    CLAIM_OPTIONS.forEach(function (option) {
+      var label = make("label", "control--choice");
+      var input = document.createElement("input");
+      input.type = "radio";
+      input.name = "claim-" + claim.id;
+      input.value = option.value;
+      label.appendChild(input);
+      label.appendChild(document.createTextNode(option.label));
+      fieldset.appendChild(label);
+    });
+    claimsHost.appendChild(fieldset);
+  });
+
+  challengeForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    var answers = CLAIMS.map(function (claim) {
+      var chosen = $('input[name="claim-' + claim.id + '"]:checked', challengeForm);
+      return chosen ? chosen.value : null;
+    });
+
+    if (answers.some(function (value) { return value === null; })) {
+      challengeError.textContent =
+        "Sort all four claims before checking - the comparison between them " +
+        "is the exercise.";
+      challengeError.hidden = false;
+      return;
+    }
+    challengeError.hidden = true;
+
+    var right = 0;
+    clear(challengeFeedback);
+
+    var lead = make("p");
+    CLAIMS.forEach(function (claim, index) {
+      if (answers[index] === claim.answer) { right += 1; }
+    });
+    lead.appendChild(make("strong", "feedback__verdict",
+      right === CLAIMS.length
+        ? "All four."
+        : right + " of " + CLAIMS.length + " as intended."));
+    lead.appendChild(document.createTextNode(
+      " The sorting matters less than the reasons, so here they are."));
+    challengeFeedback.appendChild(lead);
+
+    var list = make("ul");
+    CLAIMS.forEach(function (claim, index) {
+      var li = make("li");
+      var chosenLabel = CLAIM_OPTIONS.filter(function (option) {
+        return option.value === answers[index];
+      })[0].label;
+      var intendedLabel = CLAIM_OPTIONS.filter(function (option) {
+        return option.value === claim.answer;
+      })[0].label;
+      li.appendChild(make("strong", null,
+        answers[index] === claim.answer
+          ? intendedLabel + ". "
+          : "You said " + chosenLabel.toLowerCase() + "; intended: " +
+            intendedLabel.toLowerCase() + ". "));
+      li.appendChild(document.createTextNode(claim.why));
+      list.appendChild(li);
+    });
+    challengeFeedback.appendChild(list);
+
+    challengeFeedback.setAttribute("data-tone",
+      right === CLAIMS.length ? "good" : "caution");
+    challengeFeedback.hidden = false;
+    shell.announce("Sorting checked: " + right + " of " + CLAIMS.length +
+      " as intended.", { immediate: true });
+  });
+
+  /* --- Feedback plumbing ------------------------------------------------ */
+
+  function showFeedback(container, tone, verdict, text) {
+    clear(container);
+    container.setAttribute("data-tone", tone);
+    var p = make("p");
+    p.appendChild(make("strong", "feedback__verdict", verdict));
+    if (text) { p.appendChild(document.createTextNode(" " + text)); }
+    container.appendChild(p);
+    container.hidden = false;
+  }
+
+  function lockForm(form) {
+    Array.prototype.forEach.call(form.querySelectorAll("input, button"),
+      function (control) { control.disabled = true; });
+  }
+
+  function unlockForm(form) {
+    Array.prototype.forEach.call(form.querySelectorAll("input, button"),
+      function (control) { control.disabled = false; });
+    form.reset();
+  }
+
+  /* --- Reset ------------------------------------------------------------ */
+
+  shell.onReset(function () {
+    state = { step: 0, confidence: 70, locked: [] };
+    confidenceRange.value = "70";
+    unlockForm(openingForm);
+    openingFeedback.hidden = true;
+    openingError.hidden = true;
+    evidenceSection.hidden = true;
+    synthesis.hidden = true;
+    challengeForm.reset();
+    challengeFeedback.hidden = true;
+    challengeError.hidden = true;
+    render();
+  });
+
+  /* --- Start-up --------------------------------------------------------- */
+
+  shell.reset({ silent: true });
+  shell.announce(
+    "Ready. Answer the question above to open the evidence room.",
+    { immediate: true });
+})();
+
+</script>
+</div>

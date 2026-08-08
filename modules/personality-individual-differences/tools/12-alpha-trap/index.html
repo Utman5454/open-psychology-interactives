@@ -30,6 +30,7 @@
   <link rel="stylesheet" href="tool.css">
   <script src="../../../../assets/js/main.js" defer></script>
   <script src="../../../../components/interactive-shell.js" defer></script>
+  <script src="../../../../components/copy-activity.js" defer></script>
   <script src="tool.js" defer></script>
 </head>
 
@@ -676,8 +677,13 @@
       </div>
     </section>
 
-    <!-- ================= Educator guidance and admin ================= -->
-    <section class="section section--tinted" aria-labelledby="educator-heading">
+    <!-- ================= Educator guidance and admin =================
+         data-instructor-only: addressed to whoever is running the session, not
+         to the learner, so scripts/build-standalone.py leaves it out of the
+         exported copy. It also holds the only repository-relative links in any
+         tool's <main>, which would be broken links on somebody else's page. -->
+    <section class="section section--tinted" aria-labelledby="educator-heading"
+             data-instructor-only>
       <div class="container">
 
         <div class="split split--wide">
@@ -732,6 +738,26 @@
 
       </div>
     </section>
+
+    <!-- Lecturer-facing, and last inside <main> so that it does not sit in a
+         section that starts hidden. scripts/build-standalone.py strips this
+         block from the export by its data-activity-export attribute, so a
+         copied activity never carries a button pointing at a file that is no
+         longer beside it. -->
+    <div class="section" data-activity-export>
+      <div class="container">
+        <div class="activity-export">
+          <button type="button" data-copy-activity="standalone.html">
+            Copy activity HTML
+          </button>
+          <p class="activity-export__note" data-copy-activity-note>
+            For teaching elsewhere: copies this activity as one self-contained
+            block of HTML, styled so it will not disturb the page you paste it
+            into.
+          </p>
+        </div>
+      </div>
+    </div>
 
   </main>
 

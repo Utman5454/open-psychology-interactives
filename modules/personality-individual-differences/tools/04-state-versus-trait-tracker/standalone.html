@@ -1,0 +1,3101 @@
+<!-- State versus Trait Tracker
+     From Open Psychology Interactives - https://github.com/utman5454/open-psychology-interactives
+     Self-contained: no stylesheets, scripts, fonts, images or network requests.
+     Styles are scoped to .opi-activity and do not affect the page around them.
+     Nothing is saved, sent or tracked. MIT licensed; please keep this notice.
+     Paste anywhere that accepts HTML, or save as a .html file and open it. -->
+<div class="opi-activity">
+<style>
+/* Defensive baseline. See scripts/build-standalone.py for why this
+   is `revert` rather than an enumerated reset, and how the specificity ladder
+   keeps the activity's own styling on top of it. */
+.opi-activity *:not(svg *) {
+  all: revert;
+}
+.opi-activity, .opi-activity *, .opi-activity *::before, .opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  text-transform: none;
+  text-indent: 0;
+  font-style: normal;
+  font-variant: normal;
+  letter-spacing: normal;
+  word-spacing: normal;
+  white-space: normal;
+  visibility: visible;
+  float: none;
+  max-width: none;
+}
+.opi-activity svg { max-width: 100%; }
+.opi-activity img { max-width: 100%; height: auto; }
+.opi-activity [hidden] { display: none !important; }
+
+/* assets/css/main.css */
+.opi-activity.opi-activity {
+  --colour-page: #ffffff;
+  --colour-surface: #f5f7fa;
+  --colour-surface-raised: #ffffff;
+  --colour-border: #d3d9e2;
+  --colour-border-strong: #aeb7c4;
+  --colour-text: #131820;
+  --colour-text-muted: #4c566a;
+  --colour-accent: #1a4fa0;
+  --colour-accent-hover: #123a7a;
+  --colour-accent-soft: #e8eefb;
+  --colour-on-accent: #ffffff;
+  --colour-focus: #b45309;
+  --colour-cognitive: #8a4b00;
+  --colour-research-methods: #1a4fa0;
+  --colour-neuropsychology: #145c53;
+  --colour-social-critical-psychology: #9e2f45;
+  --colour-personality-individual-differences: #7a2e6d;
+  --colour-status-bg: #f1ede3;
+  --colour-status-text: #5c4a1f;
+  --colour-status-border: #d9cdb0;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  --text-xs: 13px;
+  --text-sm: 15px;
+  --text-base: 17px;
+  --text-lg: 19px;
+  --text-xl: 23px;
+  --text-2xl: 28px;
+  --text-3xl: 36px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgb(19 24 32 / 0.06);
+  --shadow-md: 0 2px 8px rgb(19 24 32 / 0.08);
+  --measure: 68ch;
+  --container: 1152px;
+}
+@media (prefers-color-scheme: dark) {
+.opi-activity.opi-activity {
+  --colour-page: #0f141b;
+  --colour-surface: #161d27;
+  --colour-surface-raised: #1a2230;
+  --colour-border: #2c3644;
+  --colour-border-strong: #44506180;
+  --colour-text: #e9edf3;
+  --colour-text-muted: #a8b2c1;
+  --colour-accent: #8fb6ff;
+  --colour-accent-hover: #b3cdff;
+  --colour-accent-soft: #1b2740;
+  --colour-on-accent: #0f141b;
+  --colour-focus: #f0b429;
+  --colour-cognitive: #e2ab5f;
+  --colour-research-methods: #8fb6ff;
+  --colour-neuropsychology: #6fc3b4;
+  --colour-social-critical-psychology: #f19aa8;
+  --colour-personality-individual-differences: #db9ccd;
+  --colour-status-bg: #241f14;
+  --colour-status-text: #e2cf9f;
+  --colour-status-border: #4a4028;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 2px 10px rgb(0 0 0 / 0.45);
+}
+}
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity.opi-activity {
+  -webkit-text-size-adjust: 100%;
+}
+.opi-activity.opi-activity {
+  background-color: var(--colour-page);
+  color: var(--colour-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.65;
+}
+.opi-activity.opi-activity h1,
+.opi-activity.opi-activity h2,
+.opi-activity.opi-activity h3,
+.opi-activity.opi-activity h4 {
+  margin: 0 0 var(--space-3);
+  line-height: 1.25;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.opi-activity.opi-activity h1 {
+  font-size: var(--text-3xl);
+}
+.opi-activity.opi-activity h2 {
+  font-size: var(--text-2xl);
+}
+.opi-activity.opi-activity h3 {
+  font-size: var(--text-xl);
+}
+.opi-activity.opi-activity h4 {
+  font-size: var(--text-lg);
+}
+.opi-activity.opi-activity p,
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol,
+.opi-activity.opi-activity dl {
+  margin: 0 0 var(--space-4);
+}
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol {
+  padding-left: 1.35em;
+}
+.opi-activity.opi-activity li + li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity a {
+  color: var(--colour-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: max(1px, 0.06em);
+}
+.opi-activity.opi-activity a:hover {
+  color: var(--colour-accent-hover);
+  text-decoration-thickness: max(2px, 0.11em);
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid var(--colour-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+@supports not selector(:focus-visible) {
+.opi-activity.opi-activity :focus {
+  outline: 3px solid var(--colour-focus);
+    outline-offset: 2px;
+}
+}
+.opi-activity.opi-activity code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.35em;
+}
+.opi-activity.opi-activity hr {
+  border: 0;
+  border-top: 1px solid var(--colour-border);
+  margin: var(--space-6) 0;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+}
+.opi-activity.opi-activity .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.opi-activity.opi-activity .container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+@media (min-width: 40em) {
+.opi-activity.opi-activity .container {
+  padding-inline: var(--space-5);
+}
+}
+.opi-activity.opi-activity .prose {
+  max-width: var(--measure);
+}
+.opi-activity.opi-activity .text-muted {
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .section {
+  padding-block: var(--space-7);
+}
+.opi-activity.opi-activity .section--tinted {
+  background-color: var(--colour-surface);
+  border-block: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .section__header {
+  max-width: var(--measure);
+  margin-bottom: var(--space-5);
+}
+.opi-activity.opi-activity .section__header > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-7) var(--space-6);
+  border-bottom: 1px solid var(--colour-border);
+  
+  background-image: linear-gradient(
+    180deg,
+    var(--colour-accent-soft) 0%,
+    var(--colour-page) 100%
+  );
+}
+.opi-activity.opi-activity .hero__eyebrow {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .hero h1 {
+  max-width: 20ch;
+  margin-bottom: var(--space-4);
+}
+.opi-activity.opi-activity .hero__lead {
+  max-width: var(--measure);
+  font-size: var(--text-lg);
+  color: var(--colour-text-muted);
+}
+@media (min-width: 48em) {
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-8) var(--space-7);
+}
+.opi-activity.opi-activity .hero h1 {
+  font-size: 44px;
+}
+}
+.opi-activity.opi-activity .button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  
+  min-height: 44px;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .button--primary {
+  background-color: var(--colour-accent);
+  border-color: var(--colour-accent);
+  
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--primary:hover {
+  background-color: var(--colour-accent-hover);
+  border-color: var(--colour-accent-hover);
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--secondary {
+  background-color: transparent;
+  border-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .button--secondary:hover {
+  background-color: var(--colour-surface);
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+}
+.opi-activity.opi-activity .card--cognitive {
+  --card-accent: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .card--research-methods {
+  --card-accent: var(--colour-research-methods);
+}
+.opi-activity.opi-activity .card--neuropsychology {
+  --card-accent: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .card--social-critical-psychology {
+  --card-accent: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .card--personality-individual-differences {
+  --card-accent: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 650;
+  line-height: 1.4;
+  padding: 3.2px var(--space-3);
+  border-radius: 999px;
+  border: 1px solid var(--colour-status-border);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+}
+.opi-activity.opi-activity .badge__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex: none;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed var(--colour-border-strong);
+  border-radius: var(--radius-lg);
+  background-color: var(--colour-surface);
+  padding: var(--space-5);
+  text-align: left;
+}
+.opi-activity.opi-activity .placeholder__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+}
+.opi-activity.opi-activity .placeholder > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .split {
+  display: grid;
+  gap: var(--space-6);
+}
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split {
+  grid-template-columns: 3fr 2fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .panel {
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.opi-activity.opi-activity .panel > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .panel__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .section--tinted {
+  border-block: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .hero {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .button--primary {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .button--secondary {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .button:hover {
+  border-color: Highlight;
+}
+.opi-activity.opi-activity .panel {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed CanvasText;
+}
+.opi-activity.opi-activity .badge {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .badge__dot {
+  background-color: CanvasText;
+}
+.opi-activity.opi-activity code {
+  border-color: CanvasText;
+}
+.opi-activity.opi-activity hr {
+  border-top-color: CanvasText;
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+}
+@media print {
+.opi-activity.opi-activity {
+  color: #000;
+  background: #fff;
+}
+.opi-activity.opi-activity a[href^="http"]::after {
+  content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+}
+}
+
+/* components/interactive-shell.css */
+.opi-activity.opi-activity .interactive {
+  --shell-page: var(--colour-page, #ffffff);
+  --shell-surface: var(--colour-surface, #f5f7fa);
+  --shell-raised: var(--colour-surface-raised, #ffffff);
+  --shell-border: var(--colour-border, #d3d9e2);
+  --shell-border-strong: var(--colour-border-strong, #aeb7c4);
+  --shell-text: var(--colour-text, #131820);
+  --shell-muted: var(--colour-text-muted, #4c566a);
+  --shell-accent: var(--colour-accent, #1a4fa0);
+  --shell-accent-soft: var(--colour-accent-soft, #e8eefb);
+  
+  --shell-on-accent: var(--colour-on-accent, #ffffff);
+  --shell-focus: var(--colour-focus, #b45309);
+  --shell-radius: var(--radius-lg, 12px);
+  --shell-gap: var(--space-5, 24px);
+
+  display: block;
+  background-color: var(--shell-raised);
+  color: var(--shell-text);
+  border: 1px solid var(--shell-border);
+  border-radius: var(--shell-radius);
+  
+  overflow-x: clip;
+  overflow-y: visible;
+}
+.opi-activity.opi-activity .interactive__header {
+  padding: var(--shell-gap);
+  border-bottom: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 1.25;
+}
+.opi-activity.opi-activity .interactive__brief {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--shell-muted);
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__body {
+  display: grid;
+  gap: var(--shell-gap);
+  padding: var(--shell-gap);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body {
+  grid-template-columns: minmax(240px, 320px) 1fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .interactive__controls {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__controls fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .interactive__controls legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .control {
+  display: grid;
+  gap: 5.6px;
+}
+.opi-activity.opi-activity .control + .control {
+  margin-top: 16px;
+}
+.opi-activity.opi-activity .control__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.opi-activity.opi-activity .control__label {
+  font-size: 15px;
+  font-weight: 600;
+}
+.opi-activity.opi-activity .control__value {
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--shell-accent);
+}
+.opi-activity.opi-activity .control__hint {
+  font-size: 13px;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .interactive__controls input[type="range"] {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--shell-accent);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  width: 100%;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--shell-text);
+  background-color: var(--shell-raised);
+  border: 1px solid var(--shell-border-strong);
+  border-radius: var(--radius-sm, 4px);
+}
+.opi-activity.opi-activity .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+}
+.opi-activity.opi-activity .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  accent-color: var(--shell-accent);
+  flex: none;
+}
+.opi-activity.opi-activity .interactive__stage {
+  min-height: 256px;
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-page);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body--pinned {
+  align-items: stretch;
+}
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: sticky;
+    top: 0;
+    z-index: 2;
+    
+    margin: -16px -16px 0;
+    padding: 16px 16px 12px;
+    background-color: var(--shell-page);
+    border-bottom: 1px solid var(--shell-border);
+}
+}
+@media (min-width: 52em) and (max-height: 30em) {
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: static;
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
+}
+}
+.opi-activity.opi-activity .interactive__stage > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity :where(.interactive__stage) svg,
+.opi-activity.opi-activity :where(.interactive__stage) canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+.opi-activity.opi-activity .interactive__readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout div {
+  padding: 9.6px 12px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-sm, 4px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__readout dt {
+  font-size: 13px;
+  color: var(--shell-muted);
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout dd {
+  margin: 2.4px 0 0;
+  font-size: 18px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .interactive__status {
+  margin: 0;
+  padding: 12px var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+  font-size: 15px;
+  color: var(--shell-muted);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .interactive__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+}
+.opi-activity.opi-activity .interactive__actions button {
+  min-height: 44px;
+  padding: 6.4px 20px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--shell-on-accent);
+  background-color: var(--shell-accent);
+  border: 1px solid var(--shell-accent);
+  border-radius: var(--radius-md, 8px);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  color: var(--shell-text);
+  background-color: transparent;
+  border-color: var(--shell-border-strong);
+}
+.opi-activity.opi-activity .interactive__actions button:hover {
+  filter: brightness(1.08);
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__notes > summary {
+  padding: 13.6px var(--shell-gap);
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__notes > div {
+  padding: 0 var(--shell-gap) var(--shell-gap);
+  max-width: 68ch;
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__notes > div > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity .interactive *,
+.opi-activity.opi-activity .interactive *::before,
+.opi-activity.opi-activity .interactive *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+}
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .interactive,
+.opi-activity.opi-activity .interactive__controls,
+.opi-activity.opi-activity .interactive__stage,
+.opi-activity.opi-activity .interactive__readout div {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__header {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__status,
+.opi-activity.opi-activity .interactive__actions,
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__actions button {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  border-width: 1px;
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 1;
+    color: GrayText;
+    border-color: GrayText;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__stage svg {
+  forced-color-adjust: auto;
+}
+}
+
+/* components/tool-kit.css */
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split--wide {
+  grid-template-columns: 1fr 1fr;
+}
+}
+.opi-activity.opi-activity .how-to {
+  padding-left: 19.2px;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .how-to > li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .table-scroll {
+  overflow-x: auto;
+  
+  position: relative;
+}
+.opi-activity.opi-activity .prediction {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 832px;
+}
+.opi-activity.opi-activity .prediction > *,
+.opi-activity.opi-activity .challenge > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity .prediction__group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .prediction__legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-weight: 650;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .prediction .control--choice,
+.opi-activity.opi-activity .challenge .control--choice,
+.opi-activity.opi-activity .evidence .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .prediction .control--choice input,
+.opi-activity.opi-activity .challenge .control--choice input,
+.opi-activity.opi-activity .evidence .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .prediction__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .prediction__error {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-status-border);
+  border-left: 4px solid var(--colour-status-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .prediction__readback {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .feedback[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .feedback[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .feedback[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .feedback__verdict {
+  font-weight: 700;
+}
+.opi-activity.opi-activity .verdict {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .verdict__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict__body {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .verdict__body + .verdict__body {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .verdict__note {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .verdict[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .verdict[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .goal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .goal__label {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .goal__text {
+  flex: 1 1 256px;
+}
+.opi-activity.opi-activity .goal strong {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .goal__checks {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+  display: grid;
+  gap: 2.4px;
+}
+.opi-activity.opi-activity .goal__checks > li {
+  margin-top: 0;
+  padding-left: 22.4px;
+  position: relative;
+}
+.opi-activity.opi-activity .goal__checks > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 9.6px;
+  height: 9.6px;
+  border: 2px solid var(--colour-border-strong);
+  border-radius: 2px;
+}
+.opi-activity.opi-activity .goal__checks > li[data-met="yes"]::before {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .stage-track {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .stage-track > li {
+  margin-top: 0;
+  flex: 1 1 160px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-bottom: 3px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .stage-track > li > span {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.opi-activity.opi-activity .stage-track > li[data-state="done"] {
+  border-bottom-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border-bottom-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+  color: var(--colour-text);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .stage__heading {
+  margin: 0;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .data-table,
+.opi-activity.opi-activity .chart__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .data-table th,
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table th,
+.opi-activity.opi-activity .chart__table td {
+  padding: 6.4px 9.6px;
+  border: 1px solid var(--colour-border);
+  text-align: left;
+  vertical-align: top;
+}
+.opi-activity.opi-activity .data-table thead th,
+.opi-activity.opi-activity .chart__table thead th {
+  background-color: var(--colour-surface);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table td {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__table tbody th,
+.opi-activity.opi-activity .data-table tbody th {
+  font-weight: 550;
+}
+.opi-activity.opi-activity .data-table__total > th,
+.opi-activity.opi-activity .data-table__total > td {
+  border-top: 2px solid var(--colour-border-strong);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart {
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .chart__caption {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__svg {
+  max-width: 100%;
+  height: auto;
+}
+.opi-activity.opi-activity .chart__label,
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__inline,
+.opi-activity.opi-activity .chart__axis {
+  font-family: var(--font-body);
+  fill: var(--colour-text);
+  font-size: 13px;
+}
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__axis {
+  fill: var(--colour-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: var(--colour-on-accent);
+  font-size: 12px;
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__track {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__bar {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--one {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .chart__baseline,
+.opi-activity.opi-activity .chart__grid {
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__line {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: var(--colour-personality-individual-differences);
+  stroke-dasharray: 6 4;
+}
+.opi-activity.opi-activity .chart__point {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .reveal > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .reveal__lead {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+.opi-activity.opi-activity .reveal__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(176px, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+  padding: 0;
+  list-style: none;
+}
+.opi-activity.opi-activity .reveal__figures > li {
+  margin-top: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+.opi-activity.opi-activity .reveal__figure-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .reveal__figure-value {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .challenge {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+.opi-activity.opi-activity .challenge__locked {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .panel--caution {
+  background-color: var(--colour-status-bg);
+  border-color: var(--colour-status-border);
+}
+.opi-activity.opi-activity .panel--caution li + li {
+  margin-top: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .goal,
+.opi-activity.opi-activity .verdict,
+.opi-activity.opi-activity .feedback,
+.opi-activity.opi-activity .prediction__error,
+.opi-activity.opi-activity .prediction__readback,
+.opi-activity.opi-activity .stage-track > li,
+.opi-activity.opi-activity .reveal__figures > li {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border: 2px solid Highlight;
+}
+.opi-activity.opi-activity .chart__bar,
+.opi-activity.opi-activity .chart__bar--one {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: Canvas;
+}
+.opi-activity.opi-activity .chart__line {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: Highlight;
+}
+}
+.opi-activity.opi-activity .stage__more {
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .stage__more > summary {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .stage__more[open] > summary {
+  border-bottom: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .stage__more > *:not(summary) {
+  margin: var(--space-3);
+}
+
+/* modules/personality-individual-differences/tools/04-state-versus-trait-tracker/tool.css */
+.opi-activity.opi-activity #tracker .interactive__controls,
+.opi-activity.opi-activity #tracker .interactive__stage {
+  min-width: 0;
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity #tracker .interactive__body {
+  grid-template-columns: minmax(0, 288px) minmax(0, 1fr);
+}
+}
+.opi-activity.opi-activity #tracker .control + .control {
+  margin-top: var(--space-4);
+}
+.opi-activity.opi-activity #tracker input[type="number"] {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .snapshot {
+  display: grid;
+  gap: var(--space-2);
+  max-width: 544px;
+}
+.opi-activity.opi-activity .snapshot__row {
+  display: grid;
+  grid-template-columns: minmax(64px, 1fr) auto minmax(0, auto) auto;
+  align-items: center;
+  gap: var(--space-2) var(--space-3);
+  min-height: 44px;
+  padding: 6.4px 11.2px;
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+@media (max-width: 30em) {
+.opi-activity.opi-activity .snapshot__row {
+  grid-template-columns: 1fr auto;
+}
+}
+.opi-activity.opi-activity .snapshot__name {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .snapshot__value {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--colour-accent);
+}
+.opi-activity.opi-activity .snapshot__label {
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .snapshot select {
+  min-height: 44px;
+  min-width: 72px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  font-size: var(--text-sm);
+  color: var(--colour-text);
+  background-color: var(--colour-page);
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+}
+.opi-activity.opi-activity .series__line {
+  fill: none;
+  stroke-width: 1.9;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.opi-activity.opi-activity .series__line--one {
+  stroke: var(--colour-accent);
+}
+.opi-activity.opi-activity .series__line--two {
+  stroke: var(--colour-personality-individual-differences);
+  stroke-dasharray: 7 3;
+}
+.opi-activity.opi-activity .series__line--three {
+  stroke: var(--colour-neuropsychology);
+  stroke-dasharray: 2 3;
+}
+.opi-activity.opi-activity .series__line--four {
+  stroke: var(--colour-cognitive);
+  stroke-dasharray: 10 3 2 3;
+}
+.opi-activity.opi-activity .series__mean {
+  stroke-width: 1;
+  stroke-opacity: 0.55;
+  stroke-dasharray: 4 4;
+}
+.opi-activity.opi-activity .series__mean--one {
+  stroke: var(--colour-accent);
+}
+.opi-activity.opi-activity .series__mean--two {
+  stroke: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .series__mean--three {
+  stroke: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .series__mean--four {
+  stroke: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .series__snapshot {
+  stroke: var(--colour-text);
+  stroke-width: 1.5;
+  stroke-dasharray: 2 2;
+  stroke-opacity: 0.8;
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .snapshot__row {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .series__line--one,
+.opi-activity.opi-activity .series__line--three {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .series__line--two,
+.opi-activity.opi-activity .series__line--four {
+  stroke: Highlight;
+}
+.opi-activity.opi-activity .series__mean,
+.opi-activity.opi-activity .series__snapshot {
+  stroke: GrayText;
+}
+}
+</style>
+
+  <!-- ================= Title and purpose ================= -->
+  <section class="section card--personality-individual-differences" aria-labelledby="page-heading">
+    <div class="container">
+
+      <p class="hero__eyebrow" style="color: var(--colour-personality-individual-differences)">
+        Personality and Individual Differences
+      </p>
+      <h1 id="page-heading">State versus Trait Tracker</h1>
+      <p class="hero__lead">
+        Fifty-six moments from each of four fictional lives. Judge them from
+        one of those moments first — then see the fortnight it came from.
+      </p>
+
+      <p>
+        <span class="badge">
+          <span class="badge__dot" aria-hidden="true"></span>
+          Simulated data — fictional experience sampling, generated from a seed
+        </span>
+      </p>
+
+      <div class="split split--wide">
+
+        <div class="panel">
+          <h2 class="panel__title">Learning objective</h2>
+          <p>
+            By the end you should be able to separate a person's typical
+            level from where they are today, and treat variability as a
+            characteristic rather than noise.
+          </p>
+          <p class="text-muted">
+            About 25 minutes. Nothing you do here is saved or sent anywhere.
+          </p>
+        </div>
+
+        <div class="panel">
+          <h2 class="panel__title">How to use this</h2>
+          <ol class="how-to">
+            <li>
+              Rank four people by their typical level, using one moment each.
+            </li>
+            <li>See the full fortnight and find out how you did.</li>
+            <li>
+              Then take the controls: within-person variability, measurement
+              error, life events, and the random seed.
+            </li>
+            <li>
+              Watch the running average settle, and see how many observations
+              each person needs.
+            </li>
+            <li>Answer the two challenges.</li>
+          </ol>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= The snapshot ================= -->
+  <section class="section section--tinted" id="snapshot" aria-labelledby="snapshot-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="snapshot-heading">One moment</h2>
+        <p class="prose">
+          Four people were asked how they were feeling, on a 0–100 scale, at
+          a single moment. <span data-snapshot-when></span> Rank them by what
+          you think their <strong>typical</strong> level is — 1 for the
+          highest.
+        </p>
+      </div>
+
+      <noscript>
+        <div class="placeholder">
+          <h3 class="placeholder__title">This part needs JavaScript</h3>
+          <p class="prose">
+            The tracker generates and re-generates a simulated dataset in
+            your browser, so it cannot run with JavaScript switched off. The
+            rest of this page is readable without it.
+          </p>
+        </div>
+      </noscript>
+
+      <form class="panel prediction" id="snapshot-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            That moment, and your ranking
+          </legend>
+          <div class="snapshot" data-snapshot></div>
+        </fieldset>
+
+        <p class="prediction__error" data-snapshot-error role="alert" hidden></p>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Reveal the fortnight
+          </button>
+          <button class="button button--secondary" type="button" data-action="reset-early">
+            Reset everything
+          </button>
+        </div>
+
+        <div class="feedback" data-snapshot-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= The tracker ================= -->
+  <section class="section" id="tracker-section" aria-labelledby="tracker-heading" hidden>
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="tracker-heading" tabindex="-1">The whole fortnight</h2>
+      </div>
+
+      <section class="interactive" id="tracker" data-interactive
+               data-reset-message="Everything cleared. Back to the single moment.">
+
+        <header class="interactive__header">
+          <h3 class="interactive__title">Fourteen days, four observations a day</h3>
+          <p class="interactive__brief">
+            Simulated experience-sampling data generated from the seed shown.
+            The same seed always produces the same fortnight, so a
+            demonstration can be repeated exactly.
+          </p>
+        </header>
+
+        <div class="interactive__body interactive__body--pinned">
+
+          <form class="interactive__controls" data-interactive-controls>
+
+            <fieldset>
+              <legend>Show</legend>
+              <div class="control" data-person-toggles></div>
+            </fieldset>
+
+            <fieldset>
+              <legend>The person</legend>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="wobble-range">
+                    Within-person variability
+                  </label>
+                  <output class="control__value" for="wobble-range">1.00×</output>
+                </div>
+                <input type="range" id="wobble-range" min="0" max="200" step="5" value="100">
+                <p class="control__hint">
+                  Multiplies each person's own variability. This is part of
+                  who they are, not a fault in the measurement.
+                </p>
+              </div>
+
+              <label class="control--choice">
+                <input type="checkbox" id="events-toggle" checked>
+                Include life events
+              </label>
+            </fieldset>
+
+            <fieldset>
+              <legend>The measurement</legend>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="error-range">
+                    Measurement error
+                  </label>
+                  <output class="control__value" for="error-range">3</output>
+                </div>
+                <input type="range" id="error-range" min="0" max="20" step="1" value="3">
+                <p class="control__hint">
+                  Error is not part of the person. It shrinks with averaging;
+                  real fluctuation does not.
+                </p>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Reproducibility</legend>
+              <div class="control">
+                <label class="control__label" for="seed-input">Random seed</label>
+                <input type="number" id="seed-input" value="20260813" step="1">
+                <p class="control__hint">
+                  Note this down to reproduce the same dataset in a later
+                  class.
+                </p>
+              </div>
+              <div class="control">
+                <button class="button button--secondary" type="button" data-action="new-seed">
+                  Draw a new fortnight
+                </button>
+              </div>
+            </fieldset>
+
+          </form>
+
+          <div class="interactive__stage" data-interactive-stage>
+
+            <!-- Pinned: the fortnight series and its numbers are what every control here changes. -->
+            <div class="stage__primary">
+              <h4 class="stage__heading">Momentary state over 14 days</h4>
+              <figure class="chart">
+                <figcaption class="visually-hidden">
+                  Each person's momentary score across the fortnight, with
+                  their fortnight mean as a horizontal line and the sampled
+                  moment marked
+                </figcaption>
+                <svg class="chart__svg" data-series-chart viewBox="0 0 620 260"
+                     aria-hidden="true" focusable="false"></svg>
+                <div class="table-scroll">
+                  <table class="chart__table">
+                    <caption class="visually-hidden">
+                      Mean, within-person spread, range and the sampled moment
+                      for each person
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Person</th>
+                        <th scope="col">Mean</th>
+                        <th scope="col">Within-person SD</th>
+                        <th scope="col">Lowest</th>
+                        <th scope="col">Highest</th>
+                        <th scope="col">The sampled moment</th>
+                      </tr>
+                    </thead>
+                    <tbody data-series-table></tbody>
+                  </table>
+                </div>
+              </figure>
+
+              <dl class="interactive__readout" data-readout></dl>
+            </div>
+
+            <h4 class="stage__heading">How many observations does it take?</h4>
+            <figure class="chart">
+              <figcaption class="visually-hidden">
+                Distance between the running average and each person's
+                fortnight mean, as observations accumulate
+              </figcaption>
+              <svg class="chart__svg" data-stability-chart viewBox="0 0 620 180"
+                   aria-hidden="true" focusable="false"></svg>
+              <p class="verdict verdict__body" data-stability-note></p>
+            </figure>
+
+          </div>
+
+        </div>
+
+        <p class="interactive__status" data-interactive-status role="status"></p>
+
+        <div class="interactive__actions">
+          <button type="button" data-variant="secondary" data-interactive-reset>
+            Reset everything
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ================= Challenges ================= -->
+  <section class="section section--tinted" id="challenges" aria-labelledby="challenges-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="challenges-heading">Two challenges</h2>
+      </div>
+
+      <div class="split split--wide">
+
+        <form class="panel challenge" id="challenge-a-form">
+          <h3 class="panel__title">Challenge 1 — same average, different people</h3>
+          <p class="verdict verdict__body" data-challenge-a-status></p>
+
+          <fieldset class="prediction__group">
+            <legend class="prediction__legend">
+              A questionnaire asks both of them "in general, how do you
+              feel?" and gives them the same score. What has it missed?
+            </legend>
+            <label class="control--choice">
+              <input type="radio" name="challenge-a" value="nothing">
+              Nothing important — the average is the best single summary
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="challenge-a" value="different">
+              A stable characteristic on which they genuinely differ
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="challenge-a" value="error">
+              Only measurement error, which averages out anyway
+            </label>
+          </fieldset>
+
+          <div class="prediction__actions">
+            <button class="button button--primary" type="submit">
+              Check my answer
+            </button>
+          </div>
+
+          <div class="feedback" data-challenge-a-feedback hidden></div>
+        </form>
+
+        <form class="panel challenge" id="challenge-b-form">
+          <h3 class="panel__title">Challenge 2 — one reading, three ingredients</h3>
+          <p>
+            Someone scores 45 on a single administration. How much of that is
+            their typical level, how much is today, and how much is
+            measurement error?
+          </p>
+
+          <fieldset class="prediction__group">
+            <legend class="prediction__legend">Your answer</legend>
+            <label class="control--choice">
+              <input type="radio" name="challenge-b" value="mostly-trait">
+              Mostly their typical level, with small amounts of the other two
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="challenge-b" value="cannot">
+              From one reading, it cannot be divided at all
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="challenge-b" value="reliability">
+              It can be divided if you know the questionnaire's reliability
+            </label>
+          </fieldset>
+
+          <div class="prediction__actions">
+            <button class="button button--primary" type="submit">
+              Check my answer
+            </button>
+          </div>
+
+          <div class="feedback" data-challenge-b-feedback hidden></div>
+        </form>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= Debrief ================= -->
+  <section class="section" id="debrief" aria-labelledby="debrief-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="debrief-heading">What this demonstrates</h2>
+      </div>
+
+      <div class="split split--wide">
+
+        <div class="prose">
+          <h3>A trait is a distribution, not a setting</h3>
+          <p>
+            The tempting picture of a trait is a dial fixed at some value,
+            with everything else counting as interference. The picture that
+            survives contact with experience-sampling data is a distribution:
+            a person has a typical level <em>and</em> a characteristic amount
+            of movement around it, and both are stable properties of them.
+            Asking whether someone "is" anxious is asking about the centre of
+            a distribution and ignoring its width.
+          </p>
+
+          <h3>Within-person variability is a characteristic, not noise</h3>
+          <p>
+            Ada and Bo share a mean. A trait questionnaire describes them
+            identically, and they are not living the same fortnight. How much
+            a person fluctuates is measurable, reasonably stable across
+            months, and predicts things the mean does not — which makes
+            treating it as error a substantive loss rather than a tidy
+            simplification.
+          </p>
+
+          <h3>Error and fluctuation look the same once and differ across many</h3>
+          <p>
+            In a single observation, measurement error and genuine
+            within-person movement are indistinguishable: both push the
+            number away from the person's typical level. Across repeated
+            observations they separate, because error averages towards zero
+            and the person's own variability does not. This is the argument
+            for repeated measurement, and it is why the running-average chart
+            settles at different rates for different people.
+          </p>
+
+          <h3>How many observations is a question about the person</h3>
+          <p>
+            The stability curve reaches a usable estimate quickly for Ada and
+            slowly for Bo. There is no general answer to "how many
+            observations do I need" — it depends on how much the person
+            varies and how precisely you need to know their level. A study
+            design that samples everyone equally is implicitly measuring some
+            people much better than others.
+          </p>
+        </div>
+
+        <aside class="panel panel--caution" aria-labelledby="limits-heading">
+          <h3 class="panel__title" id="limits-heading">
+            What this does <em>not</em> demonstrate
+          </h3>
+          <ul>
+            <li>
+              <strong>These are not data.</strong> Four invented people and a
+              pseudo-random generator. The 0–100 scale is arbitrary, with no
+              norms and no reference sample, and no number here comes from a
+              study.
+            </li>
+            <li>
+              <strong>Real sampling is much messier.</strong> Observations
+              here are equally spaced and never missing. Real experience
+              sampling has non-response that correlates with what is being
+              measured, which is a serious and unsolved problem.
+            </li>
+            <li>
+              <strong>No autocorrelation and no drift.</strong> Apart from
+              event decay, consecutive observations are independent, and the
+              typical level does not move over the fortnight. Both are wrong
+              about real series, and inertia is itself an interesting
+              individual difference.
+            </li>
+            <li>
+              <strong>Nothing here is about mental health.</strong> The
+              variable is deliberately unnamed and the events are ordinary
+              ones. High variability is not a symptom, and this tool does not
+              assess or screen for anything.
+            </li>
+            <li>
+              <strong>The decomposition is given, not estimated.</strong> The
+              tool knows the true trait level because it generated it. In real
+              data you would have to estimate it, with uncertainty, usually
+              with a multilevel model.
+            </li>
+            <li>
+              <strong>Nobody is assessed.</strong> You are reading simulated
+              observations of fictional people. The tool asks nothing about
+              you.
+            </li>
+          </ul>
+        </aside>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+<script>
+/* ---- components/interactive-shell.js ---- */
+/* =========================================================================
+   Open Psychology Interactives — interactive shell helper
+   -------------------------------------------------------------------------
+   A very small vanilla-JS helper that every interactive in this collection
+   uses. It deliberately does *not* draw anything or know anything about
+   statistics, personality or neuropsychology. Its job is the repetitive,
+   easy-to-get-wrong accessibility plumbing:
+
+     * announcing changes through a polite live region;
+     * keeping a range slider and its <output> in step;
+     * wiring the standard Reset button;
+     * reporting the reader's reduced-motion preference.
+
+   Usage (see docs/adapting-a-tool.md for the full markup contract):
+
+       <script src="../../components/interactive-shell.js" defer><\/script>
+       <script src="tool.js" defer><\/script>
+
+       // in tool.js
+       const shell = InteractiveShell.attach('#sampling-demo');
+       shell.onReset(() => { ...restore defaults...; draw(); });
+       shell.bindRange('#sample-size', { format: n => n + ' cases' });
+       shell.announce('Sample of 25 drawn. Mean 4.8.');
+
+   Every published interactive is written against this module.
+
+   Exposed as a global (window.InteractiveShell) rather than an ES module so
+   that a single interactive folder can be opened directly from disk over
+   file:// — ES modules are blocked by CORS in that situation, plain scripts
+   are not. That constraint is the whole reason for the older syntax here.
+   ========================================================================= */
+
+(function (global) {
+  "use strict";
+
+  /* -----------------------------------------------------------------------
+     Internal helpers
+     --------------------------------------------------------------------- */
+
+  /**
+   * Accept either a CSS selector or an element and return an element.
+   * @param {string|Element} target
+   * @param {ParentNode} [scope]
+   * @returns {Element|null}
+   */
+  function resolve(target, scope) {
+    if (!target) {
+      return null;
+    }
+    if (typeof target === "string") {
+      return (scope || document).querySelector(target);
+    }
+    return target;
+  }
+
+  /**
+   * True when the reader has asked the operating system to reduce motion.
+   * Interactives should check this before animating anything — for example
+   * by drawing a sampling distribution in one step instead of animating
+   * each draw.
+   * @returns {boolean}
+   */
+  function prefersReducedMotion() {
+    return (
+      typeof global.matchMedia === "function" &&
+      global.matchMedia("(prefers-reduced-motion: reduce)").matches
+    );
+  }
+
+  /* -----------------------------------------------------------------------
+     Shell controller
+     --------------------------------------------------------------------- */
+
+  /**
+   * Attach the shell behaviour to one `.interactive` element.
+   *
+   * @param {string|Element} target  Selector or element for the shell root.
+   * @returns {object|null}  Controller, or null if the root was not found.
+   */
+  function attach(target) {
+    var root = resolve(target);
+
+    if (!root) {
+      if (global.console && console.warn) {
+        console.warn("InteractiveShell: root element not found.", target);
+      }
+      return null;
+    }
+
+    var controls = root.querySelector("[data-interactive-controls]");
+    var stage = root.querySelector("[data-interactive-stage]");
+    var status = root.querySelector("[data-interactive-status]");
+    var resetButton = root.querySelector("[data-interactive-reset]");
+    var resetHandlers = [];
+    // Every range bound with bindRange() registers its sync function here, so
+    // that reset() can refresh the visible values after the tool's own reset
+    // handlers have restored the inputs. See reset() for why this is needed.
+    var rangeSyncs = [];
+
+    /* --- Live region ----------------------------------------------------
+       The status element is marked up as role="status" (implicitly
+       aria-live="polite"). Two details matter:
+
+         1. Assistive technology only announces *changes* to a live region,
+            so writing the same string twice is silently dropped. We add a
+            trailing zero-width space on repeat messages to force an
+            announcement when a student re-runs the same action.
+         2. Announcements are debounced. A slider dragged across its range
+            fires dozens of input events; without a delay a screen reader
+            would queue every intermediate value and fall far behind.
+       ------------------------------------------------------------------ */
+
+    var announceTimer = null;
+    var lastMessage = "";
+
+    /**
+     * Announce a short sentence describing what just changed.
+     * @param {string} message
+     * @param {object} [options]
+     * @param {boolean} [options.immediate]  Skip the debounce delay. Use for
+     *   discrete actions (button presses); leave off for continuous input.
+     */
+    function announce(message, options) {
+      if (!status) {
+        return;
+      }
+
+      var text = String(message == null ? "" : message);
+      var immediate = Boolean(options && options.immediate);
+
+      if (announceTimer !== null) {
+        global.clearTimeout(announceTimer);
+        announceTimer = null;
+      }
+
+      function write() {
+        // Force a change when the text is identical to last time.
+        status.textContent = text === lastMessage ? text + "​" : text;
+        lastMessage = text;
+      }
+
+      if (immediate) {
+        write();
+      } else {
+        announceTimer = global.setTimeout(write, 350);
+      }
+    }
+
+    /* --- Reset ---------------------------------------------------------- */
+
+    /**
+     * Register a callback to run when the Reset button is pressed.
+     * Several may be registered; they run in the order added.
+     * @param {Function} handler
+     */
+    function onReset(handler) {
+      if (typeof handler === "function") {
+        resetHandlers.push(handler);
+      }
+    }
+
+    /**
+     * Run the reset handlers. Called by the button and available directly so
+     * an interactive can reset itself on first load.
+     *
+     * Bound ranges are re-synced afterwards. A reset handler restores an
+     * input by assigning to `input.value`, and assigning to a value in script
+     * does not fire an `input` event — so without this step the slider would
+     * jump back to its default while its <output> went on showing the old
+     * number. Syncing here, after the handlers have run, also means the sync
+     * sees the restored values regardless of the order things were
+     * registered in.
+     *
+     * @param {object} [options]
+     * @param {boolean} [options.silent]  Suppress the status announcement.
+     */
+    function reset(options) {
+      resetHandlers.forEach(function (handler) {
+        handler();
+      });
+      rangeSyncs.forEach(function (sync) {
+        sync();
+      });
+      if (!options || !options.silent) {
+        announce(
+          root.getAttribute("data-reset-message") ||
+            "Reset to the starting values.",
+          { immediate: true }
+        );
+      }
+    }
+
+    if (resetButton) {
+      resetButton.addEventListener("click", function (event) {
+        // Reset buttons commonly sit inside the controls <form>; stop the
+        // browser's own form reset from fighting with ours.
+        event.preventDefault();
+        reset();
+      });
+    }
+
+    /* --- Range binding --------------------------------------------------
+       Keeps a slider's <output> in step with its value. The <output> must
+       carry `for="<input id>"`, which is what associates the two for
+       assistive technology; this only handles the visible text.
+
+       Optionally sets aria-valuetext, which is how you make a screen reader
+       say "25 cases" or "medium correlation" instead of a bare "25".
+       ------------------------------------------------------------------ */
+
+    /**
+     * @param {string|Element} inputTarget  The range (or number) input.
+     * @param {object} [options]
+     * @param {Function} [options.format]  value:number -> string shown in the
+     *   <output>. Defaults to the raw value.
+     * @param {Function} [options.describe]  value:number -> string used for
+     *   aria-valuetext. Defaults to options.format.
+     * @param {Function} [options.onInput]  value:number -> void, called after
+     *   the display has been updated. Use it to redraw.
+     * @returns {HTMLInputElement|null}
+     */
+    function bindRange(inputTarget, options) {
+      var input = resolve(inputTarget, root);
+      if (!input) {
+        return null;
+      }
+
+      var settings = options || {};
+      var format =
+        typeof settings.format === "function"
+          ? settings.format
+          : function (value) {
+              return String(value);
+            };
+      var describe =
+        typeof settings.describe === "function" ? settings.describe : format;
+
+      // <output for="the-input-id"> is the conventional pairing.
+      var output = input.id
+        ? root.querySelector('output[for="' + input.id + '"]')
+        : null;
+
+      function sync() {
+        var value = Number(input.value);
+        if (output) {
+          output.textContent = format(value);
+        }
+        // Only meaningful for widgets with an implicit or explicit slider
+        // role; harmless elsewhere.
+        input.setAttribute("aria-valuetext", describe(value));
+        if (typeof settings.onInput === "function") {
+          settings.onInput(value);
+        }
+      }
+
+      input.addEventListener("input", sync);
+      // Registered so reset() can refresh the display after the tool's own
+      // reset handlers have put the input back to its default.
+      rangeSyncs.push(sync);
+      sync();
+
+      return input;
+    }
+
+    /* --- Public surface -------------------------------------------------- */
+
+    return {
+      /** The `.interactive` root element. */
+      root: root,
+      /** The controls panel, or null if the shell has none. */
+      controls: controls,
+      /** The stage element where the visualisation is drawn. */
+      stage: stage,
+      /** The live-region element. */
+      status: status,
+      announce: announce,
+      onReset: onReset,
+      reset: reset,
+      bindRange: bindRange,
+      prefersReducedMotion: prefersReducedMotion
+    };
+  }
+
+  /* -----------------------------------------------------------------------
+     Export
+     --------------------------------------------------------------------- */
+
+  global.InteractiveShell = {
+    attach: attach,
+    prefersReducedMotion: prefersReducedMotion
+  };
+})(window);
+
+/* ---- modules/personality-individual-differences/tools/04-state-versus-trait-tracker/tool.js ---- */
+/* =========================================================================
+   State versus Trait Tracker
+   -------------------------------------------------------------------------
+   Fictional experience-sampling data: several people, several observations a
+   day, across two weeks. Students meet a single moment first and try to rank
+   people from it, discover how badly that works, and then get the controls
+   that generated the data.
+
+   THE EDUCATIONAL MODEL
+   ---------------------
+   Every momentary observation for person p at time t is
+
+       observed(p,t) = trait(p)                     stable person mean
+                     + event(p,t)                   a reaction that decays
+                     + wobble(p,t)                  within-person fluctuation
+                     + error(p,t)                   measurement error
+
+   `wobble` is drawn from a normal distribution whose SD is that person's own
+   within-person variability — a property of the PERSON, not of the
+   measurement. Two people can share a trait level and differ enormously here,
+   and that difference is itself psychologically meaningful rather than noise
+   to be averaged away.
+
+   `event` is a reaction to a dated event that decays geometrically, so an
+   event moves several consecutive observations rather than one.
+
+   `error` is measurement error: it is NOT part of the person, it shrinks with
+   averaging, and separating it from `wobble` is the whole reason the two are
+   modelled apart.
+
+   What the tool is built to make visible:
+
+     * one observation is a terrible estimate of a person's typical level;
+     * the person mean stabilises quickly as observations accumulate, and how
+       quickly depends on within-person SD, not on the trait level;
+     * two people with the same mean can be quite different people;
+     * two people showing the same value right now can have different means;
+     * measurement error and real within-person variability look identical in
+       a single observation and come apart across repeated ones.
+
+   RANDOMNESS
+   ----------
+   A seeded generator (mulberry32) is used throughout, and the seed is shown
+   on screen and settable. The same seed always reproduces the same dataset,
+   so a demonstration can be repeated exactly in a later class and a student
+   can be told which seed to use.
+
+   DELIBERATE SIMPLIFICATIONS
+   --------------------------
+   * Observations are equally spaced and never missing. Real experience
+     sampling has both problems badly.
+   * The trait level does not drift over the fortnight. Over months it would.
+   * Wobble is independent between occasions apart from event decay; real
+     within-person series are autocorrelated.
+   * Everything is on an arbitrary 0-100 scale with no norms.
+
+   No data leave the browser. There is no storage and no network request.
+   ========================================================================= */
+
+(function () {
+  "use strict";
+
+  /* =======================================================================
+     1. Constants and people
+     ===================================================================== */
+
+  var DAYS = 14;
+  var PER_DAY = 4;
+  var TOTAL = DAYS * PER_DAY;
+
+  /* Four fictional people, chosen so that the two comparisons the brief asks
+     for are both available:
+       Ada  vs Bo   — same trait level, very different within-person spread
+       Bo   vs Cleo — different trait level, and they can share a moment  */
+  var PEOPLE = [
+    {
+      id: "ada",
+      name: "Ada",
+      trait: 62,
+      wobble: 4,
+      note: "Steady. What you see on one day is close to what you get on any day."
+    },
+    {
+      id: "bo",
+      name: "Bo",
+      trait: 62,
+      wobble: 17,
+      note: "Same typical level as Ada, and a completely different experience of it."
+    },
+    {
+      id: "cleo",
+      name: "Cleo",
+      trait: 40,
+      wobble: 11,
+      note: "A lower typical level, with a moderate amount of day-to-day movement."
+    },
+    {
+      id: "dev",
+      name: "Dev",
+      trait: 74,
+      wobble: 9,
+      note: "A higher typical level, moderately variable."
+    }
+  ];
+
+  /* Dated events. `size` is the immediate effect; it decays by `decay` at
+     each subsequent observation. */
+  var EVENTS = [
+    { personId: "bo", day: 4, size: -22, label: "a difficult conversation" },
+    { personId: "bo", day: 9, size: 20, label: "an unexpected success" },
+    { personId: "cleo", day: 6, size: 18, label: "good news" },
+    { personId: "dev", day: 11, size: -16, label: "a setback" }
+  ];
+  var EVENT_DECAY = 0.55;
+
+  /* =======================================================================
+     2. Seeded random numbers
+     ===================================================================== */
+
+  function mulberry32(seed) {
+    var a = seed >>> 0;
+    return function () {
+      a += 0x6d2b79f5;
+      var t = a;
+      t = Math.imul(t ^ (t >>> 15), t | 1);
+      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  /** Box–Muller, so the wobble is normal rather than uniform. */
+  function normalPair(random) {
+    var u = Math.max(random(), 1e-9);
+    var v = random();
+    var r = Math.sqrt(-2 * Math.log(u));
+    return [r * Math.cos(2 * Math.PI * v), r * Math.sin(2 * Math.PI * v)];
+  }
+
+  function makeNormals(random, count) {
+    var values = [];
+    while (values.length < count) {
+      var pair = normalPair(random);
+      values.push(pair[0]);
+      values.push(pair[1]);
+    }
+    return values.slice(0, count);
+  }
+
+  /* =======================================================================
+     3. Generating the dataset
+     ===================================================================== */
+
+  function clamp(value, low, high) {
+    return Math.max(low, Math.min(high, value));
+  }
+
+  /**
+   * Build the full series for everyone.
+   * @param {object} settings  { seed, wobbleScale, errorSd, eventsOn }
+   * @returns {object} { series: {id: [values]}, truth: {id: {...}} }
+   */
+  function generate(settings) {
+    var random = mulberry32(settings.seed);
+    var series = {};
+    var truth = {};
+
+    PEOPLE.forEach(function (person) {
+      var wobbleSd = person.wobble * settings.wobbleScale;
+      var wobbles = makeNormals(random, TOTAL);
+      var errors = makeNormals(random, TOTAL);
+      var values = [];
+      var eventCarry = 0;
+
+      for (var i = 0; i < TOTAL; i += 1) {
+        var day = Math.floor(i / PER_DAY) + 1;
+        var slot = i % PER_DAY;
+
+        if (settings.eventsOn && slot === 0) {
+          EVENTS.forEach(function (event) {
+            if (event.personId === person.id && event.day === day) {
+              eventCarry += event.size;
+            }
+          });
+        }
+
+        var value =
+          person.trait +
+          eventCarry +
+          wobbles[i] * wobbleSd +
+          errors[i] * settings.errorSd;
+
+        values.push(clamp(value, 0, 100));
+        eventCarry *= EVENT_DECAY;
+      }
+
+      series[person.id] = values;
+      truth[person.id] = {
+        trait: person.trait,
+        wobbleSd: wobbleSd,
+        mean: mean(values),
+        sd: sd(values)
+      };
+    });
+
+    return { series: series, truth: truth };
+  }
+
+  function mean(values) {
+    return values.reduce(function (a, b) {
+      return a + b;
+    }, 0) / values.length;
+  }
+
+  function sd(values) {
+    var m = mean(values);
+    return Math.sqrt(
+      values.reduce(function (total, value) {
+        return total + (value - m) * (value - m);
+      }, 0) / values.length
+    );
+  }
+
+  /** Between-person SD of the person means. */
+  function betweenSd(truth) {
+    return sd(PEOPLE.map(function (person) {
+      return truth[person.id].mean;
+    }));
+  }
+
+  /** Mean of the within-person SDs. */
+  function withinSd(truth) {
+    return mean(PEOPLE.map(function (person) {
+      return truth[person.id].sd;
+    }));
+  }
+
+  /**
+   * How much of the total variance sits between people rather than within
+   * them — the intraclass correlation, which is what a reliability figure
+   * from a single occasion is really estimating.
+   */
+  function icc(truth) {
+    var between = betweenSd(truth);
+    var within = withinSd(truth);
+    var b2 = between * between;
+    var w2 = within * within;
+    return b2 + w2 === 0 ? 0 : b2 / (b2 + w2);
+  }
+
+  /* =======================================================================
+     4. Helpers
+     ===================================================================== */
+
+  function fmt(value, places) {
+    return value === null || value === undefined || isNaN(value)
+      ? "—"
+      : value.toFixed(places === undefined ? 1 : places);
+  }
+
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) {
+      node.className = className;
+    }
+    if (text !== undefined) {
+      node.textContent = text;
+    }
+    return node;
+  }
+
+  function clear(node) {
+    while (node.firstChild) {
+      node.removeChild(node.firstChild);
+    }
+  }
+
+  function personById(id) {
+    return PEOPLE.filter(function (person) {
+      return person.id === id;
+    })[0];
+  }
+
+  /* =======================================================================
+     5. Wiring
+     ===================================================================== */
+
+  var shell = InteractiveShell.attach("#tracker");
+  if (!shell) {
+    return;
+  }
+
+  var page = document;
+  var $ = function (selector, scope) {
+    return (scope || page).querySelector(selector);
+  };
+
+  var snapshotList = $("[data-snapshot]");
+  var snapshotForm = $("#snapshot-form");
+  var snapshotError = $("[data-snapshot-error]");
+  var snapshotFeedback = $("[data-snapshot-feedback]");
+  var snapshotSection = $("#snapshot");
+
+  var trackerSection = $("#tracker-section");
+  var seriesChart = $("[data-series-chart]");
+  var seriesTable = $("[data-series-table]");
+  var readout = $("[data-readout]");
+  var stabilityChart = $("[data-stability-chart]");
+  var stabilityNote = $("[data-stability-note]");
+  var seedInput = $("#seed-input");
+  var newSeedButton = $('[data-action="new-seed"]');
+  var eventsToggle = $("#events-toggle");
+  var personToggles = $("[data-person-toggles]");
+
+  var challengeAForm = $("#challenge-a-form");
+  var challengeAFeedback = $("[data-challenge-a-feedback]");
+  var challengeBForm = $("#challenge-b-form");
+  var challengeBFeedback = $("[data-challenge-b-feedback]");
+
+  /* The default seed is not arbitrary. Ada and Bo are designed to share a
+     typical level, but with a within-person SD of 17 the mean of 56
+     observations still has a standard error of about 2.3 — so on many seeds
+     their OBSERVED means differ by several points and the comparison the tool
+     is built around reads as a difference rather than a match. This seed
+     produces observed means of 62.1 and 62.0 with SDs of 4.5 and 18.6, which
+     is the intended contrast. Pressing "Draw a new fortnight" shows the
+     sampling variability honestly, and the teaching notes say so. */
+  var INITIAL = {
+    seed: 20260813,
+    wobbleScale: 1,
+    errorSd: 3,
+    eventsOn: true,
+    visible: { ada: true, bo: true, cleo: true, dev: true },
+    snapshotIndex: 21,
+    snapshotDone: false
+  };
+
+  var state = null;
+  var data = null;
+  var rangeSyncs = [];
+
+  function bindRange(input, options) {
+    var settings = options || {};
+    var output = page.querySelector('output[for="' + input.id + '"]');
+    function sync() {
+      var value = Number(input.value);
+      if (output) {
+        output.textContent = settings.format ? settings.format(value) : String(value);
+      }
+      input.setAttribute(
+        "aria-valuetext", (settings.describe || settings.format || String)(value));
+      if (settings.onInput) {
+        settings.onInput(value);
+      }
+    }
+    input.addEventListener("input", sync);
+    rangeSyncs.push(sync);
+    return sync;
+  }
+
+  function syncRanges() {
+    rangeSyncs.forEach(function (sync) {
+      sync();
+    });
+  }
+
+  function regenerate() {
+    data = generate({
+      seed: state.seed,
+      wobbleScale: state.wobbleScale,
+      errorSd: state.errorSd,
+      eventsOn: state.eventsOn
+    });
+  }
+
+  /* --- The snapshot round -------------------------------------------------
+     One moment, four people, ranked. This is the round that has to come
+     first: seeing the full series makes the question trivial. */
+
+  function renderSnapshot() {
+    clear(snapshotList);
+    var index = state.snapshotIndex;
+    var day = Math.floor(index / PER_DAY) + 1;
+
+    $("[data-snapshot-when]").textContent =
+      "Day " + day + ", observation " + ((index % PER_DAY) + 1) + " of the day.";
+
+    PEOPLE.forEach(function (person) {
+      var value = data.series[person.id][index];
+      var row = make("div", "snapshot__row");
+
+      var name = make("span", "snapshot__name", person.name);
+      var score = make("span", "snapshot__value", fmt(value, 0));
+      row.appendChild(name);
+      row.appendChild(score);
+
+      var id = "snap-" + person.id;
+      var label = make("label", "snapshot__label");
+      label.setAttribute("for", id);
+      label.textContent = "Typical level rank";
+
+      var select = document.createElement("select");
+      select.id = id;
+      select.setAttribute("data-person", person.id);
+      var blank = make("option", null, "—");
+      blank.value = "";
+      select.appendChild(blank);
+      PEOPLE.forEach(function (_, i) {
+        var option = make("option", null, String(i + 1));
+        option.value = String(i + 1);
+        select.appendChild(option);
+      });
+
+      row.appendChild(label);
+      row.appendChild(select);
+      snapshotList.appendChild(row);
+    });
+  }
+
+  snapshotForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    var selects = snapshotForm.querySelectorAll("select[data-person]");
+    var ranking = {};
+    var used = {};
+    var complete = true;
+    var duplicate = false;
+
+    Array.prototype.forEach.call(selects, function (select) {
+      if (!select.value) {
+        complete = false;
+        return;
+      }
+      if (used[select.value]) {
+        duplicate = true;
+      }
+      used[select.value] = true;
+      ranking[select.getAttribute("data-person")] = Number(select.value);
+    });
+
+    if (!complete) {
+      snapshotError.textContent =
+        "Give every person a rank from 1 to 4 before revealing.";
+      snapshotError.hidden = false;
+      return;
+    }
+    if (duplicate) {
+      snapshotError.textContent =
+        "Each rank from 1 to 4 can only be used once.";
+      snapshotError.hidden = false;
+      return;
+    }
+    snapshotError.hidden = true;
+
+    // The truth: rank by person mean across the whole fortnight.
+    var byMean = PEOPLE.slice().sort(function (a, b) {
+      return data.truth[b.id].mean - data.truth[a.id].mean;
+    });
+    var actual = {};
+    byMean.forEach(function (person, index) {
+      actual[person.id] = index + 1;
+    });
+
+    var right = PEOPLE.filter(function (person) {
+      return ranking[person.id] === actual[person.id];
+    }).length;
+
+    state.snapshotDone = true;
+    showSnapshotFeedback(ranking, actual, right);
+    lockForm(snapshotForm);
+    trackerSection.hidden = false;
+    renderAll();
+    $("#tracker-heading").focus();
+
+    shell.announce(
+      "Revealed. " + right + " of 4 correct from a single observation.",
+      { immediate: true }
+    );
+  });
+
+  function showSnapshotFeedback(ranking, actual, right) {
+    clear(snapshotFeedback);
+    snapshotFeedback.hidden = false;
+    snapshotFeedback.setAttribute(
+      "data-tone", right === 4 ? "good" : right >= 2 ? "caution" : "warn");
+
+    var paragraph = make("p");
+    paragraph.appendChild(
+      make("strong", "feedback__verdict",
+        right + " of 4 in the right place."));
+    snapshotFeedback.appendChild(paragraph);
+
+    var table = make("table", "data-table");
+    var head = make("thead");
+    var headRow = make("tr");
+    ["Person", "That moment", "You said", "Their actual mean", "True rank"]
+      .forEach(function (heading) {
+        var th = make("th", null, heading);
+        th.setAttribute("scope", "col");
+        headRow.appendChild(th);
+      });
+    head.appendChild(headRow);
+    table.appendChild(head);
+
+    var body = make("tbody");
+    PEOPLE.slice()
+      .sort(function (a, b) {
+        return actual[a.id] - actual[b.id];
+      })
+      .forEach(function (person) {
+        var row = make("tr");
+        var th = make("th", null, person.name);
+        th.setAttribute("scope", "row");
+        row.appendChild(th);
+        row.appendChild(
+          make("td", null, fmt(data.series[person.id][state.snapshotIndex], 0)));
+        row.appendChild(make("td", null, String(ranking[person.id])));
+        row.appendChild(make("td", null, fmt(data.truth[person.id].mean)));
+        row.appendChild(make("td", null, String(actual[person.id])));
+        body.appendChild(row);
+      });
+    table.appendChild(body);
+
+    var wrap = make("div", "table-scroll");
+    wrap.appendChild(table);
+    snapshotFeedback.appendChild(wrap);
+
+    snapshotFeedback.appendChild(
+      make("p", null,
+        "One observation is a poor estimate of anybody's typical level, and " +
+        "it is worst for the people who vary most. Two of these four have the " +
+        "same underlying level; from a single moment there is no way to know " +
+        "which two, or who you have caught on an unrepresentative day.")
+    );
+  }
+
+  /* --- Controls ------------------------------------------------------------ */
+
+  bindRange($("#wobble-range"), {
+    format: function (value) {
+      return (value / 100).toFixed(2) + "×";
+    },
+    describe: function (value) {
+      return value === 0
+        ? "no within-person variability"
+        : (value / 100).toFixed(2) + " times each person's own variability";
+    },
+    onInput: function (value) {
+      state.wobbleScale = value / 100;
+      regenerate();
+      renderAll();
+    }
+  });
+
+  bindRange($("#error-range"), {
+    format: function (value) {
+      return String(value);
+    },
+    describe: function (value) {
+      return value === 0
+        ? "no measurement error"
+        : "measurement error standard deviation " + value + " points";
+    },
+    onInput: function (value) {
+      state.errorSd = value;
+      regenerate();
+      renderAll();
+    }
+  });
+
+  eventsToggle.addEventListener("change", function () {
+    state.eventsOn = eventsToggle.checked;
+    regenerate();
+    renderAll();
+    shell.announce(
+      state.eventsOn ? "Events switched on." : "Events switched off.",
+      { immediate: true }
+    );
+  });
+
+  seedInput.addEventListener("change", function () {
+    var value = parseInt(seedInput.value, 10);
+    if (isNaN(value)) {
+      seedInput.value = String(state.seed);
+      return;
+    }
+    state.seed = value;
+    regenerate();
+    renderAll();
+    shell.announce("Seed " + value + ". New dataset generated.", {
+      immediate: true
+    });
+  });
+
+  newSeedButton.addEventListener("click", function () {
+    // Derived from the current seed rather than the clock, so the sequence a
+    // class sees is reproducible from the starting seed alone.
+    state.seed = (state.seed * 1103515245 + 12345) % 2147483647;
+    if (state.seed < 0) {
+      state.seed += 2147483647;
+    }
+    seedInput.value = String(state.seed);
+    regenerate();
+    renderAll();
+    shell.announce("New dataset, seed " + state.seed + ".", { immediate: true });
+  });
+
+  function buildPersonToggles() {
+    clear(personToggles);
+    PEOPLE.forEach(function (person) {
+      var label = make("label", "control--choice");
+      var input = document.createElement("input");
+      input.type = "checkbox";
+      input.checked = state.visible[person.id];
+      input.addEventListener("change", function () {
+        state.visible[person.id] = input.checked;
+        renderAll();
+      });
+      label.appendChild(input);
+      label.appendChild(make("span", null, person.name));
+      personToggles.appendChild(label);
+    });
+  }
+
+  function visiblePeople() {
+    return PEOPLE.filter(function (person) {
+      return state.visible[person.id];
+    });
+  }
+
+  /* --- Rendering ------------------------------------------------------------ */
+
+  function renderAll() {
+    if (trackerSection.hidden) {
+      return;
+    }
+    renderSeries();
+    renderReadout();
+    renderStability();
+    renderChallengeStatus();
+  }
+
+  var SERIES_COLOURS = ["one", "two", "three", "four"];
+
+  function renderSeries() {
+    var NS = "http://www.w3.org/2000/svg";
+    var W = 620;
+    var H = 260;
+    var PAD_L = 34;
+    var PAD_R = 10;
+    var PAD_T = 10;
+    var PAD_B = 26;
+
+    clear(seriesChart);
+    seriesChart.setAttribute("viewBox", "0 0 " + W + " " + H);
+
+    var plotW = W - PAD_L - PAD_R;
+    var plotH = H - PAD_T - PAD_B;
+    var x = function (i) {
+      return PAD_L + (i / (TOTAL - 1)) * plotW;
+    };
+    var y = function (value) {
+      return PAD_T + (1 - value / 100) * plotH;
+    };
+
+    // Gridlines and axis labels
+    [0, 25, 50, 75, 100].forEach(function (value) {
+      var line = document.createElementNS(NS, "line");
+      line.setAttribute("x1", String(PAD_L));
+      line.setAttribute("y1", String(y(value)));
+      line.setAttribute("x2", String(W - PAD_R));
+      line.setAttribute("y2", String(y(value)));
+      line.setAttribute("class", "chart__grid");
+      seriesChart.appendChild(line);
+
+      var label = document.createElementNS(NS, "text");
+      label.setAttribute("x", String(PAD_L - 6));
+      label.setAttribute("y", String(y(value) + 4));
+      label.setAttribute("text-anchor", "end");
+      label.setAttribute("class", "chart__axis");
+      label.textContent = String(value);
+      seriesChart.appendChild(label);
+    });
+
+    // Day markers. The first and last are anchored to the plot edges rather
+    // than centred on them, or their outer characters fall outside the
+    // viewBox and are clipped.
+    for (var day = 0; day <= DAYS; day += 7) {
+      var index = Math.min(day * PER_DAY, TOTAL - 1);
+      var marker = document.createElementNS(NS, "text");
+      marker.setAttribute("x", String(x(index)));
+      marker.setAttribute("y", String(H - 8));
+      marker.setAttribute(
+        "text-anchor", day === 0 ? "start" : day >= DAYS ? "end" : "middle");
+      marker.setAttribute("class", "chart__axis");
+      marker.textContent = "day " + (day === 0 ? 1 : day);
+      seriesChart.appendChild(marker);
+    }
+
+    visiblePeople().forEach(function (person) {
+      var order = PEOPLE.indexOf(person);
+      var values = data.series[person.id];
+
+      // The person's mean, as a horizontal reference line.
+      var meanLine = document.createElementNS(NS, "line");
+      meanLine.setAttribute("x1", String(PAD_L));
+      meanLine.setAttribute("y1", String(y(data.truth[person.id].mean)));
+      meanLine.setAttribute("x2", String(W - PAD_R));
+      meanLine.setAttribute("y2", String(y(data.truth[person.id].mean)));
+      meanLine.setAttribute("class", "series__mean series__mean--" + SERIES_COLOURS[order]);
+      seriesChart.appendChild(meanLine);
+
+      var d = values.map(function (value, i) {
+        return (i === 0 ? "M " : "L ") + x(i).toFixed(1) + " " + y(value).toFixed(1);
+      }).join(" ");
+
+      var path = document.createElementNS(NS, "path");
+      path.setAttribute("d", d);
+      path.setAttribute("class", "series__line series__line--" + SERIES_COLOURS[order]);
+      seriesChart.appendChild(path);
+
+      // Name printed at the right-hand end, so a line is identified without
+      // reference to its colour.
+      var label = document.createElementNS(NS, "text");
+      label.setAttribute("x", String(W - PAD_R - 2));
+      label.setAttribute("y", String(y(values[TOTAL - 1]) - 5));
+      label.setAttribute("text-anchor", "end");
+      label.setAttribute("class", "chart__label");
+      label.textContent = person.name;
+      seriesChart.appendChild(label);
+    });
+
+    // The snapshot moment, marked.
+    var snapLine = document.createElementNS(NS, "line");
+    snapLine.setAttribute("x1", String(x(state.snapshotIndex)));
+    snapLine.setAttribute("y1", String(PAD_T));
+    snapLine.setAttribute("x2", String(x(state.snapshotIndex)));
+    snapLine.setAttribute("y2", String(PAD_T + plotH));
+    snapLine.setAttribute("class", "series__snapshot");
+    seriesChart.appendChild(snapLine);
+
+    renderSeriesTable();
+  }
+
+  function renderSeriesTable() {
+    clear(seriesTable);
+    visiblePeople().forEach(function (person) {
+      var truth = data.truth[person.id];
+      var values = data.series[person.id];
+      var row = make("tr");
+      var th = make("th", null, person.name);
+      th.setAttribute("scope", "row");
+      row.appendChild(th);
+      row.appendChild(make("td", null, fmt(truth.mean)));
+      row.appendChild(make("td", null, fmt(truth.sd)));
+      row.appendChild(make("td", null, fmt(Math.min.apply(null, values), 0)));
+      row.appendChild(make("td", null, fmt(Math.max.apply(null, values), 0)));
+      row.appendChild(
+        make("td", null, fmt(values[state.snapshotIndex], 0)));
+      seriesTable.appendChild(row);
+    });
+  }
+
+  function renderReadout() {
+    clear(readout);
+    var visible = visiblePeople();
+    var truth = {};
+    visible.forEach(function (person) {
+      truth[person.id] = data.truth[person.id];
+    });
+
+    var between = visible.length > 1
+      ? sd(visible.map(function (p) {
+          return data.truth[p.id].mean;
+        }))
+      : 0;
+    var within = mean(visible.map(function (p) {
+      return data.truth[p.id].sd;
+    }));
+    var b2 = between * between;
+    var w2 = within * within;
+    var share = b2 + w2 === 0 ? 0 : b2 / (b2 + w2);
+
+    [
+      ["Between-person SD", fmt(between)],
+      ["Mean within-person SD", fmt(within)],
+      ["Share of variance between people", fmt(share, 2)]
+    ].forEach(function (pair) {
+      var cell = make("div");
+      cell.appendChild(make("dt", null, pair[0]));
+      cell.appendChild(make("dd", null, pair[1]));
+      readout.appendChild(cell);
+    });
+  }
+
+  /* --- Stability curve -----------------------------------------------------
+     How close a running mean gets to the person's true mean as observations
+     accumulate. This is the answer to "how many observations do I need?" and
+     it depends on within-person SD, not on the trait level. */
+
+  function renderStability() {
+    var NS = "http://www.w3.org/2000/svg";
+    var W = 620;
+    var H = 180;
+    var PAD_L = 34;
+    var PAD_R = 10;
+    var PAD_T = 10;
+    var PAD_B = 26;
+
+    clear(stabilityChart);
+    stabilityChart.setAttribute("viewBox", "0 0 " + W + " " + H);
+
+    var plotW = W - PAD_L - PAD_R;
+    var plotH = H - PAD_T - PAD_B;
+    var maxError = 25;
+    var x = function (n) {
+      return PAD_L + ((n - 1) / (TOTAL - 1)) * plotW;
+    };
+    var y = function (value) {
+      return PAD_T + (1 - Math.min(value, maxError) / maxError) * plotH;
+    };
+
+    [0, 5, 10, 15, 20, 25].forEach(function (value) {
+      var line = document.createElementNS(NS, "line");
+      line.setAttribute("x1", String(PAD_L));
+      line.setAttribute("y1", String(y(value)));
+      line.setAttribute("x2", String(W - PAD_R));
+      line.setAttribute("y2", String(y(value)));
+      line.setAttribute("class", "chart__grid");
+      stabilityChart.appendChild(line);
+
+      var label = document.createElementNS(NS, "text");
+      label.setAttribute("x", String(PAD_L - 6));
+      label.setAttribute("y", String(y(value) + 4));
+      label.setAttribute("text-anchor", "end");
+      label.setAttribute("class", "chart__axis");
+      label.textContent = String(value);
+      stabilityChart.appendChild(label);
+    });
+
+    var axisLabel = document.createElementNS(NS, "text");
+    axisLabel.setAttribute("x", String(PAD_L + plotW / 2));
+    axisLabel.setAttribute("y", String(H - 6));
+    axisLabel.setAttribute("text-anchor", "middle");
+    axisLabel.setAttribute("class", "chart__axis");
+    axisLabel.textContent = "observations averaged →";
+    stabilityChart.appendChild(axisLabel);
+
+    var summaries = [];
+
+    visiblePeople().forEach(function (person) {
+      var order = PEOPLE.indexOf(person);
+      var values = data.series[person.id];
+      var finalMean = data.truth[person.id].mean;
+      var running = 0;
+      var points = [];
+      var reached = null;
+
+      for (var n = 1; n <= TOTAL; n += 1) {
+        running += values[n - 1];
+        var error = Math.abs(running / n - finalMean);
+        points.push([n, error]);
+        if (reached === null && error <= 2) {
+          // First point from which it stays within 2 points to the end.
+          var staysClose = true;
+          var check = running;
+          for (var m = n + 1; m <= TOTAL; m += 1) {
+            check += values[m - 1];
+            if (Math.abs(check / m - finalMean) > 2) {
+              staysClose = false;
+              break;
+            }
+          }
+          if (staysClose) {
+            reached = n;
+          }
+        }
+      }
+
+      var d = points.map(function (point, i) {
+        return (i === 0 ? "M " : "L ") + x(point[0]).toFixed(1) + " " +
+          y(point[1]).toFixed(1);
+      }).join(" ");
+
+      var path = document.createElementNS(NS, "path");
+      path.setAttribute("d", d);
+      path.setAttribute("class", "series__line series__line--" + SERIES_COLOURS[order]);
+      stabilityChart.appendChild(path);
+
+      var label = document.createElementNS(NS, "text");
+      label.setAttribute("x", String(x(points[TOTAL - 1][0]) - 2));
+      label.setAttribute("y", String(y(points[TOTAL - 1][1]) - 6));
+      label.setAttribute("text-anchor", "end");
+      label.setAttribute("class", "chart__label");
+      label.textContent = person.name;
+      stabilityChart.appendChild(label);
+
+      summaries.push(
+        person.name + " " +
+        (reached === null ? "never settles within 2 points"
+          : "settles after " + reached + " observation" + (reached === 1 ? "" : "s")));
+    });
+
+    stabilityNote.textContent = summaries.length
+      ? "Distance of the running average from each person's own fortnight " +
+        "mean. " + summaries.join("; ") + "."
+      : "Select at least one person.";
+  }
+
+  /* --- Challenges ----------------------------------------------------------- */
+
+  function renderChallengeStatus() {
+    var adaMean = data.truth.ada.mean;
+    var boMean = data.truth.bo.mean;
+    var status = $("[data-challenge-a-status]");
+    status.textContent =
+      "Ada's mean is " + fmt(adaMean) + " and Bo's is " + fmt(boMean) +
+      " — a difference of " + fmt(Math.abs(adaMean - boMean)) + " points. " +
+      "Their within-person SDs are " + fmt(data.truth.ada.sd) + " and " +
+      fmt(data.truth.bo.sd) + ".";
+  }
+
+  challengeAForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answer = $('input[name="challenge-a"]:checked', challengeAForm);
+    if (!answer) {
+      showFeedback(challengeAFeedback, "caution", "Choose an answer first.", "");
+      return;
+    }
+    var correct = answer.value === "different";
+    showFeedback(
+      challengeAFeedback,
+      correct ? "good" : "caution",
+      correct ? "Yes." : "Not quite.",
+      "Ada and Bo have almost the same mean (" + fmt(data.truth.ada.mean) +
+        " and " + fmt(data.truth.bo.mean) + ") and quite different " +
+        "within-person spreads (" + fmt(data.truth.ada.sd) + " and " +
+        fmt(data.truth.bo.sd) + "). A questionnaire asking 'in general, how " +
+        "do you feel?' would give them the same score and describe them as " +
+        "the same person. They are not living the same fortnight."
+    );
+    shell.announce("Challenge 1 answered.", { immediate: true });
+  });
+
+  challengeBForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answer = $('input[name="challenge-b"]:checked', challengeBForm);
+    if (!answer) {
+      showFeedback(challengeBFeedback, "caution", "Choose an answer first.", "");
+      return;
+    }
+    var correct = answer.value === "cannot";
+    showFeedback(
+      challengeBFeedback,
+      correct ? "good" : "caution",
+      correct ? "Yes." : "Not quite.",
+      "From one observation you cannot separate them. A momentary score is a " +
+        "person's typical level, plus wherever they happen to be today, plus " +
+        "measurement error - and one reading gives you the sum of the three " +
+        "with no way to divide it. \"How are you today?\" and \"what are you " +
+        "like?\" are different questions."
+    );
+    shell.announce("Challenge 2 answered.", { immediate: true });
+  });
+
+  function showFeedback(container, tone, verdict, text) {
+    clear(container);
+    container.setAttribute("data-tone", tone);
+    var paragraph = make("p");
+    paragraph.appendChild(make("strong", "feedback__verdict", verdict));
+    if (text) {
+      paragraph.appendChild(document.createTextNode(" " + text));
+    }
+    container.appendChild(paragraph);
+    container.hidden = false;
+  }
+
+  function lockForm(form) {
+    Array.prototype.forEach.call(
+      form.querySelectorAll("input, button, select"),
+      function (control) {
+        if (control.getAttribute("data-action") !== "reset-early") {
+          control.disabled = true;
+        }
+      }
+    );
+  }
+
+  function unlockForm(form) {
+    Array.prototype.forEach.call(
+      form.querySelectorAll("input, button, select"),
+      function (control) {
+        control.disabled = false;
+      }
+    );
+    form.reset();
+  }
+
+  var earlyReset = $('[data-action="reset-early"]');
+  if (earlyReset) {
+    earlyReset.addEventListener("click", function () {
+      shell.reset();
+    });
+  }
+
+  /* --- Reset ---------------------------------------------------------------- */
+
+  shell.onReset(function () {
+    state = JSON.parse(JSON.stringify(INITIAL));
+
+    unlockForm(snapshotForm);
+    snapshotFeedback.hidden = true;
+    snapshotError.hidden = true;
+    trackerSection.hidden = true;
+
+    challengeAForm.reset();
+    challengeAFeedback.hidden = true;
+    challengeBForm.reset();
+    challengeBFeedback.hidden = true;
+
+    seedInput.value = String(state.seed);
+    eventsToggle.checked = state.eventsOn;
+    $("#wobble-range").value = String(Math.round(state.wobbleScale * 100));
+    $("#error-range").value = String(state.errorSd);
+
+    regenerate();
+    buildPersonToggles();
+    renderSnapshot();
+    syncRanges();
+  });
+
+  /* --- Start-up -------------------------------------------------------------- */
+
+  shell.reset({ silent: true });
+  shell.announce(
+    "Ready. Rank the four people by their typical level, from one moment.",
+    { immediate: true }
+  );
+})();
+
+</script>
+</div>

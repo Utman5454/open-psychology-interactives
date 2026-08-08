@@ -1,0 +1,2655 @@
+<!-- Factor Rotation Playground
+     From Open Psychology Interactives - https://github.com/utman5454/open-psychology-interactives
+     Self-contained: no stylesheets, scripts, fonts, images or network requests.
+     Styles are scoped to .opi-activity and do not affect the page around them.
+     Nothing is saved, sent or tracked. MIT licensed; please keep this notice.
+     Paste anywhere that accepts HTML, or save as a .html file and open it. -->
+<div class="opi-activity">
+<style>
+/* Defensive baseline. See scripts/build-standalone.py for why this
+   is `revert` rather than an enumerated reset, and how the specificity ladder
+   keeps the activity's own styling on top of it. */
+.opi-activity *:not(svg *) {
+  all: revert;
+}
+.opi-activity, .opi-activity *, .opi-activity *::before, .opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  text-transform: none;
+  text-indent: 0;
+  font-style: normal;
+  font-variant: normal;
+  letter-spacing: normal;
+  word-spacing: normal;
+  white-space: normal;
+  visibility: visible;
+  float: none;
+  max-width: none;
+}
+.opi-activity svg { max-width: 100%; }
+.opi-activity img { max-width: 100%; height: auto; }
+.opi-activity [hidden] { display: none !important; }
+
+/* assets/css/main.css */
+.opi-activity.opi-activity {
+  --colour-page: #ffffff;
+  --colour-surface: #f5f7fa;
+  --colour-surface-raised: #ffffff;
+  --colour-border: #d3d9e2;
+  --colour-border-strong: #aeb7c4;
+  --colour-text: #131820;
+  --colour-text-muted: #4c566a;
+  --colour-accent: #1a4fa0;
+  --colour-accent-hover: #123a7a;
+  --colour-accent-soft: #e8eefb;
+  --colour-on-accent: #ffffff;
+  --colour-focus: #b45309;
+  --colour-cognitive: #8a4b00;
+  --colour-research-methods: #1a4fa0;
+  --colour-neuropsychology: #145c53;
+  --colour-social-critical-psychology: #9e2f45;
+  --colour-personality-individual-differences: #7a2e6d;
+  --colour-status-bg: #f1ede3;
+  --colour-status-text: #5c4a1f;
+  --colour-status-border: #d9cdb0;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  --text-xs: 13px;
+  --text-sm: 15px;
+  --text-base: 17px;
+  --text-lg: 19px;
+  --text-xl: 23px;
+  --text-2xl: 28px;
+  --text-3xl: 36px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgb(19 24 32 / 0.06);
+  --shadow-md: 0 2px 8px rgb(19 24 32 / 0.08);
+  --measure: 68ch;
+  --container: 1152px;
+}
+@media (prefers-color-scheme: dark) {
+.opi-activity.opi-activity {
+  --colour-page: #0f141b;
+  --colour-surface: #161d27;
+  --colour-surface-raised: #1a2230;
+  --colour-border: #2c3644;
+  --colour-border-strong: #44506180;
+  --colour-text: #e9edf3;
+  --colour-text-muted: #a8b2c1;
+  --colour-accent: #8fb6ff;
+  --colour-accent-hover: #b3cdff;
+  --colour-accent-soft: #1b2740;
+  --colour-on-accent: #0f141b;
+  --colour-focus: #f0b429;
+  --colour-cognitive: #e2ab5f;
+  --colour-research-methods: #8fb6ff;
+  --colour-neuropsychology: #6fc3b4;
+  --colour-social-critical-psychology: #f19aa8;
+  --colour-personality-individual-differences: #db9ccd;
+  --colour-status-bg: #241f14;
+  --colour-status-text: #e2cf9f;
+  --colour-status-border: #4a4028;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 2px 10px rgb(0 0 0 / 0.45);
+}
+}
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity.opi-activity {
+  -webkit-text-size-adjust: 100%;
+}
+.opi-activity.opi-activity {
+  background-color: var(--colour-page);
+  color: var(--colour-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.65;
+}
+.opi-activity.opi-activity h1,
+.opi-activity.opi-activity h2,
+.opi-activity.opi-activity h3,
+.opi-activity.opi-activity h4 {
+  margin: 0 0 var(--space-3);
+  line-height: 1.25;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.opi-activity.opi-activity h1 {
+  font-size: var(--text-3xl);
+}
+.opi-activity.opi-activity h2 {
+  font-size: var(--text-2xl);
+}
+.opi-activity.opi-activity h3 {
+  font-size: var(--text-xl);
+}
+.opi-activity.opi-activity h4 {
+  font-size: var(--text-lg);
+}
+.opi-activity.opi-activity p,
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol,
+.opi-activity.opi-activity dl {
+  margin: 0 0 var(--space-4);
+}
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol {
+  padding-left: 1.35em;
+}
+.opi-activity.opi-activity li + li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity a {
+  color: var(--colour-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: max(1px, 0.06em);
+}
+.opi-activity.opi-activity a:hover {
+  color: var(--colour-accent-hover);
+  text-decoration-thickness: max(2px, 0.11em);
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid var(--colour-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+@supports not selector(:focus-visible) {
+.opi-activity.opi-activity :focus {
+  outline: 3px solid var(--colour-focus);
+    outline-offset: 2px;
+}
+}
+.opi-activity.opi-activity code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.35em;
+}
+.opi-activity.opi-activity hr {
+  border: 0;
+  border-top: 1px solid var(--colour-border);
+  margin: var(--space-6) 0;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+}
+.opi-activity.opi-activity .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.opi-activity.opi-activity .container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+@media (min-width: 40em) {
+.opi-activity.opi-activity .container {
+  padding-inline: var(--space-5);
+}
+}
+.opi-activity.opi-activity .prose {
+  max-width: var(--measure);
+}
+.opi-activity.opi-activity .text-muted {
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .section {
+  padding-block: var(--space-7);
+}
+.opi-activity.opi-activity .section--tinted {
+  background-color: var(--colour-surface);
+  border-block: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .section__header {
+  max-width: var(--measure);
+  margin-bottom: var(--space-5);
+}
+.opi-activity.opi-activity .section__header > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-7) var(--space-6);
+  border-bottom: 1px solid var(--colour-border);
+  
+  background-image: linear-gradient(
+    180deg,
+    var(--colour-accent-soft) 0%,
+    var(--colour-page) 100%
+  );
+}
+.opi-activity.opi-activity .hero__eyebrow {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .hero h1 {
+  max-width: 20ch;
+  margin-bottom: var(--space-4);
+}
+.opi-activity.opi-activity .hero__lead {
+  max-width: var(--measure);
+  font-size: var(--text-lg);
+  color: var(--colour-text-muted);
+}
+@media (min-width: 48em) {
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-8) var(--space-7);
+}
+.opi-activity.opi-activity .hero h1 {
+  font-size: 44px;
+}
+}
+.opi-activity.opi-activity .button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  
+  min-height: 44px;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .button--primary {
+  background-color: var(--colour-accent);
+  border-color: var(--colour-accent);
+  
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--primary:hover {
+  background-color: var(--colour-accent-hover);
+  border-color: var(--colour-accent-hover);
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--secondary {
+  background-color: transparent;
+  border-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .button--secondary:hover {
+  background-color: var(--colour-surface);
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+}
+.opi-activity.opi-activity .card--cognitive {
+  --card-accent: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .card--research-methods {
+  --card-accent: var(--colour-research-methods);
+}
+.opi-activity.opi-activity .card--neuropsychology {
+  --card-accent: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .card--social-critical-psychology {
+  --card-accent: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .card--personality-individual-differences {
+  --card-accent: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 650;
+  line-height: 1.4;
+  padding: 3.2px var(--space-3);
+  border-radius: 999px;
+  border: 1px solid var(--colour-status-border);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+}
+.opi-activity.opi-activity .badge__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex: none;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed var(--colour-border-strong);
+  border-radius: var(--radius-lg);
+  background-color: var(--colour-surface);
+  padding: var(--space-5);
+  text-align: left;
+}
+.opi-activity.opi-activity .placeholder__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+}
+.opi-activity.opi-activity .placeholder > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .split {
+  display: grid;
+  gap: var(--space-6);
+}
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split {
+  grid-template-columns: 3fr 2fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .panel {
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.opi-activity.opi-activity .panel > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .panel__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .section--tinted {
+  border-block: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .hero {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .button--primary {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .button--secondary {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .button:hover {
+  border-color: Highlight;
+}
+.opi-activity.opi-activity .panel {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed CanvasText;
+}
+.opi-activity.opi-activity .badge {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .badge__dot {
+  background-color: CanvasText;
+}
+.opi-activity.opi-activity code {
+  border-color: CanvasText;
+}
+.opi-activity.opi-activity hr {
+  border-top-color: CanvasText;
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+}
+@media print {
+.opi-activity.opi-activity {
+  color: #000;
+  background: #fff;
+}
+.opi-activity.opi-activity a[href^="http"]::after {
+  content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+}
+}
+
+/* components/interactive-shell.css */
+.opi-activity.opi-activity .interactive {
+  --shell-page: var(--colour-page, #ffffff);
+  --shell-surface: var(--colour-surface, #f5f7fa);
+  --shell-raised: var(--colour-surface-raised, #ffffff);
+  --shell-border: var(--colour-border, #d3d9e2);
+  --shell-border-strong: var(--colour-border-strong, #aeb7c4);
+  --shell-text: var(--colour-text, #131820);
+  --shell-muted: var(--colour-text-muted, #4c566a);
+  --shell-accent: var(--colour-accent, #1a4fa0);
+  --shell-accent-soft: var(--colour-accent-soft, #e8eefb);
+  
+  --shell-on-accent: var(--colour-on-accent, #ffffff);
+  --shell-focus: var(--colour-focus, #b45309);
+  --shell-radius: var(--radius-lg, 12px);
+  --shell-gap: var(--space-5, 24px);
+
+  display: block;
+  background-color: var(--shell-raised);
+  color: var(--shell-text);
+  border: 1px solid var(--shell-border);
+  border-radius: var(--shell-radius);
+  
+  overflow-x: clip;
+  overflow-y: visible;
+}
+.opi-activity.opi-activity .interactive__header {
+  padding: var(--shell-gap);
+  border-bottom: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 1.25;
+}
+.opi-activity.opi-activity .interactive__brief {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--shell-muted);
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__body {
+  display: grid;
+  gap: var(--shell-gap);
+  padding: var(--shell-gap);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body {
+  grid-template-columns: minmax(240px, 320px) 1fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .interactive__controls {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__controls fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .interactive__controls legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .control {
+  display: grid;
+  gap: 5.6px;
+}
+.opi-activity.opi-activity .control + .control {
+  margin-top: 16px;
+}
+.opi-activity.opi-activity .control__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.opi-activity.opi-activity .control__label {
+  font-size: 15px;
+  font-weight: 600;
+}
+.opi-activity.opi-activity .control__value {
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--shell-accent);
+}
+.opi-activity.opi-activity .control__hint {
+  font-size: 13px;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .interactive__controls input[type="range"] {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--shell-accent);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  width: 100%;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--shell-text);
+  background-color: var(--shell-raised);
+  border: 1px solid var(--shell-border-strong);
+  border-radius: var(--radius-sm, 4px);
+}
+.opi-activity.opi-activity .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+}
+.opi-activity.opi-activity .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  accent-color: var(--shell-accent);
+  flex: none;
+}
+.opi-activity.opi-activity .interactive__stage {
+  min-height: 256px;
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-page);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body--pinned {
+  align-items: stretch;
+}
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: sticky;
+    top: 0;
+    z-index: 2;
+    
+    margin: -16px -16px 0;
+    padding: 16px 16px 12px;
+    background-color: var(--shell-page);
+    border-bottom: 1px solid var(--shell-border);
+}
+}
+@media (min-width: 52em) and (max-height: 30em) {
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: static;
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
+}
+}
+.opi-activity.opi-activity .interactive__stage > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity :where(.interactive__stage) svg,
+.opi-activity.opi-activity :where(.interactive__stage) canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+.opi-activity.opi-activity .interactive__readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout div {
+  padding: 9.6px 12px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-sm, 4px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__readout dt {
+  font-size: 13px;
+  color: var(--shell-muted);
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout dd {
+  margin: 2.4px 0 0;
+  font-size: 18px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .interactive__status {
+  margin: 0;
+  padding: 12px var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+  font-size: 15px;
+  color: var(--shell-muted);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .interactive__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+}
+.opi-activity.opi-activity .interactive__actions button {
+  min-height: 44px;
+  padding: 6.4px 20px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--shell-on-accent);
+  background-color: var(--shell-accent);
+  border: 1px solid var(--shell-accent);
+  border-radius: var(--radius-md, 8px);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  color: var(--shell-text);
+  background-color: transparent;
+  border-color: var(--shell-border-strong);
+}
+.opi-activity.opi-activity .interactive__actions button:hover {
+  filter: brightness(1.08);
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__notes > summary {
+  padding: 13.6px var(--shell-gap);
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__notes > div {
+  padding: 0 var(--shell-gap) var(--shell-gap);
+  max-width: 68ch;
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__notes > div > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity .interactive *,
+.opi-activity.opi-activity .interactive *::before,
+.opi-activity.opi-activity .interactive *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+}
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .interactive,
+.opi-activity.opi-activity .interactive__controls,
+.opi-activity.opi-activity .interactive__stage,
+.opi-activity.opi-activity .interactive__readout div {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__header {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__status,
+.opi-activity.opi-activity .interactive__actions,
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__actions button {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  border-width: 1px;
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 1;
+    color: GrayText;
+    border-color: GrayText;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__stage svg {
+  forced-color-adjust: auto;
+}
+}
+
+/* components/tool-kit.css */
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split--wide {
+  grid-template-columns: 1fr 1fr;
+}
+}
+.opi-activity.opi-activity .how-to {
+  padding-left: 19.2px;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .how-to > li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .table-scroll {
+  overflow-x: auto;
+  
+  position: relative;
+}
+.opi-activity.opi-activity .prediction {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 832px;
+}
+.opi-activity.opi-activity .prediction > *,
+.opi-activity.opi-activity .challenge > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity .prediction__group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .prediction__legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-weight: 650;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .prediction .control--choice,
+.opi-activity.opi-activity .challenge .control--choice,
+.opi-activity.opi-activity .evidence .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .prediction .control--choice input,
+.opi-activity.opi-activity .challenge .control--choice input,
+.opi-activity.opi-activity .evidence .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .prediction__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .prediction__error {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-status-border);
+  border-left: 4px solid var(--colour-status-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .prediction__readback {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .feedback[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .feedback[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .feedback[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .feedback__verdict {
+  font-weight: 700;
+}
+.opi-activity.opi-activity .verdict {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .verdict__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict__body {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .verdict__body + .verdict__body {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .verdict__note {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .verdict[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .verdict[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .goal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .goal__label {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .goal__text {
+  flex: 1 1 256px;
+}
+.opi-activity.opi-activity .goal strong {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .goal__checks {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+  display: grid;
+  gap: 2.4px;
+}
+.opi-activity.opi-activity .goal__checks > li {
+  margin-top: 0;
+  padding-left: 22.4px;
+  position: relative;
+}
+.opi-activity.opi-activity .goal__checks > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 9.6px;
+  height: 9.6px;
+  border: 2px solid var(--colour-border-strong);
+  border-radius: 2px;
+}
+.opi-activity.opi-activity .goal__checks > li[data-met="yes"]::before {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .stage-track {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .stage-track > li {
+  margin-top: 0;
+  flex: 1 1 160px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-bottom: 3px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .stage-track > li > span {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.opi-activity.opi-activity .stage-track > li[data-state="done"] {
+  border-bottom-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border-bottom-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+  color: var(--colour-text);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .stage__heading {
+  margin: 0;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .data-table,
+.opi-activity.opi-activity .chart__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .data-table th,
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table th,
+.opi-activity.opi-activity .chart__table td {
+  padding: 6.4px 9.6px;
+  border: 1px solid var(--colour-border);
+  text-align: left;
+  vertical-align: top;
+}
+.opi-activity.opi-activity .data-table thead th,
+.opi-activity.opi-activity .chart__table thead th {
+  background-color: var(--colour-surface);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table td {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__table tbody th,
+.opi-activity.opi-activity .data-table tbody th {
+  font-weight: 550;
+}
+.opi-activity.opi-activity .data-table__total > th,
+.opi-activity.opi-activity .data-table__total > td {
+  border-top: 2px solid var(--colour-border-strong);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart {
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .chart__caption {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__svg {
+  max-width: 100%;
+  height: auto;
+}
+.opi-activity.opi-activity .chart__label,
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__inline,
+.opi-activity.opi-activity .chart__axis {
+  font-family: var(--font-body);
+  fill: var(--colour-text);
+  font-size: 13px;
+}
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__axis {
+  fill: var(--colour-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: var(--colour-on-accent);
+  font-size: 12px;
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__track {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__bar {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--one {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .chart__baseline,
+.opi-activity.opi-activity .chart__grid {
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__line {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: var(--colour-personality-individual-differences);
+  stroke-dasharray: 6 4;
+}
+.opi-activity.opi-activity .chart__point {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .reveal > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .reveal__lead {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+.opi-activity.opi-activity .reveal__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(176px, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+  padding: 0;
+  list-style: none;
+}
+.opi-activity.opi-activity .reveal__figures > li {
+  margin-top: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+.opi-activity.opi-activity .reveal__figure-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .reveal__figure-value {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .challenge {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+.opi-activity.opi-activity .challenge__locked {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .panel--caution {
+  background-color: var(--colour-status-bg);
+  border-color: var(--colour-status-border);
+}
+.opi-activity.opi-activity .panel--caution li + li {
+  margin-top: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .goal,
+.opi-activity.opi-activity .verdict,
+.opi-activity.opi-activity .feedback,
+.opi-activity.opi-activity .prediction__error,
+.opi-activity.opi-activity .prediction__readback,
+.opi-activity.opi-activity .stage-track > li,
+.opi-activity.opi-activity .reveal__figures > li {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border: 2px solid Highlight;
+}
+.opi-activity.opi-activity .chart__bar,
+.opi-activity.opi-activity .chart__bar--one {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: Canvas;
+}
+.opi-activity.opi-activity .chart__line {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: Highlight;
+}
+}
+.opi-activity.opi-activity .stage__more {
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .stage__more > summary {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .stage__more[open] > summary {
+  border-bottom: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .stage__more > *:not(summary) {
+  margin: var(--space-3);
+}
+
+/* modules/personality-individual-differences/tools/07-factor-rotation-playground/tool.css */
+.opi-activity.opi-activity #rotation .interactive__controls,
+.opi-activity.opi-activity #rotation .interactive__stage {
+  min-width: 0;
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity #rotation .interactive__body {
+  grid-template-columns: minmax(0, 288px) minmax(0, 1fr);
+}
+}
+.opi-activity.opi-activity #rotation .control + .control {
+  margin-top: var(--space-4);
+}
+.opi-activity.opi-activity .plot {
+  max-width: 416px;
+}
+.opi-activity.opi-activity .plot__circle {
+  fill: none;
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .plot__axis {
+  stroke-width: 2;
+}
+.opi-activity.opi-activity .plot__axis--one {
+  stroke: var(--colour-accent);
+}
+.opi-activity.opi-activity .plot__axis--two {
+  stroke: var(--colour-personality-individual-differences);
+  stroke-dasharray: 7 4;
+}
+.opi-activity.opi-activity .plot__marker {
+  fill: var(--colour-text);
+}
+.opi-activity.opi-activity .plot__label {
+  fill: var(--colour-text-muted);
+  font-family: var(--font-body);
+  font-size: 11px;
+}
+.opi-activity.opi-activity .labels {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+}
+.opi-activity.opi-activity .labels > div {
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .labels dt {
+  margin: 0;
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .labels dd {
+  margin: 3.2px 0 0;
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .plot__axis--one {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .plot__axis--two {
+  stroke: Highlight;
+}
+.opi-activity.opi-activity .plot__marker {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .labels > div {
+  border: 1px solid CanvasText;
+}
+}
+</style>
+
+  <!-- ================= Title and purpose ================= -->
+  <section class="section card--personality-individual-differences" aria-labelledby="page-heading">
+    <div class="container">
+
+      <p class="hero__eyebrow" style="color: var(--colour-personality-individual-differences)">
+        Personality and Individual Differences
+      </p>
+      <h1 id="page-heading">Factor Rotation Playground</h1>
+      <p class="hero__lead">
+        Twelve markers in a plane. Turn the axes and every loading changes
+        while not one point moves.
+      </p>
+
+      <p>
+        <span class="badge">
+          <span class="badge__dot" aria-hidden="true"></span>
+          Simulated — fictional adjective markers with illustrative coordinates
+        </span>
+      </p>
+
+      <div class="split split--wide">
+
+        <div class="panel">
+          <h2 class="panel__title">Learning objective</h2>
+          <p>
+            By the end you should be able to say exactly what rotation
+            changes and what it leaves untouched, and defend simple
+            structure without claiming it finds the true solution.
+          </p>
+          <p class="text-muted">
+            About 20 minutes. Nothing you do here is saved or sent anywhere.
+          </p>
+        </div>
+
+        <div class="panel">
+          <h2 class="panel__title">How to use this</h2>
+          <ol class="how-to">
+            <li>Say what you think rotation does to model fit.</li>
+            <li>Rotate the first axis and watch the loading table.</li>
+            <li>
+              Watch the invariants underneath it — total variance and every
+              communality — refuse to move.
+            </li>
+            <li>
+              Let the axes come off 90° and see the factors start to
+              correlate.
+            </li>
+            <li>Try the marker set with a genuine cross-loading.</li>
+          </ol>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= Opening prediction ================= -->
+  <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="opening-heading">First, a prediction</h2>
+        <p class="prose">
+          A researcher extracts two factors, then rotates them.
+        </p>
+      </div>
+
+      <noscript>
+        <div class="placeholder">
+          <h3 class="placeholder__title">This part needs JavaScript</h3>
+          <p class="prose">
+            The playground recomputes loadings in your browser as you rotate
+            the axes, so it cannot run with JavaScript switched off. The rest
+            of this page is readable without it.
+          </p>
+        </div>
+      </noscript>
+
+      <form class="panel prediction" id="opening-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            What does rotation do to how well the model fits the data?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="nothing">
+            Nothing at all — fit is unchanged
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="better">
+            Improves it — that is why people rotate
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="worse">
+            Worsens it slightly, in exchange for interpretability
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="depends">
+            Depends whether the rotation is orthogonal or oblique
+          </label>
+        </fieldset>
+
+        <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Record my answer and start rotating
+          </button>
+          <button class="button button--secondary" type="button" data-action="skip-opening">
+            Skip — I am demonstrating this
+          </button>
+        </div>
+
+        <div class="feedback" data-opening-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Playground ================= -->
+  <section class="section" aria-labelledby="playground-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="playground-heading">The playground</h2>
+      </div>
+
+      <section class="interactive" id="rotation" data-interactive
+               data-reset-message="Everything cleared. Back to the opening question.">
+
+        <header class="interactive__header">
+          <h3 class="interactive__title">Two factors, twelve markers</h3>
+          <p class="interactive__brief">
+            Fictional adjective markers with illustrative coordinates. The
+            positions came out of the extraction and never change; only the
+            axes move.
+          </p>
+        </header>
+
+        <div class="interactive__body">
+
+          <form class="interactive__controls" data-interactive-controls>
+
+            <fieldset>
+              <legend>Marker set</legend>
+              <div class="control">
+                <label class="control__label" for="set-select">Which structure</label>
+                <select id="set-select" disabled></select>
+                <p class="control__hint" data-set-note></p>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Rotation</legend>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="angle-range">First axis</label>
+                  <output class="control__value" for="angle-range">0°</output>
+                </div>
+                <input type="range" id="angle-range" min="0" max="180" step="1" value="0" disabled>
+              </div>
+
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="oblique-range">Angle between the axes</label>
+                  <output class="control__value" for="oblique-range">90°</output>
+                </div>
+                <input type="range" id="oblique-range" min="40" max="120" step="1" value="90" disabled>
+                <p class="control__hint">
+                  90° is an orthogonal solution with uncorrelated factors.
+                  Anything else is oblique.
+                </p>
+              </div>
+
+              <div class="control">
+                <button class="button button--secondary" type="button" data-action="best" disabled>
+                  Find the simplest structure
+                </button>
+              </div>
+            </fieldset>
+
+          </form>
+
+          <div class="interactive__stage" data-interactive-stage>
+
+            <figure class="chart">
+              <figcaption class="chart__caption">
+                The markers, and the axes you are reading them against
+              </figcaption>
+              <svg class="chart__svg plot" data-plot viewBox="0 0 380 380"
+                   aria-hidden="true" focusable="false"></svg>
+            </figure>
+
+            <dl class="interactive__readout" data-readout></dl>
+
+            <div class="verdict" data-tone="good">
+              <h4 class="verdict__title">What has not changed</h4>
+              <p class="verdict__body" data-invariant></p>
+            </div>
+
+            <h4 class="stage__heading">Tentative factor labels</h4>
+            <dl class="labels">
+              <div>
+                <dt>Factor 1 is anchored by</dt>
+                <dd data-label-one></dd>
+              </div>
+              <div>
+                <dt>Factor 2 is anchored by</dt>
+                <dd data-label-two></dd>
+              </div>
+            </dl>
+            <p class="text-muted">
+              Labels are an interpretive act, not a result. These are the
+              highest-loading markers, nothing more.
+            </p>
+
+            <h4 class="stage__heading">Loadings</h4>
+            <div class="table-scroll">
+              <table class="data-table">
+                <caption class="visually-hidden">
+                  Loadings on each factor, communality, and which factor each
+                  marker is salient on
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Marker</th>
+                    <th scope="col">F1</th>
+                    <th scope="col">F2</th>
+                    <th scope="col">Communality</th>
+                    <th scope="col">Salient on</th>
+                  </tr>
+                </thead>
+                <tbody data-loading-table></tbody>
+              </table>
+            </div>
+
+          </div>
+
+        </div>
+
+        <p class="interactive__status" data-interactive-status role="status"></p>
+
+        <div class="interactive__actions">
+          <button type="button" data-variant="secondary" data-interactive-reset>
+            Reset everything
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ================= Challenge ================= -->
+  <section class="section section--tinted" id="challenge" aria-labelledby="challenge-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="challenge-heading">Challenge — what actually changed?</h2>
+        <p class="prose">
+          Rotate until you have found the simplest structure you can, then
+          answer.
+        </p>
+      </div>
+
+      <form class="panel challenge" id="challenge-form">
+        <p class="verdict verdict__body" data-challenge-status></p>
+
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            Between the unrotated and the rotated solution, what changed?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="challenge" value="mathematical">
+            Something mathematical — the rotated solution describes the data better
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="challenge" value="interpretive">
+            Nothing mathematical; what changed is which description you are reading
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="challenge" value="arbitrary">
+            Nothing meaningful — rotation makes factor analysis arbitrary
+          </label>
+        </fieldset>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Check my answer
+          </button>
+        </div>
+
+        <div class="feedback" data-challenge-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Debrief ================= -->
+  <section class="section" id="debrief" aria-labelledby="debrief-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="debrief-heading">What this demonstrates</h2>
+      </div>
+
+      <div class="split split--wide">
+
+        <div class="prose">
+          <h3>Rotation changes the description, not the data</h3>
+          <p>
+            Every loading changes; the configuration of points does not. The
+            rotated model reproduces the correlations exactly as well as the
+            unrotated one, each variable's communality is untouched, and the
+            total variance explained is identical. Rotation is a change of
+            coordinate system, and coordinate systems are not discoveries.
+          </p>
+
+          <h3>Which is why it is neither a trick nor a revelation</h3>
+          <p>
+            Two opposite overreactions are common. The first is that rotation
+            manufactures results — it cannot, because fit is invariant. The
+            second is that the rotated solution is the true structure — it is
+            not, because the mathematics does not privilege it. Simple
+            structure is a criterion people adopted, for good reasons: it
+            yields solutions that are interpretable and comparable between
+            studies. Those are real virtues, and they are not the same as
+            truth.
+          </p>
+
+          <h3>Orthogonal or oblique is a substantive choice</h3>
+          <p>
+            Forcing the axes to 90° asserts that the constructs are
+            uncorrelated. For most psychological constructs that is
+            implausible, and the third marker set shows what it costs: when
+            the clusters genuinely sit 55° apart, no orthogonal rotation puts
+            an axis through both, and the solution looks worse than it is.
+            Allowing the axes to move fixes the picture and produces
+            correlated factors — which is a claim about the world, to be
+            defended rather than avoided.
+          </p>
+
+          <h3>Some items will not settle, and that is information</h3>
+          <p>
+            In the second marker set, one pair of markers sits between the
+            clusters and no rotation makes it simple. That is what a genuine
+            cross-loading is: not a nuisance to be rotated away but a fact
+            about a variable that belongs partly to both factors. Deleting
+            such items to improve simple structure is common and quietly
+            changes what the factors mean.
+          </p>
+        </div>
+
+        <aside class="panel panel--caution" aria-labelledby="limits-heading">
+          <h3 class="panel__title" id="limits-heading">
+            What this does <em>not</em> demonstrate
+          </h3>
+          <ul>
+            <li>
+              <strong>These are not data.</strong> Twelve fictional adjective
+              markers with coordinates chosen to make three situations legible.
+              No correlation matrix was factored and no real study is
+              represented.
+            </li>
+            <li>
+              <strong>Two dimensions is the special case.</strong> Real
+              solutions have three, five or more factors, where rotation
+              cannot be drawn on a page and simple structure is much harder to
+              reach.
+            </li>
+            <li>
+              <strong>Nothing here decides how many factors to keep.</strong>
+              That question comes before rotation and is the more consequential
+              one; the number is fixed at two throughout.
+            </li>
+            <li>
+              <strong>The rotation is done by hand.</strong> Real analyses use
+              analytic criteria — varimax, oblimin, promax — which optimise a
+              specific function rather than a slider. The "find the simplest
+              structure" button is a coarse sweep, not any of those.
+            </li>
+            <li>
+              <strong>Oblique loadings are simplified.</strong> A real oblique
+              solution distinguishes pattern from structure coefficients; this
+              tool shows one set of numbers and the factor correlation
+              separately.
+            </li>
+            <li>
+              <strong>Nobody is assessed.</strong> You rotate axes. The tool
+              asks nothing about you.
+            </li>
+          </ul>
+        </aside>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+<script>
+/* ---- components/interactive-shell.js ---- */
+/* =========================================================================
+   Open Psychology Interactives — interactive shell helper
+   -------------------------------------------------------------------------
+   A very small vanilla-JS helper that every interactive in this collection
+   uses. It deliberately does *not* draw anything or know anything about
+   statistics, personality or neuropsychology. Its job is the repetitive,
+   easy-to-get-wrong accessibility plumbing:
+
+     * announcing changes through a polite live region;
+     * keeping a range slider and its <output> in step;
+     * wiring the standard Reset button;
+     * reporting the reader's reduced-motion preference.
+
+   Usage (see docs/adapting-a-tool.md for the full markup contract):
+
+       <script src="../../components/interactive-shell.js" defer><\/script>
+       <script src="tool.js" defer><\/script>
+
+       // in tool.js
+       const shell = InteractiveShell.attach('#sampling-demo');
+       shell.onReset(() => { ...restore defaults...; draw(); });
+       shell.bindRange('#sample-size', { format: n => n + ' cases' });
+       shell.announce('Sample of 25 drawn. Mean 4.8.');
+
+   Every published interactive is written against this module.
+
+   Exposed as a global (window.InteractiveShell) rather than an ES module so
+   that a single interactive folder can be opened directly from disk over
+   file:// — ES modules are blocked by CORS in that situation, plain scripts
+   are not. That constraint is the whole reason for the older syntax here.
+   ========================================================================= */
+
+(function (global) {
+  "use strict";
+
+  /* -----------------------------------------------------------------------
+     Internal helpers
+     --------------------------------------------------------------------- */
+
+  /**
+   * Accept either a CSS selector or an element and return an element.
+   * @param {string|Element} target
+   * @param {ParentNode} [scope]
+   * @returns {Element|null}
+   */
+  function resolve(target, scope) {
+    if (!target) {
+      return null;
+    }
+    if (typeof target === "string") {
+      return (scope || document).querySelector(target);
+    }
+    return target;
+  }
+
+  /**
+   * True when the reader has asked the operating system to reduce motion.
+   * Interactives should check this before animating anything — for example
+   * by drawing a sampling distribution in one step instead of animating
+   * each draw.
+   * @returns {boolean}
+   */
+  function prefersReducedMotion() {
+    return (
+      typeof global.matchMedia === "function" &&
+      global.matchMedia("(prefers-reduced-motion: reduce)").matches
+    );
+  }
+
+  /* -----------------------------------------------------------------------
+     Shell controller
+     --------------------------------------------------------------------- */
+
+  /**
+   * Attach the shell behaviour to one `.interactive` element.
+   *
+   * @param {string|Element} target  Selector or element for the shell root.
+   * @returns {object|null}  Controller, or null if the root was not found.
+   */
+  function attach(target) {
+    var root = resolve(target);
+
+    if (!root) {
+      if (global.console && console.warn) {
+        console.warn("InteractiveShell: root element not found.", target);
+      }
+      return null;
+    }
+
+    var controls = root.querySelector("[data-interactive-controls]");
+    var stage = root.querySelector("[data-interactive-stage]");
+    var status = root.querySelector("[data-interactive-status]");
+    var resetButton = root.querySelector("[data-interactive-reset]");
+    var resetHandlers = [];
+    // Every range bound with bindRange() registers its sync function here, so
+    // that reset() can refresh the visible values after the tool's own reset
+    // handlers have restored the inputs. See reset() for why this is needed.
+    var rangeSyncs = [];
+
+    /* --- Live region ----------------------------------------------------
+       The status element is marked up as role="status" (implicitly
+       aria-live="polite"). Two details matter:
+
+         1. Assistive technology only announces *changes* to a live region,
+            so writing the same string twice is silently dropped. We add a
+            trailing zero-width space on repeat messages to force an
+            announcement when a student re-runs the same action.
+         2. Announcements are debounced. A slider dragged across its range
+            fires dozens of input events; without a delay a screen reader
+            would queue every intermediate value and fall far behind.
+       ------------------------------------------------------------------ */
+
+    var announceTimer = null;
+    var lastMessage = "";
+
+    /**
+     * Announce a short sentence describing what just changed.
+     * @param {string} message
+     * @param {object} [options]
+     * @param {boolean} [options.immediate]  Skip the debounce delay. Use for
+     *   discrete actions (button presses); leave off for continuous input.
+     */
+    function announce(message, options) {
+      if (!status) {
+        return;
+      }
+
+      var text = String(message == null ? "" : message);
+      var immediate = Boolean(options && options.immediate);
+
+      if (announceTimer !== null) {
+        global.clearTimeout(announceTimer);
+        announceTimer = null;
+      }
+
+      function write() {
+        // Force a change when the text is identical to last time.
+        status.textContent = text === lastMessage ? text + "​" : text;
+        lastMessage = text;
+      }
+
+      if (immediate) {
+        write();
+      } else {
+        announceTimer = global.setTimeout(write, 350);
+      }
+    }
+
+    /* --- Reset ---------------------------------------------------------- */
+
+    /**
+     * Register a callback to run when the Reset button is pressed.
+     * Several may be registered; they run in the order added.
+     * @param {Function} handler
+     */
+    function onReset(handler) {
+      if (typeof handler === "function") {
+        resetHandlers.push(handler);
+      }
+    }
+
+    /**
+     * Run the reset handlers. Called by the button and available directly so
+     * an interactive can reset itself on first load.
+     *
+     * Bound ranges are re-synced afterwards. A reset handler restores an
+     * input by assigning to `input.value`, and assigning to a value in script
+     * does not fire an `input` event — so without this step the slider would
+     * jump back to its default while its <output> went on showing the old
+     * number. Syncing here, after the handlers have run, also means the sync
+     * sees the restored values regardless of the order things were
+     * registered in.
+     *
+     * @param {object} [options]
+     * @param {boolean} [options.silent]  Suppress the status announcement.
+     */
+    function reset(options) {
+      resetHandlers.forEach(function (handler) {
+        handler();
+      });
+      rangeSyncs.forEach(function (sync) {
+        sync();
+      });
+      if (!options || !options.silent) {
+        announce(
+          root.getAttribute("data-reset-message") ||
+            "Reset to the starting values.",
+          { immediate: true }
+        );
+      }
+    }
+
+    if (resetButton) {
+      resetButton.addEventListener("click", function (event) {
+        // Reset buttons commonly sit inside the controls <form>; stop the
+        // browser's own form reset from fighting with ours.
+        event.preventDefault();
+        reset();
+      });
+    }
+
+    /* --- Range binding --------------------------------------------------
+       Keeps a slider's <output> in step with its value. The <output> must
+       carry `for="<input id>"`, which is what associates the two for
+       assistive technology; this only handles the visible text.
+
+       Optionally sets aria-valuetext, which is how you make a screen reader
+       say "25 cases" or "medium correlation" instead of a bare "25".
+       ------------------------------------------------------------------ */
+
+    /**
+     * @param {string|Element} inputTarget  The range (or number) input.
+     * @param {object} [options]
+     * @param {Function} [options.format]  value:number -> string shown in the
+     *   <output>. Defaults to the raw value.
+     * @param {Function} [options.describe]  value:number -> string used for
+     *   aria-valuetext. Defaults to options.format.
+     * @param {Function} [options.onInput]  value:number -> void, called after
+     *   the display has been updated. Use it to redraw.
+     * @returns {HTMLInputElement|null}
+     */
+    function bindRange(inputTarget, options) {
+      var input = resolve(inputTarget, root);
+      if (!input) {
+        return null;
+      }
+
+      var settings = options || {};
+      var format =
+        typeof settings.format === "function"
+          ? settings.format
+          : function (value) {
+              return String(value);
+            };
+      var describe =
+        typeof settings.describe === "function" ? settings.describe : format;
+
+      // <output for="the-input-id"> is the conventional pairing.
+      var output = input.id
+        ? root.querySelector('output[for="' + input.id + '"]')
+        : null;
+
+      function sync() {
+        var value = Number(input.value);
+        if (output) {
+          output.textContent = format(value);
+        }
+        // Only meaningful for widgets with an implicit or explicit slider
+        // role; harmless elsewhere.
+        input.setAttribute("aria-valuetext", describe(value));
+        if (typeof settings.onInput === "function") {
+          settings.onInput(value);
+        }
+      }
+
+      input.addEventListener("input", sync);
+      // Registered so reset() can refresh the display after the tool's own
+      // reset handlers have put the input back to its default.
+      rangeSyncs.push(sync);
+      sync();
+
+      return input;
+    }
+
+    /* --- Public surface -------------------------------------------------- */
+
+    return {
+      /** The `.interactive` root element. */
+      root: root,
+      /** The controls panel, or null if the shell has none. */
+      controls: controls,
+      /** The stage element where the visualisation is drawn. */
+      stage: stage,
+      /** The live-region element. */
+      status: status,
+      announce: announce,
+      onReset: onReset,
+      reset: reset,
+      bindRange: bindRange,
+      prefersReducedMotion: prefersReducedMotion
+    };
+  }
+
+  /* -----------------------------------------------------------------------
+     Export
+     --------------------------------------------------------------------- */
+
+  global.InteractiveShell = {
+    attach: attach,
+    prefersReducedMotion: prefersReducedMotion
+  };
+})(window);
+
+/* ---- modules/personality-individual-differences/tools/07-factor-rotation-playground/tool.js ---- */
+/* =========================================================================
+   Factor Rotation Playground
+   -------------------------------------------------------------------------
+   Twelve fictional adjective markers plotted in a two-dimensional factor
+   space. Students rotate the axes and watch every loading change while the
+   configuration of the points does not move at all.
+
+   THE EDUCATIONAL MODEL
+   ---------------------
+   Each marker has a fixed position in the plane — a pair of coordinates that
+   came out of the (fictional) extraction and never changes. Rotation changes
+   only the axes against which those positions are read.
+
+   Orthogonal rotation by angle θ:
+
+       loading₁ =  x·cos θ + y·sin θ
+       loading₂ = -x·sin θ + y·cos θ
+
+   Oblique rotation lets the second axis move independently, so the angle
+   between the axes is no longer 90°. Loadings are then read as coordinates in
+   a non-orthogonal basis, and the factors themselves correlate:
+
+       r(F₁,F₂) = cos(angle between the axes)
+
+   THE TWO THINGS THAT MUST STAY SEPARATE
+   --------------------------------------
+   What changes under rotation:
+     * every loading;
+     * which items count as "salient" on which factor;
+     * the labels anybody would give the factors;
+     * how simple the structure looks.
+
+   What does NOT change:
+     * the position of every marker relative to every other;
+     * each marker's communality (how much of it the two factors explain);
+     * the total variance the two factors account for;
+     * the fit of the model to the data.
+
+   That is the whole lesson, and it cuts both ways. Rotation is not a trick
+   that manufactures results: nothing about the data or the fit changes. Nor
+   is any single rotated solution uniquely true: the mathematics does not
+   privilege one, and simple structure is a criterion people adopted because
+   it makes solutions interpretable and comparable — not a fact discovered in
+   the data.
+
+   SIMPLE STRUCTURE
+   ----------------
+   Scored here with a normalised complexity measure. A marker loading highly
+   on one factor and near zero on the other is simple; a marker loading
+   moderately on both is not. The tool reports the mean across markers and
+   marks the target as reachable, because in this fictional set it is.
+
+   No data leave the browser. There is no storage and no network request.
+   ========================================================================= */
+
+(function () {
+  "use strict";
+
+  var DEG = Math.PI / 180;
+
+  /* Three fictional marker sets. Coordinates are unrotated positions in the
+     plane; they are the fixed thing the whole tool is about. */
+  var SETS = {
+    clean: {
+      name: "A clean two-cluster structure",
+      note:
+        "Two tight groups roughly at right angles. Simple structure is " +
+        "reachable, and almost everybody finds the same rotation.",
+      markers: [
+        { id: "talkative", name: "talkative", x: 0.78, y: 0.22 },
+        { id: "outgoing", name: "outgoing", x: 0.82, y: 0.16 },
+        { id: "bold", name: "bold", x: 0.71, y: 0.28 },
+        { id: "lively", name: "lively", x: 0.75, y: 0.10 },
+        { id: "reserved", name: "reserved", x: -0.74, y: -0.12 },
+        { id: "quiet", name: "quiet", x: -0.79, y: -0.06 },
+        { id: "organised", name: "organised", x: 0.18, y: 0.80 },
+        { id: "thorough", name: "thorough", x: 0.12, y: 0.76 },
+        { id: "punctual", name: "punctual", x: 0.24, y: 0.71 },
+        { id: "careful", name: "careful", x: 0.09, y: 0.83 },
+        { id: "careless", name: "careless", x: -0.14, y: -0.77 },
+        { id: "untidy", name: "untidy", x: -0.08, y: -0.72 }
+      ]
+    },
+    crossloading: {
+      name: "One item that will not settle",
+      note:
+        "The same structure with one marker sitting between the two clusters. " +
+        "No rotation makes it simple, which is what a genuine cross-loading " +
+        "looks like.",
+      markers: [
+        { id: "talkative", name: "talkative", x: 0.78, y: 0.22 },
+        { id: "outgoing", name: "outgoing", x: 0.82, y: 0.16 },
+        { id: "bold", name: "bold", x: 0.71, y: 0.28 },
+        { id: "lively", name: "lively", x: 0.75, y: 0.10 },
+        { id: "reserved", name: "reserved", x: -0.74, y: -0.12 },
+        { id: "organised", name: "organised", x: 0.18, y: 0.80 },
+        { id: "thorough", name: "thorough", x: 0.12, y: 0.76 },
+        { id: "punctual", name: "punctual", x: 0.24, y: 0.71 },
+        { id: "careful", name: "careful", x: 0.09, y: 0.83 },
+        { id: "careless", name: "careless", x: -0.14, y: -0.77 },
+        { id: "energetic", name: "energetic", x: 0.58, y: 0.55 },
+        { id: "driven", name: "driven", x: 0.52, y: 0.60 }
+      ]
+    },
+    correlated: {
+      name: "Clusters that are not at right angles",
+      note:
+        "The two groups sit about 55° apart. An orthogonal rotation cannot " +
+        "put an axis through both; an oblique one can, at the price of " +
+        "factors that correlate.",
+      markers: [
+        { id: "talkative", name: "talkative", x: 0.80, y: 0.14 },
+        { id: "outgoing", name: "outgoing", x: 0.84, y: 0.08 },
+        { id: "bold", name: "bold", x: 0.74, y: 0.22 },
+        { id: "lively", name: "lively", x: 0.78, y: 0.04 },
+        { id: "reserved", name: "reserved", x: -0.76, y: -0.10 },
+        { id: "warm", name: "warm", x: 0.62, y: 0.56 },
+        { id: "kind", name: "kind", x: 0.55, y: 0.62 },
+        { id: "trusting", name: "trusting", x: 0.60, y: 0.58 },
+        { id: "considerate", name: "considerate", x: 0.51, y: 0.66 },
+        { id: "harsh", name: "harsh", x: -0.56, y: -0.60 },
+        { id: "blunt", name: "blunt", x: -0.48, y: -0.55 },
+        { id: "aloof", name: "aloof", x: -0.70, y: -0.30 }
+      ]
+    }
+  };
+
+  var SALIENT = 0.4;
+
+  /* The coordinates above were written cluster-by-cluster, which happens to
+     put them almost in simple structure already — so at 0° there would be
+     nothing for rotation to do, and "find the simplest structure" would
+     return 0°. That is not what an unrotated extraction looks like: a
+     first unrotated factor typically runs between the clusters with
+     everything loading on it.
+
+     Pre-rotating every set by a constant reproduces that starting point.
+     Because the same rotation is applied to every marker, all the relative
+     geometry the sets were designed around — cluster separation, the
+     cross-loading, the 55° case — is exactly preserved. Only the starting
+     orientation changes, and rotation now has real work to do. */
+  var UNROTATED_OFFSET = 45;
+
+  (function preRotate() {
+    var a = UNROTATED_OFFSET * DEG;
+    Object.keys(SETS).forEach(function (id) {
+      SETS[id].markers.forEach(function (marker) {
+        var x = marker.x;
+        var y = marker.y;
+        marker.x = x * Math.cos(a) - y * Math.sin(a);
+        marker.y = x * Math.sin(a) + y * Math.cos(a);
+      });
+    });
+  })();
+
+  /* =======================================================================
+     Model
+     ===================================================================== */
+
+  /**
+   * Loadings on the two axes.
+   * @param {object} marker
+   * @param {number} angle   rotation of the first axis, degrees
+   * @param {number} obliqueAngle  angle BETWEEN the axes, degrees (90 = orthogonal)
+   */
+  function loadings(marker, angle, obliqueAngle) {
+    var a = angle * DEG;
+    var b = (angle + obliqueAngle) * DEG;
+    // Project onto each axis direction. With a non-right angle between them
+    // these are direction cosines rather than a coordinate transform, which
+    // is exactly why oblique loadings are read as pattern coefficients.
+    return {
+      one: marker.x * Math.cos(a) + marker.y * Math.sin(a),
+      two: marker.x * Math.cos(b) + marker.y * Math.sin(b)
+    };
+  }
+
+  /** Correlation between the factors implied by the angle between the axes. */
+  function factorCorrelation(obliqueAngle) {
+    return Math.cos(obliqueAngle * DEG);
+  }
+
+  /** Communality: how much of the marker the two factors account for. */
+  function communality(marker) {
+    return marker.x * marker.x + marker.y * marker.y;
+  }
+
+  /**
+   * Simple structure, 0 to 1. For each marker, how concentrated its two
+   * loadings are on one factor. Uses the normalised squared-loading
+   * proportion, which is 1 when a marker loads on one factor only.
+   */
+  function simplicity(markers, angle, obliqueAngle) {
+    var total = 0;
+    markers.forEach(function (marker) {
+      var l = loadings(marker, angle, obliqueAngle);
+      var a = l.one * l.one;
+      var b = l.two * l.two;
+      var sum = a + b;
+      if (sum < 1e-9) { total += 0; return; }
+      var p = Math.max(a, b) / sum;
+      // Rescale from [0.5, 1] to [0, 1]: 0.5 means equally split.
+      total += (p - 0.5) * 2;
+    });
+    return total / markers.length;
+  }
+
+  /** Markers that load saliently on each factor, and on both. */
+  function salience(markers, angle, obliqueAngle) {
+    var one = [];
+    var two = [];
+    var both = [];
+    markers.forEach(function (marker) {
+      var l = loadings(marker, angle, obliqueAngle);
+      var inOne = Math.abs(l.one) >= SALIENT;
+      var inTwo = Math.abs(l.two) >= SALIENT;
+      if (inOne && inTwo) { both.push(marker); }
+      else if (inOne) { one.push(marker); }
+      else if (inTwo) { two.push(marker); }
+    });
+    return { one: one, two: two, both: both };
+  }
+
+  /**
+   * A tentative label, built from the highest-loading markers. Deliberately
+   * hedged: naming a factor is an interpretive act, not a result.
+   */
+  function tentativeLabel(markers, angle, obliqueAngle, which) {
+    var scored = markers.map(function (marker) {
+      var l = loadings(marker, angle, obliqueAngle);
+      return { marker: marker, value: which === "one" ? l.one : l.two };
+    }).sort(function (a, b) {
+      return Math.abs(b.value) - Math.abs(a.value);
+    });
+
+    var top = scored.slice(0, 3).filter(function (entry) {
+      return Math.abs(entry.value) >= SALIENT;
+    });
+    if (!top.length) {
+      return "nothing loads saliently on this axis";
+    }
+    return top.map(function (entry) {
+      return (entry.value < 0 ? "not " : "") + entry.marker.name;
+    }).join(", ");
+  }
+
+  /** The rotation that maximises simple structure, found by a coarse sweep. */
+  function bestAngle(markers, obliqueAngle) {
+    var best = 0;
+    var bestScore = -Infinity;
+    for (var angle = 0; angle < 180; angle += 0.5) {
+      var score = simplicity(markers, angle, obliqueAngle);
+      if (score > bestScore) {
+        bestScore = score;
+        best = angle;
+      }
+    }
+    return { angle: best, score: bestScore };
+  }
+
+  /* =======================================================================
+     Helpers
+     ===================================================================== */
+
+  function fmt(value, places) {
+    return value === null || value === undefined || isNaN(value)
+      ? "—" : value.toFixed(places === undefined ? 2 : places);
+  }
+
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) { node.className = className; }
+    if (text !== undefined) { node.textContent = text; }
+    return node;
+  }
+
+  function clear(node) {
+    while (node.firstChild) { node.removeChild(node.firstChild); }
+  }
+
+  /* =======================================================================
+     Wiring
+     ===================================================================== */
+
+  var shell = InteractiveShell.attach("#rotation");
+  if (!shell) { return; }
+
+  var page = document;
+  var $ = function (selector, scope) { return (scope || page).querySelector(selector); };
+
+  var plot = $("[data-plot]");
+  var loadingTable = $("[data-loading-table]");
+  var readout = $("[data-readout]");
+  var labelOne = $("[data-label-one]");
+  var labelTwo = $("[data-label-two]");
+  var invariantNote = $("[data-invariant]");
+  var setSelect = $("#set-select");
+  var setNote = $("[data-set-note]");
+
+  var openingForm = $("#opening-form");
+  var openingError = $("[data-opening-error]");
+  var openingFeedback = $("[data-opening-feedback]");
+
+  var challengeForm = $("#challenge-form");
+  var challengeFeedback = $("[data-challenge-feedback]");
+  var challengeStatus = $("[data-challenge-status]");
+
+  var INITIAL = { setId: "clean", angle: 0, oblique: 90, stage: "predict" };
+  var state = null;
+  var rangeSyncs = [];
+  var baseline = null; // invariants captured at angle 0, to prove they hold
+
+  function bindRange(input, options) {
+    var settings = options || {};
+    var output = page.querySelector('output[for="' + input.id + '"]');
+    function sync() {
+      var value = Number(input.value);
+      if (output) {
+        output.textContent = settings.format ? settings.format(value) : String(value);
+      }
+      input.setAttribute(
+        "aria-valuetext", (settings.describe || settings.format || String)(value));
+      if (settings.onInput) { settings.onInput(value); }
+    }
+    input.addEventListener("input", sync);
+    rangeSyncs.push(sync);
+    return sync;
+  }
+
+  function syncRanges() { rangeSyncs.forEach(function (s) { s(); }); }
+
+  function currentSet() { return SETS[state.setId]; }
+
+  Object.keys(SETS).forEach(function (id) {
+    var option = make("option", null, SETS[id].name);
+    option.value = id;
+    setSelect.appendChild(option);
+  });
+
+  setSelect.addEventListener("change", function () {
+    state.setId = setSelect.value;
+    state.angle = 0;
+    $("#angle-range").value = "0";
+    captureBaseline();
+    syncRanges();
+    render();
+    shell.announce(
+      "Marker set changed to: " + currentSet().name + ". " + currentSet().note,
+      { immediate: true });
+  });
+
+  bindRange($("#angle-range"), {
+    format: function (v) { return v + "°"; },
+    describe: function (v) { return "first axis rotated " + v + " degrees"; },
+    onInput: function (v) { state.angle = v; render(); }
+  });
+
+  bindRange($("#oblique-range"), {
+    format: function (v) { return v + "°"; },
+    describe: function (v) {
+      return v === 90
+        ? "axes at right angles, orthogonal solution"
+        : "axes " + v + " degrees apart, oblique solution, factors correlate " +
+          fmt(factorCorrelation(v));
+    },
+    onInput: function (v) { state.oblique = v; render(); }
+  });
+
+  $('[data-action="best"]').addEventListener("click", function () {
+    var best = bestAngle(currentSet().markers, state.oblique);
+    state.angle = Math.round(best.angle);
+    $("#angle-range").value = String(state.angle);
+    syncRanges();
+    render();
+    shell.announce(
+      "Rotated to " + state.angle + " degrees, the simplest structure " +
+        "available at this axis angle. Simplicity " + fmt(best.score) + ".",
+      { immediate: true });
+  });
+
+  function captureBaseline() {
+    var markers = currentSet().markers;
+    baseline = {
+      communalities: markers.map(communality),
+      totalVariance: markers.reduce(function (t, m) { return t + communality(m); }, 0)
+    };
+  }
+
+  /* --- Rendering ------------------------------------------------------------ */
+
+  function render() {
+    if (state.stage !== "explore") { return; }
+    setNote.textContent = currentSet().note;
+    drawPlot();
+    renderTable();
+    renderReadout();
+    renderLabels();
+    renderInvariants();
+    renderChallengeStatus();
+  }
+
+  function drawPlot() {
+    var NS = "http://www.w3.org/2000/svg";
+    var SIZE = 320;
+    var PAD = 30;
+    var cx = PAD + SIZE / 2;
+    var cy = PAD + SIZE / 2;
+    var scale = SIZE / 2;
+
+    clear(plot);
+    plot.setAttribute("viewBox", "0 0 " + (SIZE + PAD * 2) + " " + (SIZE + PAD * 2));
+
+    // Unit circle
+    var circle = document.createElementNS(NS, "circle");
+    circle.setAttribute("cx", String(cx));
+    circle.setAttribute("cy", String(cy));
+    circle.setAttribute("r", String(scale));
+    circle.setAttribute("class", "plot__circle");
+    plot.appendChild(circle);
+
+    // The two axes, drawn at their current angles.
+    [[state.angle, "one", "F1"], [state.angle + state.oblique, "two", "F2"]]
+      .forEach(function (entry) {
+        var a = entry[0] * DEG;
+        var dx = Math.cos(a) * scale;
+        var dy = Math.sin(a) * scale;
+        var axis = document.createElementNS(NS, "line");
+        axis.setAttribute("x1", String(cx - dx));
+        axis.setAttribute("y1", String(cy + dy));
+        axis.setAttribute("x2", String(cx + dx));
+        axis.setAttribute("y2", String(cy - dy));
+        axis.setAttribute("class", "plot__axis plot__axis--" + entry[1]);
+        plot.appendChild(axis);
+
+        var label = document.createElementNS(NS, "text");
+        label.setAttribute("x", String(cx + dx * 1.06));
+        label.setAttribute("y", String(cy - dy * 1.06 + 4));
+        label.setAttribute("text-anchor", "middle");
+        label.setAttribute("class", "chart__label");
+        label.textContent = entry[2];
+        plot.appendChild(label);
+      });
+
+    // Markers — their positions never change.
+    currentSet().markers.forEach(function (marker) {
+      var px = cx + marker.x * scale;
+      var py = cy - marker.y * scale;
+
+      var dot = document.createElementNS(NS, "circle");
+      dot.setAttribute("cx", String(px));
+      dot.setAttribute("cy", String(py));
+      dot.setAttribute("r", "4");
+      dot.setAttribute("class", "plot__marker");
+      plot.appendChild(dot);
+
+      var text = document.createElementNS(NS, "text");
+      text.setAttribute("x", String(px + (marker.x >= 0 ? 7 : -7)));
+      text.setAttribute("y", String(py + 4));
+      text.setAttribute("text-anchor", marker.x >= 0 ? "start" : "end");
+      text.setAttribute("class", "plot__label");
+      text.textContent = marker.name;
+      plot.appendChild(text);
+    });
+  }
+
+  function renderTable() {
+    clear(loadingTable);
+    currentSet().markers.forEach(function (marker, index) {
+      var l = loadings(marker, state.angle, state.oblique);
+      var row = make("tr");
+      var th = make("th", null, marker.name);
+      th.setAttribute("scope", "row");
+      row.appendChild(th);
+      row.appendChild(make("td", null, fmt(l.one)));
+      row.appendChild(make("td", null, fmt(l.two)));
+      row.appendChild(make("td", null, fmt(communality(marker))));
+      var salientOn =
+        Math.abs(l.one) >= SALIENT && Math.abs(l.two) >= SALIENT ? "both"
+          : Math.abs(l.one) >= SALIENT ? "F1"
+          : Math.abs(l.two) >= SALIENT ? "F2" : "neither";
+      row.appendChild(make("td", null, salientOn));
+      loadingTable.appendChild(row);
+    });
+  }
+
+  function renderReadout() {
+    clear(readout);
+    var markers = currentSet().markers;
+    var s = salience(markers, state.angle, state.oblique);
+    [
+      ["Simple structure", fmt(simplicity(markers, state.angle, state.oblique))],
+      ["Salient on F1 only", String(s.one.length)],
+      ["Salient on F2 only", String(s.two.length)],
+      ["Salient on both", String(s.both.length)],
+      ["Factor correlation", fmt(factorCorrelation(state.oblique))]
+    ].forEach(function (pair) {
+      var cell = make("div");
+      cell.appendChild(make("dt", null, pair[0]));
+      cell.appendChild(make("dd", null, pair[1]));
+      readout.appendChild(cell);
+    });
+  }
+
+  function renderLabels() {
+    labelOne.textContent =
+      tentativeLabel(currentSet().markers, state.angle, state.oblique, "one");
+    labelTwo.textContent =
+      tentativeLabel(currentSet().markers, state.angle, state.oblique, "two");
+  }
+
+  function renderInvariants() {
+    var markers = currentSet().markers;
+    var nowTotal = markers.reduce(function (t, m) { return t + communality(m); }, 0);
+    var maxDrift = Math.max.apply(null, markers.map(function (m, i) {
+      return Math.abs(communality(m) - baseline.communalities[i]);
+    }));
+
+    invariantNote.textContent =
+      "Rotated " + state.angle + "°, axes " + state.oblique + "° apart. Every " +
+      "loading in the table has changed. Meanwhile: total variance explained " +
+      "is " + fmt(nowTotal) + " (it was " + fmt(baseline.totalVariance) +
+      "), and the largest change in any marker's communality is " +
+      fmt(maxDrift, 3) + ". The points on the plot have not moved at all — " +
+      "only the axes you are reading them against.";
+  }
+
+  /* --- Opening prediction ---------------------------------------------------- */
+
+  var OPENING = {
+    nothing: {
+      tone: "good",
+      verdict: "Yes — and that is the surprising part.",
+      text:
+        "Rotation changes every loading and changes nothing about the fit. " +
+        "The model explains exactly as much variance after rotation as before, " +
+        "and each variable's communality is untouched. What changes is which " +
+        "description of the same configuration you are looking at."
+    },
+    better: {
+      tone: "caution",
+      verdict: "Not quite.",
+      text:
+        "Fit is unchanged by rotation — that is what makes rotation legitimate " +
+        "and also what makes it non-arbitrary in a way people find " +
+        "uncomfortable. Rotation improves interpretability, not fit, and those " +
+        "are different virtues."
+    },
+    worse: {
+      tone: "caution",
+      verdict: "No.",
+      text:
+        "Nothing is lost. The rotated solution reproduces the correlations " +
+        "exactly as well as the unrotated one. If it did not, rotation would " +
+        "be a form of cheating rather than a change of description."
+    },
+    depends: {
+      tone: "caution",
+      verdict: "Not in the way you might expect.",
+      text:
+        "It does not depend on the rotation method: orthogonal and oblique " +
+        "rotations both leave fit unchanged. What differs between them is " +
+        "whether the factors are allowed to correlate, which is a substantive " +
+        "choice about the constructs, not a statistical one about fit."
+    }
+  };
+
+  openingForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answer = $('input[name="opening"]:checked', openingForm);
+    if (!answer) {
+      openingError.textContent = "Choose an answer before rotating anything.";
+      openingError.hidden = false;
+      return;
+    }
+    openingError.hidden = true;
+    var feedback = OPENING[answer.value];
+    showFeedback(openingFeedback, feedback.tone, feedback.verdict, feedback.text);
+    lockForm(openingForm);
+    state.stage = "explore";
+    setControlsEnabled(true);
+    render();
+    shell.announce("Playground unlocked.", { immediate: true });
+  });
+
+  $('[data-action="skip-opening"]').addEventListener("click", function () {
+    openingError.hidden = true;
+    showFeedback(openingFeedback, "neutral",
+      "Prediction skipped — demonstration mode.",
+      "With a class, ask what rotation does to model fit before unlocking the " +
+        "playground.");
+    lockForm(openingForm);
+    state.stage = "explore";
+    setControlsEnabled(true);
+    render();
+    shell.announce("Playground unlocked.", { immediate: true });
+  });
+
+  function setControlsEnabled(enabled) {
+    $("#angle-range").disabled = !enabled;
+    $("#oblique-range").disabled = !enabled;
+    setSelect.disabled = !enabled;
+    $('[data-action="best"]').disabled = !enabled;
+  }
+
+  /* --- Challenge -------------------------------------------------------------- */
+
+  function renderChallengeStatus() {
+    var markers = currentSet().markers;
+    var score = simplicity(markers, state.angle, state.oblique);
+    var best = bestAngle(markers, state.oblique);
+    challengeStatus.textContent =
+      "Current simple structure: " + fmt(score) + ". The best available at " +
+      "this axis angle is " + fmt(best.score) + ", at " +
+      Math.round(best.angle) + "°.";
+    challengeStatus.setAttribute(
+      "data-tone", score >= best.score - 0.02 ? "good" : "neutral");
+  }
+
+  challengeForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answer = $('input[name="challenge"]:checked', challengeForm);
+    if (!answer) {
+      showFeedback(challengeFeedback, "caution", "Choose an answer first.", "");
+      return;
+    }
+    var correct = answer.value === "interpretive";
+    showFeedback(
+      challengeFeedback,
+      correct ? "good" : "caution",
+      correct ? "Yes." : "Not quite.",
+      "Mathematically, nothing changed: the same configuration of points, the " +
+        "same communalities, the same fit, the same reproduced correlation " +
+        "matrix. What changed is interpretive — which items count as salient " +
+        "on which factor, and therefore what anybody would call the factors."
+    );
+    shell.announce("Challenge answered.", { immediate: true });
+  });
+
+  function showFeedback(container, tone, verdict, text) {
+    clear(container);
+    container.setAttribute("data-tone", tone);
+    var paragraph = make("p");
+    paragraph.appendChild(make("strong", "feedback__verdict", verdict));
+    if (text) { paragraph.appendChild(document.createTextNode(" " + text)); }
+    container.appendChild(paragraph);
+    container.hidden = false;
+  }
+
+  function lockForm(form) {
+    Array.prototype.forEach.call(form.querySelectorAll("input, button"),
+      function (c) { c.disabled = true; });
+  }
+
+  function unlockForm(form) {
+    Array.prototype.forEach.call(form.querySelectorAll("input, button"),
+      function (c) { c.disabled = false; });
+    form.reset();
+  }
+
+  /* --- Reset -------------------------------------------------------------------- */
+
+  shell.onReset(function () {
+    state = JSON.parse(JSON.stringify(INITIAL));
+    setSelect.value = state.setId;
+    $("#angle-range").value = "0";
+    $("#oblique-range").value = "90";
+    setControlsEnabled(false);
+    unlockForm(openingForm);
+    openingFeedback.hidden = true;
+    openingError.hidden = true;
+    challengeForm.reset();
+    challengeFeedback.hidden = true;
+    captureBaseline();
+    syncRanges();
+  });
+
+  /* --- Start-up ------------------------------------------------------------------ */
+
+  shell.reset({ silent: true });
+  shell.announce(
+    "Ready. Answer the question above to unlock the playground.",
+    { immediate: true });
+})();
+
+</script>
+</div>

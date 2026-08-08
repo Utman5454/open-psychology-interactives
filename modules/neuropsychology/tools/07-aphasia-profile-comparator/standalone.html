@@ -1,0 +1,2673 @@
+<!-- Aphasia Profile Comparator
+     From Open Psychology Interactives - https://github.com/utman5454/open-psychology-interactives
+     Self-contained: no stylesheets, scripts, fonts, images or network requests.
+     Styles are scoped to .opi-activity and do not affect the page around them.
+     Nothing is saved, sent or tracked. MIT licensed; please keep this notice.
+     Paste anywhere that accepts HTML, or save as a .html file and open it. -->
+<div class="opi-activity">
+<style>
+/* Defensive baseline. See scripts/build-standalone.py for why this
+   is `revert` rather than an enumerated reset, and how the specificity ladder
+   keeps the activity's own styling on top of it. */
+.opi-activity *:not(svg *) {
+  all: revert;
+}
+.opi-activity, .opi-activity *, .opi-activity *::before, .opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  text-transform: none;
+  text-indent: 0;
+  font-style: normal;
+  font-variant: normal;
+  letter-spacing: normal;
+  word-spacing: normal;
+  white-space: normal;
+  visibility: visible;
+  float: none;
+  max-width: none;
+}
+.opi-activity svg { max-width: 100%; }
+.opi-activity img { max-width: 100%; height: auto; }
+.opi-activity [hidden] { display: none !important; }
+
+/* assets/css/main.css */
+.opi-activity.opi-activity {
+  --colour-page: #ffffff;
+  --colour-surface: #f5f7fa;
+  --colour-surface-raised: #ffffff;
+  --colour-border: #d3d9e2;
+  --colour-border-strong: #aeb7c4;
+  --colour-text: #131820;
+  --colour-text-muted: #4c566a;
+  --colour-accent: #1a4fa0;
+  --colour-accent-hover: #123a7a;
+  --colour-accent-soft: #e8eefb;
+  --colour-on-accent: #ffffff;
+  --colour-focus: #b45309;
+  --colour-cognitive: #8a4b00;
+  --colour-research-methods: #1a4fa0;
+  --colour-neuropsychology: #145c53;
+  --colour-social-critical-psychology: #9e2f45;
+  --colour-personality-individual-differences: #7a2e6d;
+  --colour-status-bg: #f1ede3;
+  --colour-status-text: #5c4a1f;
+  --colour-status-border: #d9cdb0;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  --text-xs: 13px;
+  --text-sm: 15px;
+  --text-base: 17px;
+  --text-lg: 19px;
+  --text-xl: 23px;
+  --text-2xl: 28px;
+  --text-3xl: 36px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgb(19 24 32 / 0.06);
+  --shadow-md: 0 2px 8px rgb(19 24 32 / 0.08);
+  --measure: 68ch;
+  --container: 1152px;
+}
+@media (prefers-color-scheme: dark) {
+.opi-activity.opi-activity {
+  --colour-page: #0f141b;
+  --colour-surface: #161d27;
+  --colour-surface-raised: #1a2230;
+  --colour-border: #2c3644;
+  --colour-border-strong: #44506180;
+  --colour-text: #e9edf3;
+  --colour-text-muted: #a8b2c1;
+  --colour-accent: #8fb6ff;
+  --colour-accent-hover: #b3cdff;
+  --colour-accent-soft: #1b2740;
+  --colour-on-accent: #0f141b;
+  --colour-focus: #f0b429;
+  --colour-cognitive: #e2ab5f;
+  --colour-research-methods: #8fb6ff;
+  --colour-neuropsychology: #6fc3b4;
+  --colour-social-critical-psychology: #f19aa8;
+  --colour-personality-individual-differences: #db9ccd;
+  --colour-status-bg: #241f14;
+  --colour-status-text: #e2cf9f;
+  --colour-status-border: #4a4028;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 2px 10px rgb(0 0 0 / 0.45);
+}
+}
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity.opi-activity {
+  -webkit-text-size-adjust: 100%;
+}
+.opi-activity.opi-activity {
+  background-color: var(--colour-page);
+  color: var(--colour-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.65;
+}
+.opi-activity.opi-activity h1,
+.opi-activity.opi-activity h2,
+.opi-activity.opi-activity h3,
+.opi-activity.opi-activity h4 {
+  margin: 0 0 var(--space-3);
+  line-height: 1.25;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.opi-activity.opi-activity h1 {
+  font-size: var(--text-3xl);
+}
+.opi-activity.opi-activity h2 {
+  font-size: var(--text-2xl);
+}
+.opi-activity.opi-activity h3 {
+  font-size: var(--text-xl);
+}
+.opi-activity.opi-activity h4 {
+  font-size: var(--text-lg);
+}
+.opi-activity.opi-activity p,
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol,
+.opi-activity.opi-activity dl {
+  margin: 0 0 var(--space-4);
+}
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol {
+  padding-left: 1.35em;
+}
+.opi-activity.opi-activity li + li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity a {
+  color: var(--colour-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: max(1px, 0.06em);
+}
+.opi-activity.opi-activity a:hover {
+  color: var(--colour-accent-hover);
+  text-decoration-thickness: max(2px, 0.11em);
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid var(--colour-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+@supports not selector(:focus-visible) {
+.opi-activity.opi-activity :focus {
+  outline: 3px solid var(--colour-focus);
+    outline-offset: 2px;
+}
+}
+.opi-activity.opi-activity code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.35em;
+}
+.opi-activity.opi-activity hr {
+  border: 0;
+  border-top: 1px solid var(--colour-border);
+  margin: var(--space-6) 0;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+}
+.opi-activity.opi-activity .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.opi-activity.opi-activity .container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+@media (min-width: 40em) {
+.opi-activity.opi-activity .container {
+  padding-inline: var(--space-5);
+}
+}
+.opi-activity.opi-activity .prose {
+  max-width: var(--measure);
+}
+.opi-activity.opi-activity .text-muted {
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .section {
+  padding-block: var(--space-7);
+}
+.opi-activity.opi-activity .section--tinted {
+  background-color: var(--colour-surface);
+  border-block: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .section__header {
+  max-width: var(--measure);
+  margin-bottom: var(--space-5);
+}
+.opi-activity.opi-activity .section__header > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-7) var(--space-6);
+  border-bottom: 1px solid var(--colour-border);
+  
+  background-image: linear-gradient(
+    180deg,
+    var(--colour-accent-soft) 0%,
+    var(--colour-page) 100%
+  );
+}
+.opi-activity.opi-activity .hero__eyebrow {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .hero h1 {
+  max-width: 20ch;
+  margin-bottom: var(--space-4);
+}
+.opi-activity.opi-activity .hero__lead {
+  max-width: var(--measure);
+  font-size: var(--text-lg);
+  color: var(--colour-text-muted);
+}
+@media (min-width: 48em) {
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-8) var(--space-7);
+}
+.opi-activity.opi-activity .hero h1 {
+  font-size: 44px;
+}
+}
+.opi-activity.opi-activity .button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  
+  min-height: 44px;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .button--primary {
+  background-color: var(--colour-accent);
+  border-color: var(--colour-accent);
+  
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--primary:hover {
+  background-color: var(--colour-accent-hover);
+  border-color: var(--colour-accent-hover);
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--secondary {
+  background-color: transparent;
+  border-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .button--secondary:hover {
+  background-color: var(--colour-surface);
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+}
+.opi-activity.opi-activity .card--cognitive {
+  --card-accent: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .card--research-methods {
+  --card-accent: var(--colour-research-methods);
+}
+.opi-activity.opi-activity .card--neuropsychology {
+  --card-accent: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .card--social-critical-psychology {
+  --card-accent: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .card--personality-individual-differences {
+  --card-accent: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 650;
+  line-height: 1.4;
+  padding: 3.2px var(--space-3);
+  border-radius: 999px;
+  border: 1px solid var(--colour-status-border);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+}
+.opi-activity.opi-activity .badge__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex: none;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed var(--colour-border-strong);
+  border-radius: var(--radius-lg);
+  background-color: var(--colour-surface);
+  padding: var(--space-5);
+  text-align: left;
+}
+.opi-activity.opi-activity .placeholder__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+}
+.opi-activity.opi-activity .placeholder > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .split {
+  display: grid;
+  gap: var(--space-6);
+}
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split {
+  grid-template-columns: 3fr 2fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .panel {
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.opi-activity.opi-activity .panel > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .panel__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .section--tinted {
+  border-block: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .hero {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .button--primary {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .button--secondary {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .button:hover {
+  border-color: Highlight;
+}
+.opi-activity.opi-activity .panel {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed CanvasText;
+}
+.opi-activity.opi-activity .badge {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .badge__dot {
+  background-color: CanvasText;
+}
+.opi-activity.opi-activity code {
+  border-color: CanvasText;
+}
+.opi-activity.opi-activity hr {
+  border-top-color: CanvasText;
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+}
+@media print {
+.opi-activity.opi-activity {
+  color: #000;
+  background: #fff;
+}
+.opi-activity.opi-activity a[href^="http"]::after {
+  content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+}
+}
+
+/* components/interactive-shell.css */
+.opi-activity.opi-activity .interactive {
+  --shell-page: var(--colour-page, #ffffff);
+  --shell-surface: var(--colour-surface, #f5f7fa);
+  --shell-raised: var(--colour-surface-raised, #ffffff);
+  --shell-border: var(--colour-border, #d3d9e2);
+  --shell-border-strong: var(--colour-border-strong, #aeb7c4);
+  --shell-text: var(--colour-text, #131820);
+  --shell-muted: var(--colour-text-muted, #4c566a);
+  --shell-accent: var(--colour-accent, #1a4fa0);
+  --shell-accent-soft: var(--colour-accent-soft, #e8eefb);
+  
+  --shell-on-accent: var(--colour-on-accent, #ffffff);
+  --shell-focus: var(--colour-focus, #b45309);
+  --shell-radius: var(--radius-lg, 12px);
+  --shell-gap: var(--space-5, 24px);
+
+  display: block;
+  background-color: var(--shell-raised);
+  color: var(--shell-text);
+  border: 1px solid var(--shell-border);
+  border-radius: var(--shell-radius);
+  
+  overflow-x: clip;
+  overflow-y: visible;
+}
+.opi-activity.opi-activity .interactive__header {
+  padding: var(--shell-gap);
+  border-bottom: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 1.25;
+}
+.opi-activity.opi-activity .interactive__brief {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--shell-muted);
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__body {
+  display: grid;
+  gap: var(--shell-gap);
+  padding: var(--shell-gap);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body {
+  grid-template-columns: minmax(240px, 320px) 1fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .interactive__controls {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__controls fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .interactive__controls legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .control {
+  display: grid;
+  gap: 5.6px;
+}
+.opi-activity.opi-activity .control + .control {
+  margin-top: 16px;
+}
+.opi-activity.opi-activity .control__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.opi-activity.opi-activity .control__label {
+  font-size: 15px;
+  font-weight: 600;
+}
+.opi-activity.opi-activity .control__value {
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--shell-accent);
+}
+.opi-activity.opi-activity .control__hint {
+  font-size: 13px;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .interactive__controls input[type="range"] {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--shell-accent);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  width: 100%;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--shell-text);
+  background-color: var(--shell-raised);
+  border: 1px solid var(--shell-border-strong);
+  border-radius: var(--radius-sm, 4px);
+}
+.opi-activity.opi-activity .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+}
+.opi-activity.opi-activity .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  accent-color: var(--shell-accent);
+  flex: none;
+}
+.opi-activity.opi-activity .interactive__stage {
+  min-height: 256px;
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-page);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body--pinned {
+  align-items: stretch;
+}
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: sticky;
+    top: 0;
+    z-index: 2;
+    
+    margin: -16px -16px 0;
+    padding: 16px 16px 12px;
+    background-color: var(--shell-page);
+    border-bottom: 1px solid var(--shell-border);
+}
+}
+@media (min-width: 52em) and (max-height: 30em) {
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: static;
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
+}
+}
+.opi-activity.opi-activity .interactive__stage > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity :where(.interactive__stage) svg,
+.opi-activity.opi-activity :where(.interactive__stage) canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+.opi-activity.opi-activity .interactive__readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout div {
+  padding: 9.6px 12px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-sm, 4px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__readout dt {
+  font-size: 13px;
+  color: var(--shell-muted);
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout dd {
+  margin: 2.4px 0 0;
+  font-size: 18px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .interactive__status {
+  margin: 0;
+  padding: 12px var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+  font-size: 15px;
+  color: var(--shell-muted);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .interactive__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+}
+.opi-activity.opi-activity .interactive__actions button {
+  min-height: 44px;
+  padding: 6.4px 20px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--shell-on-accent);
+  background-color: var(--shell-accent);
+  border: 1px solid var(--shell-accent);
+  border-radius: var(--radius-md, 8px);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  color: var(--shell-text);
+  background-color: transparent;
+  border-color: var(--shell-border-strong);
+}
+.opi-activity.opi-activity .interactive__actions button:hover {
+  filter: brightness(1.08);
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__notes > summary {
+  padding: 13.6px var(--shell-gap);
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__notes > div {
+  padding: 0 var(--shell-gap) var(--shell-gap);
+  max-width: 68ch;
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__notes > div > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity .interactive *,
+.opi-activity.opi-activity .interactive *::before,
+.opi-activity.opi-activity .interactive *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+}
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .interactive,
+.opi-activity.opi-activity .interactive__controls,
+.opi-activity.opi-activity .interactive__stage,
+.opi-activity.opi-activity .interactive__readout div {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__header {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__status,
+.opi-activity.opi-activity .interactive__actions,
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__actions button {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  border-width: 1px;
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 1;
+    color: GrayText;
+    border-color: GrayText;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__stage svg {
+  forced-color-adjust: auto;
+}
+}
+
+/* components/tool-kit.css */
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split--wide {
+  grid-template-columns: 1fr 1fr;
+}
+}
+.opi-activity.opi-activity .how-to {
+  padding-left: 19.2px;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .how-to > li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .table-scroll {
+  overflow-x: auto;
+  
+  position: relative;
+}
+.opi-activity.opi-activity .prediction {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 832px;
+}
+.opi-activity.opi-activity .prediction > *,
+.opi-activity.opi-activity .challenge > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity .prediction__group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .prediction__legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-weight: 650;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .prediction .control--choice,
+.opi-activity.opi-activity .challenge .control--choice,
+.opi-activity.opi-activity .evidence .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .prediction .control--choice input,
+.opi-activity.opi-activity .challenge .control--choice input,
+.opi-activity.opi-activity .evidence .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .prediction__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .prediction__error {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-status-border);
+  border-left: 4px solid var(--colour-status-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .prediction__readback {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .feedback[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .feedback[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .feedback[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .feedback__verdict {
+  font-weight: 700;
+}
+.opi-activity.opi-activity .verdict {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .verdict__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict__body {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .verdict__body + .verdict__body {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .verdict__note {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .verdict[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .verdict[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .goal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .goal__label {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .goal__text {
+  flex: 1 1 256px;
+}
+.opi-activity.opi-activity .goal strong {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .goal__checks {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+  display: grid;
+  gap: 2.4px;
+}
+.opi-activity.opi-activity .goal__checks > li {
+  margin-top: 0;
+  padding-left: 22.4px;
+  position: relative;
+}
+.opi-activity.opi-activity .goal__checks > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 9.6px;
+  height: 9.6px;
+  border: 2px solid var(--colour-border-strong);
+  border-radius: 2px;
+}
+.opi-activity.opi-activity .goal__checks > li[data-met="yes"]::before {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .stage-track {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .stage-track > li {
+  margin-top: 0;
+  flex: 1 1 160px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-bottom: 3px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .stage-track > li > span {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.opi-activity.opi-activity .stage-track > li[data-state="done"] {
+  border-bottom-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border-bottom-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+  color: var(--colour-text);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .stage__heading {
+  margin: 0;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .data-table,
+.opi-activity.opi-activity .chart__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .data-table th,
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table th,
+.opi-activity.opi-activity .chart__table td {
+  padding: 6.4px 9.6px;
+  border: 1px solid var(--colour-border);
+  text-align: left;
+  vertical-align: top;
+}
+.opi-activity.opi-activity .data-table thead th,
+.opi-activity.opi-activity .chart__table thead th {
+  background-color: var(--colour-surface);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table td {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__table tbody th,
+.opi-activity.opi-activity .data-table tbody th {
+  font-weight: 550;
+}
+.opi-activity.opi-activity .data-table__total > th,
+.opi-activity.opi-activity .data-table__total > td {
+  border-top: 2px solid var(--colour-border-strong);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart {
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .chart__caption {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__svg {
+  max-width: 100%;
+  height: auto;
+}
+.opi-activity.opi-activity .chart__label,
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__inline,
+.opi-activity.opi-activity .chart__axis {
+  font-family: var(--font-body);
+  fill: var(--colour-text);
+  font-size: 13px;
+}
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__axis {
+  fill: var(--colour-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: var(--colour-on-accent);
+  font-size: 12px;
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__track {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__bar {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--one {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .chart__baseline,
+.opi-activity.opi-activity .chart__grid {
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__line {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: var(--colour-personality-individual-differences);
+  stroke-dasharray: 6 4;
+}
+.opi-activity.opi-activity .chart__point {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .reveal > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .reveal__lead {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+.opi-activity.opi-activity .reveal__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(176px, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+  padding: 0;
+  list-style: none;
+}
+.opi-activity.opi-activity .reveal__figures > li {
+  margin-top: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+.opi-activity.opi-activity .reveal__figure-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .reveal__figure-value {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .challenge {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+.opi-activity.opi-activity .challenge__locked {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .panel--caution {
+  background-color: var(--colour-status-bg);
+  border-color: var(--colour-status-border);
+}
+.opi-activity.opi-activity .panel--caution li + li {
+  margin-top: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .goal,
+.opi-activity.opi-activity .verdict,
+.opi-activity.opi-activity .feedback,
+.opi-activity.opi-activity .prediction__error,
+.opi-activity.opi-activity .prediction__readback,
+.opi-activity.opi-activity .stage-track > li,
+.opi-activity.opi-activity .reveal__figures > li {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border: 2px solid Highlight;
+}
+.opi-activity.opi-activity .chart__bar,
+.opi-activity.opi-activity .chart__bar--one {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: Canvas;
+}
+.opi-activity.opi-activity .chart__line {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: Highlight;
+}
+}
+.opi-activity.opi-activity .stage__more {
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .stage__more > summary {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .stage__more[open] > summary {
+  border-bottom: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .stage__more > *:not(summary) {
+  margin: var(--space-3);
+}
+
+/* modules/neuropsychology/tools/07-aphasia-profile-comparator/tool.css */
+.opi-activity.opi-activity #aphasia .interactive__controls,
+.opi-activity.opi-activity #aphasia .interactive__stage {
+  min-width: 0;
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity #aphasia .interactive__body {
+  grid-template-columns: minmax(0, 336px) minmax(0, 1fr);
+}
+}
+.opi-activity.opi-activity #aphasia .control--choice {
+  font-size: var(--text-sm);
+  line-height: 1.3;
+  align-items: flex-start;
+  padding: 4.8px 0;
+}
+.opi-activity.opi-activity #aphasia .control--choice input {
+  margin-top: 8.8px;
+}
+.opi-activity.opi-activity #aphasia .control + .control {
+  margin-top: var(--space-4);
+}
+.opi-activity.opi-activity #aphasia [data-compare] {
+  max-width: 512px;
+}
+.opi-activity.opi-activity #aphasia .chart__bar--two {
+  fill: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .aph__gap {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  fill: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .aphasia__notes {
+  gap: var(--space-3);
+}
+@media (min-width: 56em) {
+.opi-activity.opi-activity .aphasia__notes {
+  grid-template-columns: 1fr 1fr;
+}
+}
+.opi-activity.opi-activity .aphasia__notes > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity .chart__table td[data-mark="top"] {
+  background-color: var(--colour-accent-soft);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .data-table td[data-mark="picked"] {
+  background-color: var(--colour-accent-soft);
+  font-weight: 650;
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity #aphasia .chart__bar--two {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .aph__gap {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .chart__table td[data-mark="top"],
+.opi-activity.opi-activity .data-table td[data-mark="picked"] {
+  background-color: Canvas;
+    border: 2px solid Highlight;
+}
+}
+</style>
+
+  <!-- ================= Title and purpose ================= -->
+  <section class="section card--neuropsychology" aria-labelledby="page-heading">
+    <div class="container">
+
+      <p class="hero__eyebrow" style="color: var(--colour-neuropsychology)">
+        Neuropsychology
+      </p>
+      <h1 id="page-heading">Aphasia Profile Comparator</h1>
+      <p class="hero__lead">
+        Six fictional language profiles. Put any two side by side and work
+        out which single measure separates them - and then work out what a
+        separation is worth.
+      </p>
+
+      <p>
+        <span class="badge">
+          <span class="badge__dot" aria-hidden="true"></span>
+          Simulated — invented profiles, original task descriptions, no clinical materials
+        </span>
+      </p>
+
+      <div class="split split--wide">
+
+        <div class="panel">
+          <h2 class="panel__title">Learning objective</h2>
+          <p>
+            By the end you should be able to say which measure carries most
+            information about a particular contrast, and what a separation
+            is worth.
+          </p>
+          <p class="text-muted">
+            About 30 minutes. Nothing you do here is saved or sent anywhere.
+          </p>
+        </div>
+
+        <div class="panel panel--caution">
+          <h2 class="panel__title">No categories, no clinical materials</h2>
+          <p>
+            The tool never names a syndrome, no standardised battery, subtest
+            or item is reproduced, and every task description is original.
+            The six profiles are invented and nothing here assesses anybody.
+          </p>
+        </div>
+
+      </div>
+
+      <ol class="how-to">
+        <li>Choose two profiles.</li>
+        <li>
+          Before looking at the separation column, decide which single
+          measure you think does the most to tell them apart.
+        </li>
+        <li>Check, read why, and choose another pair.</li>
+      </ol>
+
+    </div>
+  </section>
+
+  <!-- ================= Opening prediction ================= -->
+  <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="opening-heading">First, a judgement</h2>
+        <p class="prose">
+          Two fictional people both speak in short, effortful phrases and
+          both understand what is said to them. One can repeat a spoken
+          sentence back accurately and the other cannot.
+        </p>
+      </div>
+
+      <noscript>
+        <div class="placeholder">
+          <h3 class="placeholder__title">This part needs JavaScript</h3>
+          <p class="prose">
+            The comparison is computed and drawn in your browser, so it
+            cannot run with JavaScript switched off. The rest of this page is
+            readable without it.
+          </p>
+        </div>
+      </noscript>
+
+      <form class="panel prediction" id="opening-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            What does the repetition difference tell you?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="severity">
+            That one of them is more severely affected than the other
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="route">
+            That something needed for repetition, and not for effortful
+            speech or for understanding, differs between them
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="category">
+            That they belong to two different categories of aphasia
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="nothing">
+            Little - repetition is an artificial task nobody does in daily life
+          </label>
+        </fieldset>
+
+        <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Record my answer and open the comparator
+          </button>
+          <button class="button button--secondary" type="button" data-action="skip-opening">
+            Skip - I am demonstrating this
+          </button>
+        </div>
+
+        <div class="feedback" data-opening-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= The comparator ================= -->
+  <section class="section" id="comparator-section" aria-labelledby="comparator-heading" hidden>
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="comparator-heading" tabindex="-1">The comparator</h2>
+      </div>
+
+      <section class="interactive" id="aphasia" data-interactive
+               data-reset-message="Comparator cleared. Back to profiles A and B.">
+
+        <header class="interactive__header">
+          <h3 class="interactive__title" data-pair-title>Profile A against Profile B</h3>
+          <p class="interactive__brief" data-pair-brief></p>
+        </header>
+
+        <div class="interactive__body interactive__body--pinned">
+
+          <form class="interactive__controls" data-interactive-controls>
+
+            <fieldset>
+              <legend>The pair</legend>
+              <div class="control">
+                <label class="control__label" for="left-select">First profile</label>
+                <select id="left-select" data-left-select></select>
+              </div>
+              <div class="control">
+                <label class="control__label" for="right-select">Second profile</label>
+                <select id="right-select" data-right-select></select>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Which measure separates them most?</legend>
+              <div data-measure-controls></div>
+              <div class="prediction__actions">
+                <button class="button button--primary" type="submit">
+                  Check my choice
+                </button>
+              </div>
+            </fieldset>
+
+          </form>
+
+          <div class="interactive__stage" data-interactive-stage>
+
+            <!-- Pinned: the two profiles side by side. Both selects and the
+                 answer refer to this block. -->
+            <div class="stage__primary">
+              <h4 class="stage__heading">The two profiles, measure by measure</h4>
+              <figure class="chart">
+                <figcaption class="visually-hidden">
+                  Six language measures, with a bar for each of the two
+                  selected profiles and the separation between them
+                </figcaption>
+                <svg class="chart__svg" data-compare viewBox="0 0 470 280"
+                     aria-hidden="true" focusable="false"></svg>
+              </figure>
+            </div>
+
+            <div class="feedback" data-choice-feedback hidden></div>
+
+            <h4 class="stage__heading">The numbers</h4>
+            <div class="table-scroll">
+              <table class="chart__table">
+                <caption class="visually-hidden">
+                  Each measure, what it asks for, both profiles' scores and
+                  the separation between them
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Measure</th>
+                    <th scope="col">What it asks for</th>
+                    <th scope="col" data-head-left>First</th>
+                    <th scope="col" data-head-right>Second</th>
+                    <th scope="col">Separation</th>
+                  </tr>
+                </thead>
+                <tbody data-compare-table></tbody>
+              </table>
+            </div>
+
+            <div class="split aphasia__notes">
+              <div class="verdict" data-left-notes>
+                <h4 class="verdict__title" data-left-notes-title>First profile</h4>
+                <p class="verdict__body" data-left-notes-body></p>
+              </div>
+              <div class="verdict" data-right-notes>
+                <h4 class="verdict__title" data-right-notes-title>Second profile</h4>
+                <p class="verdict__body" data-right-notes-body></p>
+              </div>
+            </div>
+
+            <details class="stage__more">
+              <summary>All six profiles at once</summary>
+              <div class="table-scroll">
+                <table class="data-table">
+                  <caption class="visually-hidden">
+                    Every fictional profile on every measure
+                  </caption>
+                  <thead>
+                    <tr data-all-head></tr>
+                  </thead>
+                  <tbody data-all-table></tbody>
+                </table>
+              </div>
+              <p class="text-muted">
+                Scores run from 0 to 10, where 10 is performance
+                indistinguishable from a fictional control group. They are
+                illustrative values invented for teaching, not measurements
+                of anything.
+              </p>
+            </details>
+
+          </div>
+
+        </div>
+
+        <p class="interactive__status" data-interactive-status role="status"></p>
+
+        <div class="interactive__actions">
+          <button type="button" data-variant="secondary" data-interactive-reset>
+            Reset everything
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ================= Challenge ================= -->
+  <section class="section section--tinted" id="challenge" aria-labelledby="challenge-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="challenge-heading">Challenge - the profile that fits nothing</h2>
+        <p class="prose">
+          Profile F is moderately fluent, moderately impaired at
+          understanding, moderately impaired at repetition, poor at naming,
+          good at reading aloud and very poor at writing. It matches no
+          textbook pattern.
+        </p>
+      </div>
+
+      <form class="panel challenge" id="challenge-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">What is the best reading of that?</legend>
+          <label class="control--choice">
+            <input type="radio" name="challenge" value="error">
+            Something has gone wrong with the testing
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="challenge" value="stage">
+            It is an early or a recovering form of one of the categories
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="challenge" value="prototype">
+            The categories are prototypes drawn through a continuous space,
+            and a substantial minority of people sit between them
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="challenge" value="nolocal">
+            It shows that language is not organised in the brain at all
+          </label>
+        </fieldset>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Check my answer
+          </button>
+        </div>
+
+        <div class="feedback" data-challenge-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Debrief ================= -->
+  <section class="section" id="debrief" aria-labelledby="debrief-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="debrief-heading">What this demonstrates</h2>
+      </div>
+
+      <div class="split split--wide">
+
+        <div class="prose">
+          <h3>A measure is informative about a contrast, not in general</h3>
+          <p>
+            Repetition separates profiles A and D almost perfectly and tells
+            you nothing at all about A against B. Comprehension does the
+            reverse. There is no such thing as the most informative language
+            measure; there is only the most informative measure for the
+            question you are asking, which is why hypothesis-driven
+            assessment beats running a long battery and looking at what comes
+            out.
+          </p>
+
+          <h3>Repetition is informative because it can be short-circuited</h3>
+          <p>
+            Repeating a spoken word can be done by understanding it and
+            saying it, or by a shorter route from the sounds coming in to the
+            sounds going out, without meaning being involved. A person whose
+            repetition is disproportionately poor while comprehension and
+            speech are relatively spared is showing that the short route is
+            unavailable - and that is a claim about a connection rather than
+            about a region. A person whose repetition is disproportionately
+            <em>good</em> is showing the opposite: the short route is intact
+            and doing the work while the rest is not.
+          </p>
+
+          <h3>The categories are prototypes, not kinds</h3>
+          <p>
+            The classical categories were defined by which symptoms tended to
+            occur together in the cases available a century ago. They are
+            useful shorthand and they have three well-known problems: a
+            substantial minority of people fit none of them, the same label
+            covers very different profiles, and the anatomical claims attached
+            to them are much looser than the diagrams suggest. Profile F is
+            not an anomaly; it is what a continuous space looks like when you
+            try to sort it into boxes.
+          </p>
+
+          <h3>Fluency is a summary of several things at once</h3>
+          <p>
+            "Fluent" bundles rate of speech, phrase length, effort,
+            articulation, grammatical structure and how much content the
+            words carry. Two people rated equally fluent can differ on every
+            one of those, and a single fluency score hides it. The same is
+            true of every measure here - each one is a compound, and a
+            difference on it is a difference in the compound.
+          </p>
+
+          <h3>None of this locates anything</h3>
+          <p>
+            The tool mentions no anatomy anywhere. Language depends on a
+            distributed left-hemisphere network and on the white matter that
+            joins it, the same behavioural profile follows damage in several
+            places, and the classical region-to-syndrome mapping has not
+            survived the imaging evidence in the form it was taught. A profile
+            constrains what has gone wrong with the processing. It does not
+            constrain the anatomy nearly as tightly as the textbook diagrams
+            imply.
+          </p>
+        </div>
+
+        <aside class="panel panel--caution" aria-labelledby="limits-heading">
+          <h3 class="panel__title" id="limits-heading">
+            What this does <em>not</em> demonstrate
+          </h3>
+          <ul>
+            <li>
+              <strong>The 0-to-10 scale is a teaching device.</strong> It is
+              not a real scoring system, the scores are invented, and no real
+              person or published case appears anywhere.
+            </li>
+            <li>
+              <strong>Six measures is a caricature.</strong> A real language
+              assessment separates single-word from sentence comprehension,
+              word from non-word repetition, regular from irregular reading,
+              spontaneous from picture-described speech, and much more. Each
+              of those distinctions carries information this tool merges away.
+            </li>
+            <li>
+              <strong>Profiles are not stable.</strong> They change with
+              time since onset, with fatigue, with the material used and with
+              the day. A single profile is a snapshot.
+            </li>
+            <li>
+              <strong>No syndrome is named, deliberately.</strong> If you map
+              these profiles onto textbook labels, notice how much of the
+              individual pattern the label discards.
+            </li>
+            <li>
+              <strong>Separation is not causation.</strong> That one measure
+              separates two profiles says the two people differ in what that
+              measure needs. It does not say what that is, or where.
+            </li>
+          </ul>
+        </aside>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+<script>
+/* ---- components/interactive-shell.js ---- */
+/* =========================================================================
+   Open Psychology Interactives — interactive shell helper
+   -------------------------------------------------------------------------
+   A very small vanilla-JS helper that every interactive in this collection
+   uses. It deliberately does *not* draw anything or know anything about
+   statistics, personality or neuropsychology. Its job is the repetitive,
+   easy-to-get-wrong accessibility plumbing:
+
+     * announcing changes through a polite live region;
+     * keeping a range slider and its <output> in step;
+     * wiring the standard Reset button;
+     * reporting the reader's reduced-motion preference.
+
+   Usage (see docs/adapting-a-tool.md for the full markup contract):
+
+       <script src="../../components/interactive-shell.js" defer><\/script>
+       <script src="tool.js" defer><\/script>
+
+       // in tool.js
+       const shell = InteractiveShell.attach('#sampling-demo');
+       shell.onReset(() => { ...restore defaults...; draw(); });
+       shell.bindRange('#sample-size', { format: n => n + ' cases' });
+       shell.announce('Sample of 25 drawn. Mean 4.8.');
+
+   Every published interactive is written against this module.
+
+   Exposed as a global (window.InteractiveShell) rather than an ES module so
+   that a single interactive folder can be opened directly from disk over
+   file:// — ES modules are blocked by CORS in that situation, plain scripts
+   are not. That constraint is the whole reason for the older syntax here.
+   ========================================================================= */
+
+(function (global) {
+  "use strict";
+
+  /* -----------------------------------------------------------------------
+     Internal helpers
+     --------------------------------------------------------------------- */
+
+  /**
+   * Accept either a CSS selector or an element and return an element.
+   * @param {string|Element} target
+   * @param {ParentNode} [scope]
+   * @returns {Element|null}
+   */
+  function resolve(target, scope) {
+    if (!target) {
+      return null;
+    }
+    if (typeof target === "string") {
+      return (scope || document).querySelector(target);
+    }
+    return target;
+  }
+
+  /**
+   * True when the reader has asked the operating system to reduce motion.
+   * Interactives should check this before animating anything — for example
+   * by drawing a sampling distribution in one step instead of animating
+   * each draw.
+   * @returns {boolean}
+   */
+  function prefersReducedMotion() {
+    return (
+      typeof global.matchMedia === "function" &&
+      global.matchMedia("(prefers-reduced-motion: reduce)").matches
+    );
+  }
+
+  /* -----------------------------------------------------------------------
+     Shell controller
+     --------------------------------------------------------------------- */
+
+  /**
+   * Attach the shell behaviour to one `.interactive` element.
+   *
+   * @param {string|Element} target  Selector or element for the shell root.
+   * @returns {object|null}  Controller, or null if the root was not found.
+   */
+  function attach(target) {
+    var root = resolve(target);
+
+    if (!root) {
+      if (global.console && console.warn) {
+        console.warn("InteractiveShell: root element not found.", target);
+      }
+      return null;
+    }
+
+    var controls = root.querySelector("[data-interactive-controls]");
+    var stage = root.querySelector("[data-interactive-stage]");
+    var status = root.querySelector("[data-interactive-status]");
+    var resetButton = root.querySelector("[data-interactive-reset]");
+    var resetHandlers = [];
+    // Every range bound with bindRange() registers its sync function here, so
+    // that reset() can refresh the visible values after the tool's own reset
+    // handlers have restored the inputs. See reset() for why this is needed.
+    var rangeSyncs = [];
+
+    /* --- Live region ----------------------------------------------------
+       The status element is marked up as role="status" (implicitly
+       aria-live="polite"). Two details matter:
+
+         1. Assistive technology only announces *changes* to a live region,
+            so writing the same string twice is silently dropped. We add a
+            trailing zero-width space on repeat messages to force an
+            announcement when a student re-runs the same action.
+         2. Announcements are debounced. A slider dragged across its range
+            fires dozens of input events; without a delay a screen reader
+            would queue every intermediate value and fall far behind.
+       ------------------------------------------------------------------ */
+
+    var announceTimer = null;
+    var lastMessage = "";
+
+    /**
+     * Announce a short sentence describing what just changed.
+     * @param {string} message
+     * @param {object} [options]
+     * @param {boolean} [options.immediate]  Skip the debounce delay. Use for
+     *   discrete actions (button presses); leave off for continuous input.
+     */
+    function announce(message, options) {
+      if (!status) {
+        return;
+      }
+
+      var text = String(message == null ? "" : message);
+      var immediate = Boolean(options && options.immediate);
+
+      if (announceTimer !== null) {
+        global.clearTimeout(announceTimer);
+        announceTimer = null;
+      }
+
+      function write() {
+        // Force a change when the text is identical to last time.
+        status.textContent = text === lastMessage ? text + "​" : text;
+        lastMessage = text;
+      }
+
+      if (immediate) {
+        write();
+      } else {
+        announceTimer = global.setTimeout(write, 350);
+      }
+    }
+
+    /* --- Reset ---------------------------------------------------------- */
+
+    /**
+     * Register a callback to run when the Reset button is pressed.
+     * Several may be registered; they run in the order added.
+     * @param {Function} handler
+     */
+    function onReset(handler) {
+      if (typeof handler === "function") {
+        resetHandlers.push(handler);
+      }
+    }
+
+    /**
+     * Run the reset handlers. Called by the button and available directly so
+     * an interactive can reset itself on first load.
+     *
+     * Bound ranges are re-synced afterwards. A reset handler restores an
+     * input by assigning to `input.value`, and assigning to a value in script
+     * does not fire an `input` event — so without this step the slider would
+     * jump back to its default while its <output> went on showing the old
+     * number. Syncing here, after the handlers have run, also means the sync
+     * sees the restored values regardless of the order things were
+     * registered in.
+     *
+     * @param {object} [options]
+     * @param {boolean} [options.silent]  Suppress the status announcement.
+     */
+    function reset(options) {
+      resetHandlers.forEach(function (handler) {
+        handler();
+      });
+      rangeSyncs.forEach(function (sync) {
+        sync();
+      });
+      if (!options || !options.silent) {
+        announce(
+          root.getAttribute("data-reset-message") ||
+            "Reset to the starting values.",
+          { immediate: true }
+        );
+      }
+    }
+
+    if (resetButton) {
+      resetButton.addEventListener("click", function (event) {
+        // Reset buttons commonly sit inside the controls <form>; stop the
+        // browser's own form reset from fighting with ours.
+        event.preventDefault();
+        reset();
+      });
+    }
+
+    /* --- Range binding --------------------------------------------------
+       Keeps a slider's <output> in step with its value. The <output> must
+       carry `for="<input id>"`, which is what associates the two for
+       assistive technology; this only handles the visible text.
+
+       Optionally sets aria-valuetext, which is how you make a screen reader
+       say "25 cases" or "medium correlation" instead of a bare "25".
+       ------------------------------------------------------------------ */
+
+    /**
+     * @param {string|Element} inputTarget  The range (or number) input.
+     * @param {object} [options]
+     * @param {Function} [options.format]  value:number -> string shown in the
+     *   <output>. Defaults to the raw value.
+     * @param {Function} [options.describe]  value:number -> string used for
+     *   aria-valuetext. Defaults to options.format.
+     * @param {Function} [options.onInput]  value:number -> void, called after
+     *   the display has been updated. Use it to redraw.
+     * @returns {HTMLInputElement|null}
+     */
+    function bindRange(inputTarget, options) {
+      var input = resolve(inputTarget, root);
+      if (!input) {
+        return null;
+      }
+
+      var settings = options || {};
+      var format =
+        typeof settings.format === "function"
+          ? settings.format
+          : function (value) {
+              return String(value);
+            };
+      var describe =
+        typeof settings.describe === "function" ? settings.describe : format;
+
+      // <output for="the-input-id"> is the conventional pairing.
+      var output = input.id
+        ? root.querySelector('output[for="' + input.id + '"]')
+        : null;
+
+      function sync() {
+        var value = Number(input.value);
+        if (output) {
+          output.textContent = format(value);
+        }
+        // Only meaningful for widgets with an implicit or explicit slider
+        // role; harmless elsewhere.
+        input.setAttribute("aria-valuetext", describe(value));
+        if (typeof settings.onInput === "function") {
+          settings.onInput(value);
+        }
+      }
+
+      input.addEventListener("input", sync);
+      // Registered so reset() can refresh the display after the tool's own
+      // reset handlers have put the input back to its default.
+      rangeSyncs.push(sync);
+      sync();
+
+      return input;
+    }
+
+    /* --- Public surface -------------------------------------------------- */
+
+    return {
+      /** The `.interactive` root element. */
+      root: root,
+      /** The controls panel, or null if the shell has none. */
+      controls: controls,
+      /** The stage element where the visualisation is drawn. */
+      stage: stage,
+      /** The live-region element. */
+      status: status,
+      announce: announce,
+      onReset: onReset,
+      reset: reset,
+      bindRange: bindRange,
+      prefersReducedMotion: prefersReducedMotion
+    };
+  }
+
+  /* -----------------------------------------------------------------------
+     Export
+     --------------------------------------------------------------------- */
+
+  global.InteractiveShell = {
+    attach: attach,
+    prefersReducedMotion: prefersReducedMotion
+  };
+})(window);
+
+/* ---- modules/neuropsychology/tools/07-aphasia-profile-comparator/tool.js ---- */
+/* =========================================================================
+   Aphasia Profile Comparator
+   -------------------------------------------------------------------------
+   Six fictional language profiles on six original measures. The learner picks
+   any two, decides which single measure does most to separate them, and is
+   marked against the arithmetic.
+
+   THE EDUCATIONAL MODEL
+   ---------------------
+   Every score runs from 0 to 10, where 10 is performance indistinguishable
+   from a fictional control group. The separation between two profiles on a
+   measure is the absolute difference between their scores, and the "most
+   informative" measure for a pair is the one with the largest separation.
+
+   Two consequences are the teaching:
+
+     1. A measure is informative about a CONTRAST, not in general. Repetition
+        separates A and D almost perfectly and does nothing for A against B.
+     2. When two measures are within one point of each other, "the largest
+        gap" stops being a useful answer, and the tool says so rather than
+        pretending the winner is meaningful.
+
+   Repetition is the measure the tool keeps returning to, because it can be
+   done by a short route from the sounds coming in to the sounds going out
+   without meaning being involved. A disproportionate difficulty with it, or a
+   disproportionate sparing of it, is evidence about a connection rather than
+   about a region - which is the link to the Network Disconnection Mapper.
+
+   DELIBERATE SIMPLIFICATIONS
+   --------------------------
+   Six measures is a caricature: real assessment separates single-word from
+   sentence comprehension, word from non-word repetition, regular from
+   irregular reading, and much more. Fluency in particular bundles rate, phrase
+   length, effort, articulation, grammatical structure and information content
+   into one number. No standardised battery, subtest or item is reproduced; no
+   syndrome is named anywhere; no real person or published case appears; and
+   nothing on the page assesses anybody.
+
+   No data leave the browser. There is no storage and no network request.
+   ========================================================================= */
+
+(function () {
+  "use strict";
+
+  var NEAR_TIE = 1.0;   /* separations within this of the maximum are a tie */
+
+  var MEASURES = [
+    {
+      id: "fluency", name: "Fluency of spontaneous speech", short: "Fluency",
+      asks: "Talking about a familiar topic for two minutes, rated for rate, phrase length and effort",
+      note:
+        "A compound rather than a measure: rate, phrase length, effort, " +
+        "articulation, grammatical structure and how much the words carry are " +
+        "all inside this one number."
+    },
+    {
+      id: "comprehension", name: "Understanding what is said", short: "Understanding",
+      asks: "Following spoken instructions of increasing length, and answering yes-or-no questions",
+      note:
+        "Understanding conversation is much easier than understanding a " +
+        "sentence whose meaning depends on word order, and a single score " +
+        "hides which was tested."
+    },
+    {
+      id: "repetition", name: "Repeating what was said", short: "Repetition",
+      asks: "Saying back single words and then short sentences, immediately after hearing them",
+      note:
+        "The most informative measure in the set, because it can be done by a " +
+        "short route from the sounds coming in to the sounds going out, " +
+        "without meaning being involved. Disproportionate difficulty here, or " +
+        "disproportionate sparing, is evidence about a connection."
+    },
+    {
+      id: "naming", name: "Naming things", short: "Naming",
+      asks: "Naming pictured objects, and saying as many animals as possible in a minute",
+      note:
+        "Almost every profile is impaired here to some degree, which makes it " +
+        "a poor discriminator despite being the difficulty people notice most."
+    },
+    {
+      id: "reading", name: "Reading aloud", short: "Reading",
+      asks: "Reading printed words and short sentences out loud",
+      note:
+        "Depends on speech output as well as on reading, so a low score here " +
+        "is ambiguous whenever speech output is also low."
+    },
+    {
+      id: "writing", name: "Writing", short: "Writing",
+      asks: "Writing the names of pictured objects, and one sentence about a scene",
+      note:
+        "Depends on hand movement as well as on language, and is the measure " +
+        "most often left out of an assessment - which is a reason to be careful " +
+        "reading a profile that has it and one that does not."
+    }
+  ];
+
+  /* Six fictional profiles. Scores 0 to 10; 10 is like the control group. */
+  var PROFILES = [
+    {
+      id: "A", name: "Profile A",
+      summary: "Effortful, short output; understands well; repetition also poor",
+      scores: { fluency: 2, comprehension: 8, repetition: 3, naming: 4, reading: 4, writing: 3 },
+      notes:
+        "Speaks in single words and short phrases with visible effort, and " +
+        "follows conversation and multi-step instructions without difficulty. " +
+        "Aware of the errors and frustrated by them."
+    },
+    {
+      id: "B", name: "Profile B",
+      summary: "Fluent, well-formed output that carries little; understands poorly",
+      scores: { fluency: 9, comprehension: 2, repetition: 3, naming: 3, reading: 3, writing: 3 },
+      notes:
+        "Speaks at a normal rate in long, well-shaped sentences that convey " +
+        "very little, and misunderstands even short instructions. Does not " +
+        "appear to notice the errors."
+    },
+    {
+      id: "C", name: "Profile C",
+      summary: "Fluent, understands well, repetition much worse than either",
+      scores: { fluency: 8, comprehension: 8, repetition: 2, naming: 5, reading: 6, writing: 5 },
+      notes:
+        "Converses easily and follows what is said, and cannot say a sentence " +
+        "back accurately even immediately after hearing it. Makes sound-based " +
+        "errors and notices them, often trying several times."
+    },
+    {
+      id: "D", name: "Profile D",
+      summary: "Effortful, short output; understands well; repetition preserved",
+      scores: { fluency: 3, comprehension: 8, repetition: 8, naming: 4, reading: 4, writing: 3 },
+      notes:
+        "Produces very little spontaneously and repeats long sentences back " +
+        "accurately, sometimes repeating things nobody asked to be repeated. " +
+        "Understanding is good."
+    },
+    {
+      id: "E", name: "Profile E",
+      summary: "Everything reduced, with nothing standing out",
+      scores: { fluency: 2, comprehension: 2, repetition: 2, naming: 1, reading: 2, writing: 1 },
+      notes:
+        "Very limited output, very limited understanding, and no measure " +
+        "clearly better than the others. Communicates through gesture and " +
+        "facial expression, which no measure in this set records."
+    },
+    {
+      id: "F", name: "Profile F",
+      summary: "Moderate on most things, good at reading aloud, very poor at writing",
+      scores: { fluency: 6, comprehension: 5, repetition: 5, naming: 3, reading: 7, writing: 2 },
+      notes:
+        "Fits no textbook pattern. Moderately fluent, moderately impaired at " +
+        "understanding and repetition, poor at naming, reads aloud better than " +
+        "anything else and writes worse than anything else. This is not a rare " +
+        "kind of profile."
+    }
+  ];
+
+  /* Commentary for the pairs that carry the teaching. Keyed by the two profile
+     ids joined in either order. */
+  var PAIR_NOTES = {
+    "A|D":
+      "A clean separation: repetition differs by five points while the rest of " +
+      "the profile barely moves. That makes repetition the informative measure " +
+      "for this comparison.",
+    "A|B":
+      "Two measures separate these almost equally - fluency by seven, " +
+      "understanding by six. \"The largest gap\" is a weak answer here, and " +
+      "understanding is the better one: fluency bundles six things together.",
+    "C|D":
+      "Mirror images on repetition: one repeats far worse than they speak or " +
+      "understand, the other far better. Two profiles erring in opposite " +
+      "directions on the same measure are worth more than either alone.",
+    "B|C":
+      "Both fluent, six points apart on understanding. This is the contrast " +
+      "fluency alone cannot make.",
+    "A|C":
+      "Fluency separates them most and repetition barely at all - both are " +
+      "poor at it, quite possibly for different reasons. Agreement on a " +
+      "measure is not evidence that the same thing is wrong.",
+    "E|F":
+      "One profile uniformly low, one uneven. The separations are large " +
+      "everywhere, which makes the comparison easy and uninformative: when " +
+      "everything differs, no single measure carries the contrast."
+  };
+
+  /* =======================================================================
+     Helpers
+     ===================================================================== */
+
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) { node.className = className; }
+    if (text !== undefined) { node.textContent = text; }
+    return node;
+  }
+
+  function clear(node) {
+    while (node.firstChild) { node.removeChild(node.firstChild); }
+  }
+
+  var NS = "http://www.w3.org/2000/svg";
+
+  function svgEl(name, attrs) {
+    var node = document.createElementNS(NS, name);
+    Object.keys(attrs).forEach(function (key) {
+      node.setAttribute(key, String(attrs[key]));
+    });
+    return node;
+  }
+
+  function svgText(x, y, className, anchor, text) {
+    var node = svgEl("text", { x: x, y: y, class: className, "text-anchor": anchor });
+    node.textContent = text;
+    return node;
+  }
+
+  function profileById(id) {
+    return PROFILES.filter(function (p) { return p.id === id; })[0];
+  }
+
+  function measureById(id) {
+    return MEASURES.filter(function (m) { return m.id === id; })[0];
+  }
+
+  /* =======================================================================
+     The comparison
+     ===================================================================== */
+
+  function separations(left, right) {
+    return MEASURES.map(function (measure) {
+      return {
+        measure: measure,
+        left: left.scores[measure.id],
+        right: right.scores[measure.id],
+        gap: Math.abs(left.scores[measure.id] - right.scores[measure.id])
+      };
+    });
+  }
+
+  function best(rows) {
+    return rows.reduce(function (top, row) {
+      return row.gap > top.gap ? row : top;
+    }, rows[0]);
+  }
+
+  function contenders(rows) {
+    var top = best(rows).gap;
+    return rows.filter(function (row) {
+      return row.gap >= top - NEAR_TIE && row.gap > 0;
+    });
+  }
+
+  /* =======================================================================
+     Wiring
+     ===================================================================== */
+
+  var shell = InteractiveShell.attach("#aphasia");
+  if (!shell) { return; }
+
+  var $ = function (selector, scope) {
+    return (scope || document).querySelector(selector);
+  };
+
+  var leftSelect = $("[data-left-select]");
+  var rightSelect = $("[data-right-select]");
+  var measureControls = $("[data-measure-controls]");
+  var pairTitle = $("[data-pair-title]");
+  var pairBrief = $("[data-pair-brief]");
+  var compareSvg = $("[data-compare]");
+  var compareTable = $("[data-compare-table]");
+  var headLeft = $("[data-head-left]");
+  var headRight = $("[data-head-right]");
+  var leftNotesTitle = $("[data-left-notes-title]");
+  var leftNotesBody = $("[data-left-notes-body]");
+  var rightNotesTitle = $("[data-right-notes-title]");
+  var rightNotesBody = $("[data-right-notes-body]");
+  var choiceFeedback = $("[data-choice-feedback]");
+  var allHead = $("[data-all-head]");
+  var allTable = $("[data-all-table]");
+  var controlsForm = $("[data-interactive-controls]");
+
+  var openingForm = $("#opening-form");
+  var openingError = $("[data-opening-error]");
+  var openingFeedback = $("[data-opening-feedback]");
+  var comparatorSection = $("#comparator-section");
+
+  var challengeForm = $("#challenge-form");
+  var challengeFeedback = $("[data-challenge-feedback]");
+
+  var state = { left: "A", right: "D" };
+
+  /* --- Controls, built once --------------------------------------------- */
+
+  PROFILES.forEach(function (profile) {
+    [leftSelect, rightSelect].forEach(function (select) {
+      var option = make("option", null, profile.name + " - " + profile.summary);
+      option.value = profile.id;
+      select.appendChild(option);
+    });
+  });
+  leftSelect.value = "A";
+  rightSelect.value = "D";
+
+  [["left", leftSelect], ["right", rightSelect]].forEach(function (entry) {
+    entry[1].addEventListener("change", function () {
+      state[entry[0]] = entry[1].value;
+      choiceFeedback.hidden = true;
+      render();
+      shell.announce(
+        profileById(state.left).name + " against " +
+        profileById(state.right).name + ".", { immediate: true });
+    });
+  });
+
+  MEASURES.forEach(function (measure) {
+    var label = make("label", "control--choice");
+    var input = document.createElement("input");
+    input.type = "radio";
+    input.name = "measure";
+    input.value = measure.id;
+    label.appendChild(input);
+    label.appendChild(document.createTextNode(measure.name));
+    measureControls.appendChild(label);
+  });
+
+  controlsForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    checkChoice();
+  });
+
+  /* --- Rendering -------------------------------------------------------- */
+
+  function render() {
+    var left = profileById(state.left);
+    var right = profileById(state.right);
+    var rows = separations(left, right);
+
+    pairTitle.textContent = left.name + " against " + right.name;
+    pairBrief.textContent = state.left === state.right
+      ? "The same profile twice. Every separation is zero, which is a way of " +
+        "checking that the comparison does what it says."
+      : left.summary + ", against " + right.summary.toLowerCase() + ".";
+
+    headLeft.textContent = left.name;
+    headRight.textContent = right.name;
+    leftNotesTitle.textContent = left.name;
+    leftNotesBody.textContent = left.notes;
+    rightNotesTitle.textContent = right.name;
+    rightNotesBody.textContent = right.notes;
+
+    drawCompare(left, right, rows);
+    renderTable(rows);
+    renderAll();
+  }
+
+  /* Two bars per measure. The two profiles are distinguished by fill AND by
+     the profile letter printed at the start of each bar, and each bar prints
+     its own score, so nothing depends on hue. */
+  function drawCompare(left, right, rows) {
+    var LABEL = 128, AXIS_START = 136, AXIS_END = 384;
+    var ROW = 40, BAR = 14, TOP = 10;
+
+    function xOf(score) {
+      return AXIS_START + (score / 10) * (AXIS_END - AXIS_START);
+    }
+
+    var axisY = TOP + rows.length * ROW + 4;
+    clear(compareSvg);
+    compareSvg.setAttribute("viewBox", "0 0 470 " + (axisY + 28));
+
+    rows.forEach(function (row, index) {
+      var y = TOP + index * ROW;
+
+      compareSvg.appendChild(
+        svgText(LABEL, y + 18, "chart__count", "end", row.measure.short));
+
+      [[left, row.left, 0, "one"], [right, row.right, BAR + 3, "two"]]
+        .forEach(function (entry) {
+          var top = y + 2 + entry[2];
+          compareSvg.appendChild(svgEl("rect", {
+            x: AXIS_START, y: top, width: AXIS_END - AXIS_START, height: BAR,
+            class: "chart__track"
+          }));
+          compareSvg.appendChild(svgEl("rect", {
+            x: AXIS_START, y: top, width: Math.max(2, xOf(entry[1]) - AXIS_START),
+            height: BAR, class: "chart__bar chart__bar--" + entry[3]
+          }));
+          compareSvg.appendChild(
+            svgText(AXIS_START + 5, top + BAR - 3, "chart__inline", "start", entry[0].id));
+          compareSvg.appendChild(
+            svgText(xOf(entry[1]) + 5, top + BAR - 3, "chart__count", "start",
+              String(entry[1])));
+        });
+
+      compareSvg.appendChild(
+        svgText(462, y + 18, "aph__gap", "end", "gap " + row.gap));
+    });
+
+    compareSvg.appendChild(svgEl("line", {
+      x1: AXIS_START, y1: axisY, x2: AXIS_END, y2: axisY, class: "chart__baseline"
+    }));
+    [0, 5, 10].forEach(function (tick) {
+      compareSvg.appendChild(
+        svgText(xOf(tick), axisY + 14, "chart__axis", "middle", String(tick)));
+    });
+    compareSvg.appendChild(
+      svgText(0, axisY + 14, "chart__axis", "start", "0 = very impaired, 10 = like controls"));
+  }
+
+  function renderTable(rows) {
+    clear(compareTable);
+    var top = best(rows).gap;
+    rows.forEach(function (row) {
+      var tr = make("tr");
+      var th = make("th", null, row.measure.name);
+      th.setAttribute("scope", "row");
+      tr.appendChild(th);
+      tr.appendChild(make("td", null, row.measure.asks));
+      tr.appendChild(make("td", null, String(row.left)));
+      tr.appendChild(make("td", null, String(row.right)));
+      var gapCell = make("td", null,
+        row.gap + (row.gap === top && top > 0 ? " - the largest" : ""));
+      if (row.gap === top && top > 0) { gapCell.setAttribute("data-mark", "top"); }
+      tr.appendChild(gapCell);
+      compareTable.appendChild(tr);
+    });
+  }
+
+  function renderAll() {
+    clear(allHead);
+    var corner = make("th", null, "Measure");
+    corner.setAttribute("scope", "col");
+    allHead.appendChild(corner);
+    PROFILES.forEach(function (profile) {
+      var th = make("th", null, profile.id);
+      th.setAttribute("scope", "col");
+      allHead.appendChild(th);
+    });
+
+    clear(allTable);
+    MEASURES.forEach(function (measure) {
+      var tr = make("tr");
+      var th = make("th", null, measure.name);
+      th.setAttribute("scope", "row");
+      tr.appendChild(th);
+      PROFILES.forEach(function (profile) {
+        var cell = make("td", null, String(profile.scores[measure.id]));
+        if (profile.id === state.left || profile.id === state.right) {
+          cell.setAttribute("data-mark", "picked");
+        }
+        tr.appendChild(cell);
+      });
+      allTable.appendChild(tr);
+    });
+  }
+
+  /* --- Checking the choice ---------------------------------------------- */
+
+  function checkChoice() {
+    var chosen = $('input[name="measure"]:checked', measureControls);
+    if (!chosen) {
+      showFeedback(choiceFeedback, "caution", "Choose a measure first.",
+        "Decide before you look at the separation column - the exercise is " +
+        "the prediction, not the arithmetic.");
+      return;
+    }
+
+    var left = profileById(state.left);
+    var right = profileById(state.right);
+    var rows = separations(left, right);
+    var winner = best(rows);
+    var close = contenders(rows);
+    var picked = rows.filter(function (row) {
+      return row.measure.id === chosen.value;
+    })[0];
+
+    clear(choiceFeedback);
+
+    if (winner.gap === 0) {
+      showFeedback(choiceFeedback, "neutral",
+        "Nothing separates these two.",
+        "Every measure gives the same score for both, so no measure is " +
+        "informative about the contrast. Choose two different profiles.");
+      shell.announce("No separation between these two profiles.", { immediate: true });
+      return;
+    }
+
+    var right_answer = picked.gap === winner.gap;
+    var lead = make("p");
+    lead.appendChild(make("strong", "feedback__verdict",
+      right_answer
+        ? "Yes - " + winner.measure.short.toLowerCase() + ", by " + winner.gap + " points."
+        : "The largest separation is " + winner.measure.short.toLowerCase() +
+          ", by " + winner.gap + " points."));
+    lead.appendChild(document.createTextNode(
+      " You chose " + picked.measure.short.toLowerCase() + ", which separates " +
+      "them by " + picked.gap + "."));
+    choiceFeedback.appendChild(lead);
+
+    if (close.length > 1) {
+      choiceFeedback.appendChild(make("p", null,
+        "Note that " + close.length + " measures are within a point of each " +
+        "other here (" + close.map(function (row) {
+          return row.measure.short.toLowerCase() + " " + row.gap;
+        }).join(", ") + "). When separations are that close, \"the largest " +
+        "gap\" stops being a useful answer."));
+    }
+
+    var key = [state.left, state.right].sort().join("|");
+    if (PAIR_NOTES[key]) {
+      choiceFeedback.appendChild(make("p", null, PAIR_NOTES[key]));
+    }
+
+    choiceFeedback.appendChild(make("p", "text-muted", winner.measure.note));
+
+    choiceFeedback.setAttribute("data-tone", right_answer ? "good" : "caution");
+    choiceFeedback.hidden = false;
+
+    shell.announce(
+      "Largest separation: " + winner.measure.short.toLowerCase() + ", " +
+      winner.gap + " points.", { immediate: true });
+  }
+
+  /* --- Opening prediction ----------------------------------------------- */
+
+  var OPENING = {
+    severity: {
+      tone: "caution",
+      verdict: "Not on this evidence.",
+      text:
+        "Severity moves everything together. A difference confined to one " +
+        "measure while the rest match is the opposite of that. Compare " +
+        "profiles A and D below."
+    },
+    route: {
+      tone: "good",
+      verdict: "Yes.",
+      text:
+        "Repetition can take a short route from the sounds coming in to the " +
+        "sounds going out, with meaning left out. Two people matched on " +
+        "understanding and on speech who differ on repetition differ in " +
+        "whether that route is available."
+    },
+    category: {
+      tone: "caution",
+      verdict: "That is a label, not an explanation.",
+      text:
+        "The classical categories were defined by which symptoms tended to " +
+        "occur together, so saying two profiles are in different categories " +
+        "restates the difference rather than explaining it. It is also less " +
+        "informative than it sounds: a substantial minority of people fit no " +
+        "category, and the same label covers very different profiles."
+    },
+    nothing: {
+      tone: "caution",
+      verdict: "Artificial, and unusually informative for that reason.",
+      text:
+        "Nobody repeats sentences in daily life, and that is close to why the " +
+        "task is useful: it can be done without meaning being involved, so it " +
+        "isolates something the natural tasks confound. Ecological validity " +
+        "and diagnostic value are different virtues and often pull in " +
+        "different directions."
+    }
+  };
+
+  openingForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answer = $('input[name="opening"]:checked', openingForm);
+    if (!answer) {
+      openingError.textContent = "Choose an answer before opening the comparator.";
+      openingError.hidden = false;
+      return;
+    }
+    openingError.hidden = true;
+    var entry = OPENING[answer.value];
+    showFeedback(openingFeedback, entry.tone, entry.verdict, entry.text);
+    unlockComparator();
+  });
+
+  $('[data-action="skip-opening"]').addEventListener("click", function () {
+    openingError.hidden = true;
+    showFeedback(openingFeedback, "neutral",
+      "Prediction skipped - demonstration mode.", "");
+    unlockComparator();
+  });
+
+  function unlockComparator() {
+    lockForm(openingForm);
+    comparatorSection.hidden = false;
+    render();
+    $("#comparator-heading").focus();
+    shell.announce("Comparator open. Profile A against profile D.",
+      { immediate: true });
+  }
+
+  /* --- Challenge -------------------------------------------------------- */
+
+  var CHALLENGE = {
+    error: {
+      tone: "caution",
+      verdict: "Possible, and the least likely of the four.",
+      text:
+        "Testing does go wrong, and a profile this uneven is worth repeating. " +
+        "But uneven profiles are common enough that assuming an error every " +
+        "time one appears would mean discarding a substantial minority of all " +
+        "assessments."
+    },
+    stage: {
+      tone: "caution",
+      verdict: "Often true, and it does not rescue the categories.",
+      text:
+        "Profiles do change with time since onset, and a profile between two " +
+        "categories may well be moving from one towards another. That is a " +
+        "reason to doubt that the categories are kinds rather than a reason to " +
+        "keep them: if a person passes through the space between two boxes, " +
+        "the space between the boxes is real."
+    },
+    prototype: {
+      tone: "good",
+      verdict: "Yes.",
+      text:
+        "The classical categories were built from which symptoms tended to " +
+        "occur together in the cases available a century ago: useful " +
+        "shorthand, and prototypes drawn through a continuous space. A " +
+        "substantial minority of people fit none of them, and the same label " +
+        "covers very different profiles."
+    },
+    nolocal: {
+      tone: "caution",
+      verdict: "Too strong.",
+      text:
+        "Language depends heavily on a left-hemisphere network in most people, " +
+        "and damage to it produces language difficulty reliably enough that " +
+        "the association is not in doubt. What the messy profiles argue " +
+        "against is the tidy region-to-syndrome mapping, not the involvement " +
+        "of the regions."
+    }
+  };
+
+  challengeForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answer = $('input[name="challenge"]:checked', challengeForm);
+    if (!answer) {
+      showFeedback(challengeFeedback, "caution", "Choose an answer first.", "");
+      return;
+    }
+    var entry = CHALLENGE[answer.value];
+    showFeedback(challengeFeedback, entry.tone, entry.verdict, entry.text);
+    shell.announce("Challenge answered.", { immediate: true });
+  });
+
+  /* --- Feedback plumbing ------------------------------------------------ */
+
+  function showFeedback(container, tone, verdict, text) {
+    clear(container);
+    container.setAttribute("data-tone", tone);
+    var p = make("p");
+    p.appendChild(make("strong", "feedback__verdict", verdict));
+    if (text) { p.appendChild(document.createTextNode(" " + text)); }
+    container.appendChild(p);
+    container.hidden = false;
+  }
+
+  function lockForm(form) {
+    Array.prototype.forEach.call(form.querySelectorAll("input, button"),
+      function (control) { control.disabled = true; });
+  }
+
+  function unlockForm(form) {
+    Array.prototype.forEach.call(form.querySelectorAll("input, button"),
+      function (control) { control.disabled = false; });
+    form.reset();
+  }
+
+  /* --- Reset ------------------------------------------------------------ */
+
+  shell.onReset(function () {
+    state = { left: "A", right: "D" };
+    leftSelect.value = "A";
+    rightSelect.value = "D";
+    Array.prototype.forEach.call(
+      measureControls.querySelectorAll("input"),
+      function (input) { input.checked = false; });
+    unlockForm(openingForm);
+    openingFeedback.hidden = true;
+    openingError.hidden = true;
+    comparatorSection.hidden = true;
+    choiceFeedback.hidden = true;
+    challengeForm.reset();
+    challengeFeedback.hidden = true;
+    render();
+  });
+
+  /* --- Start-up --------------------------------------------------------- */
+
+  shell.reset({ silent: true });
+  shell.announce(
+    "Ready. Answer the question above to open the comparator.",
+    { immediate: true });
+})();
+
+</script>
+</div>

@@ -1,0 +1,3282 @@
+<!-- Statistical Power and Type M Error
+     From Open Psychology Interactives - https://github.com/utman5454/open-psychology-interactives
+     Self-contained: no stylesheets, scripts, fonts, images or network requests.
+     Styles are scoped to .opi-activity and do not affect the page around them.
+     Nothing is saved, sent or tracked. MIT licensed; please keep this notice.
+     Paste anywhere that accepts HTML, or save as a .html file and open it. -->
+<div class="opi-activity">
+<style>
+/* Defensive baseline. See scripts/build-standalone.py for why this
+   is `revert` rather than an enumerated reset, and how the specificity ladder
+   keeps the activity's own styling on top of it. */
+.opi-activity *:not(svg *) {
+  all: revert;
+}
+.opi-activity, .opi-activity *, .opi-activity *::before, .opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  text-transform: none;
+  text-indent: 0;
+  font-style: normal;
+  font-variant: normal;
+  letter-spacing: normal;
+  word-spacing: normal;
+  white-space: normal;
+  visibility: visible;
+  float: none;
+  max-width: none;
+}
+.opi-activity svg { max-width: 100%; }
+.opi-activity img { max-width: 100%; height: auto; }
+.opi-activity [hidden] { display: none !important; }
+
+/* assets/css/main.css */
+.opi-activity.opi-activity {
+  --colour-page: #ffffff;
+  --colour-surface: #f5f7fa;
+  --colour-surface-raised: #ffffff;
+  --colour-border: #d3d9e2;
+  --colour-border-strong: #aeb7c4;
+  --colour-text: #131820;
+  --colour-text-muted: #4c566a;
+  --colour-accent: #1a4fa0;
+  --colour-accent-hover: #123a7a;
+  --colour-accent-soft: #e8eefb;
+  --colour-on-accent: #ffffff;
+  --colour-focus: #b45309;
+  --colour-cognitive: #8a4b00;
+  --colour-research-methods: #1a4fa0;
+  --colour-neuropsychology: #145c53;
+  --colour-social-critical-psychology: #9e2f45;
+  --colour-personality-individual-differences: #7a2e6d;
+  --colour-status-bg: #f1ede3;
+  --colour-status-text: #5c4a1f;
+  --colour-status-border: #d9cdb0;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  --text-xs: 13px;
+  --text-sm: 15px;
+  --text-base: 17px;
+  --text-lg: 19px;
+  --text-xl: 23px;
+  --text-2xl: 28px;
+  --text-3xl: 36px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgb(19 24 32 / 0.06);
+  --shadow-md: 0 2px 8px rgb(19 24 32 / 0.08);
+  --measure: 68ch;
+  --container: 1152px;
+}
+@media (prefers-color-scheme: dark) {
+.opi-activity.opi-activity {
+  --colour-page: #0f141b;
+  --colour-surface: #161d27;
+  --colour-surface-raised: #1a2230;
+  --colour-border: #2c3644;
+  --colour-border-strong: #44506180;
+  --colour-text: #e9edf3;
+  --colour-text-muted: #a8b2c1;
+  --colour-accent: #8fb6ff;
+  --colour-accent-hover: #b3cdff;
+  --colour-accent-soft: #1b2740;
+  --colour-on-accent: #0f141b;
+  --colour-focus: #f0b429;
+  --colour-cognitive: #e2ab5f;
+  --colour-research-methods: #8fb6ff;
+  --colour-neuropsychology: #6fc3b4;
+  --colour-social-critical-psychology: #f19aa8;
+  --colour-personality-individual-differences: #db9ccd;
+  --colour-status-bg: #241f14;
+  --colour-status-text: #e2cf9f;
+  --colour-status-border: #4a4028;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 2px 10px rgb(0 0 0 / 0.45);
+}
+}
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity.opi-activity {
+  -webkit-text-size-adjust: 100%;
+}
+.opi-activity.opi-activity {
+  background-color: var(--colour-page);
+  color: var(--colour-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.65;
+}
+.opi-activity.opi-activity h1,
+.opi-activity.opi-activity h2,
+.opi-activity.opi-activity h3,
+.opi-activity.opi-activity h4 {
+  margin: 0 0 var(--space-3);
+  line-height: 1.25;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.opi-activity.opi-activity h1 {
+  font-size: var(--text-3xl);
+}
+.opi-activity.opi-activity h2 {
+  font-size: var(--text-2xl);
+}
+.opi-activity.opi-activity h3 {
+  font-size: var(--text-xl);
+}
+.opi-activity.opi-activity h4 {
+  font-size: var(--text-lg);
+}
+.opi-activity.opi-activity p,
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol,
+.opi-activity.opi-activity dl {
+  margin: 0 0 var(--space-4);
+}
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol {
+  padding-left: 1.35em;
+}
+.opi-activity.opi-activity li + li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity a {
+  color: var(--colour-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: max(1px, 0.06em);
+}
+.opi-activity.opi-activity a:hover {
+  color: var(--colour-accent-hover);
+  text-decoration-thickness: max(2px, 0.11em);
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid var(--colour-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+@supports not selector(:focus-visible) {
+.opi-activity.opi-activity :focus {
+  outline: 3px solid var(--colour-focus);
+    outline-offset: 2px;
+}
+}
+.opi-activity.opi-activity code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.35em;
+}
+.opi-activity.opi-activity hr {
+  border: 0;
+  border-top: 1px solid var(--colour-border);
+  margin: var(--space-6) 0;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+}
+.opi-activity.opi-activity .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.opi-activity.opi-activity .container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+@media (min-width: 40em) {
+.opi-activity.opi-activity .container {
+  padding-inline: var(--space-5);
+}
+}
+.opi-activity.opi-activity .prose {
+  max-width: var(--measure);
+}
+.opi-activity.opi-activity .text-muted {
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .section {
+  padding-block: var(--space-7);
+}
+.opi-activity.opi-activity .section--tinted {
+  background-color: var(--colour-surface);
+  border-block: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .section__header {
+  max-width: var(--measure);
+  margin-bottom: var(--space-5);
+}
+.opi-activity.opi-activity .section__header > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-7) var(--space-6);
+  border-bottom: 1px solid var(--colour-border);
+  
+  background-image: linear-gradient(
+    180deg,
+    var(--colour-accent-soft) 0%,
+    var(--colour-page) 100%
+  );
+}
+.opi-activity.opi-activity .hero__eyebrow {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .hero h1 {
+  max-width: 20ch;
+  margin-bottom: var(--space-4);
+}
+.opi-activity.opi-activity .hero__lead {
+  max-width: var(--measure);
+  font-size: var(--text-lg);
+  color: var(--colour-text-muted);
+}
+@media (min-width: 48em) {
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-8) var(--space-7);
+}
+.opi-activity.opi-activity .hero h1 {
+  font-size: 44px;
+}
+}
+.opi-activity.opi-activity .button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  
+  min-height: 44px;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .button--primary {
+  background-color: var(--colour-accent);
+  border-color: var(--colour-accent);
+  
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--primary:hover {
+  background-color: var(--colour-accent-hover);
+  border-color: var(--colour-accent-hover);
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--secondary {
+  background-color: transparent;
+  border-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .button--secondary:hover {
+  background-color: var(--colour-surface);
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+}
+.opi-activity.opi-activity .card--cognitive {
+  --card-accent: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .card--research-methods {
+  --card-accent: var(--colour-research-methods);
+}
+.opi-activity.opi-activity .card--neuropsychology {
+  --card-accent: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .card--social-critical-psychology {
+  --card-accent: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .card--personality-individual-differences {
+  --card-accent: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 650;
+  line-height: 1.4;
+  padding: 3.2px var(--space-3);
+  border-radius: 999px;
+  border: 1px solid var(--colour-status-border);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+}
+.opi-activity.opi-activity .badge__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex: none;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed var(--colour-border-strong);
+  border-radius: var(--radius-lg);
+  background-color: var(--colour-surface);
+  padding: var(--space-5);
+  text-align: left;
+}
+.opi-activity.opi-activity .placeholder__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+}
+.opi-activity.opi-activity .placeholder > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .split {
+  display: grid;
+  gap: var(--space-6);
+}
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split {
+  grid-template-columns: 3fr 2fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .panel {
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.opi-activity.opi-activity .panel > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .panel__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .section--tinted {
+  border-block: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .hero {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .button--primary {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .button--secondary {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .button:hover {
+  border-color: Highlight;
+}
+.opi-activity.opi-activity .panel {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed CanvasText;
+}
+.opi-activity.opi-activity .badge {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .badge__dot {
+  background-color: CanvasText;
+}
+.opi-activity.opi-activity code {
+  border-color: CanvasText;
+}
+.opi-activity.opi-activity hr {
+  border-top-color: CanvasText;
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+}
+@media print {
+.opi-activity.opi-activity {
+  color: #000;
+  background: #fff;
+}
+.opi-activity.opi-activity a[href^="http"]::after {
+  content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+}
+}
+
+/* components/interactive-shell.css */
+.opi-activity.opi-activity .interactive {
+  --shell-page: var(--colour-page, #ffffff);
+  --shell-surface: var(--colour-surface, #f5f7fa);
+  --shell-raised: var(--colour-surface-raised, #ffffff);
+  --shell-border: var(--colour-border, #d3d9e2);
+  --shell-border-strong: var(--colour-border-strong, #aeb7c4);
+  --shell-text: var(--colour-text, #131820);
+  --shell-muted: var(--colour-text-muted, #4c566a);
+  --shell-accent: var(--colour-accent, #1a4fa0);
+  --shell-accent-soft: var(--colour-accent-soft, #e8eefb);
+  
+  --shell-on-accent: var(--colour-on-accent, #ffffff);
+  --shell-focus: var(--colour-focus, #b45309);
+  --shell-radius: var(--radius-lg, 12px);
+  --shell-gap: var(--space-5, 24px);
+
+  display: block;
+  background-color: var(--shell-raised);
+  color: var(--shell-text);
+  border: 1px solid var(--shell-border);
+  border-radius: var(--shell-radius);
+  
+  overflow-x: clip;
+  overflow-y: visible;
+}
+.opi-activity.opi-activity .interactive__header {
+  padding: var(--shell-gap);
+  border-bottom: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 1.25;
+}
+.opi-activity.opi-activity .interactive__brief {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--shell-muted);
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__body {
+  display: grid;
+  gap: var(--shell-gap);
+  padding: var(--shell-gap);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body {
+  grid-template-columns: minmax(240px, 320px) 1fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .interactive__controls {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__controls fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .interactive__controls legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .control {
+  display: grid;
+  gap: 5.6px;
+}
+.opi-activity.opi-activity .control + .control {
+  margin-top: 16px;
+}
+.opi-activity.opi-activity .control__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.opi-activity.opi-activity .control__label {
+  font-size: 15px;
+  font-weight: 600;
+}
+.opi-activity.opi-activity .control__value {
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--shell-accent);
+}
+.opi-activity.opi-activity .control__hint {
+  font-size: 13px;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .interactive__controls input[type="range"] {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--shell-accent);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  width: 100%;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--shell-text);
+  background-color: var(--shell-raised);
+  border: 1px solid var(--shell-border-strong);
+  border-radius: var(--radius-sm, 4px);
+}
+.opi-activity.opi-activity .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+}
+.opi-activity.opi-activity .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  accent-color: var(--shell-accent);
+  flex: none;
+}
+.opi-activity.opi-activity .interactive__stage {
+  min-height: 256px;
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-page);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body--pinned {
+  align-items: stretch;
+}
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: sticky;
+    top: 0;
+    z-index: 2;
+    
+    margin: -16px -16px 0;
+    padding: 16px 16px 12px;
+    background-color: var(--shell-page);
+    border-bottom: 1px solid var(--shell-border);
+}
+}
+@media (min-width: 52em) and (max-height: 30em) {
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: static;
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
+}
+}
+.opi-activity.opi-activity .interactive__stage > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity :where(.interactive__stage) svg,
+.opi-activity.opi-activity :where(.interactive__stage) canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+.opi-activity.opi-activity .interactive__readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout div {
+  padding: 9.6px 12px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-sm, 4px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__readout dt {
+  font-size: 13px;
+  color: var(--shell-muted);
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout dd {
+  margin: 2.4px 0 0;
+  font-size: 18px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .interactive__status {
+  margin: 0;
+  padding: 12px var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+  font-size: 15px;
+  color: var(--shell-muted);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .interactive__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+}
+.opi-activity.opi-activity .interactive__actions button {
+  min-height: 44px;
+  padding: 6.4px 20px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--shell-on-accent);
+  background-color: var(--shell-accent);
+  border: 1px solid var(--shell-accent);
+  border-radius: var(--radius-md, 8px);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  color: var(--shell-text);
+  background-color: transparent;
+  border-color: var(--shell-border-strong);
+}
+.opi-activity.opi-activity .interactive__actions button:hover {
+  filter: brightness(1.08);
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__notes > summary {
+  padding: 13.6px var(--shell-gap);
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__notes > div {
+  padding: 0 var(--shell-gap) var(--shell-gap);
+  max-width: 68ch;
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__notes > div > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity .interactive *,
+.opi-activity.opi-activity .interactive *::before,
+.opi-activity.opi-activity .interactive *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+}
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .interactive,
+.opi-activity.opi-activity .interactive__controls,
+.opi-activity.opi-activity .interactive__stage,
+.opi-activity.opi-activity .interactive__readout div {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__header {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__status,
+.opi-activity.opi-activity .interactive__actions,
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__actions button {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  border-width: 1px;
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 1;
+    color: GrayText;
+    border-color: GrayText;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__stage svg {
+  forced-color-adjust: auto;
+}
+}
+
+/* components/tool-kit.css */
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split--wide {
+  grid-template-columns: 1fr 1fr;
+}
+}
+.opi-activity.opi-activity .how-to {
+  padding-left: 19.2px;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .how-to > li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .table-scroll {
+  overflow-x: auto;
+  
+  position: relative;
+}
+.opi-activity.opi-activity .prediction {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 832px;
+}
+.opi-activity.opi-activity .prediction > *,
+.opi-activity.opi-activity .challenge > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity .prediction__group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .prediction__legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-weight: 650;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .prediction .control--choice,
+.opi-activity.opi-activity .challenge .control--choice,
+.opi-activity.opi-activity .evidence .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .prediction .control--choice input,
+.opi-activity.opi-activity .challenge .control--choice input,
+.opi-activity.opi-activity .evidence .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .prediction__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .prediction__error {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-status-border);
+  border-left: 4px solid var(--colour-status-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .prediction__readback {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .feedback[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .feedback[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .feedback[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .feedback__verdict {
+  font-weight: 700;
+}
+.opi-activity.opi-activity .verdict {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .verdict__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict__body {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .verdict__body + .verdict__body {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .verdict__note {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .verdict[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .verdict[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .goal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .goal__label {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .goal__text {
+  flex: 1 1 256px;
+}
+.opi-activity.opi-activity .goal strong {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .goal__checks {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+  display: grid;
+  gap: 2.4px;
+}
+.opi-activity.opi-activity .goal__checks > li {
+  margin-top: 0;
+  padding-left: 22.4px;
+  position: relative;
+}
+.opi-activity.opi-activity .goal__checks > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 9.6px;
+  height: 9.6px;
+  border: 2px solid var(--colour-border-strong);
+  border-radius: 2px;
+}
+.opi-activity.opi-activity .goal__checks > li[data-met="yes"]::before {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .stage-track {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .stage-track > li {
+  margin-top: 0;
+  flex: 1 1 160px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-bottom: 3px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .stage-track > li > span {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.opi-activity.opi-activity .stage-track > li[data-state="done"] {
+  border-bottom-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border-bottom-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+  color: var(--colour-text);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .stage__heading {
+  margin: 0;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .data-table,
+.opi-activity.opi-activity .chart__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .data-table th,
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table th,
+.opi-activity.opi-activity .chart__table td {
+  padding: 6.4px 9.6px;
+  border: 1px solid var(--colour-border);
+  text-align: left;
+  vertical-align: top;
+}
+.opi-activity.opi-activity .data-table thead th,
+.opi-activity.opi-activity .chart__table thead th {
+  background-color: var(--colour-surface);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table td {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__table tbody th,
+.opi-activity.opi-activity .data-table tbody th {
+  font-weight: 550;
+}
+.opi-activity.opi-activity .data-table__total > th,
+.opi-activity.opi-activity .data-table__total > td {
+  border-top: 2px solid var(--colour-border-strong);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart {
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .chart__caption {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__svg {
+  max-width: 100%;
+  height: auto;
+}
+.opi-activity.opi-activity .chart__label,
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__inline,
+.opi-activity.opi-activity .chart__axis {
+  font-family: var(--font-body);
+  fill: var(--colour-text);
+  font-size: 13px;
+}
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__axis {
+  fill: var(--colour-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: var(--colour-on-accent);
+  font-size: 12px;
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__track {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__bar {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--one {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .chart__baseline,
+.opi-activity.opi-activity .chart__grid {
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__line {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: var(--colour-personality-individual-differences);
+  stroke-dasharray: 6 4;
+}
+.opi-activity.opi-activity .chart__point {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .reveal > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .reveal__lead {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+.opi-activity.opi-activity .reveal__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(176px, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+  padding: 0;
+  list-style: none;
+}
+.opi-activity.opi-activity .reveal__figures > li {
+  margin-top: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+.opi-activity.opi-activity .reveal__figure-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .reveal__figure-value {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .challenge {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+.opi-activity.opi-activity .challenge__locked {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .panel--caution {
+  background-color: var(--colour-status-bg);
+  border-color: var(--colour-status-border);
+}
+.opi-activity.opi-activity .panel--caution li + li {
+  margin-top: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .goal,
+.opi-activity.opi-activity .verdict,
+.opi-activity.opi-activity .feedback,
+.opi-activity.opi-activity .prediction__error,
+.opi-activity.opi-activity .prediction__readback,
+.opi-activity.opi-activity .stage-track > li,
+.opi-activity.opi-activity .reveal__figures > li {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border: 2px solid Highlight;
+}
+.opi-activity.opi-activity .chart__bar,
+.opi-activity.opi-activity .chart__bar--one {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: Canvas;
+}
+.opi-activity.opi-activity .chart__line {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: Highlight;
+}
+}
+.opi-activity.opi-activity .stage__more {
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .stage__more > summary {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .stage__more[open] > summary {
+  border-bottom: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .stage__more > *:not(summary) {
+  margin: var(--space-3);
+}
+
+/* modules/research-methods/tools/17-statistical-power-type-m-lab/tool.css */
+.opi-activity.opi-activity #power .interactive__controls,
+.opi-activity.opi-activity #power .interactive__stage,
+.opi-activity.opi-activity #typem .interactive__controls,
+.opi-activity.opi-activity #typem .interactive__stage {
+  min-width: 0;
+}
+.opi-activity.opi-activity #power .interactive__stage > *,
+.opi-activity.opi-activity #typem .interactive__stage > * {
+  min-width: 0;
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity #power .interactive__body,
+.opi-activity.opi-activity #typem .interactive__body {
+  grid-template-columns: minmax(0, 304px) minmax(0, 1fr);
+}
+}
+.opi-activity.opi-activity .interactive__stage [data-power],
+.opi-activity.opi-activity .interactive__stage [data-typem] {
+  max-width: 464px;
+}
+.opi-activity.opi-activity #power .interactive__readout {
+  grid-template-columns: repeat(auto-fit, minmax(112px, 1fr));
+  gap: 6.4px;
+}
+.opi-activity.opi-activity #power .interactive__readout div {
+  padding: 6.4px 8px;
+}
+.opi-activity.opi-activity #power .interactive__readout dd {
+  font-size: 16px;
+}
+.opi-activity.opi-activity #typem .control--choice {
+  align-items: flex-start;
+  gap: 9.6px;
+  padding: 4.8px 0;
+  font-size: 14px;
+  line-height: 1.4;
+}
+.opi-activity.opi-activity #typem .control--choice input {
+  margin-top: 4.8px;
+}
+.opi-activity.opi-activity #typem .control--choice label {
+  cursor: pointer;
+}
+.opi-activity.opi-activity .pw__null {
+  fill: none;
+  stroke: var(--colour-text-muted);
+  stroke-width: 2;
+  stroke-dasharray: 6 3;
+}
+.opi-activity.opi-activity .pw__alt {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .pw__alpha-fill {
+  fill: var(--colour-status-bg, var(--colour-surface));
+}
+.opi-activity.opi-activity .pw__beta-fill {
+  fill: var(--colour-accent-soft);
+}
+.opi-activity.opi-activity .pw__alpha-hatch {
+  stroke: var(--colour-social-critical-psychology);
+  stroke-width: 1;
+  opacity: 0.75;
+}
+.opi-activity.opi-activity .pw__beta-hatch {
+  stroke: var(--colour-accent);
+  stroke-width: 1;
+  opacity: 0.6;
+}
+.opi-activity.opi-activity .pw__threshold {
+  stroke: var(--colour-text);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .pw__axis {
+  stroke: var(--colour-border-strong);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .tm__bar {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border-strong);
+  stroke-width: 0.6;
+}
+.opi-activity.opi-activity .tm__bar--sig {
+  fill: var(--colour-accent-soft);
+  stroke: var(--colour-accent);
+}
+.opi-activity.opi-activity .tm__hatch {
+  stroke: var(--colour-accent);
+  stroke-width: 1;
+  opacity: 0.7;
+}
+.opi-activity.opi-activity .tm__truth {
+  stroke: var(--colour-text);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .tm__all {
+  stroke: var(--colour-text-muted);
+  stroke-width: 2;
+  stroke-dasharray: 3 3;
+}
+.opi-activity.opi-activity .tm__sig {
+  stroke: var(--colour-social-critical-psychology);
+  stroke-width: 2.5;
+  stroke-dasharray: 8 3;
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .pw__null {
+  stroke: GrayText;
+}
+.opi-activity.opi-activity .pw__alt {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .pw__alpha-fill,
+.opi-activity.opi-activity .pw__beta-fill {
+  fill: Canvas;
+}
+.opi-activity.opi-activity .pw__alpha-hatch {
+  stroke: Highlight; opacity: 1;
+}
+.opi-activity.opi-activity .pw__beta-hatch {
+  stroke: CanvasText; opacity: 1;
+}
+.opi-activity.opi-activity .pw__threshold {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .pw__axis {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .tm__bar {
+  fill: Canvas; stroke: GrayText;
+}
+.opi-activity.opi-activity .tm__bar--sig {
+  fill: Canvas; stroke: CanvasText;
+}
+.opi-activity.opi-activity .tm__hatch {
+  stroke: CanvasText; opacity: 1;
+}
+.opi-activity.opi-activity .tm__truth {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .tm__all {
+  stroke: GrayText;
+}
+.opi-activity.opi-activity .tm__sig {
+  stroke: Highlight;
+}
+}
+</style>
+
+  <!-- ================= Title and purpose ================= -->
+  <section class="section card--research-methods" aria-labelledby="page-heading">
+    <div class="container">
+
+      <p class="hero__eyebrow" style="color: var(--colour-research-methods)">
+        Research Methods
+      </p>
+      <h1 id="page-heading">Statistical Power and Type M Error</h1>
+      <p class="hero__lead">
+        Power is a plan, not a post-mortem: it is worked out before the study,
+        for an effect you have assumed. And when power is low, the results
+        that pass the filter are not just fewer &mdash; they are bigger than
+        the truth.
+      </p>
+
+      <p>
+        <span class="badge">
+          <span class="badge__dot" aria-hidden="true"></span>
+          Simulated &mdash; generated studies from a documented seed
+        </span>
+      </p>
+
+      <div class="split split--wide">
+
+        <div class="panel">
+          <h2 class="panel__title">Learning objective</h2>
+          <p>
+            By the end you should be able to say what power is planned for,
+            and why a filtered literature exaggerates the effects it
+            reports.
+          </p>
+          <p class="text-muted">
+            About 30 minutes. Nothing you do here is saved or sent anywhere.
+          </p>
+        </div>
+
+        <div class="panel panel--caution">
+          <h2 class="panel__title">Low power does not bias your estimate</h2>
+          <p>
+            This is the part that is easy to get wrong in the other
+            direction. An underpowered study's effect-size estimate is
+            unbiased: run a thousand of them and their average lands on the
+            truth. The exaggeration appears only when you look at the
+            <em>significant</em> ones, because a small study can only reach
+            significance by overshooting. It is a property of the filter, not
+            of the studies.
+          </p>
+        </div>
+
+      </div>
+
+      <ol class="how-to">
+        <li>Answer the prediction question to open Experiment 1.</li>
+        <li>Move the true effect, the sample size and &alpha;, and watch the four areas.</li>
+        <li>Use the target-power control to find the sample size a study would need.</li>
+        <li>In Experiment 2, commit to a prediction, then run two thousand studies.</li>
+      </ol>
+
+    </div>
+  </section>
+
+  <!-- ================= Opening prediction ================= -->
+  <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="opening-heading">First, a prediction</h2>
+        <p class="prose">
+          A fictional study compares two groups of <strong>20</strong> people
+          each, using a two-tailed test at &alpha;&nbsp;=&nbsp;.05. The true
+          effect in the population is <em>d</em>&nbsp;=&nbsp;0.50 &mdash;
+          Cohen's "medium".
+        </p>
+      </div>
+
+      <noscript>
+        <div class="placeholder">
+          <h3 class="placeholder__title">This part needs JavaScript</h3>
+          <p class="prose">
+            The distributions are drawn and the studies generated in your
+            browser, so this part cannot run with JavaScript switched off.
+            The rest of this page is readable without it.
+          </p>
+        </div>
+      </noscript>
+
+      <form class="panel prediction" id="opening-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            What is the probability that this study returns a significant
+            result?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="eighty">
+            About 80% &mdash; that is the usual target
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="fifty">
+            About 50%
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="thirty">
+            About 34%
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="five">
+            About 5% &mdash; that is what &alpha; is
+          </label>
+        </fieldset>
+
+        <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Record my prediction and open Experiment 1
+          </button>
+          <button class="button button--secondary" type="button" data-action="skip-opening">
+            Skip &mdash; I am demonstrating this
+          </button>
+        </div>
+
+        <div class="feedback" data-opening-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Experiment 1 ================= -->
+  <section class="section" id="power-section" aria-labelledby="power-heading" hidden>
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="power-heading" tabindex="-1">Experiment 1 &mdash; four areas on two curves</h2>
+        <p class="prose">
+          The horizontal axis is the effect size a study would <em>observe</em>.
+          The left curve is what that observation does when the true effect is
+          zero; the right curve is what it does when the true effect is what
+          you have assumed. Everything else is an area.
+        </p>
+      </div>
+
+      <section class="interactive" id="power" data-interactive
+               data-reset-message="Everything cleared. Back to the opening prediction.">
+
+        <header class="interactive__header">
+          <h3 class="interactive__title">Alpha, beta and what is left over</h3>
+          <p class="interactive__brief">
+            &alpha; is the shaded tail under the left curve; &beta; is the
+            shaded body of the right curve on the wrong side of the threshold;
+            power is everything else under the right curve.
+          </p>
+        </header>
+
+        <div class="interactive__body interactive__body--pinned">
+
+          <form class="interactive__controls" data-interactive-controls>
+
+            <fieldset>
+              <legend>What you are assuming</legend>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="d-range">True effect size, d</label>
+                  <output class="control__value" for="d-range">0.50</output>
+                </div>
+                <input type="range" id="d-range" min="0.05" max="1.5" step="0.05" value="0.5">
+                <p class="control__hint">
+                  This is an assumption made before the study, not something
+                  the study measures. Everything downstream depends on it.
+                </p>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>What you are choosing</legend>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="n-range">Participants per group</label>
+                  <output class="control__value" for="n-range">20</output>
+                </div>
+                <input type="range" id="n-range" min="5" max="300" step="5" value="20">
+              </div>
+              <div class="control">
+                <label class="control__label" for="alpha-select">Significance level &alpha;</label>
+                <select id="alpha-select">
+                  <option value="0.10">.10</option>
+                  <option value="0.05" selected>.05</option>
+                  <option value="0.01">.01</option>
+                  <option value="0.005">.005</option>
+                </select>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Planning a study</legend>
+              <div class="control">
+                <label class="control__label" for="target-select">Target power</label>
+                <select id="target-select">
+                  <option value="0.5">50%</option>
+                  <option value="0.8" selected>80%</option>
+                  <option value="0.9">90%</option>
+                  <option value="0.95">95%</option>
+                </select>
+                <p class="control__hint">
+                  The readout shows the sample size that would reach this
+                  target for the effect size and &alpha; above.
+                </p>
+              </div>
+            </fieldset>
+
+          </form>
+
+          <div class="interactive__stage" data-interactive-stage>
+
+            <!-- Pinned: the two sampling distributions with the four areas. -->
+            <div class="stage__primary">
+              <h4 class="stage__heading" data-chart-heading>Two sampling distributions</h4>
+              <figure class="chart">
+                <figcaption class="visually-hidden">
+                  Two overlapping sampling distributions of the observed
+                  effect size, one centred on zero and one centred on the
+                  assumed true effect, with the rejection threshold marked and
+                  the alpha and beta regions shaded
+                </figcaption>
+                <svg class="chart__svg" data-power viewBox="0 0 460 190"
+                     aria-hidden="true" focusable="false"></svg>
+                <div class="table-scroll">
+                  <table class="chart__table">
+                    <caption class="visually-hidden">
+                      The four probabilities on the picture and the threshold
+                      that divides them
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Value</th>
+                      </tr>
+                    </thead>
+                    <tbody data-power-table></tbody>
+                  </table>
+                </div>
+              </figure>
+              <dl class="interactive__readout" data-readout></dl>
+            </div>
+
+            <div class="verdict" data-verdict>
+              <h4 class="verdict__title">What this study could and could not do</h4>
+              <p class="verdict__body" data-interpretation></p>
+              <p class="verdict__note" data-planning></p>
+            </div>
+
+            <details class="stage__more">
+              <summary>The sample size needed at each target</summary>
+              <div class="table-scroll">
+                <table class="data-table">
+                  <caption class="visually-hidden">
+                    Participants per group required to reach each level of
+                    power for the current effect size and alpha
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Target power</th>
+                      <th scope="col">Per group</th>
+                      <th scope="col">Total</th>
+                    </tr>
+                  </thead>
+                  <tbody data-plan-table></tbody>
+                </table>
+              </div>
+            </details>
+
+          </div>
+
+        </div>
+
+        <p class="interactive__status" data-interactive-status role="status"></p>
+
+        <div class="interactive__actions">
+          <button type="button" data-action="open-typem">Go to Experiment 2</button>
+          <button type="button" data-variant="secondary" data-interactive-reset>
+            Reset everything
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ================= Experiment 2 ================= -->
+  <section class="section section--tinted" id="typem-section"
+           aria-labelledby="typem-heading" hidden>
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="typem-heading" tabindex="-1">Experiment 2 &mdash; what survives the filter</h2>
+        <p class="prose">
+          Two thousand fictional studies, all of them investigating the same
+          real effect of <strong><em>d</em>&nbsp;=&nbsp;0.35</strong>, all
+          tested at &alpha;&nbsp;=&nbsp;.05. Each one is a genuine simulated
+          experiment: two groups are generated, a t-test is run, an effect
+          size is estimated. Commit to a prediction before running them.
+        </p>
+      </div>
+
+      <section class="interactive" id="typem" data-interactive
+               data-reset-message="Experiment 2 reset. Nothing has been run.">
+
+        <header class="interactive__header">
+          <h3 class="interactive__title">The estimates that get published</h3>
+          <p class="interactive__brief">
+            Every study is unbiased. The literature built from the
+            significant ones is not, and the smaller the studies the worse it
+            gets.
+          </p>
+        </header>
+
+        <div class="interactive__body interactive__body--pinned">
+
+          <form class="interactive__controls" data-interactive-controls>
+
+            <fieldset>
+              <legend>The studies</legend>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="tm-n-range">Participants per group</label>
+                  <output class="control__value" for="tm-n-range">15</output>
+                </div>
+                <input type="range" id="tm-n-range" min="5" max="200" step="5" value="15">
+                <p class="control__hint">
+                  The true effect stays at <em>d</em> = 0.35 and &alpha; stays
+                  at .05 whatever you do here. Only the size of each study
+                  changes.
+                </p>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Your prediction</legend>
+              <div class="control--choice">
+                <input type="radio" name="typem" id="tm-same" value="same">
+                <label for="tm-same">
+                  About the same as the truth &mdash; each study is unbiased
+                </label>
+              </div>
+              <div class="control--choice">
+                <input type="radio" name="typem" id="tm-half" value="half">
+                <label for="tm-half">About one and a half times the truth</label>
+              </div>
+              <div class="control--choice">
+                <input type="radio" name="typem" id="tm-double" value="double">
+                <label for="tm-double">About two and a half times the truth</label>
+              </div>
+              <div class="control--choice">
+                <input type="radio" name="typem" id="tm-smaller" value="smaller">
+                <label for="tm-smaller">Smaller than the truth</label>
+              </div>
+              <p class="prediction__error" data-typem-error role="alert" hidden></p>
+            </fieldset>
+
+          </form>
+
+          <div class="interactive__stage" data-interactive-stage>
+
+            <!-- Pinned: every estimate, with the significant ones marked. -->
+            <div class="stage__primary">
+              <h4 class="stage__heading" data-tm-heading>
+                Nothing run yet
+              </h4>
+              <figure class="chart">
+                <figcaption class="visually-hidden">
+                  Histogram of the effect sizes estimated by every simulated
+                  study, with the bars that reached significance hatched, and
+                  rules marking the true effect, the average of all estimates
+                  and the average of the significant ones
+                </figcaption>
+                <svg class="chart__svg" data-typem viewBox="0 0 460 190"
+                     aria-hidden="true" focusable="false"></svg>
+                <div class="table-scroll">
+                  <table class="chart__table">
+                    <caption class="visually-hidden">
+                      What the whole set of studies produced and what the
+                      significant subset produced
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Value</th>
+                      </tr>
+                    </thead>
+                    <tbody data-tm-table></tbody>
+                  </table>
+                </div>
+              </figure>
+            </div>
+
+            <div class="feedback" data-typem-feedback hidden></div>
+
+            <div class="verdict" data-tm-verdict hidden>
+              <h4 class="verdict__title">Reading this correctly</h4>
+              <p class="verdict__body" data-tm-interpretation></p>
+            </div>
+
+          </div>
+
+        </div>
+
+        <p class="interactive__status" data-interactive-status role="status"></p>
+
+        <div class="interactive__actions">
+          <button type="button" data-action="run-typem">Run 2,000 studies</button>
+          <button type="button" data-variant="secondary" data-action="tm-low">
+            Low-power setting
+          </button>
+          <button type="button" data-variant="secondary" data-action="tm-high">
+            High-power setting
+          </button>
+          <button type="button" data-variant="secondary" data-interactive-reset>
+            Reset Experiment 2
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ================= Challenge ================= -->
+  <section class="section" id="challenge" aria-labelledby="challenge-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="challenge-heading">Challenge &mdash; what power is and is not</h2>
+      </div>
+
+      <form class="panel challenge" id="challenge-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            Which statements are correct? Select all that apply &mdash; four
+            of the seven are.
+          </legend>
+          <label class="control--choice">
+            <input type="checkbox" name="challenge" value="before">
+            Power is computed before a study, for an effect size you have assumed
+          </label>
+          <label class="control--choice">
+            <input type="checkbox" name="challenge" value="observed">
+            Observed power, computed afterwards from the study's own p-value, tells you how much power the study had
+          </label>
+          <label class="control--choice">
+            <input type="checkbox" name="challenge" value="informative">
+            A non-significant result from a well-powered study is more informative than one from an underpowered study
+          </label>
+          <label class="control--choice">
+            <input type="checkbox" name="challenge" value="doubling">
+            Doubling the sample size doubles the power
+          </label>
+          <label class="control--choice">
+            <input type="checkbox" name="challenge" value="eighty">
+            80% power means that if the assumed effect is the true one, 80% of such studies would come out significant
+          </label>
+          <label class="control--choice">
+            <input type="checkbox" name="challenge" value="exaggerate">
+            Among significant results from underpowered studies, the estimated effect tends to be larger than the truth
+          </label>
+          <label class="control--choice">
+            <input type="checkbox" name="challenge" value="biased">
+            Low power biases every estimate upwards
+          </label>
+        </fieldset>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">Check my answer</button>
+        </div>
+
+        <div class="feedback" data-challenge-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Debrief ================= -->
+  <section class="section section--tinted" id="debrief" aria-labelledby="debrief-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="debrief-heading">What this demonstrates</h2>
+      </div>
+
+      <div class="split split--wide">
+
+        <div class="prose">
+          <h3>Power is four areas and a decision</h3>
+          <p>
+            Draw what the observed effect size does when the truth is zero,
+            draw what it does when the truth is what you assumed, and put a
+            threshold between them. The tail of the first curve beyond the
+            threshold is &alpha;. The body of the second curve on the wrong
+            side of it is &beta;. Power is the rest. Everything you can do to
+            a study &mdash; more participants, a cleaner measure, a larger
+            manipulation, a looser threshold &mdash; works by moving those
+            curves apart or narrowing them.
+          </p>
+
+          <h3>The sample size you need grows as the square of the reciprocal</h3>
+          <p>
+            Halving the effect size you want to detect roughly quadruples the
+            sample you need. At <em>d</em> = 0.5 the classic 80% target costs
+            64 per group; at <em>d</em> = 0.25 it costs 253. That single fact
+            explains most of what has gone wrong in fields where small effects
+            are studied with small samples, and no amount of analysis after
+            the fact recovers it.
+          </p>
+
+          <h3>Observed power is not a diagnosis</h3>
+          <p>
+            Power computed after a study, using the effect the study itself
+            observed, is a one-to-one function of the <em>p</em>-value: a high
+            <em>p</em> always gives low observed power, by construction. It
+            therefore adds no information at all, and "the analysis was
+            underpowered, as shown by the observed power of 21%" is a
+            restatement of the <em>p</em>-value rather than an explanation of
+            it. Power calculations belong in a protocol, not in a discussion
+            section.
+          </p>
+
+          <h3>The exaggeration is in the filter, not in the studies</h3>
+          <p>
+            This is the part worth being careful about. Every simulated study
+            in Experiment 2 estimates the effect without bias, and the average
+            of all two thousand estimates lands on the truth. But a small
+            study can only clear the significance threshold by overshooting,
+            so the subset that clears it has a much larger average. Publish
+            only those and the literature reports an effect two or three times
+            the real one, with nobody having done anything wrong at any single
+            step. At very low power some of those significant results also
+            point in the wrong direction entirely.
+          </p>
+        </div>
+
+        <aside class="panel panel--caution" aria-labelledby="limits-heading">
+          <h3 class="panel__title" id="limits-heading">
+            What this does <em>not</em> demonstrate
+          </h3>
+          <ul>
+            <li>
+              <strong>No real studies.</strong> Every experiment in
+              Experiment 2 is generated from a seeded random number generator,
+              and the "true effect" is a number the simulation was told.
+            </li>
+            <li>
+              <strong>Power needs an effect size you do not have.</strong> The
+              slider labelled "true effect" is the central awkwardness of the
+              whole procedure: in a real protocol it is an assumption, drawn
+              from previous work that is itself probably exaggerated, or from
+              a judgement about the smallest effect worth detecting.
+            </li>
+            <li>
+              <strong>The power curve here uses a normal approximation.</strong>
+              The threshold uses the exact critical value of <em>t</em>, and
+              the probability beyond it is computed from a normal rather than
+              a non-central t distribution. The difference is a fraction of a
+              percentage point at these sample sizes and is not visible on the
+              picture.
+            </li>
+            <li>
+              <strong>Publication bias is only one filter.</strong> Selective
+              reporting of outcomes, flexible analysis and undisclosed
+              exclusions all act the same way and are the subject of the last
+              tool in this module.
+            </li>
+            <li>
+              <strong>Power is not the only thing that matters.</strong> A
+              large study of a badly operationalised construct answers nothing
+              precisely. Sample size is the easiest thing to fix and rarely
+              the most important.
+            </li>
+          </ul>
+        </aside>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+<script>
+/* ---- components/interactive-shell.js ---- */
+/* =========================================================================
+   Open Psychology Interactives — interactive shell helper
+   -------------------------------------------------------------------------
+   A very small vanilla-JS helper that every interactive in this collection
+   uses. It deliberately does *not* draw anything or know anything about
+   statistics, personality or neuropsychology. Its job is the repetitive,
+   easy-to-get-wrong accessibility plumbing:
+
+     * announcing changes through a polite live region;
+     * keeping a range slider and its <output> in step;
+     * wiring the standard Reset button;
+     * reporting the reader's reduced-motion preference.
+
+   Usage (see docs/adapting-a-tool.md for the full markup contract):
+
+       <script src="../../components/interactive-shell.js" defer><\/script>
+       <script src="tool.js" defer><\/script>
+
+       // in tool.js
+       const shell = InteractiveShell.attach('#sampling-demo');
+       shell.onReset(() => { ...restore defaults...; draw(); });
+       shell.bindRange('#sample-size', { format: n => n + ' cases' });
+       shell.announce('Sample of 25 drawn. Mean 4.8.');
+
+   Every published interactive is written against this module.
+
+   Exposed as a global (window.InteractiveShell) rather than an ES module so
+   that a single interactive folder can be opened directly from disk over
+   file:// — ES modules are blocked by CORS in that situation, plain scripts
+   are not. That constraint is the whole reason for the older syntax here.
+   ========================================================================= */
+
+(function (global) {
+  "use strict";
+
+  /* -----------------------------------------------------------------------
+     Internal helpers
+     --------------------------------------------------------------------- */
+
+  /**
+   * Accept either a CSS selector or an element and return an element.
+   * @param {string|Element} target
+   * @param {ParentNode} [scope]
+   * @returns {Element|null}
+   */
+  function resolve(target, scope) {
+    if (!target) {
+      return null;
+    }
+    if (typeof target === "string") {
+      return (scope || document).querySelector(target);
+    }
+    return target;
+  }
+
+  /**
+   * True when the reader has asked the operating system to reduce motion.
+   * Interactives should check this before animating anything — for example
+   * by drawing a sampling distribution in one step instead of animating
+   * each draw.
+   * @returns {boolean}
+   */
+  function prefersReducedMotion() {
+    return (
+      typeof global.matchMedia === "function" &&
+      global.matchMedia("(prefers-reduced-motion: reduce)").matches
+    );
+  }
+
+  /* -----------------------------------------------------------------------
+     Shell controller
+     --------------------------------------------------------------------- */
+
+  /**
+   * Attach the shell behaviour to one `.interactive` element.
+   *
+   * @param {string|Element} target  Selector or element for the shell root.
+   * @returns {object|null}  Controller, or null if the root was not found.
+   */
+  function attach(target) {
+    var root = resolve(target);
+
+    if (!root) {
+      if (global.console && console.warn) {
+        console.warn("InteractiveShell: root element not found.", target);
+      }
+      return null;
+    }
+
+    var controls = root.querySelector("[data-interactive-controls]");
+    var stage = root.querySelector("[data-interactive-stage]");
+    var status = root.querySelector("[data-interactive-status]");
+    var resetButton = root.querySelector("[data-interactive-reset]");
+    var resetHandlers = [];
+    // Every range bound with bindRange() registers its sync function here, so
+    // that reset() can refresh the visible values after the tool's own reset
+    // handlers have restored the inputs. See reset() for why this is needed.
+    var rangeSyncs = [];
+
+    /* --- Live region ----------------------------------------------------
+       The status element is marked up as role="status" (implicitly
+       aria-live="polite"). Two details matter:
+
+         1. Assistive technology only announces *changes* to a live region,
+            so writing the same string twice is silently dropped. We add a
+            trailing zero-width space on repeat messages to force an
+            announcement when a student re-runs the same action.
+         2. Announcements are debounced. A slider dragged across its range
+            fires dozens of input events; without a delay a screen reader
+            would queue every intermediate value and fall far behind.
+       ------------------------------------------------------------------ */
+
+    var announceTimer = null;
+    var lastMessage = "";
+
+    /**
+     * Announce a short sentence describing what just changed.
+     * @param {string} message
+     * @param {object} [options]
+     * @param {boolean} [options.immediate]  Skip the debounce delay. Use for
+     *   discrete actions (button presses); leave off for continuous input.
+     */
+    function announce(message, options) {
+      if (!status) {
+        return;
+      }
+
+      var text = String(message == null ? "" : message);
+      var immediate = Boolean(options && options.immediate);
+
+      if (announceTimer !== null) {
+        global.clearTimeout(announceTimer);
+        announceTimer = null;
+      }
+
+      function write() {
+        // Force a change when the text is identical to last time.
+        status.textContent = text === lastMessage ? text + "​" : text;
+        lastMessage = text;
+      }
+
+      if (immediate) {
+        write();
+      } else {
+        announceTimer = global.setTimeout(write, 350);
+      }
+    }
+
+    /* --- Reset ---------------------------------------------------------- */
+
+    /**
+     * Register a callback to run when the Reset button is pressed.
+     * Several may be registered; they run in the order added.
+     * @param {Function} handler
+     */
+    function onReset(handler) {
+      if (typeof handler === "function") {
+        resetHandlers.push(handler);
+      }
+    }
+
+    /**
+     * Run the reset handlers. Called by the button and available directly so
+     * an interactive can reset itself on first load.
+     *
+     * Bound ranges are re-synced afterwards. A reset handler restores an
+     * input by assigning to `input.value`, and assigning to a value in script
+     * does not fire an `input` event — so without this step the slider would
+     * jump back to its default while its <output> went on showing the old
+     * number. Syncing here, after the handlers have run, also means the sync
+     * sees the restored values regardless of the order things were
+     * registered in.
+     *
+     * @param {object} [options]
+     * @param {boolean} [options.silent]  Suppress the status announcement.
+     */
+    function reset(options) {
+      resetHandlers.forEach(function (handler) {
+        handler();
+      });
+      rangeSyncs.forEach(function (sync) {
+        sync();
+      });
+      if (!options || !options.silent) {
+        announce(
+          root.getAttribute("data-reset-message") ||
+            "Reset to the starting values.",
+          { immediate: true }
+        );
+      }
+    }
+
+    if (resetButton) {
+      resetButton.addEventListener("click", function (event) {
+        // Reset buttons commonly sit inside the controls <form>; stop the
+        // browser's own form reset from fighting with ours.
+        event.preventDefault();
+        reset();
+      });
+    }
+
+    /* --- Range binding --------------------------------------------------
+       Keeps a slider's <output> in step with its value. The <output> must
+       carry `for="<input id>"`, which is what associates the two for
+       assistive technology; this only handles the visible text.
+
+       Optionally sets aria-valuetext, which is how you make a screen reader
+       say "25 cases" or "medium correlation" instead of a bare "25".
+       ------------------------------------------------------------------ */
+
+    /**
+     * @param {string|Element} inputTarget  The range (or number) input.
+     * @param {object} [options]
+     * @param {Function} [options.format]  value:number -> string shown in the
+     *   <output>. Defaults to the raw value.
+     * @param {Function} [options.describe]  value:number -> string used for
+     *   aria-valuetext. Defaults to options.format.
+     * @param {Function} [options.onInput]  value:number -> void, called after
+     *   the display has been updated. Use it to redraw.
+     * @returns {HTMLInputElement|null}
+     */
+    function bindRange(inputTarget, options) {
+      var input = resolve(inputTarget, root);
+      if (!input) {
+        return null;
+      }
+
+      var settings = options || {};
+      var format =
+        typeof settings.format === "function"
+          ? settings.format
+          : function (value) {
+              return String(value);
+            };
+      var describe =
+        typeof settings.describe === "function" ? settings.describe : format;
+
+      // <output for="the-input-id"> is the conventional pairing.
+      var output = input.id
+        ? root.querySelector('output[for="' + input.id + '"]')
+        : null;
+
+      function sync() {
+        var value = Number(input.value);
+        if (output) {
+          output.textContent = format(value);
+        }
+        // Only meaningful for widgets with an implicit or explicit slider
+        // role; harmless elsewhere.
+        input.setAttribute("aria-valuetext", describe(value));
+        if (typeof settings.onInput === "function") {
+          settings.onInput(value);
+        }
+      }
+
+      input.addEventListener("input", sync);
+      // Registered so reset() can refresh the display after the tool's own
+      // reset handlers have put the input back to its default.
+      rangeSyncs.push(sync);
+      sync();
+
+      return input;
+    }
+
+    /* --- Public surface -------------------------------------------------- */
+
+    return {
+      /** The `.interactive` root element. */
+      root: root,
+      /** The controls panel, or null if the shell has none. */
+      controls: controls,
+      /** The stage element where the visualisation is drawn. */
+      stage: stage,
+      /** The live-region element. */
+      status: status,
+      announce: announce,
+      onReset: onReset,
+      reset: reset,
+      bindRange: bindRange,
+      prefersReducedMotion: prefersReducedMotion
+    };
+  }
+
+  /* -----------------------------------------------------------------------
+     Export
+     --------------------------------------------------------------------- */
+
+  global.InteractiveShell = {
+    attach: attach,
+    prefersReducedMotion: prefersReducedMotion
+  };
+})(window);
+
+/* ---- modules/research-methods/tools/17-statistical-power-type-m-lab/tool.js ---- */
+/* =========================================================================
+   Statistical Power and Type M Error Laboratory
+   -------------------------------------------------------------------------
+   EXPERIMENT 1 — the four areas
+   -----------------------------
+   The horizontal axis is the effect size a study would OBSERVE. Under the
+   null the observed d is approximately Normal(0, SE); under the assumed
+   alternative it is approximately Normal(d, SE), with
+
+       SE = sqrt(2 / n)                     for two groups of n
+
+   The rejection threshold is the exact critical value of t on 2n-2 degrees of
+   freedom, converted to the d scale:
+
+       threshold = tCritical(alpha, 2n-2) * SE
+       power     = 1 - Phi((threshold - d)/SE) + Phi((-threshold - d)/SE)
+       beta      = 1 - power
+
+   The threshold is exact; the area beyond it is computed from a normal rather
+   than a non-central t. At these sample sizes the difference is a fraction of
+   a percentage point and is invisible on the picture, and the page says so in
+   its limitations. Required sample sizes are found by scanning n upwards
+   until power reaches the target, which is how a textbook table is built.
+
+   EXPERIMENT 2 — Type M
+   ---------------------
+   Two thousand genuinely simulated studies at a fixed true effect of d = 0.35
+   and alpha = .05. Each one generates two groups of n from Normal(0,1) and
+   Normal(0.35,1), computes the pooled standard deviation, the observed d and
+   the t statistic, and is declared significant when |t| reaches the critical
+   value. The tool then reports three things side by side:
+
+     * the mean of ALL the estimates, which lands on the truth - every study
+       is unbiased;
+     * the mean of the SIGNIFICANT estimates, which does not;
+     * the exaggeration ratio between them (the Type M error), and the share
+       of significant results whose sign is wrong (the Type S error).
+
+   The point being made is precise: low power does not bias any study. The
+   exaggeration is a property of conditioning on significance, because a small
+   study can only clear the threshold by overshooting. The tool shows both
+   halves of that at once, which is why the mean of all estimates is drawn on
+   the picture and not merely mentioned.
+
+   Randomness is seeded (mulberry32 with Box-Muller normals). No data leave
+   the browser: no storage, no network request.
+   ========================================================================= */
+
+(function () {
+  "use strict";
+
+  var STUDIES = 2000;
+  var TM_TRUE_D = 0.35;
+  var TM_ALPHA = 0.05;
+  var TM_SEED = 5477;
+  var DEFAULTS = { d: 0.5, n: 20, alpha: "0.05", target: "0.8" };
+  var TM_DEFAULT_N = 15;
+
+  /* =======================================================================
+     Distributions
+     ===================================================================== */
+
+  function phi(z) {
+    var sign = z < 0 ? -1 : 1;
+    var x = Math.abs(z) / Math.SQRT2;
+    var t = 1 / (1 + 0.3275911 * x);
+    var y = 1 - (((((1.061405429 * t - 1.453152027) * t) + 1.421413741) * t -
+      0.284496736) * t + 0.254829592) * t * Math.exp(-x * x);
+    return 0.5 * (1 + sign * y);
+  }
+
+  function normalDensity(x, mu, sigma) {
+    var z = (x - mu) / sigma;
+    return Math.exp(-0.5 * z * z) / (sigma * Math.sqrt(2 * Math.PI));
+  }
+
+  var LANCZOS = [
+    0.99999999999980993, 676.5203681218851, -1259.1392167224028,
+    771.32342877765313, -176.61502916214059, 12.507343278686905,
+    -0.13857109526572012, 9.9843695780195716e-6, 1.5056327351493116e-7
+  ];
+
+  function logGamma(x) {
+    if (x < 0.5) {
+      return Math.log(Math.PI / Math.sin(Math.PI * x)) - logGamma(1 - x);
+    }
+    var z = x - 1;
+    var a = LANCZOS[0];
+    var t = z + 7.5;
+    for (var i = 1; i < 9; i += 1) { a += LANCZOS[i] / (z + i); }
+    return 0.5 * Math.log(2 * Math.PI) + (z + 0.5) * Math.log(t) - t + Math.log(a);
+  }
+
+  function betacf(a, b, x) {
+    var MAXIT = 300;
+    var EPS = 3e-14;
+    var FPMIN = 1e-300;
+    var qab = a + b;
+    var qap = a + 1;
+    var qam = a - 1;
+    var c = 1;
+    var d = 1 - qab * x / qap;
+    if (Math.abs(d) < FPMIN) { d = FPMIN; }
+    d = 1 / d;
+    var h = d;
+    for (var m = 1; m <= MAXIT; m += 1) {
+      var m2 = 2 * m;
+      var aa = m * (b - m) * x / ((qam + m2) * (a + m2));
+      d = 1 + aa * d;
+      if (Math.abs(d) < FPMIN) { d = FPMIN; }
+      c = 1 + aa / c;
+      if (Math.abs(c) < FPMIN) { c = FPMIN; }
+      d = 1 / d;
+      h *= d * c;
+      aa = -(a + m) * (qab + m) * x / ((a + m2) * (qap + m2));
+      d = 1 + aa * d;
+      if (Math.abs(d) < FPMIN) { d = FPMIN; }
+      c = 1 + aa / c;
+      if (Math.abs(c) < FPMIN) { c = FPMIN; }
+      d = 1 / d;
+      var del = d * c;
+      h *= del;
+      if (Math.abs(del - 1) < EPS) { break; }
+    }
+    return h;
+  }
+
+  function betai(a, b, x) {
+    if (x <= 0) { return 0; }
+    if (x >= 1) { return 1; }
+    var bt = Math.exp(
+      logGamma(a + b) - logGamma(a) - logGamma(b) +
+      a * Math.log(x) + b * Math.log(1 - x));
+    if (x < (a + 1) / (a + b + 2)) {
+      return bt * betacf(a, b, x) / a;
+    }
+    return 1 - bt * betacf(b, a, 1 - x) / b;
+  }
+
+  function tTwoTail(t, df) {
+    var abs = Math.abs(t);
+    if (abs === 0) { return 1; }
+    return betai(df / 2, 0.5, df / (df + abs * abs));
+  }
+
+  /** Critical |t| for a two-tailed test, by bisection on the tail area. */
+  var critCache = {};
+  function tCritical(alpha, df) {
+    var key = alpha + "|" + df;
+    if (critCache[key] !== undefined) { return critCache[key]; }
+    var lo = 0;
+    var hi = 200;
+    for (var i = 0; i < 70; i += 1) {
+      var mid = (lo + hi) / 2;
+      if (tTwoTail(mid, df) > alpha) { lo = mid; } else { hi = mid; }
+    }
+    critCache[key] = (lo + hi) / 2;
+    return critCache[key];
+  }
+
+  function mulberry32(seed) {
+    var a = seed >>> 0;
+    return function () {
+      a += 0x6d2b79f5;
+      var t = a;
+      t = Math.imul(t ^ (t >>> 15), t | 1);
+      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  function normal(random) {
+    var u = Math.max(random(), 1e-9);
+    return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * random());
+  }
+
+  /* =======================================================================
+     Power
+     ===================================================================== */
+
+  function powerFor(d, n, alpha) {
+    var se = Math.sqrt(2 / n);
+    var threshold = tCritical(alpha, 2 * n - 2) * se;
+    var power = 1 - phi((threshold - d) / se) + phi((-threshold - d) / se);
+    return { se: se, threshold: threshold, power: power, beta: 1 - power };
+  }
+
+  /** Smallest n per group reaching the target power, or null beyond 5000. */
+  function requiredN(d, alpha, target) {
+    for (var n = 3; n <= 5000; n += 1) {
+      if (powerFor(d, n, alpha).power >= target) { return n; }
+    }
+    return null;
+  }
+
+  /* =======================================================================
+     Small DOM helpers
+     ===================================================================== */
+
+  var NS = "http://www.w3.org/2000/svg";
+
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) { node.className = className; }
+    if (text !== undefined) { node.textContent = text; }
+    return node;
+  }
+
+  function svgNode(tag, attrs) {
+    var node = document.createElementNS(NS, tag);
+    Object.keys(attrs || {}).forEach(function (key) {
+      node.setAttribute(key, String(attrs[key]));
+    });
+    return node;
+  }
+
+  function svgText(attrs, text, className) {
+    var node = svgNode("text", attrs);
+    if (className) { node.setAttribute("class", className); }
+    node.textContent = text;
+    return node;
+  }
+
+  function clear(node) {
+    while (node.firstChild) { node.removeChild(node.firstChild); }
+  }
+
+  function fmt(value, places) {
+    return value.toFixed(places === undefined ? 2 : places);
+  }
+
+  function pct(p) { return (100 * p).toFixed(1) + "%"; }
+
+  function row(cells) {
+    var tr = make("tr");
+    cells.forEach(function (cell, i) {
+      if (i === 0) {
+        var th = make("th", null, cell);
+        th.setAttribute("scope", "row");
+        tr.appendChild(th);
+      } else {
+        tr.appendChild(make("td", null, cell));
+      }
+    });
+    return tr;
+  }
+
+  var page = document;
+  var $ = function (s, scope) { return (scope || page).querySelector(s); };
+  var $$ = function (s, scope) {
+    return Array.prototype.slice.call((scope || page).querySelectorAll(s));
+  };
+
+  function showFeedback(container, tone, verdictText, text) {
+    clear(container);
+    container.setAttribute("data-tone", tone);
+    var p = make("p");
+    p.appendChild(make("strong", "feedback__verdict", verdictText));
+    if (text) { p.appendChild(document.createTextNode(" " + text)); }
+    container.appendChild(p);
+    container.hidden = false;
+    return p;
+  }
+
+  /* =======================================================================
+     Wiring
+     ===================================================================== */
+
+  var powerShell = InteractiveShell.attach("#power");
+  var tmShell = InteractiveShell.attach("#typem");
+  if (!powerShell || !tmShell) { return; }
+
+  var dRange = $("#d-range");
+  var nRange = $("#n-range");
+  var alphaSelect = $("#alpha-select");
+  var targetSelect = $("#target-select");
+  var chartHeading = $("[data-chart-heading]");
+  var powerSvg = $("[data-power]");
+  var powerTable = $("[data-power-table]");
+  var readout = $("[data-readout]");
+  var verdictBox = $("[data-verdict]");
+  var interpretation = $("[data-interpretation]");
+  var planning = $("[data-planning]");
+  var planTable = $("[data-plan-table]");
+
+  var tmNRange = $("#tm-n-range");
+  var tmHeading = $("[data-tm-heading]");
+  var tmSvg = $("[data-typem]");
+  var tmTable = $("[data-tm-table]");
+  var tmFeedback = $("[data-typem-feedback]");
+  var tmError = $("[data-typem-error]");
+  var tmVerdict = $("[data-tm-verdict]");
+  var tmInterpretation = $("[data-tm-interpretation]");
+
+  var openingForm = $("#opening-form");
+  var openingError = $("[data-opening-error]");
+  var openingFeedback = $("[data-opening-feedback]");
+  var powerSection = $("#power-section");
+  var typemSection = $("#typem-section");
+
+  var challengeForm = $("#challenge-form");
+  var challengeFeedback = $("[data-challenge-feedback]");
+
+  /* =======================================================================
+     Experiment 1 — drawing the four areas
+     ===================================================================== */
+
+  var PLOT = { left: 34, right: 448, top: 14, base: 148 };
+
+  function settings() {
+    return {
+      d: Number(dRange.value),
+      n: Number(nRange.value),
+      alpha: Number(alphaSelect.value),
+      target: Number(targetSelect.value)
+    };
+  }
+
+  function renderPowerChart(s, p, axisLo, axisHi) {
+    var X = function (v) {
+      return PLOT.left + ((v - axisLo) / (axisHi - axisLo)) * (PLOT.right - PLOT.left);
+    };
+    var peak = normalDensity(0, 0, p.se);
+    var Y = function (den) {
+      return PLOT.base - (den / (peak * 1.1)) * (PLOT.base - PLOT.top);
+    };
+
+    clear(powerSvg);
+
+    function pathOf(mu, from, to, close) {
+      var pts = [];
+      var steps = 120;
+      for (var i = 0; i <= steps; i += 1) {
+        var v = from + (to - from) * (i / steps);
+        pts.push([X(v), Y(normalDensity(v, mu, p.se))]);
+      }
+      var body = pts.map(function (q, i) {
+        return (i === 0 ? "M" : "L") + fmt(q[0], 1) + " " + fmt(q[1], 1);
+      }).join(" ");
+      if (!close) { return body; }
+      return "M" + fmt(X(from), 1) + " " + PLOT.base + " " + body.slice(1) +
+        " L" + fmt(X(to), 1) + " " + PLOT.base + " Z";
+    }
+
+    // Alpha: the tails of the null curve beyond the threshold.
+    [[axisLo, -p.threshold], [p.threshold, axisHi]].forEach(function (span) {
+      if (span[1] <= span[0]) { return; }
+      powerSvg.appendChild(svgNode("path",
+        { d: pathOf(0, span[0], span[1], true), class: "pw__alpha-fill" }));
+      for (var hx = X(span[0]) + 3; hx < X(span[1]); hx += 7) {
+        var v = axisLo + ((hx - PLOT.left) / (PLOT.right - PLOT.left)) *
+          (axisHi - axisLo);
+        var top = Y(normalDensity(v, 0, p.se));
+        if (PLOT.base - top < 2) { continue; }
+        powerSvg.appendChild(svgNode("line",
+          { x1: hx, y1: PLOT.base, x2: hx + 5, y2: top, class: "pw__alpha-hatch" }));
+      }
+    });
+
+    // Beta: the body of the alternative curve inside the threshold.
+    powerSvg.appendChild(svgNode("path", {
+      d: pathOf(s.d, Math.max(axisLo, -p.threshold), Math.min(axisHi, p.threshold), true),
+      class: "pw__beta-fill"
+    }));
+    for (var bx = X(Math.max(axisLo, -p.threshold)) + 3;
+         bx < X(Math.min(axisHi, p.threshold)); bx += 7) {
+      var bv = axisLo + ((bx - PLOT.left) / (PLOT.right - PLOT.left)) *
+        (axisHi - axisLo);
+      var btop = Y(normalDensity(bv, s.d, p.se));
+      if (PLOT.base - btop < 2) { continue; }
+      powerSvg.appendChild(svgNode("line",
+        { x1: bx, y1: PLOT.base, x2: bx - 5, y2: btop, class: "pw__beta-hatch" }));
+    }
+
+    powerSvg.appendChild(svgNode("path",
+      { d: pathOf(0, axisLo, axisHi, false), class: "pw__null" }));
+    powerSvg.appendChild(svgNode("path",
+      { d: pathOf(s.d, axisLo, axisHi, false), class: "pw__alt" }));
+
+    powerSvg.appendChild(svgText(
+      { x: X(0), y: PLOT.top + 8, "text-anchor": "middle" },
+      "if the effect is 0", "chart__axis"));
+    powerSvg.appendChild(svgText(
+      { x: Math.min(X(s.d), PLOT.right - 40), y: PLOT.top - 1,
+        "text-anchor": "middle" },
+      "if the effect is " + fmt(s.d), "chart__label"));
+
+    [-p.threshold, p.threshold].forEach(function (v) {
+      if (v < axisLo || v > axisHi) { return; }
+      powerSvg.appendChild(svgNode("line",
+        { x1: X(v), y1: PLOT.top, x2: X(v), y2: PLOT.base + 5,
+          class: "pw__threshold" }));
+    });
+    powerSvg.appendChild(svgText(
+      { x: Math.min(X(p.threshold) + 4, PLOT.right - 2), y: PLOT.base - 6,
+        "text-anchor": X(p.threshold) > PLOT.right - 90 ? "end" : "start" },
+      "reject beyond ±" + fmt(p.threshold), "chart__label"));
+
+    powerSvg.appendChild(svgNode("line",
+      { x1: PLOT.left, y1: PLOT.base, x2: PLOT.right, y2: PLOT.base,
+        class: "pw__axis" }));
+    var step = (axisHi - axisLo) > 4 ? 1 : (axisHi - axisLo) > 2 ? 0.5 : 0.25;
+    for (var v2 = Math.ceil(axisLo / step) * step; v2 <= axisHi; v2 += step) {
+      powerSvg.appendChild(svgNode("line",
+        { x1: X(v2), y1: PLOT.base, x2: X(v2), y2: PLOT.base + 4,
+          class: "pw__axis" }));
+      powerSvg.appendChild(svgText(
+        { x: X(v2), y: PLOT.base + 17, "text-anchor": "middle" },
+        fmt(v2, step < 1 ? 2 : 0), "chart__axis"));
+    }
+    powerSvg.appendChild(svgText(
+      { x: (PLOT.left + PLOT.right) / 2, y: PLOT.base + 33,
+        "text-anchor": "middle" },
+      "effect size this study would observe", "chart__axis"));
+  }
+
+  function renderPower() {
+    var s = settings();
+    var p = powerFor(s.d, s.n, s.alpha);
+    var span = Math.max(4 * p.se, s.d + 3.6 * p.se);
+    var axisLo = -span;
+    var axisHi = Math.max(span, s.d + 3.6 * p.se);
+
+    chartHeading.textContent =
+      "d = " + fmt(s.d) + ", " + s.n + " per group, α = " + s.alpha;
+    renderPowerChart(s, p, axisLo, axisHi);
+
+    clear(powerTable);
+    [
+      ["Power (1 − β)", pct(p.power)],
+      ["Type II error rate β", pct(p.beta)],
+      ["Type I error rate α", pct(s.alpha)],
+      ["Smallest observed d that would reject", fmt(p.threshold)]
+    ].forEach(function (cells) { powerTable.appendChild(row(cells)); });
+
+    var need = requiredN(s.d, s.alpha, s.target);
+    clear(readout);
+    [
+      ["Power", pct(p.power)],
+      ["Standard error of d", fmt(p.se)],
+      ["Rejection threshold", "±" + fmt(p.threshold)],
+      ["n for " + Math.round(s.target * 100) + "% power",
+        need === null ? "over 5,000" : String(need)]
+    ].forEach(function (pair) {
+      var cell = make("div");
+      cell.appendChild(make("dt", null, pair[0]));
+      cell.appendChild(make("dd", null, pair[1]));
+      readout.appendChild(cell);
+    });
+
+    clear(planTable);
+    [0.5, 0.8, 0.9, 0.95].forEach(function (target) {
+      var required = requiredN(s.d, s.alpha, target);
+      planTable.appendChild(row([
+        Math.round(target * 100) + "%",
+        required === null ? "over 5,000" : String(required),
+        required === null ? "—" : String(2 * required)
+      ]));
+    });
+
+    var tone;
+    var text;
+    if (p.power < 0.35) {
+      tone = "warn";
+      text =
+        "Power is " + pct(p.power) + ". If the effect really is " + fmt(s.d) +
+        ", this study misses it " + pct(p.beta) + " of the time. To reach " +
+        "significance at all it would have to observe at least " +
+        fmt(p.threshold) + " - " + fmt(p.threshold / s.d, 1) + " times the " +
+        "truth. That inflation is Experiment 2.";
+    } else if (p.power < 0.8) {
+      tone = "caution";
+      text =
+        "Power is " + pct(p.power) + ", so this study misses a real effect of " +
+        fmt(s.d) + " about " + pct(p.beta) + " of the time. The threshold sits " +
+        "at " + fmt(p.threshold) + " on the same scale: a significant result " +
+        "here still means observing something larger than the truth.";
+    } else {
+      tone = "good";
+      text =
+        "Power is " + pct(p.power) + ". A study this size detects an effect of " +
+        fmt(s.d) + " most of the time, and its rejection threshold of " +
+        fmt(p.threshold) + " is close enough to the true value that a " +
+        "significant result is not badly inflated. A non-significant result " +
+        "from a study like this is genuinely informative.";
+    }
+    interpretation.textContent = text;
+    verdictBox.setAttribute("data-tone", tone);
+
+    planning.textContent = need === null
+      ? "Reaching " + Math.round(s.target * 100) + "% power for an effect this " +
+        "small at α = " + s.alpha + " would take more than 5,000 people per " +
+        "group. That is worth saying out loud before a study is run rather " +
+        "than after."
+      : "To reach " + Math.round(s.target * 100) + "% power for d = " + fmt(s.d) +
+        " at α = " + s.alpha + " you would need " + need + " per group, " +
+        (2 * need) + " in total. Halve the effect you want to detect and that " +
+        "figure roughly quadruples.";
+  }
+
+  powerShell.bindRange(dRange, {
+    format: function (v) { return fmt(v); },
+    describe: function (v) { return "an assumed true effect of d equals " + fmt(v); },
+    onInput: renderPower
+  });
+
+  powerShell.bindRange(nRange, {
+    format: function (v) { return String(v); },
+    describe: function (v) { return v + " participants per group"; },
+    onInput: renderPower
+  });
+
+  alphaSelect.addEventListener("change", function () {
+    renderPower();
+    var s = settings();
+    var p = powerFor(s.d, s.n, s.alpha);
+    powerShell.announce(
+      "Alpha set to " + s.alpha + ". Power is now " + pct(p.power) +
+      ", with no change to the sample size: every threshold trades one error " +
+      "rate against the other.", { immediate: true });
+  });
+
+  targetSelect.addEventListener("change", function () {
+    renderPower();
+    var s = settings();
+    var need = requiredN(s.d, s.alpha, s.target);
+    powerShell.announce(
+      "Target power " + Math.round(s.target * 100) + " per cent. That needs " +
+      (need === null ? "more than 5,000" : need) + " participants per group " +
+      "for an effect of " + fmt(s.d) + ".", { immediate: true });
+  });
+
+  /* =======================================================================
+     Experiment 2 — Type M
+     ===================================================================== */
+
+  var tmRun = null;
+
+  function runStudies(n) {
+    var random = mulberry32(TM_SEED + n * 101);
+    var df = 2 * n - 2;
+    var crit = tCritical(TM_ALPHA, df);
+    var estimates = [];
+    var significant = [];
+    var wrongSign = 0;
+    for (var s = 0; s < STUDIES; s += 1) {
+      var sumA = 0;
+      var sumB = 0;
+      var ssA = 0;
+      var ssB = 0;
+      var a = [];
+      var b = [];
+      var i;
+      for (i = 0; i < n; i += 1) {
+        var va = normal(random);
+        var vb = TM_TRUE_D + normal(random);
+        a.push(va);
+        b.push(vb);
+        sumA += va;
+        sumB += vb;
+      }
+      var mA = sumA / n;
+      var mB = sumB / n;
+      for (i = 0; i < n; i += 1) {
+        ssA += (a[i] - mA) * (a[i] - mA);
+        ssB += (b[i] - mB) * (b[i] - mB);
+      }
+      var pooled = Math.sqrt((ssA + ssB) / df);
+      var dHat = pooled > 0 ? (mB - mA) / pooled : 0;
+      var t = dHat / Math.sqrt(2 / n);
+      estimates.push(dHat);
+      if (Math.abs(t) >= crit) {
+        significant.push(dHat);
+        if (dHat < 0) { wrongSign += 1; }
+      }
+    }
+    var meanAll = estimates.reduce(function (x, y) { return x + y; }, 0) /
+      estimates.length;
+    var meanSig = significant.length
+      ? significant.reduce(function (x, y) { return x + Math.abs(y); }, 0) /
+        significant.length
+      : 0;
+    return {
+      n: n, crit: crit, estimates: estimates,
+      significant: significant, wrongSign: wrongSign,
+      meanAll: meanAll, meanSig: meanSig,
+      observedPower: significant.length / STUDIES,
+      typeM: meanSig / TM_TRUE_D,
+      threshold: crit * Math.sqrt(2 / n)
+    };
+  }
+
+  function renderTypeM() {
+    var n = Number(tmNRange.value);
+    clear(tmSvg);
+    clear(tmTable);
+
+    if (!tmRun || tmRun.n !== n) {
+      tmHeading.textContent =
+        "Nothing run yet at " + n + " per group — expected power " +
+        pct(powerFor(TM_TRUE_D, n, TM_ALPHA).power);
+      tmTable.appendChild(row(["Studies run", "0"]));
+      tmTable.appendChild(row(["True effect", fmt(TM_TRUE_D)]));
+      tmVerdict.hidden = true;
+      return;
+    }
+
+    var r = tmRun;
+    var axisLo = -1.4;
+    var axisHi = 1.8;
+    var X = function (v) {
+      return PLOT.left + ((v - axisLo) / (axisHi - axisLo)) * (PLOT.right - PLOT.left);
+    };
+
+    var BINS = 44;
+    var width = (axisHi - axisLo) / BINS;
+    var all = [];
+    var sig = [];
+    var i;
+    for (i = 0; i < BINS; i += 1) { all.push(0); sig.push(0); }
+    r.estimates.forEach(function (value) {
+      var index = Math.floor((value - axisLo) / width);
+      if (index < 0 || index >= BINS) { return; }
+      all[index] += 1;
+      if (Math.abs(value) >= r.threshold) { sig[index] += 1; }
+    });
+    var tallest = Math.max.apply(null, all.concat([1]));
+    var Y = function (count) {
+      return PLOT.base - (count / tallest) * (PLOT.base - PLOT.top - 6);
+    };
+
+    all.forEach(function (count, index) {
+      if (!count) { return; }
+      var x0 = X(axisLo + index * width);
+      var x1 = X(axisLo + (index + 1) * width);
+      var isSig = sig[index] > count / 2;
+      tmSvg.appendChild(svgNode("rect", {
+        x: x0, y: Y(count), width: Math.max(1, x1 - x0 - 0.6),
+        height: PLOT.base - Y(count),
+        class: "tm__bar" + (isSig ? " tm__bar--sig" : "")
+      }));
+      if (isSig && PLOT.base - Y(count) > 4) {
+        tmSvg.appendChild(svgNode("line", {
+          x1: x0, y1: PLOT.base, x2: x1, y2: Y(count), class: "tm__hatch"
+        }));
+      }
+    });
+
+    [[TM_TRUE_D, "tm__truth", "true effect " + fmt(TM_TRUE_D), PLOT.top + 10],
+     [r.meanAll, "tm__all", "mean of all " + fmt(r.meanAll), PLOT.top + 26],
+     [r.meanSig, "tm__sig", "mean of the significant " + fmt(r.meanSig),
+       PLOT.top + 42]]
+      .forEach(function (entry) {
+        tmSvg.appendChild(svgNode("line", {
+          x1: X(entry[0]), y1: PLOT.top - 2, x2: X(entry[0]), y2: PLOT.base + 5,
+          class: entry[1]
+        }));
+        tmSvg.appendChild(svgText(
+          { x: Math.min(X(entry[0]) + 4, PLOT.right - 2), y: entry[3],
+            "text-anchor": X(entry[0]) > PLOT.right - 130 ? "end" : "start" },
+          entry[2], "chart__label"));
+      });
+
+    tmSvg.appendChild(svgNode("line",
+      { x1: PLOT.left, y1: PLOT.base, x2: PLOT.right, y2: PLOT.base,
+        class: "pw__axis" }));
+    for (var v = -1; v <= 1.5; v += 0.5) {
+      tmSvg.appendChild(svgNode("line",
+        { x1: X(v), y1: PLOT.base, x2: X(v), y2: PLOT.base + 4,
+          class: "pw__axis" }));
+      tmSvg.appendChild(svgText(
+        { x: X(v), y: PLOT.base + 17, "text-anchor": "middle" },
+        fmt(v, 1), "chart__axis"));
+    }
+    tmSvg.appendChild(svgText(
+      { x: (PLOT.left + PLOT.right) / 2, y: PLOT.base + 33,
+        "text-anchor": "middle" },
+      "effect size each study estimated — hatched bars reached significance",
+      "chart__axis"));
+
+    tmHeading.textContent =
+      STUDIES + " studies at " + r.n + " per group — " +
+      r.significant.length + " significant";
+
+    [
+      ["Studies run", String(STUDIES)],
+      ["True effect", fmt(TM_TRUE_D)],
+      ["Mean of every estimate", fmt(r.meanAll)],
+      ["Significant results", r.significant.length + " (" +
+        pct(r.observedPower) + ")"],
+      ["Mean of the significant estimates", fmt(r.meanSig)],
+      ["Exaggeration ratio", fmt(r.typeM, 2) + " times the truth"],
+      ["Significant but the wrong sign",
+        r.wrongSign + (r.significant.length
+          ? " (" + pct(r.wrongSign / r.significant.length) + " of them)" : "")]
+    ].forEach(function (cells) { tmTable.appendChild(row(cells)); });
+  }
+
+  tmShell.bindRange(tmNRange, {
+    format: function (v) { return String(v); },
+    describe: function (v) {
+      return v + " participants per group, giving about " +
+        pct(powerFor(TM_TRUE_D, v, TM_ALPHA).power) + " power";
+    },
+    onInput: function () {
+      // A different sample size is a different set of studies, so the run is
+      // cleared rather than shown against the wrong settings.
+      if (tmRun && tmRun.n !== Number(tmNRange.value)) {
+        tmRun = null;
+        tmFeedback.hidden = true;
+        tmVerdict.hidden = true;
+      }
+      renderTypeM();
+    }
+  });
+
+  function describeRun(r, chosen) {
+    var truth = r.typeM < 1.2 ? "same" : r.typeM < 2.0 ? "half" : "double";
+    var right = chosen === truth;
+    var lead = right ? "Yes." : "Not quite.";
+    var body =
+      "Across all " + STUDIES + " studies the average estimate was " +
+      fmt(r.meanAll) + " against a true effect of " + fmt(TM_TRUE_D) +
+      " - every study is unbiased, and the whole set says so. Among the " +
+      r.significant.length + " that reached significance the average was " +
+      fmt(r.meanSig) + ", which is " + fmt(r.typeM, 2) + " times the truth. " +
+      "Nothing was done wrongly in any individual study; the exaggeration is " +
+      "entirely a property of the filter.";
+    showFeedback(tmFeedback, right ? "good" : "caution", lead, body);
+
+    var extra = make("p");
+    extra.appendChild(make("strong", null, "Why the filter does this. "));
+    extra.appendChild(document.createTextNode(
+      "At " + r.n + " per group a study only reaches significance if it " +
+      "observes an effect of at least " + fmt(r.threshold) + ". The true " +
+      "effect is " + fmt(TM_TRUE_D) + ", so every significant result is, by " +
+      "construction, an overshoot. Raise the sample size until the threshold " +
+      "falls below the truth and the exaggeration disappears."));
+    tmFeedback.appendChild(extra);
+
+    if (r.wrongSign > 0) {
+      var sign = make("p");
+      sign.appendChild(make("strong", null, "And the sign errors. "));
+      sign.appendChild(document.createTextNode(
+        r.wrongSign + " of the " + r.significant.length + " significant " +
+        "results - " + pct(r.wrongSign / r.significant.length) + " of them - " +
+        "pointed in the wrong direction entirely, and every one would have " +
+        "been written up as a finding."));
+      tmFeedback.appendChild(sign);
+    }
+
+    tmVerdict.hidden = false;
+    tmInterpretation.textContent =
+      "Hold both halves of this at once. Any single underpowered study gives " +
+      "an unbiased estimate: it is as likely to undershoot as to overshoot, " +
+      "and the mean of all " + STUDIES + " estimates lands on " + fmt(r.meanAll) +
+      ". A literature assembled from the significant ones is a different " +
+      "object, and it reports " + fmt(r.meanSig) + ". Nothing separates the " +
+      "two except which results anybody heard about - which is why the " +
+      "remedy is larger studies and complete reporting rather than better " +
+      "analysis of what got through.";
+    return { right: right, lead: lead };
+  }
+
+  $('[data-action="run-typem"]').addEventListener("click", function () {
+    var chosen = $('input[name="typem"]:checked', tmShell.controls);
+    if (!chosen) {
+      tmError.textContent = "Commit to a prediction before running the studies.";
+      tmError.hidden = false;
+      return;
+    }
+    tmError.hidden = true;
+    tmRun = runStudies(Number(tmNRange.value));
+    renderTypeM();
+    var result = describeRun(tmRun, chosen.value);
+    tmShell.announce(
+      result.lead + " " + tmRun.significant.length + " of " + STUDIES +
+      " studies were significant, and their average estimate was " +
+      fmt(tmRun.meanSig) + " against a true effect of " + fmt(TM_TRUE_D) + ".",
+      { immediate: true });
+  });
+
+  function applyTmPreset(n, label) {
+    tmNRange.value = String(n);
+    tmNRange.dispatchEvent(new Event("input"));
+    tmRun = null;
+    tmFeedback.hidden = true;
+    tmVerdict.hidden = true;
+    renderTypeM();
+    tmShell.announce(
+      label + ": " + n + " per group, expected power " +
+      pct(powerFor(TM_TRUE_D, n, TM_ALPHA).power) +
+      ". Commit to a prediction and run the studies.", { immediate: true });
+  }
+
+  $('[data-action="tm-low"]').addEventListener("click", function () {
+    applyTmPreset(15, "Low-power setting");
+  });
+  $('[data-action="tm-high"]').addEventListener("click", function () {
+    applyTmPreset(120, "High-power setting");
+  });
+
+  function openTypeM() {
+    var wasHidden = typemSection.hidden;
+    typemSection.hidden = false;
+    renderTypeM();
+    if (wasHidden) {
+      $("#typem-heading").focus();
+      tmShell.announce(
+        "Experiment 2 opened. Commit to a prediction before running anything.",
+        { immediate: true });
+    }
+  }
+
+  $('[data-action="open-typem"]').addEventListener("click", openTypeM);
+
+  /* =======================================================================
+     Opening prediction
+     ===================================================================== */
+
+  var OPENING = {
+    eighty: {
+      tone: "caution",
+      verdict: "That is the target, not the achievement.",
+      text:
+        "Eighty per cent power for d = 0.50 at α = .05 takes 64 people per " +
+        "group, not 20. With 20 the figure is about 34%, so two studies in " +
+        "three would miss a real medium-sized effect. Set the target-power " +
+        "control to 80% and read the required sample size."
+    },
+    fifty: {
+      tone: "caution",
+      verdict: "Closer, and still optimistic.",
+      text:
+        "Fifty per cent - a coin toss - would take about 33 per group. With " +
+        "20 the power is about 34%. The general shape of the answer is right: " +
+        "small studies of medium effects are usually worse than a coin toss."
+    },
+    thirty: {
+      tone: "good",
+      verdict: "Yes — the tool puts it at 32.9%.",
+      text:
+        "Two studies in three would fail to detect a real medium-sized " +
+        "effect. Now look at what the third study - the one that succeeded - " +
+        "would have had to observe to get there."
+    },
+    five: {
+      tone: "warn",
+      verdict: "That is the false-positive rate, not the power.",
+      text:
+        "α = .05 is the probability of a significant result when there is no " +
+        "effect at all. Power is the probability of one when there IS an " +
+        "effect, and here it is about 34%. The two are the two shaded regions " +
+        "in the experiment, on two different curves."
+    }
+  };
+
+  function lockForm(form) {
+    $$("input, button, select", form).forEach(function (c) { c.disabled = true; });
+  }
+
+  function unlockForm(form) {
+    $$("input, button, select", form).forEach(function (c) { c.disabled = false; });
+    form.reset();
+  }
+
+  function openPower() {
+    powerSection.hidden = false;
+    renderPower();
+    $("#power-heading").focus();
+    powerShell.announce(
+      "Experiment 1 unlocked, showing the study from the prediction.",
+      { immediate: true });
+  }
+
+  openingForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answer = $('input[name="opening"]:checked', openingForm);
+    if (!answer) {
+      openingError.textContent = "Choose a prediction before opening the experiment.";
+      openingError.hidden = false;
+      return;
+    }
+    openingError.hidden = true;
+    var feedback = OPENING[answer.value];
+    showFeedback(openingFeedback, feedback.tone, feedback.verdict, feedback.text);
+    lockForm(openingForm);
+    openPower();
+  });
+
+  $('[data-action="skip-opening"]').addEventListener("click", function () {
+    openingError.hidden = true;
+    showFeedback(openingFeedback, "neutral",
+      "Prediction skipped — demonstration mode.", "");
+    lockForm(openingForm);
+    openPower();
+  });
+
+  /* =======================================================================
+     Challenge
+     ===================================================================== */
+
+  var CHALLENGE_NOTES = {
+    before: {
+      correct: true,
+      text:
+        "Correct, and the second half of the sentence is the hard part. Power " +
+        "is always power to detect a stated effect, so a power calculation is " +
+        "only as good as the effect size assumed - which in practice often " +
+        "comes from earlier literature that Experiment 2 suggests is inflated."
+    },
+    observed: {
+      correct: false,
+      text:
+        "Wrong, and it is the most common misuse of the concept. Observed " +
+        "power computed from the study's own result is a one-to-one function " +
+        "of the p-value: a high p always gives low observed power, by " +
+        "construction. It carries no information the p-value did not already " +
+        "have."
+    },
+    informative: {
+      correct: true,
+      text:
+        "Correct. A well-powered study that fails to reject has largely ruled " +
+        "out effects of the assumed size; an underpowered one has ruled out " +
+        "almost nothing. This is why a confidence interval is more useful " +
+        "than a decision: it shows what has actually been excluded."
+    },
+    doubling: {
+      correct: false,
+      text:
+        "Wrong. Power is not linear in n; it is bounded above by 1. In " +
+        "Experiment 1, 20 to 40 per group at d = 0.50 takes power from 32.9% " +
+        "to 59.7% - a large gain, not a doubling. From 100 to 200 it goes 94% " +
+        "to 99.9%, already near the ceiling."
+    },
+    eighty: {
+      correct: true,
+      text:
+        "Correct, and note the conditional. It is 80% of studies IF the " +
+        "assumed effect is the true one. If the real effect is half what you " +
+        "assumed, the same design has far less power, which is why " +
+        "optimistic assumptions are so costly."
+    },
+    exaggerate: {
+      correct: true,
+      text:
+        "Correct, and Experiment 2 is a demonstration of it. A small study " +
+        "can only clear the threshold by overshooting, so the significant " +
+        "subset has a much larger average than the truth."
+    },
+    biased: {
+      correct: false,
+      text:
+        "Wrong, and it is the mirror-image error. Every individual " +
+        "underpowered study estimates the effect without bias - the mean of " +
+        "all two thousand estimates in Experiment 2 lands on the truth. The " +
+        "exaggeration belongs to the filter, not to the studies - which points " +
+        "at publication practice rather than at anybody's arithmetic."
+    }
+  };
+
+  challengeForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var chosen = $$('input[name="challenge"]:checked', challengeForm)
+      .map(function (b) { return b.value; });
+
+    if (!chosen.length) {
+      showFeedback(challengeFeedback, "caution", "Select at least one statement.",
+        "Four of the seven are correct.");
+      return;
+    }
+
+    var wrongPicked = chosen.filter(function (v) {
+      return !CHALLENGE_NOTES[v].correct;
+    });
+    var missed = ["before", "informative", "eighty", "exaggerate"]
+      .filter(function (v) { return chosen.indexOf(v) === -1; });
+
+    var tone = wrongPicked.length ? "warn" : missed.length ? "caution" : "good";
+    var verdictText;
+    if (wrongPicked.length) {
+      verdictText = "At least one of these treats power as something a " +
+        "finished study reveals, or blames low power for a bias it does not " +
+        "cause.";
+    } else if (missed.length) {
+      verdictText = "Everything you picked is right, and " + missed.length +
+        " of the four correct statements is still unselected.";
+    } else {
+      verdictText = "Yes — all four, and none of the three traps.";
+    }
+
+    clear(challengeFeedback);
+    challengeFeedback.setAttribute("data-tone", tone);
+    var lead = make("p");
+    lead.appendChild(make("strong", "feedback__verdict", verdictText));
+    lead.appendChild(document.createTextNode(
+      " The three incorrect statements are the three ways power is usually " +
+      "misused in discussion sections."));
+    challengeFeedback.appendChild(lead);
+
+    var list = make("ul");
+    Object.keys(CHALLENGE_NOTES).forEach(function (value) {
+      var li = make("li");
+      li.appendChild(make("strong", null,
+        chosen.indexOf(value) !== -1
+          ? "You selected this. " : "You did not select this. "));
+      li.appendChild(document.createTextNode(CHALLENGE_NOTES[value].text));
+      list.appendChild(li);
+    });
+    challengeFeedback.appendChild(list);
+    challengeFeedback.hidden = false;
+    powerShell.announce(verdictText, { immediate: true });
+  });
+
+  /* =======================================================================
+     Reset and start-up
+     ===================================================================== */
+
+  tmShell.onReset(function () {
+    tmRun = null;
+    tmNRange.value = String(TM_DEFAULT_N);
+    $$('input[name="typem"]', tmShell.controls).forEach(function (input) {
+      input.checked = false;
+    });
+    tmFeedback.hidden = true;
+    tmError.hidden = true;
+    tmVerdict.hidden = true;
+    renderTypeM();
+  });
+
+  powerShell.onReset(function () {
+    unlockForm(openingForm);
+    openingFeedback.hidden = true;
+    openingError.hidden = true;
+    powerSection.hidden = true;
+    typemSection.hidden = true;
+    challengeForm.reset();
+    challengeFeedback.hidden = true;
+    dRange.value = String(DEFAULTS.d);
+    nRange.value = String(DEFAULTS.n);
+    alphaSelect.value = DEFAULTS.alpha;
+    targetSelect.value = DEFAULTS.target;
+    tmShell.reset({ silent: true });
+    renderPower();
+  });
+
+  powerShell.reset({ silent: true });
+  powerShell.announce(
+    "Ready. Answer the prediction above to open Experiment 1.",
+    { immediate: true });
+})();
+
+</script>
+</div>

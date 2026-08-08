@@ -1,0 +1,2947 @@
+<!-- Assessment Battery Builder
+     From Open Psychology Interactives - https://github.com/utman5454/open-psychology-interactives
+     Self-contained: no stylesheets, scripts, fonts, images or network requests.
+     Styles are scoped to .opi-activity and do not affect the page around them.
+     Nothing is saved, sent or tracked. MIT licensed; please keep this notice.
+     Paste anywhere that accepts HTML, or save as a .html file and open it. -->
+<div class="opi-activity">
+<style>
+/* Defensive baseline. See scripts/build-standalone.py for why this
+   is `revert` rather than an enumerated reset, and how the specificity ladder
+   keeps the activity's own styling on top of it. */
+.opi-activity *:not(svg *) {
+  all: revert;
+}
+.opi-activity, .opi-activity *, .opi-activity *::before, .opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  text-transform: none;
+  text-indent: 0;
+  font-style: normal;
+  font-variant: normal;
+  letter-spacing: normal;
+  word-spacing: normal;
+  white-space: normal;
+  visibility: visible;
+  float: none;
+  max-width: none;
+}
+.opi-activity svg { max-width: 100%; }
+.opi-activity img { max-width: 100%; height: auto; }
+.opi-activity [hidden] { display: none !important; }
+
+/* assets/css/main.css */
+.opi-activity.opi-activity {
+  --colour-page: #ffffff;
+  --colour-surface: #f5f7fa;
+  --colour-surface-raised: #ffffff;
+  --colour-border: #d3d9e2;
+  --colour-border-strong: #aeb7c4;
+  --colour-text: #131820;
+  --colour-text-muted: #4c566a;
+  --colour-accent: #1a4fa0;
+  --colour-accent-hover: #123a7a;
+  --colour-accent-soft: #e8eefb;
+  --colour-on-accent: #ffffff;
+  --colour-focus: #b45309;
+  --colour-cognitive: #8a4b00;
+  --colour-research-methods: #1a4fa0;
+  --colour-neuropsychology: #145c53;
+  --colour-social-critical-psychology: #9e2f45;
+  --colour-personality-individual-differences: #7a2e6d;
+  --colour-status-bg: #f1ede3;
+  --colour-status-text: #5c4a1f;
+  --colour-status-border: #d9cdb0;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  --text-xs: 13px;
+  --text-sm: 15px;
+  --text-base: 17px;
+  --text-lg: 19px;
+  --text-xl: 23px;
+  --text-2xl: 28px;
+  --text-3xl: 36px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgb(19 24 32 / 0.06);
+  --shadow-md: 0 2px 8px rgb(19 24 32 / 0.08);
+  --measure: 68ch;
+  --container: 1152px;
+}
+@media (prefers-color-scheme: dark) {
+.opi-activity.opi-activity {
+  --colour-page: #0f141b;
+  --colour-surface: #161d27;
+  --colour-surface-raised: #1a2230;
+  --colour-border: #2c3644;
+  --colour-border-strong: #44506180;
+  --colour-text: #e9edf3;
+  --colour-text-muted: #a8b2c1;
+  --colour-accent: #8fb6ff;
+  --colour-accent-hover: #b3cdff;
+  --colour-accent-soft: #1b2740;
+  --colour-on-accent: #0f141b;
+  --colour-focus: #f0b429;
+  --colour-cognitive: #e2ab5f;
+  --colour-research-methods: #8fb6ff;
+  --colour-neuropsychology: #6fc3b4;
+  --colour-social-critical-psychology: #f19aa8;
+  --colour-personality-individual-differences: #db9ccd;
+  --colour-status-bg: #241f14;
+  --colour-status-text: #e2cf9f;
+  --colour-status-border: #4a4028;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 2px 10px rgb(0 0 0 / 0.45);
+}
+}
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity.opi-activity {
+  -webkit-text-size-adjust: 100%;
+}
+.opi-activity.opi-activity {
+  background-color: var(--colour-page);
+  color: var(--colour-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.65;
+}
+.opi-activity.opi-activity h1,
+.opi-activity.opi-activity h2,
+.opi-activity.opi-activity h3,
+.opi-activity.opi-activity h4 {
+  margin: 0 0 var(--space-3);
+  line-height: 1.25;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.opi-activity.opi-activity h1 {
+  font-size: var(--text-3xl);
+}
+.opi-activity.opi-activity h2 {
+  font-size: var(--text-2xl);
+}
+.opi-activity.opi-activity h3 {
+  font-size: var(--text-xl);
+}
+.opi-activity.opi-activity h4 {
+  font-size: var(--text-lg);
+}
+.opi-activity.opi-activity p,
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol,
+.opi-activity.opi-activity dl {
+  margin: 0 0 var(--space-4);
+}
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol {
+  padding-left: 1.35em;
+}
+.opi-activity.opi-activity li + li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity a {
+  color: var(--colour-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: max(1px, 0.06em);
+}
+.opi-activity.opi-activity a:hover {
+  color: var(--colour-accent-hover);
+  text-decoration-thickness: max(2px, 0.11em);
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid var(--colour-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+@supports not selector(:focus-visible) {
+.opi-activity.opi-activity :focus {
+  outline: 3px solid var(--colour-focus);
+    outline-offset: 2px;
+}
+}
+.opi-activity.opi-activity code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.35em;
+}
+.opi-activity.opi-activity hr {
+  border: 0;
+  border-top: 1px solid var(--colour-border);
+  margin: var(--space-6) 0;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+}
+.opi-activity.opi-activity .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.opi-activity.opi-activity .container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+@media (min-width: 40em) {
+.opi-activity.opi-activity .container {
+  padding-inline: var(--space-5);
+}
+}
+.opi-activity.opi-activity .prose {
+  max-width: var(--measure);
+}
+.opi-activity.opi-activity .text-muted {
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .section {
+  padding-block: var(--space-7);
+}
+.opi-activity.opi-activity .section--tinted {
+  background-color: var(--colour-surface);
+  border-block: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .section__header {
+  max-width: var(--measure);
+  margin-bottom: var(--space-5);
+}
+.opi-activity.opi-activity .section__header > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-7) var(--space-6);
+  border-bottom: 1px solid var(--colour-border);
+  
+  background-image: linear-gradient(
+    180deg,
+    var(--colour-accent-soft) 0%,
+    var(--colour-page) 100%
+  );
+}
+.opi-activity.opi-activity .hero__eyebrow {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .hero h1 {
+  max-width: 20ch;
+  margin-bottom: var(--space-4);
+}
+.opi-activity.opi-activity .hero__lead {
+  max-width: var(--measure);
+  font-size: var(--text-lg);
+  color: var(--colour-text-muted);
+}
+@media (min-width: 48em) {
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-8) var(--space-7);
+}
+.opi-activity.opi-activity .hero h1 {
+  font-size: 44px;
+}
+}
+.opi-activity.opi-activity .button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  
+  min-height: 44px;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .button--primary {
+  background-color: var(--colour-accent);
+  border-color: var(--colour-accent);
+  
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--primary:hover {
+  background-color: var(--colour-accent-hover);
+  border-color: var(--colour-accent-hover);
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--secondary {
+  background-color: transparent;
+  border-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .button--secondary:hover {
+  background-color: var(--colour-surface);
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+}
+.opi-activity.opi-activity .card--cognitive {
+  --card-accent: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .card--research-methods {
+  --card-accent: var(--colour-research-methods);
+}
+.opi-activity.opi-activity .card--neuropsychology {
+  --card-accent: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .card--social-critical-psychology {
+  --card-accent: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .card--personality-individual-differences {
+  --card-accent: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 650;
+  line-height: 1.4;
+  padding: 3.2px var(--space-3);
+  border-radius: 999px;
+  border: 1px solid var(--colour-status-border);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+}
+.opi-activity.opi-activity .badge__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex: none;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed var(--colour-border-strong);
+  border-radius: var(--radius-lg);
+  background-color: var(--colour-surface);
+  padding: var(--space-5);
+  text-align: left;
+}
+.opi-activity.opi-activity .placeholder__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+}
+.opi-activity.opi-activity .placeholder > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .split {
+  display: grid;
+  gap: var(--space-6);
+}
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split {
+  grid-template-columns: 3fr 2fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .panel {
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.opi-activity.opi-activity .panel > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .panel__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .section--tinted {
+  border-block: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .hero {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .button--primary {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .button--secondary {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .button:hover {
+  border-color: Highlight;
+}
+.opi-activity.opi-activity .panel {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed CanvasText;
+}
+.opi-activity.opi-activity .badge {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .badge__dot {
+  background-color: CanvasText;
+}
+.opi-activity.opi-activity code {
+  border-color: CanvasText;
+}
+.opi-activity.opi-activity hr {
+  border-top-color: CanvasText;
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+}
+@media print {
+.opi-activity.opi-activity {
+  color: #000;
+  background: #fff;
+}
+.opi-activity.opi-activity a[href^="http"]::after {
+  content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+}
+}
+
+/* components/interactive-shell.css */
+.opi-activity.opi-activity .interactive {
+  --shell-page: var(--colour-page, #ffffff);
+  --shell-surface: var(--colour-surface, #f5f7fa);
+  --shell-raised: var(--colour-surface-raised, #ffffff);
+  --shell-border: var(--colour-border, #d3d9e2);
+  --shell-border-strong: var(--colour-border-strong, #aeb7c4);
+  --shell-text: var(--colour-text, #131820);
+  --shell-muted: var(--colour-text-muted, #4c566a);
+  --shell-accent: var(--colour-accent, #1a4fa0);
+  --shell-accent-soft: var(--colour-accent-soft, #e8eefb);
+  
+  --shell-on-accent: var(--colour-on-accent, #ffffff);
+  --shell-focus: var(--colour-focus, #b45309);
+  --shell-radius: var(--radius-lg, 12px);
+  --shell-gap: var(--space-5, 24px);
+
+  display: block;
+  background-color: var(--shell-raised);
+  color: var(--shell-text);
+  border: 1px solid var(--shell-border);
+  border-radius: var(--shell-radius);
+  
+  overflow-x: clip;
+  overflow-y: visible;
+}
+.opi-activity.opi-activity .interactive__header {
+  padding: var(--shell-gap);
+  border-bottom: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 1.25;
+}
+.opi-activity.opi-activity .interactive__brief {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--shell-muted);
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__body {
+  display: grid;
+  gap: var(--shell-gap);
+  padding: var(--shell-gap);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body {
+  grid-template-columns: minmax(240px, 320px) 1fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .interactive__controls {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__controls fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .interactive__controls legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .control {
+  display: grid;
+  gap: 5.6px;
+}
+.opi-activity.opi-activity .control + .control {
+  margin-top: 16px;
+}
+.opi-activity.opi-activity .control__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.opi-activity.opi-activity .control__label {
+  font-size: 15px;
+  font-weight: 600;
+}
+.opi-activity.opi-activity .control__value {
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--shell-accent);
+}
+.opi-activity.opi-activity .control__hint {
+  font-size: 13px;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .interactive__controls input[type="range"] {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--shell-accent);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  width: 100%;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--shell-text);
+  background-color: var(--shell-raised);
+  border: 1px solid var(--shell-border-strong);
+  border-radius: var(--radius-sm, 4px);
+}
+.opi-activity.opi-activity .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+}
+.opi-activity.opi-activity .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  accent-color: var(--shell-accent);
+  flex: none;
+}
+.opi-activity.opi-activity .interactive__stage {
+  min-height: 256px;
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-page);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body--pinned {
+  align-items: stretch;
+}
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: sticky;
+    top: 0;
+    z-index: 2;
+    
+    margin: -16px -16px 0;
+    padding: 16px 16px 12px;
+    background-color: var(--shell-page);
+    border-bottom: 1px solid var(--shell-border);
+}
+}
+@media (min-width: 52em) and (max-height: 30em) {
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: static;
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
+}
+}
+.opi-activity.opi-activity .interactive__stage > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity :where(.interactive__stage) svg,
+.opi-activity.opi-activity :where(.interactive__stage) canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+.opi-activity.opi-activity .interactive__readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout div {
+  padding: 9.6px 12px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-sm, 4px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__readout dt {
+  font-size: 13px;
+  color: var(--shell-muted);
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout dd {
+  margin: 2.4px 0 0;
+  font-size: 18px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .interactive__status {
+  margin: 0;
+  padding: 12px var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+  font-size: 15px;
+  color: var(--shell-muted);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .interactive__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+}
+.opi-activity.opi-activity .interactive__actions button {
+  min-height: 44px;
+  padding: 6.4px 20px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--shell-on-accent);
+  background-color: var(--shell-accent);
+  border: 1px solid var(--shell-accent);
+  border-radius: var(--radius-md, 8px);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  color: var(--shell-text);
+  background-color: transparent;
+  border-color: var(--shell-border-strong);
+}
+.opi-activity.opi-activity .interactive__actions button:hover {
+  filter: brightness(1.08);
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__notes > summary {
+  padding: 13.6px var(--shell-gap);
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__notes > div {
+  padding: 0 var(--shell-gap) var(--shell-gap);
+  max-width: 68ch;
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__notes > div > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity .interactive *,
+.opi-activity.opi-activity .interactive *::before,
+.opi-activity.opi-activity .interactive *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+}
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .interactive,
+.opi-activity.opi-activity .interactive__controls,
+.opi-activity.opi-activity .interactive__stage,
+.opi-activity.opi-activity .interactive__readout div {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__header {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__status,
+.opi-activity.opi-activity .interactive__actions,
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__actions button {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  border-width: 1px;
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 1;
+    color: GrayText;
+    border-color: GrayText;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__stage svg {
+  forced-color-adjust: auto;
+}
+}
+
+/* components/tool-kit.css */
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split--wide {
+  grid-template-columns: 1fr 1fr;
+}
+}
+.opi-activity.opi-activity .how-to {
+  padding-left: 19.2px;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .how-to > li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .table-scroll {
+  overflow-x: auto;
+  
+  position: relative;
+}
+.opi-activity.opi-activity .prediction {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 832px;
+}
+.opi-activity.opi-activity .prediction > *,
+.opi-activity.opi-activity .challenge > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity .prediction__group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .prediction__legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-weight: 650;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .prediction .control--choice,
+.opi-activity.opi-activity .challenge .control--choice,
+.opi-activity.opi-activity .evidence .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .prediction .control--choice input,
+.opi-activity.opi-activity .challenge .control--choice input,
+.opi-activity.opi-activity .evidence .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .prediction__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .prediction__error {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-status-border);
+  border-left: 4px solid var(--colour-status-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .prediction__readback {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .feedback[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .feedback[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .feedback[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .feedback__verdict {
+  font-weight: 700;
+}
+.opi-activity.opi-activity .verdict {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .verdict__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict__body {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .verdict__body + .verdict__body {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .verdict__note {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .verdict[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .verdict[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .goal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .goal__label {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .goal__text {
+  flex: 1 1 256px;
+}
+.opi-activity.opi-activity .goal strong {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .goal__checks {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+  display: grid;
+  gap: 2.4px;
+}
+.opi-activity.opi-activity .goal__checks > li {
+  margin-top: 0;
+  padding-left: 22.4px;
+  position: relative;
+}
+.opi-activity.opi-activity .goal__checks > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 9.6px;
+  height: 9.6px;
+  border: 2px solid var(--colour-border-strong);
+  border-radius: 2px;
+}
+.opi-activity.opi-activity .goal__checks > li[data-met="yes"]::before {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .stage-track {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .stage-track > li {
+  margin-top: 0;
+  flex: 1 1 160px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-bottom: 3px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .stage-track > li > span {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.opi-activity.opi-activity .stage-track > li[data-state="done"] {
+  border-bottom-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border-bottom-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+  color: var(--colour-text);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .stage__heading {
+  margin: 0;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .data-table,
+.opi-activity.opi-activity .chart__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .data-table th,
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table th,
+.opi-activity.opi-activity .chart__table td {
+  padding: 6.4px 9.6px;
+  border: 1px solid var(--colour-border);
+  text-align: left;
+  vertical-align: top;
+}
+.opi-activity.opi-activity .data-table thead th,
+.opi-activity.opi-activity .chart__table thead th {
+  background-color: var(--colour-surface);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table td {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__table tbody th,
+.opi-activity.opi-activity .data-table tbody th {
+  font-weight: 550;
+}
+.opi-activity.opi-activity .data-table__total > th,
+.opi-activity.opi-activity .data-table__total > td {
+  border-top: 2px solid var(--colour-border-strong);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart {
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .chart__caption {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__svg {
+  max-width: 100%;
+  height: auto;
+}
+.opi-activity.opi-activity .chart__label,
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__inline,
+.opi-activity.opi-activity .chart__axis {
+  font-family: var(--font-body);
+  fill: var(--colour-text);
+  font-size: 13px;
+}
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__axis {
+  fill: var(--colour-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: var(--colour-on-accent);
+  font-size: 12px;
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__track {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__bar {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--one {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .chart__baseline,
+.opi-activity.opi-activity .chart__grid {
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__line {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: var(--colour-personality-individual-differences);
+  stroke-dasharray: 6 4;
+}
+.opi-activity.opi-activity .chart__point {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .reveal > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .reveal__lead {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+.opi-activity.opi-activity .reveal__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(176px, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+  padding: 0;
+  list-style: none;
+}
+.opi-activity.opi-activity .reveal__figures > li {
+  margin-top: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+.opi-activity.opi-activity .reveal__figure-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .reveal__figure-value {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .challenge {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+.opi-activity.opi-activity .challenge__locked {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .panel--caution {
+  background-color: var(--colour-status-bg);
+  border-color: var(--colour-status-border);
+}
+.opi-activity.opi-activity .panel--caution li + li {
+  margin-top: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .goal,
+.opi-activity.opi-activity .verdict,
+.opi-activity.opi-activity .feedback,
+.opi-activity.opi-activity .prediction__error,
+.opi-activity.opi-activity .prediction__readback,
+.opi-activity.opi-activity .stage-track > li,
+.opi-activity.opi-activity .reveal__figures > li {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border: 2px solid Highlight;
+}
+.opi-activity.opi-activity .chart__bar,
+.opi-activity.opi-activity .chart__bar--one {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: Canvas;
+}
+.opi-activity.opi-activity .chart__line {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: Highlight;
+}
+}
+.opi-activity.opi-activity .stage__more {
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .stage__more > summary {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .stage__more[open] > summary {
+  border-bottom: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .stage__more > *:not(summary) {
+  margin: var(--space-3);
+}
+
+/* modules/neuropsychology/tools/11-neuropsych-assessment-battery-builder/tool.css */
+.opi-activity.opi-activity #battery .interactive__controls,
+.opi-activity.opi-activity #battery .interactive__stage {
+  min-width: 0;
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity #battery .interactive__body {
+  grid-template-columns: minmax(0, 368px) minmax(0, 1fr);
+}
+}
+.opi-activity.opi-activity #battery .control--choice {
+  font-size: var(--text-sm);
+  line-height: 1.3;
+  align-items: flex-start;
+  padding: 4.8px 0;
+}
+.opi-activity.opi-activity #battery .control--choice input {
+  margin-top: 8.8px;
+}
+.opi-activity.opi-activity .battery__figure [data-time] {
+  max-width: 448px;
+}
+.opi-activity.opi-activity .battery__segment--alt {
+  fill: var(--colour-accent-soft);
+  stroke: var(--colour-accent);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .battery__divider {
+  stroke: var(--colour-surface);
+  stroke-width: 1.5;
+}
+.opi-activity.opi-activity .battery__budget {
+  stroke: var(--colour-text);
+  stroke-width: 2.5;
+  stroke-dasharray: 3 3;
+}
+.opi-activity.opi-activity .battery__legend {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+  line-height: 1.45;
+}
+.opi-activity.opi-activity .battery__checks {
+  margin-top: var(--space-3);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .battery__checks > li {
+  padding-top: 2.4px;
+  padding-bottom: 2.4px;
+  line-height: 1.4;
+}
+.opi-activity.opi-activity .battery__blocked > td,
+.opi-activity.opi-activity .battery__blocked > th {
+  background-color: var(--colour-status-bg);
+  font-style: italic;
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .battery__segment--alt {
+  fill: Canvas;
+    stroke: CanvasText;
+}
+.opi-activity.opi-activity .battery__divider {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .battery__budget {
+  stroke: Highlight;
+}
+.opi-activity.opi-activity .battery__blocked > td,
+.opi-activity.opi-activity .battery__blocked > th {
+  background-color: Canvas;
+    border: 2px solid Highlight;
+}
+}
+</style>
+
+  <!-- ================= Title and purpose ================= -->
+  <section class="section card--neuropsychology" aria-labelledby="page-heading">
+    <div class="container">
+
+      <p class="hero__eyebrow" style="color: var(--colour-neuropsychology)">
+        Neuropsychology
+      </p>
+      <h1 id="page-heading">Assessment Battery Builder</h1>
+      <p class="hero__lead">
+        A referral question, ninety minutes and seventeen task types. Choose
+        what to administer, then find out what your battery could and could
+        not conclude.
+      </p>
+
+      <p>
+        <span class="badge">
+          <span class="badge__dot" aria-hidden="true"></span>
+          Simulated - generic task descriptions, fictional referrals, no real
+          tests and no scoring of anybody
+        </span>
+      </p>
+
+      <div class="split split--wide">
+
+        <div class="panel">
+          <h2 class="panel__title">Learning objective</h2>
+          <p>
+            By the end you should be able to select tasks from a referral
+            question, and say which measures make the rest interpretable.
+          </p>
+          <p class="text-muted">
+            About 30 minutes across three referrals. Nothing you do here is
+            saved or sent anywhere.
+          </p>
+        </div>
+
+        <div class="panel panel--caution">
+          <h2 class="panel__title">Not a battery, and not a clinical tool</h2>
+          <p>
+            Every task here is described generically - "learning and
+            recalling a word list", not any published test. No real test,
+            subtest, item, stimulus or norm is reproduced, no score is
+            produced for anybody, and the durations are round teaching
+            numbers rather than published administration times.
+          </p>
+          <p>
+            The three referrals are invented. Real assessment involves a
+            history, an interview, informant report, observation across the
+            session and a formulation, none of which a task list can carry.
+            This activity is about the reasoning behind a selection, not
+            about how assessment is actually done.
+          </p>
+        </div>
+
+      </div>
+
+      <ol class="how-to">
+        <li>Read the referral question. It is the only thing that makes a
+          task relevant or irrelevant.</li>
+        <li>Tick tasks. The panel on the right updates as you go: time used,
+          what the battery can support, and what it cannot.</li>
+        <li>Submit the battery for a verdict, then try the other two
+          referrals - the right answer changes completely.</li>
+      </ol>
+
+    </div>
+  </section>
+
+  <!-- ================= Opening prediction ================= -->
+  <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="opening-heading">First, a judgement</h2>
+        <p class="prose">
+          You have ninety minutes and a referral asking whether the memory
+          problems a fictional person reports show up on testing. You have
+          already chosen one good memory test.
+        </p>
+      </div>
+
+      <noscript>
+        <div class="placeholder">
+          <h3 class="placeholder__title">This part needs JavaScript</h3>
+          <p class="prose">
+            The battery is assembled and evaluated in your browser, so this
+            section cannot run with JavaScript switched off. The rest of this
+            page is readable without it.
+          </p>
+        </div>
+      </noscript>
+
+      <form class="panel prediction" id="opening-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            Which single addition would do most for the confidence of your
+            conclusions?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="second">
+            A second, different memory test
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="context">
+            A measure of mood and fatigue, and a check on effort
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="longer">
+            A longer, more sensitive version of the memory test you have
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="comparison">
+            A task in a domain you expect to be intact
+          </label>
+        </fieldset>
+
+        <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Record my answer and open the builder
+          </button>
+          <button class="button button--secondary" type="button" data-action="skip-opening">
+            Skip - I am demonstrating this
+          </button>
+        </div>
+
+        <div class="feedback" data-opening-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= The builder ================= -->
+  <section class="section" id="lab-section" aria-labelledby="lab-heading" hidden>
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="lab-heading" tabindex="-1">The builder</h2>
+      </div>
+
+      <section class="interactive" id="battery" data-interactive
+               data-reset-message="Builder cleared. First referral, no tasks selected.">
+
+        <header class="interactive__header">
+          <h3 class="interactive__title">Build a battery for this referral</h3>
+          <p class="interactive__brief" data-referral-text></p>
+          <p class="goal">
+            <span class="goal__label">Goal</span>
+            <span class="goal__text" data-goal-text></span>
+          </p>
+        </header>
+
+        <div class="interactive__body interactive__body--pinned">
+
+          <form class="interactive__controls" data-interactive-controls>
+
+            <fieldset>
+              <legend>The referral</legend>
+              <div class="control">
+                <label class="control__label" for="referral-select">
+                  Which fictional referral
+                </label>
+                <select id="referral-select" data-referral-select></select>
+              </div>
+              <div class="prediction__actions">
+                <button class="button button--secondary" type="button"
+                        data-action="worked">Load a defensible battery</button>
+                <button class="button button--secondary" type="button"
+                        data-action="clear">Clear the selection</button>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Attention and speed</legend>
+              <div data-tasks-attention></div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Memory</legend>
+              <div data-tasks-memory></div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Language</legend>
+              <div data-tasks-language></div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Executive</legend>
+              <div data-tasks-executive></div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Visuospatial</legend>
+              <div data-tasks-visuospatial></div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Context and confound measures</legend>
+              <div data-tasks-context></div>
+              <p class="control__hint">
+                None of these answers a referral question. They decide
+                whether anything else in the battery can be interpreted.
+              </p>
+            </fieldset>
+
+            <fieldset>
+              <legend>Submit</legend>
+              <p class="prediction__error" data-submit-error role="alert" hidden></p>
+              <div class="prediction__actions">
+                <button class="button button--primary" type="submit">
+                  Submit this battery
+                </button>
+              </div>
+            </fieldset>
+
+          </form>
+
+          <div class="interactive__stage" data-interactive-stage>
+
+            <div class="stage__primary">
+              <h4 class="stage__heading">This battery, against this referral</h4>
+              <figure class="chart battery__figure">
+                <figcaption class="visually-hidden">
+                  The session time used by the selected tasks, drawn as a
+                  single bar against the ninety-minute budget
+                </figcaption>
+                <svg class="chart__svg" data-time viewBox="0 0 400 54"
+                     aria-hidden="true" focusable="false"></svg>
+                <p class="battery__legend" data-time-text></p>
+              </figure>
+              <ul class="goal__checks battery__checks" data-checks></ul>
+            </div>
+
+            <div class="feedback" data-submit-feedback hidden></div>
+
+            <div class="verdict" data-verdict hidden>
+              <h4 class="verdict__title">What this battery could say</h4>
+              <p class="verdict__body" data-verdict-could></p>
+              <p class="verdict__body" data-verdict-could-not></p>
+              <p class="verdict__note" data-verdict-note></p>
+            </div>
+
+            <h4 class="stage__heading">The tasks you have chosen</h4>
+            <div class="table-scroll">
+              <table class="chart__table">
+                <caption class="visually-hidden">
+                  Each selected task, its domain, what it measures and how
+                  long it takes
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Task</th>
+                    <th scope="col">Domain</th>
+                    <th scope="col">What it measures</th>
+                    <th scope="col">Minutes</th>
+                  </tr>
+                </thead>
+                <tbody data-selected-table></tbody>
+              </table>
+            </div>
+
+            <details class="stage__more">
+              <summary>Every task on the menu</summary>
+              <div class="table-scroll">
+                <table class="data-table">
+                  <caption class="visually-hidden">
+                    All seventeen task types with domain, what each measures,
+                    duration and the note attached to it
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Task</th>
+                      <th scope="col">Domain</th>
+                      <th scope="col">Minutes</th>
+                      <th scope="col">Note</th>
+                    </tr>
+                  </thead>
+                  <tbody data-menu-table></tbody>
+                </table>
+              </div>
+              <p class="text-muted">
+                Durations are round teaching numbers. No published
+                administration time, norm or item is reproduced, and the task
+                descriptions are generic on purpose.
+              </p>
+            </details>
+
+          </div>
+
+        </div>
+
+        <p class="interactive__status" data-interactive-status role="status"></p>
+
+        <div class="interactive__actions">
+          <button type="button" data-variant="secondary" data-interactive-reset>
+            Reset everything
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ================= Challenge ================= -->
+  <section class="section section--tinted" id="challenge" aria-labelledby="challenge-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="challenge-heading">Challenge - a conclusion to weigh</h2>
+      </div>
+
+      <form class="panel challenge" id="challenge-form">
+        <p>
+          A fictional report reads: <em>"Delayed recall fell at the 3rd
+          percentile, indicating a significant memory impairment."</em> The
+          assessment consisted of that one task.
+        </p>
+
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            What is the most important thing missing?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="challenge" value="second">
+            A second memory measure, so the finding does not rest on one
+            score
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="challenge" value="context">
+            Any measure of mood, fatigue, effort, sensory function or
+            premorbid level - each of which produces a low recall score
+            without any memory difficulty
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="challenge" value="scan">
+            A brain scan to confirm the finding
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="challenge" value="nothing">
+            Nothing - the 3rd percentile is the 3rd percentile
+          </label>
+        </fieldset>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Check my answer
+          </button>
+        </div>
+
+        <div class="feedback" data-challenge-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Debrief ================= -->
+  <section class="section" id="debrief" aria-labelledby="debrief-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="debrief-heading">What this demonstrates</h2>
+      </div>
+
+      <div class="split split--wide">
+
+        <div class="prose">
+          <h3>The referral question decides what is relevant</h3>
+          <p>
+            The same task is essential in one battery and a waste of fifteen
+            minutes in another. Nothing on the menu is good or bad on its
+            own. A battery assembled from a list of respected tasks, without
+            a question in front of it, produces a great many numbers and no
+            argument.
+          </p>
+
+          <h3>Two measures of the same thing are not a waste</h3>
+          <p>
+            A single score carries measurement error, task-specific demands
+            and whatever happened in the ten minutes it was administered. Two
+            tasks that make the same demand in different ways either agree,
+            which is evidence, or disagree, which is information about the
+            tasks. One task can do neither.
+          </p>
+
+          <h3>You need a domain you expect to be intact</h3>
+          <p>
+            Without one, every finding is "this person scored low on the
+            things we tested", which is compatible with a selective
+            difficulty and equally compatible with a general one. The
+            comparison domain is what turns a list of low scores into a
+            pattern, and it is usually the first thing dropped when time runs
+            short.
+          </p>
+
+          <h3>The measures that answer nothing are the ones that matter</h3>
+          <p>
+            Mood, fatigue, effort, sensory function and premorbid level
+            answer no referral question. They decide whether the answers to
+            the referral question mean anything. A low score has several
+            explanations that are cheaper to check and more common than the
+            one in the referral letter, and a battery that has not checked
+            them has not ruled them out.
+          </p>
+
+          <h3>Longer is not better</h3>
+          <p>
+            Session time is finite and so is the person's attention. Past
+            about seventy minutes the tasks administered last are measuring
+            fatigue as much as anything else, which is a problem precisely
+            because the interesting tasks tend to be scheduled first and the
+            context measures last. A battery is a set of decisions about what
+            to leave out.
+          </p>
+        </div>
+
+        <aside class="panel panel--caution" aria-labelledby="limits-heading">
+          <h3 class="panel__title" id="limits-heading">
+            What this does <em>not</em> demonstrate
+          </h3>
+          <ul>
+            <li>
+              <strong>Nobody is assessed and nothing is scored.</strong> The
+              tool evaluates the design of a battery, not a person. No
+              fictional person in it receives a result.
+            </li>
+            <li>
+              <strong>Four checks is a caricature.</strong> Real selection
+              also weighs the person's language, literacy, education,
+              cultural background, sensory and motor limitations, the
+              availability of norms that fit them, how the results will be
+              used and what the person actually wants from the assessment.
+            </li>
+            <li>
+              <strong>The domains are conveniences.</strong> Every task loads
+              on several of them, which is the point made at length by the
+              Executive Function Task Laboratory in this module.
+            </li>
+            <li>
+              <strong>No diagnosis, no anatomy, no prognosis.</strong> The
+              tool names no brain region and reaches no conclusion about any
+              fictional person's condition.
+            </li>
+          </ul>
+        </aside>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+<script>
+/* ---- components/interactive-shell.js ---- */
+/* =========================================================================
+   Open Psychology Interactives — interactive shell helper
+   -------------------------------------------------------------------------
+   A very small vanilla-JS helper that every interactive in this collection
+   uses. It deliberately does *not* draw anything or know anything about
+   statistics, personality or neuropsychology. Its job is the repetitive,
+   easy-to-get-wrong accessibility plumbing:
+
+     * announcing changes through a polite live region;
+     * keeping a range slider and its <output> in step;
+     * wiring the standard Reset button;
+     * reporting the reader's reduced-motion preference.
+
+   Usage (see docs/adapting-a-tool.md for the full markup contract):
+
+       <script src="../../components/interactive-shell.js" defer><\/script>
+       <script src="tool.js" defer><\/script>
+
+       // in tool.js
+       const shell = InteractiveShell.attach('#sampling-demo');
+       shell.onReset(() => { ...restore defaults...; draw(); });
+       shell.bindRange('#sample-size', { format: n => n + ' cases' });
+       shell.announce('Sample of 25 drawn. Mean 4.8.');
+
+   Every published interactive is written against this module.
+
+   Exposed as a global (window.InteractiveShell) rather than an ES module so
+   that a single interactive folder can be opened directly from disk over
+   file:// — ES modules are blocked by CORS in that situation, plain scripts
+   are not. That constraint is the whole reason for the older syntax here.
+   ========================================================================= */
+
+(function (global) {
+  "use strict";
+
+  /* -----------------------------------------------------------------------
+     Internal helpers
+     --------------------------------------------------------------------- */
+
+  /**
+   * Accept either a CSS selector or an element and return an element.
+   * @param {string|Element} target
+   * @param {ParentNode} [scope]
+   * @returns {Element|null}
+   */
+  function resolve(target, scope) {
+    if (!target) {
+      return null;
+    }
+    if (typeof target === "string") {
+      return (scope || document).querySelector(target);
+    }
+    return target;
+  }
+
+  /**
+   * True when the reader has asked the operating system to reduce motion.
+   * Interactives should check this before animating anything — for example
+   * by drawing a sampling distribution in one step instead of animating
+   * each draw.
+   * @returns {boolean}
+   */
+  function prefersReducedMotion() {
+    return (
+      typeof global.matchMedia === "function" &&
+      global.matchMedia("(prefers-reduced-motion: reduce)").matches
+    );
+  }
+
+  /* -----------------------------------------------------------------------
+     Shell controller
+     --------------------------------------------------------------------- */
+
+  /**
+   * Attach the shell behaviour to one `.interactive` element.
+   *
+   * @param {string|Element} target  Selector or element for the shell root.
+   * @returns {object|null}  Controller, or null if the root was not found.
+   */
+  function attach(target) {
+    var root = resolve(target);
+
+    if (!root) {
+      if (global.console && console.warn) {
+        console.warn("InteractiveShell: root element not found.", target);
+      }
+      return null;
+    }
+
+    var controls = root.querySelector("[data-interactive-controls]");
+    var stage = root.querySelector("[data-interactive-stage]");
+    var status = root.querySelector("[data-interactive-status]");
+    var resetButton = root.querySelector("[data-interactive-reset]");
+    var resetHandlers = [];
+    // Every range bound with bindRange() registers its sync function here, so
+    // that reset() can refresh the visible values after the tool's own reset
+    // handlers have restored the inputs. See reset() for why this is needed.
+    var rangeSyncs = [];
+
+    /* --- Live region ----------------------------------------------------
+       The status element is marked up as role="status" (implicitly
+       aria-live="polite"). Two details matter:
+
+         1. Assistive technology only announces *changes* to a live region,
+            so writing the same string twice is silently dropped. We add a
+            trailing zero-width space on repeat messages to force an
+            announcement when a student re-runs the same action.
+         2. Announcements are debounced. A slider dragged across its range
+            fires dozens of input events; without a delay a screen reader
+            would queue every intermediate value and fall far behind.
+       ------------------------------------------------------------------ */
+
+    var announceTimer = null;
+    var lastMessage = "";
+
+    /**
+     * Announce a short sentence describing what just changed.
+     * @param {string} message
+     * @param {object} [options]
+     * @param {boolean} [options.immediate]  Skip the debounce delay. Use for
+     *   discrete actions (button presses); leave off for continuous input.
+     */
+    function announce(message, options) {
+      if (!status) {
+        return;
+      }
+
+      var text = String(message == null ? "" : message);
+      var immediate = Boolean(options && options.immediate);
+
+      if (announceTimer !== null) {
+        global.clearTimeout(announceTimer);
+        announceTimer = null;
+      }
+
+      function write() {
+        // Force a change when the text is identical to last time.
+        status.textContent = text === lastMessage ? text + "​" : text;
+        lastMessage = text;
+      }
+
+      if (immediate) {
+        write();
+      } else {
+        announceTimer = global.setTimeout(write, 350);
+      }
+    }
+
+    /* --- Reset ---------------------------------------------------------- */
+
+    /**
+     * Register a callback to run when the Reset button is pressed.
+     * Several may be registered; they run in the order added.
+     * @param {Function} handler
+     */
+    function onReset(handler) {
+      if (typeof handler === "function") {
+        resetHandlers.push(handler);
+      }
+    }
+
+    /**
+     * Run the reset handlers. Called by the button and available directly so
+     * an interactive can reset itself on first load.
+     *
+     * Bound ranges are re-synced afterwards. A reset handler restores an
+     * input by assigning to `input.value`, and assigning to a value in script
+     * does not fire an `input` event — so without this step the slider would
+     * jump back to its default while its <output> went on showing the old
+     * number. Syncing here, after the handlers have run, also means the sync
+     * sees the restored values regardless of the order things were
+     * registered in.
+     *
+     * @param {object} [options]
+     * @param {boolean} [options.silent]  Suppress the status announcement.
+     */
+    function reset(options) {
+      resetHandlers.forEach(function (handler) {
+        handler();
+      });
+      rangeSyncs.forEach(function (sync) {
+        sync();
+      });
+      if (!options || !options.silent) {
+        announce(
+          root.getAttribute("data-reset-message") ||
+            "Reset to the starting values.",
+          { immediate: true }
+        );
+      }
+    }
+
+    if (resetButton) {
+      resetButton.addEventListener("click", function (event) {
+        // Reset buttons commonly sit inside the controls <form>; stop the
+        // browser's own form reset from fighting with ours.
+        event.preventDefault();
+        reset();
+      });
+    }
+
+    /* --- Range binding --------------------------------------------------
+       Keeps a slider's <output> in step with its value. The <output> must
+       carry `for="<input id>"`, which is what associates the two for
+       assistive technology; this only handles the visible text.
+
+       Optionally sets aria-valuetext, which is how you make a screen reader
+       say "25 cases" or "medium correlation" instead of a bare "25".
+       ------------------------------------------------------------------ */
+
+    /**
+     * @param {string|Element} inputTarget  The range (or number) input.
+     * @param {object} [options]
+     * @param {Function} [options.format]  value:number -> string shown in the
+     *   <output>. Defaults to the raw value.
+     * @param {Function} [options.describe]  value:number -> string used for
+     *   aria-valuetext. Defaults to options.format.
+     * @param {Function} [options.onInput]  value:number -> void, called after
+     *   the display has been updated. Use it to redraw.
+     * @returns {HTMLInputElement|null}
+     */
+    function bindRange(inputTarget, options) {
+      var input = resolve(inputTarget, root);
+      if (!input) {
+        return null;
+      }
+
+      var settings = options || {};
+      var format =
+        typeof settings.format === "function"
+          ? settings.format
+          : function (value) {
+              return String(value);
+            };
+      var describe =
+        typeof settings.describe === "function" ? settings.describe : format;
+
+      // <output for="the-input-id"> is the conventional pairing.
+      var output = input.id
+        ? root.querySelector('output[for="' + input.id + '"]')
+        : null;
+
+      function sync() {
+        var value = Number(input.value);
+        if (output) {
+          output.textContent = format(value);
+        }
+        // Only meaningful for widgets with an implicit or explicit slider
+        // role; harmless elsewhere.
+        input.setAttribute("aria-valuetext", describe(value));
+        if (typeof settings.onInput === "function") {
+          settings.onInput(value);
+        }
+      }
+
+      input.addEventListener("input", sync);
+      // Registered so reset() can refresh the display after the tool's own
+      // reset handlers have put the input back to its default.
+      rangeSyncs.push(sync);
+      sync();
+
+      return input;
+    }
+
+    /* --- Public surface -------------------------------------------------- */
+
+    return {
+      /** The `.interactive` root element. */
+      root: root,
+      /** The controls panel, or null if the shell has none. */
+      controls: controls,
+      /** The stage element where the visualisation is drawn. */
+      stage: stage,
+      /** The live-region element. */
+      status: status,
+      announce: announce,
+      onReset: onReset,
+      reset: reset,
+      bindRange: bindRange,
+      prefersReducedMotion: prefersReducedMotion
+    };
+  }
+
+  /* -----------------------------------------------------------------------
+     Export
+     --------------------------------------------------------------------- */
+
+  global.InteractiveShell = {
+    attach: attach,
+    prefersReducedMotion: prefersReducedMotion
+  };
+})(window);
+
+/* ---- modules/neuropsychology/tools/11-neuropsych-assessment-battery-builder/tool.js ---- */
+/* =========================================================================
+   Assessment Battery Builder
+   -------------------------------------------------------------------------
+   A referral question, a ninety-minute session and seventeen generic task
+   types. The learner ticks tasks; four checks update live; submitting the
+   battery produces a verdict in two halves - what it could say and what it
+   could not.
+
+   THE EDUCATIONAL MODEL
+   ---------------------
+   Nothing here scores a person. The tool evaluates the DESIGN of a battery
+   against the referral in front of it, on four checks:
+
+     1. Converging evidence   at least two tasks in the referral's target
+                              domains, and at least one in each of them;
+     2. A comparison domain   at least one task in a domain the referral does
+                              not ask about, so selectivity is visible;
+     3. Context measures      the two confound measures this referral needs,
+                              named per referral;
+     4. Deliverable           total time within the ninety-minute budget.
+
+   Two softer signals sit alongside them: a burden warning above seventy
+   minutes, because tasks administered last measure fatigue as well as
+   anything else; and a redundancy note when two selected tasks measure the
+   same narrow thing outside the target domains.
+
+   One task has a dependency: recognition of a word list cannot be
+   administered without the learning task that produced the list.
+
+   WHY THE CHECKS ARE WHAT THEY ARE
+   --------------------------------
+   The context measures answer no referral question at all, which is exactly
+   why they are the first thing dropped and the reason a battery without them
+   cannot rule out the several ordinary explanations of a low score. The
+   comparison domain is the difference between "scored low on the things we
+   tested" and a pattern.
+
+   DELIBERATE SIMPLIFICATIONS
+   --------------------------
+   Task descriptions are generic; no published test, subtest, item, stimulus
+   or norm is reproduced, and the durations are round teaching numbers. Real
+   selection also weighs language, literacy, education, cultural background,
+   sensory and motor limitations, whether appropriate norms exist, and what
+   the person wants from the assessment. Assessment is not a task list:
+   history, interview, informant report, observation and formulation carry at
+   least as much weight and none of them appears here. Domains are a
+   convenience - every task loads on several.
+
+   No data leave the browser. There is no storage and no network request.
+   ========================================================================= */
+
+(function () {
+  "use strict";
+
+  var BUDGET = 90;        /* minutes available in the session */
+  var BURDEN = 70;        /* beyond this, fatigue starts to matter */
+
+  var DOMAIN_NAMES = {
+    attention: "Attention",
+    memory: "Memory",
+    language: "Language",
+    executive: "Executive",
+    visuospatial: "Visuospatial",
+    context: "Context"
+  };
+
+  var TASKS = [
+    {
+      id: "span", name: "Repeating sequences of digits", domain: "attention",
+      measures: "immediate span", minutes: 8,
+      note: "Short and undemanding. Sensitive to almost nothing on its own."
+    },
+    {
+      id: "vigil", name: "Watching for a rare target for ten minutes",
+      domain: "attention", measures: "sustained attention", minutes: 14,
+      note: "Long, dull and the one most affected by how the person is feeling."
+    },
+    {
+      id: "speed", name: "Simple reaction time", domain: "attention",
+      measures: "processing speed", minutes: 6,
+      note: "Cheap, and worth having before interpreting any timed task."
+    },
+    {
+      id: "list", name: "Learning and recalling a word list", domain: "memory",
+      measures: "verbal learning", minutes: 25,
+      note: "The workhorse verbal memory task, and the most expensive item here."
+    },
+    {
+      id: "recog", name: "Recognising those words among distractors",
+      domain: "memory", measures: "verbal recognition", minutes: 8,
+      requires: "list",
+      note: "Cannot be administered without the learning task that produced the list."
+    },
+    {
+      id: "design", name: "Reproducing designs after a delay", domain: "memory",
+      measures: "visual learning", minutes: 18,
+      note: "Depends heavily on drawing ability, which is a separate question."
+    },
+    {
+      id: "naming", name: "Naming line drawings", domain: "language",
+      measures: "word retrieval", minutes: 10,
+      note: "Sensitive to word retrieval, and to vision, and to education."
+    },
+    {
+      id: "fluency", name: "Generating words to a category", domain: "language",
+      measures: "word retrieval", minutes: 6,
+      note: "Quick, and loads on executive demands as much as on language."
+    },
+    {
+      id: "comp", name: "Following spoken instructions", domain: "language",
+      measures: "sentence comprehension", minutes: 9,
+      note: "Depends on hearing, which is worth screening first."
+    },
+    {
+      id: "sort", name: "Sorting to a rule that changes", domain: "executive",
+      measures: "set switching", minutes: 15,
+      note: "Long, and impaired by a great many things other than switching."
+    },
+    {
+      id: "conflict", name: "Naming the ink colour of a colour word",
+      domain: "executive", measures: "response inhibition", minutes: 8,
+      note: "Heavily loaded on processing speed as well as on inhibition."
+    },
+    {
+      id: "copy", name: "Copying a complex figure", domain: "visuospatial",
+      measures: "constructional", minutes: 12,
+      note: "Needs a hand that works and eyes that see; check both first."
+    },
+    {
+      id: "cancel", name: "Crossing out targets across a page",
+      domain: "visuospatial", measures: "spatial attention", minutes: 8,
+      note: "Short, and the standard way of looking for a spatial bias."
+    },
+    {
+      id: "mood", name: "Mood, sleep and fatigue questionnaire",
+      domain: "context", measures: "mood and fatigue", minutes: 5,
+      note: "Answers no referral question. Changes the meaning of every score."
+    },
+    {
+      id: "effort", name: "A performance-validity check", domain: "context",
+      measures: "effort", minutes: 10,
+      note: "Answers no referral question. Without it, low scores have an extra reading."
+    },
+    {
+      id: "premorb", name: "Estimating premorbid level from word reading",
+      domain: "context", measures: "premorbid level", minutes: 8,
+      note: "Answers no referral question. Without it, low means low compared with whom?"
+    },
+    {
+      id: "senses", name: "Vision and hearing screen", domain: "context",
+      measures: "sensory screen", minutes: 5,
+      note: "Answers no referral question. Cheapest thing on the menu."
+    }
+  ];
+
+  var REFERRALS = [
+    {
+      id: "language",
+      label: "1. Word-finding after a left-hemisphere stroke",
+      text:
+        "A fictional 58-year-old, three months after a left-hemisphere " +
+        "stroke. The referrer asks: are the word-finding difficulties the " +
+        "family describe present on testing, and is anything else affected?",
+      target: ["language"],
+      comparison: ["visuospatial", "memory", "executive"],
+      context: ["premorb", "senses"],
+      contextWhy:
+        "A word-finding score means nothing without an estimate of where this " +
+        "person started, and an untested hearing or vision problem would lower " +
+        "half the battery for reasons that have nothing to do with language.",
+      worked: ["naming", "fluency", "comp", "copy", "premorb", "senses"],
+      workedWhy:
+        "Two word-retrieval tasks and a comprehension task give converging " +
+        "evidence on the question; the figure copy is the domain expected to " +
+        "be intact; the premorbid estimate and the sensory screen cost thirteen " +
+        "minutes between them."
+    },
+    {
+      id: "mild",
+      label: "2. Concentration complaints after a mild head injury",
+      text:
+        "A fictional 34-year-old, eight months after a mild head injury and " +
+        "still off work. The referrer asks: do the concentration and memory " +
+        "complaints show up on testing?",
+      target: ["memory", "attention"],
+      comparison: ["language", "visuospatial"],
+      context: ["mood", "effort"],
+      contextWhy:
+        "Eight months after a mild injury, low mood, poor sleep, pain and the " +
+        "effort a person brings to a test they have a stake in all lower " +
+        "scores. These are not an afterthought here - they are most of the " +
+        "referral question.",
+      worked: ["span", "list", "naming", "mood", "effort"],
+      workedWhy:
+        "One attention task and one memory task cover both halves of the " +
+        "question; naming is the comparison domain; the mood questionnaire and " +
+        "the validity check are what make the rest interpretable."
+    },
+    {
+      id: "lost",
+      label: "3. Getting lost on familiar routes",
+      text:
+        "A fictional 71-year-old who has begun getting lost on routes they " +
+        "have walked for years. The referrer asks: is this a visuospatial " +
+        "difficulty or a memory difficulty?",
+      target: ["visuospatial", "memory"],
+      comparison: ["language", "attention"],
+      context: ["senses", "mood"],
+      contextWhy:
+        "Untested vision would produce low scores on every visuospatial task, " +
+        "and low mood is among the commonest reasons an older adult's memory " +
+        "scores fall. Both are cheaper to check than either of the answers on " +
+        "offer.",
+      worked: ["copy", "cancel", "list", "naming", "senses", "mood"],
+      workedWhy:
+        "Two visuospatial tasks and one memory task put the two candidate " +
+        "answers side by side; naming is the comparison domain; the sensory " +
+        "screen and the mood questionnaire cost ten minutes."
+    }
+  ];
+
+  /* =======================================================================
+     Helpers
+     ===================================================================== */
+
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) { node.className = className; }
+    if (text !== undefined) { node.textContent = text; }
+    return node;
+  }
+
+  function clear(node) {
+    while (node.firstChild) { node.removeChild(node.firstChild); }
+  }
+
+  var NS = "http://www.w3.org/2000/svg";
+
+  function svgEl(name, attrs) {
+    var node = document.createElementNS(NS, name);
+    Object.keys(attrs).forEach(function (key) {
+      node.setAttribute(key, String(attrs[key]));
+    });
+    return node;
+  }
+
+  function svgText(x, y, className, anchor, text) {
+    var node = svgEl("text", { x: x, y: y, class: className, "text-anchor": anchor });
+    node.textContent = text;
+    return node;
+  }
+
+  function byId(list, id) {
+    return list.filter(function (entry) { return entry.id === id; })[0];
+  }
+
+  function listWords(items) {
+    if (!items.length) { return ""; }
+    if (items.length === 1) { return items[0]; }
+    return items.slice(0, -1).join(", ") + " and " + items[items.length - 1];
+  }
+
+  /* =======================================================================
+     Wiring
+     ===================================================================== */
+
+  var shell = InteractiveShell.attach("#battery");
+  if (!shell) { return; }
+
+  var $ = function (selector, scope) {
+    return (scope || document).querySelector(selector);
+  };
+
+  var referralSelect = $("[data-referral-select]");
+  var referralText = $("[data-referral-text]");
+  var goalText = $("[data-goal-text]");
+  var timeSvg = $("[data-time]");
+  var timeText = $("[data-time-text]");
+  var checksList = $("[data-checks]");
+  var submitFeedback = $("[data-submit-feedback]");
+  var submitError = $("[data-submit-error]");
+  var verdict = $("[data-verdict]");
+  var verdictCould = $("[data-verdict-could]");
+  var verdictCouldNot = $("[data-verdict-could-not]");
+  var verdictNote = $("[data-verdict-note]");
+  var selectedTable = $("[data-selected-table]");
+  var menuTable = $("[data-menu-table]");
+  var controlsForm = $("[data-interactive-controls]");
+
+  var openingForm = $("#opening-form");
+  var openingError = $("[data-opening-error]");
+  var openingFeedback = $("[data-opening-feedback]");
+  var labSection = $("#lab-section");
+
+  var challengeForm = $("#challenge-form");
+  var challengeFeedback = $("[data-challenge-feedback]");
+
+  function initialState() {
+    return {
+      referralId: REFERRALS[0].id,
+      chosen: {},
+      submitted: false,
+      solved: {}
+    };
+  }
+
+  var state = initialState();
+
+  function referral() { return byId(REFERRALS, state.referralId); }
+
+  function chosenTasks() {
+    return TASKS.filter(function (task) { return state.chosen[task.id]; });
+  }
+
+  /* --- Controls, built once --------------------------------------------- */
+
+  REFERRALS.forEach(function (entry) {
+    var option = document.createElement("option");
+    option.value = entry.id;
+    option.textContent = entry.label;
+    referralSelect.appendChild(option);
+  });
+
+  referralSelect.addEventListener("change", function () {
+    state.referralId = referralSelect.value;
+    state.submitted = false;
+    submitFeedback.hidden = true;
+    submitError.hidden = true;
+    verdict.hidden = true;
+    render();
+    shell.announce(referral().label + ". " + referral().text, { immediate: true });
+  });
+
+  var taskInputs = {};
+  TASKS.forEach(function (task) {
+    var host = $("[data-tasks-" + task.domain + "]");
+    var label = make("label", "control--choice");
+    var input = document.createElement("input");
+    input.type = "checkbox";
+    input.setAttribute("data-task", task.id);
+    input.addEventListener("change", function () {
+      state.chosen[task.id] = input.checked;
+      if (!input.checked) { delete state.chosen[task.id]; }
+      state.submitted = false;
+      submitFeedback.hidden = true;
+      submitError.hidden = true;
+      verdict.hidden = true;
+      render();
+    });
+    label.appendChild(input);
+    label.appendChild(document.createTextNode(
+      task.name + " (" + task.minutes + " min)"));
+    host.appendChild(label);
+    taskInputs[task.id] = input;
+  });
+
+  function syncTaskBoxes() {
+    TASKS.forEach(function (task) {
+      taskInputs[task.id].checked = Boolean(state.chosen[task.id]);
+    });
+  }
+
+  $('[data-action="worked"]').addEventListener("click", function () {
+    state.chosen = {};
+    referral().worked.forEach(function (id) { state.chosen[id] = true; });
+    state.submitted = false;
+    submitFeedback.hidden = true;
+    verdict.hidden = true;
+    syncTaskBoxes();
+    render();
+    shell.announce("A defensible battery loaded. " + referral().workedWhy,
+      { immediate: true });
+  });
+
+  $('[data-action="clear"]').addEventListener("click", function () {
+    state.chosen = {};
+    state.submitted = false;
+    submitFeedback.hidden = true;
+    verdict.hidden = true;
+    syncTaskBoxes();
+    render();
+    shell.announce("Selection cleared.", { immediate: true });
+  });
+
+  controlsForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    submitBattery();
+  });
+
+  /* --- Evaluating a battery --------------------------------------------- */
+
+  /** Everything the four checks and the two soft signals need. */
+  function evaluate() {
+    var current = referral();
+    var chosen = chosenTasks();
+
+    /* A task with an unmet dependency cannot be administered, so it does not
+       count towards anything. */
+    var usable = chosen.filter(function (task) {
+      return !task.requires || Boolean(state.chosen[task.requires]);
+    });
+    var unusable = chosen.filter(function (task) {
+      return task.requires && !state.chosen[task.requires];
+    });
+
+    var minutes = chosen.reduce(function (total, task) {
+      return total + task.minutes;
+    }, 0);
+
+    var inTarget = usable.filter(function (task) {
+      return current.target.indexOf(task.domain) !== -1;
+    });
+    var everyTargetCovered = current.target.every(function (domain) {
+      return inTarget.some(function (task) { return task.domain === domain; });
+    });
+    var converging = inTarget.length >= 2 && everyTargetCovered;
+
+    var comparison = usable.filter(function (task) {
+      return current.comparison.indexOf(task.domain) !== -1;
+    });
+
+    var missingContext = current.context.filter(function (id) {
+      return !state.chosen[id];
+    });
+
+    /* Two tasks measuring the same narrow thing, outside the domains the
+       referral asks about: burden without extra evidence. */
+    var seen = {};
+    var redundant = [];
+    usable.forEach(function (task) {
+      if (task.domain === "context") { return; }
+      if (current.target.indexOf(task.domain) !== -1) { return; }
+      if (seen[task.measures]) { redundant.push(task.measures); }
+      seen[task.measures] = true;
+    });
+
+    return {
+      referral: current,
+      chosen: chosen,
+      usable: usable,
+      unusable: unusable,
+      minutes: minutes,
+      inTarget: inTarget,
+      converging: converging,
+      everyTargetCovered: everyTargetCovered,
+      comparison: comparison,
+      missingContext: missingContext,
+      redundant: redundant,
+      deliverable: minutes <= BUDGET,
+      heavy: minutes > BURDEN && minutes <= BUDGET
+    };
+  }
+
+  function checkRows(result) {
+    var current = result.referral;
+    return [
+      {
+        label: "Converging evidence on the referral question",
+        detail: result.inTarget.length + " task" +
+          (result.inTarget.length === 1 ? "" : "s") + " in " +
+          listWords(current.target.map(function (d) {
+            return DOMAIN_NAMES[d].toLowerCase();
+          })) +
+          (result.inTarget.length >= 2 && !result.everyTargetCovered
+            ? ", but not in both" : ""),
+        met: result.converging
+      },
+      {
+        label: "A domain you expect to be intact",
+        detail: result.comparison.length
+          ? listWords(result.comparison.map(function (t) {
+              return DOMAIN_NAMES[t.domain].toLowerCase();
+            }))
+          : "none selected",
+        met: result.comparison.length >= 1
+      },
+      {
+        label: "The context measures this referral needs",
+        detail: result.missingContext.length
+          ? "missing " + listWords(result.missingContext.map(function (id) {
+              return byId(TASKS, id).name.toLowerCase();
+            }))
+          : "both present",
+        met: result.missingContext.length === 0
+      },
+      {
+        label: "Deliverable in one session",
+        detail: result.minutes + " of " + BUDGET + " minutes",
+        met: result.deliverable
+      }
+    ];
+  }
+
+  /* --- Rendering -------------------------------------------------------- */
+
+  function render() {
+    var result = evaluate();
+    referralText.textContent = result.referral.text;
+
+    drawTime(result);
+    renderChecks(result);
+    renderGoal(result);
+    renderSelected(result);
+    renderMenu();
+  }
+
+  function drawTime(result) {
+    var LEFT = 4, RIGHT = 396, TOP = 10, HEIGHT = 20;
+    var scaleMax = Math.max(BUDGET, result.minutes, 1);
+    var span = RIGHT - LEFT;
+
+    clear(timeSvg);
+
+    timeSvg.appendChild(svgEl("rect", {
+      x: LEFT, y: TOP, width: span, height: HEIGHT, class: "chart__track"
+    }));
+
+    var x = LEFT;
+    result.chosen.forEach(function (task, index) {
+      var w = (task.minutes / scaleMax) * span;
+      timeSvg.appendChild(svgEl("rect", {
+        x: x, y: TOP, width: Math.max(1, w), height: HEIGHT,
+        class: "chart__bar" + (index % 2 ? " battery__segment--alt" : "")
+      }));
+      timeSvg.appendChild(svgEl("line", {
+        x1: x, y1: TOP, x2: x, y2: TOP + HEIGHT, class: "battery__divider"
+      }));
+      x += w;
+    });
+
+    /* The budget line, drawn last so it sits over the bar. */
+    var budgetX = LEFT + (BUDGET / scaleMax) * span;
+    timeSvg.appendChild(svgEl("line", {
+      x1: budgetX, y1: TOP - 6, x2: budgetX, y2: TOP + HEIGHT + 6,
+      class: "battery__budget"
+    }));
+    timeSvg.appendChild(
+      svgText(Math.min(budgetX, RIGHT - 4), TOP + HEIGHT + 20, "chart__axis",
+        "end", BUDGET + " min budget"));
+    timeSvg.appendChild(
+      svgText(LEFT, TOP + HEIGHT + 20, "chart__axis", "start",
+        result.minutes + " min chosen"));
+
+    timeText.textContent = result.chosen.length === 0
+      ? "No tasks chosen yet. The vertical line is the end of the session."
+      : result.chosen.length + " task" +
+        (result.chosen.length === 1 ? "" : "s") + ", " + result.minutes +
+        " minutes of a " + BUDGET + "-minute session" +
+        (result.deliverable
+          ? (result.heavy
+            ? " - a long session, and whatever is administered last is measuring fatigue as well as anything else."
+            : " - comfortable.")
+          : " - " + (result.minutes - BUDGET) + " minutes over. This battery cannot be delivered.");
+  }
+
+  function renderChecks(result) {
+    clear(checksList);
+    checkRows(result).forEach(function (check) {
+      var li = make("li");
+      li.textContent = check.label + " - " + check.detail +
+        (check.met ? " (met)" : " (not yet)");
+      li.setAttribute("data-met", check.met ? "yes" : "no");
+      checksList.appendChild(li);
+    });
+
+    if (result.unusable.length) {
+      var li = make("li");
+      li.textContent = "Cannot be administered: " +
+        listWords(result.unusable.map(function (task) {
+          return task.name.toLowerCase() + " needs " +
+            byId(TASKS, task.requires).name.toLowerCase();
+        })) + " (not yet)";
+      li.setAttribute("data-met", "no");
+      checksList.appendChild(li);
+    }
+
+    if (result.redundant.length) {
+      var note = make("li");
+      note.textContent = "Two tasks measuring the same thing outside the " +
+        "referral's domains: " + listWords(result.redundant) +
+        " - burden without extra evidence (not yet)";
+      note.setAttribute("data-met", "no");
+      checksList.appendChild(note);
+    }
+  }
+
+  function renderGoal(result) {
+    var met = checkRows(result).filter(function (c) { return c.met; }).length;
+    var solved = Object.keys(state.solved).length;
+    clear(goalText);
+    goalText.appendChild(document.createTextNode(
+      met + " of 4 checks met for this referral. " + solved +
+      " of " + REFERRALS.length + " referrals answered with all four."));
+  }
+
+  function renderSelected(result) {
+    clear(selectedTable);
+    if (!result.chosen.length) {
+      var tr = make("tr");
+      var td = make("td", null, "No tasks chosen yet.");
+      td.setAttribute("colspan", "4");
+      tr.appendChild(td);
+      selectedTable.appendChild(tr);
+      return;
+    }
+    result.chosen.forEach(function (task) {
+      var tr = make("tr");
+      var th = make("th", null, task.name);
+      th.setAttribute("scope", "row");
+      tr.appendChild(th);
+      tr.appendChild(make("td", null, DOMAIN_NAMES[task.domain]));
+      tr.appendChild(make("td", null, task.measures));
+      tr.appendChild(make("td", null, String(task.minutes)));
+      if (task.requires && !state.chosen[task.requires]) {
+        tr.className = "battery__blocked";
+      }
+      selectedTable.appendChild(tr);
+    });
+  }
+
+  var menuDrawn = false;
+  function renderMenu() {
+    if (menuDrawn) { return; }
+    menuDrawn = true;
+    TASKS.forEach(function (task) {
+      var tr = make("tr");
+      var th = make("th", null, task.name);
+      th.setAttribute("scope", "row");
+      tr.appendChild(th);
+      tr.appendChild(make("td", null, DOMAIN_NAMES[task.domain]));
+      tr.appendChild(make("td", null, String(task.minutes)));
+      tr.appendChild(make("td", null, task.note));
+      menuTable.appendChild(tr);
+    });
+  }
+
+  /* --- Submitting -------------------------------------------------------- */
+
+  function submitBattery() {
+    var result = evaluate();
+
+    if (!result.chosen.length) {
+      submitError.textContent = "Choose at least one task before submitting.";
+      submitError.hidden = false;
+      return;
+    }
+    submitError.hidden = true;
+
+    var rows = checkRows(result);
+    var met = rows.filter(function (c) { return c.met; });
+    var failed = rows.filter(function (c) { return !c.met; });
+    if (failed.length === 0) { state.solved[result.referral.id] = true; }
+    state.submitted = true;
+    render();
+
+    clear(submitFeedback);
+    var lead = make("p");
+    lead.appendChild(make("strong", "feedback__verdict",
+      failed.length === 0
+        ? "All four checks met."
+        : failed.length + (failed.length === 1 ? " check fails." : " checks fail.")));
+    lead.appendChild(document.createTextNode(
+      failed.length === 0
+        ? " This battery is defensible for this referral: it has converging " +
+          "evidence on the question, a domain expected to be intact, the two " +
+          "context measures, and it fits the session."
+        : " " + listWords(failed.map(function (c) {
+            return c.label.toLowerCase();
+          })) + ". Each one changes what the report is entitled to say."));
+    submitFeedback.appendChild(lead);
+
+    if (result.missingContext.length) {
+      submitFeedback.appendChild(make("p", null, result.referral.contextWhy));
+    }
+    if (result.heavy) {
+      submitFeedback.appendChild(make("p", null,
+        "At " + result.minutes + " minutes this fits the session on paper. " +
+        "Note which tasks end up last: the context measures usually are."));
+    }
+    if (result.redundant.length) {
+      submitFeedback.appendChild(make("p", null,
+        "Two of your tasks measure the same thing (" +
+        listWords(result.redundant) + ") in a domain this referral does not " +
+        "ask about. Inside the target domains that would be converging " +
+        "evidence; outside them it is administration time."));
+    }
+
+    submitFeedback.setAttribute("data-tone",
+      failed.length === 0 ? "good" : failed.length === 1 ? "caution" : "warn");
+    submitFeedback.hidden = false;
+
+    writeVerdict(result, met, failed);
+    shell.announce(
+      failed.length === 0
+        ? "Battery submitted. All four checks met."
+        : "Battery submitted. " + failed.length + " of four checks fail.",
+      { immediate: true });
+  }
+
+  function writeVerdict(result, met, failed) {
+    var could = [];
+    var couldNot = [];
+
+    if (!result.deliverable) {
+      couldNot.push("anything at all, because the session runs out before " +
+        "the battery does");
+    }
+    if (result.converging) {
+      could.push("that the difficulty the referral asks about is or is not " +
+        "present on more than one task");
+    } else if (result.inTarget.length === 1) {
+      couldNot.push("anything that does not rest on a single score in the " +
+        "domain the referral asks about");
+    } else {
+      couldNot.push("anything about the referral question, which no selected " +
+        "task addresses");
+    }
+    if (result.comparison.length) {
+      could.push("whether the pattern is selective or general, because there " +
+        "is a domain here you expected to be intact");
+    } else {
+      couldNot.push("whether any low score is selective, because every task " +
+        "in this battery is in a domain the referral is worried about");
+    }
+    if (result.missingContext.length === 0) {
+      could.push("that the ordinary explanations of a low score - " +
+        listWords(result.referral.context.map(function (id) {
+          return byId(TASKS, id).measures;
+        })) + " - have at least been looked at");
+    } else {
+      couldNot.push("that a low score means what the referral assumes, " +
+        "because " + listWords(result.missingContext.map(function (id) {
+          return byId(TASKS, id).measures;
+        })) + " has not been measured");
+    }
+
+    /* The clauses contain commas of their own, so they are joined with
+       semicolons rather than by listWords(). */
+    verdictCould.textContent = could.length
+      ? "With this battery you could say: " + could.join("; ") + "."
+      : "With this battery there is very little you could say.";
+    verdictCouldNot.textContent = couldNot.length
+      ? "You could not say: " + couldNot.join("; ") + "."
+      : "There is nothing on the four checks that this battery leaves open.";
+    verdictNote.textContent =
+      "Both halves are about the design of the battery, not about any person - " +
+      "and a battery that passes all four checks can still reach the wrong " +
+      "conclusion.";
+    verdict.setAttribute("data-tone", failed.length === 0 ? "good" : "warn");
+    verdict.hidden = false;
+  }
+
+  /* --- Opening prediction ----------------------------------------------- */
+
+  var OPENING = {
+    second: {
+      tone: "caution",
+      verdict: "Valuable, and second in line.",
+      text:
+        "Two memory measures do give converging evidence, and one is thin. " +
+        "But two low memory scores are still compatible with low mood, poor " +
+        "effort, fatigue and an untested hearing problem, and adding a second " +
+        "memory test rules out none of them."
+    },
+    context: {
+      tone: "good",
+      verdict: "Yes.",
+      text:
+        "Mood, fatigue and effort answer no referral question, which is " +
+        "exactly why they are dropped when time is short - and why a battery " +
+        "without them cannot distinguish the readings that matter. They are " +
+        "also among the cheapest things on the menu."
+    },
+    longer: {
+      tone: "caution",
+      verdict: "This makes it worse, not better.",
+      text:
+        "A longer version of the same task measures the same thing with the " +
+        "same confounds, adds nothing about why a score is low, and uses the " +
+        "session time that the measures which would have answered that were " +
+        "going to need."
+    },
+    comparison: {
+      tone: "caution",
+      verdict: "Genuinely valuable, for a different problem.",
+      text:
+        "A domain you expect to be intact is what shows whether a pattern is " +
+        "selective, and a battery without one cannot do that. It does not, " +
+        "though, tell you why any score is low - and low mood or poor effort " +
+        "would lower the comparison task too."
+    }
+  };
+
+  openingForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answer = $('input[name="opening"]:checked', openingForm);
+    if (!answer) {
+      openingError.textContent = "Choose an answer before opening the builder.";
+      openingError.hidden = false;
+      return;
+    }
+    openingError.hidden = true;
+    var entry = OPENING[answer.value];
+    showFeedback(openingFeedback, entry.tone, entry.verdict, entry.text);
+    unlockLab();
+  });
+
+  $('[data-action="skip-opening"]').addEventListener("click", function () {
+    openingError.hidden = true;
+    showFeedback(openingFeedback, "neutral",
+      "Prediction skipped - demonstration mode.", "");
+    unlockLab();
+  });
+
+  function unlockLab() {
+    lockForm(openingForm);
+    labSection.hidden = false;
+    render();
+    $("#lab-heading").focus();
+    shell.announce("Builder open. " + REFERRALS[0].label + ".",
+      { immediate: true });
+  }
+
+  /* --- Challenge -------------------------------------------------------- */
+
+  var CHALLENGE = {
+    second: {
+      tone: "caution",
+      verdict: "True, and not the biggest problem.",
+      text:
+        "A conclusion resting on one score is fragile. But two low recall " +
+        "scores would support exactly the same sentence and leave exactly the " +
+        "same alternatives standing. The missing measures are the ones that " +
+        "decide between readings, not the ones that repeat a reading."
+    },
+    context: {
+      tone: "good",
+      verdict: "Yes.",
+      text:
+        "A recall score at the 3rd percentile is produced by poor sleep, low " +
+        "mood, pain, medication, an untested hearing problem, a premorbid " +
+        "level well below the norm group, and by variable effort - as well as " +
+        "by a memory difficulty. The report names one of these and has " +
+        "measured none of them. The word doing the damage is “indicating”."
+    },
+    scan: {
+      tone: "caution",
+      verdict: "That would not settle it.",
+      text:
+        "An image would say something about tissue. It would not say why this " +
+        "score was low on this afternoon, and a normal image would not make " +
+        "the score interpretable either."
+    },
+    nothing: {
+      tone: "caution",
+      verdict: "The percentile is not in question.",
+      text:
+        "The score is what it is. What is in question is the second half of " +
+        "the sentence: a percentile is a comparison with a norm group, and " +
+        "turning it into a statement about memory needs everything the " +
+        "battery did not measure."
+    }
+  };
+
+  challengeForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answer = $('input[name="challenge"]:checked', challengeForm);
+    if (!answer) {
+      showFeedback(challengeFeedback, "caution", "Choose an answer first.", "");
+      return;
+    }
+    var entry = CHALLENGE[answer.value];
+    showFeedback(challengeFeedback, entry.tone, entry.verdict, entry.text);
+    shell.announce("Challenge answered.", { immediate: true });
+  });
+
+  /* --- Feedback plumbing ------------------------------------------------ */
+
+  function showFeedback(container, tone, verdictText, text) {
+    clear(container);
+    container.setAttribute("data-tone", tone);
+    var p = make("p");
+    p.appendChild(make("strong", "feedback__verdict", verdictText));
+    if (text) { p.appendChild(document.createTextNode(" " + text)); }
+    container.appendChild(p);
+    container.hidden = false;
+  }
+
+  function lockForm(form) {
+    Array.prototype.forEach.call(form.querySelectorAll("input, button"),
+      function (control) { control.disabled = true; });
+  }
+
+  function unlockForm(form) {
+    Array.prototype.forEach.call(form.querySelectorAll("input, button"),
+      function (control) { control.disabled = false; });
+    form.reset();
+  }
+
+  /* --- Reset ------------------------------------------------------------ */
+
+  shell.onReset(function () {
+    state = initialState();
+    referralSelect.value = REFERRALS[0].id;
+    syncTaskBoxes();
+    unlockForm(openingForm);
+    openingFeedback.hidden = true;
+    openingError.hidden = true;
+    labSection.hidden = true;
+    submitFeedback.hidden = true;
+    submitError.hidden = true;
+    verdict.hidden = true;
+    challengeForm.reset();
+    challengeFeedback.hidden = true;
+    render();
+  });
+
+  /* --- Start-up --------------------------------------------------------- */
+
+  shell.reset({ silent: true });
+  shell.announce(
+    "Ready. Answer the question above to open the builder.",
+    { immediate: true });
+})();
+
+</script>
+</div>

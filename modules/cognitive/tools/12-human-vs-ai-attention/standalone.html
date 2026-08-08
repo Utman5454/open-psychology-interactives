@@ -1,0 +1,3123 @@
+<!-- Human Attention versus AI Attention
+     From Open Psychology Interactives - https://github.com/utman5454/open-psychology-interactives
+     Self-contained: no stylesheets, scripts, fonts, images or network requests.
+     Styles are scoped to .opi-activity and do not affect the page around them.
+     Nothing is saved, sent or tracked. MIT licensed; please keep this notice.
+     Paste anywhere that accepts HTML, or save as a .html file and open it. -->
+<div class="opi-activity">
+<style>
+/* Defensive baseline. See scripts/build-standalone.py for why this
+   is `revert` rather than an enumerated reset, and how the specificity ladder
+   keeps the activity's own styling on top of it. */
+.opi-activity *:not(svg *) {
+  all: revert;
+}
+.opi-activity, .opi-activity *, .opi-activity *::before, .opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  text-transform: none;
+  text-indent: 0;
+  font-style: normal;
+  font-variant: normal;
+  letter-spacing: normal;
+  word-spacing: normal;
+  white-space: normal;
+  visibility: visible;
+  float: none;
+  max-width: none;
+}
+.opi-activity svg { max-width: 100%; }
+.opi-activity img { max-width: 100%; height: auto; }
+.opi-activity [hidden] { display: none !important; }
+
+/* assets/css/main.css */
+.opi-activity.opi-activity {
+  --colour-page: #ffffff;
+  --colour-surface: #f5f7fa;
+  --colour-surface-raised: #ffffff;
+  --colour-border: #d3d9e2;
+  --colour-border-strong: #aeb7c4;
+  --colour-text: #131820;
+  --colour-text-muted: #4c566a;
+  --colour-accent: #1a4fa0;
+  --colour-accent-hover: #123a7a;
+  --colour-accent-soft: #e8eefb;
+  --colour-on-accent: #ffffff;
+  --colour-focus: #b45309;
+  --colour-cognitive: #8a4b00;
+  --colour-research-methods: #1a4fa0;
+  --colour-neuropsychology: #145c53;
+  --colour-social-critical-psychology: #9e2f45;
+  --colour-personality-individual-differences: #7a2e6d;
+  --colour-status-bg: #f1ede3;
+  --colour-status-text: #5c4a1f;
+  --colour-status-border: #d9cdb0;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  --text-xs: 13px;
+  --text-sm: 15px;
+  --text-base: 17px;
+  --text-lg: 19px;
+  --text-xl: 23px;
+  --text-2xl: 28px;
+  --text-3xl: 36px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgb(19 24 32 / 0.06);
+  --shadow-md: 0 2px 8px rgb(19 24 32 / 0.08);
+  --measure: 68ch;
+  --container: 1152px;
+}
+@media (prefers-color-scheme: dark) {
+.opi-activity.opi-activity {
+  --colour-page: #0f141b;
+  --colour-surface: #161d27;
+  --colour-surface-raised: #1a2230;
+  --colour-border: #2c3644;
+  --colour-border-strong: #44506180;
+  --colour-text: #e9edf3;
+  --colour-text-muted: #a8b2c1;
+  --colour-accent: #8fb6ff;
+  --colour-accent-hover: #b3cdff;
+  --colour-accent-soft: #1b2740;
+  --colour-on-accent: #0f141b;
+  --colour-focus: #f0b429;
+  --colour-cognitive: #e2ab5f;
+  --colour-research-methods: #8fb6ff;
+  --colour-neuropsychology: #6fc3b4;
+  --colour-social-critical-psychology: #f19aa8;
+  --colour-personality-individual-differences: #db9ccd;
+  --colour-status-bg: #241f14;
+  --colour-status-text: #e2cf9f;
+  --colour-status-border: #4a4028;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 2px 10px rgb(0 0 0 / 0.45);
+}
+}
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity.opi-activity {
+  -webkit-text-size-adjust: 100%;
+}
+.opi-activity.opi-activity {
+  background-color: var(--colour-page);
+  color: var(--colour-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.65;
+}
+.opi-activity.opi-activity h1,
+.opi-activity.opi-activity h2,
+.opi-activity.opi-activity h3,
+.opi-activity.opi-activity h4 {
+  margin: 0 0 var(--space-3);
+  line-height: 1.25;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.opi-activity.opi-activity h1 {
+  font-size: var(--text-3xl);
+}
+.opi-activity.opi-activity h2 {
+  font-size: var(--text-2xl);
+}
+.opi-activity.opi-activity h3 {
+  font-size: var(--text-xl);
+}
+.opi-activity.opi-activity h4 {
+  font-size: var(--text-lg);
+}
+.opi-activity.opi-activity p,
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol,
+.opi-activity.opi-activity dl {
+  margin: 0 0 var(--space-4);
+}
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol {
+  padding-left: 1.35em;
+}
+.opi-activity.opi-activity li + li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity a {
+  color: var(--colour-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: max(1px, 0.06em);
+}
+.opi-activity.opi-activity a:hover {
+  color: var(--colour-accent-hover);
+  text-decoration-thickness: max(2px, 0.11em);
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid var(--colour-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+@supports not selector(:focus-visible) {
+.opi-activity.opi-activity :focus {
+  outline: 3px solid var(--colour-focus);
+    outline-offset: 2px;
+}
+}
+.opi-activity.opi-activity code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.35em;
+}
+.opi-activity.opi-activity hr {
+  border: 0;
+  border-top: 1px solid var(--colour-border);
+  margin: var(--space-6) 0;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+}
+.opi-activity.opi-activity .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.opi-activity.opi-activity .container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+@media (min-width: 40em) {
+.opi-activity.opi-activity .container {
+  padding-inline: var(--space-5);
+}
+}
+.opi-activity.opi-activity .prose {
+  max-width: var(--measure);
+}
+.opi-activity.opi-activity .text-muted {
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .section {
+  padding-block: var(--space-7);
+}
+.opi-activity.opi-activity .section--tinted {
+  background-color: var(--colour-surface);
+  border-block: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .section__header {
+  max-width: var(--measure);
+  margin-bottom: var(--space-5);
+}
+.opi-activity.opi-activity .section__header > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-7) var(--space-6);
+  border-bottom: 1px solid var(--colour-border);
+  
+  background-image: linear-gradient(
+    180deg,
+    var(--colour-accent-soft) 0%,
+    var(--colour-page) 100%
+  );
+}
+.opi-activity.opi-activity .hero__eyebrow {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .hero h1 {
+  max-width: 20ch;
+  margin-bottom: var(--space-4);
+}
+.opi-activity.opi-activity .hero__lead {
+  max-width: var(--measure);
+  font-size: var(--text-lg);
+  color: var(--colour-text-muted);
+}
+@media (min-width: 48em) {
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-8) var(--space-7);
+}
+.opi-activity.opi-activity .hero h1 {
+  font-size: 44px;
+}
+}
+.opi-activity.opi-activity .button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  
+  min-height: 44px;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .button--primary {
+  background-color: var(--colour-accent);
+  border-color: var(--colour-accent);
+  
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--primary:hover {
+  background-color: var(--colour-accent-hover);
+  border-color: var(--colour-accent-hover);
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--secondary {
+  background-color: transparent;
+  border-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .button--secondary:hover {
+  background-color: var(--colour-surface);
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+}
+.opi-activity.opi-activity .card--cognitive {
+  --card-accent: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .card--research-methods {
+  --card-accent: var(--colour-research-methods);
+}
+.opi-activity.opi-activity .card--neuropsychology {
+  --card-accent: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .card--social-critical-psychology {
+  --card-accent: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .card--personality-individual-differences {
+  --card-accent: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 650;
+  line-height: 1.4;
+  padding: 3.2px var(--space-3);
+  border-radius: 999px;
+  border: 1px solid var(--colour-status-border);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+}
+.opi-activity.opi-activity .badge__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex: none;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed var(--colour-border-strong);
+  border-radius: var(--radius-lg);
+  background-color: var(--colour-surface);
+  padding: var(--space-5);
+  text-align: left;
+}
+.opi-activity.opi-activity .placeholder__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+}
+.opi-activity.opi-activity .placeholder > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .split {
+  display: grid;
+  gap: var(--space-6);
+}
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split {
+  grid-template-columns: 3fr 2fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .panel {
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.opi-activity.opi-activity .panel > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .panel__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .section--tinted {
+  border-block: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .hero {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .button--primary {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .button--secondary {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .button:hover {
+  border-color: Highlight;
+}
+.opi-activity.opi-activity .panel {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed CanvasText;
+}
+.opi-activity.opi-activity .badge {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .badge__dot {
+  background-color: CanvasText;
+}
+.opi-activity.opi-activity code {
+  border-color: CanvasText;
+}
+.opi-activity.opi-activity hr {
+  border-top-color: CanvasText;
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+}
+@media print {
+.opi-activity.opi-activity {
+  color: #000;
+  background: #fff;
+}
+.opi-activity.opi-activity a[href^="http"]::after {
+  content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+}
+}
+
+/* components/interactive-shell.css */
+.opi-activity.opi-activity .interactive {
+  --shell-page: var(--colour-page, #ffffff);
+  --shell-surface: var(--colour-surface, #f5f7fa);
+  --shell-raised: var(--colour-surface-raised, #ffffff);
+  --shell-border: var(--colour-border, #d3d9e2);
+  --shell-border-strong: var(--colour-border-strong, #aeb7c4);
+  --shell-text: var(--colour-text, #131820);
+  --shell-muted: var(--colour-text-muted, #4c566a);
+  --shell-accent: var(--colour-accent, #1a4fa0);
+  --shell-accent-soft: var(--colour-accent-soft, #e8eefb);
+  
+  --shell-on-accent: var(--colour-on-accent, #ffffff);
+  --shell-focus: var(--colour-focus, #b45309);
+  --shell-radius: var(--radius-lg, 12px);
+  --shell-gap: var(--space-5, 24px);
+
+  display: block;
+  background-color: var(--shell-raised);
+  color: var(--shell-text);
+  border: 1px solid var(--shell-border);
+  border-radius: var(--shell-radius);
+  
+  overflow-x: clip;
+  overflow-y: visible;
+}
+.opi-activity.opi-activity .interactive__header {
+  padding: var(--shell-gap);
+  border-bottom: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 1.25;
+}
+.opi-activity.opi-activity .interactive__brief {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--shell-muted);
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__body {
+  display: grid;
+  gap: var(--shell-gap);
+  padding: var(--shell-gap);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body {
+  grid-template-columns: minmax(240px, 320px) 1fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .interactive__controls {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__controls fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .interactive__controls legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .control {
+  display: grid;
+  gap: 5.6px;
+}
+.opi-activity.opi-activity .control + .control {
+  margin-top: 16px;
+}
+.opi-activity.opi-activity .control__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.opi-activity.opi-activity .control__label {
+  font-size: 15px;
+  font-weight: 600;
+}
+.opi-activity.opi-activity .control__value {
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--shell-accent);
+}
+.opi-activity.opi-activity .control__hint {
+  font-size: 13px;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .interactive__controls input[type="range"] {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--shell-accent);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  width: 100%;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--shell-text);
+  background-color: var(--shell-raised);
+  border: 1px solid var(--shell-border-strong);
+  border-radius: var(--radius-sm, 4px);
+}
+.opi-activity.opi-activity .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+}
+.opi-activity.opi-activity .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  accent-color: var(--shell-accent);
+  flex: none;
+}
+.opi-activity.opi-activity .interactive__stage {
+  min-height: 256px;
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-page);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body--pinned {
+  align-items: stretch;
+}
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: sticky;
+    top: 0;
+    z-index: 2;
+    
+    margin: -16px -16px 0;
+    padding: 16px 16px 12px;
+    background-color: var(--shell-page);
+    border-bottom: 1px solid var(--shell-border);
+}
+}
+@media (min-width: 52em) and (max-height: 30em) {
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: static;
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
+}
+}
+.opi-activity.opi-activity .interactive__stage > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity :where(.interactive__stage) svg,
+.opi-activity.opi-activity :where(.interactive__stage) canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+.opi-activity.opi-activity .interactive__readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout div {
+  padding: 9.6px 12px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-sm, 4px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__readout dt {
+  font-size: 13px;
+  color: var(--shell-muted);
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout dd {
+  margin: 2.4px 0 0;
+  font-size: 18px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .interactive__status {
+  margin: 0;
+  padding: 12px var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+  font-size: 15px;
+  color: var(--shell-muted);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .interactive__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+}
+.opi-activity.opi-activity .interactive__actions button {
+  min-height: 44px;
+  padding: 6.4px 20px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--shell-on-accent);
+  background-color: var(--shell-accent);
+  border: 1px solid var(--shell-accent);
+  border-radius: var(--radius-md, 8px);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  color: var(--shell-text);
+  background-color: transparent;
+  border-color: var(--shell-border-strong);
+}
+.opi-activity.opi-activity .interactive__actions button:hover {
+  filter: brightness(1.08);
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__notes > summary {
+  padding: 13.6px var(--shell-gap);
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__notes > div {
+  padding: 0 var(--shell-gap) var(--shell-gap);
+  max-width: 68ch;
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__notes > div > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity .interactive *,
+.opi-activity.opi-activity .interactive *::before,
+.opi-activity.opi-activity .interactive *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+}
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .interactive,
+.opi-activity.opi-activity .interactive__controls,
+.opi-activity.opi-activity .interactive__stage,
+.opi-activity.opi-activity .interactive__readout div {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__header {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__status,
+.opi-activity.opi-activity .interactive__actions,
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__actions button {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  border-width: 1px;
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 1;
+    color: GrayText;
+    border-color: GrayText;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__stage svg {
+  forced-color-adjust: auto;
+}
+}
+
+/* components/tool-kit.css */
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split--wide {
+  grid-template-columns: 1fr 1fr;
+}
+}
+.opi-activity.opi-activity .how-to {
+  padding-left: 19.2px;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .how-to > li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .table-scroll {
+  overflow-x: auto;
+  
+  position: relative;
+}
+.opi-activity.opi-activity .prediction {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 832px;
+}
+.opi-activity.opi-activity .prediction > *,
+.opi-activity.opi-activity .challenge > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity .prediction__group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .prediction__legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-weight: 650;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .prediction .control--choice,
+.opi-activity.opi-activity .challenge .control--choice,
+.opi-activity.opi-activity .evidence .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .prediction .control--choice input,
+.opi-activity.opi-activity .challenge .control--choice input,
+.opi-activity.opi-activity .evidence .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .prediction__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .prediction__error {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-status-border);
+  border-left: 4px solid var(--colour-status-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .prediction__readback {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .feedback[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .feedback[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .feedback[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .feedback__verdict {
+  font-weight: 700;
+}
+.opi-activity.opi-activity .verdict {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .verdict__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict__body {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .verdict__body + .verdict__body {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .verdict__note {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .verdict[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .verdict[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .goal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .goal__label {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .goal__text {
+  flex: 1 1 256px;
+}
+.opi-activity.opi-activity .goal strong {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .goal__checks {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+  display: grid;
+  gap: 2.4px;
+}
+.opi-activity.opi-activity .goal__checks > li {
+  margin-top: 0;
+  padding-left: 22.4px;
+  position: relative;
+}
+.opi-activity.opi-activity .goal__checks > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 9.6px;
+  height: 9.6px;
+  border: 2px solid var(--colour-border-strong);
+  border-radius: 2px;
+}
+.opi-activity.opi-activity .goal__checks > li[data-met="yes"]::before {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .stage-track {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .stage-track > li {
+  margin-top: 0;
+  flex: 1 1 160px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-bottom: 3px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .stage-track > li > span {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.opi-activity.opi-activity .stage-track > li[data-state="done"] {
+  border-bottom-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border-bottom-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+  color: var(--colour-text);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .stage__heading {
+  margin: 0;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .data-table,
+.opi-activity.opi-activity .chart__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .data-table th,
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table th,
+.opi-activity.opi-activity .chart__table td {
+  padding: 6.4px 9.6px;
+  border: 1px solid var(--colour-border);
+  text-align: left;
+  vertical-align: top;
+}
+.opi-activity.opi-activity .data-table thead th,
+.opi-activity.opi-activity .chart__table thead th {
+  background-color: var(--colour-surface);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table td {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__table tbody th,
+.opi-activity.opi-activity .data-table tbody th {
+  font-weight: 550;
+}
+.opi-activity.opi-activity .data-table__total > th,
+.opi-activity.opi-activity .data-table__total > td {
+  border-top: 2px solid var(--colour-border-strong);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart {
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .chart__caption {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__svg {
+  max-width: 100%;
+  height: auto;
+}
+.opi-activity.opi-activity .chart__label,
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__inline,
+.opi-activity.opi-activity .chart__axis {
+  font-family: var(--font-body);
+  fill: var(--colour-text);
+  font-size: 13px;
+}
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__axis {
+  fill: var(--colour-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: var(--colour-on-accent);
+  font-size: 12px;
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__track {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__bar {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--one {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .chart__baseline,
+.opi-activity.opi-activity .chart__grid {
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__line {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: var(--colour-personality-individual-differences);
+  stroke-dasharray: 6 4;
+}
+.opi-activity.opi-activity .chart__point {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .reveal > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .reveal__lead {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+.opi-activity.opi-activity .reveal__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(176px, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+  padding: 0;
+  list-style: none;
+}
+.opi-activity.opi-activity .reveal__figures > li {
+  margin-top: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+.opi-activity.opi-activity .reveal__figure-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .reveal__figure-value {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .challenge {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+.opi-activity.opi-activity .challenge__locked {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .panel--caution {
+  background-color: var(--colour-status-bg);
+  border-color: var(--colour-status-border);
+}
+.opi-activity.opi-activity .panel--caution li + li {
+  margin-top: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .goal,
+.opi-activity.opi-activity .verdict,
+.opi-activity.opi-activity .feedback,
+.opi-activity.opi-activity .prediction__error,
+.opi-activity.opi-activity .prediction__readback,
+.opi-activity.opi-activity .stage-track > li,
+.opi-activity.opi-activity .reveal__figures > li {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border: 2px solid Highlight;
+}
+.opi-activity.opi-activity .chart__bar,
+.opi-activity.opi-activity .chart__bar--one {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: Canvas;
+}
+.opi-activity.opi-activity .chart__line {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: Highlight;
+}
+}
+.opi-activity.opi-activity .stage__more {
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .stage__more > summary {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .stage__more[open] > summary {
+  border-bottom: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .stage__more > *:not(summary) {
+  margin: var(--space-3);
+}
+
+/* modules/cognitive/tools/12-human-vs-ai-attention/tool.css */
+.opi-activity.opi-activity .table-scroll {
+  position: relative;
+}
+.opi-activity.opi-activity #attn .interactive__controls,
+.opi-activity.opi-activity #attn .interactive__stage {
+  min-width: 0;
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity #attn .interactive__body {
+  grid-template-columns: minmax(0, 304px) minmax(0, 1fr);
+}
+}
+.opi-activity.opi-activity #attn .control + .control {
+  margin-top: var(--space-3);
+}
+.opi-activity.opi-activity .control--buttons {
+  display: grid;
+  gap: var(--space-2);
+}
+.opi-activity.opi-activity .sentence-item + .sentence-item {
+  margin-top: var(--space-5);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .sentence-item__text {
+  margin: 0 0 var(--space-3);
+  font-size: var(--text-lg);
+  line-height: 1.6;
+}
+.opi-activity.opi-activity .sentence-item__pronoun {
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+}
+.opi-activity.opi-activity .tokens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4.8px;
+  margin: 0 0 var(--space-3);
+  padding: 0;
+  list-style: none;
+}
+.opi-activity.opi-activity .tokens > li {
+  margin-top: 0;
+}
+.opi-activity.opi-activity .token {
+  display: grid;
+  gap: 0;
+  justify-items: center;
+  padding: 4px 7.2px;
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  font-size: var(--text-xs);
+  line-height: 1.3;
+}
+.opi-activity.opi-activity .token[data-query="yes"] {
+  border-width: 3px;
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+  font-weight: 700;
+}
+.opi-activity.opi-activity .token[data-masked="yes"] {
+  border-style: dashed;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .token__index {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .token__role {
+  font-size: var(--text-xs);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+  min-height: 1em;
+}
+.opi-activity.opi-activity #attn .chart {
+  max-width: 416px;
+}
+.opi-activity.opi-activity #attn .attn-chart {
+  max-width: 100%;
+}
+.opi-activity.opi-activity .chart__equivalent {
+  margin: 0;
+  font-size: var(--text-sm);
+  line-height: 1.55;
+}
+.opi-activity.opi-activity .attn__bar {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .attn__bar--query {
+  fill: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .attn__outline {
+  fill: none;
+  stroke: var(--colour-text);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 3;
+}
+.opi-activity.opi-activity .challenge select {
+  width: 100%;
+  min-width: 192px;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  font-size: var(--text-sm);
+  color: var(--colour-text);
+  background-color: var(--colour-surface-raised);
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+}
+.opi-activity.opi-activity .challenge th[scope="row"] {
+  min-width: 272px;
+  font-weight: 400;
+}
+.opi-activity.opi-activity .challenge__mark {
+  display: block;
+  margin-top: var(--space-1);
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .token {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .token[data-query="yes"] {
+  border: 3px solid Highlight;
+}
+.opi-activity.opi-activity .token[data-masked="yes"] {
+  border-style: dashed;
+}
+.opi-activity.opi-activity .attn__bar {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .attn__bar--query {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .attn__outline {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .challenge select {
+  border: 1px solid ButtonText;
+}
+}
+</style>
+
+  <!-- ================= Title and purpose ================= -->
+  <section class="section card--cognitive" aria-labelledby="page-heading">
+    <div class="container">
+
+      <p class="hero__eyebrow" style="color: var(--colour-cognitive)">
+        Cognitive Psychology
+      </p>
+      <h1 id="page-heading">Human Attention versus AI Attention</h1>
+      <p class="hero__lead">
+        The word "attention" appears in two literatures that have almost
+        nothing in common. In one it names a set of experimental findings
+        about selection, capacity and awareness. In the other it names an
+        arithmetic operation: a normalised similarity between one position in
+        a sequence and every other position. This page has you do both, on
+        the same sentence, so the difference is something you have produced
+        rather than been told.
+      </p>
+
+      <p>
+        <span class="badge">
+          <span class="badge__dot" aria-hidden="true"></span>
+          The numbers here are chosen by hand to be legible — no model was run, and nothing was learned
+        </span>
+      </p>
+
+      <div class="split split--wide">
+
+        <div class="panel">
+          <h2 class="panel__title">Learning objective</h2>
+          <p>
+            By the end you should be able to say precisely what a transformer
+            attention weight is, and why a weight map is not an explanation of
+            a model's output.
+          </p>
+          <p class="text-muted">
+            About 30 minutes. Nothing is timed. Nothing you do here is saved
+            or sent anywhere.
+          </p>
+        </div>
+
+        <div class="panel panel--caution">
+          <h2 class="panel__title">Before you start — the language problem</h2>
+          <p>
+            <strong>A weight is a number, not a noticing.</strong> Throughout
+            this page, the computational side is described in arithmetic
+            terms only. A high weight on a position does not mean the system
+            "focused on" or "cared about" or "was drawn to" that word; it
+            means a dot product came out large and the softmax normalised it
+            upwards. The habit of saying otherwise is the single commonest
+            error in writing about these models, and it is easier to avoid
+            here than anywhere else because you can see the arithmetic.
+          </p>
+          <p>
+            <strong>Nothing on the machine side is aware of anything.</strong>
+            There is no experience, no report, no effort and no cost of the
+            kind the human literature measures. That is not a limitation of
+            this demonstration — it is the finding.
+          </p>
+        </div>
+
+      </div>
+
+      <ol class="how-to">
+        <li>Answer the prediction below — it unlocks the first stage.</li>
+        <li>Stage 1: read two sentences that differ by three words and say what "it" refers to in each.</li>
+        <li>Stage 2: compute attention weights over the same sentence, by choosing a query position, a head, a temperature and a mask.</li>
+        <li>Stage 3: compare the two things you have just done, in the sorting challenge.</li>
+        <li>Read the debrief, which is where the two rhymes and the four divergences are set out.</li>
+      </ol>
+
+    </div>
+  </section>
+
+  <!-- ================= Opening prediction ================= -->
+  <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="opening-heading">First, a prediction</h2>
+        <p class="prose">
+          You are about to do two quite different things with the same
+          sentence. Before you do either, commit to a view about what the
+          relationship between them will turn out to be.
+        </p>
+      </div>
+
+      <noscript>
+        <div class="placeholder">
+          <h3 class="placeholder__title">This part needs JavaScript</h3>
+          <p class="prose">
+            The attention weights are computed in your browser, so this cannot
+            work with JavaScript switched off. The rest of the page is
+            readable without it.
+          </p>
+        </div>
+      </noscript>
+
+      <form class="panel prediction" id="opening-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            If a transformer's attention weights for the word "it" land on the
+            same noun you chose, what would that show?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="nothing-much">
+            Very little on its own — two processes can produce the same output for unrelated reasons
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="same-mechanism">
+            That the model resolves pronouns the way people do
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="explains">
+            That the weights explain why the model produced the answer it did
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="attention">
+            That the model was paying attention to the noun, in the ordinary sense
+          </label>
+        </fieldset>
+
+        <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Record my answer and unlock stage 1
+          </button>
+          <button class="button button--secondary" type="button" data-action="skip-opening">
+            Skip — I am demonstrating this
+          </button>
+        </div>
+
+        <div class="feedback" data-opening-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Stage 1 — the human side ================= -->
+  <section class="section" id="human" aria-labelledby="human-heading" hidden>
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="human-heading" tabindex="-1">Stage 1 — what does "it" refer to?</h2>
+        <p class="prose">
+          Two sentences. They differ in their last three words and in nothing
+          else. Read each one and say what "it" refers to. There is no time
+          limit, and no trick beyond the one you can see.
+        </p>
+      </div>
+
+      <form class="panel prediction" id="human-form">
+        <div data-human-items></div>
+
+        <p class="prediction__error" data-human-error role="alert" hidden></p>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Record both answers
+          </button>
+        </div>
+
+        <div class="feedback" data-human-feedback hidden></div>
+      </form>
+
+      <div class="panel" data-human-reflection hidden>
+        <h3 class="panel__title">Before you move on</h3>
+        <dl class="interactive__readout" data-human-readout></dl>
+        <div class="verdict">
+          <h4 class="verdict__title">What you just did</h4>
+          <p class="verdict__body" data-human-text></p>
+          <p class="verdict__note" data-human-note></p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= Stage 2 — the computation ================= -->
+  <section class="section section--tinted" id="machine" aria-labelledby="machine-heading" hidden>
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="machine-heading" tabindex="-1">Stage 2 — compute the weights yourself</h2>
+        <p class="prose">
+          The same sentence, cut into ten tokens. Each token has a vector of
+          three numbers attached to it — arbitrary numbers, written by hand
+          for this page. Pick a position to compute from, pick a head, and the
+          arithmetic below runs in front of you.
+        </p>
+      </div>
+
+      <section class="interactive" id="attn" data-interactive
+               data-reset-message="Everything cleared. Back to the opening question.">
+
+        <header class="interactive__header">
+          <h3 class="interactive__title">One softmax over ten positions</h3>
+          <p class="interactive__brief">
+            Every number on this page was chosen by the author to make the
+            pattern legible. Nothing was learned, no model was run, and the
+            apparent meaningfulness of what you are about to see is
+            manufactured. That is itself one of the points.
+          </p>
+          <p class="goal">
+            <span class="goal__label">The computation</span>
+            <span class="goal__text" data-formula-text></span>
+          </p>
+        </header>
+
+        <div class="interactive__body interactive__body--pinned">
+
+          <form class="interactive__controls" data-interactive-controls>
+
+            <fieldset>
+              <legend>The query</legend>
+
+              <div class="control">
+                <label class="control__label" for="query-select">
+                  Compute the weights for which position?
+                </label>
+                <select id="query-select"></select>
+              </div>
+
+              <div class="control">
+                <label class="control__label" for="head-select">
+                  Which head?
+                </label>
+                <select id="head-select">
+                  <option value="0" selected>Head A</option>
+                  <option value="1">Head B</option>
+                  <option value="2">Head C</option>
+                </select>
+                <p class="control__hint">
+                  Three multipliers applied to the query vector. They have no
+                  assigned meaning.
+                </p>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>The normalisation</legend>
+
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="temperature-range">
+                    Softmax temperature
+                  </label>
+                  <output class="control__value" for="temperature-range"
+                          data-temperature-output>1.00</output>
+                </div>
+                <input type="range" id="temperature-range"
+                       min="0.4" max="2.5" step="0.1" value="1">
+                <p class="control__hint">
+                  Divides every score before normalising. Low concentrates,
+                  high flattens.
+                </p>
+              </div>
+
+              <div class="control">
+                <label class="control--choice">
+                  <input type="checkbox" id="mask-check">
+                  Mask later positions
+                </label>
+                <p class="control__hint">
+                  An architectural rule, not a discovery about the sentence.
+                </p>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Presets</legend>
+              <div class="control control--buttons">
+                <button class="button button--secondary" type="button"
+                        data-action="preset-referent">
+                  The one that looks meaningful
+                </button>
+                <button class="button button--secondary" type="button"
+                        data-action="preset-recency">
+                  The one that is just recency
+                </button>
+                <button class="button button--secondary" type="button"
+                        data-action="preset-flat">
+                  The one that says nothing at all
+                </button>
+              </div>
+            </fieldset>
+
+          </form>
+
+          <div class="interactive__stage" data-interactive-stage>
+
+            <div class="stage__primary">
+              <ol class="tokens" data-tokens aria-label="The ten token positions, with the query position marked"></ol>
+
+              <figure class="chart">
+                <figcaption class="chart__caption" data-chart-caption>
+                  Attention weights over the ten token positions
+                </figcaption>
+                <svg class="chart__svg attn-chart" data-weight-chart
+                     viewBox="0 0 460 250" aria-hidden="true" focusable="false"></svg>
+                <p class="chart__equivalent" data-weight-summary></p>
+                <details class="stage__more">
+                  <summary>Every position, with its key vector and score</summary>
+                  <div class="table-scroll">
+                    <table class="chart__table">
+                      <caption class="visually-hidden">
+                        For each token position: its three key numbers, the raw
+                        score against the query, and the resulting weight
+                      </caption>
+                      <thead>
+                        <tr>
+                          <th scope="col">Position</th>
+                          <th scope="col">Token</th>
+                          <th scope="col">Key vector</th>
+                          <th scope="col">Score</th>
+                          <th scope="col">Weight</th>
+                        </tr>
+                      </thead>
+                      <tbody data-weight-table></tbody>
+                    </table>
+                  </div>
+                </details>
+              </figure>
+            </div>
+
+            <div class="verdict" data-weight-verdict>
+              <h4 class="verdict__title">What this readout is</h4>
+              <p class="verdict__body" data-weight-text></p>
+              <p class="verdict__note" data-weight-note></p>
+            </div>
+
+            <details class="stage__more">
+              <summary>Where these numbers came from</summary>
+              <div data-provenance></div>
+            </details>
+
+          </div>
+
+        </div>
+
+        <p class="interactive__status" data-interactive-status role="status"></p>
+
+        <div class="interactive__actions">
+          <button type="button" data-variant="secondary" data-interactive-reset>
+            Reset everything
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ================= Stage 3 — the sorting challenge ================= -->
+  <section class="section" id="challenge" aria-labelledby="challenge-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="challenge-heading">Stage 3 — sort the statements</h2>
+        <p class="prose">
+          Eight statements. For each, decide whether it describes the human
+          experimental literature on attention, the transformer operation you
+          have just run, both, or neither. Two of them are true of both, and
+          two are true of neither — those four are the ones worth arguing
+          about.
+        </p>
+      </div>
+
+      <form class="panel challenge" id="challenge-form">
+
+        <p class="challenge__locked" data-challenge-lock>
+          Complete stage 1 and stage 2 first — several of these are much
+          easier once you have done both.
+        </p>
+
+        <div class="table-scroll">
+          <table class="data-table">
+            <caption class="visually-hidden">
+              Eight statements, each to be sorted into human attention,
+              transformer attention, both, or neither
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Statement</th>
+                <th scope="col">True of…</th>
+              </tr>
+            </thead>
+            <tbody data-challenge-rows></tbody>
+          </table>
+        </div>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit" disabled
+                  data-action="check-challenge">
+            Check my answers
+          </button>
+        </div>
+
+        <div class="feedback" data-challenge-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Debrief ================= -->
+  <section class="section section--tinted" id="debrief" aria-labelledby="debrief-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="debrief-heading">What this demonstrates</h2>
+      </div>
+
+      <div class="split split--wide">
+
+        <div class="prose">
+          <h3>What a transformer attention weight is, exactly</h3>
+          <p>
+            For a chosen position, take its vector. Take the dot product of
+            that vector with the vector of every position in the sequence,
+            including itself. Divide each result by the square root of the
+            vector length, divide again by a temperature, and push the whole
+            list through a softmax so the numbers are non-negative and sum to
+            one. Use those numbers as coefficients in a weighted sum of the
+            value vectors. That is the entire operation. It is a normalised
+            similarity between positions, computed for every pair at once, and
+            nothing in it corresponds to noticing, ignoring, focusing or
+            caring.
+          </p>
+
+          <h3>Where the two genuinely rhyme</h3>
+          <p>
+            Two respects, and they are worth stating precisely because
+            overstating them is how the confusion starts.
+          </p>
+          <p>
+            <strong>Both are forms of selection under a constraint.</strong>
+            A person cannot fully process everything arriving at once, and
+            their behaviour reflects a weighting of some inputs over others. A
+            transformer layer cannot pass every position's representation
+            forward unchanged either: it must produce one output vector per
+            position, and it does so by weighting. Both are, formally,
+            allocation problems. The constraints themselves are not the same
+            kind of thing — one is a limit on a biological system operating in
+            real time, the other is the shape of a matrix — but "everything
+            cannot count equally" is true of both.
+          </p>
+          <p>
+            <strong>Both are shaped by what came before.</strong> Human
+            selection is influenced by expectation, by recent experience and
+            by the task in hand. A transformer's weights depend on the
+            preceding tokens, and under a causal mask depend on nothing else.
+            In both cases the current selection is a function of context
+            rather than of the current input alone.
+          </p>
+
+          <h3>Where they diverge, and it is not close</h3>
+          <p>
+            <strong>There is no experience on the machine side.</strong> The
+            human literature is substantially about awareness: what gets
+            reported, what does not, and the fact that those two come apart.
+            Nothing in a softmax has a corresponding property, and there is no
+            question the model could be asked whose answer would be a report
+            of an experience.
+          </p>
+          <p>
+            <strong>There is no bottleneck of the same kind.</strong> A
+            transformer computes every pairwise score in parallel and then
+            normalises. Nothing waits for anything. The human findings about
+            serial stages, refractory periods and the cost of dividing
+            attention describe a system with a temporal structure that this
+            operation does not have.
+          </p>
+          <p>
+            <strong>There is no cost of dividing it.</strong> Spreading a
+            transformer's weights evenly across ten positions costs exactly
+            what concentrating them on one costs: the same multiplications.
+            Dividing human attention costs accuracy, speed, or both, and the
+            size of that cost is one of the central measurements in the field.
+          </p>
+          <p>
+            <strong>The weights are fully inspectable, and human attention is
+            not.</strong> You have just read every weight to two decimal
+            places. Nobody can read a person's selection off directly; it is
+            inferred from responses, from errors, from eye position, from
+            electrophysiology, and every one of those inferences is contested.
+            This is the one respect in which the machine case is
+            <em>easier</em>, and it produces its own trap, which is the next
+            paragraph.
+          </p>
+
+          <h3>Why a weight map is not an explanation</h3>
+          <p>
+            It is tempting to treat a picture of the weights as a picture of
+            the reason. It is not. The weights are one factor in one operation
+            in one layer, of which there are many, each with many heads;
+            the value vectors they multiply matter as much as the weights
+            themselves; the residual stream carries information past the
+            operation entirely; and the output depends on everything
+            downstream. Empirically, patterns of weights can be altered
+            substantially without altering the model's output, and identical
+            outputs can be produced by very different weight patterns. Reading
+            a heatmap as "why the model said that" is the computational
+            equivalent of reading a single eye-movement record as the reason
+            for a decision — and it is made worse by the fact that the heatmap
+            is so much easier to look at than the alternative.
+          </p>
+
+          <h3>Why the shared word survives anyway</h3>
+          <p>
+            Not because anyone was confused. The operation was named by
+            analogy to a family of models in which a system weights parts of
+            an input differentially, and the name stuck because it is short.
+            Technical vocabulary borrowed from psychology has form here —
+            "memory", "learning" and "representation" all carry the same
+            hazard. The remedy is not to police the word but to be able to say
+            exactly what is being claimed whenever it appears.
+          </p>
+        </div>
+
+        <aside class="panel panel--caution" aria-labelledby="limits-heading">
+          <h3 class="panel__title" id="limits-heading">
+            What this does <em>not</em> demonstrate
+          </h3>
+          <ul>
+            <li>
+              <strong>No model was run.</strong> The ten key vectors and the
+              three heads were written by hand for this page and chosen so
+              that the three presets would produce three legible pictures. In
+              a real model these numbers are learned, nobody chooses what they
+              mean, and most heads produce patterns that resist description
+              altogether.
+            </li>
+            <li>
+              <strong>It is not a simulation of a transformer.</strong> It is
+              one attention operation, in one head, over three dimensions and
+              ten tokens, with no value vectors, no residual stream, no
+              feed-forward layers and no second layer. Real models have
+              dozens of layers and many heads each.
+            </li>
+            <li>
+              <strong>It says nothing about how people resolve pronouns.</strong>
+              Stage 1 is a demonstration that you can do it and report it, not
+              a measurement of how. That literature involves reading times,
+              eye movements and manipulations this page does not contain.
+            </li>
+            <li>
+              <strong>Agreement between the two stages would mean very
+              little.</strong> Two processes can produce the same output for
+              unrelated reasons. Disagreement would mean little too.
+            </li>
+            <li>
+              <strong>Nothing here licenses claims about machine
+              understanding, awareness or intent.</strong> Those are separate
+              questions with their own literatures, and a weight vector is not
+              evidence in any of them.
+            </li>
+            <li>
+              <strong>The word "attention" is doing no work in the
+              comparison.</strong> If the operation had been called "weighted
+              pooling", which is what it is, this page would be much shorter.
+            </li>
+          </ul>
+        </aside>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+<script>
+/* ---- components/interactive-shell.js ---- */
+/* =========================================================================
+   Open Psychology Interactives — interactive shell helper
+   -------------------------------------------------------------------------
+   A very small vanilla-JS helper that every interactive in this collection
+   uses. It deliberately does *not* draw anything or know anything about
+   statistics, personality or neuropsychology. Its job is the repetitive,
+   easy-to-get-wrong accessibility plumbing:
+
+     * announcing changes through a polite live region;
+     * keeping a range slider and its <output> in step;
+     * wiring the standard Reset button;
+     * reporting the reader's reduced-motion preference.
+
+   Usage (see docs/adapting-a-tool.md for the full markup contract):
+
+       <script src="../../components/interactive-shell.js" defer><\/script>
+       <script src="tool.js" defer><\/script>
+
+       // in tool.js
+       const shell = InteractiveShell.attach('#sampling-demo');
+       shell.onReset(() => { ...restore defaults...; draw(); });
+       shell.bindRange('#sample-size', { format: n => n + ' cases' });
+       shell.announce('Sample of 25 drawn. Mean 4.8.');
+
+   Every published interactive is written against this module.
+
+   Exposed as a global (window.InteractiveShell) rather than an ES module so
+   that a single interactive folder can be opened directly from disk over
+   file:// — ES modules are blocked by CORS in that situation, plain scripts
+   are not. That constraint is the whole reason for the older syntax here.
+   ========================================================================= */
+
+(function (global) {
+  "use strict";
+
+  /* -----------------------------------------------------------------------
+     Internal helpers
+     --------------------------------------------------------------------- */
+
+  /**
+   * Accept either a CSS selector or an element and return an element.
+   * @param {string|Element} target
+   * @param {ParentNode} [scope]
+   * @returns {Element|null}
+   */
+  function resolve(target, scope) {
+    if (!target) {
+      return null;
+    }
+    if (typeof target === "string") {
+      return (scope || document).querySelector(target);
+    }
+    return target;
+  }
+
+  /**
+   * True when the reader has asked the operating system to reduce motion.
+   * Interactives should check this before animating anything — for example
+   * by drawing a sampling distribution in one step instead of animating
+   * each draw.
+   * @returns {boolean}
+   */
+  function prefersReducedMotion() {
+    return (
+      typeof global.matchMedia === "function" &&
+      global.matchMedia("(prefers-reduced-motion: reduce)").matches
+    );
+  }
+
+  /* -----------------------------------------------------------------------
+     Shell controller
+     --------------------------------------------------------------------- */
+
+  /**
+   * Attach the shell behaviour to one `.interactive` element.
+   *
+   * @param {string|Element} target  Selector or element for the shell root.
+   * @returns {object|null}  Controller, or null if the root was not found.
+   */
+  function attach(target) {
+    var root = resolve(target);
+
+    if (!root) {
+      if (global.console && console.warn) {
+        console.warn("InteractiveShell: root element not found.", target);
+      }
+      return null;
+    }
+
+    var controls = root.querySelector("[data-interactive-controls]");
+    var stage = root.querySelector("[data-interactive-stage]");
+    var status = root.querySelector("[data-interactive-status]");
+    var resetButton = root.querySelector("[data-interactive-reset]");
+    var resetHandlers = [];
+    // Every range bound with bindRange() registers its sync function here, so
+    // that reset() can refresh the visible values after the tool's own reset
+    // handlers have restored the inputs. See reset() for why this is needed.
+    var rangeSyncs = [];
+
+    /* --- Live region ----------------------------------------------------
+       The status element is marked up as role="status" (implicitly
+       aria-live="polite"). Two details matter:
+
+         1. Assistive technology only announces *changes* to a live region,
+            so writing the same string twice is silently dropped. We add a
+            trailing zero-width space on repeat messages to force an
+            announcement when a student re-runs the same action.
+         2. Announcements are debounced. A slider dragged across its range
+            fires dozens of input events; without a delay a screen reader
+            would queue every intermediate value and fall far behind.
+       ------------------------------------------------------------------ */
+
+    var announceTimer = null;
+    var lastMessage = "";
+
+    /**
+     * Announce a short sentence describing what just changed.
+     * @param {string} message
+     * @param {object} [options]
+     * @param {boolean} [options.immediate]  Skip the debounce delay. Use for
+     *   discrete actions (button presses); leave off for continuous input.
+     */
+    function announce(message, options) {
+      if (!status) {
+        return;
+      }
+
+      var text = String(message == null ? "" : message);
+      var immediate = Boolean(options && options.immediate);
+
+      if (announceTimer !== null) {
+        global.clearTimeout(announceTimer);
+        announceTimer = null;
+      }
+
+      function write() {
+        // Force a change when the text is identical to last time.
+        status.textContent = text === lastMessage ? text + "​" : text;
+        lastMessage = text;
+      }
+
+      if (immediate) {
+        write();
+      } else {
+        announceTimer = global.setTimeout(write, 350);
+      }
+    }
+
+    /* --- Reset ---------------------------------------------------------- */
+
+    /**
+     * Register a callback to run when the Reset button is pressed.
+     * Several may be registered; they run in the order added.
+     * @param {Function} handler
+     */
+    function onReset(handler) {
+      if (typeof handler === "function") {
+        resetHandlers.push(handler);
+      }
+    }
+
+    /**
+     * Run the reset handlers. Called by the button and available directly so
+     * an interactive can reset itself on first load.
+     *
+     * Bound ranges are re-synced afterwards. A reset handler restores an
+     * input by assigning to `input.value`, and assigning to a value in script
+     * does not fire an `input` event — so without this step the slider would
+     * jump back to its default while its <output> went on showing the old
+     * number. Syncing here, after the handlers have run, also means the sync
+     * sees the restored values regardless of the order things were
+     * registered in.
+     *
+     * @param {object} [options]
+     * @param {boolean} [options.silent]  Suppress the status announcement.
+     */
+    function reset(options) {
+      resetHandlers.forEach(function (handler) {
+        handler();
+      });
+      rangeSyncs.forEach(function (sync) {
+        sync();
+      });
+      if (!options || !options.silent) {
+        announce(
+          root.getAttribute("data-reset-message") ||
+            "Reset to the starting values.",
+          { immediate: true }
+        );
+      }
+    }
+
+    if (resetButton) {
+      resetButton.addEventListener("click", function (event) {
+        // Reset buttons commonly sit inside the controls <form>; stop the
+        // browser's own form reset from fighting with ours.
+        event.preventDefault();
+        reset();
+      });
+    }
+
+    /* --- Range binding --------------------------------------------------
+       Keeps a slider's <output> in step with its value. The <output> must
+       carry `for="<input id>"`, which is what associates the two for
+       assistive technology; this only handles the visible text.
+
+       Optionally sets aria-valuetext, which is how you make a screen reader
+       say "25 cases" or "medium correlation" instead of a bare "25".
+       ------------------------------------------------------------------ */
+
+    /**
+     * @param {string|Element} inputTarget  The range (or number) input.
+     * @param {object} [options]
+     * @param {Function} [options.format]  value:number -> string shown in the
+     *   <output>. Defaults to the raw value.
+     * @param {Function} [options.describe]  value:number -> string used for
+     *   aria-valuetext. Defaults to options.format.
+     * @param {Function} [options.onInput]  value:number -> void, called after
+     *   the display has been updated. Use it to redraw.
+     * @returns {HTMLInputElement|null}
+     */
+    function bindRange(inputTarget, options) {
+      var input = resolve(inputTarget, root);
+      if (!input) {
+        return null;
+      }
+
+      var settings = options || {};
+      var format =
+        typeof settings.format === "function"
+          ? settings.format
+          : function (value) {
+              return String(value);
+            };
+      var describe =
+        typeof settings.describe === "function" ? settings.describe : format;
+
+      // <output for="the-input-id"> is the conventional pairing.
+      var output = input.id
+        ? root.querySelector('output[for="' + input.id + '"]')
+        : null;
+
+      function sync() {
+        var value = Number(input.value);
+        if (output) {
+          output.textContent = format(value);
+        }
+        // Only meaningful for widgets with an implicit or explicit slider
+        // role; harmless elsewhere.
+        input.setAttribute("aria-valuetext", describe(value));
+        if (typeof settings.onInput === "function") {
+          settings.onInput(value);
+        }
+      }
+
+      input.addEventListener("input", sync);
+      // Registered so reset() can refresh the display after the tool's own
+      // reset handlers have put the input back to its default.
+      rangeSyncs.push(sync);
+      sync();
+
+      return input;
+    }
+
+    /* --- Public surface -------------------------------------------------- */
+
+    return {
+      /** The `.interactive` root element. */
+      root: root,
+      /** The controls panel, or null if the shell has none. */
+      controls: controls,
+      /** The stage element where the visualisation is drawn. */
+      stage: stage,
+      /** The live-region element. */
+      status: status,
+      announce: announce,
+      onReset: onReset,
+      reset: reset,
+      bindRange: bindRange,
+      prefersReducedMotion: prefersReducedMotion
+    };
+  }
+
+  /* -----------------------------------------------------------------------
+     Export
+     --------------------------------------------------------------------- */
+
+  global.InteractiveShell = {
+    attach: attach,
+    prefersReducedMotion: prefersReducedMotion
+  };
+})(window);
+
+/* ---- modules/cognitive/tools/12-human-vs-ai-attention/tool.js ---- */
+/* =========================================================================
+   Human Attention versus AI Attention
+   -------------------------------------------------------------------------
+   Three stages on one sentence.
+
+       stage 1   the learner resolves an ambiguous pronoun in two sentences
+                 that differ in three words, and reports what they did
+       stage 2   the learner computes scaled dot-product attention weights
+                 over the same sentence, choosing the query position, the
+                 head, the softmax temperature and whether later positions
+                 are masked
+       stage 3   a sorting challenge over eight statements
+
+   LANGUAGE DISCIPLINE
+   -------------------
+   Everything on the computational side is described in arithmetic terms.
+   A weight is a number produced by a dot product and a softmax. Nowhere on
+   this page does the machine "notice", "focus on", "look at", "care about",
+   "ignore", "decide" or "understand" anything, and nowhere is a weight map
+   offered as an explanation of an output. This is not a stylistic
+   preference; it is the teaching content.
+
+   THE ARITHMETIC, IN FULL
+   -----------------------
+   Every token i has a hand-written key vector k_i in three dimensions. A
+   head h is three multipliers. For a chosen query position q:
+
+       query vector      Q      = k_q  *elementwise*  h
+       raw score         s_i    = (Q . k_i) / sqrt(3)
+       masked score      s_i    = -Infinity  if masking and i > q
+       weight            w_i    = softmax(s / temperature)_i
+
+   The weights are non-negative and sum to one. That is the whole operation
+   as implemented here. A real attention layer then uses those weights as
+   coefficients in a weighted sum of VALUE vectors, of which this page has
+   none, and does so in many heads across many layers - all stated in the
+   limits panel.
+
+   THE NUMBERS ARE MANUFACTURED, AND THE PAGE SAYS SO REPEATEDLY
+   -------------------------------------------------------------
+   The ten key vectors and the three heads were written by hand so that the
+   three presets produce three legible pictures: one that looks like referent
+   resolution, one that is pure recency, and one that is nearly uniform. In a
+   real model these numbers are learned, nobody chooses what they mean, and
+   most heads produce patterns that resist description. The "where these
+   numbers came from" panel, the interactive brief, the badge in the hero and
+   the limits panel all say this.
+
+   The three key dimensions have deliberately BLAND names in the interface -
+   they are printed as three numbers, not as "nounness" or "recency". Naming
+   a learned coordinate after the thing it appears to track is exactly the
+   interpretive error this tool exists to make visible.
+
+   No data leave the browser. No storage, no network request.
+   ========================================================================= */
+
+(function () {
+  "use strict";
+
+  var DIMS = 3;
+
+  /* The sentence, cut into ten tokens, with a hand-written key vector each.
+     The three coordinates have no assigned meaning; they are numbers chosen
+     so that the presets below produce three distinguishable pictures. */
+  var TOKENS = [
+    { text: "the", key: [0.10, 0.10, 0.10] },
+    { text: "cyclist", key: [0.70, 0.15, 0.15] },
+    { text: "passed", key: [0.20, 0.85, 0.20] },
+    { text: "the", key: [0.10, 0.10, 0.25] },
+    { text: "lorry", key: [0.95, 0.20, 0.30] },
+    { text: "because", key: [0.15, 0.45, 0.35] },
+    { text: "it", key: [0.55, 0.15, 0.40] },
+    { text: "was", key: [0.10, 0.40, 0.45] },
+    { text: "moving", key: [0.25, 0.80, 0.50] },
+    { text: "slowly", key: [0.15, 0.35, 0.55] }
+  ];
+
+  var HEADS = [
+    { label: "Head A", weights: [8.0, 0.4, 0.4] },
+    { label: "Head B", weights: [0.4, 0.4, 9.0] },
+    { label: "Head C", weights: [1.0, 1.0, 1.0] }
+  ];
+
+  var DEFAULTS = { query: 6, head: 0, temperature: 1, mask: false };
+
+  /* Stage 1. Two sentences differing in three words. Each has one referent
+     that essentially everyone reports, which is the point: the resolution is
+     fast, effortless and reportable. */
+  var SENTENCES = [
+    {
+      id: "slow",
+      before: "The cyclist passed the lorry because ",
+      pronoun: "it",
+      after: " was moving slowly.",
+      options: ["the cyclist", "the lorry"],
+      common: "the lorry",
+      why: "Almost everyone reports the lorry: a vehicle you overtake is the " +
+        "one that is moving slowly. Nothing in the grammar settles it - both " +
+        "nouns are singular and inanimate enough to take “it”."
+    },
+    {
+      id: "hurry",
+      before: "The cyclist passed the lorry because ",
+      pronoun: "it",
+      after: " was in a hurry.",
+      options: ["the cyclist", "the lorry"],
+      common: "the cyclist",
+      why: "Almost everyone reports the cyclist, and the only thing that " +
+        "changed was three words at the end. The referent of the pronoun was " +
+        "settled by what makes sense of the sentence as a whole, not by " +
+        "anything local to the pronoun."
+    }
+  ];
+
+  /* =======================================================================
+     Small helpers
+     ===================================================================== */
+
+  var NS = "http://www.w3.org/2000/svg";
+
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) { node.className = className; }
+    if (text !== undefined) { node.textContent = text; }
+    return node;
+  }
+
+  function svgNode(tag, attributes, parent) {
+    var node = document.createElementNS(NS, tag);
+    Object.keys(attributes).forEach(function (key) {
+      node.setAttribute(key, String(attributes[key]));
+    });
+    if (parent) { parent.appendChild(node); }
+    return node;
+  }
+
+  function clear(node) {
+    while (node && node.firstChild) { node.removeChild(node.firstChild); }
+  }
+
+  function pct(value) {
+    return value === null || value === undefined || isNaN(value)
+      ? "—" : (value * 100).toFixed(1) + "%";
+  }
+
+  /* =======================================================================
+     The attention computation
+     ===================================================================== */
+
+  /**
+   * Scaled dot-product attention weights over the token list.
+   * @param {number} queryIndex  position whose weights are being computed
+   * @param {number} headIndex   which set of three multipliers to apply
+   * @param {number} temperature divides every score before the softmax
+   * @param {boolean} mask       set scores for positions after the query to
+   *                             minus infinity
+   * @returns {{query:number[], scores:number[], weights:number[]}}
+   */
+  function attention(queryIndex, headIndex, temperature, mask) {
+    var head = HEADS[headIndex].weights;
+    var kq = TOKENS[queryIndex].key;
+    var query = kq.map(function (value, d) { return value * head[d]; });
+    var root = Math.sqrt(DIMS);
+
+    var scores = TOKENS.map(function (token, i) {
+      if (mask && i > queryIndex) { return -Infinity; }
+      var dot = 0;
+      for (var d = 0; d < DIMS; d += 1) { dot += query[d] * token.key[d]; }
+      return dot / root;
+    });
+
+    var scaled = scores.map(function (s) {
+      return s === -Infinity ? -Infinity : s / temperature;
+    });
+    var finite = scaled.filter(function (s) { return s !== -Infinity; });
+    var top = Math.max.apply(null, finite);
+    var exps = scaled.map(function (s) {
+      return s === -Infinity ? 0 : Math.exp(s - top);
+    });
+    var total = exps.reduce(function (a, b) { return a + b; }, 0);
+    var weights = exps.map(function (e) { return e / total; });
+
+    return { query: query, scores: scores, weights: weights };
+  }
+
+  /* =======================================================================
+     Wiring
+     ===================================================================== */
+
+  var shell = InteractiveShell.attach("#attn");
+  if (!shell) { return; }
+
+  var $ = function (selector, scope) {
+    return (scope || document).querySelector(selector);
+  };
+
+  var querySelect = $("#query-select");
+  var headSelect = $("#head-select");
+  var maskCheck = $("#mask-check");
+  var temperatureRange = $("#temperature-range");
+
+  var tokenStrip = $("[data-tokens]");
+  var weightChart = $("[data-weight-chart]");
+  var weightTable = $("[data-weight-table]");
+  var chartCaption = $("[data-chart-caption]");
+  var weightSummary = $("[data-weight-summary]");
+  var weightText = $("[data-weight-text]");
+  var weightNote = $("[data-weight-note]");
+  var formulaText = $("[data-formula-text]");
+  var provenance = $("[data-provenance]");
+
+  var humanSection = $("#human");
+  var machineSection = $("#machine");
+  var humanForm = $("#human-form");
+  var humanItems = $("[data-human-items]");
+  var humanError = $("[data-human-error]");
+  var humanFeedback = $("[data-human-feedback]");
+  var humanReflection = $("[data-human-reflection]");
+  var humanReadout = $("[data-human-readout]");
+  var humanText = $("[data-human-text]");
+  var humanNote = $("[data-human-note]");
+
+  var openingForm = $("#opening-form");
+  var openingError = $("[data-opening-error]");
+  var openingFeedback = $("[data-opening-feedback]");
+  var skipOpening = $('[data-action="skip-opening"]');
+
+  var challengeForm = $("#challenge-form");
+  var challengeRows = $("[data-challenge-rows]");
+  var challengeFeedback = $("[data-challenge-feedback]");
+  var challengeLock = $("[data-challenge-lock]");
+  var challengeButton = $('[data-action="check-challenge"]');
+
+  var state = null;
+
+  /* =======================================================================
+     Stage 2 rendering
+     ===================================================================== */
+
+  function renderQueryOptions() {
+    clear(querySelect);
+    TOKENS.forEach(function (token, i) {
+      var option = make("option", null,
+        (i + 1) + " — “" + token.text + "”");
+      option.value = String(i);
+      querySelect.appendChild(option);
+    });
+    querySelect.value = String(state.query);
+  }
+
+  function renderTokens(result) {
+    clear(tokenStrip);
+    TOKENS.forEach(function (token, i) {
+      var item = make("li");
+      var box = make("div", "token");
+      box.setAttribute("data-query", i === state.query ? "yes" : "no");
+      box.setAttribute("data-masked",
+        (state.mask && i > state.query) ? "yes" : "no");
+      box.appendChild(make("span", "token__index", String(i + 1)));
+      box.appendChild(make("span", null, token.text));
+      box.appendChild(make("span", "token__role",
+        i === state.query ? "query"
+          : (state.mask && i > state.query) ? "masked"
+            : pct(result.weights[i])));
+      item.appendChild(box);
+      tokenStrip.appendChild(item);
+    });
+  }
+
+  function renderChart(result) {
+    var W = 460, H = 250;
+    var PAD_L = 104, PAD_R = 62, PAD_T = 12, PAD_B = 30;
+    var plotW = W - PAD_L - PAD_R;
+    var plotH = H - PAD_T - PAD_B;
+    var rowH = plotH / TOKENS.length;
+    var barH = Math.min(15, rowH * 0.72);
+    clear(weightChart);
+
+    var xAt = function (p) { return PAD_L + p * plotW; };
+
+    svgNode("line", { x1: PAD_L, y1: PAD_T, x2: PAD_L, y2: PAD_T + plotH,
+      class: "chart__baseline" }, weightChart);
+    [0, 0.5, 1].forEach(function (p) {
+      svgNode("text", { x: xAt(p).toFixed(1), y: H - 14, "text-anchor": "middle",
+        class: "chart__axis" }, weightChart)
+        .textContent = Math.round(p * 100) + "%";
+    });
+    svgNode("text", { x: (PAD_L + plotW / 2).toFixed(1), y: H - 1,
+      "text-anchor": "middle", class: "chart__axis" }, weightChart)
+      .textContent = "Weight (all ten sum to 100%)";
+
+    TOKENS.forEach(function (token, i) {
+      var y = PAD_T + i * rowH + (rowH - barH) / 2;
+      svgNode("text", { x: PAD_L - 8, y: (y + barH / 2 + 4).toFixed(1),
+        "text-anchor": "end", class: "chart__label" }, weightChart)
+        .textContent = (i + 1) + " " + token.text;
+
+      if (state.mask && i > state.query) {
+        svgNode("text", { x: PAD_L + 6, y: (y + barH / 2 + 4).toFixed(1),
+          class: "chart__count" }, weightChart).textContent = "masked — weight 0";
+        return;
+      }
+
+      var width = Math.max(1, xAt(result.weights[i]) - PAD_L);
+      svgNode("rect", { x: PAD_L, y: y.toFixed(1), width: width.toFixed(1),
+        height: barH, class: i === state.query ? "attn__bar--query" : "attn__bar"
+      }, weightChart);
+      if (i === state.query) {
+        svgNode("rect", { x: PAD_L - 2, y: (y - 2).toFixed(1),
+          width: (width + 4).toFixed(1), height: barH + 4, rx: 2,
+          class: "attn__outline" }, weightChart);
+      }
+      svgNode("text", { x: (PAD_L + width + 5).toFixed(1),
+        y: (y + barH / 2 + 4).toFixed(1), class: "chart__count" }, weightChart)
+        .textContent = pct(result.weights[i]) + (i === state.query ? " (query)" : "");
+    });
+  }
+
+  function renderTable(result) {
+    clear(weightTable);
+    TOKENS.forEach(function (token, i) {
+      var row = make("tr");
+      var head = make("th", null, String(i + 1));
+      head.setAttribute("scope", "row");
+      row.appendChild(head);
+      row.appendChild(make("td", null, token.text +
+        (i === state.query ? " (query)" : "")));
+      row.appendChild(make("td", null, "[" + token.key.map(function (v) {
+        return v.toFixed(2);
+      }).join(", ") + "]"));
+      row.appendChild(make("td", null,
+        result.scores[i] === -Infinity ? "masked" : result.scores[i].toFixed(3)));
+      row.appendChild(make("td", null, pct(result.weights[i])));
+      weightTable.appendChild(row);
+    });
+  }
+
+  function renderReadout(result) {
+    var head = HEADS[state.head];
+    formulaText.textContent =
+      "Q = k" + (state.query + 1) + " × [" + head.weights.join(", ") +
+      "];  score_i = (Q · k_i) ÷ √3;  weight = softmax(score ÷ " +
+      state.temperature.toFixed(2) + ")" +
+      (state.mask ? ", with positions after " + (state.query + 1) +
+        " set to minus infinity." : ".");
+
+    // Largest weight, and how concentrated the distribution is.
+    var top = 0, topIndex = 0;
+    result.weights.forEach(function (w, i) {
+      if (w > top) { top = w; topIndex = i; }
+    });
+    var entropy = 0;
+    result.weights.forEach(function (w) {
+      if (w > 0) { entropy -= w * Math.log(w); }
+    });
+    var maxEntropy = Math.log(TOKENS.length);
+    var spread = entropy / maxEntropy;
+
+    chartCaption.textContent = "Attention weights for position " +
+      (state.query + 1) + " (“" + TOKENS[state.query].text + "”), " +
+      HEADS[state.head].label.toLowerCase() + ", temperature " +
+      state.temperature.toFixed(2) + (state.mask ? ", later positions masked" : "");
+
+    // The chart's always-visible text equivalent: the same numbers in words,
+    // so nothing has to be opened to read the result. The full ten-row table
+    // sits one click away inside the same <figure>.
+    var ranked = result.weights.map(function (w, i) { return { w: w, i: i }; })
+      .sort(function (a, b) { return b.w - a.w; });
+    var maskedCount = state.mask ? TOKENS.length - 1 - state.query : 0;
+    weightSummary.textContent =
+      "In words: the three largest weights are " +
+      ranked.slice(0, 3).map(function (entry) {
+        return "position " + (entry.i + 1) + " (“" + TOKENS[entry.i].text +
+          "”) at " + pct(entry.w);
+      }).join(", ") + ". The smallest is position " +
+      (ranked[ranked.length - 1].i + 1) + " (“" +
+      TOKENS[ranked[ranked.length - 1].i].text + "”) at " +
+      pct(ranked[ranked.length - 1].w) + ". " +
+      (maskedCount
+        ? maskedCount + " later position" + (maskedCount === 1 ? " is" : "s are") +
+          " masked and carry zero weight. "
+        : "") +
+      "All ten weights sum to 100%.";
+
+    weightText.textContent =
+      "Ten non-negative numbers that sum to one. The largest is " + pct(top) +
+      ", on position " + (topIndex + 1) + " (“" + TOKENS[topIndex].text +
+      "”). The distribution is " +
+      (spread > 0.92 ? "almost perfectly flat: every position is being weighted "
+        + "at close to a tenth, which is what a softmax does when the scores "
+        + "barely differ."
+        : spread > 0.75 ? "fairly spread out: several positions carry "
+          + "substantial weight."
+          : "concentrated: most of the mass is on one or two positions.") +
+      " Nothing in that sentence describes an act. It describes a dot product " +
+      "and a normalisation.";
+
+    weightNote.textContent =
+      "This is the whole operation as implemented here. A real attention layer " +
+      "would now use these ten numbers as coefficients in a weighted sum of " +
+      "ten value vectors, which this page does not have, and would do so in " +
+      "many heads across many layers. The weights are not the output, and they " +
+      "are not the reason for the output.";
+  }
+
+  function renderProvenance() {
+    clear(provenance);
+    provenance.appendChild(make("p", null,
+      "Every number on this page was written by hand. The ten key vectors and " +
+      "the three heads were chosen so that the three presets would produce " +
+      "three clearly different pictures — one that looks like a model working " +
+      "out a referent, one that is nothing but recency, and one that is almost " +
+      "uniform."));
+    provenance.appendChild(make("p", null,
+      "That matters in two ways. First, the apparent meaningfulness of the " +
+      "first preset is manufactured: the author decided which token would win, " +
+      "then chose numbers that made it win. Second, the three coordinates are " +
+      "printed as three numbers and are never given names, because naming a " +
+      "coordinate after the thing it appears to track is exactly the " +
+      "interpretive error to avoid."));
+    provenance.appendChild(make("p", null,
+      "In a real model these numbers are learned from data by gradient descent. " +
+      "Nobody chooses what a coordinate means, many heads produce patterns that " +
+      "resist description altogether, and the same head can produce quite " +
+      "different patterns on sentences that differ in ways nobody has a name " +
+      "for."));
+
+    var list = make("ul");
+    HEADS.forEach(function (head) {
+      list.appendChild(make("li", null,
+        head.label + ": multipliers [" + head.weights.join(", ") +
+        "] applied elementwise to the query token's key vector."));
+    });
+    provenance.appendChild(list);
+  }
+
+  function recompute(announce) {
+    var result = attention(state.query, state.head, state.temperature, state.mask);
+    renderTokens(result);
+    renderChart(result);
+    renderTable(result);
+    renderReadout(result);
+    if (announce) {
+      var top = 0, topIndex = 0;
+      result.weights.forEach(function (w, i) {
+        if (w > top) { top = w; topIndex = i; }
+      });
+      shell.announce("Recomputed. Largest weight " + pct(top) +
+        " on position " + (topIndex + 1) + ", “" + TOKENS[topIndex].text + "”.");
+    }
+  }
+
+  /* =======================================================================
+     Controls
+     ===================================================================== */
+
+  querySelect.addEventListener("change", function () {
+    state.query = Number(querySelect.value);
+    recompute(true);
+  });
+
+  headSelect.addEventListener("change", function () {
+    state.head = Number(headSelect.value);
+    recompute(true);
+  });
+
+  maskCheck.addEventListener("change", function () {
+    state.mask = maskCheck.checked;
+    recompute(true);
+  });
+
+  shell.bindRange("#temperature-range", {
+    format: function (value) { return value.toFixed(2); },
+    describe: function (value) {
+      return value < 0.8 ? value.toFixed(2) + ", concentrating the weights"
+        : value > 1.4 ? value.toFixed(2) + ", flattening the weights"
+          : value.toFixed(2) + ", the standard softmax";
+    },
+    onInput: function (value) {
+      if (!state) { return; }
+      state.temperature = value;
+      recompute(false);
+    }
+  });
+
+  function applyPreset(query, head, temperature, mask, message) {
+    state.query = query;
+    state.head = head;
+    state.temperature = temperature;
+    state.mask = mask;
+    querySelect.value = String(query);
+    headSelect.value = String(head);
+    maskCheck.checked = mask;
+    temperatureRange.value = String(temperature);
+    $("[data-temperature-output]").textContent = temperature.toFixed(2);
+    recompute(false);
+    shell.announce(message, { immediate: true });
+  }
+
+  $('[data-action="preset-referent"]').addEventListener("click", function () {
+    applyPreset(6, 0, 0.6, false,
+      "Preset loaded: position 7, head A, temperature 0.60. The largest " +
+      "weight lands on “lorry”. The numbers that make it do so were written " +
+      "by hand.");
+  });
+
+  $('[data-action="preset-recency"]').addEventListener("click", function () {
+    applyPreset(6, 1, 0.6, true,
+      "Preset loaded: position 7, head B, masked. The weights fall on the " +
+      "immediately preceding positions, which is a property of the " +
+      "coordinates and the mask rather than of the sentence.");
+  });
+
+  $('[data-action="preset-flat"]').addEventListener("click", function () {
+    applyPreset(6, 2, 2.5, false,
+      "Preset loaded: position 7, head C, temperature 2.50. Every position " +
+      "is weighted at close to a tenth, and there is nothing to interpret.");
+  });
+
+  /* =======================================================================
+     Opening prediction
+     ===================================================================== */
+
+  var OPENING = {
+    "nothing-much": {
+      tone: "good", verdict: "That is the position this page will end at.",
+      text: "Two processes producing the same output is not evidence that they " +
+        "are the same process, and it is not evidence that either explains the " +
+        "other. Hold onto that while you do the next two stages."
+    },
+    "same-mechanism": {
+      tone: "caution", verdict: "That is the inference to watch for.",
+      text: "It is the most natural reading and it does not follow. You will " +
+        "compute the weights yourself in stage 2; when you have, ask what in " +
+        "the arithmetic could correspond to the thing you did in stage 1."
+    },
+    explains: {
+      tone: "caution", verdict: "This is the specific error the debrief is about.",
+      text: "Attention weights are one factor in one operation in one layer. " +
+        "They can be altered substantially without altering the output, and " +
+        "identical outputs can arise from very different weights. A heatmap is " +
+        "easy to look at, which is exactly why it is over-read."
+    },
+    attention: {
+      tone: "caution", verdict: "The word is doing the work here, not the evidence.",
+      text: "“Paying attention in the ordinary sense” implies an agent, a focus " +
+        "and something it is like to have one. The operation is a dot product " +
+        "followed by a normalisation. Watch the arithmetic in stage 2 and see " +
+        "where the agent would have to be."
+    }
+  };
+
+  function unlockHuman(message) {
+    humanSection.hidden = false;
+    shell.announce(message, { immediate: true });
+    $("#human-heading").focus();
+  }
+
+  openingForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answer = $('input[name="opening"]:checked', openingForm);
+    if (!answer) {
+      openingError.textContent = "Choose one of the four answers before starting.";
+      openingError.hidden = false;
+      return;
+    }
+    openingError.hidden = true;
+    var response = OPENING[answer.value];
+    showFeedback(openingFeedback, response.tone, response.verdict, response.text);
+    lockForm(openingForm);
+    unlockHuman("Stage 1 unlocked: two sentences, nothing timed.");
+  });
+
+  skipOpening.addEventListener("click", function () {
+    openingError.hidden = true;
+    showFeedback(openingFeedback, "neutral", "Prediction skipped.",
+      "Stage 1 is unlocked. From the front, run stage 1 with the room first " +
+      "and only then open stage 2 — the order matters, because it is much " +
+      "harder to over-read the weights when you have just done the human task.");
+    lockForm(openingForm);
+    unlockHuman("Prediction skipped. Stage 1 unlocked.");
+  });
+
+  /* =======================================================================
+     Stage 1
+     ===================================================================== */
+
+  function renderHumanItems() {
+    clear(humanItems);
+    SENTENCES.forEach(function (sentence, index) {
+      var wrap = make("div", "sentence-item");
+
+      var text = make("p", "sentence-item__text");
+      text.appendChild(document.createTextNode(sentence.before));
+      text.appendChild(make("strong", "sentence-item__pronoun",
+        "“" + sentence.pronoun + "”"));
+      text.appendChild(document.createTextNode(sentence.after));
+      wrap.appendChild(text);
+
+      var group = make("fieldset", "prediction__group");
+      var legend = make("legend", "prediction__legend",
+        "Sentence " + (index + 1) + ": what does “" + sentence.pronoun +
+        "” refer to?");
+      group.appendChild(legend);
+      sentence.options.concat(["I genuinely cannot tell"]).forEach(function (option) {
+        var label = make("label", "control--choice");
+        var input = document.createElement("input");
+        input.type = "radio";
+        input.name = "referent-" + sentence.id;
+        input.value = option;
+        label.appendChild(input);
+        label.appendChild(make("span", null, option));
+        group.appendChild(label);
+      });
+      wrap.appendChild(group);
+      humanItems.appendChild(wrap);
+    });
+  }
+
+  humanForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answers = SENTENCES.map(function (sentence) {
+      var checked = $('input[name="referent-' + sentence.id + '"]:checked', humanForm);
+      return checked ? checked.value : null;
+    });
+    if (answers.indexOf(null) !== -1) {
+      humanError.textContent = "Answer both sentences before continuing.";
+      humanError.hidden = false;
+      return;
+    }
+    humanError.hidden = true;
+    state.humanAnswers = answers;
+
+    var switched = answers[0] !== answers[1];
+    showFeedback(humanFeedback, switched ? "good" : "caution",
+      switched ? "Your two answers differ." : "Your two answers are the same.",
+      switched
+        ? "The last three words changed your answer. Nothing around “it” " +
+          "changed."
+        : "Most people answer differently, because the last three words are " +
+          "what make one reading sensible.");
+
+    clear(humanReadout);
+    SENTENCES.forEach(function (sentence, i) {
+      var cell = make("div");
+      cell.appendChild(make("dt", null, "Sentence " + (i + 1) +
+        " (“…" + sentence.after.trim() + "”)"));
+      cell.appendChild(make("dd", null, answers[i]));
+      humanReadout.appendChild(cell);
+    });
+
+    humanText.textContent =
+      "You used the sentence as a whole to resolve the pronoun, in about a " +
+      "second, and you can say what you decided. Hold on to those two " +
+      "properties — fast, and reportable. Now compute the machine-side " +
+      "operation on the same sentence.";
+
+    humanNote.textContent =
+      SENTENCES[0].why + " " + SENTENCES[1].why +
+      " This stage shows that you did it and could report it, not how.";
+
+    humanReflection.hidden = false;
+    machineSection.hidden = false;
+    state.humanDone = true;
+    maybeUnlockChallenge();
+    lockForm(humanForm);
+    recompute(false);
+    shell.announce("Stage 2 unlocked: the same sentence, as ten token positions.",
+      { immediate: true });
+    $("#machine-heading").focus();
+  });
+
+  /* =======================================================================
+     Stage 3 — the sorting challenge
+     ===================================================================== */
+
+  var CHALLENGE_ITEMS = [
+    {
+      id: "capacity",
+      text: "Selecting one thing comes at a measurable cost to processing something else at the same time.",
+      answer: "human",
+      why: "Human only. Dual-task costs are among the most reliable findings in " +
+        "the field. Spreading a softmax evenly across ten positions costs " +
+        "exactly the same arithmetic as concentrating it on one — there is no " +
+        "quantity that gets used up."
+    },
+    {
+      id: "report",
+      text: "The system can produce a report of what it selected, and that report is evidence about an experience.",
+      answer: "human",
+      why: "Human only, and even there the relationship between report and " +
+        "experience is argued about. A language model can emit a sentence about " +
+        "its own weights, but that sentence is generated text, not a report of " +
+        "anything the system underwent."
+    },
+    {
+      id: "simplex",
+      text: "It is a set of non-negative numbers over a fixed set of positions that sum to exactly one.",
+      answer: "machine",
+      why: "The transformer operation, by definition — that is what the softmax " +
+        "guarantees. Human attention has no such normalisation; there is no " +
+        "sense in which a person's selection over a scene sums to one."
+    },
+    {
+      id: "inspectable",
+      text: "Where it went can be read off the system's internal state completely and exactly.",
+      answer: "machine",
+      why: "The transformer operation only. You have just read all ten weights " +
+        "to one decimal place. Human selection is inferred from responses, " +
+        "errors, eye position and electrophysiology, and every one of those " +
+        "inferences is contested. Note that being fully inspectable does not " +
+        "make the weights an explanation — see the next row."
+    },
+    {
+      id: "context",
+      text: "What gets weighted depends on what came earlier in the sequence, not only on the current input.",
+      answer: "both",
+      why: "Both, and this is one of the two places the analogy genuinely holds. " +
+        "Human selection is shaped by expectation, recent experience and the " +
+        "current task; a transformer's weights are a function of the preceding " +
+        "tokens, and under a causal mask of nothing else."
+    },
+    {
+      id: "constraint",
+      text: "It is a way of allocating something limited, so that not everything can count equally.",
+      answer: "both",
+      why: "Both, and this is the other genuine rhyme — but state it carefully. " +
+        "The constraints are different in kind: one is a limit on a biological " +
+        "system operating in real time, the other is the shape of a matrix that " +
+        "must produce one output vector per position. What is shared is only " +
+        "the formal structure of an allocation problem."
+    },
+    {
+      id: "explanation",
+      text: "A picture of it constitutes a complete explanation of why the system produced the output it did.",
+      answer: "neither",
+      why: "Neither. On the machine side, weights can be altered substantially " +
+        "without altering the output, and identical outputs arise from very " +
+        "different weight patterns. On the human side, an eye-movement record " +
+        "is not a reason for a decision either. The error is the same error in " +
+        "both literatures."
+    },
+    {
+      id: "eyes",
+      text: "It can be measured by tracking where the eyes are pointing.",
+      answer: "neither",
+      why: "Neither, which surprises people. A transformer has no eyes. And in " +
+        "the human case, eye position is a measure of OVERT orienting only: " +
+        "covert attention moves without the eyes, which is the entire point of " +
+        "the spatial-cueing paradigm elsewhere in this module."
+    }
+  ];
+
+  var CHALLENGE_OPTIONS = [
+    ["", "Choose…"],
+    ["human", "Human experimental attention"],
+    ["machine", "Transformer attention weights"],
+    ["both", "Both"],
+    ["neither", "Neither"]
+  ];
+
+  function renderChallenge() {
+    clear(challengeRows);
+    CHALLENGE_ITEMS.forEach(function (item) {
+      var row = make("tr");
+      var head = make("th", null, item.text);
+      head.setAttribute("scope", "row");
+      row.appendChild(head);
+      var cell = make("td");
+      var select = make("select");
+      select.id = "sort-" + item.id;
+      var label = make("label", "visually-hidden",
+        "This statement is true of: " + item.text);
+      label.setAttribute("for", select.id);
+      CHALLENGE_OPTIONS.forEach(function (option) {
+        var node = make("option", null, option[1]);
+        node.value = option[0];
+        select.appendChild(node);
+      });
+      cell.appendChild(label);
+      cell.appendChild(select);
+      cell.appendChild(make("span", "challenge__mark", ""));
+      row.appendChild(cell);
+      challengeRows.appendChild(row);
+    });
+  }
+
+  function maybeUnlockChallenge() {
+    if (!state.humanDone) { return; }
+    challengeLock.hidden = true;
+    challengeButton.disabled = false;
+  }
+
+  challengeForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answered = 0, right = 0;
+    CHALLENGE_ITEMS.forEach(function (item) {
+      var select = $("#sort-" + item.id, challengeForm);
+      var mark = select.parentNode.querySelector(".challenge__mark");
+      if (!select.value) { mark.textContent = "Not answered yet."; return; }
+      answered += 1;
+      var correct = select.value === item.answer;
+      if (correct) { right += 1; }
+      mark.textContent = correct ? "Correct." : "Not this one.";
+    });
+
+    if (!answered) {
+      showFeedback(challengeFeedback, "caution", "Nothing chosen yet.",
+        "Answer at least one. For each statement, ask what would have to exist " +
+        "for it to be true — an experience, a cost, a normalisation, an eye.");
+      return;
+    }
+
+    showFeedback(challengeFeedback,
+      right === CHALLENGE_ITEMS.length ? "good" : "caution",
+      right + " of " + CHALLENGE_ITEMS.length + " correct" +
+      (answered < CHALLENGE_ITEMS.length
+        ? " (" + (CHALLENGE_ITEMS.length - answered) + " left blank)." : "."),
+      "Two statements are true of both and two of neither. Those four are the " +
+      "useful ones: the “both” pair marks where the analogy actually holds, and " +
+      "the “neither” pair marks two errors that are made in both literatures at " +
+      "once.");
+
+    var list = make("ul");
+    CHALLENGE_ITEMS.forEach(function (item) {
+      var li = make("li");
+      li.appendChild(make("strong", null, "“" + item.text + "” "));
+      li.appendChild(document.createTextNode(item.why));
+      list.appendChild(li);
+    });
+    challengeFeedback.appendChild(list);
+
+    shell.announce("Sorting challenge marked: " + right + " of " +
+      CHALLENGE_ITEMS.length + " correct.", { immediate: true });
+  });
+
+  /* =======================================================================
+     Helpers
+     ===================================================================== */
+
+  function showFeedback(container, tone, verdict, text) {
+    clear(container);
+    container.setAttribute("data-tone", tone);
+    var p = make("p");
+    p.appendChild(make("strong", "feedback__verdict", verdict));
+    if (text) { p.appendChild(document.createTextNode(" " + text)); }
+    container.appendChild(p);
+    container.hidden = false;
+  }
+
+  function lockForm(form) {
+    Array.prototype.forEach.call(form.querySelectorAll("input, button"),
+      function (control) { control.disabled = true; });
+  }
+
+  function unlockForm(form) {
+    Array.prototype.forEach.call(form.querySelectorAll("input, button"),
+      function (control) { control.disabled = false; });
+    form.reset();
+  }
+
+  /* =======================================================================
+     Reset
+     ===================================================================== */
+
+  shell.onReset(function () {
+    state = {
+      query: DEFAULTS.query,
+      head: DEFAULTS.head,
+      temperature: DEFAULTS.temperature,
+      mask: DEFAULTS.mask,
+      humanAnswers: [],
+      humanDone: false
+    };
+
+    unlockForm(openingForm);
+    unlockForm(humanForm);
+    openingFeedback.hidden = true;
+    openingError.hidden = true;
+    humanFeedback.hidden = true;
+    humanError.hidden = true;
+    humanReflection.hidden = true;
+    challengeFeedback.hidden = true;
+
+    humanSection.hidden = true;
+    machineSection.hidden = true;
+    challengeLock.hidden = false;
+    challengeButton.disabled = true;
+
+    headSelect.value = String(DEFAULTS.head);
+    maskCheck.checked = DEFAULTS.mask;
+    temperatureRange.value = String(DEFAULTS.temperature);
+
+    renderQueryOptions();
+    renderHumanItems();
+    renderChallenge();
+    renderProvenance();
+    recompute(false);
+  });
+
+  /* =======================================================================
+     Start-up
+     ===================================================================== */
+
+  shell.reset({ silent: true });
+  shell.announce(
+    "Ready. Nothing on this page is timed and nothing moves. Stage 2 computes " +
+    "ten numbers that sum to one; it does not run a model.",
+    { immediate: true });
+})();
+
+</script>
+</div>

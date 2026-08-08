@@ -1,0 +1,2875 @@
+<!-- Cohen's d and Distributional Overlap
+     From Open Psychology Interactives - https://github.com/utman5454/open-psychology-interactives
+     Self-contained: no stylesheets, scripts, fonts, images or network requests.
+     Styles are scoped to .opi-activity and do not affect the page around them.
+     Nothing is saved, sent or tracked. MIT licensed; please keep this notice.
+     Paste anywhere that accepts HTML, or save as a .html file and open it. -->
+<div class="opi-activity">
+<style>
+/* Defensive baseline. See scripts/build-standalone.py for why this
+   is `revert` rather than an enumerated reset, and how the specificity ladder
+   keeps the activity's own styling on top of it. */
+.opi-activity *:not(svg *) {
+  all: revert;
+}
+.opi-activity, .opi-activity *, .opi-activity *::before, .opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  text-transform: none;
+  text-indent: 0;
+  font-style: normal;
+  font-variant: normal;
+  letter-spacing: normal;
+  word-spacing: normal;
+  white-space: normal;
+  visibility: visible;
+  float: none;
+  max-width: none;
+}
+.opi-activity svg { max-width: 100%; }
+.opi-activity img { max-width: 100%; height: auto; }
+.opi-activity [hidden] { display: none !important; }
+
+/* assets/css/main.css */
+.opi-activity.opi-activity {
+  --colour-page: #ffffff;
+  --colour-surface: #f5f7fa;
+  --colour-surface-raised: #ffffff;
+  --colour-border: #d3d9e2;
+  --colour-border-strong: #aeb7c4;
+  --colour-text: #131820;
+  --colour-text-muted: #4c566a;
+  --colour-accent: #1a4fa0;
+  --colour-accent-hover: #123a7a;
+  --colour-accent-soft: #e8eefb;
+  --colour-on-accent: #ffffff;
+  --colour-focus: #b45309;
+  --colour-cognitive: #8a4b00;
+  --colour-research-methods: #1a4fa0;
+  --colour-neuropsychology: #145c53;
+  --colour-social-critical-psychology: #9e2f45;
+  --colour-personality-individual-differences: #7a2e6d;
+  --colour-status-bg: #f1ede3;
+  --colour-status-text: #5c4a1f;
+  --colour-status-border: #d9cdb0;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  --text-xs: 13px;
+  --text-sm: 15px;
+  --text-base: 17px;
+  --text-lg: 19px;
+  --text-xl: 23px;
+  --text-2xl: 28px;
+  --text-3xl: 36px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgb(19 24 32 / 0.06);
+  --shadow-md: 0 2px 8px rgb(19 24 32 / 0.08);
+  --measure: 68ch;
+  --container: 1152px;
+}
+@media (prefers-color-scheme: dark) {
+.opi-activity.opi-activity {
+  --colour-page: #0f141b;
+  --colour-surface: #161d27;
+  --colour-surface-raised: #1a2230;
+  --colour-border: #2c3644;
+  --colour-border-strong: #44506180;
+  --colour-text: #e9edf3;
+  --colour-text-muted: #a8b2c1;
+  --colour-accent: #8fb6ff;
+  --colour-accent-hover: #b3cdff;
+  --colour-accent-soft: #1b2740;
+  --colour-on-accent: #0f141b;
+  --colour-focus: #f0b429;
+  --colour-cognitive: #e2ab5f;
+  --colour-research-methods: #8fb6ff;
+  --colour-neuropsychology: #6fc3b4;
+  --colour-social-critical-psychology: #f19aa8;
+  --colour-personality-individual-differences: #db9ccd;
+  --colour-status-bg: #241f14;
+  --colour-status-text: #e2cf9f;
+  --colour-status-border: #4a4028;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 2px 10px rgb(0 0 0 / 0.45);
+}
+}
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity.opi-activity {
+  -webkit-text-size-adjust: 100%;
+}
+.opi-activity.opi-activity {
+  background-color: var(--colour-page);
+  color: var(--colour-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.65;
+}
+.opi-activity.opi-activity h1,
+.opi-activity.opi-activity h2,
+.opi-activity.opi-activity h3,
+.opi-activity.opi-activity h4 {
+  margin: 0 0 var(--space-3);
+  line-height: 1.25;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.opi-activity.opi-activity h1 {
+  font-size: var(--text-3xl);
+}
+.opi-activity.opi-activity h2 {
+  font-size: var(--text-2xl);
+}
+.opi-activity.opi-activity h3 {
+  font-size: var(--text-xl);
+}
+.opi-activity.opi-activity h4 {
+  font-size: var(--text-lg);
+}
+.opi-activity.opi-activity p,
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol,
+.opi-activity.opi-activity dl {
+  margin: 0 0 var(--space-4);
+}
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol {
+  padding-left: 1.35em;
+}
+.opi-activity.opi-activity li + li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity a {
+  color: var(--colour-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: max(1px, 0.06em);
+}
+.opi-activity.opi-activity a:hover {
+  color: var(--colour-accent-hover);
+  text-decoration-thickness: max(2px, 0.11em);
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid var(--colour-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+@supports not selector(:focus-visible) {
+.opi-activity.opi-activity :focus {
+  outline: 3px solid var(--colour-focus);
+    outline-offset: 2px;
+}
+}
+.opi-activity.opi-activity code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.35em;
+}
+.opi-activity.opi-activity hr {
+  border: 0;
+  border-top: 1px solid var(--colour-border);
+  margin: var(--space-6) 0;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+}
+.opi-activity.opi-activity .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.opi-activity.opi-activity .container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+@media (min-width: 40em) {
+.opi-activity.opi-activity .container {
+  padding-inline: var(--space-5);
+}
+}
+.opi-activity.opi-activity .prose {
+  max-width: var(--measure);
+}
+.opi-activity.opi-activity .text-muted {
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .section {
+  padding-block: var(--space-7);
+}
+.opi-activity.opi-activity .section--tinted {
+  background-color: var(--colour-surface);
+  border-block: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .section__header {
+  max-width: var(--measure);
+  margin-bottom: var(--space-5);
+}
+.opi-activity.opi-activity .section__header > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-7) var(--space-6);
+  border-bottom: 1px solid var(--colour-border);
+  
+  background-image: linear-gradient(
+    180deg,
+    var(--colour-accent-soft) 0%,
+    var(--colour-page) 100%
+  );
+}
+.opi-activity.opi-activity .hero__eyebrow {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .hero h1 {
+  max-width: 20ch;
+  margin-bottom: var(--space-4);
+}
+.opi-activity.opi-activity .hero__lead {
+  max-width: var(--measure);
+  font-size: var(--text-lg);
+  color: var(--colour-text-muted);
+}
+@media (min-width: 48em) {
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-8) var(--space-7);
+}
+.opi-activity.opi-activity .hero h1 {
+  font-size: 44px;
+}
+}
+.opi-activity.opi-activity .button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  
+  min-height: 44px;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .button--primary {
+  background-color: var(--colour-accent);
+  border-color: var(--colour-accent);
+  
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--primary:hover {
+  background-color: var(--colour-accent-hover);
+  border-color: var(--colour-accent-hover);
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--secondary {
+  background-color: transparent;
+  border-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .button--secondary:hover {
+  background-color: var(--colour-surface);
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+}
+.opi-activity.opi-activity .card--cognitive {
+  --card-accent: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .card--research-methods {
+  --card-accent: var(--colour-research-methods);
+}
+.opi-activity.opi-activity .card--neuropsychology {
+  --card-accent: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .card--social-critical-psychology {
+  --card-accent: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .card--personality-individual-differences {
+  --card-accent: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 650;
+  line-height: 1.4;
+  padding: 3.2px var(--space-3);
+  border-radius: 999px;
+  border: 1px solid var(--colour-status-border);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+}
+.opi-activity.opi-activity .badge__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex: none;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed var(--colour-border-strong);
+  border-radius: var(--radius-lg);
+  background-color: var(--colour-surface);
+  padding: var(--space-5);
+  text-align: left;
+}
+.opi-activity.opi-activity .placeholder__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+}
+.opi-activity.opi-activity .placeholder > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .split {
+  display: grid;
+  gap: var(--space-6);
+}
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split {
+  grid-template-columns: 3fr 2fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .panel {
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.opi-activity.opi-activity .panel > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .panel__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .section--tinted {
+  border-block: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .hero {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .button--primary {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .button--secondary {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .button:hover {
+  border-color: Highlight;
+}
+.opi-activity.opi-activity .panel {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed CanvasText;
+}
+.opi-activity.opi-activity .badge {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .badge__dot {
+  background-color: CanvasText;
+}
+.opi-activity.opi-activity code {
+  border-color: CanvasText;
+}
+.opi-activity.opi-activity hr {
+  border-top-color: CanvasText;
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+}
+@media print {
+.opi-activity.opi-activity {
+  color: #000;
+  background: #fff;
+}
+.opi-activity.opi-activity a[href^="http"]::after {
+  content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+}
+}
+
+/* components/interactive-shell.css */
+.opi-activity.opi-activity .interactive {
+  --shell-page: var(--colour-page, #ffffff);
+  --shell-surface: var(--colour-surface, #f5f7fa);
+  --shell-raised: var(--colour-surface-raised, #ffffff);
+  --shell-border: var(--colour-border, #d3d9e2);
+  --shell-border-strong: var(--colour-border-strong, #aeb7c4);
+  --shell-text: var(--colour-text, #131820);
+  --shell-muted: var(--colour-text-muted, #4c566a);
+  --shell-accent: var(--colour-accent, #1a4fa0);
+  --shell-accent-soft: var(--colour-accent-soft, #e8eefb);
+  
+  --shell-on-accent: var(--colour-on-accent, #ffffff);
+  --shell-focus: var(--colour-focus, #b45309);
+  --shell-radius: var(--radius-lg, 12px);
+  --shell-gap: var(--space-5, 24px);
+
+  display: block;
+  background-color: var(--shell-raised);
+  color: var(--shell-text);
+  border: 1px solid var(--shell-border);
+  border-radius: var(--shell-radius);
+  
+  overflow-x: clip;
+  overflow-y: visible;
+}
+.opi-activity.opi-activity .interactive__header {
+  padding: var(--shell-gap);
+  border-bottom: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 1.25;
+}
+.opi-activity.opi-activity .interactive__brief {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--shell-muted);
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__body {
+  display: grid;
+  gap: var(--shell-gap);
+  padding: var(--shell-gap);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body {
+  grid-template-columns: minmax(240px, 320px) 1fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .interactive__controls {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__controls fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .interactive__controls legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .control {
+  display: grid;
+  gap: 5.6px;
+}
+.opi-activity.opi-activity .control + .control {
+  margin-top: 16px;
+}
+.opi-activity.opi-activity .control__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.opi-activity.opi-activity .control__label {
+  font-size: 15px;
+  font-weight: 600;
+}
+.opi-activity.opi-activity .control__value {
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--shell-accent);
+}
+.opi-activity.opi-activity .control__hint {
+  font-size: 13px;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .interactive__controls input[type="range"] {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--shell-accent);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  width: 100%;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--shell-text);
+  background-color: var(--shell-raised);
+  border: 1px solid var(--shell-border-strong);
+  border-radius: var(--radius-sm, 4px);
+}
+.opi-activity.opi-activity .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+}
+.opi-activity.opi-activity .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  accent-color: var(--shell-accent);
+  flex: none;
+}
+.opi-activity.opi-activity .interactive__stage {
+  min-height: 256px;
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-page);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body--pinned {
+  align-items: stretch;
+}
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: sticky;
+    top: 0;
+    z-index: 2;
+    
+    margin: -16px -16px 0;
+    padding: 16px 16px 12px;
+    background-color: var(--shell-page);
+    border-bottom: 1px solid var(--shell-border);
+}
+}
+@media (min-width: 52em) and (max-height: 30em) {
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: static;
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
+}
+}
+.opi-activity.opi-activity .interactive__stage > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity :where(.interactive__stage) svg,
+.opi-activity.opi-activity :where(.interactive__stage) canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+.opi-activity.opi-activity .interactive__readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout div {
+  padding: 9.6px 12px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-sm, 4px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__readout dt {
+  font-size: 13px;
+  color: var(--shell-muted);
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout dd {
+  margin: 2.4px 0 0;
+  font-size: 18px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .interactive__status {
+  margin: 0;
+  padding: 12px var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+  font-size: 15px;
+  color: var(--shell-muted);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .interactive__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+}
+.opi-activity.opi-activity .interactive__actions button {
+  min-height: 44px;
+  padding: 6.4px 20px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--shell-on-accent);
+  background-color: var(--shell-accent);
+  border: 1px solid var(--shell-accent);
+  border-radius: var(--radius-md, 8px);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  color: var(--shell-text);
+  background-color: transparent;
+  border-color: var(--shell-border-strong);
+}
+.opi-activity.opi-activity .interactive__actions button:hover {
+  filter: brightness(1.08);
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__notes > summary {
+  padding: 13.6px var(--shell-gap);
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__notes > div {
+  padding: 0 var(--shell-gap) var(--shell-gap);
+  max-width: 68ch;
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__notes > div > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity .interactive *,
+.opi-activity.opi-activity .interactive *::before,
+.opi-activity.opi-activity .interactive *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+}
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .interactive,
+.opi-activity.opi-activity .interactive__controls,
+.opi-activity.opi-activity .interactive__stage,
+.opi-activity.opi-activity .interactive__readout div {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__header {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__status,
+.opi-activity.opi-activity .interactive__actions,
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__actions button {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  border-width: 1px;
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 1;
+    color: GrayText;
+    border-color: GrayText;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__stage svg {
+  forced-color-adjust: auto;
+}
+}
+
+/* components/tool-kit.css */
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split--wide {
+  grid-template-columns: 1fr 1fr;
+}
+}
+.opi-activity.opi-activity .how-to {
+  padding-left: 19.2px;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .how-to > li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .table-scroll {
+  overflow-x: auto;
+  
+  position: relative;
+}
+.opi-activity.opi-activity .prediction {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 832px;
+}
+.opi-activity.opi-activity .prediction > *,
+.opi-activity.opi-activity .challenge > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity .prediction__group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .prediction__legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-weight: 650;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .prediction .control--choice,
+.opi-activity.opi-activity .challenge .control--choice,
+.opi-activity.opi-activity .evidence .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .prediction .control--choice input,
+.opi-activity.opi-activity .challenge .control--choice input,
+.opi-activity.opi-activity .evidence .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .prediction__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .prediction__error {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-status-border);
+  border-left: 4px solid var(--colour-status-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .prediction__readback {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .feedback[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .feedback[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .feedback[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .feedback__verdict {
+  font-weight: 700;
+}
+.opi-activity.opi-activity .verdict {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .verdict__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict__body {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .verdict__body + .verdict__body {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .verdict__note {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .verdict[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .verdict[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .goal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .goal__label {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .goal__text {
+  flex: 1 1 256px;
+}
+.opi-activity.opi-activity .goal strong {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .goal__checks {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+  display: grid;
+  gap: 2.4px;
+}
+.opi-activity.opi-activity .goal__checks > li {
+  margin-top: 0;
+  padding-left: 22.4px;
+  position: relative;
+}
+.opi-activity.opi-activity .goal__checks > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 9.6px;
+  height: 9.6px;
+  border: 2px solid var(--colour-border-strong);
+  border-radius: 2px;
+}
+.opi-activity.opi-activity .goal__checks > li[data-met="yes"]::before {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .stage-track {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .stage-track > li {
+  margin-top: 0;
+  flex: 1 1 160px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-bottom: 3px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .stage-track > li > span {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.opi-activity.opi-activity .stage-track > li[data-state="done"] {
+  border-bottom-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border-bottom-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+  color: var(--colour-text);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .stage__heading {
+  margin: 0;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .data-table,
+.opi-activity.opi-activity .chart__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .data-table th,
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table th,
+.opi-activity.opi-activity .chart__table td {
+  padding: 6.4px 9.6px;
+  border: 1px solid var(--colour-border);
+  text-align: left;
+  vertical-align: top;
+}
+.opi-activity.opi-activity .data-table thead th,
+.opi-activity.opi-activity .chart__table thead th {
+  background-color: var(--colour-surface);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table td {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__table tbody th,
+.opi-activity.opi-activity .data-table tbody th {
+  font-weight: 550;
+}
+.opi-activity.opi-activity .data-table__total > th,
+.opi-activity.opi-activity .data-table__total > td {
+  border-top: 2px solid var(--colour-border-strong);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart {
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .chart__caption {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__svg {
+  max-width: 100%;
+  height: auto;
+}
+.opi-activity.opi-activity .chart__label,
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__inline,
+.opi-activity.opi-activity .chart__axis {
+  font-family: var(--font-body);
+  fill: var(--colour-text);
+  font-size: 13px;
+}
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__axis {
+  fill: var(--colour-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: var(--colour-on-accent);
+  font-size: 12px;
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__track {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__bar {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--one {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .chart__baseline,
+.opi-activity.opi-activity .chart__grid {
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__line {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: var(--colour-personality-individual-differences);
+  stroke-dasharray: 6 4;
+}
+.opi-activity.opi-activity .chart__point {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .reveal > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .reveal__lead {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+.opi-activity.opi-activity .reveal__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(176px, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+  padding: 0;
+  list-style: none;
+}
+.opi-activity.opi-activity .reveal__figures > li {
+  margin-top: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+.opi-activity.opi-activity .reveal__figure-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .reveal__figure-value {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .challenge {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+.opi-activity.opi-activity .challenge__locked {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .panel--caution {
+  background-color: var(--colour-status-bg);
+  border-color: var(--colour-status-border);
+}
+.opi-activity.opi-activity .panel--caution li + li {
+  margin-top: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .goal,
+.opi-activity.opi-activity .verdict,
+.opi-activity.opi-activity .feedback,
+.opi-activity.opi-activity .prediction__error,
+.opi-activity.opi-activity .prediction__readback,
+.opi-activity.opi-activity .stage-track > li,
+.opi-activity.opi-activity .reveal__figures > li {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border: 2px solid Highlight;
+}
+.opi-activity.opi-activity .chart__bar,
+.opi-activity.opi-activity .chart__bar--one {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: Canvas;
+}
+.opi-activity.opi-activity .chart__line {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: Highlight;
+}
+}
+.opi-activity.opi-activity .stage__more {
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .stage__more > summary {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .stage__more[open] > summary {
+  border-bottom: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .stage__more > *:not(summary) {
+  margin: var(--space-3);
+}
+
+/* modules/research-methods/tools/15-cohens-d-overlap-explorer/tool.css */
+.opi-activity.opi-activity #overlap .interactive__controls,
+.opi-activity.opi-activity #overlap .interactive__stage {
+  min-width: 0;
+}
+.opi-activity.opi-activity #overlap .interactive__stage > * {
+  min-width: 0;
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity #overlap .interactive__body {
+  grid-template-columns: minmax(0, 304px) minmax(0, 1fr);
+}
+}
+.opi-activity.opi-activity .interactive__stage [data-overlap] {
+  max-width: 464px;
+}
+.opi-activity.opi-activity #overlap .interactive__readout {
+  grid-template-columns: repeat(auto-fit, minmax(112px, 1fr));
+  gap: 6.4px;
+}
+.opi-activity.opi-activity #overlap .interactive__readout div {
+  padding: 6.4px 8px;
+}
+.opi-activity.opi-activity #overlap .interactive__readout dd {
+  font-size: 16px;
+}
+.opi-activity.opi-activity .estimate {
+  display: grid;
+  gap: 6.4px;
+  max-width: 544px;
+}
+.opi-activity.opi-activity .estimate__label {
+  font-weight: 600;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .estimate__row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .estimate__row input[type="range"] {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 44px;
+  accent-color: var(--colour-accent);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .estimate__value {
+  flex: none;
+  min-width: 56px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-size: var(--text-lg);
+  font-weight: 650;
+  color: var(--colour-accent);
+}
+.opi-activity.opi-activity .match {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .match__text {
+  margin: 0 0 var(--space-3);
+  font-size: var(--text-sm);
+  font-style: italic;
+  max-width: 60ch;
+}
+.opi-activity.opi-activity .match__label {
+  display: block;
+  margin-bottom: 4.8px;
+  font-weight: 600;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .match select {
+  width: 100%;
+  max-width: 416px;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  font-size: var(--text-sm);
+  color: var(--colour-text);
+  background-color: var(--colour-surface-raised);
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+}
+.opi-activity.opi-activity .ov__curve-a {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .ov__curve-b {
+  fill: none;
+  stroke: var(--colour-social-critical-psychology);
+  stroke-width: 2.5;
+  stroke-dasharray: 7 4;
+}
+.opi-activity.opi-activity .ov__common {
+  fill: var(--colour-accent-soft);
+}
+.opi-activity.opi-activity .ov__hatch {
+  stroke: var(--colour-text-muted);
+  stroke-width: 1;
+  opacity: 0.55;
+}
+.opi-activity.opi-activity .ov__mean {
+  stroke: var(--colour-text-muted);
+  stroke-width: 1.2;
+  stroke-dasharray: 2 3;
+}
+.opi-activity.opi-activity .ov__axis {
+  stroke: var(--colour-border-strong);
+  stroke-width: 1;
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .ov__curve-a {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .ov__curve-b {
+  stroke: Highlight;
+}
+.opi-activity.opi-activity .ov__common {
+  fill: Canvas;
+}
+.opi-activity.opi-activity .ov__hatch {
+  stroke: CanvasText; opacity: 1;
+}
+.opi-activity.opi-activity .ov__mean {
+  stroke: GrayText;
+}
+.opi-activity.opi-activity .ov__axis {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .match {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .match select {
+  border: 1px solid ButtonText;
+}
+}
+</style>
+
+  <!-- ================= Title and purpose ================= -->
+  <section class="section card--research-methods" aria-labelledby="page-heading">
+    <div class="container">
+
+      <p class="hero__eyebrow" style="color: var(--colour-research-methods)">
+        Research Methods
+      </p>
+      <h1 id="page-heading">Cohen's d and Distributional Overlap</h1>
+      <p class="hero__lead">
+        An effect size is a statement about two whole distributions, not about
+        two averages. The picture that matters is how much of them sit on top
+        of one another &mdash; and it is almost always more than people expect.
+      </p>
+
+      <p>
+        <span class="badge">
+          <span class="badge__dot" aria-hidden="true"></span>
+          Simulated &mdash; illustrative distributions, no real group data
+        </span>
+      </p>
+
+      <div class="split split--wide">
+
+        <div class="panel">
+          <h2 class="panel__title">Learning objective</h2>
+          <p>
+            By the end you should be able to read Cohen's d as overlap
+            between two distributions, and say why sample size cannot move
+            it.
+          </p>
+          <p class="text-muted">
+            About 25 minutes. Nothing you do here is saved or sent anywhere.
+          </p>
+        </div>
+
+        <div class="panel panel--caution">
+          <h2 class="panel__title">Groups are not people</h2>
+          <p>
+            Every index on this page describes two distributions. None of them
+            says anything about any individual. Even at
+            <em>d</em>&nbsp;=&nbsp;1.0 &mdash; twice Cohen's "medium" &mdash;
+            nearly a third of the two distributions still overlaps, and
+            roughly one person in four drawn from the higher group scores
+            below a person drawn from the lower one. Sentences of the form
+            "group X are more Y" almost always overstate what an effect size
+            supports.
+          </p>
+        </div>
+
+      </div>
+
+      <ol class="how-to">
+        <li>Estimate the overlap before you see it.</li>
+        <li>Move the means apart and watch every index move together.</li>
+        <li>Change one group's spread and watch <em>d</em> change without the means moving.</li>
+        <li>Change the sample size and watch <em>d</em> refuse to move at all.</li>
+      </ol>
+
+    </div>
+  </section>
+
+  <!-- ================= Opening prediction ================= -->
+  <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="opening-heading">First, an estimate</h2>
+        <p class="prose">
+          Two fictional groups are compared on a 100-point task. Both have a
+          standard deviation of 10; their means are 50 and 58. That is
+          <em>d</em>&nbsp;=&nbsp;0.80, which Cohen's rough labels would call a
+          large effect.
+        </p>
+      </div>
+
+      <noscript>
+        <div class="placeholder">
+          <h3 class="placeholder__title">This part needs JavaScript</h3>
+          <p class="prose">
+            The curves are drawn and their overlap integrated in your browser,
+            so this part cannot run with JavaScript switched off. The rest of
+            this page is readable without it.
+          </p>
+        </div>
+      </noscript>
+
+      <form class="panel prediction" id="opening-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            What percentage of the two distributions do you think overlaps?
+          </legend>
+          <div class="estimate">
+            <label class="estimate__label" for="guess-range">
+              Your estimate of the overlap
+            </label>
+            <div class="estimate__row">
+              <input type="range" id="guess-range" min="0" max="100" step="1" value="30">
+              <output class="estimate__value" for="guess-range">30%</output>
+            </div>
+            <p class="control__hint">
+              0% would mean the two distributions share no common ground at
+              all; 100% would mean they sit exactly on top of one another.
+            </p>
+          </div>
+        </fieldset>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Lock in my estimate and open the explorer
+          </button>
+          <button class="button button--secondary" type="button" data-action="skip-opening">
+            Skip &mdash; I am demonstrating this
+          </button>
+        </div>
+
+        <div class="feedback" data-opening-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Explorer ================= -->
+  <section class="section" id="explorer-section" aria-labelledby="explorer-heading" hidden>
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="explorer-heading" tabindex="-1">The explorer</h2>
+        <p class="prose">
+          Two normal distributions on one axis. The shaded common ground is
+          the overlap, integrated numerically rather than looked up, so it
+          stays correct when you give the two groups different spreads.
+        </p>
+      </div>
+
+      <section class="interactive" id="overlap" data-interactive
+               data-reset-message="Everything cleared. Back to the opening estimate.">
+
+        <header class="interactive__header">
+          <h3 class="interactive__title">Two distributions, four ways of describing the gap</h3>
+          <p class="interactive__brief">
+            <em>d</em> counts the gap in pooled standard deviations. The other
+            three translate that into shares of people, which is what a reader
+            can actually picture.
+          </p>
+        </header>
+
+        <div class="interactive__body interactive__body--pinned">
+
+          <form class="interactive__controls" data-interactive-controls>
+
+            <fieldset>
+              <legend>The two groups</legend>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="mean-b-range">Mean of group B</label>
+                  <output class="control__value" for="mean-b-range">58</output>
+                </div>
+                <input type="range" id="mean-b-range" min="50" max="80" step="1" value="58">
+                <p class="control__hint">Group A's mean is fixed at 50.</p>
+              </div>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="sd-a-range">Standard deviation of group A</label>
+                  <output class="control__value" for="sd-a-range">10</output>
+                </div>
+                <input type="range" id="sd-a-range" min="4" max="20" step="1" value="10">
+              </div>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="sd-b-range">Standard deviation of group B</label>
+                  <output class="control__value" for="sd-b-range">10</output>
+                </div>
+                <input type="range" id="sd-b-range" min="4" max="20" step="1" value="10">
+                <p class="control__hint">
+                  Give the two groups different spreads and the pooled figure
+                  in the readout shows what <em>d</em> is dividing by.
+                </p>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Sample size &mdash; the test, not the effect</legend>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="n-range">Participants per group</label>
+                  <output class="control__value" for="n-range">30</output>
+                </div>
+                <input type="range" id="n-range" min="5" max="400" step="5" value="30">
+                <p class="control__hint">
+                  This slider cannot move <em>d</em>, the overlap or the
+                  picture. Open the disclosure under the chart to see what it
+                  does move.
+                </p>
+              </div>
+            </fieldset>
+
+          </form>
+
+          <div class="interactive__stage" data-interactive-stage>
+
+            <!-- Pinned: the two curves with the common ground shaded, and
+                 the four indices that describe it. -->
+            <div class="stage__primary">
+              <h4 class="stage__heading" data-chart-heading>Two overlapping distributions</h4>
+              <figure class="chart">
+                <figcaption class="visually-hidden">
+                  Two normal density curves on one score axis, group A as a
+                  solid line and group B as a dashed line, with the region
+                  lying under both of them shaded and hatched
+                </figcaption>
+                <svg class="chart__svg" data-overlap viewBox="0 0 460 190"
+                     aria-hidden="true" focusable="false"></svg>
+                <div class="table-scroll">
+                  <table class="chart__table">
+                    <caption class="visually-hidden">
+                      Every index of separation currently on screen, with what
+                      each one counts
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Index</th>
+                        <th scope="col">Value</th>
+                        <th scope="col">What it counts</th>
+                      </tr>
+                    </thead>
+                    <tbody data-index-table></tbody>
+                  </table>
+                </div>
+              </figure>
+              <dl class="interactive__readout" data-readout></dl>
+            </div>
+
+            <div class="verdict" data-verdict>
+              <h4 class="verdict__title">Saying it without overstating it</h4>
+              <p class="verdict__body" data-interpretation></p>
+              <p class="verdict__note" data-benchmark></p>
+            </div>
+
+            <details class="stage__more">
+              <summary>What the sample size changes, and what it does not</summary>
+              <div>
+                <p class="prose" data-n-note></p>
+                <div class="table-scroll">
+                  <table class="data-table">
+                    <caption class="visually-hidden">
+                      The effect size and the test statistic at the current
+                      settings
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Value</th>
+                        <th scope="col">Moves with n?</th>
+                      </tr>
+                    </thead>
+                    <tbody data-n-table></tbody>
+                  </table>
+                </div>
+              </div>
+            </details>
+
+          </div>
+
+        </div>
+
+        <p class="interactive__status" data-interactive-status role="status"></p>
+
+        <div class="interactive__actions">
+          <button type="button" data-action="preset-small">Cohen's "small", d = 0.2</button>
+          <button type="button" data-variant="secondary" data-action="preset-medium">
+            "Medium", d = 0.5
+          </button>
+          <button type="button" data-variant="secondary" data-action="preset-large">
+            "Large", d = 0.8
+          </button>
+          <button type="button" data-variant="secondary" data-interactive-reset>
+            Reset everything
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ================= Challenge ================= -->
+  <section class="section section--tinted" id="challenge" aria-labelledby="challenge-heading" hidden>
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="challenge-heading" tabindex="-1">Challenge &mdash; which index is being described?</h2>
+        <p class="prose">
+          Five sentences from five fictional results paragraphs. Match each one
+          to the quantity it is actually describing.
+        </p>
+      </div>
+
+      <form class="panel challenge" id="challenge-form">
+
+        <div class="match">
+          <p class="match__text">
+            "If you drew one person at random from each group, there is a 71%
+            chance the person from the second group would score higher."
+          </p>
+          <label class="match__label" for="m1">This describes</label>
+          <select id="m1">
+            <option value="">choose&hellip;</option>
+            <option value="d">Cohen's d</option>
+            <option value="ovl">The overlap coefficient</option>
+            <option value="cles">The probability of superiority</option>
+            <option value="u3">U&#8323;</option>
+            <option value="none">None of these</option>
+          </select>
+        </div>
+
+        <div class="match">
+          <p class="match__text">
+            "79% of the second group scored above the average of the first."
+          </p>
+          <label class="match__label" for="m2">This describes</label>
+          <select id="m2">
+            <option value="">choose&hellip;</option>
+            <option value="d">Cohen's d</option>
+            <option value="ovl">The overlap coefficient</option>
+            <option value="cles">The probability of superiority</option>
+            <option value="u3">U&#8323;</option>
+            <option value="none">None of these</option>
+          </select>
+        </div>
+
+        <div class="match">
+          <p class="match__text">
+            "The groups differed by 0.80 pooled standard deviations."
+          </p>
+          <label class="match__label" for="m3">This describes</label>
+          <select id="m3">
+            <option value="">choose&hellip;</option>
+            <option value="d">Cohen's d</option>
+            <option value="ovl">The overlap coefficient</option>
+            <option value="cles">The probability of superiority</option>
+            <option value="u3">U&#8323;</option>
+            <option value="none">None of these</option>
+          </select>
+        </div>
+
+        <div class="match">
+          <p class="match__text">
+            "69% of the two distributions occupied common ground."
+          </p>
+          <label class="match__label" for="m4">This describes</label>
+          <select id="m4">
+            <option value="">choose&hellip;</option>
+            <option value="d">Cohen's d</option>
+            <option value="ovl">The overlap coefficient</option>
+            <option value="cles">The probability of superiority</option>
+            <option value="u3">U&#8323;</option>
+            <option value="none">None of these</option>
+          </select>
+        </div>
+
+        <div class="match">
+          <p class="match__text">
+            "There is a 95% probability that the difference between the groups
+            is real."
+          </p>
+          <label class="match__label" for="m5">This describes</label>
+          <select id="m5">
+            <option value="">choose&hellip;</option>
+            <option value="d">Cohen's d</option>
+            <option value="ovl">The overlap coefficient</option>
+            <option value="cles">The probability of superiority</option>
+            <option value="u3">U&#8323;</option>
+            <option value="none">None of these</option>
+          </select>
+        </div>
+
+        <p class="prediction__error" data-challenge-error role="alert" hidden></p>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">Check my five</button>
+        </div>
+
+        <div class="feedback" data-challenge-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Debrief ================= -->
+  <section class="section" id="debrief" aria-labelledby="debrief-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="debrief-heading">What this demonstrates</h2>
+      </div>
+
+      <div class="split split--wide">
+
+        <div class="prose">
+          <h3><em>d</em> is a ratio, so both parts of it matter</h3>
+          <p>
+            Cohen's <em>d</em> is the difference between the means divided by
+            the pooled standard deviation. Because the denominator is in the
+            same units as the numerator, the result has no units at all, which
+            is what lets an eight-point gap on a fictional task be compared
+            with a two-second gap in a reaction-time study. It also means the
+            same raw difference produces quite different effect sizes in
+            groups of different spread &mdash; drag one group's standard
+            deviation and watch <em>d</em> move while neither mean does.
+          </p>
+
+          <h3>The sample size cannot touch it</h3>
+          <p>
+            <em>d</em> estimates a property of the populations. Collecting
+            more people gives you a better estimate of it, not a bigger one.
+            A t-statistic and a p-value, by contrast, grow with the square root
+            of n without limit, which is why a study of four hundred can
+            report an unmissable p-value for a difference nobody would notice.
+            The disclosure under the chart puts both on screen at once.
+          </p>
+
+          <h3>Overlap is the honest translation</h3>
+          <p>
+            Effect sizes in standard-deviation units are hard to picture, and
+            the conventional labels invite the picture to be much cleaner than
+            it is. At <em>d</em>&nbsp;=&nbsp;0.8, called large, 69% of the two
+            distributions still overlaps and 71% is the chance that a randomly
+            chosen member of the higher group beats a randomly chosen member
+            of the lower one &mdash; which leaves 29% going the other way.
+            Reporting the overlap alongside the effect size is the cheapest
+            available protection against overstating a finding.
+          </p>
+
+          <h3>Small, medium and large were always rough</h3>
+          <p>
+            Cohen offered those labels as a stopgap for fields with no
+            accumulated knowledge of their own, and said so. In a field with
+            a literature, the useful comparison is with other effects in the
+            same area, and in an applied context it is with a threshold of
+            practical importance decided before the data arrive. A <em>d</em>
+            of 0.2 can be transformative in a public-health intervention and
+            negligible in a laboratory task, and no benchmark table can know
+            which is which.
+          </p>
+        </div>
+
+        <aside class="panel panel--caution" aria-labelledby="limits-heading">
+          <h3 class="panel__title" id="limits-heading">
+            What this does <em>not</em> demonstrate
+          </h3>
+          <ul>
+            <li>
+              <strong>No real groups and no real measure.</strong> The
+              distributions are mathematical objects on an invented 100-point
+              scale. Nothing here describes any actual population.
+            </li>
+            <li>
+              <strong>Both distributions are normal here.</strong> The
+              overlap, the probability of superiority and U&#8323; all assume
+              that. For skewed or bounded variables the relationships between
+              them come apart, and the probability of superiority - which can
+              be estimated without any distributional assumption - is the one
+              that survives best.
+            </li>
+            <li>
+              <strong>These are population values, not estimates.</strong> A
+              <em>d</em> computed from a real sample has a confidence interval,
+              and at small n it is a wide one. It is also biased upwards,
+              which is what Hedges' correction is for.
+            </li>
+            <li>
+              <strong>An effect size is not a cause.</strong> The size of a
+              difference says nothing about what produced it, and none of
+              these indices distinguishes a manipulated difference from an
+              observed one.
+            </li>
+          </ul>
+        </aside>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+<script>
+/* ---- components/interactive-shell.js ---- */
+/* =========================================================================
+   Open Psychology Interactives — interactive shell helper
+   -------------------------------------------------------------------------
+   A very small vanilla-JS helper that every interactive in this collection
+   uses. It deliberately does *not* draw anything or know anything about
+   statistics, personality or neuropsychology. Its job is the repetitive,
+   easy-to-get-wrong accessibility plumbing:
+
+     * announcing changes through a polite live region;
+     * keeping a range slider and its <output> in step;
+     * wiring the standard Reset button;
+     * reporting the reader's reduced-motion preference.
+
+   Usage (see docs/adapting-a-tool.md for the full markup contract):
+
+       <script src="../../components/interactive-shell.js" defer><\/script>
+       <script src="tool.js" defer><\/script>
+
+       // in tool.js
+       const shell = InteractiveShell.attach('#sampling-demo');
+       shell.onReset(() => { ...restore defaults...; draw(); });
+       shell.bindRange('#sample-size', { format: n => n + ' cases' });
+       shell.announce('Sample of 25 drawn. Mean 4.8.');
+
+   Every published interactive is written against this module.
+
+   Exposed as a global (window.InteractiveShell) rather than an ES module so
+   that a single interactive folder can be opened directly from disk over
+   file:// — ES modules are blocked by CORS in that situation, plain scripts
+   are not. That constraint is the whole reason for the older syntax here.
+   ========================================================================= */
+
+(function (global) {
+  "use strict";
+
+  /* -----------------------------------------------------------------------
+     Internal helpers
+     --------------------------------------------------------------------- */
+
+  /**
+   * Accept either a CSS selector or an element and return an element.
+   * @param {string|Element} target
+   * @param {ParentNode} [scope]
+   * @returns {Element|null}
+   */
+  function resolve(target, scope) {
+    if (!target) {
+      return null;
+    }
+    if (typeof target === "string") {
+      return (scope || document).querySelector(target);
+    }
+    return target;
+  }
+
+  /**
+   * True when the reader has asked the operating system to reduce motion.
+   * Interactives should check this before animating anything — for example
+   * by drawing a sampling distribution in one step instead of animating
+   * each draw.
+   * @returns {boolean}
+   */
+  function prefersReducedMotion() {
+    return (
+      typeof global.matchMedia === "function" &&
+      global.matchMedia("(prefers-reduced-motion: reduce)").matches
+    );
+  }
+
+  /* -----------------------------------------------------------------------
+     Shell controller
+     --------------------------------------------------------------------- */
+
+  /**
+   * Attach the shell behaviour to one `.interactive` element.
+   *
+   * @param {string|Element} target  Selector or element for the shell root.
+   * @returns {object|null}  Controller, or null if the root was not found.
+   */
+  function attach(target) {
+    var root = resolve(target);
+
+    if (!root) {
+      if (global.console && console.warn) {
+        console.warn("InteractiveShell: root element not found.", target);
+      }
+      return null;
+    }
+
+    var controls = root.querySelector("[data-interactive-controls]");
+    var stage = root.querySelector("[data-interactive-stage]");
+    var status = root.querySelector("[data-interactive-status]");
+    var resetButton = root.querySelector("[data-interactive-reset]");
+    var resetHandlers = [];
+    // Every range bound with bindRange() registers its sync function here, so
+    // that reset() can refresh the visible values after the tool's own reset
+    // handlers have restored the inputs. See reset() for why this is needed.
+    var rangeSyncs = [];
+
+    /* --- Live region ----------------------------------------------------
+       The status element is marked up as role="status" (implicitly
+       aria-live="polite"). Two details matter:
+
+         1. Assistive technology only announces *changes* to a live region,
+            so writing the same string twice is silently dropped. We add a
+            trailing zero-width space on repeat messages to force an
+            announcement when a student re-runs the same action.
+         2. Announcements are debounced. A slider dragged across its range
+            fires dozens of input events; without a delay a screen reader
+            would queue every intermediate value and fall far behind.
+       ------------------------------------------------------------------ */
+
+    var announceTimer = null;
+    var lastMessage = "";
+
+    /**
+     * Announce a short sentence describing what just changed.
+     * @param {string} message
+     * @param {object} [options]
+     * @param {boolean} [options.immediate]  Skip the debounce delay. Use for
+     *   discrete actions (button presses); leave off for continuous input.
+     */
+    function announce(message, options) {
+      if (!status) {
+        return;
+      }
+
+      var text = String(message == null ? "" : message);
+      var immediate = Boolean(options && options.immediate);
+
+      if (announceTimer !== null) {
+        global.clearTimeout(announceTimer);
+        announceTimer = null;
+      }
+
+      function write() {
+        // Force a change when the text is identical to last time.
+        status.textContent = text === lastMessage ? text + "​" : text;
+        lastMessage = text;
+      }
+
+      if (immediate) {
+        write();
+      } else {
+        announceTimer = global.setTimeout(write, 350);
+      }
+    }
+
+    /* --- Reset ---------------------------------------------------------- */
+
+    /**
+     * Register a callback to run when the Reset button is pressed.
+     * Several may be registered; they run in the order added.
+     * @param {Function} handler
+     */
+    function onReset(handler) {
+      if (typeof handler === "function") {
+        resetHandlers.push(handler);
+      }
+    }
+
+    /**
+     * Run the reset handlers. Called by the button and available directly so
+     * an interactive can reset itself on first load.
+     *
+     * Bound ranges are re-synced afterwards. A reset handler restores an
+     * input by assigning to `input.value`, and assigning to a value in script
+     * does not fire an `input` event — so without this step the slider would
+     * jump back to its default while its <output> went on showing the old
+     * number. Syncing here, after the handlers have run, also means the sync
+     * sees the restored values regardless of the order things were
+     * registered in.
+     *
+     * @param {object} [options]
+     * @param {boolean} [options.silent]  Suppress the status announcement.
+     */
+    function reset(options) {
+      resetHandlers.forEach(function (handler) {
+        handler();
+      });
+      rangeSyncs.forEach(function (sync) {
+        sync();
+      });
+      if (!options || !options.silent) {
+        announce(
+          root.getAttribute("data-reset-message") ||
+            "Reset to the starting values.",
+          { immediate: true }
+        );
+      }
+    }
+
+    if (resetButton) {
+      resetButton.addEventListener("click", function (event) {
+        // Reset buttons commonly sit inside the controls <form>; stop the
+        // browser's own form reset from fighting with ours.
+        event.preventDefault();
+        reset();
+      });
+    }
+
+    /* --- Range binding --------------------------------------------------
+       Keeps a slider's <output> in step with its value. The <output> must
+       carry `for="<input id>"`, which is what associates the two for
+       assistive technology; this only handles the visible text.
+
+       Optionally sets aria-valuetext, which is how you make a screen reader
+       say "25 cases" or "medium correlation" instead of a bare "25".
+       ------------------------------------------------------------------ */
+
+    /**
+     * @param {string|Element} inputTarget  The range (or number) input.
+     * @param {object} [options]
+     * @param {Function} [options.format]  value:number -> string shown in the
+     *   <output>. Defaults to the raw value.
+     * @param {Function} [options.describe]  value:number -> string used for
+     *   aria-valuetext. Defaults to options.format.
+     * @param {Function} [options.onInput]  value:number -> void, called after
+     *   the display has been updated. Use it to redraw.
+     * @returns {HTMLInputElement|null}
+     */
+    function bindRange(inputTarget, options) {
+      var input = resolve(inputTarget, root);
+      if (!input) {
+        return null;
+      }
+
+      var settings = options || {};
+      var format =
+        typeof settings.format === "function"
+          ? settings.format
+          : function (value) {
+              return String(value);
+            };
+      var describe =
+        typeof settings.describe === "function" ? settings.describe : format;
+
+      // <output for="the-input-id"> is the conventional pairing.
+      var output = input.id
+        ? root.querySelector('output[for="' + input.id + '"]')
+        : null;
+
+      function sync() {
+        var value = Number(input.value);
+        if (output) {
+          output.textContent = format(value);
+        }
+        // Only meaningful for widgets with an implicit or explicit slider
+        // role; harmless elsewhere.
+        input.setAttribute("aria-valuetext", describe(value));
+        if (typeof settings.onInput === "function") {
+          settings.onInput(value);
+        }
+      }
+
+      input.addEventListener("input", sync);
+      // Registered so reset() can refresh the display after the tool's own
+      // reset handlers have put the input back to its default.
+      rangeSyncs.push(sync);
+      sync();
+
+      return input;
+    }
+
+    /* --- Public surface -------------------------------------------------- */
+
+    return {
+      /** The `.interactive` root element. */
+      root: root,
+      /** The controls panel, or null if the shell has none. */
+      controls: controls,
+      /** The stage element where the visualisation is drawn. */
+      stage: stage,
+      /** The live-region element. */
+      status: status,
+      announce: announce,
+      onReset: onReset,
+      reset: reset,
+      bindRange: bindRange,
+      prefersReducedMotion: prefersReducedMotion
+    };
+  }
+
+  /* -----------------------------------------------------------------------
+     Export
+     --------------------------------------------------------------------- */
+
+  global.InteractiveShell = {
+    attach: attach,
+    prefersReducedMotion: prefersReducedMotion
+  };
+})(window);
+
+/* ---- modules/research-methods/tools/15-cohens-d-overlap-explorer/tool.js ---- */
+/* =========================================================================
+   Cohen's d and Distributional Overlap Explorer
+   -------------------------------------------------------------------------
+   Two normal distributions on one axis, with the region lying under both of
+   them shaded. Four indices describe the separation, and the point of having
+   four is that only the first is in standard deviations and only the other
+   three can be pictured:
+
+       pooled SD  = sqrt(((nA-1)*sA^2 + (nB-1)*sB^2) / (nA + nB - 2))
+       d          = (meanB - meanA) / pooled SD
+       overlap    = integral of min(fA, fB)            [computed numerically]
+       P(superiority) = Phi((meanB - meanA) / sqrt(sA^2 + sB^2))
+       U3         = Phi((meanB - meanA) / sB)
+                    the share of group B above group A's mean
+
+   The overlap is INTEGRATED rather than looked up, because the familiar
+   closed form 2*Phi(-|d|/2) is only correct when the two standard deviations
+   are equal, and this tool deliberately lets them differ. A trapezoidal sum
+   over a fine grid across the plotted range is exact to well beyond the
+   precision printed.
+
+   The probability of superiority uses the exact expression for two normals
+   with possibly unequal variances, so it also stays correct when the spreads
+   are pulled apart. U3 is defined here as the share of group B scoring above
+   group A's mean, which is the reading that survives unequal spreads.
+
+   WHAT THE SAMPLE SIZE DOES
+   -------------------------
+   Nothing to any of the above. n appears only in the disclosure, where it
+   drives a two-sample t statistic and its p-value:
+
+       t = (meanB - meanA) / (pooled SD * sqrt(2/n)),   df = 2n - 2
+       p = I_{df/(df + t^2)}(df/2, 1/2)
+
+   so that the effect size can be watched holding perfectly still while the
+   p-value collapses. That is the whole reason n is a control at all.
+
+   WHAT IS NOT BEING CLAIMED
+   -------------------------
+   Every index describes two distributions and none of them describes a
+   person. Both distributions are normal, which the overlap and U3 rely on.
+   The values are population quantities, not sample estimates with intervals.
+   Cohen's small/medium/large labels are printed with the caveat he attached
+   to them himself.
+
+   No data leave the browser: no storage, no network request.
+   ========================================================================= */
+
+(function () {
+  "use strict";
+
+  var MEAN_A = 50;
+  var AXIS_LO = 10;
+  var AXIS_HI = 110;
+  var DENSITY_MAX = 0.105;   // a little above the tallest peak the sliders allow
+  var GRID = 2000;           // steps used for the overlap integral
+  var DEFAULTS = { meanB: 58, sdA: 10, sdB: 10, n: 30, guess: 30 };
+
+  /* =======================================================================
+     Distributions and tail areas
+     ===================================================================== */
+
+  /** Standard normal cumulative distribution, Abramowitz and Stegun 26.2.17. */
+  function phi(z) {
+    var sign = z < 0 ? -1 : 1;
+    var x = Math.abs(z) / Math.SQRT2;
+    var t = 1 / (1 + 0.3275911 * x);
+    var y = 1 - (((((1.061405429 * t - 1.453152027) * t) + 1.421413741) * t -
+      0.284496736) * t + 0.254829592) * t * Math.exp(-x * x);
+    return 0.5 * (1 + sign * y);
+  }
+
+  function density(x, mu, sigma) {
+    var z = (x - mu) / sigma;
+    return Math.exp(-0.5 * z * z) / (sigma * Math.sqrt(2 * Math.PI));
+  }
+
+  var LANCZOS = [
+    0.99999999999980993, 676.5203681218851, -1259.1392167224028,
+    771.32342877765313, -176.61502916214059, 12.507343278686905,
+    -0.13857109526572012, 9.9843695780195716e-6, 1.5056327351493116e-7
+  ];
+
+  function logGamma(x) {
+    if (x < 0.5) {
+      return Math.log(Math.PI / Math.sin(Math.PI * x)) - logGamma(1 - x);
+    }
+    var z = x - 1;
+    var a = LANCZOS[0];
+    var t = z + 7.5;
+    for (var i = 1; i < 9; i += 1) { a += LANCZOS[i] / (z + i); }
+    return 0.5 * Math.log(2 * Math.PI) + (z + 0.5) * Math.log(t) - t + Math.log(a);
+  }
+
+  function betacf(a, b, x) {
+    var MAXIT = 300;
+    var EPS = 3e-14;
+    var FPMIN = 1e-300;
+    var qab = a + b;
+    var qap = a + 1;
+    var qam = a - 1;
+    var c = 1;
+    var d = 1 - qab * x / qap;
+    if (Math.abs(d) < FPMIN) { d = FPMIN; }
+    d = 1 / d;
+    var h = d;
+    for (var m = 1; m <= MAXIT; m += 1) {
+      var m2 = 2 * m;
+      var aa = m * (b - m) * x / ((qam + m2) * (a + m2));
+      d = 1 + aa * d;
+      if (Math.abs(d) < FPMIN) { d = FPMIN; }
+      c = 1 + aa / c;
+      if (Math.abs(c) < FPMIN) { c = FPMIN; }
+      d = 1 / d;
+      h *= d * c;
+      aa = -(a + m) * (qab + m) * x / ((a + m2) * (qap + m2));
+      d = 1 + aa * d;
+      if (Math.abs(d) < FPMIN) { d = FPMIN; }
+      c = 1 + aa / c;
+      if (Math.abs(c) < FPMIN) { c = FPMIN; }
+      d = 1 / d;
+      var del = d * c;
+      h *= del;
+      if (Math.abs(del - 1) < EPS) { break; }
+    }
+    return h;
+  }
+
+  function betai(a, b, x) {
+    if (x <= 0) { return 0; }
+    if (x >= 1) { return 1; }
+    var bt = Math.exp(
+      logGamma(a + b) - logGamma(a) - logGamma(b) +
+      a * Math.log(x) + b * Math.log(1 - x));
+    if (x < (a + 1) / (a + b + 2)) {
+      return bt * betacf(a, b, x) / a;
+    }
+    return 1 - bt * betacf(b, a, 1 - x) / b;
+  }
+
+  /** Two-tailed p for Student's t. */
+  function tTwoTail(t, df) {
+    if (!isFinite(t)) { return 0; }
+    if (t === 0) { return 1; }
+    return betai(df / 2, 0.5, df / (df + t * t));
+  }
+
+  /* =======================================================================
+     Small DOM helpers
+     ===================================================================== */
+
+  var NS = "http://www.w3.org/2000/svg";
+
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) { node.className = className; }
+    if (text !== undefined) { node.textContent = text; }
+    return node;
+  }
+
+  function svgNode(tag, attrs) {
+    var node = document.createElementNS(NS, tag);
+    Object.keys(attrs || {}).forEach(function (key) {
+      node.setAttribute(key, String(attrs[key]));
+    });
+    return node;
+  }
+
+  function svgText(attrs, text, className) {
+    var node = svgNode("text", attrs);
+    if (className) { node.setAttribute("class", className); }
+    node.textContent = text;
+    return node;
+  }
+
+  function clear(node) {
+    while (node.firstChild) { node.removeChild(node.firstChild); }
+  }
+
+  function fmt(value, places) {
+    return value.toFixed(places === undefined ? 2 : places);
+  }
+
+  function pct(p) { return (100 * p).toFixed(0) + "%"; }
+
+  function fmtP(p) {
+    if (p < 0.0001) { return "< .0001"; }
+    if (p < 0.001) { return "< .001"; }
+    return "= " + p.toFixed(3).replace(/^0/, "");
+  }
+
+  function row(cells) {
+    var tr = make("tr");
+    cells.forEach(function (cell, i) {
+      if (i === 0) {
+        var th = make("th", null, cell);
+        th.setAttribute("scope", "row");
+        tr.appendChild(th);
+      } else {
+        tr.appendChild(make("td", null, cell));
+      }
+    });
+    return tr;
+  }
+
+  var page = document;
+  var $ = function (s, scope) { return (scope || page).querySelector(s); };
+  var $$ = function (s, scope) {
+    return Array.prototype.slice.call((scope || page).querySelectorAll(s));
+  };
+
+  function showFeedback(container, tone, verdictText, text) {
+    clear(container);
+    container.setAttribute("data-tone", tone);
+    var p = make("p");
+    p.appendChild(make("strong", "feedback__verdict", verdictText));
+    if (text) { p.appendChild(document.createTextNode(" " + text)); }
+    container.appendChild(p);
+    container.hidden = false;
+    return p;
+  }
+
+  /* =======================================================================
+     Wiring
+     ===================================================================== */
+
+  var shell = InteractiveShell.attach("#overlap");
+  if (!shell) { return; }
+
+  var meanBRange = $("#mean-b-range");
+  var sdARange = $("#sd-a-range");
+  var sdBRange = $("#sd-b-range");
+  var nRange = $("#n-range");
+  var chartHeading = $("[data-chart-heading]");
+  var ovSvg = $("[data-overlap]");
+  var indexTable = $("[data-index-table]");
+  var readout = $("[data-readout]");
+  var verdictBox = $("[data-verdict]");
+  var interpretation = $("[data-interpretation]");
+  var benchmark = $("[data-benchmark]");
+  var nNote = $("[data-n-note]");
+  var nTable = $("[data-n-table]");
+
+  var guessRange = $("#guess-range");
+  var guessOutput = $('output[for="guess-range"]');
+  var openingForm = $("#opening-form");
+  var openingFeedback = $("[data-opening-feedback]");
+  var explorerSection = $("#explorer-section");
+  var challengeSection = $("#challenge");
+
+  var challengeForm = $("#challenge-form");
+  var challengeError = $("[data-challenge-error]");
+  var challengeFeedback = $("[data-challenge-feedback]");
+
+  /* =======================================================================
+     The indices
+     ===================================================================== */
+
+  function settings() {
+    return {
+      meanB: Number(meanBRange.value),
+      sdA: Number(sdARange.value),
+      sdB: Number(sdBRange.value),
+      n: Number(nRange.value)
+    };
+  }
+
+  function indices() {
+    var s = settings();
+    var diff = s.meanB - MEAN_A;
+    // Equal group sizes here, so the pooled variance is the simple average.
+    var pooled = Math.sqrt((s.sdA * s.sdA + s.sdB * s.sdB) / 2);
+    var d = diff / pooled;
+
+    // Overlap, integrated rather than looked up: the closed form 2*Phi(-d/2)
+    // is only correct when the two standard deviations are equal.
+    var step = (AXIS_HI - AXIS_LO) / GRID;
+    var area = 0;
+    var prev = Math.min(density(AXIS_LO, MEAN_A, s.sdA),
+      density(AXIS_LO, s.meanB, s.sdB));
+    for (var i = 1; i <= GRID; i += 1) {
+      var x = AXIS_LO + i * step;
+      var current = Math.min(density(x, MEAN_A, s.sdA),
+        density(x, s.meanB, s.sdB));
+      area += 0.5 * (prev + current) * step;
+      prev = current;
+    }
+
+    var cles = phi(diff / Math.sqrt(s.sdA * s.sdA + s.sdB * s.sdB));
+    var u3 = phi(diff / s.sdB);
+    var se = pooled * Math.sqrt(2 / s.n);
+    var t = se > 0 ? diff / se : 0;
+    var df = 2 * s.n - 2;
+
+    return {
+      s: s, diff: diff, pooled: pooled, d: d, ovl: area,
+      cles: cles, u3: u3, t: t, df: df, p: tTwoTail(t, df)
+    };
+  }
+
+  /* =======================================================================
+     Drawing
+     ===================================================================== */
+
+  var PLOT = { left: 38, right: 448, top: 14, base: 150 };
+
+  function xAt(v) {
+    return PLOT.left +
+      ((v - AXIS_LO) / (AXIS_HI - AXIS_LO)) * (PLOT.right - PLOT.left);
+  }
+
+  function yAt(d) {
+    return PLOT.base - (d / DENSITY_MAX) * (PLOT.base - PLOT.top);
+  }
+
+  function renderChart(v) {
+    var s = v.s;
+    clear(ovSvg);
+
+    var steps = 220;
+    var common = [];
+    var curveA = [];
+    var curveB = [];
+    for (var i = 0; i <= steps; i += 1) {
+      var x = AXIS_LO + (AXIS_HI - AXIS_LO) * (i / steps);
+      var da = density(x, MEAN_A, s.sdA);
+      var db = density(x, s.meanB, s.sdB);
+      curveA.push([xAt(x), yAt(da)]);
+      curveB.push([xAt(x), yAt(db)]);
+      common.push([xAt(x), yAt(Math.min(da, db))]);
+    }
+
+    function toPath(points) {
+      return points.map(function (p, idx) {
+        return (idx === 0 ? "M" : "L") + fmt(p[0], 1) + " " + fmt(p[1], 1);
+      }).join(" ");
+    }
+
+    // The common ground, filled and hatched.
+    ovSvg.appendChild(svgNode("path", {
+      d: "M" + fmt(xAt(AXIS_LO), 1) + " " + PLOT.base + " " +
+        toPath(common).slice(1) + " L" + fmt(xAt(AXIS_HI), 1) + " " +
+        PLOT.base + " Z",
+      class: "ov__common"
+    }));
+    for (var hx = PLOT.left + 4; hx < PLOT.right; hx += 8) {
+      var value = AXIS_LO + ((hx - PLOT.left) / (PLOT.right - PLOT.left)) *
+        (AXIS_HI - AXIS_LO);
+      var topY = yAt(Math.min(density(value, MEAN_A, s.sdA),
+        density(value, s.meanB, s.sdB)));
+      if (PLOT.base - topY < 2) { continue; }
+      ovSvg.appendChild(svgNode("line",
+        { x1: hx, y1: PLOT.base, x2: hx, y2: topY, class: "ov__hatch" }));
+    }
+
+    ovSvg.appendChild(svgNode("path",
+      { d: toPath(curveA), class: "ov__curve-a" }));
+    ovSvg.appendChild(svgNode("path",
+      { d: toPath(curveB), class: "ov__curve-b" }));
+
+    [[MEAN_A, s.sdA, "Group A"], [s.meanB, s.sdB, "Group B"]]
+      .forEach(function (entry) {
+        var peak = density(entry[0], entry[0], entry[1]);
+        ovSvg.appendChild(svgNode("line", {
+          x1: xAt(entry[0]), y1: yAt(peak), x2: xAt(entry[0]), y2: PLOT.base,
+          class: "ov__mean"
+        }));
+        ovSvg.appendChild(svgText(
+          { x: xAt(entry[0]), y: Math.max(PLOT.top + 9, yAt(peak) - 6),
+            "text-anchor": "middle" }, entry[2], "chart__label"));
+      });
+
+    ovSvg.appendChild(svgNode("line",
+      { x1: PLOT.left, y1: PLOT.base, x2: PLOT.right, y2: PLOT.base,
+        class: "ov__axis" }));
+    for (var t = 20; t <= 110; t += 10) {
+      ovSvg.appendChild(svgNode("line",
+        { x1: xAt(t), y1: PLOT.base, x2: xAt(t), y2: PLOT.base + 4,
+          class: "ov__axis" }));
+      if (t % 20 === 0) {
+        ovSvg.appendChild(svgText(
+          { x: xAt(t), y: PLOT.base + 17, "text-anchor": "middle" },
+          String(t), "chart__axis"));
+      }
+    }
+    ovSvg.appendChild(svgText(
+      { x: (PLOT.left + PLOT.right) / 2, y: PLOT.base + 33,
+        "text-anchor": "middle" },
+      "score on the fictional 100-point task", "chart__axis"));
+  }
+
+  function renderTables(v) {
+    clear(indexTable);
+    [
+      ["Cohen's d", fmt(v.d),
+        "the gap in pooled standard deviations"],
+      ["Overlap", pct(v.ovl),
+        "the share of the two distributions on common ground"],
+      ["Probability of superiority", pct(v.cles),
+        "the chance a random B beats a random A"],
+      ["U3", pct(v.u3),
+        "the share of group B above group A's mean"]
+    ].forEach(function (cells) { indexTable.appendChild(row(cells)); });
+
+    clear(nTable);
+    [
+      ["Cohen's d", fmt(v.d), "No"],
+      ["Overlap", pct(v.ovl), "No"],
+      ["t statistic", fmt(v.t), "Yes, with the square root of n"],
+      ["Two-tailed p", "p " + fmtP(v.p), "Yes, without limit"]
+    ].forEach(function (cells) { nTable.appendChild(row(cells)); });
+
+    nNote.textContent =
+      "At " + v.s.n + " per group the same two distributions give t = " +
+      fmt(v.t) + " on " + v.df + " degrees of freedom, p " + fmtP(v.p) +
+      ". Drag the sample size from one end of its range to the other and " +
+      "watch the first two rows refuse to move while the last two travel " +
+      "across several orders of magnitude. An effect size estimates a " +
+      "property of the populations; a test statistic measures how well this " +
+      "study could see it.";
+  }
+
+  function renderReadout(v) {
+    clear(readout);
+    [
+      ["Cohen's d", fmt(v.d)],
+      ["Pooled SD", fmt(v.pooled, 1)],
+      ["Overlap", pct(v.ovl)],
+      ["Chance B beats A", pct(v.cles)]
+    ].forEach(function (pair) {
+      var cell = make("div");
+      cell.appendChild(make("dt", null, pair[0]));
+      cell.appendChild(make("dd", null, pair[1]));
+      readout.appendChild(cell);
+    });
+  }
+
+  function renderVerdict(v) {
+    var tone;
+    var text;
+    var d = Math.abs(v.d);
+
+    if (d < 0.05) {
+      tone = "neutral";
+      text =
+        "The two distributions are effectively on top of one another: d = " +
+        fmt(v.d) + ", with " + pct(v.ovl) + " overlap. Move group B's mean, " +
+        "or change one of the spreads.";
+    } else if (d < 0.5) {
+      tone = "caution";
+      text =
+        "d = " + fmt(v.d) + ". The two distributions still share " + pct(v.ovl) +
+        " of their area, and a randomly chosen member of group B beats a " +
+        "randomly chosen member of group A only " + pct(v.cles) + " of the " +
+        "time, so " + pct(1 - v.cles) + " of such pairs go the other way. " +
+        "Effects this size can matter a great deal. What they never support " +
+        "is \"group B are higher\", said about people.";
+    } else if (d < 1.0) {
+      tone = "good";
+      text =
+        "d = " + fmt(v.d) + ", the sort of figure that gets called large. The " +
+        "two distributions still overlap by " + pct(v.ovl) + "; " + pct(v.u3) +
+        " of group B sits above group A's mean, which means " + pct(1 - v.u3) +
+        " does not; and a random B beats a random A " + pct(v.cles) + " of " +
+        "the time. A reader given only d will picture something much cleaner.";
+    } else {
+      tone = "good";
+      text =
+        "d = " + fmt(v.d) + ", which is beyond almost anything reported in " +
+        "psychology outside a manipulation check. Even here the overlap is " +
+        pct(v.ovl) + " and " + pct(1 - v.cles) + " of randomly drawn pairs go " +
+        "the other way. That is worth sitting with: separations that look " +
+        "decisive as a number look thoroughly mixed as two distributions.";
+    }
+
+    interpretation.textContent = text;
+    verdictBox.setAttribute("data-tone", tone);
+
+    var label = d < 0.2 ? "below Cohen's \"small\""
+      : d < 0.5 ? "around Cohen's \"small\""
+        : d < 0.8 ? "around Cohen's \"medium\"" : "at or beyond Cohen's \"large\"";
+    var extra = "";
+    if (v.s.sdA !== v.s.sdB) {
+      extra = " The two groups have different spreads (" + v.s.sdA + " and " +
+        v.s.sdB + "), so the pooled figure of " + fmt(v.pooled, 1) +
+        " is what d is dividing by, and the overlap here is integrated rather " +
+        "than taken from the equal-variance formula.";
+    }
+    benchmark.textContent =
+      "This is " + label + ". Cohen offered those labels as a stopgap for " +
+      "fields with no accumulated findings of their own and said as much; in " +
+      "a field with a literature the useful comparison is with other effects " +
+      "in the same area, and in an applied setting it is with a threshold of " +
+      "practical importance fixed before the data arrived." + extra;
+  }
+
+  function render() {
+    var v = indices();
+    chartHeading.textContent =
+      "Group A: mean " + MEAN_A + ", SD " + v.s.sdA + "  ·  Group B: mean " +
+      v.s.meanB + ", SD " + v.s.sdB;
+    renderChart(v);
+    renderTables(v);
+    renderReadout(v);
+    renderVerdict(v);
+    return v;
+  }
+
+  /* =======================================================================
+     Controls
+     ===================================================================== */
+
+  shell.bindRange(meanBRange, {
+    format: function (v) { return String(v); },
+    describe: function (v) {
+      return "group B's mean is " + v + ", against group A's " + MEAN_A;
+    },
+    onInput: render
+  });
+
+  shell.bindRange(sdARange, {
+    format: function (v) { return String(v); },
+    describe: function (v) { return "group A has a standard deviation of " + v; },
+    onInput: render
+  });
+
+  shell.bindRange(sdBRange, {
+    format: function (v) { return String(v); },
+    describe: function (v) { return "group B has a standard deviation of " + v; },
+    onInput: render
+  });
+
+  shell.bindRange(nRange, {
+    format: function (v) { return String(v); },
+    describe: function (v) {
+      return v + " participants per group, which changes the test and not the " +
+        "effect size";
+    },
+    onInput: render
+  });
+
+  function applyPreset(meanB, label) {
+    meanBRange.value = String(meanB);
+    sdARange.value = "10";
+    sdBRange.value = "10";
+    [meanBRange, sdARange, sdBRange].forEach(function (input) {
+      input.dispatchEvent(new Event("input"));
+    });
+    var v = render();
+    shell.announce(
+      label + ": d = " + fmt(v.d) + ", overlap " + pct(v.ovl) +
+      ", and a randomly chosen member of group B beats a randomly chosen " +
+      "member of group A " + pct(v.cles) + " of the time.", { immediate: true });
+  }
+
+  $('[data-action="preset-small"]').addEventListener("click", function () {
+    applyPreset(52, "Cohen's small");
+  });
+  $('[data-action="preset-medium"]').addEventListener("click", function () {
+    applyPreset(55, "Cohen's medium");
+  });
+  $('[data-action="preset-large"]').addEventListener("click", function () {
+    applyPreset(58, "Cohen's large");
+  });
+
+  /* =======================================================================
+     Opening estimate
+     ===================================================================== */
+
+  function syncGuess() {
+    guessOutput.textContent = guessRange.value + "%";
+    guessRange.setAttribute("aria-valuetext",
+      "an estimated overlap of " + guessRange.value + " per cent");
+  }
+  guessRange.addEventListener("input", syncGuess);
+
+  function lockForm(form) {
+    $$("input, button, select", form).forEach(function (c) { c.disabled = true; });
+  }
+
+  function unlockForm(form) {
+    $$("input, button, select", form).forEach(function (c) { c.disabled = false; });
+    form.reset();
+    syncGuess();
+  }
+
+  function openExplorer() {
+    explorerSection.hidden = false;
+    challengeSection.hidden = false;
+    render();
+    $("#explorer-heading").focus();
+    shell.announce(
+      "Explorer unlocked, loaded with the two distributions from the estimate.",
+      { immediate: true });
+  }
+
+  openingForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var guess = Number(guessRange.value);
+    var truth = indices().ovl * 100;   // the defaults are the prediction scenario
+    var gap = guess - truth;
+    var tone = Math.abs(gap) <= 8 ? "good" : "caution";
+    var lead = Math.abs(gap) <= 8
+      ? "Close — the overlap is " + truth.toFixed(0) + "%."
+      : gap < 0
+        ? "The overlap is larger than that: " + truth.toFixed(0) + "%."
+        : "The overlap is smaller than that: " + truth.toFixed(0) + "%.";
+
+    showFeedback(openingFeedback, tone, lead,
+      "You estimated " + guess + "%. Two distributions a full 0.8 standard " +
+      "deviations apart still share more than two thirds of their area, which " +
+      "is why an effect size in standard deviations is such a poor guide to " +
+      "what a difference looks like. Most people estimate far too little " +
+      "overlap, and the label \"large\" is doing a good deal of that work.");
+
+    var note = make("p");
+    note.appendChild(make("strong", null, "Three more numbers for the same pair. "));
+    note.appendChild(document.createTextNode(
+      "79% of group B sits above group A's mean, so 21% does not; and if you " +
+      "drew one person at random from each group, group B's would be higher " +
+      "71% of the time. None of these is a statement about any individual."));
+    openingFeedback.appendChild(note);
+
+    lockForm(openingForm);
+    openExplorer();
+  });
+
+  $('[data-action="skip-opening"]').addEventListener("click", function () {
+    showFeedback(openingFeedback, "neutral",
+      "Estimate skipped — demonstration mode.", "");
+    lockForm(openingForm);
+    openExplorer();
+  });
+
+  /* =======================================================================
+     Challenge — match the sentence to the index
+     ===================================================================== */
+
+  var MATCHES = [
+    {
+      id: "m1", answer: "cles",
+      title: "The 71% pairwise sentence",
+      why:
+        "This is the probability of superiority, sometimes called the " +
+        "common-language effect size: the chance that a randomly drawn member " +
+        "of one group scores above a randomly drawn member of the other. It " +
+        "is the index that translates most directly into English, and the one " +
+        "that survives best when the distributions are not normal, because it " +
+        "can be counted from the data without assuming a shape."
+    },
+    {
+      id: "m2", answer: "u3",
+      title: "The 79% above-the-mean sentence",
+      why:
+        "This is U3: the share of one group lying above the other group's " +
+        "mean. It is easy to confuse with the probability of superiority " +
+        "because both are percentages of people, but they answer different " +
+        "questions - one compares a person with a mean, the other compares a " +
+        "person with a person, and at d = 0.8 they come out at 79% and 71%."
+    },
+    {
+      id: "m3", answer: "d",
+      title: "The 0.80 standard deviations sentence",
+      why:
+        "This is Cohen's d itself, and it is the only one of the four that is " +
+        "not a share of anything. That is exactly why it needs translating " +
+        "before a reader can picture it."
+    },
+    {
+      id: "m4", answer: "ovl",
+      title: "The 69% common-ground sentence",
+      why:
+        "This is the overlap coefficient: the area lying under both densities " +
+        "at once. It is the most sobering of the four, because 69% common " +
+        "ground is what a conventionally large effect looks like."
+    },
+    {
+      id: "m5", answer: "none",
+      title: "The 95% probability sentence",
+      why:
+        "None of these, and no statistic in frequentist testing means this. " +
+        "It is the reversed-conditional error: a p-value or a confidence level " +
+        "read as the probability that a hypothesis is true. It is included " +
+        "here because it appears in results paragraphs alongside genuine " +
+        "effect sizes, where it borrows their credibility."
+    }
+  ];
+
+  challengeForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var chosen = MATCHES.map(function (m) { return $("#" + m.id).value; });
+    if (chosen.some(function (v) { return !v; })) {
+      challengeError.textContent = "Match all five sentences before checking.";
+      challengeError.hidden = false;
+      return;
+    }
+    challengeError.hidden = true;
+
+    var right = MATCHES.filter(function (m, i) {
+      return chosen[i] === m.answer;
+    }).length;
+    var tone = right === 5 ? "good" : right >= 3 ? "caution" : "warn";
+
+    clear(challengeFeedback);
+    challengeFeedback.setAttribute("data-tone", tone);
+    var p = make("p");
+    p.appendChild(make("strong", "feedback__verdict", right + " of the five."));
+    p.appendChild(document.createTextNode(
+      " All four genuine indices describe the same pair of distributions, so " +
+      "they are not alternatives to one another - they are four translations " +
+      "of one fact, and a results paragraph is clearer for carrying two of " +
+      "them rather than one."));
+    challengeFeedback.appendChild(p);
+
+    var list = make("ul");
+    MATCHES.forEach(function (m, i) {
+      var li = make("li");
+      li.appendChild(make("strong", null,
+        m.title + " — " + (chosen[i] === m.answer ? "correct. " : "not this one. ")));
+      li.appendChild(document.createTextNode(m.why));
+      list.appendChild(li);
+    });
+    challengeFeedback.appendChild(list);
+    challengeFeedback.hidden = false;
+    shell.announce(right + " of the five matched correctly.", { immediate: true });
+  });
+
+  /* =======================================================================
+     Reset and start-up
+     ===================================================================== */
+
+  shell.onReset(function () {
+    unlockForm(openingForm);
+    openingFeedback.hidden = true;
+    explorerSection.hidden = true;
+    challengeSection.hidden = true;
+    challengeForm.reset();
+    challengeFeedback.hidden = true;
+    challengeError.hidden = true;
+    meanBRange.value = String(DEFAULTS.meanB);
+    sdARange.value = String(DEFAULTS.sdA);
+    sdBRange.value = String(DEFAULTS.sdB);
+    nRange.value = String(DEFAULTS.n);
+    guessRange.value = String(DEFAULTS.guess);
+    syncGuess();
+    render();
+  });
+
+  shell.reset({ silent: true });
+  shell.announce(
+    "Ready. Estimate the overlap above to open the explorer.",
+    { immediate: true });
+})();
+
+</script>
+</div>

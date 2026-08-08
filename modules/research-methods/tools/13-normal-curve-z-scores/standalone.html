@@ -1,0 +1,3055 @@
+<!-- The Normal Curve and z-Scores
+     From Open Psychology Interactives - https://github.com/utman5454/open-psychology-interactives
+     Self-contained: no stylesheets, scripts, fonts, images or network requests.
+     Styles are scoped to .opi-activity and do not affect the page around them.
+     Nothing is saved, sent or tracked. MIT licensed; please keep this notice.
+     Paste anywhere that accepts HTML, or save as a .html file and open it. -->
+<div class="opi-activity">
+<style>
+/* Defensive baseline. See scripts/build-standalone.py for why this
+   is `revert` rather than an enumerated reset, and how the specificity ladder
+   keeps the activity's own styling on top of it. */
+.opi-activity *:not(svg *) {
+  all: revert;
+}
+.opi-activity, .opi-activity *, .opi-activity *::before, .opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  text-transform: none;
+  text-indent: 0;
+  font-style: normal;
+  font-variant: normal;
+  letter-spacing: normal;
+  word-spacing: normal;
+  white-space: normal;
+  visibility: visible;
+  float: none;
+  max-width: none;
+}
+.opi-activity svg { max-width: 100%; }
+.opi-activity img { max-width: 100%; height: auto; }
+.opi-activity [hidden] { display: none !important; }
+
+/* assets/css/main.css */
+.opi-activity.opi-activity {
+  --colour-page: #ffffff;
+  --colour-surface: #f5f7fa;
+  --colour-surface-raised: #ffffff;
+  --colour-border: #d3d9e2;
+  --colour-border-strong: #aeb7c4;
+  --colour-text: #131820;
+  --colour-text-muted: #4c566a;
+  --colour-accent: #1a4fa0;
+  --colour-accent-hover: #123a7a;
+  --colour-accent-soft: #e8eefb;
+  --colour-on-accent: #ffffff;
+  --colour-focus: #b45309;
+  --colour-cognitive: #8a4b00;
+  --colour-research-methods: #1a4fa0;
+  --colour-neuropsychology: #145c53;
+  --colour-social-critical-psychology: #9e2f45;
+  --colour-personality-individual-differences: #7a2e6d;
+  --colour-status-bg: #f1ede3;
+  --colour-status-text: #5c4a1f;
+  --colour-status-border: #d9cdb0;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  --text-xs: 13px;
+  --text-sm: 15px;
+  --text-base: 17px;
+  --text-lg: 19px;
+  --text-xl: 23px;
+  --text-2xl: 28px;
+  --text-3xl: 36px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgb(19 24 32 / 0.06);
+  --shadow-md: 0 2px 8px rgb(19 24 32 / 0.08);
+  --measure: 68ch;
+  --container: 1152px;
+}
+@media (prefers-color-scheme: dark) {
+.opi-activity.opi-activity {
+  --colour-page: #0f141b;
+  --colour-surface: #161d27;
+  --colour-surface-raised: #1a2230;
+  --colour-border: #2c3644;
+  --colour-border-strong: #44506180;
+  --colour-text: #e9edf3;
+  --colour-text-muted: #a8b2c1;
+  --colour-accent: #8fb6ff;
+  --colour-accent-hover: #b3cdff;
+  --colour-accent-soft: #1b2740;
+  --colour-on-accent: #0f141b;
+  --colour-focus: #f0b429;
+  --colour-cognitive: #e2ab5f;
+  --colour-research-methods: #8fb6ff;
+  --colour-neuropsychology: #6fc3b4;
+  --colour-social-critical-psychology: #f19aa8;
+  --colour-personality-individual-differences: #db9ccd;
+  --colour-status-bg: #241f14;
+  --colour-status-text: #e2cf9f;
+  --colour-status-border: #4a4028;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 2px 10px rgb(0 0 0 / 0.45);
+}
+}
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity.opi-activity {
+  -webkit-text-size-adjust: 100%;
+}
+.opi-activity.opi-activity {
+  background-color: var(--colour-page);
+  color: var(--colour-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.65;
+}
+.opi-activity.opi-activity h1,
+.opi-activity.opi-activity h2,
+.opi-activity.opi-activity h3,
+.opi-activity.opi-activity h4 {
+  margin: 0 0 var(--space-3);
+  line-height: 1.25;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.opi-activity.opi-activity h1 {
+  font-size: var(--text-3xl);
+}
+.opi-activity.opi-activity h2 {
+  font-size: var(--text-2xl);
+}
+.opi-activity.opi-activity h3 {
+  font-size: var(--text-xl);
+}
+.opi-activity.opi-activity h4 {
+  font-size: var(--text-lg);
+}
+.opi-activity.opi-activity p,
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol,
+.opi-activity.opi-activity dl {
+  margin: 0 0 var(--space-4);
+}
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol {
+  padding-left: 1.35em;
+}
+.opi-activity.opi-activity li + li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity a {
+  color: var(--colour-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: max(1px, 0.06em);
+}
+.opi-activity.opi-activity a:hover {
+  color: var(--colour-accent-hover);
+  text-decoration-thickness: max(2px, 0.11em);
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid var(--colour-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+@supports not selector(:focus-visible) {
+.opi-activity.opi-activity :focus {
+  outline: 3px solid var(--colour-focus);
+    outline-offset: 2px;
+}
+}
+.opi-activity.opi-activity code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.35em;
+}
+.opi-activity.opi-activity hr {
+  border: 0;
+  border-top: 1px solid var(--colour-border);
+  margin: var(--space-6) 0;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+}
+.opi-activity.opi-activity .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.opi-activity.opi-activity .container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+@media (min-width: 40em) {
+.opi-activity.opi-activity .container {
+  padding-inline: var(--space-5);
+}
+}
+.opi-activity.opi-activity .prose {
+  max-width: var(--measure);
+}
+.opi-activity.opi-activity .text-muted {
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .section {
+  padding-block: var(--space-7);
+}
+.opi-activity.opi-activity .section--tinted {
+  background-color: var(--colour-surface);
+  border-block: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .section__header {
+  max-width: var(--measure);
+  margin-bottom: var(--space-5);
+}
+.opi-activity.opi-activity .section__header > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-7) var(--space-6);
+  border-bottom: 1px solid var(--colour-border);
+  
+  background-image: linear-gradient(
+    180deg,
+    var(--colour-accent-soft) 0%,
+    var(--colour-page) 100%
+  );
+}
+.opi-activity.opi-activity .hero__eyebrow {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .hero h1 {
+  max-width: 20ch;
+  margin-bottom: var(--space-4);
+}
+.opi-activity.opi-activity .hero__lead {
+  max-width: var(--measure);
+  font-size: var(--text-lg);
+  color: var(--colour-text-muted);
+}
+@media (min-width: 48em) {
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-8) var(--space-7);
+}
+.opi-activity.opi-activity .hero h1 {
+  font-size: 44px;
+}
+}
+.opi-activity.opi-activity .button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  
+  min-height: 44px;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .button--primary {
+  background-color: var(--colour-accent);
+  border-color: var(--colour-accent);
+  
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--primary:hover {
+  background-color: var(--colour-accent-hover);
+  border-color: var(--colour-accent-hover);
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--secondary {
+  background-color: transparent;
+  border-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .button--secondary:hover {
+  background-color: var(--colour-surface);
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+}
+.opi-activity.opi-activity .card--cognitive {
+  --card-accent: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .card--research-methods {
+  --card-accent: var(--colour-research-methods);
+}
+.opi-activity.opi-activity .card--neuropsychology {
+  --card-accent: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .card--social-critical-psychology {
+  --card-accent: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .card--personality-individual-differences {
+  --card-accent: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 650;
+  line-height: 1.4;
+  padding: 3.2px var(--space-3);
+  border-radius: 999px;
+  border: 1px solid var(--colour-status-border);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+}
+.opi-activity.opi-activity .badge__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex: none;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed var(--colour-border-strong);
+  border-radius: var(--radius-lg);
+  background-color: var(--colour-surface);
+  padding: var(--space-5);
+  text-align: left;
+}
+.opi-activity.opi-activity .placeholder__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+}
+.opi-activity.opi-activity .placeholder > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .split {
+  display: grid;
+  gap: var(--space-6);
+}
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split {
+  grid-template-columns: 3fr 2fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .panel {
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.opi-activity.opi-activity .panel > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .panel__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .section--tinted {
+  border-block: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .hero {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .button--primary {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .button--secondary {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .button:hover {
+  border-color: Highlight;
+}
+.opi-activity.opi-activity .panel {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed CanvasText;
+}
+.opi-activity.opi-activity .badge {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .badge__dot {
+  background-color: CanvasText;
+}
+.opi-activity.opi-activity code {
+  border-color: CanvasText;
+}
+.opi-activity.opi-activity hr {
+  border-top-color: CanvasText;
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+}
+@media print {
+.opi-activity.opi-activity {
+  color: #000;
+  background: #fff;
+}
+.opi-activity.opi-activity a[href^="http"]::after {
+  content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+}
+}
+
+/* components/interactive-shell.css */
+.opi-activity.opi-activity .interactive {
+  --shell-page: var(--colour-page, #ffffff);
+  --shell-surface: var(--colour-surface, #f5f7fa);
+  --shell-raised: var(--colour-surface-raised, #ffffff);
+  --shell-border: var(--colour-border, #d3d9e2);
+  --shell-border-strong: var(--colour-border-strong, #aeb7c4);
+  --shell-text: var(--colour-text, #131820);
+  --shell-muted: var(--colour-text-muted, #4c566a);
+  --shell-accent: var(--colour-accent, #1a4fa0);
+  --shell-accent-soft: var(--colour-accent-soft, #e8eefb);
+  
+  --shell-on-accent: var(--colour-on-accent, #ffffff);
+  --shell-focus: var(--colour-focus, #b45309);
+  --shell-radius: var(--radius-lg, 12px);
+  --shell-gap: var(--space-5, 24px);
+
+  display: block;
+  background-color: var(--shell-raised);
+  color: var(--shell-text);
+  border: 1px solid var(--shell-border);
+  border-radius: var(--shell-radius);
+  
+  overflow-x: clip;
+  overflow-y: visible;
+}
+.opi-activity.opi-activity .interactive__header {
+  padding: var(--shell-gap);
+  border-bottom: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 1.25;
+}
+.opi-activity.opi-activity .interactive__brief {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--shell-muted);
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__body {
+  display: grid;
+  gap: var(--shell-gap);
+  padding: var(--shell-gap);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body {
+  grid-template-columns: minmax(240px, 320px) 1fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .interactive__controls {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__controls fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .interactive__controls legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .control {
+  display: grid;
+  gap: 5.6px;
+}
+.opi-activity.opi-activity .control + .control {
+  margin-top: 16px;
+}
+.opi-activity.opi-activity .control__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.opi-activity.opi-activity .control__label {
+  font-size: 15px;
+  font-weight: 600;
+}
+.opi-activity.opi-activity .control__value {
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--shell-accent);
+}
+.opi-activity.opi-activity .control__hint {
+  font-size: 13px;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .interactive__controls input[type="range"] {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--shell-accent);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  width: 100%;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--shell-text);
+  background-color: var(--shell-raised);
+  border: 1px solid var(--shell-border-strong);
+  border-radius: var(--radius-sm, 4px);
+}
+.opi-activity.opi-activity .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+}
+.opi-activity.opi-activity .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  accent-color: var(--shell-accent);
+  flex: none;
+}
+.opi-activity.opi-activity .interactive__stage {
+  min-height: 256px;
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-page);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body--pinned {
+  align-items: stretch;
+}
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: sticky;
+    top: 0;
+    z-index: 2;
+    
+    margin: -16px -16px 0;
+    padding: 16px 16px 12px;
+    background-color: var(--shell-page);
+    border-bottom: 1px solid var(--shell-border);
+}
+}
+@media (min-width: 52em) and (max-height: 30em) {
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: static;
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
+}
+}
+.opi-activity.opi-activity .interactive__stage > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity :where(.interactive__stage) svg,
+.opi-activity.opi-activity :where(.interactive__stage) canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+.opi-activity.opi-activity .interactive__readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout div {
+  padding: 9.6px 12px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-sm, 4px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__readout dt {
+  font-size: 13px;
+  color: var(--shell-muted);
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout dd {
+  margin: 2.4px 0 0;
+  font-size: 18px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .interactive__status {
+  margin: 0;
+  padding: 12px var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+  font-size: 15px;
+  color: var(--shell-muted);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .interactive__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+}
+.opi-activity.opi-activity .interactive__actions button {
+  min-height: 44px;
+  padding: 6.4px 20px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--shell-on-accent);
+  background-color: var(--shell-accent);
+  border: 1px solid var(--shell-accent);
+  border-radius: var(--radius-md, 8px);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  color: var(--shell-text);
+  background-color: transparent;
+  border-color: var(--shell-border-strong);
+}
+.opi-activity.opi-activity .interactive__actions button:hover {
+  filter: brightness(1.08);
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__notes > summary {
+  padding: 13.6px var(--shell-gap);
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__notes > div {
+  padding: 0 var(--shell-gap) var(--shell-gap);
+  max-width: 68ch;
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__notes > div > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity .interactive *,
+.opi-activity.opi-activity .interactive *::before,
+.opi-activity.opi-activity .interactive *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+}
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .interactive,
+.opi-activity.opi-activity .interactive__controls,
+.opi-activity.opi-activity .interactive__stage,
+.opi-activity.opi-activity .interactive__readout div {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__header {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__status,
+.opi-activity.opi-activity .interactive__actions,
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__actions button {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  border-width: 1px;
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 1;
+    color: GrayText;
+    border-color: GrayText;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__stage svg {
+  forced-color-adjust: auto;
+}
+}
+
+/* components/tool-kit.css */
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split--wide {
+  grid-template-columns: 1fr 1fr;
+}
+}
+.opi-activity.opi-activity .how-to {
+  padding-left: 19.2px;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .how-to > li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .table-scroll {
+  overflow-x: auto;
+  
+  position: relative;
+}
+.opi-activity.opi-activity .prediction {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 832px;
+}
+.opi-activity.opi-activity .prediction > *,
+.opi-activity.opi-activity .challenge > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity .prediction__group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .prediction__legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-weight: 650;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .prediction .control--choice,
+.opi-activity.opi-activity .challenge .control--choice,
+.opi-activity.opi-activity .evidence .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .prediction .control--choice input,
+.opi-activity.opi-activity .challenge .control--choice input,
+.opi-activity.opi-activity .evidence .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .prediction__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .prediction__error {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-status-border);
+  border-left: 4px solid var(--colour-status-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .prediction__readback {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .feedback[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .feedback[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .feedback[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .feedback__verdict {
+  font-weight: 700;
+}
+.opi-activity.opi-activity .verdict {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .verdict__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict__body {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .verdict__body + .verdict__body {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .verdict__note {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .verdict[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .verdict[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .goal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .goal__label {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .goal__text {
+  flex: 1 1 256px;
+}
+.opi-activity.opi-activity .goal strong {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .goal__checks {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+  display: grid;
+  gap: 2.4px;
+}
+.opi-activity.opi-activity .goal__checks > li {
+  margin-top: 0;
+  padding-left: 22.4px;
+  position: relative;
+}
+.opi-activity.opi-activity .goal__checks > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 9.6px;
+  height: 9.6px;
+  border: 2px solid var(--colour-border-strong);
+  border-radius: 2px;
+}
+.opi-activity.opi-activity .goal__checks > li[data-met="yes"]::before {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .stage-track {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .stage-track > li {
+  margin-top: 0;
+  flex: 1 1 160px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-bottom: 3px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .stage-track > li > span {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.opi-activity.opi-activity .stage-track > li[data-state="done"] {
+  border-bottom-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border-bottom-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+  color: var(--colour-text);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .stage__heading {
+  margin: 0;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .data-table,
+.opi-activity.opi-activity .chart__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .data-table th,
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table th,
+.opi-activity.opi-activity .chart__table td {
+  padding: 6.4px 9.6px;
+  border: 1px solid var(--colour-border);
+  text-align: left;
+  vertical-align: top;
+}
+.opi-activity.opi-activity .data-table thead th,
+.opi-activity.opi-activity .chart__table thead th {
+  background-color: var(--colour-surface);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table td {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__table tbody th,
+.opi-activity.opi-activity .data-table tbody th {
+  font-weight: 550;
+}
+.opi-activity.opi-activity .data-table__total > th,
+.opi-activity.opi-activity .data-table__total > td {
+  border-top: 2px solid var(--colour-border-strong);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart {
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .chart__caption {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__svg {
+  max-width: 100%;
+  height: auto;
+}
+.opi-activity.opi-activity .chart__label,
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__inline,
+.opi-activity.opi-activity .chart__axis {
+  font-family: var(--font-body);
+  fill: var(--colour-text);
+  font-size: 13px;
+}
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__axis {
+  fill: var(--colour-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: var(--colour-on-accent);
+  font-size: 12px;
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__track {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__bar {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--one {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .chart__baseline,
+.opi-activity.opi-activity .chart__grid {
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__line {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: var(--colour-personality-individual-differences);
+  stroke-dasharray: 6 4;
+}
+.opi-activity.opi-activity .chart__point {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .reveal > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .reveal__lead {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+.opi-activity.opi-activity .reveal__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(176px, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+  padding: 0;
+  list-style: none;
+}
+.opi-activity.opi-activity .reveal__figures > li {
+  margin-top: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+.opi-activity.opi-activity .reveal__figure-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .reveal__figure-value {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .challenge {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+.opi-activity.opi-activity .challenge__locked {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .panel--caution {
+  background-color: var(--colour-status-bg);
+  border-color: var(--colour-status-border);
+}
+.opi-activity.opi-activity .panel--caution li + li {
+  margin-top: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .goal,
+.opi-activity.opi-activity .verdict,
+.opi-activity.opi-activity .feedback,
+.opi-activity.opi-activity .prediction__error,
+.opi-activity.opi-activity .prediction__readback,
+.opi-activity.opi-activity .stage-track > li,
+.opi-activity.opi-activity .reveal__figures > li {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border: 2px solid Highlight;
+}
+.opi-activity.opi-activity .chart__bar,
+.opi-activity.opi-activity .chart__bar--one {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: Canvas;
+}
+.opi-activity.opi-activity .chart__line {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: Highlight;
+}
+}
+.opi-activity.opi-activity .stage__more {
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .stage__more > summary {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .stage__more[open] > summary {
+  border-bottom: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .stage__more > *:not(summary) {
+  margin: var(--space-3);
+}
+
+/* modules/research-methods/tools/13-normal-curve-z-scores/tool.css */
+.opi-activity.opi-activity #curve .interactive__controls,
+.opi-activity.opi-activity #curve .interactive__stage,
+.opi-activity.opi-activity #compare .interactive__controls,
+.opi-activity.opi-activity #compare .interactive__stage {
+  min-width: 0;
+}
+.opi-activity.opi-activity #curve .interactive__stage > *,
+.opi-activity.opi-activity #compare .interactive__stage > * {
+  min-width: 0;
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity #curve .interactive__body,
+.opi-activity.opi-activity #compare .interactive__body {
+  grid-template-columns: minmax(0, 304px) minmax(0, 1fr);
+}
+}
+.opi-activity.opi-activity .interactive__stage [data-curve],
+.opi-activity.opi-activity .interactive__stage [data-two-curves] {
+  max-width: 480px;
+}
+.opi-activity.opi-activity #curve .interactive__readout {
+  grid-template-columns: repeat(auto-fit, minmax(112px, 1fr));
+  gap: 6.4px;
+}
+.opi-activity.opi-activity #curve .interactive__readout div {
+  padding: 6.4px 8px;
+}
+.opi-activity.opi-activity #curve .interactive__readout dd {
+  font-size: 16px;
+}
+.opi-activity.opi-activity #compare .control--choice {
+  align-items: center;
+  gap: 9.6px;
+  font-size: 15px;
+}
+.opi-activity.opi-activity #compare .control--choice label {
+  cursor: pointer;
+}
+.opi-activity.opi-activity .nc__curve {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .nc__curve--two {
+  stroke: var(--colour-social-critical-psychology);
+  stroke-dasharray: 7 4;
+}
+.opi-activity.opi-activity .nc__fill {
+  fill: var(--colour-accent-soft);
+}
+.opi-activity.opi-activity .nc__hatch {
+  stroke: var(--colour-accent);
+  stroke-width: 1;
+  opacity: 0.5;
+}
+.opi-activity.opi-activity .nc__band {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border-strong);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .nc__score {
+  stroke: var(--colour-text);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .nc__mean {
+  stroke: var(--colour-text-muted);
+  stroke-width: 1.5;
+  stroke-dasharray: 3 3;
+}
+.opi-activity.opi-activity .nc__axis {
+  stroke: var(--colour-border-strong);
+  stroke-width: 1;
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .nc__curve {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .nc__curve--two {
+  stroke: Highlight;
+}
+.opi-activity.opi-activity .nc__fill {
+  fill: Canvas;
+}
+.opi-activity.opi-activity .nc__hatch {
+  stroke: CanvasText; opacity: 1;
+}
+.opi-activity.opi-activity .nc__band {
+  fill: Canvas; stroke: GrayText;
+}
+.opi-activity.opi-activity .nc__score {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .nc__mean {
+  stroke: GrayText;
+}
+.opi-activity.opi-activity .nc__axis {
+  stroke: CanvasText;
+}
+}
+</style>
+
+  <!-- ================= Title and purpose ================= -->
+  <section class="section card--research-methods" aria-labelledby="page-heading">
+    <div class="container">
+
+      <p class="hero__eyebrow" style="color: var(--colour-research-methods)">
+        Research Methods
+      </p>
+      <h1 id="page-heading">The Normal Curve and z-Scores</h1>
+      <p class="hero__lead">
+        A normal distribution is two numbers and nothing else. Standardising a
+        score is one subtraction and one division. Everything people find hard
+        about it is really about <em>area</em>.
+      </p>
+
+      <p>
+        <span class="badge">
+          <span class="badge__dot" aria-hidden="true"></span>
+          Simulated &mdash; illustrative distributions, no real test data
+        </span>
+      </p>
+
+      <div class="split split--wide">
+
+        <div class="panel">
+          <h2 class="panel__title">Learning objective</h2>
+          <p>
+            By the end you should be able to say what a z-score does to a
+            raw score, and why a raw score means nothing on its own.
+          </p>
+          <p class="text-muted">
+            About 20 minutes. Nothing you do here is saved or sent anywhere.
+          </p>
+        </div>
+
+        <div class="panel panel--caution">
+          <h2 class="panel__title">The rule is about a model, not the world</h2>
+          <p>
+            The 68&ndash;95&ndash;99.7 figures are properties of the normal
+            distribution. They are not properties of data. Reaction times,
+            incomes, symptom counts and most questionnaire totals are not
+            normal, and applying the rule to them gives answers that are
+            confidently wrong. Everything on this page is exact for the model
+            being drawn and approximate for anything real.
+          </p>
+        </div>
+
+      </div>
+
+      <ol class="how-to">
+        <li>Answer the prediction question to open Experiment 1.</li>
+        <li>Move the score and read the z, the percentile and the shaded area.</li>
+        <li>Move &sigma; and watch the peak drop as the curve spreads.</li>
+        <li>In Experiment 2, put one raw score on two distributions and commit before revealing.</li>
+      </ol>
+
+    </div>
+  </section>
+
+  <!-- ================= Opening prediction ================= -->
+  <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="opening-heading">First, a prediction</h2>
+        <p class="prose">
+          A fictional test is normally distributed with a mean of 50 and a
+          standard deviation of 10.
+        </p>
+      </div>
+
+      <noscript>
+        <div class="placeholder">
+          <h3 class="placeholder__title">This part needs JavaScript</h3>
+          <p class="prose">
+            The curve is drawn and its areas computed in your browser, so this
+            part cannot run with JavaScript switched off. The rest of this
+            page is readable without it.
+          </p>
+        </div>
+      </noscript>
+
+      <form class="panel prediction" id="opening-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            What proportion of scores lie <em>above</em> 70?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="sixteen">
+            About 16%
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="five">
+            About 5%
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="twohalf">
+            About 2.5%
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="tiny">
+            About 0.15%
+          </label>
+        </fieldset>
+
+        <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Record my prediction and open Experiment 1
+          </button>
+          <button class="button button--secondary" type="button" data-action="skip-opening">
+            Skip &mdash; I am demonstrating this
+          </button>
+        </div>
+
+        <div class="feedback" data-opening-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Experiment 1 ================= -->
+  <section class="section" id="curve-section" aria-labelledby="curve-heading" hidden>
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="curve-heading" tabindex="-1">Experiment 1 &mdash; one distribution, one score</h2>
+        <p class="prose">
+          The horizontal axis is the raw score and the vertical axis is
+          probability density &mdash; the height of the curve, not a
+          probability. The shaded region is the probability, and the whole
+          area under the curve is always exactly 1 whatever &mu; and &sigma;
+          are set to.
+        </p>
+      </div>
+
+      <section class="interactive" id="curve" data-interactive
+               data-reset-message="Everything cleared. Back to the opening prediction.">
+
+        <header class="interactive__header">
+          <h3 class="interactive__title">Two numbers make the whole curve</h3>
+          <p class="interactive__brief">
+            &mu; slides it sideways; &sigma; stretches it out and, because the
+            area is fixed at 1, flattens it at the same time.
+          </p>
+        </header>
+
+        <div class="interactive__body interactive__body--pinned">
+
+          <form class="interactive__controls" data-interactive-controls>
+
+            <fieldset>
+              <legend>The distribution</legend>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="mu-range">Mean (&mu;)</label>
+                  <output class="control__value" for="mu-range">50</output>
+                </div>
+                <input type="range" id="mu-range" min="30" max="70" step="1" value="50">
+              </div>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="sigma-range">Standard deviation (&sigma;)</label>
+                  <output class="control__value" for="sigma-range">10</output>
+                </div>
+                <input type="range" id="sigma-range" min="2" max="20" step="1" value="10">
+                <p class="control__hint">
+                  Watch the peak fall as this grows. The curve cannot get
+                  wider without getting shorter, because the area it encloses
+                  is fixed.
+                </p>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>One person's score</legend>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="x-range">Raw score</label>
+                  <output class="control__value" for="x-range">70</output>
+                </div>
+                <input type="range" id="x-range" min="0" max="100" step="1" value="70">
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Standard-deviation regions</legend>
+              <div class="control">
+                <label class="control__label" for="band-select">Highlight the region</label>
+                <select id="band-select">
+                  <option value="0">None</option>
+                  <option value="1">&mu; &plusmn; 1&sigma;</option>
+                  <option value="2">&mu; &plusmn; 2&sigma;</option>
+                  <option value="3">&mu; &plusmn; 3&sigma;</option>
+                </select>
+                <p class="control__hint">
+                  The area of the highlighted region does not change when you
+                  move &mu; or &sigma;. That is what makes it a rule about the
+                  shape rather than about the numbers.
+                </p>
+              </div>
+            </fieldset>
+
+          </form>
+
+          <div class="interactive__stage" data-interactive-stage>
+
+            <!-- Pinned: the curve, with the region below the score shaded.
+                 Every control on the left moves it. -->
+            <div class="stage__primary">
+              <h4 class="stage__heading" data-chart-heading>The curve</h4>
+              <figure class="chart">
+                <figcaption class="visually-hidden">
+                  Normal density curve on a fixed score axis from 0 to 100,
+                  with the area below the chosen raw score shaded and the
+                  score marked by a labelled vertical rule
+                </figcaption>
+                <svg class="chart__svg" data-curve viewBox="0 0 460 190"
+                     aria-hidden="true" focusable="false"></svg>
+                <div class="table-scroll">
+                  <table class="chart__table">
+                    <caption class="visually-hidden">
+                      The score in standardised form and the areas either side
+                      of it
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Value</th>
+                      </tr>
+                    </thead>
+                    <tbody data-curve-table></tbody>
+                  </table>
+                </div>
+              </figure>
+              <dl class="interactive__readout" data-readout></dl>
+            </div>
+
+            <div class="verdict" data-verdict>
+              <h4 class="verdict__title">Saying it properly</h4>
+              <p class="verdict__body" data-interpretation></p>
+              <p class="verdict__note" data-band-note></p>
+            </div>
+
+            <details class="stage__more">
+              <summary>The same score on a standardised axis</summary>
+              <div>
+                <p class="prose" data-standard-note></p>
+                <div class="table-scroll">
+                  <table class="data-table">
+                    <caption class="visually-hidden">
+                      Landmark z-scores with the area below each
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">z</th>
+                        <th scope="col">Raw score here</th>
+                        <th scope="col">Area below</th>
+                      </tr>
+                    </thead>
+                    <tbody data-landmark-table></tbody>
+                  </table>
+                </div>
+              </div>
+            </details>
+
+          </div>
+
+        </div>
+
+        <p class="interactive__status" data-interactive-status role="status"></p>
+
+        <div class="interactive__actions">
+          <button type="button" data-action="open-compare">Go to Experiment 2</button>
+          <button type="button" data-variant="secondary" data-interactive-reset>
+            Reset everything
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ================= Experiment 2 ================= -->
+  <section class="section section--tinted" id="compare-section"
+           aria-labelledby="compare-heading" hidden>
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="compare-heading" tabindex="-1">Experiment 2 &mdash; one score, two distributions</h2>
+        <p class="prose">
+          The same fictional student sits two tests and gets the same raw mark
+          on both. Commit to a judgement before the z-scores appear.
+        </p>
+      </div>
+
+      <section class="interactive" id="compare" data-interactive
+               data-reset-message="Experiment 2 reset. The z-scores are hidden again.">
+
+        <header class="interactive__header">
+          <h3 class="interactive__title">The same mark, twice</h3>
+          <p class="interactive__brief" data-compare-brief>
+            Test A has a mean of 50 and a standard deviation of 6. Set up Test
+            B, decide which score is more unusual, then reveal.
+          </p>
+        </header>
+
+        <div class="interactive__body interactive__body--pinned">
+
+          <form class="interactive__controls" data-interactive-controls>
+
+            <fieldset>
+              <legend>Test B</legend>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="mu-b-range">Mean of Test B</label>
+                  <output class="control__value" for="mu-b-range">55</output>
+                </div>
+                <input type="range" id="mu-b-range" min="30" max="70" step="1" value="55">
+              </div>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="sigma-b-range">Standard deviation of Test B</label>
+                  <output class="control__value" for="sigma-b-range">15</output>
+                </div>
+                <input type="range" id="sigma-b-range" min="2" max="20" step="1" value="15">
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>The mark obtained on both</legend>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="x-both-range">Raw score</label>
+                  <output class="control__value" for="x-both-range">62</output>
+                </div>
+                <input type="range" id="x-both-range" min="0" max="100" step="1" value="62">
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Your judgement</legend>
+              <div class="control--choice">
+                <input type="radio" name="which" id="which-a" value="a">
+                <label for="which-a">More unusual on Test A</label>
+              </div>
+              <div class="control--choice">
+                <input type="radio" name="which" id="which-b" value="b">
+                <label for="which-b">More unusual on Test B</label>
+              </div>
+              <div class="control--choice">
+                <input type="radio" name="which" id="which-same" value="same">
+                <label for="which-same">About equally unusual</label>
+              </div>
+              <p class="prediction__error" data-compare-error role="alert" hidden></p>
+            </fieldset>
+
+          </form>
+
+          <div class="interactive__stage" data-interactive-stage>
+
+            <!-- Pinned: both curves with the shared raw score marked on each.
+                 The z-scores stay hidden until the learner commits. -->
+            <div class="stage__primary">
+              <h4 class="stage__heading" data-compare-heading>Two curves, one vertical line</h4>
+              <figure class="chart">
+                <figcaption class="visually-hidden">
+                  Two normal density curves on the same score axis, drawn as a
+                  solid line for Test A and a dashed line for Test B, with a
+                  single vertical rule marking the raw score obtained on both
+                </figcaption>
+                <svg class="chart__svg" data-two-curves viewBox="0 0 460 190"
+                     aria-hidden="true" focusable="false"></svg>
+                <div class="table-scroll">
+                  <table class="chart__table">
+                    <caption class="visually-hidden">
+                      The two tests, the shared raw score and what it becomes
+                      on each
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Test</th>
+                        <th scope="col">Mean</th>
+                        <th scope="col">SD</th>
+                        <th scope="col">z</th>
+                        <th scope="col">Percentile</th>
+                      </tr>
+                    </thead>
+                    <tbody data-compare-table></tbody>
+                  </table>
+                </div>
+              </figure>
+            </div>
+
+            <div class="feedback" data-compare-feedback hidden></div>
+
+          </div>
+
+        </div>
+
+        <p class="interactive__status" data-interactive-status role="status"></p>
+
+        <div class="interactive__actions">
+          <button type="button" data-action="reveal">Reveal the z-scores</button>
+          <button type="button" data-variant="secondary" data-action="new-pair">
+            Set me a new pair
+          </button>
+          <button type="button" data-variant="secondary" data-interactive-reset>
+            Reset Experiment 2
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ================= Challenge ================= -->
+  <section class="section" id="challenge" aria-labelledby="challenge-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="challenge-heading">Challenge &mdash; what standardising does and does not do</h2>
+      </div>
+
+      <form class="panel challenge" id="challenge-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            Which statements are correct? Select all that apply &mdash; three
+            of the seven are.
+          </legend>
+          <label class="control--choice">
+            <input type="checkbox" name="challenge" value="median">
+            In a normal distribution, a z of 0 is always the 50th percentile
+          </label>
+          <label class="control--choice">
+            <input type="checkbox" name="challenge" value="anydist">
+            About 68% of scores lie within one standard deviation of the mean in any distribution
+          </label>
+          <label class="control--choice">
+            <input type="checkbox" name="challenge" value="seventy">
+            A raw score of 70 is unusually high
+          </label>
+          <label class="control--choice">
+            <input type="checkbox" name="challenge" value="shape">
+            Standardising a variable changes the shape of its distribution
+          </label>
+          <label class="control--choice">
+            <input type="checkbox" name="challenge" value="areaone">
+            The total area under the curve is 1 whatever &mu; and &sigma; are
+          </label>
+          <label class="control--choice">
+            <input type="checkbox" name="challenge" value="twice">
+            A z of 2 means the score is twice the mean
+          </label>
+          <label class="control--choice">
+            <input type="checkbox" name="challenge" value="peak">
+            Increasing &sigma; lowers the peak of the density curve
+          </label>
+        </fieldset>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">Check my answer</button>
+        </div>
+
+        <div class="feedback" data-challenge-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Debrief ================= -->
+  <section class="section section--tinted" id="debrief" aria-labelledby="debrief-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="debrief-heading">What this demonstrates</h2>
+      </div>
+
+      <div class="split split--wide">
+
+        <div class="prose">
+          <h3>Two numbers, and the area does the rest</h3>
+          <p>
+            A normal distribution is completely specified by &mu; and &sigma;.
+            The mean slides the curve along the axis; the standard deviation
+            stretches it. Because the total area is fixed at 1, stretching it
+            necessarily flattens it &mdash; which is why the peak falls as
+            &sigma; rises, and why the height of the curve is not a
+            probability. Probabilities are areas, and the shaded region on
+            screen is the only thing that answers "how many people?".
+          </p>
+
+          <h3>A raw score means nothing on its own</h3>
+          <p>
+            Leaving the score at 70 and dragging the mean takes its percentile
+            from almost nothing to almost everything, without the student
+            answering a single extra question. That is the argument for
+            standardising: <em>z</em> = (<em>x</em> &minus; &mu;) / &sigma;
+            puts the score in units of the distribution it came from, so that
+            two scores from two different distributions can be compared at
+            all.
+          </p>
+
+          <h3>z, percentile and tail area are three different statements</h3>
+          <p>
+            The z-score says how many standard deviations from the mean. The
+            percentile says what share of the distribution is below. The tail
+            area says what share is beyond, and needs you to say beyond in
+            which direction &mdash; the difference between 2.3% above z = 2
+            and 4.6% outside &plusmn;2 is where most arithmetic errors live.
+            All three are the same information; only the last two are
+            probabilities.
+          </p>
+
+          <h3>The 68&ndash;95&ndash;99.7 rule belongs to the model</h3>
+          <p>
+            Those percentages are constants of the normal curve, which is why
+            the highlighted band's area never moves however far you drag
+            &sigma;. They are not facts about data. Applied to a skewed or
+            bounded or bimodal variable &mdash; reaction times, income,
+            symptom counts, most questionnaire totals &mdash; they give
+            answers that are precise and wrong. The first question about any
+            real variable is whether the model is even roughly appropriate,
+            and the answer is often no.
+          </p>
+        </div>
+
+        <aside class="panel panel--caution" aria-labelledby="limits-heading">
+          <h3 class="panel__title" id="limits-heading">
+            What this does <em>not</em> demonstrate
+          </h3>
+          <ul>
+            <li>
+              <strong>No real test and no real people.</strong> Test A and
+              Test B are inventions with round numbers. Nothing here is a
+              norm, a benchmark or a cut-off.
+            </li>
+            <li>
+              <strong>The curve is exact; data are not.</strong> Every area on
+              screen is computed from the mathematical normal distribution.
+              Real distributions have finite range, lumps at round numbers,
+              floor and ceiling effects and outliers, and the areas come out
+              differently.
+            </li>
+            <li>
+              <strong>Standardising does not normalise.</strong> The two words
+              are unhelpfully similar and name different operations: one
+              changes the units, the other would change the shape.
+            </li>
+            <li>
+              <strong>&mu; and &sigma; are population values here.</strong>
+              Real work almost always uses a sample mean and a sample standard
+              deviation, both of which carry their own error, which is why the
+              t distribution exists and why the later tools in this module
+              spend so long on it.
+            </li>
+            <li>
+              <strong>Unusual is not the same as wrong, ill or gifted.</strong>
+              A percentile is a statement about a distribution, not a
+              judgement about a person, and nothing on this page should be
+              used to describe anybody.
+            </li>
+          </ul>
+        </aside>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+<script>
+/* ---- components/interactive-shell.js ---- */
+/* =========================================================================
+   Open Psychology Interactives — interactive shell helper
+   -------------------------------------------------------------------------
+   A very small vanilla-JS helper that every interactive in this collection
+   uses. It deliberately does *not* draw anything or know anything about
+   statistics, personality or neuropsychology. Its job is the repetitive,
+   easy-to-get-wrong accessibility plumbing:
+
+     * announcing changes through a polite live region;
+     * keeping a range slider and its <output> in step;
+     * wiring the standard Reset button;
+     * reporting the reader's reduced-motion preference.
+
+   Usage (see docs/adapting-a-tool.md for the full markup contract):
+
+       <script src="../../components/interactive-shell.js" defer><\/script>
+       <script src="tool.js" defer><\/script>
+
+       // in tool.js
+       const shell = InteractiveShell.attach('#sampling-demo');
+       shell.onReset(() => { ...restore defaults...; draw(); });
+       shell.bindRange('#sample-size', { format: n => n + ' cases' });
+       shell.announce('Sample of 25 drawn. Mean 4.8.');
+
+   Every published interactive is written against this module.
+
+   Exposed as a global (window.InteractiveShell) rather than an ES module so
+   that a single interactive folder can be opened directly from disk over
+   file:// — ES modules are blocked by CORS in that situation, plain scripts
+   are not. That constraint is the whole reason for the older syntax here.
+   ========================================================================= */
+
+(function (global) {
+  "use strict";
+
+  /* -----------------------------------------------------------------------
+     Internal helpers
+     --------------------------------------------------------------------- */
+
+  /**
+   * Accept either a CSS selector or an element and return an element.
+   * @param {string|Element} target
+   * @param {ParentNode} [scope]
+   * @returns {Element|null}
+   */
+  function resolve(target, scope) {
+    if (!target) {
+      return null;
+    }
+    if (typeof target === "string") {
+      return (scope || document).querySelector(target);
+    }
+    return target;
+  }
+
+  /**
+   * True when the reader has asked the operating system to reduce motion.
+   * Interactives should check this before animating anything — for example
+   * by drawing a sampling distribution in one step instead of animating
+   * each draw.
+   * @returns {boolean}
+   */
+  function prefersReducedMotion() {
+    return (
+      typeof global.matchMedia === "function" &&
+      global.matchMedia("(prefers-reduced-motion: reduce)").matches
+    );
+  }
+
+  /* -----------------------------------------------------------------------
+     Shell controller
+     --------------------------------------------------------------------- */
+
+  /**
+   * Attach the shell behaviour to one `.interactive` element.
+   *
+   * @param {string|Element} target  Selector or element for the shell root.
+   * @returns {object|null}  Controller, or null if the root was not found.
+   */
+  function attach(target) {
+    var root = resolve(target);
+
+    if (!root) {
+      if (global.console && console.warn) {
+        console.warn("InteractiveShell: root element not found.", target);
+      }
+      return null;
+    }
+
+    var controls = root.querySelector("[data-interactive-controls]");
+    var stage = root.querySelector("[data-interactive-stage]");
+    var status = root.querySelector("[data-interactive-status]");
+    var resetButton = root.querySelector("[data-interactive-reset]");
+    var resetHandlers = [];
+    // Every range bound with bindRange() registers its sync function here, so
+    // that reset() can refresh the visible values after the tool's own reset
+    // handlers have restored the inputs. See reset() for why this is needed.
+    var rangeSyncs = [];
+
+    /* --- Live region ----------------------------------------------------
+       The status element is marked up as role="status" (implicitly
+       aria-live="polite"). Two details matter:
+
+         1. Assistive technology only announces *changes* to a live region,
+            so writing the same string twice is silently dropped. We add a
+            trailing zero-width space on repeat messages to force an
+            announcement when a student re-runs the same action.
+         2. Announcements are debounced. A slider dragged across its range
+            fires dozens of input events; without a delay a screen reader
+            would queue every intermediate value and fall far behind.
+       ------------------------------------------------------------------ */
+
+    var announceTimer = null;
+    var lastMessage = "";
+
+    /**
+     * Announce a short sentence describing what just changed.
+     * @param {string} message
+     * @param {object} [options]
+     * @param {boolean} [options.immediate]  Skip the debounce delay. Use for
+     *   discrete actions (button presses); leave off for continuous input.
+     */
+    function announce(message, options) {
+      if (!status) {
+        return;
+      }
+
+      var text = String(message == null ? "" : message);
+      var immediate = Boolean(options && options.immediate);
+
+      if (announceTimer !== null) {
+        global.clearTimeout(announceTimer);
+        announceTimer = null;
+      }
+
+      function write() {
+        // Force a change when the text is identical to last time.
+        status.textContent = text === lastMessage ? text + "​" : text;
+        lastMessage = text;
+      }
+
+      if (immediate) {
+        write();
+      } else {
+        announceTimer = global.setTimeout(write, 350);
+      }
+    }
+
+    /* --- Reset ---------------------------------------------------------- */
+
+    /**
+     * Register a callback to run when the Reset button is pressed.
+     * Several may be registered; they run in the order added.
+     * @param {Function} handler
+     */
+    function onReset(handler) {
+      if (typeof handler === "function") {
+        resetHandlers.push(handler);
+      }
+    }
+
+    /**
+     * Run the reset handlers. Called by the button and available directly so
+     * an interactive can reset itself on first load.
+     *
+     * Bound ranges are re-synced afterwards. A reset handler restores an
+     * input by assigning to `input.value`, and assigning to a value in script
+     * does not fire an `input` event — so without this step the slider would
+     * jump back to its default while its <output> went on showing the old
+     * number. Syncing here, after the handlers have run, also means the sync
+     * sees the restored values regardless of the order things were
+     * registered in.
+     *
+     * @param {object} [options]
+     * @param {boolean} [options.silent]  Suppress the status announcement.
+     */
+    function reset(options) {
+      resetHandlers.forEach(function (handler) {
+        handler();
+      });
+      rangeSyncs.forEach(function (sync) {
+        sync();
+      });
+      if (!options || !options.silent) {
+        announce(
+          root.getAttribute("data-reset-message") ||
+            "Reset to the starting values.",
+          { immediate: true }
+        );
+      }
+    }
+
+    if (resetButton) {
+      resetButton.addEventListener("click", function (event) {
+        // Reset buttons commonly sit inside the controls <form>; stop the
+        // browser's own form reset from fighting with ours.
+        event.preventDefault();
+        reset();
+      });
+    }
+
+    /* --- Range binding --------------------------------------------------
+       Keeps a slider's <output> in step with its value. The <output> must
+       carry `for="<input id>"`, which is what associates the two for
+       assistive technology; this only handles the visible text.
+
+       Optionally sets aria-valuetext, which is how you make a screen reader
+       say "25 cases" or "medium correlation" instead of a bare "25".
+       ------------------------------------------------------------------ */
+
+    /**
+     * @param {string|Element} inputTarget  The range (or number) input.
+     * @param {object} [options]
+     * @param {Function} [options.format]  value:number -> string shown in the
+     *   <output>. Defaults to the raw value.
+     * @param {Function} [options.describe]  value:number -> string used for
+     *   aria-valuetext. Defaults to options.format.
+     * @param {Function} [options.onInput]  value:number -> void, called after
+     *   the display has been updated. Use it to redraw.
+     * @returns {HTMLInputElement|null}
+     */
+    function bindRange(inputTarget, options) {
+      var input = resolve(inputTarget, root);
+      if (!input) {
+        return null;
+      }
+
+      var settings = options || {};
+      var format =
+        typeof settings.format === "function"
+          ? settings.format
+          : function (value) {
+              return String(value);
+            };
+      var describe =
+        typeof settings.describe === "function" ? settings.describe : format;
+
+      // <output for="the-input-id"> is the conventional pairing.
+      var output = input.id
+        ? root.querySelector('output[for="' + input.id + '"]')
+        : null;
+
+      function sync() {
+        var value = Number(input.value);
+        if (output) {
+          output.textContent = format(value);
+        }
+        // Only meaningful for widgets with an implicit or explicit slider
+        // role; harmless elsewhere.
+        input.setAttribute("aria-valuetext", describe(value));
+        if (typeof settings.onInput === "function") {
+          settings.onInput(value);
+        }
+      }
+
+      input.addEventListener("input", sync);
+      // Registered so reset() can refresh the display after the tool's own
+      // reset handlers have put the input back to its default.
+      rangeSyncs.push(sync);
+      sync();
+
+      return input;
+    }
+
+    /* --- Public surface -------------------------------------------------- */
+
+    return {
+      /** The `.interactive` root element. */
+      root: root,
+      /** The controls panel, or null if the shell has none. */
+      controls: controls,
+      /** The stage element where the visualisation is drawn. */
+      stage: stage,
+      /** The live-region element. */
+      status: status,
+      announce: announce,
+      onReset: onReset,
+      reset: reset,
+      bindRange: bindRange,
+      prefersReducedMotion: prefersReducedMotion
+    };
+  }
+
+  /* -----------------------------------------------------------------------
+     Export
+     --------------------------------------------------------------------- */
+
+  global.InteractiveShell = {
+    attach: attach,
+    prefersReducedMotion: prefersReducedMotion
+  };
+})(window);
+
+/* ---- modules/research-methods/tools/13-normal-curve-z-scores/tool.js ---- */
+/* =========================================================================
+   The Normal Curve and z-Scores
+   -------------------------------------------------------------------------
+   Two staged experiments.
+
+   EXPERIMENT 1 — one distribution, one score
+   ------------------------------------------
+   A normal density is drawn on a FIXED score axis (0 to 100) and a FIXED
+   density axis (0 to 0.21, which is a little above the tallest peak the
+   sliders allow, at sigma = 2). Fixing both axes is the whole point: it is
+   what lets the learner watch the peak fall as sigma rises, and it makes
+   "the area is always 1" visually credible instead of merely asserted.
+
+       density(x) = exp(-z^2 / 2) / (sigma * sqrt(2*pi)),   z = (x - mu)/sigma
+       area below x = Phi(z)
+
+   Phi is the standard normal cumulative function, computed with the
+   Abramowitz and Stegun 26.2.17 rational approximation (absolute error below
+   1.5e-7), which is ample for a percentile printed to one decimal place.
+
+   The standard-deviation band highlights mu +/- k*sigma. Its area is
+   2*Phi(k) - 1 and therefore does not move when mu or sigma move, which is
+   exactly why 68-95-99.7 is a rule about the shape rather than about a
+   particular test.
+
+   EXPERIMENT 2 — one score, two distributions
+   -------------------------------------------
+   The same raw score is placed on two curves. The z-scores are WITHHELD until
+   the learner commits to a judgement: that withholding is deliberate and is
+   the documented viewport-local exception on this page - the primary picture
+   is on screen throughout, and only the two numbers that answer the question
+   are hidden.
+
+   WHAT IS AND IS NOT BEING CLAIMED
+   --------------------------------
+   Every area here is exact for the mathematical normal distribution and
+   approximate for anything real. The 68-95-99.7 figures are properties of the
+   model, not of data; standardising is a linear change of units and does not
+   normalise anything; and mu and sigma are treated as population values,
+   which real work almost never has.
+
+   No data leave the browser: no storage, no network request.
+   ========================================================================= */
+
+(function () {
+  "use strict";
+
+  var X_MIN = 0;
+  var X_MAX = 100;
+  /* A little above the tallest peak the sliders allow (sigma = 2 gives
+     0.1995), so the vertical axis can stay fixed while sigma moves. */
+  var DENSITY_MAX = 0.21;
+  var A_MU = 50;
+  var A_SIGMA = 6;   // Test A in Experiment 2 is fixed
+  var DEFAULTS = { mu: 50, sigma: 10, x: 70, band: "0" };
+  var C_DEFAULTS = { muB: 55, sigmaB: 15, x: 62 };
+
+  /* =======================================================================
+     The normal distribution
+     ===================================================================== */
+
+  /** Standard normal cumulative distribution, Abramowitz and Stegun 26.2.17. */
+  function phi(z) {
+    var sign = z < 0 ? -1 : 1;
+    var x = Math.abs(z) / Math.SQRT2;
+    var t = 1 / (1 + 0.3275911 * x);
+    var y = 1 - (((((1.061405429 * t - 1.453152027) * t) + 1.421413741) * t -
+      0.284496736) * t + 0.254829592) * t * Math.exp(-x * x);
+    return 0.5 * (1 + sign * y);
+  }
+
+  function density(x, mu, sigma) {
+    var z = (x - mu) / sigma;
+    return Math.exp(-0.5 * z * z) / (sigma * Math.sqrt(2 * Math.PI));
+  }
+
+  function mulberry32(seed) {
+    var a = seed >>> 0;
+    return function () {
+      a += 0x6d2b79f5;
+      var t = a;
+      t = Math.imul(t ^ (t >>> 15), t | 1);
+      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  /* =======================================================================
+     Small DOM helpers
+     ===================================================================== */
+
+  var NS = "http://www.w3.org/2000/svg";
+
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) { node.className = className; }
+    if (text !== undefined) { node.textContent = text; }
+    return node;
+  }
+
+  function svgNode(tag, attrs) {
+    var node = document.createElementNS(NS, tag);
+    Object.keys(attrs || {}).forEach(function (key) {
+      node.setAttribute(key, String(attrs[key]));
+    });
+    return node;
+  }
+
+  function svgText(attrs, text, className) {
+    var node = svgNode("text", attrs);
+    if (className) { node.setAttribute("class", className); }
+    node.textContent = text;
+    return node;
+  }
+
+  function clear(node) {
+    while (node.firstChild) { node.removeChild(node.firstChild); }
+  }
+
+  function fmt(value, places) {
+    return value.toFixed(places === undefined ? 2 : places);
+  }
+
+  /** Percentages are printed to one decimal place, except very small ones,
+      where a rounded "0.0%" would be misleading. */
+  function pct(p) {
+    var v = 100 * p;
+    if (v > 0 && v < 0.05) { return "under 0.05%"; }
+    if (v < 100 && v > 99.95) { return "over 99.95%"; }
+    return v.toFixed(1) + "%";
+  }
+
+  function ordinal(p) {
+    var v = 100 * p;
+    if (v < 0.5) { return "below the 1st"; }
+    if (v > 99.5) { return "above the 99th"; }
+    var n = Math.round(v);
+    var suffix = "th";
+    if (n % 10 === 1 && n % 100 !== 11) { suffix = "st"; }
+    else if (n % 10 === 2 && n % 100 !== 12) { suffix = "nd"; }
+    else if (n % 10 === 3 && n % 100 !== 13) { suffix = "rd"; }
+    return n + suffix;
+  }
+
+  function row(cells) {
+    var tr = make("tr");
+    cells.forEach(function (cell, i) {
+      if (i === 0) {
+        var th = make("th", null, cell);
+        th.setAttribute("scope", "row");
+        tr.appendChild(th);
+      } else {
+        tr.appendChild(make("td", null, cell));
+      }
+    });
+    return tr;
+  }
+
+  var page = document;
+  var $ = function (s, scope) { return (scope || page).querySelector(s); };
+  var $$ = function (s, scope) {
+    return Array.prototype.slice.call((scope || page).querySelectorAll(s));
+  };
+
+  function showFeedback(container, tone, verdictText, text) {
+    clear(container);
+    container.setAttribute("data-tone", tone);
+    var p = make("p");
+    p.appendChild(make("strong", "feedback__verdict", verdictText));
+    if (text) { p.appendChild(document.createTextNode(" " + text)); }
+    container.appendChild(p);
+    container.hidden = false;
+    return p;
+  }
+
+  /* =======================================================================
+     Wiring
+     ===================================================================== */
+
+  var curveShell = InteractiveShell.attach("#curve");
+  var compShell = InteractiveShell.attach("#compare");
+  if (!curveShell || !compShell) { return; }
+
+  var muRange = $("#mu-range");
+  var sigmaRange = $("#sigma-range");
+  var xRange = $("#x-range");
+  var bandSelect = $("#band-select");
+  var chartHeading = $("[data-chart-heading]");
+  var curveSvg = $("[data-curve]");
+  var curveTable = $("[data-curve-table]");
+  var readout = $("[data-readout]");
+  var verdictBox = $("[data-verdict]");
+  var interpretation = $("[data-interpretation]");
+  var bandNote = $("[data-band-note]");
+  var standardNote = $("[data-standard-note]");
+  var landmarkTable = $("[data-landmark-table]");
+
+  var muBRange = $("#mu-b-range");
+  var sigmaBRange = $("#sigma-b-range");
+  var xBothRange = $("#x-both-range");
+  var compareHeading = $("[data-compare-heading]");
+  var twoCurves = $("[data-two-curves]");
+  var compareTable = $("[data-compare-table]");
+  var compareFeedback = $("[data-compare-feedback]");
+  var compareError = $("[data-compare-error]");
+
+  var openingForm = $("#opening-form");
+  var openingError = $("[data-opening-error]");
+  var openingFeedback = $("[data-opening-feedback]");
+  var curveSection = $("#curve-section");
+  var compareSection = $("#compare-section");
+
+  var challengeForm = $("#challenge-form");
+  var challengeFeedback = $("[data-challenge-feedback]");
+
+  var revealed = false;
+  var pairSeed = 9021;
+
+  /* =======================================================================
+     Drawing helpers shared by both experiments
+     ===================================================================== */
+
+  var PLOT = { left: 40, right: 448, top: 12, base: 150 };
+
+  function xAt(value) {
+    return PLOT.left +
+      ((value - X_MIN) / (X_MAX - X_MIN)) * (PLOT.right - PLOT.left);
+  }
+
+  function yAt(d) {
+    return PLOT.base - (d / DENSITY_MAX) * (PLOT.base - PLOT.top);
+  }
+
+  function curvePoints(mu, sigma, from, to) {
+    var points = [];
+    var steps = 180;
+    for (var i = 0; i <= steps; i += 1) {
+      var value = from + (to - from) * (i / steps);
+      points.push([xAt(value), yAt(density(value, mu, sigma))]);
+    }
+    return points;
+  }
+
+  function pathFrom(points, close) {
+    var d = points.map(function (p, i) {
+      return (i === 0 ? "M" : "L") + fmt(p[0], 1) + " " + fmt(p[1], 1);
+    }).join(" ");
+    return close ? d + " Z" : d;
+  }
+
+  function drawAxis(svg, label) {
+    svg.appendChild(svgNode("line", {
+      x1: PLOT.left, y1: PLOT.base, x2: PLOT.right, y2: PLOT.base,
+      class: "nc__axis"
+    }));
+    for (var v = 0; v <= 100; v += 10) {
+      svg.appendChild(svgNode("line", {
+        x1: xAt(v), y1: PLOT.base, x2: xAt(v), y2: PLOT.base + 4,
+        class: "nc__axis"
+      }));
+      if (v % 20 === 0) {
+        svg.appendChild(svgText(
+          { x: xAt(v), y: PLOT.base + 17, "text-anchor": "middle" },
+          String(v), "chart__axis"));
+      }
+    }
+    svg.appendChild(svgText(
+      { x: (PLOT.left + PLOT.right) / 2, y: PLOT.base + 33,
+        "text-anchor": "middle" }, label, "chart__axis"));
+    svg.appendChild(svgText(
+      { x: PLOT.left - 4, y: PLOT.top + 4, "text-anchor": "end" },
+      "density", "chart__axis"));
+  }
+
+  /* =======================================================================
+     Experiment 1
+     ===================================================================== */
+
+  function settings() {
+    return {
+      mu: Number(muRange.value),
+      sigma: Number(sigmaRange.value),
+      x: Number(xRange.value),
+      band: Number(bandSelect.value)
+    };
+  }
+
+  function renderCurve() {
+    var s = settings();
+    clear(curveSvg);
+
+    // The standard-deviation band sits behind everything else.
+    if (s.band) {
+      var lo = Math.max(X_MIN, s.mu - s.band * s.sigma);
+      var hi = Math.min(X_MAX, s.mu + s.band * s.sigma);
+      curveSvg.appendChild(svgNode("rect", {
+        x: xAt(lo), y: PLOT.top, width: Math.max(0, xAt(hi) - xAt(lo)),
+        height: PLOT.base - PLOT.top, class: "nc__band"
+      }));
+    }
+
+    // Area below the chosen score, filled and hatched.
+    var fill = curvePoints(s.mu, s.sigma, X_MIN, s.x);
+    fill.unshift([xAt(X_MIN), PLOT.base]);
+    fill.push([xAt(s.x), PLOT.base]);
+    curveSvg.appendChild(svgNode("path",
+      { d: pathFrom(fill, true), class: "nc__fill" }));
+    for (var hx = PLOT.left + 5; hx < xAt(s.x); hx += 9) {
+      var atX = X_MIN + ((hx - PLOT.left) / (PLOT.right - PLOT.left)) * (X_MAX - X_MIN);
+      var topY = yAt(density(atX, s.mu, s.sigma));
+      if (PLOT.base - topY < 2) { continue; }
+      curveSvg.appendChild(svgNode("line", {
+        x1: hx, y1: PLOT.base, x2: hx, y2: topY, class: "nc__hatch"
+      }));
+    }
+
+    // The curve itself.
+    curveSvg.appendChild(svgNode("path",
+      { d: pathFrom(curvePoints(s.mu, s.sigma, X_MIN, X_MAX), false),
+        class: "nc__curve" }));
+
+    // The mean and the score.
+    curveSvg.appendChild(svgNode("line", {
+      x1: xAt(s.mu), y1: yAt(density(s.mu, s.mu, s.sigma)), x2: xAt(s.mu),
+      y2: PLOT.base, class: "nc__mean"
+    }));
+    curveSvg.appendChild(svgNode("line", {
+      x1: xAt(s.x), y1: PLOT.top, x2: xAt(s.x), y2: PLOT.base + 5,
+      class: "nc__score"
+    }));
+    curveSvg.appendChild(svgText(
+      { x: Math.min(xAt(s.x) + 5, PLOT.right - 2), y: PLOT.top + 10,
+        "text-anchor": xAt(s.x) > PLOT.right - 90 ? "end" : "start" },
+      "score " + s.x, "chart__label"));
+
+    drawAxis(curveSvg, "raw score");
+  }
+
+  function renderCurveTables() {
+    var s = settings();
+    var z = (s.x - s.mu) / s.sigma;
+    var below = phi(z);
+
+    clear(curveTable);
+    [
+      ["Raw score", String(s.x)],
+      ["z-score", fmt(z)],
+      ["Area below (percentile)", pct(below)],
+      ["Area above (upper tail)", pct(1 - below)]
+    ].forEach(function (pair) { curveTable.appendChild(row(pair)); });
+
+    clear(landmarkTable);
+    [-2, -1, 0, 1, 2].forEach(function (zv) {
+      landmarkTable.appendChild(row([
+        (zv > 0 ? "+" : "") + zv.toFixed(1),
+        fmt(s.mu + zv * s.sigma, 1),
+        pct(phi(zv))
+      ]));
+    });
+    standardNote.textContent =
+      "Standardising does not change the distribution; it relabels the axis. " +
+      "A z of +1 is a raw score of " + fmt(s.mu + s.sigma, 1) + " here and " +
+      "would be something else on another test, and the area below it is " +
+      "84.1% in both cases. That is what a z-score buys: comparable areas " +
+      "across unrelated raw scales.";
+  }
+
+  function renderCurveReadout() {
+    var s = settings();
+    var z = (s.x - s.mu) / s.sigma;
+    clear(readout);
+    [
+      ["z-score", fmt(z)],
+      ["Percentile", ordinal(phi(z))],
+      ["Area above", pct(1 - phi(z))],
+      ["Peak height", fmt(density(s.mu, s.mu, s.sigma), 3)]
+    ].forEach(function (pair) {
+      var cell = make("div");
+      cell.appendChild(make("dt", null, pair[0]));
+      cell.appendChild(make("dd", null, pair[1]));
+      readout.appendChild(cell);
+    });
+  }
+
+  function renderCurveVerdict() {
+    var s = settings();
+    var z = (s.x - s.mu) / s.sigma;
+    var below = phi(z);
+    var tone;
+    var text;
+
+    if (Math.abs(z) < 0.5) {
+      tone = "neutral";
+      text =
+        "z = " + fmt(z) + ": thoroughly ordinary, at the " + ordinal(below) +
+        " percentile. The raw score has not moved. Whether it counts as " +
+        "ordinary is a statement about the distribution around it.";
+    } else if (Math.abs(z) < 2) {
+      tone = "caution";
+      text =
+        "z = " + fmt(z) + ": " + fmt(Math.abs(z)) + " standard deviations " +
+        (z > 0 ? "above" : "below") + " the mean, at the " + ordinal(below) +
+        " percentile, with " + pct(1 - below) + " above it. Three different " +
+        "sentences about one score - say which one you mean.";
+    } else {
+      tone = "good";
+      text =
+        "z = " + fmt(z) + ". Only " + pct(z > 0 ? 1 - below : below) +
+        " of this distribution lies further out in that direction, and " +
+        pct(2 * (1 - phi(Math.abs(z)))) + " lies at least this far from the " +
+        "mean in either direction. A one-tailed area is not a two-tailed one.";
+    }
+
+    interpretation.textContent = text;
+    verdictBox.setAttribute("data-tone", tone);
+
+    if (s.band) {
+      var area = 2 * phi(s.band) - 1;
+      bandNote.textContent =
+        "The highlighted region runs from " + fmt(s.mu - s.band * s.sigma, 1) +
+        " to " + fmt(s.mu + s.band * s.sigma, 1) + " and contains " +
+        pct(area) + " of the distribution. Now drag " + "μ" + " or " +
+        "σ" + ". Those raw-score limits travel a long way; the percentage " +
+        "does not. It belongs to the shape, not to this test.";
+    } else {
+      bandNote.textContent =
+        "Choose a standard-deviation region in the last control to see the " +
+        "68-95-99.7 figures as areas rather than as something to memorise.";
+    }
+  }
+
+  function renderCurveAll() {
+    var s = settings();
+    chartHeading.textContent =
+      "Normal curve, μ = " + s.mu + ", σ = " + s.sigma;
+    renderCurve();
+    renderCurveTables();
+    renderCurveReadout();
+    renderCurveVerdict();
+  }
+
+  curveShell.bindRange(muRange, {
+    format: function (v) { return String(v); },
+    describe: function (v) { return "mean of " + v; },
+    onInput: renderCurveAll
+  });
+
+  curveShell.bindRange(sigmaRange, {
+    format: function (v) { return String(v); },
+    describe: function (v) { return "standard deviation of " + v; },
+    onInput: renderCurveAll
+  });
+
+  curveShell.bindRange(xRange, {
+    format: function (v) { return String(v); },
+    describe: function (v) {
+      var s = settings();
+      return "raw score " + v + ", which is z equals " +
+        fmt((v - s.mu) / s.sigma);
+    },
+    onInput: renderCurveAll
+  });
+
+  bandSelect.addEventListener("change", function () {
+    renderCurveAll();
+    var s = settings();
+    curveShell.announce(s.band
+      ? "Highlighting the mean plus or minus " + s.band + " standard " +
+        "deviations, which contains " + pct(2 * phi(s.band) - 1) +
+        " of the distribution."
+      : "Highlight removed.", { immediate: true });
+  });
+
+  /* =======================================================================
+     Experiment 2
+     ===================================================================== */
+
+  function compSettings() {
+    return {
+      muB: Number(muBRange.value),
+      sigmaB: Number(sigmaBRange.value),
+      x: Number(xBothRange.value)
+    };
+  }
+
+  function renderTwoCurves() {
+    var c = compSettings();
+    clear(twoCurves);
+
+    [[A_MU, A_SIGMA, "nc__curve", "Test A"],
+     [c.muB, c.sigmaB, "nc__curve nc__curve--two", "Test B"]]
+      .forEach(function (entry) {
+        twoCurves.appendChild(svgNode("path", {
+          d: pathFrom(curvePoints(entry[0], entry[1], X_MIN, X_MAX), false),
+          class: entry[2]
+        }));
+        var peak = density(entry[0], entry[0], entry[1]);
+        twoCurves.appendChild(svgText(
+          { x: xAt(entry[0]), y: Math.max(PLOT.top + 10, yAt(peak) - 6),
+            "text-anchor": "middle" }, entry[3], "chart__label"));
+      });
+
+    twoCurves.appendChild(svgNode("line", {
+      x1: xAt(c.x), y1: PLOT.top, x2: xAt(c.x), y2: PLOT.base + 5,
+      class: "nc__score"
+    }));
+    twoCurves.appendChild(svgText(
+      { x: Math.min(xAt(c.x) + 5, PLOT.right - 2), y: PLOT.base - 6,
+        "text-anchor": xAt(c.x) > PLOT.right - 90 ? "end" : "start" },
+      "mark " + c.x, "chart__label"));
+
+    drawAxis(twoCurves, "raw score on both tests");
+  }
+
+  function renderCompare() {
+    var c = compSettings();
+    var zA = (c.x - A_MU) / A_SIGMA;
+    var zB = (c.x - c.muB) / c.sigmaB;
+
+    compareHeading.textContent = revealed
+      ? "Test A: z = " + fmt(zA) + "  |  Test B: z = " + fmt(zB)
+      : "Two curves, one vertical line — z-scores hidden";
+    renderTwoCurves();
+
+    clear(compareTable);
+    compareTable.appendChild(row([
+      "Test A", String(A_MU), String(A_SIGMA),
+      revealed ? fmt(zA) : "hidden",
+      revealed ? ordinal(phi(zA)) : "hidden"
+    ]));
+    compareTable.appendChild(row([
+      "Test B", String(c.muB), String(c.sigmaB),
+      revealed ? fmt(zB) : "hidden",
+      revealed ? ordinal(phi(zB)) : "hidden"
+    ]));
+  }
+
+  function onCompareChange() {
+    if (revealed) {
+      // Changing the setup after a reveal invalidates the judgement, so the
+      // answer is hidden again and the radios cleared.
+      revealed = false;
+      compareFeedback.hidden = true;
+      $$('input[name="which"]', compShell.controls).forEach(function (input) {
+        input.checked = false;
+      });
+    }
+    renderCompare();
+  }
+
+  compShell.bindRange(muBRange, {
+    format: function (v) { return String(v); },
+    describe: function (v) { return "Test B has a mean of " + v; },
+    onInput: onCompareChange
+  });
+
+  compShell.bindRange(sigmaBRange, {
+    format: function (v) { return String(v); },
+    describe: function (v) { return "Test B has a standard deviation of " + v; },
+    onInput: onCompareChange
+  });
+
+  compShell.bindRange(xBothRange, {
+    format: function (v) { return String(v); },
+    describe: function (v) { return "a raw mark of " + v + " on both tests"; },
+    onInput: onCompareChange
+  });
+
+  $('[data-action="reveal"]').addEventListener("click", function () {
+    var picked = $('input[name="which"]:checked', compShell.controls);
+    if (!picked) {
+      compareError.textContent =
+        "Choose which score is more unusual before revealing.";
+      compareError.hidden = false;
+      return;
+    }
+    compareError.hidden = true;
+    revealed = true;
+    renderCompare();
+
+    var c = compSettings();
+    var zA = (c.x - A_MU) / A_SIGMA;
+    var zB = (c.x - c.muB) / c.sigmaB;
+    var truth = Math.abs(Math.abs(zA) - Math.abs(zB)) < 0.15 ? "same"
+      : Math.abs(zA) > Math.abs(zB) ? "a" : "b";
+    var right = picked.value === truth;
+
+    var lead = right ? "Yes." : "Not quite.";
+    var body =
+      "The same mark of " + c.x + " is z = " + fmt(zA) + " on Test A (mean " +
+      A_MU + ", SD " + A_SIGMA + "), putting it at the " + ordinal(phi(zA)) +
+      " percentile, and z = " + fmt(zB) + " on Test B (mean " + c.muB + ", SD " +
+      c.sigmaB + "), putting it at the " + ordinal(phi(zB)) + ". " +
+      (truth === "same"
+        ? "The two are close enough to call level - which is worth noticing, " +
+          "because the two tests look nothing alike."
+        : "It is more unusual on Test " + truth.toUpperCase() + ".");
+    showFeedback(compareFeedback, right ? "good" : "caution", lead, body);
+
+    var note = make("p");
+    note.appendChild(make("strong", null, "Both numbers are doing work. "));
+    note.appendChild(document.createTextNode(
+      "A lower mean pushes the same mark further out; a larger standard " +
+      "deviation pulls it back in. Here the means differ by " +
+      fmt(Math.abs(c.muB - A_MU), 0) + " points and the standard deviations by " +
+      fmt(Math.abs(c.sigmaB - A_SIGMA), 0) + ", and it is the combination, not " +
+      "either one, that decides. Press \"Set me a new pair\" and try again."));
+    compareFeedback.appendChild(note);
+
+    compShell.announce(lead + " " + body, { immediate: true });
+  });
+
+  $('[data-action="new-pair"]').addEventListener("click", function () {
+    var random = mulberry32(pairSeed);
+    pairSeed = Math.max(1, (pairSeed * 7 + 13) % 999983);
+    var muB = 36 + Math.round(random() * 28);
+    var sigmaB = 3 + Math.round(random() * 15);
+    var x = Math.round(A_MU + (0.8 + random() * 1.8) * A_SIGMA);
+    muBRange.value = String(muB);
+    sigmaBRange.value = String(sigmaB);
+    xBothRange.value = String(Math.min(100, Math.max(0, x)));
+    [muBRange, sigmaBRange, xBothRange].forEach(function (input) {
+      input.dispatchEvent(new Event("input"));
+    });
+    revealed = false;
+    compareFeedback.hidden = true;
+    compareError.hidden = true;
+    $$('input[name="which"]', compShell.controls).forEach(function (input) {
+      input.checked = false;
+    });
+    renderCompare();
+    compShell.announce(
+      "New pair set. Test A still has a mean of " + A_MU + " and a standard " +
+      "deviation of " + A_SIGMA + "; Test B now has a mean of " + muB +
+      " and a standard deviation of " + sigmaB + ", and the shared mark is " +
+      xBothRange.value + ". Commit before revealing.", { immediate: true });
+  });
+
+  function openCompare() {
+    var wasHidden = compareSection.hidden;
+    compareSection.hidden = false;
+    renderCompare();
+    if (wasHidden) {
+      $("#compare-heading").focus();
+      compShell.announce(
+        "Experiment 2 opened. The z-scores stay hidden until you commit.",
+        { immediate: true });
+    }
+  }
+
+  $('[data-action="open-compare"]').addEventListener("click", openCompare);
+
+  /* =======================================================================
+     Opening prediction
+     ===================================================================== */
+
+  var OPENING = {
+    sixteen: {
+      tone: "caution",
+      verdict: "That is the area beyond one standard deviation.",
+      text:
+        "70 is two standard deviations above 50, not one. About 15.9% lies " +
+        "above 60; above 70 it is 2.3%. Set the score to 60 and then to 70 in " +
+        "the experiment and watch the upper-tail figure change."
+    },
+    five: {
+      tone: "caution",
+      verdict: "The most instructive wrong answer on this page.",
+      text:
+        "5% is the area outside plus or minus two standard deviations - both " +
+        "tails together. The question asked only about scores above 70, which " +
+        "is one of those tails: 2.3%. Highlight mu plus or minus 2 sigma in " +
+        "the experiment."
+    },
+    twohalf: {
+      tone: "good",
+      verdict: "Yes — 2.3%, to be exact.",
+      text:
+        "70 is z = 2.00, and the area above z = 2 is 2.28%. The familiar 5% " +
+        "is the two-tailed version, covering scores below 30 as well. Keeping " +
+        "those two apart is most of the arithmetic in this topic."
+    },
+    tiny: {
+      tone: "caution",
+      verdict: "That is the three-standard-deviation figure.",
+      text:
+        "About 0.13% lies above z = 3, which here would be a score of 80. " +
+        "Above 70, which is z = 2, it is 2.3% - roughly seventeen times as " +
+        "many people. Try both scores in the experiment."
+    }
+  };
+
+  function lockForm(form) {
+    $$("input, button, select", form).forEach(function (c) { c.disabled = true; });
+  }
+
+  function unlockForm(form) {
+    $$("input, button, select", form).forEach(function (c) { c.disabled = false; });
+    form.reset();
+  }
+
+  function openCurve() {
+    curveSection.hidden = false;
+    renderCurveAll();
+    $("#curve-heading").focus();
+    curveShell.announce(
+      "Experiment 1 unlocked, showing the distribution from the prediction.",
+      { immediate: true });
+  }
+
+  openingForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answer = $('input[name="opening"]:checked', openingForm);
+    if (!answer) {
+      openingError.textContent = "Choose a prediction before opening the experiment.";
+      openingError.hidden = false;
+      return;
+    }
+    openingError.hidden = true;
+    var feedback = OPENING[answer.value];
+    showFeedback(openingFeedback, feedback.tone, feedback.verdict, feedback.text);
+    lockForm(openingForm);
+    openCurve();
+  });
+
+  $('[data-action="skip-opening"]').addEventListener("click", function () {
+    openingError.hidden = true;
+    showFeedback(openingFeedback, "neutral",
+      "Prediction skipped — demonstration mode.", "");
+    lockForm(openingForm);
+    openCurve();
+  });
+
+  /* =======================================================================
+     Challenge
+     ===================================================================== */
+
+  var CHALLENGE_NOTES = {
+    median: {
+      correct: true,
+      text:
+        "Correct. The normal curve is symmetric about its mean, so half the " +
+        "area lies either side of z = 0. Note the qualifier: in a skewed " +
+        "distribution the mean is not the median and this fails."
+    },
+    anydist: {
+      correct: false,
+      text:
+        "Wrong, and it is the most common over-generalisation in this topic. " +
+        "68.3% is a property of the normal curve. In a strongly skewed " +
+        "distribution the figure can sit well above or below it."
+    },
+    seventy: {
+      correct: false,
+      text:
+        "Wrong, because the statement is incomplete. 70 is z = 2.00 when the " +
+        "mean is 50 and the SD is 10, and z = 0.00 when the mean is 70. Leave " +
+        "the score at 70 in Experiment 1 and drag the mean: the percentile " +
+        "travels the whole range."
+    },
+    shape: {
+      correct: false,
+      text:
+        "Wrong. Subtracting a constant and dividing by a constant is a linear " +
+        "change of units, and it leaves the shape exactly as it was. A skewed " +
+        "variable standardises into an equally skewed variable. Standardising " +
+        "is not normalising."
+    },
+    areaone: {
+      correct: true,
+      text:
+        "Correct, and it is the reason the peak has to fall as sigma rises. " +
+        "The curve cannot get wider without getting shorter, because the area " +
+        "it encloses is fixed. Watch the peak-height figure while you drag " +
+        "sigma."
+    },
+    twice: {
+      correct: false,
+      text:
+        "Wrong. z counts standard deviations, not multiples of the mean. With " +
+        "a mean of 50 and an SD of 10, z = 2 is a score of 70, not 100. The " +
+        "confusion is worth naming because it survives into effect sizes, " +
+        "where d is also counted in standard deviations."
+    },
+    peak: {
+      correct: true,
+      text:
+        "Correct, and it follows directly from the total area being 1. The " +
+        "peak height is exactly one over sigma times the square root of two " +
+        "pi, so doubling sigma halves it."
+    }
+  };
+
+  challengeForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var chosen = $$('input[name="challenge"]:checked', challengeForm)
+      .map(function (b) { return b.value; });
+
+    if (!chosen.length) {
+      showFeedback(challengeFeedback, "caution", "Select at least one statement.",
+        "Three of the seven are correct.");
+      return;
+    }
+
+    var wrongPicked = chosen.filter(function (v) {
+      return !CHALLENGE_NOTES[v].correct;
+    });
+    var missed = ["median", "areaone", "peak"].filter(function (v) {
+      return chosen.indexOf(v) === -1;
+    });
+
+    var tone = wrongPicked.length ? "warn" : missed.length ? "caution" : "good";
+    var verdictText;
+    if (wrongPicked.length) {
+      verdictText = "At least one of these applies a property of the model to " +
+        "everything, or reads a z-score as a multiple.";
+    } else if (missed.length) {
+      verdictText = "Everything you picked is right, and " + missed.length +
+        " of the three correct statements is still unselected.";
+    } else {
+      verdictText = "Yes — all three correct statements and none of the four " +
+        "traps.";
+    }
+
+    clear(challengeFeedback);
+    challengeFeedback.setAttribute("data-tone", tone);
+    var lead = make("p");
+    lead.appendChild(make("strong", "feedback__verdict", verdictText));
+    lead.appendChild(document.createTextNode(
+      " The four incorrect statements are the four ways this topic usually " +
+      "goes wrong in a results section."));
+    challengeFeedback.appendChild(lead);
+
+    var list = make("ul");
+    Object.keys(CHALLENGE_NOTES).forEach(function (value) {
+      var li = make("li");
+      li.appendChild(make("strong", null,
+        chosen.indexOf(value) !== -1
+          ? "You selected this. " : "You did not select this. "));
+      li.appendChild(document.createTextNode(CHALLENGE_NOTES[value].text));
+      list.appendChild(li);
+    });
+    challengeFeedback.appendChild(list);
+    challengeFeedback.hidden = false;
+    curveShell.announce(verdictText, { immediate: true });
+  });
+
+  /* =======================================================================
+     Reset and start-up
+     ===================================================================== */
+
+  compShell.onReset(function () {
+    revealed = false;
+    muBRange.value = String(C_DEFAULTS.muB);
+    sigmaBRange.value = String(C_DEFAULTS.sigmaB);
+    xBothRange.value = String(C_DEFAULTS.x);
+    $$('input[name="which"]', compShell.controls).forEach(function (input) {
+      input.checked = false;
+    });
+    compareFeedback.hidden = true;
+    compareError.hidden = true;
+    pairSeed = 9021;
+    renderCompare();
+  });
+
+  curveShell.onReset(function () {
+    unlockForm(openingForm);
+    openingFeedback.hidden = true;
+    openingError.hidden = true;
+    curveSection.hidden = true;
+    compareSection.hidden = true;
+    challengeForm.reset();
+    challengeFeedback.hidden = true;
+    muRange.value = String(DEFAULTS.mu);
+    sigmaRange.value = String(DEFAULTS.sigma);
+    xRange.value = String(DEFAULTS.x);
+    bandSelect.value = DEFAULTS.band;
+    compShell.reset({ silent: true });
+    renderCurveAll();
+  });
+
+  curveShell.reset({ silent: true });
+  curveShell.announce(
+    "Ready. Answer the prediction above to open Experiment 1.",
+    { immediate: true });
+})();
+
+</script>
+</div>

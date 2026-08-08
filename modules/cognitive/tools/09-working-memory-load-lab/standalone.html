@@ -1,0 +1,3376 @@
+<!-- Working-Memory Load Laboratory
+     From Open Psychology Interactives - https://github.com/utman5454/open-psychology-interactives
+     Self-contained: no stylesheets, scripts, fonts, images or network requests.
+     Styles are scoped to .opi-activity and do not affect the page around them.
+     Nothing is saved, sent or tracked. MIT licensed; please keep this notice.
+     Paste anywhere that accepts HTML, or save as a .html file and open it. -->
+<div class="opi-activity">
+<style>
+/* Defensive baseline. See scripts/build-standalone.py for why this
+   is `revert` rather than an enumerated reset, and how the specificity ladder
+   keeps the activity's own styling on top of it. */
+.opi-activity *:not(svg *) {
+  all: revert;
+}
+.opi-activity, .opi-activity *, .opi-activity *::before, .opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  text-transform: none;
+  text-indent: 0;
+  font-style: normal;
+  font-variant: normal;
+  letter-spacing: normal;
+  word-spacing: normal;
+  white-space: normal;
+  visibility: visible;
+  float: none;
+  max-width: none;
+}
+.opi-activity svg { max-width: 100%; }
+.opi-activity img { max-width: 100%; height: auto; }
+.opi-activity [hidden] { display: none !important; }
+
+/* assets/css/main.css */
+.opi-activity.opi-activity {
+  --colour-page: #ffffff;
+  --colour-surface: #f5f7fa;
+  --colour-surface-raised: #ffffff;
+  --colour-border: #d3d9e2;
+  --colour-border-strong: #aeb7c4;
+  --colour-text: #131820;
+  --colour-text-muted: #4c566a;
+  --colour-accent: #1a4fa0;
+  --colour-accent-hover: #123a7a;
+  --colour-accent-soft: #e8eefb;
+  --colour-on-accent: #ffffff;
+  --colour-focus: #b45309;
+  --colour-cognitive: #8a4b00;
+  --colour-research-methods: #1a4fa0;
+  --colour-neuropsychology: #145c53;
+  --colour-social-critical-psychology: #9e2f45;
+  --colour-personality-individual-differences: #7a2e6d;
+  --colour-status-bg: #f1ede3;
+  --colour-status-text: #5c4a1f;
+  --colour-status-border: #d9cdb0;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  --text-xs: 13px;
+  --text-sm: 15px;
+  --text-base: 17px;
+  --text-lg: 19px;
+  --text-xl: 23px;
+  --text-2xl: 28px;
+  --text-3xl: 36px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgb(19 24 32 / 0.06);
+  --shadow-md: 0 2px 8px rgb(19 24 32 / 0.08);
+  --measure: 68ch;
+  --container: 1152px;
+}
+@media (prefers-color-scheme: dark) {
+.opi-activity.opi-activity {
+  --colour-page: #0f141b;
+  --colour-surface: #161d27;
+  --colour-surface-raised: #1a2230;
+  --colour-border: #2c3644;
+  --colour-border-strong: #44506180;
+  --colour-text: #e9edf3;
+  --colour-text-muted: #a8b2c1;
+  --colour-accent: #8fb6ff;
+  --colour-accent-hover: #b3cdff;
+  --colour-accent-soft: #1b2740;
+  --colour-on-accent: #0f141b;
+  --colour-focus: #f0b429;
+  --colour-cognitive: #e2ab5f;
+  --colour-research-methods: #8fb6ff;
+  --colour-neuropsychology: #6fc3b4;
+  --colour-social-critical-psychology: #f19aa8;
+  --colour-personality-individual-differences: #db9ccd;
+  --colour-status-bg: #241f14;
+  --colour-status-text: #e2cf9f;
+  --colour-status-border: #4a4028;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 2px 10px rgb(0 0 0 / 0.45);
+}
+}
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity.opi-activity {
+  -webkit-text-size-adjust: 100%;
+}
+.opi-activity.opi-activity {
+  background-color: var(--colour-page);
+  color: var(--colour-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.65;
+}
+.opi-activity.opi-activity h1,
+.opi-activity.opi-activity h2,
+.opi-activity.opi-activity h3,
+.opi-activity.opi-activity h4 {
+  margin: 0 0 var(--space-3);
+  line-height: 1.25;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.opi-activity.opi-activity h1 {
+  font-size: var(--text-3xl);
+}
+.opi-activity.opi-activity h2 {
+  font-size: var(--text-2xl);
+}
+.opi-activity.opi-activity h3 {
+  font-size: var(--text-xl);
+}
+.opi-activity.opi-activity h4 {
+  font-size: var(--text-lg);
+}
+.opi-activity.opi-activity p,
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol,
+.opi-activity.opi-activity dl {
+  margin: 0 0 var(--space-4);
+}
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol {
+  padding-left: 1.35em;
+}
+.opi-activity.opi-activity li + li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity a {
+  color: var(--colour-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: max(1px, 0.06em);
+}
+.opi-activity.opi-activity a:hover {
+  color: var(--colour-accent-hover);
+  text-decoration-thickness: max(2px, 0.11em);
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid var(--colour-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+@supports not selector(:focus-visible) {
+.opi-activity.opi-activity :focus {
+  outline: 3px solid var(--colour-focus);
+    outline-offset: 2px;
+}
+}
+.opi-activity.opi-activity code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.35em;
+}
+.opi-activity.opi-activity hr {
+  border: 0;
+  border-top: 1px solid var(--colour-border);
+  margin: var(--space-6) 0;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+}
+.opi-activity.opi-activity .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.opi-activity.opi-activity .container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+@media (min-width: 40em) {
+.opi-activity.opi-activity .container {
+  padding-inline: var(--space-5);
+}
+}
+.opi-activity.opi-activity .prose {
+  max-width: var(--measure);
+}
+.opi-activity.opi-activity .text-muted {
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .section {
+  padding-block: var(--space-7);
+}
+.opi-activity.opi-activity .section--tinted {
+  background-color: var(--colour-surface);
+  border-block: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .section__header {
+  max-width: var(--measure);
+  margin-bottom: var(--space-5);
+}
+.opi-activity.opi-activity .section__header > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-7) var(--space-6);
+  border-bottom: 1px solid var(--colour-border);
+  
+  background-image: linear-gradient(
+    180deg,
+    var(--colour-accent-soft) 0%,
+    var(--colour-page) 100%
+  );
+}
+.opi-activity.opi-activity .hero__eyebrow {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .hero h1 {
+  max-width: 20ch;
+  margin-bottom: var(--space-4);
+}
+.opi-activity.opi-activity .hero__lead {
+  max-width: var(--measure);
+  font-size: var(--text-lg);
+  color: var(--colour-text-muted);
+}
+@media (min-width: 48em) {
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-8) var(--space-7);
+}
+.opi-activity.opi-activity .hero h1 {
+  font-size: 44px;
+}
+}
+.opi-activity.opi-activity .button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  
+  min-height: 44px;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .button--primary {
+  background-color: var(--colour-accent);
+  border-color: var(--colour-accent);
+  
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--primary:hover {
+  background-color: var(--colour-accent-hover);
+  border-color: var(--colour-accent-hover);
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--secondary {
+  background-color: transparent;
+  border-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .button--secondary:hover {
+  background-color: var(--colour-surface);
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+}
+.opi-activity.opi-activity .card--cognitive {
+  --card-accent: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .card--research-methods {
+  --card-accent: var(--colour-research-methods);
+}
+.opi-activity.opi-activity .card--neuropsychology {
+  --card-accent: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .card--social-critical-psychology {
+  --card-accent: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .card--personality-individual-differences {
+  --card-accent: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 650;
+  line-height: 1.4;
+  padding: 3.2px var(--space-3);
+  border-radius: 999px;
+  border: 1px solid var(--colour-status-border);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+}
+.opi-activity.opi-activity .badge__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex: none;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed var(--colour-border-strong);
+  border-radius: var(--radius-lg);
+  background-color: var(--colour-surface);
+  padding: var(--space-5);
+  text-align: left;
+}
+.opi-activity.opi-activity .placeholder__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+}
+.opi-activity.opi-activity .placeholder > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .split {
+  display: grid;
+  gap: var(--space-6);
+}
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split {
+  grid-template-columns: 3fr 2fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .panel {
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.opi-activity.opi-activity .panel > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .panel__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .section--tinted {
+  border-block: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .hero {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .button--primary {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .button--secondary {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .button:hover {
+  border-color: Highlight;
+}
+.opi-activity.opi-activity .panel {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed CanvasText;
+}
+.opi-activity.opi-activity .badge {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .badge__dot {
+  background-color: CanvasText;
+}
+.opi-activity.opi-activity code {
+  border-color: CanvasText;
+}
+.opi-activity.opi-activity hr {
+  border-top-color: CanvasText;
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+}
+@media print {
+.opi-activity.opi-activity {
+  color: #000;
+  background: #fff;
+}
+.opi-activity.opi-activity a[href^="http"]::after {
+  content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+}
+}
+
+/* components/interactive-shell.css */
+.opi-activity.opi-activity .interactive {
+  --shell-page: var(--colour-page, #ffffff);
+  --shell-surface: var(--colour-surface, #f5f7fa);
+  --shell-raised: var(--colour-surface-raised, #ffffff);
+  --shell-border: var(--colour-border, #d3d9e2);
+  --shell-border-strong: var(--colour-border-strong, #aeb7c4);
+  --shell-text: var(--colour-text, #131820);
+  --shell-muted: var(--colour-text-muted, #4c566a);
+  --shell-accent: var(--colour-accent, #1a4fa0);
+  --shell-accent-soft: var(--colour-accent-soft, #e8eefb);
+  
+  --shell-on-accent: var(--colour-on-accent, #ffffff);
+  --shell-focus: var(--colour-focus, #b45309);
+  --shell-radius: var(--radius-lg, 12px);
+  --shell-gap: var(--space-5, 24px);
+
+  display: block;
+  background-color: var(--shell-raised);
+  color: var(--shell-text);
+  border: 1px solid var(--shell-border);
+  border-radius: var(--shell-radius);
+  
+  overflow-x: clip;
+  overflow-y: visible;
+}
+.opi-activity.opi-activity .interactive__header {
+  padding: var(--shell-gap);
+  border-bottom: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 1.25;
+}
+.opi-activity.opi-activity .interactive__brief {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--shell-muted);
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__body {
+  display: grid;
+  gap: var(--shell-gap);
+  padding: var(--shell-gap);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body {
+  grid-template-columns: minmax(240px, 320px) 1fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .interactive__controls {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__controls fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .interactive__controls legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .control {
+  display: grid;
+  gap: 5.6px;
+}
+.opi-activity.opi-activity .control + .control {
+  margin-top: 16px;
+}
+.opi-activity.opi-activity .control__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.opi-activity.opi-activity .control__label {
+  font-size: 15px;
+  font-weight: 600;
+}
+.opi-activity.opi-activity .control__value {
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--shell-accent);
+}
+.opi-activity.opi-activity .control__hint {
+  font-size: 13px;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .interactive__controls input[type="range"] {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--shell-accent);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  width: 100%;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--shell-text);
+  background-color: var(--shell-raised);
+  border: 1px solid var(--shell-border-strong);
+  border-radius: var(--radius-sm, 4px);
+}
+.opi-activity.opi-activity .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+}
+.opi-activity.opi-activity .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  accent-color: var(--shell-accent);
+  flex: none;
+}
+.opi-activity.opi-activity .interactive__stage {
+  min-height: 256px;
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-page);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body--pinned {
+  align-items: stretch;
+}
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: sticky;
+    top: 0;
+    z-index: 2;
+    
+    margin: -16px -16px 0;
+    padding: 16px 16px 12px;
+    background-color: var(--shell-page);
+    border-bottom: 1px solid var(--shell-border);
+}
+}
+@media (min-width: 52em) and (max-height: 30em) {
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: static;
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
+}
+}
+.opi-activity.opi-activity .interactive__stage > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity :where(.interactive__stage) svg,
+.opi-activity.opi-activity :where(.interactive__stage) canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+.opi-activity.opi-activity .interactive__readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout div {
+  padding: 9.6px 12px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-sm, 4px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__readout dt {
+  font-size: 13px;
+  color: var(--shell-muted);
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout dd {
+  margin: 2.4px 0 0;
+  font-size: 18px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .interactive__status {
+  margin: 0;
+  padding: 12px var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+  font-size: 15px;
+  color: var(--shell-muted);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .interactive__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+}
+.opi-activity.opi-activity .interactive__actions button {
+  min-height: 44px;
+  padding: 6.4px 20px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--shell-on-accent);
+  background-color: var(--shell-accent);
+  border: 1px solid var(--shell-accent);
+  border-radius: var(--radius-md, 8px);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  color: var(--shell-text);
+  background-color: transparent;
+  border-color: var(--shell-border-strong);
+}
+.opi-activity.opi-activity .interactive__actions button:hover {
+  filter: brightness(1.08);
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__notes > summary {
+  padding: 13.6px var(--shell-gap);
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__notes > div {
+  padding: 0 var(--shell-gap) var(--shell-gap);
+  max-width: 68ch;
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__notes > div > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity .interactive *,
+.opi-activity.opi-activity .interactive *::before,
+.opi-activity.opi-activity .interactive *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+}
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .interactive,
+.opi-activity.opi-activity .interactive__controls,
+.opi-activity.opi-activity .interactive__stage,
+.opi-activity.opi-activity .interactive__readout div {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__header {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__status,
+.opi-activity.opi-activity .interactive__actions,
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__actions button {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  border-width: 1px;
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 1;
+    color: GrayText;
+    border-color: GrayText;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__stage svg {
+  forced-color-adjust: auto;
+}
+}
+
+/* components/tool-kit.css */
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split--wide {
+  grid-template-columns: 1fr 1fr;
+}
+}
+.opi-activity.opi-activity .how-to {
+  padding-left: 19.2px;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .how-to > li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .table-scroll {
+  overflow-x: auto;
+  
+  position: relative;
+}
+.opi-activity.opi-activity .prediction {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 832px;
+}
+.opi-activity.opi-activity .prediction > *,
+.opi-activity.opi-activity .challenge > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity .prediction__group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .prediction__legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-weight: 650;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .prediction .control--choice,
+.opi-activity.opi-activity .challenge .control--choice,
+.opi-activity.opi-activity .evidence .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .prediction .control--choice input,
+.opi-activity.opi-activity .challenge .control--choice input,
+.opi-activity.opi-activity .evidence .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .prediction__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .prediction__error {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-status-border);
+  border-left: 4px solid var(--colour-status-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .prediction__readback {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .feedback[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .feedback[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .feedback[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .feedback__verdict {
+  font-weight: 700;
+}
+.opi-activity.opi-activity .verdict {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .verdict__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict__body {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .verdict__body + .verdict__body {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .verdict__note {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .verdict[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .verdict[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .goal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .goal__label {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .goal__text {
+  flex: 1 1 256px;
+}
+.opi-activity.opi-activity .goal strong {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .goal__checks {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+  display: grid;
+  gap: 2.4px;
+}
+.opi-activity.opi-activity .goal__checks > li {
+  margin-top: 0;
+  padding-left: 22.4px;
+  position: relative;
+}
+.opi-activity.opi-activity .goal__checks > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 9.6px;
+  height: 9.6px;
+  border: 2px solid var(--colour-border-strong);
+  border-radius: 2px;
+}
+.opi-activity.opi-activity .goal__checks > li[data-met="yes"]::before {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .stage-track {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .stage-track > li {
+  margin-top: 0;
+  flex: 1 1 160px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-bottom: 3px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .stage-track > li > span {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.opi-activity.opi-activity .stage-track > li[data-state="done"] {
+  border-bottom-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border-bottom-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+  color: var(--colour-text);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .stage__heading {
+  margin: 0;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .data-table,
+.opi-activity.opi-activity .chart__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .data-table th,
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table th,
+.opi-activity.opi-activity .chart__table td {
+  padding: 6.4px 9.6px;
+  border: 1px solid var(--colour-border);
+  text-align: left;
+  vertical-align: top;
+}
+.opi-activity.opi-activity .data-table thead th,
+.opi-activity.opi-activity .chart__table thead th {
+  background-color: var(--colour-surface);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table td {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__table tbody th,
+.opi-activity.opi-activity .data-table tbody th {
+  font-weight: 550;
+}
+.opi-activity.opi-activity .data-table__total > th,
+.opi-activity.opi-activity .data-table__total > td {
+  border-top: 2px solid var(--colour-border-strong);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart {
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .chart__caption {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__svg {
+  max-width: 100%;
+  height: auto;
+}
+.opi-activity.opi-activity .chart__label,
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__inline,
+.opi-activity.opi-activity .chart__axis {
+  font-family: var(--font-body);
+  fill: var(--colour-text);
+  font-size: 13px;
+}
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__axis {
+  fill: var(--colour-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: var(--colour-on-accent);
+  font-size: 12px;
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__track {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__bar {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--one {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .chart__baseline,
+.opi-activity.opi-activity .chart__grid {
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__line {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: var(--colour-personality-individual-differences);
+  stroke-dasharray: 6 4;
+}
+.opi-activity.opi-activity .chart__point {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .reveal > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .reveal__lead {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+.opi-activity.opi-activity .reveal__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(176px, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+  padding: 0;
+  list-style: none;
+}
+.opi-activity.opi-activity .reveal__figures > li {
+  margin-top: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+.opi-activity.opi-activity .reveal__figure-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .reveal__figure-value {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .challenge {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+.opi-activity.opi-activity .challenge__locked {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .panel--caution {
+  background-color: var(--colour-status-bg);
+  border-color: var(--colour-status-border);
+}
+.opi-activity.opi-activity .panel--caution li + li {
+  margin-top: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .goal,
+.opi-activity.opi-activity .verdict,
+.opi-activity.opi-activity .feedback,
+.opi-activity.opi-activity .prediction__error,
+.opi-activity.opi-activity .prediction__readback,
+.opi-activity.opi-activity .stage-track > li,
+.opi-activity.opi-activity .reveal__figures > li {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border: 2px solid Highlight;
+}
+.opi-activity.opi-activity .chart__bar,
+.opi-activity.opi-activity .chart__bar--one {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: Canvas;
+}
+.opi-activity.opi-activity .chart__line {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: Highlight;
+}
+}
+.opi-activity.opi-activity .stage__more {
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .stage__more > summary {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .stage__more[open] > summary {
+  border-bottom: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .stage__more > *:not(summary) {
+  margin: var(--space-3);
+}
+
+/* modules/cognitive/tools/09-working-memory-load-lab/tool.css */
+.opi-activity.opi-activity .table-scroll {
+  position: relative;
+}
+.opi-activity.opi-activity #wm .interactive__controls,
+.opi-activity.opi-activity #wm .interactive__stage {
+  min-width: 0;
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity #wm .interactive__body {
+  grid-template-columns: minmax(0, 304px) minmax(0, 1fr);
+}
+}
+.opi-activity.opi-activity #wm .control + .control {
+  margin-top: var(--space-3);
+}
+.opi-activity.opi-activity .control--buttons {
+  display: grid;
+  gap: var(--space-2);
+}
+.opi-activity.opi-activity .wm-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 224px;
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .wm-display__letters {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: clamp(28.8px, 7vw, 48px);
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  text-indent: 0.35em;
+  text-align: center;
+  word-break: break-word;
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .wm-display__word {
+  margin: 0;
+  font-size: clamp(25.6px, 6vw, 38.4px);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-align: center;
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .wm-display__svg {
+  width: 100%;
+  max-width: 208px;
+  height: auto;
+}
+.opi-activity.opi-activity .wm-cell {
+  fill: var(--colour-surface-raised);
+  stroke: var(--colour-border-strong);
+  stroke-width: 2;
+}
+.opi-activity.opi-activity .wm-cell--on {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .wm-cell--probe {
+  fill: var(--colour-surface-raised);
+  stroke: var(--colour-text);
+  stroke-width: 5;
+  stroke-dasharray: 7 5;
+}
+.opi-activity.opi-activity .wm-pattern-cell {
+  fill: var(--colour-text);
+}
+.opi-activity.opi-activity .wm-pattern-axis {
+  stroke: var(--colour-text-muted);
+  stroke-width: 1.5;
+  stroke-dasharray: 5 4;
+}
+.opi-activity.opi-activity .display__caption {
+  margin: var(--space-3) 0 0;
+  min-height: 40px;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+  text-align: center;
+}
+.opi-activity.opi-activity .responses {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+  min-height: 52px;
+}
+.opi-activity.opi-activity .response {
+  flex: 1 1 160px;
+  min-height: 52px;
+  font-size: var(--text-base);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .wm-chart {
+  max-width: 448px;
+}
+.opi-activity.opi-activity .wm__line {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .wm__point {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .challenge select {
+  width: 100%;
+  min-width: 192px;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  font-size: var(--text-sm);
+  color: var(--colour-text);
+  background-color: var(--colour-surface-raised);
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+}
+.opi-activity.opi-activity .challenge th[scope="row"] {
+  min-width: 256px;
+  font-weight: 400;
+}
+.opi-activity.opi-activity .challenge__mark {
+  display: block;
+  margin-top: var(--space-1);
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .wm-display {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .wm-cell {
+  fill: Canvas;
+    stroke: CanvasText;
+}
+.opi-activity.opi-activity .wm-cell--on {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .wm-cell--probe {
+  fill: Canvas;
+    stroke: CanvasText;
+}
+.opi-activity.opi-activity .wm-pattern-cell {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .wm-pattern-axis {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .wm__line,
+.opi-activity.opi-activity .wm__point {
+  stroke: CanvasText;
+    fill: CanvasText;
+}
+.opi-activity.opi-activity .wm__line {
+  fill: none;
+}
+.opi-activity.opi-activity .challenge select {
+  border: 1px solid ButtonText;
+}
+}
+</style>
+
+  <!-- ================= Title and purpose ================= -->
+  <section class="section card--cognitive" aria-labelledby="page-heading">
+    <div class="container">
+
+      <p class="hero__eyebrow" style="color: var(--colour-cognitive)">
+        Cognitive Psychology
+      </p>
+      <h1 id="page-heading">Working-Memory Load Laboratory</h1>
+      <p class="hero__lead">
+        Hold a few things in mind. Now do something else for five seconds.
+        Now report what you were holding. How much you lose depends on how
+        many items you were holding — and, just as much, on whether the
+        something else was made of the same stuff.
+      </p>
+
+      <p>
+        <span class="badge">
+          <span class="badge__dot" aria-hidden="true"></span>
+          Illustrative browser timing — a demonstration of a demand, not a measurement of your capacity
+        </span>
+      </p>
+
+      <div class="split split--wide">
+
+        <div class="panel">
+          <h2 class="panel__title">Learning objective</h2>
+          <p>
+            By the end you should be able to keep storage load, attentional
+            control and similarity apart when reading a load function.
+          </p>
+          <p class="text-muted">
+            About 30 minutes. Nothing you do here is saved or sent anywhere.
+          </p>
+        </div>
+
+        <div class="panel panel--caution">
+          <h2 class="panel__title">Before you start — what is being measured</h2>
+          <p>
+            <strong>This operationalises a demand; it does not measure your
+            capacity.</strong> "Working-memory capacity" as used in the
+            literature is estimated from long, carefully standardised
+            procedures and reported with error. What happens here is that a
+            demand is varied and performance moves. Those are different
+            claims, and only the second one is on offer.
+          </p>
+          <p>
+            <strong>The concurrent judgements are paced.</strong> Each one
+            waits 1.8 seconds and then moves on, so the retention interval is
+            the same length in every condition. Nothing else on the page is
+            timed, nothing flashes, and the <strong>worked example</strong>
+            reaches every conclusion without running a single trial.
+          </p>
+        </div>
+
+      </div>
+
+      <ol class="how-to">
+        <li>Answer the prediction below — it unlocks the laboratory.</li>
+        <li>Choose what to hold in mind, and what to do while you hold it.</li>
+        <li>Run the practice trials, then a run of twelve — four at each load.</li>
+        <li>Read the load function, then change the concurrent task and run again.</li>
+        <li>Compare the runs: same-domain against different-domain.</li>
+        <li>Prefer not to perform it? Load the worked example: four documented simulated runs with fixed seeds.</li>
+      </ol>
+
+    </div>
+  </section>
+
+  <!-- ================= Opening prediction ================= -->
+  <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="opening-heading">First, a prediction</h2>
+        <p class="prose">
+          You will hold either a set of <strong>letters</strong> or a set of
+          <strong>positions in a grid</strong>. While holding it you will make
+          three quick judgements — either about how many syllables a word has,
+          or about whether a pattern is symmetrical. Then one item is shown
+          and you say whether it was in the set.
+        </p>
+      </div>
+
+      <noscript>
+        <div class="placeholder">
+          <h3 class="placeholder__title">This part needs JavaScript</h3>
+          <p class="prose">
+            The trials are generated and timed in your browser, so this cannot
+            work with JavaScript switched off. The rest of the page is
+            readable without it.
+          </p>
+        </div>
+      </noscript>
+
+      <form class="panel prediction" id="opening-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            Which combination do you expect to damage memory most?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="same">
+            Letters with the syllable task, or grid positions with the symmetry task — the matching pairs
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="cross">
+            Letters with the symmetry task, or grid positions with the syllable task — the mismatched pairs
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="equal">
+            It will not matter which — any second task costs the same
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="hardest">
+            Whichever second task is harder in itself, whatever it is made of
+          </label>
+        </fieldset>
+
+        <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Record my answer and unlock the laboratory
+          </button>
+          <button class="button button--secondary" type="button" data-action="skip-opening">
+            Skip — I am demonstrating this
+          </button>
+        </div>
+
+        <div class="feedback" data-opening-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= The laboratory ================= -->
+  <section class="section" id="experiment" aria-labelledby="experiment-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="experiment-heading">The laboratory</h2>
+        <p class="prose">
+          A trial has three parts: <strong>hold</strong> the set,
+          <strong>judge</strong> three items, then <strong>answer</strong> one
+          question about the set. Only the middle part is paced.
+        </p>
+      </div>
+
+      <section class="interactive" id="wm" data-interactive
+               data-reset-message="Everything cleared. Back to the opening question.">
+
+        <header class="interactive__header">
+          <h3 class="interactive__title">Hold it, do something else, report it</h3>
+          <p class="interactive__brief">
+            Twelve trials — four each at two, four and six items. Results are
+            withheld until the run ends.
+          </p>
+          <p class="goal">
+            <span class="goal__label">Phase</span>
+            <span class="goal__text" data-phase-text>Answer the question above to unlock this.</span>
+          </p>
+        </header>
+
+        <div class="interactive__body">
+
+          <form class="interactive__controls" data-interactive-controls>
+
+            <fieldset>
+              <legend>Set up the run</legend>
+
+              <div class="control">
+                <label class="control__label" for="material-select">
+                  What will you hold in mind?
+                </label>
+                <select id="material-select">
+                  <option value="letters" selected>Letters — a row of consonants</option>
+                  <option value="grid">Positions — filled cells in a grid</option>
+                </select>
+              </div>
+
+              <div class="control">
+                <label class="control__label" for="secondary-select">
+                  What will you do while holding it?
+                </label>
+                <select id="secondary-select">
+                  <option value="none" selected>Nothing — just wait</option>
+                  <option value="syllable">Words — does it have exactly two syllables?</option>
+                  <option value="symmetry">Patterns — is it symmetrical left to right?</option>
+                </select>
+                <p class="control__hint">
+                  Run "nothing" first as a baseline, then a matching task, then
+                  a mismatched one.
+                </p>
+              </div>
+
+            </fieldset>
+
+            <fieldset>
+              <legend>Run</legend>
+              <div class="control control--buttons">
+                <button class="button button--secondary" type="button"
+                        data-action="start-practice" disabled>
+                  Practice (two trials, with feedback)
+                </button>
+                <button class="button button--primary" type="button"
+                        data-action="start-run" disabled>
+                  Run twelve trials
+                </button>
+                <button class="button button--secondary" type="button"
+                        data-action="stop" disabled>
+                  Stop
+                </button>
+              </div>
+              <div class="control">
+                <button class="button button--secondary" type="button"
+                        data-action="worked-example">
+                  Load the worked example instead
+                </button>
+                <p class="control__hint">
+                  Four simulated runs, seeded. Not anybody's data.
+                </p>
+              </div>
+            </fieldset>
+
+          </form>
+
+          <div class="interactive__stage" data-interactive-stage>
+
+            <!-- The trial display. aria-hidden while a trial runs: reading it
+                 aloud would be the answer, and the worked example is the
+                 route that does not require seeing it. -->
+            <div class="wm-display" data-display aria-hidden="true">
+              <p class="wm-display__letters" data-letters></p>
+              <svg class="wm-display__svg" data-grid viewBox="0 0 200 200"
+                   aria-hidden="true" focusable="false" hidden></svg>
+              <p class="wm-display__word" data-word></p>
+              <svg class="wm-display__svg" data-pattern viewBox="0 0 220 180"
+                   aria-hidden="true" focusable="false" hidden></svg>
+            </div>
+
+            <p class="display__caption" data-display-caption>
+              Answer the question above to unlock the laboratory.
+            </p>
+
+            <div class="responses" data-responses role="group"
+                 aria-label="Your answer"></div>
+
+            <div class="feedback" data-task-feedback hidden></div>
+
+          </div>
+
+        </div>
+
+        <p class="interactive__status" data-interactive-status role="status"></p>
+
+        <div class="interactive__actions">
+          <button type="button" data-variant="secondary" data-interactive-reset>
+            Reset everything
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ================= Results ================= -->
+  <section class="section section--tinted" id="results" aria-labelledby="results-heading" hidden>
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="results-heading" tabindex="-1">The load function</h2>
+      </div>
+
+      <div class="panel">
+        <figure class="chart">
+          <figcaption class="chart__caption" data-chart-caption>
+            Memory accuracy against the number of items held
+          </figcaption>
+          <svg class="chart__svg wm-chart" data-load-chart viewBox="0 0 440 250"
+               aria-hidden="true" focusable="false"></svg>
+          <div class="table-scroll">
+            <table class="chart__table">
+              <caption class="visually-hidden">
+                For each load: trials, memory accuracy, and the accuracy and
+                speed of the concurrent judgements
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">Items held</th>
+                  <th scope="col">Trials</th>
+                  <th scope="col">Memory correct</th>
+                  <th scope="col">Concurrent task correct</th>
+                  <th scope="col">Concurrent task time</th>
+                </tr>
+              </thead>
+              <tbody data-load-table></tbody>
+            </table>
+          </div>
+        </figure>
+      </div>
+
+      <div class="panel reveal" data-results-body></div>
+
+      <div class="panel">
+        <h3 class="panel__title">Every run so far</h3>
+        <p class="text-muted" data-runs-note></p>
+        <div class="table-scroll">
+          <table class="data-table">
+            <caption class="visually-hidden">
+              Each completed run, with what was held, what was done alongside
+              it, whether the two shared a domain, and memory accuracy at each
+              load
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Run</th>
+                <th scope="col">Held</th>
+                <th scope="col">Alongside</th>
+                <th scope="col">Same domain?</th>
+                <th scope="col">2 items</th>
+                <th scope="col">4 items</th>
+                <th scope="col">6 items</th>
+              </tr>
+            </thead>
+            <tbody data-runs-table></tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= Challenge ================= -->
+  <section class="section" id="challenge" aria-labelledby="challenge-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="challenge-heading">Challenge — three things that are not the same</h2>
+        <p class="prose">
+          <strong>Storage load</strong> is how much is being held.
+          <strong>Attentional control</strong> is what the concurrent task
+          demands of the general-purpose machinery — keeping the task set,
+          resisting the wrong response, coordinating two things at once.
+          <strong>Task similarity</strong> is whether the two draw on the same
+          kind of representation. Every result below is routinely described
+          with the wrong one of the three.
+        </p>
+      </div>
+
+      <form class="panel challenge" id="challenge-form">
+
+        <div class="table-scroll">
+          <table class="data-table">
+            <caption class="visually-hidden">
+              Five findings, each to be assigned to the factor that best
+              explains it
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Finding</th>
+                <th scope="col">Which factor is doing the work?</th>
+              </tr>
+            </thead>
+            <tbody data-challenge-rows></tbody>
+          </table>
+        </div>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Check my answers
+          </button>
+        </div>
+
+        <div class="feedback" data-challenge-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Debrief ================= -->
+  <section class="section section--tinted" id="debrief" aria-labelledby="debrief-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="debrief-heading">What this demonstrates</h2>
+      </div>
+
+      <div class="split split--wide">
+
+        <div class="prose">
+          <h3>Load has a shape, and the shape is the point</h3>
+          <p>
+            Memory for a small set is close to perfect and stays that way for
+            a while; then it falls, and it falls faster the more the
+            concurrent task takes. What that decline is <em>not</em> is a
+            cliff at a fixed number of items. Talking about a capacity of a
+            particular number of items is a summary of a curve, not a
+            description of a container.
+          </p>
+
+          <h3>Not all interference is equal</h3>
+          <p>
+            A concurrent task of the same objective difficulty costs far more
+            when it is made of the same kind of material as the thing being
+            held. Judging syllables while holding letters is worse than
+            judging syllables while holding positions, and the reverse holds
+            for symmetry judgements. That selective pattern is the original
+            evidence for separable stores rather than one undifferentiated
+            pool — and it is also the reason that "how hard is the second
+            task?" is the wrong first question to ask.
+          </p>
+
+          <h3>Three explanations that get run together</h3>
+          <p>
+            A drop in performance under load can come from having more to
+            hold, from the concurrent task demanding more control, or from the
+            two competing for the same representational format. These make
+            different predictions and are separated by different
+            manipulations. This laboratory separates the first and the third
+            cleanly. It does not manipulate attentional control at all,
+            which is why the challenge includes findings this page cannot
+            speak to.
+          </p>
+
+          <h3>A demand, not a capacity</h3>
+          <p>
+            The number that comes out of a run here is your accuracy on twelve
+            trials of a particular task on a particular afternoon. Estimates
+            of working-memory capacity in the literature come from long
+            standardised procedures, are reported with confidence intervals,
+            are checked for reliability, and still predict individual outcomes
+            only modestly. The distance between those two things is worth
+            keeping in view.
+          </p>
+        </div>
+
+        <aside class="panel panel--caution" aria-labelledby="limits-heading">
+          <h3 class="panel__title" id="limits-heading">
+            What this does <em>not</em> demonstrate
+          </h3>
+          <ul>
+            <li>
+              <strong>It does not measure your working-memory capacity.</strong>
+              It varies a demand and watches performance move. Those are
+              different claims and only the second is supported.
+            </li>
+            <li>
+              <strong>Four trials per load is far too few.</strong> Compare
+              the shape with the worked example rather than treating any
+              single number as an estimate.
+            </li>
+            <li>
+              <strong>The two secondary tasks are not matched for
+              difficulty.</strong> They are matched for pacing and for the
+              number of judgements, which is not the same thing. A difference
+              between them could in principle be a difference in difficulty
+              rather than in similarity — and the only way to tell is to cross
+              them with both memory materials, which is exactly what the
+              worked example does and what one learner rarely has time for.
+            </li>
+            <li>
+              <strong>It does not manipulate attentional control.</strong>
+              Everything here is storage load and similarity. Claims about
+              control need a different design.
+            </li>
+            <li>
+              <strong>Recognition is not recall.</strong> One probe per trial
+              measures whether an item is still available to be recognised,
+              which is an easier question than reproducing the set in order.
+            </li>
+          </ul>
+        </aside>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+<script>
+/* ---- components/interactive-shell.js ---- */
+/* =========================================================================
+   Open Psychology Interactives — interactive shell helper
+   -------------------------------------------------------------------------
+   A very small vanilla-JS helper that every interactive in this collection
+   uses. It deliberately does *not* draw anything or know anything about
+   statistics, personality or neuropsychology. Its job is the repetitive,
+   easy-to-get-wrong accessibility plumbing:
+
+     * announcing changes through a polite live region;
+     * keeping a range slider and its <output> in step;
+     * wiring the standard Reset button;
+     * reporting the reader's reduced-motion preference.
+
+   Usage (see docs/adapting-a-tool.md for the full markup contract):
+
+       <script src="../../components/interactive-shell.js" defer><\/script>
+       <script src="tool.js" defer><\/script>
+
+       // in tool.js
+       const shell = InteractiveShell.attach('#sampling-demo');
+       shell.onReset(() => { ...restore defaults...; draw(); });
+       shell.bindRange('#sample-size', { format: n => n + ' cases' });
+       shell.announce('Sample of 25 drawn. Mean 4.8.');
+
+   Every published interactive is written against this module.
+
+   Exposed as a global (window.InteractiveShell) rather than an ES module so
+   that a single interactive folder can be opened directly from disk over
+   file:// — ES modules are blocked by CORS in that situation, plain scripts
+   are not. That constraint is the whole reason for the older syntax here.
+   ========================================================================= */
+
+(function (global) {
+  "use strict";
+
+  /* -----------------------------------------------------------------------
+     Internal helpers
+     --------------------------------------------------------------------- */
+
+  /**
+   * Accept either a CSS selector or an element and return an element.
+   * @param {string|Element} target
+   * @param {ParentNode} [scope]
+   * @returns {Element|null}
+   */
+  function resolve(target, scope) {
+    if (!target) {
+      return null;
+    }
+    if (typeof target === "string") {
+      return (scope || document).querySelector(target);
+    }
+    return target;
+  }
+
+  /**
+   * True when the reader has asked the operating system to reduce motion.
+   * Interactives should check this before animating anything — for example
+   * by drawing a sampling distribution in one step instead of animating
+   * each draw.
+   * @returns {boolean}
+   */
+  function prefersReducedMotion() {
+    return (
+      typeof global.matchMedia === "function" &&
+      global.matchMedia("(prefers-reduced-motion: reduce)").matches
+    );
+  }
+
+  /* -----------------------------------------------------------------------
+     Shell controller
+     --------------------------------------------------------------------- */
+
+  /**
+   * Attach the shell behaviour to one `.interactive` element.
+   *
+   * @param {string|Element} target  Selector or element for the shell root.
+   * @returns {object|null}  Controller, or null if the root was not found.
+   */
+  function attach(target) {
+    var root = resolve(target);
+
+    if (!root) {
+      if (global.console && console.warn) {
+        console.warn("InteractiveShell: root element not found.", target);
+      }
+      return null;
+    }
+
+    var controls = root.querySelector("[data-interactive-controls]");
+    var stage = root.querySelector("[data-interactive-stage]");
+    var status = root.querySelector("[data-interactive-status]");
+    var resetButton = root.querySelector("[data-interactive-reset]");
+    var resetHandlers = [];
+    // Every range bound with bindRange() registers its sync function here, so
+    // that reset() can refresh the visible values after the tool's own reset
+    // handlers have restored the inputs. See reset() for why this is needed.
+    var rangeSyncs = [];
+
+    /* --- Live region ----------------------------------------------------
+       The status element is marked up as role="status" (implicitly
+       aria-live="polite"). Two details matter:
+
+         1. Assistive technology only announces *changes* to a live region,
+            so writing the same string twice is silently dropped. We add a
+            trailing zero-width space on repeat messages to force an
+            announcement when a student re-runs the same action.
+         2. Announcements are debounced. A slider dragged across its range
+            fires dozens of input events; without a delay a screen reader
+            would queue every intermediate value and fall far behind.
+       ------------------------------------------------------------------ */
+
+    var announceTimer = null;
+    var lastMessage = "";
+
+    /**
+     * Announce a short sentence describing what just changed.
+     * @param {string} message
+     * @param {object} [options]
+     * @param {boolean} [options.immediate]  Skip the debounce delay. Use for
+     *   discrete actions (button presses); leave off for continuous input.
+     */
+    function announce(message, options) {
+      if (!status) {
+        return;
+      }
+
+      var text = String(message == null ? "" : message);
+      var immediate = Boolean(options && options.immediate);
+
+      if (announceTimer !== null) {
+        global.clearTimeout(announceTimer);
+        announceTimer = null;
+      }
+
+      function write() {
+        // Force a change when the text is identical to last time.
+        status.textContent = text === lastMessage ? text + "​" : text;
+        lastMessage = text;
+      }
+
+      if (immediate) {
+        write();
+      } else {
+        announceTimer = global.setTimeout(write, 350);
+      }
+    }
+
+    /* --- Reset ---------------------------------------------------------- */
+
+    /**
+     * Register a callback to run when the Reset button is pressed.
+     * Several may be registered; they run in the order added.
+     * @param {Function} handler
+     */
+    function onReset(handler) {
+      if (typeof handler === "function") {
+        resetHandlers.push(handler);
+      }
+    }
+
+    /**
+     * Run the reset handlers. Called by the button and available directly so
+     * an interactive can reset itself on first load.
+     *
+     * Bound ranges are re-synced afterwards. A reset handler restores an
+     * input by assigning to `input.value`, and assigning to a value in script
+     * does not fire an `input` event — so without this step the slider would
+     * jump back to its default while its <output> went on showing the old
+     * number. Syncing here, after the handlers have run, also means the sync
+     * sees the restored values regardless of the order things were
+     * registered in.
+     *
+     * @param {object} [options]
+     * @param {boolean} [options.silent]  Suppress the status announcement.
+     */
+    function reset(options) {
+      resetHandlers.forEach(function (handler) {
+        handler();
+      });
+      rangeSyncs.forEach(function (sync) {
+        sync();
+      });
+      if (!options || !options.silent) {
+        announce(
+          root.getAttribute("data-reset-message") ||
+            "Reset to the starting values.",
+          { immediate: true }
+        );
+      }
+    }
+
+    if (resetButton) {
+      resetButton.addEventListener("click", function (event) {
+        // Reset buttons commonly sit inside the controls <form>; stop the
+        // browser's own form reset from fighting with ours.
+        event.preventDefault();
+        reset();
+      });
+    }
+
+    /* --- Range binding --------------------------------------------------
+       Keeps a slider's <output> in step with its value. The <output> must
+       carry `for="<input id>"`, which is what associates the two for
+       assistive technology; this only handles the visible text.
+
+       Optionally sets aria-valuetext, which is how you make a screen reader
+       say "25 cases" or "medium correlation" instead of a bare "25".
+       ------------------------------------------------------------------ */
+
+    /**
+     * @param {string|Element} inputTarget  The range (or number) input.
+     * @param {object} [options]
+     * @param {Function} [options.format]  value:number -> string shown in the
+     *   <output>. Defaults to the raw value.
+     * @param {Function} [options.describe]  value:number -> string used for
+     *   aria-valuetext. Defaults to options.format.
+     * @param {Function} [options.onInput]  value:number -> void, called after
+     *   the display has been updated. Use it to redraw.
+     * @returns {HTMLInputElement|null}
+     */
+    function bindRange(inputTarget, options) {
+      var input = resolve(inputTarget, root);
+      if (!input) {
+        return null;
+      }
+
+      var settings = options || {};
+      var format =
+        typeof settings.format === "function"
+          ? settings.format
+          : function (value) {
+              return String(value);
+            };
+      var describe =
+        typeof settings.describe === "function" ? settings.describe : format;
+
+      // <output for="the-input-id"> is the conventional pairing.
+      var output = input.id
+        ? root.querySelector('output[for="' + input.id + '"]')
+        : null;
+
+      function sync() {
+        var value = Number(input.value);
+        if (output) {
+          output.textContent = format(value);
+        }
+        // Only meaningful for widgets with an implicit or explicit slider
+        // role; harmless elsewhere.
+        input.setAttribute("aria-valuetext", describe(value));
+        if (typeof settings.onInput === "function") {
+          settings.onInput(value);
+        }
+      }
+
+      input.addEventListener("input", sync);
+      // Registered so reset() can refresh the display after the tool's own
+      // reset handlers have put the input back to its default.
+      rangeSyncs.push(sync);
+      sync();
+
+      return input;
+    }
+
+    /* --- Public surface -------------------------------------------------- */
+
+    return {
+      /** The `.interactive` root element. */
+      root: root,
+      /** The controls panel, or null if the shell has none. */
+      controls: controls,
+      /** The stage element where the visualisation is drawn. */
+      stage: stage,
+      /** The live-region element. */
+      status: status,
+      announce: announce,
+      onReset: onReset,
+      reset: reset,
+      bindRange: bindRange,
+      prefersReducedMotion: prefersReducedMotion
+    };
+  }
+
+  /* -----------------------------------------------------------------------
+     Export
+     --------------------------------------------------------------------- */
+
+  global.InteractiveShell = {
+    attach: attach,
+    prefersReducedMotion: prefersReducedMotion
+  };
+})(window);
+
+/* ---- modules/cognitive/tools/09-working-memory-load-lab/tool.js ---- */
+/* =========================================================================
+   Working-Memory Load Laboratory
+   -------------------------------------------------------------------------
+   A retention-interval design. The learner holds a set of items, makes three
+   quick judgements while holding it, and then answers one recognition probe
+   about the set.
+
+       encode      2500 ms       2, 4 or 6 items
+       retain      3 judgements at a fixed 1800 ms each, or an equal blank wait
+       probe       one item, "was this in the set?", untimed
+
+   Because the retention interval is a fixed 5400 ms in EVERY condition,
+   including the do-nothing baseline, decay time is held constant and the only
+   thing that varies is what happened during it.
+
+   THE TWO FACTORS
+   ---------------
+       load          2 / 4 / 6 items
+       material      letters (a row of consonants) or positions (cells in a
+                     4x4 grid)
+       concurrent    nothing / syllable judgement (verbal) /
+                     symmetry judgement (visuospatial)
+
+   Crossing material with concurrent task gives the similarity manipulation:
+   a same-domain pair (letters + syllables, positions + symmetry) should cost
+   more than a different-domain pair of the same pacing. That selective
+   pattern is the classic argument for separable stores, and it is also the
+   reason "how hard is the second task?" is the wrong first question.
+
+   WHAT THIS OPERATIONALISES
+   -------------------------
+   A DEMAND, not a capacity. The page says so in the hero, the limits panel,
+   the results prose and the teaching notes. Nothing here is an estimate of
+   anybody's working-memory capacity.
+
+   WHAT IT DOES NOT MANIPULATE
+   ---------------------------
+   Attentional control. Nothing here varies task set, response conflict or
+   coordination demand. The challenge deliberately includes findings this
+   design cannot speak to.
+
+   THE WORKED EXAMPLE (the non-timed route)
+   ----------------------------------------
+   Four simulated runs covering the whole 2 x 2 of material by concurrent
+   task, 30 trials per load each, drawn as Bernoulli trials from
+
+       memory accuracy by load       2      4      6
+         letters + syllables       0.93   0.82   0.68     same domain
+         letters + symmetry        0.96   0.90   0.81     different
+         positions + symmetry      0.92   0.80   0.66     same domain
+         positions + syllables     0.95   0.89   0.80     different
+
+       concurrent-task accuracy    same domain 0.86, different 0.93
+       concurrent-task time        same domain 1080 ms, different 940 ms,
+                                   plus 30 ms per item held
+
+   seeds 20260991, 20260992, 20260993, 20260994.
+
+   The similarity effect is BUILT IN. It illustrates the shape of the classic
+   finding rather than providing evidence for it, and the results panel says
+   so. These numbers are not norms, not published estimates and not anybody's
+   data.
+
+   No data leave the browser. No storage, no network request.
+   ========================================================================= */
+
+(function () {
+  "use strict";
+
+  var LOADS = [2, 4, 6];
+  var TRIALS_PER_LOAD = 4;
+  var PRACTICE_TRIALS = 2;
+  var ENCODE_MS = 2500;
+  var JUDGEMENT_MS = 1800;
+  var JUDGEMENTS_PER_TRIAL = 3;
+  var GAP_MS = 400;
+  var GRID_SIZE = 4;
+
+  /* Consonants only, with I, O and Q left out because they are easily
+     confused with digits and with each other at a glance. */
+  var LETTERS = "BCDFGHJKLMNPRSTVWXYZ".split("");
+
+  /* Two-syllable words and words that are not two syllables. Chosen to be
+     unambiguous when said aloud; the teaching notes flag that syllable
+     counting has genuinely contested cases and that these are not among
+     them. */
+  var TWO_SYLLABLE = ["GARDEN", "PENCIL", "BASKET", "HAMMER", "WINDOW",
+    "CARPET", "MARKET", "RIBBON", "LADDER", "KETTLE", "CANDLE", "PILLOW"];
+  var NOT_TWO_SYLLABLE = ["TREE", "CHAIR", "BRIDGE", "CLOUD", "DESK", "GLASS",
+    "UMBRELLA", "CAMERA", "ANIMAL", "ELEPHANT", "BANANA", "HOSPITAL"];
+
+  var MATERIALS = {
+    letters: { key: "letters", label: "Letters", domain: "verbal" },
+    grid: { key: "grid", label: "Positions", domain: "spatial" }
+  };
+
+  var SECONDARIES = {
+    none: { key: "none", label: "Nothing", domain: null },
+    syllable: { key: "syllable", label: "Syllable judgement", domain: "verbal" },
+    symmetry: { key: "symmetry", label: "Symmetry judgement", domain: "spatial" }
+  };
+
+  /* The worked example is a simulated CLASS, not one person: 40 fictional
+     participants contributing three trials per load each, which is 120
+     observations per cell. At 30 the sampling error alone (about seven
+     percentage points) swamped the effect the example exists to show. */
+  var SIM = {
+    participants: 100,
+    trialsEach: 4,
+    perLoad: 400,
+    runs: [
+      { seed: 20260991, material: "letters", secondary: "syllable",
+        memory: { 2: 0.95, 4: 0.80, 6: 0.66 }, sameDomain: true },
+      { seed: 20260992, material: "letters", secondary: "symmetry",
+        memory: { 2: 0.96, 4: 0.90, 6: 0.82 }, sameDomain: false },
+      { seed: 20260993, material: "grid", secondary: "symmetry",
+        memory: { 2: 0.94, 4: 0.79, 6: 0.64 }, sameDomain: true },
+      { seed: 20260994, material: "grid", secondary: "syllable",
+        memory: { 2: 0.96, 4: 0.89, 6: 0.81 }, sameDomain: false }
+    ],
+    secondaryAccuracy: { same: 0.86, different: 0.93 },
+    secondaryTime: { same: 1080, different: 940 },
+    timePerItem: 30
+  };
+
+  /* =======================================================================
+     Seeded randomness (copied rather than imported, so a downloaded folder
+     keeps working on its own)
+     ===================================================================== */
+
+  function mulberry32(seed) {
+    var a = seed >>> 0;
+    return function () {
+      a = (a + 0x6d2b79f5) >>> 0;
+      var t = a;
+      t = Math.imul(t ^ (t >>> 15), t | 1);
+      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  function shuffle(items) {
+    for (var i = items.length - 1; i > 0; i -= 1) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = items[i];
+      items[i] = items[j];
+      items[j] = tmp;
+    }
+    return items;
+  }
+
+  function sample(items, count) {
+    return shuffle(items.slice()).slice(0, count);
+  }
+
+  function pick(items) {
+    return items[Math.floor(Math.random() * items.length)];
+  }
+
+  /* =======================================================================
+     Small helpers
+     ===================================================================== */
+
+  var NS = "http://www.w3.org/2000/svg";
+
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) { node.className = className; }
+    if (text !== undefined) { node.textContent = text; }
+    return node;
+  }
+
+  function svgNode(tag, attributes, parent) {
+    var node = document.createElementNS(NS, tag);
+    Object.keys(attributes).forEach(function (key) {
+      node.setAttribute(key, String(attributes[key]));
+    });
+    if (parent) { parent.appendChild(node); }
+    return node;
+  }
+
+  function clear(node) {
+    while (node && node.firstChild) { node.removeChild(node.firstChild); }
+  }
+
+  function pct(value) {
+    return value === null || value === undefined || isNaN(value)
+      ? "—" : Math.round(value * 100) + "%";
+  }
+
+  function ms(value) {
+    return value === null || value === undefined || isNaN(value)
+      ? "—" : Math.round(value) + " ms";
+  }
+
+  function meanOf(values) {
+    if (!values.length) { return null; }
+    return values.reduce(function (a, b) { return a + b; }, 0) / values.length;
+  }
+
+  function now() {
+    return (window.performance && window.performance.now)
+      ? window.performance.now() : Date.now();
+  }
+
+  function sameDomain(materialKey, secondaryKey) {
+    var m = MATERIALS[materialKey].domain;
+    var s = SECONDARIES[secondaryKey].domain;
+    return s !== null && m === s;
+  }
+
+  /* =======================================================================
+     Stimuli
+     ===================================================================== */
+
+  function makeMemorySet(materialKey, load) {
+    if (materialKey === "letters") {
+      return sample(LETTERS, load);
+    }
+    var cells = [];
+    for (var i = 0; i < GRID_SIZE * GRID_SIZE; i += 1) { cells.push(i); }
+    return sample(cells, load);
+  }
+
+  function makeProbe(materialKey, set) {
+    var inSet = Math.random() < 0.5;
+    if (inSet) { return { item: pick(set), answer: true }; }
+    if (materialKey === "letters") {
+      var pool = LETTERS.filter(function (l) { return set.indexOf(l) === -1; });
+      return { item: pick(pool), answer: false };
+    }
+    var cells = [];
+    for (var i = 0; i < GRID_SIZE * GRID_SIZE; i += 1) {
+      if (set.indexOf(i) === -1) { cells.push(i); }
+    }
+    return { item: pick(cells), answer: false };
+  }
+
+  function makeJudgement(secondaryKey) {
+    if (secondaryKey === "syllable") {
+      var two = Math.random() < 0.5;
+      return {
+        kind: "syllable",
+        word: pick(two ? TWO_SYLLABLE : NOT_TWO_SYLLABLE),
+        answer: two
+      };
+    }
+    // Symmetry: a 5-column by 4-row pattern. Symmetric patterns are built by
+    // mirroring the two left columns; asymmetric ones then have one cell
+    // flipped, so the two kinds have the same density on average.
+    var cols = 5, rows = 4;
+    var cells = [];
+    var r, c;
+    for (r = 0; r < rows; r += 1) {
+      for (c = 0; c < 2; c += 1) {
+        if (Math.random() < 0.5) {
+          cells.push([r, c]);
+          cells.push([r, cols - 1 - c]);
+        }
+      }
+      if (Math.random() < 0.5) { cells.push([r, 2]); }
+    }
+    var symmetric = Math.random() < 0.5;
+    if (!symmetric) {
+      // Flip one non-central cell so the mirror is broken exactly once.
+      var target = [Math.floor(Math.random() * rows), Math.random() < 0.5 ? 0 : 1];
+      var index = -1;
+      cells.forEach(function (cell, i) {
+        if (cell[0] === target[0] && cell[1] === target[1]) { index = i; }
+      });
+      if (index === -1) { cells.push(target); } else { cells.splice(index, 1); }
+    }
+    return { kind: "symmetry", cells: cells, rows: rows, cols: cols, answer: symmetric };
+  }
+
+  /* =======================================================================
+     Wiring
+     ===================================================================== */
+
+  var shell = InteractiveShell.attach("#wm");
+  if (!shell) { return; }
+
+  var $ = function (selector, scope) {
+    return (scope || document).querySelector(selector);
+  };
+
+  var materialSelect = $("#material-select");
+  var secondarySelect = $("#secondary-select");
+  var startPractice = $('[data-action="start-practice"]');
+  var startRun = $('[data-action="start-run"]');
+  var stopButton = $('[data-action="stop"]');
+  var workedExample = $('[data-action="worked-example"]');
+
+  var lettersDisplay = $("[data-letters]");
+  var gridDisplay = $("[data-grid]");
+  var wordDisplay = $("[data-word]");
+  var patternDisplay = $("[data-pattern]");
+  var displayCaption = $("[data-display-caption]");
+  var phaseText = $("[data-phase-text]");
+  var responses = $("[data-responses]");
+  var taskFeedback = $("[data-task-feedback]");
+
+  var resultsSection = $("#results");
+  var resultsBody = $("[data-results-body]");
+  var chartCaption = $("[data-chart-caption]");
+  var loadChart = $("[data-load-chart]");
+  var loadTable = $("[data-load-table]");
+  var runsTable = $("[data-runs-table]");
+  var runsNote = $("[data-runs-note]");
+
+  var openingForm = $("#opening-form");
+  var openingError = $("[data-opening-error]");
+  var openingFeedback = $("[data-opening-feedback]");
+  var skipOpening = $('[data-action="skip-opening"]');
+
+  var challengeForm = $("#challenge-form");
+  var challengeRows = $("[data-challenge-rows]");
+  var challengeFeedback = $("[data-challenge-feedback]");
+
+  var state = null;
+  var pending = [];
+
+  function later(fn, delay) {
+    var id = window.setTimeout(function () {
+      pending = pending.filter(function (other) { return other !== id; });
+      fn();
+    }, delay);
+    pending.push(id);
+    return id;
+  }
+
+  function cancelPending() {
+    pending.forEach(function (id) { window.clearTimeout(id); });
+    pending = [];
+  }
+
+  /* =======================================================================
+     Display
+     ===================================================================== */
+
+  function hideAll() {
+    lettersDisplay.textContent = "";
+    wordDisplay.textContent = "";
+    gridDisplay.hidden = true;
+    patternDisplay.hidden = true;
+    clear(gridDisplay);
+    clear(patternDisplay);
+  }
+
+  function drawGrid(onCells, probeCell) {
+    clear(gridDisplay);
+    gridDisplay.hidden = false;
+    var size = 200 / GRID_SIZE;
+    for (var r = 0; r < GRID_SIZE; r += 1) {
+      for (var c = 0; c < GRID_SIZE; c += 1) {
+        var index = r * GRID_SIZE + c;
+        var cls = "wm-cell";
+        if (probeCell === index) { cls = "wm-cell wm-cell--probe"; }
+        else if (onCells.indexOf(index) !== -1) { cls = "wm-cell wm-cell--on"; }
+        svgNode("rect", {
+          x: (c * size + 3).toFixed(1), y: (r * size + 3).toFixed(1),
+          width: (size - 6).toFixed(1), height: (size - 6).toFixed(1),
+          rx: 4, class: cls
+        }, gridDisplay);
+      }
+    }
+  }
+
+  function drawPattern(judgement) {
+    clear(patternDisplay);
+    patternDisplay.hidden = false;
+    var cell = 40;
+    var width = judgement.cols * cell;
+    var height = judgement.rows * cell;
+    var offsetX = (220 - width) / 2;
+    var offsetY = (180 - height) / 2;
+    judgement.cells.forEach(function (rc) {
+      svgNode("rect", {
+        x: (offsetX + rc[1] * cell + 3).toFixed(1),
+        y: (offsetY + rc[0] * cell + 3).toFixed(1),
+        width: cell - 6, height: cell - 6, rx: 3, class: "wm-pattern-cell"
+      }, patternDisplay);
+    });
+    svgNode("line", {
+      x1: 110, y1: offsetY - 6, x2: 110, y2: offsetY + height + 6,
+      class: "wm-pattern-axis"
+    }, patternDisplay);
+  }
+
+  function setResponses(buttons) {
+    clear(responses);
+    buttons.forEach(function (spec) {
+      var button = make("button", "button button--secondary response", spec[1]);
+      button.type = "button";
+      button.setAttribute("data-answer", spec[0]);
+      button.addEventListener("click", function () { spec[2](); });
+      responses.appendChild(button);
+    });
+    var first = responses.querySelector("button");
+    if (first) { first.focus(); }
+  }
+
+  /* =======================================================================
+     Running a trial
+     ===================================================================== */
+
+  function describePhase(phase) {
+    if (phase === "encode") {
+      return state.material === "letters"
+        ? "Hold these letters." : "Hold these positions.";
+    }
+    if (phase === "judge") {
+      return state.secondary === "syllable"
+        ? "Two syllables, or not two syllables?"
+        : state.secondary === "symmetry"
+          ? "Symmetrical left to right, or not?"
+          : "Just wait, and keep holding the set.";
+    }
+    if (phase === "probe") { return "Was this in the set?"; }
+    return "Between trials.";
+  }
+
+  function setPhase(phase) {
+    state.phase = phase;
+    phaseText.textContent = describePhase(phase);
+  }
+
+  function beginTrial() {
+    var load = state.queue[state.index];
+    state.set = makeMemorySet(state.material, load);
+    state.load = load;
+    state.probe = makeProbe(state.material, state.set);
+    state.judgeIndex = 0;
+    state.judgeResults = [];
+    taskFeedback.hidden = true;
+    clear(responses);
+    hideAll();
+    setPhase("encode");
+
+    displayCaption.textContent = (state.mode === "practice" ? "Practice trial "
+      : "Trial ") + (state.index + 1) + " of " + state.queue.length +
+      " — " + load + " items to hold.";
+
+    if (state.material === "letters") {
+      lettersDisplay.textContent = state.set.join(" ");
+    } else {
+      drawGrid(state.set, null);
+    }
+
+    later(startRetention, ENCODE_MS);
+  }
+
+  function startRetention() {
+    hideAll();
+    setPhase("judge");
+    if (state.secondary === "none") {
+      displayCaption.textContent =
+        "Keep holding the set. Nothing to do for a few seconds.";
+      later(askProbe, JUDGEMENT_MS * JUDGEMENTS_PER_TRIAL);
+      return;
+    }
+    nextJudgement();
+  }
+
+  function nextJudgement() {
+    if (state.judgeIndex >= JUDGEMENTS_PER_TRIAL) {
+      hideAll();
+      clear(responses);
+      later(askProbe, GAP_MS);
+      return;
+    }
+
+    var judgement = makeJudgement(state.secondary);
+    state.judgement = judgement;
+    state.judgementAnswered = false;
+    state.judgementShownAt = now();
+    hideAll();
+
+    if (judgement.kind === "syllable") {
+      wordDisplay.textContent = judgement.word;
+      displayCaption.textContent = "Two syllables? " +
+        (state.judgeIndex + 1) + " of " + JUDGEMENTS_PER_TRIAL + ".";
+      setResponses([
+        ["yes", "Two syllables", function () { answerJudgement(true); }],
+        ["no", "Not two", function () { answerJudgement(false); }]
+      ]);
+    } else {
+      drawPattern(judgement);
+      displayCaption.textContent = "Symmetrical? " +
+        (state.judgeIndex + 1) + " of " + JUDGEMENTS_PER_TRIAL + ".";
+      setResponses([
+        ["yes", "Symmetrical", function () { answerJudgement(true); }],
+        ["no", "Not symmetrical", function () { answerJudgement(false); }]
+      ]);
+    }
+
+    // Fixed window, so the retention interval is the same length in every
+    // condition. A missed response is recorded as a miss, not dropped.
+    state.judgementTimer = later(function () {
+      if (!state.judgementAnswered) { answerJudgement(null); }
+    }, JUDGEMENT_MS);
+  }
+
+  function answerJudgement(answer) {
+    if (state.judgementAnswered) { return; }
+    state.judgementAnswered = true;
+    var rt = now() - state.judgementShownAt;
+    state.judgeResults.push({
+      correct: answer === null ? false : answer === state.judgement.answer,
+      missed: answer === null,
+      rt: answer === null ? null : rt
+    });
+    state.judgeIndex += 1;
+    // Wait out the rest of the window so every trial has the same retention
+    // interval regardless of how fast the learner answered.
+    var used = answer === null ? JUDGEMENT_MS : rt;
+    clear(responses);
+    hideAll();
+    later(nextJudgement, Math.max(80, JUDGEMENT_MS - used));
+  }
+
+  function askProbe() {
+    setPhase("probe");
+    hideAll();
+    if (state.material === "letters") {
+      lettersDisplay.textContent = state.probe.item;
+    } else {
+      drawGrid([], state.probe.item);
+    }
+    displayCaption.textContent = state.material === "letters"
+      ? "Was this letter in the set? No time limit."
+      : "Was this position in the set? The ringed cell is the one being asked about. No time limit.";
+    setResponses([
+      ["yes", "Yes, it was in the set", function () { answerProbe(true); }],
+      ["no", "No, it was not", function () { answerProbe(false); }]
+    ]);
+    shell.announce("Was this item in the set?", { immediate: true });
+  }
+
+  function answerProbe(answer) {
+    if (state.phase !== "probe") { return; }
+    var correct = answer === state.probe.answer;
+    var judgeCorrect = state.judgeResults.filter(function (j) { return j.correct; }).length;
+    var judgeRts = state.judgeResults.filter(function (j) { return j.rt !== null; })
+      .map(function (j) { return j.rt; });
+
+    if (state.mode === "practice") {
+      showFeedback(taskFeedback, correct ? "good" : "caution",
+        correct ? "Correct." : "Not that one.",
+        "The set had " + state.load + " items and the probe " +
+        (state.probe.answer ? "was" : "was not") + " one of them." +
+        (state.secondary === "none" ? ""
+          : " You got " + judgeCorrect + " of " + JUDGEMENTS_PER_TRIAL +
+            " of the concurrent judgements right.") +
+        " Practice tells you straight away; the scored run will not.");
+    } else {
+      state.trials.push({
+        load: state.load,
+        correct: correct,
+        judgeCorrect: judgeCorrect,
+        judgeTotal: state.secondary === "none" ? 0 : JUDGEMENTS_PER_TRIAL,
+        judgeRt: meanOf(judgeRts)
+      });
+    }
+
+    clear(responses);
+    hideAll();
+    setPhase("gap");
+    state.index += 1;
+    if (state.index >= state.queue.length) {
+      later(finishRun, GAP_MS);
+    } else {
+      displayCaption.textContent = "Next trial starting.";
+      later(beginTrial, state.mode === "practice" ? 1600 : GAP_MS + 400);
+    }
+  }
+
+  function idleControls() {
+    startPractice.disabled = false;
+    startRun.disabled = false;
+    stopButton.disabled = true;
+    materialSelect.disabled = false;
+    secondarySelect.disabled = false;
+  }
+
+  function runningControls() {
+    startPractice.disabled = true;
+    startRun.disabled = true;
+    stopButton.disabled = false;
+    materialSelect.disabled = true;
+    secondarySelect.disabled = true;
+  }
+
+  function finishRun() {
+    var wasPractice = state.mode === "practice";
+    state.mode = "idle";
+    cancelPending();
+    hideAll();
+    clear(responses);
+    idleControls();
+    setPhase("idle");
+
+    if (wasPractice) {
+      displayCaption.textContent = "Practice finished.";
+      showFeedback(taskFeedback, "good", "Practice finished.",
+        "The scored run is twelve trials — four each at two, four and six " +
+        "items — with no feedback until it ends.");
+      startRun.focus();
+      shell.announce("Practice finished. The scored run is available.",
+        { immediate: true });
+      return;
+    }
+
+    displayCaption.textContent = "Run finished. The load function is below.";
+    recordRun(state.trials.slice());
+    shell.announce("Run finished. The load function is below.", { immediate: true });
+  }
+
+  function stopRun() {
+    var collected = state.trials.slice();
+    var wasScored = state.mode === "run";
+    cancelPending();
+    state.mode = "idle";
+    hideAll();
+    clear(responses);
+    idleControls();
+    setPhase("idle");
+    displayCaption.textContent = "Stopped.";
+    if (wasScored && collected.length) {
+      recordRun(collected, true);
+    }
+    shell.announce("Stopped." + (wasScored && collected.length
+      ? " The trials you completed are summarised below." : ""),
+      { immediate: true });
+  }
+
+  /* =======================================================================
+     Summaries
+     ===================================================================== */
+
+  function summarise(trials) {
+    var byLoad = {};
+    LOADS.forEach(function (load) {
+      var subset = trials.filter(function (t) { return t.load === load; });
+      var judged = subset.filter(function (t) { return t.judgeTotal > 0; });
+      var rts = subset.map(function (t) { return t.judgeRt; })
+        .filter(function (v) { return v !== null && v !== undefined; });
+      byLoad[load] = {
+        load: load,
+        n: subset.length,
+        memory: subset.length
+          ? subset.filter(function (t) { return t.correct; }).length / subset.length
+          : null,
+        secondary: judged.length
+          ? judged.reduce(function (a, t) { return a + t.judgeCorrect; }, 0) /
+            judged.reduce(function (a, t) { return a + t.judgeTotal; }, 0)
+          : null,
+        secondaryRt: rts.length ? meanOf(rts) : null
+      };
+    });
+    return { total: trials.length, byLoad: byLoad };
+  }
+
+  function simulateRun(spec) {
+    var rand = mulberry32(spec.seed);
+    var kind = spec.sameDomain ? "same" : "different";
+    var byLoad = {};
+    LOADS.forEach(function (load) {
+      var hits = 0, judgeHits = 0, judgeTotal = 0, rts = [];
+      for (var i = 0; i < SIM.perLoad; i += 1) {
+        if (rand() < spec.memory[load]) { hits += 1; }
+        for (var j = 0; j < JUDGEMENTS_PER_TRIAL; j += 1) {
+          judgeTotal += 1;
+          if (rand() < SIM.secondaryAccuracy[kind]) { judgeHits += 1; }
+        }
+        rts.push(SIM.secondaryTime[kind] + SIM.timePerItem * load +
+          (rand() - 0.5) * 180);
+      }
+      byLoad[load] = {
+        load: load, n: SIM.perLoad,
+        memory: hits / SIM.perLoad,
+        secondary: judgeHits / judgeTotal,
+        secondaryRt: meanOf(rts)
+      };
+    });
+    return { total: SIM.perLoad * LOADS.length, byLoad: byLoad };
+  }
+
+  /* =======================================================================
+     Results
+     ===================================================================== */
+
+  function recordRun(trials, partial) {
+    var stats = summarise(trials);
+    state.runs.push({
+      label: "Run " + (state.runs.length + 1) + (partial ? " (partial)" : ""),
+      source: "Yours",
+      material: state.material,
+      secondary: state.secondary,
+      same: sameDomain(state.material, state.secondary),
+      stats: stats
+    });
+    showResults(stats, {
+      source: "own", material: state.material, secondary: state.secondary,
+      partial: partial
+    });
+  }
+
+  function loadWorkedExample() {
+    var first = null;
+    SIM.runs.forEach(function (spec, index) {
+      var stats = simulateRun(spec);
+      state.runs.push({
+        label: "Worked example " + "ABCD".charAt(index),
+        source: "Simulated",
+        material: spec.material,
+        secondary: spec.secondary,
+        same: spec.sameDomain,
+        stats: stats
+      });
+      if (!first) { first = stats; }
+    });
+    showResults(first, {
+      source: "simulated", material: SIM.runs[0].material,
+      secondary: SIM.runs[0].secondary
+    });
+  }
+
+  function showResults(stats, meta) {
+    $("#results-heading").textContent = meta.source === "simulated"
+      ? "The load function — worked example, simulated"
+      : "The load function — your run";
+    renderChart(stats);
+    renderLoadTable(stats);
+    renderResultsProse(stats, meta);
+    renderRunsTable();
+    resultsSection.hidden = false;
+    $("#results-heading").focus();
+  }
+
+  function renderChart(stats) {
+    var W = 440, H = 250;
+    var PAD_L = 56, PAD_R = 26, PAD_T = 20, PAD_B = 56;
+    var plotW = W - PAD_L - PAD_R;
+    var plotH = H - PAD_T - PAD_B;
+    clear(loadChart);
+
+    var xAt = function (load) {
+      return PAD_L + ((load - LOADS[0]) / (LOADS[LOADS.length - 1] - LOADS[0])) * plotW;
+    };
+    var yAt = function (p) { return PAD_T + (1 - p) * plotH; };
+
+    [0, 0.25, 0.5, 0.75, 1].forEach(function (p) {
+      svgNode("line", { x1: PAD_L, y1: yAt(p).toFixed(1), x2: W - PAD_R,
+        y2: yAt(p).toFixed(1), class: "chart__grid" }, loadChart);
+      svgNode("text", { x: PAD_L - 8, y: (yAt(p) + 4).toFixed(1),
+        "text-anchor": "end", class: "chart__axis" }, loadChart)
+        .textContent = Math.round(p * 100) + "%";
+    });
+    LOADS.forEach(function (load) {
+      svgNode("text", { x: xAt(load).toFixed(1), y: H - 32,
+        "text-anchor": "middle", class: "chart__axis" }, loadChart)
+        .textContent = String(load);
+    });
+    svgNode("text", { x: (PAD_L + plotW / 2).toFixed(1), y: H - 12,
+      "text-anchor": "middle", class: "chart__axis" }, loadChart)
+      .textContent = "Items held";
+    svgNode("text", { x: 14, y: (PAD_T + plotH / 2).toFixed(1),
+      "text-anchor": "middle", class: "chart__axis",
+      transform: "rotate(-90 14 " + (PAD_T + plotH / 2).toFixed(1) + ")" },
+      loadChart).textContent = "Memory correct";
+
+    var points = LOADS.filter(function (load) {
+      return stats.byLoad[load].memory !== null;
+    }).map(function (load) {
+      return { x: xAt(load), y: yAt(stats.byLoad[load].memory),
+        value: stats.byLoad[load].memory };
+    });
+    if (!points.length) {
+      svgNode("text", { x: W / 2, y: H / 2, "text-anchor": "middle",
+        class: "chart__axis" }, loadChart)
+        .textContent = "No trials at any load yet.";
+      return;
+    }
+    if (points.length > 1) {
+      svgNode("path", {
+        d: points.map(function (p, i) {
+          return (i === 0 ? "M " : "L ") + p.x.toFixed(1) + " " + p.y.toFixed(1);
+        }).join(" "), class: "wm__line"
+      }, loadChart);
+    }
+    points.forEach(function (p) {
+      svgNode("rect", { x: (p.x - 5).toFixed(1), y: (p.y - 5).toFixed(1),
+        width: 10, height: 10, class: "wm__point" }, loadChart);
+      svgNode("text", { x: p.x.toFixed(1), y: (p.y - 12).toFixed(1),
+        "text-anchor": "middle", class: "chart__count" }, loadChart)
+        .textContent = pct(p.value);
+    });
+  }
+
+  function renderLoadTable(stats) {
+    clear(loadTable);
+    LOADS.forEach(function (load) {
+      var cell = stats.byLoad[load];
+      var row = make("tr");
+      var head = make("th", null, String(load));
+      head.setAttribute("scope", "row");
+      row.appendChild(head);
+      row.appendChild(make("td", null, String(cell.n)));
+      row.appendChild(make("td", null, pct(cell.memory)));
+      row.appendChild(make("td", null, pct(cell.secondary)));
+      row.appendChild(make("td", null, ms(cell.secondaryRt)));
+      loadTable.appendChild(row);
+    });
+  }
+
+  function renderResultsProse(stats, meta) {
+    clear(resultsBody);
+    var simulated = meta.source === "simulated";
+    var same = sameDomain(meta.material, meta.secondary);
+
+    resultsBody.appendChild(make("p", "reveal__lead", simulated
+      ? "Four simulated runs loaded, covering every combination of material " +
+        "and concurrent task. Each is a simulated class of " + SIM.participants +
+        " fictional participants contributing " + SIM.trialsEach +
+        " trials per load, so " + SIM.perLoad + " observations per cell."
+      : (meta.partial ? "A partial run. " : "") + "Your run: " +
+        MATERIALS[meta.material].label.toLowerCase() + " held, " +
+        (meta.secondary === "none" ? "nothing alongside"
+          : SECONDARIES[meta.secondary].label.toLowerCase() + " alongside") +
+        (meta.secondary === "none" ? "."
+          : same ? " — the same domain as the material you were holding."
+            : " — a different domain from the material you were holding.")));
+
+    if (simulated) {
+      resultsBody.appendChild(make("p", null,
+        "At two items there is almost nothing between the four runs — with so " +
+        "little to hold there is little to interfere with. The gap opens at " +
+        "four items and is wide at six, and it opens in one direction: the two " +
+        "same-domain runs fall away and the two different-domain runs do not. " +
+        "That selectivity is what the separable-store argument rests on. It is " +
+        "built into the generator here, so treat it as an illustration of the " +
+        "finding rather than an instance of it."));
+    } else {
+      var high = stats.byLoad[6].memory;
+      var low = stats.byLoad[2].memory;
+      if (high !== null && low !== null) {
+        resultsBody.appendChild(make("p", null,
+          "Your memory accuracy went from " + pct(low) + " at two items to " +
+          pct(high) + " at six" +
+          (low - high > 0.15
+            ? ". That is the load function, felt rather than read about."
+            : ". With four trials at each load a flat line is common; the " +
+              "worked example shows the shape the design can produce.")));
+      }
+      resultsBody.appendChild(make("p", null,
+        "Four trials at each load, so one trial moves a point by 25 " +
+        "percentage points. Read the shape, not the numbers, and compare " +
+        "your own runs — a comparison, not an experiment."));
+    }
+
+    resultsBody.appendChild(make("p", null,
+      "Whatever this run shows, it is a statement about a demand, not about " +
+      "your capacity. Nothing on this page estimates how much you can hold."));
+
+    chartCaption.textContent = (meta.source === "simulated"
+      ? "Simulated data (seed " + SIM.runs[0].seed + "): "
+      : "Your run: ") + "memory accuracy against the number of items held";
+  }
+
+  function renderRunsTable() {
+    clear(runsTable);
+    state.runs.forEach(function (run) {
+      var row = make("tr");
+      var head = make("th", null, run.label);
+      head.setAttribute("scope", "row");
+      row.appendChild(head);
+      row.appendChild(make("td", null, MATERIALS[run.material].label));
+      row.appendChild(make("td", null, SECONDARIES[run.secondary].label));
+      row.appendChild(make("td", null,
+        run.secondary === "none" ? "no second task" : (run.same ? "Yes" : "No")));
+      LOADS.forEach(function (load) {
+        row.appendChild(make("td", null, pct(run.stats.byLoad[load].memory)));
+      });
+      runsTable.appendChild(row);
+    });
+
+    var kinds = {};
+    state.runs.forEach(function (r) { kinds[r.material + "-" + r.secondary] = true; });
+    runsNote.textContent = Object.keys(kinds).length > 1
+      ? "Compare the rows marked Yes with the rows marked No. If the " +
+        "same-domain rows sit lower, that is selective interference — and " +
+        "before believing it, ask whether the two concurrent tasks were also " +
+        "different in sheer difficulty."
+      : "Run another combination to add a row here. Runs are kept only in " +
+        "this tab and disappear on reload or reset.";
+  }
+
+  /* =======================================================================
+     Buttons
+     ===================================================================== */
+
+  startPractice.addEventListener("click", function () {
+    cancelPending();
+    state.mode = "practice";
+    state.index = 0;
+    state.trials = [];
+    state.queue = [2, 4].slice(0, PRACTICE_TRIALS);
+    runningControls();
+    beginTrial();
+    shell.announce("Practice started: two trials with feedback.", { immediate: true });
+  });
+
+  startRun.addEventListener("click", function () {
+    cancelPending();
+    state.mode = "run";
+    state.index = 0;
+    state.trials = [];
+    var queue = [];
+    LOADS.forEach(function (load) {
+      for (var i = 0; i < TRIALS_PER_LOAD; i += 1) { queue.push(load); }
+    });
+    state.queue = shuffle(queue);
+    runningControls();
+    beginTrial();
+    shell.announce("Run started: twelve trials, no feedback until the end.",
+      { immediate: true });
+  });
+
+  stopButton.addEventListener("click", stopRun);
+
+  workedExample.addEventListener("click", function () {
+    cancelPending();
+    state.mode = "idle";
+    hideAll();
+    clear(responses);
+    idleControls();
+    displayCaption.textContent =
+      "Worked example loaded below. The laboratory is still available.";
+    loadWorkedExample();
+    shell.announce("Worked example loaded: four simulated runs with fixed seeds.",
+      { immediate: true });
+  });
+
+  materialSelect.addEventListener("change", function () {
+    state.material = materialSelect.value;
+    setPhase("idle");
+  });
+
+  secondarySelect.addEventListener("change", function () {
+    state.secondary = secondarySelect.value;
+    setPhase("idle");
+  });
+
+  /* =======================================================================
+     Opening prediction
+     ===================================================================== */
+
+  var OPENING = {
+    same: {
+      tone: "good", verdict: "That is the classic pattern.",
+      text: "A concurrent task made of the same kind of material costs far " +
+        "more than one of similar pacing made of something else. That " +
+        "selectivity is the original argument for more than one store."
+    },
+    cross: {
+      tone: "caution", verdict: "The other way round.",
+      text: "Mismatched pairs interfere least. If two tasks need the same " +
+        "kind of representation they compete for it; if they do not, they can " +
+        "largely proceed alongside each other — though never entirely freely."
+    },
+    equal: {
+      tone: "caution", verdict: "It matters a great deal which.",
+      text: "If any second task cost the same, there would be one " +
+        "undifferentiated pool. The finding that it does not is what the " +
+        "separable-store argument is made of."
+    },
+    hardest: {
+      tone: "caution", verdict: "A reasonable guess, and testable.",
+      text: "Sheer difficulty does matter. But a same-domain task costs more " +
+        "than a different-domain task of comparable difficulty, which is why " +
+        "the worked example crosses both concurrent tasks with both kinds of " +
+        "material — that crossing is what separates similarity from difficulty."
+    }
+  };
+
+  function unlockLab(message) {
+    idleControls();
+    displayCaption.textContent = "Ready. Practice first if this is new to you.";
+    setPhase("idle");
+    shell.announce(message, { immediate: true });
+  }
+
+  openingForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answer = $('input[name="opening"]:checked', openingForm);
+    if (!answer) {
+      openingError.textContent = "Choose one of the four answers before starting.";
+      openingError.hidden = false;
+      return;
+    }
+    openingError.hidden = true;
+    var response = OPENING[answer.value];
+    showFeedback(openingFeedback, response.tone, response.verdict, response.text);
+    lockForm(openingForm);
+    unlockLab("Laboratory unlocked. Practice is two trials with feedback.");
+  });
+
+  skipOpening.addEventListener("click", function () {
+    openingError.hidden = true;
+    showFeedback(openingFeedback, "neutral", "Prediction skipped.",
+      "The laboratory is unlocked. From the front, the worked example shows " +
+      "all four combinations at once, which nobody has time to perform.");
+    lockForm(openingForm);
+    unlockLab("Prediction skipped. Laboratory unlocked.");
+  });
+
+  /* =======================================================================
+     Challenge
+     ===================================================================== */
+
+  var CHALLENGE_ITEMS = [
+    {
+      id: "more-items",
+      text: "With the same concurrent task throughout, memory accuracy fell as the set grew from two items to six.",
+      answer: "storage",
+      why: "Nothing changed except how much was being held, so this is storage " +
+        "load in its purest available form. Note what it does not show: the " +
+        "fall is gradual, so it describes a curve rather than a container with " +
+        "a fixed number of slots."
+    },
+    {
+      id: "same-domain",
+      text: "Judging syllables cost more when letters were being held than when grid positions were being held, with the judgements identical in both cases.",
+      answer: "similarity",
+      why: "The concurrent task is held constant and the material changes, so " +
+        "difficulty cannot explain it. This crossing is the one design feature " +
+        "that separates similarity from sheer demand, and it is why the worked " +
+        "example runs all four combinations."
+    },
+    {
+      id: "unpredictable",
+      text: "Performance was worse when the concurrent judgements arrived unpredictably and the person had to keep checking whether one had appeared.",
+      answer: "control",
+      why: "Monitoring and task-set maintenance are demands on general control, " +
+        "not on storage and not a matter of representational overlap. This page " +
+        "does not manipulate them at all - the judgements arrive on a fixed " +
+        "schedule - so it is here to be recognised as out of scope."
+    },
+    {
+      id: "any-task",
+      text: "Even a concurrent task from a completely different domain cost something relative to simply waiting.",
+      answer: "control",
+      why: "Selective interference is never total. The residual cost of any " +
+        "concurrent task is usually attributed to a domain-general component - " +
+        "coordination, task switching, the executive - rather than to the " +
+        "stores themselves. You can see this on this page by running the " +
+        "do-nothing baseline."
+    },
+    {
+      id: "individual",
+      text: "One student was accurate at six letters and another was not, so the first has the larger working memory.",
+      answer: "neither",
+      why: "Twelve trials of one task on one afternoon, no reliability estimate, " +
+        "no standardisation, and a construct the design never set out to " +
+        "measure. Published capacity estimates come from long standardised " +
+        "procedures and are reported with error - and still predict individual " +
+        "outcomes only modestly."
+    }
+  ];
+
+  var CHALLENGE_OPTIONS = [
+    ["", "Choose…"],
+    ["storage", "Storage load"],
+    ["control", "Attentional control"],
+    ["similarity", "Task similarity"],
+    ["neither", "None of them — the design cannot show this"]
+  ];
+
+  function renderChallenge() {
+    clear(challengeRows);
+    CHALLENGE_ITEMS.forEach(function (item) {
+      var row = make("tr");
+      var head = make("th", null, item.text);
+      head.setAttribute("scope", "row");
+      row.appendChild(head);
+      var cell = make("td");
+      var select = make("select");
+      select.id = "factor-" + item.id;
+      var label = make("label", "visually-hidden",
+        "Which factor is doing the work: " + item.text);
+      label.setAttribute("for", select.id);
+      CHALLENGE_OPTIONS.forEach(function (option) {
+        var node = make("option", null, option[1]);
+        node.value = option[0];
+        select.appendChild(node);
+      });
+      cell.appendChild(label);
+      cell.appendChild(select);
+      cell.appendChild(make("span", "challenge__mark", ""));
+      row.appendChild(cell);
+      challengeRows.appendChild(row);
+    });
+  }
+
+  challengeForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answered = 0, right = 0;
+    CHALLENGE_ITEMS.forEach(function (item) {
+      var select = $("#factor-" + item.id, challengeForm);
+      var mark = select.parentNode.querySelector(".challenge__mark");
+      if (!select.value) { mark.textContent = "Not answered yet."; return; }
+      answered += 1;
+      var correct = select.value === item.answer;
+      if (correct) { right += 1; }
+      mark.textContent = correct ? "Correct." : "Not this one.";
+    });
+
+    if (!answered) {
+      showFeedback(challengeFeedback, "caution", "Nothing chosen yet.",
+        "Answer at least one. For each finding, ask what was actually varied " +
+        "between the conditions being compared.");
+      return;
+    }
+
+    showFeedback(challengeFeedback,
+      right === CHALLENGE_ITEMS.length ? "good" : "caution",
+      right + " of " + CHALLENGE_ITEMS.length + " correct" +
+      (answered < CHALLENGE_ITEMS.length
+        ? " (" + (CHALLENGE_ITEMS.length - answered) + " left blank)." : "."),
+      "Two of these five are about something this laboratory does not " +
+      "manipulate. Recognising when a finding is outside the reach of a design " +
+      "is the skill worth taking away.");
+
+    var list = make("ul");
+    CHALLENGE_ITEMS.forEach(function (item) {
+      var li = make("li");
+      li.appendChild(make("strong", null, "“" + item.text + "” "));
+      li.appendChild(document.createTextNode(item.why));
+      list.appendChild(li);
+    });
+    challengeFeedback.appendChild(list);
+
+    shell.announce("Challenge marked: " + right + " of " +
+      CHALLENGE_ITEMS.length + " correct.", { immediate: true });
+  });
+
+  /* =======================================================================
+     Helpers
+     ===================================================================== */
+
+  function showFeedback(container, tone, verdict, text) {
+    clear(container);
+    container.setAttribute("data-tone", tone);
+    var p = make("p");
+    p.appendChild(make("strong", "feedback__verdict", verdict));
+    if (text) { p.appendChild(document.createTextNode(" " + text)); }
+    container.appendChild(p);
+    container.hidden = false;
+  }
+
+  function lockForm(form) {
+    Array.prototype.forEach.call(form.querySelectorAll("input, button"),
+      function (control) { control.disabled = true; });
+  }
+
+  function unlockForm(form) {
+    Array.prototype.forEach.call(form.querySelectorAll("input, button"),
+      function (control) { control.disabled = false; });
+    form.reset();
+  }
+
+  /* =======================================================================
+     Reset
+     ===================================================================== */
+
+  shell.onReset(function () {
+    cancelPending();
+    state = {
+      mode: "idle",
+      phase: "idle",
+      index: 0,
+      queue: [],
+      trials: [],
+      runs: [],
+      set: [],
+      load: 0,
+      probe: null,
+      judgement: null,
+      judgeIndex: 0,
+      judgeResults: [],
+      judgementAnswered: true,
+      judgementShownAt: 0,
+      material: "letters",
+      secondary: "none"
+    };
+
+    unlockForm(openingForm);
+    openingFeedback.hidden = true;
+    openingError.hidden = true;
+    taskFeedback.hidden = true;
+    challengeFeedback.hidden = true;
+    resultsSection.hidden = true;
+    $("#results-heading").textContent = "The load function";
+
+    clear(loadTable);
+    clear(runsTable);
+    clear(loadChart);
+    clear(resultsBody);
+    runsNote.textContent = "";
+
+    materialSelect.value = "letters";
+    secondarySelect.value = "none";
+    materialSelect.disabled = true;
+    secondarySelect.disabled = true;
+    startPractice.disabled = true;
+    startRun.disabled = true;
+    stopButton.disabled = true;
+
+    hideAll();
+    clear(responses);
+    displayCaption.textContent =
+      "Answer the question above to unlock the laboratory.";
+    phaseText.textContent = "Answer the question above to unlock this.";
+
+    renderChallenge();
+  });
+
+  /* =======================================================================
+     Start-up
+     ===================================================================== */
+
+  shell.reset({ silent: true });
+  shell.announce(
+    "Ready. Only the concurrent judgements are paced, at 1.8 seconds each, so " +
+    "the retention interval is the same length in every condition. The worked " +
+    "example needs no trials at all.",
+    { immediate: true });
+})();
+
+</script>
+</div>

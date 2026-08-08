@@ -1,0 +1,2735 @@
+<!-- Norm-Formation Laboratory
+     From Open Psychology Interactives - https://github.com/utman5454/open-psychology-interactives
+     Self-contained: no stylesheets, scripts, fonts, images or network requests.
+     Styles are scoped to .opi-activity and do not affect the page around them.
+     Nothing is saved, sent or tracked. MIT licensed; please keep this notice.
+     Paste anywhere that accepts HTML, or save as a .html file and open it. -->
+<div class="opi-activity">
+<style>
+/* Defensive baseline. See scripts/build-standalone.py for why this
+   is `revert` rather than an enumerated reset, and how the specificity ladder
+   keeps the activity's own styling on top of it. */
+.opi-activity *:not(svg *) {
+  all: revert;
+}
+.opi-activity, .opi-activity *, .opi-activity *::before, .opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  text-transform: none;
+  text-indent: 0;
+  font-style: normal;
+  font-variant: normal;
+  letter-spacing: normal;
+  word-spacing: normal;
+  white-space: normal;
+  visibility: visible;
+  float: none;
+  max-width: none;
+}
+.opi-activity svg { max-width: 100%; }
+.opi-activity img { max-width: 100%; height: auto; }
+.opi-activity [hidden] { display: none !important; }
+
+/* assets/css/main.css */
+.opi-activity.opi-activity {
+  --colour-page: #ffffff;
+  --colour-surface: #f5f7fa;
+  --colour-surface-raised: #ffffff;
+  --colour-border: #d3d9e2;
+  --colour-border-strong: #aeb7c4;
+  --colour-text: #131820;
+  --colour-text-muted: #4c566a;
+  --colour-accent: #1a4fa0;
+  --colour-accent-hover: #123a7a;
+  --colour-accent-soft: #e8eefb;
+  --colour-on-accent: #ffffff;
+  --colour-focus: #b45309;
+  --colour-cognitive: #8a4b00;
+  --colour-research-methods: #1a4fa0;
+  --colour-neuropsychology: #145c53;
+  --colour-social-critical-psychology: #9e2f45;
+  --colour-personality-individual-differences: #7a2e6d;
+  --colour-status-bg: #f1ede3;
+  --colour-status-text: #5c4a1f;
+  --colour-status-border: #d9cdb0;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  --text-xs: 13px;
+  --text-sm: 15px;
+  --text-base: 17px;
+  --text-lg: 19px;
+  --text-xl: 23px;
+  --text-2xl: 28px;
+  --text-3xl: 36px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgb(19 24 32 / 0.06);
+  --shadow-md: 0 2px 8px rgb(19 24 32 / 0.08);
+  --measure: 68ch;
+  --container: 1152px;
+}
+@media (prefers-color-scheme: dark) {
+.opi-activity.opi-activity {
+  --colour-page: #0f141b;
+  --colour-surface: #161d27;
+  --colour-surface-raised: #1a2230;
+  --colour-border: #2c3644;
+  --colour-border-strong: #44506180;
+  --colour-text: #e9edf3;
+  --colour-text-muted: #a8b2c1;
+  --colour-accent: #8fb6ff;
+  --colour-accent-hover: #b3cdff;
+  --colour-accent-soft: #1b2740;
+  --colour-on-accent: #0f141b;
+  --colour-focus: #f0b429;
+  --colour-cognitive: #e2ab5f;
+  --colour-research-methods: #8fb6ff;
+  --colour-neuropsychology: #6fc3b4;
+  --colour-social-critical-psychology: #f19aa8;
+  --colour-personality-individual-differences: #db9ccd;
+  --colour-status-bg: #241f14;
+  --colour-status-text: #e2cf9f;
+  --colour-status-border: #4a4028;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 2px 10px rgb(0 0 0 / 0.45);
+}
+}
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity.opi-activity {
+  -webkit-text-size-adjust: 100%;
+}
+.opi-activity.opi-activity {
+  background-color: var(--colour-page);
+  color: var(--colour-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.65;
+}
+.opi-activity.opi-activity h1,
+.opi-activity.opi-activity h2,
+.opi-activity.opi-activity h3,
+.opi-activity.opi-activity h4 {
+  margin: 0 0 var(--space-3);
+  line-height: 1.25;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.opi-activity.opi-activity h1 {
+  font-size: var(--text-3xl);
+}
+.opi-activity.opi-activity h2 {
+  font-size: var(--text-2xl);
+}
+.opi-activity.opi-activity h3 {
+  font-size: var(--text-xl);
+}
+.opi-activity.opi-activity h4 {
+  font-size: var(--text-lg);
+}
+.opi-activity.opi-activity p,
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol,
+.opi-activity.opi-activity dl {
+  margin: 0 0 var(--space-4);
+}
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol {
+  padding-left: 1.35em;
+}
+.opi-activity.opi-activity li + li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity a {
+  color: var(--colour-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: max(1px, 0.06em);
+}
+.opi-activity.opi-activity a:hover {
+  color: var(--colour-accent-hover);
+  text-decoration-thickness: max(2px, 0.11em);
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid var(--colour-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+@supports not selector(:focus-visible) {
+.opi-activity.opi-activity :focus {
+  outline: 3px solid var(--colour-focus);
+    outline-offset: 2px;
+}
+}
+.opi-activity.opi-activity code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.35em;
+}
+.opi-activity.opi-activity hr {
+  border: 0;
+  border-top: 1px solid var(--colour-border);
+  margin: var(--space-6) 0;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+}
+.opi-activity.opi-activity .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.opi-activity.opi-activity .container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+@media (min-width: 40em) {
+.opi-activity.opi-activity .container {
+  padding-inline: var(--space-5);
+}
+}
+.opi-activity.opi-activity .prose {
+  max-width: var(--measure);
+}
+.opi-activity.opi-activity .text-muted {
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .section {
+  padding-block: var(--space-7);
+}
+.opi-activity.opi-activity .section--tinted {
+  background-color: var(--colour-surface);
+  border-block: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .section__header {
+  max-width: var(--measure);
+  margin-bottom: var(--space-5);
+}
+.opi-activity.opi-activity .section__header > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-7) var(--space-6);
+  border-bottom: 1px solid var(--colour-border);
+  
+  background-image: linear-gradient(
+    180deg,
+    var(--colour-accent-soft) 0%,
+    var(--colour-page) 100%
+  );
+}
+.opi-activity.opi-activity .hero__eyebrow {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .hero h1 {
+  max-width: 20ch;
+  margin-bottom: var(--space-4);
+}
+.opi-activity.opi-activity .hero__lead {
+  max-width: var(--measure);
+  font-size: var(--text-lg);
+  color: var(--colour-text-muted);
+}
+@media (min-width: 48em) {
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-8) var(--space-7);
+}
+.opi-activity.opi-activity .hero h1 {
+  font-size: 44px;
+}
+}
+.opi-activity.opi-activity .button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  
+  min-height: 44px;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .button--primary {
+  background-color: var(--colour-accent);
+  border-color: var(--colour-accent);
+  
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--primary:hover {
+  background-color: var(--colour-accent-hover);
+  border-color: var(--colour-accent-hover);
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--secondary {
+  background-color: transparent;
+  border-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .button--secondary:hover {
+  background-color: var(--colour-surface);
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+}
+.opi-activity.opi-activity .card--cognitive {
+  --card-accent: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .card--research-methods {
+  --card-accent: var(--colour-research-methods);
+}
+.opi-activity.opi-activity .card--neuropsychology {
+  --card-accent: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .card--social-critical-psychology {
+  --card-accent: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .card--personality-individual-differences {
+  --card-accent: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 650;
+  line-height: 1.4;
+  padding: 3.2px var(--space-3);
+  border-radius: 999px;
+  border: 1px solid var(--colour-status-border);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+}
+.opi-activity.opi-activity .badge__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex: none;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed var(--colour-border-strong);
+  border-radius: var(--radius-lg);
+  background-color: var(--colour-surface);
+  padding: var(--space-5);
+  text-align: left;
+}
+.opi-activity.opi-activity .placeholder__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+}
+.opi-activity.opi-activity .placeholder > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .split {
+  display: grid;
+  gap: var(--space-6);
+}
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split {
+  grid-template-columns: 3fr 2fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .panel {
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.opi-activity.opi-activity .panel > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .panel__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .section--tinted {
+  border-block: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .hero {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .button--primary {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .button--secondary {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .button:hover {
+  border-color: Highlight;
+}
+.opi-activity.opi-activity .panel {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed CanvasText;
+}
+.opi-activity.opi-activity .badge {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .badge__dot {
+  background-color: CanvasText;
+}
+.opi-activity.opi-activity code {
+  border-color: CanvasText;
+}
+.opi-activity.opi-activity hr {
+  border-top-color: CanvasText;
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+}
+@media print {
+.opi-activity.opi-activity {
+  color: #000;
+  background: #fff;
+}
+.opi-activity.opi-activity a[href^="http"]::after {
+  content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+}
+}
+
+/* components/interactive-shell.css */
+.opi-activity.opi-activity .interactive {
+  --shell-page: var(--colour-page, #ffffff);
+  --shell-surface: var(--colour-surface, #f5f7fa);
+  --shell-raised: var(--colour-surface-raised, #ffffff);
+  --shell-border: var(--colour-border, #d3d9e2);
+  --shell-border-strong: var(--colour-border-strong, #aeb7c4);
+  --shell-text: var(--colour-text, #131820);
+  --shell-muted: var(--colour-text-muted, #4c566a);
+  --shell-accent: var(--colour-accent, #1a4fa0);
+  --shell-accent-soft: var(--colour-accent-soft, #e8eefb);
+  
+  --shell-on-accent: var(--colour-on-accent, #ffffff);
+  --shell-focus: var(--colour-focus, #b45309);
+  --shell-radius: var(--radius-lg, 12px);
+  --shell-gap: var(--space-5, 24px);
+
+  display: block;
+  background-color: var(--shell-raised);
+  color: var(--shell-text);
+  border: 1px solid var(--shell-border);
+  border-radius: var(--shell-radius);
+  
+  overflow-x: clip;
+  overflow-y: visible;
+}
+.opi-activity.opi-activity .interactive__header {
+  padding: var(--shell-gap);
+  border-bottom: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 1.25;
+}
+.opi-activity.opi-activity .interactive__brief {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--shell-muted);
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__body {
+  display: grid;
+  gap: var(--shell-gap);
+  padding: var(--shell-gap);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body {
+  grid-template-columns: minmax(240px, 320px) 1fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .interactive__controls {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__controls fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .interactive__controls legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .control {
+  display: grid;
+  gap: 5.6px;
+}
+.opi-activity.opi-activity .control + .control {
+  margin-top: 16px;
+}
+.opi-activity.opi-activity .control__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.opi-activity.opi-activity .control__label {
+  font-size: 15px;
+  font-weight: 600;
+}
+.opi-activity.opi-activity .control__value {
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--shell-accent);
+}
+.opi-activity.opi-activity .control__hint {
+  font-size: 13px;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .interactive__controls input[type="range"] {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--shell-accent);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  width: 100%;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--shell-text);
+  background-color: var(--shell-raised);
+  border: 1px solid var(--shell-border-strong);
+  border-radius: var(--radius-sm, 4px);
+}
+.opi-activity.opi-activity .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+}
+.opi-activity.opi-activity .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  accent-color: var(--shell-accent);
+  flex: none;
+}
+.opi-activity.opi-activity .interactive__stage {
+  min-height: 256px;
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-page);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body--pinned {
+  align-items: stretch;
+}
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: sticky;
+    top: 0;
+    z-index: 2;
+    
+    margin: -16px -16px 0;
+    padding: 16px 16px 12px;
+    background-color: var(--shell-page);
+    border-bottom: 1px solid var(--shell-border);
+}
+}
+@media (min-width: 52em) and (max-height: 30em) {
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: static;
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
+}
+}
+.opi-activity.opi-activity .interactive__stage > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity :where(.interactive__stage) svg,
+.opi-activity.opi-activity :where(.interactive__stage) canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+.opi-activity.opi-activity .interactive__readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout div {
+  padding: 9.6px 12px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-sm, 4px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__readout dt {
+  font-size: 13px;
+  color: var(--shell-muted);
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout dd {
+  margin: 2.4px 0 0;
+  font-size: 18px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .interactive__status {
+  margin: 0;
+  padding: 12px var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+  font-size: 15px;
+  color: var(--shell-muted);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .interactive__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+}
+.opi-activity.opi-activity .interactive__actions button {
+  min-height: 44px;
+  padding: 6.4px 20px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--shell-on-accent);
+  background-color: var(--shell-accent);
+  border: 1px solid var(--shell-accent);
+  border-radius: var(--radius-md, 8px);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  color: var(--shell-text);
+  background-color: transparent;
+  border-color: var(--shell-border-strong);
+}
+.opi-activity.opi-activity .interactive__actions button:hover {
+  filter: brightness(1.08);
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__notes > summary {
+  padding: 13.6px var(--shell-gap);
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__notes > div {
+  padding: 0 var(--shell-gap) var(--shell-gap);
+  max-width: 68ch;
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__notes > div > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity .interactive *,
+.opi-activity.opi-activity .interactive *::before,
+.opi-activity.opi-activity .interactive *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+}
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .interactive,
+.opi-activity.opi-activity .interactive__controls,
+.opi-activity.opi-activity .interactive__stage,
+.opi-activity.opi-activity .interactive__readout div {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__header {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__status,
+.opi-activity.opi-activity .interactive__actions,
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__actions button {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  border-width: 1px;
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 1;
+    color: GrayText;
+    border-color: GrayText;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__stage svg {
+  forced-color-adjust: auto;
+}
+}
+
+/* components/tool-kit.css */
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split--wide {
+  grid-template-columns: 1fr 1fr;
+}
+}
+.opi-activity.opi-activity .how-to {
+  padding-left: 19.2px;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .how-to > li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .table-scroll {
+  overflow-x: auto;
+  
+  position: relative;
+}
+.opi-activity.opi-activity .prediction {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 832px;
+}
+.opi-activity.opi-activity .prediction > *,
+.opi-activity.opi-activity .challenge > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity .prediction__group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .prediction__legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-weight: 650;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .prediction .control--choice,
+.opi-activity.opi-activity .challenge .control--choice,
+.opi-activity.opi-activity .evidence .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .prediction .control--choice input,
+.opi-activity.opi-activity .challenge .control--choice input,
+.opi-activity.opi-activity .evidence .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .prediction__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .prediction__error {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-status-border);
+  border-left: 4px solid var(--colour-status-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .prediction__readback {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .feedback[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .feedback[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .feedback[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .feedback__verdict {
+  font-weight: 700;
+}
+.opi-activity.opi-activity .verdict {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .verdict__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict__body {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .verdict__body + .verdict__body {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .verdict__note {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .verdict[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .verdict[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .goal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .goal__label {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .goal__text {
+  flex: 1 1 256px;
+}
+.opi-activity.opi-activity .goal strong {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .goal__checks {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+  display: grid;
+  gap: 2.4px;
+}
+.opi-activity.opi-activity .goal__checks > li {
+  margin-top: 0;
+  padding-left: 22.4px;
+  position: relative;
+}
+.opi-activity.opi-activity .goal__checks > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 9.6px;
+  height: 9.6px;
+  border: 2px solid var(--colour-border-strong);
+  border-radius: 2px;
+}
+.opi-activity.opi-activity .goal__checks > li[data-met="yes"]::before {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .stage-track {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .stage-track > li {
+  margin-top: 0;
+  flex: 1 1 160px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-bottom: 3px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .stage-track > li > span {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.opi-activity.opi-activity .stage-track > li[data-state="done"] {
+  border-bottom-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border-bottom-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+  color: var(--colour-text);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .stage__heading {
+  margin: 0;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .data-table,
+.opi-activity.opi-activity .chart__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .data-table th,
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table th,
+.opi-activity.opi-activity .chart__table td {
+  padding: 6.4px 9.6px;
+  border: 1px solid var(--colour-border);
+  text-align: left;
+  vertical-align: top;
+}
+.opi-activity.opi-activity .data-table thead th,
+.opi-activity.opi-activity .chart__table thead th {
+  background-color: var(--colour-surface);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table td {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__table tbody th,
+.opi-activity.opi-activity .data-table tbody th {
+  font-weight: 550;
+}
+.opi-activity.opi-activity .data-table__total > th,
+.opi-activity.opi-activity .data-table__total > td {
+  border-top: 2px solid var(--colour-border-strong);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart {
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .chart__caption {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__svg {
+  max-width: 100%;
+  height: auto;
+}
+.opi-activity.opi-activity .chart__label,
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__inline,
+.opi-activity.opi-activity .chart__axis {
+  font-family: var(--font-body);
+  fill: var(--colour-text);
+  font-size: 13px;
+}
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__axis {
+  fill: var(--colour-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: var(--colour-on-accent);
+  font-size: 12px;
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__track {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__bar {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--one {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .chart__baseline,
+.opi-activity.opi-activity .chart__grid {
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__line {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: var(--colour-personality-individual-differences);
+  stroke-dasharray: 6 4;
+}
+.opi-activity.opi-activity .chart__point {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .reveal > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .reveal__lead {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+.opi-activity.opi-activity .reveal__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(176px, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+  padding: 0;
+  list-style: none;
+}
+.opi-activity.opi-activity .reveal__figures > li {
+  margin-top: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+.opi-activity.opi-activity .reveal__figure-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .reveal__figure-value {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .challenge {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+.opi-activity.opi-activity .challenge__locked {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .panel--caution {
+  background-color: var(--colour-status-bg);
+  border-color: var(--colour-status-border);
+}
+.opi-activity.opi-activity .panel--caution li + li {
+  margin-top: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .goal,
+.opi-activity.opi-activity .verdict,
+.opi-activity.opi-activity .feedback,
+.opi-activity.opi-activity .prediction__error,
+.opi-activity.opi-activity .prediction__readback,
+.opi-activity.opi-activity .stage-track > li,
+.opi-activity.opi-activity .reveal__figures > li {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border: 2px solid Highlight;
+}
+.opi-activity.opi-activity .chart__bar,
+.opi-activity.opi-activity .chart__bar--one {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: Canvas;
+}
+.opi-activity.opi-activity .chart__line {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: Highlight;
+}
+}
+.opi-activity.opi-activity .stage__more {
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .stage__more > summary {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .stage__more[open] > summary {
+  border-bottom: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .stage__more > *:not(summary) {
+  margin: var(--space-3);
+}
+
+/* modules/social-critical-psychology/tools/07-sherif-norm-formation-lab/tool.css */
+.opi-activity.opi-activity #norm-lab .interactive__controls,
+.opi-activity.opi-activity #norm-lab .interactive__stage {
+  min-width: 0;
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity #norm-lab .interactive__body {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+}
+@media (min-width: 76em) {
+.opi-activity.opi-activity #norm-lab .interactive__body {
+  grid-template-columns: minmax(0, 384px) minmax(0, 1fr);
+}
+}
+.opi-activity.opi-activity .stimulus {
+  margin: 0 0 var(--space-3);
+  display: grid;
+  gap: var(--space-2);
+}
+.opi-activity.opi-activity .stimulus__svg {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+}
+.opi-activity.opi-activity .stimulus__field {
+  fill: #10131a;
+}
+.opi-activity.opi-activity .stimulus__mark {
+  fill: #f4f1e6;
+}
+.opi-activity.opi-activity .stimulus__mark--first {
+  fill-opacity: 0.45;
+}
+.opi-activity.opi-activity .stimulus__mark--second {
+  fill-opacity: 0.9;
+}
+.opi-activity.opi-activity .others__lead {
+  margin: var(--space-3) 0 var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .others {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-2);
+}
+.opi-activity.opi-activity .others__item {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-top: 0;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .others__value {
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .stage-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+.opi-activity.opi-activity .stage-nav .button {
+  min-height: 44px;
+}
+.opi-activity.opi-activity #norm-lab .trace-chart {
+  max-width: 480px;
+}
+.opi-activity.opi-activity .trace__band {
+  fill: var(--colour-accent-soft);
+}
+.opi-activity.opi-activity .verdict + .verdict {
+  margin-top: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .others__item {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .trace__band {
+  fill: Canvas;
+    stroke: CanvasText;
+    stroke-dasharray: 3 3;
+}
+.opi-activity.opi-activity .stimulus__field {
+  fill: Canvas;
+    stroke: CanvasText;
+}
+.opi-activity.opi-activity .stimulus__mark {
+  fill: CanvasText;
+}
+}
+</style>
+
+  <!-- ================= Title and purpose ================= -->
+  <section class="section card--social-critical-psychology" aria-labelledby="page-heading">
+    <div class="container">
+
+      <p class="hero__eyebrow" style="color: var(--colour-social-critical-psychology)">
+        Social and Critical Psychology
+      </p>
+      <h1 id="page-heading">Norm-Formation Laboratory</h1>
+      <p class="hero__lead">
+        Fifteen rounds of a judgement with no right answer: five alone, five
+        with three other people, and five alone again. Then a look at what
+        three other groups arrived at.
+      </p>
+
+      <p>
+        <span class="badge">
+          <span class="badge__dot" aria-hidden="true"></span>
+          Simulated - the other participants are generated by a model, and nothing you type is stored or sent
+        </span>
+      </p>
+
+      <div class="split split--wide">
+
+        <div class="panel">
+          <h2 class="panel__title">Learning objective</h2>
+          <p>
+            By the end you should be able to say why a frame formed with
+            others persists once they are gone, and how that differs from
+            agreeing with a demand.
+          </p>
+          <p class="text-muted">
+            About 25 minutes. Self-paced: nothing is timed. Nothing you type
+            is saved or sent anywhere.
+          </p>
+        </div>
+
+        <div class="panel panel--caution">
+          <h2 class="panel__title">This is a demonstration, not a study</h2>
+          <p>
+            The other three participants are generated by a model whose rules
+            are printed in the teaching notes. Your estimates are used only to
+            draw the chart in front of you and are discarded when you leave
+            the page. Nothing here measures anything about you: a person who
+            converges and a person who does not are both showing something the
+            activity is designed to make visible. The historical experiment
+            this borrows its logic from is described separately, below the
+            laboratory.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="how-to">
+        <h2 class="panel__title">How to use this</h2>
+        <ol>
+          <li>Commit to an answer to the question below.</li>
+          <li>
+            Make five estimates alone. There is no right answer and no scale;
+            that is the condition, not a fault in the display.
+          </li>
+          <li>
+            Make five more with three other people's estimates visible.
+          </li>
+          <li>Make five more alone again.</li>
+          <li>Compare your group with three others.</li>
+        </ol>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= Opening prediction ================= -->
+  <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="opening-heading">First, a judgement</h2>
+        <p class="prose">
+          You are about to judge how far a faint marker moves in a dark field.
+          There is no ruler, no reference object and no correct answer. After
+          five rounds alone you will see three other people's estimates before
+          each of the next five, and then you will be alone again.
+        </p>
+      </div>
+
+      <noscript>
+        <div class="placeholder">
+          <h3 class="placeholder__title">This part needs JavaScript</h3>
+          <p class="prose">
+            The laboratory records your estimates, generates the other
+            participants and draws the chart in your browser, so it cannot run
+            with JavaScript switched off. The historical note, the debrief and
+            the limitations are readable without it.
+          </p>
+        </div>
+      </noscript>
+
+      <form class="panel prediction" id="opening-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            What will happen across the fifteen rounds?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="none">
+            Nothing much - people stick to their own estimate
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="during">
+            Estimates converge while the group is there and separate again afterwards
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="persist">
+            Estimates converge and stay converged once the group has gone
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="truth">
+            Estimates converge on the true answer
+          </label>
+        </fieldset>
+
+        <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Record my answer and start
+          </button>
+          <button class="button button--secondary" type="button" data-action="skip-opening">
+            Skip - I am demonstrating this
+          </button>
+        </div>
+
+        <div class="feedback" data-opening-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= The laboratory ================= -->
+  <section class="section" id="lab-section" aria-labelledby="lab-heading" hidden>
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="lab-heading" tabindex="-1">The laboratory</h2>
+      </div>
+
+      <section class="interactive" id="norm-lab" data-interactive
+               data-reset-message="Everything cleared. Back to round one, alone.">
+
+        <header class="interactive__header">
+          <h3 class="interactive__title">Fifteen rounds, no right answer</h3>
+          <p class="interactive__brief">
+            Self-paced. Nothing is timed, nothing is scored, and you can type
+            any number you like - including the same one every round.
+          </p>
+          <ol class="stage-track" data-stage-track>
+            <li data-phase="alone1"><span>1-5.</span> Alone</li>
+            <li data-phase="group"><span>6-10.</span> With three others</li>
+            <li data-phase="alone2"><span>11-15.</span> Alone again</li>
+            <li data-phase="between"><span>+</span> Three other groups</li>
+          </ol>
+        </header>
+
+        <div class="interactive__body interactive__body--pinned">
+
+          <form class="interactive__controls" data-interactive-controls>
+
+            <fieldset data-round-block>
+              <legend data-round-legend>Round 1 of 15 - alone</legend>
+
+              <figure class="stimulus">
+                <figcaption class="visually-hidden">
+                  A faint marker in a dark field. No scale and no reference
+                  object are shown, and none is available: the description
+                  below carries everything the picture does.
+                </figcaption>
+                <svg class="stimulus__svg" data-stimulus viewBox="0 0 260 120"
+                     aria-hidden="true" focusable="false"></svg>
+                <p class="control__hint" data-stimulus-text></p>
+              </figure>
+
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="estimate-input">
+                    How far did it move, in centimetres?
+                  </label>
+                </div>
+                <input type="number" id="estimate-input" min="0" max="200"
+                       step="0.5" inputmode="decimal">
+                <p class="control__hint">
+                  Any number from 0 to 200. There is no correct answer, and
+                  nothing is stored.
+                </p>
+              </div>
+
+              <div data-others hidden>
+                <p class="others__lead">Before you answer, the others say:</p>
+                <ul class="others" data-others-list></ul>
+              </div>
+
+              <div class="stage-nav">
+                <button class="button button--primary" type="button" data-action="submit-estimate">
+                  Record this estimate
+                </button>
+                <button class="button button--secondary" type="button" data-action="simulate">
+                  Run a simulated participant instead
+                </button>
+              </div>
+              <p class="control__hint" data-round-note role="status"></p>
+            </fieldset>
+
+            <fieldset data-between-block hidden>
+              <legend>Three other groups</legend>
+              <p class="control__hint">
+                Three more simulated groups of four ran exactly the same
+                fifteen rounds, with participants drawn from the same
+                distribution of starting estimates. Nothing about the display
+                differed.
+              </p>
+              <div class="stage-nav">
+                <button class="button button--primary" type="button" data-action="show-groups">
+                  Show the other groups
+                </button>
+              </div>
+            </fieldset>
+
+          </form>
+
+          <div class="interactive__stage" data-interactive-stage>
+
+            <div class="stage__primary">
+              <h4 class="stage__heading">Your fifteen rounds</h4>
+              <figure class="chart">
+                <figcaption class="visually-hidden">
+                  Estimates by round, with the group phase marked
+                </figcaption>
+                <svg class="chart__svg trace-chart" data-trace viewBox="0 0 320 168"
+                     aria-hidden="true" focusable="false"></svg>
+                <p class="chart__caption" data-trace-text></p>
+              </figure>
+            </div>
+
+            <div data-phase-summary></div>
+
+            <div data-groups hidden>
+              <h4 class="stage__heading">Four groups, one display</h4>
+              <div class="table-scroll">
+                <table class="data-table">
+                  <caption class="visually-hidden">
+                    Each group's mean starting estimate and the norm it arrived
+                    at
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Group</th>
+                      <th scope="col">Mean first estimate</th>
+                      <th scope="col">Norm by round 10</th>
+                      <th scope="col">Spread within the group</th>
+                    </tr>
+                  </thead>
+                  <tbody data-groups-body></tbody>
+                </table>
+              </div>
+              <div class="verdict" data-groups-note></div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <p class="interactive__status" data-interactive-status role="status"></p>
+
+        <div class="interactive__actions">
+          <button type="button" data-variant="secondary" data-interactive-reset>
+            Reset everything
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ================= The historical study ================= -->
+  <section class="section section--tinted" aria-labelledby="history-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="history-heading">The historical experiment, described separately</h2>
+      </div>
+
+      <div class="split split--wide">
+        <div class="prose">
+          <p>
+            In the 1930s Muzafer Sherif used the autokinetic effect - a
+            stationary point of light in a completely dark room appears to
+            move, because the eye has no reference against which to stabilise
+            it - to create judgements that could not be checked. Participants
+            gave estimates of how far the light had travelled, first alone,
+            then in small groups where estimates were spoken aloud, and in
+            some conditions alone again afterwards.
+          </p>
+          <p>
+            What he reported was not that people copied one another. Alone,
+            individuals settled into their own characteristic range. In
+            groups, those ranges converged towards a common one, and different
+            groups converged on different values. When participants returned
+            alone, they carried the group's range with them. Sherif read this
+            as the formation of a frame of reference rather than as compliance:
+            nobody had been asked to agree, nobody was watching, and the frame
+            outlived the situation that produced it.
+          </p>
+          <p>
+            This activity borrows that logic and none of its materials. There
+            is no dark room, no point of light and no autokinetic effect here;
+            the display is a drawing and the other participants are generated
+            by a documented model. Nothing on this page is a replication, and
+            no number produced here corresponds to anything Sherif reported.
+          </p>
+        </div>
+
+        <aside class="panel">
+          <h3 class="panel__title">Criticisms worth knowing</h3>
+          <ul>
+            <li>
+              <strong>Demand characteristics.</strong> Participants who have
+              just heard three numbers may reasonably infer that agreement is
+              what is wanted, and the design cannot separate that from a
+              genuinely changed perception.
+            </li>
+            <li>
+              <strong>Ambiguity is doing a great deal of work.</strong> The
+              effect is largest exactly where the judgement is least
+              answerable, which limits how far it generalises to judgements
+              that can be checked.
+            </li>
+            <li>
+              <strong>Small samples, and a particular population.</strong> The
+              original studies used small numbers of young men in one country
+              in one decade.
+            </li>
+            <li>
+              <strong>The persistence result has been contested.</strong> How
+              long a frame survives, and whether it survives a change of
+              setting, depends on things the original design did not vary.
+            </li>
+            <li>
+              <strong>A norm here is not a social norm.</strong> Converging on
+              a number in a laboratory is not obviously the same process as
+              the norms that govern queueing, dress or dissent, and treating
+              them as one is an inference the study does not license.
+            </li>
+          </ul>
+        </aside>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= Debrief ================= -->
+  <section class="section" id="debrief" aria-labelledby="debrief-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="debrief-heading">What this demonstrates</h2>
+      </div>
+
+      <div class="split split--wide">
+
+        <div class="prose">
+          <h3>Convergence under ambiguity is not caving in</h3>
+          <p>
+            Nobody in this laboratory is asked to agree, nobody sees your
+            answer, and there is no cost to differing. What the three other
+            estimates provide is not pressure but information - the only
+            information available about a judgement that has no answer. Taking
+            it into account is reasonable. That is why this phenomenon is
+            usually treated as the clearest case of informational influence,
+            and why it sits so awkwardly beside the classic conformity studies,
+            where the judgement was easy and the pressure was the point.
+          </p>
+
+          <h3>A frame outlives the situation that produced it</h3>
+          <p>
+            The interesting round is round 11. The others are gone, nobody is
+            watching, and most people's estimates stay much closer to the
+            group's range than to their own opening one. Whatever happened in
+            rounds six to ten was not a decision to go along with anybody: it
+            changed what a plausible answer looks like. That is the difference
+            between complying with a demand and acquiring a definition of the
+            situation.
+          </p>
+
+          <h3>Different groups, different worlds</h3>
+          <p>
+            The three other groups saw exactly the same display and arrived
+            somewhere else. Nothing distinguishes their norms except who
+            happened to be in the room and what they happened to say first.
+            Once a norm exists it feels like a property of the display, which
+            is the whole trouble: shared frames present themselves as facts
+            about the world rather than as the residue of a particular set of
+            conversations.
+          </p>
+
+          <h3>Where this goes next</h3>
+          <p>
+            The mechanism scales badly and interestingly. Later work has traced
+            such frames across generations of participants, with each new
+            arrival inheriting a norm from people who inherited it from people
+            who invented it - and the norm surviving long after everyone who
+            was present at the start has left. That is a laboratory model of
+            tradition, and it is worth asking what it does and does not capture
+            about the real thing.
+          </p>
+        </div>
+
+        <aside class="panel panel--caution" aria-labelledby="limits-heading">
+          <h3 class="panel__title" id="limits-heading">
+            What this does <em>not</em> demonstrate
+          </h3>
+          <ul>
+            <li>
+              <strong>The other participants are not people.</strong> They are
+              generated by a documented model that is built to converge. That
+              the demonstration works is therefore not evidence that anything
+              converges in the world; the evidence for that is in the
+              literature, not on this page.
+            </li>
+            <li>
+              <strong>No autokinetic effect is involved.</strong> The display
+              is a drawing with no scale. The ambiguity is stipulated, not
+              perceptual, which is a real difference from the original work.
+            </li>
+            <li>
+              <strong>It does not show that all norms form this way.</strong>
+              Most social norms are not arrived at by four strangers estimating
+              an unanswerable quantity. Norms backed by sanctions, by
+              institutions or by material interest are different objects.
+            </li>
+            <li>
+              <strong>Ambiguity is a boundary condition, not a detail.</strong>
+              Where an answer can be checked, this process is much weaker, and
+              the interesting cases in social life are usually a mixture.
+            </li>
+            <li>
+              <strong>Converging is not being wrong.</strong> With no
+              information other than three other estimates, using them is the
+              rational move. The demonstration is about how a shared reality
+              gets built, not about a failure of judgement.
+            </li>
+          </ul>
+        </aside>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+<script>
+/* ---- components/interactive-shell.js ---- */
+/* =========================================================================
+   Open Psychology Interactives — interactive shell helper
+   -------------------------------------------------------------------------
+   A very small vanilla-JS helper that every interactive in this collection
+   uses. It deliberately does *not* draw anything or know anything about
+   statistics, personality or neuropsychology. Its job is the repetitive,
+   easy-to-get-wrong accessibility plumbing:
+
+     * announcing changes through a polite live region;
+     * keeping a range slider and its <output> in step;
+     * wiring the standard Reset button;
+     * reporting the reader's reduced-motion preference.
+
+   Usage (see docs/adapting-a-tool.md for the full markup contract):
+
+       <script src="../../components/interactive-shell.js" defer><\/script>
+       <script src="tool.js" defer><\/script>
+
+       // in tool.js
+       const shell = InteractiveShell.attach('#sampling-demo');
+       shell.onReset(() => { ...restore defaults...; draw(); });
+       shell.bindRange('#sample-size', { format: n => n + ' cases' });
+       shell.announce('Sample of 25 drawn. Mean 4.8.');
+
+   Every published interactive is written against this module.
+
+   Exposed as a global (window.InteractiveShell) rather than an ES module so
+   that a single interactive folder can be opened directly from disk over
+   file:// — ES modules are blocked by CORS in that situation, plain scripts
+   are not. That constraint is the whole reason for the older syntax here.
+   ========================================================================= */
+
+(function (global) {
+  "use strict";
+
+  /* -----------------------------------------------------------------------
+     Internal helpers
+     --------------------------------------------------------------------- */
+
+  /**
+   * Accept either a CSS selector or an element and return an element.
+   * @param {string|Element} target
+   * @param {ParentNode} [scope]
+   * @returns {Element|null}
+   */
+  function resolve(target, scope) {
+    if (!target) {
+      return null;
+    }
+    if (typeof target === "string") {
+      return (scope || document).querySelector(target);
+    }
+    return target;
+  }
+
+  /**
+   * True when the reader has asked the operating system to reduce motion.
+   * Interactives should check this before animating anything — for example
+   * by drawing a sampling distribution in one step instead of animating
+   * each draw.
+   * @returns {boolean}
+   */
+  function prefersReducedMotion() {
+    return (
+      typeof global.matchMedia === "function" &&
+      global.matchMedia("(prefers-reduced-motion: reduce)").matches
+    );
+  }
+
+  /* -----------------------------------------------------------------------
+     Shell controller
+     --------------------------------------------------------------------- */
+
+  /**
+   * Attach the shell behaviour to one `.interactive` element.
+   *
+   * @param {string|Element} target  Selector or element for the shell root.
+   * @returns {object|null}  Controller, or null if the root was not found.
+   */
+  function attach(target) {
+    var root = resolve(target);
+
+    if (!root) {
+      if (global.console && console.warn) {
+        console.warn("InteractiveShell: root element not found.", target);
+      }
+      return null;
+    }
+
+    var controls = root.querySelector("[data-interactive-controls]");
+    var stage = root.querySelector("[data-interactive-stage]");
+    var status = root.querySelector("[data-interactive-status]");
+    var resetButton = root.querySelector("[data-interactive-reset]");
+    var resetHandlers = [];
+    // Every range bound with bindRange() registers its sync function here, so
+    // that reset() can refresh the visible values after the tool's own reset
+    // handlers have restored the inputs. See reset() for why this is needed.
+    var rangeSyncs = [];
+
+    /* --- Live region ----------------------------------------------------
+       The status element is marked up as role="status" (implicitly
+       aria-live="polite"). Two details matter:
+
+         1. Assistive technology only announces *changes* to a live region,
+            so writing the same string twice is silently dropped. We add a
+            trailing zero-width space on repeat messages to force an
+            announcement when a student re-runs the same action.
+         2. Announcements are debounced. A slider dragged across its range
+            fires dozens of input events; without a delay a screen reader
+            would queue every intermediate value and fall far behind.
+       ------------------------------------------------------------------ */
+
+    var announceTimer = null;
+    var lastMessage = "";
+
+    /**
+     * Announce a short sentence describing what just changed.
+     * @param {string} message
+     * @param {object} [options]
+     * @param {boolean} [options.immediate]  Skip the debounce delay. Use for
+     *   discrete actions (button presses); leave off for continuous input.
+     */
+    function announce(message, options) {
+      if (!status) {
+        return;
+      }
+
+      var text = String(message == null ? "" : message);
+      var immediate = Boolean(options && options.immediate);
+
+      if (announceTimer !== null) {
+        global.clearTimeout(announceTimer);
+        announceTimer = null;
+      }
+
+      function write() {
+        // Force a change when the text is identical to last time.
+        status.textContent = text === lastMessage ? text + "​" : text;
+        lastMessage = text;
+      }
+
+      if (immediate) {
+        write();
+      } else {
+        announceTimer = global.setTimeout(write, 350);
+      }
+    }
+
+    /* --- Reset ---------------------------------------------------------- */
+
+    /**
+     * Register a callback to run when the Reset button is pressed.
+     * Several may be registered; they run in the order added.
+     * @param {Function} handler
+     */
+    function onReset(handler) {
+      if (typeof handler === "function") {
+        resetHandlers.push(handler);
+      }
+    }
+
+    /**
+     * Run the reset handlers. Called by the button and available directly so
+     * an interactive can reset itself on first load.
+     *
+     * Bound ranges are re-synced afterwards. A reset handler restores an
+     * input by assigning to `input.value`, and assigning to a value in script
+     * does not fire an `input` event — so without this step the slider would
+     * jump back to its default while its <output> went on showing the old
+     * number. Syncing here, after the handlers have run, also means the sync
+     * sees the restored values regardless of the order things were
+     * registered in.
+     *
+     * @param {object} [options]
+     * @param {boolean} [options.silent]  Suppress the status announcement.
+     */
+    function reset(options) {
+      resetHandlers.forEach(function (handler) {
+        handler();
+      });
+      rangeSyncs.forEach(function (sync) {
+        sync();
+      });
+      if (!options || !options.silent) {
+        announce(
+          root.getAttribute("data-reset-message") ||
+            "Reset to the starting values.",
+          { immediate: true }
+        );
+      }
+    }
+
+    if (resetButton) {
+      resetButton.addEventListener("click", function (event) {
+        // Reset buttons commonly sit inside the controls <form>; stop the
+        // browser's own form reset from fighting with ours.
+        event.preventDefault();
+        reset();
+      });
+    }
+
+    /* --- Range binding --------------------------------------------------
+       Keeps a slider's <output> in step with its value. The <output> must
+       carry `for="<input id>"`, which is what associates the two for
+       assistive technology; this only handles the visible text.
+
+       Optionally sets aria-valuetext, which is how you make a screen reader
+       say "25 cases" or "medium correlation" instead of a bare "25".
+       ------------------------------------------------------------------ */
+
+    /**
+     * @param {string|Element} inputTarget  The range (or number) input.
+     * @param {object} [options]
+     * @param {Function} [options.format]  value:number -> string shown in the
+     *   <output>. Defaults to the raw value.
+     * @param {Function} [options.describe]  value:number -> string used for
+     *   aria-valuetext. Defaults to options.format.
+     * @param {Function} [options.onInput]  value:number -> void, called after
+     *   the display has been updated. Use it to redraw.
+     * @returns {HTMLInputElement|null}
+     */
+    function bindRange(inputTarget, options) {
+      var input = resolve(inputTarget, root);
+      if (!input) {
+        return null;
+      }
+
+      var settings = options || {};
+      var format =
+        typeof settings.format === "function"
+          ? settings.format
+          : function (value) {
+              return String(value);
+            };
+      var describe =
+        typeof settings.describe === "function" ? settings.describe : format;
+
+      // <output for="the-input-id"> is the conventional pairing.
+      var output = input.id
+        ? root.querySelector('output[for="' + input.id + '"]')
+        : null;
+
+      function sync() {
+        var value = Number(input.value);
+        if (output) {
+          output.textContent = format(value);
+        }
+        // Only meaningful for widgets with an implicit or explicit slider
+        // role; harmless elsewhere.
+        input.setAttribute("aria-valuetext", describe(value));
+        if (typeof settings.onInput === "function") {
+          settings.onInput(value);
+        }
+      }
+
+      input.addEventListener("input", sync);
+      // Registered so reset() can refresh the display after the tool's own
+      // reset handlers have put the input back to its default.
+      rangeSyncs.push(sync);
+      sync();
+
+      return input;
+    }
+
+    /* --- Public surface -------------------------------------------------- */
+
+    return {
+      /** The `.interactive` root element. */
+      root: root,
+      /** The controls panel, or null if the shell has none. */
+      controls: controls,
+      /** The stage element where the visualisation is drawn. */
+      stage: stage,
+      /** The live-region element. */
+      status: status,
+      announce: announce,
+      onReset: onReset,
+      reset: reset,
+      bindRange: bindRange,
+      prefersReducedMotion: prefersReducedMotion
+    };
+  }
+
+  /* -----------------------------------------------------------------------
+     Export
+     --------------------------------------------------------------------- */
+
+  global.InteractiveShell = {
+    attach: attach,
+    prefersReducedMotion: prefersReducedMotion
+  };
+})(window);
+
+/* ---- modules/social-critical-psychology/tools/07-sherif-norm-formation-lab/tool.js ---- */
+/* =========================================================================
+   Norm-Formation Laboratory
+   -------------------------------------------------------------------------
+   Fifteen rounds of an unanchored judgement: five alone, five with three
+   simulated others visible, five alone again, then a comparison with three
+   other simulated groups.
+
+   THE EDUCATIONAL MODEL
+   ---------------------
+   The other three participants are generated AFTER the learner's first five
+   estimates, from anchors drawn around the learner's own opening mean:
+
+       anchor(i) = ownMean x spread(i),  spread = 0.45, 0.85, 1.75
+
+   which keeps the emerging norm from being imposed from outside. On each group
+   round every simulated participant moves a fraction of the way towards the
+   running group mean:
+
+       estimate(i, r) = (1 - w) x previous(i) + w x groupMean(r - 1) + noise
+       w = 0.42
+
+   Nothing about the learner is modelled or forced: whatever they type is what
+   the group mean uses. The chart therefore shows their own convergence or lack
+   of it, and the tool says explicitly that both are legitimate outcomes.
+
+   The three comparison groups are four simulated participants each, drawn from
+   the same distribution of opening estimates and run through the same rule with
+   the same seed sequence. They converge on different values, which is the
+   between-group point.
+
+   ACCESSIBILITY OF THE STIMULUS
+   -----------------------------
+   The display is a drawing with no scale and no reference object, and the text
+   beneath it carries everything the picture does: "the marker moved; there is
+   no ruler and no reference object". The ambiguity is stipulated rather than
+   perceptual, so a learner who cannot see the drawing is not at any
+   disadvantage - which is a real difference from the historical work and is
+   stated on the page.
+
+   WHAT THIS IS NOT
+   ----------------
+   Not a replication and not a study. No autokinetic effect is involved, no
+   materials from any historical experiment are reproduced, and no number here
+   corresponds to anything anybody reported. Nothing measures the learner:
+   estimates draw a chart and are discarded when the page is left. No data leave
+   the browser - no storage, no network request.
+   ========================================================================= */
+
+(function () {
+  "use strict";
+
+  var ROUNDS = 15;
+  var GROUP_START = 6;
+  var GROUP_END = 10;
+  var CONVERGENCE = 0.42;
+  var SPREADS = [0.45, 0.85, 1.75];
+  var OTHER_NAMES = ["Participant B", "Participant C", "Participant D"];
+
+  function mulberry32(a) {
+    return function () {
+      a |= 0; a = (a + 0x6D2B79F5) | 0;
+      var t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  var rand = mulberry32(20260214);
+
+  function mean(values) {
+    if (!values.length) { return 0; }
+    return values.reduce(function (t, v) { return t + v; }, 0) / values.length;
+  }
+
+  function round1(value) { return Math.round(value * 10) / 10; }
+
+  /* =======================================================================
+     Helpers
+     ===================================================================== */
+
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) { node.className = className; }
+    if (text !== undefined) { node.textContent = text; }
+    return node;
+  }
+
+  function clear(node) {
+    while (node.firstChild) { node.removeChild(node.firstChild); }
+  }
+
+  /* =======================================================================
+     Wiring
+     ===================================================================== */
+
+  var shell = InteractiveShell.attach("#norm-lab");
+  if (!shell) { return; }
+
+  var $ = function (s, scope) { return (scope || document).querySelector(s); };
+  var $$ = function (s, scope) {
+    return Array.prototype.slice.call((scope || document).querySelectorAll(s));
+  };
+
+  var openingForm = $("#opening-form");
+  var openingError = $("[data-opening-error]");
+  var openingFeedback = $("[data-opening-feedback]");
+  var labSection = $("#lab-section");
+
+  var roundBlock = $("[data-round-block]");
+  var roundLegend = $("[data-round-legend]");
+  var stimulusSvg = $("[data-stimulus]");
+  var stimulusText = $("[data-stimulus-text]");
+  var estimateInput = $("#estimate-input");
+  var othersBlock = $("[data-others]");
+  var othersList = $("[data-others-list]");
+  var roundNote = $("[data-round-note]");
+  var betweenBlock = $("[data-between-block]");
+  var traceSvg = $("[data-trace]");
+  var traceText = $("[data-trace-text]");
+  var phaseSummary = $("[data-phase-summary]");
+  var groupsBlock = $("[data-groups]");
+  var groupsBody = $("[data-groups-body]");
+  var groupsNote = $("[data-groups-note]");
+  var stageTrack = $("[data-stage-track]");
+
+  var INITIAL = {
+    unlocked: false,
+    round: 1,
+    own: [],
+    others: null,
+    otherTrace: [[], [], []],
+    finished: false,
+    showedGroups: false
+  };
+  var state = null;
+
+  /* --- The stimulus ---------------------------------------------------------- */
+
+  function drawStimulus(roundNumber) {
+    var NS = "http://www.w3.org/2000/svg";
+    clear(stimulusSvg);
+    var field = document.createElementNS(NS, "rect");
+    field.setAttribute("x", "0"); field.setAttribute("y", "0");
+    field.setAttribute("width", "260"); field.setAttribute("height", "120");
+    field.setAttribute("class", "stimulus__field");
+    stimulusSvg.appendChild(field);
+
+    /* The two positions are drawn from the seeded generator, but nothing about
+       them is informative: without a scale the separation on screen carries no
+       quantity. */
+    var x1 = 70 + rand() * 40;
+    var y1 = 40 + rand() * 40;
+    var x2 = x1 + (rand() - 0.5) * 90;
+    var y2 = y1 + (rand() - 0.5) * 40;
+
+    [[x1, y1, "stimulus__mark stimulus__mark--first"],
+     [x2, y2, "stimulus__mark stimulus__mark--second"]].forEach(function (spot) {
+      var dot = document.createElementNS(NS, "circle");
+      dot.setAttribute("cx", String(spot[0]));
+      dot.setAttribute("cy", String(spot[1]));
+      dot.setAttribute("r", "3.5");
+      dot.setAttribute("class", spot[2]);
+      stimulusSvg.appendChild(dot);
+    });
+
+    stimulusText.textContent =
+      "Round " + roundNumber + ". The marker was in one place and then in " +
+      "another. There is no ruler, no reference object and no scale, and none " +
+      "is available - the drawing carries no more information than this " +
+      "sentence does. Any number is as defensible as any other.";
+  }
+
+  /* --- The other participants -------------------------------------------------- */
+
+  function createOthers() {
+    var ownMean = mean(state.own);
+    if (!ownMean) { ownMean = 8; }
+    state.others = SPREADS.map(function (spread, index) {
+      return {
+        name: OTHER_NAMES[index],
+        current: Math.max(0.5, round1(ownMean * spread * (0.9 + rand() * 0.2)))
+      };
+    });
+    state.otherTrace = [[], [], []];
+  }
+
+  function advanceOthers() {
+    var previous = state.others.map(function (other) { return other.current; });
+    var running = mean(previous.concat([state.own[state.own.length - 1] || mean(previous)]));
+    state.others.forEach(function (other, index) {
+      var moved = (1 - CONVERGENCE) * other.current + CONVERGENCE * running;
+      other.current = Math.max(0.5, round1(moved + (rand() - 0.5) * Math.max(0.6, running * 0.08)));
+      state.otherTrace[index].push(other.current);
+    });
+  }
+
+  function renderOthers() {
+    var inGroup = state.round >= GROUP_START && state.round <= GROUP_END;
+    othersBlock.hidden = !inGroup;
+    if (!inGroup) { return; }
+    clear(othersList);
+    state.others.forEach(function (other) {
+      var item = make("li", "others__item");
+      item.appendChild(make("span", "others__name", other.name));
+      item.appendChild(make("span", "others__value", other.current + " cm"));
+      othersList.appendChild(item);
+    });
+  }
+
+  /* --- The chart --------------------------------------------------------------- */
+
+  function renderTrace() {
+    var NS = "http://www.w3.org/2000/svg";
+    var W = 320, H = 168;
+    var left = 34, right = 8, top = 10, bottom = 30;
+    clear(traceSvg);
+
+    var all = state.own.slice();
+    state.otherTrace.forEach(function (series) { all = all.concat(series); });
+    var maxValue = Math.max(1, Math.max.apply(null, all.concat([1])));
+    var scaleY = function (v) {
+      return H - bottom - (v / (maxValue * 1.1)) * (H - top - bottom);
+    };
+    var scaleX = function (r) {
+      return left + ((r - 1) / (ROUNDS - 1)) * (W - left - right);
+    };
+
+    /* Group phase band. */
+    var band = document.createElementNS(NS, "rect");
+    band.setAttribute("x", String(scaleX(GROUP_START)));
+    band.setAttribute("y", String(top));
+    band.setAttribute("width", String(scaleX(GROUP_END) - scaleX(GROUP_START)));
+    band.setAttribute("height", String(H - top - bottom));
+    band.setAttribute("class", "trace__band");
+    traceSvg.appendChild(band);
+
+    var baseline = document.createElementNS(NS, "line");
+    baseline.setAttribute("x1", String(left)); baseline.setAttribute("x2", String(W - right));
+    baseline.setAttribute("y1", String(H - bottom)); baseline.setAttribute("y2", String(H - bottom));
+    baseline.setAttribute("class", "chart__baseline");
+    traceSvg.appendChild(baseline);
+
+    state.otherTrace.forEach(function (series) {
+      if (series.length < 2) { return; }
+      var points = series.map(function (value, index) {
+        return scaleX(GROUP_START + index) + "," + scaleY(value);
+      }).join(" ");
+      var line = document.createElementNS(NS, "polyline");
+      line.setAttribute("points", points);
+      line.setAttribute("class", "chart__line chart__line--two");
+      traceSvg.appendChild(line);
+    });
+
+    if (state.own.length) {
+      var ownPoints = state.own.map(function (value, index) {
+        return scaleX(index + 1) + "," + scaleY(value);
+      }).join(" ");
+      var ownLine = document.createElementNS(NS, "polyline");
+      ownLine.setAttribute("points", ownPoints);
+      ownLine.setAttribute("class", "chart__line");
+      traceSvg.appendChild(ownLine);
+      state.own.forEach(function (value, index) {
+        var dot = document.createElementNS(NS, "circle");
+        dot.setAttribute("cx", String(scaleX(index + 1)));
+        dot.setAttribute("cy", String(scaleY(value)));
+        dot.setAttribute("r", "2.5");
+        dot.setAttribute("class", "chart__point");
+        traceSvg.appendChild(dot);
+      });
+    }
+
+    var label = document.createElementNS(NS, "text");
+    label.setAttribute("x", String(scaleX(GROUP_START) + 2));
+    label.setAttribute("y", String(top + 10));
+    label.setAttribute("class", "chart__axis");
+    label.textContent = "rounds 6-10: others visible";
+    traceSvg.appendChild(label);
+
+    var axis = document.createElementNS(NS, "text");
+    axis.setAttribute("x", String(W / 2)); axis.setAttribute("y", String(H - 8));
+    axis.setAttribute("text-anchor", "middle");
+    axis.setAttribute("class", "chart__axis");
+    axis.textContent = "round 1 to 15";
+    traceSvg.appendChild(axis);
+
+    var yLabel = document.createElementNS(NS, "text");
+    yLabel.setAttribute("x", "0"); yLabel.setAttribute("y", String(top + 8));
+    yLabel.setAttribute("class", "chart__axis");
+    yLabel.textContent = "cm";
+    traceSvg.appendChild(yLabel);
+
+    /* Text equivalent. */
+    var phase1 = state.own.slice(0, 5);
+    var phase2 = state.own.slice(5, 10);
+    var phase3 = state.own.slice(10, 15);
+    var parts = [];
+    if (phase1.length) {
+      parts.push("alone, rounds 1-" + phase1.length + ": " +
+        phase1.join(", ") + " cm (mean " + round1(mean(phase1)) + ")");
+    }
+    if (phase2.length) {
+      parts.push("with the group, rounds 6-" + (5 + phase2.length) + ": " +
+        phase2.join(", ") + " cm (mean " + round1(mean(phase2)) + ")");
+    }
+    if (phase3.length) {
+      parts.push("alone again, rounds 11-" + (10 + phase3.length) + ": " +
+        phase3.join(", ") + " cm (mean " + round1(mean(phase3)) + ")");
+    }
+    traceText.textContent = parts.length
+      ? "Your estimates - " + parts.join("; ") + "."
+      : "No estimates yet. The chart fills in as you record each round.";
+  }
+
+  /* --- Phase summary ------------------------------------------------------------ */
+
+  function renderPhaseSummary() {
+    clear(phaseSummary);
+    var phase1 = state.own.slice(0, 5);
+    var phase2 = state.own.slice(5, 10);
+    var phase3 = state.own.slice(10, 15);
+
+    if (phase1.length === 5 && !phase2.length) {
+      var box = make("div", "verdict");
+      box.setAttribute("data-tone", "neutral");
+      box.appendChild(make("h5", "verdict__title", "Alone: your own range"));
+      box.appendChild(make("p", "verdict__body",
+        "Mean " + round1(mean(phase1)) + " cm, from " + Math.min.apply(null, phase1) +
+        " to " + Math.max.apply(null, phase1) + ". Most people settle quite " +
+        "quickly into a range of their own, even with nothing to settle on - " +
+        "which is itself worth noticing before anybody else appears."));
+      phaseSummary.appendChild(box);
+      return;
+    }
+
+    if (phase2.length === 5 && !phase3.length) {
+      var groupMean = mean(state.others.map(function (o) { return o.current; })
+        .concat([phase2[phase2.length - 1]]));
+      var box2 = make("div", "verdict");
+      box2.setAttribute("data-tone", "neutral");
+      box2.appendChild(make("h5", "verdict__title", "With the group"));
+      box2.appendChild(make("p", "verdict__body",
+        "Your mean moved from " + round1(mean(phase1)) + " cm alone to " +
+        round1(mean(phase2)) + " cm with the group. The three others ended at " +
+        state.others.map(function (o) { return o.current + " cm"; }).join(", ") +
+        ", against opening values that were far apart. The group's converging " +
+        "is built into the model; yours is not."));
+      phaseSummary.appendChild(box2);
+      return;
+    }
+
+    if (phase3.length === 5) {
+      var ownStart = mean(phase1);
+      var norm = mean(state.others.map(function (o) { return o.current; }));
+      var after = mean(phase3);
+      var toStart = Math.abs(after - ownStart);
+      var toNorm = Math.abs(after - norm);
+      var box3 = make("div", "verdict");
+      box3.setAttribute("data-tone", toNorm < toStart ? "warn" : "neutral");
+      box3.appendChild(make("h5", "verdict__title", "Alone again - round 11 onwards"));
+      box3.appendChild(make("p", "verdict__body",
+        "Your opening mean was " + round1(ownStart) + " cm. The group's norm by " +
+        "round 10 was " + round1(norm) + " cm. Your mean over the last five " +
+        "rounds, with nobody watching, was " + round1(after) + " cm - " +
+        (toNorm < toStart
+          ? "nearer the group's range than your own. Nobody asked you to agree " +
+            "and nobody could see your answer, which is what makes this a change " +
+            "in what a plausible answer looks like rather than a decision to go " +
+            "along with anybody."
+          : "nearer your own opening range than the group's. That is a perfectly " +
+            "ordinary outcome and not a sign of anything about you: with a " +
+            "judgement this unanchored, individual differences in how much " +
+            "weight people give to other estimates are large.")));
+      box3.appendChild(make("p", "verdict__note",
+        "Nothing here measures you, and your estimates are discarded when you " +
+        "leave the page."));
+      phaseSummary.appendChild(box3);
+    }
+  }
+
+  /* --- The other groups ----------------------------------------------------------- */
+
+  function simulateGroup(openingMean) {
+    var members = SPREADS.concat([1.15]).map(function (spread) {
+      return Math.max(0.5, round1(openingMean * spread * (0.9 + rand() * 0.2)));
+    });
+    var opening = mean(members);
+    for (var r = 0; r < 5; r += 1) {
+      var running = mean(members);
+      members = members.map(function (value) {
+        return Math.max(0.5, round1((1 - CONVERGENCE) * value + CONVERGENCE * running +
+          (rand() - 0.5) * Math.max(0.6, running * 0.08)));
+      });
+    }
+    var spreadFinal = Math.max.apply(null, members) - Math.min.apply(null, members);
+    return {
+      opening: round1(opening),
+      norm: round1(mean(members)),
+      spread: round1(spreadFinal)
+    };
+  }
+
+  function showGroups() {
+    state.showedGroups = true;
+    groupsBlock.hidden = false;
+    clear(groupsBody);
+
+    var ownNorm = state.others
+      ? mean(state.others.map(function (o) { return o.current; })
+          .concat([state.own[9] || mean(state.own)]))
+      : mean(state.own);
+    var ownOpening = mean(state.own.slice(0, 5));
+
+    var rows = [{
+      label: "Your group",
+      opening: round1(ownOpening),
+      norm: round1(ownNorm),
+      spread: state.others
+        ? round1(Math.max.apply(null, state.others.map(function (o) { return o.current; })) -
+            Math.min.apply(null, state.others.map(function (o) { return o.current; })))
+        : 0
+    }];
+    [ownOpening * 0.35, ownOpening * 1.1, ownOpening * 2.6].forEach(function (opening, index) {
+      var simulated = simulateGroup(Math.max(1, opening));
+      rows.push({
+        label: "Group " + (index + 2),
+        opening: simulated.opening,
+        norm: simulated.norm,
+        spread: simulated.spread
+      });
+    });
+
+    rows.forEach(function (row) {
+      var tr = make("tr");
+      var th = make("th", null, row.label);
+      th.setAttribute("scope", "row");
+      tr.appendChild(th);
+      tr.appendChild(make("td", null, row.opening + " cm"));
+      tr.appendChild(make("td", null, row.norm + " cm"));
+      tr.appendChild(make("td", null, row.spread + " cm"));
+      groupsBody.appendChild(tr);
+    });
+
+    var norms = rows.map(function (row) { return row.norm; });
+    clear(groupsNote);
+    groupsNote.setAttribute("data-tone", "warn");
+    groupsNote.appendChild(make("h5", "verdict__title", "Same display, four answers"));
+    groupsNote.appendChild(make("p", "verdict__body",
+      "The four norms are " + norms.join(", ") + " cm - a range of " +
+      round1(Math.max.apply(null, norms) - Math.min.apply(null, norms)) +
+      " cm. Nothing about the display differed. What differed is who happened " +
+      "to be in the room and what they happened to say first."));
+    groupsNote.appendChild(make("p", "verdict__body",
+      "Notice the last column. Within each group the members end close " +
+      "together, so from inside any one group the norm looks like a fact about " +
+      "the display rather than a residue of a particular conversation. That is " +
+      "the condition under which shared frames are most convincing and least " +
+      "examinable."));
+    groupsNote.appendChild(make("p", "verdict__note",
+      "All four groups are generated by the same documented rule. This shows " +
+      "what the model does; the evidence that people do it is in the " +
+      "literature, not on this page."));
+    shell.announce("Four group norms shown, ranging over " +
+      round1(Math.max.apply(null, norms) - Math.min.apply(null, norms)) + " centimetres.",
+      { immediate: true });
+  }
+
+  /* --- Round handling --------------------------------------------------------------- */
+
+  function phaseOf(roundNumber) {
+    if (roundNumber < GROUP_START) { return "alone1"; }
+    if (roundNumber <= GROUP_END) { return "group"; }
+    if (roundNumber <= ROUNDS) { return "alone2"; }
+    return "between";
+  }
+
+  function render() {
+    var phase = phaseOf(state.round);
+    $$("li", stageTrack).forEach(function (node) {
+      node.removeAttribute("aria-current");
+      node.removeAttribute("data-state");
+      var id = node.getAttribute("data-phase");
+      var order = ["alone1", "group", "alone2", "between"];
+      if (id === phase) {
+        node.setAttribute("aria-current", "step");
+      } else if (order.indexOf(id) < order.indexOf(phase)) {
+        node.setAttribute("data-state", "done");
+      }
+    });
+
+    roundBlock.hidden = state.finished;
+    betweenBlock.hidden = !state.finished;
+
+    if (!state.finished) {
+      roundLegend.textContent = "Round " + state.round + " of " + ROUNDS + " - " +
+        (phase === "group" ? "with three others" : "alone");
+      renderOthers();
+    }
+
+    renderTrace();
+    renderPhaseSummary();
+  }
+
+  function submitEstimate(value) {
+    state.own.push(round1(value));
+    if (state.round === 5) { createOthers(); }
+    if (state.round >= GROUP_START && state.round <= GROUP_END) { advanceOthers(); }
+    state.round += 1;
+    if (state.round > ROUNDS) {
+      state.finished = true;
+      roundNote.textContent = "";
+    } else {
+      drawStimulus(state.round);
+      estimateInput.value = "";
+      roundNote.textContent = "";
+    }
+    render();
+    shell.announce(
+      state.finished
+        ? "All fifteen rounds recorded. The summary is beside you; press \"Show " +
+          "the other groups\" for the comparison."
+        : "Recorded. Round " + state.round + " of " + ROUNDS +
+          (phaseOf(state.round) === "group" ? ", with three others." : ", alone."),
+      { immediate: true });
+  }
+
+  $('[data-action="submit-estimate"]').addEventListener("click", function () {
+    var value = Number(estimateInput.value);
+    if (estimateInput.value === "" || !isFinite(value) || value < 0 || value > 200) {
+      roundNote.textContent =
+        "Enter a number between 0 and 200. Any number is as defensible as any " +
+        "other - that is the condition, not a hint.";
+      shell.announce(roundNote.textContent, { immediate: true });
+      return;
+    }
+    submitEstimate(value);
+  });
+
+  estimateInput.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      $('[data-action="submit-estimate"]').click();
+    }
+  });
+
+  $('[data-action="simulate"]').addEventListener("click", function () {
+    /* A simulated learner for demonstrating from the front, or for anyone who
+       would rather not answer. It is not a model of a person; it uses the same
+       convergence rule as the others so that the chart shows the effect. */
+    while (!state.finished) {
+      var value;
+      if (state.round <= 5) {
+        value = 6 + rand() * 6;
+      } else if (state.round <= GROUP_END) {
+        var groupMean = mean(state.others.map(function (o) { return o.current; }));
+        value = (1 - CONVERGENCE) * state.own[state.own.length - 1] +
+          CONVERGENCE * groupMean + (rand() - 0.5) * 1.2;
+      } else {
+        value = state.own[state.own.length - 1] + (rand() - 0.5) * 1.4;
+      }
+      submitEstimate(Math.max(0.5, value));
+    }
+    showGroups();
+    shell.announce(
+      "Simulated participant run through all fifteen rounds and the four-group " +
+      "comparison shown.", { immediate: true });
+  });
+
+  $('[data-action="show-groups"]').addEventListener("click", showGroups);
+
+  /* --- Opening prediction --------------------------------------------------------- */
+
+  var OPENING = {
+    none: {
+      tone: "caution",
+      verdict: "Sometimes true of an individual, rarely true of a group.",
+      text:
+        "Individual differences in how much weight people give to other " +
+        "estimates are large, and holding your own is a perfectly ordinary " +
+        "outcome. What is much rarer is a group of four staying apart when " +
+        "nothing anchors any of them."
+    },
+    during: {
+      tone: "caution",
+      verdict: "The first half is right; watch round 11.",
+      text:
+        "Convergence while the others are visible is unsurprising and would be " +
+        "consistent with simply going along. The interesting question is what " +
+        "happens when nobody is watching and there is nothing to go along with."
+    },
+    persist: {
+      tone: "good",
+      verdict: "That is the result the demonstration is built around.",
+      text:
+        "And the reason it matters is that persistence rules out the simplest " +
+        "explanation. Nobody sees round 11. If the group's range comes with " +
+        "you, what changed was not your willingness to agree but what counts " +
+        "as a plausible answer."
+    },
+    truth: {
+      tone: "caution",
+      verdict: "There is no true answer here.",
+      text:
+        "The display has no scale and no reference object. That is not a " +
+        "limitation of the demonstration; it is the condition that makes it " +
+        "work, and it is also the boundary condition on how far the result " +
+        "generalises to judgements that can be checked."
+    }
+  };
+
+  function showFeedback(container, tone, verdict, text) {
+    clear(container);
+    container.setAttribute("data-tone", tone);
+    var p = make("p");
+    p.appendChild(make("strong", "feedback__verdict", verdict));
+    if (text) { p.appendChild(document.createTextNode(" " + text)); }
+    container.appendChild(p);
+    container.hidden = false;
+  }
+
+  function lockForm(form) {
+    $$("input, button, select", form).forEach(function (c) { c.disabled = true; });
+  }
+
+  function unlockForm(form) {
+    $$("input, button, select", form).forEach(function (c) { c.disabled = false; });
+    form.reset();
+  }
+
+  function unlockLab() {
+    state.unlocked = true;
+    labSection.hidden = false;
+    drawStimulus(1);
+    render();
+    shell.announce("Round 1 of 15, alone.", { immediate: true });
+  }
+
+  openingForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answer = $('input[name="opening"]:checked', openingForm);
+    if (!answer) {
+      openingError.textContent = "Choose an answer before starting.";
+      openingError.hidden = false;
+      return;
+    }
+    openingError.hidden = true;
+    var feedback = OPENING[answer.value];
+    showFeedback(openingFeedback, feedback.tone, feedback.verdict, feedback.text);
+    lockForm(openingForm);
+    unlockLab();
+    $("#lab-heading").focus();
+  });
+
+  $('[data-action="skip-opening"]').addEventListener("click", function () {
+    openingError.hidden = true;
+    showFeedback(openingFeedback, "neutral",
+      "Prediction skipped - demonstration mode.", "");
+    lockForm(openingForm);
+    unlockLab();
+  });
+
+  /* --- Reset and start-up ------------------------------------------------------------ */
+
+  shell.onReset(function () {
+    state = JSON.parse(JSON.stringify(INITIAL));
+    rand = mulberry32(20260214);
+    unlockForm(openingForm);
+    openingFeedback.hidden = true;
+    openingError.hidden = true;
+    labSection.hidden = true;
+    groupsBlock.hidden = true;
+    othersBlock.hidden = true;
+    estimateInput.value = "";
+    roundNote.textContent = "";
+    drawStimulus(1);
+    render();
+  });
+
+  shell.reset({ silent: true });
+  shell.announce(
+    "Ready. Answer the question above to start the fifteen rounds.",
+    { immediate: true });
+})();
+
+</script>
+</div>

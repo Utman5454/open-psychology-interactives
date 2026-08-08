@@ -1,0 +1,2814 @@
+<!-- Positive Manifold Visualiser
+     From Open Psychology Interactives - https://github.com/utman5454/open-psychology-interactives
+     Self-contained: no stylesheets, scripts, fonts, images or network requests.
+     Styles are scoped to .opi-activity and do not affect the page around them.
+     Nothing is saved, sent or tracked. MIT licensed; please keep this notice.
+     Paste anywhere that accepts HTML, or save as a .html file and open it. -->
+<div class="opi-activity">
+<style>
+/* Defensive baseline. See scripts/build-standalone.py for why this
+   is `revert` rather than an enumerated reset, and how the specificity ladder
+   keeps the activity's own styling on top of it. */
+.opi-activity *:not(svg *) {
+  all: revert;
+}
+.opi-activity, .opi-activity *, .opi-activity *::before, .opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  text-transform: none;
+  text-indent: 0;
+  font-style: normal;
+  font-variant: normal;
+  letter-spacing: normal;
+  word-spacing: normal;
+  white-space: normal;
+  visibility: visible;
+  float: none;
+  max-width: none;
+}
+.opi-activity svg { max-width: 100%; }
+.opi-activity img { max-width: 100%; height: auto; }
+.opi-activity [hidden] { display: none !important; }
+
+/* assets/css/main.css */
+.opi-activity.opi-activity {
+  --colour-page: #ffffff;
+  --colour-surface: #f5f7fa;
+  --colour-surface-raised: #ffffff;
+  --colour-border: #d3d9e2;
+  --colour-border-strong: #aeb7c4;
+  --colour-text: #131820;
+  --colour-text-muted: #4c566a;
+  --colour-accent: #1a4fa0;
+  --colour-accent-hover: #123a7a;
+  --colour-accent-soft: #e8eefb;
+  --colour-on-accent: #ffffff;
+  --colour-focus: #b45309;
+  --colour-cognitive: #8a4b00;
+  --colour-research-methods: #1a4fa0;
+  --colour-neuropsychology: #145c53;
+  --colour-social-critical-psychology: #9e2f45;
+  --colour-personality-individual-differences: #7a2e6d;
+  --colour-status-bg: #f1ede3;
+  --colour-status-text: #5c4a1f;
+  --colour-status-border: #d9cdb0;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  --text-xs: 13px;
+  --text-sm: 15px;
+  --text-base: 17px;
+  --text-lg: 19px;
+  --text-xl: 23px;
+  --text-2xl: 28px;
+  --text-3xl: 36px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgb(19 24 32 / 0.06);
+  --shadow-md: 0 2px 8px rgb(19 24 32 / 0.08);
+  --measure: 68ch;
+  --container: 1152px;
+}
+@media (prefers-color-scheme: dark) {
+.opi-activity.opi-activity {
+  --colour-page: #0f141b;
+  --colour-surface: #161d27;
+  --colour-surface-raised: #1a2230;
+  --colour-border: #2c3644;
+  --colour-border-strong: #44506180;
+  --colour-text: #e9edf3;
+  --colour-text-muted: #a8b2c1;
+  --colour-accent: #8fb6ff;
+  --colour-accent-hover: #b3cdff;
+  --colour-accent-soft: #1b2740;
+  --colour-on-accent: #0f141b;
+  --colour-focus: #f0b429;
+  --colour-cognitive: #e2ab5f;
+  --colour-research-methods: #8fb6ff;
+  --colour-neuropsychology: #6fc3b4;
+  --colour-social-critical-psychology: #f19aa8;
+  --colour-personality-individual-differences: #db9ccd;
+  --colour-status-bg: #241f14;
+  --colour-status-text: #e2cf9f;
+  --colour-status-border: #4a4028;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 2px 10px rgb(0 0 0 / 0.45);
+}
+}
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity.opi-activity {
+  -webkit-text-size-adjust: 100%;
+}
+.opi-activity.opi-activity {
+  background-color: var(--colour-page);
+  color: var(--colour-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.65;
+}
+.opi-activity.opi-activity h1,
+.opi-activity.opi-activity h2,
+.opi-activity.opi-activity h3,
+.opi-activity.opi-activity h4 {
+  margin: 0 0 var(--space-3);
+  line-height: 1.25;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.opi-activity.opi-activity h1 {
+  font-size: var(--text-3xl);
+}
+.opi-activity.opi-activity h2 {
+  font-size: var(--text-2xl);
+}
+.opi-activity.opi-activity h3 {
+  font-size: var(--text-xl);
+}
+.opi-activity.opi-activity h4 {
+  font-size: var(--text-lg);
+}
+.opi-activity.opi-activity p,
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol,
+.opi-activity.opi-activity dl {
+  margin: 0 0 var(--space-4);
+}
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol {
+  padding-left: 1.35em;
+}
+.opi-activity.opi-activity li + li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity a {
+  color: var(--colour-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: max(1px, 0.06em);
+}
+.opi-activity.opi-activity a:hover {
+  color: var(--colour-accent-hover);
+  text-decoration-thickness: max(2px, 0.11em);
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid var(--colour-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+@supports not selector(:focus-visible) {
+.opi-activity.opi-activity :focus {
+  outline: 3px solid var(--colour-focus);
+    outline-offset: 2px;
+}
+}
+.opi-activity.opi-activity code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.35em;
+}
+.opi-activity.opi-activity hr {
+  border: 0;
+  border-top: 1px solid var(--colour-border);
+  margin: var(--space-6) 0;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+}
+.opi-activity.opi-activity .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.opi-activity.opi-activity .container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+@media (min-width: 40em) {
+.opi-activity.opi-activity .container {
+  padding-inline: var(--space-5);
+}
+}
+.opi-activity.opi-activity .prose {
+  max-width: var(--measure);
+}
+.opi-activity.opi-activity .text-muted {
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .section {
+  padding-block: var(--space-7);
+}
+.opi-activity.opi-activity .section--tinted {
+  background-color: var(--colour-surface);
+  border-block: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .section__header {
+  max-width: var(--measure);
+  margin-bottom: var(--space-5);
+}
+.opi-activity.opi-activity .section__header > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-7) var(--space-6);
+  border-bottom: 1px solid var(--colour-border);
+  
+  background-image: linear-gradient(
+    180deg,
+    var(--colour-accent-soft) 0%,
+    var(--colour-page) 100%
+  );
+}
+.opi-activity.opi-activity .hero__eyebrow {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .hero h1 {
+  max-width: 20ch;
+  margin-bottom: var(--space-4);
+}
+.opi-activity.opi-activity .hero__lead {
+  max-width: var(--measure);
+  font-size: var(--text-lg);
+  color: var(--colour-text-muted);
+}
+@media (min-width: 48em) {
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-8) var(--space-7);
+}
+.opi-activity.opi-activity .hero h1 {
+  font-size: 44px;
+}
+}
+.opi-activity.opi-activity .button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  
+  min-height: 44px;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .button--primary {
+  background-color: var(--colour-accent);
+  border-color: var(--colour-accent);
+  
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--primary:hover {
+  background-color: var(--colour-accent-hover);
+  border-color: var(--colour-accent-hover);
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--secondary {
+  background-color: transparent;
+  border-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .button--secondary:hover {
+  background-color: var(--colour-surface);
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+}
+.opi-activity.opi-activity .card--cognitive {
+  --card-accent: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .card--research-methods {
+  --card-accent: var(--colour-research-methods);
+}
+.opi-activity.opi-activity .card--neuropsychology {
+  --card-accent: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .card--social-critical-psychology {
+  --card-accent: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .card--personality-individual-differences {
+  --card-accent: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 650;
+  line-height: 1.4;
+  padding: 3.2px var(--space-3);
+  border-radius: 999px;
+  border: 1px solid var(--colour-status-border);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+}
+.opi-activity.opi-activity .badge__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex: none;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed var(--colour-border-strong);
+  border-radius: var(--radius-lg);
+  background-color: var(--colour-surface);
+  padding: var(--space-5);
+  text-align: left;
+}
+.opi-activity.opi-activity .placeholder__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+}
+.opi-activity.opi-activity .placeholder > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .split {
+  display: grid;
+  gap: var(--space-6);
+}
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split {
+  grid-template-columns: 3fr 2fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .panel {
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.opi-activity.opi-activity .panel > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .panel__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .section--tinted {
+  border-block: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .hero {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .button--primary {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .button--secondary {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .button:hover {
+  border-color: Highlight;
+}
+.opi-activity.opi-activity .panel {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed CanvasText;
+}
+.opi-activity.opi-activity .badge {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .badge__dot {
+  background-color: CanvasText;
+}
+.opi-activity.opi-activity code {
+  border-color: CanvasText;
+}
+.opi-activity.opi-activity hr {
+  border-top-color: CanvasText;
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+}
+@media print {
+.opi-activity.opi-activity {
+  color: #000;
+  background: #fff;
+}
+.opi-activity.opi-activity a[href^="http"]::after {
+  content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+}
+}
+
+/* components/interactive-shell.css */
+.opi-activity.opi-activity .interactive {
+  --shell-page: var(--colour-page, #ffffff);
+  --shell-surface: var(--colour-surface, #f5f7fa);
+  --shell-raised: var(--colour-surface-raised, #ffffff);
+  --shell-border: var(--colour-border, #d3d9e2);
+  --shell-border-strong: var(--colour-border-strong, #aeb7c4);
+  --shell-text: var(--colour-text, #131820);
+  --shell-muted: var(--colour-text-muted, #4c566a);
+  --shell-accent: var(--colour-accent, #1a4fa0);
+  --shell-accent-soft: var(--colour-accent-soft, #e8eefb);
+  
+  --shell-on-accent: var(--colour-on-accent, #ffffff);
+  --shell-focus: var(--colour-focus, #b45309);
+  --shell-radius: var(--radius-lg, 12px);
+  --shell-gap: var(--space-5, 24px);
+
+  display: block;
+  background-color: var(--shell-raised);
+  color: var(--shell-text);
+  border: 1px solid var(--shell-border);
+  border-radius: var(--shell-radius);
+  
+  overflow-x: clip;
+  overflow-y: visible;
+}
+.opi-activity.opi-activity .interactive__header {
+  padding: var(--shell-gap);
+  border-bottom: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 1.25;
+}
+.opi-activity.opi-activity .interactive__brief {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--shell-muted);
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__body {
+  display: grid;
+  gap: var(--shell-gap);
+  padding: var(--shell-gap);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body {
+  grid-template-columns: minmax(240px, 320px) 1fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .interactive__controls {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__controls fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .interactive__controls legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .control {
+  display: grid;
+  gap: 5.6px;
+}
+.opi-activity.opi-activity .control + .control {
+  margin-top: 16px;
+}
+.opi-activity.opi-activity .control__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.opi-activity.opi-activity .control__label {
+  font-size: 15px;
+  font-weight: 600;
+}
+.opi-activity.opi-activity .control__value {
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--shell-accent);
+}
+.opi-activity.opi-activity .control__hint {
+  font-size: 13px;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .interactive__controls input[type="range"] {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--shell-accent);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  width: 100%;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--shell-text);
+  background-color: var(--shell-raised);
+  border: 1px solid var(--shell-border-strong);
+  border-radius: var(--radius-sm, 4px);
+}
+.opi-activity.opi-activity .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+}
+.opi-activity.opi-activity .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  accent-color: var(--shell-accent);
+  flex: none;
+}
+.opi-activity.opi-activity .interactive__stage {
+  min-height: 256px;
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-page);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body--pinned {
+  align-items: stretch;
+}
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: sticky;
+    top: 0;
+    z-index: 2;
+    
+    margin: -16px -16px 0;
+    padding: 16px 16px 12px;
+    background-color: var(--shell-page);
+    border-bottom: 1px solid var(--shell-border);
+}
+}
+@media (min-width: 52em) and (max-height: 30em) {
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: static;
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
+}
+}
+.opi-activity.opi-activity .interactive__stage > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity :where(.interactive__stage) svg,
+.opi-activity.opi-activity :where(.interactive__stage) canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+.opi-activity.opi-activity .interactive__readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout div {
+  padding: 9.6px 12px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-sm, 4px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__readout dt {
+  font-size: 13px;
+  color: var(--shell-muted);
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout dd {
+  margin: 2.4px 0 0;
+  font-size: 18px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .interactive__status {
+  margin: 0;
+  padding: 12px var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+  font-size: 15px;
+  color: var(--shell-muted);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .interactive__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+}
+.opi-activity.opi-activity .interactive__actions button {
+  min-height: 44px;
+  padding: 6.4px 20px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--shell-on-accent);
+  background-color: var(--shell-accent);
+  border: 1px solid var(--shell-accent);
+  border-radius: var(--radius-md, 8px);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  color: var(--shell-text);
+  background-color: transparent;
+  border-color: var(--shell-border-strong);
+}
+.opi-activity.opi-activity .interactive__actions button:hover {
+  filter: brightness(1.08);
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__notes > summary {
+  padding: 13.6px var(--shell-gap);
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__notes > div {
+  padding: 0 var(--shell-gap) var(--shell-gap);
+  max-width: 68ch;
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__notes > div > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity .interactive *,
+.opi-activity.opi-activity .interactive *::before,
+.opi-activity.opi-activity .interactive *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+}
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .interactive,
+.opi-activity.opi-activity .interactive__controls,
+.opi-activity.opi-activity .interactive__stage,
+.opi-activity.opi-activity .interactive__readout div {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__header {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__status,
+.opi-activity.opi-activity .interactive__actions,
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__actions button {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  border-width: 1px;
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 1;
+    color: GrayText;
+    border-color: GrayText;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__stage svg {
+  forced-color-adjust: auto;
+}
+}
+
+/* components/tool-kit.css */
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split--wide {
+  grid-template-columns: 1fr 1fr;
+}
+}
+.opi-activity.opi-activity .how-to {
+  padding-left: 19.2px;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .how-to > li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .table-scroll {
+  overflow-x: auto;
+  
+  position: relative;
+}
+.opi-activity.opi-activity .prediction {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 832px;
+}
+.opi-activity.opi-activity .prediction > *,
+.opi-activity.opi-activity .challenge > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity .prediction__group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .prediction__legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-weight: 650;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .prediction .control--choice,
+.opi-activity.opi-activity .challenge .control--choice,
+.opi-activity.opi-activity .evidence .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .prediction .control--choice input,
+.opi-activity.opi-activity .challenge .control--choice input,
+.opi-activity.opi-activity .evidence .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .prediction__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .prediction__error {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-status-border);
+  border-left: 4px solid var(--colour-status-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .prediction__readback {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .feedback[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .feedback[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .feedback[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .feedback__verdict {
+  font-weight: 700;
+}
+.opi-activity.opi-activity .verdict {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .verdict__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict__body {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .verdict__body + .verdict__body {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .verdict__note {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .verdict[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .verdict[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .goal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .goal__label {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .goal__text {
+  flex: 1 1 256px;
+}
+.opi-activity.opi-activity .goal strong {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .goal__checks {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+  display: grid;
+  gap: 2.4px;
+}
+.opi-activity.opi-activity .goal__checks > li {
+  margin-top: 0;
+  padding-left: 22.4px;
+  position: relative;
+}
+.opi-activity.opi-activity .goal__checks > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 9.6px;
+  height: 9.6px;
+  border: 2px solid var(--colour-border-strong);
+  border-radius: 2px;
+}
+.opi-activity.opi-activity .goal__checks > li[data-met="yes"]::before {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .stage-track {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .stage-track > li {
+  margin-top: 0;
+  flex: 1 1 160px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-bottom: 3px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .stage-track > li > span {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.opi-activity.opi-activity .stage-track > li[data-state="done"] {
+  border-bottom-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border-bottom-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+  color: var(--colour-text);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .stage__heading {
+  margin: 0;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .data-table,
+.opi-activity.opi-activity .chart__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .data-table th,
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table th,
+.opi-activity.opi-activity .chart__table td {
+  padding: 6.4px 9.6px;
+  border: 1px solid var(--colour-border);
+  text-align: left;
+  vertical-align: top;
+}
+.opi-activity.opi-activity .data-table thead th,
+.opi-activity.opi-activity .chart__table thead th {
+  background-color: var(--colour-surface);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table td {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__table tbody th,
+.opi-activity.opi-activity .data-table tbody th {
+  font-weight: 550;
+}
+.opi-activity.opi-activity .data-table__total > th,
+.opi-activity.opi-activity .data-table__total > td {
+  border-top: 2px solid var(--colour-border-strong);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart {
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .chart__caption {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__svg {
+  max-width: 100%;
+  height: auto;
+}
+.opi-activity.opi-activity .chart__label,
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__inline,
+.opi-activity.opi-activity .chart__axis {
+  font-family: var(--font-body);
+  fill: var(--colour-text);
+  font-size: 13px;
+}
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__axis {
+  fill: var(--colour-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: var(--colour-on-accent);
+  font-size: 12px;
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__track {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__bar {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--one {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .chart__baseline,
+.opi-activity.opi-activity .chart__grid {
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__line {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: var(--colour-personality-individual-differences);
+  stroke-dasharray: 6 4;
+}
+.opi-activity.opi-activity .chart__point {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .reveal > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .reveal__lead {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+.opi-activity.opi-activity .reveal__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(176px, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+  padding: 0;
+  list-style: none;
+}
+.opi-activity.opi-activity .reveal__figures > li {
+  margin-top: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+.opi-activity.opi-activity .reveal__figure-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .reveal__figure-value {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .challenge {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+.opi-activity.opi-activity .challenge__locked {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .panel--caution {
+  background-color: var(--colour-status-bg);
+  border-color: var(--colour-status-border);
+}
+.opi-activity.opi-activity .panel--caution li + li {
+  margin-top: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .goal,
+.opi-activity.opi-activity .verdict,
+.opi-activity.opi-activity .feedback,
+.opi-activity.opi-activity .prediction__error,
+.opi-activity.opi-activity .prediction__readback,
+.opi-activity.opi-activity .stage-track > li,
+.opi-activity.opi-activity .reveal__figures > li {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border: 2px solid Highlight;
+}
+.opi-activity.opi-activity .chart__bar,
+.opi-activity.opi-activity .chart__bar--one {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: Canvas;
+}
+.opi-activity.opi-activity .chart__line {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: Highlight;
+}
+}
+.opi-activity.opi-activity .stage__more {
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .stage__more > summary {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .stage__more[open] > summary {
+  border-bottom: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .stage__more > *:not(summary) {
+  margin: var(--space-3);
+}
+
+/* modules/personality-individual-differences/tools/32-positive-manifold-visualiser/tool.css */
+.opi-activity.opi-activity #manifold .interactive__controls,
+.opi-activity.opi-activity #manifold .interactive__stage {
+  min-width: 0;
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity #manifold .interactive__body {
+  grid-template-columns: minmax(0, 288px) minmax(0, 1fr);
+}
+}
+.opi-activity.opi-activity #manifold .control + .control {
+  margin-top: var(--space-4);
+}
+.opi-activity.opi-activity .preset-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.opi-activity.opi-activity .preset-buttons .button {
+  font-size: var(--text-xs);
+  padding: 5.6px 11.2px;
+  min-height: 44px;
+}
+.opi-activity.opi-activity .matrix td {
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .matrix td[data-strength="high"] {
+  background-color: var(--colour-accent);
+  color: var(--colour-on-accent);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .matrix td[data-strength="mid"] {
+  background-color: var(--colour-accent-soft);
+}
+.opi-activity.opi-activity .matrix td[data-strength="low"] {
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .matrix td[data-samegroup="yes"] {
+  border-left: 3px solid var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .variance {
+  display: flex;
+  width: 100%;
+  min-height: 40px;
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+.opi-activity.opi-activity .variance__part {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  overflow: hidden;
+  transition: width 200ms ease-out;
+}
+.opi-activity.opi-activity .variance__part--shared {
+  background-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .variance__part--group {
+  background-color: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .variance__part--specific {
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .variance__part--error {
+  background-color: var(--colour-status-bg);
+}
+.opi-activity.opi-activity .variance__label {
+  padding: 0 5.6px;
+  font-size: var(--text-xs);
+  font-weight: 650;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.opi-activity.opi-activity .variance__part--shared .variance__label,
+.opi-activity.opi-activity .variance__part--group .variance__label {
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .variance__part--specific .variance__label {
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .variance__part--error .variance__label {
+  color: var(--colour-status-text);
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity .variance__part {
+  transition: none;
+}
+}
+.opi-activity.opi-activity .scatter__points {
+  stroke: var(--colour-accent);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-opacity: 0.45;
+  fill: none;
+}
+.opi-activity.opi-activity .manifold__bar--verbal {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .manifold__bar--spatial {
+  fill: var(--colour-personality-individual-differences);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .variance,
+.opi-activity.opi-activity .matrix td[data-samegroup="yes"] {
+  border-color: CanvasText;
+}
+.opi-activity.opi-activity .variance__part--shared,
+.opi-activity.opi-activity .variance__part--group {
+  background-color: Highlight;
+}
+.opi-activity.opi-activity .variance__part--specific,
+.opi-activity.opi-activity .variance__part--error {
+  background-color: Canvas;
+}
+.opi-activity.opi-activity .variance__part--shared .variance__label,
+.opi-activity.opi-activity .variance__part--group .variance__label {
+  color: Canvas;
+}
+.opi-activity.opi-activity .variance__part--specific .variance__label,
+.opi-activity.opi-activity .variance__part--error .variance__label {
+  color: CanvasText;
+}
+.opi-activity.opi-activity .matrix td[data-strength="high"] {
+  background-color: Highlight;
+    color: Canvas;
+}
+.opi-activity.opi-activity .scatter__points {
+  stroke: CanvasText;
+    stroke-opacity: 1;
+}
+.opi-activity.opi-activity .manifold__bar--verbal {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .manifold__bar--spatial {
+  fill: Highlight;
+}
+}
+</style>
+
+  <!-- ================= Title and purpose ================= -->
+  <section class="section card--personality-individual-differences" aria-labelledby="page-heading">
+    <div class="container">
+
+      <p class="hero__eyebrow" style="color: var(--colour-personality-individual-differences)">
+        Personality and Individual Differences
+      </p>
+      <h1 id="page-heading">Positive Manifold Visualiser</h1>
+      <p class="hero__lead">
+        Six fictional tasks, a correlation matrix you control, and a first
+        factor that appears whatever structure you put underneath it.
+      </p>
+
+      <p>
+        <span class="badge">
+          <span class="badge__dot" aria-hidden="true"></span>
+          Simulated — fictional tasks, no real intelligence-test data
+        </span>
+      </p>
+
+      <div class="split split--wide">
+
+        <div class="panel">
+          <h2 class="panel__title">Learning objective</h2>
+          <p>
+            By the end you should be able to say why a first factor with
+            positive loadings follows arithmetically from the positive
+            manifold, and settles nothing about what produces it.
+          </p>
+          <p class="text-muted">
+            About 25 minutes. Nothing you do here is saved or sent anywhere.
+          </p>
+        </div>
+
+        <div class="panel panel--caution">
+          <h2 class="panel__title">What a factor is here</h2>
+          <p>
+            A factor in this tool is a property of a correlation matrix — a
+            summary of numbers you generated with sliders. It is not a
+            biological entity, a brain structure or a measured quantity.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= Opening prediction ================= -->
+  <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="opening-heading">First, a judgement</h2>
+        <p class="prose">
+          Across a century of research, scores on almost any pair of
+          cognitive tasks correlate positively. This is called the positive
+          manifold, and factor analysing such a matrix always produces a
+          first factor on which everything loads positively.
+        </p>
+      </div>
+
+      <noscript>
+        <div class="placeholder">
+          <h3 class="placeholder__title">This part needs JavaScript</h3>
+          <p class="prose">
+            The visualiser builds correlation matrices and extracts factors in
+            your browser, so it cannot run with JavaScript switched off. The
+            rest of this page is readable without it.
+          </p>
+        </div>
+      </noscript>
+
+      <form class="panel prediction" id="opening-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">What does that establish?</legend>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="entity">
+            That there is a single general ability the tasks all draw on
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="summary">
+            A robust empirical pattern, whose explanation is a separate and contested question
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="artefact">
+            Nothing — it is an artefact of how the tests were built
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="unknown">
+            I am not sure yet
+          </label>
+        </fieldset>
+
+        <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Record my answer and open the visualiser
+          </button>
+          <button class="button button--secondary" type="button" data-action="skip-opening">
+            Skip — I am demonstrating this
+          </button>
+        </div>
+
+        <div class="feedback" data-opening-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Visualiser ================= -->
+  <section class="section" id="visualiser-section" aria-labelledby="visualiser-heading" hidden>
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="visualiser-heading" tabindex="-1">The visualiser</h2>
+      </div>
+
+      <section class="interactive" id="manifold" data-interactive
+               data-reset-message="Everything cleared. Back to the opening question.">
+
+        <header class="interactive__header">
+          <h3 class="interactive__title">Six fictional cognitive tasks</h3>
+          <p class="interactive__brief">
+            Three verbal-ish, three spatial-ish. You decide how much of each
+            task's performance is shared with every other task, shared only
+            within its group, or specific and error.
+          </p>
+        </header>
+
+        <div class="interactive__body interactive__body--pinned">
+
+          <form class="interactive__controls" data-interactive-controls>
+
+            <fieldset>
+              <legend>Load a configuration</legend>
+              <div class="preset-buttons">
+                <button class="button button--secondary" type="button" data-preset="general">
+                  Strong general factor
+                </button>
+                <button class="button button--secondary" type="button" data-preset="groups">
+                  Broad group factors
+                </button>
+                <button class="button button--secondary" type="button" data-preset="weak">
+                  Weak task relations
+                </button>
+              </div>
+              <p class="control__hint" data-preset-note></p>
+            </fieldset>
+
+            <fieldset>
+              <legend>Where the variance goes</legend>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="shared-range">Shared by every task</label>
+                  <output class="control__value" for="shared-range">55%</output>
+                </div>
+                <input type="range" id="shared-range" min="0" max="90" step="1" value="55">
+              </div>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="group-range">Shared within a group</label>
+                  <output class="control__value" for="group-range">10%</output>
+                </div>
+                <input type="range" id="group-range" min="0" max="90" step="1" value="10">
+              </div>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="error-range">Measurement error</label>
+                  <output class="control__value" for="error-range">15%</output>
+                </div>
+                <input type="range" id="error-range" min="0" max="90" step="1" value="15">
+                <p class="control__hint">
+                  Whatever is left over becomes task-specific variance. Error
+                  and specific variance contribute to no correlation at all.
+                </p>
+              </div>
+            </fieldset>
+
+          </form>
+
+          <div class="interactive__stage" data-interactive-stage>
+
+            <!-- Pinned: where the variance goes, and the headline numbers every slider moves. -->
+            <div class="stage__primary">
+              <h4 class="stage__heading">Where each task's variance comes from</h4>
+              <div class="variance" data-variance-bar></div>
+
+              <dl class="interactive__readout" data-readout></dl>
+            </div>
+
+            <h4 class="stage__heading">The correlation matrix</h4>
+            <div class="table-scroll">
+              <table class="data-table matrix">
+                <caption class="visually-hidden">
+                  Model-implied correlation between every pair of tasks
+                </caption>
+                <tbody data-matrix></tbody>
+              </table>
+            </div>
+
+            <h4 class="stage__heading">The illustrative first factor</h4>
+            <figure class="chart">
+              <figcaption class="visually-hidden">
+                Loading of each task on the first principal component of the
+                correlation matrix
+              </figcaption>
+              <svg class="chart__svg" data-loading-chart viewBox="0 0 460 194"
+                   aria-hidden="true" focusable="false"></svg>
+              <div class="table-scroll">
+                <table class="chart__table">
+                  <caption class="visually-hidden">
+                    Each task, its group, and its loading on the first factor
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Task</th>
+                      <th scope="col">Group</th>
+                      <th scope="col">First-factor loading</th>
+                    </tr>
+                  </thead>
+                  <tbody data-loading-table></tbody>
+                </table>
+              </div>
+            </figure>
+
+            <!-- Demoted: the scatterplots illustrate the matrix rather than
+                 adding to it, so they open on request instead of competing
+                 with the first-factor chart for attention. -->
+            <details class="stage__more">
+              <summary>Three of those pairs, as scatterplots</summary>
+              <figure class="chart">
+                <figcaption class="visually-hidden">
+                  Simulated scores for 220 fictional people on three pairs of
+                  tasks
+                </figcaption>
+                <svg class="chart__svg" data-scatter viewBox="0 0 450 178"
+                     aria-hidden="true" focusable="false"></svg>
+                <div class="table-scroll">
+                  <table class="chart__table">
+                    <caption class="visually-hidden">
+                      Model-implied and observed correlation for each plotted
+                      pair
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Pair</th>
+                        <th scope="col">Relationship</th>
+                        <th scope="col">Model</th>
+                        <th scope="col">Observed in sample</th>
+                      </tr>
+                    </thead>
+                    <tbody data-scatter-table></tbody>
+                  </table>
+                </div>
+              </figure>
+            </details>
+
+            <div class="verdict">
+              <h4 class="verdict__title">What this configuration shows</h4>
+              <p class="verdict__body" data-interpretation></p>
+            </div>
+
+          </div>
+
+        </div>
+
+        <p class="interactive__status" data-interactive-status role="status"></p>
+
+        <div class="interactive__actions">
+          <button type="button" data-variant="secondary" data-interactive-reset>
+            Reset everything
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ================= Challenge ================= -->
+  <section class="section section--tinted" id="challenge" aria-labelledby="challenge-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="challenge-heading">Challenge — what would tell you apart?</h2>
+      </div>
+
+      <form class="panel challenge" id="challenge-form">
+        <p>
+          You are handed a correlation matrix in which every entry is
+          positive and a first factor on which all six tasks load between
+          0.55 and 0.75. Which underlying structures are compatible with
+          that?
+        </p>
+
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">Your answer</legend>
+          <label class="control--choice">
+            <input type="radio" name="challenge" value="general">
+            Only a single general ability shared by all six tasks
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="challenge" value="both">
+            Both a single general ability and two broad group factors
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="challenge" value="neither">
+            Neither — positive loadings mean the analysis has gone wrong
+          </label>
+        </fieldset>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Check my answer
+          </button>
+        </div>
+
+        <div class="feedback" data-challenge-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Debrief ================= -->
+  <section class="section" id="debrief" aria-labelledby="debrief-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="debrief-heading">What this demonstrates</h2>
+      </div>
+
+      <div class="split split--wide">
+
+        <div class="prose">
+          <h3>The pattern is real; the explanation is a theory</h3>
+          <p>
+            That cognitive tasks correlate positively is one of the most
+            replicated findings in psychology. It holds across samples,
+            centuries, task types and cultures, and it is not an artefact of
+            test construction — it appears even with tasks chosen to be as
+            unlike each other as possible. What produces it is a different
+            question, and the factor analysis does not answer it.
+          </p>
+
+          <h3>A first factor is arithmetic, not evidence</h3>
+          <p>
+            If every correlation in a matrix is positive, the first principal
+            component will have positive loadings on everything. That follows
+            from the numbers. It happens when there is one general ability, and
+            it happens when there are two group factors that happen to
+            correlate, and it happens when a dozen partly overlapping
+            processes are sampled by every task. Extracting the factor tells
+            you the manifold is there; it does not tell you why.
+          </p>
+
+          <h3>Rival explanations survive the same evidence</h3>
+          <p>
+            At least four accounts fit the positive manifold: a single
+            general capacity; a small number of broad abilities that overlap;
+            mutual reinforcement between abilities during development, so that
+            being good at one thing helps you get better at another; and
+            sampling, where every task draws on an overlapping subset of many
+            narrow processes. All predict a positive manifold. Choosing
+            between them needs evidence from outside the correlation matrix —
+            developmental, experimental, genetic, intervention.
+          </p>
+
+          <h3>Group structure hides inside a general factor</h3>
+          <p>
+            The most useful configuration in this tool is "Broad group
+            factors". Every task still loads positively on the first factor,
+            and the truth underneath is two clusters. A researcher who
+            extracted one factor and stopped would report a general ability
+            and would be describing something that is not there.
+          </p>
+        </div>
+
+        <aside class="panel panel--caution" aria-labelledby="limits-heading">
+          <h3 class="panel__title" id="limits-heading">
+            What this does <em>not</em> demonstrate
+          </h3>
+          <ul>
+            <li>
+              <strong>The factor is not a thing.</strong> It is the leading
+              eigenvector of a matrix you generated with three sliders.
+              Nothing here shows that any corresponding entity exists in a
+              person, a brain or a genome, and the tool takes no position on
+              whether one does.
+            </li>
+            <li>
+              <strong>No real data.</strong> Six fictional tasks with
+              illustrative names. No intelligence test, subtest, item, norm or
+              published correlation matrix is reproduced.
+            </li>
+            <li>
+              <strong>Nobody is measured.</strong> The 220 simulated people
+              are draws from a generator, and the tool produces no ability
+              score for anyone, real or fictional.
+            </li>
+            <li>
+              <strong>Two group factors is a simplification.</strong> Real
+              hierarchical models have several broad abilities beneath the
+              general factor, and deciding how many is contested in its own
+              right.
+            </li>
+            <li>
+              <strong>Principal components are not factor analysis.</strong>
+              The tool extracts the first principal component because it can
+              be computed transparently and shown working. Common-factor
+              models partition variance differently and would give slightly
+              different loadings.
+            </li>
+            <li>
+              <strong>Nothing here bears on group differences.</strong> The
+              simulation contains one undifferentiated population and can
+              support no claim about any comparison between groups of people.
+            </li>
+          </ul>
+        </aside>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+<script>
+/* ---- components/interactive-shell.js ---- */
+/* =========================================================================
+   Open Psychology Interactives — interactive shell helper
+   -------------------------------------------------------------------------
+   A very small vanilla-JS helper that every interactive in this collection
+   uses. It deliberately does *not* draw anything or know anything about
+   statistics, personality or neuropsychology. Its job is the repetitive,
+   easy-to-get-wrong accessibility plumbing:
+
+     * announcing changes through a polite live region;
+     * keeping a range slider and its <output> in step;
+     * wiring the standard Reset button;
+     * reporting the reader's reduced-motion preference.
+
+   Usage (see docs/adapting-a-tool.md for the full markup contract):
+
+       <script src="../../components/interactive-shell.js" defer><\/script>
+       <script src="tool.js" defer><\/script>
+
+       // in tool.js
+       const shell = InteractiveShell.attach('#sampling-demo');
+       shell.onReset(() => { ...restore defaults...; draw(); });
+       shell.bindRange('#sample-size', { format: n => n + ' cases' });
+       shell.announce('Sample of 25 drawn. Mean 4.8.');
+
+   Every published interactive is written against this module.
+
+   Exposed as a global (window.InteractiveShell) rather than an ES module so
+   that a single interactive folder can be opened directly from disk over
+   file:// — ES modules are blocked by CORS in that situation, plain scripts
+   are not. That constraint is the whole reason for the older syntax here.
+   ========================================================================= */
+
+(function (global) {
+  "use strict";
+
+  /* -----------------------------------------------------------------------
+     Internal helpers
+     --------------------------------------------------------------------- */
+
+  /**
+   * Accept either a CSS selector or an element and return an element.
+   * @param {string|Element} target
+   * @param {ParentNode} [scope]
+   * @returns {Element|null}
+   */
+  function resolve(target, scope) {
+    if (!target) {
+      return null;
+    }
+    if (typeof target === "string") {
+      return (scope || document).querySelector(target);
+    }
+    return target;
+  }
+
+  /**
+   * True when the reader has asked the operating system to reduce motion.
+   * Interactives should check this before animating anything — for example
+   * by drawing a sampling distribution in one step instead of animating
+   * each draw.
+   * @returns {boolean}
+   */
+  function prefersReducedMotion() {
+    return (
+      typeof global.matchMedia === "function" &&
+      global.matchMedia("(prefers-reduced-motion: reduce)").matches
+    );
+  }
+
+  /* -----------------------------------------------------------------------
+     Shell controller
+     --------------------------------------------------------------------- */
+
+  /**
+   * Attach the shell behaviour to one `.interactive` element.
+   *
+   * @param {string|Element} target  Selector or element for the shell root.
+   * @returns {object|null}  Controller, or null if the root was not found.
+   */
+  function attach(target) {
+    var root = resolve(target);
+
+    if (!root) {
+      if (global.console && console.warn) {
+        console.warn("InteractiveShell: root element not found.", target);
+      }
+      return null;
+    }
+
+    var controls = root.querySelector("[data-interactive-controls]");
+    var stage = root.querySelector("[data-interactive-stage]");
+    var status = root.querySelector("[data-interactive-status]");
+    var resetButton = root.querySelector("[data-interactive-reset]");
+    var resetHandlers = [];
+    // Every range bound with bindRange() registers its sync function here, so
+    // that reset() can refresh the visible values after the tool's own reset
+    // handlers have restored the inputs. See reset() for why this is needed.
+    var rangeSyncs = [];
+
+    /* --- Live region ----------------------------------------------------
+       The status element is marked up as role="status" (implicitly
+       aria-live="polite"). Two details matter:
+
+         1. Assistive technology only announces *changes* to a live region,
+            so writing the same string twice is silently dropped. We add a
+            trailing zero-width space on repeat messages to force an
+            announcement when a student re-runs the same action.
+         2. Announcements are debounced. A slider dragged across its range
+            fires dozens of input events; without a delay a screen reader
+            would queue every intermediate value and fall far behind.
+       ------------------------------------------------------------------ */
+
+    var announceTimer = null;
+    var lastMessage = "";
+
+    /**
+     * Announce a short sentence describing what just changed.
+     * @param {string} message
+     * @param {object} [options]
+     * @param {boolean} [options.immediate]  Skip the debounce delay. Use for
+     *   discrete actions (button presses); leave off for continuous input.
+     */
+    function announce(message, options) {
+      if (!status) {
+        return;
+      }
+
+      var text = String(message == null ? "" : message);
+      var immediate = Boolean(options && options.immediate);
+
+      if (announceTimer !== null) {
+        global.clearTimeout(announceTimer);
+        announceTimer = null;
+      }
+
+      function write() {
+        // Force a change when the text is identical to last time.
+        status.textContent = text === lastMessage ? text + "​" : text;
+        lastMessage = text;
+      }
+
+      if (immediate) {
+        write();
+      } else {
+        announceTimer = global.setTimeout(write, 350);
+      }
+    }
+
+    /* --- Reset ---------------------------------------------------------- */
+
+    /**
+     * Register a callback to run when the Reset button is pressed.
+     * Several may be registered; they run in the order added.
+     * @param {Function} handler
+     */
+    function onReset(handler) {
+      if (typeof handler === "function") {
+        resetHandlers.push(handler);
+      }
+    }
+
+    /**
+     * Run the reset handlers. Called by the button and available directly so
+     * an interactive can reset itself on first load.
+     *
+     * Bound ranges are re-synced afterwards. A reset handler restores an
+     * input by assigning to `input.value`, and assigning to a value in script
+     * does not fire an `input` event — so without this step the slider would
+     * jump back to its default while its <output> went on showing the old
+     * number. Syncing here, after the handlers have run, also means the sync
+     * sees the restored values regardless of the order things were
+     * registered in.
+     *
+     * @param {object} [options]
+     * @param {boolean} [options.silent]  Suppress the status announcement.
+     */
+    function reset(options) {
+      resetHandlers.forEach(function (handler) {
+        handler();
+      });
+      rangeSyncs.forEach(function (sync) {
+        sync();
+      });
+      if (!options || !options.silent) {
+        announce(
+          root.getAttribute("data-reset-message") ||
+            "Reset to the starting values.",
+          { immediate: true }
+        );
+      }
+    }
+
+    if (resetButton) {
+      resetButton.addEventListener("click", function (event) {
+        // Reset buttons commonly sit inside the controls <form>; stop the
+        // browser's own form reset from fighting with ours.
+        event.preventDefault();
+        reset();
+      });
+    }
+
+    /* --- Range binding --------------------------------------------------
+       Keeps a slider's <output> in step with its value. The <output> must
+       carry `for="<input id>"`, which is what associates the two for
+       assistive technology; this only handles the visible text.
+
+       Optionally sets aria-valuetext, which is how you make a screen reader
+       say "25 cases" or "medium correlation" instead of a bare "25".
+       ------------------------------------------------------------------ */
+
+    /**
+     * @param {string|Element} inputTarget  The range (or number) input.
+     * @param {object} [options]
+     * @param {Function} [options.format]  value:number -> string shown in the
+     *   <output>. Defaults to the raw value.
+     * @param {Function} [options.describe]  value:number -> string used for
+     *   aria-valuetext. Defaults to options.format.
+     * @param {Function} [options.onInput]  value:number -> void, called after
+     *   the display has been updated. Use it to redraw.
+     * @returns {HTMLInputElement|null}
+     */
+    function bindRange(inputTarget, options) {
+      var input = resolve(inputTarget, root);
+      if (!input) {
+        return null;
+      }
+
+      var settings = options || {};
+      var format =
+        typeof settings.format === "function"
+          ? settings.format
+          : function (value) {
+              return String(value);
+            };
+      var describe =
+        typeof settings.describe === "function" ? settings.describe : format;
+
+      // <output for="the-input-id"> is the conventional pairing.
+      var output = input.id
+        ? root.querySelector('output[for="' + input.id + '"]')
+        : null;
+
+      function sync() {
+        var value = Number(input.value);
+        if (output) {
+          output.textContent = format(value);
+        }
+        // Only meaningful for widgets with an implicit or explicit slider
+        // role; harmless elsewhere.
+        input.setAttribute("aria-valuetext", describe(value));
+        if (typeof settings.onInput === "function") {
+          settings.onInput(value);
+        }
+      }
+
+      input.addEventListener("input", sync);
+      // Registered so reset() can refresh the display after the tool's own
+      // reset handlers have put the input back to its default.
+      rangeSyncs.push(sync);
+      sync();
+
+      return input;
+    }
+
+    /* --- Public surface -------------------------------------------------- */
+
+    return {
+      /** The `.interactive` root element. */
+      root: root,
+      /** The controls panel, or null if the shell has none. */
+      controls: controls,
+      /** The stage element where the visualisation is drawn. */
+      stage: stage,
+      /** The live-region element. */
+      status: status,
+      announce: announce,
+      onReset: onReset,
+      reset: reset,
+      bindRange: bindRange,
+      prefersReducedMotion: prefersReducedMotion
+    };
+  }
+
+  /* -----------------------------------------------------------------------
+     Export
+     --------------------------------------------------------------------- */
+
+  global.InteractiveShell = {
+    attach: attach,
+    prefersReducedMotion: prefersReducedMotion
+  };
+})(window);
+
+/* ---- modules/personality-individual-differences/tools/32-positive-manifold-visualiser/tool.js ---- */
+/* =========================================================================
+   Positive Manifold Visualiser
+   -------------------------------------------------------------------------
+   Six fictional cognitive tasks, a correlation matrix students control, and
+   three sliders that decide how much of each task's performance is shared,
+   how much belongs to a group of related tasks, and how much is specific or
+   error. The scatterplots, the loading diagram and the illustrative first
+   factor all follow.
+
+   THE EDUCATIONAL MODEL
+   ---------------------
+   Each simulated person's score on task i is
+
+       z(i) = g·G  +  s(i)·Group(i)  +  u(i)·Specific(i)  +  e(i)·Error(i)
+
+   with all four sources independent and standard normal, and the four
+   coefficients scaled so the task score has unit variance. Tasks belong to
+   one of two groups — verbal-ish and spatial-ish — which is what makes broad
+   group factors possible at all.
+
+   The model-implied correlation between two tasks is therefore
+
+       r(i,j) = g² + s²·[same group]
+
+   Neither specific variance nor error contributes to any correlation, which
+   is exactly why raising the error slider shrinks every correlation towards
+   zero without changing what the tasks measure.
+
+   THE FIRST FACTOR
+   ----------------
+   The "illustrative first factor" is computed properly rather than asserted:
+   the tool runs the power method on the model-implied correlation matrix to
+   get its leading eigenvector and eigenvalue, and reports loadings as
+   eigenvector · sqrt(eigenvalue). The proportion of variance it accounts for
+   is eigenvalue / number of tasks.
+
+   This matters pedagogically. The first factor is a summary of the matrix, so
+   it always exists and always has positive loadings when the correlations are
+   positive. Its existence is arithmetic. What it MEANS is not.
+
+   THREE CONDITIONS
+   ----------------
+     Strong general factor   high shared variance, low group variance. Every
+                             correlation similar, one dominant factor.
+     Broad group factors     low shared, high group. Tasks correlate strongly
+                             within their group and weakly across, and a first
+                             factor still appears — which is the trap.
+     Weak task relations     both low, error high. Correlations near zero and
+                             the first factor explains little.
+
+   WHAT THIS DOES NOT CLAIM
+   ------------------------
+   The positive manifold is an empirical regularity: cognitive tasks tend to
+   correlate positively. That regularity is not in dispute. What a general
+   factor extracted from it corresponds to IS in dispute, and the tool refuses
+   to settle it: a factor here is a property of a correlation matrix, not a
+   thing in a head. No real intelligence-test data, item or battery is
+   reproduced.
+
+   No data leave the browser. There is no storage and no network request.
+   ========================================================================= */
+
+(function () {
+  "use strict";
+
+  var TASKS = [
+    { id: "vocab", name: "Word meanings", group: "verbal", short: "Words" },
+    { id: "analogy", name: "Verbal analogies", group: "verbal", short: "Analogies" },
+    { id: "general", name: "Stored knowledge", group: "verbal", short: "Knowledge" },
+    { id: "matrix", name: "Pattern completion", group: "spatial", short: "Patterns" },
+    { id: "rotate", name: "Mental rotation", group: "spatial", short: "Rotation" },
+    { id: "fold", name: "Paper folding", group: "spatial", short: "Folding" }
+  ];
+
+  var PRESETS = {
+    general: {
+      name: "Strong general factor",
+      shared: 0.55, group: 0.10, error: 0.15,
+      note:
+        "Most of what the tasks have in common is common to all of them. " +
+        "Every correlation is similar and one factor dominates."
+    },
+    groups: {
+      name: "Broad group factors",
+      shared: 0.12, group: 0.55, error: 0.15,
+      note:
+        "Tasks correlate strongly within their group and weakly across it. " +
+        "A first factor still appears — watch what it does to the loadings."
+    },
+    weak: {
+      name: "Weak task relations",
+      shared: 0.08, group: 0.10, error: 0.65,
+      note:
+        "Almost everything is error or task-specific. The correlations are " +
+        "near zero and the first factor explains very little."
+    }
+  };
+
+  var SAMPLE = 220;
+
+  /* =======================================================================
+     Seeded randomness
+     ===================================================================== */
+
+  function mulberry32(seed) {
+    var a = seed >>> 0;
+    return function () {
+      a += 0x6d2b79f5;
+      var t = a;
+      t = Math.imul(t ^ (t >>> 15), t | 1);
+      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  function normal(random) {
+    var u = Math.max(random(), 1e-9);
+    return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * random());
+  }
+
+  /* =======================================================================
+     Model
+     ===================================================================== */
+
+  function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+
+  /**
+   * Turn the three sliders into per-source coefficients that leave each task
+   * with unit variance. Specific variance takes whatever is left over, which
+   * is why it is displayed rather than controlled.
+   */
+  function coefficients(settings) {
+    var shared = clamp(settings.shared, 0, 0.95);
+    var group = clamp(settings.group, 0, 0.95);
+    var error = clamp(settings.error, 0, 0.95);
+    var specific = Math.max(0, 1 - shared - group - error);
+    var total = shared + group + error + specific;
+    return {
+      shared: shared / total,
+      group: group / total,
+      error: error / total,
+      specific: specific / total
+    };
+  }
+
+  /** Model-implied correlation between two tasks. */
+  function modelCorrelation(a, b, parts) {
+    if (a.id === b.id) { return 1; }
+    return parts.shared + (a.group === b.group ? parts.group : 0);
+  }
+
+  function matrix(parts) {
+    return TASKS.map(function (a) {
+      return TASKS.map(function (b) { return modelCorrelation(a, b, parts); });
+    });
+  }
+
+  /**
+   * Leading eigenvector and eigenvalue by the power method. Used for the
+   * illustrative first factor, so that the loadings shown are genuinely the
+   * first principal component of the matrix on screen rather than a stand-in.
+   */
+  function firstFactor(m) {
+    var n = m.length;
+    var v = m.map(function () { return 1 / Math.sqrt(n); });
+    var value = 0;
+
+    for (var iteration = 0; iteration < 200; iteration += 1) {
+      var next = m.map(function (row) {
+        return row.reduce(function (sum, cell, j) { return sum + cell * v[j]; }, 0);
+      });
+      var norm = Math.sqrt(next.reduce(function (s, x) { return s + x * x; }, 0));
+      if (norm < 1e-12) { break; }
+      next = next.map(function (x) { return x / norm; });
+      value = norm;
+      var delta = next.reduce(function (s, x, i) { return s + Math.abs(x - v[i]); }, 0);
+      v = next;
+      if (delta < 1e-12) { break; }
+    }
+
+    // Sign convention: make loadings positive when the manifold is positive.
+    if (v.reduce(function (s, x) { return s + x; }, 0) < 0) {
+      v = v.map(function (x) { return -x; });
+    }
+
+    return {
+      eigenvalue: value,
+      loadings: v.map(function (x) { return x * Math.sqrt(Math.max(value, 0)); }),
+      proportion: value / n
+    };
+  }
+
+  /** Simulated people, for the scatterplots. */
+  function sample(parts, seed) {
+    var random = mulberry32(seed);
+    var rows = [];
+    for (var p = 0; p < SAMPLE; p += 1) {
+      var g = normal(random);
+      var groupScores = { verbal: normal(random), spatial: normal(random) };
+      var person = {};
+      TASKS.forEach(function (task) {
+        person[task.id] =
+          Math.sqrt(parts.shared) * g +
+          Math.sqrt(parts.group) * groupScores[task.group] +
+          Math.sqrt(parts.specific) * normal(random) +
+          Math.sqrt(parts.error) * normal(random);
+      });
+      rows.push(person);
+    }
+    return rows;
+  }
+
+  function observedCorrelation(rows, a, b) {
+    var x = rows.map(function (r) { return r[a]; });
+    var y = rows.map(function (r) { return r[b]; });
+    var n = x.length;
+    var mx = x.reduce(function (s, v) { return s + v; }, 0) / n;
+    var my = y.reduce(function (s, v) { return s + v; }, 0) / n;
+    var sxy = 0, sxx = 0, syy = 0;
+    for (var i = 0; i < n; i += 1) {
+      var dx = x[i] - mx, dy = y[i] - my;
+      sxy += dx * dy; sxx += dx * dx; syy += dy * dy;
+    }
+    return sxx > 0 && syy > 0 ? sxy / Math.sqrt(sxx * syy) : 0;
+  }
+
+  /** Are all off-diagonal correlations positive? The manifold itself. */
+  function manifoldHolds(m) {
+    for (var i = 0; i < m.length; i += 1) {
+      for (var j = i + 1; j < m.length; j += 1) {
+        if (m[i][j] <= 0.001) { return false; }
+      }
+    }
+    return true;
+  }
+
+  /* =======================================================================
+     Helpers
+     ===================================================================== */
+
+  function fmt(v, p) {
+    return v === null || v === undefined || isNaN(v) ? "—" : v.toFixed(p === undefined ? 2 : p);
+  }
+
+  function pct(v) { return Math.round(v * 100) + "%"; }
+
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) { node.className = className; }
+    if (text !== undefined) { node.textContent = text; }
+    return node;
+  }
+
+  function clear(node) { while (node.firstChild) { node.removeChild(node.firstChild); } }
+
+  /* =======================================================================
+     Wiring
+     ===================================================================== */
+
+  var shell = InteractiveShell.attach("#manifold");
+  if (!shell) { return; }
+
+  var page = document;
+  var $ = function (s, scope) { return (scope || page).querySelector(s); };
+
+  var matrixTable = $("[data-matrix]");
+  var scatterChart = $("[data-scatter]");
+  var scatterTable = $("[data-scatter-table]");
+  var loadingChart = $("[data-loading-chart]");
+  var loadingTable = $("[data-loading-table]");
+  var readout = $("[data-readout]");
+  var varianceBar = $("[data-variance-bar]");
+  var interpretation = $("[data-interpretation]");
+  var presetNote = $("[data-preset-note]");
+
+  var openingForm = $("#opening-form");
+  var openingError = $("[data-opening-error]");
+  var openingFeedback = $("[data-opening-feedback]");
+  var mainSection = $("#visualiser-section");
+
+  var challengeForm = $("#challenge-form");
+  var challengeFeedback = $("[data-challenge-feedback]");
+
+  var INITIAL = { shared: 0.55, group: 0.10, error: 0.15, seed: 7702, stage: "predict" };
+  var state = null;
+  var rangeSyncs = [];
+
+  function bindRange(input, options) {
+    var settings = options || {};
+    var output = page.querySelector('output[for="' + input.id + '"]');
+    function sync() {
+      var value = Number(input.value);
+      if (output) {
+        output.textContent = settings.format ? settings.format(value) : String(value);
+      }
+      input.setAttribute("aria-valuetext",
+        (settings.describe || settings.format || String)(value));
+      if (settings.onInput) { settings.onInput(value); }
+    }
+    input.addEventListener("input", sync);
+    rangeSyncs.push(sync);
+    return sync;
+  }
+
+  function syncRanges() { rangeSyncs.forEach(function (s) { s(); }); }
+
+  [
+    ["shared", "#shared-range", "shared by every task"],
+    ["group", "#group-range", "shared only within a task group"],
+    ["error", "#error-range", "measurement error"]
+  ].forEach(function (entry) {
+    bindRange($(entry[1]), {
+      format: function (v) { return pct(v / 100); },
+      describe: function (v) { return pct(v / 100) + " " + entry[2]; },
+      onInput: function (v) { state[entry[0]] = v / 100; render(); }
+    });
+  });
+
+  Array.prototype.forEach.call(page.querySelectorAll("[data-preset]"), function (button) {
+    button.addEventListener("click", function () {
+      var preset = PRESETS[button.getAttribute("data-preset")];
+      state.shared = preset.shared;
+      state.group = preset.group;
+      state.error = preset.error;
+      applyState();
+      render();
+      shell.announce(preset.name + " loaded. " + preset.note, { immediate: true });
+    });
+  });
+
+  function applyState() {
+    $("#shared-range").value = String(Math.round(state.shared * 100));
+    $("#group-range").value = String(Math.round(state.group * 100));
+    $("#error-range").value = String(Math.round(state.error * 100));
+    syncRanges();
+  }
+
+  /* --- Rendering ------------------------------------------------------------ */
+
+  function render() {
+    if (mainSection.hidden) { return; }
+    var parts = coefficients(state);
+    var m = matrix(parts);
+    var factor = firstFactor(m);
+    var rows = sample(parts, state.seed);
+
+    renderMatrix(m);
+    renderScatter(rows, parts);
+    renderLoadings(factor);
+    renderReadout(parts, m, factor);
+    renderVariance(parts);
+    renderInterpretation(parts, m, factor);
+  }
+
+  function renderMatrix(m) {
+    clear(matrixTable);
+
+    var head = make("tr");
+    var corner = make("th", null, "Task");
+    corner.setAttribute("scope", "col");
+    head.appendChild(corner);
+    TASKS.forEach(function (task) {
+      var th = make("th", null, task.short);
+      th.setAttribute("scope", "col");
+      head.appendChild(th);
+    });
+    matrixTable.appendChild(head);
+
+    TASKS.forEach(function (a, i) {
+      var row = make("tr");
+      var th = make("th", null, a.name);
+      th.setAttribute("scope", "row");
+      row.appendChild(th);
+      TASKS.forEach(function (b, j) {
+        var cell = make("td", null, i === j ? "—" : fmt(m[i][j]));
+        if (i !== j) {
+          cell.setAttribute("data-strength",
+            m[i][j] >= 0.5 ? "high" : m[i][j] >= 0.25 ? "mid" : "low");
+          cell.setAttribute("data-samegroup", a.group === b.group ? "yes" : "no");
+        }
+        row.appendChild(cell);
+      });
+      matrixTable.appendChild(row);
+    });
+  }
+
+  /* Three scatterplots: within-group, across-group, and the pair the sliders
+     move most. Points are drawn as one path of zero-length round-capped
+     segments, which is far cheaper than 220 circles per panel. */
+  function renderScatter(rows, parts) {
+    var NS = "http://www.w3.org/2000/svg";
+    var SIZE = 132, GAP = 18, TOP = 20;
+    var pairs = [
+      [TASKS[0], TASKS[1], "same group"],
+      [TASKS[0], TASKS[3], "different groups"],
+      [TASKS[3], TASKS[4], "same group"]
+    ];
+
+    clear(scatterChart);
+    scatterChart.setAttribute("viewBox",
+      "0 0 " + (pairs.length * (SIZE + GAP)) + " " + (SIZE + TOP + 26));
+
+    pairs.forEach(function (pair, index) {
+      var left = index * (SIZE + GAP);
+
+      var title = document.createElementNS(NS, "text");
+      title.setAttribute("x", String(left + SIZE / 2));
+      title.setAttribute("y", "12");
+      title.setAttribute("text-anchor", "middle");
+      title.setAttribute("class", "chart__axis");
+      title.textContent = pair[2];
+      scatterChart.appendChild(title);
+
+      var frame = document.createElementNS(NS, "rect");
+      frame.setAttribute("x", String(left));
+      frame.setAttribute("y", String(TOP));
+      frame.setAttribute("width", String(SIZE));
+      frame.setAttribute("height", String(SIZE));
+      frame.setAttribute("class", "chart__track");
+      scatterChart.appendChild(frame);
+
+      var d = rows.map(function (person) {
+        var x = clamp(person[pair[0].id], -3, 3);
+        var y = clamp(person[pair[1].id], -3, 3);
+        return "M " + (left + ((x + 3) / 6) * SIZE).toFixed(1) + " " +
+          (TOP + (1 - (y + 3) / 6) * SIZE).toFixed(1) + " l 0.01 0";
+      }).join(" ");
+      var dots = document.createElementNS(NS, "path");
+      dots.setAttribute("d", d);
+      dots.setAttribute("class", "scatter__points");
+      scatterChart.appendChild(dots);
+
+      var r = observedCorrelation(rows, pair[0].id, pair[1].id);
+      var label = document.createElementNS(NS, "text");
+      label.setAttribute("x", String(left + SIZE / 2));
+      label.setAttribute("y", String(TOP + SIZE + 16));
+      label.setAttribute("text-anchor", "middle");
+      label.setAttribute("class", "chart__count");
+      label.textContent = pair[0].short + " × " + pair[1].short + ": r = " + fmt(r);
+      scatterChart.appendChild(label);
+    });
+
+    clear(scatterTable);
+    pairs.forEach(function (pair) {
+      var row = make("tr");
+      var th = make("th", null, pair[0].name + " × " + pair[1].name);
+      th.setAttribute("scope", "row");
+      row.appendChild(th);
+      row.appendChild(make("td", null, pair[2]));
+      row.appendChild(make("td", null,
+        fmt(modelCorrelation(pair[0], pair[1], coefficients(state)))));
+      row.appendChild(make("td", null, fmt(observedCorrelation(rows, pair[0].id, pair[1].id))));
+      scatterTable.appendChild(row);
+    });
+  }
+
+  function renderLoadings(factor) {
+    var NS = "http://www.w3.org/2000/svg";
+    var ROW = 30, BAR = 18, LEFT = 150, SCALE = 260;
+
+    clear(loadingChart);
+    loadingChart.setAttribute("viewBox", "0 0 460 " + (TASKS.length * ROW + 14));
+
+    TASKS.forEach(function (task, index) {
+      var y = 8 + index * ROW;
+      var loading = factor.loadings[index];
+
+      var label = document.createElementNS(NS, "text");
+      label.setAttribute("x", String(LEFT - 8));
+      label.setAttribute("y", String(y + BAR - 4));
+      label.setAttribute("text-anchor", "end");
+      label.setAttribute("class", "chart__label");
+      label.textContent = task.name;
+      loadingChart.appendChild(label);
+
+      var track = document.createElementNS(NS, "rect");
+      track.setAttribute("x", String(LEFT));
+      track.setAttribute("y", String(y));
+      track.setAttribute("width", String(SCALE));
+      track.setAttribute("height", String(BAR));
+      track.setAttribute("class", "chart__track");
+      loadingChart.appendChild(track);
+
+      var bar = document.createElementNS(NS, "rect");
+      bar.setAttribute("x", String(LEFT));
+      bar.setAttribute("y", String(y));
+      bar.setAttribute("width", String(Math.max(0, Math.min(loading, 1)) * SCALE));
+      bar.setAttribute("height", String(BAR));
+      bar.setAttribute("class", "chart__bar manifold__bar--" + task.group);
+      loadingChart.appendChild(bar);
+
+      var value = document.createElementNS(NS, "text");
+      value.setAttribute("x", String(LEFT + Math.max(0, Math.min(loading, 1)) * SCALE + 6));
+      value.setAttribute("y", String(y + BAR - 4));
+      value.setAttribute("class", "chart__count");
+      value.textContent = fmt(loading);
+      loadingChart.appendChild(value);
+    });
+
+    clear(loadingTable);
+    TASKS.forEach(function (task, index) {
+      var row = make("tr");
+      var th = make("th", null, task.name);
+      th.setAttribute("scope", "row");
+      row.appendChild(th);
+      row.appendChild(make("td", null, task.group === "verbal" ? "Verbal group" : "Spatial group"));
+      row.appendChild(make("td", null, fmt(factor.loadings[index])));
+      loadingTable.appendChild(row);
+    });
+  }
+
+  function renderReadout(parts, m, factor) {
+    clear(readout);
+    var offDiagonal = [];
+    for (var i = 0; i < TASKS.length; i += 1) {
+      for (var j = i + 1; j < TASKS.length; j += 1) { offDiagonal.push(m[i][j]); }
+    }
+    var meanR = offDiagonal.reduce(function (s, v) { return s + v; }, 0) / offDiagonal.length;
+
+    [
+      ["Mean correlation", fmt(meanR)],
+      ["Positive manifold", manifoldHolds(m) ? "holds" : "broken"],
+      ["First factor explains", pct(factor.proportion)],
+      ["Task-specific variance", pct(parts.specific)]
+    ].forEach(function (pair) {
+      var cell = make("div");
+      cell.appendChild(make("dt", null, pair[0]));
+      cell.appendChild(make("dd", null, pair[1]));
+      readout.appendChild(cell);
+    });
+  }
+
+  function renderVariance(parts) {
+    clear(varianceBar);
+    [
+      ["shared", "Shared by all", parts.shared],
+      ["group", "Group only", parts.group],
+      ["specific", "Task-specific", parts.specific],
+      ["error", "Error", parts.error]
+    ].forEach(function (entry) {
+      if (entry[2] < 0.005) { return; }
+      var part = make("div", "variance__part variance__part--" + entry[0]);
+      part.style.width = (entry[2] * 100).toFixed(1) + "%";
+      part.appendChild(make("span", "variance__label", entry[1] + " " + pct(entry[2])));
+      varianceBar.appendChild(part);
+    });
+  }
+
+  function renderInterpretation(parts, m, factor) {
+    var offDiagonal = [];
+    var within = [];
+    var across = [];
+    TASKS.forEach(function (a, i) {
+      TASKS.forEach(function (b, j) {
+        if (j <= i) { return; }
+        offDiagonal.push(m[i][j]);
+        (a.group === b.group ? within : across).push(m[i][j]);
+      });
+    });
+    var meanWithin = within.reduce(function (s, v) { return s + v; }, 0) / within.length;
+    var meanAcross = across.reduce(function (s, v) { return s + v; }, 0) / across.length;
+    var gap = meanWithin - meanAcross;
+
+    var text;
+    var tone;
+
+    if (!manifoldHolds(m)) {
+      tone = "warn";
+      text =
+        "There is no positive manifold here: at least one pair of tasks is " +
+        "essentially unrelated. A first factor can still be extracted — the " +
+        "arithmetic does not refuse — but it now explains " +
+        pct(factor.proportion) + " of the variance and summarises very little.";
+    } else if (gap > 0.2) {
+      tone = "caution";
+      text =
+        "The manifold holds — every correlation is positive — and it is not " +
+        "uniform: tasks in the same group correlate " + fmt(meanWithin) +
+        " on average against " + fmt(meanAcross) + " across groups. The " +
+        "positive loadings are not evidence of a single general ability; they " +
+        "follow from every correlation being positive, and the structure " +
+        "underneath is plainly two groups.";
+    } else if (factor.proportion > 0.5) {
+      tone = "good";
+      text =
+        "The manifold holds and it is close to uniform: correlations within " +
+        "and across groups are similar (" + fmt(meanWithin) + " against " +
+        fmt(meanAcross) + "). The first factor explains " +
+        pct(factor.proportion) + " of the variance, which is the pattern " +
+        "usually described as a strong general factor. Note what has been " +
+        "shown and what has not: this is a description of a correlation " +
+        "matrix produced by sliders you set.";
+    } else {
+      tone = "neutral";
+      text =
+        "The manifold holds, weakly. Mean correlation within groups is " +
+        fmt(meanWithin) + " and across groups " + fmt(meanAcross) + ", and " +
+        "the first factor accounts for " + pct(factor.proportion) + ". " +
+        "Correlations this size are compatible with several structures, which " +
+        "is why factor solutions from weak matrices are unstable.";
+    }
+
+    interpretation.textContent = text;
+    interpretation.setAttribute("data-tone", tone);
+  }
+
+  /* --- Opening prediction ------------------------------------------------------ */
+
+  var OPENING = {
+    entity: {
+      tone: "caution",
+      verdict: "That is the step to be careful about.",
+      text:
+        "A first factor is a summary of a correlation matrix. It exists " +
+        "whenever the correlations do, and its loadings are positive whenever " +
+        "the correlations are positive. Whether it corresponds to anything in " +
+        "a head is a separate question, and the factor analysis cannot answer " +
+        "it."
+    },
+    summary: {
+      tone: "good",
+      verdict: "Yes.",
+      text:
+        "The positive manifold is an empirical regularity — cognitive tasks do " +
+        "correlate positively, reliably, across samples and centuries. What " +
+        "produces it is contested: a single capacity, several overlapping " +
+        "ones, mutual reinforcement between abilities during development, or " +
+        "sampling of overlapping processes. The pattern is the finding; the " +
+        "explanation is a theory."
+    },
+    artefact: {
+      tone: "caution",
+      verdict: "Too strong the other way.",
+      text:
+        "The positive manifold is not an artefact of test construction. It " +
+        "turns up with tasks chosen to be as different as possible, in samples " +
+        "selected in different ways, and it has been replicated for over a " +
+        "century. It is a real pattern that needs explaining, not a mistake to " +
+        "be explained away."
+    },
+    unknown: {
+      tone: "good",
+      verdict: "Reasonable.",
+      text:
+        "The honest position for someone meeting this for the first time. The " +
+        "pattern is solid; the interpretation is not settled; and the tool " +
+        "below is about keeping those two things apart."
+    }
+  };
+
+  openingForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answer = $('input[name="opening"]:checked', openingForm);
+    if (!answer) {
+      openingError.textContent = "Choose an answer before building any matrices.";
+      openingError.hidden = false;
+      return;
+    }
+    openingError.hidden = true;
+    var feedback = OPENING[answer.value];
+    showFeedback(openingFeedback, feedback.tone, feedback.verdict, feedback.text);
+    lockForm(openingForm);
+    state.stage = "explore";
+    mainSection.hidden = false;
+    applyState();
+    render();
+    $("#visualiser-heading").focus();
+    shell.announce("Visualiser unlocked.", { immediate: true });
+  });
+
+  $('[data-action="skip-opening"]').addEventListener("click", function () {
+    openingError.hidden = true;
+    showFeedback(openingFeedback, "neutral",
+      "Prediction skipped — demonstration mode.", "");
+    lockForm(openingForm);
+    state.stage = "explore";
+    mainSection.hidden = false;
+    applyState();
+    render();
+    shell.announce("Visualiser unlocked.", { immediate: true });
+  });
+
+  /* --- Challenge ---------------------------------------------------------------- */
+
+  challengeForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answer = $('input[name="challenge"]:checked', challengeForm);
+    if (!answer) {
+      showFeedback(challengeFeedback, "caution", "Choose an answer first.", "");
+      return;
+    }
+    var correct = answer.value === "both";
+    showFeedback(
+      challengeFeedback,
+      correct ? "good" : "caution",
+      correct ? "Yes." : "Not quite.",
+      "Load \"Broad group factors\" and look at the first-factor loadings: all " +
+        "six tasks load positively while the structure underneath is two " +
+        "groups. Then load \"Strong general factor\" and look again — the " +
+        "loadings look much the same. A positive first factor is compatible " +
+        "with both, which is why extracting one settles nothing."
+    );
+    shell.announce("Challenge answered.", { immediate: true });
+  });
+
+  function showFeedback(container, tone, verdict, text) {
+    clear(container);
+    container.setAttribute("data-tone", tone);
+    var p = make("p");
+    p.appendChild(make("strong", "feedback__verdict", verdict));
+    if (text) { p.appendChild(document.createTextNode(" " + text)); }
+    container.appendChild(p);
+    container.hidden = false;
+  }
+
+  function lockForm(form) {
+    Array.prototype.forEach.call(form.querySelectorAll("input, button"),
+      function (c) { c.disabled = true; });
+  }
+
+  function unlockForm(form) {
+    Array.prototype.forEach.call(form.querySelectorAll("input, button"),
+      function (c) { c.disabled = false; });
+    form.reset();
+  }
+
+  /* --- Reset ---------------------------------------------------------------------- */
+
+  shell.onReset(function () {
+    state = JSON.parse(JSON.stringify(INITIAL));
+    unlockForm(openingForm);
+    openingFeedback.hidden = true;
+    openingError.hidden = true;
+    mainSection.hidden = true;
+    challengeForm.reset();
+    challengeFeedback.hidden = true;
+    presetNote.textContent =
+      "Three configurations worth comparing. Each one is a different answer to " +
+      "\"what do these tasks have in common?\"";
+    applyState();
+  });
+
+  /* --- Start-up -------------------------------------------------------------------- */
+
+  shell.reset({ silent: true });
+  shell.announce(
+    "Ready. Answer the question above to unlock the visualiser.",
+    { immediate: true });
+})();
+
+</script>
+</div>

@@ -1,0 +1,2854 @@
+<!-- Visual Field Defect Mapper
+     From Open Psychology Interactives - https://github.com/utman5454/open-psychology-interactives
+     Self-contained: no stylesheets, scripts, fonts, images or network requests.
+     Styles are scoped to .opi-activity and do not affect the page around them.
+     Nothing is saved, sent or tracked. MIT licensed; please keep this notice.
+     Paste anywhere that accepts HTML, or save as a .html file and open it. -->
+<div class="opi-activity">
+<style>
+/* Defensive baseline. See scripts/build-standalone.py for why this
+   is `revert` rather than an enumerated reset, and how the specificity ladder
+   keeps the activity's own styling on top of it. */
+.opi-activity *:not(svg *) {
+  all: revert;
+}
+.opi-activity, .opi-activity *, .opi-activity *::before, .opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  text-transform: none;
+  text-indent: 0;
+  font-style: normal;
+  font-variant: normal;
+  letter-spacing: normal;
+  word-spacing: normal;
+  white-space: normal;
+  visibility: visible;
+  float: none;
+  max-width: none;
+}
+.opi-activity svg { max-width: 100%; }
+.opi-activity img { max-width: 100%; height: auto; }
+.opi-activity [hidden] { display: none !important; }
+
+/* assets/css/main.css */
+.opi-activity.opi-activity {
+  --colour-page: #ffffff;
+  --colour-surface: #f5f7fa;
+  --colour-surface-raised: #ffffff;
+  --colour-border: #d3d9e2;
+  --colour-border-strong: #aeb7c4;
+  --colour-text: #131820;
+  --colour-text-muted: #4c566a;
+  --colour-accent: #1a4fa0;
+  --colour-accent-hover: #123a7a;
+  --colour-accent-soft: #e8eefb;
+  --colour-on-accent: #ffffff;
+  --colour-focus: #b45309;
+  --colour-cognitive: #8a4b00;
+  --colour-research-methods: #1a4fa0;
+  --colour-neuropsychology: #145c53;
+  --colour-social-critical-psychology: #9e2f45;
+  --colour-personality-individual-differences: #7a2e6d;
+  --colour-status-bg: #f1ede3;
+  --colour-status-text: #5c4a1f;
+  --colour-status-border: #d9cdb0;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  --text-xs: 13px;
+  --text-sm: 15px;
+  --text-base: 17px;
+  --text-lg: 19px;
+  --text-xl: 23px;
+  --text-2xl: 28px;
+  --text-3xl: 36px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgb(19 24 32 / 0.06);
+  --shadow-md: 0 2px 8px rgb(19 24 32 / 0.08);
+  --measure: 68ch;
+  --container: 1152px;
+}
+@media (prefers-color-scheme: dark) {
+.opi-activity.opi-activity {
+  --colour-page: #0f141b;
+  --colour-surface: #161d27;
+  --colour-surface-raised: #1a2230;
+  --colour-border: #2c3644;
+  --colour-border-strong: #44506180;
+  --colour-text: #e9edf3;
+  --colour-text-muted: #a8b2c1;
+  --colour-accent: #8fb6ff;
+  --colour-accent-hover: #b3cdff;
+  --colour-accent-soft: #1b2740;
+  --colour-on-accent: #0f141b;
+  --colour-focus: #f0b429;
+  --colour-cognitive: #e2ab5f;
+  --colour-research-methods: #8fb6ff;
+  --colour-neuropsychology: #6fc3b4;
+  --colour-social-critical-psychology: #f19aa8;
+  --colour-personality-individual-differences: #db9ccd;
+  --colour-status-bg: #241f14;
+  --colour-status-text: #e2cf9f;
+  --colour-status-border: #4a4028;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 2px 10px rgb(0 0 0 / 0.45);
+}
+}
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity.opi-activity {
+  -webkit-text-size-adjust: 100%;
+}
+.opi-activity.opi-activity {
+  background-color: var(--colour-page);
+  color: var(--colour-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.65;
+}
+.opi-activity.opi-activity h1,
+.opi-activity.opi-activity h2,
+.opi-activity.opi-activity h3,
+.opi-activity.opi-activity h4 {
+  margin: 0 0 var(--space-3);
+  line-height: 1.25;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.opi-activity.opi-activity h1 {
+  font-size: var(--text-3xl);
+}
+.opi-activity.opi-activity h2 {
+  font-size: var(--text-2xl);
+}
+.opi-activity.opi-activity h3 {
+  font-size: var(--text-xl);
+}
+.opi-activity.opi-activity h4 {
+  font-size: var(--text-lg);
+}
+.opi-activity.opi-activity p,
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol,
+.opi-activity.opi-activity dl {
+  margin: 0 0 var(--space-4);
+}
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol {
+  padding-left: 1.35em;
+}
+.opi-activity.opi-activity li + li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity a {
+  color: var(--colour-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: max(1px, 0.06em);
+}
+.opi-activity.opi-activity a:hover {
+  color: var(--colour-accent-hover);
+  text-decoration-thickness: max(2px, 0.11em);
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid var(--colour-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+@supports not selector(:focus-visible) {
+.opi-activity.opi-activity :focus {
+  outline: 3px solid var(--colour-focus);
+    outline-offset: 2px;
+}
+}
+.opi-activity.opi-activity code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.35em;
+}
+.opi-activity.opi-activity hr {
+  border: 0;
+  border-top: 1px solid var(--colour-border);
+  margin: var(--space-6) 0;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+}
+.opi-activity.opi-activity .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.opi-activity.opi-activity .container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+@media (min-width: 40em) {
+.opi-activity.opi-activity .container {
+  padding-inline: var(--space-5);
+}
+}
+.opi-activity.opi-activity .prose {
+  max-width: var(--measure);
+}
+.opi-activity.opi-activity .text-muted {
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .section {
+  padding-block: var(--space-7);
+}
+.opi-activity.opi-activity .section--tinted {
+  background-color: var(--colour-surface);
+  border-block: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .section__header {
+  max-width: var(--measure);
+  margin-bottom: var(--space-5);
+}
+.opi-activity.opi-activity .section__header > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-7) var(--space-6);
+  border-bottom: 1px solid var(--colour-border);
+  
+  background-image: linear-gradient(
+    180deg,
+    var(--colour-accent-soft) 0%,
+    var(--colour-page) 100%
+  );
+}
+.opi-activity.opi-activity .hero__eyebrow {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .hero h1 {
+  max-width: 20ch;
+  margin-bottom: var(--space-4);
+}
+.opi-activity.opi-activity .hero__lead {
+  max-width: var(--measure);
+  font-size: var(--text-lg);
+  color: var(--colour-text-muted);
+}
+@media (min-width: 48em) {
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-8) var(--space-7);
+}
+.opi-activity.opi-activity .hero h1 {
+  font-size: 44px;
+}
+}
+.opi-activity.opi-activity .button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  
+  min-height: 44px;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .button--primary {
+  background-color: var(--colour-accent);
+  border-color: var(--colour-accent);
+  
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--primary:hover {
+  background-color: var(--colour-accent-hover);
+  border-color: var(--colour-accent-hover);
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--secondary {
+  background-color: transparent;
+  border-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .button--secondary:hover {
+  background-color: var(--colour-surface);
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+}
+.opi-activity.opi-activity .card--cognitive {
+  --card-accent: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .card--research-methods {
+  --card-accent: var(--colour-research-methods);
+}
+.opi-activity.opi-activity .card--neuropsychology {
+  --card-accent: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .card--social-critical-psychology {
+  --card-accent: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .card--personality-individual-differences {
+  --card-accent: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 650;
+  line-height: 1.4;
+  padding: 3.2px var(--space-3);
+  border-radius: 999px;
+  border: 1px solid var(--colour-status-border);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+}
+.opi-activity.opi-activity .badge__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex: none;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed var(--colour-border-strong);
+  border-radius: var(--radius-lg);
+  background-color: var(--colour-surface);
+  padding: var(--space-5);
+  text-align: left;
+}
+.opi-activity.opi-activity .placeholder__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+}
+.opi-activity.opi-activity .placeholder > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .split {
+  display: grid;
+  gap: var(--space-6);
+}
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split {
+  grid-template-columns: 3fr 2fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .panel {
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.opi-activity.opi-activity .panel > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .panel__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .section--tinted {
+  border-block: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .hero {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .button--primary {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .button--secondary {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .button:hover {
+  border-color: Highlight;
+}
+.opi-activity.opi-activity .panel {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed CanvasText;
+}
+.opi-activity.opi-activity .badge {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .badge__dot {
+  background-color: CanvasText;
+}
+.opi-activity.opi-activity code {
+  border-color: CanvasText;
+}
+.opi-activity.opi-activity hr {
+  border-top-color: CanvasText;
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+}
+@media print {
+.opi-activity.opi-activity {
+  color: #000;
+  background: #fff;
+}
+.opi-activity.opi-activity a[href^="http"]::after {
+  content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+}
+}
+
+/* components/interactive-shell.css */
+.opi-activity.opi-activity .interactive {
+  --shell-page: var(--colour-page, #ffffff);
+  --shell-surface: var(--colour-surface, #f5f7fa);
+  --shell-raised: var(--colour-surface-raised, #ffffff);
+  --shell-border: var(--colour-border, #d3d9e2);
+  --shell-border-strong: var(--colour-border-strong, #aeb7c4);
+  --shell-text: var(--colour-text, #131820);
+  --shell-muted: var(--colour-text-muted, #4c566a);
+  --shell-accent: var(--colour-accent, #1a4fa0);
+  --shell-accent-soft: var(--colour-accent-soft, #e8eefb);
+  
+  --shell-on-accent: var(--colour-on-accent, #ffffff);
+  --shell-focus: var(--colour-focus, #b45309);
+  --shell-radius: var(--radius-lg, 12px);
+  --shell-gap: var(--space-5, 24px);
+
+  display: block;
+  background-color: var(--shell-raised);
+  color: var(--shell-text);
+  border: 1px solid var(--shell-border);
+  border-radius: var(--shell-radius);
+  
+  overflow-x: clip;
+  overflow-y: visible;
+}
+.opi-activity.opi-activity .interactive__header {
+  padding: var(--shell-gap);
+  border-bottom: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 1.25;
+}
+.opi-activity.opi-activity .interactive__brief {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--shell-muted);
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__body {
+  display: grid;
+  gap: var(--shell-gap);
+  padding: var(--shell-gap);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body {
+  grid-template-columns: minmax(240px, 320px) 1fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .interactive__controls {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__controls fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .interactive__controls legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .control {
+  display: grid;
+  gap: 5.6px;
+}
+.opi-activity.opi-activity .control + .control {
+  margin-top: 16px;
+}
+.opi-activity.opi-activity .control__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.opi-activity.opi-activity .control__label {
+  font-size: 15px;
+  font-weight: 600;
+}
+.opi-activity.opi-activity .control__value {
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--shell-accent);
+}
+.opi-activity.opi-activity .control__hint {
+  font-size: 13px;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .interactive__controls input[type="range"] {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--shell-accent);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  width: 100%;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--shell-text);
+  background-color: var(--shell-raised);
+  border: 1px solid var(--shell-border-strong);
+  border-radius: var(--radius-sm, 4px);
+}
+.opi-activity.opi-activity .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+}
+.opi-activity.opi-activity .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  accent-color: var(--shell-accent);
+  flex: none;
+}
+.opi-activity.opi-activity .interactive__stage {
+  min-height: 256px;
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-page);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body--pinned {
+  align-items: stretch;
+}
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: sticky;
+    top: 0;
+    z-index: 2;
+    
+    margin: -16px -16px 0;
+    padding: 16px 16px 12px;
+    background-color: var(--shell-page);
+    border-bottom: 1px solid var(--shell-border);
+}
+}
+@media (min-width: 52em) and (max-height: 30em) {
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: static;
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
+}
+}
+.opi-activity.opi-activity .interactive__stage > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity :where(.interactive__stage) svg,
+.opi-activity.opi-activity :where(.interactive__stage) canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+.opi-activity.opi-activity .interactive__readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout div {
+  padding: 9.6px 12px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-sm, 4px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__readout dt {
+  font-size: 13px;
+  color: var(--shell-muted);
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout dd {
+  margin: 2.4px 0 0;
+  font-size: 18px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .interactive__status {
+  margin: 0;
+  padding: 12px var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+  font-size: 15px;
+  color: var(--shell-muted);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .interactive__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+}
+.opi-activity.opi-activity .interactive__actions button {
+  min-height: 44px;
+  padding: 6.4px 20px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--shell-on-accent);
+  background-color: var(--shell-accent);
+  border: 1px solid var(--shell-accent);
+  border-radius: var(--radius-md, 8px);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  color: var(--shell-text);
+  background-color: transparent;
+  border-color: var(--shell-border-strong);
+}
+.opi-activity.opi-activity .interactive__actions button:hover {
+  filter: brightness(1.08);
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__notes > summary {
+  padding: 13.6px var(--shell-gap);
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__notes > div {
+  padding: 0 var(--shell-gap) var(--shell-gap);
+  max-width: 68ch;
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__notes > div > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity .interactive *,
+.opi-activity.opi-activity .interactive *::before,
+.opi-activity.opi-activity .interactive *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+}
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .interactive,
+.opi-activity.opi-activity .interactive__controls,
+.opi-activity.opi-activity .interactive__stage,
+.opi-activity.opi-activity .interactive__readout div {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__header {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__status,
+.opi-activity.opi-activity .interactive__actions,
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__actions button {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  border-width: 1px;
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 1;
+    color: GrayText;
+    border-color: GrayText;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__stage svg {
+  forced-color-adjust: auto;
+}
+}
+
+/* components/tool-kit.css */
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split--wide {
+  grid-template-columns: 1fr 1fr;
+}
+}
+.opi-activity.opi-activity .how-to {
+  padding-left: 19.2px;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .how-to > li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .table-scroll {
+  overflow-x: auto;
+  
+  position: relative;
+}
+.opi-activity.opi-activity .prediction {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 832px;
+}
+.opi-activity.opi-activity .prediction > *,
+.opi-activity.opi-activity .challenge > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity .prediction__group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .prediction__legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-weight: 650;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .prediction .control--choice,
+.opi-activity.opi-activity .challenge .control--choice,
+.opi-activity.opi-activity .evidence .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .prediction .control--choice input,
+.opi-activity.opi-activity .challenge .control--choice input,
+.opi-activity.opi-activity .evidence .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .prediction__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .prediction__error {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-status-border);
+  border-left: 4px solid var(--colour-status-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .prediction__readback {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .feedback[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .feedback[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .feedback[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .feedback__verdict {
+  font-weight: 700;
+}
+.opi-activity.opi-activity .verdict {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .verdict__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict__body {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .verdict__body + .verdict__body {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .verdict__note {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .verdict[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .verdict[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .goal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .goal__label {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .goal__text {
+  flex: 1 1 256px;
+}
+.opi-activity.opi-activity .goal strong {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .goal__checks {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+  display: grid;
+  gap: 2.4px;
+}
+.opi-activity.opi-activity .goal__checks > li {
+  margin-top: 0;
+  padding-left: 22.4px;
+  position: relative;
+}
+.opi-activity.opi-activity .goal__checks > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 9.6px;
+  height: 9.6px;
+  border: 2px solid var(--colour-border-strong);
+  border-radius: 2px;
+}
+.opi-activity.opi-activity .goal__checks > li[data-met="yes"]::before {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .stage-track {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .stage-track > li {
+  margin-top: 0;
+  flex: 1 1 160px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-bottom: 3px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .stage-track > li > span {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.opi-activity.opi-activity .stage-track > li[data-state="done"] {
+  border-bottom-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border-bottom-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+  color: var(--colour-text);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .stage__heading {
+  margin: 0;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .data-table,
+.opi-activity.opi-activity .chart__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .data-table th,
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table th,
+.opi-activity.opi-activity .chart__table td {
+  padding: 6.4px 9.6px;
+  border: 1px solid var(--colour-border);
+  text-align: left;
+  vertical-align: top;
+}
+.opi-activity.opi-activity .data-table thead th,
+.opi-activity.opi-activity .chart__table thead th {
+  background-color: var(--colour-surface);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table td {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__table tbody th,
+.opi-activity.opi-activity .data-table tbody th {
+  font-weight: 550;
+}
+.opi-activity.opi-activity .data-table__total > th,
+.opi-activity.opi-activity .data-table__total > td {
+  border-top: 2px solid var(--colour-border-strong);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart {
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .chart__caption {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__svg {
+  max-width: 100%;
+  height: auto;
+}
+.opi-activity.opi-activity .chart__label,
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__inline,
+.opi-activity.opi-activity .chart__axis {
+  font-family: var(--font-body);
+  fill: var(--colour-text);
+  font-size: 13px;
+}
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__axis {
+  fill: var(--colour-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: var(--colour-on-accent);
+  font-size: 12px;
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__track {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__bar {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--one {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .chart__baseline,
+.opi-activity.opi-activity .chart__grid {
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__line {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: var(--colour-personality-individual-differences);
+  stroke-dasharray: 6 4;
+}
+.opi-activity.opi-activity .chart__point {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .reveal > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .reveal__lead {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+.opi-activity.opi-activity .reveal__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(176px, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+  padding: 0;
+  list-style: none;
+}
+.opi-activity.opi-activity .reveal__figures > li {
+  margin-top: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+.opi-activity.opi-activity .reveal__figure-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .reveal__figure-value {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .challenge {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+.opi-activity.opi-activity .challenge__locked {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .panel--caution {
+  background-color: var(--colour-status-bg);
+  border-color: var(--colour-status-border);
+}
+.opi-activity.opi-activity .panel--caution li + li {
+  margin-top: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .goal,
+.opi-activity.opi-activity .verdict,
+.opi-activity.opi-activity .feedback,
+.opi-activity.opi-activity .prediction__error,
+.opi-activity.opi-activity .prediction__readback,
+.opi-activity.opi-activity .stage-track > li,
+.opi-activity.opi-activity .reveal__figures > li {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border: 2px solid Highlight;
+}
+.opi-activity.opi-activity .chart__bar,
+.opi-activity.opi-activity .chart__bar--one {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: Canvas;
+}
+.opi-activity.opi-activity .chart__line {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: Highlight;
+}
+}
+.opi-activity.opi-activity .stage__more {
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .stage__more > summary {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .stage__more[open] > summary {
+  border-bottom: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .stage__more > *:not(summary) {
+  margin: var(--space-3);
+}
+
+/* modules/neuropsychology/tools/05-visual-field-defect-mapper/tool.css */
+.opi-activity.opi-activity #fields .interactive__controls,
+.opi-activity.opi-activity #fields .interactive__stage {
+  min-width: 0;
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity #fields .interactive__body {
+  grid-template-columns: minmax(0, 352px) minmax(0, 1fr);
+}
+}
+.opi-activity.opi-activity .fields__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 var(--space-3);
+}
+.opi-activity.opi-activity #fields .control--choice {
+  font-size: var(--text-sm);
+  line-height: 1.3;
+  align-items: flex-start;
+  padding: 4.8px 0;
+}
+.opi-activity.opi-activity #fields .control--choice input {
+  margin-top: 8.8px;
+}
+.opi-activity.opi-activity .fields__pathway [data-pathway] {
+  max-width: 352px;
+}
+.opi-activity.opi-activity .fields__charts [data-fieldchart] {
+  max-width: 336px;
+}
+.opi-activity.opi-activity .fields__legend {
+  margin: var(--space-1) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+  line-height: 1.4;
+}
+.opi-activity.opi-activity .fields__eye {
+  fill: var(--colour-surface);
+  stroke: var(--colour-text);
+  stroke-width: 2;
+}
+.opi-activity.opi-activity .fields__tract {
+  fill: none;
+  stroke: var(--colour-neuropsychology);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+.opi-activity.opi-activity .fields__cross-fibre {
+  stroke: var(--colour-accent);
+  stroke-width: 3;
+  stroke-dasharray: 6 4;
+  stroke-linecap: round;
+}
+.opi-activity.opi-activity .fields__relay,
+.opi-activity.opi-activity .fields__cortex {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border-strong);
+  stroke-width: 2;
+}
+.opi-activity.opi-activity .fields__side {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  fill: var(--colour-text);
+}
+.opi-activity.opi-activity .fields__damage {
+  fill: var(--colour-page);
+  stroke: var(--colour-text);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .fields__damage-mark {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 700;
+  fill: var(--colour-text);
+}
+.opi-activity.opi-activity .fields__quadrant {
+  fill: var(--colour-page);
+}
+.opi-activity.opi-activity .fields__quadrant--lost {
+  fill: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .fields__outline {
+  fill: none;
+  stroke: var(--colour-text);
+  stroke-width: 2;
+}
+.opi-activity.opi-activity .fields__divider {
+  stroke: var(--colour-text);
+  stroke-width: 1.5;
+}
+.opi-activity.opi-activity .fields__spared {
+  fill: var(--colour-page);
+  stroke: var(--colour-text);
+  stroke-width: 1.5;
+  stroke-dasharray: 3 3;
+}
+.opi-activity.opi-activity .fields__predicted {
+  fill: var(--colour-accent);
+  stroke: var(--colour-page);
+  stroke-width: 1.5;
+}
+.opi-activity.opi-activity .fields__lost-mark {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 700;
+  fill: var(--colour-page);
+}
+.opi-activity.opi-activity .fields__miss > td {
+  background-color: var(--colour-status-bg);
+}
+.opi-activity.opi-activity .fields__current > th,
+.opi-activity.opi-activity .fields__current > td {
+  background-color: var(--colour-accent-soft);
+  font-weight: 650;
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .fields__eye,
+.opi-activity.opi-activity .fields__relay,
+.opi-activity.opi-activity .fields__cortex,
+.opi-activity.opi-activity .fields__damage,
+.opi-activity.opi-activity .fields__spared {
+  fill: Canvas;
+    stroke: CanvasText;
+}
+.opi-activity.opi-activity .fields__tract,
+.opi-activity.opi-activity .fields__divider,
+.opi-activity.opi-activity .fields__outline {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .fields__cross-fibre {
+  stroke: Highlight;
+}
+.opi-activity.opi-activity .fields__side,
+.opi-activity.opi-activity .fields__damage-mark {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .fields__quadrant {
+  fill: Canvas;
+}
+.opi-activity.opi-activity .fields__quadrant--lost {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .fields__lost-mark {
+  fill: Canvas;
+}
+.opi-activity.opi-activity .fields__predicted {
+  fill: Highlight;
+    stroke: Canvas;
+}
+.opi-activity.opi-activity .fields__miss > td {
+  background-color: Canvas;
+    border: 2px solid Highlight;
+}
+.opi-activity.opi-activity .fields__current > th,
+.opi-activity.opi-activity .fields__current > td {
+  background-color: Canvas;
+    border: 2px solid Highlight;
+}
+}
+</style>
+
+  <!-- ================= Title and purpose ================= -->
+  <section class="section card--neuropsychology" aria-labelledby="page-heading">
+    <div class="container">
+
+      <p class="hero__eyebrow" style="color: var(--colour-neuropsychology)">
+        Neuropsychology
+      </p>
+      <h1 id="page-heading">Visual Field Defect Mapper</h1>
+      <p class="hero__lead">
+        Pick a point on the pathway, predict which parts of which eye's field
+        go dark, then find out - and then find out how much the pattern
+        could have told you in reverse.
+      </p>
+
+      <p>
+        <span class="badge">
+          <span class="badge__dot" aria-hidden="true"></span>
+          Simulated — a schematic pathway, textbook mappings, fictional cases
+        </span>
+      </p>
+
+      <div class="split split--wide">
+
+        <div class="panel">
+          <h2 class="panel__title">Learning objective</h2>
+          <p>
+            By the end you should be able to predict the field consequence
+            of damage before, at and after the chiasm.
+          </p>
+          <p class="text-muted">
+            About 25 minutes. Nothing you do here is saved or sent anywhere.
+          </p>
+        </div>
+
+        <div class="panel panel--caution">
+          <h2 class="panel__title">Not an eye test</h2>
+          <p>
+            Nothing on this page examines your vision or anybody else's. The
+            field diagrams are schematic quadrants, not perimetry, and no
+            result here means anything about the person reading it. If you
+            have concerns about your own vision, see an optometrist or a
+            doctor.
+          </p>
+        </div>
+
+      </div>
+
+      <ol class="how-to">
+        <li>Choose a point on the pathway.</li>
+        <li>
+          Tick the quadrants you think go dark, in each eye, <em>before</em>
+          revealing anything.
+        </li>
+        <li>Reveal, read why, and try the next point.</li>
+        <li>
+          Then answer the harder question in the challenge: given a field
+          pattern, where could the damage be?
+        </li>
+      </ol>
+
+    </div>
+  </section>
+
+  <!-- ================= Opening prediction ================= -->
+  <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="opening-heading">First, the fact everything else rests on</h2>
+        <p class="prose">
+          About half the fibres leaving each eye cross to the other side at
+          the optic chiasm. Which half, and why it matters, is the whole
+          content of this tool.
+        </p>
+      </div>
+
+      <noscript>
+        <div class="placeholder">
+          <h3 class="placeholder__title">This part needs JavaScript</h3>
+          <p class="prose">
+            The pathway and the field charts are drawn and compared in your
+            browser, so they cannot run with JavaScript switched off. The rest
+            of this page is readable without it.
+          </p>
+        </div>
+      </noscript>
+
+      <form class="panel prediction" id="opening-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            Which fibres cross at the chiasm, and what do they carry?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="nasal">
+            The fibres from the nasal half of each retina, which see the
+            outer (temporal) half of that eye's field
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="temporal">
+            The fibres from the temporal half of each retina, which see the
+            inner (nasal) half of that eye's field
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="all">
+            All of them - each eye is processed entirely by the opposite
+            hemisphere
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="unsure">
+            I would have to work it out
+          </label>
+        </fieldset>
+
+        <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Record my answer and open the mapper
+          </button>
+          <button class="button button--secondary" type="button" data-action="skip-opening">
+            Skip - I am demonstrating this
+          </button>
+        </div>
+
+        <div class="feedback" data-opening-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= The mapper ================= -->
+  <section class="section" id="mapper-section" aria-labelledby="mapper-heading" hidden>
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="mapper-heading" tabindex="-1">The mapper</h2>
+      </div>
+
+      <section class="interactive" id="fields" data-interactive
+               data-reset-message="Mapper cleared. No damage selected and no prediction made.">
+
+        <header class="interactive__header">
+          <h3 class="interactive__title" data-site-title>Choose a point on the pathway</h3>
+          <p class="interactive__brief" data-site-brief>
+            Tick the quadrants you expect to go dark in each eye, then reveal.
+          </p>
+        </header>
+
+        <div class="interactive__body interactive__body--pinned">
+
+          <form class="interactive__controls" data-interactive-controls>
+
+            <fieldset>
+              <legend>Where the damage is</legend>
+              <div data-site-controls></div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Your prediction - left eye's field</legend>
+              <div class="fields__grid" data-predict-left></div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Your prediction - right eye's field</legend>
+              <div class="fields__grid" data-predict-right></div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Reveal</legend>
+              <div class="prediction__actions">
+                <button class="button button--primary" type="submit">
+                  Reveal the field pattern
+                </button>
+              </div>
+              <p class="control__hint">
+                Ticking nothing is a prediction too - some damage really does
+                leave the fields intact.
+              </p>
+            </fieldset>
+
+          </form>
+
+          <div class="interactive__stage" data-interactive-stage>
+
+            <!-- Pinned: the pathway with the damage marked, and the two
+                 fields. Everything the controls change is here. -->
+            <div class="stage__primary">
+              <figure class="chart fields__pathway">
+                <figcaption class="visually-hidden">
+                  A schematic visual pathway from the two eyes through the
+                  chiasm to the occipital cortex, with a cross marking where
+                  the damage is
+                </figcaption>
+                <svg class="chart__svg" data-pathway viewBox="0 0 360 164"
+                     aria-hidden="true" focusable="false"></svg>
+                <p class="fields__legend" data-pathway-legend></p>
+              </figure>
+
+              <figure class="chart fields__charts">
+                <figcaption class="chart__caption" data-fields-caption>
+                  Your prediction so far
+                </figcaption>
+                <svg class="chart__svg" data-fieldchart viewBox="0 0 300 170"
+                     aria-hidden="true" focusable="false"></svg>
+              </figure>
+            </div>
+
+            <div class="feedback" data-reveal-feedback hidden></div>
+
+            <h4 class="stage__heading">Quadrant by quadrant</h4>
+            <div class="table-scroll">
+              <table class="chart__table">
+                <caption class="visually-hidden">
+                  Each quadrant of each eye's field, what you predicted and
+                  what the textbook mapping gives
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Eye</th>
+                    <th scope="col">Part of that eye's field</th>
+                    <th scope="col">You predicted</th>
+                    <th scope="col">Mapping gives</th>
+                  </tr>
+                </thead>
+                <tbody data-quadrant-table></tbody>
+              </table>
+            </div>
+
+            <details class="stage__more">
+              <summary>Every point on the pathway, side by side</summary>
+              <div class="table-scroll">
+                <table class="data-table">
+                  <caption class="visually-hidden">
+                    Each point of damage and the field pattern it produces
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Damage at</th>
+                      <th scope="col">Left eye's field</th>
+                      <th scope="col">Right eye's field</th>
+                      <th scope="col">Usual description</th>
+                    </tr>
+                  </thead>
+                  <tbody data-summary-table></tbody>
+                </table>
+              </div>
+              <p class="text-muted">
+                Two rows in this table are identical in the first three
+                columns. That is not a mistake.
+              </p>
+            </details>
+
+          </div>
+
+        </div>
+
+        <p class="interactive__status" data-interactive-status role="status"></p>
+
+        <div class="interactive__actions">
+          <button type="button" data-variant="secondary" data-interactive-reset>
+            Reset everything
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ================= Challenge ================= -->
+  <section class="section section--tinted" id="challenge" aria-labelledby="challenge-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="challenge-heading">Challenge - reading the pattern backwards</h2>
+        <p class="prose">
+          A fictional person's field examination shows the whole left half of
+          the field missing in both eyes, upper and lower, with a sharp
+          border down the middle. There is no other finding.
+        </p>
+      </div>
+
+      <form class="panel challenge" id="challenge-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            Tick every point on the pathway that is compatible with this
+            pattern.
+          </legend>
+          <div data-challenge-options></div>
+        </fieldset>
+
+        <p class="prediction__error" data-challenge-error role="alert" hidden></p>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Check my answer
+          </button>
+        </div>
+
+        <div class="feedback" data-challenge-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Debrief ================= -->
+  <section class="section" id="debrief" aria-labelledby="debrief-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="debrief-heading">What this demonstrates</h2>
+      </div>
+
+      <div class="split split--wide">
+
+        <div class="prose">
+          <h3>The crossing is what makes the pattern informative</h3>
+          <p>
+            Fibres from the nasal half of each retina cross at the chiasm.
+            The nasal retina sees the outer half of that eye's field, so
+            after the chiasm each side of the brain carries the
+            <em>opposite half of the world</em> from both eyes rather than
+            one whole eye. That single fact does all the work: damage before
+            the chiasm affects one eye, damage at the chiasm affects the
+            outer half of both, and damage after it affects the same half of
+            the world in both.
+          </p>
+
+          <h3>Where the border falls tells you which side of the chiasm</h3>
+          <p>
+            A defect confined to one eye is in front of the chiasm. A defect
+            that respects the vertical midline in both eyes is behind it.
+            That distinction is genuinely diagnostic, it is available from a
+            bedside examination, and it is one of the tidiest structure-to-
+            function mappings anywhere in the nervous system - which is
+            precisely why it is a bad model for the rest of neuropsychology.
+          </p>
+
+          <h3>The pattern cannot say which structure</h3>
+          <p>
+            Damage to the right optic tract and damage to the right occipital
+            cortex both remove the left half of both fields. So does damage to
+            both parts of the right optic radiation together, and so does
+            damage to the right lateral geniculate nucleus. The field pattern
+            locates the failure to one side and to somewhere behind the
+            chiasm, and stops. Congruity - how closely the two eyes' defects
+            match - and macular sparing are the traditional clues for going
+            further, and both are unreliable enough that imaging settles it in
+            practice.
+          </p>
+
+          <h3>Quadrants are a teaching fiction</h3>
+          <p>
+            Real defects have soft edges, vary in depth rather than being
+            simply present or absent, and rarely align with a quadrant
+            boundary. A field chart is a map of sensitivity, not a map of
+            which squares are lit. Every diagram in this tool is a
+            simplification chosen so that a prediction can be marked right or
+            wrong, and the marking is a consequence of the simplification.
+          </p>
+
+          <h3>What the person notices is a third thing again</h3>
+          <p>
+            A homonymous hemianopia is not experienced as a black rectangle.
+            Many people are unaware of it until they bump into something, and
+            some report nothing missing at all. Field loss and awareness of
+            field loss are separate, which is one of the reasons the previous
+            tool in this module spends its time on the difference between not
+            seeing and not attending.
+          </p>
+        </div>
+
+        <aside class="panel panel--caution" aria-labelledby="limits-heading">
+          <h3 class="panel__title" id="limits-heading">
+            What this does <em>not</em> demonstrate
+          </h3>
+          <ul>
+            <li>
+              <strong>Not a diagnosis.</strong> Field patterns in practice
+              are interpreted alongside acuity, pupil responses, the rest of
+              the neurological examination and imaging. Nothing here
+              identifies a cause, and no cause is mentioned.
+            </li>
+            <li>
+              <strong>The mappings are idealised.</strong> Textbook
+              one-to-one correspondences. Real lesions are partial, spread
+              across boundaries, and produce incomplete and asymmetric
+              defects far more often than the tidy patterns drawn here.
+            </li>
+            <li>
+              <strong>The diagram is schematic.</strong> A few boxes and
+              lines. It is not an atlas, nothing is to scale, and the layout
+              carries no spatial meaning.
+            </li>
+            <li>
+              <strong>Macular sparing is contested.</strong> It is shown
+              because it appears in every textbook. Why it happens - dual
+              blood supply, the size of the cortical representation, fixation
+              during testing - is still argued about, and it is not reliable
+              enough to localise anything on its own.
+            </li>
+            <li>
+              <strong>Nothing here is about the rest of the brain.</strong>
+              The visual pathway is unusually orderly. Treating it as a model
+              for how brain structure maps onto function is the mistake the
+              rest of this module exists to correct.
+            </li>
+          </ul>
+        </aside>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+<script>
+/* ---- components/interactive-shell.js ---- */
+/* =========================================================================
+   Open Psychology Interactives — interactive shell helper
+   -------------------------------------------------------------------------
+   A very small vanilla-JS helper that every interactive in this collection
+   uses. It deliberately does *not* draw anything or know anything about
+   statistics, personality or neuropsychology. Its job is the repetitive,
+   easy-to-get-wrong accessibility plumbing:
+
+     * announcing changes through a polite live region;
+     * keeping a range slider and its <output> in step;
+     * wiring the standard Reset button;
+     * reporting the reader's reduced-motion preference.
+
+   Usage (see docs/adapting-a-tool.md for the full markup contract):
+
+       <script src="../../components/interactive-shell.js" defer><\/script>
+       <script src="tool.js" defer><\/script>
+
+       // in tool.js
+       const shell = InteractiveShell.attach('#sampling-demo');
+       shell.onReset(() => { ...restore defaults...; draw(); });
+       shell.bindRange('#sample-size', { format: n => n + ' cases' });
+       shell.announce('Sample of 25 drawn. Mean 4.8.');
+
+   Every published interactive is written against this module.
+
+   Exposed as a global (window.InteractiveShell) rather than an ES module so
+   that a single interactive folder can be opened directly from disk over
+   file:// — ES modules are blocked by CORS in that situation, plain scripts
+   are not. That constraint is the whole reason for the older syntax here.
+   ========================================================================= */
+
+(function (global) {
+  "use strict";
+
+  /* -----------------------------------------------------------------------
+     Internal helpers
+     --------------------------------------------------------------------- */
+
+  /**
+   * Accept either a CSS selector or an element and return an element.
+   * @param {string|Element} target
+   * @param {ParentNode} [scope]
+   * @returns {Element|null}
+   */
+  function resolve(target, scope) {
+    if (!target) {
+      return null;
+    }
+    if (typeof target === "string") {
+      return (scope || document).querySelector(target);
+    }
+    return target;
+  }
+
+  /**
+   * True when the reader has asked the operating system to reduce motion.
+   * Interactives should check this before animating anything — for example
+   * by drawing a sampling distribution in one step instead of animating
+   * each draw.
+   * @returns {boolean}
+   */
+  function prefersReducedMotion() {
+    return (
+      typeof global.matchMedia === "function" &&
+      global.matchMedia("(prefers-reduced-motion: reduce)").matches
+    );
+  }
+
+  /* -----------------------------------------------------------------------
+     Shell controller
+     --------------------------------------------------------------------- */
+
+  /**
+   * Attach the shell behaviour to one `.interactive` element.
+   *
+   * @param {string|Element} target  Selector or element for the shell root.
+   * @returns {object|null}  Controller, or null if the root was not found.
+   */
+  function attach(target) {
+    var root = resolve(target);
+
+    if (!root) {
+      if (global.console && console.warn) {
+        console.warn("InteractiveShell: root element not found.", target);
+      }
+      return null;
+    }
+
+    var controls = root.querySelector("[data-interactive-controls]");
+    var stage = root.querySelector("[data-interactive-stage]");
+    var status = root.querySelector("[data-interactive-status]");
+    var resetButton = root.querySelector("[data-interactive-reset]");
+    var resetHandlers = [];
+    // Every range bound with bindRange() registers its sync function here, so
+    // that reset() can refresh the visible values after the tool's own reset
+    // handlers have restored the inputs. See reset() for why this is needed.
+    var rangeSyncs = [];
+
+    /* --- Live region ----------------------------------------------------
+       The status element is marked up as role="status" (implicitly
+       aria-live="polite"). Two details matter:
+
+         1. Assistive technology only announces *changes* to a live region,
+            so writing the same string twice is silently dropped. We add a
+            trailing zero-width space on repeat messages to force an
+            announcement when a student re-runs the same action.
+         2. Announcements are debounced. A slider dragged across its range
+            fires dozens of input events; without a delay a screen reader
+            would queue every intermediate value and fall far behind.
+       ------------------------------------------------------------------ */
+
+    var announceTimer = null;
+    var lastMessage = "";
+
+    /**
+     * Announce a short sentence describing what just changed.
+     * @param {string} message
+     * @param {object} [options]
+     * @param {boolean} [options.immediate]  Skip the debounce delay. Use for
+     *   discrete actions (button presses); leave off for continuous input.
+     */
+    function announce(message, options) {
+      if (!status) {
+        return;
+      }
+
+      var text = String(message == null ? "" : message);
+      var immediate = Boolean(options && options.immediate);
+
+      if (announceTimer !== null) {
+        global.clearTimeout(announceTimer);
+        announceTimer = null;
+      }
+
+      function write() {
+        // Force a change when the text is identical to last time.
+        status.textContent = text === lastMessage ? text + "​" : text;
+        lastMessage = text;
+      }
+
+      if (immediate) {
+        write();
+      } else {
+        announceTimer = global.setTimeout(write, 350);
+      }
+    }
+
+    /* --- Reset ---------------------------------------------------------- */
+
+    /**
+     * Register a callback to run when the Reset button is pressed.
+     * Several may be registered; they run in the order added.
+     * @param {Function} handler
+     */
+    function onReset(handler) {
+      if (typeof handler === "function") {
+        resetHandlers.push(handler);
+      }
+    }
+
+    /**
+     * Run the reset handlers. Called by the button and available directly so
+     * an interactive can reset itself on first load.
+     *
+     * Bound ranges are re-synced afterwards. A reset handler restores an
+     * input by assigning to `input.value`, and assigning to a value in script
+     * does not fire an `input` event — so without this step the slider would
+     * jump back to its default while its <output> went on showing the old
+     * number. Syncing here, after the handlers have run, also means the sync
+     * sees the restored values regardless of the order things were
+     * registered in.
+     *
+     * @param {object} [options]
+     * @param {boolean} [options.silent]  Suppress the status announcement.
+     */
+    function reset(options) {
+      resetHandlers.forEach(function (handler) {
+        handler();
+      });
+      rangeSyncs.forEach(function (sync) {
+        sync();
+      });
+      if (!options || !options.silent) {
+        announce(
+          root.getAttribute("data-reset-message") ||
+            "Reset to the starting values.",
+          { immediate: true }
+        );
+      }
+    }
+
+    if (resetButton) {
+      resetButton.addEventListener("click", function (event) {
+        // Reset buttons commonly sit inside the controls <form>; stop the
+        // browser's own form reset from fighting with ours.
+        event.preventDefault();
+        reset();
+      });
+    }
+
+    /* --- Range binding --------------------------------------------------
+       Keeps a slider's <output> in step with its value. The <output> must
+       carry `for="<input id>"`, which is what associates the two for
+       assistive technology; this only handles the visible text.
+
+       Optionally sets aria-valuetext, which is how you make a screen reader
+       say "25 cases" or "medium correlation" instead of a bare "25".
+       ------------------------------------------------------------------ */
+
+    /**
+     * @param {string|Element} inputTarget  The range (or number) input.
+     * @param {object} [options]
+     * @param {Function} [options.format]  value:number -> string shown in the
+     *   <output>. Defaults to the raw value.
+     * @param {Function} [options.describe]  value:number -> string used for
+     *   aria-valuetext. Defaults to options.format.
+     * @param {Function} [options.onInput]  value:number -> void, called after
+     *   the display has been updated. Use it to redraw.
+     * @returns {HTMLInputElement|null}
+     */
+    function bindRange(inputTarget, options) {
+      var input = resolve(inputTarget, root);
+      if (!input) {
+        return null;
+      }
+
+      var settings = options || {};
+      var format =
+        typeof settings.format === "function"
+          ? settings.format
+          : function (value) {
+              return String(value);
+            };
+      var describe =
+        typeof settings.describe === "function" ? settings.describe : format;
+
+      // <output for="the-input-id"> is the conventional pairing.
+      var output = input.id
+        ? root.querySelector('output[for="' + input.id + '"]')
+        : null;
+
+      function sync() {
+        var value = Number(input.value);
+        if (output) {
+          output.textContent = format(value);
+        }
+        // Only meaningful for widgets with an implicit or explicit slider
+        // role; harmless elsewhere.
+        input.setAttribute("aria-valuetext", describe(value));
+        if (typeof settings.onInput === "function") {
+          settings.onInput(value);
+        }
+      }
+
+      input.addEventListener("input", sync);
+      // Registered so reset() can refresh the display after the tool's own
+      // reset handlers have put the input back to its default.
+      rangeSyncs.push(sync);
+      sync();
+
+      return input;
+    }
+
+    /* --- Public surface -------------------------------------------------- */
+
+    return {
+      /** The `.interactive` root element. */
+      root: root,
+      /** The controls panel, or null if the shell has none. */
+      controls: controls,
+      /** The stage element where the visualisation is drawn. */
+      stage: stage,
+      /** The live-region element. */
+      status: status,
+      announce: announce,
+      onReset: onReset,
+      reset: reset,
+      bindRange: bindRange,
+      prefersReducedMotion: prefersReducedMotion
+    };
+  }
+
+  /* -----------------------------------------------------------------------
+     Export
+     --------------------------------------------------------------------- */
+
+  global.InteractiveShell = {
+    attach: attach,
+    prefersReducedMotion: prefersReducedMotion
+  };
+})(window);
+
+/* ---- modules/neuropsychology/tools/05-visual-field-defect-mapper/tool.js ---- */
+/* =========================================================================
+   Visual Field Defect Mapper
+   -------------------------------------------------------------------------
+   Six points on a schematic visual pathway. The learner ticks which quadrants
+   of which eye's field they expect to go dark, then reveals the textbook
+   mapping and is marked cell by cell. The challenge runs the inference the
+   other way: given a field pattern, which points are compatible?
+
+   THE EDUCATIONAL MODEL
+   ---------------------
+   Everything follows from one fact. Fibres from the NASAL half of each retina
+   cross at the chiasm, and the nasal retina sees the OUTER (temporal) half of
+   that eye's field. So behind the chiasm each side carries the opposite half
+   of the world from BOTH eyes, rather than one whole eye.
+
+   Field quadrants are coded per eye as LU, LL, RU, RL - left-upper,
+   left-lower, right-upper, right-lower of that eye's own field.
+
+       left optic nerve      left eye: all four.  right eye: none.
+       chiasm, centre        left eye: LU, LL.    right eye: RU, RL.
+                             (the outer half of each eye - bitemporal)
+       right optic tract     both eyes: LU, LL.
+       right temporal        both eyes: LU.
+         radiation
+       right parietal        both eyes: LL.
+         radiation
+       right occipital       both eyes: LU, LL, with the centre spared.
+         cortex
+
+   The last row is identical to the optic tract row in quadrant terms, which
+   is exactly the point: a field pattern locates the failure to one side and
+   to somewhere behind the chiasm, and stops.
+
+   DELIBERATE SIMPLIFICATIONS
+   --------------------------
+   Quadrants are a teaching fiction. Real defects have soft edges, vary in
+   depth rather than being present or absent, and rarely respect a quadrant
+   boundary. The mappings here are idealised textbook correspondences; real
+   lesions are partial and produce incomplete, asymmetric defects far more
+   often than tidy ones. The diagram is schematic and not an atlas. Nothing on
+   this page examines anybody's vision or identifies a cause.
+
+   No data leave the browser. There is no storage and no network request.
+   ========================================================================= */
+
+(function () {
+  "use strict";
+
+  var QUADRANTS = [
+    { id: "LU", name: "upper-left", short: "Upper left" },
+    { id: "LL", name: "lower-left", short: "Lower left" },
+    { id: "RU", name: "upper-right", short: "Upper right" },
+    { id: "RL", name: "lower-right", short: "Lower right" }
+  ];
+
+  var EYES = [
+    { id: "left", name: "Left eye", cx: 78 },
+    { id: "right", name: "Right eye", cx: 222 }
+  ];
+
+  /* =======================================================================
+     The six points on the pathway
+     ===================================================================== */
+
+  var SITES = [
+    {
+      id: "nerve",
+      label: "Left optic nerve, in front of the chiasm",
+      title: "Left optic nerve",
+      mark: { x: 70, y: 50 },
+      lost: { left: ["LU", "LL", "RU", "RL"], right: [] },
+      description: "Loss of vision in the left eye only",
+      sparing: false,
+      why:
+        "In front of the chiasm nothing has crossed yet, so a nerve carries " +
+        "one eye and only one eye. A defect confined to one eye is therefore " +
+        "in front of the chiasm."
+    },
+    {
+      id: "chiasm",
+      label: "Centre of the chiasm, where the fibres cross",
+      title: "Centre of the chiasm",
+      mark: { x: 113, y: 71 },
+      lost: { left: ["LU", "LL"], right: ["RU", "RL"] },
+      description: "Loss of the outer half of each eye's field",
+      sparing: false,
+      why:
+        "The crossing fibres come from the nasal half of each retina, and the " +
+        "nasal retina sees the OUTER half of that eye's field. So the middle " +
+        "of the chiasm takes the outer half of both fields: the left of the " +
+        "left eye and the right of the right eye. Two missing halves on " +
+        "opposite sides of the world - nothing behind the chiasm can do that."
+    },
+    {
+      id: "tract",
+      label: "Right optic tract, just behind the chiasm",
+      title: "Right optic tract",
+      mark: { x: 170, y: 93 },
+      lost: { left: ["LU", "LL"], right: ["LU", "LL"] },
+      description: "Loss of the left half of the world in both eyes",
+      sparing: false,
+      why:
+        "Behind the chiasm each side carries the opposite half of the world " +
+        "from both eyes. The right tract carries the left half, so damage " +
+        "removes the left half of both fields with a border down the vertical " +
+        "midline."
+    },
+    {
+      id: "temporal",
+      label: "Right optic radiation, the loop through the temporal lobe",
+      title: "Right temporal radiation",
+      mark: { x: 274, y: 116 },
+      lost: { left: ["LU"], right: ["LU"] },
+      description: "Loss of the upper-left quadrant in both eyes",
+      sparing: false,
+      why:
+        "The radiation splits. Fibres carrying the UPPER part of the opposite " +
+        "field sweep forward and down into the temporal lobe before turning " +
+        "back, so damage there removes the upper quadrant on the opposite side " +
+        "in both eyes. A quadrant defect is one of the few field findings that " +
+        "narrows the location usefully."
+    },
+    {
+      id: "parietal",
+      label: "Right optic radiation, the part running through the parietal lobe",
+      title: "Right parietal radiation",
+      mark: { x: 274, y: 90 },
+      lost: { left: ["LL"], right: ["LL"] },
+      description: "Loss of the lower-left quadrant in both eyes",
+      sparing: false,
+      why:
+        "The other half of the radiation runs more directly back through the " +
+        "parietal lobe and carries the LOWER part of the opposite field. " +
+        "Damage there removes the lower quadrant on the opposite side in both " +
+        "eyes. Take the two radiation cases together and you have the tract " +
+        "case - which is the first hint that adding up quadrants does not tell " +
+        "you where the damage was."
+    },
+    {
+      id: "occipital",
+      label: "Right occipital cortex",
+      title: "Right occipital cortex",
+      mark: { x: 329, y: 100 },
+      lost: { left: ["LU", "LL"], right: ["LU", "LL"] },
+      description: "Loss of the left half of the world in both eyes, centre often spared",
+      sparing: true,
+      why:
+        "In quadrant terms this is identical to the optic tract case. That is " +
+        "the honest answer to whether a field pattern localises damage: it " +
+        "says which side, and that the damage is behind the chiasm, and it " +
+        "stops."
+    }
+  ];
+
+  /* =======================================================================
+     The challenge - which sites produce a complete left homonymous defect?
+     ===================================================================== */
+
+  var CHALLENGE_OPTIONS = [
+    { id: "nerve", label: "Left optic nerve", correct: false,
+      why: "would affect one eye only, and this defect is in both" },
+    { id: "chiasm", label: "Centre of the chiasm", correct: false,
+      why: "would take the outer half of each eye - opposite halves of the world, not the same half" },
+    { id: "tract", label: "Right optic tract", correct: true,
+      why: "carries the left half of the world from both eyes" },
+    { id: "lgn", label: "Right lateral geniculate nucleus", correct: true,
+      why: "sits between the tract and the radiation and carries the same thing; it is not a separate point in the mapper above, and it produces the same pattern" },
+    { id: "bothrad", label: "Both halves of the right optic radiation together", correct: true,
+      why: "upper quadrant plus lower quadrant is the whole half" },
+    { id: "temporal", label: "Right temporal radiation alone", correct: false,
+      why: "would leave the lower quadrant intact" },
+    { id: "occipital", label: "Right occipital cortex", correct: true,
+      why: "carries the left half of the world; usually with the centre spared, which was not mentioned in the case" },
+    { id: "leftocc", label: "Left occipital cortex", correct: false,
+      why: "carries the RIGHT half of the world, so it would produce the mirror image" }
+  ];
+
+  /* =======================================================================
+     Helpers
+     ===================================================================== */
+
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) { node.className = className; }
+    if (text !== undefined) { node.textContent = text; }
+    return node;
+  }
+
+  function clear(node) {
+    while (node.firstChild) { node.removeChild(node.firstChild); }
+  }
+
+  var NS = "http://www.w3.org/2000/svg";
+
+  function svgEl(name, attrs) {
+    var node = document.createElementNS(NS, name);
+    Object.keys(attrs).forEach(function (key) {
+      node.setAttribute(key, String(attrs[key]));
+    });
+    return node;
+  }
+
+  function svgText(x, y, className, anchor, text) {
+    var node = svgEl("text", { x: x, y: y, class: className, "text-anchor": anchor });
+    node.textContent = text;
+    return node;
+  }
+
+  function siteById(id) {
+    return SITES.filter(function (s) { return s.id === id; })[0];
+  }
+
+  function describeLoss(list) {
+    if (list.length === 0) { return "nothing lost"; }
+    if (list.length === 4) { return "the whole field"; }
+    return list.map(function (id) {
+      return QUADRANTS.filter(function (q) { return q.id === id; })[0].name;
+    }).join(" and ");
+  }
+
+  /* =======================================================================
+     Wiring
+     ===================================================================== */
+
+  var shell = InteractiveShell.attach("#fields");
+  if (!shell) { return; }
+
+  var $ = function (selector, scope) {
+    return (scope || document).querySelector(selector);
+  };
+
+  var siteControls = $("[data-site-controls]");
+  var predictHosts = { left: $("[data-predict-left]"), right: $("[data-predict-right]") };
+  var pathwaySvg = $("[data-pathway]");
+  var pathwayLegend = $("[data-pathway-legend]");
+  var fieldSvg = $("[data-fieldchart]");
+  var fieldsCaption = $("[data-fields-caption]");
+  var siteTitle = $("[data-site-title]");
+  var siteBrief = $("[data-site-brief]");
+  var revealFeedback = $("[data-reveal-feedback]");
+  var quadrantTable = $("[data-quadrant-table]");
+  var summaryTable = $("[data-summary-table]");
+  var controlsForm = $("[data-interactive-controls]");
+
+  var openingForm = $("#opening-form");
+  var openingError = $("[data-opening-error]");
+  var openingFeedback = $("[data-opening-feedback]");
+  var mapperSection = $("#mapper-section");
+
+  var challengeForm = $("#challenge-form");
+  var challengeOptions = $("[data-challenge-options]");
+  var challengeError = $("[data-challenge-error]");
+  var challengeFeedback = $("[data-challenge-feedback]");
+
+  var state = { site: "nerve", predicted: { left: {}, right: {} }, revealed: false };
+
+  /* --- Controls, built once --------------------------------------------- */
+
+  SITES.forEach(function (site, index) {
+    var label = make("label", "control--choice");
+    var input = document.createElement("input");
+    input.type = "radio";
+    input.name = "site";
+    input.value = site.id;
+    input.checked = index === 0;
+    input.addEventListener("change", function () {
+      state.site = site.id;
+      state.revealed = false;
+      state.predicted = { left: {}, right: {} };
+      syncPredictions();
+      revealFeedback.hidden = true;
+      render();
+      shell.announce(
+        site.title + " selected. Prediction cleared - tick the quadrants you " +
+        "expect to go dark.", { immediate: true });
+    });
+    label.appendChild(input);
+    label.appendChild(document.createTextNode(site.label));
+    siteControls.appendChild(label);
+  });
+
+  EYES.forEach(function (eye) {
+    QUADRANTS.forEach(function (quadrant) {
+      var label = make("label", "control--choice");
+      var input = document.createElement("input");
+      input.type = "checkbox";
+      input.setAttribute("data-eye", eye.id);
+      input.setAttribute("data-quadrant", quadrant.id);
+      input.addEventListener("change", function () {
+        state.predicted[eye.id][quadrant.id] = input.checked;
+        if (!input.checked) { delete state.predicted[eye.id][quadrant.id]; }
+        if (state.revealed) {
+          /* Changing a prediction after the reveal would make the marking
+             meaningless, so the reveal is withdrawn and has to be redone. */
+          state.revealed = false;
+          revealFeedback.hidden = true;
+        }
+        render();
+      });
+      label.appendChild(input);
+      label.appendChild(document.createTextNode(quadrant.short));
+      predictHosts[eye.id].appendChild(label);
+    });
+  });
+
+  function syncPredictions() {
+    Array.prototype.forEach.call(
+      document.querySelectorAll("[data-quadrant]"),
+      function (input) {
+        var eye = input.getAttribute("data-eye");
+        var quadrant = input.getAttribute("data-quadrant");
+        input.checked = Boolean(state.predicted[eye][quadrant]);
+      });
+  }
+
+  controlsForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    reveal();
+  });
+
+  /* --- Rendering -------------------------------------------------------- */
+
+  function render() {
+    var site = siteById(state.site);
+    siteTitle.textContent = state.revealed
+      ? site.title + " - revealed"
+      : site.title + " - predict first";
+    siteBrief.textContent = state.revealed
+      ? site.description + ". Read the explanation, then try another point."
+      : "Tick the quadrants you expect to go dark in each eye, then reveal.";
+    fieldsCaption.textContent = state.revealed
+      ? "The field pattern, with your prediction marked by a dot"
+      : "Your prediction so far - dots mark the quadrants you have ticked";
+
+    drawPathway(site);
+    drawFields(site);
+    renderQuadrantTable(site);
+    renderSummaryTable();
+  }
+
+  /* The schematic pathway, left to right: eyes, optic nerves, the chiasm drawn
+     as a visible crossing, the tracts, a relay box on each side, two routes of
+     the radiation on each side, and the occipital cortex. The two sides are
+     marked L and R inside the relay boxes; the six damage points sit on the
+     structure they name. Nothing is to scale and the layout carries no
+     spatial meaning. */
+  function drawPathway(site) {
+    clear(pathwaySvg);
+
+    [[28, 40, 20, "left eye"], [28, 102, 128, "right eye"]].forEach(function (eye) {
+      pathwaySvg.appendChild(svgEl("circle", {
+        cx: eye[0], cy: eye[1], r: 13, class: "fields__eye"
+      }));
+      pathwaySvg.appendChild(svgText(28, eye[2], "chart__axis", "middle", eye[3]));
+    });
+
+    /* Optic nerves into the chiasm */
+    pathwaySvg.appendChild(svgEl("line", { x1: 41, y1: 40, x2: 100, y2: 60, class: "fields__tract" }));
+    pathwaySvg.appendChild(svgEl("line", { x1: 41, y1: 102, x2: 100, y2: 82, class: "fields__tract" }));
+
+    /* The chiasm, drawn as an X so that the crossing is visible */
+    pathwaySvg.appendChild(svgEl("line", { x1: 100, y1: 60, x2: 126, y2: 82, class: "fields__cross-fibre" }));
+    pathwaySvg.appendChild(svgEl("line", { x1: 100, y1: 82, x2: 126, y2: 60, class: "fields__cross-fibre" }));
+    pathwaySvg.appendChild(svgText(113, 48, "chart__axis", "middle", "chiasm"));
+
+    /* Tracts */
+    pathwaySvg.appendChild(svgEl("line", { x1: 126, y1: 60, x2: 200, y2: 42, class: "fields__tract" }));
+    pathwaySvg.appendChild(svgEl("line", { x1: 126, y1: 82, x2: 200, y2: 100, class: "fields__tract" }));
+
+    /* Radiations: an upper (parietal) and a lower (temporal, forward-looping)
+       route on each side. */
+    [
+      "M 236 42 Q 274 22 314 42",
+      "M 236 42 Q 274 62 314 42",
+      "M 236 100 Q 274 80 314 100",
+      "M 236 100 Q 274 132 314 100"
+    ].forEach(function (d) {
+      pathwaySvg.appendChild(svgEl("path", { d: d, class: "fields__tract" }));
+    });
+
+    /* Relay boxes, labelled with the side of the brain they belong to */
+    [[31, "L"], [89, "R"]].forEach(function (box) {
+      pathwaySvg.appendChild(svgEl("rect", {
+        x: 210, y: box[0], width: 26, height: 22, rx: 4, class: "fields__relay"
+      }));
+      pathwaySvg.appendChild(
+        svgText(223, box[0] + 16, "fields__side", "middle", box[1]));
+    });
+
+    /* Occipital cortex */
+    [29, 87].forEach(function (y) {
+      pathwaySvg.appendChild(svgEl("rect", {
+        x: 314, y: y, width: 30, height: 26, rx: 4, class: "fields__cortex"
+      }));
+    });
+    pathwaySvg.appendChild(svgText(329, 20, "chart__axis", "middle", "occipital"));
+    pathwaySvg.appendChild(svgText(274, 74, "chart__axis", "middle", "parietal route"));
+    pathwaySvg.appendChild(svgText(274, 152, "chart__axis", "middle", "temporal loop"));
+    pathwaySvg.appendChild(
+      svgText(6, 160, "chart__axis", "start", "L and R mark the two sides of the brain"));
+
+    /* The damage marker */
+    pathwaySvg.appendChild(svgEl("circle", {
+      cx: site.mark.x, cy: site.mark.y, r: 10, class: "fields__damage"
+    }));
+    pathwaySvg.appendChild(
+      svgText(site.mark.x, site.mark.y + 5, "fields__damage-mark", "middle", "×"));
+
+    /* The drawing's visible text equivalent. The cross is the only thing on
+       the diagram that moves, so naming where it sits says everything the
+       picture says. */
+    pathwayLegend.textContent =
+      "Eyes, nerves, chiasm, tracts, relays, radiation, occipital cortex, " +
+      "left to right, not to scale. The cross is on the " +
+      site.label.toLowerCase() + ".";
+  }
+
+  function drawFields(site) {
+    var R = 52;
+    var CY = 74;
+
+    clear(fieldSvg);
+
+    EYES.forEach(function (eye) {
+      var lost = state.revealed ? site.lost[eye.id] : [];
+
+      QUADRANTS.forEach(function (quadrant) {
+        var isLost = lost.indexOf(quadrant.id) !== -1;
+        fieldSvg.appendChild(svgEl("path", {
+          d: wedge(eye.cx, CY, R, quadrant.id),
+          class: "fields__quadrant" + (isLost ? " fields__quadrant--lost" : "")
+        }));
+      });
+
+      /* Dividing lines and outline on top of the wedges. */
+      fieldSvg.appendChild(svgEl("circle", {
+        cx: eye.cx, cy: CY, r: R, class: "fields__outline"
+      }));
+      fieldSvg.appendChild(svgEl("line", {
+        x1: eye.cx - R, y1: CY, x2: eye.cx + R, y2: CY, class: "fields__divider"
+      }));
+      fieldSvg.appendChild(svgEl("line", {
+        x1: eye.cx, y1: CY - R, x2: eye.cx, y2: CY + R, class: "fields__divider"
+      }));
+
+      /* Macular sparing, drawn as an unaffected disc at the centre. */
+      if (state.revealed && site.sparing) {
+        fieldSvg.appendChild(svgEl("circle", {
+          cx: eye.cx, cy: CY, r: 13, class: "fields__spared"
+        }));
+      }
+
+      /* The learner's prediction, as a dot in each ticked quadrant. */
+      QUADRANTS.forEach(function (quadrant) {
+        if (!state.predicted[eye.id][quadrant.id]) { return; }
+        var offset = quadrantOffset(quadrant.id, R * 0.55);
+        fieldSvg.appendChild(svgEl("circle", {
+          cx: eye.cx + offset[0], cy: CY + offset[1], r: 5, class: "fields__predicted"
+        }));
+      });
+
+      /* Lost quadrants also carry a cross, so the fill is never the only cue. */
+      lost.forEach(function (id) {
+        var offset = quadrantOffset(id, R * 0.78);
+        fieldSvg.appendChild(
+          svgText(eye.cx + offset[0], CY + offset[1] + 5, "fields__lost-mark", "middle", "×"));
+      });
+
+      fieldSvg.appendChild(
+        svgText(eye.cx, CY + R + 20, "chart__axis", "middle", eye.name + "'s field"));
+    });
+
+    fieldSvg.appendChild(svgText(6, CY + 4, "chart__axis", "start", "L"));
+    fieldSvg.appendChild(svgText(294, CY + 4, "chart__axis", "end", "R"));
+    fieldSvg.appendChild(svgText(150, 164, "chart__axis", "middle",
+      "× marks a part of the field that is lost; a dot marks a part you predicted"));
+  }
+
+  function wedge(cx, cy, r, id) {
+    var map = {
+      LU: [[-r, 0], [0, -r], 1],
+      RU: [[0, -r], [r, 0], 1],
+      RL: [[r, 0], [0, r], 1],
+      LL: [[0, r], [-r, 0], 1]
+    };
+    var entry = map[id];
+    return "M " + cx + " " + cy +
+      " L " + (cx + entry[0][0]) + " " + (cy + entry[0][1]) +
+      " A " + r + " " + r + " 0 0 " + entry[2] + " " +
+      (cx + entry[1][0]) + " " + (cy + entry[1][1]) + " Z";
+  }
+
+  function quadrantOffset(id, distance) {
+    var d = distance / Math.SQRT2;
+    if (id === "LU") { return [-d, -d]; }
+    if (id === "RU") { return [d, -d]; }
+    if (id === "RL") { return [d, d]; }
+    return [-d, d];
+  }
+
+  function renderQuadrantTable(site) {
+    clear(quadrantTable);
+    EYES.forEach(function (eye) {
+      QUADRANTS.forEach(function (quadrant, index) {
+        var predicted = Boolean(state.predicted[eye.id][quadrant.id]);
+        var actual = site.lost[eye.id].indexOf(quadrant.id) !== -1;
+        var tr = make("tr");
+
+        if (index === 0) {
+          var th = make("th", null, eye.name);
+          th.setAttribute("scope", "row");
+          th.setAttribute("rowspan", String(QUADRANTS.length));
+          tr.appendChild(th);
+        }
+        tr.appendChild(make("td", null, quadrant.short));
+        tr.appendChild(make("td", null, predicted ? "lost" : "intact"));
+        tr.appendChild(make("td", null,
+          state.revealed ? (actual ? "lost" : "intact") : "not revealed yet"));
+        if (state.revealed && predicted !== actual) { tr.className = "fields__miss"; }
+        quadrantTable.appendChild(tr);
+      });
+    });
+  }
+
+  function renderSummaryTable() {
+    clear(summaryTable);
+    SITES.forEach(function (site) {
+      var tr = make("tr");
+      var th = make("th", null, site.title);
+      th.setAttribute("scope", "row");
+      tr.appendChild(th);
+      tr.appendChild(make("td", null, describeLoss(site.lost.left)));
+      tr.appendChild(make("td", null, describeLoss(site.lost.right)));
+      tr.appendChild(make("td", null, site.description));
+      if (site.id === state.site) { tr.className = "fields__current"; }
+      summaryTable.appendChild(tr);
+    });
+  }
+
+  /* --- The reveal -------------------------------------------------------- */
+
+  function reveal() {
+    var site = siteById(state.site);
+    state.revealed = true;
+
+    var misses = [];
+    var hits = 0;
+    EYES.forEach(function (eye) {
+      QUADRANTS.forEach(function (quadrant) {
+        var predicted = Boolean(state.predicted[eye.id][quadrant.id]);
+        var actual = site.lost[eye.id].indexOf(quadrant.id) !== -1;
+        if (predicted === actual) { hits += 1; }
+        else {
+          misses.push({
+            eye: eye, quadrant: quadrant, predicted: predicted, actual: actual
+          });
+        }
+      });
+    });
+
+    render();
+
+    clear(revealFeedback);
+    var lead = make("p");
+    lead.appendChild(make("strong", "feedback__verdict",
+      hits === 8 ? "All eight quadrants right." : hits + " of the 8 quadrants right."));
+    lead.appendChild(document.createTextNode(
+      " The mapping gives: " + site.description.toLowerCase() + "."));
+    revealFeedback.appendChild(lead);
+
+    if (misses.length) {
+      var missed = make("p");
+      missed.appendChild(make("strong", null, "Where you and the mapping differ: "));
+      missed.appendChild(document.createTextNode(
+        misses.map(function (miss) {
+          return miss.eye.name.toLowerCase() + ", " + miss.quadrant.name + " - " +
+            (miss.actual ? "lost, and you had it intact" : "intact, and you had it lost");
+        }).join("; ") + "."));
+      revealFeedback.appendChild(missed);
+    }
+
+    revealFeedback.appendChild(make("p", null, site.why));
+
+    if (site.sparing) {
+      revealFeedback.appendChild(make("p", "text-muted",
+        "The unaffected disc at the centre of each field is macular sparing - " +
+        "a clue that a defect is this far back, not proof of it."));
+    }
+
+    revealFeedback.setAttribute("data-tone", hits === 8 ? "good" : "caution");
+    revealFeedback.hidden = false;
+
+    shell.announce(
+      hits + " of 8 quadrants correct. " + site.title + " gives " +
+      site.description.toLowerCase() + ".", { immediate: true });
+  }
+
+  /* --- Opening prediction ----------------------------------------------- */
+
+  var OPENING = {
+    nasal: {
+      tone: "good",
+      verdict: "Yes.",
+      text:
+        "Nasal retina, temporal field. The nasal half of each retina looks " +
+        "outwards, so the fibres that cross carry the outer half of each " +
+        "eye's view of the world. Everything else in the tool follows from " +
+        "that."
+    },
+    temporal: {
+      tone: "caution",
+      verdict: "The two halves are the other way round.",
+      text:
+        "The temporal half of each retina sees the INNER (nasal) half of that " +
+        "eye's field, and those fibres stay on their own side. It is the nasal " +
+        "retina that crosses, and it sees the outer field. Work the first two " +
+        "cases in the mapper."
+    },
+    all: {
+      tone: "caution",
+      verdict: "That would make the pattern useless.",
+      text:
+        "If every fibre crossed, each hemisphere would carry one whole eye and " +
+        "a defect behind the chiasm would look like a defect in front of it. " +
+        "The reason a field examination can tell you which side of the chiasm " +
+        "the damage is on is precisely that only half the fibres cross."
+    },
+    unsure: {
+      tone: "good",
+      verdict: "Fair enough - it is worth deriving rather than memorising.",
+      text:
+        "Two facts generate everything: the nasal half of each retina crosses, " +
+        "and the nasal retina sees the outer half of that eye's field. Start " +
+        "with the first case in the mapper, where nothing has crossed yet, and " +
+        "build from there."
+    }
+  };
+
+  openingForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answer = $('input[name="opening"]:checked', openingForm);
+    if (!answer) {
+      openingError.textContent = "Choose an answer before opening the mapper.";
+      openingError.hidden = false;
+      return;
+    }
+    openingError.hidden = true;
+    var entry = OPENING[answer.value];
+    showFeedback(openingFeedback, entry.tone, entry.verdict, entry.text);
+    unlockMapper();
+  });
+
+  $('[data-action="skip-opening"]').addEventListener("click", function () {
+    openingError.hidden = true;
+    showFeedback(openingFeedback, "neutral",
+      "Prediction skipped - demonstration mode.", "");
+    unlockMapper();
+  });
+
+  function unlockMapper() {
+    lockForm(openingForm);
+    mapperSection.hidden = false;
+    render();
+    $("#mapper-heading").focus();
+    shell.announce("Mapper open. Left optic nerve selected.", { immediate: true });
+  }
+
+  /* --- Challenge -------------------------------------------------------- */
+
+  CHALLENGE_OPTIONS.forEach(function (option) {
+    var label = make("label", "control--choice");
+    var input = document.createElement("input");
+    input.type = "checkbox";
+    input.name = "challenge";
+    input.value = option.id;
+    label.appendChild(input);
+    label.appendChild(document.createTextNode(option.label));
+    challengeOptions.appendChild(label);
+  });
+
+  challengeForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var chosen = Array.prototype.filter.call(
+      challengeForm.querySelectorAll('input[name="challenge"]'),
+      function (input) { return input.checked; })
+      .map(function (input) { return input.value; });
+
+    if (chosen.length === 0) {
+      challengeError.textContent = "Tick at least one option before checking.";
+      challengeError.hidden = false;
+      return;
+    }
+    challengeError.hidden = true;
+
+    var correct = CHALLENGE_OPTIONS.filter(function (o) { return o.correct; });
+    var missed = correct.filter(function (o) { return chosen.indexOf(o.id) === -1; });
+    var wrong = CHALLENGE_OPTIONS.filter(function (o) {
+      return !o.correct && chosen.indexOf(o.id) !== -1;
+    });
+
+    clear(challengeFeedback);
+    var lead = make("p");
+    lead.appendChild(make("strong", "feedback__verdict",
+      missed.length === 0 && wrong.length === 0
+        ? "All four, and nothing else."
+        : "Not the full set."));
+    lead.appendChild(document.createTextNode(
+      " Four of the eight points are compatible: the right optic tract, the " +
+      "right lateral geniculate nucleus, both halves of the right optic " +
+      "radiation together, and the right occipital cortex. A complete " +
+      "homonymous defect says which side and that the damage is behind the " +
+      "chiasm. It does not say which structure."));
+    challengeFeedback.appendChild(lead);
+
+    if (missed.length) {
+      challengeFeedback.appendChild(make("p", null,
+        "You left out: " + missed.map(function (o) {
+          return o.label.toLowerCase() + " (" + o.why + ")";
+        }).join("; ") + "."));
+    }
+    if (wrong.length) {
+      challengeFeedback.appendChild(make("p", null,
+        "Not these: " + wrong.map(function (o) {
+          return o.label.toLowerCase() + " - " + o.why;
+        }).join("; ") + "."));
+    }
+
+    challengeFeedback.setAttribute("data-tone",
+      missed.length === 0 && wrong.length === 0 ? "good" : "caution");
+    challengeFeedback.hidden = false;
+    shell.announce("Answer checked.", { immediate: true });
+  });
+
+  /* --- Feedback plumbing ------------------------------------------------ */
+
+  function showFeedback(container, tone, verdict, text) {
+    clear(container);
+    container.setAttribute("data-tone", tone);
+    var p = make("p");
+    p.appendChild(make("strong", "feedback__verdict", verdict));
+    if (text) { p.appendChild(document.createTextNode(" " + text)); }
+    container.appendChild(p);
+    container.hidden = false;
+  }
+
+  function lockForm(form) {
+    Array.prototype.forEach.call(form.querySelectorAll("input, button"),
+      function (control) { control.disabled = true; });
+  }
+
+  function unlockForm(form) {
+    Array.prototype.forEach.call(form.querySelectorAll("input, button"),
+      function (control) { control.disabled = false; });
+    form.reset();
+  }
+
+  /* --- Reset ------------------------------------------------------------ */
+
+  shell.onReset(function () {
+    state = { site: "nerve", predicted: { left: {}, right: {} }, revealed: false };
+    Array.prototype.forEach.call(
+      document.querySelectorAll('[data-site-controls] input'),
+      function (input) { input.checked = input.value === "nerve"; });
+    syncPredictions();
+    unlockForm(openingForm);
+    openingFeedback.hidden = true;
+    openingError.hidden = true;
+    mapperSection.hidden = true;
+    revealFeedback.hidden = true;
+    challengeForm.reset();
+    challengeFeedback.hidden = true;
+    challengeError.hidden = true;
+    render();
+  });
+
+  /* --- Start-up --------------------------------------------------------- */
+
+  shell.reset({ silent: true });
+  shell.announce(
+    "Ready. Answer the question above to open the mapper.",
+    { immediate: true });
+})();
+
+</script>
+</div>

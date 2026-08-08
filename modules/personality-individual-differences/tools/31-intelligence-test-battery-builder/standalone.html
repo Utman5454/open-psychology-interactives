@@ -1,0 +1,2900 @@
+<!-- Intelligence-Test Battery Builder
+     From Open Psychology Interactives - https://github.com/utman5454/open-psychology-interactives
+     Self-contained: no stylesheets, scripts, fonts, images or network requests.
+     Styles are scoped to .opi-activity and do not affect the page around them.
+     Nothing is saved, sent or tracked. MIT licensed; please keep this notice.
+     Paste anywhere that accepts HTML, or save as a .html file and open it. -->
+<div class="opi-activity">
+<style>
+/* Defensive baseline. See scripts/build-standalone.py for why this
+   is `revert` rather than an enumerated reset, and how the specificity ladder
+   keeps the activity's own styling on top of it. */
+.opi-activity *:not(svg *) {
+  all: revert;
+}
+.opi-activity, .opi-activity *, .opi-activity *::before, .opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  text-transform: none;
+  text-indent: 0;
+  font-style: normal;
+  font-variant: normal;
+  letter-spacing: normal;
+  word-spacing: normal;
+  white-space: normal;
+  visibility: visible;
+  float: none;
+  max-width: none;
+}
+.opi-activity svg { max-width: 100%; }
+.opi-activity img { max-width: 100%; height: auto; }
+.opi-activity [hidden] { display: none !important; }
+
+/* assets/css/main.css */
+.opi-activity.opi-activity {
+  --colour-page: #ffffff;
+  --colour-surface: #f5f7fa;
+  --colour-surface-raised: #ffffff;
+  --colour-border: #d3d9e2;
+  --colour-border-strong: #aeb7c4;
+  --colour-text: #131820;
+  --colour-text-muted: #4c566a;
+  --colour-accent: #1a4fa0;
+  --colour-accent-hover: #123a7a;
+  --colour-accent-soft: #e8eefb;
+  --colour-on-accent: #ffffff;
+  --colour-focus: #b45309;
+  --colour-cognitive: #8a4b00;
+  --colour-research-methods: #1a4fa0;
+  --colour-neuropsychology: #145c53;
+  --colour-social-critical-psychology: #9e2f45;
+  --colour-personality-individual-differences: #7a2e6d;
+  --colour-status-bg: #f1ede3;
+  --colour-status-text: #5c4a1f;
+  --colour-status-border: #d9cdb0;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  --text-xs: 13px;
+  --text-sm: 15px;
+  --text-base: 17px;
+  --text-lg: 19px;
+  --text-xl: 23px;
+  --text-2xl: 28px;
+  --text-3xl: 36px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgb(19 24 32 / 0.06);
+  --shadow-md: 0 2px 8px rgb(19 24 32 / 0.08);
+  --measure: 68ch;
+  --container: 1152px;
+}
+@media (prefers-color-scheme: dark) {
+.opi-activity.opi-activity {
+  --colour-page: #0f141b;
+  --colour-surface: #161d27;
+  --colour-surface-raised: #1a2230;
+  --colour-border: #2c3644;
+  --colour-border-strong: #44506180;
+  --colour-text: #e9edf3;
+  --colour-text-muted: #a8b2c1;
+  --colour-accent: #8fb6ff;
+  --colour-accent-hover: #b3cdff;
+  --colour-accent-soft: #1b2740;
+  --colour-on-accent: #0f141b;
+  --colour-focus: #f0b429;
+  --colour-cognitive: #e2ab5f;
+  --colour-research-methods: #8fb6ff;
+  --colour-neuropsychology: #6fc3b4;
+  --colour-social-critical-psychology: #f19aa8;
+  --colour-personality-individual-differences: #db9ccd;
+  --colour-status-bg: #241f14;
+  --colour-status-text: #e2cf9f;
+  --colour-status-border: #4a4028;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 2px 10px rgb(0 0 0 / 0.45);
+}
+}
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity.opi-activity {
+  -webkit-text-size-adjust: 100%;
+}
+.opi-activity.opi-activity {
+  background-color: var(--colour-page);
+  color: var(--colour-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.65;
+}
+.opi-activity.opi-activity h1,
+.opi-activity.opi-activity h2,
+.opi-activity.opi-activity h3,
+.opi-activity.opi-activity h4 {
+  margin: 0 0 var(--space-3);
+  line-height: 1.25;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.opi-activity.opi-activity h1 {
+  font-size: var(--text-3xl);
+}
+.opi-activity.opi-activity h2 {
+  font-size: var(--text-2xl);
+}
+.opi-activity.opi-activity h3 {
+  font-size: var(--text-xl);
+}
+.opi-activity.opi-activity h4 {
+  font-size: var(--text-lg);
+}
+.opi-activity.opi-activity p,
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol,
+.opi-activity.opi-activity dl {
+  margin: 0 0 var(--space-4);
+}
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol {
+  padding-left: 1.35em;
+}
+.opi-activity.opi-activity li + li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity a {
+  color: var(--colour-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: max(1px, 0.06em);
+}
+.opi-activity.opi-activity a:hover {
+  color: var(--colour-accent-hover);
+  text-decoration-thickness: max(2px, 0.11em);
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid var(--colour-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+@supports not selector(:focus-visible) {
+.opi-activity.opi-activity :focus {
+  outline: 3px solid var(--colour-focus);
+    outline-offset: 2px;
+}
+}
+.opi-activity.opi-activity code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.35em;
+}
+.opi-activity.opi-activity hr {
+  border: 0;
+  border-top: 1px solid var(--colour-border);
+  margin: var(--space-6) 0;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+}
+.opi-activity.opi-activity .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.opi-activity.opi-activity .container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+@media (min-width: 40em) {
+.opi-activity.opi-activity .container {
+  padding-inline: var(--space-5);
+}
+}
+.opi-activity.opi-activity .prose {
+  max-width: var(--measure);
+}
+.opi-activity.opi-activity .text-muted {
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .section {
+  padding-block: var(--space-7);
+}
+.opi-activity.opi-activity .section--tinted {
+  background-color: var(--colour-surface);
+  border-block: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .section__header {
+  max-width: var(--measure);
+  margin-bottom: var(--space-5);
+}
+.opi-activity.opi-activity .section__header > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-7) var(--space-6);
+  border-bottom: 1px solid var(--colour-border);
+  
+  background-image: linear-gradient(
+    180deg,
+    var(--colour-accent-soft) 0%,
+    var(--colour-page) 100%
+  );
+}
+.opi-activity.opi-activity .hero__eyebrow {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .hero h1 {
+  max-width: 20ch;
+  margin-bottom: var(--space-4);
+}
+.opi-activity.opi-activity .hero__lead {
+  max-width: var(--measure);
+  font-size: var(--text-lg);
+  color: var(--colour-text-muted);
+}
+@media (min-width: 48em) {
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-8) var(--space-7);
+}
+.opi-activity.opi-activity .hero h1 {
+  font-size: 44px;
+}
+}
+.opi-activity.opi-activity .button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  
+  min-height: 44px;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .button--primary {
+  background-color: var(--colour-accent);
+  border-color: var(--colour-accent);
+  
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--primary:hover {
+  background-color: var(--colour-accent-hover);
+  border-color: var(--colour-accent-hover);
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--secondary {
+  background-color: transparent;
+  border-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .button--secondary:hover {
+  background-color: var(--colour-surface);
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+}
+.opi-activity.opi-activity .card--cognitive {
+  --card-accent: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .card--research-methods {
+  --card-accent: var(--colour-research-methods);
+}
+.opi-activity.opi-activity .card--neuropsychology {
+  --card-accent: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .card--social-critical-psychology {
+  --card-accent: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .card--personality-individual-differences {
+  --card-accent: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 650;
+  line-height: 1.4;
+  padding: 3.2px var(--space-3);
+  border-radius: 999px;
+  border: 1px solid var(--colour-status-border);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+}
+.opi-activity.opi-activity .badge__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex: none;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed var(--colour-border-strong);
+  border-radius: var(--radius-lg);
+  background-color: var(--colour-surface);
+  padding: var(--space-5);
+  text-align: left;
+}
+.opi-activity.opi-activity .placeholder__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+}
+.opi-activity.opi-activity .placeholder > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .split {
+  display: grid;
+  gap: var(--space-6);
+}
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split {
+  grid-template-columns: 3fr 2fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .panel {
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.opi-activity.opi-activity .panel > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .panel__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .section--tinted {
+  border-block: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .hero {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .button--primary {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .button--secondary {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .button:hover {
+  border-color: Highlight;
+}
+.opi-activity.opi-activity .panel {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed CanvasText;
+}
+.opi-activity.opi-activity .badge {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .badge__dot {
+  background-color: CanvasText;
+}
+.opi-activity.opi-activity code {
+  border-color: CanvasText;
+}
+.opi-activity.opi-activity hr {
+  border-top-color: CanvasText;
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+}
+@media print {
+.opi-activity.opi-activity {
+  color: #000;
+  background: #fff;
+}
+.opi-activity.opi-activity a[href^="http"]::after {
+  content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+}
+}
+
+/* components/interactive-shell.css */
+.opi-activity.opi-activity .interactive {
+  --shell-page: var(--colour-page, #ffffff);
+  --shell-surface: var(--colour-surface, #f5f7fa);
+  --shell-raised: var(--colour-surface-raised, #ffffff);
+  --shell-border: var(--colour-border, #d3d9e2);
+  --shell-border-strong: var(--colour-border-strong, #aeb7c4);
+  --shell-text: var(--colour-text, #131820);
+  --shell-muted: var(--colour-text-muted, #4c566a);
+  --shell-accent: var(--colour-accent, #1a4fa0);
+  --shell-accent-soft: var(--colour-accent-soft, #e8eefb);
+  
+  --shell-on-accent: var(--colour-on-accent, #ffffff);
+  --shell-focus: var(--colour-focus, #b45309);
+  --shell-radius: var(--radius-lg, 12px);
+  --shell-gap: var(--space-5, 24px);
+
+  display: block;
+  background-color: var(--shell-raised);
+  color: var(--shell-text);
+  border: 1px solid var(--shell-border);
+  border-radius: var(--shell-radius);
+  
+  overflow-x: clip;
+  overflow-y: visible;
+}
+.opi-activity.opi-activity .interactive__header {
+  padding: var(--shell-gap);
+  border-bottom: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 1.25;
+}
+.opi-activity.opi-activity .interactive__brief {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--shell-muted);
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__body {
+  display: grid;
+  gap: var(--shell-gap);
+  padding: var(--shell-gap);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body {
+  grid-template-columns: minmax(240px, 320px) 1fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .interactive__controls {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__controls fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .interactive__controls legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .control {
+  display: grid;
+  gap: 5.6px;
+}
+.opi-activity.opi-activity .control + .control {
+  margin-top: 16px;
+}
+.opi-activity.opi-activity .control__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.opi-activity.opi-activity .control__label {
+  font-size: 15px;
+  font-weight: 600;
+}
+.opi-activity.opi-activity .control__value {
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--shell-accent);
+}
+.opi-activity.opi-activity .control__hint {
+  font-size: 13px;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .interactive__controls input[type="range"] {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--shell-accent);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  width: 100%;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--shell-text);
+  background-color: var(--shell-raised);
+  border: 1px solid var(--shell-border-strong);
+  border-radius: var(--radius-sm, 4px);
+}
+.opi-activity.opi-activity .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+}
+.opi-activity.opi-activity .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  accent-color: var(--shell-accent);
+  flex: none;
+}
+.opi-activity.opi-activity .interactive__stage {
+  min-height: 256px;
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-page);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body--pinned {
+  align-items: stretch;
+}
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: sticky;
+    top: 0;
+    z-index: 2;
+    
+    margin: -16px -16px 0;
+    padding: 16px 16px 12px;
+    background-color: var(--shell-page);
+    border-bottom: 1px solid var(--shell-border);
+}
+}
+@media (min-width: 52em) and (max-height: 30em) {
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: static;
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
+}
+}
+.opi-activity.opi-activity .interactive__stage > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity :where(.interactive__stage) svg,
+.opi-activity.opi-activity :where(.interactive__stage) canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+.opi-activity.opi-activity .interactive__readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout div {
+  padding: 9.6px 12px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-sm, 4px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__readout dt {
+  font-size: 13px;
+  color: var(--shell-muted);
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout dd {
+  margin: 2.4px 0 0;
+  font-size: 18px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .interactive__status {
+  margin: 0;
+  padding: 12px var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+  font-size: 15px;
+  color: var(--shell-muted);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .interactive__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+}
+.opi-activity.opi-activity .interactive__actions button {
+  min-height: 44px;
+  padding: 6.4px 20px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--shell-on-accent);
+  background-color: var(--shell-accent);
+  border: 1px solid var(--shell-accent);
+  border-radius: var(--radius-md, 8px);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  color: var(--shell-text);
+  background-color: transparent;
+  border-color: var(--shell-border-strong);
+}
+.opi-activity.opi-activity .interactive__actions button:hover {
+  filter: brightness(1.08);
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__notes > summary {
+  padding: 13.6px var(--shell-gap);
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__notes > div {
+  padding: 0 var(--shell-gap) var(--shell-gap);
+  max-width: 68ch;
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__notes > div > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity .interactive *,
+.opi-activity.opi-activity .interactive *::before,
+.opi-activity.opi-activity .interactive *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+}
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .interactive,
+.opi-activity.opi-activity .interactive__controls,
+.opi-activity.opi-activity .interactive__stage,
+.opi-activity.opi-activity .interactive__readout div {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__header {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__status,
+.opi-activity.opi-activity .interactive__actions,
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__actions button {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  border-width: 1px;
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 1;
+    color: GrayText;
+    border-color: GrayText;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__stage svg {
+  forced-color-adjust: auto;
+}
+}
+
+/* components/tool-kit.css */
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split--wide {
+  grid-template-columns: 1fr 1fr;
+}
+}
+.opi-activity.opi-activity .how-to {
+  padding-left: 19.2px;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .how-to > li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .table-scroll {
+  overflow-x: auto;
+  
+  position: relative;
+}
+.opi-activity.opi-activity .prediction {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 832px;
+}
+.opi-activity.opi-activity .prediction > *,
+.opi-activity.opi-activity .challenge > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity .prediction__group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .prediction__legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-weight: 650;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .prediction .control--choice,
+.opi-activity.opi-activity .challenge .control--choice,
+.opi-activity.opi-activity .evidence .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .prediction .control--choice input,
+.opi-activity.opi-activity .challenge .control--choice input,
+.opi-activity.opi-activity .evidence .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .prediction__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .prediction__error {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-status-border);
+  border-left: 4px solid var(--colour-status-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .prediction__readback {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .feedback[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .feedback[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .feedback[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .feedback__verdict {
+  font-weight: 700;
+}
+.opi-activity.opi-activity .verdict {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .verdict__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict__body {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .verdict__body + .verdict__body {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .verdict__note {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .verdict[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .verdict[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .goal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .goal__label {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .goal__text {
+  flex: 1 1 256px;
+}
+.opi-activity.opi-activity .goal strong {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .goal__checks {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+  display: grid;
+  gap: 2.4px;
+}
+.opi-activity.opi-activity .goal__checks > li {
+  margin-top: 0;
+  padding-left: 22.4px;
+  position: relative;
+}
+.opi-activity.opi-activity .goal__checks > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 9.6px;
+  height: 9.6px;
+  border: 2px solid var(--colour-border-strong);
+  border-radius: 2px;
+}
+.opi-activity.opi-activity .goal__checks > li[data-met="yes"]::before {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .stage-track {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .stage-track > li {
+  margin-top: 0;
+  flex: 1 1 160px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-bottom: 3px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .stage-track > li > span {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.opi-activity.opi-activity .stage-track > li[data-state="done"] {
+  border-bottom-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border-bottom-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+  color: var(--colour-text);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .stage__heading {
+  margin: 0;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .data-table,
+.opi-activity.opi-activity .chart__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .data-table th,
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table th,
+.opi-activity.opi-activity .chart__table td {
+  padding: 6.4px 9.6px;
+  border: 1px solid var(--colour-border);
+  text-align: left;
+  vertical-align: top;
+}
+.opi-activity.opi-activity .data-table thead th,
+.opi-activity.opi-activity .chart__table thead th {
+  background-color: var(--colour-surface);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table td {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__table tbody th,
+.opi-activity.opi-activity .data-table tbody th {
+  font-weight: 550;
+}
+.opi-activity.opi-activity .data-table__total > th,
+.opi-activity.opi-activity .data-table__total > td {
+  border-top: 2px solid var(--colour-border-strong);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart {
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .chart__caption {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__svg {
+  max-width: 100%;
+  height: auto;
+}
+.opi-activity.opi-activity .chart__label,
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__inline,
+.opi-activity.opi-activity .chart__axis {
+  font-family: var(--font-body);
+  fill: var(--colour-text);
+  font-size: 13px;
+}
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__axis {
+  fill: var(--colour-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: var(--colour-on-accent);
+  font-size: 12px;
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__track {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__bar {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--one {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .chart__baseline,
+.opi-activity.opi-activity .chart__grid {
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__line {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: var(--colour-personality-individual-differences);
+  stroke-dasharray: 6 4;
+}
+.opi-activity.opi-activity .chart__point {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .reveal > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .reveal__lead {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+.opi-activity.opi-activity .reveal__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(176px, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+  padding: 0;
+  list-style: none;
+}
+.opi-activity.opi-activity .reveal__figures > li {
+  margin-top: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+.opi-activity.opi-activity .reveal__figure-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .reveal__figure-value {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .challenge {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+.opi-activity.opi-activity .challenge__locked {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .panel--caution {
+  background-color: var(--colour-status-bg);
+  border-color: var(--colour-status-border);
+}
+.opi-activity.opi-activity .panel--caution li + li {
+  margin-top: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .goal,
+.opi-activity.opi-activity .verdict,
+.opi-activity.opi-activity .feedback,
+.opi-activity.opi-activity .prediction__error,
+.opi-activity.opi-activity .prediction__readback,
+.opi-activity.opi-activity .stage-track > li,
+.opi-activity.opi-activity .reveal__figures > li {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border: 2px solid Highlight;
+}
+.opi-activity.opi-activity .chart__bar,
+.opi-activity.opi-activity .chart__bar--one {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: Canvas;
+}
+.opi-activity.opi-activity .chart__line {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: Highlight;
+}
+}
+.opi-activity.opi-activity .stage__more {
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .stage__more > summary {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .stage__more[open] > summary {
+  border-bottom: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .stage__more > *:not(summary) {
+  margin: var(--space-3);
+}
+
+/* modules/personality-individual-differences/tools/31-intelligence-test-battery-builder/tool.css */
+.opi-activity.opi-activity #battery .interactive__controls,
+.opi-activity.opi-activity #battery .interactive__stage {
+  min-width: 0;
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity #battery .interactive__body {
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+}
+}
+@media (min-width: 72em) {
+.opi-activity.opi-activity #battery .interactive__body {
+  grid-template-columns: minmax(0, 416px) minmax(0, 1fr);
+}
+}
+.opi-activity.opi-activity #battery .control + .control {
+  margin-top: var(--space-4);
+}
+.opi-activity.opi-activity .task-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .task-list > li {
+  margin-top: 0;
+}
+.opi-activity.opi-activity .task {
+  display: flex;
+  align-items: flex-start;
+  gap: 11.2px;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  background-color: var(--colour-surface-raised);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .task:hover {
+  border-color: var(--colour-border-strong);
+}
+.opi-activity.opi-activity .task input {
+  width: 18.4px;
+  height: 18.4px;
+  margin-top: 3.2px;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .task:has(input:checked) {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+}
+.opi-activity.opi-activity .task:has(input:disabled) {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.opi-activity.opi-activity .task__body {
+  display: grid;
+  gap: 4.8px;
+  min-width: 0;
+}
+.opi-activity.opi-activity .task__name {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .task__desc {
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .task__facts {
+  list-style: none;
+  padding: 0;
+  margin: 2.4px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4.8px;
+}
+.opi-activity.opi-activity .task__facts > li {
+  margin-top: 0;
+  padding: 1.6px 7.2px;
+  border: 1px solid var(--colour-border);
+  border-radius: 999px;
+  background-color: var(--colour-surface);
+  font-size: var(--text-xs);
+  font-variant-numeric: tabular-nums;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .task__note {
+  font-size: var(--text-xs);
+  font-style: italic;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .chart__bar--thin {
+  fill: var(--colour-border-strong);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .task,
+.opi-activity.opi-activity .task__facts > li {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .task:has(input:checked) {
+  border: 2px solid Highlight;
+}
+.opi-activity.opi-activity .chart__bar--thin {
+  fill: GrayText;
+}
+}
+</style>
+
+  <!-- ================= Title and purpose ================= -->
+  <section class="section card--personality-individual-differences" aria-labelledby="page-heading">
+    <div class="container">
+
+      <p class="hero__eyebrow" style="color: var(--colour-personality-individual-differences)">
+        Personality and Individual Differences
+      </p>
+      <h1 id="page-heading">Intelligence-Test Battery Builder</h1>
+      <p class="hero__lead">
+        Seven task types, one session, three different purposes. Build a
+        battery and watch every choice cost you something else.
+      </p>
+
+      <p>
+        <span class="badge">
+          <span class="badge__dot" aria-hidden="true"></span>
+          Simulated — generic task families, illustrative values, no real test
+        </span>
+      </p>
+
+      <div class="split split--wide">
+
+        <div class="panel">
+          <h2 class="panel__title">Learning objective</h2>
+          <p>
+            By the end you should be able to name the trade-offs that
+            assembling a battery forces, and why there is no best battery in
+            the abstract.
+          </p>
+          <p class="text-muted">
+            About 25 minutes. Nothing you do here is saved or sent anywhere.
+          </p>
+        </div>
+
+        <div class="panel panel--caution">
+          <h2 class="panel__title">What this is not</h2>
+          <p>
+            This tool scores <strong>batteries</strong>, never people. It
+            produces no ability score for anybody, reproduces no published
+            test, item, norm or scoring rule, and cannot be used to assess or
+            screen anyone. Real cognitive assessment is carried out by
+            qualified practitioners using standardised instruments under
+            conditions none of which are simulated here.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= Opening prediction ================= -->
+  <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="opening-heading">First, a judgement</h2>
+      </div>
+
+      <noscript>
+        <div class="placeholder">
+          <h3 class="placeholder__title">This part needs JavaScript</h3>
+          <p class="prose">
+            The builder recomputes the battery's properties in your browser
+            as you select tasks, so it cannot run with JavaScript switched
+            off. The rest of this page is readable without it.
+          </p>
+        </div>
+      </noscript>
+
+      <form class="panel prediction" id="prediction-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            What makes one test battery better than another?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="longest">
+            The one that takes longest — more testing time means a better measurement
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="reliable">
+            The one with the highest composite reliability
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="purpose">
+            It depends entirely on what the battery is for
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="culturefree">
+            The one that is free of cultural content
+          </label>
+        </fieldset>
+
+        <p class="prediction__error" data-prediction-error role="alert" hidden></p>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Record my answer and start building
+          </button>
+          <button class="button button--secondary" type="button" data-action="skip-prediction">
+            Skip — I am demonstrating this
+          </button>
+        </div>
+
+        <div class="feedback" data-prediction-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= The builder ================= -->
+  <section class="section" aria-labelledby="builder-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="builder-heading">The builder</h2>
+      </div>
+
+      <section class="interactive" id="battery" data-interactive
+               data-reset-message="Everything cleared. Back to the opening question.">
+
+        <header class="interactive__header">
+          <h3 class="interactive__title">Assemble a battery</h3>
+          <p class="interactive__brief">
+            Seven generic task families. Every value shown is illustrative
+            and was written for this tool; none is a measured property of any
+            published instrument.
+          </p>
+          <p class="goal">
+            <span class="goal__label">Requirements</span>
+            <span class="goal__text" data-goal-text></span>
+          </p>
+        </header>
+
+        <div class="interactive__body interactive__body--pinned">
+
+          <form class="interactive__controls" data-interactive-controls>
+            <fieldset>
+              <legend>Purpose</legend>
+              <div class="control">
+                <label class="control__label" for="scenario-select">
+                  What is this assessment for?
+                </label>
+                <select id="scenario-select"></select>
+                <p class="control__hint" data-scenario-brief></p>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Available tasks</legend>
+              <ul class="task-list" data-task-list></ul>
+            </fieldset>
+          </form>
+
+          <div class="interactive__stage" data-interactive-stage>
+
+            <!-- Pinned: the battery summary is what every task you tick changes. -->
+            <div class="stage__primary">
+              <h4 class="stage__heading">What you have built</h4>
+              <dl class="interactive__readout" data-readout></dl>
+            </div>
+
+            <figure class="chart">
+              <figcaption class="chart__caption">Ability domains sampled</figcaption>
+              <svg class="chart__svg" data-coverage-chart viewBox="0 0 460 194"
+                   aria-hidden="true" focusable="false"></svg>
+              <div class="table-scroll">
+                <table class="chart__table">
+                  <caption class="visually-hidden">
+                    How much of each ability domain the selected battery
+                    samples
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Domain</th>
+                      <th scope="col">Coverage</th>
+                      <th scope="col">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody data-coverage-table></tbody>
+                </table>
+              </div>
+            </figure>
+
+            <div class="verdict">
+              <h4 class="verdict__title">What this battery is trading away</h4>
+              <p class="verdict__body" data-tradeoff></p>
+            </div>
+
+          </div>
+
+        </div>
+
+        <p class="interactive__status" data-interactive-status role="status"></p>
+
+        <div class="interactive__actions">
+          <button type="button" data-action="submit" disabled>
+            Submit this battery
+          </button>
+          <button type="button" data-variant="secondary" data-interactive-reset>
+            Reset everything
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ================= Verdict ================= -->
+  <section class="section section--tinted" id="verdict" aria-labelledby="verdict-heading" hidden>
+    <div class="container">
+      <div class="section__header">
+        <h2 id="verdict-heading" tabindex="-1">Your battery, judged three ways</h2>
+      </div>
+      <div class="panel reveal" data-verdict-body></div>
+
+      <div class="panel">
+        <div class="table-scroll">
+          <table class="data-table">
+            <caption class="visually-hidden">
+              The same battery evaluated against each of the three stated
+              purposes
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Purpose</th>
+                <th scope="col">Fit</th>
+                <th scope="col">Session time</th>
+                <th scope="col">Burden</th>
+              </tr>
+            </thead>
+            <tbody data-comparison-table></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Debrief ================= -->
+  <section class="section" id="debrief" aria-labelledby="debrief-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="debrief-heading">What this demonstrates</h2>
+      </div>
+
+      <div class="split split--wide">
+
+        <div class="prose">
+          <h3>Validity is a property of a use, not of a test</h3>
+          <p>
+            The same battery scores differently against the three purposes
+            without a single task changing. This is the modern conception of
+            validity: a test is not valid in general, it is valid for a
+            stated inference in a stated context. "Is this a good test?" has
+            no answer until someone says what it is for.
+          </p>
+
+          <h3>Every constraint is real and they conflict</h3>
+          <p>
+            Time, breadth, reliability, exposure-dependence and burden cannot
+            be maximised together. Adding tasks buys coverage and reliability
+            and spends time and burden. Choosing abstract tasks lowers
+            exposure-dependence and usually costs you the verbal and
+            quantitative domains entirely. There is no configuration that
+            wins on everything, which is why real test construction is a
+            series of defensible compromises rather than an optimisation.
+          </p>
+
+          <h3>Reliability is the cheapest thing to buy and the least informative</h3>
+          <p>
+            Composite reliability rises with the number of tasks almost
+            regardless of what they measure. It is entirely possible to build
+            a battery with excellent reliability that samples two of six
+            domains — and that combination reads as rigorous in a methods
+            section. Coverage is harder to buy and matters more.
+          </p>
+
+          <h3>Removing language reduces some demands and removes no culture</h3>
+          <p>
+            Matrix and rotation tasks carry lower exposure-dependence than
+            vocabulary, and not zero. Every task here still requires
+            familiarity with being tested, with the response format, with
+            working quickly because speed is wanted, and with the convention
+            that abstract puzzles have single correct answers. "Culture-fair"
+            names an aspiration and a direction of travel, not an achieved
+            property.
+          </p>
+        </div>
+
+        <aside class="panel panel--caution" aria-labelledby="limits-heading">
+          <h3 class="panel__title" id="limits-heading">
+            What this does <em>not</em> demonstrate
+          </h3>
+          <ul>
+            <li>
+              <strong>No real test is involved.</strong> The seven task
+              families are generic descriptions. No published item, norm,
+              subtest, scoring rule or test name is reproduced, and the
+              numbers attached to them are illustrative values written for
+              this page.
+            </li>
+            <li>
+              <strong>No one is measured.</strong> The tool scores batteries,
+              not people. It produces no ability estimate for any person, and
+              could not: nothing here is administered to anybody.
+            </li>
+            <li>
+              <strong>No group comparisons are modelled.</strong>
+              Exposure-dependence describes how much a task's score depends
+              on prior opportunity to learn its content. It is a property of
+              a task. It is never attached to a person or a population here,
+              and it must not be read as one.
+            </li>
+            <li>
+              <strong>Composite reliability is simplified.</strong> It is
+              computed by Spearman–Brown from the mean task reliability,
+              ignoring the intercorrelations between tasks, which a real
+              calculation needs.
+            </li>
+            <li>
+              <strong>"Fit to purpose" is a weighted sum invented for this
+              tool.</strong> It makes the trade-offs visible; it is not a
+              recognised index and no published battery has ever been
+              evaluated this way.
+            </li>
+            <li>
+              <strong>Real assessment involves far more.</strong> Rapport,
+              standardised administration, qualification requirements,
+              behavioural observation, convergent evidence, and the clinical
+              judgement to know when a score should not be interpreted at
+              all. None of that is simulated.
+            </li>
+          </ul>
+        </aside>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+<script>
+/* ---- components/interactive-shell.js ---- */
+/* =========================================================================
+   Open Psychology Interactives — interactive shell helper
+   -------------------------------------------------------------------------
+   A very small vanilla-JS helper that every interactive in this collection
+   uses. It deliberately does *not* draw anything or know anything about
+   statistics, personality or neuropsychology. Its job is the repetitive,
+   easy-to-get-wrong accessibility plumbing:
+
+     * announcing changes through a polite live region;
+     * keeping a range slider and its <output> in step;
+     * wiring the standard Reset button;
+     * reporting the reader's reduced-motion preference.
+
+   Usage (see docs/adapting-a-tool.md for the full markup contract):
+
+       <script src="../../components/interactive-shell.js" defer><\/script>
+       <script src="tool.js" defer><\/script>
+
+       // in tool.js
+       const shell = InteractiveShell.attach('#sampling-demo');
+       shell.onReset(() => { ...restore defaults...; draw(); });
+       shell.bindRange('#sample-size', { format: n => n + ' cases' });
+       shell.announce('Sample of 25 drawn. Mean 4.8.');
+
+   Every published interactive is written against this module.
+
+   Exposed as a global (window.InteractiveShell) rather than an ES module so
+   that a single interactive folder can be opened directly from disk over
+   file:// — ES modules are blocked by CORS in that situation, plain scripts
+   are not. That constraint is the whole reason for the older syntax here.
+   ========================================================================= */
+
+(function (global) {
+  "use strict";
+
+  /* -----------------------------------------------------------------------
+     Internal helpers
+     --------------------------------------------------------------------- */
+
+  /**
+   * Accept either a CSS selector or an element and return an element.
+   * @param {string|Element} target
+   * @param {ParentNode} [scope]
+   * @returns {Element|null}
+   */
+  function resolve(target, scope) {
+    if (!target) {
+      return null;
+    }
+    if (typeof target === "string") {
+      return (scope || document).querySelector(target);
+    }
+    return target;
+  }
+
+  /**
+   * True when the reader has asked the operating system to reduce motion.
+   * Interactives should check this before animating anything — for example
+   * by drawing a sampling distribution in one step instead of animating
+   * each draw.
+   * @returns {boolean}
+   */
+  function prefersReducedMotion() {
+    return (
+      typeof global.matchMedia === "function" &&
+      global.matchMedia("(prefers-reduced-motion: reduce)").matches
+    );
+  }
+
+  /* -----------------------------------------------------------------------
+     Shell controller
+     --------------------------------------------------------------------- */
+
+  /**
+   * Attach the shell behaviour to one `.interactive` element.
+   *
+   * @param {string|Element} target  Selector or element for the shell root.
+   * @returns {object|null}  Controller, or null if the root was not found.
+   */
+  function attach(target) {
+    var root = resolve(target);
+
+    if (!root) {
+      if (global.console && console.warn) {
+        console.warn("InteractiveShell: root element not found.", target);
+      }
+      return null;
+    }
+
+    var controls = root.querySelector("[data-interactive-controls]");
+    var stage = root.querySelector("[data-interactive-stage]");
+    var status = root.querySelector("[data-interactive-status]");
+    var resetButton = root.querySelector("[data-interactive-reset]");
+    var resetHandlers = [];
+    // Every range bound with bindRange() registers its sync function here, so
+    // that reset() can refresh the visible values after the tool's own reset
+    // handlers have restored the inputs. See reset() for why this is needed.
+    var rangeSyncs = [];
+
+    /* --- Live region ----------------------------------------------------
+       The status element is marked up as role="status" (implicitly
+       aria-live="polite"). Two details matter:
+
+         1. Assistive technology only announces *changes* to a live region,
+            so writing the same string twice is silently dropped. We add a
+            trailing zero-width space on repeat messages to force an
+            announcement when a student re-runs the same action.
+         2. Announcements are debounced. A slider dragged across its range
+            fires dozens of input events; without a delay a screen reader
+            would queue every intermediate value and fall far behind.
+       ------------------------------------------------------------------ */
+
+    var announceTimer = null;
+    var lastMessage = "";
+
+    /**
+     * Announce a short sentence describing what just changed.
+     * @param {string} message
+     * @param {object} [options]
+     * @param {boolean} [options.immediate]  Skip the debounce delay. Use for
+     *   discrete actions (button presses); leave off for continuous input.
+     */
+    function announce(message, options) {
+      if (!status) {
+        return;
+      }
+
+      var text = String(message == null ? "" : message);
+      var immediate = Boolean(options && options.immediate);
+
+      if (announceTimer !== null) {
+        global.clearTimeout(announceTimer);
+        announceTimer = null;
+      }
+
+      function write() {
+        // Force a change when the text is identical to last time.
+        status.textContent = text === lastMessage ? text + "​" : text;
+        lastMessage = text;
+      }
+
+      if (immediate) {
+        write();
+      } else {
+        announceTimer = global.setTimeout(write, 350);
+      }
+    }
+
+    /* --- Reset ---------------------------------------------------------- */
+
+    /**
+     * Register a callback to run when the Reset button is pressed.
+     * Several may be registered; they run in the order added.
+     * @param {Function} handler
+     */
+    function onReset(handler) {
+      if (typeof handler === "function") {
+        resetHandlers.push(handler);
+      }
+    }
+
+    /**
+     * Run the reset handlers. Called by the button and available directly so
+     * an interactive can reset itself on first load.
+     *
+     * Bound ranges are re-synced afterwards. A reset handler restores an
+     * input by assigning to `input.value`, and assigning to a value in script
+     * does not fire an `input` event — so without this step the slider would
+     * jump back to its default while its <output> went on showing the old
+     * number. Syncing here, after the handlers have run, also means the sync
+     * sees the restored values regardless of the order things were
+     * registered in.
+     *
+     * @param {object} [options]
+     * @param {boolean} [options.silent]  Suppress the status announcement.
+     */
+    function reset(options) {
+      resetHandlers.forEach(function (handler) {
+        handler();
+      });
+      rangeSyncs.forEach(function (sync) {
+        sync();
+      });
+      if (!options || !options.silent) {
+        announce(
+          root.getAttribute("data-reset-message") ||
+            "Reset to the starting values.",
+          { immediate: true }
+        );
+      }
+    }
+
+    if (resetButton) {
+      resetButton.addEventListener("click", function (event) {
+        // Reset buttons commonly sit inside the controls <form>; stop the
+        // browser's own form reset from fighting with ours.
+        event.preventDefault();
+        reset();
+      });
+    }
+
+    /* --- Range binding --------------------------------------------------
+       Keeps a slider's <output> in step with its value. The <output> must
+       carry `for="<input id>"`, which is what associates the two for
+       assistive technology; this only handles the visible text.
+
+       Optionally sets aria-valuetext, which is how you make a screen reader
+       say "25 cases" or "medium correlation" instead of a bare "25".
+       ------------------------------------------------------------------ */
+
+    /**
+     * @param {string|Element} inputTarget  The range (or number) input.
+     * @param {object} [options]
+     * @param {Function} [options.format]  value:number -> string shown in the
+     *   <output>. Defaults to the raw value.
+     * @param {Function} [options.describe]  value:number -> string used for
+     *   aria-valuetext. Defaults to options.format.
+     * @param {Function} [options.onInput]  value:number -> void, called after
+     *   the display has been updated. Use it to redraw.
+     * @returns {HTMLInputElement|null}
+     */
+    function bindRange(inputTarget, options) {
+      var input = resolve(inputTarget, root);
+      if (!input) {
+        return null;
+      }
+
+      var settings = options || {};
+      var format =
+        typeof settings.format === "function"
+          ? settings.format
+          : function (value) {
+              return String(value);
+            };
+      var describe =
+        typeof settings.describe === "function" ? settings.describe : format;
+
+      // <output for="the-input-id"> is the conventional pairing.
+      var output = input.id
+        ? root.querySelector('output[for="' + input.id + '"]')
+        : null;
+
+      function sync() {
+        var value = Number(input.value);
+        if (output) {
+          output.textContent = format(value);
+        }
+        // Only meaningful for widgets with an implicit or explicit slider
+        // role; harmless elsewhere.
+        input.setAttribute("aria-valuetext", describe(value));
+        if (typeof settings.onInput === "function") {
+          settings.onInput(value);
+        }
+      }
+
+      input.addEventListener("input", sync);
+      // Registered so reset() can refresh the display after the tool's own
+      // reset handlers have put the input back to its default.
+      rangeSyncs.push(sync);
+      sync();
+
+      return input;
+    }
+
+    /* --- Public surface -------------------------------------------------- */
+
+    return {
+      /** The `.interactive` root element. */
+      root: root,
+      /** The controls panel, or null if the shell has none. */
+      controls: controls,
+      /** The stage element where the visualisation is drawn. */
+      stage: stage,
+      /** The live-region element. */
+      status: status,
+      announce: announce,
+      onReset: onReset,
+      reset: reset,
+      bindRange: bindRange,
+      prefersReducedMotion: prefersReducedMotion
+    };
+  }
+
+  /* -----------------------------------------------------------------------
+     Export
+     --------------------------------------------------------------------- */
+
+  global.InteractiveShell = {
+    attach: attach,
+    prefersReducedMotion: prefersReducedMotion
+  };
+})(window);
+
+/* ---- modules/personality-individual-differences/tools/31-intelligence-test-battery-builder/tool.js ---- */
+/* =========================================================================
+   Intelligence-Test Battery Builder
+   -------------------------------------------------------------------------
+   Students are given a testing session with a fixed time budget and asked to
+   assemble a battery from seven original task types for one of three stated
+   purposes. Every choice moves five things at once, and no battery can be
+   good at everything.
+
+   THE EDUCATIONAL MODEL
+   ---------------------
+   Seven task types, each described by:
+
+     minutes            administration time, which is the binding constraint;
+     reliability        the task's own reliability, illustrative;
+     breadth            which broad ability domains it samples, and how much;
+     culturalLoading    how much performance depends on specific schooling,
+                        language and prior exposure rather than on the ability
+                        the task is meant to index;
+     burden             demand on the person being tested — fatigue, stress,
+                        motor and sensory requirements.
+
+   From a selected set the tool computes:
+
+     Coverage       how many of the ability domains are sampled at all, and
+                    how evenly. A battery that measures one domain four ways
+                    is not broad, however long it is.
+     Composite      reliability of the total score, via Spearman-Brown applied
+                    to the mean task reliability. More tasks help; short
+                    unreliable tasks help less than they cost.
+     Cultural load  weighted mean of the tasks' cultural loading. This is
+                    NOT a property of a person or a group: it is a statement
+                    about how much a task's score depends on opportunity to
+                    learn its particular content.
+     Burden         total, compared against what the scenario says the person
+                    can tolerate.
+     Fit to purpose a score against the scenario's own requirements, which
+                    differ: a research battery wants breadth and reliability;
+                    an educational-support battery wants domain coverage
+                    relevant to instruction and low burden; a screening
+                    battery wants short, low-burden, broad-but-shallow.
+
+   The point is not that one battery is correct. It is that the same seven
+   tasks produce different best answers under different purposes, and that the
+   trade-offs are forced rather than incidental.
+
+   WHAT THIS DELIBERATELY DOES NOT DO
+   ----------------------------------
+   * No real test is named, and no item, norm or scoring rule is reproduced.
+     The seven task types are generic families described in general terms.
+   * No IQ score is produced, for anybody, ever. The tool scores BATTERIES,
+     not people.
+   * No group differences of any kind are simulated. Cultural loading is a
+     property of a task's dependence on prior exposure, and is never attached
+     to a person or a population.
+   * Nothing here can be used to assess anyone. The page says so repeatedly.
+
+   No data leave the browser. There is no storage and no network request.
+   ========================================================================= */
+
+(function () {
+  "use strict";
+
+  /* =======================================================================
+     1. Domains, tasks and scenarios
+     ===================================================================== */
+
+  var DOMAINS = [
+    { id: "verbal", name: "Verbal / acquired knowledge" },
+    { id: "fluid", name: "Fluid reasoning" },
+    { id: "speed", name: "Processing speed" },
+    { id: "memory", name: "Working memory" },
+    { id: "spatial", name: "Spatial transformation" },
+    { id: "quant", name: "Quantitative reasoning" }
+  ];
+
+  /* Seven original task families. Values are illustrative and were chosen to
+     make the trade-offs legible; they are not measured properties of any
+     published instrument. */
+  var TASKS = [
+    {
+      id: "vocab",
+      name: "Vocabulary and word meaning",
+      description:
+        "The person explains what words mean, working from common towards rare.",
+      minutes: 12,
+      reliability: 0.90,
+      breadth: { verbal: 0.9, quant: 0.05 },
+      culturalLoading: 0.85,
+      burden: 2,
+      note:
+        "Highly reliable and highly dependent on what a person has had the chance to encounter."
+    },
+    {
+      id: "matrices",
+      name: "Matrix reasoning",
+      description:
+        "Abstract patterns with one element missing; the person selects the piece that completes the rule.",
+      minutes: 18,
+      reliability: 0.88,
+      breadth: { fluid: 0.85, spatial: 0.2 },
+      culturalLoading: 0.35,
+      burden: 3,
+      note:
+        "Often called culture-fair. Lower cultural loading than vocabulary — not zero."
+    },
+    {
+      id: "coding",
+      name: "Symbol–digit coding",
+      description:
+        "A key pairs symbols with digits; the person copies as many as possible against the clock.",
+      minutes: 6,
+      reliability: 0.82,
+      breadth: { speed: 0.9, memory: 0.15 },
+      culturalLoading: 0.30,
+      burden: 3,
+      note:
+        "Short and cheap. Requires sustained motor output and clear vision of small symbols."
+    },
+    {
+      id: "span",
+      name: "Sequence recall and reordering",
+      description:
+        "The person repeats sequences back, forwards and then rearranged.",
+      minutes: 10,
+      reliability: 0.83,
+      breadth: { memory: 0.9, quant: 0.1 },
+      culturalLoading: 0.25,
+      burden: 4,
+      note:
+        "Demanding to sit through. Sensitive to anxiety and to the testing environment."
+    },
+    {
+      id: "rotation",
+      name: "Mental rotation of figures",
+      description:
+        "Two figures are shown; the person judges whether one is a rotation of the other.",
+      minutes: 9,
+      reliability: 0.80,
+      breadth: { spatial: 0.9, fluid: 0.2 },
+      culturalLoading: 0.30,
+      burden: 3,
+      note:
+        "Performance improves noticeably with practice at this kind of puzzle."
+    },
+    {
+      id: "arith",
+      name: "Applied numerical problems",
+      description:
+        "Word problems requiring arithmetic reasoning, solved without a calculator.",
+      minutes: 14,
+      reliability: 0.86,
+      breadth: { quant: 0.85, memory: 0.2, verbal: 0.2 },
+      culturalLoading: 0.75,
+      burden: 4,
+      note:
+        "Depends heavily on formal schooling in a particular curriculum."
+    },
+    {
+      id: "general",
+      name: "General knowledge questions",
+      description:
+        "Questions about widely-taught facts across science, history and civic life.",
+      minutes: 8,
+      reliability: 0.84,
+      breadth: { verbal: 0.6, quant: 0.1 },
+      culturalLoading: 0.95,
+      burden: 2,
+      note:
+        "The most exposure-dependent family here. What counts as 'general' is a decision, not a fact."
+    }
+  ];
+
+  var SCENARIOS = [
+    {
+      id: "research",
+      name: "Research study of reasoning across the lifespan",
+      minutes: 45,
+      burdenCap: 14,
+      brief:
+        "You need a composite that behaves well statistically and samples the " +
+        "ability space broadly, because the analysis depends on the breadth of " +
+        "the construct. Participants are volunteers who have agreed to a " +
+        "45-minute session.",
+      wants: { coverage: 0.4, composite: 0.35, cultural: 0.15, burden: 0.1 },
+      guidance:
+        "Breadth and composite reliability carry most of the weight. A battery " +
+        "of one domain measured three ways will look reliable and answer a " +
+        "narrower question than the one you asked."
+    },
+    {
+      id: "education",
+      name: "Advising on support for a student who is struggling",
+      minutes: 60,
+      burdenCap: 12,
+      brief:
+        "The purpose is to describe a profile of strengths and difficulties " +
+        "that a teacher could act on. A flat composite score is of little use " +
+        "here; which domains differ from each other is the point.",
+      wants: { coverage: 0.5, composite: 0.15, cultural: 0.2, burden: 0.15 },
+      guidance:
+        "Coverage matters most: you cannot describe a profile across domains " +
+        "you did not measure. Heavily exposure-dependent tasks are a particular " +
+        "problem here, because a low score may reflect what the student has " +
+        "been taught rather than how they learn."
+    },
+    {
+      id: "screening",
+      name: "Brief screening in a busy clinic",
+      minutes: 20,
+      burdenCap: 8,
+      brief:
+        "Twenty minutes, and the person is tired. The result will decide only " +
+        "whether a fuller assessment is arranged by someone qualified to do " +
+        "it. Nothing here is a diagnosis.",
+      wants: { coverage: 0.35, composite: 0.2, cultural: 0.2, burden: 0.25 },
+      guidance:
+        "Burden and time dominate. A screen is allowed to be shallow; it is " +
+        "not allowed to be long, exhausting, or to be mistaken for an " +
+        "assessment."
+    }
+  ];
+
+  /* =======================================================================
+     2. The model
+     ===================================================================== */
+
+  function totalMinutes(selected) {
+    return selected.reduce(function (total, task) {
+      return total + task.minutes;
+    }, 0);
+  }
+
+  function totalBurden(selected) {
+    return selected.reduce(function (total, task) {
+      return total + task.burden;
+    }, 0);
+  }
+
+  /** How much of each domain the battery samples. */
+  function domainCoverage(selected) {
+    var coverage = {};
+    DOMAINS.forEach(function (domain) {
+      coverage[domain.id] = 0;
+    });
+    selected.forEach(function (task) {
+      Object.keys(task.breadth).forEach(function (domain) {
+        coverage[domain] += task.breadth[domain];
+      });
+    });
+    return coverage;
+  }
+
+  /**
+   * Breadth score: how many domains are sampled, and how evenly. Measuring
+   * one domain four times over should not count as breadth, so the evenness
+   * term matters as much as the count.
+   */
+  function breadthScore(selected) {
+    if (!selected.length) {
+      return 0;
+    }
+    var coverage = domainCoverage(selected);
+    var values = DOMAINS.map(function (domain) {
+      return coverage[domain.id];
+    });
+    var sampled = values.filter(function (value) {
+      return value >= 0.3;
+    }).length;
+    var total = values.reduce(function (a, b) {
+      return a + b;
+    }, 0);
+
+    // Normalised Shannon evenness across domains.
+    var evenness = 0;
+    if (total > 0) {
+      var entropy = 0;
+      values.forEach(function (value) {
+        if (value > 0) {
+          var p = value / total;
+          entropy -= p * Math.log(p);
+        }
+      });
+      evenness = entropy / Math.log(DOMAINS.length);
+    }
+    return (sampled / DOMAINS.length) * 0.6 + evenness * 0.4;
+  }
+
+  /**
+   * Composite reliability via Spearman–Brown on the mean task reliability.
+   * Deliberately simple: the real thing needs the intercorrelations, which is
+   * itself a point worth making to a class.
+   */
+  function compositeReliability(selected) {
+    if (!selected.length) {
+      return 0;
+    }
+    var meanReliability = selected.reduce(function (total, task) {
+      return total + task.reliability;
+    }, 0) / selected.length;
+    var k = selected.length;
+    return (k * meanReliability) / (1 + (k - 1) * meanReliability);
+  }
+
+  /** Time-weighted mean cultural loading of the selected tasks. */
+  function culturalLoad(selected) {
+    if (!selected.length) {
+      return 0;
+    }
+    var weighted = selected.reduce(function (total, task) {
+      return total + task.culturalLoading * task.minutes;
+    }, 0);
+    return weighted / totalMinutes(selected);
+  }
+
+  /** Fit to the scenario's stated purpose, 0 to 1. */
+  function fitToPurpose(selected, scenario) {
+    if (!selected.length) {
+      return 0;
+    }
+    var wants = scenario.wants;
+    var breadth = breadthScore(selected);
+    var composite = compositeReliability(selected);
+    var cultural = 1 - culturalLoad(selected); // lower loading scores better
+    var burden = Math.max(
+      0, 1 - totalBurden(selected) / (scenario.burdenCap * 1.5));
+
+    return (
+      wants.coverage * breadth +
+      wants.composite * composite +
+      wants.cultural * cultural +
+      wants.burden * burden
+    );
+  }
+
+  /** Constraint check for the scenario. */
+  function constraints(selected, scenario) {
+    var minutes = totalMinutes(selected);
+    var burden = totalBurden(selected);
+    return [
+      {
+        label: "Within the " + scenario.minutes + "-minute session",
+        detail: minutes + " of " + scenario.minutes + " minutes",
+        met: minutes <= scenario.minutes
+      },
+      {
+        label: "Tolerable burden for this person",
+        detail: burden + " of " + scenario.burdenCap,
+        met: burden <= scenario.burdenCap
+      },
+      {
+        label: "At least one task selected",
+        detail: selected.length + " selected",
+        met: selected.length > 0
+      }
+    ];
+  }
+
+  /* =======================================================================
+     3. Helpers
+     ===================================================================== */
+
+  function fmt(value, places) {
+    return value === null || value === undefined || isNaN(value)
+      ? "—"
+      : value.toFixed(places === undefined ? 2 : places);
+  }
+
+  function pct(value) {
+    return Math.round(value * 100) + "%";
+  }
+
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) {
+      node.className = className;
+    }
+    if (text !== undefined) {
+      node.textContent = text;
+    }
+    return node;
+  }
+
+  function clear(node) {
+    while (node.firstChild) {
+      node.removeChild(node.firstChild);
+    }
+  }
+
+  function byId(list, id) {
+    return list.filter(function (entry) {
+      return entry.id === id;
+    })[0];
+  }
+
+  /* =======================================================================
+     4. Wiring
+     ===================================================================== */
+
+  var shell = InteractiveShell.attach("#battery");
+  if (!shell) {
+    return;
+  }
+
+  var page = document;
+  var $ = function (selector, scope) {
+    return (scope || page).querySelector(selector);
+  };
+
+  var taskList = $("[data-task-list]");
+  var scenarioSelect = $("#scenario-select");
+  var scenarioBrief = $("[data-scenario-brief]");
+  var goalText = $("[data-goal-text]");
+  var readout = $("[data-readout]");
+  var coverageChart = $("[data-coverage-chart]");
+  var coverageTable = $("[data-coverage-table]");
+  var tradeoffBody = $("[data-tradeoff]");
+  var submitButton = $('[data-action="submit"]');
+
+  var predictionForm = $("#prediction-form");
+  var predictionError = $("[data-prediction-error]");
+  var predictionFeedback = $("[data-prediction-feedback]");
+  var skipPrediction = $('[data-action="skip-prediction"]');
+
+  var verdictSection = $("#verdict");
+  var verdictBody = $("[data-verdict-body]");
+  var comparisonTable = $("[data-comparison-table]");
+
+  var INITIAL = {
+    stage: "predict",
+    scenarioId: "research",
+    selected: [],
+    submitted: null
+  };
+  var state = null;
+  var checkboxes = {};
+
+  /* --- Build the task list ----------------------------------------------- */
+
+  function buildTasks() {
+    clear(taskList);
+    TASKS.forEach(function (task) {
+      var item = make("li");
+      var label = make("label", "task");
+      var input = document.createElement("input");
+      input.type = "checkbox";
+      input.value = task.id;
+      input.id = "task-" + task.id;
+      input.addEventListener("change", onTaskToggle);
+      checkboxes[task.id] = input;
+
+      var body = make("div", "task__body");
+      body.appendChild(make("span", "task__name", task.name));
+      body.appendChild(make("span", "task__desc", task.description));
+
+      var facts = make("ul", "task__facts");
+      [
+        task.minutes + " min",
+        "reliability " + fmt(task.reliability),
+        "burden " + task.burden,
+        "exposure-dependence " + pct(task.culturalLoading)
+      ].forEach(function (fact) {
+        facts.appendChild(make("li", null, fact));
+      });
+      body.appendChild(facts);
+      body.appendChild(make("span", "task__note", task.note));
+
+      label.appendChild(input);
+      label.appendChild(body);
+      item.appendChild(label);
+      taskList.appendChild(item);
+    });
+  }
+
+  function onTaskToggle(event) {
+    var id = event.target.value;
+    if (event.target.checked) {
+      if (state.selected.indexOf(id) === -1) {
+        state.selected.push(id);
+      }
+    } else {
+      state.selected = state.selected.filter(function (existing) {
+        return existing !== id;
+      });
+    }
+    render();
+
+    var selected = selectedTasks();
+    var scenario = byId(SCENARIOS, state.scenarioId);
+    shell.announce(
+      (event.target.checked ? "Added " : "Removed ") + byId(TASKS, id).name +
+        ". " + totalMinutes(selected) + " of " + scenario.minutes +
+        " minutes used, burden " + totalBurden(selected) + " of " +
+        scenario.burdenCap + ", " + countDomains(selected) + " of " +
+        DOMAINS.length + " domains sampled."
+    );
+  }
+
+  function selectedTasks() {
+    return state.selected.map(function (id) {
+      return byId(TASKS, id);
+    });
+  }
+
+  function countDomains(selected) {
+    var coverage = domainCoverage(selected);
+    return DOMAINS.filter(function (domain) {
+      return coverage[domain.id] >= 0.3;
+    }).length;
+  }
+
+  function setTasksEnabled(enabled) {
+    TASKS.forEach(function (task) {
+      checkboxes[task.id].disabled = !enabled;
+    });
+  }
+
+  /* --- Scenario ----------------------------------------------------------- */
+
+  SCENARIOS.forEach(function (scenario) {
+    var option = make("option", null, scenario.name);
+    option.value = scenario.id;
+    scenarioSelect.appendChild(option);
+  });
+
+  scenarioSelect.addEventListener("change", function () {
+    state.scenarioId = scenarioSelect.value;
+    render();
+    shell.announce(
+      "Purpose changed to: " + byId(SCENARIOS, state.scenarioId).name +
+        ". The same battery is now being judged against different requirements.",
+      { immediate: true }
+    );
+  });
+
+  /* --- Rendering ----------------------------------------------------------- */
+
+  function render() {
+    var scenario = byId(SCENARIOS, state.scenarioId);
+    var selected = selectedTasks();
+
+    scenarioBrief.textContent = scenario.brief;
+    renderGoal(selected, scenario);
+    renderReadout(selected, scenario);
+    renderCoverage(selected);
+    renderTradeoff(selected, scenario);
+
+    var checks = constraints(selected, scenario);
+    var ok = checks.every(function (check) {
+      return check.met;
+    });
+    submitButton.disabled = state.stage !== "build" || !ok;
+  }
+
+  function renderGoal(selected, scenario) {
+    clear(goalText);
+    if (state.stage === "predict") {
+      goalText.textContent =
+        "Answer the question above to unlock the task list.";
+      return;
+    }
+
+    var list = make("ul", "goal__checks");
+    constraints(selected, scenario).forEach(function (check) {
+      var item = make("li");
+      item.textContent =
+        check.label + " — " + check.detail + (check.met ? " (met)" : " (not yet)");
+      item.setAttribute("data-met", check.met ? "yes" : "no");
+      list.appendChild(item);
+    });
+    goalText.appendChild(list);
+  }
+
+  function renderReadout(selected, scenario) {
+    clear(readout);
+    [
+      ["Minutes used", totalMinutes(selected) + " / " + scenario.minutes],
+      ["Domains sampled", countDomains(selected) + " of " + DOMAINS.length],
+      ["Composite reliability", fmt(compositeReliability(selected))],
+      ["Exposure-dependence", pct(culturalLoad(selected))],
+      ["Burden", totalBurden(selected) + " / " + scenario.burdenCap],
+      ["Fit to this purpose", pct(fitToPurpose(selected, scenario))]
+    ].forEach(function (pair) {
+      var cell = make("div");
+      cell.appendChild(make("dt", null, pair[0]));
+      cell.appendChild(make("dd", null, pair[1]));
+      readout.appendChild(cell);
+    });
+  }
+
+  function renderCoverage(selected) {
+    var NS = "http://www.w3.org/2000/svg";
+    var ROW = 30;
+    var BAR = 18;
+    var LEFT = 176;
+    var SCALE = 110; // pixels per unit of coverage
+
+    clear(coverageChart);
+    coverageChart.setAttribute("viewBox", "0 0 460 " + (DOMAINS.length * ROW + 14));
+
+    var coverage = domainCoverage(selected);
+
+    DOMAINS.forEach(function (domain, index) {
+      var y = 8 + index * ROW;
+      var value = coverage[domain.id];
+
+      var label = document.createElementNS(NS, "text");
+      label.setAttribute("x", String(LEFT - 8));
+      label.setAttribute("y", String(y + BAR - 4));
+      label.setAttribute("text-anchor", "end");
+      label.setAttribute("class", "chart__label");
+      label.textContent = domain.name;
+      coverageChart.appendChild(label);
+
+      var track = document.createElementNS(NS, "rect");
+      track.setAttribute("x", String(LEFT));
+      track.setAttribute("y", String(y));
+      track.setAttribute("width", String(2 * SCALE));
+      track.setAttribute("height", String(BAR));
+      track.setAttribute("class", "chart__track");
+      coverageChart.appendChild(track);
+
+      if (value > 0) {
+        var bar = document.createElementNS(NS, "rect");
+        bar.setAttribute("x", String(LEFT));
+        bar.setAttribute("y", String(y));
+        bar.setAttribute("width", String(Math.min(value, 2) * SCALE));
+        bar.setAttribute("height", String(BAR));
+        bar.setAttribute(
+          "class", "chart__bar" + (value < 0.3 ? " chart__bar--thin" : ""));
+        coverageChart.appendChild(bar);
+      }
+
+      var text = document.createElementNS(NS, "text");
+      text.setAttribute("x", String(LEFT + Math.min(value, 2) * SCALE + 6));
+      text.setAttribute("y", String(y + BAR - 4));
+      text.setAttribute("class", "chart__count");
+      text.textContent = value === 0 ? "not sampled" : fmt(value);
+      coverageChart.appendChild(text);
+    });
+
+    clear(coverageTable);
+    DOMAINS.forEach(function (domain) {
+      var value = coverage[domain.id];
+      var row = make("tr");
+      var th = make("th", null, domain.name);
+      th.setAttribute("scope", "row");
+      row.appendChild(th);
+      row.appendChild(make("td", null, fmt(value)));
+      row.appendChild(
+        make("td", null,
+          value === 0 ? "not sampled" : value < 0.3 ? "barely" : "sampled"));
+      coverageTable.appendChild(row);
+    });
+  }
+
+  function renderTradeoff(selected, scenario) {
+    clear(tradeoffBody);
+    if (!selected.length) {
+      tradeoffBody.textContent =
+        "Select some tasks to see what the battery is trading away.";
+      tradeoffBody.setAttribute("data-tone", "neutral");
+      return;
+    }
+
+    var notes = [];
+    var loading = culturalLoad(selected);
+    var breadth = countDomains(selected);
+    var composite = compositeReliability(selected);
+
+    if (loading > 0.65) {
+      notes.push(
+        "Exposure-dependence is high (" + pct(loading) + "). Most of this " +
+        "battery's testing time is spent on tasks whose scores depend heavily " +
+        "on what the person has had the opportunity to learn. That is not a " +
+        "reason never to use them — vocabulary is a genuinely useful measure — " +
+        "but it changes what a low score can be taken to mean."
+      );
+    } else if (loading < 0.4) {
+      notes.push(
+        "Exposure-dependence is comparatively low (" + pct(loading) + "). " +
+        "Note that low is not zero: every task here still requires " +
+        "familiarity with being tested, with the response format, and with " +
+        "the idea that speed matters."
+      );
+    }
+
+    if (breadth <= 2) {
+      notes.push(
+        "Only " + breadth + " of the six domains are sampled. A total score " +
+        "from this battery would be a precise measurement of a narrow slice, " +
+        "and calling it general ability would be a claim the battery cannot " +
+        "support."
+      );
+    }
+
+    if (composite > 0.94 && breadth <= 3) {
+      notes.push(
+        "The composite reliability is high (" + fmt(composite) + ") and the " +
+        "coverage is not. High reliability with narrow coverage is exactly " +
+        "the combination that looks reassuring in a methods section and is not."
+      );
+    }
+
+    var burdenRatio = totalBurden(selected) / scenario.burdenCap;
+    if (burdenRatio > 0.85) {
+      notes.push(
+        "Burden is close to the ceiling for this scenario. Fatigue depresses " +
+        "performance on later tasks, so a battery at the limit is measuring " +
+        "endurance as well as ability, and the order of administration starts " +
+        "to matter."
+      );
+    }
+
+    if (!notes.length) {
+      notes.push(
+        "No single trade-off dominates at the moment. Try pushing one metric " +
+        "as high as it will go and watch what the others do."
+      );
+    }
+
+    tradeoffBody.textContent = notes.join(" ");
+    tradeoffBody.setAttribute(
+      "data-tone", loading > 0.65 || breadth <= 2 ? "warn" : "caution");
+  }
+
+  /* --- Submit and compare -------------------------------------------------- */
+
+  submitButton.addEventListener("click", function () {
+    var scenario = byId(SCENARIOS, state.scenarioId);
+    var selected = selectedTasks();
+    state.submitted = {
+      scenarioId: scenario.id,
+      ids: state.selected.slice()
+    };
+    buildVerdict(selected, scenario);
+    verdictSection.hidden = false;
+    $("#verdict-heading").focus();
+    shell.announce(
+      "Battery submitted. Fit to this purpose " +
+        pct(fitToPurpose(selected, scenario)) +
+        ". Scroll down to see it judged against the other two purposes.",
+      { immediate: true }
+    );
+  });
+
+  function buildVerdict(selected, scenario) {
+    clear(verdictBody);
+
+    var fit = fitToPurpose(selected, scenario);
+    verdictBody.appendChild(
+      make("p", "reveal__lead",
+        "Your battery fits this purpose " + pct(fit) + ", using " +
+        totalMinutes(selected) + " of " + scenario.minutes + " minutes."));
+
+    verdictBody.appendChild(make("p", null, scenario.guidance));
+
+    var figures = make("ul", "reveal__figures");
+    [
+      ["Domains sampled", countDomains(selected) + " of " + DOMAINS.length],
+      ["Composite reliability", fmt(compositeReliability(selected))],
+      ["Exposure-dependence", pct(culturalLoad(selected))],
+      ["Burden", String(totalBurden(selected))]
+    ].forEach(function (pair) {
+      var item = make("li");
+      item.appendChild(make("span", "reveal__figure-label", pair[0]));
+      item.appendChild(make("span", "reveal__figure-value", pair[1]));
+      figures.appendChild(item);
+    });
+    verdictBody.appendChild(figures);
+
+    // The same battery, judged against all three purposes.
+    clear(comparisonTable);
+    SCENARIOS.forEach(function (other) {
+      var otherFit = fitToPurpose(selected, other);
+      var overTime = totalMinutes(selected) > other.minutes;
+      var overBurden = totalBurden(selected) > other.burdenCap;
+      var row = make("tr");
+      var th = make("th", null, other.name);
+      th.setAttribute("scope", "row");
+      row.appendChild(th);
+      row.appendChild(make("td", null, pct(otherFit)));
+      row.appendChild(
+        make("td", null,
+          overTime ? "over by " + (totalMinutes(selected) - other.minutes) + " min" : "fits"));
+      row.appendChild(
+        make("td", null,
+          overBurden ? "over by " + (totalBurden(selected) - other.burdenCap) : "within"));
+      comparisonTable.appendChild(row);
+    });
+
+    var fits = SCENARIOS.map(function (other) {
+      return { name: other.name, fit: fitToPurpose(selected, other) };
+    });
+    var best = fits.slice().sort(function (a, b) {
+      return b.fit - a.fit;
+    })[0];
+
+    verdictBody.appendChild(
+      make("p", null,
+        "The table below applies the same battery to all three purposes. It " +
+        (best.name === scenario.name
+          ? "happens to suit the purpose you built it for best, which is what " +
+            "you would hope."
+          : "actually suits “" + best.name + "” better than the one " +
+            "you built it for.") +
+        " The point is that the numbers move without a single task changing: " +
+        "a battery is not good or bad in the abstract, only good or bad for a " +
+        "stated purpose. The word “validity” names exactly this, and " +
+        "it is why a test cannot be validated once and then used for anything.")
+    );
+
+    verdictBody.appendChild(
+      make("p", "verdict__note",
+        "Every figure is model-implied from illustrative values written for " +
+        "this tool. No published test, item, norm or scoring rule is " +
+        "reproduced, and nothing here produces a score for any person.")
+    );
+  }
+
+  /* --- Opening prediction --------------------------------------------------- */
+
+  var OPENING = {
+    longest: {
+      tone: "caution",
+      verdict: "Not on its own.",
+      text:
+        "Length buys reliability, and reliability is not the same as measuring " +
+        "the right things. A 45-minute battery of three vocabulary-like tasks " +
+        "is long, highly reliable, and narrow."
+    },
+    reliable: {
+      tone: "caution",
+      verdict: "Not sufficient.",
+      text:
+        "A composite can be extremely reliable and still sample two of six " +
+        "domains. Reliability tells you the score is repeatable; it says " +
+        "nothing about what is being repeated. The Alpha Trap in this module " +
+        "is the tool that takes this apart in detail."
+    },
+    purpose: {
+      tone: "good",
+      verdict: "Yes.",
+      text:
+        "There is no best battery, only a best battery for a stated purpose. " +
+        "The same seven tasks give different answers for a research study, an " +
+        "educational recommendation and a brief screen — which is the whole " +
+        "content of the modern idea of validity."
+    },
+    culturefree: {
+      tone: "caution",
+      verdict: "Not achievable.",
+      text:
+        "No task here has zero exposure-dependence, and none could. Even " +
+        "abstract matrix puzzles rely on familiarity with the format, with " +
+        "being tested, and with the assumption that speed is wanted. The " +
+        "Culture-Fair Test Challenge in this module is about exactly this."
+    }
+  };
+
+  predictionForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answer = $('input[name="opening"]:checked', predictionForm);
+    if (!answer) {
+      predictionError.textContent =
+        "Choose an answer before building. Committing first is what makes the " +
+        "trade-offs worth meeting.";
+      predictionError.hidden = false;
+      return;
+    }
+    predictionError.hidden = true;
+    var feedback = OPENING[answer.value];
+    showFeedback(predictionFeedback, feedback.tone, feedback.verdict, feedback.text);
+    lockForm(predictionForm);
+    startBuilding();
+  });
+
+  skipPrediction.addEventListener("click", function () {
+    predictionError.hidden = true;
+    showFeedback(
+      predictionFeedback, "neutral", "Prediction skipped — demonstration mode.",
+      "With a class, ask the question aloud before unlocking the task list.");
+    lockForm(predictionForm);
+    startBuilding();
+  });
+
+  function startBuilding() {
+    state.stage = "build";
+    setTasksEnabled(true);
+    render();
+    shell.announce(
+      "Task list unlocked. Build a battery for the stated purpose.",
+      { immediate: true }
+    );
+  }
+
+  function showFeedback(container, tone, verdict, text) {
+    clear(container);
+    container.setAttribute("data-tone", tone);
+    var paragraph = make("p");
+    paragraph.appendChild(make("strong", "feedback__verdict", verdict));
+    if (text) {
+      paragraph.appendChild(document.createTextNode(" " + text));
+    }
+    container.appendChild(paragraph);
+    container.hidden = false;
+  }
+
+  function lockForm(form) {
+    Array.prototype.forEach.call(
+      form.querySelectorAll("input, button"),
+      function (control) {
+        control.disabled = true;
+      }
+    );
+  }
+
+  function unlockForm(form) {
+    Array.prototype.forEach.call(
+      form.querySelectorAll("input, button"),
+      function (control) {
+        control.disabled = false;
+      }
+    );
+    form.reset();
+  }
+
+  /* --- Reset ---------------------------------------------------------------- */
+
+  shell.onReset(function () {
+    state = JSON.parse(JSON.stringify(INITIAL));
+
+    TASKS.forEach(function (task) {
+      checkboxes[task.id].checked = false;
+    });
+    setTasksEnabled(false);
+
+    unlockForm(predictionForm);
+    predictionFeedback.hidden = true;
+    predictionError.hidden = true;
+    verdictSection.hidden = true;
+
+    scenarioSelect.value = state.scenarioId;
+    render();
+  });
+
+  /* --- Start-up -------------------------------------------------------------- */
+
+  buildTasks();
+  shell.reset({ silent: true });
+  shell.announce(
+    "Ready. Answer the question above to unlock the task list.",
+    { immediate: true }
+  );
+})();
+
+</script>
+</div>

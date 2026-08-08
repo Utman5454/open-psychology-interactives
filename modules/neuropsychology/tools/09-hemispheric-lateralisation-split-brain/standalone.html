@@ -1,0 +1,3233 @@
+<!-- Split-Brain Laboratory
+     From Open Psychology Interactives - https://github.com/utman5454/open-psychology-interactives
+     Self-contained: no stylesheets, scripts, fonts, images or network requests.
+     Styles are scoped to .opi-activity and do not affect the page around them.
+     Nothing is saved, sent or tracked. MIT licensed; please keep this notice.
+     Paste anywhere that accepts HTML, or save as a .html file and open it. -->
+<div class="opi-activity">
+<style>
+/* Defensive baseline. See scripts/build-standalone.py for why this
+   is `revert` rather than an enumerated reset, and how the specificity ladder
+   keeps the activity's own styling on top of it. */
+.opi-activity *:not(svg *) {
+  all: revert;
+}
+.opi-activity, .opi-activity *, .opi-activity *::before, .opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  text-transform: none;
+  text-indent: 0;
+  font-style: normal;
+  font-variant: normal;
+  letter-spacing: normal;
+  word-spacing: normal;
+  white-space: normal;
+  visibility: visible;
+  float: none;
+  max-width: none;
+}
+.opi-activity svg { max-width: 100%; }
+.opi-activity img { max-width: 100%; height: auto; }
+.opi-activity [hidden] { display: none !important; }
+
+/* assets/css/main.css */
+.opi-activity.opi-activity {
+  --colour-page: #ffffff;
+  --colour-surface: #f5f7fa;
+  --colour-surface-raised: #ffffff;
+  --colour-border: #d3d9e2;
+  --colour-border-strong: #aeb7c4;
+  --colour-text: #131820;
+  --colour-text-muted: #4c566a;
+  --colour-accent: #1a4fa0;
+  --colour-accent-hover: #123a7a;
+  --colour-accent-soft: #e8eefb;
+  --colour-on-accent: #ffffff;
+  --colour-focus: #b45309;
+  --colour-cognitive: #8a4b00;
+  --colour-research-methods: #1a4fa0;
+  --colour-neuropsychology: #145c53;
+  --colour-social-critical-psychology: #9e2f45;
+  --colour-personality-individual-differences: #7a2e6d;
+  --colour-status-bg: #f1ede3;
+  --colour-status-text: #5c4a1f;
+  --colour-status-border: #d9cdb0;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  --text-xs: 13px;
+  --text-sm: 15px;
+  --text-base: 17px;
+  --text-lg: 19px;
+  --text-xl: 23px;
+  --text-2xl: 28px;
+  --text-3xl: 36px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgb(19 24 32 / 0.06);
+  --shadow-md: 0 2px 8px rgb(19 24 32 / 0.08);
+  --measure: 68ch;
+  --container: 1152px;
+}
+@media (prefers-color-scheme: dark) {
+.opi-activity.opi-activity {
+  --colour-page: #0f141b;
+  --colour-surface: #161d27;
+  --colour-surface-raised: #1a2230;
+  --colour-border: #2c3644;
+  --colour-border-strong: #44506180;
+  --colour-text: #e9edf3;
+  --colour-text-muted: #a8b2c1;
+  --colour-accent: #8fb6ff;
+  --colour-accent-hover: #b3cdff;
+  --colour-accent-soft: #1b2740;
+  --colour-on-accent: #0f141b;
+  --colour-focus: #f0b429;
+  --colour-cognitive: #e2ab5f;
+  --colour-research-methods: #8fb6ff;
+  --colour-neuropsychology: #6fc3b4;
+  --colour-social-critical-psychology: #f19aa8;
+  --colour-personality-individual-differences: #db9ccd;
+  --colour-status-bg: #241f14;
+  --colour-status-text: #e2cf9f;
+  --colour-status-border: #4a4028;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 2px 10px rgb(0 0 0 / 0.45);
+}
+}
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity.opi-activity {
+  -webkit-text-size-adjust: 100%;
+}
+.opi-activity.opi-activity {
+  background-color: var(--colour-page);
+  color: var(--colour-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.65;
+}
+.opi-activity.opi-activity h1,
+.opi-activity.opi-activity h2,
+.opi-activity.opi-activity h3,
+.opi-activity.opi-activity h4 {
+  margin: 0 0 var(--space-3);
+  line-height: 1.25;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.opi-activity.opi-activity h1 {
+  font-size: var(--text-3xl);
+}
+.opi-activity.opi-activity h2 {
+  font-size: var(--text-2xl);
+}
+.opi-activity.opi-activity h3 {
+  font-size: var(--text-xl);
+}
+.opi-activity.opi-activity h4 {
+  font-size: var(--text-lg);
+}
+.opi-activity.opi-activity p,
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol,
+.opi-activity.opi-activity dl {
+  margin: 0 0 var(--space-4);
+}
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol {
+  padding-left: 1.35em;
+}
+.opi-activity.opi-activity li + li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity a {
+  color: var(--colour-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: max(1px, 0.06em);
+}
+.opi-activity.opi-activity a:hover {
+  color: var(--colour-accent-hover);
+  text-decoration-thickness: max(2px, 0.11em);
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid var(--colour-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+@supports not selector(:focus-visible) {
+.opi-activity.opi-activity :focus {
+  outline: 3px solid var(--colour-focus);
+    outline-offset: 2px;
+}
+}
+.opi-activity.opi-activity code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.35em;
+}
+.opi-activity.opi-activity hr {
+  border: 0;
+  border-top: 1px solid var(--colour-border);
+  margin: var(--space-6) 0;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+}
+.opi-activity.opi-activity .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.opi-activity.opi-activity .container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+@media (min-width: 40em) {
+.opi-activity.opi-activity .container {
+  padding-inline: var(--space-5);
+}
+}
+.opi-activity.opi-activity .prose {
+  max-width: var(--measure);
+}
+.opi-activity.opi-activity .text-muted {
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .section {
+  padding-block: var(--space-7);
+}
+.opi-activity.opi-activity .section--tinted {
+  background-color: var(--colour-surface);
+  border-block: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .section__header {
+  max-width: var(--measure);
+  margin-bottom: var(--space-5);
+}
+.opi-activity.opi-activity .section__header > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-7) var(--space-6);
+  border-bottom: 1px solid var(--colour-border);
+  
+  background-image: linear-gradient(
+    180deg,
+    var(--colour-accent-soft) 0%,
+    var(--colour-page) 100%
+  );
+}
+.opi-activity.opi-activity .hero__eyebrow {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .hero h1 {
+  max-width: 20ch;
+  margin-bottom: var(--space-4);
+}
+.opi-activity.opi-activity .hero__lead {
+  max-width: var(--measure);
+  font-size: var(--text-lg);
+  color: var(--colour-text-muted);
+}
+@media (min-width: 48em) {
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-8) var(--space-7);
+}
+.opi-activity.opi-activity .hero h1 {
+  font-size: 44px;
+}
+}
+.opi-activity.opi-activity .button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  
+  min-height: 44px;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .button--primary {
+  background-color: var(--colour-accent);
+  border-color: var(--colour-accent);
+  
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--primary:hover {
+  background-color: var(--colour-accent-hover);
+  border-color: var(--colour-accent-hover);
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--secondary {
+  background-color: transparent;
+  border-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .button--secondary:hover {
+  background-color: var(--colour-surface);
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+}
+.opi-activity.opi-activity .card--cognitive {
+  --card-accent: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .card--research-methods {
+  --card-accent: var(--colour-research-methods);
+}
+.opi-activity.opi-activity .card--neuropsychology {
+  --card-accent: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .card--social-critical-psychology {
+  --card-accent: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .card--personality-individual-differences {
+  --card-accent: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 650;
+  line-height: 1.4;
+  padding: 3.2px var(--space-3);
+  border-radius: 999px;
+  border: 1px solid var(--colour-status-border);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+}
+.opi-activity.opi-activity .badge__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex: none;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed var(--colour-border-strong);
+  border-radius: var(--radius-lg);
+  background-color: var(--colour-surface);
+  padding: var(--space-5);
+  text-align: left;
+}
+.opi-activity.opi-activity .placeholder__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+}
+.opi-activity.opi-activity .placeholder > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .split {
+  display: grid;
+  gap: var(--space-6);
+}
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split {
+  grid-template-columns: 3fr 2fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .panel {
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.opi-activity.opi-activity .panel > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .panel__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .section--tinted {
+  border-block: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .hero {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .button--primary {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .button--secondary {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .button:hover {
+  border-color: Highlight;
+}
+.opi-activity.opi-activity .panel {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed CanvasText;
+}
+.opi-activity.opi-activity .badge {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .badge__dot {
+  background-color: CanvasText;
+}
+.opi-activity.opi-activity code {
+  border-color: CanvasText;
+}
+.opi-activity.opi-activity hr {
+  border-top-color: CanvasText;
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+}
+@media print {
+.opi-activity.opi-activity {
+  color: #000;
+  background: #fff;
+}
+.opi-activity.opi-activity a[href^="http"]::after {
+  content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+}
+}
+
+/* components/interactive-shell.css */
+.opi-activity.opi-activity .interactive {
+  --shell-page: var(--colour-page, #ffffff);
+  --shell-surface: var(--colour-surface, #f5f7fa);
+  --shell-raised: var(--colour-surface-raised, #ffffff);
+  --shell-border: var(--colour-border, #d3d9e2);
+  --shell-border-strong: var(--colour-border-strong, #aeb7c4);
+  --shell-text: var(--colour-text, #131820);
+  --shell-muted: var(--colour-text-muted, #4c566a);
+  --shell-accent: var(--colour-accent, #1a4fa0);
+  --shell-accent-soft: var(--colour-accent-soft, #e8eefb);
+  
+  --shell-on-accent: var(--colour-on-accent, #ffffff);
+  --shell-focus: var(--colour-focus, #b45309);
+  --shell-radius: var(--radius-lg, 12px);
+  --shell-gap: var(--space-5, 24px);
+
+  display: block;
+  background-color: var(--shell-raised);
+  color: var(--shell-text);
+  border: 1px solid var(--shell-border);
+  border-radius: var(--shell-radius);
+  
+  overflow-x: clip;
+  overflow-y: visible;
+}
+.opi-activity.opi-activity .interactive__header {
+  padding: var(--shell-gap);
+  border-bottom: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 1.25;
+}
+.opi-activity.opi-activity .interactive__brief {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--shell-muted);
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__body {
+  display: grid;
+  gap: var(--shell-gap);
+  padding: var(--shell-gap);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body {
+  grid-template-columns: minmax(240px, 320px) 1fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .interactive__controls {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__controls fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .interactive__controls legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .control {
+  display: grid;
+  gap: 5.6px;
+}
+.opi-activity.opi-activity .control + .control {
+  margin-top: 16px;
+}
+.opi-activity.opi-activity .control__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.opi-activity.opi-activity .control__label {
+  font-size: 15px;
+  font-weight: 600;
+}
+.opi-activity.opi-activity .control__value {
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--shell-accent);
+}
+.opi-activity.opi-activity .control__hint {
+  font-size: 13px;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .interactive__controls input[type="range"] {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--shell-accent);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  width: 100%;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--shell-text);
+  background-color: var(--shell-raised);
+  border: 1px solid var(--shell-border-strong);
+  border-radius: var(--radius-sm, 4px);
+}
+.opi-activity.opi-activity .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+}
+.opi-activity.opi-activity .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  accent-color: var(--shell-accent);
+  flex: none;
+}
+.opi-activity.opi-activity .interactive__stage {
+  min-height: 256px;
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-page);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body--pinned {
+  align-items: stretch;
+}
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: sticky;
+    top: 0;
+    z-index: 2;
+    
+    margin: -16px -16px 0;
+    padding: 16px 16px 12px;
+    background-color: var(--shell-page);
+    border-bottom: 1px solid var(--shell-border);
+}
+}
+@media (min-width: 52em) and (max-height: 30em) {
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: static;
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
+}
+}
+.opi-activity.opi-activity .interactive__stage > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity :where(.interactive__stage) svg,
+.opi-activity.opi-activity :where(.interactive__stage) canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+.opi-activity.opi-activity .interactive__readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout div {
+  padding: 9.6px 12px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-sm, 4px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__readout dt {
+  font-size: 13px;
+  color: var(--shell-muted);
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout dd {
+  margin: 2.4px 0 0;
+  font-size: 18px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .interactive__status {
+  margin: 0;
+  padding: 12px var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+  font-size: 15px;
+  color: var(--shell-muted);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .interactive__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+}
+.opi-activity.opi-activity .interactive__actions button {
+  min-height: 44px;
+  padding: 6.4px 20px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--shell-on-accent);
+  background-color: var(--shell-accent);
+  border: 1px solid var(--shell-accent);
+  border-radius: var(--radius-md, 8px);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  color: var(--shell-text);
+  background-color: transparent;
+  border-color: var(--shell-border-strong);
+}
+.opi-activity.opi-activity .interactive__actions button:hover {
+  filter: brightness(1.08);
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__notes > summary {
+  padding: 13.6px var(--shell-gap);
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__notes > div {
+  padding: 0 var(--shell-gap) var(--shell-gap);
+  max-width: 68ch;
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__notes > div > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity .interactive *,
+.opi-activity.opi-activity .interactive *::before,
+.opi-activity.opi-activity .interactive *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+}
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .interactive,
+.opi-activity.opi-activity .interactive__controls,
+.opi-activity.opi-activity .interactive__stage,
+.opi-activity.opi-activity .interactive__readout div {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__header {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__status,
+.opi-activity.opi-activity .interactive__actions,
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__actions button {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  border-width: 1px;
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 1;
+    color: GrayText;
+    border-color: GrayText;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__stage svg {
+  forced-color-adjust: auto;
+}
+}
+
+/* components/tool-kit.css */
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split--wide {
+  grid-template-columns: 1fr 1fr;
+}
+}
+.opi-activity.opi-activity .how-to {
+  padding-left: 19.2px;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .how-to > li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .table-scroll {
+  overflow-x: auto;
+  
+  position: relative;
+}
+.opi-activity.opi-activity .prediction {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 832px;
+}
+.opi-activity.opi-activity .prediction > *,
+.opi-activity.opi-activity .challenge > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity .prediction__group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .prediction__legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-weight: 650;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .prediction .control--choice,
+.opi-activity.opi-activity .challenge .control--choice,
+.opi-activity.opi-activity .evidence .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .prediction .control--choice input,
+.opi-activity.opi-activity .challenge .control--choice input,
+.opi-activity.opi-activity .evidence .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .prediction__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .prediction__error {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-status-border);
+  border-left: 4px solid var(--colour-status-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .prediction__readback {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .feedback[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .feedback[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .feedback[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .feedback__verdict {
+  font-weight: 700;
+}
+.opi-activity.opi-activity .verdict {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .verdict__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict__body {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .verdict__body + .verdict__body {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .verdict__note {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .verdict[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .verdict[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .goal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .goal__label {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .goal__text {
+  flex: 1 1 256px;
+}
+.opi-activity.opi-activity .goal strong {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .goal__checks {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+  display: grid;
+  gap: 2.4px;
+}
+.opi-activity.opi-activity .goal__checks > li {
+  margin-top: 0;
+  padding-left: 22.4px;
+  position: relative;
+}
+.opi-activity.opi-activity .goal__checks > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 9.6px;
+  height: 9.6px;
+  border: 2px solid var(--colour-border-strong);
+  border-radius: 2px;
+}
+.opi-activity.opi-activity .goal__checks > li[data-met="yes"]::before {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .stage-track {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .stage-track > li {
+  margin-top: 0;
+  flex: 1 1 160px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-bottom: 3px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .stage-track > li > span {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.opi-activity.opi-activity .stage-track > li[data-state="done"] {
+  border-bottom-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border-bottom-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+  color: var(--colour-text);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .stage__heading {
+  margin: 0;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .data-table,
+.opi-activity.opi-activity .chart__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .data-table th,
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table th,
+.opi-activity.opi-activity .chart__table td {
+  padding: 6.4px 9.6px;
+  border: 1px solid var(--colour-border);
+  text-align: left;
+  vertical-align: top;
+}
+.opi-activity.opi-activity .data-table thead th,
+.opi-activity.opi-activity .chart__table thead th {
+  background-color: var(--colour-surface);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table td {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__table tbody th,
+.opi-activity.opi-activity .data-table tbody th {
+  font-weight: 550;
+}
+.opi-activity.opi-activity .data-table__total > th,
+.opi-activity.opi-activity .data-table__total > td {
+  border-top: 2px solid var(--colour-border-strong);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart {
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .chart__caption {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__svg {
+  max-width: 100%;
+  height: auto;
+}
+.opi-activity.opi-activity .chart__label,
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__inline,
+.opi-activity.opi-activity .chart__axis {
+  font-family: var(--font-body);
+  fill: var(--colour-text);
+  font-size: 13px;
+}
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__axis {
+  fill: var(--colour-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: var(--colour-on-accent);
+  font-size: 12px;
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__track {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__bar {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--one {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .chart__baseline,
+.opi-activity.opi-activity .chart__grid {
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__line {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: var(--colour-personality-individual-differences);
+  stroke-dasharray: 6 4;
+}
+.opi-activity.opi-activity .chart__point {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .reveal > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .reveal__lead {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+.opi-activity.opi-activity .reveal__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(176px, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+  padding: 0;
+  list-style: none;
+}
+.opi-activity.opi-activity .reveal__figures > li {
+  margin-top: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+.opi-activity.opi-activity .reveal__figure-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .reveal__figure-value {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .challenge {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+.opi-activity.opi-activity .challenge__locked {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .panel--caution {
+  background-color: var(--colour-status-bg);
+  border-color: var(--colour-status-border);
+}
+.opi-activity.opi-activity .panel--caution li + li {
+  margin-top: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .goal,
+.opi-activity.opi-activity .verdict,
+.opi-activity.opi-activity .feedback,
+.opi-activity.opi-activity .prediction__error,
+.opi-activity.opi-activity .prediction__readback,
+.opi-activity.opi-activity .stage-track > li,
+.opi-activity.opi-activity .reveal__figures > li {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border: 2px solid Highlight;
+}
+.opi-activity.opi-activity .chart__bar,
+.opi-activity.opi-activity .chart__bar--one {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: Canvas;
+}
+.opi-activity.opi-activity .chart__line {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: Highlight;
+}
+}
+.opi-activity.opi-activity .stage__more {
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .stage__more > summary {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .stage__more[open] > summary {
+  border-bottom: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .stage__more > *:not(summary) {
+  margin: var(--space-3);
+}
+
+/* modules/neuropsychology/tools/09-hemispheric-lateralisation-split-brain/tool.css */
+.opi-activity.opi-activity #split .interactive__controls,
+.opi-activity.opi-activity #split .interactive__stage {
+  min-width: 0;
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity #split .interactive__body {
+  grid-template-columns: minmax(0, 336px) minmax(0, 1fr);
+}
+}
+.opi-activity.opi-activity #split .control--choice {
+  font-size: var(--text-sm);
+  line-height: 1.3;
+  align-items: flex-start;
+  padding: 4.8px 0;
+}
+.opi-activity.opi-activity #split .control--choice input {
+  margin-top: 8.8px;
+}
+.opi-activity.opi-activity #split [data-stage-one-controls],
+.opi-activity.opi-activity #split [data-stage-two-controls] {
+  display: grid;
+  gap: 20px;
+}
+.opi-activity.opi-activity .preset-buttons {
+  display: grid;
+  gap: var(--space-2);
+}
+.opi-activity.opi-activity .preset-buttons .button {
+  font-size: var(--text-xs);
+  padding: 5.6px 11.2px;
+  min-height: 44px;
+  text-align: left;
+}
+.opi-activity.opi-activity .lat__figure [data-route] {
+  max-width: 368px;
+}
+.opi-activity.opi-activity .lat__box {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border-strong);
+  stroke-width: 1.5;
+}
+.opi-activity.opi-activity .lat__box--active {
+  fill: var(--colour-accent-soft);
+  stroke: var(--colour-text);
+  stroke-width: 3;
+}
+.opi-activity.opi-activity .lat__link {
+  stroke: var(--colour-border-strong);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 4;
+}
+.opi-activity.opi-activity .lat__link--active {
+  stroke: var(--colour-text);
+  stroke-width: 3.5;
+  stroke-dasharray: none;
+}
+.opi-activity.opi-activity .lat__callosum {
+  stroke: var(--colour-text);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+.opi-activity.opi-activity .lat__cut {
+  fill: none;
+  stroke: var(--colour-text);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+.opi-activity.opi-activity .lat__legend {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+  line-height: 1.45;
+}
+.opi-activity.opi-activity .lat__setup {
+  margin: var(--space-2) 0 var(--space-3);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .lat__reasons {
+  margin: var(--space-2) 0 0;
+  padding-left: 17.6px;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .lat__reasons > li + li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .lat__miss > td {
+  background-color: var(--colour-status-bg);
+}
+.opi-activity.opi-activity .data-table td[data-mark="blocked"] {
+  background-color: var(--colour-accent-soft);
+  font-weight: 650;
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .lat__box {
+  fill: Canvas;
+    stroke: CanvasText;
+}
+.opi-activity.opi-activity .lat__box--active {
+  fill: Canvas;
+    stroke: Highlight;
+    stroke-width: 3;
+}
+.opi-activity.opi-activity .lat__link {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .lat__link--active {
+  stroke: Highlight;
+}
+.opi-activity.opi-activity .lat__callosum,
+.opi-activity.opi-activity .lat__cut {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .lat__miss > td,
+.opi-activity.opi-activity .data-table td[data-mark="blocked"] {
+  background-color: Canvas;
+    border: 2px solid Highlight;
+}
+}
+</style>
+
+  <!-- ================= Title and purpose ================= -->
+  <section class="section card--neuropsychology" aria-labelledby="page-heading">
+    <div class="container">
+
+      <p class="hero__eyebrow" style="color: var(--colour-neuropsychology)">
+        Neuropsychology
+      </p>
+      <h1 id="page-heading">Split-Brain Laboratory</h1>
+      <p class="hero__lead">
+        Set up a lateralised trial, predict whether the answer can get out,
+        and then find the conditions the classic result quietly depends on.
+      </p>
+
+      <p>
+        <span class="badge">
+          <span class="badge__dot" aria-hidden="true"></span>
+          Simulated - a deliberately simplified model, original items, no
+          published stimuli and no real participants
+        </span>
+      </p>
+
+      <div class="split split--wide">
+
+        <div class="panel">
+          <h2 class="panel__title">Learning objective</h2>
+          <p>
+            By the end you should be able to work out what a split-brain
+            trial shows about routing, rather than about what each
+            hemisphere is for.
+          </p>
+          <p class="text-muted">
+            About 30 minutes, in two experiments. Nothing you do here is
+            saved or sent anywhere.
+          </p>
+        </div>
+
+        <div class="panel panel--caution">
+          <h2 class="panel__title">Read this before you start</h2>
+          <p>
+            Nothing on this page is flashed to one visual field. A web page
+            cannot control where your eyes are, and lateralised presentation
+            needs fixation control and timing that a browser cannot provide.
+            You build a trial and the tool reports what a simplified model
+            predicts. The model is an argument about routing, not a
+            measurement.
+          </p>
+          <p>
+            The findings behind it come from a very small number of people
+            who had surgery for severe epilepsy, whose brains differed from
+            typical brains in other ways too. Results varied between them and
+            between tasks.
+          </p>
+        </div>
+
+      </div>
+
+      <ol class="how-to">
+        <li>
+          <strong>Experiment 1.</strong> Choose where the item appears, how
+          you ask for a response, and whether the corpus callosum is intact.
+          Predict the outcome, then run the trial.
+        </li>
+        <li>
+          Keep going until you have found a trial where cutting the callosum
+          changes the outcome and one where it changes nothing.
+        </li>
+        <li>
+          <strong>Experiment 2.</strong> Take the one trial that classically
+          fails and switch off, one at a time, the conditions it depends on.
+        </li>
+      </ol>
+
+    </div>
+  </section>
+
+  <!-- ================= Opening prediction ================= -->
+  <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="opening-heading">First, a judgement</h2>
+        <p class="prose">
+          In a fictional study, a word is presented in the left visual field
+          of a person whose corpus callosum has been completely divided. The
+          person says they saw nothing at all. Moments later, their left hand
+          picks the matching object out of a bag they cannot see into.
+        </p>
+      </div>
+
+      <noscript>
+        <div class="placeholder">
+          <h3 class="placeholder__title">This part needs JavaScript</h3>
+          <p class="prose">
+            The trials are computed and drawn in your browser, so this section
+            cannot run with JavaScript switched off. The rest of this page is
+            readable without it.
+          </p>
+        </div>
+      </noscript>
+
+      <form class="panel prediction" id="opening-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            What is the best account of that?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="unconscious">
+            The right hemisphere saw it but the person was not conscious of it
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="routing">
+            The hemisphere that saw it is not the hemisphere that speaks, and
+            the two can no longer pass the information between them
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="dominant">
+            The left hemisphere is dominant, so it overrode the right
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="visual">
+            The right hemisphere is the visual hemisphere and the left is the
+            verbal one
+          </label>
+        </fieldset>
+
+        <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Record my answer and open the laboratory
+          </button>
+          <button class="button button--secondary" type="button" data-action="skip-opening">
+            Skip - I am demonstrating this
+          </button>
+        </div>
+
+        <div class="feedback" data-opening-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= The laboratory ================= -->
+  <section class="section" id="lab-section" aria-labelledby="lab-heading" hidden>
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="lab-heading" tabindex="-1">The laboratory</h2>
+      </div>
+
+      <ol class="stage-track" data-track>
+        <li><span>1</span> Building a trial</li>
+        <li><span>2</span> What the result depends on</li>
+      </ol>
+
+      <section class="interactive" id="split" data-interactive
+               data-reset-message="Laboratory cleared. Back to experiment 1 with no trials run.">
+
+        <header class="interactive__header">
+          <h3 class="interactive__title" data-stage-title>
+            Experiment 1 - building a trial
+          </h3>
+          <p class="interactive__brief" data-stage-brief></p>
+          <p class="goal">
+            <span class="goal__label">Goal</span>
+            <span class="goal__text" data-goal-text></span>
+          </p>
+        </header>
+
+        <div class="interactive__body interactive__body--pinned">
+
+          <form class="interactive__controls" data-interactive-controls>
+
+            <!-- ---------- Experiment 1 controls ---------- -->
+            <div data-stage-one-controls>
+
+              <fieldset>
+                <legend>The trial</legend>
+                <div class="control">
+                  <label class="control__label" for="item-select">
+                    What is presented
+                  </label>
+                  <select id="item-select" data-item-select></select>
+                </div>
+                <div data-field-controls></div>
+              </fieldset>
+
+              <fieldset>
+                <legend>How we ask for a response</legend>
+                <div data-channel-controls></div>
+              </fieldset>
+
+              <fieldset>
+                <legend>The corpus callosum</legend>
+                <div data-callosum-controls></div>
+              </fieldset>
+
+              <fieldset>
+                <legend>Your prediction, before you run it</legend>
+                <div data-predict-controls></div>
+                <p class="prediction__error" data-trial-error role="alert" hidden></p>
+                <div class="prediction__actions">
+                  <button class="button button--primary" type="submit"
+                          data-action="run">Run the trial</button>
+                  <button class="button button--secondary" type="button"
+                          data-action="worked">Set up the classic trial</button>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>When the goal is met</legend>
+                <div class="prediction__actions">
+                  <button class="button button--secondary" type="button"
+                          data-action="to-stage-two" disabled>
+                    Go to experiment 2
+                  </button>
+                </div>
+              </fieldset>
+
+            </div>
+
+            <!-- ---------- Experiment 2 controls ---------- -->
+            <div data-stage-two-controls hidden>
+
+              <fieldset>
+                <legend>Load a session</legend>
+                <div class="preset-buttons" data-presets></div>
+              </fieldset>
+
+              <fieldset>
+                <legend>Conditions this demonstration depends on</legend>
+                <div data-condition-controls></div>
+                <p class="control__hint">
+                  Each box ticked means that condition held. Untick one and
+                  watch what happens to the trial that is supposed to fail.
+                </p>
+              </fieldset>
+
+              <fieldset>
+                <legend>Back</legend>
+                <div class="prediction__actions">
+                  <button class="button button--secondary" type="button"
+                          data-action="to-stage-one">Back to experiment 1</button>
+                </div>
+              </fieldset>
+
+            </div>
+
+          </form>
+
+          <div class="interactive__stage" data-interactive-stage>
+
+            <!-- Only one primary is visible at a time. -->
+            <div class="stage__primary" data-stage-one-primary>
+              <h4 class="stage__heading" data-route-heading>
+                Where the information can and cannot go
+              </h4>
+              <figure class="chart lat__figure">
+                <figcaption class="visually-hidden">
+                  A routing diagram: the two visual fields above, the two
+                  hemispheres below them joined by the corpus callosum, and
+                  the three response channels below that, with the route
+                  taken by this trial drawn as a thick line
+                </figcaption>
+                <svg class="chart__svg" data-route viewBox="0 0 360 222"
+                     aria-hidden="true" focusable="false"></svg>
+                <p class="lat__legend" data-route-text></p>
+              </figure>
+              <div class="verdict" data-outcome hidden>
+                <h5 class="verdict__title" data-outcome-title></h5>
+                <p class="verdict__body" data-outcome-body></p>
+              </div>
+            </div>
+
+            <div class="stage__primary" data-stage-two-primary hidden>
+              <h4 class="stage__heading">
+                The trial that is supposed to fail
+              </h4>
+              <p class="lat__setup">
+                A word in the <strong>left visual field</strong>, a
+                <strong>spoken report</strong>, a
+                <strong>complete section</strong> of the corpus callosum.
+              </p>
+              <div class="verdict" data-conditions-outcome>
+                <h5 class="verdict__title" data-conditions-title></h5>
+                <p class="verdict__body" data-conditions-body></p>
+              </div>
+            </div>
+
+            <!-- The reasons grow with the number of broken conditions, so
+                 they sit outside the pinned block and scroll under it. -->
+            <div data-reasons-block hidden>
+              <h4 class="stage__heading">Why, condition by condition</h4>
+              <ul class="lat__reasons" data-conditions-reasons></ul>
+            </div>
+
+            <div class="feedback" data-trial-feedback hidden></div>
+
+            <h4 class="stage__heading" data-table-heading>Trials you have run</h4>
+            <div class="table-scroll">
+              <table class="chart__table">
+                <caption class="visually-hidden">
+                  Every trial run so far, with the prediction made and the
+                  outcome the model gives
+                </caption>
+                <thead>
+                  <tr data-table-head></tr>
+                </thead>
+                <tbody data-main-table></tbody>
+              </table>
+            </div>
+            <p class="text-muted" data-table-note></p>
+
+            <details class="stage__more">
+              <summary>Every combination at once</summary>
+              <div class="table-scroll">
+                <table class="data-table">
+                  <caption class="visually-hidden">
+                    All twelve combinations of visual field, response channel
+                    and corpus callosum, with the model's outcome
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Item appears in</th>
+                      <th scope="col">Response channel</th>
+                      <th scope="col">Callosum intact</th>
+                      <th scope="col">Callosum sectioned</th>
+                    </tr>
+                  </thead>
+                  <tbody data-grid-table></tbody>
+                </table>
+              </div>
+              <p class="text-muted">
+                With the callosum intact every cell succeeds, because both
+                hemispheres receive the item within a few tens of
+                milliseconds. After a complete section, a response succeeds
+                only when the hemisphere that received the item also controls
+                the channel you asked with. That is the whole model.
+              </p>
+            </details>
+
+          </div>
+
+        </div>
+
+        <p class="interactive__status" data-interactive-status role="status"></p>
+
+        <div class="interactive__actions">
+          <button type="button" data-variant="secondary" data-interactive-reset>
+            Reset everything
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ================= Challenge ================= -->
+  <section class="section section--tinted" id="challenge" aria-labelledby="challenge-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="challenge-heading">Challenge - two claims to weigh</h2>
+      </div>
+
+      <form class="panel challenge" id="challenge-form">
+
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            1. A magazine article says some people are "right-brained" -
+            creative, intuitive, visual - and others are "left-brained".
+            What is the strongest objection from this material?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="brained" value="few">
+            The studies involved very few people
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="brained" value="disconnection">
+            The findings describe which hemisphere can act on an item in a
+            given moment in people whose hemispheres were surgically
+            disconnected; in a connected brain both hemispheres receive
+            everything almost at once
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="brained" value="equal">
+            Both hemispheres do all the same things equally well
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="brained" value="surgery">
+            The operation is hardly ever performed now
+          </label>
+        </fieldset>
+
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            2. A fictional participant with a complete section names a word
+            shown in the left visual field on 8 trials out of 10. Which
+            conclusion is safest?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="trials" value="right-language">
+            Their right hemisphere must produce speech
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="trials" value="wrong-theory">
+            The contralateral routing account is wrong
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="trials" value="check-method">
+            Something let the information reach the left hemisphere, and the
+            method has to be checked before anything is concluded about the
+            brain
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="trials" value="incomplete">
+            The section must have been incomplete
+          </label>
+        </fieldset>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Check my answers
+          </button>
+        </div>
+
+        <div class="feedback" data-challenge-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Debrief ================= -->
+  <section class="section" id="debrief" aria-labelledby="debrief-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="debrief-heading">What this demonstrates</h2>
+      </div>
+
+      <div class="split split--wide">
+
+        <div class="prose">
+          <h3>The finding is about routing, not about jobs</h3>
+          <p>
+            Each half of the visual world reaches the opposite hemisphere.
+            Each hand is controlled mainly by the opposite hemisphere. Speech
+            is produced by one hemisphere - usually the left. None of that is
+            a claim about what a hemisphere is <em>for</em>. It is a claim
+            about which structure receives a signal and which can act on it.
+            The dramatic split-brain results follow from putting a receiving
+            structure and an acting structure on opposite sides of a cut.
+          </p>
+
+          <h3>The same item, two answers</h3>
+          <p>
+            A word in the left visual field cannot be spoken but can be
+            picked out by the left hand. Nothing about the item changed, and
+            nothing about the person's knowledge of spoons changed. Only the
+            channel you asked with changed. This is why "what can this person
+            do?" is an incomplete question: the answer depends on how you
+            ask.
+          </p>
+
+          <h3>The demonstration is fragile on purpose</h3>
+          <p>
+            Presentation has to be brief enough that the eyes cannot move,
+            fixation has to be monitored, the section has to be complete, and
+            routes such as the left hand tracing a shape or the person making
+            a small noise have to be controlled. Switch any of these off and
+            the person reports the word. A result that appears when the
+            safeguards fail looks exactly like a result that overturns the
+            theory, and the only way to tell them apart is the method
+            section.
+          </p>
+
+          <h3>Lateralisation is a tendency, not a switch</h3>
+          <p>
+            Language is left-lateralised in most right-handed people and in
+            most left-handed people, but not in all, and in a substantial
+            minority it is bilateral. Many disconnected right hemispheres can
+            read simple words and understand speech even though they cannot
+            speak. Lateralisation is a matter of degree, it varies between
+            people, it varies between tasks, and it changes what a lateralised
+            trial can tell you.
+          </p>
+
+          <h3>Why "left-brained people" does not follow</h3>
+          <p>
+            These effects appear because the hemispheres have been
+            surgically separated. In a connected brain the corpus callosum
+            carries the information across in a few tens of milliseconds, so
+            both hemispheres have almost everything almost always. No study
+            of connected brains has found people who use one hemisphere and
+            not the other, and creativity, intuition and logic are not the
+            sort of thing that a hemisphere holds.
+          </p>
+        </div>
+
+        <aside class="panel panel--caution" aria-labelledby="limits-heading">
+          <h3 class="panel__title" id="limits-heading">
+            What this does <em>not</em> demonstrate
+          </h3>
+          <ul>
+            <li>
+              <strong>The model is a caricature.</strong> Real split-brain
+              performance varies with the material, the task, the interval,
+              the amount of practice and the individual, and the same person
+              can succeed on Monday and fail on Friday.
+            </li>
+            <li>
+              <strong>Speech is not always left.</strong> The model treats it
+              as left in every case because that is the textbook simplifying
+              assumption. In real people it is not universal, and the tool
+              lets you switch that assumption off in experiment 2.
+            </li>
+            <li>
+              <strong>Very few people, and not typical brains.</strong> The
+              original participants had epilepsy severe enough to justify
+              surgery, along with medication, prior seizures and, in some
+              cases, atypical organisation from early life.
+            </li>
+            <li>
+              <strong>No published stimuli.</strong> The four items here are
+              ordinary words invented for this page. No study's materials,
+              images or procedures are reproduced.
+            </li>
+            <li>
+              <strong>No diagnosis, no personality claim.</strong> Nothing
+              here says anything about the person using the tool, and nothing
+              here supports left-brained or right-brained descriptions of
+              anybody.
+            </li>
+          </ul>
+        </aside>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+<script>
+/* ---- components/interactive-shell.js ---- */
+/* =========================================================================
+   Open Psychology Interactives — interactive shell helper
+   -------------------------------------------------------------------------
+   A very small vanilla-JS helper that every interactive in this collection
+   uses. It deliberately does *not* draw anything or know anything about
+   statistics, personality or neuropsychology. Its job is the repetitive,
+   easy-to-get-wrong accessibility plumbing:
+
+     * announcing changes through a polite live region;
+     * keeping a range slider and its <output> in step;
+     * wiring the standard Reset button;
+     * reporting the reader's reduced-motion preference.
+
+   Usage (see docs/adapting-a-tool.md for the full markup contract):
+
+       <script src="../../components/interactive-shell.js" defer><\/script>
+       <script src="tool.js" defer><\/script>
+
+       // in tool.js
+       const shell = InteractiveShell.attach('#sampling-demo');
+       shell.onReset(() => { ...restore defaults...; draw(); });
+       shell.bindRange('#sample-size', { format: n => n + ' cases' });
+       shell.announce('Sample of 25 drawn. Mean 4.8.');
+
+   Every published interactive is written against this module.
+
+   Exposed as a global (window.InteractiveShell) rather than an ES module so
+   that a single interactive folder can be opened directly from disk over
+   file:// — ES modules are blocked by CORS in that situation, plain scripts
+   are not. That constraint is the whole reason for the older syntax here.
+   ========================================================================= */
+
+(function (global) {
+  "use strict";
+
+  /* -----------------------------------------------------------------------
+     Internal helpers
+     --------------------------------------------------------------------- */
+
+  /**
+   * Accept either a CSS selector or an element and return an element.
+   * @param {string|Element} target
+   * @param {ParentNode} [scope]
+   * @returns {Element|null}
+   */
+  function resolve(target, scope) {
+    if (!target) {
+      return null;
+    }
+    if (typeof target === "string") {
+      return (scope || document).querySelector(target);
+    }
+    return target;
+  }
+
+  /**
+   * True when the reader has asked the operating system to reduce motion.
+   * Interactives should check this before animating anything — for example
+   * by drawing a sampling distribution in one step instead of animating
+   * each draw.
+   * @returns {boolean}
+   */
+  function prefersReducedMotion() {
+    return (
+      typeof global.matchMedia === "function" &&
+      global.matchMedia("(prefers-reduced-motion: reduce)").matches
+    );
+  }
+
+  /* -----------------------------------------------------------------------
+     Shell controller
+     --------------------------------------------------------------------- */
+
+  /**
+   * Attach the shell behaviour to one `.interactive` element.
+   *
+   * @param {string|Element} target  Selector or element for the shell root.
+   * @returns {object|null}  Controller, or null if the root was not found.
+   */
+  function attach(target) {
+    var root = resolve(target);
+
+    if (!root) {
+      if (global.console && console.warn) {
+        console.warn("InteractiveShell: root element not found.", target);
+      }
+      return null;
+    }
+
+    var controls = root.querySelector("[data-interactive-controls]");
+    var stage = root.querySelector("[data-interactive-stage]");
+    var status = root.querySelector("[data-interactive-status]");
+    var resetButton = root.querySelector("[data-interactive-reset]");
+    var resetHandlers = [];
+    // Every range bound with bindRange() registers its sync function here, so
+    // that reset() can refresh the visible values after the tool's own reset
+    // handlers have restored the inputs. See reset() for why this is needed.
+    var rangeSyncs = [];
+
+    /* --- Live region ----------------------------------------------------
+       The status element is marked up as role="status" (implicitly
+       aria-live="polite"). Two details matter:
+
+         1. Assistive technology only announces *changes* to a live region,
+            so writing the same string twice is silently dropped. We add a
+            trailing zero-width space on repeat messages to force an
+            announcement when a student re-runs the same action.
+         2. Announcements are debounced. A slider dragged across its range
+            fires dozens of input events; without a delay a screen reader
+            would queue every intermediate value and fall far behind.
+       ------------------------------------------------------------------ */
+
+    var announceTimer = null;
+    var lastMessage = "";
+
+    /**
+     * Announce a short sentence describing what just changed.
+     * @param {string} message
+     * @param {object} [options]
+     * @param {boolean} [options.immediate]  Skip the debounce delay. Use for
+     *   discrete actions (button presses); leave off for continuous input.
+     */
+    function announce(message, options) {
+      if (!status) {
+        return;
+      }
+
+      var text = String(message == null ? "" : message);
+      var immediate = Boolean(options && options.immediate);
+
+      if (announceTimer !== null) {
+        global.clearTimeout(announceTimer);
+        announceTimer = null;
+      }
+
+      function write() {
+        // Force a change when the text is identical to last time.
+        status.textContent = text === lastMessage ? text + "​" : text;
+        lastMessage = text;
+      }
+
+      if (immediate) {
+        write();
+      } else {
+        announceTimer = global.setTimeout(write, 350);
+      }
+    }
+
+    /* --- Reset ---------------------------------------------------------- */
+
+    /**
+     * Register a callback to run when the Reset button is pressed.
+     * Several may be registered; they run in the order added.
+     * @param {Function} handler
+     */
+    function onReset(handler) {
+      if (typeof handler === "function") {
+        resetHandlers.push(handler);
+      }
+    }
+
+    /**
+     * Run the reset handlers. Called by the button and available directly so
+     * an interactive can reset itself on first load.
+     *
+     * Bound ranges are re-synced afterwards. A reset handler restores an
+     * input by assigning to `input.value`, and assigning to a value in script
+     * does not fire an `input` event — so without this step the slider would
+     * jump back to its default while its <output> went on showing the old
+     * number. Syncing here, after the handlers have run, also means the sync
+     * sees the restored values regardless of the order things were
+     * registered in.
+     *
+     * @param {object} [options]
+     * @param {boolean} [options.silent]  Suppress the status announcement.
+     */
+    function reset(options) {
+      resetHandlers.forEach(function (handler) {
+        handler();
+      });
+      rangeSyncs.forEach(function (sync) {
+        sync();
+      });
+      if (!options || !options.silent) {
+        announce(
+          root.getAttribute("data-reset-message") ||
+            "Reset to the starting values.",
+          { immediate: true }
+        );
+      }
+    }
+
+    if (resetButton) {
+      resetButton.addEventListener("click", function (event) {
+        // Reset buttons commonly sit inside the controls <form>; stop the
+        // browser's own form reset from fighting with ours.
+        event.preventDefault();
+        reset();
+      });
+    }
+
+    /* --- Range binding --------------------------------------------------
+       Keeps a slider's <output> in step with its value. The <output> must
+       carry `for="<input id>"`, which is what associates the two for
+       assistive technology; this only handles the visible text.
+
+       Optionally sets aria-valuetext, which is how you make a screen reader
+       say "25 cases" or "medium correlation" instead of a bare "25".
+       ------------------------------------------------------------------ */
+
+    /**
+     * @param {string|Element} inputTarget  The range (or number) input.
+     * @param {object} [options]
+     * @param {Function} [options.format]  value:number -> string shown in the
+     *   <output>. Defaults to the raw value.
+     * @param {Function} [options.describe]  value:number -> string used for
+     *   aria-valuetext. Defaults to options.format.
+     * @param {Function} [options.onInput]  value:number -> void, called after
+     *   the display has been updated. Use it to redraw.
+     * @returns {HTMLInputElement|null}
+     */
+    function bindRange(inputTarget, options) {
+      var input = resolve(inputTarget, root);
+      if (!input) {
+        return null;
+      }
+
+      var settings = options || {};
+      var format =
+        typeof settings.format === "function"
+          ? settings.format
+          : function (value) {
+              return String(value);
+            };
+      var describe =
+        typeof settings.describe === "function" ? settings.describe : format;
+
+      // <output for="the-input-id"> is the conventional pairing.
+      var output = input.id
+        ? root.querySelector('output[for="' + input.id + '"]')
+        : null;
+
+      function sync() {
+        var value = Number(input.value);
+        if (output) {
+          output.textContent = format(value);
+        }
+        // Only meaningful for widgets with an implicit or explicit slider
+        // role; harmless elsewhere.
+        input.setAttribute("aria-valuetext", describe(value));
+        if (typeof settings.onInput === "function") {
+          settings.onInput(value);
+        }
+      }
+
+      input.addEventListener("input", sync);
+      // Registered so reset() can refresh the display after the tool's own
+      // reset handlers have put the input back to its default.
+      rangeSyncs.push(sync);
+      sync();
+
+      return input;
+    }
+
+    /* --- Public surface -------------------------------------------------- */
+
+    return {
+      /** The `.interactive` root element. */
+      root: root,
+      /** The controls panel, or null if the shell has none. */
+      controls: controls,
+      /** The stage element where the visualisation is drawn. */
+      stage: stage,
+      /** The live-region element. */
+      status: status,
+      announce: announce,
+      onReset: onReset,
+      reset: reset,
+      bindRange: bindRange,
+      prefersReducedMotion: prefersReducedMotion
+    };
+  }
+
+  /* -----------------------------------------------------------------------
+     Export
+     --------------------------------------------------------------------- */
+
+  global.InteractiveShell = {
+    attach: attach,
+    prefersReducedMotion: prefersReducedMotion
+  };
+})(window);
+
+/* ---- modules/neuropsychology/tools/09-hemispheric-lateralisation-split-brain/tool.js ---- */
+/* =========================================================================
+   Split-Brain Laboratory
+   -------------------------------------------------------------------------
+   Two staged experiments about the LOGIC of a lateralised trial.
+
+     Experiment 1  The learner builds a trial - item, visual field, response
+                   channel, corpus callosum - predicts the outcome, and runs
+                   it. The routing diagram shows where the information can and
+                   cannot go.
+     Experiment 2  The one trial that classically fails is fixed, and the five
+                   conditions it depends on can be switched off one at a time.
+
+   THE EDUCATIONAL MODEL
+   ---------------------
+   Deliberately a caricature, and said so on the page:
+
+     * each visual field projects to the OPPOSITE hemisphere;
+     * each hand is controlled by the OPPOSITE hemisphere;
+     * speech is produced by the LEFT hemisphere (the textbook simplifying
+       assumption, which experiment 2 lets the learner switch off);
+     * with the callosum intact, whatever one hemisphere receives is available
+       to the other;
+     * after a complete section, a response succeeds only when the hemisphere
+       that received the item also controls the channel that was asked with.
+
+   That is the whole of experiment 1. Twelve combinations; six succeed after a
+   section and all twelve succeed with the callosum intact.
+
+   WHY EXPERIMENT 2 EXISTS
+   -----------------------
+   The classic failure (left visual field, spoken report, complete section)
+   depends on four methodological conditions and one fact about the
+   individual. Break any of them and the person reports the word. A
+   methodological failure and a theory-breaking result produce the same
+   observation, which is the point.
+
+   Losing fixation monitoring is treated differently from the rest: it does
+   not turn a failure into a success, it turns the trial into something that
+   cannot be interpreted in either direction.
+
+   DELIBERATE SIMPLIFICATIONS
+   --------------------------
+   Nothing is presented to a visual field - a browser cannot control fixation
+   or duration. Real split-brain performance varies with material, task,
+   interval, practice and individual. Speech is not left-lateralised in
+   everyone. Many disconnected right hemispheres read simple words. The four
+   items are ordinary words invented for this page; no published stimulus,
+   image or procedure is reproduced, and no real participant appears.
+
+   No data leave the browser. There is no storage and no network request.
+   ========================================================================= */
+
+(function () {
+  "use strict";
+
+  /* =======================================================================
+     The model
+     ===================================================================== */
+
+  var ITEMS = [
+    { id: "spoon", word: "SPOON", object: "a spoon" },
+    { id: "key", word: "KEY", object: "a key" },
+    { id: "ring", word: "RING", object: "a ring" },
+    { id: "comb", word: "COMB", object: "a comb" }
+  ];
+
+  var FIELDS = [
+    {
+      id: "left", label: "Left visual field", short: "Left field",
+      hemisphere: "right"
+    },
+    {
+      id: "right", label: "Right visual field", short: "Right field",
+      hemisphere: "left"
+    }
+  ];
+
+  var CHANNELS = [
+    {
+      id: "speak", label: "Say what it was", short: "Speech",
+      hemisphere: "left",
+      succeed: function (item) { return "says “" + item.word.toLowerCase() + "”"; },
+      fail: "says they saw nothing at all"
+    },
+    {
+      id: "lefthand", label: "Pick it out with the left hand, out of sight",
+      short: "Left hand", hemisphere: "right",
+      succeed: function (item) { return "picks out " + item.object + " with the left hand"; },
+      fail: "gropes about with the left hand and picks at random"
+    },
+    {
+      id: "righthand", label: "Pick it out with the right hand, out of sight",
+      short: "Right hand", hemisphere: "left",
+      succeed: function (item) { return "picks out " + item.object + " with the right hand"; },
+      fail: "gropes about with the right hand and picks at random"
+    }
+  ];
+
+  var CALLOSUM = [
+    { id: "intact", label: "Intact", short: "Intact" },
+    { id: "sectioned", label: "Completely sectioned", short: "Sectioned" }
+  ];
+
+  var HEMI_NAME = { left: "left hemisphere", right: "right hemisphere" };
+
+  /** True when the model says the response channel can answer. */
+  function succeeds(field, channel, callosum) {
+    return callosum === "intact" || field.hemisphere === channel.hemisphere;
+  }
+
+  /* The five things the classic failure depends on. Unticking one breaks it.
+     "fixation" is the odd one out: it makes the trial uninterpretable rather
+     than turning the failure into a success. */
+  var CONDITIONS = [
+    {
+      id: "brief",
+      label: "Presentation was brief - too brief for the eyes to move",
+      broken:
+        "The presentation lasted long enough for the eyes to move, so the " +
+        "word also landed in the right visual field and the left hemisphere " +
+        "read it there. Nothing about the brain has changed."
+    },
+    {
+      id: "fixation",
+      label: "Fixation was monitored and held",
+      broken:
+        "Nobody checked where the eyes were pointing, so which hemisphere " +
+        "received the word is unknown. Neither a success nor a failure on " +
+        "this trial can be interpreted."
+    },
+    {
+      id: "complete",
+      label: "The section was complete, including the splenium",
+      broken:
+        "Part of the callosum is intact. The splenium is the part that " +
+        "carries visual information, so it still crosses. “Split-brain” " +
+        "describes several different operations, not one."
+    },
+    {
+      id: "crosscue",
+      label: "Cross-cueing routes were controlled",
+      broken:
+        "The person can cue their own left hemisphere - tracing the shape " +
+        "with the left hand where the right eye can see it, or making a " +
+        "small sound both hemispheres hear. The answer is correct by a route " +
+        "the design was meant to exclude."
+    },
+    {
+      id: "leftlang",
+      label: "This person's speech is produced by the left hemisphere only",
+      broken:
+        "Speech is not left-lateralised in everyone, and many disconnected " +
+        "right hemispheres understand more language than they can produce. " +
+        "If this right hemisphere contributes to speech, the word is " +
+        "reported without anything crossing."
+    }
+  ];
+
+  var PRESETS = [
+    {
+      id: "all", label: "All five hold - the classic result", off: [],
+      note: "Every safeguard in place. This is the trial the textbooks describe."
+    },
+    {
+      id: "hurried", label: "A session that ran too fast to control",
+      off: ["brief", "fixation"],
+      note: "Presentation too long and no fixation monitoring. The trial now says nothing."
+    },
+    {
+      id: "everything", label: "Everything that could go wrong",
+      off: ["brief", "fixation", "complete", "crosscue", "leftlang"],
+      note: "Five separate reasons the word could be reported, and no way to tell them apart."
+    }
+  ];
+
+  /* =======================================================================
+     Helpers
+     ===================================================================== */
+
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) { node.className = className; }
+    if (text !== undefined) { node.textContent = text; }
+    return node;
+  }
+
+  function clear(node) {
+    while (node.firstChild) { node.removeChild(node.firstChild); }
+  }
+
+  var NS = "http://www.w3.org/2000/svg";
+
+  function svgEl(name, attrs) {
+    var node = document.createElementNS(NS, name);
+    Object.keys(attrs).forEach(function (key) {
+      node.setAttribute(key, String(attrs[key]));
+    });
+    return node;
+  }
+
+  function svgText(x, y, className, anchor, text) {
+    var node = svgEl("text", { x: x, y: y, class: className, "text-anchor": anchor });
+    node.textContent = text;
+    return node;
+  }
+
+  function byId(list, id) {
+    return list.filter(function (entry) { return entry.id === id; })[0];
+  }
+
+  /* =======================================================================
+     Wiring
+     ===================================================================== */
+
+  var shell = InteractiveShell.attach("#split");
+  if (!shell) { return; }
+
+  var $ = function (selector, scope) {
+    return (scope || document).querySelector(selector);
+  };
+
+  var track = $("[data-track]");
+  var stageTitle = $("[data-stage-title]");
+  var stageBrief = $("[data-stage-brief]");
+  var goalText = $("[data-goal-text]");
+  var oneControls = $("[data-stage-one-controls]");
+  var twoControls = $("[data-stage-two-controls]");
+  var onePrimary = $("[data-stage-one-primary]");
+  var twoPrimary = $("[data-stage-two-primary]");
+  var itemSelect = $("[data-item-select]");
+  var fieldControls = $("[data-field-controls]");
+  var channelControls = $("[data-channel-controls]");
+  var callosumControls = $("[data-callosum-controls]");
+  var predictControls = $("[data-predict-controls]");
+  var conditionControls = $("[data-condition-controls]");
+  var presetHost = $("[data-presets]");
+  var routeSvg = $("[data-route]");
+  var routeText = $("[data-route-text]");
+  var routeHeading = $("[data-route-heading]");
+  var outcomeBox = $("[data-outcome]");
+  var outcomeTitle = $("[data-outcome-title]");
+  var outcomeBody = $("[data-outcome-body]");
+  var conditionsOutcome = $("[data-conditions-outcome]");
+  var conditionsTitle = $("[data-conditions-title]");
+  var conditionsBody = $("[data-conditions-body]");
+  var conditionsReasons = $("[data-conditions-reasons]");
+  var reasonsBlock = $("[data-reasons-block]");
+  var trialFeedback = $("[data-trial-feedback]");
+  var tableHeading = $("[data-table-heading]");
+  var tableHead = $("[data-table-head]");
+  var mainTable = $("[data-main-table]");
+  var tableNote = $("[data-table-note]");
+  var gridTable = $("[data-grid-table]");
+  var trialError = $("[data-trial-error]");
+  var toStageTwo = $('[data-action="to-stage-two"]');
+  var controlsForm = $("[data-interactive-controls]");
+
+  var openingForm = $("#opening-form");
+  var openingError = $("[data-opening-error]");
+  var openingFeedback = $("[data-opening-feedback]");
+  var labSection = $("#lab-section");
+
+  var challengeForm = $("#challenge-form");
+  var challengeFeedback = $("[data-challenge-feedback]");
+
+  function initialState() {
+    return {
+      stage: 1,
+      item: ITEMS[0].id,
+      field: FIELDS[0].id,
+      channel: CHANNELS[0].id,
+      callosum: CALLOSUM[1].id,
+      predicted: null,      /* "yes" | "no" | null */
+      lastTrial: null,      /* the trial just run, or null */
+      log: [],              /* every trial run, newest last */
+      conditions: {}        /* conditions[id] = true when the condition holds */
+    };
+  }
+
+  var state = initialState();
+  CONDITIONS.forEach(function (c) { state.conditions[c.id] = true; });
+
+  function currentItem() { return byId(ITEMS, state.item); }
+  function currentField() { return byId(FIELDS, state.field); }
+  function currentChannel() { return byId(CHANNELS, state.channel); }
+
+  /* --- Controls, built once --------------------------------------------- */
+
+  ITEMS.forEach(function (item) {
+    var option = document.createElement("option");
+    option.value = item.id;
+    option.textContent = "The word " + item.word;
+    itemSelect.appendChild(option);
+  });
+  itemSelect.addEventListener("change", function () {
+    state.item = itemSelect.value;
+    clearResult();
+    render();
+  });
+
+  /** Build a group of radios into a host element. */
+  function radioGroup(host, name, entries, getValue, setValue) {
+    entries.forEach(function (entry, index) {
+      var label = make("label", "control--choice");
+      var input = document.createElement("input");
+      input.type = "radio";
+      input.name = name;
+      input.value = entry.id;
+      input.checked = entry.id === getValue();
+      input.setAttribute("data-group", name);
+      input.addEventListener("change", function () {
+        setValue(entry.id);
+        clearResult();
+        render();
+      });
+      label.appendChild(input);
+      label.appendChild(document.createTextNode(entry.label));
+      host.appendChild(label);
+      return index;
+    });
+  }
+
+  radioGroup(fieldControls, "field", FIELDS,
+    function () { return state.field; },
+    function (id) { state.field = id; });
+
+  radioGroup(channelControls, "channel", CHANNELS,
+    function () { return state.channel; },
+    function (id) { state.channel = id; });
+
+  radioGroup(callosumControls, "callosum", CALLOSUM,
+    function () { return state.callosum; },
+    function (id) { state.callosum = id; });
+
+  radioGroup(predictControls, "predict",
+    [
+      { id: "yes", label: "The response will be correct" },
+      { id: "no", label: "The response will not be correct" }
+    ],
+    function () { return state.predicted; },
+    function (id) { state.predicted = id; });
+
+  CONDITIONS.forEach(function (condition) {
+    var label = make("label", "control--choice");
+    var input = document.createElement("input");
+    input.type = "checkbox";
+    input.checked = true;
+    input.setAttribute("data-condition", condition.id);
+    input.addEventListener("change", function () {
+      state.conditions[condition.id] = input.checked;
+      render();
+      shell.announce(condition.label + ": " +
+        (input.checked ? "holds." : "does not hold."), { immediate: true });
+    });
+    label.appendChild(input);
+    label.appendChild(document.createTextNode(condition.label));
+    conditionControls.appendChild(label);
+  });
+
+  PRESETS.forEach(function (preset) {
+    var button = make("button", "button button--secondary", preset.label);
+    button.type = "button";
+    button.addEventListener("click", function () {
+      CONDITIONS.forEach(function (condition) {
+        state.conditions[condition.id] = preset.off.indexOf(condition.id) === -1;
+      });
+      syncConditionBoxes();
+      render();
+      shell.announce(preset.label + ". " + preset.note, { immediate: true });
+    });
+    presetHost.appendChild(button);
+  });
+
+  function syncConditionBoxes() {
+    Array.prototype.forEach.call(
+      conditionControls.querySelectorAll("[data-condition]"),
+      function (input) {
+        input.checked = Boolean(state.conditions[input.getAttribute("data-condition")]);
+      });
+  }
+
+  function syncTrialControls() {
+    itemSelect.value = state.item;
+    Array.prototype.forEach.call(
+      controlsForm.querySelectorAll('[data-group]'),
+      function (input) {
+        var group = input.getAttribute("data-group");
+        var wanted = group === "field" ? state.field
+          : group === "channel" ? state.channel
+            : group === "callosum" ? state.callosum
+              : state.predicted;
+        input.checked = input.value === wanted;
+      });
+  }
+
+  /** A changed setting invalidates the result of the previous run. */
+  function clearResult() {
+    state.lastTrial = null;
+    trialFeedback.hidden = true;
+    trialError.hidden = true;
+  }
+
+  controlsForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    if (state.stage === 1) { runTrial(); }
+  });
+
+  $('[data-action="worked"]').addEventListener("click", function () {
+    state.item = ITEMS[0].id;
+    state.field = "left";
+    state.channel = "speak";
+    state.callosum = "sectioned";
+    state.predicted = null;
+    clearResult();
+    syncTrialControls();
+    render();
+    shell.announce(
+      "Classic trial set up: the word spoon in the left visual field, a " +
+      "spoken report, a complete section. Make a prediction, then run it.",
+      { immediate: true });
+  });
+
+  toStageTwo.addEventListener("click", function () { goToStage(2); });
+  $('[data-action="to-stage-one"]').addEventListener("click", function () {
+    goToStage(1);
+  });
+
+  function goToStage(stage) {
+    state.stage = stage;
+    trialFeedback.hidden = true;
+    trialError.hidden = true;
+    render();
+    shell.announce(stage === 1
+      ? "Experiment 1. Build a trial, predict the outcome, then run it."
+      : "Experiment 2. Switch off the conditions the classic result depends on.",
+      { immediate: true });
+  }
+
+  /* --- Running a trial --------------------------------------------------- */
+
+  function runTrial() {
+    if (!state.predicted) {
+      trialError.textContent = "Predict the outcome before running the trial.";
+      trialError.hidden = false;
+      return;
+    }
+    trialError.hidden = true;
+
+    var field = currentField();
+    var channel = currentChannel();
+    var item = currentItem();
+    var ok = succeeds(field, channel, state.callosum);
+
+    state.lastTrial = {
+      item: item, field: field, channel: channel,
+      callosum: state.callosum, success: ok, predicted: state.predicted
+    };
+    state.log.push(state.lastTrial);
+
+    render();
+    showTrialFeedback(state.lastTrial);
+    shell.announce(
+      (ok ? "Correct response. " : "No correct response. ") +
+      "The " + HEMI_NAME[field.hemisphere] + " received it and the " +
+      HEMI_NAME[channel.hemisphere] + " controls " +
+      channel.short.toLowerCase() + ".", { immediate: true });
+  }
+
+  function showTrialFeedback(trial) {
+    var right = (trial.predicted === "yes") === trial.success;
+    clear(trialFeedback);
+
+    var lead = make("p");
+    lead.appendChild(make("strong", "feedback__verdict",
+      right ? "Your prediction was right." : "Not what you predicted."));
+    lead.appendChild(document.createTextNode(" " + routeSentence(trial)));
+    trialFeedback.appendChild(lead);
+
+    /* The teaching point sits in the comparison, so the feedback names the
+       one change that would flip this particular trial. */
+    trialFeedback.appendChild(make("p", null, flipSentence(trial)));
+
+    trialFeedback.setAttribute("data-tone", right ? "good" : "caution");
+    trialFeedback.hidden = false;
+  }
+
+  function routeSentence(trial) {
+    return "The word " + trial.item.word + " in the " +
+      trial.field.label.toLowerCase() + " reaches the " +
+      HEMI_NAME[trial.field.hemisphere] + ". You asked with " +
+      trial.channel.short.toLowerCase() + ", which the " +
+      HEMI_NAME[trial.channel.hemisphere] + " controls. The callosum is " +
+      (trial.callosum === "intact" ? "intact, so both hemispheres have it"
+        : "sectioned, so nothing crosses") + ". The person " +
+      (trial.success ? trial.channel.succeed(trial.item) : trial.channel.fail) + ".";
+  }
+
+  function flipSentence(trial) {
+    if (trial.callosum === "intact") {
+      return "With the callosum intact every combination works, so this trial " +
+        "carries no information about lateralisation. Section it and run the " +
+        "same trial again.";
+    }
+    if (trial.success) {
+      return "This one succeeds because the hemisphere that received the item " +
+        "also controls the channel. Keep everything else and switch to the " +
+        "other hand.";
+    }
+    var partner = CHANNELS.filter(function (c) {
+      return c.hemisphere === trial.field.hemisphere;
+    })[0];
+    return "The information is in the " + HEMI_NAME[trial.field.hemisphere] +
+      " and has nowhere to go. It is not lost: ask with " +
+      partner.short.toLowerCase() + " instead and the same person answers " +
+      "correctly. What the person “knows” depends on which channel you " +
+      "ask through.";
+  }
+
+  /* --- Rendering -------------------------------------------------------- */
+
+  function render() {
+    oneControls.hidden = state.stage !== 1;
+    twoControls.hidden = state.stage !== 2;
+    onePrimary.hidden = state.stage !== 1;
+    twoPrimary.hidden = state.stage !== 2;
+
+    Array.prototype.forEach.call(track.children, function (item, index) {
+      item.removeAttribute("aria-current");
+      item.removeAttribute("data-state");
+      if (index + 1 < state.stage) { item.setAttribute("data-state", "done"); }
+      if (index + 1 === state.stage) { item.setAttribute("aria-current", "step"); }
+    });
+
+    if (state.stage === 1) { renderStageOne(); } else { renderStageTwo(); }
+    renderLog();
+    renderGrid();
+    renderGoal();
+  }
+
+  function renderStageOne() {
+    reasonsBlock.hidden = true;
+    stageTitle.textContent = "Experiment 1 - building a trial";
+    stageBrief.textContent =
+      "Nothing is flashed anywhere. Set the trial up, commit to a prediction, " +
+      "and the model reports what its routing rules give.";
+    tableHeading.textContent = "Trials you have run";
+    tableNote.textContent = state.log.length
+      ? "Rows where your prediction and the outcome disagree are the ones " +
+        "worth reading twice."
+      : "No trials yet. Set one up on the left and run it.";
+
+    var field = currentField();
+    var channel = currentChannel();
+    routeHeading.textContent = state.lastTrial
+      ? "The route this trial took"
+      : "The route this trial would take";
+    drawRoute(field, channel, state.callosum, state.lastTrial);
+
+    if (state.lastTrial) {
+      outcomeBox.hidden = false;
+      outcomeTitle.textContent = state.lastTrial.success
+        ? "A correct response"
+        : "No correct response";
+      outcomeBody.textContent = "The person " +
+        (state.lastTrial.success
+          ? state.lastTrial.channel.succeed(state.lastTrial.item)
+          : state.lastTrial.channel.fail) + ".";
+      outcomeBox.setAttribute("data-tone",
+        state.lastTrial.success ? "good" : "warn");
+    } else {
+      outcomeBox.hidden = true;
+    }
+  }
+
+  function renderStageTwo() {
+    stageTitle.textContent = "Experiment 2 - what the result depends on";
+    stageBrief.textContent =
+      "The trial is fixed at the one that classically fails. Switch a " +
+      "condition off and watch a famous finding turn into an ordinary one.";
+    tableHeading.textContent = "Trials you ran in experiment 1";
+    tableNote.textContent =
+      "Kept here for comparison. Nothing in experiment 2 adds to this table.";
+
+    var broken = CONDITIONS.filter(function (c) {
+      return !state.conditions[c.id];
+    });
+    var fixationLost = !state.conditions.fixation;
+    var others = broken.filter(function (c) { return c.id !== "fixation"; });
+
+    clear(conditionsReasons);
+    reasonsBlock.hidden = broken.length === 0;
+    broken.forEach(function (condition) {
+      var li = make("li");
+      li.appendChild(make("strong", null, condition.label + ". "));
+      li.appendChild(document.createTextNode(condition.broken));
+      conditionsReasons.appendChild(li);
+    });
+
+    if (fixationLost) {
+      conditionsTitle.textContent = "Uninterpretable";
+      conditionsBody.textContent =
+        "Without fixation monitoring you do not know which hemisphere " +
+        "received the word, so neither a report nor a silence tells you " +
+        "anything. Easy to lose, and hard to notice afterwards, because the " +
+        "data still look like data.";
+      conditionsOutcome.setAttribute("data-tone", "warn");
+    } else if (others.length) {
+      conditionsTitle.textContent = "The word is reported - and the account is untouched";
+      conditionsBody.textContent =
+        "The person says “spoon”. That is not evidence against " +
+        "contralateral routing: " + others.length +
+        (others.length === 1
+          ? " of the conditions the demonstration depends on no longer holds, and it is"
+          : " of the conditions the demonstration depends on no longer hold, and each is") +
+        " enough on its own to put the word into the left hemisphere.";
+      conditionsOutcome.setAttribute("data-tone", "caution");
+    } else {
+      conditionsTitle.textContent = "Nothing is reported - the classic result";
+      conditionsBody.textContent =
+        "All five conditions hold. The right hemisphere has the word, the " +
+        "left hemisphere speaks, and nothing crosses. The person says they " +
+        "saw nothing - and the left hand can still pick the object out of " +
+        "the bag.";
+      conditionsOutcome.setAttribute("data-tone", "good");
+    }
+  }
+
+  function renderGoal() {
+    var sectioned = state.log.filter(function (t) {
+      return t.callosum === "sectioned";
+    });
+    var changed = sectioned.some(function (t) { return !t.success; });
+    var unchanged = sectioned.some(function (t) { return t.success; });
+    var bothHands = FIELDS.some(function (field) {
+      return ["lefthand", "righthand"].every(function (channelId) {
+        return sectioned.some(function (t) {
+          return t.field.id === field.id && t.channel.id === channelId;
+        });
+      });
+    });
+
+    clear(goalText);
+    goalText.appendChild(document.createTextNode(
+      "Run trials until all three are met. " + state.log.length +
+      " trial" + (state.log.length === 1 ? "" : "s") + " so far."));
+
+    var list = make("ul", "goal__checks");
+    [
+      {
+        label: "A sectioned trial where the section changes the outcome",
+        met: changed
+      },
+      {
+        label: "A sectioned trial where the section changes nothing",
+        met: unchanged
+      },
+      {
+        label: "One visual field asked with each hand in turn, sectioned",
+        met: bothHands
+      }
+    ].forEach(function (check) {
+      var li = make("li");
+      li.textContent = check.label + (check.met ? " (met)" : " (not yet)");
+      li.setAttribute("data-met", check.met ? "yes" : "no");
+      list.appendChild(li);
+    });
+    goalText.appendChild(list);
+
+    toStageTwo.disabled = !(changed && unchanged && bothHands);
+  }
+
+  /* The routing diagram. Three rows: visual fields, hemispheres, response
+     channels. The two lines between the first and second row cross, which is
+     the whole of contralateral projection. The active route is drawn thick
+     and solid, everything else thin and dashed, and the paragraph underneath
+     says the same thing in words. */
+  function drawRoute(field, channel, callosum, trial) {
+    clear(routeSvg);
+
+    var BOX = { left: 14, right: 196, width: 150 };
+    var FIELD_Y = 8, HEMI_Y = 88, CHAN_Y = 168, H = 32;
+    var chanBoxes = {
+      speak: { x: 6, w: 100, label: "Speech" },
+      righthand: { x: 114, w: 100, label: "Right hand" },
+      lefthand: { x: 246, w: 100, label: "Left hand" }
+    };
+
+    function box(x, y, w, h, label, active, sub) {
+      routeSvg.appendChild(svgEl("rect", {
+        x: x, y: y, width: w, height: h, rx: 5,
+        class: "lat__box" + (active ? " lat__box--active" : "")
+      }));
+      routeSvg.appendChild(
+        svgText(x + w / 2, y + (sub ? 15 : 21), "chart__count", "middle", label));
+      if (sub) {
+        routeSvg.appendChild(
+          svgText(x + w / 2, y + 28, "chart__axis", "middle", sub));
+      }
+    }
+
+    function link(x1, y1, x2, y2, active) {
+      routeSvg.appendChild(svgEl("line", {
+        x1: x1, y1: y1, x2: x2, y2: y2,
+        class: "lat__link" + (active ? " lat__link--active" : "")
+      }));
+    }
+
+    var fieldActive = { left: field.id === "left", right: field.id === "right" };
+    var hemiActive = {
+      left: field.hemisphere === "left" ||
+        (callosum === "intact" && channel.hemisphere === "left"),
+      right: field.hemisphere === "right" ||
+        (callosum === "intact" && channel.hemisphere === "right")
+    };
+
+    /* Row 1: the two visual fields. The item is named inside the active one. */
+    box(BOX.left, FIELD_Y, BOX.width, H, "Left visual field",
+      fieldActive.left, fieldActive.left ? currentItem().word + " shown here" : "");
+    box(BOX.right, FIELD_Y, BOX.width, H, "Right visual field",
+      fieldActive.right, fieldActive.right ? currentItem().word + " shown here" : "");
+
+    /* The crossing. Left field to right hemisphere, right field to left. */
+    link(BOX.left + BOX.width / 2, FIELD_Y + H,
+      BOX.right + BOX.width / 2, HEMI_Y, fieldActive.left);
+    link(BOX.right + BOX.width / 2, FIELD_Y + H,
+      BOX.left + BOX.width / 2, HEMI_Y, fieldActive.right);
+
+    /* Row 2: the hemispheres, joined by the callosum. */
+    box(BOX.left, HEMI_Y, BOX.width, H, "Left hemisphere", hemiActive.left);
+    box(BOX.right, HEMI_Y, BOX.width, H, "Right hemisphere", hemiActive.right);
+
+    /* The callosum sits in the gap between the two hemisphere boxes. Its
+       label goes BELOW the row, where nothing else is drawn, so it never
+       overlaps a box or a link. */
+    var midY = HEMI_Y + H / 2;
+    var labelY = HEMI_Y + H + 14;
+    if (callosum === "intact") {
+      routeSvg.appendChild(svgEl("line", {
+        x1: BOX.left + BOX.width, y1: midY, x2: BOX.right, y2: midY,
+        class: "lat__callosum"
+      }));
+      routeSvg.appendChild(
+        svgText(180, labelY, "chart__axis", "middle", "callosum"));
+    } else {
+      routeSvg.appendChild(svgEl("line", {
+        x1: BOX.left + BOX.width, y1: midY, x2: 172, y2: midY,
+        class: "lat__callosum"
+      }));
+      routeSvg.appendChild(svgEl("line", {
+        x1: 188, y1: midY, x2: BOX.right, y2: midY, class: "lat__callosum"
+      }));
+      routeSvg.appendChild(svgEl("path", {
+        d: "M 172 " + (midY - 7) + " l 16 14 M 188 " + (midY - 7) + " l -16 14",
+        class: "lat__cut"
+      }));
+      routeSvg.appendChild(
+        svgText(180, labelY, "chart__axis", "middle", "callosum cut"));
+    }
+
+    /* Row 3: the three response channels. */
+    CHANNELS.forEach(function (entry) {
+      var spec = chanBoxes[entry.id];
+      var active = entry.id === channel.id;
+      var mark = "";
+      if (active && trial) { mark = trial.success ? "answers" : "no answer"; }
+      else if (active) { mark = "asked with this"; }
+      box(spec.x, CHAN_Y, spec.w, H, spec.label, active, mark);
+
+      var hemiX = entry.hemisphere === "left"
+        ? BOX.left + BOX.width / 2 : BOX.right + BOX.width / 2;
+      link(hemiX, HEMI_Y + H, spec.x + spec.w / 2, CHAN_Y, active);
+    });
+
+    routeSvg.appendChild(
+      svgText(0, 216, "chart__axis", "start",
+        "thick solid line marks this trial's route - schematic, not anatomy"));
+
+    /* The figure's visible text equivalent. The diagram is pinned and the
+       tables scroll away beneath it, so the pin has to read on its own. */
+    routeText.textContent =
+      "The " + currentItem().word + " appears in the " +
+      field.label.toLowerCase() + ", which reaches the " +
+      HEMI_NAME[field.hemisphere] + ". You are asking with " +
+      channel.short.toLowerCase() + ", which the " +
+      HEMI_NAME[channel.hemisphere] + " controls. The corpus callosum is " +
+      (callosum === "intact" ? "intact." : "completely sectioned.") +
+      (trial ? " Outcome: " + (trial.success ? "a correct response."
+        : "no correct response.") : " Not run yet.");
+  }
+
+  function renderLog() {
+    clear(tableHead);
+    ["Item", "Appears in", "Asked with", "Callosum", "You predicted", "Outcome"]
+      .forEach(function (text) {
+        var th = make("th", null, text);
+        th.setAttribute("scope", "col");
+        tableHead.appendChild(th);
+      });
+
+    clear(mainTable);
+    if (!state.log.length) {
+      var empty = make("tr");
+      var cell = make("td", null, "No trials run yet.");
+      cell.setAttribute("colspan", "6");
+      empty.appendChild(cell);
+      mainTable.appendChild(empty);
+      return;
+    }
+
+    state.log.slice().reverse().forEach(function (trial) {
+      var tr = make("tr");
+      var th = make("th", null, trial.item.word);
+      th.setAttribute("scope", "row");
+      tr.appendChild(th);
+      tr.appendChild(make("td", null, trial.field.short));
+      tr.appendChild(make("td", null, trial.channel.short));
+      tr.appendChild(make("td", null,
+        byId(CALLOSUM, trial.callosum).short));
+      tr.appendChild(make("td", null,
+        trial.predicted === "yes" ? "correct response" : "no correct response"));
+      tr.appendChild(make("td", null,
+        trial.success ? "correct response" : "no correct response"));
+      if ((trial.predicted === "yes") !== trial.success) {
+        tr.className = "lat__miss";
+      }
+      mainTable.appendChild(tr);
+    });
+  }
+
+  function renderGrid() {
+    clear(gridTable);
+    FIELDS.forEach(function (field) {
+      CHANNELS.forEach(function (channel) {
+        var tr = make("tr");
+        var th = make("th", null, field.short);
+        th.setAttribute("scope", "row");
+        tr.appendChild(th);
+        tr.appendChild(make("td", null, channel.short));
+        tr.appendChild(make("td", null,
+          succeeds(field, channel, "intact") ? "correct response" : "no response"));
+        var cut = succeeds(field, channel, "sectioned");
+        var cell = make("td", null, cut ? "correct response" : "no response");
+        if (!cut) { cell.setAttribute("data-mark", "blocked"); }
+        tr.appendChild(cell);
+        gridTable.appendChild(tr);
+      });
+    });
+  }
+
+  /* --- Opening prediction ----------------------------------------------- */
+
+  var OPENING = {
+    unconscious: {
+      tone: "caution",
+      verdict: "Closer to a description than an explanation.",
+      text:
+        "“Not conscious of it” restates the fact that they could not say " +
+        "so. The question is why saying so is unavailable while picking it up " +
+        "is not. Whether the right hemisphere's experience counts as " +
+        "conscious is a separate argument, and not one these data settle."
+    },
+    routing: {
+      tone: "good",
+      verdict: "Yes.",
+      text:
+        "The left visual field reaches the right hemisphere; speech is " +
+        "produced by the left; the left hand is controlled by the right. " +
+        "After a complete section the information cannot get from where it " +
+        "arrived to where speech is produced, but it is exactly where the " +
+        "left hand needs it. Experiment 1 lets you build every combination."
+    },
+    dominant: {
+      tone: "caution",
+      verdict: "Dominance is the wrong idea here.",
+      text:
+        "Nothing is overriding anything. The left hemisphere does not have " +
+        "the information to override, which is why it says nothing rather " +
+        "than something wrong. Swap the response channel and the answer " +
+        "appears, with no change in dominance of any kind."
+    },
+    visual: {
+      tone: "caution",
+      verdict: "That turns a routing fact into a job description.",
+      text:
+        "Both hemispheres process vision, and both do a great deal of the " +
+        "same work. What differs here is which one received this particular " +
+        "item and which one controls the channel you asked with. Once the " +
+        "hemispheres are connected again, as in almost everybody, the " +
+        "distinction stops producing any observable effect."
+    }
+  };
+
+  openingForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answer = $('input[name="opening"]:checked', openingForm);
+    if (!answer) {
+      openingError.textContent = "Choose an answer before opening the laboratory.";
+      openingError.hidden = false;
+      return;
+    }
+    openingError.hidden = true;
+    var entry = OPENING[answer.value];
+    showFeedback(openingFeedback, entry.tone, entry.verdict, entry.text);
+    unlockLab();
+  });
+
+  $('[data-action="skip-opening"]').addEventListener("click", function () {
+    openingError.hidden = true;
+    showFeedback(openingFeedback, "neutral",
+      "Prediction skipped - demonstration mode.", "");
+    unlockLab();
+  });
+
+  function unlockLab() {
+    lockForm(openingForm);
+    labSection.hidden = false;
+    render();
+    $("#lab-heading").focus();
+    shell.announce("Laboratory open. Experiment 1.", { immediate: true });
+  }
+
+  /* --- Challenge -------------------------------------------------------- */
+
+  var CHALLENGE_ONE = {
+    few: {
+      tone: "caution",
+      verdict: "True, and not the strongest.",
+      text:
+        "The samples are tiny, but small samples are a reason for caution " +
+        "about the findings, not a reason the findings cannot be generalised " +
+        "to connected brains. That second step fails for a different reason."
+    },
+    disconnection: {
+      tone: "good",
+      verdict: "Yes.",
+      text:
+        "The effects exist because the hemispheres cannot exchange " +
+        "information. Restore the callosum and they disappear, because both " +
+        "hemispheres have almost everything within a few tens of " +
+        "milliseconds. A finding that depends on the cut cannot describe " +
+        "people who do not have one."
+    },
+    equal: {
+      tone: "caution",
+      verdict: "An over-correction.",
+      text:
+        "There are real asymmetries - speech production is left-lateralised " +
+        "in most people, and there are reliable differences in how the two " +
+        "hemispheres handle several kinds of material. What does not follow " +
+        "is that a person runs on one of them."
+    },
+    surgery: {
+      tone: "caution",
+      verdict: "True but beside the point.",
+      text:
+        "Whether the operation is still performed says nothing about what " +
+        "the findings mean. The objection has to be about what a " +
+        "disconnection experiment can and cannot show."
+    }
+  };
+
+  var CHALLENGE_TWO = {
+    "right-language": {
+      tone: "caution",
+      verdict: "One possibility among several.",
+      text:
+        "It could be that. It could equally be a presentation long enough " +
+        "for a saccade, an incomplete section, or cross-cueing. Choosing one " +
+        "of four explanations without the method is not an inference."
+    },
+    "wrong-theory": {
+      tone: "caution",
+      verdict: "Far too fast.",
+      text:
+        "A single procedural failure produces exactly this observation. " +
+        "Experiment 2 shows four separate ways to get it without disturbing " +
+        "the routing account at all."
+    },
+    "check-method": {
+      tone: "good",
+      verdict: "Yes.",
+      text:
+        "Presentation duration, fixation monitoring, the extent of the " +
+        "section and cross-cueing control all have to be checked first. Only " +
+        "when they are all documented does the result start to say anything " +
+        "about this person's hemispheres - and even then it says something " +
+        "about this person, not about hemispheres in general."
+    },
+    incomplete: {
+      tone: "caution",
+      verdict: "One possibility among several.",
+      text:
+        "Plausible - the splenium may have been spared - but so are three " +
+        "other explanations. “Must” is doing work the evidence cannot " +
+        "support."
+    }
+  };
+
+  challengeForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var one = $('input[name="brained"]:checked', challengeForm);
+    var two = $('input[name="trials"]:checked', challengeForm);
+    if (!one || !two) {
+      showFeedback(challengeFeedback, "caution",
+        "Answer both questions first.",
+        "Each one is asking about a different failure of inference.");
+      return;
+    }
+
+    var a = CHALLENGE_ONE[one.value];
+    var b = CHALLENGE_TWO[two.value];
+    clear(challengeFeedback);
+
+    [["Question 1. ", a], ["Question 2. ", b]].forEach(function (pair) {
+      var p = make("p");
+      p.appendChild(make("strong", "feedback__verdict", pair[0] + pair[1].verdict));
+      p.appendChild(document.createTextNode(" " + pair[1].text));
+      challengeFeedback.appendChild(p);
+    });
+
+    challengeFeedback.setAttribute("data-tone",
+      a.tone === "good" && b.tone === "good" ? "good" : "caution");
+    challengeFeedback.hidden = false;
+    shell.announce("Challenge answered.", { immediate: true });
+  });
+
+  /* --- Feedback plumbing ------------------------------------------------ */
+
+  function showFeedback(container, tone, verdict, text) {
+    clear(container);
+    container.setAttribute("data-tone", tone);
+    var p = make("p");
+    p.appendChild(make("strong", "feedback__verdict", verdict));
+    if (text) { p.appendChild(document.createTextNode(" " + text)); }
+    container.appendChild(p);
+    container.hidden = false;
+  }
+
+  function lockForm(form) {
+    Array.prototype.forEach.call(form.querySelectorAll("input, button"),
+      function (control) { control.disabled = true; });
+  }
+
+  function unlockForm(form) {
+    Array.prototype.forEach.call(form.querySelectorAll("input, button"),
+      function (control) { control.disabled = false; });
+    form.reset();
+  }
+
+  /* --- Reset ------------------------------------------------------------ */
+
+  shell.onReset(function () {
+    state = initialState();
+    CONDITIONS.forEach(function (c) { state.conditions[c.id] = true; });
+    syncTrialControls();
+    syncConditionBoxes();
+    unlockForm(openingForm);
+    openingFeedback.hidden = true;
+    openingError.hidden = true;
+    labSection.hidden = true;
+    trialFeedback.hidden = true;
+    trialError.hidden = true;
+    outcomeBox.hidden = true;
+    challengeForm.reset();
+    challengeFeedback.hidden = true;
+    render();
+  });
+
+  /* --- Start-up --------------------------------------------------------- */
+
+  shell.reset({ silent: true });
+  shell.announce(
+    "Ready. Answer the question above to open the laboratory.",
+    { immediate: true });
+})();
+
+</script>
+</div>

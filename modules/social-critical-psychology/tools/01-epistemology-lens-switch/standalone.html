@@ -1,0 +1,3519 @@
+<!-- Epistemology Lens Switch
+     From Open Psychology Interactives - https://github.com/utman5454/open-psychology-interactives
+     Self-contained: no stylesheets, scripts, fonts, images or network requests.
+     Styles are scoped to .opi-activity and do not affect the page around them.
+     Nothing is saved, sent or tracked. MIT licensed; please keep this notice.
+     Paste anywhere that accepts HTML, or save as a .html file and open it. -->
+<div class="opi-activity">
+<style>
+/* Defensive baseline. See scripts/build-standalone.py for why this
+   is `revert` rather than an enumerated reset, and how the specificity ladder
+   keeps the activity's own styling on top of it. */
+.opi-activity *:not(svg *) {
+  all: revert;
+}
+.opi-activity, .opi-activity *, .opi-activity *::before, .opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  text-transform: none;
+  text-indent: 0;
+  font-style: normal;
+  font-variant: normal;
+  letter-spacing: normal;
+  word-spacing: normal;
+  white-space: normal;
+  visibility: visible;
+  float: none;
+  max-width: none;
+}
+.opi-activity svg { max-width: 100%; }
+.opi-activity img { max-width: 100%; height: auto; }
+.opi-activity [hidden] { display: none !important; }
+
+/* assets/css/main.css */
+.opi-activity.opi-activity {
+  --colour-page: #ffffff;
+  --colour-surface: #f5f7fa;
+  --colour-surface-raised: #ffffff;
+  --colour-border: #d3d9e2;
+  --colour-border-strong: #aeb7c4;
+  --colour-text: #131820;
+  --colour-text-muted: #4c566a;
+  --colour-accent: #1a4fa0;
+  --colour-accent-hover: #123a7a;
+  --colour-accent-soft: #e8eefb;
+  --colour-on-accent: #ffffff;
+  --colour-focus: #b45309;
+  --colour-cognitive: #8a4b00;
+  --colour-research-methods: #1a4fa0;
+  --colour-neuropsychology: #145c53;
+  --colour-social-critical-psychology: #9e2f45;
+  --colour-personality-individual-differences: #7a2e6d;
+  --colour-status-bg: #f1ede3;
+  --colour-status-text: #5c4a1f;
+  --colour-status-border: #d9cdb0;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  --text-xs: 13px;
+  --text-sm: 15px;
+  --text-base: 17px;
+  --text-lg: 19px;
+  --text-xl: 23px;
+  --text-2xl: 28px;
+  --text-3xl: 36px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgb(19 24 32 / 0.06);
+  --shadow-md: 0 2px 8px rgb(19 24 32 / 0.08);
+  --measure: 68ch;
+  --container: 1152px;
+}
+@media (prefers-color-scheme: dark) {
+.opi-activity.opi-activity {
+  --colour-page: #0f141b;
+  --colour-surface: #161d27;
+  --colour-surface-raised: #1a2230;
+  --colour-border: #2c3644;
+  --colour-border-strong: #44506180;
+  --colour-text: #e9edf3;
+  --colour-text-muted: #a8b2c1;
+  --colour-accent: #8fb6ff;
+  --colour-accent-hover: #b3cdff;
+  --colour-accent-soft: #1b2740;
+  --colour-on-accent: #0f141b;
+  --colour-focus: #f0b429;
+  --colour-cognitive: #e2ab5f;
+  --colour-research-methods: #8fb6ff;
+  --colour-neuropsychology: #6fc3b4;
+  --colour-social-critical-psychology: #f19aa8;
+  --colour-personality-individual-differences: #db9ccd;
+  --colour-status-bg: #241f14;
+  --colour-status-text: #e2cf9f;
+  --colour-status-border: #4a4028;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 2px 10px rgb(0 0 0 / 0.45);
+}
+}
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity.opi-activity {
+  -webkit-text-size-adjust: 100%;
+}
+.opi-activity.opi-activity {
+  background-color: var(--colour-page);
+  color: var(--colour-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.65;
+}
+.opi-activity.opi-activity h1,
+.opi-activity.opi-activity h2,
+.opi-activity.opi-activity h3,
+.opi-activity.opi-activity h4 {
+  margin: 0 0 var(--space-3);
+  line-height: 1.25;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.opi-activity.opi-activity h1 {
+  font-size: var(--text-3xl);
+}
+.opi-activity.opi-activity h2 {
+  font-size: var(--text-2xl);
+}
+.opi-activity.opi-activity h3 {
+  font-size: var(--text-xl);
+}
+.opi-activity.opi-activity h4 {
+  font-size: var(--text-lg);
+}
+.opi-activity.opi-activity p,
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol,
+.opi-activity.opi-activity dl {
+  margin: 0 0 var(--space-4);
+}
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol {
+  padding-left: 1.35em;
+}
+.opi-activity.opi-activity li + li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity a {
+  color: var(--colour-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: max(1px, 0.06em);
+}
+.opi-activity.opi-activity a:hover {
+  color: var(--colour-accent-hover);
+  text-decoration-thickness: max(2px, 0.11em);
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid var(--colour-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+@supports not selector(:focus-visible) {
+.opi-activity.opi-activity :focus {
+  outline: 3px solid var(--colour-focus);
+    outline-offset: 2px;
+}
+}
+.opi-activity.opi-activity code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.35em;
+}
+.opi-activity.opi-activity hr {
+  border: 0;
+  border-top: 1px solid var(--colour-border);
+  margin: var(--space-6) 0;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+}
+.opi-activity.opi-activity .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.opi-activity.opi-activity .container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+@media (min-width: 40em) {
+.opi-activity.opi-activity .container {
+  padding-inline: var(--space-5);
+}
+}
+.opi-activity.opi-activity .prose {
+  max-width: var(--measure);
+}
+.opi-activity.opi-activity .text-muted {
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .section {
+  padding-block: var(--space-7);
+}
+.opi-activity.opi-activity .section--tinted {
+  background-color: var(--colour-surface);
+  border-block: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .section__header {
+  max-width: var(--measure);
+  margin-bottom: var(--space-5);
+}
+.opi-activity.opi-activity .section__header > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-7) var(--space-6);
+  border-bottom: 1px solid var(--colour-border);
+  
+  background-image: linear-gradient(
+    180deg,
+    var(--colour-accent-soft) 0%,
+    var(--colour-page) 100%
+  );
+}
+.opi-activity.opi-activity .hero__eyebrow {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .hero h1 {
+  max-width: 20ch;
+  margin-bottom: var(--space-4);
+}
+.opi-activity.opi-activity .hero__lead {
+  max-width: var(--measure);
+  font-size: var(--text-lg);
+  color: var(--colour-text-muted);
+}
+@media (min-width: 48em) {
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-8) var(--space-7);
+}
+.opi-activity.opi-activity .hero h1 {
+  font-size: 44px;
+}
+}
+.opi-activity.opi-activity .button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  
+  min-height: 44px;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .button--primary {
+  background-color: var(--colour-accent);
+  border-color: var(--colour-accent);
+  
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--primary:hover {
+  background-color: var(--colour-accent-hover);
+  border-color: var(--colour-accent-hover);
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--secondary {
+  background-color: transparent;
+  border-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .button--secondary:hover {
+  background-color: var(--colour-surface);
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+}
+.opi-activity.opi-activity .card--cognitive {
+  --card-accent: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .card--research-methods {
+  --card-accent: var(--colour-research-methods);
+}
+.opi-activity.opi-activity .card--neuropsychology {
+  --card-accent: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .card--social-critical-psychology {
+  --card-accent: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .card--personality-individual-differences {
+  --card-accent: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 650;
+  line-height: 1.4;
+  padding: 3.2px var(--space-3);
+  border-radius: 999px;
+  border: 1px solid var(--colour-status-border);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+}
+.opi-activity.opi-activity .badge__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex: none;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed var(--colour-border-strong);
+  border-radius: var(--radius-lg);
+  background-color: var(--colour-surface);
+  padding: var(--space-5);
+  text-align: left;
+}
+.opi-activity.opi-activity .placeholder__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+}
+.opi-activity.opi-activity .placeholder > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .split {
+  display: grid;
+  gap: var(--space-6);
+}
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split {
+  grid-template-columns: 3fr 2fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .panel {
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.opi-activity.opi-activity .panel > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .panel__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .section--tinted {
+  border-block: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .hero {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .button--primary {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .button--secondary {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .button:hover {
+  border-color: Highlight;
+}
+.opi-activity.opi-activity .panel {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed CanvasText;
+}
+.opi-activity.opi-activity .badge {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .badge__dot {
+  background-color: CanvasText;
+}
+.opi-activity.opi-activity code {
+  border-color: CanvasText;
+}
+.opi-activity.opi-activity hr {
+  border-top-color: CanvasText;
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+}
+@media print {
+.opi-activity.opi-activity {
+  color: #000;
+  background: #fff;
+}
+.opi-activity.opi-activity a[href^="http"]::after {
+  content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+}
+}
+
+/* components/interactive-shell.css */
+.opi-activity.opi-activity .interactive {
+  --shell-page: var(--colour-page, #ffffff);
+  --shell-surface: var(--colour-surface, #f5f7fa);
+  --shell-raised: var(--colour-surface-raised, #ffffff);
+  --shell-border: var(--colour-border, #d3d9e2);
+  --shell-border-strong: var(--colour-border-strong, #aeb7c4);
+  --shell-text: var(--colour-text, #131820);
+  --shell-muted: var(--colour-text-muted, #4c566a);
+  --shell-accent: var(--colour-accent, #1a4fa0);
+  --shell-accent-soft: var(--colour-accent-soft, #e8eefb);
+  
+  --shell-on-accent: var(--colour-on-accent, #ffffff);
+  --shell-focus: var(--colour-focus, #b45309);
+  --shell-radius: var(--radius-lg, 12px);
+  --shell-gap: var(--space-5, 24px);
+
+  display: block;
+  background-color: var(--shell-raised);
+  color: var(--shell-text);
+  border: 1px solid var(--shell-border);
+  border-radius: var(--shell-radius);
+  
+  overflow-x: clip;
+  overflow-y: visible;
+}
+.opi-activity.opi-activity .interactive__header {
+  padding: var(--shell-gap);
+  border-bottom: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 1.25;
+}
+.opi-activity.opi-activity .interactive__brief {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--shell-muted);
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__body {
+  display: grid;
+  gap: var(--shell-gap);
+  padding: var(--shell-gap);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body {
+  grid-template-columns: minmax(240px, 320px) 1fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .interactive__controls {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__controls fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .interactive__controls legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .control {
+  display: grid;
+  gap: 5.6px;
+}
+.opi-activity.opi-activity .control + .control {
+  margin-top: 16px;
+}
+.opi-activity.opi-activity .control__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.opi-activity.opi-activity .control__label {
+  font-size: 15px;
+  font-weight: 600;
+}
+.opi-activity.opi-activity .control__value {
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--shell-accent);
+}
+.opi-activity.opi-activity .control__hint {
+  font-size: 13px;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .interactive__controls input[type="range"] {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--shell-accent);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  width: 100%;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--shell-text);
+  background-color: var(--shell-raised);
+  border: 1px solid var(--shell-border-strong);
+  border-radius: var(--radius-sm, 4px);
+}
+.opi-activity.opi-activity .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+}
+.opi-activity.opi-activity .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  accent-color: var(--shell-accent);
+  flex: none;
+}
+.opi-activity.opi-activity .interactive__stage {
+  min-height: 256px;
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-page);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body--pinned {
+  align-items: stretch;
+}
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: sticky;
+    top: 0;
+    z-index: 2;
+    
+    margin: -16px -16px 0;
+    padding: 16px 16px 12px;
+    background-color: var(--shell-page);
+    border-bottom: 1px solid var(--shell-border);
+}
+}
+@media (min-width: 52em) and (max-height: 30em) {
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: static;
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
+}
+}
+.opi-activity.opi-activity .interactive__stage > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity :where(.interactive__stage) svg,
+.opi-activity.opi-activity :where(.interactive__stage) canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+.opi-activity.opi-activity .interactive__readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout div {
+  padding: 9.6px 12px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-sm, 4px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__readout dt {
+  font-size: 13px;
+  color: var(--shell-muted);
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout dd {
+  margin: 2.4px 0 0;
+  font-size: 18px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .interactive__status {
+  margin: 0;
+  padding: 12px var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+  font-size: 15px;
+  color: var(--shell-muted);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .interactive__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+}
+.opi-activity.opi-activity .interactive__actions button {
+  min-height: 44px;
+  padding: 6.4px 20px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--shell-on-accent);
+  background-color: var(--shell-accent);
+  border: 1px solid var(--shell-accent);
+  border-radius: var(--radius-md, 8px);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  color: var(--shell-text);
+  background-color: transparent;
+  border-color: var(--shell-border-strong);
+}
+.opi-activity.opi-activity .interactive__actions button:hover {
+  filter: brightness(1.08);
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__notes > summary {
+  padding: 13.6px var(--shell-gap);
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__notes > div {
+  padding: 0 var(--shell-gap) var(--shell-gap);
+  max-width: 68ch;
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__notes > div > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity .interactive *,
+.opi-activity.opi-activity .interactive *::before,
+.opi-activity.opi-activity .interactive *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+}
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .interactive,
+.opi-activity.opi-activity .interactive__controls,
+.opi-activity.opi-activity .interactive__stage,
+.opi-activity.opi-activity .interactive__readout div {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__header {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__status,
+.opi-activity.opi-activity .interactive__actions,
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__actions button {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  border-width: 1px;
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 1;
+    color: GrayText;
+    border-color: GrayText;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__stage svg {
+  forced-color-adjust: auto;
+}
+}
+
+/* components/tool-kit.css */
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split--wide {
+  grid-template-columns: 1fr 1fr;
+}
+}
+.opi-activity.opi-activity .how-to {
+  padding-left: 19.2px;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .how-to > li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .table-scroll {
+  overflow-x: auto;
+  
+  position: relative;
+}
+.opi-activity.opi-activity .prediction {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 832px;
+}
+.opi-activity.opi-activity .prediction > *,
+.opi-activity.opi-activity .challenge > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity .prediction__group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .prediction__legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-weight: 650;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .prediction .control--choice,
+.opi-activity.opi-activity .challenge .control--choice,
+.opi-activity.opi-activity .evidence .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .prediction .control--choice input,
+.opi-activity.opi-activity .challenge .control--choice input,
+.opi-activity.opi-activity .evidence .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .prediction__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .prediction__error {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-status-border);
+  border-left: 4px solid var(--colour-status-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .prediction__readback {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .feedback[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .feedback[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .feedback[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .feedback__verdict {
+  font-weight: 700;
+}
+.opi-activity.opi-activity .verdict {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .verdict__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict__body {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .verdict__body + .verdict__body {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .verdict__note {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .verdict[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .verdict[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .goal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .goal__label {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .goal__text {
+  flex: 1 1 256px;
+}
+.opi-activity.opi-activity .goal strong {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .goal__checks {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+  display: grid;
+  gap: 2.4px;
+}
+.opi-activity.opi-activity .goal__checks > li {
+  margin-top: 0;
+  padding-left: 22.4px;
+  position: relative;
+}
+.opi-activity.opi-activity .goal__checks > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 9.6px;
+  height: 9.6px;
+  border: 2px solid var(--colour-border-strong);
+  border-radius: 2px;
+}
+.opi-activity.opi-activity .goal__checks > li[data-met="yes"]::before {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .stage-track {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .stage-track > li {
+  margin-top: 0;
+  flex: 1 1 160px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-bottom: 3px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .stage-track > li > span {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.opi-activity.opi-activity .stage-track > li[data-state="done"] {
+  border-bottom-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border-bottom-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+  color: var(--colour-text);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .stage__heading {
+  margin: 0;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .data-table,
+.opi-activity.opi-activity .chart__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .data-table th,
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table th,
+.opi-activity.opi-activity .chart__table td {
+  padding: 6.4px 9.6px;
+  border: 1px solid var(--colour-border);
+  text-align: left;
+  vertical-align: top;
+}
+.opi-activity.opi-activity .data-table thead th,
+.opi-activity.opi-activity .chart__table thead th {
+  background-color: var(--colour-surface);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table td {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__table tbody th,
+.opi-activity.opi-activity .data-table tbody th {
+  font-weight: 550;
+}
+.opi-activity.opi-activity .data-table__total > th,
+.opi-activity.opi-activity .data-table__total > td {
+  border-top: 2px solid var(--colour-border-strong);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart {
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .chart__caption {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__svg {
+  max-width: 100%;
+  height: auto;
+}
+.opi-activity.opi-activity .chart__label,
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__inline,
+.opi-activity.opi-activity .chart__axis {
+  font-family: var(--font-body);
+  fill: var(--colour-text);
+  font-size: 13px;
+}
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__axis {
+  fill: var(--colour-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: var(--colour-on-accent);
+  font-size: 12px;
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__track {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__bar {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--one {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .chart__baseline,
+.opi-activity.opi-activity .chart__grid {
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__line {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: var(--colour-personality-individual-differences);
+  stroke-dasharray: 6 4;
+}
+.opi-activity.opi-activity .chart__point {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .reveal > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .reveal__lead {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+.opi-activity.opi-activity .reveal__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(176px, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+  padding: 0;
+  list-style: none;
+}
+.opi-activity.opi-activity .reveal__figures > li {
+  margin-top: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+.opi-activity.opi-activity .reveal__figure-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .reveal__figure-value {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .challenge {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+.opi-activity.opi-activity .challenge__locked {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .panel--caution {
+  background-color: var(--colour-status-bg);
+  border-color: var(--colour-status-border);
+}
+.opi-activity.opi-activity .panel--caution li + li {
+  margin-top: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .goal,
+.opi-activity.opi-activity .verdict,
+.opi-activity.opi-activity .feedback,
+.opi-activity.opi-activity .prediction__error,
+.opi-activity.opi-activity .prediction__readback,
+.opi-activity.opi-activity .stage-track > li,
+.opi-activity.opi-activity .reveal__figures > li {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border: 2px solid Highlight;
+}
+.opi-activity.opi-activity .chart__bar,
+.opi-activity.opi-activity .chart__bar--one {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: Canvas;
+}
+.opi-activity.opi-activity .chart__line {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: Highlight;
+}
+}
+.opi-activity.opi-activity .stage__more {
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .stage__more > summary {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .stage__more[open] > summary {
+  border-bottom: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .stage__more > *:not(summary) {
+  margin: var(--space-3);
+}
+
+/* modules/social-critical-psychology/tools/01-epistemology-lens-switch/tool.css */
+.opi-activity.opi-activity #lens-switch .interactive__controls,
+.opi-activity.opi-activity #lens-switch .interactive__stage {
+  min-width: 0;
+}
+.opi-activity.opi-activity #lens-switch .interactive__stage > * {
+  min-width: 0;
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity #lens-switch .interactive__body {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+}
+@media (min-width: 76em) {
+.opi-activity.opi-activity #lens-switch .interactive__body {
+  grid-template-columns: minmax(0, 448px) minmax(0, 1fr);
+}
+}
+.opi-activity.opi-activity .case-facts {
+  padding-left: 17.6px;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .case-facts > li + li {
+  margin-top: var(--space-3);
+}
+.opi-activity.opi-activity .lens-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 9.6px;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  background-color: var(--colour-surface-raised);
+  cursor: pointer;
+  min-height: 44px;
+}
+.opi-activity.opi-activity .lens-option + .lens-option {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .lens-option:has(input:checked) {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+}
+.opi-activity.opi-activity .lens-option input {
+  width: 18.4px;
+  height: 18.4px;
+  margin-top: 3.2px;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .lens-option__body {
+  display: grid;
+  gap: 2.4px;
+  min-width: 0;
+}
+.opi-activity.opi-activity .lens-option__name {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .lens-option__object {
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .decisions {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--space-2);
+  counter-reset: none;
+}
+.opi-activity.opi-activity .decision-item {
+  margin-top: 0;
+}
+.opi-activity.opi-activity .decision__summary {
+  display: grid;
+  gap: 1.6px;
+  width: 100%;
+  min-height: 44px;
+  padding: var(--space-2) var(--space-3);
+  text-align: left;
+  font: inherit;
+  color: var(--colour-text);
+  background-color: var(--colour-surface-raised);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .decision__summary:hover {
+  border-color: var(--colour-border-strong);
+}
+.opi-activity.opi-activity .decision__summary-row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .decision__summary-value {
+  font-size: var(--text-sm);
+  line-height: 1.35;
+}
+.opi-activity.opi-activity .decision__summary-action {
+  flex: none;
+  font-weight: 650;
+  color: var(--colour-accent);
+}
+.opi-activity.opi-activity .decision {
+  margin: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius-md);
+  background-color: var(--colour-surface-raised);
+}
+.opi-activity.opi-activity .decision__legend {
+  float: left;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  font-size: var(--text-sm);
+  font-weight: 650;
+  line-height: 1.35;
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .decision__hint {
+  clear: both;
+  margin: 5.6px 0 var(--space-2);
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .decision__option {
+  align-items: flex-start;
+  gap: 9.6px;
+  padding: 5.6px 0;
+  font-size: var(--text-sm);
+  line-height: 1.4;
+  min-height: 44px;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .decision__option input {
+  margin-top: 4px;
+}
+.opi-activity.opi-activity .decision__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+.opi-activity.opi-activity .decision__nav .button {
+  min-height: 44px;
+}
+.opi-activity.opi-activity .spec__case {
+  margin: 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .spec td {
+  font-variant-numeric: normal;
+}
+.opi-activity.opi-activity .spec td[data-empty="yes"] {
+  color: var(--colour-text-muted);
+  font-style: italic;
+}
+.opi-activity.opi-activity .spec__text {
+  font-size: var(--text-sm);
+  line-height: 1.4;
+}
+.opi-activity.opi-activity .spec__flag {
+  display: inline-block;
+  margin-left: 5.6px;
+  padding: 0.8px 7.2px;
+  border: 1px solid var(--colour-border-strong);
+  border-radius: 999px;
+  font-size: var(--text-xs);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .spec__flag[data-state="ok"] {
+  border-color: var(--colour-neuropsychology);
+  color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .spec__flag[data-state="tension"] {
+  border-color: var(--colour-social-critical-psychology);
+  color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .spec__coherence {
+  margin: 0;
+  padding: var(--space-2) var(--space-3);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .spec__coherence[data-state="ok"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .spec__coherence[data-state="tension"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .claims__results {
+  margin: var(--space-3) 0 0;
+  padding-left: 19.2px;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .claims__results > li {
+  margin-top: 0;
+}
+.opi-activity.opi-activity .claims__result-head {
+  margin: 0 0 var(--space-1);
+}
+.opi-activity.opi-activity .claims__results > li[data-agreed="no"] {
+  padding-left: var(--space-3);
+  border-left: 3px solid var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .claims__results > li[data-agreed="yes"] {
+  padding-left: var(--space-3);
+  border-left: 3px solid var(--colour-neuropsychology);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .lens-option,
+.opi-activity.opi-activity .decision,
+.opi-activity.opi-activity .decision__summary,
+.opi-activity.opi-activity .spec__flag {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .lens-option:has(input:checked) {
+  border: 2px solid Highlight;
+}
+.opi-activity.opi-activity .spec__flag[data-state="ok"],
+.opi-activity.opi-activity .spec__flag[data-state="tension"] {
+  color: CanvasText;
+}
+.opi-activity.opi-activity .spec__coherence,
+.opi-activity.opi-activity .claims__results > li[data-agreed="no"],
+.opi-activity.opi-activity .claims__results > li[data-agreed="yes"] {
+  border-left: 4px solid CanvasText;
+}
+}
+</style>
+
+  <!-- ================= Title and purpose ================= -->
+  <section class="section card--social-critical-psychology" aria-labelledby="page-heading">
+    <div class="container">
+
+      <p class="hero__eyebrow" style="color: var(--colour-social-critical-psychology)">
+        Social and Critical Psychology
+      </p>
+      <h1 id="page-heading">Epistemology Lens Switch</h1>
+      <p class="hero__lead">
+        One fictional school, one reported rise in classroom disruption, and
+        three starting points about what the social world is. Build a study
+        from each and watch the object, the question, the evidence, the method
+        and the defensible claim move together.
+      </p>
+
+      <p>
+        <span class="badge">
+          <span class="badge__dot" aria-hidden="true"></span>
+          Fictional case - Meadowbank Academy, its figures and its documents do not exist
+        </span>
+      </p>
+
+      <div class="split split--wide">
+
+        <div class="panel">
+          <h2 class="panel__title">Learning objective</h2>
+          <p>
+            By the end you should be able to say what each of three
+            epistemologies takes its research object to be, and why the
+            method follows from that rather than the reverse.
+          </p>
+          <p class="text-muted">
+            About 30 minutes. Nothing you do here is saved or sent anywhere.
+          </p>
+        </div>
+
+        <div class="panel panel--caution">
+          <h2 class="panel__title">None of these is the sophisticated one</h2>
+          <p>
+            Each position buys something and pays for it. Measuring well can
+            mistake a change in recording for a change in the world. Reasoning
+            to mechanisms can drift into stories nothing could disconfirm.
+            Studying how a category is assembled makes it hard to answer
+            "how much, and is it getting worse" - which is the question the
+            governors will actually ask. The tool marks combinations as
+            coherent or in tension; it does not mark positions as right or
+            wrong, and it has no favourite.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="how-to">
+        <h2 class="panel__title">How to use this</h2>
+        <ol>
+          <li>Read the case and the evidence the school already holds.</li>
+          <li>Commit to an answer to the question below.</li>
+          <li>
+            Declare an epistemological starting point, then make the five
+            decisions that build a study from it.
+          </li>
+          <li>
+            Run the same case again from a different starting point, and
+            compare what each study can say.
+          </li>
+          <li>Judge the five claims at the bottom against your studies.</li>
+        </ol>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= The case ================= -->
+  <section class="section section--tinted" aria-labelledby="case-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="case-heading">The case: Meadowbank Academy</h2>
+        <p class="prose">
+          A fictional 11-16 school of about 900 pupils. Over two terms, senior
+          staff have become convinced that "low-level disruption" in lessons
+          is rising, and have asked for research. Everything below is the
+          evidence the school already holds. It is the same for every lens.
+        </p>
+      </div>
+
+      <div class="split split--wide">
+        <div class="panel">
+          <h3 class="panel__title">What the school holds</h3>
+          <ul class="case-facts">
+            <li>
+              <strong>Recorded incidents.</strong> 260 logged in the autumn
+              term, 412 in the spring term. A logged incident is a referral
+              typed into the behaviour system by a member of staff.
+            </li>
+            <li>
+              <strong>A staff survey.</strong> 68% of the 74 respondents agree
+              that "behaviour in lessons has got worse this year". 12% disagree.
+            </li>
+            <li>
+              <strong>A policy change.</strong> In January the behaviour policy
+              was revised. Referral, previously discretionary, became the
+              expected response to a second warning.
+            </li>
+            <li>
+              <strong>Staffing.</strong> Eleven of the 62 teaching staff are in
+              their first year at the school, against three the year before.
+            </li>
+            <li>
+              <strong>Rooms and timetable.</strong> Two departments moved into
+              temporary accommodation in January; both are among the four
+              highest-referring departments.
+            </li>
+            <li>
+              <strong>Pupil focus groups.</strong> Notes from two sessions.
+              Recurring phrases include "they only write you up if they don't
+              like you" and "it depends whose lesson it is".
+            </li>
+          </ul>
+        </div>
+
+        <div class="panel">
+          <h3 class="panel__title">What nobody yet knows</h3>
+          <p>
+            Whether pupils are behaving differently. The incident log records
+            staff referrals, not pupil behaviour, and the thing that most
+            obviously changed in January is the rule about when to refer.
+          </p>
+          <p>
+            That ambiguity is not a flaw in the case. It is the ordinary
+            condition of an institutional record, and it is why the first
+            decision a researcher makes - what the object of study
+            <em>is</em> - settles far more than it looks as though it does.
+          </p>
+          <p class="text-muted">
+            All figures are invented for teaching. They are not estimates of
+            anything, and no real school, policy or dataset is described.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= Opening prediction ================= -->
+  <section class="section" id="opening" aria-labelledby="opening-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="opening-heading">First, a judgement</h2>
+        <p class="prose">
+          Three research teams are given exactly the material above. They
+          differ only in what they assume the social world is like and how it
+          can be known.
+        </p>
+      </div>
+
+      <noscript>
+        <div class="placeholder">
+          <h3 class="placeholder__title">This part needs JavaScript</h3>
+          <p class="prose">
+            The lens switch assembles a study specification in your browser as
+            you make each decision, so it cannot run with JavaScript switched
+            off. The case, the debrief and the limitations above and below are
+            readable without it.
+          </p>
+        </div>
+      </noscript>
+
+      <form class="panel prediction" id="opening-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            What will differ most between the three studies?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="nothing">
+            Very little - all three will end up counting incidents
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="writeup">
+            Only the write-up - the same findings, interpreted differently
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="method">
+            The method, but they will still be studying the same thing
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="object">
+            What they take the object to be - and therefore everything after it
+          </label>
+        </fieldset>
+
+        <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Record my answer and open the lens switch
+          </button>
+          <button class="button button--secondary" type="button" data-action="skip-opening">
+            Skip - I am demonstrating this
+          </button>
+        </div>
+
+        <div class="feedback" data-opening-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= The lens switch ================= -->
+  <section class="section section--tinted" id="lab-section" aria-labelledby="lab-heading" hidden>
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="lab-heading" tabindex="-1">The lens switch</h2>
+        <p class="prose">
+          Declare a starting point, then make five decisions. Each decision
+          offers the same four options whichever lens you declared - the tool
+          never labels an option with the position it belongs to, because in a
+          real research meeting nobody does either.
+        </p>
+      </div>
+
+      <section class="interactive" id="lens-switch" data-interactive
+               data-reset-message="Everything cleared. Back to the opening question.">
+
+        <header class="interactive__header">
+          <h3 class="interactive__title">Build a study from a position</h3>
+          <p class="interactive__brief">
+            The specification on the right fills in as you choose. Watch the
+            last row - what the study could claim - because that is where the
+            first decision comes home.
+          </p>
+          <p class="goal">
+            <span class="goal__label">Progress</span>
+            <span class="goal__text" data-goal-text></span>
+          </p>
+        </header>
+
+        <div class="interactive__body interactive__body--pinned">
+
+          <form class="interactive__controls" data-interactive-controls>
+
+            <fieldset>
+              <legend>1. Declare a starting point</legend>
+              <div data-lens-choices></div>
+              <p class="control__hint" data-lens-note></p>
+            </fieldset>
+
+            <fieldset data-decisions hidden>
+              <legend>2. Build the study</legend>
+              <ol class="decisions" data-decision-list></ol>
+            </fieldset>
+
+          </form>
+
+          <div class="interactive__stage" data-interactive-stage>
+
+            <!-- Pinned: the specification is what every control on the left
+                 changes, and what the whole exercise is about. -->
+            <div class="stage__primary">
+              <h4 class="stage__heading">The study you are specifying</h4>
+              <p class="spec__case">
+                Case: a reported rise in low-level disruption at Meadowbank
+                Academy.
+              </p>
+              <div class="table-scroll">
+                <table class="data-table spec">
+                  <caption class="visually-hidden">
+                    The five decisions that make up a study specification, and
+                    the choice made for each
+                  </caption>
+                  <tbody data-spec-body></tbody>
+                </table>
+              </div>
+              <p class="spec__coherence" data-coherence></p>
+            </div>
+
+            <div data-choice-feedback></div>
+
+            <div data-appraisal hidden>
+              <h4 class="stage__heading">What this study could and could not say</h4>
+              <div class="verdict" data-appraisal-body></div>
+            </div>
+
+            <div data-comparison hidden>
+              <h4 class="stage__heading">Lenses you have run on this case</h4>
+              <div class="table-scroll">
+                <table class="data-table">
+                  <caption class="visually-hidden">
+                    For each completed lens: the object of study, the claim the
+                    design could support, what becomes visible and what recedes
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Starting point</th>
+                      <th scope="col">Object of study</th>
+                      <th scope="col">Becomes visible</th>
+                      <th scope="col">Recedes from view</th>
+                      <th scope="col">Action it points to</th>
+                    </tr>
+                  </thead>
+                  <tbody data-comparison-body></tbody>
+                </table>
+              </div>
+              <p class="control__hint" data-comparison-note></p>
+            </div>
+
+          </div>
+
+        </div>
+
+        <p class="interactive__status" data-interactive-status role="status"></p>
+
+        <div class="interactive__actions">
+          <button type="button" data-action="worked">
+            Worked example
+          </button>
+          <button type="button" data-variant="secondary" data-action="another">
+            Run another lens on this case
+          </button>
+          <button type="button" data-variant="secondary" data-interactive-reset>
+            Reset everything
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ================= Challenge ================= -->
+  <section class="section" id="claims" aria-labelledby="claims-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="claims-heading">Challenge - five things somebody wants to say</h2>
+        <p class="prose">
+          Each sentence below could appear in the school's report to
+          governors. For each, decide which design - if any - could support
+          it. Two of them cannot be supported by any study on this page, and
+          noticing which two is the point of the exercise.
+        </p>
+      </div>
+
+      <form class="panel challenge" id="claims-form" data-claims-form>
+        <div data-claims-list></div>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Check my judgements
+          </button>
+        </div>
+
+        <div class="feedback" data-claims-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Debrief ================= -->
+  <section class="section section--tinted" id="debrief" aria-labelledby="debrief-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="debrief-heading">What this demonstrates</h2>
+      </div>
+
+      <div class="split split--wide">
+
+        <div class="prose">
+          <h3>The method is downstream of the ontology</h3>
+          <p>
+            Students are usually taught methods as a toolbox: pick the
+            technique that suits the question. That is true as far as it goes,
+            but it hides the step before it. A structured observation schedule
+            is only a sensible instrument if disruption is the kind of thing
+            that can be counted under a definition settled in advance. A
+            discourse analysis of referral forms is only a sensible instrument
+            if the definition is itself part of what is happening. Neither
+            choice is a preference about data; both are commitments about what
+            the object is.
+          </p>
+
+          <h3>The same record answers different questions</h3>
+          <p>
+            All three studies can use the incident log. The
+            realist/positivist study treats it as a - noisy - measure of pupil
+            behaviour. The critical realist study treats it as an outcome
+            whose generating conditions include the policy change, and looks
+            for the mechanism that would produce exactly this pattern. The
+            constructionist study treats it as a document that <em>does</em>
+            something: it converts an interaction into an attributable act by
+            a named pupil. The log has not changed. What it is a record of
+            has.
+          </p>
+
+          <h3>Constructed is not the same as unreal</h3>
+          <p>
+            Saying that "disruptive pupil" is assembled through referral
+            practice does not say that nothing happened in the lesson, that
+            teachers are inventing things, or that the exclusion which follows
+            is imaginary. Categories with institutional force have entirely
+            real consequences - that is precisely why how they are assembled
+            is worth studying. Critical realism makes the same point from the
+            other side: our concepts are fallible and socially produced, and
+            there is still something there that our concepts are concepts of.
+          </p>
+
+          <h3>Every lens costs something</h3>
+          <p>
+            The realist/positivist study can say how much and how confidently,
+            which is what a funding decision needs, and it can be badly wrong
+            about what it counted. The critical realist study can name a
+            mechanism and say what would disconfirm it, and it is always at
+            risk of a plausible story that nothing could disturb. The
+            constructionist study can show how the problem was made into this
+            problem, and cannot easily tell the governors whether things are
+            getting worse. Choosing a lens is choosing which of these costs to
+            bear, not escaping them.
+          </p>
+
+          <h3>Where the problem is located is a decision</h3>
+          <p>
+            Option D throughout - screen the pupils, identify the responsible
+            minority - is a coherent research programme with a long history.
+            What the exercise makes visible is that it is a <em>choice</em> to
+            locate the problem inside individual pupils rather than in the
+            lesson, the policy, the building or the record, and that the
+            choice is made before any data are collected. Asking who benefits
+            from a given location is not a rhetorical flourish; in this case
+            it is the difference between a screening budget and a review of
+            the referral rule.
+          </p>
+        </div>
+
+        <aside class="panel panel--caution" aria-labelledby="limits-heading">
+          <h3 class="panel__title" id="limits-heading">
+            What this does <em>not</em> demonstrate
+          </h3>
+          <ul>
+            <li>
+              <strong>Three positions is a simplification.</strong> Realism,
+              positivism, empiricism, critical realism, relativism, social
+              constructionism and constructivism are not four boxes, and
+              serious writers disagree about where the lines fall. The tool
+              uses recognisable family resemblances so that the downstream
+              consequences are visible; it is not a taxonomy.
+            </li>
+            <li>
+              <strong>Nobody actually declares a lens.</strong> Real research
+              teams inherit assumptions from their training, their funder and
+              their journal. The declaration here is a teaching device to make
+              visible a step that is normally invisible.
+            </li>
+            <li>
+              <strong>"In tension" is not "forbidden".</strong> Good mixed
+              designs deliberately combine positions and say how they are
+              holding them together. The tool flags a tension so you can
+              describe it, not so you can avoid it.
+            </li>
+            <li>
+              <strong>No real school is described.</strong> Meadowbank
+              Academy, its figures, its policy and its focus-group quotations
+              are invented for teaching. No number here estimates anything.
+            </li>
+            <li>
+              <strong>Nobody is assessed.</strong> The tool scores the
+              coherence of a study specification you build about a fictional
+              case. It asks nothing about you and produces no score for anyone.
+            </li>
+            <li>
+              <strong>Coherence is not truth.</strong> A perfectly coherent
+              study can be badly designed, unethical, or answer a question
+              nobody needed answering.
+            </li>
+          </ul>
+        </aside>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+<script>
+/* ---- components/interactive-shell.js ---- */
+/* =========================================================================
+   Open Psychology Interactives — interactive shell helper
+   -------------------------------------------------------------------------
+   A very small vanilla-JS helper that every interactive in this collection
+   uses. It deliberately does *not* draw anything or know anything about
+   statistics, personality or neuropsychology. Its job is the repetitive,
+   easy-to-get-wrong accessibility plumbing:
+
+     * announcing changes through a polite live region;
+     * keeping a range slider and its <output> in step;
+     * wiring the standard Reset button;
+     * reporting the reader's reduced-motion preference.
+
+   Usage (see docs/adapting-a-tool.md for the full markup contract):
+
+       <script src="../../components/interactive-shell.js" defer><\/script>
+       <script src="tool.js" defer><\/script>
+
+       // in tool.js
+       const shell = InteractiveShell.attach('#sampling-demo');
+       shell.onReset(() => { ...restore defaults...; draw(); });
+       shell.bindRange('#sample-size', { format: n => n + ' cases' });
+       shell.announce('Sample of 25 drawn. Mean 4.8.');
+
+   Every published interactive is written against this module.
+
+   Exposed as a global (window.InteractiveShell) rather than an ES module so
+   that a single interactive folder can be opened directly from disk over
+   file:// — ES modules are blocked by CORS in that situation, plain scripts
+   are not. That constraint is the whole reason for the older syntax here.
+   ========================================================================= */
+
+(function (global) {
+  "use strict";
+
+  /* -----------------------------------------------------------------------
+     Internal helpers
+     --------------------------------------------------------------------- */
+
+  /**
+   * Accept either a CSS selector or an element and return an element.
+   * @param {string|Element} target
+   * @param {ParentNode} [scope]
+   * @returns {Element|null}
+   */
+  function resolve(target, scope) {
+    if (!target) {
+      return null;
+    }
+    if (typeof target === "string") {
+      return (scope || document).querySelector(target);
+    }
+    return target;
+  }
+
+  /**
+   * True when the reader has asked the operating system to reduce motion.
+   * Interactives should check this before animating anything — for example
+   * by drawing a sampling distribution in one step instead of animating
+   * each draw.
+   * @returns {boolean}
+   */
+  function prefersReducedMotion() {
+    return (
+      typeof global.matchMedia === "function" &&
+      global.matchMedia("(prefers-reduced-motion: reduce)").matches
+    );
+  }
+
+  /* -----------------------------------------------------------------------
+     Shell controller
+     --------------------------------------------------------------------- */
+
+  /**
+   * Attach the shell behaviour to one `.interactive` element.
+   *
+   * @param {string|Element} target  Selector or element for the shell root.
+   * @returns {object|null}  Controller, or null if the root was not found.
+   */
+  function attach(target) {
+    var root = resolve(target);
+
+    if (!root) {
+      if (global.console && console.warn) {
+        console.warn("InteractiveShell: root element not found.", target);
+      }
+      return null;
+    }
+
+    var controls = root.querySelector("[data-interactive-controls]");
+    var stage = root.querySelector("[data-interactive-stage]");
+    var status = root.querySelector("[data-interactive-status]");
+    var resetButton = root.querySelector("[data-interactive-reset]");
+    var resetHandlers = [];
+    // Every range bound with bindRange() registers its sync function here, so
+    // that reset() can refresh the visible values after the tool's own reset
+    // handlers have restored the inputs. See reset() for why this is needed.
+    var rangeSyncs = [];
+
+    /* --- Live region ----------------------------------------------------
+       The status element is marked up as role="status" (implicitly
+       aria-live="polite"). Two details matter:
+
+         1. Assistive technology only announces *changes* to a live region,
+            so writing the same string twice is silently dropped. We add a
+            trailing zero-width space on repeat messages to force an
+            announcement when a student re-runs the same action.
+         2. Announcements are debounced. A slider dragged across its range
+            fires dozens of input events; without a delay a screen reader
+            would queue every intermediate value and fall far behind.
+       ------------------------------------------------------------------ */
+
+    var announceTimer = null;
+    var lastMessage = "";
+
+    /**
+     * Announce a short sentence describing what just changed.
+     * @param {string} message
+     * @param {object} [options]
+     * @param {boolean} [options.immediate]  Skip the debounce delay. Use for
+     *   discrete actions (button presses); leave off for continuous input.
+     */
+    function announce(message, options) {
+      if (!status) {
+        return;
+      }
+
+      var text = String(message == null ? "" : message);
+      var immediate = Boolean(options && options.immediate);
+
+      if (announceTimer !== null) {
+        global.clearTimeout(announceTimer);
+        announceTimer = null;
+      }
+
+      function write() {
+        // Force a change when the text is identical to last time.
+        status.textContent = text === lastMessage ? text + "​" : text;
+        lastMessage = text;
+      }
+
+      if (immediate) {
+        write();
+      } else {
+        announceTimer = global.setTimeout(write, 350);
+      }
+    }
+
+    /* --- Reset ---------------------------------------------------------- */
+
+    /**
+     * Register a callback to run when the Reset button is pressed.
+     * Several may be registered; they run in the order added.
+     * @param {Function} handler
+     */
+    function onReset(handler) {
+      if (typeof handler === "function") {
+        resetHandlers.push(handler);
+      }
+    }
+
+    /**
+     * Run the reset handlers. Called by the button and available directly so
+     * an interactive can reset itself on first load.
+     *
+     * Bound ranges are re-synced afterwards. A reset handler restores an
+     * input by assigning to `input.value`, and assigning to a value in script
+     * does not fire an `input` event — so without this step the slider would
+     * jump back to its default while its <output> went on showing the old
+     * number. Syncing here, after the handlers have run, also means the sync
+     * sees the restored values regardless of the order things were
+     * registered in.
+     *
+     * @param {object} [options]
+     * @param {boolean} [options.silent]  Suppress the status announcement.
+     */
+    function reset(options) {
+      resetHandlers.forEach(function (handler) {
+        handler();
+      });
+      rangeSyncs.forEach(function (sync) {
+        sync();
+      });
+      if (!options || !options.silent) {
+        announce(
+          root.getAttribute("data-reset-message") ||
+            "Reset to the starting values.",
+          { immediate: true }
+        );
+      }
+    }
+
+    if (resetButton) {
+      resetButton.addEventListener("click", function (event) {
+        // Reset buttons commonly sit inside the controls <form>; stop the
+        // browser's own form reset from fighting with ours.
+        event.preventDefault();
+        reset();
+      });
+    }
+
+    /* --- Range binding --------------------------------------------------
+       Keeps a slider's <output> in step with its value. The <output> must
+       carry `for="<input id>"`, which is what associates the two for
+       assistive technology; this only handles the visible text.
+
+       Optionally sets aria-valuetext, which is how you make a screen reader
+       say "25 cases" or "medium correlation" instead of a bare "25".
+       ------------------------------------------------------------------ */
+
+    /**
+     * @param {string|Element} inputTarget  The range (or number) input.
+     * @param {object} [options]
+     * @param {Function} [options.format]  value:number -> string shown in the
+     *   <output>. Defaults to the raw value.
+     * @param {Function} [options.describe]  value:number -> string used for
+     *   aria-valuetext. Defaults to options.format.
+     * @param {Function} [options.onInput]  value:number -> void, called after
+     *   the display has been updated. Use it to redraw.
+     * @returns {HTMLInputElement|null}
+     */
+    function bindRange(inputTarget, options) {
+      var input = resolve(inputTarget, root);
+      if (!input) {
+        return null;
+      }
+
+      var settings = options || {};
+      var format =
+        typeof settings.format === "function"
+          ? settings.format
+          : function (value) {
+              return String(value);
+            };
+      var describe =
+        typeof settings.describe === "function" ? settings.describe : format;
+
+      // <output for="the-input-id"> is the conventional pairing.
+      var output = input.id
+        ? root.querySelector('output[for="' + input.id + '"]')
+        : null;
+
+      function sync() {
+        var value = Number(input.value);
+        if (output) {
+          output.textContent = format(value);
+        }
+        // Only meaningful for widgets with an implicit or explicit slider
+        // role; harmless elsewhere.
+        input.setAttribute("aria-valuetext", describe(value));
+        if (typeof settings.onInput === "function") {
+          settings.onInput(value);
+        }
+      }
+
+      input.addEventListener("input", sync);
+      // Registered so reset() can refresh the display after the tool's own
+      // reset handlers have put the input back to its default.
+      rangeSyncs.push(sync);
+      sync();
+
+      return input;
+    }
+
+    /* --- Public surface -------------------------------------------------- */
+
+    return {
+      /** The `.interactive` root element. */
+      root: root,
+      /** The controls panel, or null if the shell has none. */
+      controls: controls,
+      /** The stage element where the visualisation is drawn. */
+      stage: stage,
+      /** The live-region element. */
+      status: status,
+      announce: announce,
+      onReset: onReset,
+      reset: reset,
+      bindRange: bindRange,
+      prefersReducedMotion: prefersReducedMotion
+    };
+  }
+
+  /* -----------------------------------------------------------------------
+     Export
+     --------------------------------------------------------------------- */
+
+  global.InteractiveShell = {
+    attach: attach,
+    prefersReducedMotion: prefersReducedMotion
+  };
+})(window);
+
+/* ---- modules/social-critical-psychology/tools/01-epistemology-lens-switch/tool.js ---- */
+/* =========================================================================
+   Epistemology Lens Switch: what counts as evidence?
+   -------------------------------------------------------------------------
+   One fictional case (a reported rise in "low-level disruption" at Meadowbank
+   Academy) and three epistemological starting points. The learner declares a
+   position and then makes five decisions that build a study from it:
+
+       1. what the research object is
+       2. what question can legitimately be asked
+       3. what counts as evidence
+       4. which method follows
+       5. what claim the study could support
+
+   THE EDUCATIONAL MODEL
+   ---------------------
+   Every decision offers the same four options, and no option is labelled with
+   the position it belongs to. Each option carries a `home` lens. Coherence is
+   simply the number of decisions whose home matches the declared position.
+
+   That is deliberately a weak model, and the tool says so: coherence is the
+   minimum a design has to clear, not a measure of quality. The teaching work
+   is done by the prose attached to each option - what it commits you to, and
+   what tension it creates when it is taken under a different position.
+
+   The fourth option throughout (`home: "individual"`) belongs to none of the
+   three declared positions. It relocates the problem inside individual pupils
+   and is included because it is the design a school is most likely to fund.
+   Students should be able to name it, not just avoid it.
+
+   WHAT THIS IS NOT
+   ----------------
+   Three positions is a simplification of a contested landscape, and the tool
+   does not rank them. Each lens profile carries what it makes visible AND what
+   it costs. "In tension" never means "forbidden": good mixed designs combine
+   positions deliberately and say how they hold them together.
+
+   No real school, policy, dataset or document is described. All figures are
+   invented for teaching. No data leave the browser: no storage, no network.
+   ========================================================================= */
+
+(function () {
+  "use strict";
+
+  /* =======================================================================
+     The three starting points
+     ===================================================================== */
+
+  var LENSES = [
+    {
+      id: "measure",
+      name: "Realist / positivist",
+      creed:
+        "There is a real pattern of behaviour in those classrooms. It exists " +
+        "whether or not anyone writes it down, and the job of research is to " +
+        "measure it as accurately as possible and find what predicts it.",
+      object: "a real, countable pattern of behaviour",
+      visible:
+        "How much, where, and what covaries with what - with a stated degree " +
+        "of uncertainty",
+      recedes:
+        "Who decided what counts as an incident, and what the act of " +
+        "recording does",
+      action:
+        "Change the conditions that predict the count: class size, timetable " +
+        "position, staff deployment",
+      canSay:
+        "Something quantified and comparable: how often, in which lessons, " +
+        "with what association to measurable features of those lessons, and " +
+        "how confident you are in each figure.",
+      cannotSay:
+        "Whether the January rise in the log reflects a change in pupils or a " +
+        "change in referring. Observation starting now cannot reach backwards " +
+        "into a record collected under a different rule.",
+      hides:
+        "That the observation schedule has to encode somebody's definition of " +
+        "disruption before the first lesson is watched. Once the schedule is " +
+        "agreed, the definitional question stops being askable inside the " +
+        "study."
+    },
+    {
+      id: "mechanism",
+      name: "Critical realist",
+      creed:
+        "Something real is going on that is not identical with what anyone " +
+        "can observe. Reality is stratified: the events recorded are only a " +
+        "part of what happened, and what happened is only a part of what had " +
+        "the power to happen. Our concepts of it are fallible and socially " +
+        "produced, and there is still something there.",
+      object: "a real tendency, generated by mechanisms that are not directly observable",
+      visible:
+        "What would have had to be the case for this pattern to appear, and " +
+        "the conditions under which the tendency shows itself",
+      recedes:
+        "Precise quantities, and the temptation to stop once a plausible " +
+        "story fits",
+      action:
+        "Change the mechanism: revise the referral rule, stabilise the rooms, " +
+        "support the new staff",
+      canSay:
+        "That a specific mechanism, operating under specified conditions, " +
+        "would generate this pattern - together with the evidence for it, the " +
+        "cases where it failed to appear, and what would have counted against " +
+        "it.",
+      cannotSay:
+        "How much of the rise each mechanism accounts for. Retroduction " +
+        "identifies candidates and rules some out; it does not partition " +
+        "variance, and pretending otherwise is where this position most often " +
+        "goes wrong.",
+      hides:
+        "How easily a mechanism story becomes unfalsifiable. The discipline " +
+        "here is the negative case: the departments where the same conditions " +
+        "held and the pattern did not appear."
+    },
+    {
+      id: "construct",
+      name: "Social constructionist",
+      creed:
+        "\"Disruption\" is not found in the room, it is assembled - in the " +
+        "policy text, in the referral form, in the staffroom account, in the " +
+        "pupil's description of being written up. The job of research is to " +
+        "study that assembling and what it makes possible.",
+      object: "a category actively assembled in talk, records and institutional practice",
+      visible:
+        "How an interaction becomes an attributable act by a named pupil, and " +
+        "who is authorised to make that conversion",
+      recedes:
+        "The quantitative question the governors asked - is it getting worse, " +
+        "and by how much",
+      action:
+        "Change what the category does: rewrite the referral form, open up who " +
+        "may contest a referral, ask what the policy authorises",
+      canSay:
+        "How the category is produced here, what work it does, which subject " +
+        "positions it makes available to staff and pupils, and what follows " +
+        "institutionally from being placed in it.",
+      cannotSay:
+        "Whether behaviour is worse than last year. Not because the question " +
+        "is uninteresting but because this design has taken the measure apart " +
+        "rather than using it, and cannot then lean on it.",
+      hides:
+        "That something happened in the lesson. Analysing how a category is " +
+        "assembled is not a claim that the interactions it names are " +
+        "fictional, but it is easy to slide into writing as though they were."
+    }
+  ];
+
+  /* The fourth, undeclared position. Named so that students can recognise it
+     rather than merely score badly on it. */
+  var INDIVIDUAL = {
+    id: "individual",
+    name: "Person-centred realism (a fourth position)",
+    note:
+      "This locates the problem inside a minority of pupils - a coherent " +
+      "research programme, and the design a school is most likely to fund. It " +
+      "is not entailed by any of the three positions on offer, and nothing in " +
+      "the case points to it."
+  };
+
+  /* =======================================================================
+     The five decisions
+     -------------------------------------------------------------------
+     Options are always in the order measure / mechanism / construct /
+     individual, but they are never labelled with their home position: in a
+     real research meeting nobody announces which epistemology an option
+     belongs to either.
+     ===================================================================== */
+
+  var DECISIONS = [
+    {
+      id: "object",
+      row: "Research object",
+      label: "What is the research object?",
+      hint:
+        "Everything else follows from this. Choose what you are taking " +
+        "\"disruption at Meadowbank\" to be.",
+      options: [
+        {
+          home: "measure",
+          text:
+            "A pattern of pupil behaviour that is really there, which the " +
+            "school's records measure imperfectly.",
+          commits:
+            "The record and the thing are now different, so your first " +
+            "methodological problem is measurement error, and your first task " +
+            "is a better instrument than the referral log.",
+          tension:
+            "It takes the definition of disruption as settled before the " +
+            "study starts, which is precisely what the other two positions " +
+            "want to hold open."
+        },
+        {
+          home: "mechanism",
+          text:
+            "A real tendency in this school which may or may not show itself " +
+            "in the log, produced by mechanisms nobody can observe directly.",
+          commits:
+            "What you can see is now only part of what is happening, so your " +
+            "task becomes reasoning backwards from the pattern to what would " +
+            "have had to be the case for it to appear.",
+          tension:
+            "It commits you to entities - tendencies, mechanisms - that no " +
+            "observation will ever show you directly, which a design built " +
+            "only on what can be measured has no way of licensing."
+        },
+        {
+          home: "construct",
+          text:
+            "A category that staff, pupils, forms and policies actively " +
+            "assemble, and which organises who gets held responsible.",
+          commits:
+            "Disruption is now the output of a process you are studying " +
+            "rather than the input to your study. The referral form stops " +
+            "being a measure and becomes data.",
+          tension:
+            "It refuses to take the incident count at face value, so it " +
+            "cannot then be used to answer \"how much\" - and \"how much\" is " +
+            "what the school asked."
+        },
+        {
+          home: "individual",
+          text:
+            "A stable characteristic of a minority of pupils that the school " +
+            "has not yet identified.",
+          commits:
+            "The unit of analysis is now the pupil, the design is a screening " +
+            "design and the intervention is aimed at individuals. All of that " +
+            "was settled before a single datum was collected.",
+          tension:
+            "The location of the problem - inside pupils rather than in the " +
+            "lesson, the policy, the building or the record - has been chosen " +
+            "in advance rather than found."
+        }
+      ]
+    },
+    {
+      id: "question",
+      row: "Legitimate question",
+      label: "What question can legitimately be asked?",
+      hint:
+        "A question is legitimate here if the object you declared is the kind " +
+        "of thing it could be a question about.",
+      options: [
+        {
+          home: "measure",
+          text:
+            "How much disruption is there, is it rising, and what predicts " +
+            "variation between lessons?",
+          commits:
+            "You have committed to a quantity that exists to be estimated, " +
+            "and to lessons as comparable units.",
+          tension:
+            "\"How much\" presupposes a settled unit of counting. If the " +
+            "object of study is how that unit gets made, this question asks " +
+            "you to assume your answer."
+        },
+        {
+          home: "mechanism",
+          text:
+            "What would have to be the case for disruption to become likely " +
+            "here, and under what conditions does that tendency show itself?",
+          commits:
+            "You are now after an explanation rather than an estimate, and " +
+            "you have accepted that the answer may not be visible in any " +
+            "single dataset.",
+          tension:
+            "It asks about something that could be true even where the " +
+            "records show nothing, which a design that equates the real with " +
+            "the recorded cannot accommodate."
+        },
+        {
+          home: "construct",
+          text:
+            "How does something come to be counted as disruption here, by " +
+            "whom, and what does that counting make possible?",
+          commits:
+            "The referral is now the phenomenon rather than the measurement, " +
+            "and \"by whom\" makes authority part of the question.",
+          tension:
+            "It brackets the question of whether behaviour changed, which is " +
+            "the question a design aimed at measuring or explaining a real " +
+            "pattern was set up to answer."
+        },
+        {
+          home: "individual",
+          text:
+            "Which pupils are responsible, and what distinguishes them from " +
+            "the rest?",
+          commits:
+            "Responsibility has been made a property of persons before " +
+            "anything has been established about the lesson, the policy or the " +
+            "record.",
+          tension:
+            "It answers a question nobody in the case asked, and its answer " +
+            "will be a list of names whatever the underlying situation turns " +
+            "out to be."
+        }
+      ]
+    },
+    {
+      id: "evidence",
+      row: "What counts as evidence",
+      label: "What counts as evidence?",
+      hint:
+        "Not \"what data could you get\" but \"what would you accept as " +
+        "bearing on the question\".",
+      options: [
+        {
+          home: "measure",
+          text:
+            "Standardised observation counts from sampled lessons, plus " +
+            "behaviour ratings with known reliability.",
+          commits:
+            "Evidence must be repeatable and comparable across observers. " +
+            "Anything that cannot be scored the same way twice is excluded.",
+          tension:
+            "A schedule with high inter-observer agreement is agreement about " +
+            "a definition. It cannot be evidence about how that definition " +
+            "came to be the one in use."
+        },
+        {
+          home: "mechanism",
+          text:
+            "The incident series, plus the conditions - timetable, rooms, " +
+            "staff turnover, the policy change - and the departments where the " +
+            "pattern did not appear.",
+          commits:
+            "Negative cases have become evidence, which is what stops a " +
+            "mechanism story from being merely plausible.",
+          tension:
+            "It mixes counts, documents and accounts without a single " +
+            "standard of measurement, which a design built on comparability " +
+            "cannot combine."
+        },
+        {
+          home: "construct",
+          text:
+            "The talk and the paperwork: the wording of the behaviour policy, " +
+            "completed referral forms, staffroom accounts, and how pupils " +
+            "describe being written up.",
+          commits:
+            "Documents are now actions rather than descriptions, and the " +
+            "focus-group phrase \"it depends whose lesson it is\" becomes a " +
+            "finding rather than noise.",
+          tension:
+            "None of it can tell you how often anything happened, so a study " +
+            "that needs a rate cannot be built on it."
+        },
+        {
+          home: "individual",
+          text:
+            "Screening scores for every pupil, matched to their referral " +
+            "history.",
+          commits:
+            "Evidence is now individual-level and cross-sectional. The " +
+            "lesson, the teacher and the policy have left the dataset " +
+            "entirely.",
+          tension:
+            "Matching scores to referrals will produce an association " +
+            "whatever generated the referrals, because pupils who are " +
+            "referred more are, by construction, the ones the score is " +
+            "compared against."
+        }
+      ]
+    },
+    {
+      id: "method",
+      row: "Method",
+      label: "Which method follows?",
+      hint:
+        "The method is downstream. Check that it is a way of collecting the " +
+        "evidence you just accepted, about the object you declared.",
+      options: [
+        {
+          home: "measure",
+          text:
+            "Structured observation of a stratified sample of lessons with " +
+            "inter-observer agreement, then multilevel regression on " +
+            "lesson-level predictors.",
+          commits:
+            "You will get defensible numbers about the period you observe, " +
+            "and nothing at all about the period already logged.",
+          tension:
+            "Counting under a fixed schedule settles in advance the thing " +
+            "your declared object treats as unsettled."
+        },
+        {
+          home: "mechanism",
+          text:
+            "A comparative case design: the interrupted incident series " +
+            "alongside paired high- and low-referring departments, reasoning " +
+            "back to candidate mechanisms and testing each against the cases " +
+            "where the pattern is absent.",
+          commits:
+            "You will end with a shortlist of mechanisms and an account of " +
+            "what would have counted against each, rather than an effect size.",
+          tension:
+            "Retroduction infers to unobservables, which a design that admits " +
+            "only measured quantities cannot warrant."
+        },
+        {
+          home: "construct",
+          text:
+            "Discourse and documentary analysis: what the policy text " +
+            "authorises, how the referral form converts an interaction into an " +
+            "act by a named pupil, and the repertoires staff and pupils use to " +
+            "account for it.",
+          commits:
+            "The analysis is of how accounts are built and what they do, not " +
+            "of how often words appear. Frequency of a word is not the finding.",
+          tension:
+            "It produces no rate, no comparison group and no estimate, so it " +
+            "cannot support a design whose question was quantitative."
+        },
+        {
+          home: "individual",
+          text:
+            "Administer the screening instrument to all 900 pupils and " +
+            "correlate scores with logged incidents.",
+          commits:
+            "Every pupil in the school is now assessed in order to explain a " +
+            "change that began with a policy revision.",
+          tension:
+            "The correlation you find is partly built in: the referral log is " +
+            "both the thing being explained and part of what identifies the " +
+            "pupils of interest."
+        }
+      ]
+    },
+    {
+      id: "claim",
+      row: "Defensible claim",
+      label: "What claim could the study support?",
+      hint:
+        "This is where the first decision comes home. Choose the strongest " +
+        "sentence the design would actually license.",
+      options: [
+        {
+          home: "measure",
+          text:
+            "\"Recorded incidents are higher in lessons with these features; " +
+            "the association is of this size, with this uncertainty.\"",
+          commits:
+            "Note what the sentence is about: recorded incidents. Writing " +
+            "\"disruption\" instead of \"recorded incidents\" would be the " +
+            "single most common way this design is oversold.",
+          tension:
+            "It reports an association in a measure your declared object " +
+            "treats as something to be explained or unpicked, not relied on."
+        },
+        {
+          home: "mechanism",
+          text:
+            "\"The rise is plausibly generated by the January referral rule " +
+            "interacting with room instability and inexperienced staff; here " +
+            "is the evidence for it, and here is what would have counted " +
+            "against it.\"",
+          commits:
+            "You have claimed a mechanism and made it vulnerable in the same " +
+            "sentence. Dropping the second half turns this into a story.",
+          tension:
+            "It asserts something unobservable, which the evidence standard " +
+            "you accepted does not reach."
+        },
+        {
+          home: "construct",
+          text:
+            "\"Disruption at Meadowbank is assembled through these practices; " +
+            "the category does this work, and these are its consequences for " +
+            "who gets held responsible.\"",
+          commits:
+            "A claim about practices and their effects, not about frequency. " +
+            "It is falsifiable in its own terms: someone can show the " +
+            "practices work otherwise.",
+          tension:
+            "It is a claim about how the measure is produced, which is not an " +
+            "answer to a question about what the measure measures."
+        },
+        {
+          home: "individual",
+          text:
+            "\"This percentage of pupils score above threshold and account " +
+            "for this share of logged incidents.\"",
+          commits:
+            "True, probably, and almost content-free: a minority always " +
+            "accounts for most referrals, including in a school where nothing " +
+            "changed.",
+          tension:
+            "It answers at the level of persons a question that was asked " +
+            "about a school, a policy and a record."
+        }
+      ]
+    }
+  ];
+
+  /* =======================================================================
+     The challenge claims
+     ===================================================================== */
+
+  var CLAIMS = [
+    {
+      id: "worse",
+      text:
+        "\"Behaviour in lessons deteriorated by 58% between the autumn and " +
+        "spring terms.\"",
+      answer: "none",
+      verdict: "No design on this page supports it.",
+      why:
+        "The 58% is a rise in referrals, and the rule about when to refer " +
+        "changed in the middle of the period. A mechanism study can say the " +
+        "rule is a candidate cause of that rise, which is the opposite of this " +
+        "sentence. The word doing the damage is \"behaviour\", where the data " +
+        "say \"referrals\"."
+    },
+    {
+      id: "newstaff",
+      text:
+        "\"Recorded incidents are higher in lessons taught by staff in their " +
+        "first year at the school.\"",
+      answer: "measure",
+      verdict: "The realist/positivist design supports it.",
+      why:
+        "It is a claim about an association in a measure, stated as an " +
+        "association and no more. Notice how careful the wording has to be: " +
+        "\"recorded incidents\", not \"disruption\", and no suggestion about " +
+        "why. It says nothing about whether new staff manage classes " +
+        "differently or refer differently."
+    },
+    {
+      id: "rule",
+      text:
+        "\"The rise was generated by the January referral rule becoming the " +
+        "default response, in departments already destabilised by the room " +
+        "move.\"",
+      answer: "mechanism",
+      verdict: "The critical realist design supports it - conditionally.",
+      why:
+        "This is a mechanism claim with its conditions attached, which is what " +
+        "retroduction produces. It earns the word \"generated\" only if the " +
+        "study also reports the departments where the same rule and the same " +
+        "disruption to rooms did not produce a rise. Without the negative " +
+        "cases it is a plausible story."
+    },
+    {
+      id: "produced",
+      text:
+        "\"Being 'a disruptive pupil' at Meadowbank is partly produced by the " +
+        "referral form, not simply recorded by it.\"",
+      answer: "construct",
+      verdict: "The social constructionist design supports it.",
+      why:
+        "The form requires a named pupil, a category from a drop-down list and " +
+        "a single act; an interaction between several people in a badly " +
+        "timetabled room cannot be entered. What comes out the other side is an " +
+        "attributable act by an individual. That is a claim about what a " +
+        "document does."
+    },
+    {
+      id: "screen",
+      text:
+        "\"Screening would identify the pupils causing the increase, so the " +
+        "school should fund it.\"",
+      answer: "none",
+      verdict: "No design on this page supports it, and it contains two " +
+        "separate leaps.",
+      why:
+        "The first half assumes the increase has pupil-level causes, which is " +
+        "the conclusion, not the premise - and the most obvious candidate cause " +
+        "in the case is a policy. The second half is a resource decision, and " +
+        "no study licenses one on its own. Even a perfect screening study " +
+        "would find an association between scores and referrals, not the cause " +
+        "of a change."
+    }
+  ];
+
+  var CLAIM_OPTIONS = [
+    { value: "measure", label: "The realist/positivist design" },
+    { value: "mechanism", label: "The critical realist design" },
+    { value: "construct", label: "The social constructionist design" },
+    { value: "none", label: "None of these designs, as specified" }
+  ];
+
+  /* =======================================================================
+     Opening prediction feedback
+     ===================================================================== */
+
+  var OPENING = {
+    nothing: {
+      tone: "caution",
+      verdict: "Only one of them will count incidents.",
+      text:
+        "Counting presupposes that the unit of counting is settled. Two of " +
+        "the three positions treat that settlement as the thing to be " +
+        "explained, so counting is not available to them as a first move."
+    },
+    writeup: {
+      tone: "caution",
+      verdict: "The difference starts a long way before the write-up.",
+      text:
+        "By the time there are findings to interpret, the decisive choices " +
+        "have already been made: what was collected, from whom, under what " +
+        "definition. Two of these teams will not have a dataset the other " +
+        "would recognise as data."
+    },
+    method: {
+      tone: "caution",
+      verdict: "Half right, and the half that is missing is the important one.",
+      text:
+        "The methods do differ. But the method is downstream: it is a way of " +
+        "getting at an object that has already been specified. Change what " +
+        "the object is and the method follows automatically."
+    },
+    object: {
+      tone: "good",
+      verdict: "That is the argument of the tool.",
+      text:
+        "Watch it happen in the specification: change nothing but the first " +
+        "row and the legitimate question, the admissible evidence, the method " +
+        "and the defensible claim all move with it - because they were never " +
+        "independent of it."
+    }
+  };
+
+  /* =======================================================================
+     Helpers
+     ===================================================================== */
+
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) { node.className = className; }
+    if (text !== undefined) { node.textContent = text; }
+    return node;
+  }
+
+  function clear(node) {
+    while (node.firstChild) { node.removeChild(node.firstChild); }
+  }
+
+  function lensById(id) {
+    return LENSES.filter(function (lens) { return lens.id === id; })[0] || null;
+  }
+
+  function homeName(home) {
+    if (home === "individual") { return INDIVIDUAL.name; }
+    var lens = lensById(home);
+    return lens ? lens.name : home;
+  }
+
+  /* =======================================================================
+     Wiring
+     ===================================================================== */
+
+  var shell = InteractiveShell.attach("#lens-switch");
+  if (!shell) { return; }
+
+  var $ = function (selector, scope) {
+    return (scope || document).querySelector(selector);
+  };
+  var $$ = function (selector, scope) {
+    return Array.prototype.slice.call((scope || document).querySelectorAll(selector));
+  };
+
+  var openingForm = $("#opening-form");
+  var openingError = $("[data-opening-error]");
+  var openingFeedback = $("[data-opening-feedback]");
+  var labSection = $("#lab-section");
+
+  var lensChoices = $("[data-lens-choices]");
+  var lensNote = $("[data-lens-note]");
+  var decisionsSet = $("[data-decisions]");
+  var decisionList = $("[data-decision-list]");
+
+  var specBody = $("[data-spec-body]");
+  var coherenceLine = $("[data-coherence]");
+  var choiceFeedback = $("[data-choice-feedback]");
+  var appraisal = $("[data-appraisal]");
+  var appraisalBody = $("[data-appraisal-body]");
+  var comparison = $("[data-comparison]");
+  var comparisonBody = $("[data-comparison-body]");
+  var comparisonNote = $("[data-comparison-note]");
+  var goalText = $("[data-goal-text]");
+
+  var claimsForm = $("#claims-form");
+  var claimsList = $("[data-claims-list]");
+  var claimsFeedback = $("[data-claims-feedback]");
+
+  var INITIAL = {
+    stage: "predict",
+    lens: null,
+    answers: [null, null, null, null, null],
+    step: 0,
+    finished: false,
+    completed: {}
+  };
+  var state = null;
+
+  /* --- Lens chooser ------------------------------------------------------ */
+
+  function buildLensChoices() {
+    clear(lensChoices);
+    LENSES.forEach(function (lens) {
+      var label = make("label", "lens-option");
+      var input = document.createElement("input");
+      input.type = "radio";
+      input.name = "lens";
+      input.value = lens.id;
+      input.addEventListener("change", function () {
+        chooseLens(lens.id);
+      });
+      var body = make("span", "lens-option__body");
+      body.appendChild(make("span", "lens-option__name", lens.name));
+      body.appendChild(make("span", "lens-option__object", "Object: " + lens.object));
+      label.appendChild(input);
+      label.appendChild(body);
+      lensChoices.appendChild(label);
+    });
+  }
+
+  function chooseLens(id) {
+    var lens = lensById(id);
+    state.lens = id;
+    lensNote.textContent = lens.creed;
+    decisionsSet.hidden = false;
+    if (state.answers.indexOf(null) === -1) {
+      state.finished = true;
+      recordBuild();
+    }
+    render();
+    shell.announce(
+      "Starting point: " + lens.name + ". " +
+      (state.answers.indexOf(null) === -1
+        ? "Specification re-appraised against the new position."
+        : "Now make decision " + (state.step + 1) + " of 5."),
+      { immediate: true });
+  }
+
+  /* --- Decisions --------------------------------------------------------- */
+
+  function buildDecisions() {
+    clear(decisionList);
+    DECISIONS.forEach(function (decision, index) {
+      var item = make("li", "decision-item");
+      item.setAttribute("data-index", String(index));
+
+      /* Collapsed summary. A button rather than a link because it changes
+         state on this page and nothing is navigated. */
+      var summary = make("button", "decision__summary");
+      summary.type = "button";
+      summary.addEventListener("click", function () {
+        state.step = index;
+        render();
+        focusDecision(index);
+      });
+      item.appendChild(summary);
+
+      var group = make("fieldset", "decision");
+      var legend = make("legend", "decision__legend",
+        (index + 1) + " of 5. " + decision.label);
+      group.appendChild(legend);
+      group.appendChild(make("p", "decision__hint", decision.hint));
+
+      decision.options.forEach(function (option, optionIndex) {
+        var label = make("label", "control--choice decision__option");
+        var input = document.createElement("input");
+        input.type = "radio";
+        input.name = "decision-" + decision.id;
+        input.value = String(optionIndex);
+        input.addEventListener("change", function () {
+          state.answers[index] = optionIndex;
+          renderStage();
+          renderGoal();
+          renderNav();
+          shell.announce(
+            decision.row + " set. " + option.commits);
+        });
+        label.appendChild(input);
+        label.appendChild(make("span", null, option.text));
+        group.appendChild(label);
+      });
+
+      var nav = make("div", "decision__nav");
+
+      var back = make("button", "button button--secondary", "Previous");
+      back.type = "button";
+      back.addEventListener("click", function () {
+        state.step = Math.max(0, index - 1);
+        render();
+        focusDecision(state.step);
+      });
+      nav.appendChild(back);
+
+      var next = make("button", "button button--primary", "Next");
+      next.type = "button";
+      next.setAttribute("data-next", "");
+      next.addEventListener("click", function () {
+        if (index < DECISIONS.length - 1) {
+          state.step = index + 1;
+          render();
+          focusDecision(state.step);
+        } else {
+          state.finished = true;
+          recordBuild();
+          render();
+          appraisal.hidden = false;
+          shell.announce("Specification complete. Appraisal below the table.",
+            { immediate: true });
+        }
+      });
+      nav.appendChild(next);
+
+      group.appendChild(nav);
+      item.appendChild(group);
+      decisionList.appendChild(item);
+    });
+  }
+
+  function focusDecision(index) {
+    var group = decisionList.children[index];
+    if (!group) { return; }
+    var first = group.querySelector(".decision input[type=radio]");
+    if (first) { first.focus(); }
+  }
+
+  /* --- Rendering ---------------------------------------------------------- */
+
+  function render() {
+    renderDecisions();
+    renderStage();
+    renderGoal();
+    renderNav();
+  }
+
+  function renderDecisions() {
+    DECISIONS.forEach(function (decision, index) {
+      var item = decisionList.children[index];
+      if (!item) { return; }
+      var group = item.querySelector(".decision");
+      var summary = item.querySelector(".decision__summary");
+      var open = index === state.step;
+      group.hidden = !open;
+      summary.hidden = open;
+
+      var answer = state.answers[index];
+      if (!open) {
+        clear(summary);
+        var head = make("span", "decision__summary-row");
+        head.appendChild(make("span", null, (index + 1) + ". " + decision.row));
+        head.appendChild(make("span", "decision__summary-action",
+          answer === null ? "Open" : "Change"));
+        summary.appendChild(head);
+        summary.appendChild(make("span", "decision__summary-value",
+          answer === null
+            ? "not yet chosen"
+            : decision.options[answer].text));
+      }
+
+      // Keep the radios in step with state after a reset or worked example.
+      $$("input[type=radio]", group).forEach(function (input) {
+        input.checked = answer !== null && Number(input.value) === answer;
+      });
+    });
+  }
+
+  function renderNav() {
+    DECISIONS.forEach(function (decision, index) {
+      var item = decisionList.children[index];
+      if (!item) { return; }
+      var next = item.querySelector("[data-next]");
+      var back = item.querySelector(".decision__nav .button--secondary");
+      back.disabled = index === 0;
+      next.disabled = state.answers[index] === null;
+      next.textContent = index === DECISIONS.length - 1
+        ? "See what this study can claim"
+        : "Next";
+    });
+  }
+
+  function renderGoal() {
+    var made = state.answers.filter(function (value) { return value !== null; }).length;
+    var runs = Object.keys(state.completed).length;
+    clear(goalText);
+    var list = make("ul", "goal__checks");
+    [
+      {
+        label: "Declare a starting point",
+        detail: state.lens ? lensById(state.lens).name : "not yet",
+        met: Boolean(state.lens)
+      },
+      {
+        label: "Make the five decisions",
+        detail: made + " of 5",
+        met: made === 5
+      },
+      {
+        label: "Run a second lens on the same case",
+        detail: runs + " completed",
+        met: runs >= 2
+      }
+    ].forEach(function (check) {
+      var item = make("li");
+      item.textContent = check.label + " - " + check.detail +
+        (check.met ? " (met)" : " (not yet)");
+      item.setAttribute("data-met", check.met ? "yes" : "no");
+      list.appendChild(item);
+    });
+    goalText.appendChild(list);
+  }
+
+  function renderStage() {
+    renderSpec();
+    renderChoiceFeedback();
+    renderAppraisal();
+    renderComparison();
+  }
+
+  function renderSpec() {
+    clear(specBody);
+    DECISIONS.forEach(function (decision, index) {
+      var answer = state.answers[index];
+      var row = make("tr");
+      var th = make("th", null, decision.row);
+      th.setAttribute("scope", "row");
+      row.appendChild(th);
+
+      var td = make("td");
+      if (answer === null) {
+        td.textContent = "not yet chosen";
+        td.setAttribute("data-empty", "yes");
+      } else {
+        var option = decision.options[answer];
+        td.appendChild(make("span", "spec__text", option.text));
+        var flag = make("span", "spec__flag");
+        var coherent = state.lens && option.home === state.lens;
+        flag.textContent = !state.lens
+          ? "no position declared"
+          : coherent ? "follows from your position" : "in tension: " + homeName(option.home);
+        flag.setAttribute("data-state",
+          !state.lens ? "none" : coherent ? "ok" : "tension");
+        td.appendChild(flag);
+      }
+      row.appendChild(td);
+      specBody.appendChild(row);
+    });
+
+    if (!state.lens) {
+      coherenceLine.textContent =
+        "Declare a starting point above and the specification will be " +
+        "appraised against it.";
+      coherenceLine.setAttribute("data-state", "none");
+      return;
+    }
+
+    var made = 0;
+    var matched = 0;
+    state.answers.forEach(function (answer, index) {
+      if (answer === null) { return; }
+      made += 1;
+      if (DECISIONS[index].options[answer].home === state.lens) { matched += 1; }
+    });
+
+    coherenceLine.textContent = made === 0
+      ? "No decisions made yet."
+      : matched + " of your " + made + (made === 1 ? " decision follows" : " decisions follow") +
+        " from " + lensById(state.lens).name.toLowerCase() + " premises." +
+        (matched === made
+          ? " Internally coherent so far - which is the minimum, not the aim."
+          : " A design can be defensible and mixed; it cannot be defensible and " +
+            "silent about the mixture.");
+    coherenceLine.setAttribute("data-state",
+      made === 0 ? "none" : matched === made ? "ok" : "tension");
+  }
+
+  function renderChoiceFeedback() {
+    clear(choiceFeedback);
+    var index = state.step;
+    var answer = state.answers[index];
+    if (answer === null) { return; }
+    var decision = DECISIONS[index];
+    var option = decision.options[answer];
+    var coherent = state.lens && option.home === state.lens;
+
+    var box = make("div", "verdict");
+    box.setAttribute("data-tone", !state.lens ? "neutral" : coherent ? "good" : "caution");
+    box.appendChild(make("h4", "verdict__title",
+      "Decision " + (index + 1) + ": what this commits you to"));
+    box.appendChild(make("p", "verdict__body", option.commits));
+
+    if (state.lens && !coherent) {
+      var lens = lensById(state.lens);
+      var note = "You declared " + lens.name.toLowerCase() +
+        ", which takes the object to be " + lens.object + ". " +
+        "This choice belongs to " + homeName(option.home).toLowerCase() + ". " +
+        option.tension;
+      if (option.home === "individual") {
+        note += " " + INDIVIDUAL.note;
+      }
+      box.appendChild(make("p", "verdict__body", note));
+    }
+    choiceFeedback.appendChild(box);
+  }
+
+  function renderAppraisal() {
+    if (!state.finished || !state.lens) {
+      appraisal.hidden = true;
+      return;
+    }
+    appraisal.hidden = false;
+    clear(appraisalBody);
+
+    var lens = lensById(state.lens);
+    var matched = 0;
+    var offLens = [];
+    state.answers.forEach(function (answer, index) {
+      var option = DECISIONS[index].options[answer];
+      if (option.home === state.lens) {
+        matched += 1;
+      } else {
+        offLens.push(DECISIONS[index].row.toLowerCase() + " (" + homeName(option.home).toLowerCase() + ")");
+      }
+    });
+
+    appraisalBody.setAttribute("data-tone", matched === 5 ? "good" : "caution");
+    appraisalBody.appendChild(make("h5", "verdict__title",
+      matched === 5
+        ? "A coherent " + lens.name.toLowerCase() + " study"
+        : "A mixed study: " + matched + " of 5 decisions from " + lens.name.toLowerCase()));
+
+    if (matched < 5) {
+      appraisalBody.appendChild(make("p", "verdict__body",
+        "Off-position decisions: " + offLens.join("; ") + ". A design like " +
+        "this can be perfectly good - most real research is impure - but the " +
+        "report has to say what it is doing at each of those points."));
+    }
+
+    appraisalBody.appendChild(make("p", "verdict__body",
+      "What it could claim: " + lens.canSay));
+    appraisalBody.appendChild(make("p", "verdict__body",
+      "What it could not claim: " + lens.cannotSay));
+    appraisalBody.appendChild(make("p", "verdict__body",
+      "What it makes hard to see: " + lens.hides));
+    appraisalBody.appendChild(make("p", "verdict__note",
+      "Where it points: " + lens.action + ". Notice that the intervention " +
+      "follows from the object, not from the findings - the findings only " +
+      "tell you how much of it to do."));
+  }
+
+  function recordBuild() {
+    if (!state.lens || state.answers.indexOf(null) !== -1) { return; }
+    var matched = 0;
+    state.answers.forEach(function (answer, index) {
+      if (DECISIONS[index].options[answer].home === state.lens) { matched += 1; }
+    });
+    state.completed[state.lens] = { matched: matched, answers: state.answers.slice() };
+  }
+
+  function renderComparison() {
+    var ids = Object.keys(state.completed);
+    if (!ids.length) {
+      comparison.hidden = true;
+      return;
+    }
+    comparison.hidden = false;
+    clear(comparisonBody);
+
+    LENSES.forEach(function (lens) {
+      if (!state.completed[lens.id]) { return; }
+      var record = state.completed[lens.id];
+      var row = make("tr");
+      var th = make("th");
+      th.setAttribute("scope", "row");
+      th.appendChild(make("span", "spec__text", lens.name));
+      th.appendChild(make("span", "spec__flag",
+        record.matched === 5
+          ? "coherent build"
+          : "mixed build: " + record.matched + " of 5"));
+      row.appendChild(th);
+      row.appendChild(make("td", null, lens.object));
+      row.appendChild(make("td", null, lens.visible));
+      row.appendChild(make("td", null, lens.recedes));
+      row.appendChild(make("td", null, lens.action));
+      comparisonBody.appendChild(row);
+    });
+
+    comparisonNote.textContent = ids.length < 2
+      ? "One lens run. Use \"Run another lens on this case\" to build a second " +
+        "study from the same evidence - the comparison is the point of the tool."
+      : "Same school, same log, same policy change, same focus groups. The rows " +
+        "differ because the first decision differed. Ask which column your own " +
+        "discipline trains you to fill in first, and what that habit costs.";
+  }
+
+  /* --- Actions ------------------------------------------------------------ */
+
+  $('[data-action="worked"]').addEventListener("click", function () {
+    var lensId = state.lens || "mechanism";
+    var input = $('input[name="lens"][value="' + lensId + '"]');
+    if (input) { input.checked = true; }
+    state.lens = lensId;
+    lensNote.textContent = lensById(lensId).creed;
+    decisionsSet.hidden = false;
+    state.answers = DECISIONS.map(function (decision) {
+      var found = 0;
+      decision.options.forEach(function (option, index) {
+        if (option.home === lensId) { found = index; }
+      });
+      return found;
+    });
+    state.step = 4;
+    state.finished = true;
+    recordBuild();
+    render();
+    shell.announce(
+      "Worked example loaded: a coherent " + lensById(lensId).name.toLowerCase() +
+      " study, all five decisions taken from the same premises.",
+      { immediate: true });
+  });
+
+  $('[data-action="another"]').addEventListener("click", function () {
+    state.answers = [null, null, null, null, null];
+    state.step = 0;
+    state.finished = false;
+    state.lens = null;
+    $$('input[name="lens"]').forEach(function (input) { input.checked = false; });
+    lensNote.textContent =
+      "Choose a starting point. The tool will not tell you which one is right, " +
+      "because that is not a question it can answer.";
+    decisionsSet.hidden = true;
+    appraisal.hidden = true;
+    render();
+    shell.announce(
+      "Cleared. Declare a different starting point and build a second study " +
+      "from the same case. Completed lenses are kept in the comparison table.",
+      { immediate: true });
+  });
+
+  /* --- Opening prediction -------------------------------------------------- */
+
+  function showFeedback(container, tone, verdict, text) {
+    clear(container);
+    container.setAttribute("data-tone", tone);
+    var p = make("p");
+    p.appendChild(make("strong", "feedback__verdict", verdict));
+    if (text) { p.appendChild(document.createTextNode(" " + text)); }
+    container.appendChild(p);
+    container.hidden = false;
+  }
+
+  function lockForm(form) {
+    $$("input, button, select", form).forEach(function (c) { c.disabled = true; });
+  }
+
+  function unlockForm(form) {
+    $$("input, button, select", form).forEach(function (c) { c.disabled = false; });
+    form.reset();
+  }
+
+  function unlockLab() {
+    state.stage = "explore";
+    labSection.hidden = false;
+    render();
+    shell.announce("Lens switch open. Declare a starting point to begin.",
+      { immediate: true });
+  }
+
+  openingForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answer = $('input[name="opening"]:checked', openingForm);
+    if (!answer) {
+      openingError.textContent =
+        "Choose an answer before opening the lens switch.";
+      openingError.hidden = false;
+      return;
+    }
+    openingError.hidden = true;
+    var feedback = OPENING[answer.value];
+    showFeedback(openingFeedback, feedback.tone, feedback.verdict, feedback.text);
+    lockForm(openingForm);
+    unlockLab();
+    $("#lab-heading").focus();
+  });
+
+  $('[data-action="skip-opening"]').addEventListener("click", function () {
+    openingError.hidden = true;
+    showFeedback(openingFeedback, "neutral",
+      "Prediction skipped - demonstration mode.", "");
+    lockForm(openingForm);
+    unlockLab();
+  });
+
+  /* --- The challenge -------------------------------------------------------- */
+
+  function buildClaims() {
+    clear(claimsList);
+    CLAIMS.forEach(function (claim, index) {
+      var group = make("fieldset", "prediction__group");
+      var legend = make("legend", "prediction__legend",
+        "Claim " + (index + 1) + ". " + claim.text);
+      group.appendChild(legend);
+      CLAIM_OPTIONS.forEach(function (option) {
+        var label = make("label", "control--choice");
+        var input = document.createElement("input");
+        input.type = "radio";
+        input.name = "claim-" + claim.id;
+        input.value = option.value;
+        label.appendChild(input);
+        label.appendChild(make("span", null, option.label));
+        group.appendChild(label);
+      });
+      claimsList.appendChild(group);
+    });
+  }
+
+  var CLAIM_LABELS = {};
+  CLAIM_OPTIONS.forEach(function (option) { CLAIM_LABELS[option.value] = option.label; });
+
+  claimsForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answers = CLAIMS.map(function (claim) {
+      var picked = $('input[name="claim-' + claim.id + '"]:checked', claimsForm);
+      return picked ? picked.value : null;
+    });
+
+    if (answers.indexOf(null) !== -1) {
+      showFeedback(claimsFeedback, "caution", "One judgement per claim, please.",
+        "A blank is not a verdict, and the interesting disagreements only " +
+        "show up when everything has been committed to.");
+      return;
+    }
+
+    var right = 0;
+    CLAIMS.forEach(function (claim, index) {
+      if (answers[index] === claim.answer) { right += 1; }
+    });
+
+    clear(claimsFeedback);
+    claimsFeedback.setAttribute("data-tone", right >= 4 ? "good" : "caution");
+
+    var lead = make("p");
+    lead.appendChild(make("strong", "feedback__verdict",
+      right + " of 5 judgements match the designs as specified."));
+    lead.appendChild(document.createTextNode(
+      " Read the two \"none of these designs\" items even if you got them " +
+      "right: they are where the exercise is."));
+    claimsFeedback.appendChild(lead);
+
+    var list = make("ol", "claims__results");
+    CLAIMS.forEach(function (claim, index) {
+      var li = make("li");
+      var agreed = answers[index] === claim.answer;
+      li.setAttribute("data-agreed", agreed ? "yes" : "no");
+      var head = make("p", "claims__result-head");
+      head.appendChild(make("strong", null,
+        "Claim " + (index + 1) + ": " + claim.verdict));
+      head.appendChild(document.createTextNode(
+        agreed ? " That is what you said."
+          : " You said: " + CLAIM_LABELS[answers[index]].toLowerCase() + "."));
+      li.appendChild(head);
+      li.appendChild(make("p", null, claim.why));
+      list.appendChild(li);
+    });
+    claimsFeedback.appendChild(list);
+    claimsFeedback.hidden = false;
+
+    shell.announce("Five claims judged. " + right + " match the designs as specified.",
+      { immediate: true });
+  });
+
+  /* --- Reset and start-up ---------------------------------------------------- */
+
+  shell.onReset(function () {
+    state = JSON.parse(JSON.stringify(INITIAL));
+    unlockForm(openingForm);
+    openingFeedback.hidden = true;
+    openingError.hidden = true;
+    labSection.hidden = true;
+    $$('input[name="lens"]').forEach(function (input) { input.checked = false; });
+    lensNote.textContent =
+      "Choose a starting point. The tool will not tell you which one is right, " +
+      "because that is not a question it can answer.";
+    decisionsSet.hidden = true;
+    appraisal.hidden = true;
+    claimsForm.reset();
+    claimsFeedback.hidden = true;
+    render();
+  });
+
+  buildLensChoices();
+  buildDecisions();
+  buildClaims();
+
+  shell.reset({ silent: true });
+  shell.announce(
+    "Ready. Answer the question above to open the lens switch.",
+    { immediate: true });
+})();
+
+</script>
+</div>

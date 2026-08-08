@@ -1,0 +1,3583 @@
+<!-- Dual-Task and Limited Capacity Laboratory
+     From Open Psychology Interactives - https://github.com/utman5454/open-psychology-interactives
+     Self-contained: no stylesheets, scripts, fonts, images or network requests.
+     Styles are scoped to .opi-activity and do not affect the page around them.
+     Nothing is saved, sent or tracked. MIT licensed; please keep this notice.
+     Paste anywhere that accepts HTML, or save as a .html file and open it. -->
+<div class="opi-activity">
+<style>
+/* Defensive baseline. See scripts/build-standalone.py for why this
+   is `revert` rather than an enumerated reset, and how the specificity ladder
+   keeps the activity's own styling on top of it. */
+.opi-activity *:not(svg *) {
+  all: revert;
+}
+.opi-activity, .opi-activity *, .opi-activity *::before, .opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  text-transform: none;
+  text-indent: 0;
+  font-style: normal;
+  font-variant: normal;
+  letter-spacing: normal;
+  word-spacing: normal;
+  white-space: normal;
+  visibility: visible;
+  float: none;
+  max-width: none;
+}
+.opi-activity svg { max-width: 100%; }
+.opi-activity img { max-width: 100%; height: auto; }
+.opi-activity [hidden] { display: none !important; }
+
+/* assets/css/main.css */
+.opi-activity.opi-activity {
+  --colour-page: #ffffff;
+  --colour-surface: #f5f7fa;
+  --colour-surface-raised: #ffffff;
+  --colour-border: #d3d9e2;
+  --colour-border-strong: #aeb7c4;
+  --colour-text: #131820;
+  --colour-text-muted: #4c566a;
+  --colour-accent: #1a4fa0;
+  --colour-accent-hover: #123a7a;
+  --colour-accent-soft: #e8eefb;
+  --colour-on-accent: #ffffff;
+  --colour-focus: #b45309;
+  --colour-cognitive: #8a4b00;
+  --colour-research-methods: #1a4fa0;
+  --colour-neuropsychology: #145c53;
+  --colour-social-critical-psychology: #9e2f45;
+  --colour-personality-individual-differences: #7a2e6d;
+  --colour-status-bg: #f1ede3;
+  --colour-status-text: #5c4a1f;
+  --colour-status-border: #d9cdb0;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  --text-xs: 13px;
+  --text-sm: 15px;
+  --text-base: 17px;
+  --text-lg: 19px;
+  --text-xl: 23px;
+  --text-2xl: 28px;
+  --text-3xl: 36px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgb(19 24 32 / 0.06);
+  --shadow-md: 0 2px 8px rgb(19 24 32 / 0.08);
+  --measure: 68ch;
+  --container: 1152px;
+}
+@media (prefers-color-scheme: dark) {
+.opi-activity.opi-activity {
+  --colour-page: #0f141b;
+  --colour-surface: #161d27;
+  --colour-surface-raised: #1a2230;
+  --colour-border: #2c3644;
+  --colour-border-strong: #44506180;
+  --colour-text: #e9edf3;
+  --colour-text-muted: #a8b2c1;
+  --colour-accent: #8fb6ff;
+  --colour-accent-hover: #b3cdff;
+  --colour-accent-soft: #1b2740;
+  --colour-on-accent: #0f141b;
+  --colour-focus: #f0b429;
+  --colour-cognitive: #e2ab5f;
+  --colour-research-methods: #8fb6ff;
+  --colour-neuropsychology: #6fc3b4;
+  --colour-social-critical-psychology: #f19aa8;
+  --colour-personality-individual-differences: #db9ccd;
+  --colour-status-bg: #241f14;
+  --colour-status-text: #e2cf9f;
+  --colour-status-border: #4a4028;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 2px 10px rgb(0 0 0 / 0.45);
+}
+}
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity.opi-activity {
+  -webkit-text-size-adjust: 100%;
+}
+.opi-activity.opi-activity {
+  background-color: var(--colour-page);
+  color: var(--colour-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.65;
+}
+.opi-activity.opi-activity h1,
+.opi-activity.opi-activity h2,
+.opi-activity.opi-activity h3,
+.opi-activity.opi-activity h4 {
+  margin: 0 0 var(--space-3);
+  line-height: 1.25;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.opi-activity.opi-activity h1 {
+  font-size: var(--text-3xl);
+}
+.opi-activity.opi-activity h2 {
+  font-size: var(--text-2xl);
+}
+.opi-activity.opi-activity h3 {
+  font-size: var(--text-xl);
+}
+.opi-activity.opi-activity h4 {
+  font-size: var(--text-lg);
+}
+.opi-activity.opi-activity p,
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol,
+.opi-activity.opi-activity dl {
+  margin: 0 0 var(--space-4);
+}
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol {
+  padding-left: 1.35em;
+}
+.opi-activity.opi-activity li + li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity a {
+  color: var(--colour-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: max(1px, 0.06em);
+}
+.opi-activity.opi-activity a:hover {
+  color: var(--colour-accent-hover);
+  text-decoration-thickness: max(2px, 0.11em);
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid var(--colour-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+@supports not selector(:focus-visible) {
+.opi-activity.opi-activity :focus {
+  outline: 3px solid var(--colour-focus);
+    outline-offset: 2px;
+}
+}
+.opi-activity.opi-activity code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.35em;
+}
+.opi-activity.opi-activity hr {
+  border: 0;
+  border-top: 1px solid var(--colour-border);
+  margin: var(--space-6) 0;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+}
+.opi-activity.opi-activity .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.opi-activity.opi-activity .container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+@media (min-width: 40em) {
+.opi-activity.opi-activity .container {
+  padding-inline: var(--space-5);
+}
+}
+.opi-activity.opi-activity .prose {
+  max-width: var(--measure);
+}
+.opi-activity.opi-activity .text-muted {
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .section {
+  padding-block: var(--space-7);
+}
+.opi-activity.opi-activity .section--tinted {
+  background-color: var(--colour-surface);
+  border-block: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .section__header {
+  max-width: var(--measure);
+  margin-bottom: var(--space-5);
+}
+.opi-activity.opi-activity .section__header > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-7) var(--space-6);
+  border-bottom: 1px solid var(--colour-border);
+  
+  background-image: linear-gradient(
+    180deg,
+    var(--colour-accent-soft) 0%,
+    var(--colour-page) 100%
+  );
+}
+.opi-activity.opi-activity .hero__eyebrow {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .hero h1 {
+  max-width: 20ch;
+  margin-bottom: var(--space-4);
+}
+.opi-activity.opi-activity .hero__lead {
+  max-width: var(--measure);
+  font-size: var(--text-lg);
+  color: var(--colour-text-muted);
+}
+@media (min-width: 48em) {
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-8) var(--space-7);
+}
+.opi-activity.opi-activity .hero h1 {
+  font-size: 44px;
+}
+}
+.opi-activity.opi-activity .button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  
+  min-height: 44px;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .button--primary {
+  background-color: var(--colour-accent);
+  border-color: var(--colour-accent);
+  
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--primary:hover {
+  background-color: var(--colour-accent-hover);
+  border-color: var(--colour-accent-hover);
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--secondary {
+  background-color: transparent;
+  border-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .button--secondary:hover {
+  background-color: var(--colour-surface);
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+}
+.opi-activity.opi-activity .card--cognitive {
+  --card-accent: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .card--research-methods {
+  --card-accent: var(--colour-research-methods);
+}
+.opi-activity.opi-activity .card--neuropsychology {
+  --card-accent: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .card--social-critical-psychology {
+  --card-accent: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .card--personality-individual-differences {
+  --card-accent: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 650;
+  line-height: 1.4;
+  padding: 3.2px var(--space-3);
+  border-radius: 999px;
+  border: 1px solid var(--colour-status-border);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+}
+.opi-activity.opi-activity .badge__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex: none;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed var(--colour-border-strong);
+  border-radius: var(--radius-lg);
+  background-color: var(--colour-surface);
+  padding: var(--space-5);
+  text-align: left;
+}
+.opi-activity.opi-activity .placeholder__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+}
+.opi-activity.opi-activity .placeholder > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .split {
+  display: grid;
+  gap: var(--space-6);
+}
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split {
+  grid-template-columns: 3fr 2fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .panel {
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.opi-activity.opi-activity .panel > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .panel__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .section--tinted {
+  border-block: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .hero {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .button--primary {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .button--secondary {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .button:hover {
+  border-color: Highlight;
+}
+.opi-activity.opi-activity .panel {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed CanvasText;
+}
+.opi-activity.opi-activity .badge {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .badge__dot {
+  background-color: CanvasText;
+}
+.opi-activity.opi-activity code {
+  border-color: CanvasText;
+}
+.opi-activity.opi-activity hr {
+  border-top-color: CanvasText;
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+}
+@media print {
+.opi-activity.opi-activity {
+  color: #000;
+  background: #fff;
+}
+.opi-activity.opi-activity a[href^="http"]::after {
+  content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+}
+}
+
+/* components/interactive-shell.css */
+.opi-activity.opi-activity .interactive {
+  --shell-page: var(--colour-page, #ffffff);
+  --shell-surface: var(--colour-surface, #f5f7fa);
+  --shell-raised: var(--colour-surface-raised, #ffffff);
+  --shell-border: var(--colour-border, #d3d9e2);
+  --shell-border-strong: var(--colour-border-strong, #aeb7c4);
+  --shell-text: var(--colour-text, #131820);
+  --shell-muted: var(--colour-text-muted, #4c566a);
+  --shell-accent: var(--colour-accent, #1a4fa0);
+  --shell-accent-soft: var(--colour-accent-soft, #e8eefb);
+  
+  --shell-on-accent: var(--colour-on-accent, #ffffff);
+  --shell-focus: var(--colour-focus, #b45309);
+  --shell-radius: var(--radius-lg, 12px);
+  --shell-gap: var(--space-5, 24px);
+
+  display: block;
+  background-color: var(--shell-raised);
+  color: var(--shell-text);
+  border: 1px solid var(--shell-border);
+  border-radius: var(--shell-radius);
+  
+  overflow-x: clip;
+  overflow-y: visible;
+}
+.opi-activity.opi-activity .interactive__header {
+  padding: var(--shell-gap);
+  border-bottom: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 1.25;
+}
+.opi-activity.opi-activity .interactive__brief {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--shell-muted);
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__body {
+  display: grid;
+  gap: var(--shell-gap);
+  padding: var(--shell-gap);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body {
+  grid-template-columns: minmax(240px, 320px) 1fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .interactive__controls {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__controls fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .interactive__controls legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .control {
+  display: grid;
+  gap: 5.6px;
+}
+.opi-activity.opi-activity .control + .control {
+  margin-top: 16px;
+}
+.opi-activity.opi-activity .control__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.opi-activity.opi-activity .control__label {
+  font-size: 15px;
+  font-weight: 600;
+}
+.opi-activity.opi-activity .control__value {
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--shell-accent);
+}
+.opi-activity.opi-activity .control__hint {
+  font-size: 13px;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .interactive__controls input[type="range"] {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--shell-accent);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  width: 100%;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--shell-text);
+  background-color: var(--shell-raised);
+  border: 1px solid var(--shell-border-strong);
+  border-radius: var(--radius-sm, 4px);
+}
+.opi-activity.opi-activity .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+}
+.opi-activity.opi-activity .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  accent-color: var(--shell-accent);
+  flex: none;
+}
+.opi-activity.opi-activity .interactive__stage {
+  min-height: 256px;
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-page);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body--pinned {
+  align-items: stretch;
+}
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: sticky;
+    top: 0;
+    z-index: 2;
+    
+    margin: -16px -16px 0;
+    padding: 16px 16px 12px;
+    background-color: var(--shell-page);
+    border-bottom: 1px solid var(--shell-border);
+}
+}
+@media (min-width: 52em) and (max-height: 30em) {
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: static;
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
+}
+}
+.opi-activity.opi-activity .interactive__stage > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity :where(.interactive__stage) svg,
+.opi-activity.opi-activity :where(.interactive__stage) canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+.opi-activity.opi-activity .interactive__readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout div {
+  padding: 9.6px 12px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-sm, 4px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__readout dt {
+  font-size: 13px;
+  color: var(--shell-muted);
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout dd {
+  margin: 2.4px 0 0;
+  font-size: 18px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .interactive__status {
+  margin: 0;
+  padding: 12px var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+  font-size: 15px;
+  color: var(--shell-muted);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .interactive__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+}
+.opi-activity.opi-activity .interactive__actions button {
+  min-height: 44px;
+  padding: 6.4px 20px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--shell-on-accent);
+  background-color: var(--shell-accent);
+  border: 1px solid var(--shell-accent);
+  border-radius: var(--radius-md, 8px);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  color: var(--shell-text);
+  background-color: transparent;
+  border-color: var(--shell-border-strong);
+}
+.opi-activity.opi-activity .interactive__actions button:hover {
+  filter: brightness(1.08);
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__notes > summary {
+  padding: 13.6px var(--shell-gap);
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__notes > div {
+  padding: 0 var(--shell-gap) var(--shell-gap);
+  max-width: 68ch;
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__notes > div > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity .interactive *,
+.opi-activity.opi-activity .interactive *::before,
+.opi-activity.opi-activity .interactive *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+}
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .interactive,
+.opi-activity.opi-activity .interactive__controls,
+.opi-activity.opi-activity .interactive__stage,
+.opi-activity.opi-activity .interactive__readout div {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__header {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__status,
+.opi-activity.opi-activity .interactive__actions,
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__actions button {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  border-width: 1px;
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 1;
+    color: GrayText;
+    border-color: GrayText;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__stage svg {
+  forced-color-adjust: auto;
+}
+}
+
+/* components/tool-kit.css */
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split--wide {
+  grid-template-columns: 1fr 1fr;
+}
+}
+.opi-activity.opi-activity .how-to {
+  padding-left: 19.2px;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .how-to > li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .table-scroll {
+  overflow-x: auto;
+  
+  position: relative;
+}
+.opi-activity.opi-activity .prediction {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 832px;
+}
+.opi-activity.opi-activity .prediction > *,
+.opi-activity.opi-activity .challenge > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity .prediction__group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .prediction__legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-weight: 650;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .prediction .control--choice,
+.opi-activity.opi-activity .challenge .control--choice,
+.opi-activity.opi-activity .evidence .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .prediction .control--choice input,
+.opi-activity.opi-activity .challenge .control--choice input,
+.opi-activity.opi-activity .evidence .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .prediction__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .prediction__error {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-status-border);
+  border-left: 4px solid var(--colour-status-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .prediction__readback {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .feedback[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .feedback[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .feedback[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .feedback__verdict {
+  font-weight: 700;
+}
+.opi-activity.opi-activity .verdict {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .verdict__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict__body {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .verdict__body + .verdict__body {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .verdict__note {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .verdict[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .verdict[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .goal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .goal__label {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .goal__text {
+  flex: 1 1 256px;
+}
+.opi-activity.opi-activity .goal strong {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .goal__checks {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+  display: grid;
+  gap: 2.4px;
+}
+.opi-activity.opi-activity .goal__checks > li {
+  margin-top: 0;
+  padding-left: 22.4px;
+  position: relative;
+}
+.opi-activity.opi-activity .goal__checks > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 9.6px;
+  height: 9.6px;
+  border: 2px solid var(--colour-border-strong);
+  border-radius: 2px;
+}
+.opi-activity.opi-activity .goal__checks > li[data-met="yes"]::before {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .stage-track {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .stage-track > li {
+  margin-top: 0;
+  flex: 1 1 160px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-bottom: 3px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .stage-track > li > span {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.opi-activity.opi-activity .stage-track > li[data-state="done"] {
+  border-bottom-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border-bottom-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+  color: var(--colour-text);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .stage__heading {
+  margin: 0;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .data-table,
+.opi-activity.opi-activity .chart__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .data-table th,
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table th,
+.opi-activity.opi-activity .chart__table td {
+  padding: 6.4px 9.6px;
+  border: 1px solid var(--colour-border);
+  text-align: left;
+  vertical-align: top;
+}
+.opi-activity.opi-activity .data-table thead th,
+.opi-activity.opi-activity .chart__table thead th {
+  background-color: var(--colour-surface);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table td {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__table tbody th,
+.opi-activity.opi-activity .data-table tbody th {
+  font-weight: 550;
+}
+.opi-activity.opi-activity .data-table__total > th,
+.opi-activity.opi-activity .data-table__total > td {
+  border-top: 2px solid var(--colour-border-strong);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart {
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .chart__caption {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__svg {
+  max-width: 100%;
+  height: auto;
+}
+.opi-activity.opi-activity .chart__label,
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__inline,
+.opi-activity.opi-activity .chart__axis {
+  font-family: var(--font-body);
+  fill: var(--colour-text);
+  font-size: 13px;
+}
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__axis {
+  fill: var(--colour-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: var(--colour-on-accent);
+  font-size: 12px;
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__track {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__bar {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--one {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .chart__baseline,
+.opi-activity.opi-activity .chart__grid {
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__line {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: var(--colour-personality-individual-differences);
+  stroke-dasharray: 6 4;
+}
+.opi-activity.opi-activity .chart__point {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .reveal > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .reveal__lead {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+.opi-activity.opi-activity .reveal__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(176px, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+  padding: 0;
+  list-style: none;
+}
+.opi-activity.opi-activity .reveal__figures > li {
+  margin-top: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+.opi-activity.opi-activity .reveal__figure-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .reveal__figure-value {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .challenge {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+.opi-activity.opi-activity .challenge__locked {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .panel--caution {
+  background-color: var(--colour-status-bg);
+  border-color: var(--colour-status-border);
+}
+.opi-activity.opi-activity .panel--caution li + li {
+  margin-top: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .goal,
+.opi-activity.opi-activity .verdict,
+.opi-activity.opi-activity .feedback,
+.opi-activity.opi-activity .prediction__error,
+.opi-activity.opi-activity .prediction__readback,
+.opi-activity.opi-activity .stage-track > li,
+.opi-activity.opi-activity .reveal__figures > li {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border: 2px solid Highlight;
+}
+.opi-activity.opi-activity .chart__bar,
+.opi-activity.opi-activity .chart__bar--one {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: Canvas;
+}
+.opi-activity.opi-activity .chart__line {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: Highlight;
+}
+}
+.opi-activity.opi-activity .stage__more {
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .stage__more > summary {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .stage__more[open] > summary {
+  border-bottom: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .stage__more > *:not(summary) {
+  margin: var(--space-3);
+}
+
+/* modules/cognitive/tools/08-dual-task-capacity-lab/tool.css */
+.opi-activity.opi-activity .table-scroll {
+  position: relative;
+}
+.opi-activity.opi-activity #dual .interactive__controls,
+.opi-activity.opi-activity #dual .interactive__stage {
+  min-width: 0;
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity #dual .interactive__body {
+  grid-template-columns: minmax(0, 304px) minmax(0, 1fr);
+}
+}
+.opi-activity.opi-activity #dual .control + .control {
+  margin-top: var(--space-3);
+}
+.opi-activity.opi-activity .control--buttons {
+  display: grid;
+  gap: var(--space-2);
+}
+.opi-activity.opi-activity .display {
+  display: grid;
+  gap: var(--space-2);
+  align-content: center;
+  justify-items: center;
+  min-height: 176px;
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .display__number,
+.opi-activity.opi-activity .display__letter {
+  margin: 0;
+  font-family: var(--font-mono);
+  line-height: 1;
+  font-weight: 700;
+  color: var(--colour-text);
+  min-height: 1em;
+  text-align: center;
+}
+.opi-activity.opi-activity .display__number {
+  font-size: clamp(28.8px, 6vw, 41.6px);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .display__letter {
+  font-size: clamp(41.6px, 9vw, 64px);
+}
+.opi-activity.opi-activity .display__caption {
+  margin: var(--space-3) 0 0;
+  min-height: 40px;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+  text-align: center;
+}
+.opi-activity.opi-activity .responses {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+.opi-activity.opi-activity .response {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex: 1 1 144px;
+  min-height: 52px;
+  font-size: var(--text-base);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .response[data-answered="yes"] {
+  border-width: 2px;
+  border-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .response__key {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  padding: 1.6px 6.4px;
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .stage__form {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+.opi-activity.opi-activity .stage__form input[type="number"] {
+  width: 100%;
+  max-width: 144px;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  color: var(--colour-text);
+  background-color: var(--colour-surface-raised);
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+}
+.opi-activity.opi-activity .dual-chart {
+  max-width: 480px;
+}
+.opi-activity.opi-activity .dual__bar--alone {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .dual__bar--dual {
+  fill: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .dual__hatch {
+  stroke: var(--colour-surface);
+  stroke-width: 3;
+}
+.opi-activity.opi-activity .challenge select {
+  width: 100%;
+  min-width: 192px;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  font-size: var(--text-sm);
+  color: var(--colour-text);
+  background-color: var(--colour-surface-raised);
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+}
+.opi-activity.opi-activity .challenge th[scope="row"] {
+  min-width: 256px;
+  font-weight: 400;
+}
+.opi-activity.opi-activity .challenge__mark {
+  display: block;
+  margin-top: var(--space-1);
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .display {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .response[data-answered="yes"] {
+  border: 2px solid Highlight;
+}
+.opi-activity.opi-activity .response__key {
+  border-color: ButtonText;
+    color: ButtonText;
+}
+.opi-activity.opi-activity .dual__bar--alone {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .dual__bar--dual {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .dual__hatch {
+  stroke: Canvas;
+}
+.opi-activity.opi-activity .challenge select,
+.opi-activity.opi-activity .stage__form input[type="number"] {
+  border: 1px solid ButtonText;
+}
+}
+</style>
+
+  <!-- ================= Title and purpose ================= -->
+  <section class="section card--cognitive" aria-labelledby="page-heading">
+    <div class="container">
+
+      <p class="hero__eyebrow" style="color: var(--colour-cognitive)">
+        Cognitive Psychology
+      </p>
+      <h1 id="page-heading">Dual-Task and Limited Capacity Laboratory</h1>
+      <p class="hero__lead">
+        Two easy tasks. Each of them, on its own, is barely a task at all. Put
+        them on screen at the same moment and something has to give — and
+        which of the two gives, and by how much, is more informative than the
+        fact that anything gives.
+      </p>
+
+      <p>
+        <span class="badge">
+          <span class="badge__dot" aria-hidden="true"></span>
+          Illustrative browser timing — a demonstration, not a measurement of anybody
+        </span>
+      </p>
+
+      <div class="split split--wide">
+
+        <div class="panel">
+          <h2 class="panel__title">Learning objective</h2>
+          <p>
+            By the end you should be able to measure a dual-task cost against
+            its own single-task baseline, and say what an asymmetric cost
+            implies.
+          </p>
+          <p class="text-muted">
+            About 30 minutes. Nothing you do here is saved or sent anywhere.
+          </p>
+        </div>
+
+        <div class="panel panel--caution">
+          <h2 class="panel__title">Before you start — how this is paced</h2>
+          <p>
+            <strong>Nothing is timed out and nothing flashes.</strong> Each
+            display waits for your answer, blocks can be stopped between
+            trials, and no part of the page animates, so there is nothing for
+            a reduced-motion setting to switch off.
+          </p>
+          <p>
+            <strong>The order of the blocks is not optional.</strong> Both
+            single-task baselines come first, because a dual-task cost is a
+            difference from a baseline and without one there is no cost to
+            report — only a number. The <strong>worked example</strong>
+            reaches every conclusion on this page without running anything.
+          </p>
+        </div>
+
+      </div>
+
+      <ol class="how-to">
+        <li>Answer the prediction below — it unlocks the laboratory.</li>
+        <li>Choose how hard the second task is, and whether it needs an answer on every item.</li>
+        <li>Run block 1: letters alone. Then block 2: numbers alone.</li>
+        <li>Run block 3: both at once. Only now is there a cost to measure.</li>
+        <li>Change the settings and run another set of three to compare.</li>
+        <li>Prefer not to perform it? Load the worked example: a documented simulated dataset with a fixed seed.</li>
+      </ol>
+
+    </div>
+  </section>
+
+  <!-- ================= Opening prediction ================= -->
+  <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="opening-heading">First, a prediction</h2>
+        <p class="prose">
+          The first task is a letter: press <strong>Vowel</strong> or
+          <strong>Consonant</strong>. The second is a number: press
+          <strong>Odd</strong> or <strong>Even</strong>. Alone, either is
+          trivial. In the third block both appear at the same instant and both
+          need an answer.
+        </p>
+      </div>
+
+      <noscript>
+        <div class="placeholder">
+          <h3 class="placeholder__title">This part needs JavaScript</h3>
+          <p class="prose">
+            The blocks are generated and timed in your browser, so this cannot
+            work with JavaScript switched off. The rest of the page is
+            readable without it.
+          </p>
+        </div>
+      </noscript>
+
+      <form class="panel prediction" id="opening-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            What will adding the second task do to the first one?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="speed">
+            Slow it down, but I will stay just as accurate
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="accuracy">
+            Leave my speed alone, but I will make more errors
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="both">
+            Both — slower and less accurate
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="neither">
+            Neither — they are easy enough to do at the same time
+          </label>
+        </fieldset>
+
+        <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Record my answer and unlock the laboratory
+          </button>
+          <button class="button button--secondary" type="button" data-action="skip-opening">
+            Skip — I am demonstrating this
+          </button>
+        </div>
+
+        <div class="feedback" data-opening-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= The laboratory ================= -->
+  <section class="section" id="experiment" aria-labelledby="experiment-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="experiment-heading">The laboratory</h2>
+        <p class="prose">
+          Three blocks, in order. Use the buttons or the keys printed on them:
+          <kbd>F</kbd> and <kbd>J</kbd> for the letter,
+          <kbd>D</kbd> and <kbd>K</kbd> for the number. Nothing is timed out.
+        </p>
+      </div>
+
+      <section class="interactive" id="dual" data-interactive
+               data-reset-message="Everything cleared. Back to the opening question.">
+
+        <header class="interactive__header">
+          <h3 class="interactive__title">One task, the other task, then both</h3>
+          <p class="interactive__brief">
+            Results are withheld until a block ends, because a running score
+            on screen would change how you answer the next trial.
+          </p>
+          <ol class="stage-track" data-stage-track>
+            <li data-stage="letters"><span>1</span> Letters alone</li>
+            <li data-stage="numbers"><span>2</span> Numbers alone</li>
+            <li data-stage="both"><span>3</span> Both at once</li>
+          </ol>
+          <p class="goal">
+            <span class="goal__label">Your task</span>
+            <span class="goal__text" data-task-text>Answer the question above to unlock this.</span>
+          </p>
+        </header>
+
+        <div class="interactive__body">
+
+          <form class="interactive__controls" data-interactive-controls>
+
+            <fieldset>
+              <legend>Set up the second task</legend>
+
+              <div class="control">
+                <label class="control__label" for="difficulty-select">
+                  How hard is the number task?
+                </label>
+                <select id="difficulty-select">
+                  <option value="easy" selected>Easy — one digit, odd or even</option>
+                  <option value="hard">Hard — two digits, is their sum odd or even</option>
+                </select>
+              </div>
+
+              <div class="control">
+                <label class="control__label" for="mode-select">
+                  When does the number task need an answer?
+                </label>
+                <select id="mode-select">
+                  <option value="respond" selected>On every item — press Odd or Even each time</option>
+                  <option value="count">Once at the end — just count the odd ones</option>
+                </select>
+                <p class="control__hint">
+                  This is the overlap manipulation. Counting still needs the
+                  number to be read and held; it does not need a choice
+                  response on each item.
+                </p>
+              </div>
+
+            </fieldset>
+
+            <fieldset>
+              <legend>Run</legend>
+              <div class="control control--buttons">
+                <button class="button button--primary" type="button"
+                        data-action="start-block" disabled>
+                  Run block 1
+                </button>
+                <button class="button button--secondary" type="button"
+                        data-action="stop" disabled>
+                  Stop this block
+                </button>
+                <button class="button button--secondary" type="button"
+                        data-action="restart-set" disabled>
+                  Start a new set of three
+                </button>
+              </div>
+              <div class="control">
+                <button class="button button--secondary" type="button"
+                        data-action="worked-example">
+                  Load the worked example instead
+                </button>
+                <p class="control__hint">
+                  A simulated dataset, seeded. Not anybody's data.
+                </p>
+              </div>
+            </fieldset>
+
+          </form>
+
+          <div class="interactive__stage" data-interactive-stage>
+
+            <!-- The trial display. aria-hidden during a block: a live
+                 description would be the answer, and would arrive after the
+                 trial in any case. The worked example is the route that does
+                 not require seeing it. -->
+            <div class="display" data-display aria-hidden="true">
+              <p class="display__number" data-number></p>
+              <p class="display__letter" data-letter></p>
+            </div>
+
+            <p class="display__caption" data-display-caption>
+              Answer the question above to unlock the laboratory.
+            </p>
+
+            <div class="responses" data-letter-responses>
+              <button class="button button--secondary response" type="button"
+                      data-letter-response="vowel" disabled
+                      aria-label="The letter is a vowel, key F">
+                Vowel <span class="response__key" aria-hidden="true">F</span>
+              </button>
+              <button class="button button--secondary response" type="button"
+                      data-letter-response="consonant" disabled
+                      aria-label="The letter is a consonant, key J">
+                Consonant <span class="response__key" aria-hidden="true">J</span>
+              </button>
+            </div>
+
+            <!-- Built by tool.js: either Odd / Even, or a single Next
+                 button when the number task is "count at the end". -->
+            <div class="responses" data-number-responses role="group"
+                 aria-label="The number task" hidden></div>
+
+            <form class="panel stage__form" data-count-form hidden>
+              <div class="control">
+                <label class="control__label" for="count-input" data-count-label>
+                  How many of the numbers were odd?
+                </label>
+                <input type="number" id="count-input" min="0" max="99" step="1"
+                       inputmode="numeric">
+              </div>
+              <div class="prediction__actions">
+                <button class="button button--primary" type="submit">
+                  Submit the count
+                </button>
+              </div>
+            </form>
+
+            <div class="feedback" data-task-feedback hidden></div>
+
+          </div>
+
+        </div>
+
+        <p class="interactive__status" data-interactive-status role="status"></p>
+
+        <div class="interactive__actions">
+          <button type="button" data-variant="secondary" data-interactive-reset>
+            Reset everything
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ================= Results ================= -->
+  <section class="section section--tinted" id="results" aria-labelledby="results-heading" hidden>
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="results-heading" tabindex="-1">Where the cost fell</h2>
+      </div>
+
+      <div class="panel">
+        <h3 class="panel__title">The result</h3>
+        <dl class="interactive__readout" data-cost-readout></dl>
+        <div class="verdict">
+          <h4 class="verdict__title">Reading your pattern</h4>
+          <p class="verdict__body" data-cost-text></p>
+          <p class="verdict__note" data-cost-note></p>
+        </div>
+      </div>
+
+      <div class="panel reveal" data-results-body></div>
+
+      <div class="panel">
+        <figure class="chart">
+          <figcaption class="chart__caption" data-chart-caption>
+            Mean correct response time for each task, alone and in
+            combination
+          </figcaption>
+          <svg class="chart__svg dual-chart" data-cost-chart viewBox="0 0 460 220"
+               aria-hidden="true" focusable="false"></svg>
+          <div class="table-scroll">
+            <table class="chart__table">
+              <caption class="visually-hidden">
+                For each task, alone and combined: trials, accuracy, mean
+                response time and the cost of combining
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">Task</th>
+                  <th scope="col">Condition</th>
+                  <th scope="col">Trials</th>
+                  <th scope="col">Correct</th>
+                  <th scope="col">Mean RT</th>
+                  <th scope="col">Cost</th>
+                </tr>
+              </thead>
+              <tbody data-cost-table></tbody>
+            </table>
+          </div>
+        </figure>
+      </div>
+
+      <div class="panel">
+        <h3 class="panel__title">Every set so far</h3>
+        <p class="text-muted" data-sets-note></p>
+        <div class="table-scroll">
+          <table class="data-table">
+            <caption class="visually-hidden">
+              Each completed set of three blocks, with its settings and the
+              cost to each task
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Set</th>
+                <th scope="col">Source</th>
+                <th scope="col">Number task</th>
+                <th scope="col">Answer needed</th>
+                <th scope="col">Cost to letters</th>
+                <th scope="col">Cost to numbers</th>
+              </tr>
+            </thead>
+            <tbody data-sets-table></tbody>
+          </table>
+        </div>
+      </div>
+
+      <details class="stage__more">
+        <summary>Excluded responses, and why they are excluded</summary>
+        <div data-excluded-body></div>
+      </details>
+
+    </div>
+  </section>
+
+  <!-- ================= Challenge ================= -->
+  <section class="section" id="challenge" aria-labelledby="challenge-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="challenge-heading">Challenge — capacity, bottleneck, both or neither?</h2>
+        <p class="prose">
+          Two families of account. A <strong>general-capacity</strong> account
+          says the two tasks draw on a shared, limited pool, so anything that
+          makes either more demanding costs the other. A <strong>structural
+          bottleneck</strong> account says one specific stage — usually
+          choosing a response — can only serve one task at a time, so what
+          matters is whether the two tasks need that stage at once. They are
+          not interchangeable, and some findings separate them.
+        </p>
+      </div>
+
+      <form class="panel challenge" id="challenge-form">
+
+        <div class="table-scroll">
+          <table class="data-table">
+            <caption class="visually-hidden">
+              Five findings, each to be assigned to the account it favours
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Finding</th>
+                <th scope="col">What does it favour?</th>
+              </tr>
+            </thead>
+            <tbody data-challenge-rows></tbody>
+          </table>
+        </div>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Check my answers
+          </button>
+        </div>
+
+        <div class="feedback" data-challenge-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Debrief ================= -->
+  <section class="section section--tinted" id="debrief" aria-labelledby="debrief-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="debrief-heading">What this demonstrates</h2>
+      </div>
+
+      <div class="split split--wide">
+
+        <div class="prose">
+          <h3>A cost is a difference, and differences need baselines</h3>
+          <p>
+            The number that matters is not how fast you were in the dual
+            block. It is how much slower you were than in your own single-task
+            block, on the same day, with the same fingers. That is why two
+            baseline blocks come first and why the tool will not let you skip
+            them. It is also why comparing your dual-task time with somebody
+            else's is meaningless — you are comparing two numbers that were
+            never referred to the same baseline.
+          </p>
+
+          <h3>The cost is usually asymmetric, and that is the finding</h3>
+          <p>
+            People protect one task at the expense of the other, and which one
+            they protect depends on instruction, on which stimulus they treat
+            as first, and on their own strategy. A symmetric cost is a special
+            case, not the default. An asymmetric cost immediately raises the
+            question a symmetric one hides: <em>who decided which task to
+            protect, and how?</em>
+          </p>
+
+          <h3>Two families of explanation that are not the same</h3>
+          <p>
+            A <strong>capacity</strong> account treats attention as a pool
+            that can be divided, so difficulty anywhere costs performance
+            everywhere. A <strong>bottleneck</strong> account treats one
+            processing stage as strictly serial, so the cost appears only when
+            two tasks need that stage at the same moment. The two make
+            different predictions: making the second task harder <em>without
+            changing its response requirement</em> should hurt on a capacity
+            account and matter much less on a bottleneck account; removing the
+            per-item choice response should help enormously on a bottleneck
+            account and only moderately on a capacity account. The two
+            settings in this laboratory are exactly those two manipulations.
+          </p>
+
+          <h3>Automatisation, and why "multitasking" is the wrong noun</h3>
+          <p>
+            Dual-task costs shrink with practice, sometimes dramatically, and
+            the reduction is specific to the tasks practised rather than a
+            general improvement in dividing attention. That is the strongest
+            reason to be suspicious of "multitasking ability" as a trait: what
+            improves is a pair of skills and the coordination between them,
+            not a pool that got bigger.
+          </p>
+        </div>
+
+        <aside class="panel panel--caution" aria-labelledby="limits-heading">
+          <h3 class="panel__title" id="limits-heading">
+            What this does <em>not</em> demonstrate
+          </h3>
+          <ul>
+            <li>
+              <strong>It does not measure multitasking ability.</strong> Twenty
+              trials a block, one session, two arbitrary tasks. Difference
+              scores between two noisy means are unreliable even when each
+              mean is measured well.
+            </li>
+            <li>
+              <strong>It cannot separate the accounts on its own.</strong> The
+              two settings point in different directions, but one person's
+              sets differ in order, practice and fatigue as well as in
+              setting.
+            </li>
+            <li>
+              <strong>Order is confounded with everything.</strong> Block 3
+              always comes after blocks 1 and 2, so any dual-task cost is
+              measured against baselines collected when you were less
+              practised. A real experiment counterbalances; this one cannot,
+              because the teaching point requires the baselines first.
+            </li>
+            <li>
+              <strong>Browser timing is imprecise.</strong> The page paints on
+              the display's refresh schedule and input events are queued.
+              Laboratory work removes exactly this uncertainty.
+            </li>
+            <li>
+              <strong>The worked example is simulated.</strong> Its costs and
+              its asymmetry come from a documented generator with a fixed
+              seed. They illustrate the pattern; they are not evidence for it,
+              not norms, and not anybody's data.
+            </li>
+          </ul>
+        </aside>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+<script>
+/* ---- components/interactive-shell.js ---- */
+/* =========================================================================
+   Open Psychology Interactives — interactive shell helper
+   -------------------------------------------------------------------------
+   A very small vanilla-JS helper that every interactive in this collection
+   uses. It deliberately does *not* draw anything or know anything about
+   statistics, personality or neuropsychology. Its job is the repetitive,
+   easy-to-get-wrong accessibility plumbing:
+
+     * announcing changes through a polite live region;
+     * keeping a range slider and its <output> in step;
+     * wiring the standard Reset button;
+     * reporting the reader's reduced-motion preference.
+
+   Usage (see docs/adapting-a-tool.md for the full markup contract):
+
+       <script src="../../components/interactive-shell.js" defer><\/script>
+       <script src="tool.js" defer><\/script>
+
+       // in tool.js
+       const shell = InteractiveShell.attach('#sampling-demo');
+       shell.onReset(() => { ...restore defaults...; draw(); });
+       shell.bindRange('#sample-size', { format: n => n + ' cases' });
+       shell.announce('Sample of 25 drawn. Mean 4.8.');
+
+   Every published interactive is written against this module.
+
+   Exposed as a global (window.InteractiveShell) rather than an ES module so
+   that a single interactive folder can be opened directly from disk over
+   file:// — ES modules are blocked by CORS in that situation, plain scripts
+   are not. That constraint is the whole reason for the older syntax here.
+   ========================================================================= */
+
+(function (global) {
+  "use strict";
+
+  /* -----------------------------------------------------------------------
+     Internal helpers
+     --------------------------------------------------------------------- */
+
+  /**
+   * Accept either a CSS selector or an element and return an element.
+   * @param {string|Element} target
+   * @param {ParentNode} [scope]
+   * @returns {Element|null}
+   */
+  function resolve(target, scope) {
+    if (!target) {
+      return null;
+    }
+    if (typeof target === "string") {
+      return (scope || document).querySelector(target);
+    }
+    return target;
+  }
+
+  /**
+   * True when the reader has asked the operating system to reduce motion.
+   * Interactives should check this before animating anything — for example
+   * by drawing a sampling distribution in one step instead of animating
+   * each draw.
+   * @returns {boolean}
+   */
+  function prefersReducedMotion() {
+    return (
+      typeof global.matchMedia === "function" &&
+      global.matchMedia("(prefers-reduced-motion: reduce)").matches
+    );
+  }
+
+  /* -----------------------------------------------------------------------
+     Shell controller
+     --------------------------------------------------------------------- */
+
+  /**
+   * Attach the shell behaviour to one `.interactive` element.
+   *
+   * @param {string|Element} target  Selector or element for the shell root.
+   * @returns {object|null}  Controller, or null if the root was not found.
+   */
+  function attach(target) {
+    var root = resolve(target);
+
+    if (!root) {
+      if (global.console && console.warn) {
+        console.warn("InteractiveShell: root element not found.", target);
+      }
+      return null;
+    }
+
+    var controls = root.querySelector("[data-interactive-controls]");
+    var stage = root.querySelector("[data-interactive-stage]");
+    var status = root.querySelector("[data-interactive-status]");
+    var resetButton = root.querySelector("[data-interactive-reset]");
+    var resetHandlers = [];
+    // Every range bound with bindRange() registers its sync function here, so
+    // that reset() can refresh the visible values after the tool's own reset
+    // handlers have restored the inputs. See reset() for why this is needed.
+    var rangeSyncs = [];
+
+    /* --- Live region ----------------------------------------------------
+       The status element is marked up as role="status" (implicitly
+       aria-live="polite"). Two details matter:
+
+         1. Assistive technology only announces *changes* to a live region,
+            so writing the same string twice is silently dropped. We add a
+            trailing zero-width space on repeat messages to force an
+            announcement when a student re-runs the same action.
+         2. Announcements are debounced. A slider dragged across its range
+            fires dozens of input events; without a delay a screen reader
+            would queue every intermediate value and fall far behind.
+       ------------------------------------------------------------------ */
+
+    var announceTimer = null;
+    var lastMessage = "";
+
+    /**
+     * Announce a short sentence describing what just changed.
+     * @param {string} message
+     * @param {object} [options]
+     * @param {boolean} [options.immediate]  Skip the debounce delay. Use for
+     *   discrete actions (button presses); leave off for continuous input.
+     */
+    function announce(message, options) {
+      if (!status) {
+        return;
+      }
+
+      var text = String(message == null ? "" : message);
+      var immediate = Boolean(options && options.immediate);
+
+      if (announceTimer !== null) {
+        global.clearTimeout(announceTimer);
+        announceTimer = null;
+      }
+
+      function write() {
+        // Force a change when the text is identical to last time.
+        status.textContent = text === lastMessage ? text + "​" : text;
+        lastMessage = text;
+      }
+
+      if (immediate) {
+        write();
+      } else {
+        announceTimer = global.setTimeout(write, 350);
+      }
+    }
+
+    /* --- Reset ---------------------------------------------------------- */
+
+    /**
+     * Register a callback to run when the Reset button is pressed.
+     * Several may be registered; they run in the order added.
+     * @param {Function} handler
+     */
+    function onReset(handler) {
+      if (typeof handler === "function") {
+        resetHandlers.push(handler);
+      }
+    }
+
+    /**
+     * Run the reset handlers. Called by the button and available directly so
+     * an interactive can reset itself on first load.
+     *
+     * Bound ranges are re-synced afterwards. A reset handler restores an
+     * input by assigning to `input.value`, and assigning to a value in script
+     * does not fire an `input` event — so without this step the slider would
+     * jump back to its default while its <output> went on showing the old
+     * number. Syncing here, after the handlers have run, also means the sync
+     * sees the restored values regardless of the order things were
+     * registered in.
+     *
+     * @param {object} [options]
+     * @param {boolean} [options.silent]  Suppress the status announcement.
+     */
+    function reset(options) {
+      resetHandlers.forEach(function (handler) {
+        handler();
+      });
+      rangeSyncs.forEach(function (sync) {
+        sync();
+      });
+      if (!options || !options.silent) {
+        announce(
+          root.getAttribute("data-reset-message") ||
+            "Reset to the starting values.",
+          { immediate: true }
+        );
+      }
+    }
+
+    if (resetButton) {
+      resetButton.addEventListener("click", function (event) {
+        // Reset buttons commonly sit inside the controls <form>; stop the
+        // browser's own form reset from fighting with ours.
+        event.preventDefault();
+        reset();
+      });
+    }
+
+    /* --- Range binding --------------------------------------------------
+       Keeps a slider's <output> in step with its value. The <output> must
+       carry `for="<input id>"`, which is what associates the two for
+       assistive technology; this only handles the visible text.
+
+       Optionally sets aria-valuetext, which is how you make a screen reader
+       say "25 cases" or "medium correlation" instead of a bare "25".
+       ------------------------------------------------------------------ */
+
+    /**
+     * @param {string|Element} inputTarget  The range (or number) input.
+     * @param {object} [options]
+     * @param {Function} [options.format]  value:number -> string shown in the
+     *   <output>. Defaults to the raw value.
+     * @param {Function} [options.describe]  value:number -> string used for
+     *   aria-valuetext. Defaults to options.format.
+     * @param {Function} [options.onInput]  value:number -> void, called after
+     *   the display has been updated. Use it to redraw.
+     * @returns {HTMLInputElement|null}
+     */
+    function bindRange(inputTarget, options) {
+      var input = resolve(inputTarget, root);
+      if (!input) {
+        return null;
+      }
+
+      var settings = options || {};
+      var format =
+        typeof settings.format === "function"
+          ? settings.format
+          : function (value) {
+              return String(value);
+            };
+      var describe =
+        typeof settings.describe === "function" ? settings.describe : format;
+
+      // <output for="the-input-id"> is the conventional pairing.
+      var output = input.id
+        ? root.querySelector('output[for="' + input.id + '"]')
+        : null;
+
+      function sync() {
+        var value = Number(input.value);
+        if (output) {
+          output.textContent = format(value);
+        }
+        // Only meaningful for widgets with an implicit or explicit slider
+        // role; harmless elsewhere.
+        input.setAttribute("aria-valuetext", describe(value));
+        if (typeof settings.onInput === "function") {
+          settings.onInput(value);
+        }
+      }
+
+      input.addEventListener("input", sync);
+      // Registered so reset() can refresh the display after the tool's own
+      // reset handlers have put the input back to its default.
+      rangeSyncs.push(sync);
+      sync();
+
+      return input;
+    }
+
+    /* --- Public surface -------------------------------------------------- */
+
+    return {
+      /** The `.interactive` root element. */
+      root: root,
+      /** The controls panel, or null if the shell has none. */
+      controls: controls,
+      /** The stage element where the visualisation is drawn. */
+      stage: stage,
+      /** The live-region element. */
+      status: status,
+      announce: announce,
+      onReset: onReset,
+      reset: reset,
+      bindRange: bindRange,
+      prefersReducedMotion: prefersReducedMotion
+    };
+  }
+
+  /* -----------------------------------------------------------------------
+     Export
+     --------------------------------------------------------------------- */
+
+  global.InteractiveShell = {
+    attach: attach,
+    prefersReducedMotion: prefersReducedMotion
+  };
+})(window);
+
+/* ---- modules/cognitive/tools/08-dual-task-capacity-lab/tool.js ---- */
+/* =========================================================================
+   Dual-Task and Limited Capacity Laboratory
+   -------------------------------------------------------------------------
+   Two simple choice tasks, performed alone and then together, so that a
+   dual-task cost can be measured against each task's OWN single-task
+   baseline. The order of the three blocks is enforced, because a cost is a
+   difference and without a baseline there is no difference to report.
+
+       block 1   letters alone       a letter: vowel or consonant
+       block 2   numbers alone       a number: odd or even
+       block 3   both at once        letter and number together
+
+   TWO MANIPULATIONS, CHOSEN TO POINT IN DIFFERENT DIRECTIONS
+   ----------------------------------------------------------
+   difficulty   easy: one digit, odd or even
+                hard: two digits, is their SUM odd or even
+                (more processing, same response set)
+
+   overlap      respond: a choice response to every number
+                count:   no per-item choice - just count the odd ones and
+                         report the total at the end of the block
+
+   A general-capacity account expects the difficulty manipulation to hurt the
+   letter task. A response-selection bottleneck expects the overlap
+   manipulation to matter far more. Neither is settled by one learner's
+   blocks; the debrief and the challenge both say so.
+
+   In counting mode there is no choice response to the number, so block 2 is
+   paced by a single non-choice "Next" press: that gives a viewing time per
+   number without engaging response selection. In block 3 the number is on
+   screen for exactly as long as the letter response takes, so no separate
+   number time is reported there - the informative number measure in the dual
+   block is the count itself.
+
+   TIMING AND CLEANING
+   -------------------
+       inter-trial interval    500 ms
+       displays are never timed out; each waits for its response
+       anticipations           responses under 200 ms, excluded and counted
+       lapses                  responses over 4000 ms, excluded and counted
+       errors                  excluded from the time means, reported as accuracy
+
+   WHY RESULTS ARE WITHHELD UNTIL A BLOCK ENDS
+   -------------------------------------------
+   A running score during a speeded block changes how people answer the next
+   trial. Blocks report at the end only.
+
+   A CONFOUND THIS DESIGN CANNOT REMOVE
+   ------------------------------------
+   Block 3 always follows blocks 1 and 2, so the dual-task cost is measured
+   against baselines collected when the learner was less practised, which
+   inflates it. A real experiment counterbalances. This one cannot, because
+   the teaching point is precisely that the baselines come first. The limits
+   panel says so in those words.
+
+   THE WORKED EXAMPLE (the non-performing route)
+   ---------------------------------------------
+   One simulated participant who ran both settings. Times are drawn as
+
+       RT = base + Normal(0, sd) + Exponential(mean tail), floored at 220 ms
+
+   Set A - respond mode, easy, seed 20260971, 60 trials per block
+       letters alone 610 (acc .97)   numbers alone 570 (acc .96)
+       letters dual  780 (acc .93)   numbers dual  850 (acc .90)
+   Set B - counting mode, easy, seed 20260972, 60 trials per block
+       letters alone 610 (acc .97)   numbers alone 700 (viewing time)
+       letters dual  690 (acc .96)   count error 0 alone, 2 in the dual block
+       sd 80, tail 55 throughout
+
+   The asymmetry in Set A and the much smaller letter cost in Set B are BUILT
+   IN. They illustrate the shape of the classic findings rather than providing
+   evidence for them, and the results panel says so. These numbers are not
+   norms, not published effect sizes and not anybody's data.
+
+   No data leave the browser. No storage, no network request.
+   ========================================================================= */
+
+(function () {
+  "use strict";
+
+  var BLOCK_TRIALS = 20;
+  var INTER_TRIAL_MS = 500;
+  var ANTICIPATION_MS = 200;
+  var LAPSE_MS = 4000;
+
+  var VOWELS = "AEIOU".split("");
+  var CONSONANTS = "BCDFGHJKLMNPRSTVWYZ".split("");
+
+  var STAGES = [
+    { key: "letters", label: "Letters alone", letter: true, number: false },
+    { key: "numbers", label: "Numbers alone", letter: false, number: true },
+    { key: "both", label: "Both at once", letter: true, number: true }
+  ];
+
+  var SIM = {
+    sd: 80, tail: 55, floor: 220,
+    sets: [
+      {
+        label: "Worked example A", seed: 20260971, difficulty: "easy",
+        mode: "respond", n: 60,
+        letters: { alone: { base: 610, acc: 0.97 }, dual: { base: 780, acc: 0.93 } },
+        numbers: { alone: { base: 570, acc: 0.96 }, dual: { base: 850, acc: 0.90 } },
+        countError: null
+      },
+      {
+        label: "Worked example B", seed: 20260972, difficulty: "easy",
+        mode: "count", n: 60,
+        letters: { alone: { base: 610, acc: 0.97 }, dual: { base: 690, acc: 0.96 } },
+        numbers: { alone: { base: 700, acc: 1 }, dual: null },
+        countError: { alone: 0, dual: 2 }
+      }
+    ]
+  };
+
+  /* =======================================================================
+     Seeded randomness (copied rather than imported, so a downloaded folder
+     keeps working on its own)
+     ===================================================================== */
+
+  function mulberry32(seed) {
+    var a = seed >>> 0;
+    return function () {
+      a = (a + 0x6d2b79f5) >>> 0;
+      var t = a;
+      t = Math.imul(t ^ (t >>> 15), t | 1);
+      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  function normal(rand) {
+    var u = 1 - rand();
+    var v = rand();
+    return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+  }
+
+  function exponential(rand, meanValue) {
+    return -meanValue * Math.log(1 - rand());
+  }
+
+  function shuffle(items) {
+    for (var i = items.length - 1; i > 0; i -= 1) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = items[i];
+      items[i] = items[j];
+      items[j] = tmp;
+    }
+    return items;
+  }
+
+  /* =======================================================================
+     Small helpers
+     ===================================================================== */
+
+  var NS = "http://www.w3.org/2000/svg";
+
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) { node.className = className; }
+    if (text !== undefined) { node.textContent = text; }
+    return node;
+  }
+
+  function svgNode(tag, attributes, parent) {
+    var node = document.createElementNS(NS, tag);
+    Object.keys(attributes).forEach(function (key) {
+      node.setAttribute(key, String(attributes[key]));
+    });
+    if (parent) { parent.appendChild(node); }
+    return node;
+  }
+
+  function clear(node) {
+    while (node && node.firstChild) { node.removeChild(node.firstChild); }
+  }
+
+  function ms(value) {
+    return value === null || value === undefined || isNaN(value)
+      ? "—" : Math.round(value) + " ms";
+  }
+
+  function signedMs(value) {
+    if (value === null || value === undefined || isNaN(value)) { return "—"; }
+    var r = Math.round(value);
+    return (r > 0 ? "+" : "") + r + " ms";
+  }
+
+  function pct(value) {
+    return value === null || value === undefined || isNaN(value)
+      ? "—" : Math.round(value * 100) + "%";
+  }
+
+  function meanOf(values) {
+    if (!values.length) { return null; }
+    return values.reduce(function (a, b) { return a + b; }, 0) / values.length;
+  }
+
+  function now() {
+    return (window.performance && window.performance.now)
+      ? window.performance.now() : Date.now();
+  }
+
+  /* =======================================================================
+     Stimuli
+     ===================================================================== */
+
+  function makeLetter() {
+    var vowel = Math.random() < 0.5;
+    var pool = vowel ? VOWELS : CONSONANTS;
+    return {
+      glyph: pool[Math.floor(Math.random() * pool.length)],
+      answer: vowel ? "vowel" : "consonant"
+    };
+  }
+
+  function makeNumber(difficulty) {
+    if (difficulty === "easy") {
+      var d = 1 + Math.floor(Math.random() * 9);
+      return { glyph: String(d), answer: d % 2 ? "odd" : "even", odd: d % 2 === 1 };
+    }
+    // Hard: two digits, judged on the parity of their SUM. Same response set,
+    // more processing.
+    var n = 12 + Math.floor(Math.random() * 87);
+    var sum = Math.floor(n / 10) + (n % 10);
+    return { glyph: String(n), answer: sum % 2 ? "odd" : "even", odd: sum % 2 === 1 };
+  }
+
+  function buildBlock(stage, difficulty) {
+    var trials = [];
+    for (var i = 0; i < BLOCK_TRIALS; i += 1) {
+      trials.push({
+        letter: stage.letter ? makeLetter() : null,
+        number: stage.number ? makeNumber(difficulty) : null
+      });
+    }
+    return trials;
+  }
+
+  /* =======================================================================
+     Wiring
+     ===================================================================== */
+
+  var shell = InteractiveShell.attach("#dual");
+  if (!shell) { return; }
+
+  var $ = function (selector, scope) {
+    return (scope || document).querySelector(selector);
+  };
+
+  var difficultySelect = $("#difficulty-select");
+  var modeSelect = $("#mode-select");
+  var startBlock = $('[data-action="start-block"]');
+  var stopButton = $('[data-action="stop"]');
+  var restartSet = $('[data-action="restart-set"]');
+  var workedExample = $('[data-action="worked-example"]');
+
+  var stageTrack = $("[data-stage-track]");
+  var taskText = $("[data-task-text]");
+  var numberDisplay = $("[data-number]");
+  var letterDisplay = $("[data-letter]");
+  var displayCaption = $("[data-display-caption]");
+  var letterResponses = $("[data-letter-responses]");
+  var numberResponses = $("[data-number-responses]");
+  var countForm = $("[data-count-form]");
+  var countInput = $("#count-input");
+  var countLabel = $("[data-count-label]");
+  var taskFeedback = $("[data-task-feedback]");
+
+  var resultsSection = $("#results");
+  var resultsBody = $("[data-results-body]");
+  var costReadout = $("[data-cost-readout]");
+  var costText = $("[data-cost-text]");
+  var costNote = $("[data-cost-note]");
+  var chartCaption = $("[data-chart-caption]");
+  var costChart = $("[data-cost-chart]");
+  var costTable = $("[data-cost-table]");
+  var setsTable = $("[data-sets-table]");
+  var setsNote = $("[data-sets-note]");
+  var excludedBody = $("[data-excluded-body]");
+
+  var openingForm = $("#opening-form");
+  var openingError = $("[data-opening-error]");
+  var openingFeedback = $("[data-opening-feedback]");
+  var skipOpening = $('[data-action="skip-opening"]');
+
+  var challengeForm = $("#challenge-form");
+  var challengeRows = $("[data-challenge-rows]");
+  var challengeFeedback = $("[data-challenge-feedback]");
+
+  var state = null;
+  var pending = [];
+
+  function later(fn, delay) {
+    var id = window.setTimeout(function () {
+      pending = pending.filter(function (other) { return other !== id; });
+      fn();
+    }, delay);
+    pending.push(id);
+    return id;
+  }
+
+  function cancelPending() {
+    pending.forEach(function (id) { window.clearTimeout(id); });
+    pending = [];
+  }
+
+  /* =======================================================================
+     Controls and stage track
+     ===================================================================== */
+
+  function stage() { return STAGES[state.stageIndex]; }
+
+  function paintStageTrack() {
+    Array.prototype.forEach.call(stageTrack.children, function (item, index) {
+      item.removeAttribute("aria-current");
+      if (index < state.stageIndex) {
+        item.setAttribute("data-state", "done");
+      } else if (index === state.stageIndex && !state.setDone) {
+        item.setAttribute("data-state", "current");
+        item.setAttribute("aria-current", "step");
+      } else {
+        item.setAttribute("data-state", "todo");
+      }
+    });
+  }
+
+  function describeTask() {
+    if (state.setDone) {
+      return "Set complete. Change a setting and start a new set of three, " +
+        "or read the results below.";
+    }
+    var s = stage();
+    var numberRule = state.difficulty === "easy"
+      ? "press Odd or Even for the number"
+      : "press Odd or Even for the SUM of the number's two digits";
+    if (s.key === "letters") {
+      return "Block 1 — press Vowel or Consonant for the letter. Nothing else " +
+        "is on screen.";
+    }
+    if (s.key === "numbers") {
+      return state.mode === "respond"
+        ? "Block 2 — " + numberRule + ". Nothing else is on screen."
+        : "Block 2 — count the odd numbers silently and press Next after each " +
+          "one. You will be asked for the total.";
+    }
+    return state.mode === "respond"
+      ? "Block 3 — both at once: vowel or consonant for the letter, and " +
+        numberRule + ". Either order."
+      : "Block 3 — press Vowel or Consonant for the letter, and keep counting " +
+        "the odd numbers. You will be asked for the total.";
+  }
+
+  function updateTaskText() {
+    taskText.textContent = describeTask();
+    startBlock.textContent = state.setDone
+      ? "Set complete"
+      : "Run block " + (state.stageIndex + 1);
+  }
+
+  function idleControls() {
+    startBlock.disabled = state.setDone;
+    stopButton.disabled = true;
+    restartSet.disabled = state.stageIndex === 0 && !state.setDone;
+    difficultySelect.disabled = state.stageIndex !== 0;
+    modeSelect.disabled = state.stageIndex !== 0;
+  }
+
+  function runningControls() {
+    startBlock.disabled = true;
+    stopButton.disabled = false;
+    restartSet.disabled = true;
+    difficultySelect.disabled = true;
+    modeSelect.disabled = true;
+  }
+
+  /* =======================================================================
+     Response rows
+     ===================================================================== */
+
+  function renderNumberResponses() {
+    clear(numberResponses);
+    if (state.mode === "respond") {
+      [["odd", "Odd", "D"], ["even", "Even", "K"]].forEach(function (spec) {
+        var button = make("button", "button button--secondary response");
+        button.type = "button";
+        button.disabled = true;
+        button.setAttribute("data-number-response", spec[0]);
+        button.setAttribute("aria-label", "The number is " + spec[1].toLowerCase() +
+          ", key " + spec[2]);
+        button.appendChild(make("span", null, spec[1]));
+        var key = make("span", "response__key", spec[2]);
+        key.setAttribute("aria-hidden", "true");
+        button.appendChild(key);
+        button.addEventListener("click", function () { answerNumber(spec[0]); });
+        numberResponses.appendChild(button);
+      });
+      return;
+    }
+    var next = make("button", "button button--secondary response");
+    next.type = "button";
+    next.disabled = true;
+    next.setAttribute("data-number-response", "next");
+    next.setAttribute("aria-label", "Counted this number, go to the next, space bar");
+    next.appendChild(make("span", null, "Counted it — next"));
+    var spaceKey = make("span", "response__key", "Space");
+    spaceKey.setAttribute("aria-hidden", "true");
+    next.appendChild(spaceKey);
+    next.addEventListener("click", function () { answerNumber("next"); });
+    numberResponses.appendChild(next);
+  }
+
+  function setRowEnabled(row, enabled) {
+    Array.prototype.forEach.call(row.querySelectorAll("button"), function (b) {
+      b.disabled = !enabled;
+      b.removeAttribute("data-answered");
+    });
+  }
+
+  function markAnswered(row) {
+    Array.prototype.forEach.call(row.querySelectorAll("button"), function (b) {
+      b.disabled = true;
+    });
+  }
+
+  /* =======================================================================
+     Running a block
+     ===================================================================== */
+
+  function beginBlock() {
+    var s = stage();
+    state.running = true;
+    state.index = 0;
+    state.trials = [];
+    state.queue = buildBlock(s, state.difficulty);
+    state.oddSeen = 0;
+    taskFeedback.hidden = true;
+    countForm.hidden = true;
+    runningControls();
+
+    letterResponses.hidden = !s.letter;
+    numberResponses.hidden = !s.number;
+    renderNumberResponses();
+
+    beginTrial();
+    shell.announce("Block " + (state.stageIndex + 1) + " started: " +
+      BLOCK_TRIALS + " trials, no feedback until it ends.", { immediate: true });
+  }
+
+  function beginTrial() {
+    var s = stage();
+    var trial = state.queue[state.index];
+    state.current = trial;
+    state.letterDone = !s.letter;
+    state.numberDone = !s.number;
+    state.letterRt = null;
+    state.numberRt = null;
+
+    numberDisplay.textContent = trial.number ? trial.number.glyph : "";
+    letterDisplay.textContent = trial.letter ? trial.letter.glyph : "";
+    if (trial.number && trial.number.odd) { state.oddSeen += 1; }
+
+    state.shownAt = now();
+    if (s.letter) { setRowEnabled(letterResponses, true); }
+    if (s.number) { setRowEnabled(numberResponses, true); }
+
+    displayCaption.textContent = "Trial " + (state.index + 1) + " of " +
+      BLOCK_TRIALS + ". No time limit.";
+  }
+
+  function answerLetter(answer) {
+    if (!state.running || state.letterDone) { return; }
+    var trial = state.current;
+    state.letterRt = now() - state.shownAt;
+    state.letterCorrect = answer === trial.letter.answer;
+    state.letterDone = true;
+    markAnswered(letterResponses);
+    maybeFinishTrial();
+  }
+
+  function answerNumber(answer) {
+    if (!state.running || state.numberDone) { return; }
+    var trial = state.current;
+    state.numberRt = now() - state.shownAt;
+    state.numberCorrect = state.mode === "count" ? null
+      : answer === trial.number.answer;
+    state.numberDone = true;
+    markAnswered(numberResponses);
+    maybeFinishTrial();
+  }
+
+  function maybeFinishTrial() {
+    if (!state.letterDone || !state.numberDone) { return; }
+
+    var s = stage();
+    state.trials.push({
+      letterRt: s.letter ? state.letterRt : null,
+      letterCorrect: s.letter ? state.letterCorrect : null,
+      // In counting mode during the dual block the number is on screen for
+      // exactly as long as the letter response takes, so no separate number
+      // time is meaningful there.
+      numberRt: (s.number && !(state.mode === "count" && s.key === "both"))
+        ? state.numberRt : null,
+      numberCorrect: (s.number && state.mode === "respond")
+        ? state.numberCorrect : null
+    });
+
+    numberDisplay.textContent = "";
+    letterDisplay.textContent = "";
+    setRowEnabled(letterResponses, false);
+    setRowEnabled(numberResponses, false);
+
+    state.index += 1;
+    if (state.index >= state.queue.length) {
+      later(endBlock, INTER_TRIAL_MS);
+    } else {
+      later(beginTrial, INTER_TRIAL_MS);
+    }
+  }
+
+  function endBlock() {
+    var s = stage();
+    state.running = false;
+    cancelPending();
+    setRowEnabled(letterResponses, false);
+    setRowEnabled(numberResponses, false);
+
+    if (state.mode === "count" && s.number) {
+      displayCaption.textContent = "Block finished. One question left.";
+      countLabel.textContent = state.difficulty === "easy"
+        ? "How many of the numbers were odd?"
+        : "How many of the numbers had an odd digit sum?";
+      countForm.hidden = false;
+      countInput.value = "";
+      countInput.focus();
+      shell.announce("Block finished. How many of the numbers were odd?",
+        { immediate: true });
+      return;
+    }
+    completeBlock(null);
+  }
+
+  function completeBlock(countAnswer) {
+    var s = stage();
+    var summary = summariseBlock(state.trials);
+    if (countAnswer !== null) {
+      summary.countError = Math.abs(countAnswer - state.oddSeen);
+      summary.countActual = state.oddSeen;
+      summary.countGiven = countAnswer;
+    }
+    state.blocks[s.key] = summary;
+
+    countForm.hidden = true;
+    numberDisplay.textContent = "";
+    letterDisplay.textContent = "";
+
+    if (s.key === "both") {
+      state.setDone = true;
+      recordSet();
+      displayCaption.textContent = "Set finished. The results are below.";
+    } else {
+      state.stageIndex += 1;
+      displayCaption.textContent = "Block finished. The next one is ready.";
+      showFeedback(taskFeedback, "neutral", "Block finished.",
+        "No numbers yet — a cost only exists once there is a baseline and a " +
+        "dual block to compare it with. " + describeTask());
+    }
+
+    paintStageTrack();
+    updateTaskText();
+    idleControls();
+    if (!state.setDone) { startBlock.focus(); }
+    shell.announce(state.setDone
+      ? "Set finished. The results are below."
+      : "Block finished. Block " + (state.stageIndex + 1) + " is ready.",
+      { immediate: true });
+  }
+
+  function stopBlock() {
+    cancelPending();
+    state.running = false;
+    setRowEnabled(letterResponses, false);
+    setRowEnabled(numberResponses, false);
+    countForm.hidden = true;
+    numberDisplay.textContent = "";
+    letterDisplay.textContent = "";
+    displayCaption.textContent =
+      "Block stopped. It has to be run in full to count, so it is discarded.";
+    idleControls();
+    updateTaskText();
+    shell.announce("Block stopped and discarded. A partial block cannot be " +
+      "compared with a full one.", { immediate: true });
+  }
+
+  /* =======================================================================
+     Summaries
+     ===================================================================== */
+
+  function summariseBlock(trials) {
+    var out = { n: trials.length, excluded: { errors: 0, fast: 0, slow: 0 } };
+
+    ["letter", "number"].forEach(function (task) {
+      var rtKey = task + "Rt";
+      var okKey = task + "Correct";
+      var present = trials.filter(function (t) { return t[rtKey] !== null; });
+      var kept = [];
+      var correct = 0;
+      var scored = 0;
+
+      present.forEach(function (t) {
+        if (t[okKey] !== null) {
+          scored += 1;
+          if (t[okKey]) { correct += 1; } else { out.excluded.errors += 1; return; }
+        }
+        if (t[rtKey] < ANTICIPATION_MS) { out.excluded.fast += 1; return; }
+        if (t[rtKey] > LAPSE_MS) { out.excluded.slow += 1; return; }
+        kept.push(t[rtKey]);
+      });
+
+      out[task] = {
+        n: present.length,
+        nKept: kept.length,
+        accuracy: scored ? correct / scored : null,
+        mean: meanOf(kept)
+      };
+    });
+
+    return out;
+  }
+
+  function costsFrom(blocks) {
+    var letters = {
+      alone: blocks.letters ? blocks.letters.letter : null,
+      dual: blocks.both ? blocks.both.letter : null
+    };
+    var numbers = {
+      alone: blocks.numbers ? blocks.numbers.number : null,
+      dual: blocks.both ? blocks.both.number : null
+    };
+    return {
+      letters: letters,
+      numbers: numbers,
+      letterCost: (letters.alone && letters.dual &&
+        letters.alone.mean !== null && letters.dual.mean !== null)
+        ? letters.dual.mean - letters.alone.mean : null,
+      numberCost: (numbers.alone && numbers.dual &&
+        numbers.alone.mean !== null && numbers.dual.mean !== null)
+        ? numbers.dual.mean - numbers.alone.mean : null,
+      countAlone: blocks.numbers ? blocks.numbers.countError : undefined,
+      countDual: blocks.both ? blocks.both.countError : undefined
+    };
+  }
+
+  /* =======================================================================
+     Simulation
+     ===================================================================== */
+
+  function simulateTimes(rand, spec, n) {
+    var kept = [];
+    for (var i = 0; i < n; i += 1) {
+      var rt = Math.max(SIM.floor,
+        spec.base + normal(rand) * SIM.sd + exponential(rand, SIM.tail));
+      if (rand() < spec.acc) { kept.push(rt); }
+    }
+    return { n: n, nKept: kept.length, accuracy: kept.length / n, mean: meanOf(kept) };
+  }
+
+  function simulateSet(setSpec) {
+    var rand = mulberry32(setSpec.seed);
+    var blocks = {
+      letters: { letter: simulateTimes(rand, setSpec.letters.alone, setSpec.n),
+        number: { n: 0, nKept: 0, accuracy: null, mean: null },
+        n: setSpec.n, excluded: { errors: 0, fast: 0, slow: 0 } },
+      numbers: { letter: { n: 0, nKept: 0, accuracy: null, mean: null },
+        number: simulateTimes(rand, setSpec.numbers.alone, setSpec.n),
+        n: setSpec.n, excluded: { errors: 0, fast: 0, slow: 0 } },
+      both: { letter: simulateTimes(rand, setSpec.letters.dual, setSpec.n),
+        number: setSpec.numbers.dual
+          ? simulateTimes(rand, setSpec.numbers.dual, setSpec.n)
+          : { n: setSpec.n, nKept: 0, accuracy: null, mean: null },
+        n: setSpec.n, excluded: { errors: 0, fast: 0, slow: 0 } }
+    };
+    if (setSpec.countError) {
+      blocks.numbers.countError = setSpec.countError.alone;
+      blocks.both.countError = setSpec.countError.dual;
+    }
+    return blocks;
+  }
+
+  /* =======================================================================
+     Recording and display
+     ===================================================================== */
+
+  function recordSet() {
+    var costs = costsFrom(state.blocks);
+    state.sets.push({
+      label: "Set " + (state.sets.length + 1),
+      source: "Your blocks",
+      difficulty: state.difficulty === "easy" ? "Easy (one digit)" : "Hard (digit sum)",
+      mode: state.mode === "respond" ? "Every item" : "Once at the end",
+      costs: costs,
+      blocks: state.blocks
+    });
+    showResults(costs, {
+      source: "own", difficulty: state.difficulty, mode: state.mode
+    });
+  }
+
+  function loadWorkedExample() {
+    var first = null;
+    SIM.sets.forEach(function (spec) {
+      var blocks = simulateSet(spec);
+      var costs = costsFrom(blocks);
+      state.sets.push({
+        label: spec.label,
+        source: "Simulated",
+        difficulty: spec.difficulty === "easy" ? "Easy (one digit)" : "Hard (digit sum)",
+        mode: spec.mode === "respond" ? "Every item" : "Once at the end",
+        costs: costs,
+        blocks: blocks
+      });
+      if (!first) { first = costs; }
+    });
+    showResults(first, { source: "simulated", difficulty: "easy", mode: "respond" });
+  }
+
+  function showResults(costs, meta) {
+    $("#results-heading").textContent = meta.source === "simulated"
+      ? "Where the cost fell — worked example, simulated"
+      : "Where the cost fell — your set";
+    renderReadout(costs, meta);
+    renderResultsProse(costs, meta);
+    renderChart(costs);
+    renderCostTable(costs, meta);
+    renderSetsTable();
+    renderExcluded(meta);
+    resultsSection.hidden = false;
+    $("#results-heading").focus();
+  }
+
+  function renderReadout(costs, meta) {
+    clear(costReadout);
+    var rows = [
+      ["Cost to the letter task", signedMs(costs.letterCost)],
+      ["Cost to the number task", signedMs(costs.numberCost)]
+    ];
+    if (costs.countAlone !== undefined && costs.countAlone !== null) {
+      rows.push(["Counting error, numbers alone",
+        costs.countAlone + (costs.countAlone === 1 ? " item out" : " items out")]);
+      rows.push(["Counting error, both at once",
+        (costs.countDual === undefined || costs.countDual === null) ? "—"
+          : costs.countDual + (costs.countDual === 1 ? " item out" : " items out")]);
+    } else {
+      rows.push(["Letter accuracy, alone then both",
+        pct(costs.letters.alone && costs.letters.alone.accuracy) + " → " +
+        pct(costs.letters.dual && costs.letters.dual.accuracy)]);
+      rows.push(["Number accuracy, alone then both",
+        pct(costs.numbers.alone && costs.numbers.alone.accuracy) + " → " +
+        pct(costs.numbers.dual && costs.numbers.dual.accuracy)]);
+    }
+    rows.forEach(function (pair) {
+      var cell = make("div");
+      cell.appendChild(make("dt", null, pair[0]));
+      cell.appendChild(make("dd", null, pair[1]));
+      costReadout.appendChild(cell);
+    });
+
+    chartCaption.textContent = (meta.source === "simulated"
+      ? "Simulated data (seed " + SIM.sets[0].seed + "): "
+      : "Your set: ") +
+      "mean correct response time for each task, alone and in combination";
+
+    var sentences = [];
+    var lc = costs.letterCost, nc = costs.numberCost;
+    if (lc !== null && nc !== null) {
+      var bigger = Math.abs(lc) >= Math.abs(nc) ? "letter" : "number";
+      var ratio = Math.max(Math.abs(lc), Math.abs(nc)) /
+        Math.max(1, Math.min(Math.abs(lc), Math.abs(nc)));
+      sentences.push("Both tasks paid: " + signedMs(lc) + " for the letters and " +
+        signedMs(nc) + " for the numbers.");
+      sentences.push(ratio > 1.5
+        ? "The cost is clearly asymmetric — the " + bigger + " task took roughly " +
+          ratio.toFixed(1) + " times as much of it. Something decided which task " +
+          "to protect, and that decision is as much a finding as the cost itself."
+        : "The two costs are of similar size here. A symmetric cost is the " +
+          "special case, not the default; with twenty trials a block it is also " +
+          "what noise looks like.");
+    } else if (lc !== null) {
+      sentences.push("The letter task cost " + signedMs(lc) +
+        ". In counting mode there is no separate number time in the dual block, " +
+        "so the number task's cost has to be read from the counting error instead.");
+      if (costs.countAlone !== undefined && costs.countDual !== undefined &&
+          costs.countAlone !== null && costs.countDual !== null) {
+        sentences.push(costs.countDual > costs.countAlone
+          ? "The count was further out when both tasks ran together, which is " +
+            "where the number task's share of the cost went."
+          : "The count was no worse when both tasks ran together, which — if it " +
+            "holds up over more than one block — is what a response-selection " +
+            "bottleneck predicts and a general-capacity account does not.");
+      }
+    } else {
+      sentences.push("Not enough usable trials to compute a cost.");
+    }
+    sentences.push("A cost is a difference from your own baseline. It is not " +
+      "comparable with anybody else's number, because it was never referred to " +
+      "their baseline.");
+    costText.textContent = sentences.join(" ");
+
+    costNote.textContent = meta.source === "simulated"
+      ? "Simulated values from a documented generator with fixed seeds, in " +
+        "which the asymmetry and the effect of the counting version are both " +
+        "set by hand. Not norms, not published effect sizes, not anybody's data."
+      : "Your own blocks, in a browser tab, twenty trials each, with block 3 " +
+        "always run last. That order inflates the cost, and nothing here " +
+        "measures anything about you.";
+  }
+
+  function renderResultsProse(costs, meta) {
+    clear(resultsBody);
+    var simulated = meta.source === "simulated";
+
+    resultsBody.appendChild(make("p", "reveal__lead", simulated
+      ? "Two simulated sets loaded: one with a response to every number (seed " +
+        SIM.sets[0].seed + "), one with the numbers only counted (seed " +
+        SIM.sets[1].seed + ")."
+      : "Your set: " + BLOCK_TRIALS + " trials in each of three blocks, " +
+        (meta.difficulty === "easy" ? "easy" : "hard") + " number task, " +
+        (meta.mode === "respond" ? "answered on every item"
+          : "counted once at the end") + "."));
+
+    if (simulated) {
+      resultsBody.appendChild(make("p", null,
+        "Look at the second set. Take away the per-item choice and the " +
+        "letter cost falls sharply — which is what a response-selection " +
+        "bottleneck predicts and more than a capacity account would. Both " +
+        "patterns are built into the generator, so this illustrates the " +
+        "argument rather than settling it."));
+    } else {
+      resultsBody.appendChild(make("p", null,
+        "Correct responses between " + ANTICIPATION_MS + " ms and " + LAPSE_MS +
+        " ms go into the means. Twenty trials a block is far too few: a cost " +
+        "subtracts two noisy means and adds their noise together. Run the " +
+        "other setting and compare."));
+    }
+  }
+
+  function renderChart(costs) {
+    var W = 460, H = 220;
+    var PAD_L = 120, PAD_R = 54, PAD_T = 28, PAD_B = 38;
+    var plotW = W - PAD_L - PAD_R;
+    var plotH = H - PAD_T - PAD_B;
+    clear(costChart);
+
+    var bars = [
+      { label: "Letters alone", value: costs.letters.alone && costs.letters.alone.mean, kind: "alone" },
+      { label: "Letters, both", value: costs.letters.dual && costs.letters.dual.mean, kind: "dual" },
+      { label: "Numbers alone", value: costs.numbers.alone && costs.numbers.alone.mean, kind: "alone" },
+      { label: "Numbers, both", value: costs.numbers.dual && costs.numbers.dual.mean, kind: "dual" }
+    ];
+    var values = bars.map(function (b) { return b.value; })
+      .filter(function (v) { return v !== null && v !== undefined; });
+    if (!values.length) {
+      svgNode("text", { x: W / 2, y: H / 2, "text-anchor": "middle", class: "chart__axis" },
+        costChart).textContent = "No usable response times in this set.";
+      return;
+    }
+
+    var top = Math.max.apply(null, values) * 1.2;
+    var xAt = function (v) { return PAD_L + (v / top) * plotW; };
+    var rowH = plotH / bars.length;
+    var barH = Math.min(22, rowH * 0.62);
+
+    svgNode("line", { x1: PAD_L, y1: PAD_T, x2: PAD_L, y2: PAD_T + plotH,
+      class: "chart__baseline" }, costChart);
+    [0, top].forEach(function (v) {
+      svgNode("text", { x: xAt(v).toFixed(1), y: H - 20, "text-anchor": "middle",
+        class: "chart__axis" }, costChart).textContent = Math.round(v);
+    });
+    svgNode("text", { x: (PAD_L + plotW / 2).toFixed(1), y: H - 4,
+      "text-anchor": "middle", class: "chart__axis" }, costChart)
+      .textContent = "Mean correct response time (ms)";
+    svgNode("text", { x: PAD_L, y: 14, class: "chart__label" }, costChart)
+      .textContent = "Solid = alone · Hatched = both at once";
+
+    bars.forEach(function (bar, row) {
+      var y = PAD_T + row * rowH + (rowH - barH) / 2;
+      svgNode("text", { x: PAD_L - 8, y: (y + barH / 2 + 4).toFixed(1),
+        "text-anchor": "end", class: "chart__label" }, costChart)
+        .textContent = bar.label;
+
+      if (bar.value === null || bar.value === undefined) {
+        svgNode("text", { x: PAD_L + 6, y: (y + barH / 2 + 4).toFixed(1),
+          class: "chart__count" }, costChart).textContent = "not measured";
+        return;
+      }
+
+      var width = Math.max(1, xAt(bar.value) - PAD_L);
+      svgNode("rect", { x: PAD_L, y: y.toFixed(1), width: width.toFixed(1),
+        height: barH, class: "dual__bar--" + bar.kind }, costChart);
+      if (bar.kind === "dual") {
+        for (var x = PAD_L + 9; x < PAD_L + width - 2; x += 11) {
+          svgNode("line", { x1: x.toFixed(1), y1: (y + 1).toFixed(1),
+            x2: (x - 7).toFixed(1), y2: (y + barH - 1).toFixed(1),
+            class: "dual__hatch" }, costChart);
+        }
+      }
+      svgNode("text", { x: (PAD_L + width + 5).toFixed(1),
+        y: (y + barH / 2 + 4).toFixed(1), class: "chart__count" }, costChart)
+        .textContent = Math.round(bar.value);
+    });
+  }
+
+  function renderCostTable(costs, meta) {
+    clear(costTable);
+    [
+      ["Letters", "Alone", costs.letters.alone, null, true],
+      ["Letters", "Both at once", costs.letters.dual, costs.letterCost, false],
+      ["Numbers", "Alone", costs.numbers.alone, null, true],
+      ["Numbers", "Both at once", costs.numbers.dual, costs.numberCost, false]
+    ].forEach(function (spec) {
+      var cell = spec[2];
+      var row = make("tr");
+      var head = make("th", null, spec[0]);
+      head.setAttribute("scope", "row");
+      row.appendChild(head);
+      row.appendChild(make("td", null, spec[1]));
+      row.appendChild(make("td", null, cell ? String(cell.n) : "—"));
+      row.appendChild(make("td", null, cell ? pct(cell.accuracy) : "—"));
+      row.appendChild(make("td", null, cell ? ms(cell.mean) : "—"));
+      row.appendChild(make("td", null, spec[4] ? "baseline" : signedMs(spec[3])));
+      costTable.appendChild(row);
+    });
+
+    if (meta.mode === "count") {
+      var note = make("tr");
+      var cellNote = make("td", null,
+        "In counting mode the number has no per-item choice response, so its " +
+        "accuracy is the counting error rather than a percentage, and in the " +
+        "dual block it is on screen for exactly as long as the letter takes.");
+      cellNote.setAttribute("colspan", "6");
+      note.appendChild(cellNote);
+      costTable.appendChild(note);
+    }
+  }
+
+  function renderSetsTable() {
+    clear(setsTable);
+    state.sets.forEach(function (set) {
+      var row = make("tr");
+      var head = make("th", null, set.label);
+      head.setAttribute("scope", "row");
+      row.appendChild(head);
+      row.appendChild(make("td", null, set.source));
+      row.appendChild(make("td", null, set.difficulty));
+      row.appendChild(make("td", null, set.mode));
+      row.appendChild(make("td", null, signedMs(set.costs.letterCost)));
+      row.appendChild(make("td", null,
+        set.costs.numberCost === null
+          ? (set.costs.countDual === undefined || set.costs.countDual === null
+            ? "—" : "count " + set.costs.countDual + " out")
+          : signedMs(set.costs.numberCost)));
+      setsTable.appendChild(row);
+    });
+
+    var modes = {};
+    state.sets.forEach(function (s) { modes[s.mode] = true; });
+    setsNote.textContent = Object.keys(modes).length > 1
+      ? "Sets from both settings. Compare the letter-cost columns — that is " +
+        "the difference bearing on capacity versus bottleneck. It is a " +
+        "comparison, not an experiment: order and practice differ too."
+      : "Run a set with the other overlap setting to add a row here. Sets are " +
+        "kept only in this tab and disappear on reload or reset.";
+  }
+
+  function renderExcluded(meta) {
+    clear(excludedBody);
+    if (meta.source === "simulated") {
+      excludedBody.appendChild(make("p", null,
+        "The worked example generates only the trials that survived cleaning, " +
+        "so there is nothing to exclude. Run a set yourself to fill this in."));
+      return;
+    }
+    var totals = { errors: 0, fast: 0, slow: 0 };
+    ["letters", "numbers", "both"].forEach(function (key) {
+      var block = state.blocks[key];
+      if (!block) { return; }
+      totals.errors += block.excluded.errors;
+      totals.fast += block.excluded.fast;
+      totals.slow += block.excluded.slow;
+    });
+    excludedBody.appendChild(make("p", null,
+      "Errors: " + totals.errors + ". Responses under " + ANTICIPATION_MS +
+      " ms: " + totals.fast + ". Responses over " + LAPSE_MS + " ms: " +
+      totals.slow + "."));
+    excludedBody.appendChild(make("p", null,
+      "A response faster than " + ANTICIPATION_MS + " ms cannot be a decision " +
+      "about the display, and one slower than " + LAPSE_MS + " ms is a lapse of " +
+      "a different kind. Both are kept out of the means and counted here. The " +
+      "cut-offs are a documented choice, not a fact about the data."));
+    excludedBody.appendChild(make("p", null,
+      "Errors are excluded from the time means and reported as accuracy. " +
+      "Read both columns: a smaller time cost bought with more errors is not " +
+      "a smaller cost."));
+  }
+
+  /* =======================================================================
+     Buttons and keys
+     ===================================================================== */
+
+  Array.prototype.forEach.call(
+    letterResponses.querySelectorAll("[data-letter-response]"),
+    function (button) {
+      button.addEventListener("click", function () {
+        answerLetter(button.getAttribute("data-letter-response"));
+      });
+    });
+
+  var KEYS = { f: "vowel", j: "consonant", d: "odd", k: "even" };
+
+  document.addEventListener("keydown", function (event) {
+    if (!state || !state.running) { return; }
+    if (event.metaKey || event.ctrlKey || event.altKey) { return; }
+    var tag = event.target && event.target.tagName;
+    if (tag === "SELECT" || tag === "INPUT" || tag === "TEXTAREA") { return; }
+
+    if (event.key === " " || event.key === "Spacebar") {
+      if (state.mode === "count" && stage().number && !state.numberDone) {
+        event.preventDefault();
+        answerNumber("next");
+      }
+      return;
+    }
+
+    var mapped = KEYS[String(event.key).toLowerCase()];
+    if (!mapped) { return; }
+    event.preventDefault();
+    if (mapped === "vowel" || mapped === "consonant") {
+      if (stage().letter) { answerLetter(mapped); }
+    } else if (stage().number && state.mode === "respond") {
+      answerNumber(mapped);
+    }
+  });
+
+  countForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var value = parseInt(countInput.value, 10);
+    if (isNaN(value) || value < 0) {
+      showFeedback(taskFeedback, "caution", "A number is needed.",
+        "Give your best count, even if you lost track — “I do not know” is not " +
+        "one of the options, and a wrong count is data.");
+      countInput.focus();
+      return;
+    }
+    completeBlock(value);
+  });
+
+  startBlock.addEventListener("click", function () {
+    if (state.setDone) { return; }
+    cancelPending();
+    beginBlock();
+  });
+
+  stopButton.addEventListener("click", stopBlock);
+
+  restartSet.addEventListener("click", function () {
+    cancelPending();
+    state.stageIndex = 0;
+    state.setDone = false;
+    state.blocks = {};
+    state.running = false;
+    countForm.hidden = true;
+    taskFeedback.hidden = true;
+    numberDisplay.textContent = "";
+    letterDisplay.textContent = "";
+    displayCaption.textContent = "New set. Block 1 is letters alone.";
+    letterResponses.hidden = false;
+    numberResponses.hidden = true;
+    paintStageTrack();
+    updateTaskText();
+    idleControls();
+    shell.announce("New set started. Block 1 is letters alone.", { immediate: true });
+  });
+
+  workedExample.addEventListener("click", function () {
+    cancelPending();
+    state.running = false;
+    countForm.hidden = true;
+    displayCaption.textContent =
+      "Worked example loaded below. The laboratory is still available.";
+    loadWorkedExample();
+    shell.announce("Worked example loaded: two simulated sets with fixed seeds.",
+      { immediate: true });
+  });
+
+  difficultySelect.addEventListener("change", function () {
+    state.difficulty = difficultySelect.value;
+    updateTaskText();
+  });
+
+  modeSelect.addEventListener("change", function () {
+    state.mode = modeSelect.value;
+    renderNumberResponses();
+    updateTaskText();
+  });
+
+  /* =======================================================================
+     Opening prediction
+     ===================================================================== */
+
+  var OPENING = {
+    both: {
+      tone: "good", verdict: "Usually both, and rarely equally.",
+      text: "Responses slow down and errors creep up, and the two tasks almost " +
+        "never pay the same amount. Watch which one you protected — that " +
+        "asymmetry is the part worth explaining."
+    },
+    speed: {
+      tone: "caution", verdict: "Often mostly true, and worth checking.",
+      text: "People frequently trade accuracy for time rather than the other " +
+        "way round, so the time cost is the visible one. But look at both " +
+        "columns: a time cost that came with more errors is bigger than it looks."
+    },
+    accuracy: {
+      tone: "caution", verdict: "The less common pattern.",
+      text: "It happens when a task is paced from outside and there is no room " +
+        "to slow down. Here nothing is timed out, so slowing down is available — " +
+        "and that is usually what people do."
+    },
+    neither: {
+      tone: "caution", verdict: "Almost never, even for very easy tasks.",
+      text: "Two tasks this simple still interfere, and that is the point: the " +
+        "cost is not about difficulty in any everyday sense. Run the blocks and " +
+        "see how large it is."
+    }
+  };
+
+  function unlockLab(message) {
+    idleControls();
+    displayCaption.textContent = "Ready. Block 1 is letters alone.";
+    updateTaskText();
+    shell.announce(message, { immediate: true });
+  }
+
+  openingForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answer = $('input[name="opening"]:checked', openingForm);
+    if (!answer) {
+      openingError.textContent = "Choose one of the four answers before starting.";
+      openingError.hidden = false;
+      return;
+    }
+    openingError.hidden = true;
+    var response = OPENING[answer.value];
+    showFeedback(openingFeedback, response.tone, response.verdict, response.text);
+    lockForm(openingForm);
+    unlockLab("Laboratory unlocked. Block 1 is letters alone.");
+  });
+
+  skipOpening.addEventListener("click", function () {
+    openingError.hidden = true;
+    showFeedback(openingFeedback, "neutral", "Prediction skipped.",
+      "The laboratory is unlocked. From the front, the worked example shows " +
+      "both settings side by side without anybody performing anything.");
+    lockForm(openingForm);
+    unlockLab("Prediction skipped. Laboratory unlocked.");
+  });
+
+  /* =======================================================================
+     Challenge
+     ===================================================================== */
+
+  var CHALLENGE_ITEMS = [
+    {
+      id: "slower",
+      text: "When the two tasks are combined, both of them slow down.",
+      answer: "both",
+      why: "Both families predict this, which is why it settles nothing on its " +
+        "own. It is also the finding people most often treat as decisive."
+    },
+    {
+      id: "response",
+      text: "The cost nearly disappears when the second task no longer needs a choice response to each item, even though its stimulus still has to be read and remembered.",
+      answer: "bottleneck",
+      why: "This is the manipulation that separates them. If the shared " +
+        "resource were general, reading and holding the number would still cost " +
+        "plenty. If the bottleneck is response selection specifically, removing " +
+        "the choice removes most of the problem."
+    },
+    {
+      id: "difficulty",
+      text: "Making the second task harder to work out — without changing what response it needs — increases the cost to the first task.",
+      answer: "capacity",
+      why: "A strict response-selection bottleneck predicts little effect, " +
+        "because the bottleneck stage has not changed. A shared pool predicts " +
+        "exactly this. In practice both effects turn up, which is why hybrid " +
+        "accounts exist."
+    },
+    {
+      id: "practice",
+      text: "After a great deal of practice on this particular pair of tasks, the cost becomes very small.",
+      answer: "both",
+      why: "Capacity accounts say the tasks became less demanding; bottleneck " +
+        "accounts say the response mapping became direct enough to bypass the " +
+        "serial stage. Both survive. What neither predicts is that the " +
+        "improvement should transfer to a different pair of tasks — and it " +
+        "largely does not."
+    },
+    {
+      id: "trait",
+      text: "One student's cost was 90 ms and another's was 260 ms, so the first is the better multitasker.",
+      answer: "neither",
+      why: "Three problems before you reach the theories. The two costs were " +
+        "never referred to a common baseline; a difference between two noisy " +
+        "means from twenty trials is mostly noise; and dual-task costs are " +
+        "specific to the task pair, so “multitasker” names a trait the design " +
+        "never measured."
+    }
+  ];
+
+  var CHALLENGE_OPTIONS = [
+    ["", "Choose…"],
+    ["capacity", "A general-capacity account"],
+    ["bottleneck", "A structural bottleneck"],
+    ["both", "Both — it does not separate them"],
+    ["neither", "Neither — the data cannot support it"]
+  ];
+
+  function renderChallenge() {
+    clear(challengeRows);
+    CHALLENGE_ITEMS.forEach(function (item) {
+      var row = make("tr");
+      var head = make("th", null, item.text);
+      head.setAttribute("scope", "row");
+      row.appendChild(head);
+      var cell = make("td");
+      var select = make("select");
+      select.id = "account-" + item.id;
+      var label = make("label", "visually-hidden",
+        "What does this finding favour: " + item.text);
+      label.setAttribute("for", select.id);
+      CHALLENGE_OPTIONS.forEach(function (option) {
+        var node = make("option", null, option[1]);
+        node.value = option[0];
+        select.appendChild(node);
+      });
+      cell.appendChild(label);
+      cell.appendChild(select);
+      cell.appendChild(make("span", "challenge__mark", ""));
+      row.appendChild(cell);
+      challengeRows.appendChild(row);
+    });
+  }
+
+  challengeForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answered = 0, right = 0;
+    CHALLENGE_ITEMS.forEach(function (item) {
+      var select = $("#account-" + item.id, challengeForm);
+      var mark = select.parentNode.querySelector(".challenge__mark");
+      if (!select.value) { mark.textContent = "Not answered yet."; return; }
+      answered += 1;
+      var correct = select.value === item.answer;
+      if (correct) { right += 1; }
+      mark.textContent = correct ? "Correct." : "Not this one.";
+    });
+
+    if (!answered) {
+      showFeedback(challengeFeedback, "caution", "Nothing chosen yet.",
+        "Answer at least one. For each finding, ask whether it is about how " +
+        "much processing is going on, or about one stage having to wait.");
+      return;
+    }
+
+    showFeedback(challengeFeedback,
+      right === CHALLENGE_ITEMS.length ? "good" : "caution",
+      right + " of " + CHALLENGE_ITEMS.length + " correct" +
+      (answered < CHALLENGE_ITEMS.length
+        ? " (" + (CHALLENGE_ITEMS.length - answered) + " left blank)." : "."),
+      "Two of these five separate the accounts and two do not. Being able to " +
+      "say which is which is more useful than knowing which account is " +
+      "currently favoured — and most working models now contain elements of " +
+      "both.");
+
+    var list = make("ul");
+    CHALLENGE_ITEMS.forEach(function (item) {
+      var li = make("li");
+      li.appendChild(make("strong", null, "“" + item.text + "” "));
+      li.appendChild(document.createTextNode(item.why));
+      list.appendChild(li);
+    });
+    challengeFeedback.appendChild(list);
+
+    shell.announce("Challenge marked: " + right + " of " +
+      CHALLENGE_ITEMS.length + " correct.", { immediate: true });
+  });
+
+  /* =======================================================================
+     Helpers
+     ===================================================================== */
+
+  function showFeedback(container, tone, verdict, text) {
+    clear(container);
+    container.setAttribute("data-tone", tone);
+    var p = make("p");
+    p.appendChild(make("strong", "feedback__verdict", verdict));
+    if (text) { p.appendChild(document.createTextNode(" " + text)); }
+    container.appendChild(p);
+    container.hidden = false;
+  }
+
+  function lockForm(form) {
+    Array.prototype.forEach.call(form.querySelectorAll("input, button"),
+      function (control) { control.disabled = true; });
+  }
+
+  function unlockForm(form) {
+    Array.prototype.forEach.call(form.querySelectorAll("input, button"),
+      function (control) { control.disabled = false; });
+    form.reset();
+  }
+
+  /* =======================================================================
+     Reset
+     ===================================================================== */
+
+  shell.onReset(function () {
+    cancelPending();
+    state = {
+      stageIndex: 0,
+      setDone: false,
+      running: false,
+      index: 0,
+      queue: [],
+      trials: [],
+      blocks: {},
+      sets: [],
+      current: null,
+      shownAt: 0,
+      letterDone: true,
+      numberDone: true,
+      letterRt: null,
+      numberRt: null,
+      letterCorrect: null,
+      numberCorrect: null,
+      oddSeen: 0,
+      difficulty: "easy",
+      mode: "respond"
+    };
+
+    unlockForm(openingForm);
+    openingFeedback.hidden = true;
+    openingError.hidden = true;
+    taskFeedback.hidden = true;
+    challengeFeedback.hidden = true;
+    countForm.hidden = true;
+    resultsSection.hidden = true;
+    $("#results-heading").textContent = "Where the cost fell";
+
+    clear(costReadout);
+    clear(costTable);
+    clear(setsTable);
+    clear(costChart);
+    clear(resultsBody);
+    clear(excludedBody);
+    costText.textContent = "";
+    costNote.textContent = "";
+    setsNote.textContent = "";
+
+    difficultySelect.value = "easy";
+    modeSelect.value = "respond";
+    difficultySelect.disabled = true;
+    modeSelect.disabled = true;
+    startBlock.disabled = true;
+    stopButton.disabled = true;
+    restartSet.disabled = true;
+
+    numberDisplay.textContent = "";
+    letterDisplay.textContent = "";
+    letterResponses.hidden = false;
+    numberResponses.hidden = true;
+    renderNumberResponses();
+    setRowEnabled(letterResponses, false);
+    displayCaption.textContent =
+      "Answer the question above to unlock the laboratory.";
+    taskText.textContent = "Answer the question above to unlock this.";
+    startBlock.textContent = "Run block 1";
+
+    paintStageTrack();
+    renderChallenge();
+  });
+
+  /* =======================================================================
+     Start-up
+     ===================================================================== */
+
+  shell.reset({ silent: true });
+  shell.announce(
+    "Ready. Nothing is timed out and nothing animates. Both single-task " +
+    "blocks come first, because a dual-task cost is a difference from a " +
+    "baseline.",
+    { immediate: true });
+})();
+
+</script>
+</div>

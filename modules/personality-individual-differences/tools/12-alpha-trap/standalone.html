@@ -1,0 +1,4062 @@
+<!-- The Alpha Trap
+     From Open Psychology Interactives - https://github.com/utman5454/open-psychology-interactives
+     Self-contained: no stylesheets, scripts, fonts, images or network requests.
+     Styles are scoped to .opi-activity and do not affect the page around them.
+     Nothing is saved, sent or tracked. MIT licensed; please keep this notice.
+     Paste anywhere that accepts HTML, or save as a .html file and open it. -->
+<div class="opi-activity">
+<style>
+/* Defensive baseline. See scripts/build-standalone.py for why this
+   is `revert` rather than an enumerated reset, and how the specificity ladder
+   keeps the activity's own styling on top of it. */
+.opi-activity *:not(svg *) {
+  all: revert;
+}
+.opi-activity, .opi-activity *, .opi-activity *::before, .opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  text-transform: none;
+  text-indent: 0;
+  font-style: normal;
+  font-variant: normal;
+  letter-spacing: normal;
+  word-spacing: normal;
+  white-space: normal;
+  visibility: visible;
+  float: none;
+  max-width: none;
+}
+.opi-activity svg { max-width: 100%; }
+.opi-activity img { max-width: 100%; height: auto; }
+.opi-activity [hidden] { display: none !important; }
+
+/* assets/css/main.css */
+.opi-activity.opi-activity {
+  --colour-page: #ffffff;
+  --colour-surface: #f5f7fa;
+  --colour-surface-raised: #ffffff;
+  --colour-border: #d3d9e2;
+  --colour-border-strong: #aeb7c4;
+  --colour-text: #131820;
+  --colour-text-muted: #4c566a;
+  --colour-accent: #1a4fa0;
+  --colour-accent-hover: #123a7a;
+  --colour-accent-soft: #e8eefb;
+  --colour-on-accent: #ffffff;
+  --colour-focus: #b45309;
+  --colour-cognitive: #8a4b00;
+  --colour-research-methods: #1a4fa0;
+  --colour-neuropsychology: #145c53;
+  --colour-social-critical-psychology: #9e2f45;
+  --colour-personality-individual-differences: #7a2e6d;
+  --colour-status-bg: #f1ede3;
+  --colour-status-text: #5c4a1f;
+  --colour-status-border: #d9cdb0;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  --text-xs: 13px;
+  --text-sm: 15px;
+  --text-base: 17px;
+  --text-lg: 19px;
+  --text-xl: 23px;
+  --text-2xl: 28px;
+  --text-3xl: 36px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgb(19 24 32 / 0.06);
+  --shadow-md: 0 2px 8px rgb(19 24 32 / 0.08);
+  --measure: 68ch;
+  --container: 1152px;
+}
+@media (prefers-color-scheme: dark) {
+.opi-activity.opi-activity {
+  --colour-page: #0f141b;
+  --colour-surface: #161d27;
+  --colour-surface-raised: #1a2230;
+  --colour-border: #2c3644;
+  --colour-border-strong: #44506180;
+  --colour-text: #e9edf3;
+  --colour-text-muted: #a8b2c1;
+  --colour-accent: #8fb6ff;
+  --colour-accent-hover: #b3cdff;
+  --colour-accent-soft: #1b2740;
+  --colour-on-accent: #0f141b;
+  --colour-focus: #f0b429;
+  --colour-cognitive: #e2ab5f;
+  --colour-research-methods: #8fb6ff;
+  --colour-neuropsychology: #6fc3b4;
+  --colour-social-critical-psychology: #f19aa8;
+  --colour-personality-individual-differences: #db9ccd;
+  --colour-status-bg: #241f14;
+  --colour-status-text: #e2cf9f;
+  --colour-status-border: #4a4028;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 2px 10px rgb(0 0 0 / 0.45);
+}
+}
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity.opi-activity {
+  -webkit-text-size-adjust: 100%;
+}
+.opi-activity.opi-activity {
+  background-color: var(--colour-page);
+  color: var(--colour-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.65;
+}
+.opi-activity.opi-activity h1,
+.opi-activity.opi-activity h2,
+.opi-activity.opi-activity h3,
+.opi-activity.opi-activity h4 {
+  margin: 0 0 var(--space-3);
+  line-height: 1.25;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.opi-activity.opi-activity h1 {
+  font-size: var(--text-3xl);
+}
+.opi-activity.opi-activity h2 {
+  font-size: var(--text-2xl);
+}
+.opi-activity.opi-activity h3 {
+  font-size: var(--text-xl);
+}
+.opi-activity.opi-activity h4 {
+  font-size: var(--text-lg);
+}
+.opi-activity.opi-activity p,
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol,
+.opi-activity.opi-activity dl {
+  margin: 0 0 var(--space-4);
+}
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol {
+  padding-left: 1.35em;
+}
+.opi-activity.opi-activity li + li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity a {
+  color: var(--colour-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: max(1px, 0.06em);
+}
+.opi-activity.opi-activity a:hover {
+  color: var(--colour-accent-hover);
+  text-decoration-thickness: max(2px, 0.11em);
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid var(--colour-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+@supports not selector(:focus-visible) {
+.opi-activity.opi-activity :focus {
+  outline: 3px solid var(--colour-focus);
+    outline-offset: 2px;
+}
+}
+.opi-activity.opi-activity code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.35em;
+}
+.opi-activity.opi-activity hr {
+  border: 0;
+  border-top: 1px solid var(--colour-border);
+  margin: var(--space-6) 0;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+}
+.opi-activity.opi-activity .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.opi-activity.opi-activity .container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+@media (min-width: 40em) {
+.opi-activity.opi-activity .container {
+  padding-inline: var(--space-5);
+}
+}
+.opi-activity.opi-activity .prose {
+  max-width: var(--measure);
+}
+.opi-activity.opi-activity .text-muted {
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .section {
+  padding-block: var(--space-7);
+}
+.opi-activity.opi-activity .section--tinted {
+  background-color: var(--colour-surface);
+  border-block: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .section__header {
+  max-width: var(--measure);
+  margin-bottom: var(--space-5);
+}
+.opi-activity.opi-activity .section__header > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-7) var(--space-6);
+  border-bottom: 1px solid var(--colour-border);
+  
+  background-image: linear-gradient(
+    180deg,
+    var(--colour-accent-soft) 0%,
+    var(--colour-page) 100%
+  );
+}
+.opi-activity.opi-activity .hero__eyebrow {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .hero h1 {
+  max-width: 20ch;
+  margin-bottom: var(--space-4);
+}
+.opi-activity.opi-activity .hero__lead {
+  max-width: var(--measure);
+  font-size: var(--text-lg);
+  color: var(--colour-text-muted);
+}
+@media (min-width: 48em) {
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-8) var(--space-7);
+}
+.opi-activity.opi-activity .hero h1 {
+  font-size: 44px;
+}
+}
+.opi-activity.opi-activity .button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  
+  min-height: 44px;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .button--primary {
+  background-color: var(--colour-accent);
+  border-color: var(--colour-accent);
+  
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--primary:hover {
+  background-color: var(--colour-accent-hover);
+  border-color: var(--colour-accent-hover);
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--secondary {
+  background-color: transparent;
+  border-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .button--secondary:hover {
+  background-color: var(--colour-surface);
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+}
+.opi-activity.opi-activity .card--cognitive {
+  --card-accent: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .card--research-methods {
+  --card-accent: var(--colour-research-methods);
+}
+.opi-activity.opi-activity .card--neuropsychology {
+  --card-accent: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .card--social-critical-psychology {
+  --card-accent: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .card--personality-individual-differences {
+  --card-accent: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 650;
+  line-height: 1.4;
+  padding: 3.2px var(--space-3);
+  border-radius: 999px;
+  border: 1px solid var(--colour-status-border);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+}
+.opi-activity.opi-activity .badge__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex: none;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed var(--colour-border-strong);
+  border-radius: var(--radius-lg);
+  background-color: var(--colour-surface);
+  padding: var(--space-5);
+  text-align: left;
+}
+.opi-activity.opi-activity .placeholder__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+}
+.opi-activity.opi-activity .placeholder > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .split {
+  display: grid;
+  gap: var(--space-6);
+}
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split {
+  grid-template-columns: 3fr 2fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .panel {
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.opi-activity.opi-activity .panel > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .panel__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .section--tinted {
+  border-block: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .hero {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .button--primary {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .button--secondary {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .button:hover {
+  border-color: Highlight;
+}
+.opi-activity.opi-activity .panel {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed CanvasText;
+}
+.opi-activity.opi-activity .badge {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .badge__dot {
+  background-color: CanvasText;
+}
+.opi-activity.opi-activity code {
+  border-color: CanvasText;
+}
+.opi-activity.opi-activity hr {
+  border-top-color: CanvasText;
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+}
+@media print {
+.opi-activity.opi-activity {
+  color: #000;
+  background: #fff;
+}
+.opi-activity.opi-activity a[href^="http"]::after {
+  content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+}
+}
+
+/* components/interactive-shell.css */
+.opi-activity.opi-activity .interactive {
+  --shell-page: var(--colour-page, #ffffff);
+  --shell-surface: var(--colour-surface, #f5f7fa);
+  --shell-raised: var(--colour-surface-raised, #ffffff);
+  --shell-border: var(--colour-border, #d3d9e2);
+  --shell-border-strong: var(--colour-border-strong, #aeb7c4);
+  --shell-text: var(--colour-text, #131820);
+  --shell-muted: var(--colour-text-muted, #4c566a);
+  --shell-accent: var(--colour-accent, #1a4fa0);
+  --shell-accent-soft: var(--colour-accent-soft, #e8eefb);
+  
+  --shell-on-accent: var(--colour-on-accent, #ffffff);
+  --shell-focus: var(--colour-focus, #b45309);
+  --shell-radius: var(--radius-lg, 12px);
+  --shell-gap: var(--space-5, 24px);
+
+  display: block;
+  background-color: var(--shell-raised);
+  color: var(--shell-text);
+  border: 1px solid var(--shell-border);
+  border-radius: var(--shell-radius);
+  
+  overflow-x: clip;
+  overflow-y: visible;
+}
+.opi-activity.opi-activity .interactive__header {
+  padding: var(--shell-gap);
+  border-bottom: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 1.25;
+}
+.opi-activity.opi-activity .interactive__brief {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--shell-muted);
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__body {
+  display: grid;
+  gap: var(--shell-gap);
+  padding: var(--shell-gap);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body {
+  grid-template-columns: minmax(240px, 320px) 1fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .interactive__controls {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__controls fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .interactive__controls legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .control {
+  display: grid;
+  gap: 5.6px;
+}
+.opi-activity.opi-activity .control + .control {
+  margin-top: 16px;
+}
+.opi-activity.opi-activity .control__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.opi-activity.opi-activity .control__label {
+  font-size: 15px;
+  font-weight: 600;
+}
+.opi-activity.opi-activity .control__value {
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--shell-accent);
+}
+.opi-activity.opi-activity .control__hint {
+  font-size: 13px;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .interactive__controls input[type="range"] {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--shell-accent);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  width: 100%;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--shell-text);
+  background-color: var(--shell-raised);
+  border: 1px solid var(--shell-border-strong);
+  border-radius: var(--radius-sm, 4px);
+}
+.opi-activity.opi-activity .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+}
+.opi-activity.opi-activity .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  accent-color: var(--shell-accent);
+  flex: none;
+}
+.opi-activity.opi-activity .interactive__stage {
+  min-height: 256px;
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-page);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body--pinned {
+  align-items: stretch;
+}
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: sticky;
+    top: 0;
+    z-index: 2;
+    
+    margin: -16px -16px 0;
+    padding: 16px 16px 12px;
+    background-color: var(--shell-page);
+    border-bottom: 1px solid var(--shell-border);
+}
+}
+@media (min-width: 52em) and (max-height: 30em) {
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: static;
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
+}
+}
+.opi-activity.opi-activity .interactive__stage > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity :where(.interactive__stage) svg,
+.opi-activity.opi-activity :where(.interactive__stage) canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+.opi-activity.opi-activity .interactive__readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout div {
+  padding: 9.6px 12px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-sm, 4px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__readout dt {
+  font-size: 13px;
+  color: var(--shell-muted);
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout dd {
+  margin: 2.4px 0 0;
+  font-size: 18px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .interactive__status {
+  margin: 0;
+  padding: 12px var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+  font-size: 15px;
+  color: var(--shell-muted);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .interactive__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+}
+.opi-activity.opi-activity .interactive__actions button {
+  min-height: 44px;
+  padding: 6.4px 20px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--shell-on-accent);
+  background-color: var(--shell-accent);
+  border: 1px solid var(--shell-accent);
+  border-radius: var(--radius-md, 8px);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  color: var(--shell-text);
+  background-color: transparent;
+  border-color: var(--shell-border-strong);
+}
+.opi-activity.opi-activity .interactive__actions button:hover {
+  filter: brightness(1.08);
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__notes > summary {
+  padding: 13.6px var(--shell-gap);
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__notes > div {
+  padding: 0 var(--shell-gap) var(--shell-gap);
+  max-width: 68ch;
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__notes > div > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity .interactive *,
+.opi-activity.opi-activity .interactive *::before,
+.opi-activity.opi-activity .interactive *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+}
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .interactive,
+.opi-activity.opi-activity .interactive__controls,
+.opi-activity.opi-activity .interactive__stage,
+.opi-activity.opi-activity .interactive__readout div {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__header {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__status,
+.opi-activity.opi-activity .interactive__actions,
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__actions button {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  border-width: 1px;
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 1;
+    color: GrayText;
+    border-color: GrayText;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__stage svg {
+  forced-color-adjust: auto;
+}
+}
+
+/* components/tool-kit.css */
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split--wide {
+  grid-template-columns: 1fr 1fr;
+}
+}
+.opi-activity.opi-activity .how-to {
+  padding-left: 19.2px;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .how-to > li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .table-scroll {
+  overflow-x: auto;
+  
+  position: relative;
+}
+.opi-activity.opi-activity .prediction {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 832px;
+}
+.opi-activity.opi-activity .prediction > *,
+.opi-activity.opi-activity .challenge > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity .prediction__group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .prediction__legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-weight: 650;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .prediction .control--choice,
+.opi-activity.opi-activity .challenge .control--choice,
+.opi-activity.opi-activity .evidence .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .prediction .control--choice input,
+.opi-activity.opi-activity .challenge .control--choice input,
+.opi-activity.opi-activity .evidence .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .prediction__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .prediction__error {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-status-border);
+  border-left: 4px solid var(--colour-status-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .prediction__readback {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .feedback[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .feedback[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .feedback[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .feedback__verdict {
+  font-weight: 700;
+}
+.opi-activity.opi-activity .verdict {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .verdict__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict__body {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .verdict__body + .verdict__body {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .verdict__note {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .verdict[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .verdict[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .goal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .goal__label {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .goal__text {
+  flex: 1 1 256px;
+}
+.opi-activity.opi-activity .goal strong {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .goal__checks {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+  display: grid;
+  gap: 2.4px;
+}
+.opi-activity.opi-activity .goal__checks > li {
+  margin-top: 0;
+  padding-left: 22.4px;
+  position: relative;
+}
+.opi-activity.opi-activity .goal__checks > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 9.6px;
+  height: 9.6px;
+  border: 2px solid var(--colour-border-strong);
+  border-radius: 2px;
+}
+.opi-activity.opi-activity .goal__checks > li[data-met="yes"]::before {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .stage-track {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .stage-track > li {
+  margin-top: 0;
+  flex: 1 1 160px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-bottom: 3px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .stage-track > li > span {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.opi-activity.opi-activity .stage-track > li[data-state="done"] {
+  border-bottom-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border-bottom-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+  color: var(--colour-text);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .stage__heading {
+  margin: 0;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .data-table,
+.opi-activity.opi-activity .chart__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .data-table th,
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table th,
+.opi-activity.opi-activity .chart__table td {
+  padding: 6.4px 9.6px;
+  border: 1px solid var(--colour-border);
+  text-align: left;
+  vertical-align: top;
+}
+.opi-activity.opi-activity .data-table thead th,
+.opi-activity.opi-activity .chart__table thead th {
+  background-color: var(--colour-surface);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table td {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__table tbody th,
+.opi-activity.opi-activity .data-table tbody th {
+  font-weight: 550;
+}
+.opi-activity.opi-activity .data-table__total > th,
+.opi-activity.opi-activity .data-table__total > td {
+  border-top: 2px solid var(--colour-border-strong);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart {
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .chart__caption {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__svg {
+  max-width: 100%;
+  height: auto;
+}
+.opi-activity.opi-activity .chart__label,
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__inline,
+.opi-activity.opi-activity .chart__axis {
+  font-family: var(--font-body);
+  fill: var(--colour-text);
+  font-size: 13px;
+}
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__axis {
+  fill: var(--colour-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: var(--colour-on-accent);
+  font-size: 12px;
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__track {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__bar {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--one {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .chart__baseline,
+.opi-activity.opi-activity .chart__grid {
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__line {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: var(--colour-personality-individual-differences);
+  stroke-dasharray: 6 4;
+}
+.opi-activity.opi-activity .chart__point {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .reveal > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .reveal__lead {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+.opi-activity.opi-activity .reveal__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(176px, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+  padding: 0;
+  list-style: none;
+}
+.opi-activity.opi-activity .reveal__figures > li {
+  margin-top: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+.opi-activity.opi-activity .reveal__figure-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .reveal__figure-value {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .challenge {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+.opi-activity.opi-activity .challenge__locked {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .panel--caution {
+  background-color: var(--colour-status-bg);
+  border-color: var(--colour-status-border);
+}
+.opi-activity.opi-activity .panel--caution li + li {
+  margin-top: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .goal,
+.opi-activity.opi-activity .verdict,
+.opi-activity.opi-activity .feedback,
+.opi-activity.opi-activity .prediction__error,
+.opi-activity.opi-activity .prediction__readback,
+.opi-activity.opi-activity .stage-track > li,
+.opi-activity.opi-activity .reveal__figures > li {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border: 2px solid Highlight;
+}
+.opi-activity.opi-activity .chart__bar,
+.opi-activity.opi-activity .chart__bar--one {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: Canvas;
+}
+.opi-activity.opi-activity .chart__line {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: Highlight;
+}
+}
+.opi-activity.opi-activity .stage__more {
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .stage__more > summary {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .stage__more[open] > summary {
+  border-bottom: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .stage__more > *:not(summary) {
+  margin: var(--space-3);
+}
+
+/* modules/personality-individual-differences/tools/12-alpha-trap/tool.css */
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split--wide {
+  grid-template-columns: 1fr 1fr;
+}
+}
+.opi-activity.opi-activity #alpha-trap .interactive__controls,
+.opi-activity.opi-activity #alpha-trap .interactive__stage {
+  min-width: 0;
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity #alpha-trap .interactive__body {
+  grid-template-columns: minmax(0, 352px) minmax(0, 1fr);
+}
+}
+@media (min-width: 72em) {
+.opi-activity.opi-activity #alpha-trap .interactive__body {
+  grid-template-columns: minmax(0, 416px) minmax(0, 1fr);
+}
+}
+.opi-activity.opi-activity .how-to {
+  padding-left: 19.2px;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .how-to > li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .prediction {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 736px;
+}
+.opi-activity.opi-activity .prediction__group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .prediction__legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-weight: 650;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .prediction .control--choice,
+.opi-activity.opi-activity .challenge .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .prediction .control--choice input,
+.opi-activity.opi-activity .challenge .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .prediction__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .prediction__error {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-status-border);
+  border-left: 4px solid var(--colour-status-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .prediction__readback {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .stage-track {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .stage-track > li {
+  margin-top: 0;
+  flex: 1 1 160px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-bottom: 3px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .stage-track > li > span {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.opi-activity.opi-activity .stage-track > li[data-state="done"] {
+  border-bottom-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border-bottom-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+  color: var(--colour-text);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .goal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .goal__label {
+  flex: none;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .goal__text {
+  flex: 1 1 256px;
+}
+.opi-activity.opi-activity .goal strong {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .bank__intro {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .bank__group + .bank__group {
+  margin-top: var(--space-4);
+}
+.opi-activity.opi-activity .bank__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 4px;
+}
+.opi-activity.opi-activity .bank__list > li {
+  margin-top: 0;
+}
+.opi-activity.opi-activity .item {
+  display: flex;
+  align-items: flex-start;
+  gap: 9.6px;
+  min-height: 44px;
+  padding: 7.2px 9.6px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  line-height: 1.35;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .item:hover {
+  background-color: var(--colour-accent-soft);
+}
+.opi-activity.opi-activity .item input {
+  width: 18.4px;
+  height: 18.4px;
+  margin-top: 2.4px;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .item:has(input:checked) {
+  border-color: var(--colour-border-strong);
+  background-color: var(--colour-surface-raised);
+  font-weight: 550;
+}
+.opi-activity.opi-activity .item input:disabled {
+  cursor: not-allowed;
+}
+.opi-activity.opi-activity .item:has(input:disabled) {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.opi-activity.opi-activity .item:has(input:disabled):hover {
+  background-color: transparent;
+}
+.opi-activity.opi-activity .meter {
+  display: grid;
+  gap: 5.6px;
+}
+.opi-activity.opi-activity .meter__scale {
+  position: relative;
+  height: 24px;
+  border: 1px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  overflow: hidden;
+}
+.opi-activity.opi-activity .meter__fill {
+  height: 100%;
+  width: 0;
+  background-color: var(--colour-accent);
+  transition: width 220ms ease-out;
+}
+.opi-activity.opi-activity .meter__target {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: var(--colour-text);
+}
+.opi-activity.opi-activity .meter__labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity .meter__fill {
+  transition: none;
+}
+}
+.opi-activity.opi-activity .stage__heading {
+  margin: 0;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .interactive__readout dd[data-metric="alpha"] {
+  font-size: var(--text-2xl);
+  line-height: 1.1;
+  color: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart {
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .chart__caption {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__svg {
+  max-width: 512px;
+}
+.opi-activity.opi-activity .chart__bar {
+  fill: var(--colour-accent-soft);
+  stroke: var(--colour-accent);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__bar-repeat {
+  fill: url(#alpha-trap-hatch);
+  stroke: var(--colour-accent);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__hatch {
+  stroke: var(--colour-accent);
+  stroke-width: 2;
+}
+.opi-activity.opi-activity .chart__baseline {
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__label,
+.opi-activity.opi-activity .chart__count {
+  fill: var(--colour-text);
+  font-family: var(--font-body);
+  font-size: 13px;
+}
+.opi-activity.opi-activity .chart__count {
+  fill: var(--colour-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .goal__checks {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+  display: grid;
+  gap: 2.4px;
+}
+.opi-activity.opi-activity .goal__checks > li {
+  margin-top: 0;
+  padding-left: 22.4px;
+  position: relative;
+}
+.opi-activity.opi-activity .goal__checks > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 9.6px;
+  height: 9.6px;
+  border: 2px solid var(--colour-border-strong);
+  border-radius: 2px;
+}
+.opi-activity.opi-activity .goal__checks > li[data-met="yes"]::before {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .table-scroll {
+  overflow-x: auto;
+}
+.opi-activity.opi-activity .data-table,
+.opi-activity.opi-activity .chart__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .data-table th,
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table th,
+.opi-activity.opi-activity .chart__table td {
+  padding: 6.4px 9.6px;
+  border: 1px solid var(--colour-border);
+  text-align: left;
+  vertical-align: top;
+}
+.opi-activity.opi-activity .data-table thead th,
+.opi-activity.opi-activity .chart__table thead th {
+  background-color: var(--colour-surface);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table td {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__table tbody th {
+  font-weight: 550;
+}
+.opi-activity.opi-activity .verdict {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .verdict__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict__body {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .verdict__body + .verdict__body {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .verdict__note {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .verdict[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .verdict[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .verdict--outcome {
+  background-color: var(--colour-accent-soft);
+}
+.opi-activity.opi-activity .reveal > :last-child,
+.opi-activity.opi-activity .feedback > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .reveal__lead {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+.opi-activity.opi-activity .reveal__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(176px, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+  padding: 0;
+  list-style: none;
+}
+.opi-activity.opi-activity .reveal__figures > li {
+  margin-top: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+.opi-activity.opi-activity .reveal__figure-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .reveal__figure-value {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .reveal__items {
+  font-size: var(--text-sm);
+  padding-left: 19.2px;
+}
+.opi-activity.opi-activity .challenge {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+.opi-activity.opi-activity .challenge__locked {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .feedback {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .feedback[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .feedback__verdict {
+  font-weight: 700;
+}
+.opi-activity.opi-activity .panel--caution {
+  background-color: var(--colour-status-bg);
+  border-color: var(--colour-status-border);
+}
+.opi-activity.opi-activity .panel--caution li + li {
+  margin-top: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .stage-track > li,
+.opi-activity.opi-activity .goal,
+.opi-activity.opi-activity .verdict,
+.opi-activity.opi-activity .feedback,
+.opi-activity.opi-activity .prediction__error,
+.opi-activity.opi-activity .prediction__readback,
+.opi-activity.opi-activity .meter__scale,
+.opi-activity.opi-activity .reveal__figures > li {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border: 2px solid Highlight;
+}
+.opi-activity.opi-activity .item:has(input:checked) {
+  border-color: CanvasText;
+}
+.opi-activity.opi-activity .meter__fill {
+  background-color: Highlight;
+}
+.opi-activity.opi-activity .meter__target {
+  background-color: CanvasText;
+}
+}
+</style>
+
+  <!-- ================= Title and purpose ================= -->
+  <section class="section card--personality-individual-differences" aria-labelledby="page-heading">
+    <div class="container">
+
+      <p class="hero__eyebrow" style="color: var(--colour-personality-individual-differences)">
+        Personality and Individual Differences
+      </p>
+      <h1 id="page-heading">The Alpha Trap</h1>
+      <p class="hero__lead">
+        Build a questionnaire scale by choosing items, and watch how easily
+        Cronbach&rsquo;s alpha can be pushed upwards by asking the same
+        question in five different ways.
+      </p>
+
+      <p>
+        <span class="badge">
+          <span class="badge__dot" aria-hidden="true"></span>
+          Simulated data — a fictional item bank, not a real questionnaire
+        </span>
+      </p>
+
+      <div class="split split--wide">
+
+        <div class="panel">
+          <h2 class="panel__title">Learning objective</h2>
+          <p>
+            By the end you should be able to say what a high alpha does and
+            does not tell you about a scale.
+          </p>
+          <p class="text-muted">
+            About 20 minutes. Nothing you do here is saved or sent anywhere.
+          </p>
+        </div>
+
+        <div class="panel">
+          <h2 class="panel__title">How to use this</h2>
+          <ol class="how-to">
+            <li>Commit to a prediction before you touch the item bank.</li>
+            <li>
+              <strong>Round 1.</strong> Tick items to push alpha to
+              <strong>0.85</strong> or above. Any items you like.
+            </li>
+            <li>Look at what your scale turned out to measure.</li>
+            <li>
+              <strong>Round 2.</strong> Build a scale you would actually
+              defend, and compare the two.
+            </li>
+            <li>Work through the two challenges at the foot of the page.</li>
+          </ol>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= Prediction ================= -->
+  <section class="section section--tinted" id="prediction" aria-labelledby="prediction-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="prediction-heading">First, a prediction</h2>
+        <p class="prose">
+          You are about to be asked to get Cronbach&rsquo;s alpha above 0.85
+          using a bank of 24 items measuring &ldquo;academic
+          conscientiousness&rdquo;. Commit to an answer now — the point of the
+          exercise is largely lost if you read the outcome first.
+        </p>
+      </div>
+
+      <form class="panel prediction" id="prediction-form">
+
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            1. The construct has five content areas. How many do you think
+            your alpha-chasing scale will end up covering?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="predict-breadth" value="one-or-two">
+            One or two of the five
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="predict-breadth" value="three">
+            About three of the five
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="predict-breadth" value="four-or-five">
+            Four or five — a high alpha needs broad coverage
+          </label>
+        </fieldset>
+
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            2. Suppose we then correlate that scale with a relevant outcome.
+            What would you expect?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="predict-outcome" value="weak">
+            A weak correlation, around 0.2
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="predict-outcome" value="moderate">
+            A moderate correlation, around 0.4
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="predict-outcome" value="strong">
+            A strong correlation, around 0.6 — high alpha, good measure
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="predict-outcome" value="unknown">
+            Alpha on its own does not tell you
+          </label>
+        </fieldset>
+
+        <p class="prediction__error" data-prediction-error role="alert" hidden></p>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit" data-action="record-prediction">
+            Record my prediction and begin
+          </button>
+          <button class="button button--secondary" type="button" data-action="skip-prediction">
+            Skip — I am demonstrating this
+          </button>
+        </div>
+
+        <p class="prediction__readback" data-prediction-readback hidden></p>
+
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= The interactive ================= -->
+  <section class="section" aria-labelledby="builder-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="builder-heading">The scale builder</h2>
+      </div>
+
+      <noscript>
+        <div class="placeholder">
+          <h3 class="placeholder__title">This part needs JavaScript</h3>
+          <p class="prose">
+            The scale builder calculates Cronbach&rsquo;s alpha in your browser
+            as you tick items, so it cannot work with JavaScript switched off.
+            The rest of this page — what the demonstration shows, its
+            limitations, and the teaching notes — is readable without it.
+          </p>
+        </div>
+      </noscript>
+
+      <!-- Progress through the three stages. aria-current="step" marks the
+           active one, so it is not carried by styling alone. -->
+      <ol class="stage-track" data-stage-track>
+        <li data-stage-step="predict"><span>1.</span> Predict</li>
+        <li data-stage-step="round1"><span>2.</span> Chase alpha</li>
+        <li data-stage-step="round2"><span>3.</span> Build it properly</li>
+      </ol>
+
+      <section class="interactive" id="alpha-trap" data-interactive
+               data-reset-message="Everything cleared. Back to the prediction.">
+
+        <header class="interactive__header">
+          <h3 class="interactive__title">Academic conscientiousness — item bank</h3>
+          <p class="interactive__brief">
+            Tick items to put them in your scale. Every figure below is
+            calculated from a fictional correlation model, not from real
+            respondents.
+          </p>
+          <p class="goal" data-goal>
+            <span class="goal__label">Goal</span>
+            <span class="goal__text" data-goal-text>Record your prediction above to unlock the item bank.</span>
+          </p>
+        </header>
+
+        <div class="interactive__body interactive__body--pinned">
+
+          <!-- Controls first in the DOM: choose items, then see the result. -->
+          <form class="interactive__controls" data-interactive-controls data-item-bank>
+            <p class="bank__intro">
+              24 items, written for this demonstration. Read them — the
+              relationships between them matter.
+            </p>
+            <!-- Fieldsets are built by tool.js from a single source of truth,
+                 so the item text, its content area and its psychometric
+                 parameters cannot drift apart. -->
+          </form>
+
+          <div class="interactive__stage" data-interactive-stage>
+
+            <!-- Pinned: the alpha figure is what every checkbox in the item bank changes. -->
+            <div class="stage__primary">
+              <h4 class="stage__heading">Your scale</h4>
+
+              <!-- A redundant visual for the alpha figure printed in the
+                   readout immediately below, so it is hidden from assistive
+                   technology rather than announced twice. -->
+              <div class="meter" aria-hidden="true">
+                <div class="meter__scale">
+                  <div class="meter__fill" data-meter-fill></div>
+                  <div class="meter__target" data-meter-target></div>
+                </div>
+                <p class="meter__labels">
+                  <span>alpha 0</span>
+                  <span data-meter-caption>target 0.85</span>
+                  <span>1</span>
+                </p>
+              </div>
+
+              <dl class="interactive__readout" data-readout>
+                <div>
+                  <dt>Cronbach&rsquo;s alpha</dt>
+                  <dd data-metric="alpha">—</dd>
+                </div>
+                <div>
+                  <dt>Items</dt>
+                  <dd data-metric="items">0</dd>
+                </div>
+                <div>
+                  <dt>Mean inter-item <abbr title="correlation">r</abbr></dt>
+                  <dd data-metric="rbar">—</dd>
+                </div>
+                <div>
+                  <dt>Content areas covered</dt>
+                  <dd data-metric="breadth">0 of 5</dd>
+                </div>
+                <div>
+                  <dt>Near-duplicate pairs</dt>
+                  <dd data-metric="duplicates">0</dd>
+                </div>
+                <div data-outcome-cell hidden>
+                  <dt>Correlation with outcome</dt>
+                  <dd data-metric="outcome">—</dd>
+                </div>
+              </dl>
+            </div>
+
+            <figure class="chart">
+              <figcaption class="chart__caption">Content coverage</figcaption>
+              <!-- The SVG is decorative repetition of the table below it,
+                   so it is hidden from assistive technology rather than
+                   announced twice. The table is the text equivalent and is
+                   never hidden. -->
+              <svg class="chart__svg" data-chart viewBox="0 0 460 190"
+                   aria-hidden="true" focusable="false"></svg>
+              <div class="table-scroll">
+                <table class="chart__table">
+                  <caption class="visually-hidden">
+                    Items selected in each content area, and how many of those
+                    repeat the wording of another selected item
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Content area</th>
+                      <th scope="col">Items</th>
+                      <th scope="col">Repeated wording</th>
+                    </tr>
+                  </thead>
+                  <tbody data-chart-table></tbody>
+                </table>
+              </div>
+            </figure>
+
+            <div class="verdict" data-redundancy>
+              <h4 class="verdict__title">Redundancy</h4>
+              <p class="verdict__body" data-redundancy-body>
+                No items selected yet.
+              </p>
+            </div>
+
+            <!-- Held back until the end of Round 1. Revealing it earlier
+                 would answer the prediction question before it is asked. -->
+            <div class="verdict verdict--outcome" data-criterion hidden>
+              <h4 class="verdict__title">
+                Correlation with a simulated outcome
+              </h4>
+              <p class="verdict__body" data-criterion-body></p>
+              <p class="verdict__note">
+                A fictional outcome — tutor-rated dependability — generated by
+                the same model. It is an illustration of a principle, not a
+                validity coefficient from any real study.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+        <p class="interactive__status" data-interactive-status role="status"></p>
+
+        <div class="interactive__actions">
+          <button type="button" data-action="advance" disabled>
+            Reveal what I built
+          </button>
+          <button type="button" data-variant="secondary" data-action="example">
+            Show me a worked example
+          </button>
+          <button type="button" data-variant="secondary" data-action="clear">
+            Clear selection
+          </button>
+          <button type="button" data-variant="secondary" data-interactive-reset>
+            Reset everything
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ================= Reveal (Round 1 result) ================= -->
+  <section class="section section--tinted" id="reveal" aria-labelledby="reveal-heading" hidden>
+    <div class="container">
+      <div class="section__header">
+        <h2 id="reveal-heading" tabindex="-1">What you actually built</h2>
+      </div>
+      <div class="panel reveal" data-reveal-body></div>
+    </div>
+  </section>
+
+  <!-- ================= Comparison (Round 2 result) ================= -->
+  <section class="section" id="comparison" aria-labelledby="comparison-heading" hidden>
+    <div class="container">
+      <div class="section__header">
+        <h2 id="comparison-heading" tabindex="-1">The two scales side by side</h2>
+      </div>
+      <div class="panel">
+        <div class="table-scroll">
+          <table class="data-table">
+            <caption class="visually-hidden">
+              Round 1 and Round 2 scales compared on five measures
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Measure</th>
+                <th scope="col">Round 1 — chasing alpha</th>
+                <th scope="col">Round 2 — built properly</th>
+              </tr>
+            </thead>
+            <tbody data-comparison-body></tbody>
+          </table>
+        </div>
+        <p class="reveal__lead" data-comparison-verdict></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Challenges ================= -->
+  <section class="section section--tinted" id="challenges" aria-labelledby="challenges-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="challenges-heading">Two challenges</h2>
+        <p class="prose">
+          The first can be attempted at any point. The second uses the scale
+          you build in Round 2, so it unlocks once you have finished it.
+        </p>
+      </div>
+
+      <div class="split split--wide">
+
+        <!-- Challenge A: diagnosis -->
+        <form class="panel challenge" id="challenge-diagnosis">
+          <h3 class="panel__title">Challenge 1 — diagnose three measures</h3>
+          <p>
+            Three fictional research groups publish a scale for the same
+            construct. Which is the strongest measure of it?
+          </p>
+
+          <div class="table-scroll">
+            <table class="data-table">
+              <caption class="visually-hidden">
+                Three fictional scales compared
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">Scale</th>
+                  <th scope="col">Items</th>
+                  <th scope="col">Alpha</th>
+                  <th scope="col">Content areas</th>
+                  <th scope="col">Largest set of near-identical items</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">A</th>
+                  <td>12</td><td>0.94</td><td>2 of 5</td><td>7 items</td>
+                </tr>
+                <tr>
+                  <th scope="row">B</th>
+                  <td>10</td><td>0.79</td><td>5 of 5</td><td>1 item</td>
+                </tr>
+                <tr>
+                  <th scope="row">C</th>
+                  <td>6</td><td>0.51</td><td>5 of 5</td><td>1 item</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <fieldset class="prediction__group">
+            <legend class="prediction__legend">Your answer</legend>
+            <label class="control--choice">
+              <input type="radio" name="diagnosis" value="a">
+              Scale A — the highest alpha
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="diagnosis" value="b">
+              Scale B
+            </label>
+            <label class="control--choice">
+              <input type="radio" name="diagnosis" value="c">
+              Scale C — the shortest, and it covers everything
+            </label>
+          </fieldset>
+
+          <div class="prediction__actions">
+            <button class="button button--primary" type="submit"
+                    data-action="check-diagnosis">
+              Check my answer
+            </button>
+          </div>
+
+          <div class="feedback" data-diagnosis-feedback hidden></div>
+        </form>
+
+        <!-- Challenge B: transfer -->
+        <form class="panel challenge" id="challenge-transfer">
+          <h3 class="panel__title">Challenge 2 — predict the effect</h3>
+
+          <p class="challenge__locked" data-transfer-locked>
+            This unlocks when you have finished Round 2. It asks you to
+            predict what happens to your own scale when four near-duplicate
+            items are added to it.
+          </p>
+
+          <div data-transfer-body hidden>
+            <p>
+              A reviewer says your Round 2 scale &ldquo;would be more reliable
+              with a few more items&rdquo;. You add the four remaining
+              deadline paraphrases to it. Predict what happens, then apply it.
+            </p>
+
+            <fieldset class="prediction__group">
+              <legend class="prediction__legend">Alpha will…</legend>
+              <label class="control--choice">
+                <input type="radio" name="transfer-alpha" value="up"> rise
+              </label>
+              <label class="control--choice">
+                <input type="radio" name="transfer-alpha" value="down"> fall
+              </label>
+              <label class="control--choice">
+                <input type="radio" name="transfer-alpha" value="same"> stay about the same
+              </label>
+            </fieldset>
+
+            <fieldset class="prediction__group">
+              <legend class="prediction__legend">
+                The correlation with the outcome will…
+              </legend>
+              <label class="control--choice">
+                <input type="radio" name="transfer-outcome" value="up"> rise
+              </label>
+              <label class="control--choice">
+                <input type="radio" name="transfer-outcome" value="down"> fall
+              </label>
+              <label class="control--choice">
+                <input type="radio" name="transfer-outcome" value="same"> stay about the same
+              </label>
+            </fieldset>
+
+            <p class="prediction__error" data-transfer-error role="alert" hidden></p>
+
+            <div class="prediction__actions">
+              <button class="button button--primary" type="submit"
+                      data-action="apply-transfer">
+                Apply the change and check
+              </button>
+            </div>
+
+            <div class="feedback" data-transfer-feedback hidden></div>
+          </div>
+        </form>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= Debrief ================= -->
+  <section class="section" id="debrief" aria-labelledby="debrief-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="debrief-heading">What this demonstrates</h2>
+      </div>
+
+      <div class="split split--wide">
+
+        <div class="prose">
+          <h3>Alpha is a function of two things you control</h3>
+          <p>
+            Cronbach&rsquo;s alpha rises with the number of items and with the
+            average correlation between them. Neither is a fact about the
+            construct. Write an item five times over and both go up at once,
+            which is why a scale of paraphrases can reach 0.91 while covering
+            a fifth of the ground the construct occupies.
+          </p>
+
+          <h3>Internal consistency is not unidimensionality</h3>
+          <p>
+            A high alpha is often read as &ldquo;the items measure one
+            thing&rdquo;. It does not establish that. Alpha can be high for a
+            clearly multidimensional scale, simply because it has many items;
+            and it can be high because one narrow cluster dominates. Deciding
+            how many dimensions there are is a question for factor analysis,
+            not for alpha.
+          </p>
+
+          <h3>Internal consistency is not validity</h3>
+          <p>
+            Reliability limits validity but does not supply it. In this
+            simulation, adding near-duplicates loads the total score with
+            variance specific to one phrasing — variance the outcome does not
+            care about. The scale becomes a more precise measure of something
+            narrower. That is the bloated specific factor, and it is a real
+            failure mode in published scales, not an artefact of this
+            demonstration.
+          </p>
+
+          <h3>Very high alpha is a warning, not a prize</h3>
+          <p>
+            For a broad construct, an alpha above about 0.90 in a short scale
+            usually means the items repeat each other. The useful question is
+            never &ldquo;is alpha high enough?&rdquo; but &ldquo;is this scale
+            made of items that between them cover what I claim to be
+            measuring?&rdquo;
+          </p>
+        </div>
+
+        <aside class="panel panel--caution" aria-labelledby="limits-heading">
+          <h3 class="panel__title" id="limits-heading">
+            What this does <em>not</em> demonstrate
+          </h3>
+          <ul>
+            <li>
+              <strong>These are not real data.</strong> Every correlation comes
+              from a fictional model written for teaching. No respondents were
+              measured, and no number here is a norm, a validated coefficient
+              or a cut-off.
+            </li>
+            <li>
+              <strong>No sampling error is modelled.</strong> The figures are
+              the values the model implies for a population. A real alpha is
+              an estimate from a sample and carries a confidence interval,
+              which is often wider than people expect.
+            </li>
+            <li>
+              <strong>Alpha is not being condemned.</strong> It remains a
+              useful summary of internal consistency, and a very low alpha is
+              a genuine problem. The argument here is against treating it as a
+              sufficient certificate of quality.
+            </li>
+            <li>
+              <strong>The construct is invented.</strong> &ldquo;Academic
+              conscientiousness&rdquo; and its five areas were written for this
+              page. Nothing here should be read as a claim about the structure
+              of conscientiousness, and the items are not a usable
+              questionnaire.
+            </li>
+            <li>
+              <strong>Breadth is not automatically better.</strong> A scale
+              deliberately built to measure one narrow facet is perfectly
+              legitimate — provided it is described that way. The failure
+              modelled here is claiming broad coverage while measuring
+              narrowly.
+            </li>
+            <li>
+              <strong>This does not assess you.</strong> Nothing here measures
+              anybody. You are choosing items, not answering them.
+            </li>
+          </ul>
+        </aside>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+
+<script>
+/* ---- components/interactive-shell.js ---- */
+/* =========================================================================
+   Open Psychology Interactives — interactive shell helper
+   -------------------------------------------------------------------------
+   A very small vanilla-JS helper that every interactive in this collection
+   uses. It deliberately does *not* draw anything or know anything about
+   statistics, personality or neuropsychology. Its job is the repetitive,
+   easy-to-get-wrong accessibility plumbing:
+
+     * announcing changes through a polite live region;
+     * keeping a range slider and its <output> in step;
+     * wiring the standard Reset button;
+     * reporting the reader's reduced-motion preference.
+
+   Usage (see docs/adapting-a-tool.md for the full markup contract):
+
+       <script src="../../components/interactive-shell.js" defer><\/script>
+       <script src="tool.js" defer><\/script>
+
+       // in tool.js
+       const shell = InteractiveShell.attach('#sampling-demo');
+       shell.onReset(() => { ...restore defaults...; draw(); });
+       shell.bindRange('#sample-size', { format: n => n + ' cases' });
+       shell.announce('Sample of 25 drawn. Mean 4.8.');
+
+   Every published interactive is written against this module.
+
+   Exposed as a global (window.InteractiveShell) rather than an ES module so
+   that a single interactive folder can be opened directly from disk over
+   file:// — ES modules are blocked by CORS in that situation, plain scripts
+   are not. That constraint is the whole reason for the older syntax here.
+   ========================================================================= */
+
+(function (global) {
+  "use strict";
+
+  /* -----------------------------------------------------------------------
+     Internal helpers
+     --------------------------------------------------------------------- */
+
+  /**
+   * Accept either a CSS selector or an element and return an element.
+   * @param {string|Element} target
+   * @param {ParentNode} [scope]
+   * @returns {Element|null}
+   */
+  function resolve(target, scope) {
+    if (!target) {
+      return null;
+    }
+    if (typeof target === "string") {
+      return (scope || document).querySelector(target);
+    }
+    return target;
+  }
+
+  /**
+   * True when the reader has asked the operating system to reduce motion.
+   * Interactives should check this before animating anything — for example
+   * by drawing a sampling distribution in one step instead of animating
+   * each draw.
+   * @returns {boolean}
+   */
+  function prefersReducedMotion() {
+    return (
+      typeof global.matchMedia === "function" &&
+      global.matchMedia("(prefers-reduced-motion: reduce)").matches
+    );
+  }
+
+  /* -----------------------------------------------------------------------
+     Shell controller
+     --------------------------------------------------------------------- */
+
+  /**
+   * Attach the shell behaviour to one `.interactive` element.
+   *
+   * @param {string|Element} target  Selector or element for the shell root.
+   * @returns {object|null}  Controller, or null if the root was not found.
+   */
+  function attach(target) {
+    var root = resolve(target);
+
+    if (!root) {
+      if (global.console && console.warn) {
+        console.warn("InteractiveShell: root element not found.", target);
+      }
+      return null;
+    }
+
+    var controls = root.querySelector("[data-interactive-controls]");
+    var stage = root.querySelector("[data-interactive-stage]");
+    var status = root.querySelector("[data-interactive-status]");
+    var resetButton = root.querySelector("[data-interactive-reset]");
+    var resetHandlers = [];
+    // Every range bound with bindRange() registers its sync function here, so
+    // that reset() can refresh the visible values after the tool's own reset
+    // handlers have restored the inputs. See reset() for why this is needed.
+    var rangeSyncs = [];
+
+    /* --- Live region ----------------------------------------------------
+       The status element is marked up as role="status" (implicitly
+       aria-live="polite"). Two details matter:
+
+         1. Assistive technology only announces *changes* to a live region,
+            so writing the same string twice is silently dropped. We add a
+            trailing zero-width space on repeat messages to force an
+            announcement when a student re-runs the same action.
+         2. Announcements are debounced. A slider dragged across its range
+            fires dozens of input events; without a delay a screen reader
+            would queue every intermediate value and fall far behind.
+       ------------------------------------------------------------------ */
+
+    var announceTimer = null;
+    var lastMessage = "";
+
+    /**
+     * Announce a short sentence describing what just changed.
+     * @param {string} message
+     * @param {object} [options]
+     * @param {boolean} [options.immediate]  Skip the debounce delay. Use for
+     *   discrete actions (button presses); leave off for continuous input.
+     */
+    function announce(message, options) {
+      if (!status) {
+        return;
+      }
+
+      var text = String(message == null ? "" : message);
+      var immediate = Boolean(options && options.immediate);
+
+      if (announceTimer !== null) {
+        global.clearTimeout(announceTimer);
+        announceTimer = null;
+      }
+
+      function write() {
+        // Force a change when the text is identical to last time.
+        status.textContent = text === lastMessage ? text + "​" : text;
+        lastMessage = text;
+      }
+
+      if (immediate) {
+        write();
+      } else {
+        announceTimer = global.setTimeout(write, 350);
+      }
+    }
+
+    /* --- Reset ---------------------------------------------------------- */
+
+    /**
+     * Register a callback to run when the Reset button is pressed.
+     * Several may be registered; they run in the order added.
+     * @param {Function} handler
+     */
+    function onReset(handler) {
+      if (typeof handler === "function") {
+        resetHandlers.push(handler);
+      }
+    }
+
+    /**
+     * Run the reset handlers. Called by the button and available directly so
+     * an interactive can reset itself on first load.
+     *
+     * Bound ranges are re-synced afterwards. A reset handler restores an
+     * input by assigning to `input.value`, and assigning to a value in script
+     * does not fire an `input` event — so without this step the slider would
+     * jump back to its default while its <output> went on showing the old
+     * number. Syncing here, after the handlers have run, also means the sync
+     * sees the restored values regardless of the order things were
+     * registered in.
+     *
+     * @param {object} [options]
+     * @param {boolean} [options.silent]  Suppress the status announcement.
+     */
+    function reset(options) {
+      resetHandlers.forEach(function (handler) {
+        handler();
+      });
+      rangeSyncs.forEach(function (sync) {
+        sync();
+      });
+      if (!options || !options.silent) {
+        announce(
+          root.getAttribute("data-reset-message") ||
+            "Reset to the starting values.",
+          { immediate: true }
+        );
+      }
+    }
+
+    if (resetButton) {
+      resetButton.addEventListener("click", function (event) {
+        // Reset buttons commonly sit inside the controls <form>; stop the
+        // browser's own form reset from fighting with ours.
+        event.preventDefault();
+        reset();
+      });
+    }
+
+    /* --- Range binding --------------------------------------------------
+       Keeps a slider's <output> in step with its value. The <output> must
+       carry `for="<input id>"`, which is what associates the two for
+       assistive technology; this only handles the visible text.
+
+       Optionally sets aria-valuetext, which is how you make a screen reader
+       say "25 cases" or "medium correlation" instead of a bare "25".
+       ------------------------------------------------------------------ */
+
+    /**
+     * @param {string|Element} inputTarget  The range (or number) input.
+     * @param {object} [options]
+     * @param {Function} [options.format]  value:number -> string shown in the
+     *   <output>. Defaults to the raw value.
+     * @param {Function} [options.describe]  value:number -> string used for
+     *   aria-valuetext. Defaults to options.format.
+     * @param {Function} [options.onInput]  value:number -> void, called after
+     *   the display has been updated. Use it to redraw.
+     * @returns {HTMLInputElement|null}
+     */
+    function bindRange(inputTarget, options) {
+      var input = resolve(inputTarget, root);
+      if (!input) {
+        return null;
+      }
+
+      var settings = options || {};
+      var format =
+        typeof settings.format === "function"
+          ? settings.format
+          : function (value) {
+              return String(value);
+            };
+      var describe =
+        typeof settings.describe === "function" ? settings.describe : format;
+
+      // <output for="the-input-id"> is the conventional pairing.
+      var output = input.id
+        ? root.querySelector('output[for="' + input.id + '"]')
+        : null;
+
+      function sync() {
+        var value = Number(input.value);
+        if (output) {
+          output.textContent = format(value);
+        }
+        // Only meaningful for widgets with an implicit or explicit slider
+        // role; harmless elsewhere.
+        input.setAttribute("aria-valuetext", describe(value));
+        if (typeof settings.onInput === "function") {
+          settings.onInput(value);
+        }
+      }
+
+      input.addEventListener("input", sync);
+      // Registered so reset() can refresh the display after the tool's own
+      // reset handlers have put the input back to its default.
+      rangeSyncs.push(sync);
+      sync();
+
+      return input;
+    }
+
+    /* --- Public surface -------------------------------------------------- */
+
+    return {
+      /** The `.interactive` root element. */
+      root: root,
+      /** The controls panel, or null if the shell has none. */
+      controls: controls,
+      /** The stage element where the visualisation is drawn. */
+      stage: stage,
+      /** The live-region element. */
+      status: status,
+      announce: announce,
+      onReset: onReset,
+      reset: reset,
+      bindRange: bindRange,
+      prefersReducedMotion: prefersReducedMotion
+    };
+  }
+
+  /* -----------------------------------------------------------------------
+     Export
+     --------------------------------------------------------------------- */
+
+  global.InteractiveShell = {
+    attach: attach,
+    prefersReducedMotion: prefersReducedMotion
+  };
+})(window);
+
+/* ---- modules/personality-individual-differences/tools/12-alpha-trap/tool.js ---- */
+/* =========================================================================
+   The Alpha Trap
+   -------------------------------------------------------------------------
+   Students build a scale from a fictional item bank and watch Cronbach's
+   alpha respond. Because several items are deliberate paraphrases of one
+   another, alpha can be pushed high by repetition alone — at which point the
+   scale is revealed to correlate poorly with a simulated outcome.
+
+   THE EDUCATIONAL MODEL
+   ---------------------
+   Every item is standardised (mean 0, variance 1) and generated by four
+   independent standard-normal sources:
+
+       X_i = g_i * G  +  f_i * F(facet)  +  w_i * W(wording family)  +  e_i
+
+     G  a general "academic conscientiousness" factor shared by all items;
+     F  a factor specific to one of the five content areas;
+     W  a factor shared only by items that paraphrase each other — the
+        wording-specific variance that produces a bloated specific factor;
+     e  item-specific error, sized so the four coefficients give unit
+        variance.
+
+   Because the items are standardised, the correlation between two of them is
+
+       r_ij = g_i g_j  +  f_i f_j [same area]  +  w_i w_j [same wording family]
+
+   and Cronbach's alpha follows from the correlation matrix in the usual way.
+   For standardised items the raw and standardised forms of alpha coincide;
+   this file computes it from the total-score variance, which is the more
+   familiar expression:
+
+       alpha = (k / (k - 1)) * (1 - k / Var(T))
+
+   The simulated outcome — fictional tutor-rated dependability — is
+
+       Y = a * G  +  b * (F1 + F2 + F3 + F4 + F5) / sqrt(5)  +  noise
+
+   so it responds to the general factor AND to breadth of content coverage,
+   but is completely indifferent to wording-specific variance. Adding
+   paraphrases therefore inflates Var(T) — the denominator of the validity
+   coefficient — while contributing nothing to its numerator. That single
+   asymmetry is the whole demonstration.
+
+   DELIBERATE SIMPLIFICATIONS
+   --------------------------
+   * No sampling error. Every figure is the value the model implies for a
+     population, not an estimate from a sample. A real alpha carries a
+     confidence interval; the page says so, and the teaching notes say so.
+   * Items are treated as continuous and standardised, so no distinction is
+     drawn between alpha, standardised alpha and ordinal alpha.
+   * A single wording family per content area, which makes the structure
+     legible to a student in a seminar. Real item pools are messier.
+   * Loadings are chosen so that the target of Round 1 is unreachable without
+     repetition (the widest scale with no repeated wording reaches 0.844).
+     That is a property of these numbers, not of alpha in general, and it is
+     there to make the trap reliable in a classroom.
+
+   No data leave the browser. There is no storage and no network request.
+   ========================================================================= */
+
+(function () {
+  "use strict";
+
+  /* =======================================================================
+     1. The model
+     ===================================================================== */
+
+  /* Loadings for the two kinds of item. Squares must not exceed 1; the
+     remainder is item-specific error.
+       distinct:   0.55^2 + 0.32^2          = 0.405, error 0.595
+       paraphrase: 0.45^2 + 0.30^2 + 0.62^2 = 0.677, error 0.323
+     The implied correlations are:
+       two paraphrases of each other          0.677
+       same area, differently worded          0.344
+       same area, both distinct               0.405
+       different areas                        0.203 to 0.303          */
+  var LOADINGS = {
+    distinct: { general: 0.55, facet: 0.32, wording: 0 },
+    paraphrase: { general: 0.45, facet: 0.30, wording: 0.62 }
+  };
+
+  /* The simulated outcome's loadings. `facets` is spread across the five
+     content factors, so an item earns outcome-relevant variance only through
+     the general factor and its own content area. */
+  var CRITERION = { general: 0.55, facets: 0.55 };
+
+  var FACETS = [
+    { id: "planning", name: "Planning ahead", short: "Planning" },
+    { id: "orderliness", name: "Orderliness", short: "Orderliness" },
+    { id: "persistence", name: "Persistence", short: "Persistence" },
+    { id: "punctuality", name: "Punctuality", short: "Punctuality" },
+    { id: "focus", name: "Resisting distraction", short: "Distraction" }
+  ];
+
+  /* Wording families. Items sharing one of these are near-paraphrases: the
+     name is what the redundancy panel calls the family in plain English. */
+  var FAMILIES = {
+    "plan-ahead": "planning the week in advance",
+    "tidy-notes": "keeping tidy notes",
+    "keep-going": "carrying on when bored",
+    deadline: "meeting deadlines",
+    "phone-away": "putting the phone away"
+  };
+
+  /* The item bank. Written for this tool; no published instrument is
+     reproduced. `family: null` means the item has no near-duplicate. */
+  var ITEMS = [
+    { id: "P1", facet: "planning", family: null, text: "I work out what a piece of coursework will involve before I start it." },
+    { id: "P2", facet: "planning", family: null, text: "I break large pieces of work into smaller stages." },
+    { id: "P3", facet: "planning", family: "plan-ahead", text: "I plan my study week in advance." },
+    { id: "P4", facet: "planning", family: "plan-ahead", text: "I decide in advance what I will study each week." },
+    { id: "P5", facet: "planning", family: "plan-ahead", text: "I map out my week's studying before the week begins." },
+
+    { id: "O1", facet: "orderliness", family: null, text: "I can find a document from last term without hunting for it." },
+    { id: "O2", facet: "orderliness", family: null, text: "My study space is set up so that I can start work straight away." },
+    { id: "O3", facet: "orderliness", family: "tidy-notes", text: "I keep my lecture notes tidy and organised." },
+    { id: "O4", facet: "orderliness", family: "tidy-notes", text: "My lecture notes are kept in good order." },
+
+    { id: "R1", facet: "persistence", family: null, text: "I keep working on a difficult problem after my first attempt fails." },
+    { id: "R2", facet: "persistence", family: null, text: "I finish optional reading that I have started." },
+    { id: "R3", facet: "persistence", family: "keep-going", text: "I keep going with a task even when it stops being interesting." },
+    { id: "R4", facet: "persistence", family: "keep-going", text: "I carry on with work even once it has become boring." },
+    { id: "R5", facet: "persistence", family: "keep-going", text: "I stick with a task after the interest has worn off." },
+
+    { id: "T1", facet: "punctuality", family: null, text: "I arrive at seminars before they start." },
+    { id: "T2", facet: "punctuality", family: "deadline", text: "I hand in coursework on time." },
+    { id: "T3", facet: "punctuality", family: "deadline", text: "I submit assignments by the deadline." },
+    { id: "T4", facet: "punctuality", family: "deadline", text: "I get my written work in before the due date." },
+    { id: "T5", facet: "punctuality", family: "deadline", text: "My coursework is handed in on or before its deadline." },
+    { id: "T6", facet: "punctuality", family: "deadline", text: "I meet submission deadlines for my written work." },
+
+    { id: "F1", facet: "focus", family: null, text: "I can work in a busy room without losing the thread." },
+    { id: "F2", facet: "focus", family: null, text: "I return to what I was doing quickly after an interruption." },
+    { id: "F3", facet: "focus", family: "phone-away", text: "I put my phone out of reach while studying." },
+    { id: "F4", facet: "focus", family: "phone-away", text: "I keep my phone somewhere I cannot pick it up when I am working." }
+  ];
+
+  var ITEM_BY_ID = {};
+  ITEMS.forEach(function (item) {
+    item.loadings = item.family ? LOADINGS.paraphrase : LOADINGS.distinct;
+    ITEM_BY_ID[item.id] = item;
+  });
+
+  /* Round targets. Round 1's 0.85 is deliberately just above the 0.844 that
+     the widest no-repeated-wording scale can reach, so the target cannot be
+     met without repetition. Round 2 asks for a defensible scale instead of a
+     maximal one. */
+  var ROUND_ONE = { targetAlpha: 0.85, minItemsToAdvance: 6 };
+  var ROUND_TWO = {
+    minAlpha: 0.70,
+    minItems: 8,
+    maxItems: 12,
+    requiredFacets: FACETS.length
+  };
+
+  /* Worked examples, both computed rather than described: the alpha-chasing
+     shortcut, and a scale that satisfies Round 2. */
+  var EXAMPLES = {
+    round1: ["T2", "T3", "T4", "T5", "T6"],
+    round2: ["P1", "P2", "O1", "O2", "R1", "R2", "T1", "T2", "F1", "F2"]
+  };
+
+  /* =======================================================================
+     2. Psychometrics
+     ===================================================================== */
+
+  /**
+   * Model-implied correlation between two items.
+   * @param {object} a
+   * @param {object} b
+   * @returns {number}
+   */
+  function itemCorrelation(a, b) {
+    var r = a.loadings.general * b.loadings.general;
+    if (a.facet === b.facet) {
+      r += a.loadings.facet * b.loadings.facet;
+    }
+    if (a.family && a.family === b.family) {
+      r += a.loadings.wording * b.loadings.wording;
+    }
+    return r;
+  }
+
+  /**
+   * Model-implied covariance between one item and the simulated outcome.
+   * Both are standardised, so this is also their correlation.
+   * @param {object} item
+   * @returns {number}
+   */
+  function itemOutcomeCovariance(item) {
+    return (
+      CRITERION.general * item.loadings.general +
+      (CRITERION.facets * item.loadings.facet) / Math.sqrt(FACETS.length)
+    );
+  }
+
+  /**
+   * Everything the page reports about one selection of items.
+   * @param {string[]} ids
+   * @returns {object}
+   */
+  function computeMetrics(ids) {
+    var items = ids.map(function (id) {
+      return ITEM_BY_ID[id];
+    });
+    var k = items.length;
+
+    // Sum of the off-diagonal correlations, counted once per unordered pair.
+    var pairSum = 0;
+    var pairCount = 0;
+    var i;
+    var j;
+    for (i = 0; i < k; i += 1) {
+      for (j = i + 1; j < k; j += 1) {
+        pairSum += itemCorrelation(items[i], items[j]);
+        pairCount += 1;
+      }
+    }
+
+    // Var(T) = sum of the whole correlation matrix; the diagonal is k ones.
+    var varTotal = k + 2 * pairSum;
+    var meanCorrelation = pairCount > 0 ? pairSum / pairCount : null;
+    var alpha =
+      k > 1 ? (k / (k - 1)) * (1 - k / varTotal) : null;
+
+    // How many selected items sit in each wording family, so that a family
+    // with two or more members can be called out as redundancy.
+    var familyCounts = {};
+    items.forEach(function (item) {
+      if (item.family) {
+        familyCounts[item.family] = (familyCounts[item.family] || 0) + 1;
+      }
+    });
+
+    var duplicatePairs = 0;
+    var repeatedFamilies = [];
+    Object.keys(familyCounts).forEach(function (family) {
+      var n = familyCounts[family];
+      if (n > 1) {
+        duplicatePairs += (n * (n - 1)) / 2;
+        repeatedFamilies.push({ id: family, name: FAMILIES[family], count: n });
+      }
+    });
+    repeatedFamilies.sort(function (a, b) {
+      return b.count - a.count;
+    });
+
+    // Per-area counts, and how many of those items repeat another's wording.
+    var facetCounts = {};
+    FACETS.forEach(function (facet) {
+      facetCounts[facet.id] = { total: 0, repeated: 0 };
+    });
+    items.forEach(function (item) {
+      var cell = facetCounts[item.facet];
+      cell.total += 1;
+      if (item.family && familyCounts[item.family] > 1) {
+        cell.repeated += 1;
+      }
+    });
+
+    var breadth = FACETS.filter(function (facet) {
+      return facetCounts[facet.id].total > 0;
+    }).length;
+
+    // r(T, Y). Var(Y) = 1 because Y is standardised, so the denominator is
+    // the standard deviation of the total score alone.
+    var outcome = null;
+    if (k > 0) {
+      var covariance = items.reduce(function (sum, item) {
+        return sum + itemOutcomeCovariance(item);
+      }, 0);
+      outcome = covariance / Math.sqrt(varTotal);
+    }
+
+    return {
+      ids: ids.slice(),
+      k: k,
+      alpha: alpha,
+      meanCorrelation: meanCorrelation,
+      varTotal: varTotal,
+      breadth: breadth,
+      facetCounts: facetCounts,
+      familyCounts: familyCounts,
+      duplicatePairs: duplicatePairs,
+      repeatedFamilies: repeatedFamilies,
+      outcome: outcome
+    };
+  }
+
+  /**
+   * Does this selection satisfy the Round 2 brief?
+   * @param {object} metrics
+   * @returns {object} { met:boolean, checks:[{label, met}] }
+   */
+  function roundTwoChecks(metrics) {
+    var checks = [
+      {
+        label: "covers all five content areas",
+        detail: metrics.breadth + " of " + ROUND_TWO.requiredFacets,
+        met: metrics.breadth === ROUND_TWO.requiredFacets
+      },
+      {
+        label: "no wording used twice",
+        detail:
+          metrics.duplicatePairs === 0
+            ? "none"
+            : metrics.duplicatePairs + " near-duplicate pairs",
+        met: metrics.duplicatePairs === 0
+      },
+      {
+        label:
+          "between " + ROUND_TWO.minItems + " and " + ROUND_TWO.maxItems + " items",
+        detail: metrics.k + " selected",
+        met: metrics.k >= ROUND_TWO.minItems && metrics.k <= ROUND_TWO.maxItems
+      },
+      {
+        label: "alpha at least " + formatStat(ROUND_TWO.minAlpha),
+        detail: metrics.alpha === null ? "not yet" : formatStat(metrics.alpha),
+        met: metrics.alpha !== null && metrics.alpha >= ROUND_TWO.minAlpha
+      }
+    ];
+
+    return {
+      met: checks.every(function (check) {
+        return check.met;
+      }),
+      checks: checks
+    };
+  }
+
+  /* =======================================================================
+     3. Small helpers
+     ===================================================================== */
+
+  /**
+   * Two decimal places by default, or an em dash when there is nothing to
+   * report. Challenge 2 passes 3, because the smallest drop in the outcome
+   * correlation it can produce is about 0.006 — real, but invisible at two
+   * decimal places, where it would read as "0.62 to 0.62 (down)".
+   * @param {number|null} value
+   * @param {number} [places]
+   * @returns {string}
+   */
+  function formatStat(value, places) {
+    return value === null || value === undefined || isNaN(value)
+      ? "—"
+      : value.toFixed(places === undefined ? 2 : places);
+  }
+
+  function plural(n, singular, pluralForm) {
+    return n === 1 ? singular : pluralForm || singular + "s";
+  }
+
+  /** Create an element with optional class and text. */
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) {
+      node.className = className;
+    }
+    if (text !== undefined) {
+      node.textContent = text;
+    }
+    return node;
+  }
+
+  function facetById(id) {
+    return FACETS.filter(function (facet) {
+      return facet.id === id;
+    })[0];
+  }
+
+  /* =======================================================================
+     4. Wiring
+     ===================================================================== */
+
+  var shell = InteractiveShell.attach("#alpha-trap");
+  if (!shell) {
+    return;
+  }
+
+  var root = shell.root;
+  var page = document;
+
+  var bank = root.querySelector("[data-item-bank]");
+  var readout = root.querySelector("[data-readout]");
+  var chart = root.querySelector("[data-chart]");
+  var chartTable = root.querySelector("[data-chart-table]");
+  var goalText = root.querySelector("[data-goal-text]");
+  var meterFill = root.querySelector("[data-meter-fill]");
+  var meterTarget = root.querySelector("[data-meter-target]");
+  var meterCaption = root.querySelector("[data-meter-caption]");
+  var redundancyPanel = root.querySelector("[data-redundancy]");
+  var redundancyBody = root.querySelector("[data-redundancy-body]");
+  var criterionPanel = root.querySelector("[data-criterion]");
+  var criterionBody = root.querySelector("[data-criterion-body]");
+  var outcomeCell = root.querySelector("[data-outcome-cell]");
+  var advanceButton = root.querySelector('[data-action="advance"]');
+  var exampleButton = root.querySelector('[data-action="example"]');
+  var clearButton = root.querySelector('[data-action="clear"]');
+  var stageTrack = page.querySelector("[data-stage-track]");
+
+  var predictionForm = page.getElementById("prediction-form");
+  var predictionError = page.querySelector("[data-prediction-error]");
+  var predictionReadback = page.querySelector("[data-prediction-readback]");
+  var skipPredictionButton = page.querySelector('[data-action="skip-prediction"]');
+
+  var revealSection = page.getElementById("reveal");
+  var revealBody = page.querySelector("[data-reveal-body]");
+  var comparisonSection = page.getElementById("comparison");
+  var comparisonBody = page.querySelector("[data-comparison-body]");
+  var comparisonVerdict = page.querySelector("[data-comparison-verdict]");
+
+  var diagnosisForm = page.getElementById("challenge-diagnosis");
+  var diagnosisFeedback = page.querySelector("[data-diagnosis-feedback]");
+  var transferForm = page.getElementById("challenge-transfer");
+  var transferLocked = page.querySelector("[data-transfer-locked]");
+  var transferBody = page.querySelector("[data-transfer-body]");
+  var transferError = page.querySelector("[data-transfer-error]");
+  var transferFeedback = page.querySelector("[data-transfer-feedback]");
+
+  /* --- State ------------------------------------------------------------
+     stage: predict -> round1 -> reveal -> round2 -> complete
+     Every other piece of visible state is derived from this object, so
+     reset() only has to restore it and re-render. */
+  var INITIAL_STATE = {
+    stage: "predict",
+    selected: [],
+    prediction: null,
+    roundOne: null,
+    roundTwo: null
+  };
+
+  var state = null;
+  var checkboxes = {};
+
+  /* --- Item bank --------------------------------------------------------
+     Built from ITEMS so that an item's text, its content area and its
+     psychometric parameters cannot drift apart. */
+
+  function buildBank() {
+    FACETS.forEach(function (facet) {
+      var group = make("fieldset", "bank__group");
+      group.appendChild(make("legend", null, facet.name));
+
+      var list = make("ul", "bank__list");
+
+      ITEMS.filter(function (item) {
+        return item.facet === facet.id;
+      }).forEach(function (item) {
+        var row = make("li");
+        var label = make("label", "item");
+        var input = document.createElement("input");
+
+        input.type = "checkbox";
+        input.value = item.id;
+        input.id = "item-" + item.id;
+        input.addEventListener("change", onItemToggle);
+
+        label.setAttribute("for", input.id);
+        label.appendChild(input);
+        label.appendChild(make("span", null, item.text));
+
+        row.appendChild(label);
+        list.appendChild(row);
+        checkboxes[item.id] = input;
+      });
+
+      group.appendChild(list);
+      bank.appendChild(group);
+    });
+  }
+
+  function onItemToggle(event) {
+    var id = event.target.value;
+    if (event.target.checked) {
+      if (state.selected.indexOf(id) === -1) {
+        state.selected.push(id);
+      }
+    } else {
+      state.selected = state.selected.filter(function (existing) {
+        return existing !== id;
+      });
+    }
+    render();
+    announceSelection(id, event.target.checked);
+  }
+
+  function announceSelection(id, added) {
+    var metrics = computeMetrics(state.selected);
+    var parts = [
+      (added ? "Added" : "Removed") + " an item.",
+      metrics.k + " " + plural(metrics.k, "item") + " selected."
+    ];
+    if (metrics.alpha !== null) {
+      parts.push("Alpha " + formatStat(metrics.alpha) + ".");
+      parts.push(
+        metrics.breadth + " of " + FACETS.length + " content areas covered."
+      );
+      if (metrics.duplicatePairs > 0) {
+        parts.push(
+          metrics.duplicatePairs +
+            " near-duplicate " +
+            plural(metrics.duplicatePairs, "pair") +
+            "."
+        );
+      }
+    }
+    shell.announce(parts.join(" "));
+  }
+
+  function setSelection(ids) {
+    state.selected = ids.slice();
+    syncCheckboxes();
+    render();
+  }
+
+  function syncCheckboxes() {
+    ITEMS.forEach(function (item) {
+      checkboxes[item.id].checked = state.selected.indexOf(item.id) !== -1;
+    });
+  }
+
+  function setBankEnabled(enabled) {
+    ITEMS.forEach(function (item) {
+      checkboxes[item.id].disabled = !enabled;
+    });
+  }
+
+  /* --- Rendering -------------------------------------------------------- */
+
+  function render() {
+    var metrics = computeMetrics(state.selected);
+    renderReadout(metrics);
+    renderMeter(metrics);
+    renderChart(metrics);
+    renderRedundancy(metrics);
+    renderCriterion(metrics);
+    renderGoal(metrics);
+    renderStageTrack();
+    renderActions(metrics);
+  }
+
+  function setMetric(name, value) {
+    var cell = readout.querySelector('[data-metric="' + name + '"]');
+    if (cell) {
+      cell.textContent = value;
+    }
+  }
+
+  function renderReadout(metrics) {
+    setMetric("alpha", formatStat(metrics.alpha));
+    setMetric("items", String(metrics.k));
+    setMetric("rbar", formatStat(metrics.meanCorrelation));
+    setMetric("breadth", metrics.breadth + " of " + FACETS.length);
+    setMetric("duplicates", String(metrics.duplicatePairs));
+    setMetric("outcome", formatStat(metrics.outcome));
+  }
+
+  function renderMeter(metrics) {
+    var alpha = metrics.alpha === null ? 0 : Math.max(0, metrics.alpha);
+    meterFill.style.width = (alpha * 100).toFixed(1) + "%";
+
+    var target =
+      state.stage === "round2" || state.stage === "complete"
+        ? ROUND_TWO.minAlpha
+        : ROUND_ONE.targetAlpha;
+    meterTarget.style.left = (target * 100).toFixed(1) + "%";
+    meterCaption.textContent = "target " + formatStat(target);
+  }
+
+  /* The chart repeats the table beneath it and is hidden from assistive
+     technology, so it may use colour freely — but each bar still carries its
+     own number as text, which is what makes it readable in greyscale. */
+  function renderChart(metrics) {
+    var NS = "http://www.w3.org/2000/svg";
+    var ROW_HEIGHT = 34;
+    var BAR_HEIGHT = 18;
+    var UNIT = 34; // pixels per item; six items is the widest any area gets
+    var BAR_X = 128;
+
+    while (chart.firstChild) {
+      chart.removeChild(chart.firstChild);
+    }
+
+    var defs = document.createElementNS(NS, "defs");
+    var pattern = document.createElementNS(NS, "pattern");
+    pattern.setAttribute("id", "alpha-trap-hatch");
+    pattern.setAttribute("width", "6");
+    pattern.setAttribute("height", "6");
+    pattern.setAttribute("patternUnits", "userSpaceOnUse");
+    pattern.setAttribute("patternTransform", "rotate(45)");
+    var stripe = document.createElementNS(NS, "line");
+    stripe.setAttribute("x1", "0");
+    stripe.setAttribute("y1", "0");
+    stripe.setAttribute("x2", "0");
+    stripe.setAttribute("y2", "6");
+    stripe.setAttribute("class", "chart__hatch");
+    pattern.appendChild(stripe);
+    defs.appendChild(pattern);
+    chart.appendChild(defs);
+
+    FACETS.forEach(function (facet, index) {
+      var counts = metrics.facetCounts[facet.id];
+      var y = 12 + index * ROW_HEIGHT;
+
+      var label = document.createElementNS(NS, "text");
+      label.setAttribute("x", String(BAR_X - 8));
+      label.setAttribute("y", String(y + BAR_HEIGHT - 4));
+      label.setAttribute("text-anchor", "end");
+      label.setAttribute("class", "chart__label");
+      label.textContent = facet.short;
+      chart.appendChild(label);
+
+      // A hairline baseline so an empty area still reads as an empty bar
+      // rather than as a missing row.
+      var baseline = document.createElementNS(NS, "line");
+      baseline.setAttribute("x1", String(BAR_X));
+      baseline.setAttribute("y1", String(y + BAR_HEIGHT));
+      baseline.setAttribute("x2", String(BAR_X + 6 * UNIT));
+      baseline.setAttribute("y2", String(y + BAR_HEIGHT));
+      baseline.setAttribute("class", "chart__baseline");
+      chart.appendChild(baseline);
+
+      if (counts.total > 0) {
+        var bar = document.createElementNS(NS, "rect");
+        bar.setAttribute("x", String(BAR_X));
+        bar.setAttribute("y", String(y));
+        bar.setAttribute("width", String(counts.total * UNIT));
+        bar.setAttribute("height", String(BAR_HEIGHT));
+        bar.setAttribute("class", "chart__bar");
+        chart.appendChild(bar);
+
+        if (counts.repeated > 0) {
+          var repeated = document.createElementNS(NS, "rect");
+          repeated.setAttribute("x", String(BAR_X));
+          repeated.setAttribute("y", String(y));
+          repeated.setAttribute("width", String(counts.repeated * UNIT));
+          repeated.setAttribute("height", String(BAR_HEIGHT));
+          repeated.setAttribute("class", "chart__bar-repeat");
+          chart.appendChild(repeated);
+        }
+      }
+
+      var count = document.createElementNS(NS, "text");
+      count.setAttribute("x", String(BAR_X + counts.total * UNIT + 8));
+      count.setAttribute("y", String(y + BAR_HEIGHT - 4));
+      count.setAttribute("class", "chart__count");
+      count.textContent =
+        counts.repeated > 0
+          ? counts.total + " (" + counts.repeated + " repeated)"
+          : String(counts.total);
+      chart.appendChild(count);
+    });
+
+    renderChartTable(metrics);
+  }
+
+  function renderChartTable(metrics) {
+    while (chartTable.firstChild) {
+      chartTable.removeChild(chartTable.firstChild);
+    }
+
+    FACETS.forEach(function (facet) {
+      var counts = metrics.facetCounts[facet.id];
+      var row = make("tr");
+      var header = make("th", null, facet.name);
+      header.setAttribute("scope", "row");
+      row.appendChild(header);
+      row.appendChild(make("td", null, String(counts.total)));
+      row.appendChild(make("td", null, String(counts.repeated)));
+      chartTable.appendChild(row);
+    });
+  }
+
+  function renderRedundancy(metrics) {
+    var tone = "neutral";
+    var text;
+
+    if (metrics.k === 0) {
+      text = "No items selected yet.";
+    } else if (metrics.duplicatePairs === 0) {
+      tone = "good";
+      text =
+        "None. No two selected items are paraphrases of each other, so alpha " +
+        "is being earned by items that ask different questions.";
+    } else {
+      tone = metrics.duplicatePairs >= 6 ? "warn" : "caution";
+      var families = metrics.repeatedFamilies
+        .map(function (family) {
+          return family.count + " items about " + family.name;
+        })
+        .join("; ");
+      text =
+        (tone === "warn" ? "Heavy. " : "Some. ") +
+        metrics.duplicatePairs +
+        " near-duplicate " +
+        plural(metrics.duplicatePairs, "pair") +
+        " (" +
+        families +
+        "). Repeated wording raises the average inter-item correlation, and " +
+        "therefore alpha, without adding anything new to the scale.";
+    }
+
+    redundancyPanel.setAttribute("data-tone", tone);
+    redundancyBody.textContent = text;
+  }
+
+  function renderCriterion(metrics) {
+    if (criterionPanel.hidden) {
+      return;
+    }
+
+    if (metrics.outcome === null) {
+      criterionBody.textContent = "Select some items to see this.";
+      criterionPanel.setAttribute("data-tone", "neutral");
+      return;
+    }
+
+    var r = metrics.outcome;
+    var tone = r >= 0.55 ? "good" : r >= 0.45 ? "caution" : "warn";
+    var strength = r >= 0.55 ? "strong" : r >= 0.45 ? "moderate" : "modest";
+
+    criterionBody.textContent =
+      "r = " +
+      formatStat(r) +
+      " — a " +
+      strength +
+      " relationship. Alpha is " +
+      formatStat(metrics.alpha) +
+      ", so the two are telling you different things about this scale.";
+    criterionPanel.setAttribute("data-tone", tone);
+  }
+
+  function renderGoal(metrics) {
+    while (goalText.firstChild) {
+      goalText.removeChild(goalText.firstChild);
+    }
+
+    if (state.stage === "predict") {
+      goalText.textContent =
+        "Record your prediction above to unlock the item bank.";
+      return;
+    }
+
+    if (state.stage === "round1") {
+      var reached =
+        metrics.alpha !== null && metrics.alpha >= ROUND_ONE.targetAlpha;
+      goalText.appendChild(
+        document.createTextNode("Round 1 — push alpha to ")
+      );
+      goalText.appendChild(
+        make("strong", null, formatStat(ROUND_ONE.targetAlpha))
+      );
+      goalText.appendChild(
+        document.createTextNode(
+          " or above, using any items you like. Currently "
+        )
+      );
+      goalText.appendChild(make("strong", null, formatStat(metrics.alpha)));
+      goalText.appendChild(
+        document.createTextNode(reached ? " — target reached." : " — not yet.")
+      );
+      return;
+    }
+
+    if (state.stage === "reveal") {
+      goalText.textContent =
+        "Round 1 is locked. Read what you built below, then start Round 2.";
+      return;
+    }
+
+    if (state.stage === "round2" || state.stage === "complete") {
+      goalText.appendChild(
+        document.createTextNode(
+          state.stage === "complete"
+            ? "Round 2 complete. Keep experimenting if you wish — the requirements were:"
+            : "Round 2 — build a scale you would defend:"
+        )
+      );
+
+      var list = make("ul", "goal__checks");
+      roundTwoChecks(metrics).checks.forEach(function (check) {
+        var entry = make("li");
+        entry.textContent =
+          check.label + " — " + check.detail + (check.met ? " (met)" : " (not yet)");
+        entry.setAttribute("data-met", check.met ? "yes" : "no");
+        list.appendChild(entry);
+      });
+      goalText.appendChild(list);
+    }
+  }
+
+  function renderStageTrack() {
+    var order = ["predict", "round1", "round2"];
+    var currentStep =
+      state.stage === "predict"
+        ? "predict"
+        : state.stage === "round1" || state.stage === "reveal"
+        ? "round1"
+        : "round2";
+
+    order.forEach(function (step, index) {
+      var node = stageTrack.querySelector('[data-stage-step="' + step + '"]');
+      if (!node) {
+        return;
+      }
+      var isCurrent = step === currentStep;
+      var isDone = order.indexOf(currentStep) > index;
+
+      if (isCurrent) {
+        node.setAttribute("aria-current", "step");
+      } else {
+        node.removeAttribute("aria-current");
+      }
+      node.setAttribute("data-state", isDone ? "done" : isCurrent ? "current" : "todo");
+
+      // "Completed" is stated in text, not carried by styling alone.
+      var marker = node.querySelector(".stage-track__state");
+      if (isDone && !marker) {
+        marker = make("span", "stage-track__state visually-hidden", " (completed)");
+        node.appendChild(marker);
+      } else if (!isDone && marker) {
+        node.removeChild(marker);
+      }
+    });
+  }
+
+  function renderActions(metrics) {
+    var canAdvance = false;
+    var label = "Reveal what I built";
+
+    if (state.stage === "round1") {
+      label = "Reveal what I built";
+      canAdvance =
+        metrics.alpha !== null &&
+        (metrics.alpha >= ROUND_ONE.targetAlpha ||
+          metrics.k >= ROUND_ONE.minItemsToAdvance);
+    } else if (state.stage === "reveal") {
+      label = "Start Round 2";
+      canAdvance = true;
+    } else if (state.stage === "round2") {
+      label = "Check my scale";
+      canAdvance = roundTwoChecks(metrics).met;
+    } else if (state.stage === "complete") {
+      label = "Round 2 checked";
+      canAdvance = false;
+    }
+
+    advanceButton.textContent = label;
+    advanceButton.disabled = !canAdvance;
+
+    var bankLive = state.stage === "round1" || state.stage === "round2" ||
+      state.stage === "complete";
+    exampleButton.disabled = !bankLive;
+    clearButton.disabled = !bankLive;
+  }
+
+  /* --- Stage transitions ------------------------------------------------ */
+
+  function setStage(stage) {
+    state.stage = stage;
+    setBankEnabled(stage === "round1" || stage === "round2" || stage === "complete");
+    render();
+  }
+
+  function startRoundOne() {
+    setStage("round1");
+    shell.announce(
+      "Item bank unlocked. Round 1: push alpha to " +
+        formatStat(ROUND_ONE.targetAlpha) +
+        " or above.",
+      { immediate: true }
+    );
+  }
+
+  function revealRoundOne() {
+    state.roundOne = computeMetrics(state.selected);
+
+    outcomeCell.hidden = false;
+    criterionPanel.hidden = false;
+
+    buildReveal(state.roundOne);
+    revealSection.hidden = false;
+
+    setStage("reveal");
+
+    shell.announce(
+      "Round 1 locked. Alpha " +
+        formatStat(state.roundOne.alpha) +
+        ", covering " +
+        state.roundOne.breadth +
+        " of " +
+        FACETS.length +
+        " content areas, correlating " +
+        formatStat(state.roundOne.outcome) +
+        " with the simulated outcome.",
+      { immediate: true }
+    );
+
+    // Send the reader to the explanation rather than leaving them to find it.
+    page.getElementById("reveal-heading").focus();
+  }
+
+  function startRoundTwo() {
+    setSelection([]);
+    setStage("round2");
+    shell.announce(
+      "Round 2. Selection cleared. Build a scale that covers all five " +
+        "content areas without repeating wording.",
+      { immediate: true }
+    );
+  }
+
+  function completeRoundTwo() {
+    state.roundTwo = computeMetrics(state.selected);
+    buildComparison(state.roundOne, state.roundTwo);
+    comparisonSection.hidden = false;
+    unlockTransferChallenge();
+    setStage("complete");
+    shell.announce(
+      "Round 2 checked. Alpha " +
+        formatStat(state.roundTwo.alpha) +
+        " against Round 1's " +
+        formatStat(state.roundOne.alpha) +
+        ", but the outcome correlation rises from " +
+        formatStat(state.roundOne.outcome) +
+        " to " +
+        formatStat(state.roundTwo.outcome) +
+        ".",
+      { immediate: true }
+    );
+    page.getElementById("comparison-heading").focus();
+  }
+
+  /* --- The reveal -------------------------------------------------------
+     Feedback is written from what the student actually built, so a student
+     who resisted the trap is not told they fell into it. */
+
+  function buildReveal(metrics) {
+    while (revealBody.firstChild) {
+      revealBody.removeChild(revealBody.firstChild);
+    }
+
+    var narrow = metrics.breadth <= 2;
+    var clean = metrics.duplicatePairs === 0;
+    var lead;
+
+    if (narrow && !clean) {
+      lead =
+        "You reached alpha " +
+        formatStat(metrics.alpha) +
+        " — and built a scale that measures " +
+        (metrics.breadth === 1 ? "one" : "two") +
+        " of the five content areas.";
+    } else if (clean && metrics.breadth >= 4) {
+      lead =
+        "You resisted the shortcut: alpha " +
+        formatStat(metrics.alpha) +
+        " with no repeated wording and " +
+        metrics.breadth +
+        " of the five areas covered.";
+    } else {
+      lead =
+        "You reached alpha " +
+        formatStat(metrics.alpha) +
+        ", with " +
+        metrics.duplicatePairs +
+        " near-duplicate " +
+        plural(metrics.duplicatePairs, "pair") +
+        " and " +
+        metrics.breadth +
+        " of the five content areas covered.";
+    }
+    revealBody.appendChild(make("p", "reveal__lead", lead));
+
+    var figures = make("ul", "reveal__figures");
+    [
+      ["Alpha", formatStat(metrics.alpha)],
+      ["Items", String(metrics.k)],
+      ["Content areas", metrics.breadth + " of " + FACETS.length],
+      ["Near-duplicate pairs", String(metrics.duplicatePairs)],
+      ["Correlation with outcome", formatStat(metrics.outcome)]
+    ].forEach(function (pair) {
+      var entry = make("li");
+      entry.appendChild(make("span", "reveal__figure-label", pair[0]));
+      entry.appendChild(make("span", "reveal__figure-value", pair[1]));
+      figures.appendChild(entry);
+    });
+    revealBody.appendChild(figures);
+
+    // The paraphrases doing the work, quoted back.
+    if (metrics.repeatedFamilies.length > 0) {
+      var worst = metrics.repeatedFamilies[0];
+      revealBody.appendChild(
+        make(
+          "p",
+          null,
+          "The " +
+            worst.count +
+            " items below are all in your scale. They are the same question " +
+            "about " +
+            worst.name +
+            ", asked " +
+            worst.count +
+            " times. Between them they contribute " +
+            (worst.count * (worst.count - 1)) / 2 +
+            " of the " +
+            String((metrics.k * (metrics.k - 1)) / 2) +
+            " correlations that alpha is averaging."
+        )
+      );
+      var quoted = make("ul", "reveal__items");
+      metrics.ids
+        .filter(function (id) {
+          return ITEM_BY_ID[id].family === worst.id;
+        })
+        .forEach(function (id) {
+          quoted.appendChild(make("li", null, "“" + ITEM_BY_ID[id].text + "”"));
+        });
+      revealBody.appendChild(quoted);
+    }
+
+    // What the outcome correlation means, with an explicit counterfactual.
+    var balanced = computeMetrics(EXAMPLES.round2);
+    revealBody.appendChild(
+      make(
+        "p",
+        null,
+        "Your scale correlates " +
+          formatStat(metrics.outcome) +
+          " with a simulated outcome that depends on the whole construct. " +
+          "For comparison, a ten-item scale covering all five areas with no " +
+          "repeated wording reaches alpha " +
+          formatStat(balanced.alpha) +
+          " — lower than " +
+          (metrics.alpha >= balanced.alpha ? "yours" : "many published scales") +
+          " — but correlates " +
+          formatStat(balanced.outcome) +
+          " with the same outcome. The lower-alpha scale is the better measure."
+      )
+    );
+
+    revealBody.appendChild(
+      make(
+        "p",
+        null,
+        "Alpha rises with the number of items and with their average " +
+          "correlation. Paraphrasing an item raises both at once, so it is " +
+          "the cheapest possible way to buy a high alpha — and it buys " +
+          "nothing else. The extra shared variance is specific to the " +
+          "wording, and the outcome does not care about wording."
+      )
+    );
+
+    if (state.prediction) {
+      revealBody.appendChild(buildPredictionComparison(metrics));
+    }
+  }
+
+  function buildPredictionComparison(metrics) {
+    var predictedBreadth = state.prediction.breadth;
+    var actualBand =
+      metrics.breadth <= 2 ? "one-or-two" : metrics.breadth === 3 ? "three" : "four-or-five";
+    var breadthRight = predictedBreadth === actualBand;
+
+    var predictedOutcome = state.prediction.outcome;
+    var actualOutcomeBand =
+      metrics.outcome < 0.45 ? "weak" : metrics.outcome < 0.55 ? "moderate" : "strong";
+    var outcomeRight =
+      predictedOutcome === actualOutcomeBand || predictedOutcome === "unknown";
+
+    var text;
+    if (predictedOutcome === "unknown") {
+      text =
+        "You predicted that alpha on its own would not tell you what the " +
+        "scale correlates with. That is the answer this demonstration is " +
+        "built to support: the observed correlation was " +
+        formatStat(metrics.outcome) +
+        ", and nothing about alpha would have let you anticipate it.";
+    } else if (breadthRight && outcomeRight) {
+      text =
+        "Both of your predictions were borne out: " +
+        metrics.breadth +
+        " of five areas covered, and a correlation of " +
+        formatStat(metrics.outcome) +
+        " with the outcome.";
+    } else {
+      text =
+        "Compare that with your prediction. You expected the scale to cover " +
+        describeBreadthPrediction(predictedBreadth) +
+        " and to correlate " +
+        describeOutcomePrediction(predictedOutcome) +
+        " with the outcome. It covered " +
+        metrics.breadth +
+        " of five, and correlated " +
+        formatStat(metrics.outcome) +
+        ".";
+    }
+
+    var node = make("p", "prediction__readback", text);
+    return node;
+  }
+
+  function describeBreadthPrediction(value) {
+    return value === "one-or-two"
+      ? "one or two areas"
+      : value === "three"
+      ? "about three areas"
+      : "four or five areas";
+  }
+
+  function describeOutcomePrediction(value) {
+    return value === "weak"
+      ? "weakly, around 0.2,"
+      : value === "moderate"
+      ? "moderately, around 0.4,"
+      : "strongly, around 0.6,";
+  }
+
+  /* --- The comparison table --------------------------------------------- */
+
+  function buildComparison(one, two) {
+    while (comparisonBody.firstChild) {
+      comparisonBody.removeChild(comparisonBody.firstChild);
+    }
+
+    [
+      ["Items", String(one.k), String(two.k)],
+      ["Cronbach's alpha", formatStat(one.alpha), formatStat(two.alpha)],
+      [
+        "Mean inter-item correlation",
+        formatStat(one.meanCorrelation),
+        formatStat(two.meanCorrelation)
+      ],
+      [
+        "Content areas covered",
+        one.breadth + " of " + FACETS.length,
+        two.breadth + " of " + FACETS.length
+      ],
+      [
+        "Near-duplicate pairs",
+        String(one.duplicatePairs),
+        String(two.duplicatePairs)
+      ],
+      [
+        "Correlation with the simulated outcome",
+        formatStat(one.outcome),
+        formatStat(two.outcome)
+      ]
+    ].forEach(function (row) {
+      var tr = make("tr");
+      var th = make("th", null, row[0]);
+      th.setAttribute("scope", "row");
+      tr.appendChild(th);
+      tr.appendChild(make("td", null, row[1]));
+      tr.appendChild(make("td", null, row[2]));
+      comparisonBody.appendChild(tr);
+    });
+
+    var alphaFell = two.alpha < one.alpha;
+    var outcomeRose = two.outcome > one.outcome;
+
+    comparisonVerdict.textContent = alphaFell && outcomeRose
+      ? "Your Round 2 scale has the lower alpha and the higher correlation " +
+        "with the outcome. If alpha were a measure of quality, that " +
+        "combination could not happen."
+      : outcomeRose
+      ? "Your Round 2 scale correlates more strongly with the outcome. Alpha " +
+        "did not have to fall for that to be true — the point is that the two " +
+        "move independently."
+      : "Compare the two columns row by row, and note which differences alpha " +
+        "was sensitive to and which it was blind to.";
+  }
+
+  /* --- Challenge 1: diagnosis ------------------------------------------- */
+
+  var DIAGNOSIS_FEEDBACK = {
+    a: {
+      tone: "caution",
+      verdict: "Not quite.",
+      text:
+        "Scale A has the highest alpha in the table and is the weakest " +
+        "measure in it. Seven of its twelve items are near-identical, which " +
+        "is what produces the 0.94, and it leaves three of the five content " +
+        "areas unmeasured. A total score from it is a precise measurement of " +
+        "a fraction of the construct, reported as though it covered all of it."
+    },
+    b: {
+      tone: "good",
+      verdict: "Yes.",
+      text:
+        "Scale B is the only one that covers the construct without buying its " +
+        "alpha through repetition. 0.79 is adequate for research use, and it " +
+        "is being earned by ten items that ask genuinely different questions."
+    },
+    c: {
+      tone: "caution",
+      verdict: "Not quite.",
+      text:
+        "Scale C covers the ground, and breadth matters — but 0.51 means " +
+        "roughly half the variance in its total score is measurement error. " +
+        "That is exactly what alpha is good at detecting. Low alpha is a " +
+        "warning worth heeding; high alpha is not the reassurance it is " +
+        "usually taken for."
+    }
+  };
+
+  function checkDiagnosis(event) {
+    event.preventDefault();
+    var chosen = diagnosisForm.querySelector('input[name="diagnosis"]:checked');
+
+    if (!chosen) {
+      showFeedback(diagnosisFeedback, "caution", "Choose one first.", "");
+      return;
+    }
+
+    var feedback = DIAGNOSIS_FEEDBACK[chosen.value];
+    showFeedback(diagnosisFeedback, feedback.tone, feedback.verdict, feedback.text);
+    shell.announce("Challenge 1 answered. " + feedback.verdict, {
+      immediate: true
+    });
+  }
+
+  function showFeedback(container, tone, verdict, text) {
+    while (container.firstChild) {
+      container.removeChild(container.firstChild);
+    }
+    container.setAttribute("data-tone", tone);
+    var paragraph = make("p");
+    paragraph.appendChild(make("strong", "feedback__verdict", verdict));
+    if (text) {
+      paragraph.appendChild(document.createTextNode(" " + text));
+    }
+    container.appendChild(paragraph);
+    container.hidden = false;
+  }
+
+  /* --- Challenge 2: transfer -------------------------------------------- */
+
+  function unlockTransferChallenge() {
+    transferLocked.hidden = true;
+    transferBody.hidden = false;
+  }
+
+  /**
+   * The deadline paraphrases not already in the student's Round 2 scale.
+   * @returns {string[]}
+   */
+  function transferAdditions() {
+    return ITEMS.filter(function (item) {
+      return (
+        item.family === "deadline" && state.roundTwo.ids.indexOf(item.id) === -1
+      );
+    })
+      .slice(0, 4)
+      .map(function (item) {
+        return item.id;
+      });
+  }
+
+  function applyTransfer(event) {
+    event.preventDefault();
+
+    var alphaGuess = transferForm.querySelector(
+      'input[name="transfer-alpha"]:checked'
+    );
+    var outcomeGuess = transferForm.querySelector(
+      'input[name="transfer-outcome"]:checked'
+    );
+
+    if (!alphaGuess || !outcomeGuess) {
+      transferError.textContent =
+        "Answer both parts before applying the change — the prediction is the " +
+        "point of the exercise.";
+      transferError.hidden = false;
+      return;
+    }
+    transferError.hidden = true;
+
+    var before = state.roundTwo;
+    var after = computeMetrics(before.ids.concat(transferAdditions()));
+
+    var alphaDirection = direction(before.alpha, after.alpha);
+    var outcomeDirection = direction(before.outcome, after.outcome);
+
+    // Show the enlarged scale in the builder so the change is visible, not
+    // merely asserted. The Round 2 snapshot behind the comparison table is
+    // left untouched.
+    setSelection(after.ids);
+
+    var gotAlpha = alphaGuess.value === alphaDirection;
+    var gotOutcome = outcomeGuess.value === outcomeDirection;
+    var tone = gotAlpha && gotOutcome ? "good" : "caution";
+    var verdict =
+      gotAlpha && gotOutcome
+        ? "Both right."
+        : gotAlpha || gotOutcome
+        ? "Half right."
+        : "Not what happened.";
+
+    showFeedback(
+      transferFeedback,
+      tone,
+      verdict,
+      "Alpha went from " +
+        formatStat(before.alpha, 3) +
+        " to " +
+        formatStat(after.alpha, 3) +
+        " (" +
+        alphaDirection +
+        "), while the correlation with the outcome went from " +
+        formatStat(before.outcome, 3) +
+        " to " +
+        formatStat(after.outcome, 3) +
+        " (" +
+        outcomeDirection +
+        "). Four items were added and the scale got worse at the job it " +
+        "exists to do, while every conventional reliability statistic " +
+        "improved. A reviewer who asks only for a higher alpha is asking for " +
+        "this. The builder above now shows the enlarged scale; the comparison " +
+        "table still shows your Round 2 scale as you submitted it."
+    );
+
+    shell.announce(
+      "Applied. Alpha " +
+        alphaDirection +
+        " to " +
+        formatStat(after.alpha) +
+        "; outcome correlation " +
+        outcomeDirection +
+        " to " +
+        formatStat(after.outcome) +
+        ".",
+      { immediate: true }
+    );
+  }
+
+  /** Direction of travel, with a dead band so trivial moves read as "same". */
+  function direction(before, after) {
+    var change = after - before;
+    if (Math.abs(change) < 0.005) {
+      return "same";
+    }
+    return change > 0 ? "up" : "down";
+  }
+
+  /* --- Prediction gate --------------------------------------------------- */
+
+  function recordPrediction(event) {
+    event.preventDefault();
+
+    var breadth = predictionForm.querySelector(
+      'input[name="predict-breadth"]:checked'
+    );
+    var outcome = predictionForm.querySelector(
+      'input[name="predict-outcome"]:checked'
+    );
+
+    if (!breadth || !outcome) {
+      predictionError.textContent =
+        "Answer both questions before you begin. Committing to an answer " +
+        "first is what makes the result worth seeing.";
+      predictionError.hidden = false;
+      return;
+    }
+
+    predictionError.hidden = true;
+    state.prediction = { breadth: breadth.value, outcome: outcome.value };
+
+    predictionReadback.textContent =
+      "Recorded: you expect the scale to cover " +
+      describeBreadthPrediction(breadth.value) +
+      ", and " +
+      (outcome.value === "unknown"
+        ? "you do not expect alpha to tell you what it correlates with."
+        : "to correlate " +
+          describeOutcomePrediction(outcome.value).replace(/,$/, "") +
+          " with the outcome.") +
+      " You will be reminded of this after Round 1.";
+    predictionReadback.hidden = false;
+
+    lockPredictionForm();
+    startRoundOne();
+    root.scrollIntoView({ block: "start" });
+    root.querySelector("input[type=checkbox]").focus();
+  }
+
+  function skipPrediction() {
+    predictionError.hidden = true;
+    state.prediction = null;
+    predictionReadback.textContent =
+      "Prediction skipped — demonstration mode. With a class, ask the two " +
+      "questions aloud and take a show of hands before continuing.";
+    predictionReadback.hidden = false;
+    lockPredictionForm();
+    startRoundOne();
+  }
+
+  function lockPredictionForm() {
+    Array.prototype.forEach.call(
+      predictionForm.querySelectorAll("input, button"),
+      function (control) {
+        control.disabled = true;
+      }
+    );
+  }
+
+  function unlockPredictionForm() {
+    Array.prototype.forEach.call(
+      predictionForm.querySelectorAll("input, button"),
+      function (control) {
+        control.disabled = false;
+      }
+    );
+    predictionForm.reset();
+    predictionReadback.hidden = true;
+    predictionReadback.textContent = "";
+    predictionError.hidden = true;
+  }
+
+  /* --- Buttons ----------------------------------------------------------- */
+
+  advanceButton.addEventListener("click", function () {
+    if (state.stage === "round1") {
+      revealRoundOne();
+    } else if (state.stage === "reveal") {
+      startRoundTwo();
+    } else if (state.stage === "round2") {
+      completeRoundTwo();
+    }
+  });
+
+  exampleButton.addEventListener("click", function () {
+    if (state.stage === "round1") {
+      setSelection(EXAMPLES.round1);
+      shell.announce(
+        "Worked example loaded: five items, all paraphrases of one another " +
+          "about meeting deadlines. Alpha " +
+          formatStat(computeMetrics(EXAMPLES.round1).alpha) +
+          " from a scale covering one of five content areas.",
+        { immediate: true }
+      );
+    } else {
+      setSelection(EXAMPLES.round2);
+      shell.announce(
+        "Worked example loaded: ten items covering all five content areas " +
+          "with no repeated wording. Alpha " +
+          formatStat(computeMetrics(EXAMPLES.round2).alpha) +
+          ".",
+        { immediate: true }
+      );
+    }
+  });
+
+  clearButton.addEventListener("click", function () {
+    setSelection([]);
+    shell.announce("Selection cleared.", { immediate: true });
+  });
+
+  predictionForm.addEventListener("submit", recordPrediction);
+  skipPredictionButton.addEventListener("click", skipPrediction);
+  diagnosisForm.addEventListener("submit", checkDiagnosis);
+  transferForm.addEventListener("submit", applyTransfer);
+
+  /* --- Reset ------------------------------------------------------------- */
+
+  shell.onReset(function () {
+    state = JSON.parse(JSON.stringify(INITIAL_STATE));
+
+    syncCheckboxes();
+    unlockPredictionForm();
+
+    revealSection.hidden = true;
+    comparisonSection.hidden = true;
+    criterionPanel.hidden = true;
+    outcomeCell.hidden = true;
+
+    transferLocked.hidden = false;
+    transferBody.hidden = true;
+    transferForm.reset();
+    transferFeedback.hidden = true;
+    transferError.hidden = true;
+
+    diagnosisForm.reset();
+    diagnosisFeedback.hidden = true;
+
+    setStage("predict");
+  });
+
+  /* --- Start-up ---------------------------------------------------------- */
+
+  buildBank();
+  shell.reset({ silent: true });
+  shell.announce(
+    "Ready. Record a prediction above to unlock the item bank.",
+    { immediate: true }
+  );
+})();
+
+</script>
+</div>

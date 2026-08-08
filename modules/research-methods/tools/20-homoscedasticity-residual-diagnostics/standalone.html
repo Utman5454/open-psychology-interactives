@@ -1,263 +1,187 @@
-<!DOCTYPE html>
-<html lang="en-GB">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Homoscedasticity and Residual Diagnostics</title>
-<meta name="description" content="The same fictional data in two linked views: the raw scatterplot, and residuals against fitted values. Fan the variance out and watch the slope stay honest while its standard error stops being trustworthy.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231a4fa0'/%3E%3Cpath d='M4 24C10 24 10 8 16 8s6 16 12 16' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
-<!--
-  Homoscedasticity and Residual Diagnostics
-  Standalone copy of one activity from Open Psychology Interactives.
-  <https://github.com/utman5454/open-psychology-interactives>
-
-  Everything this activity needs is inside this file: no stylesheets, scripts,
-  fonts, images or network requests of any kind. Save it as a .html file and
-  open it, or paste it into a page that accepts HTML.
-
-  Nothing is saved, sent or tracked. Released under the MIT licence; please
-  keep this notice with any substantial reuse.
--->
+<!-- Homoscedasticity and Residual Diagnostics
+     From Open Psychology Interactives - https://github.com/utman5454/open-psychology-interactives
+     Self-contained: no stylesheets, scripts, fonts, images or network requests.
+     Styles are scoped to .opi-activity and do not affect the page around them.
+     Nothing is saved, sent or tracked. MIT licensed; please keep this notice.
+     Paste anywhere that accepts HTML, or save as a .html file and open it. -->
+<div class="opi-activity">
 <style>
-/* ---- assets/css/main.css ---- */
-/* =========================================================================
-   Open Psychology Interactives — main stylesheet
-   -------------------------------------------------------------------------
-   Scope:   site chrome (header, navigation, footer), typography, layout
-            primitives and the collection cards used on the landing page and
-            the three collection pages.
-   Not in scope: styling for individual interactives. That lives in
-            components/interactive-shell.css so that a single interactive can
-            be copied out of this repository together with its shell.
+/* Defensive baseline. See scripts/build-standalone.py for why this
+   is `revert` rather than an enumerated reset, and how the specificity ladder
+   keeps the activity's own styling on top of it. */
+.opi-activity *:not(svg *) {
+  all: revert;
+}
+.opi-activity, .opi-activity *, .opi-activity *::before, .opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  text-transform: none;
+  text-indent: 0;
+  font-style: normal;
+  font-variant: normal;
+  letter-spacing: normal;
+  word-spacing: normal;
+  white-space: normal;
+  visibility: visible;
+  float: none;
+  max-width: none;
+}
+.opi-activity svg { max-width: 100%; }
+.opi-activity img { max-width: 100%; height: auto; }
+.opi-activity [hidden] { display: none !important; }
 
-   Conventions used throughout:
-     * Design tokens are CSS custom properties declared on :root.
-     * Light and dark palettes are both defined; the dark palette is applied
-       automatically via prefers-color-scheme. No JavaScript is required for
-       theming, so the site is fully styled with scripting disabled.
-     * Sizes use rem so the layout respects the reader's browser font size.
-     * No external fonts, images or icon libraries are loaded. Everything is
-       either system fonts or inline SVG, which keeps the site fast, offline
-       friendly and free of third-party copyright.
-   ========================================================================= */
-/* -------------------------------------------------------------------------
-   1. Design tokens
-   ---------------------------------------------------------------------- */
-:root {
-  /* --- Neutral surfaces (light theme) --- */
+/* assets/css/main.css */
+.opi-activity.opi-activity {
   --colour-page: #ffffff;
   --colour-surface: #f5f7fa;
   --colour-surface-raised: #ffffff;
   --colour-border: #d3d9e2;
   --colour-border-strong: #aeb7c4;
-
-  /* --- Text ---
-     --colour-text on --colour-page = 17.8:1 contrast
-     --colour-text-muted on --colour-page = 7.4:1 (6.9:1 on --colour-surface)
-     Both clear WCAG 2.1 AA (4.5:1) and AAA (7:1) for body text. */
   --colour-text: #131820;
   --colour-text-muted: #4c566a;
-
-  /* --- Brand / interactive colours ---
-     --colour-accent on --colour-page = 7.9:1, so links are legible without
-     relying on underlines alone (underlines are used as well). The same
-     ratio applies to white text on an accent-filled button. */
   --colour-accent: #1a4fa0;
   --colour-accent-hover: #123a7a;
   --colour-accent-soft: #e8eefb;
-  /* Text drawn on top of an accent-filled surface. It is a token rather than
-     a hard-coded white so that the dark palette can flip it in one place —
-     there the accent is a light blue, and white on it would be unreadable. */
   --colour-on-accent: #ffffff;
-  --colour-focus: #b45309; /* deliberately different hue from --colour-accent
-                              so the focus ring is visible on top of links */
-
-  /* --- Module identity colours ---
-     One per canonical module. Used only for thin accent bars and small
-     uppercase labels, never as a background for body text, so hue choice
-     cannot compromise text contrast. Each is also checked as a text colour
-     against --colour-page, because the module label uses it as such.
-     Colour never carries meaning on its own: every module is named in text
-     wherever its accent appears. */
+  --colour-focus: #b45309;
   --colour-cognitive: #8a4b00;
   --colour-research-methods: #1a4fa0;
   --colour-neuropsychology: #145c53;
   --colour-social-critical-psychology: #9e2f45;
   --colour-personality-individual-differences: #7a2e6d;
-
-  /* --- Status colours (for "in preparation" badges) --- */
   --colour-status-bg: #f1ede3;
   --colour-status-text: #5c4a1f;
   --colour-status-border: #d9cdb0;
-
-  /* --- Typography --- */
   --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
     Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
     "Liberation Mono", monospace;
-
-  --text-xs: 0.8125rem;
-  --text-sm: 0.9375rem;
-  --text-base: 1.0625rem;
-  --text-lg: 1.1875rem;
-  --text-xl: 1.4375rem;
-  --text-2xl: 1.75rem;
-  --text-3xl: 2.25rem;
-
-  /* --- Spacing scale --- */
-  --space-1: 0.25rem;
-  --space-2: 0.5rem;
-  --space-3: 0.75rem;
-  --space-4: 1rem;
-  --space-5: 1.5rem;
-  --space-6: 2rem;
-  --space-7: 3rem;
-  --space-8: 4rem;
-
-  /* --- Shape --- */
+  --text-xs: 13px;
+  --text-sm: 15px;
+  --text-base: 17px;
+  --text-lg: 19px;
+  --text-xl: 23px;
+  --text-2xl: 28px;
+  --text-3xl: 36px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 12px;
-
-  /* --- Elevation (kept subtle; this is a document, not an app) --- */
   --shadow-sm: 0 1px 2px rgb(19 24 32 / 0.06);
   --shadow-md: 0 2px 8px rgb(19 24 32 / 0.08);
-
-  /* --- Layout --- */
-  --measure: 68ch; /* comfortable reading width for prose */
-  --container: 72rem;
+  --measure: 68ch;
+  --container: 1152px;
 }
-/* Dark palette. Applied only when the reader's system asks for it, so we
-   never override an explicit preference. Contrast ratios were checked
-   against --colour-page in the same block. */
 @media (prefers-color-scheme: dark) {
-:root {
-    --colour-page: #0f141b;
-    --colour-surface: #161d27;
-    --colour-surface-raised: #1a2230;
-    --colour-border: #2c3644;
-    --colour-border-strong: #44506180;
-
-    --colour-text: #e9edf3;       /* 15.7:1 on --colour-page */
-    --colour-text-muted: #a8b2c1; /*  8.6:1 on --colour-page, 7.9:1 on surface */
-
-    --colour-accent: #8fb6ff;     /*  9.1:1 on --colour-page */
-    --colour-accent-hover: #b3cdff;
-    --colour-accent-soft: #1b2740;
-    --colour-on-accent: #0f141b;  /*  9.1:1 on --colour-accent */
-    --colour-focus: #f0b429;
-
-    --colour-cognitive: #e2ab5f;
-    --colour-research-methods: #8fb6ff;
-    --colour-neuropsychology: #6fc3b4;
-    --colour-social-critical-psychology: #f19aa8;
-    --colour-personality-individual-differences: #db9ccd;
-
-    --colour-status-bg: #241f14;
-    --colour-status-text: #e2cf9f;
-    --colour-status-border: #4a4028;
-
-    --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
-    --shadow-md: 0 2px 10px rgb(0 0 0 / 0.45);
-  }
+.opi-activity.opi-activity {
+  --colour-page: #0f141b;
+  --colour-surface: #161d27;
+  --colour-surface-raised: #1a2230;
+  --colour-border: #2c3644;
+  --colour-border-strong: #44506180;
+  --colour-text: #e9edf3;
+  --colour-text-muted: #a8b2c1;
+  --colour-accent: #8fb6ff;
+  --colour-accent-hover: #b3cdff;
+  --colour-accent-soft: #1b2740;
+  --colour-on-accent: #0f141b;
+  --colour-focus: #f0b429;
+  --colour-cognitive: #e2ab5f;
+  --colour-research-methods: #8fb6ff;
+  --colour-neuropsychology: #6fc3b4;
+  --colour-social-critical-psychology: #f19aa8;
+  --colour-personality-individual-differences: #db9ccd;
+  --colour-status-bg: #241f14;
+  --colour-status-text: #e2cf9f;
+  --colour-status-border: #4a4028;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 2px 10px rgb(0 0 0 / 0.45);
 }
-/* -------------------------------------------------------------------------
-   2. Base / reset
-   ---------------------------------------------------------------------- */
-*,
-*::before,
-*::after {
+}
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
   box-sizing: border-box;
 }
-html {
-  /* Anchor links, and elements the browser scrolls into view when they take
-     focus, land below the sticky header rather than underneath it. This is
-     what keeps WCAG 2.2 SC 2.4.11 (Focus Not Obscured) satisfied.
-
-     5rem (80px) clears the 68px single-row header. The value must stay at or
-     above the header's real height — see the narrow-viewport override further
-     down, and re-measure if the header's contents change. */
-  scroll-padding-top: 5rem;
+.opi-activity.opi-activity {
   -webkit-text-size-adjust: 100%;
 }
-/* Below roughly 460px the wordmark wraps onto a second line and the header
-   grows to 122px, reaching 145px at 320px. 5rem would no longer clear it, so
-   a focused element could end up behind the header. 9.5rem (152px) covers the
-   worst case. The breakpoint is 29em (464px), just above the width at which
-   the wordmark stops wrapping, so the two never disagree. */
-@media (max-width: 29em) {
-html {
-    scroll-padding-top: 9.5rem;
-  }
-}
-body {
-  margin: 0;
+.opi-activity.opi-activity {
   background-color: var(--colour-page);
   color: var(--colour-text);
   font-family: var(--font-body);
   font-size: var(--text-base);
   line-height: 1.65;
-  /* Push the footer to the bottom of short pages. */
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
 }
-/* Headings: a clear, predictable hierarchy. Levels are never skipped in the
-   markup — size is chosen with these classes/tokens, not by picking a
-   different heading level. */
-h1,
-h2,
-h3,
-h4 {
+.opi-activity.opi-activity h1,
+.opi-activity.opi-activity h2,
+.opi-activity.opi-activity h3,
+.opi-activity.opi-activity h4 {
   margin: 0 0 var(--space-3);
   line-height: 1.25;
   font-weight: 650;
   letter-spacing: -0.01em;
   text-wrap: balance;
 }
-h1 { font-size: var(--text-3xl); }
-h2 { font-size: var(--text-2xl); }
-h3 { font-size: var(--text-xl); }
-h4 { font-size: var(--text-lg); }
-p,
-ul,
-ol,
-dl {
+.opi-activity.opi-activity h1 {
+  font-size: var(--text-3xl);
+}
+.opi-activity.opi-activity h2 {
+  font-size: var(--text-2xl);
+}
+.opi-activity.opi-activity h3 {
+  font-size: var(--text-xl);
+}
+.opi-activity.opi-activity h4 {
+  font-size: var(--text-lg);
+}
+.opi-activity.opi-activity p,
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol,
+.opi-activity.opi-activity dl {
   margin: 0 0 var(--space-4);
 }
-ul,
-ol {
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol {
   padding-left: 1.35em;
 }
-li + li {
+.opi-activity.opi-activity li + li {
   margin-top: var(--space-2);
 }
-a {
+.opi-activity.opi-activity a {
   color: var(--colour-accent);
   text-decoration: underline;
   text-underline-offset: 0.15em;
   text-decoration-thickness: max(1px, 0.06em);
 }
-a:hover {
+.opi-activity.opi-activity a:hover {
   color: var(--colour-accent-hover);
   text-decoration-thickness: max(2px, 0.11em);
 }
-/* Single, consistent focus treatment for every focusable element.
-   :focus-visible keeps the ring away from mouse users, and the outline is
-   drawn outside the element so it is never clipped by a rounded corner. */
-:focus-visible {
+.opi-activity.opi-activity :focus-visible {
   outline: 3px solid var(--colour-focus);
   outline-offset: 2px;
   border-radius: var(--radius-sm);
 }
-/* Fallback for browsers without :focus-visible support. */
 @supports not selector(:focus-visible) {
-:focus {
-    outline: 3px solid var(--colour-focus);
+.opi-activity.opi-activity :focus {
+  outline: 3px solid var(--colour-focus);
     outline-offset: 2px;
-  }
 }
-code {
+}
+.opi-activity.opi-activity code {
   font-family: var(--font-mono);
   font-size: 0.9em;
   background-color: var(--colour-surface);
@@ -265,29 +189,22 @@ code {
   border-radius: var(--radius-sm);
   padding: 0.1em 0.35em;
 }
-hr {
+.opi-activity.opi-activity hr {
   border: 0;
   border-top: 1px solid var(--colour-border);
   margin: var(--space-6) 0;
 }
-/* Respect a reduced-motion preference across the whole site. Interactives
-   should also check this via the matchMedia API before animating. */
 @media (prefers-reduced-motion: reduce) {
-*,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
-  }
 }
-/* -------------------------------------------------------------------------
-   3. Utilities
-   ---------------------------------------------------------------------- */
-/* Visible only to assistive technology. Used for extra context that would be
-   redundant on screen (for example "opens on GitHub"). */
-.visually-hidden {
+}
+.opi-activity.opi-activity .visually-hidden {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -299,53 +216,48 @@ hr {
   white-space: nowrap;
   border: 0;
 }
-/* Horizontal page gutter + max width. */
-.container {
+.opi-activity.opi-activity .container {
   width: 100%;
   max-width: var(--container);
   margin-inline: auto;
   padding-inline: var(--space-4);
 }
 @media (min-width: 40em) {
-.container {
-    padding-inline: var(--space-5);
-  }
+.opi-activity.opi-activity .container {
+  padding-inline: var(--space-5);
 }
-/* Constrains long-form text to a readable line length. */
-.prose {
+}
+.opi-activity.opi-activity .prose {
   max-width: var(--measure);
 }
-.text-muted {
+.opi-activity.opi-activity .text-muted {
   color: var(--colour-text-muted);
 }
-.section {
+.opi-activity.opi-activity .section {
   padding-block: var(--space-7);
 }
-.section--tinted {
+.opi-activity.opi-activity .section--tinted {
   background-color: var(--colour-surface);
   border-block: 1px solid var(--colour-border);
 }
-.section__header {
+.opi-activity.opi-activity .section__header {
   max-width: var(--measure);
   margin-bottom: var(--space-5);
 }
-.section__header > :last-child {
+.opi-activity.opi-activity .section__header > :last-child {
   margin-bottom: 0;
 }
-/* -------------------------------------------------------------------------
-   5. Hero
-   ---------------------------------------------------------------------- */
-.hero {
+.opi-activity.opi-activity .hero {
   padding-block: var(--space-7) var(--space-6);
   border-bottom: 1px solid var(--colour-border);
-  /* A flat two-tone wash built from tokens — no image asset involved. */
+  
   background-image: linear-gradient(
     180deg,
     var(--colour-accent-soft) 0%,
     var(--colour-page) 100%
   );
 }
-.hero__eyebrow {
+.opi-activity.opi-activity .hero__eyebrow {
   display: inline-block;
   margin-bottom: var(--space-3);
   font-size: var(--text-xs);
@@ -354,32 +266,29 @@ hr {
   text-transform: uppercase;
   color: var(--colour-text-muted);
 }
-.hero h1 {
+.opi-activity.opi-activity .hero h1 {
   max-width: 20ch;
   margin-bottom: var(--space-4);
 }
-.hero__lead {
+.opi-activity.opi-activity .hero__lead {
   max-width: var(--measure);
   font-size: var(--text-lg);
   color: var(--colour-text-muted);
 }
 @media (min-width: 48em) {
-.hero {
-    padding-block: var(--space-8) var(--space-7);
-  }
-.hero h1 {
-    font-size: 2.75rem;
-  }
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-8) var(--space-7);
 }
-/* -------------------------------------------------------------------------
-   6. Buttons
-   ---------------------------------------------------------------------- */
-.button {
+.opi-activity.opi-activity .hero h1 {
+  font-size: 44px;
+}
+}
+.opi-activity.opi-activity .button {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  /* 44px minimum tap target, per WCAG 2.5.5 target-size guidance. */
-  min-height: 2.75rem;
+  
+  min-height: 44px;
   padding: var(--space-2) var(--space-5);
   border-radius: var(--radius-md);
   border: 1px solid transparent;
@@ -389,233 +298,152 @@ hr {
   text-decoration: none;
   cursor: pointer;
 }
-.button--primary {
+.opi-activity.opi-activity .button--primary {
   background-color: var(--colour-accent);
   border-color: var(--colour-accent);
-  /* 7.9:1 in the light palette, 9.1:1 in the dark one — the token carries the
-     flip, so this rule is correct under both without a media query. */
+  
   color: var(--colour-on-accent);
 }
-.button--primary:hover {
+.opi-activity.opi-activity .button--primary:hover {
   background-color: var(--colour-accent-hover);
   border-color: var(--colour-accent-hover);
   color: var(--colour-on-accent);
 }
-.button--secondary {
+.opi-activity.opi-activity .button--secondary {
   background-color: transparent;
   border-color: var(--colour-border-strong);
   color: var(--colour-text);
 }
-.button--secondary:hover {
+.opi-activity.opi-activity .button--secondary:hover {
   background-color: var(--colour-surface);
   border-color: var(--colour-accent);
   color: var(--colour-accent);
 }
-/* Per-module accent, set on the <li> or card element in the markup. The
-   modifier suffix is the canonical module slug, so markup, catalogue entries
-   and folder names all use the same identifier. */
-.card--cognitive { --card-accent: var(--colour-cognitive); }
-.card--research-methods { --card-accent: var(--colour-research-methods); }
-.card--neuropsychology { --card-accent: var(--colour-neuropsychology); }
-.card--social-critical-psychology { --card-accent: var(--colour-social-critical-psychology); }
-.card--personality-individual-differences { --card-accent: var(--colour-personality-individual-differences); }
-/* -------------------------------------------------------------------------
-   8. Status badges and placeholders
-   ---------------------------------------------------------------------- */
-/* Small pill used to state, in words, that a collection has no published
-   interactives yet. */
-.badge {
+.opi-activity.opi-activity .card--cognitive {
+  --card-accent: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .card--research-methods {
+  --card-accent: var(--colour-research-methods);
+}
+.opi-activity.opi-activity .card--neuropsychology {
+  --card-accent: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .card--social-critical-psychology {
+  --card-accent: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .card--personality-individual-differences {
+  --card-accent: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .badge {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
   font-size: var(--text-xs);
   font-weight: 650;
   line-height: 1.4;
-  padding: 0.2rem var(--space-3);
+  padding: 3.2px var(--space-3);
   border-radius: 999px;
   border: 1px solid var(--colour-status-border);
   background-color: var(--colour-status-bg);
   color: var(--colour-status-text);
 }
-.badge__dot {
-  width: 0.5rem;
-  height: 0.5rem;
+.opi-activity.opi-activity .badge__dot {
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background-color: currentColor;
   flex: none;
 }
-/* A dashed panel that stands in for content that has not been built yet.
-   The dashed border is a visual convention only; the text inside always says
-   plainly what is and is not available. */
-.placeholder {
+.opi-activity.opi-activity .placeholder {
   border: 2px dashed var(--colour-border-strong);
   border-radius: var(--radius-lg);
   background-color: var(--colour-surface);
   padding: var(--space-5);
   text-align: left;
 }
-.placeholder__title {
+.opi-activity.opi-activity .placeholder__title {
   font-size: var(--text-lg);
   margin-bottom: var(--space-2);
 }
-.placeholder > :last-child {
+.opi-activity.opi-activity .placeholder > :last-child {
   margin-bottom: 0;
 }
-/* -------------------------------------------------------------------------
-   9. Content blocks used on collection and landing pages
-   ---------------------------------------------------------------------- */
-/* Two-column layout that collapses to one column on narrow screens. */
-.split {
+.opi-activity.opi-activity .split {
   display: grid;
   gap: var(--space-6);
 }
 @media (min-width: 56em) {
-.split {
-    grid-template-columns: 3fr 2fr;
+.opi-activity.opi-activity .split {
+  grid-template-columns: 3fr 2fr;
     align-items: start;
-  }
 }
-/* Plain bordered panel for side notes, reuse information, and similar. */
-.panel {
+}
+.opi-activity.opi-activity .panel {
   background-color: var(--colour-surface);
   border: 1px solid var(--colour-border);
   border-radius: var(--radius-lg);
   padding: var(--space-5);
 }
-.panel > :last-child {
+.opi-activity.opi-activity .panel > :last-child {
   margin-bottom: 0;
 }
-.panel__title {
+.opi-activity.opi-activity .panel__title {
   font-size: var(--text-lg);
   margin-bottom: var(--space-3);
 }
-/* -------------------------------------------------------------------------
-   12. Windows High Contrast / forced-colours mode
-   -------------------------------------------------------------------------
-   When forced colours are active the browser discards the author palette and
-   substitutes the reader's system colours. Two consequences drive everything
-   below:
-
-     1. Any boundary drawn with a background tint alone disappears, because
-        backgrounds are replaced. Those boundaries have to be redrawn as
-        borders in a system colour keyword.
-     2. Only system colour keywords (CanvasText, ButtonText, LinkText,
-        Highlight, GrayText, …) are honoured. A custom property resolving to a
-        hex value is ignored here, which is why this block repeats values
-        rather than using the --colour-* tokens.
-
-   forced-color-adjust is deliberately left at its default of `auto`
-   throughout: overriding it would opt elements out of the reader's chosen
-   palette, which is the opposite of what this mode is for.
-
-   components/interactive-shell.css carries an equivalent block for the tool
-   shell. The two are kept separate so that either file can be used without
-   the other; do not merge them.
-   ---------------------------------------------------------------------- */
 @media (forced-colors: active) {
-.section--tinted {
-    border-block: 1px solid CanvasText;
-  }
-.hero {
-    /* The hero's gradient is dropped; keep the edge it provided. */
-    border-bottom: 1px solid CanvasText;
-  }
-/* --- Buttons ---
-     Both variants keep the system's own fill and text. They are distinguished
-     by border weight rather than colour, because in this mode both would
-     otherwise resolve to the same ButtonFace/ButtonText pair. */
-.button--primary {
-    border: 2px solid ButtonText;
-  }
-.button--secondary {
-    border: 1px solid ButtonText;
-  }
-.button:hover {
-    border-color: Highlight;
-  }
-/* --- Panels, placeholders and badges --- */
-.panel {
-    border: 1px solid CanvasText;
-  }
-.placeholder {
-    border: 2px dashed CanvasText;
-  }
-.badge {
-    border: 1px solid CanvasText;
-  }
-/* A small filled circle; without this it would vanish with the background. */
-.badge__dot {
-    background-color: CanvasText;
-  }
-/* Inline code keeps its outline. */
-code {
-    border-color: CanvasText;
-  }
-hr {
-    border-top-color: CanvasText;
-  }
-/* --- Focus ---
-     Highlight is the system's selection colour and is guaranteed to contrast
-     with both Canvas and ButtonFace. The card rule is listed separately
-     because :has() gives it a different specificity. */
-:focus-visible {
-    outline: 3px solid Highlight;
-    outline-offset: 2px;
-  }
+.opi-activity.opi-activity .section--tinted {
+  border-block: 1px solid CanvasText;
 }
-/* -------------------------------------------------------------------------
-   13. Print
-   ---------------------------------------------------------------------- */
+.opi-activity.opi-activity .hero {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .button--primary {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .button--secondary {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .button:hover {
+  border-color: Highlight;
+}
+.opi-activity.opi-activity .panel {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed CanvasText;
+}
+.opi-activity.opi-activity .badge {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .badge__dot {
+  background-color: CanvasText;
+}
+.opi-activity.opi-activity code {
+  border-color: CanvasText;
+}
+.opi-activity.opi-activity hr {
+  border-top-color: CanvasText;
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+}
 @media print {
-body {
-    color: #000;
-    background: #fff;
-  }
-/* Expose link destinations, which are otherwise lost on paper. */
-a[href^="http"]::after {
-    content: " (" attr(href) ")";
+.opi-activity.opi-activity {
+  color: #000;
+  background: #fff;
+}
+.opi-activity.opi-activity a[href^="http"]::after {
+  content: " (" attr(href) ")";
     font-size: 0.85em;
     word-break: break-all;
-  }
 }
-/* ---- components/interactive-shell.css ---- */
-/* =========================================================================
-   Open Psychology Interactives — interactive shell
-   -------------------------------------------------------------------------
-   A shared frame for every interactive in this collection: heading and
-   brief, a controls panel, a stage for the visualisation, a live status
-   line, and a notes area for teaching guidance.
+}
 
-   Why this file exists
-   --------------------
-   Two reasons, both practical:
-
-     1. Consistency. Every interactive looks and behaves the same way, so a
-        student who has used one already knows how to use the next.
-     2. Portability. An interactive can be lifted out of this repository by
-        copying its own folder plus this file and
-        components/interactive-shell.js. It does not depend on main.css,
-        although it inherits the design tokens from main.css when both are
-        loaded, and falls back to its own values when it is used alone.
-
-   Load order when both are used:
-       <link rel="stylesheet" href="../../assets/css/main.css">
-       <link rel="stylesheet" href="../../components/interactive-shell.css">
-
-   Every published interactive is built on this frame; see
-   docs/adapting-a-tool.md for the markup contract. The page furniture around
-   the frame — prediction panels, feedback, verdicts, tables and charts —
-   lives in components/tool-kit.css.
-   ========================================================================= */
-/* -------------------------------------------------------------------------
-   Fallback tokens
-   -------------------------------------------------------------------------
-   Each custom property below falls back to a literal value, so the shell is
-   usable on a page that does not load main.css. When main.css *is* loaded,
-   its :root definitions win and the shell adopts the site palette
-   automatically, including the dark theme.
-   ---------------------------------------------------------------------- */
-.interactive {
+/* components/interactive-shell.css */
+.opi-activity.opi-activity .interactive {
   --shell-page: var(--colour-page, #ffffff);
   --shell-surface: var(--colour-surface, #f5f7fa);
   --shell-raised: var(--colour-surface-raised, #ffffff);
@@ -625,289 +453,219 @@ a[href^="http"]::after {
   --shell-muted: var(--colour-text-muted, #4c566a);
   --shell-accent: var(--colour-accent, #1a4fa0);
   --shell-accent-soft: var(--colour-accent-soft, #e8eefb);
-  /* Text on an accent-filled surface; flips with the palette so that the
-     light-blue dark-mode accent does not end up carrying white text. */
+  
   --shell-on-accent: var(--colour-on-accent, #ffffff);
   --shell-focus: var(--colour-focus, #b45309);
   --shell-radius: var(--radius-lg, 12px);
-  --shell-gap: var(--space-5, 1.5rem);
+  --shell-gap: var(--space-5, 24px);
 
   display: block;
   background-color: var(--shell-raised);
   color: var(--shell-text);
   border: 1px solid var(--shell-border);
   border-radius: var(--shell-radius);
-  /* Clip sideways so a wide table cannot break the rounded box, but do NOT
-     use `overflow: hidden`: that would make this a scroll container and
-     silently disable `position: sticky` on .stage__primary below. `clip`
-     does not create one. */
+  
   overflow-x: clip;
   overflow-y: visible;
 }
-/* -------------------------------------------------------------------------
-   Header
-   ---------------------------------------------------------------------- */
-.interactive__header {
+.opi-activity.opi-activity .interactive__header {
   padding: var(--shell-gap);
   border-bottom: 1px solid var(--shell-border);
   background-color: var(--shell-surface);
 }
-.interactive__title {
-  margin: 0 0 0.5rem;
-  font-size: 1.375rem;
+.opi-activity.opi-activity .interactive__title {
+  margin: 0 0 8px;
+  font-size: 22px;
   line-height: 1.25;
 }
-.interactive__brief {
+.opi-activity.opi-activity .interactive__brief {
   margin: 0;
   max-width: 62ch;
   color: var(--shell-muted);
-  font-size: 0.9375rem;
+  font-size: 15px;
 }
-/* -------------------------------------------------------------------------
-   Body: controls beside stage, stacked on narrow screens
-   -------------------------------------------------------------------------
-   Controls come first in the DOM so that the reading and tab order is
-   "change something, then see the result" — which matches how the
-   interactive is explained aloud in class.
-   ---------------------------------------------------------------------- */
-.interactive__body {
+.opi-activity.opi-activity .interactive__body {
   display: grid;
   gap: var(--shell-gap);
   padding: var(--shell-gap);
 }
 @media (min-width: 52em) {
-.interactive__body {
-    /* Controls take a fixed-ish column; the stage absorbs the rest. */
-    grid-template-columns: minmax(15rem, 20rem) 1fr;
+.opi-activity.opi-activity .interactive__body {
+  grid-template-columns: minmax(240px, 320px) 1fr;
     align-items: start;
-  }
 }
-/* --- Controls ---------------------------------------------------------- */
-.interactive__controls {
+}
+.opi-activity.opi-activity .interactive__controls {
   display: grid;
-  gap: 1.25rem;
+  gap: 20px;
   align-content: start;
   margin: 0;
-  padding: 1.25rem;
+  padding: 20px;
   border: 1px solid var(--shell-border);
   border-radius: var(--radius-md, 8px);
   background-color: var(--shell-surface);
 }
-/* Group related controls. Always use a <fieldset> with a <legend> in the
-   markup so the grouping is announced, not just drawn. */
-.interactive__controls fieldset {
+.opi-activity.opi-activity .interactive__controls fieldset {
   margin: 0;
   padding: 0;
   border: 0;
 }
-.interactive__controls legend {
+.opi-activity.opi-activity .interactive__controls legend {
   padding: 0;
-  margin-bottom: 0.5rem;
-  font-size: 0.8125rem;
+  margin-bottom: 8px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--shell-muted);
 }
-.control {
+.opi-activity.opi-activity .control {
   display: grid;
-  gap: 0.35rem;
+  gap: 5.6px;
 }
-.control + .control {
-  margin-top: 1rem;
+.opi-activity.opi-activity .control + .control {
+  margin-top: 16px;
 }
-/* Label and current value sit on one line. The value is inside the <label>'s
-   sibling <output>, associated with the input via the `for` attribute. */
-.control__header {
+.opi-activity.opi-activity .control__header {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  gap: 0.75rem;
+  gap: 12px;
 }
-.control__label {
-  font-size: 0.9375rem;
+.opi-activity.opi-activity .control__label {
+  font-size: 15px;
   font-weight: 600;
 }
-.control__value {
+.opi-activity.opi-activity .control__value {
   font-variant-numeric: tabular-nums;
-  font-size: 0.9375rem;
+  font-size: 15px;
   font-weight: 650;
   color: var(--shell-accent);
 }
-.control__hint {
-  font-size: 0.8125rem;
+.opi-activity.opi-activity .control__hint {
+  font-size: 13px;
   color: var(--shell-muted);
 }
-/* Range inputs get a 44px-tall hit area even though the track is thin. */
-.interactive__controls input[type="range"] {
+.opi-activity.opi-activity .interactive__controls input[type="range"] {
   width: 100%;
-  min-height: 2.75rem;
+  min-height: 44px;
   accent-color: var(--shell-accent);
   cursor: pointer;
 }
-.interactive__controls select,
-.interactive__controls input[type="number"],
-.interactive__controls input[type="text"] {
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
   width: 100%;
-  min-height: 2.75rem;
-  padding: 0.35rem 0.6rem;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
   font: inherit;
-  font-size: 0.9375rem;
+  font-size: 15px;
   color: var(--shell-text);
   background-color: var(--shell-raised);
   border: 1px solid var(--shell-border-strong);
   border-radius: var(--radius-sm, 4px);
 }
-/* Checkbox and radio rows: the whole label is clickable and comfortably
-   sized for touch. */
-.control--choice {
+.opi-activity.opi-activity .control--choice {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  min-height: 2.75rem;
+  gap: 9.6px;
+  min-height: 44px;
 }
-.control--choice input {
-  width: 1.15rem;
-  height: 1.15rem;
+.opi-activity.opi-activity .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
   accent-color: var(--shell-accent);
   flex: none;
 }
-/* --- Stage ------------------------------------------------------------- */
-/* Where the visualisation is drawn. Interactives should render inline SVG or
-   a <canvas> here. Any canvas must be paired with a text alternative — see
-   .interactive__readout below and docs/accessibility.md. */
-.interactive__stage {
-  min-height: 16rem;
+.opi-activity.opi-activity .interactive__stage {
+  min-height: 256px;
   display: grid;
   align-content: start;
-  gap: 1rem;
-  padding: 1rem;
+  gap: 16px;
+  padding: 16px;
   border: 1px solid var(--shell-border);
   border-radius: var(--radius-md, 8px);
   background-color: var(--shell-page);
 }
-/* -------------------------------------------------------------------------
-   The pinned primary result
-   -------------------------------------------------------------------------
-   Some interactives need a long controls column — a bank of items to choose
-   from, one slider per parameter, a list of things to rate. Without help, the
-   learner scrolls down to reach the fifth control and the thing it changes has
-   scrolled off the top: they can no longer see what they are doing.
-
-   Wrapping the ONE result that answers "what am I looking at to see the
-   effect?" in .stage__primary pins it to the top of the stage while the rest
-   of the page scrolls underneath. Everything below it stays reachable, which
-   is why this is used instead of pinning the whole stage column.
-
-   Only the primary result should carry this class. Secondary diagnostics,
-   tables and interpretation stay in normal flow beneath it.
-   ---------------------------------------------------------------------- */
 @media (min-width: 52em) {
-/* The pin can only travel inside its own column, so the stage has to be as
-     tall as the controls beside it. Add this modifier to .interactive__body
-     whenever the stage contains a .stage__primary. */
-.interactive__body--pinned {
-    align-items: stretch;
-  }
-.interactive__stage > .stage__primary {
-    position: sticky;
+.opi-activity.opi-activity .interactive__body--pinned {
+  align-items: stretch;
+}
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: sticky;
     top: 0;
     z-index: 2;
-    /* Span the stage padding so content scrolling under it is covered. */
-    margin: -1rem -1rem 0;
-    padding: 1rem 1rem 0.75rem;
+    
+    margin: -16px -16px 0;
+    padding: 16px 16px 12px;
     background-color: var(--shell-page);
     border-bottom: 1px solid var(--shell-border);
-  }
 }
-/* On a short viewport a pinned block would take most of the screen, so it
-   returns to normal flow. */
+}
 @media (min-width: 52em) and (max-height: 30em) {
-.interactive__stage > .stage__primary {
-    position: static;
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: static;
     margin: 0;
     padding: 0;
     border-bottom: 0;
-  }
 }
-/* A grid item's automatic minimum size is its min-content width, so a wide
-   table inside a .table-scroll widens the whole stage track and can push a
-   pinned primary past the viewport. Every stage child opts out. */
-.interactive__stage > * {
+}
+.opi-activity.opi-activity .interactive__stage > * {
   min-width: 0;
 }
-/* :where() keeps this at specificity (0,0,1) so a tool's own `.some-chart {
-   max-width: 30rem }` can still cap an oversized SVG. Written as
-   `.interactive__stage svg` it was (0,1,1) and silently beat every such rule,
-   which made the documented way of capping a chart impossible. */
-:where(.interactive__stage) svg,
-:where(.interactive__stage) canvas {
+.opi-activity.opi-activity :where(.interactive__stage) svg,
+.opi-activity.opi-activity :where(.interactive__stage) canvas {
   display: block;
   width: 100%;
   height: auto;
   max-width: 100%;
 }
-/* Numeric summary shown beside or beneath the graphic. This doubles as the
-   accessible alternative to the visualisation, so it is never hidden on
-   small screens — it reflows instead. */
-.interactive__readout {
+.opi-activity.opi-activity .interactive__readout {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
-  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 12px;
   margin: 0;
 }
-.interactive__readout div {
-  padding: 0.6rem 0.75rem;
+.opi-activity.opi-activity .interactive__readout div {
+  padding: 9.6px 12px;
   border: 1px solid var(--shell-border);
   border-radius: var(--radius-sm, 4px);
   background-color: var(--shell-surface);
 }
-.interactive__readout dt {
-  font-size: 0.8125rem;
+.opi-activity.opi-activity .interactive__readout dt {
+  font-size: 13px;
   color: var(--shell-muted);
   margin: 0;
 }
-.interactive__readout dd {
-  margin: 0.15rem 0 0;
-  font-size: 1.125rem;
+.opi-activity.opi-activity .interactive__readout dd {
+  margin: 2.4px 0 0;
+  font-size: 18px;
   font-weight: 650;
   font-variant-numeric: tabular-nums;
 }
-/* -------------------------------------------------------------------------
-   Status line
-   -------------------------------------------------------------------------
-   A polite live region. Interactives announce the outcome of an action here
-   ("Sample of 25 drawn; mean 4.8") so that a screen-reader user learns what
-   changed on the stage without having to hunt for it.
-   ---------------------------------------------------------------------- */
-.interactive__status {
+.opi-activity.opi-activity .interactive__status {
   margin: 0;
-  padding: 0.75rem var(--shell-gap);
+  padding: 12px var(--shell-gap);
   border-top: 1px solid var(--shell-border);
   background-color: var(--shell-surface);
-  font-size: 0.9375rem;
+  font-size: 15px;
   color: var(--shell-muted);
-  min-height: 3rem;
+  min-height: 48px;
   display: flex;
   align-items: center;
 }
-/* -------------------------------------------------------------------------
-   Actions
-   ---------------------------------------------------------------------- */
-.interactive__actions {
+.opi-activity.opi-activity .interactive__actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
+  gap: 12px;
   padding: var(--shell-gap);
   border-top: 1px solid var(--shell-border);
 }
-/* Standalone button styling, so the shell does not require main.css. When
-   main.css is present, `.button` from that file can be used instead. */
-.interactive__actions button {
-  min-height: 2.75rem;
-  padding: 0.4rem 1.25rem;
+.opi-activity.opi-activity .interactive__actions button {
+  min-height: 44px;
+  padding: 6.4px 20px;
   font: inherit;
-  font-size: 0.9375rem;
+  font-size: 15px;
   font-weight: 600;
   color: var(--shell-on-accent);
   background-color: var(--shell-accent);
@@ -915,267 +673,159 @@ a[href^="http"]::after {
   border-radius: var(--radius-md, 8px);
   cursor: pointer;
 }
-.interactive__actions button[data-variant="secondary"] {
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
   color: var(--shell-text);
   background-color: transparent;
   border-color: var(--shell-border-strong);
 }
-.interactive__actions button:hover {
+.opi-activity.opi-activity .interactive__actions button:hover {
   filter: brightness(1.08);
 }
-.interactive__actions button:disabled {
+.opi-activity.opi-activity .interactive__actions button:disabled {
   opacity: 0.55;
   cursor: not-allowed;
 }
-/* -------------------------------------------------------------------------
-   Teaching notes
-   -------------------------------------------------------------------------
-   Collapsed by default so the interactive itself is what students meet
-   first. <details> gives keyboard support and correct semantics for free.
-   ---------------------------------------------------------------------- */
-.interactive__notes {
+.opi-activity.opi-activity .interactive__notes {
   border-top: 1px solid var(--shell-border);
   background-color: var(--shell-surface);
 }
-.interactive__notes > summary {
-  padding: 0.85rem var(--shell-gap);
-  font-size: 0.9375rem;
+.opi-activity.opi-activity .interactive__notes > summary {
+  padding: 13.6px var(--shell-gap);
+  font-size: 15px;
   font-weight: 650;
   cursor: pointer;
 }
-.interactive__notes > summary:focus-visible {
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
   outline: 3px solid var(--shell-focus);
   outline-offset: -3px;
 }
-.interactive__notes > div {
+.opi-activity.opi-activity .interactive__notes > div {
   padding: 0 var(--shell-gap) var(--shell-gap);
   max-width: 68ch;
-  font-size: 0.9375rem;
+  font-size: 15px;
 }
-.interactive__notes > div > :last-child {
+.opi-activity.opi-activity .interactive__notes > div > :last-child {
   margin-bottom: 0;
 }
-/* -------------------------------------------------------------------------
-   Focus, motion and forced colours
-   ---------------------------------------------------------------------- */
-/* The shell repeats the site's focus treatment locally so that it survives
-   being used without main.css. */
-.interactive :focus-visible {
+.opi-activity.opi-activity .interactive :focus-visible {
   outline: 3px solid var(--shell-focus);
   outline-offset: 2px;
 }
 @media (prefers-reduced-motion: reduce) {
-.interactive *,
-  .interactive *::before,
-  .interactive *::after {
-    animation-duration: 0.01ms !important;
+.opi-activity.opi-activity .interactive *,
+.opi-activity.opi-activity .interactive *::before,
+.opi-activity.opi-activity .interactive *::after {
+  animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-  }
 }
-/* -------------------------------------------------------------------------
-   Windows High Contrast / forced-colours mode
-   -------------------------------------------------------------------------
-   When forced colours are active the browser discards the author palette and
-   substitutes the reader's system colours. Two consequences drive everything
-   below:
-
-     1. Any boundary drawn with a background tint alone disappears, because
-        backgrounds are replaced. Those boundaries have to be redrawn as
-        borders in a system colour keyword.
-     2. Only system colour keywords (CanvasText, ButtonText, Highlight,
-        GrayText, …) are honoured. A custom property resolving to a hex value
-        is ignored here, which is why this block repeats values rather than
-        using the --shell-* tokens.
-
-   forced-color-adjust is deliberately left at its default of `auto`
-   throughout: overriding it would opt elements out of the reader's chosen
-   palette, which is the opposite of what this mode is for.
-   ---------------------------------------------------------------------- */
+}
 @media (forced-colors: active) {
-/* --- Boundaries ---
-     Panels that were separated from each other by a background tint. */
-.interactive,
-  .interactive__controls,
-  .interactive__stage,
-  .interactive__readout div {
-    border: 1px solid CanvasText;
-  }
-/* Section dividers within the shell, which were also tint-only. */
-.interactive__header {
-    border-bottom: 1px solid CanvasText;
-  }
-.interactive__status,
-  .interactive__actions,
-  .interactive__notes {
-    border-top: 1px solid CanvasText;
-  }
-/* --- Interactive control states ---
-     Buttons keep the system's own fill and text. Primary and secondary are
-     distinguished by border weight rather than colour, because in this mode
-     both would otherwise resolve to the same ButtonFace/ButtonText pair. */
-.interactive__actions button {
-    border: 2px solid ButtonText;
-  }
-.interactive__actions button[data-variant="secondary"] {
-    border-width: 1px;
-  }
-/* GrayText is the system's disabled colour. The author stylesheet dims
-     disabled buttons with opacity, which is *not* replaced in forced-colours
-     mode and would leave faint-but-full-contrast text, so it is reset here
-     and the state carried by colour keyword instead. */
-.interactive__actions button:disabled {
-    opacity: 1;
+.opi-activity.opi-activity .interactive,
+.opi-activity.opi-activity .interactive__controls,
+.opi-activity.opi-activity .interactive__stage,
+.opi-activity.opi-activity .interactive__readout div {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__header {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__status,
+.opi-activity.opi-activity .interactive__actions,
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__actions button {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  border-width: 1px;
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 1;
     color: GrayText;
     border-color: GrayText;
-  }
-/* Text inputs and selects need an explicit boundary for the same reason. */
-.interactive__controls select,
-  .interactive__controls input[type="number"],
-  .interactive__controls input[type="text"] {
-    border: 1px solid ButtonText;
-  }
-/* --- Focus ---
-     Highlight is the system's selection colour and is guaranteed to contrast
-     with both Canvas and ButtonFace. Both rules are needed: the summary rule
-     in the main stylesheet is more specific than the general one and would
-     otherwise keep its author colour. */
-.interactive :focus-visible {
-    outline: 3px solid Highlight;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid Highlight;
     outline-offset: 2px;
-  }
-.interactive__notes > summary:focus-visible {
-    outline: 3px solid Highlight;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid Highlight;
     outline-offset: -3px;
-  }
-/* --- Visualisations ---
-     Graphics drawn with `currentColor` follow the system text colour
-     automatically. Interactives should therefore stroke and fill with
-     currentColor rather than fixed values; anything hard-coded will keep its
-     own colour here and may become illegible. Where a chart distinguishes
-     series, it must not rely on hue alone — see docs/accessibility.md. */
-.interactive__stage svg {
-    forced-color-adjust: auto;
-  }
 }
-/* ---- components/tool-kit.css ---- */
-/* =========================================================================
-   Open Psychology Interactives — tool kit
-   -------------------------------------------------------------------------
-   Shared page furniture for interactive tools: prediction panels, feedback
-   boxes, verdict boxes, data tables, charts, stage tracks and the small
-   layout helpers that every tool page in this collection needs.
+.opi-activity.opi-activity .interactive__stage svg {
+  forced-color-adjust: auto;
+}
+}
 
-   Why this file exists
-   --------------------
-   components/interactive-shell.css styles the interactive itself — the frame
-   around the visualisation. It deliberately knows nothing about the rest of a
-   tool page. But every tool page also has a prediction panel, explanatory
-   feedback, a debrief and a limitations panel, and repeating those styles in
-   each tool's own tool.css would mean maintaining the same 400 lines in a
-   dozen places.
-
-   So: interactive-shell.css frames the interactive; this file styles the page
-   around it; tool.css holds only what is genuinely specific to one tool.
-
-   Load order:
-       <link rel="stylesheet" href="../../../../assets/css/main.css">
-       <link rel="stylesheet" href="../../../../components/interactive-shell.css">
-       <link rel="stylesheet" href="../../../../components/tool-kit.css">
-       <link rel="stylesheet" href="tool.css">
-
-   Every colour here resolves to a token from main.css, so both the light and
-   dark palettes work without restatement. Nothing is hard-coded except the
-   system colour keywords in the forced-colours block, which is the one place
-   custom properties are not honoured.
-
-   Note: modules/personality-individual-differences/tools/12-alpha-trap/ was
-   built before this file existed and carries its own copy of these patterns.
-   It is left alone deliberately — it works, it is published, and rewriting a
-   released tool to save duplication is not a trade worth making.
-   ========================================================================= */
-/* -------------------------------------------------------------------------
-   Layout helpers
-   ---------------------------------------------------------------------- */
-/* Equal columns. The site default .split is 3fr/2fr, which is right for
-   "content plus sidebar"; these are two peers. */
+/* components/tool-kit.css */
 @media (min-width: 56em) {
-.split--wide {
-    grid-template-columns: 1fr 1fr;
-  }
+.opi-activity.opi-activity .split--wide {
+  grid-template-columns: 1fr 1fr;
 }
-.how-to {
-  padding-left: 1.2rem;
+}
+.opi-activity.opi-activity .how-to {
+  padding-left: 19.2px;
   font-size: var(--text-sm);
 }
-.how-to > li {
+.opi-activity.opi-activity .how-to > li {
   margin-top: var(--space-2);
 }
-.table-scroll {
+.opi-activity.opi-activity .table-scroll {
   overflow-x: auto;
-  /* A visually-hidden <caption> is absolutely positioned; without a positioned
-     ancestor here it resolves against the page and adds roughly 30px of
-     spurious scrollable width, so a table that fits still shows a scrollbar. */
+  
   position: relative;
 }
-/* -------------------------------------------------------------------------
-   Prediction panels
-   -------------------------------------------------------------------------
-   Used for every "commit to an answer before the reveal" panel, and for the
-   radio groups inside challenges.
-   ---------------------------------------------------------------------- */
-.prediction {
+.opi-activity.opi-activity .prediction {
   display: grid;
   gap: var(--space-5);
-  max-width: 52rem;
+  max-width: 832px;
 }
-/* A grid item's automatic minimum size is its min-content width, so a wide
-   child — a results table inside a feedback box, most often — pushes the
-   whole panel past the viewport and takes the page's horizontal scrollbar
-   with it. Every direct child of these grids must be allowed to shrink; wide
-   content then scrolls inside its own .table-scroll instead. */
-.prediction > *,
-.challenge > * {
+.opi-activity.opi-activity .prediction > *,
+.opi-activity.opi-activity .challenge > * {
   min-width: 0;
 }
-.prediction__group {
+.opi-activity.opi-activity .prediction__group {
   margin: 0;
   padding: 0;
   border: 0;
 }
-.prediction__legend {
+.opi-activity.opi-activity .prediction__legend {
   padding: 0;
   margin-bottom: var(--space-2);
   font-weight: 650;
   font-size: var(--text-base);
 }
-/* .control--choice is defined in interactive-shell.css, scoped inside
-   .interactive. These panels sit outside the shell, so the sizing that makes
-   the whole row a 44px target is repeated for them here. */
-.prediction .control--choice,
-.challenge .control--choice,
-.evidence .control--choice {
+.opi-activity.opi-activity .prediction .control--choice,
+.opi-activity.opi-activity .challenge .control--choice,
+.opi-activity.opi-activity .evidence .control--choice {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  min-height: 2.75rem;
+  gap: 9.6px;
+  min-height: 44px;
   font-size: var(--text-sm);
   cursor: pointer;
 }
-.prediction .control--choice input,
-.challenge .control--choice input,
-.evidence .control--choice input {
-  width: 1.15rem;
-  height: 1.15rem;
+.opi-activity.opi-activity .prediction .control--choice input,
+.opi-activity.opi-activity .challenge .control--choice input,
+.opi-activity.opi-activity .evidence .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
   flex: none;
   accent-color: var(--colour-accent);
 }
-.prediction__actions {
+.opi-activity.opi-activity .prediction__actions {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-3);
 }
-.prediction__error {
+.opi-activity.opi-activity .prediction__error {
   margin: 0;
   padding: var(--space-3) var(--space-4);
   border: 1px solid var(--colour-status-border);
@@ -1185,7 +835,7 @@ a[href^="http"]::after {
   color: var(--colour-status-text);
   font-size: var(--text-sm);
 }
-.prediction__readback {
+.opi-activity.opi-activity .prediction__readback {
   margin: 0;
   padding: var(--space-3) var(--space-4);
   border: 1px solid var(--colour-border);
@@ -1193,14 +843,7 @@ a[href^="http"]::after {
   background-color: var(--colour-surface-raised);
   font-size: var(--text-sm);
 }
-/* -------------------------------------------------------------------------
-   Feedback
-   -------------------------------------------------------------------------
-   Explanatory response to what the learner actually did. The tone is always
-   also stated in words ("Yes.", "Not quite.") so it never depends on the
-   border colour.
-   ---------------------------------------------------------------------- */
-.feedback {
+.opi-activity.opi-activity .feedback {
   padding: var(--space-4);
   border: 1px solid var(--colour-border-strong);
   border-left: 4px solid var(--colour-border-strong);
@@ -1208,63 +851,57 @@ a[href^="http"]::after {
   background-color: var(--colour-surface-raised);
   font-size: var(--text-sm);
 }
-.feedback > :last-child {
+.opi-activity.opi-activity .feedback > :last-child {
   margin-bottom: 0;
 }
-.feedback[data-tone="good"] {
+.opi-activity.opi-activity .feedback[data-tone="good"] {
   border-left-color: var(--colour-neuropsychology);
 }
-.feedback[data-tone="caution"] {
+.opi-activity.opi-activity .feedback[data-tone="caution"] {
   border-left-color: var(--colour-cognitive);
 }
-.feedback[data-tone="warn"] {
+.opi-activity.opi-activity .feedback[data-tone="warn"] {
   border-left-color: var(--colour-social-critical-psychology);
 }
-.feedback__verdict {
+.opi-activity.opi-activity .feedback__verdict {
   font-weight: 700;
 }
-/* -------------------------------------------------------------------------
-   Verdict boxes
-   ---------------------------------------------------------------------- */
-.verdict {
+.opi-activity.opi-activity .verdict {
   padding: var(--space-3) var(--space-4);
   border: 1px solid var(--colour-border);
   border-left: 4px solid var(--colour-border-strong);
   border-radius: var(--radius-sm);
   background-color: var(--colour-surface);
 }
-.verdict__title {
+.opi-activity.opi-activity .verdict__title {
   margin: 0 0 var(--space-2);
   font-size: var(--text-sm);
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--colour-text-muted);
 }
-.verdict__body {
+.opi-activity.opi-activity .verdict__body {
   margin: 0;
   font-size: var(--text-sm);
 }
-.verdict__body + .verdict__body {
+.opi-activity.opi-activity .verdict__body + .verdict__body {
   margin-top: var(--space-2);
 }
-.verdict__note {
+.opi-activity.opi-activity .verdict__note {
   margin: var(--space-2) 0 0;
   font-size: var(--text-xs);
   color: var(--colour-text-muted);
 }
-.verdict[data-tone="warn"] {
+.opi-activity.opi-activity .verdict[data-tone="warn"] {
   border-left-color: var(--colour-social-critical-psychology);
 }
-.verdict[data-tone="caution"] {
+.opi-activity.opi-activity .verdict[data-tone="caution"] {
   border-left-color: var(--colour-cognitive);
 }
-.verdict[data-tone="good"] {
+.opi-activity.opi-activity .verdict[data-tone="good"] {
   border-left-color: var(--colour-neuropsychology);
 }
-/* -------------------------------------------------------------------------
-   Goal / task banner
-   ---------------------------------------------------------------------- */
-.goal {
+.opi-activity.opi-activity .goal {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
@@ -1277,10 +914,7 @@ a[href^="http"]::after {
   background-color: var(--colour-surface-raised);
   font-size: var(--text-sm);
 }
-/* Shrinks and wraps rather than overflowing: some tools use a long label
-   ("Before you can return a verdict"), which at 320px cannot share a line
-   with anything and must not force the banner wider than the viewport. */
-.goal__label {
+.opi-activity.opi-activity .goal__label {
   flex: 0 1 auto;
   min-width: 0;
   font-size: var(--text-xs);
@@ -1289,45 +923,39 @@ a[href^="http"]::after {
   text-transform: uppercase;
   color: var(--colour-text-muted);
 }
-.goal__text {
-  flex: 1 1 16rem;
+.opi-activity.opi-activity .goal__text {
+  flex: 1 1 256px;
 }
-.goal strong {
+.opi-activity.opi-activity .goal strong {
   font-variant-numeric: tabular-nums;
 }
-/* Live checklist of requirements, used where a tool has a multi-part goal.
-   "(met)" / "(not yet)" is written into the text by the tool, so the marker
-   is never the only carrier. */
-.goal__checks {
+.opi-activity.opi-activity .goal__checks {
   list-style: none;
   padding: 0;
   margin: var(--space-2) 0 0;
   display: grid;
-  gap: 0.15rem;
+  gap: 2.4px;
 }
-.goal__checks > li {
+.opi-activity.opi-activity .goal__checks > li {
   margin-top: 0;
-  padding-left: 1.4rem;
+  padding-left: 22.4px;
   position: relative;
 }
-.goal__checks > li::before {
+.opi-activity.opi-activity .goal__checks > li::before {
   content: "";
   position: absolute;
   left: 0;
   top: 0.35em;
-  width: 0.6rem;
-  height: 0.6rem;
+  width: 9.6px;
+  height: 9.6px;
   border: 2px solid var(--colour-border-strong);
   border-radius: 2px;
 }
-.goal__checks > li[data-met="yes"]::before {
+.opi-activity.opi-activity .goal__checks > li[data-met="yes"]::before {
   border-color: var(--colour-accent);
   background-color: var(--colour-accent);
 }
-/* -------------------------------------------------------------------------
-   Stage track
-   ---------------------------------------------------------------------- */
-.stage-track {
+.opi-activity.opi-activity .stage-track {
   list-style: none;
   padding: 0;
   margin: 0 0 var(--space-5);
@@ -1336,9 +964,9 @@ a[href^="http"]::after {
   gap: var(--space-2);
   font-size: var(--text-sm);
 }
-.stage-track > li {
+.opi-activity.opi-activity .stage-track > li {
   margin-top: 0;
-  flex: 1 1 10rem;
+  flex: 1 1 160px;
   padding: var(--space-2) var(--space-3);
   border: 1px solid var(--colour-border);
   border-bottom: 3px solid var(--colour-border);
@@ -1346,395 +974,311 @@ a[href^="http"]::after {
   background-color: var(--colour-surface);
   color: var(--colour-text-muted);
 }
-.stage-track > li > span {
+.opi-activity.opi-activity .stage-track > li > span {
   font-variant-numeric: tabular-nums;
   font-weight: 700;
 }
-.stage-track > li[data-state="done"] {
+.opi-activity.opi-activity .stage-track > li[data-state="done"] {
   border-bottom-color: var(--colour-border-strong);
   color: var(--colour-text);
 }
-.stage-track > li[aria-current="step"] {
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
   border-bottom-color: var(--colour-accent);
   background-color: var(--colour-accent-soft);
   color: var(--colour-text);
   font-weight: 650;
 }
-.stage__heading {
+.opi-activity.opi-activity .stage__heading {
   margin: 0;
   font-size: var(--text-base);
 }
-/* -------------------------------------------------------------------------
-   Tables
-   ---------------------------------------------------------------------- */
-.data-table,
-.chart__table {
+.opi-activity.opi-activity .data-table,
+.opi-activity.opi-activity .chart__table {
   width: 100%;
   border-collapse: collapse;
   font-size: var(--text-sm);
 }
-.data-table th,
-.data-table td,
-.chart__table th,
-.chart__table td {
-  padding: 0.4rem 0.6rem;
+.opi-activity.opi-activity .data-table th,
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table th,
+.opi-activity.opi-activity .chart__table td {
+  padding: 6.4px 9.6px;
   border: 1px solid var(--colour-border);
   text-align: left;
   vertical-align: top;
 }
-.data-table thead th,
-.chart__table thead th {
+.opi-activity.opi-activity .data-table thead th,
+.opi-activity.opi-activity .chart__table thead th {
   background-color: var(--colour-surface);
   font-size: var(--text-xs);
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--colour-text-muted);
 }
-.data-table td,
-.chart__table td {
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table td {
   font-variant-numeric: tabular-nums;
 }
-.chart__table tbody th,
-.data-table tbody th {
+.opi-activity.opi-activity .chart__table tbody th,
+.opi-activity.opi-activity .data-table tbody th {
   font-weight: 550;
 }
-.data-table__total > th,
-.data-table__total > td {
+.opi-activity.opi-activity .data-table__total > th,
+.opi-activity.opi-activity .data-table__total > td {
   border-top: 2px solid var(--colour-border-strong);
   font-weight: 650;
 }
-/* -------------------------------------------------------------------------
-   Charts
-   -------------------------------------------------------------------------
-   Every chart in this collection is hidden from assistive technology and
-   paired with a visible table carrying the same numbers, so the SVG may use
-   colour freely — but bars still carry their own value as text, which is what
-   keeps them readable in greyscale.
-   ---------------------------------------------------------------------- */
-.chart {
+.opi-activity.opi-activity .chart {
   margin: 0;
   display: grid;
   gap: var(--space-3);
 }
-.chart__caption {
+.opi-activity.opi-activity .chart__caption {
   font-size: var(--text-sm);
   font-weight: 650;
 }
-.chart__svg {
+.opi-activity.opi-activity .chart__svg {
   max-width: 100%;
   height: auto;
 }
-.chart__label,
-.chart__count,
-.chart__inline,
-.chart__axis {
+.opi-activity.opi-activity .chart__label,
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__inline,
+.opi-activity.opi-activity .chart__axis {
   font-family: var(--font-body);
   fill: var(--colour-text);
   font-size: 13px;
 }
-.chart__count,
-.chart__axis {
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__axis {
   fill: var(--colour-text-muted);
   font-variant-numeric: tabular-nums;
 }
-.chart__inline {
+.opi-activity.opi-activity .chart__inline {
   fill: var(--colour-on-accent);
   font-size: 12px;
   font-weight: 650;
 }
-.chart__track {
+.opi-activity.opi-activity .chart__track {
   fill: var(--colour-surface);
   stroke: var(--colour-border);
   stroke-width: 1;
 }
-.chart__bar {
+.opi-activity.opi-activity .chart__bar {
   fill: var(--colour-accent);
 }
-/* Two-series charts. The pair is distinguished by fill AND by the name
-   printed inside each bar, so the distinction survives greyscale. */
-.chart__bar--one {
+.opi-activity.opi-activity .chart__bar--one {
   fill: var(--colour-accent);
 }
-.chart__bar--two {
+.opi-activity.opi-activity .chart__bar--two {
   fill: var(--colour-personality-individual-differences);
 }
-.chart__baseline,
-.chart__grid {
+.opi-activity.opi-activity .chart__baseline,
+.opi-activity.opi-activity .chart__grid {
   stroke: var(--colour-border);
   stroke-width: 1;
 }
-.chart__line {
+.opi-activity.opi-activity .chart__line {
   fill: none;
   stroke: var(--colour-accent);
   stroke-width: 2.5;
 }
-.chart__line--two {
+.opi-activity.opi-activity .chart__line--two {
   stroke: var(--colour-personality-individual-differences);
   stroke-dasharray: 6 4;
 }
-.chart__point {
+.opi-activity.opi-activity .chart__point {
   fill: var(--colour-accent);
 }
-/* -------------------------------------------------------------------------
-   Reveal blocks
-   ---------------------------------------------------------------------- */
-.reveal > :last-child {
+.opi-activity.opi-activity .reveal > :last-child {
   margin-bottom: 0;
 }
-.reveal__lead {
+.opi-activity.opi-activity .reveal__lead {
   font-size: var(--text-lg);
   font-weight: 600;
 }
-.reveal__figures {
+.opi-activity.opi-activity .reveal__figures {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(176px, 1fr));
   gap: var(--space-3);
   margin: var(--space-4) 0;
   padding: 0;
   list-style: none;
 }
-.reveal__figures > li {
+.opi-activity.opi-activity .reveal__figures > li {
   margin-top: 0;
   padding: var(--space-3);
   border: 1px solid var(--colour-border);
   border-radius: var(--radius-sm);
   background-color: var(--colour-surface-raised);
 }
-.reveal__figure-label {
+.opi-activity.opi-activity .reveal__figure-label {
   display: block;
   font-size: var(--text-xs);
   color: var(--colour-text-muted);
 }
-.reveal__figure-value {
+.opi-activity.opi-activity .reveal__figure-value {
   display: block;
   font-size: var(--text-xl);
   font-weight: 650;
   font-variant-numeric: tabular-nums;
 }
-/* -------------------------------------------------------------------------
-   Challenges and caution panels
-   ---------------------------------------------------------------------- */
-.challenge {
+.opi-activity.opi-activity .challenge {
   display: grid;
   gap: var(--space-4);
   align-content: start;
 }
-.challenge__locked {
+.opi-activity.opi-activity .challenge__locked {
   margin: 0;
   font-size: var(--text-sm);
   color: var(--colour-text-muted);
 }
-.panel--caution {
+.opi-activity.opi-activity .panel--caution {
   background-color: var(--colour-status-bg);
   border-color: var(--colour-status-border);
 }
-.panel--caution li + li {
+.opi-activity.opi-activity .panel--caution li + li {
   margin-top: var(--space-3);
 }
-/* -------------------------------------------------------------------------
-   Forced colours
-   -------------------------------------------------------------------------
-   Author backgrounds are discarded in this mode, so anything whose boundary
-   or state was carried by a tint has to be redrawn with a system colour
-   keyword. Same reasoning as the block in interactive-shell.css.
-   ---------------------------------------------------------------------- */
 @media (forced-colors: active) {
-.goal,
-  .verdict,
-  .feedback,
-  .prediction__error,
-  .prediction__readback,
-  .stage-track > li,
-  .reveal__figures > li {
-    border: 1px solid CanvasText;
-  }
-.stage-track > li[aria-current="step"] {
-    border: 2px solid Highlight;
-  }
-.chart__bar,
-  .chart__bar--one {
-    fill: CanvasText;
-  }
-.chart__bar--two {
-    fill: Highlight;
-  }
-.chart__inline {
-    fill: Canvas;
-  }
-.chart__line {
-    stroke: CanvasText;
-  }
-.chart__line--two {
-    stroke: Highlight;
-  }
+.opi-activity.opi-activity .goal,
+.opi-activity.opi-activity .verdict,
+.opi-activity.opi-activity .feedback,
+.opi-activity.opi-activity .prediction__error,
+.opi-activity.opi-activity .prediction__readback,
+.opi-activity.opi-activity .stage-track > li,
+.opi-activity.opi-activity .reveal__figures > li {
+  border: 1px solid CanvasText;
 }
-/* -------------------------------------------------------------------------
-   Progressive disclosure inside a stage
-   -------------------------------------------------------------------------
-   For secondary diagnostics that illustrate the primary result rather than
-   adding to it. Folded away by default so they do not compete with the
-   teaching effect, and one click from being open.
-   ---------------------------------------------------------------------- */
-.stage__more {
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border: 2px solid Highlight;
+}
+.opi-activity.opi-activity .chart__bar,
+.opi-activity.opi-activity .chart__bar--one {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: Canvas;
+}
+.opi-activity.opi-activity .chart__line {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: Highlight;
+}
+}
+.opi-activity.opi-activity .stage__more {
   border: 1px solid var(--colour-border);
   border-radius: var(--radius-sm);
   background-color: var(--colour-surface);
 }
-.stage__more > summary {
+.opi-activity.opi-activity .stage__more > summary {
   padding: var(--space-2) var(--space-3);
   font-size: var(--text-sm);
   font-weight: 600;
   cursor: pointer;
-  min-height: 2.75rem;
+  min-height: 44px;
   display: flex;
   align-items: center;
 }
-.stage__more[open] > summary {
+.opi-activity.opi-activity .stage__more[open] > summary {
   border-bottom: 1px solid var(--colour-border);
 }
-.stage__more > *:not(summary) {
+.opi-activity.opi-activity .stage__more > *:not(summary) {
   margin: var(--space-3);
 }
-/* ---- modules/research-methods/tools/20-homoscedasticity-residual-diagnostics/tool.css ---- */
-/* =========================================================================
-   Homoscedasticity and Residual Diagnostics — tool-specific styling
-   -------------------------------------------------------------------------
-   Shared page furniture comes from components/tool-kit.css. What is specific
-   here is the two-panel chart (raw scatter above, residuals against fitted
-   below) and the four small plot cards in the challenge.
 
-   The two panels are separated by a rule and labelled in words inside the
-   picture; the zero line in the residual panel is dashed and labelled; and
-   the three fitted-value regions are marked by tick rules AND named in the
-   paired table, so nothing is carried by colour.
-   ========================================================================= */
-
-#hetero .interactive__controls,
-#hetero .interactive__stage {
+/* modules/research-methods/tools/20-homoscedasticity-residual-diagnostics/tool.css */
+.opi-activity.opi-activity #hetero .interactive__controls,
+.opi-activity.opi-activity #hetero .interactive__stage {
   min-width: 0;
 }
-
-/* The stage is a grid track, and a grid item's automatic minimum size is its
-   min-content width: without this, a wide table inside .table-scroll widens
-   the whole track and can push the pinned block past a 320px viewport. */
-#hetero .interactive__stage > * {
+.opi-activity.opi-activity #hetero .interactive__stage > * {
   min-width: 0;
 }
-
-/* A visually-hidden <caption> is positioned against the nearest positioned
-   ancestor, which without this is the page — adding roughly 30px of spurious
-   scrollable width inside every scroller. Local fix only. */
-#hetero .table-scroll,
-#challenge .table-scroll {
+.opi-activity.opi-activity #hetero .table-scroll,
+.opi-activity.opi-activity #challenge .table-scroll {
   position: relative;
 }
-
 @media (min-width: 52em) {
-  #hetero .interactive__body {
-    grid-template-columns: minmax(0, 19rem) minmax(0, 1fr);
-  }
+.opi-activity.opi-activity #hetero .interactive__body {
+  grid-template-columns: minmax(0, 304px) minmax(0, 1fr);
 }
-
-/* interactive-shell.css sets `.interactive__stage svg { max-width: 100% }` at
-   a specificity a plain class cannot beat, so the cap goes on the block-level
-   <figure> instead. This chart is two panels tall, so the cap is tight enough
-   to keep the pinned block inside a 768px viewport. */
-#hetero .chart--capped {
-  max-width: 26rem;
 }
-
-#hetero .interactive__readout {
-  grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
-  gap: 0.4rem;
+.opi-activity.opi-activity #hetero .chart--capped {
+  max-width: 416px;
 }
-
-#hetero .interactive__readout div {
-  padding: 0.4rem 0.5rem;
+.opi-activity.opi-activity #hetero .interactive__readout {
+  grid-template-columns: repeat(auto-fit, minmax(112px, 1fr));
+  gap: 6.4px;
 }
-
-#hetero .interactive__readout dd {
-  font-size: 1rem;
+.opi-activity.opi-activity #hetero .interactive__readout div {
+  padding: 6.4px 8px;
 }
-
-/* -------------------------------------------------------------------------
-   The two panels
-   ---------------------------------------------------------------------- */
-
-.hs__point {
+.opi-activity.opi-activity #hetero .interactive__readout dd {
+  font-size: 16px;
+}
+.opi-activity.opi-activity .hs__point {
   fill: var(--colour-accent);
   opacity: 0.6;
 }
-
-.hs__fit {
+.opi-activity.opi-activity .hs__fit {
   stroke: var(--colour-social-critical-psychology);
   stroke-width: 2.5;
   fill: none;
 }
-
-.hs__zero {
+.opi-activity.opi-activity .hs__zero {
   stroke: var(--colour-social-critical-psychology);
   stroke-width: 2;
   stroke-dasharray: 6 3;
 }
-
-/* The boundaries between the low, middle and high thirds of the fitted
-   values, which the paired table reports numerically. */
-.hs__region {
+.opi-activity.opi-activity .hs__region {
   stroke: var(--colour-text-muted);
   stroke-width: 1;
   stroke-dasharray: 2 4;
 }
-
-.hs__axis {
+.opi-activity.opi-activity .hs__axis {
   stroke: var(--colour-border-strong);
   stroke-width: 1;
 }
-
-.hs__divide {
+.opi-activity.opi-activity .hs__divide {
   stroke: var(--colour-border);
   stroke-width: 1;
 }
-
-/* -------------------------------------------------------------------------
-   The four plot cards in the challenge
-   ---------------------------------------------------------------------- */
-
-.plotcard {
+.opi-activity.opi-activity .plotcard {
   padding: var(--space-4);
   border: 1px solid var(--colour-border);
   border-left: 4px solid var(--colour-border-strong);
   border-radius: var(--radius-sm);
   background-color: var(--colour-surface);
 }
-
-.plotcard__title {
+.opi-activity.opi-activity .plotcard__title {
   margin: 0 0 var(--space-3);
   font-size: var(--text-base);
 }
-
-.plotcard__svg {
-  max-width: 20rem;
+.opi-activity.opi-activity .plotcard__svg {
+  max-width: 320px;
 }
-
-.plotcard__alt {
+.opi-activity.opi-activity .plotcard__alt {
   margin: 0;
   font-size: var(--text-xs);
   color: var(--colour-text-muted);
   max-width: 62ch;
 }
-
-.plotcard__label {
+.opi-activity.opi-activity .plotcard__label {
   display: block;
-  margin: var(--space-3) 0 0.3rem;
+  margin: var(--space-3) 0 4.8px;
   font-weight: 600;
   font-size: var(--text-sm);
 }
-
-.plotcard select {
+.opi-activity.opi-activity .plotcard select {
   width: 100%;
-  max-width: 30rem;
-  min-height: 2.75rem;
-  padding: 0.35rem 0.6rem;
+  max-width: 480px;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
   font: inherit;
   font-size: var(--text-sm);
   color: var(--colour-text);
@@ -1742,23 +1286,34 @@ a[href^="http"]::after {
   border: 1px solid var(--colour-border-strong);
   border-radius: var(--radius-sm);
 }
-
 @media (forced-colors: active) {
-  .hs__point { fill: CanvasText; opacity: 1; }
-  .hs__fit { stroke: Highlight; }
-  .hs__zero { stroke: Highlight; }
-  .hs__region { stroke: GrayText; }
-  .hs__axis { stroke: CanvasText; }
-  .hs__divide { stroke: GrayText; }
-  .plotcard { border: 1px solid CanvasText; }
-  .plotcard select { border: 1px solid ButtonText; }
+.opi-activity.opi-activity .hs__point {
+  fill: CanvasText; opacity: 1;
 }
-
+.opi-activity.opi-activity .hs__fit {
+  stroke: Highlight;
+}
+.opi-activity.opi-activity .hs__zero {
+  stroke: Highlight;
+}
+.opi-activity.opi-activity .hs__region {
+  stroke: GrayText;
+}
+.opi-activity.opi-activity .hs__axis {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .hs__divide {
+  stroke: GrayText;
+}
+.opi-activity.opi-activity .plotcard {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .plotcard select {
+  border: 1px solid ButtonText;
+}
+}
 </style>
-</head>
-<body>
 
-<main id="main">
   <!-- ================= Title and purpose ================= -->
   <section class="section card--research-methods" aria-labelledby="page-heading">
     <div class="container">
@@ -2310,7 +1865,7 @@ a[href^="http"]::after {
   </section>
 
 
-</main>
+
 
 <script>
 /* ---- components/interactive-shell.js ---- */
@@ -3684,5 +3239,4 @@ a[href^="http"]::after {
 })();
 
 </script>
-</body>
-</html>
+</div>

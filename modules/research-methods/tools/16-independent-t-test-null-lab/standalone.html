@@ -1,0 +1,2850 @@
+<!-- Independent-Samples t-Test: The Null Distribution
+     From Open Psychology Interactives - https://github.com/utman5454/open-psychology-interactives
+     Self-contained: no stylesheets, scripts, fonts, images or network requests.
+     Styles are scoped to .opi-activity and do not affect the page around them.
+     Nothing is saved, sent or tracked. MIT licensed; please keep this notice.
+     Paste anywhere that accepts HTML, or save as a .html file and open it. -->
+<div class="opi-activity">
+<style>
+/* Defensive baseline. See scripts/build-standalone.py for why this
+   is `revert` rather than an enumerated reset, and how the specificity ladder
+   keeps the activity's own styling on top of it. */
+.opi-activity *:not(svg *) {
+  all: revert;
+}
+.opi-activity, .opi-activity *, .opi-activity *::before, .opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  text-transform: none;
+  text-indent: 0;
+  font-style: normal;
+  font-variant: normal;
+  letter-spacing: normal;
+  word-spacing: normal;
+  white-space: normal;
+  visibility: visible;
+  float: none;
+  max-width: none;
+}
+.opi-activity svg { max-width: 100%; }
+.opi-activity img { max-width: 100%; height: auto; }
+.opi-activity [hidden] { display: none !important; }
+
+/* assets/css/main.css */
+.opi-activity.opi-activity {
+  --colour-page: #ffffff;
+  --colour-surface: #f5f7fa;
+  --colour-surface-raised: #ffffff;
+  --colour-border: #d3d9e2;
+  --colour-border-strong: #aeb7c4;
+  --colour-text: #131820;
+  --colour-text-muted: #4c566a;
+  --colour-accent: #1a4fa0;
+  --colour-accent-hover: #123a7a;
+  --colour-accent-soft: #e8eefb;
+  --colour-on-accent: #ffffff;
+  --colour-focus: #b45309;
+  --colour-cognitive: #8a4b00;
+  --colour-research-methods: #1a4fa0;
+  --colour-neuropsychology: #145c53;
+  --colour-social-critical-psychology: #9e2f45;
+  --colour-personality-individual-differences: #7a2e6d;
+  --colour-status-bg: #f1ede3;
+  --colour-status-text: #5c4a1f;
+  --colour-status-border: #d9cdb0;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  --text-xs: 13px;
+  --text-sm: 15px;
+  --text-base: 17px;
+  --text-lg: 19px;
+  --text-xl: 23px;
+  --text-2xl: 28px;
+  --text-3xl: 36px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgb(19 24 32 / 0.06);
+  --shadow-md: 0 2px 8px rgb(19 24 32 / 0.08);
+  --measure: 68ch;
+  --container: 1152px;
+}
+@media (prefers-color-scheme: dark) {
+.opi-activity.opi-activity {
+  --colour-page: #0f141b;
+  --colour-surface: #161d27;
+  --colour-surface-raised: #1a2230;
+  --colour-border: #2c3644;
+  --colour-border-strong: #44506180;
+  --colour-text: #e9edf3;
+  --colour-text-muted: #a8b2c1;
+  --colour-accent: #8fb6ff;
+  --colour-accent-hover: #b3cdff;
+  --colour-accent-soft: #1b2740;
+  --colour-on-accent: #0f141b;
+  --colour-focus: #f0b429;
+  --colour-cognitive: #e2ab5f;
+  --colour-research-methods: #8fb6ff;
+  --colour-neuropsychology: #6fc3b4;
+  --colour-social-critical-psychology: #f19aa8;
+  --colour-personality-individual-differences: #db9ccd;
+  --colour-status-bg: #241f14;
+  --colour-status-text: #e2cf9f;
+  --colour-status-border: #4a4028;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 2px 10px rgb(0 0 0 / 0.45);
+}
+}
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity.opi-activity {
+  -webkit-text-size-adjust: 100%;
+}
+.opi-activity.opi-activity {
+  background-color: var(--colour-page);
+  color: var(--colour-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.65;
+}
+.opi-activity.opi-activity h1,
+.opi-activity.opi-activity h2,
+.opi-activity.opi-activity h3,
+.opi-activity.opi-activity h4 {
+  margin: 0 0 var(--space-3);
+  line-height: 1.25;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.opi-activity.opi-activity h1 {
+  font-size: var(--text-3xl);
+}
+.opi-activity.opi-activity h2 {
+  font-size: var(--text-2xl);
+}
+.opi-activity.opi-activity h3 {
+  font-size: var(--text-xl);
+}
+.opi-activity.opi-activity h4 {
+  font-size: var(--text-lg);
+}
+.opi-activity.opi-activity p,
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol,
+.opi-activity.opi-activity dl {
+  margin: 0 0 var(--space-4);
+}
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol {
+  padding-left: 1.35em;
+}
+.opi-activity.opi-activity li + li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity a {
+  color: var(--colour-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: max(1px, 0.06em);
+}
+.opi-activity.opi-activity a:hover {
+  color: var(--colour-accent-hover);
+  text-decoration-thickness: max(2px, 0.11em);
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid var(--colour-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+@supports not selector(:focus-visible) {
+.opi-activity.opi-activity :focus {
+  outline: 3px solid var(--colour-focus);
+    outline-offset: 2px;
+}
+}
+.opi-activity.opi-activity code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.35em;
+}
+.opi-activity.opi-activity hr {
+  border: 0;
+  border-top: 1px solid var(--colour-border);
+  margin: var(--space-6) 0;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+}
+.opi-activity.opi-activity .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.opi-activity.opi-activity .container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+@media (min-width: 40em) {
+.opi-activity.opi-activity .container {
+  padding-inline: var(--space-5);
+}
+}
+.opi-activity.opi-activity .prose {
+  max-width: var(--measure);
+}
+.opi-activity.opi-activity .text-muted {
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .section {
+  padding-block: var(--space-7);
+}
+.opi-activity.opi-activity .section--tinted {
+  background-color: var(--colour-surface);
+  border-block: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .section__header {
+  max-width: var(--measure);
+  margin-bottom: var(--space-5);
+}
+.opi-activity.opi-activity .section__header > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-7) var(--space-6);
+  border-bottom: 1px solid var(--colour-border);
+  
+  background-image: linear-gradient(
+    180deg,
+    var(--colour-accent-soft) 0%,
+    var(--colour-page) 100%
+  );
+}
+.opi-activity.opi-activity .hero__eyebrow {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .hero h1 {
+  max-width: 20ch;
+  margin-bottom: var(--space-4);
+}
+.opi-activity.opi-activity .hero__lead {
+  max-width: var(--measure);
+  font-size: var(--text-lg);
+  color: var(--colour-text-muted);
+}
+@media (min-width: 48em) {
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-8) var(--space-7);
+}
+.opi-activity.opi-activity .hero h1 {
+  font-size: 44px;
+}
+}
+.opi-activity.opi-activity .button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  
+  min-height: 44px;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .button--primary {
+  background-color: var(--colour-accent);
+  border-color: var(--colour-accent);
+  
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--primary:hover {
+  background-color: var(--colour-accent-hover);
+  border-color: var(--colour-accent-hover);
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--secondary {
+  background-color: transparent;
+  border-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .button--secondary:hover {
+  background-color: var(--colour-surface);
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+}
+.opi-activity.opi-activity .card--cognitive {
+  --card-accent: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .card--research-methods {
+  --card-accent: var(--colour-research-methods);
+}
+.opi-activity.opi-activity .card--neuropsychology {
+  --card-accent: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .card--social-critical-psychology {
+  --card-accent: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .card--personality-individual-differences {
+  --card-accent: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 650;
+  line-height: 1.4;
+  padding: 3.2px var(--space-3);
+  border-radius: 999px;
+  border: 1px solid var(--colour-status-border);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+}
+.opi-activity.opi-activity .badge__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex: none;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed var(--colour-border-strong);
+  border-radius: var(--radius-lg);
+  background-color: var(--colour-surface);
+  padding: var(--space-5);
+  text-align: left;
+}
+.opi-activity.opi-activity .placeholder__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+}
+.opi-activity.opi-activity .placeholder > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .split {
+  display: grid;
+  gap: var(--space-6);
+}
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split {
+  grid-template-columns: 3fr 2fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .panel {
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.opi-activity.opi-activity .panel > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .panel__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .section--tinted {
+  border-block: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .hero {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .button--primary {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .button--secondary {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .button:hover {
+  border-color: Highlight;
+}
+.opi-activity.opi-activity .panel {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed CanvasText;
+}
+.opi-activity.opi-activity .badge {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .badge__dot {
+  background-color: CanvasText;
+}
+.opi-activity.opi-activity code {
+  border-color: CanvasText;
+}
+.opi-activity.opi-activity hr {
+  border-top-color: CanvasText;
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+}
+@media print {
+.opi-activity.opi-activity {
+  color: #000;
+  background: #fff;
+}
+.opi-activity.opi-activity a[href^="http"]::after {
+  content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+}
+}
+
+/* components/interactive-shell.css */
+.opi-activity.opi-activity .interactive {
+  --shell-page: var(--colour-page, #ffffff);
+  --shell-surface: var(--colour-surface, #f5f7fa);
+  --shell-raised: var(--colour-surface-raised, #ffffff);
+  --shell-border: var(--colour-border, #d3d9e2);
+  --shell-border-strong: var(--colour-border-strong, #aeb7c4);
+  --shell-text: var(--colour-text, #131820);
+  --shell-muted: var(--colour-text-muted, #4c566a);
+  --shell-accent: var(--colour-accent, #1a4fa0);
+  --shell-accent-soft: var(--colour-accent-soft, #e8eefb);
+  
+  --shell-on-accent: var(--colour-on-accent, #ffffff);
+  --shell-focus: var(--colour-focus, #b45309);
+  --shell-radius: var(--radius-lg, 12px);
+  --shell-gap: var(--space-5, 24px);
+
+  display: block;
+  background-color: var(--shell-raised);
+  color: var(--shell-text);
+  border: 1px solid var(--shell-border);
+  border-radius: var(--shell-radius);
+  
+  overflow-x: clip;
+  overflow-y: visible;
+}
+.opi-activity.opi-activity .interactive__header {
+  padding: var(--shell-gap);
+  border-bottom: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 1.25;
+}
+.opi-activity.opi-activity .interactive__brief {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--shell-muted);
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__body {
+  display: grid;
+  gap: var(--shell-gap);
+  padding: var(--shell-gap);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body {
+  grid-template-columns: minmax(240px, 320px) 1fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .interactive__controls {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__controls fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .interactive__controls legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .control {
+  display: grid;
+  gap: 5.6px;
+}
+.opi-activity.opi-activity .control + .control {
+  margin-top: 16px;
+}
+.opi-activity.opi-activity .control__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.opi-activity.opi-activity .control__label {
+  font-size: 15px;
+  font-weight: 600;
+}
+.opi-activity.opi-activity .control__value {
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--shell-accent);
+}
+.opi-activity.opi-activity .control__hint {
+  font-size: 13px;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .interactive__controls input[type="range"] {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--shell-accent);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  width: 100%;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--shell-text);
+  background-color: var(--shell-raised);
+  border: 1px solid var(--shell-border-strong);
+  border-radius: var(--radius-sm, 4px);
+}
+.opi-activity.opi-activity .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+}
+.opi-activity.opi-activity .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  accent-color: var(--shell-accent);
+  flex: none;
+}
+.opi-activity.opi-activity .interactive__stage {
+  min-height: 256px;
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-page);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body--pinned {
+  align-items: stretch;
+}
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: sticky;
+    top: 0;
+    z-index: 2;
+    
+    margin: -16px -16px 0;
+    padding: 16px 16px 12px;
+    background-color: var(--shell-page);
+    border-bottom: 1px solid var(--shell-border);
+}
+}
+@media (min-width: 52em) and (max-height: 30em) {
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: static;
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
+}
+}
+.opi-activity.opi-activity .interactive__stage > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity :where(.interactive__stage) svg,
+.opi-activity.opi-activity :where(.interactive__stage) canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+.opi-activity.opi-activity .interactive__readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout div {
+  padding: 9.6px 12px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-sm, 4px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__readout dt {
+  font-size: 13px;
+  color: var(--shell-muted);
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout dd {
+  margin: 2.4px 0 0;
+  font-size: 18px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .interactive__status {
+  margin: 0;
+  padding: 12px var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+  font-size: 15px;
+  color: var(--shell-muted);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .interactive__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+}
+.opi-activity.opi-activity .interactive__actions button {
+  min-height: 44px;
+  padding: 6.4px 20px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--shell-on-accent);
+  background-color: var(--shell-accent);
+  border: 1px solid var(--shell-accent);
+  border-radius: var(--radius-md, 8px);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  color: var(--shell-text);
+  background-color: transparent;
+  border-color: var(--shell-border-strong);
+}
+.opi-activity.opi-activity .interactive__actions button:hover {
+  filter: brightness(1.08);
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__notes > summary {
+  padding: 13.6px var(--shell-gap);
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__notes > div {
+  padding: 0 var(--shell-gap) var(--shell-gap);
+  max-width: 68ch;
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__notes > div > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity .interactive *,
+.opi-activity.opi-activity .interactive *::before,
+.opi-activity.opi-activity .interactive *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+}
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .interactive,
+.opi-activity.opi-activity .interactive__controls,
+.opi-activity.opi-activity .interactive__stage,
+.opi-activity.opi-activity .interactive__readout div {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__header {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__status,
+.opi-activity.opi-activity .interactive__actions,
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__actions button {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  border-width: 1px;
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 1;
+    color: GrayText;
+    border-color: GrayText;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__stage svg {
+  forced-color-adjust: auto;
+}
+}
+
+/* components/tool-kit.css */
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split--wide {
+  grid-template-columns: 1fr 1fr;
+}
+}
+.opi-activity.opi-activity .how-to {
+  padding-left: 19.2px;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .how-to > li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .table-scroll {
+  overflow-x: auto;
+  
+  position: relative;
+}
+.opi-activity.opi-activity .prediction {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 832px;
+}
+.opi-activity.opi-activity .prediction > *,
+.opi-activity.opi-activity .challenge > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity .prediction__group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .prediction__legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-weight: 650;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .prediction .control--choice,
+.opi-activity.opi-activity .challenge .control--choice,
+.opi-activity.opi-activity .evidence .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .prediction .control--choice input,
+.opi-activity.opi-activity .challenge .control--choice input,
+.opi-activity.opi-activity .evidence .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .prediction__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .prediction__error {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-status-border);
+  border-left: 4px solid var(--colour-status-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .prediction__readback {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .feedback[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .feedback[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .feedback[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .feedback__verdict {
+  font-weight: 700;
+}
+.opi-activity.opi-activity .verdict {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .verdict__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict__body {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .verdict__body + .verdict__body {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .verdict__note {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .verdict[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .verdict[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .goal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .goal__label {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .goal__text {
+  flex: 1 1 256px;
+}
+.opi-activity.opi-activity .goal strong {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .goal__checks {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+  display: grid;
+  gap: 2.4px;
+}
+.opi-activity.opi-activity .goal__checks > li {
+  margin-top: 0;
+  padding-left: 22.4px;
+  position: relative;
+}
+.opi-activity.opi-activity .goal__checks > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 9.6px;
+  height: 9.6px;
+  border: 2px solid var(--colour-border-strong);
+  border-radius: 2px;
+}
+.opi-activity.opi-activity .goal__checks > li[data-met="yes"]::before {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .stage-track {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .stage-track > li {
+  margin-top: 0;
+  flex: 1 1 160px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-bottom: 3px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .stage-track > li > span {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.opi-activity.opi-activity .stage-track > li[data-state="done"] {
+  border-bottom-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border-bottom-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+  color: var(--colour-text);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .stage__heading {
+  margin: 0;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .data-table,
+.opi-activity.opi-activity .chart__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .data-table th,
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table th,
+.opi-activity.opi-activity .chart__table td {
+  padding: 6.4px 9.6px;
+  border: 1px solid var(--colour-border);
+  text-align: left;
+  vertical-align: top;
+}
+.opi-activity.opi-activity .data-table thead th,
+.opi-activity.opi-activity .chart__table thead th {
+  background-color: var(--colour-surface);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table td {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__table tbody th,
+.opi-activity.opi-activity .data-table tbody th {
+  font-weight: 550;
+}
+.opi-activity.opi-activity .data-table__total > th,
+.opi-activity.opi-activity .data-table__total > td {
+  border-top: 2px solid var(--colour-border-strong);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart {
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .chart__caption {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__svg {
+  max-width: 100%;
+  height: auto;
+}
+.opi-activity.opi-activity .chart__label,
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__inline,
+.opi-activity.opi-activity .chart__axis {
+  font-family: var(--font-body);
+  fill: var(--colour-text);
+  font-size: 13px;
+}
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__axis {
+  fill: var(--colour-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: var(--colour-on-accent);
+  font-size: 12px;
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__track {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__bar {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--one {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .chart__baseline,
+.opi-activity.opi-activity .chart__grid {
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__line {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: var(--colour-personality-individual-differences);
+  stroke-dasharray: 6 4;
+}
+.opi-activity.opi-activity .chart__point {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .reveal > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .reveal__lead {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+.opi-activity.opi-activity .reveal__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(176px, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+  padding: 0;
+  list-style: none;
+}
+.opi-activity.opi-activity .reveal__figures > li {
+  margin-top: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+.opi-activity.opi-activity .reveal__figure-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .reveal__figure-value {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .challenge {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+.opi-activity.opi-activity .challenge__locked {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .panel--caution {
+  background-color: var(--colour-status-bg);
+  border-color: var(--colour-status-border);
+}
+.opi-activity.opi-activity .panel--caution li + li {
+  margin-top: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .goal,
+.opi-activity.opi-activity .verdict,
+.opi-activity.opi-activity .feedback,
+.opi-activity.opi-activity .prediction__error,
+.opi-activity.opi-activity .prediction__readback,
+.opi-activity.opi-activity .stage-track > li,
+.opi-activity.opi-activity .reveal__figures > li {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border: 2px solid Highlight;
+}
+.opi-activity.opi-activity .chart__bar,
+.opi-activity.opi-activity .chart__bar--one {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: Canvas;
+}
+.opi-activity.opi-activity .chart__line {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: Highlight;
+}
+}
+.opi-activity.opi-activity .stage__more {
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .stage__more > summary {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .stage__more[open] > summary {
+  border-bottom: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .stage__more > *:not(summary) {
+  margin: var(--space-3);
+}
+
+/* modules/research-methods/tools/16-independent-t-test-null-lab/tool.css */
+.opi-activity.opi-activity #ttest .interactive__controls,
+.opi-activity.opi-activity #ttest .interactive__stage {
+  min-width: 0;
+}
+.opi-activity.opi-activity #ttest .interactive__stage > * {
+  min-width: 0;
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity #ttest .interactive__body {
+  grid-template-columns: minmax(0, 304px) minmax(0, 1fr);
+}
+}
+.opi-activity.opi-activity .interactive__stage [data-null] {
+  max-width: 464px;
+}
+.opi-activity.opi-activity #ttest .interactive__readout {
+  grid-template-columns: repeat(auto-fit, minmax(112px, 1fr));
+  gap: 6.4px;
+}
+.opi-activity.opi-activity #ttest .interactive__readout div {
+  padding: 6.4px 8px;
+}
+.opi-activity.opi-activity #ttest .interactive__readout dd {
+  font-size: 16px;
+}
+.opi-activity.opi-activity .nd__curve {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .nd__normal {
+  fill: none;
+  stroke: var(--colour-text-muted);
+  stroke-width: 1.2;
+  stroke-dasharray: 3 3;
+}
+.opi-activity.opi-activity .nd__tail {
+  fill: var(--colour-accent-soft);
+}
+.opi-activity.opi-activity .nd__hatch {
+  stroke: var(--colour-accent);
+  stroke-width: 1;
+  opacity: 0.5;
+}
+.opi-activity.opi-activity .nd__critical {
+  stroke: var(--colour-social-critical-psychology);
+  stroke-width: 2;
+  stroke-dasharray: 6 3;
+}
+.opi-activity.opi-activity .nd__observed {
+  stroke: var(--colour-text);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .nd__axis {
+  stroke: var(--colour-border-strong);
+  stroke-width: 1;
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .nd__curve {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .nd__normal {
+  stroke: GrayText;
+}
+.opi-activity.opi-activity .nd__tail {
+  fill: Canvas;
+}
+.opi-activity.opi-activity .nd__hatch {
+  stroke: CanvasText; opacity: 1;
+}
+.opi-activity.opi-activity .nd__critical {
+  stroke: Highlight;
+}
+.opi-activity.opi-activity .nd__observed {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .nd__axis {
+  stroke: CanvasText;
+}
+}
+</style>
+
+  <!-- ================= Title and purpose ================= -->
+  <section class="section card--research-methods" aria-labelledby="page-heading">
+    <div class="container">
+
+      <p class="hero__eyebrow" style="color: var(--colour-research-methods)">
+        Research Methods
+      </p>
+      <h1 id="page-heading">Independent-Samples t-Test: The Null Distribution</h1>
+      <p class="hero__lead">
+        A t-test is one number placed on one curve. The curve is what the
+        statistic would do if the population means were equal, and everything
+        the test says is read off where the number lands on it.
+      </p>
+
+      <p>
+        <span class="badge">
+          <span class="badge__dot" aria-hidden="true"></span>
+          Simulated &mdash; illustrative summary statistics, no real study
+        </span>
+      </p>
+
+      <div class="split split--wide">
+
+        <div class="panel">
+          <h2 class="panel__title">Learning objective</h2>
+          <p>
+            By the end you should be able to say why p moves with sample
+            size while the effect size does not.
+          </p>
+          <p class="text-muted">
+            About 25 minutes. Nothing you do here is saved or sent anywhere.
+          </p>
+        </div>
+
+        <div class="panel panel--caution">
+          <h2 class="panel__title">Two phrases to avoid</h2>
+          <p>
+            A large <em>p</em> means the data are compatible with equal
+            population means. It does not mean the means are equal, so the
+            decision is written as <strong>fail to reject H&#8320;</strong>
+            rather than "accept the null". And <em>p</em> is never the
+            probability that H&#8320; is true: the whole calculation begins by
+            assuming H&#8320;, so nothing about how likely it was can come out
+            of it.
+          </p>
+        </div>
+
+      </div>
+
+      <ol class="how-to">
+        <li>Answer the three prediction questions to open the laboratory.</li>
+        <li>Move the group means and watch <em>t</em> travel along the curve.</li>
+        <li>Hold everything else still and grow the sample: <em>d</em> will not move.</li>
+        <li>Change &alpha; and watch the critical value, not the evidence, move.</li>
+      </ol>
+
+    </div>
+  </section>
+
+  <!-- ================= Opening prediction ================= -->
+  <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="opening-heading">First, three predictions</h2>
+        <p class="prose">
+          A fictional study of 15 people per group finds a difference of 5
+          points with a common standard deviation of 10, so Cohen's
+          <em>d</em> is 0.50. The team repeats the study with
+          <strong>100 people per group</strong> and finds exactly the same
+          means and the same standard deviation, so <em>d</em> is 0.50 again.
+        </p>
+      </div>
+
+      <noscript>
+        <div class="placeholder">
+          <h3 class="placeholder__title">This part needs JavaScript</h3>
+          <p class="prose">
+            The null distribution is drawn and its tail areas computed in your
+            browser, so this part cannot run with JavaScript switched off. The
+            rest of this page is readable without it.
+          </p>
+        </div>
+      </noscript>
+
+      <form class="panel prediction" id="opening-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            What happens to the <em>standard error of the difference</em>?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="se" value="smaller"> It gets smaller
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="se" value="same"> It stays the same
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="se" value="larger"> It gets larger
+          </label>
+        </fieldset>
+
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            What happens to <em>|t|</em>?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="t" value="smaller"> It gets smaller
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="t" value="same"> It stays the same
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="t" value="larger"> It gets larger
+          </label>
+        </fieldset>
+
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            What happens to the two-tailed <em>p</em>?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="p" value="smaller"> It gets smaller
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="p" value="same"> It stays the same
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="p" value="larger"> It gets larger
+          </label>
+        </fieldset>
+
+        <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Record my predictions and open the laboratory
+          </button>
+          <button class="button button--secondary" type="button" data-action="skip-opening">
+            Skip &mdash; I am demonstrating this
+          </button>
+        </div>
+
+        <div class="feedback" data-opening-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Laboratory ================= -->
+  <section class="section" id="lab-section" aria-labelledby="lab-heading" hidden>
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="lab-heading" tabindex="-1">The laboratory</h2>
+        <p class="prose">
+          The curve is the distribution of <em>t</em> if the two population
+          means were equal. The dashed rules are the critical values at your
+          chosen &alpha;, and the shaded tails are the two-tailed
+          <em>p</em> &mdash; the area at least as far from zero as the
+          observed <em>t</em>.
+        </p>
+      </div>
+
+      <section class="interactive" id="ttest" data-interactive
+               data-reset-message="Everything cleared. Back to the opening predictions.">
+
+        <header class="interactive__header">
+          <h3 class="interactive__title">One number on one curve</h3>
+          <p class="interactive__brief">
+            The sliders are summary statistics, not raw data: two means, two
+            standard deviations and a sample size are everything a t-test
+            needs.
+          </p>
+        </header>
+
+        <div class="interactive__body interactive__body--pinned">
+
+          <form class="interactive__controls" data-interactive-controls>
+
+            <fieldset>
+              <legend>The two groups</legend>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="mean-b-range">Mean of group B</label>
+                  <output class="control__value" for="mean-b-range">55</output>
+                </div>
+                <input type="range" id="mean-b-range" min="45" max="70" step="0.5" value="55">
+                <p class="control__hint">Group A's mean is fixed at 50.</p>
+              </div>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="sd-a-range">SD of group A</label>
+                  <output class="control__value" for="sd-a-range">10</output>
+                </div>
+                <input type="range" id="sd-a-range" min="4" max="25" step="1" value="10">
+              </div>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="sd-b-range">SD of group B</label>
+                  <output class="control__value" for="sd-b-range">10</output>
+                </div>
+                <input type="range" id="sd-b-range" min="4" max="25" step="1" value="10">
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Hold the effect, change the study</legend>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="n-range">Participants per group</label>
+                  <output class="control__value" for="n-range">15</output>
+                </div>
+                <input type="range" id="n-range" min="3" max="200" step="1" value="15">
+                <p class="control__hint">
+                  Nothing about the two groups changes when you move this, so
+                  Cohen's <em>d</em> cannot move either. Watch the other three
+                  figures.
+                </p>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>The decision rule</legend>
+              <div class="control">
+                <label class="control__label" for="alpha-select">Significance level &alpha;</label>
+                <select id="alpha-select">
+                  <option value="0.10">.10</option>
+                  <option value="0.05" selected>.05</option>
+                  <option value="0.01">.01</option>
+                  <option value="0.001">.001</option>
+                </select>
+                <p class="control__hint">
+                  &alpha; is chosen before the data arrive and is not
+                  evidence. Moving it moves the dashed rules and nothing else.
+                </p>
+              </div>
+            </fieldset>
+
+          </form>
+
+          <div class="interactive__stage" data-interactive-stage>
+
+            <!-- Pinned: the null distribution with the critical rules and
+                 the observed t. Every control moves it. -->
+            <div class="stage__primary">
+              <h4 class="stage__heading" data-chart-heading>The null distribution</h4>
+              <figure class="chart">
+                <figcaption class="visually-hidden">
+                  The t distribution under the null hypothesis, with the tails
+                  at least as far from zero as the observed t shaded, the
+                  critical values marked by dashed rules, and the standard
+                  normal curve drawn faintly behind for comparison
+                </figcaption>
+                <svg class="chart__svg" data-null viewBox="0 0 460 190"
+                     aria-hidden="true" focusable="false"></svg>
+                <div class="table-scroll">
+                  <table class="chart__table">
+                    <caption class="visually-hidden">
+                      The observed statistic, the critical value and the tail
+                      area
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Value</th>
+                      </tr>
+                    </thead>
+                    <tbody data-null-table></tbody>
+                  </table>
+                </div>
+              </figure>
+              <dl class="interactive__readout" data-readout></dl>
+            </div>
+
+            <div class="verdict" data-verdict>
+              <h4 class="verdict__title">The conclusion, written carefully</h4>
+              <p class="verdict__body" data-interpretation></p>
+              <p class="verdict__note" data-assumption></p>
+            </div>
+
+            <details class="stage__more">
+              <summary>The same comparison as an interval, and t against z</summary>
+              <div>
+                <p class="prose" data-df-note></p>
+                <div class="table-scroll">
+                  <table class="data-table">
+                    <caption class="visually-hidden">
+                      The confidence interval for the mean difference and the
+                      critical values of t and of the standard normal
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Value</th>
+                      </tr>
+                    </thead>
+                    <tbody data-extra-table></tbody>
+                  </table>
+                </div>
+              </div>
+            </details>
+
+          </div>
+
+        </div>
+
+        <p class="interactive__status" data-interactive-status role="status"></p>
+
+        <div class="interactive__actions">
+          <button type="button" data-action="small-study">The 15-per-group study</button>
+          <button type="button" data-variant="secondary" data-action="big-study">
+            The same effect at 100 per group
+          </button>
+          <button type="button" data-variant="secondary" data-action="null-study">
+            No difference at all
+          </button>
+          <button type="button" data-variant="secondary" data-interactive-reset>
+            Reset everything
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ================= Challenge ================= -->
+  <section class="section section--tinted" id="challenge" aria-labelledby="challenge-heading" hidden>
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="challenge-heading" tabindex="-1">Challenge &mdash; write the conclusion</h2>
+        <p class="prose">
+          A fictional study of 30 people per group reports a difference of 4.5
+          points, <em>t</em>(58)&nbsp;=&nbsp;1.74,
+          <em>p</em>&nbsp;=&nbsp;.087, <em>d</em>&nbsp;=&nbsp;0.45, with a 95%
+          confidence interval for the difference running from &minus;0.7 to
+          9.7 points. &alpha; was set at .05 in advance.
+        </p>
+      </div>
+
+      <form class="panel challenge" id="challenge-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            Which of these four is the best write-up?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="conclusion" value="nodiff">
+            "There was no difference between the two groups."
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="conclusion" value="good">
+            "The groups did not differ significantly, t(58) = 1.74, p = .087, d = 0.45, 95% CI for the difference [&minus;0.7, 9.7]. The study was too small to distinguish a moderate difference from none."
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="conclusion" value="trend">
+            "There was a marginally significant trend towards a difference, p = .087."
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="conclusion" value="probably">
+            "We failed to reject the null hypothesis, so the null hypothesis is probably true."
+          </label>
+        </fieldset>
+
+        <p class="prediction__error" data-challenge-error role="alert" hidden></p>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">Check my choice</button>
+        </div>
+
+        <div class="feedback" data-challenge-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Debrief ================= -->
+  <section class="section" id="debrief" aria-labelledby="debrief-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="debrief-heading">What this demonstrates</h2>
+      </div>
+
+      <div class="split split--wide">
+
+        <div class="prose">
+          <h3><em>t</em> is a signal-to-noise ratio</h3>
+          <p>
+            The numerator is the difference between the two sample means. The
+            denominator is the standard error of that difference &mdash; how
+            much it would bounce around from study to study if you repeated
+            the whole thing. <em>t</em> is one divided by the other, so it
+            answers: how big is this difference compared with how big a
+            difference this design produces by chance? A difference of five
+            points is impressive or unremarkable depending entirely on the
+            denominator.
+          </p>
+
+          <h3>The sample size lives in the denominator only</h3>
+          <p>
+            The standard error is the pooled standard deviation times the
+            square root of two over n, so it shrinks as the study grows.
+            Nothing in the numerator changes, and nothing in Cohen's <em>d</em>
+            changes either, because <em>d</em> divides the difference by the
+            spread of individual people rather than by the spread of sample
+            means. That is the whole distinction between an effect size and a
+            test statistic, and it is why the same finding can be reported
+            with <em>p</em> = .18 and <em>p</em> = .0005.
+          </p>
+
+          <h3>The curve is fatter than the normal, and that is a price</h3>
+          <p>
+            A z-test would use the population standard deviation. A t-test has
+            to estimate it from the same small sample that produced the means,
+            and that extra uncertainty shows up as heavier tails. At three per
+            group the critical value is above 4; by a hundred per group it has
+            come down to 1.97, within a whisker of the normal's 1.96. Degrees
+            of freedom are the accounting for how much information was left
+            after estimating the spread.
+          </p>
+
+          <h3>&alpha; is a decision, and <em>p</em> is not evidence about
+            H&#8320;</h3>
+          <p>
+            Moving &alpha; moves the dashed rules and touches nothing else on
+            screen: the data, the difference, the effect size and the tail
+            area are all where they were. The threshold is a rule about what
+            to do, chosen in advance, and choosing it after seeing <em>p</em>
+            is the beginning of the problem the last tool in this module is
+            about. And whatever &alpha; is, <em>p</em> is a statement about
+            data under an assumed model, never the probability that the model
+            is right.
+          </p>
+        </div>
+
+        <aside class="panel panel--caution" aria-labelledby="limits-heading">
+          <h3 class="panel__title" id="limits-heading">
+            What this does <em>not</em> demonstrate
+          </h3>
+          <ul>
+            <li>
+              <strong>No raw data.</strong> The tool works from summary
+              statistics, which is all a t-test needs. That also means it
+              cannot show you the things you should look at first: outliers,
+              skew, floor and ceiling effects, and whether the two groups look
+              anything like the model assumes.
+            </li>
+            <li>
+              <strong>This is the classic pooled-variance test.</strong> It
+              assumes the two population variances are equal. When the SD
+              sliders are set far apart the tool says so, and Welch's version
+              &mdash; which does not make that assumption and is a reasonable
+              default &mdash; is not computed here.
+            </li>
+            <li>
+              <strong>Equal group sizes.</strong> Unequal groups change the
+              standard error and the degrees of freedom, and make the
+              equal-variance assumption matter a good deal more.
+            </li>
+            <li>
+              <strong>Independence is assumed and cannot be checked.</strong>
+              Paired, clustered or repeated observations need a different
+              test, and no sample size repairs the wrong one.
+            </li>
+            <li>
+              <strong>A single test in isolation.</strong> Everything on this
+              page assumes the comparison was decided in advance and is the
+              only one being made. Neither assumption is common, and the last
+              tool in this module is about what happens when they fail.
+            </li>
+          </ul>
+        </aside>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+<script>
+/* ---- components/interactive-shell.js ---- */
+/* =========================================================================
+   Open Psychology Interactives — interactive shell helper
+   -------------------------------------------------------------------------
+   A very small vanilla-JS helper that every interactive in this collection
+   uses. It deliberately does *not* draw anything or know anything about
+   statistics, personality or neuropsychology. Its job is the repetitive,
+   easy-to-get-wrong accessibility plumbing:
+
+     * announcing changes through a polite live region;
+     * keeping a range slider and its <output> in step;
+     * wiring the standard Reset button;
+     * reporting the reader's reduced-motion preference.
+
+   Usage (see docs/adapting-a-tool.md for the full markup contract):
+
+       <script src="../../components/interactive-shell.js" defer><\/script>
+       <script src="tool.js" defer><\/script>
+
+       // in tool.js
+       const shell = InteractiveShell.attach('#sampling-demo');
+       shell.onReset(() => { ...restore defaults...; draw(); });
+       shell.bindRange('#sample-size', { format: n => n + ' cases' });
+       shell.announce('Sample of 25 drawn. Mean 4.8.');
+
+   Every published interactive is written against this module.
+
+   Exposed as a global (window.InteractiveShell) rather than an ES module so
+   that a single interactive folder can be opened directly from disk over
+   file:// — ES modules are blocked by CORS in that situation, plain scripts
+   are not. That constraint is the whole reason for the older syntax here.
+   ========================================================================= */
+
+(function (global) {
+  "use strict";
+
+  /* -----------------------------------------------------------------------
+     Internal helpers
+     --------------------------------------------------------------------- */
+
+  /**
+   * Accept either a CSS selector or an element and return an element.
+   * @param {string|Element} target
+   * @param {ParentNode} [scope]
+   * @returns {Element|null}
+   */
+  function resolve(target, scope) {
+    if (!target) {
+      return null;
+    }
+    if (typeof target === "string") {
+      return (scope || document).querySelector(target);
+    }
+    return target;
+  }
+
+  /**
+   * True when the reader has asked the operating system to reduce motion.
+   * Interactives should check this before animating anything — for example
+   * by drawing a sampling distribution in one step instead of animating
+   * each draw.
+   * @returns {boolean}
+   */
+  function prefersReducedMotion() {
+    return (
+      typeof global.matchMedia === "function" &&
+      global.matchMedia("(prefers-reduced-motion: reduce)").matches
+    );
+  }
+
+  /* -----------------------------------------------------------------------
+     Shell controller
+     --------------------------------------------------------------------- */
+
+  /**
+   * Attach the shell behaviour to one `.interactive` element.
+   *
+   * @param {string|Element} target  Selector or element for the shell root.
+   * @returns {object|null}  Controller, or null if the root was not found.
+   */
+  function attach(target) {
+    var root = resolve(target);
+
+    if (!root) {
+      if (global.console && console.warn) {
+        console.warn("InteractiveShell: root element not found.", target);
+      }
+      return null;
+    }
+
+    var controls = root.querySelector("[data-interactive-controls]");
+    var stage = root.querySelector("[data-interactive-stage]");
+    var status = root.querySelector("[data-interactive-status]");
+    var resetButton = root.querySelector("[data-interactive-reset]");
+    var resetHandlers = [];
+    // Every range bound with bindRange() registers its sync function here, so
+    // that reset() can refresh the visible values after the tool's own reset
+    // handlers have restored the inputs. See reset() for why this is needed.
+    var rangeSyncs = [];
+
+    /* --- Live region ----------------------------------------------------
+       The status element is marked up as role="status" (implicitly
+       aria-live="polite"). Two details matter:
+
+         1. Assistive technology only announces *changes* to a live region,
+            so writing the same string twice is silently dropped. We add a
+            trailing zero-width space on repeat messages to force an
+            announcement when a student re-runs the same action.
+         2. Announcements are debounced. A slider dragged across its range
+            fires dozens of input events; without a delay a screen reader
+            would queue every intermediate value and fall far behind.
+       ------------------------------------------------------------------ */
+
+    var announceTimer = null;
+    var lastMessage = "";
+
+    /**
+     * Announce a short sentence describing what just changed.
+     * @param {string} message
+     * @param {object} [options]
+     * @param {boolean} [options.immediate]  Skip the debounce delay. Use for
+     *   discrete actions (button presses); leave off for continuous input.
+     */
+    function announce(message, options) {
+      if (!status) {
+        return;
+      }
+
+      var text = String(message == null ? "" : message);
+      var immediate = Boolean(options && options.immediate);
+
+      if (announceTimer !== null) {
+        global.clearTimeout(announceTimer);
+        announceTimer = null;
+      }
+
+      function write() {
+        // Force a change when the text is identical to last time.
+        status.textContent = text === lastMessage ? text + "​" : text;
+        lastMessage = text;
+      }
+
+      if (immediate) {
+        write();
+      } else {
+        announceTimer = global.setTimeout(write, 350);
+      }
+    }
+
+    /* --- Reset ---------------------------------------------------------- */
+
+    /**
+     * Register a callback to run when the Reset button is pressed.
+     * Several may be registered; they run in the order added.
+     * @param {Function} handler
+     */
+    function onReset(handler) {
+      if (typeof handler === "function") {
+        resetHandlers.push(handler);
+      }
+    }
+
+    /**
+     * Run the reset handlers. Called by the button and available directly so
+     * an interactive can reset itself on first load.
+     *
+     * Bound ranges are re-synced afterwards. A reset handler restores an
+     * input by assigning to `input.value`, and assigning to a value in script
+     * does not fire an `input` event — so without this step the slider would
+     * jump back to its default while its <output> went on showing the old
+     * number. Syncing here, after the handlers have run, also means the sync
+     * sees the restored values regardless of the order things were
+     * registered in.
+     *
+     * @param {object} [options]
+     * @param {boolean} [options.silent]  Suppress the status announcement.
+     */
+    function reset(options) {
+      resetHandlers.forEach(function (handler) {
+        handler();
+      });
+      rangeSyncs.forEach(function (sync) {
+        sync();
+      });
+      if (!options || !options.silent) {
+        announce(
+          root.getAttribute("data-reset-message") ||
+            "Reset to the starting values.",
+          { immediate: true }
+        );
+      }
+    }
+
+    if (resetButton) {
+      resetButton.addEventListener("click", function (event) {
+        // Reset buttons commonly sit inside the controls <form>; stop the
+        // browser's own form reset from fighting with ours.
+        event.preventDefault();
+        reset();
+      });
+    }
+
+    /* --- Range binding --------------------------------------------------
+       Keeps a slider's <output> in step with its value. The <output> must
+       carry `for="<input id>"`, which is what associates the two for
+       assistive technology; this only handles the visible text.
+
+       Optionally sets aria-valuetext, which is how you make a screen reader
+       say "25 cases" or "medium correlation" instead of a bare "25".
+       ------------------------------------------------------------------ */
+
+    /**
+     * @param {string|Element} inputTarget  The range (or number) input.
+     * @param {object} [options]
+     * @param {Function} [options.format]  value:number -> string shown in the
+     *   <output>. Defaults to the raw value.
+     * @param {Function} [options.describe]  value:number -> string used for
+     *   aria-valuetext. Defaults to options.format.
+     * @param {Function} [options.onInput]  value:number -> void, called after
+     *   the display has been updated. Use it to redraw.
+     * @returns {HTMLInputElement|null}
+     */
+    function bindRange(inputTarget, options) {
+      var input = resolve(inputTarget, root);
+      if (!input) {
+        return null;
+      }
+
+      var settings = options || {};
+      var format =
+        typeof settings.format === "function"
+          ? settings.format
+          : function (value) {
+              return String(value);
+            };
+      var describe =
+        typeof settings.describe === "function" ? settings.describe : format;
+
+      // <output for="the-input-id"> is the conventional pairing.
+      var output = input.id
+        ? root.querySelector('output[for="' + input.id + '"]')
+        : null;
+
+      function sync() {
+        var value = Number(input.value);
+        if (output) {
+          output.textContent = format(value);
+        }
+        // Only meaningful for widgets with an implicit or explicit slider
+        // role; harmless elsewhere.
+        input.setAttribute("aria-valuetext", describe(value));
+        if (typeof settings.onInput === "function") {
+          settings.onInput(value);
+        }
+      }
+
+      input.addEventListener("input", sync);
+      // Registered so reset() can refresh the display after the tool's own
+      // reset handlers have put the input back to its default.
+      rangeSyncs.push(sync);
+      sync();
+
+      return input;
+    }
+
+    /* --- Public surface -------------------------------------------------- */
+
+    return {
+      /** The `.interactive` root element. */
+      root: root,
+      /** The controls panel, or null if the shell has none. */
+      controls: controls,
+      /** The stage element where the visualisation is drawn. */
+      stage: stage,
+      /** The live-region element. */
+      status: status,
+      announce: announce,
+      onReset: onReset,
+      reset: reset,
+      bindRange: bindRange,
+      prefersReducedMotion: prefersReducedMotion
+    };
+  }
+
+  /* -----------------------------------------------------------------------
+     Export
+     --------------------------------------------------------------------- */
+
+  global.InteractiveShell = {
+    attach: attach,
+    prefersReducedMotion: prefersReducedMotion
+  };
+})(window);
+
+/* ---- modules/research-methods/tools/16-independent-t-test-null-lab/tool.js ---- */
+/* =========================================================================
+   Independent-Samples t-Test: The Null Distribution
+   -------------------------------------------------------------------------
+   The tool works from summary statistics, because that is all a t-test needs:
+   two means, two standard deviations and a sample size.
+
+       pooled SD = sqrt((sA^2 + sB^2) / 2)          [equal group sizes]
+       SE        = pooled SD * sqrt(2 / n)
+       t         = (meanB - meanA) / SE
+       df        = 2n - 2
+       d         = (meanB - meanA) / pooled SD
+       p         = I_{df/(df + t^2)}(df/2, 1/2)      [two-tailed]
+
+   The picture is the distribution of t when the two POPULATION means are
+   equal. The tails beyond the observed statistic are shaded - that area is p -
+   the critical values are dashed rules, and the standard normal is drawn
+   faintly behind so the heavier tails of t at small df can be seen rather
+   than asserted.
+
+   THE SAMPLE SIZE LIVES IN THE DENOMINATOR ONLY
+   ---------------------------------------------
+   Moving n changes SE, t, df and p. It cannot change the mean difference or
+   Cohen's d, because d divides by the spread of individual people rather than
+   by the spread of sample means. That is the entire distinction between an
+   effect size and a test statistic, and the two preset buttons put the same
+   two groups at 15 and at 100 per group so it can be read off twice.
+
+   CRITICAL VALUES
+   ---------------
+   Found by bisection on the two-tailed tail area, which is exact to the
+   precision printed and avoids needing a separate inverse-t routine. The same
+   value gives the confidence interval for the mean difference.
+
+   WORDING
+   -------
+   The decision is always written as "reject" or "fail to reject", never
+   "accept the null". p is never described as the probability that the null is
+   true; the calculation begins by assuming it.
+
+   No data leave the browser: no storage, no network request.
+   ========================================================================= */
+
+(function () {
+  "use strict";
+
+  var MEAN_A = 50;
+  var T_AXIS = 4.6;      // half-width of the plotted t axis
+  var DEFAULTS = { meanB: 55, sdA: 10, sdB: 10, n: 15, alpha: "0.05" };
+
+  /* =======================================================================
+     Distributions
+     ===================================================================== */
+
+  var LANCZOS = [
+    0.99999999999980993, 676.5203681218851, -1259.1392167224028,
+    771.32342877765313, -176.61502916214059, 12.507343278686905,
+    -0.13857109526572012, 9.9843695780195716e-6, 1.5056327351493116e-7
+  ];
+
+  function logGamma(x) {
+    if (x < 0.5) {
+      return Math.log(Math.PI / Math.sin(Math.PI * x)) - logGamma(1 - x);
+    }
+    var z = x - 1;
+    var a = LANCZOS[0];
+    var t = z + 7.5;
+    for (var i = 1; i < 9; i += 1) { a += LANCZOS[i] / (z + i); }
+    return 0.5 * Math.log(2 * Math.PI) + (z + 0.5) * Math.log(t) - t + Math.log(a);
+  }
+
+  function betacf(a, b, x) {
+    var MAXIT = 300;
+    var EPS = 3e-14;
+    var FPMIN = 1e-300;
+    var qab = a + b;
+    var qap = a + 1;
+    var qam = a - 1;
+    var c = 1;
+    var d = 1 - qab * x / qap;
+    if (Math.abs(d) < FPMIN) { d = FPMIN; }
+    d = 1 / d;
+    var h = d;
+    for (var m = 1; m <= MAXIT; m += 1) {
+      var m2 = 2 * m;
+      var aa = m * (b - m) * x / ((qam + m2) * (a + m2));
+      d = 1 + aa * d;
+      if (Math.abs(d) < FPMIN) { d = FPMIN; }
+      c = 1 + aa / c;
+      if (Math.abs(c) < FPMIN) { c = FPMIN; }
+      d = 1 / d;
+      h *= d * c;
+      aa = -(a + m) * (qab + m) * x / ((a + m2) * (qap + m2));
+      d = 1 + aa * d;
+      if (Math.abs(d) < FPMIN) { d = FPMIN; }
+      c = 1 + aa / c;
+      if (Math.abs(c) < FPMIN) { c = FPMIN; }
+      d = 1 / d;
+      var del = d * c;
+      h *= del;
+      if (Math.abs(del - 1) < EPS) { break; }
+    }
+    return h;
+  }
+
+  function betai(a, b, x) {
+    if (x <= 0) { return 0; }
+    if (x >= 1) { return 1; }
+    var bt = Math.exp(
+      logGamma(a + b) - logGamma(a) - logGamma(b) +
+      a * Math.log(x) + b * Math.log(1 - x));
+    if (x < (a + 1) / (a + b + 2)) {
+      return bt * betacf(a, b, x) / a;
+    }
+    return 1 - bt * betacf(b, a, 1 - x) / b;
+  }
+
+  /** Two-tailed tail area of Student's t. */
+  function tTwoTail(t, df) {
+    var abs = Math.abs(t);
+    if (abs === 0) { return 1; }
+    return betai(df / 2, 0.5, df / (df + abs * abs));
+  }
+
+  /** Critical |t| for a two-tailed test, by bisection on the tail area. */
+  function tCritical(alpha, df) {
+    var lo = 0;
+    var hi = 200;
+    for (var i = 0; i < 80; i += 1) {
+      var mid = (lo + hi) / 2;
+      if (tTwoTail(mid, df) > alpha) { lo = mid; } else { hi = mid; }
+    }
+    return (lo + hi) / 2;
+  }
+
+  function tDensity(t, df) {
+    return Math.exp(
+      logGamma((df + 1) / 2) - logGamma(df / 2) -
+      0.5 * Math.log(df * Math.PI) -
+      ((df + 1) / 2) * Math.log(1 + t * t / df));
+  }
+
+  function normalDensity(t) {
+    return Math.exp(-0.5 * t * t) / Math.sqrt(2 * Math.PI);
+  }
+
+  /* =======================================================================
+     Small DOM helpers
+     ===================================================================== */
+
+  var NS = "http://www.w3.org/2000/svg";
+
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) { node.className = className; }
+    if (text !== undefined) { node.textContent = text; }
+    return node;
+  }
+
+  function svgNode(tag, attrs) {
+    var node = document.createElementNS(NS, tag);
+    Object.keys(attrs || {}).forEach(function (key) {
+      node.setAttribute(key, String(attrs[key]));
+    });
+    return node;
+  }
+
+  function svgText(attrs, text, className) {
+    var node = svgNode("text", attrs);
+    if (className) { node.setAttribute("class", className); }
+    node.textContent = text;
+    return node;
+  }
+
+  function clear(node) {
+    while (node.firstChild) { node.removeChild(node.firstChild); }
+  }
+
+  function fmt(value, places) {
+    return value.toFixed(places === undefined ? 2 : places);
+  }
+
+  function fmtP(p) {
+    if (p < 0.0001) { return "< .0001"; }
+    if (p < 0.001) { return "< .001"; }
+    if (p > 0.9995) { return "= 1.000"; }
+    return "= " + p.toFixed(3).replace(/^0/, "");
+  }
+
+  function signed(value, places) {
+    var pl = places === undefined ? 2 : places;
+    if (Math.abs(value) < Math.pow(10, -pl) / 2) { return (0).toFixed(pl); }
+    return (value > 0 ? "+" : "−") + Math.abs(value).toFixed(pl);
+  }
+
+  function row(cells) {
+    var tr = make("tr");
+    cells.forEach(function (cell, i) {
+      if (i === 0) {
+        var th = make("th", null, cell);
+        th.setAttribute("scope", "row");
+        tr.appendChild(th);
+      } else {
+        tr.appendChild(make("td", null, cell));
+      }
+    });
+    return tr;
+  }
+
+  var page = document;
+  var $ = function (s, scope) { return (scope || page).querySelector(s); };
+  var $$ = function (s, scope) {
+    return Array.prototype.slice.call((scope || page).querySelectorAll(s));
+  };
+
+  function showFeedback(container, tone, verdictText, text) {
+    clear(container);
+    container.setAttribute("data-tone", tone);
+    var p = make("p");
+    p.appendChild(make("strong", "feedback__verdict", verdictText));
+    if (text) { p.appendChild(document.createTextNode(" " + text)); }
+    container.appendChild(p);
+    container.hidden = false;
+    return p;
+  }
+
+  /* =======================================================================
+     Wiring
+     ===================================================================== */
+
+  var shell = InteractiveShell.attach("#ttest");
+  if (!shell) { return; }
+
+  var meanBRange = $("#mean-b-range");
+  var sdARange = $("#sd-a-range");
+  var sdBRange = $("#sd-b-range");
+  var nRange = $("#n-range");
+  var alphaSelect = $("#alpha-select");
+  var chartHeading = $("[data-chart-heading]");
+  var nullSvg = $("[data-null]");
+  var nullTable = $("[data-null-table]");
+  var readout = $("[data-readout]");
+  var verdictBox = $("[data-verdict]");
+  var interpretation = $("[data-interpretation]");
+  var assumption = $("[data-assumption]");
+  var dfNote = $("[data-df-note]");
+  var extraTable = $("[data-extra-table]");
+
+  var openingForm = $("#opening-form");
+  var openingError = $("[data-opening-error]");
+  var openingFeedback = $("[data-opening-feedback]");
+  var labSection = $("#lab-section");
+  var challengeSection = $("#challenge");
+
+  var challengeForm = $("#challenge-form");
+  var challengeError = $("[data-challenge-error]");
+  var challengeFeedback = $("[data-challenge-feedback]");
+
+  /* =======================================================================
+     The test
+     ===================================================================== */
+
+  function settings() {
+    return {
+      meanB: Number(meanBRange.value),
+      sdA: Number(sdARange.value),
+      sdB: Number(sdBRange.value),
+      n: Number(nRange.value),
+      alpha: Number(alphaSelect.value)
+    };
+  }
+
+  function results() {
+    var s = settings();
+    var diff = s.meanB - MEAN_A;
+    var pooled = Math.sqrt((s.sdA * s.sdA + s.sdB * s.sdB) / 2);
+    var se = pooled * Math.sqrt(2 / s.n);
+    var t = se > 0 ? diff / se : 0;
+    var df = 2 * s.n - 2;
+    var crit = tCritical(s.alpha, df);
+    return {
+      s: s, diff: diff, pooled: pooled, se: se, t: t, df: df,
+      d: pooled > 0 ? diff / pooled : 0,
+      p: tTwoTail(t, df),
+      crit: crit,
+      ciLo: diff - crit * se,
+      ciHi: diff + crit * se,
+      reject: Math.abs(t) >= crit
+    };
+  }
+
+  /* =======================================================================
+     Drawing
+     ===================================================================== */
+
+  var PLOT = { left: 30, right: 448, top: 14, base: 150 };
+
+  function xAt(t) {
+    return PLOT.left + ((t + T_AXIS) / (2 * T_AXIS)) * (PLOT.right - PLOT.left);
+  }
+
+  function renderChart(r) {
+    var peak = tDensity(0, r.df);
+    var scale = Math.max(peak, normalDensity(0));
+    var yAt = function (d) {
+      return PLOT.base - (d / (scale * 1.08)) * (PLOT.base - PLOT.top);
+    };
+
+    clear(nullSvg);
+
+    var steps = 240;
+    var tPoints = [];
+    var zPoints = [];
+    for (var i = 0; i <= steps; i += 1) {
+      var t = -T_AXIS + (2 * T_AXIS) * (i / steps);
+      tPoints.push([xAt(t), yAt(tDensity(t, r.df))]);
+      zPoints.push([xAt(t), yAt(normalDensity(t))]);
+    }
+    function toPath(points) {
+      return points.map(function (p, idx) {
+        return (idx === 0 ? "M" : "L") + fmt(p[0], 1) + " " + fmt(p[1], 1);
+      }).join(" ");
+    }
+
+    // The shaded tails: everything at least as far from zero as the observed
+    // statistic. That area is the two-tailed p.
+    var absT = Math.min(Math.abs(r.t), T_AXIS);
+    [[-T_AXIS, -absT], [absT, T_AXIS]].forEach(function (span) {
+      if (span[1] - span[0] <= 0.001) { return; }
+      var pts = [];
+      var n = 60;
+      for (var j = 0; j <= n; j += 1) {
+        var v = span[0] + (span[1] - span[0]) * (j / n);
+        pts.push([xAt(v), yAt(tDensity(v, r.df))]);
+      }
+      nullSvg.appendChild(svgNode("path", {
+        d: "M" + fmt(xAt(span[0]), 1) + " " + PLOT.base + " " +
+          toPath(pts).slice(1) + " L" + fmt(xAt(span[1]), 1) + " " +
+          PLOT.base + " Z",
+        class: "nd__tail"
+      }));
+      for (var hx = xAt(span[0]) + 3; hx < xAt(span[1]); hx += 7) {
+        var value = -T_AXIS + ((hx - PLOT.left) / (PLOT.right - PLOT.left)) *
+          (2 * T_AXIS);
+        var topY = yAt(tDensity(value, r.df));
+        if (PLOT.base - topY < 2) { continue; }
+        nullSvg.appendChild(svgNode("line",
+          { x1: hx, y1: PLOT.base, x2: hx, y2: topY, class: "nd__hatch" }));
+      }
+    });
+
+    nullSvg.appendChild(svgNode("path", { d: toPath(zPoints), class: "nd__normal" }));
+    nullSvg.appendChild(svgNode("path", { d: toPath(tPoints), class: "nd__curve" }));
+
+    // Critical values.
+    [-r.crit, r.crit].forEach(function (c) {
+      if (Math.abs(c) > T_AXIS) { return; }
+      nullSvg.appendChild(svgNode("line", {
+        x1: xAt(c), y1: PLOT.top, x2: xAt(c), y2: PLOT.base + 4,
+        class: "nd__critical"
+      }));
+    });
+    if (r.crit <= T_AXIS) {
+      nullSvg.appendChild(svgText(
+        { x: xAt(r.crit) + 4, y: PLOT.top + 10, "text-anchor": "start" },
+        "critical ±" + fmt(r.crit), "chart__label"));
+    }
+
+    // The observed statistic.
+    var shown = Math.max(-T_AXIS, Math.min(T_AXIS, r.t));
+    nullSvg.appendChild(svgNode("line", {
+      x1: xAt(shown), y1: PLOT.top - 2, x2: xAt(shown), y2: PLOT.base + 6,
+      class: "nd__observed"
+    }));
+    nullSvg.appendChild(svgText(
+      { x: xAt(shown) + (shown > 0 ? -5 : 5), y: PLOT.top + 26,
+        "text-anchor": shown > 0 ? "end" : "start" },
+      "observed t = " + fmt(r.t) +
+        (Math.abs(r.t) > T_AXIS ? " (off the axis)" : ""), "chart__label"));
+
+    nullSvg.appendChild(svgNode("line",
+      { x1: PLOT.left, y1: PLOT.base, x2: PLOT.right, y2: PLOT.base,
+        class: "nd__axis" }));
+    for (var v2 = -4; v2 <= 4; v2 += 1) {
+      nullSvg.appendChild(svgNode("line",
+        { x1: xAt(v2), y1: PLOT.base, x2: xAt(v2), y2: PLOT.base + 4,
+          class: "nd__axis" }));
+      nullSvg.appendChild(svgText(
+        { x: xAt(v2), y: PLOT.base + 17, "text-anchor": "middle" },
+        String(v2), "chart__axis"));
+    }
+    nullSvg.appendChild(svgText(
+      { x: (PLOT.left + PLOT.right) / 2, y: PLOT.base + 33,
+        "text-anchor": "middle" },
+      "t, if the two population means were equal — dashed curve is the normal",
+      "chart__axis"));
+  }
+
+  function renderTables(r) {
+    clear(nullTable);
+    [
+      ["Observed t", fmt(r.t) + " on " + r.df + " df"],
+      ["Critical value at α = " + r.s.alpha, "±" + fmt(r.crit)],
+      ["Two-tailed p", "p " + fmtP(r.p)],
+      ["Decision", r.reject
+        ? "reject H₀ at α = " + r.s.alpha
+        : "fail to reject H₀ at α = " + r.s.alpha]
+    ].forEach(function (cells) { nullTable.appendChild(row(cells)); });
+
+    clear(extraTable);
+    var level = Math.round((1 - r.s.alpha) * 1000) / 10;
+    [
+      ["Mean difference", signed(r.diff, 1) + " points"],
+      [level + "% interval for the difference",
+        "[" + fmt(r.ciLo, 1) + ", " + fmt(r.ciHi, 1) + "]"],
+      ["Critical value from t", "±" + fmt(r.crit)],
+      ["Critical value from the normal", "±" + fmt(tCritical(r.s.alpha, 100000))]
+    ].forEach(function (cells) { extraTable.appendChild(row(cells)); });
+
+    dfNote.textContent =
+      "With " + r.df + " degrees of freedom the critical value is " +
+      fmt(r.crit) + ", against " + fmt(tCritical(r.s.alpha, 100000)) +
+      " for the normal distribution the t curve is approaching. The gap is " +
+      "what it costs to estimate the standard deviation from the same small " +
+      "sample that produced the means, and it closes as the study grows. " +
+      "Note also that the interval above excludes zero exactly when the test " +
+      "rejects: they are the same statement made twice, and the interval is " +
+      "the more informative of the two because it names the values the data " +
+      "are compatible with.";
+  }
+
+  function renderReadout(r) {
+    clear(readout);
+    [
+      ["Mean difference", signed(r.diff, 1)],
+      ["Standard error", fmt(r.se)],
+      ["t (" + r.df + " df)", fmt(r.t)],
+      ["Cohen's d", fmt(r.d)]
+    ].forEach(function (pair) {
+      var cell = make("div");
+      cell.appendChild(make("dt", null, pair[0]));
+      cell.appendChild(make("dd", null, pair[1]));
+      readout.appendChild(cell);
+    });
+  }
+
+  function renderVerdict(r) {
+    var tone;
+    var text;
+    var stat = "t(" + r.df + ") = " + fmt(r.t) + ", p " + fmtP(r.p) +
+      ", d = " + fmt(r.d);
+
+    if (r.reject) {
+      tone = "good";
+      text =
+        "The groups differed significantly, " + stat + ", " +
+        Math.round((1 - r.s.alpha) * 100) + "% CI for the difference [" +
+        fmt(r.ciLo, 1) + ", " + fmt(r.ciHi, 1) + "]. That sentence is the " +
+        "whole of what the test licenses. It does not say the difference is " +
+        "important - d = " + fmt(r.d) + " and the interval are what speak to " +
+        "that - and p is not the probability that the null is false.";
+    } else if (r.p > 0.5) {
+      tone = "neutral";
+      text =
+        "The groups did not differ significantly, " + stat + ", " +
+        Math.round((1 - r.s.alpha) * 100) + "% CI [" + fmt(r.ciLo, 1) + ", " +
+        fmt(r.ciHi, 1) + "]. The observed t sits close to the middle of the " +
+        "null distribution, so these data are entirely ordinary under equal " +
+        "population means. Note the wording: fail to reject, not accept. The " +
+        "interval shows how much the study still leaves open.";
+    } else {
+      tone = "caution";
+      text =
+        "The groups did not differ significantly, " + stat + ", " +
+        Math.round((1 - r.s.alpha) * 100) + "% CI [" + fmt(r.ciLo, 1) + ", " +
+        fmt(r.ciHi, 1) + "]. The observed t is out towards the tail without " +
+        "reaching the critical value - the case usually written up as a " +
+        "\"trend\". That describes a result that failed the rule the authors " +
+        "chose. Report the estimate and its interval instead.";
+    }
+
+    interpretation.textContent = text;
+    verdictBox.setAttribute("data-tone", tone);
+
+    var lines = [];
+    var ratio = Math.max(r.s.sdA, r.s.sdB) / Math.min(r.s.sdA, r.s.sdB);
+    if (ratio > 1.8) {
+      lines.push(
+        "The two standard deviations differ by a factor of " + fmt(ratio, 1) +
+        ". This is the classic pooled-variance test, which assumes they are " +
+        "equal, and with a ratio this large the pooled figure of " +
+        fmt(r.pooled, 1) + " describes neither group.");
+    }
+    if (r.df < 10) {
+      lines.push(
+        "With only " + r.df + " degrees of freedom the null distribution has " +
+        "visibly heavier tails than the normal drawn behind it, and the " +
+        "critical value is " + fmt(r.crit) + " rather than 1.96. Small " +
+        "studies pay for estimating the spread.");
+    }
+    if (!lines.length) {
+      lines.push(
+        "Every figure here assumes independent observations, roughly normal " +
+        "populations, equal variances, and that this comparison was decided " +
+        "before the data were seen. The tool can check none of those.");
+    }
+    assumption.textContent = lines.join(" ");
+  }
+
+  function render() {
+    var r = results();
+    chartHeading.textContent =
+      "Null distribution of t on " + r.df + " degrees of freedom";
+    renderChart(r);
+    renderTables(r);
+    renderReadout(r);
+    renderVerdict(r);
+    return r;
+  }
+
+  /* =======================================================================
+     Controls
+     ===================================================================== */
+
+  shell.bindRange(meanBRange, {
+    format: function (v) { return fmt(v, 1); },
+    describe: function (v) {
+      return "group B's mean is " + fmt(v, 1) + ", against group A's " + MEAN_A;
+    },
+    onInput: render
+  });
+
+  shell.bindRange(sdARange, {
+    format: function (v) { return String(v); },
+    describe: function (v) { return "group A has a standard deviation of " + v; },
+    onInput: render
+  });
+
+  shell.bindRange(sdBRange, {
+    format: function (v) { return String(v); },
+    describe: function (v) { return "group B has a standard deviation of " + v; },
+    onInput: render
+  });
+
+  shell.bindRange(nRange, {
+    format: function (v) { return String(v); },
+    describe: function (v) {
+      return v + " participants per group, which is " + (2 * v - 2) +
+        " degrees of freedom";
+    },
+    onInput: render
+  });
+
+  alphaSelect.addEventListener("change", function () {
+    var r = render();
+    shell.announce(
+      "Alpha set to " + alphaSelect.value + ". The critical value is now ±" +
+      fmt(r.crit) + ". Nothing about the data has changed, and neither has p.",
+      { immediate: true });
+  });
+
+  function applyStudy(meanB, n, label) {
+    meanBRange.value = String(meanB);
+    sdARange.value = "10";
+    sdBRange.value = "10";
+    nRange.value = String(n);
+    [meanBRange, sdARange, sdBRange, nRange].forEach(function (input) {
+      input.dispatchEvent(new Event("input"));
+    });
+    var r = render();
+    shell.announce(
+      label + ": mean difference " + signed(r.diff, 1) + " points, d = " +
+      fmt(r.d) + ", standard error " + fmt(r.se) + ", t(" + r.df + ") = " +
+      fmt(r.t) + ", p " + fmtP(r.p) + ".", { immediate: true });
+  }
+
+  $('[data-action="small-study"]').addEventListener("click", function () {
+    applyStudy(55, 15, "The 15-per-group study");
+  });
+  $('[data-action="big-study"]').addEventListener("click", function () {
+    applyStudy(55, 100, "The same effect at 100 per group");
+  });
+  $('[data-action="null-study"]').addEventListener("click", function () {
+    applyStudy(50, 15, "No difference at all");
+  });
+
+  /* =======================================================================
+     Opening predictions
+     ===================================================================== */
+
+  var TRUTH = { se: "smaller", t: "larger", p: "smaller" };
+
+  var WHY = {
+    se:
+      "The standard error is the pooled standard deviation times the square " +
+      "root of two over n, so it falls from 3.65 at fifteen per group to 1.41 " +
+      "at a hundred. This is the only place the sample size enters the test.",
+    t:
+      "t is the same mean difference of 5.0 points divided by a smaller " +
+      "standard error, so it rises from 1.37 to 3.54. Nothing about the two " +
+      "groups changed; the study simply became better at seeing them apart.",
+    p:
+      "p is the area beyond the observed t, so a larger t means a smaller " +
+      "area: about .18 becomes about .0005. And Cohen's d is 0.50 in both " +
+      "studies, because d divides by the spread of individual people rather " +
+      "than by the spread of sample means. One finding, two very different " +
+      "p-values."
+  };
+
+  function lockForm(form) {
+    $$("input, button, select", form).forEach(function (c) { c.disabled = true; });
+  }
+
+  function unlockForm(form) {
+    $$("input, button, select", form).forEach(function (c) { c.disabled = false; });
+    form.reset();
+  }
+
+  function openLab() {
+    labSection.hidden = false;
+    challengeSection.hidden = false;
+    render();
+    $("#lab-heading").focus();
+    shell.announce(
+      "Laboratory unlocked, loaded with the fifteen-per-group study from the " +
+      "predictions.", { immediate: true });
+  }
+
+  openingForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answers = {};
+    var missing = false;
+    ["se", "t", "p"].forEach(function (name) {
+      var picked = $('input[name="' + name + '"]:checked', openingForm);
+      if (!picked) { missing = true; } else { answers[name] = picked.value; }
+    });
+    if (missing) {
+      openingError.textContent =
+        "Answer all three questions before opening the laboratory.";
+      openingError.hidden = false;
+      return;
+    }
+    openingError.hidden = true;
+
+    var correct = ["se", "t", "p"].filter(function (name) {
+      return answers[name] === TRUTH[name];
+    }).length;
+    var tone = correct === 3 ? "good" : correct >= 2 ? "caution" : "warn";
+
+    clear(openingFeedback);
+    openingFeedback.setAttribute("data-tone", tone);
+    var p = make("p");
+    p.appendChild(make("strong", "feedback__verdict",
+      correct === 3 ? "All three." : correct + " of the three."));
+    p.appendChild(document.createTextNode(
+      " The two study buttons in the laboratory put both versions on screen, " +
+      "so you can read every figure twice."));
+    openingFeedback.appendChild(p);
+    var list = make("ul");
+    ["se", "t", "p"].forEach(function (name) {
+      var li = make("li");
+      li.appendChild(make("strong", null,
+        (answers[name] === TRUTH[name] ? "Correct. " : "Not quite. ")));
+      li.appendChild(document.createTextNode(WHY[name]));
+      list.appendChild(li);
+    });
+    openingFeedback.appendChild(list);
+    openingFeedback.hidden = false;
+
+    lockForm(openingForm);
+    openLab();
+  });
+
+  $('[data-action="skip-opening"]').addEventListener("click", function () {
+    openingError.hidden = true;
+    showFeedback(openingFeedback, "neutral",
+      "Predictions skipped — demonstration mode.", "");
+    lockForm(openingForm);
+    openLab();
+  });
+
+  /* =======================================================================
+     Challenge — choose the write-up
+     ===================================================================== */
+
+  var CONCLUSIONS = {
+    nodiff: {
+      correct: false,
+      label: "\"There was no difference between the two groups.\"",
+      text:
+        "This states as a finding something the study did not establish. The " +
+        "interval runs from −0.7 to 9.7 points: the data are compatible " +
+        "with no difference and with a difference of nearly ten points. " +
+        "Absence of evidence has been converted into evidence of absence."
+    },
+    good: {
+      correct: true,
+      label: "The full sentence with the statistic, the effect size, the " +
+        "interval and a statement of what the study could not settle.",
+      text:
+        "This is the best of the four. It reports the decision in the correct " +
+        "form - did not differ significantly - gives the test statistic with " +
+        "its degrees of freedom, gives an effect size so the reader can judge " +
+        "the size of what was found, gives an interval so the reader can see " +
+        "the range the data are compatible with, and says plainly that the " +
+        "study was underpowered rather than that nothing is there."
+    },
+    trend: {
+      correct: false,
+      label: "\"A marginally significant trend towards a difference.\"",
+      text:
+        "The authors chose α = .05 in advance and the result did not reach " +
+        "it. \"Marginally significant\" and \"approaching significance\" " +
+        "describe a failed test in language borrowed from a passed one, and " +
+        "there is no threshold at which a result becomes marginal - .087 is " +
+        "not closer to .05 in any sense that matters. If the threshold was " +
+        "worth setting, it is worth respecting; if it was not, it should not " +
+        "have been set."
+    },
+    probably: {
+      correct: false,
+      label: "\"So the null hypothesis is probably true.\"",
+      text:
+        "This reverses the conditional. The whole calculation begins by " +
+        "assuming the null hypothesis and asks what data it would produce; " +
+        "nothing about how likely that assumption was ever entered it, so " +
+        "nothing about it can come out. A probability for a hypothesis " +
+        "requires a prior, which this framework does not use."
+    }
+  };
+
+  challengeForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var picked = $('input[name="conclusion"]:checked', challengeForm);
+    if (!picked) {
+      challengeError.textContent = "Choose one of the four write-ups.";
+      challengeError.hidden = false;
+      return;
+    }
+    challengeError.hidden = true;
+
+    var right = picked.value === "good";
+    clear(challengeFeedback);
+    challengeFeedback.setAttribute("data-tone", right ? "good" : "caution");
+    var p = make("p");
+    p.appendChild(make("strong", "feedback__verdict",
+      right ? "Yes — and notice how much of it is not the p-value."
+        : "Not this one."));
+    p.appendChild(document.createTextNode(
+      " Three of the four are in wide circulation, which is why the exercise " +
+      "is worth doing on paper as well as here."));
+    challengeFeedback.appendChild(p);
+
+    var list = make("ul");
+    Object.keys(CONCLUSIONS).forEach(function (key) {
+      var li = make("li");
+      li.appendChild(make("strong", null,
+        (key === picked.value ? "You chose this. " : "") + CONCLUSIONS[key].label + " "));
+      li.appendChild(document.createTextNode(CONCLUSIONS[key].text));
+      list.appendChild(li);
+    });
+    challengeFeedback.appendChild(list);
+    challengeFeedback.hidden = false;
+    shell.announce(right
+      ? "Correct: the full sentence with the interval is the best write-up."
+      : "Not the best of the four; explanations are below.", { immediate: true });
+  });
+
+  /* =======================================================================
+     Reset and start-up
+     ===================================================================== */
+
+  shell.onReset(function () {
+    unlockForm(openingForm);
+    openingFeedback.hidden = true;
+    openingError.hidden = true;
+    labSection.hidden = true;
+    challengeSection.hidden = true;
+    challengeForm.reset();
+    challengeFeedback.hidden = true;
+    challengeError.hidden = true;
+    meanBRange.value = String(DEFAULTS.meanB);
+    sdARange.value = String(DEFAULTS.sdA);
+    sdBRange.value = String(DEFAULTS.sdB);
+    nRange.value = String(DEFAULTS.n);
+    alphaSelect.value = DEFAULTS.alpha;
+    render();
+  });
+
+  shell.reset({ silent: true });
+  shell.announce(
+    "Ready. Answer the three predictions above to open the laboratory.",
+    { immediate: true });
+})();
+
+</script>
+</div>

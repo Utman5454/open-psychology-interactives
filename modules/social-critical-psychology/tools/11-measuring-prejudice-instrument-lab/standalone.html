@@ -1,0 +1,3371 @@
+<!-- Measuring Prejudice: What Does the Instrument Capture?
+     From Open Psychology Interactives - https://github.com/utman5454/open-psychology-interactives
+     Self-contained: no stylesheets, scripts, fonts, images or network requests.
+     Styles are scoped to .opi-activity and do not affect the page around them.
+     Nothing is saved, sent or tracked. MIT licensed; please keep this notice.
+     Paste anywhere that accepts HTML, or save as a .html file and open it. -->
+<div class="opi-activity">
+<style>
+/* Defensive baseline. See scripts/build-standalone.py for why this
+   is `revert` rather than an enumerated reset, and how the specificity ladder
+   keeps the activity's own styling on top of it. */
+.opi-activity *:not(svg *) {
+  all: revert;
+}
+.opi-activity, .opi-activity *, .opi-activity *::before, .opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  text-transform: none;
+  text-indent: 0;
+  font-style: normal;
+  font-variant: normal;
+  letter-spacing: normal;
+  word-spacing: normal;
+  white-space: normal;
+  visibility: visible;
+  float: none;
+  max-width: none;
+}
+.opi-activity svg { max-width: 100%; }
+.opi-activity img { max-width: 100%; height: auto; }
+.opi-activity [hidden] { display: none !important; }
+
+/* assets/css/main.css */
+.opi-activity.opi-activity {
+  --colour-page: #ffffff;
+  --colour-surface: #f5f7fa;
+  --colour-surface-raised: #ffffff;
+  --colour-border: #d3d9e2;
+  --colour-border-strong: #aeb7c4;
+  --colour-text: #131820;
+  --colour-text-muted: #4c566a;
+  --colour-accent: #1a4fa0;
+  --colour-accent-hover: #123a7a;
+  --colour-accent-soft: #e8eefb;
+  --colour-on-accent: #ffffff;
+  --colour-focus: #b45309;
+  --colour-cognitive: #8a4b00;
+  --colour-research-methods: #1a4fa0;
+  --colour-neuropsychology: #145c53;
+  --colour-social-critical-psychology: #9e2f45;
+  --colour-personality-individual-differences: #7a2e6d;
+  --colour-status-bg: #f1ede3;
+  --colour-status-text: #5c4a1f;
+  --colour-status-border: #d9cdb0;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  --text-xs: 13px;
+  --text-sm: 15px;
+  --text-base: 17px;
+  --text-lg: 19px;
+  --text-xl: 23px;
+  --text-2xl: 28px;
+  --text-3xl: 36px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgb(19 24 32 / 0.06);
+  --shadow-md: 0 2px 8px rgb(19 24 32 / 0.08);
+  --measure: 68ch;
+  --container: 1152px;
+}
+@media (prefers-color-scheme: dark) {
+.opi-activity.opi-activity {
+  --colour-page: #0f141b;
+  --colour-surface: #161d27;
+  --colour-surface-raised: #1a2230;
+  --colour-border: #2c3644;
+  --colour-border-strong: #44506180;
+  --colour-text: #e9edf3;
+  --colour-text-muted: #a8b2c1;
+  --colour-accent: #8fb6ff;
+  --colour-accent-hover: #b3cdff;
+  --colour-accent-soft: #1b2740;
+  --colour-on-accent: #0f141b;
+  --colour-focus: #f0b429;
+  --colour-cognitive: #e2ab5f;
+  --colour-research-methods: #8fb6ff;
+  --colour-neuropsychology: #6fc3b4;
+  --colour-social-critical-psychology: #f19aa8;
+  --colour-personality-individual-differences: #db9ccd;
+  --colour-status-bg: #241f14;
+  --colour-status-text: #e2cf9f;
+  --colour-status-border: #4a4028;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 2px 10px rgb(0 0 0 / 0.45);
+}
+}
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  box-sizing: border-box;
+}
+.opi-activity.opi-activity {
+  -webkit-text-size-adjust: 100%;
+}
+.opi-activity.opi-activity {
+  background-color: var(--colour-page);
+  color: var(--colour-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.65;
+}
+.opi-activity.opi-activity h1,
+.opi-activity.opi-activity h2,
+.opi-activity.opi-activity h3,
+.opi-activity.opi-activity h4 {
+  margin: 0 0 var(--space-3);
+  line-height: 1.25;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.opi-activity.opi-activity h1 {
+  font-size: var(--text-3xl);
+}
+.opi-activity.opi-activity h2 {
+  font-size: var(--text-2xl);
+}
+.opi-activity.opi-activity h3 {
+  font-size: var(--text-xl);
+}
+.opi-activity.opi-activity h4 {
+  font-size: var(--text-lg);
+}
+.opi-activity.opi-activity p,
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol,
+.opi-activity.opi-activity dl {
+  margin: 0 0 var(--space-4);
+}
+.opi-activity.opi-activity ul,
+.opi-activity.opi-activity ol {
+  padding-left: 1.35em;
+}
+.opi-activity.opi-activity li + li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity a {
+  color: var(--colour-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: max(1px, 0.06em);
+}
+.opi-activity.opi-activity a:hover {
+  color: var(--colour-accent-hover);
+  text-decoration-thickness: max(2px, 0.11em);
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid var(--colour-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+@supports not selector(:focus-visible) {
+.opi-activity.opi-activity :focus {
+  outline: 3px solid var(--colour-focus);
+    outline-offset: 2px;
+}
+}
+.opi-activity.opi-activity code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.35em;
+}
+.opi-activity.opi-activity hr {
+  border: 0;
+  border-top: 1px solid var(--colour-border);
+  margin: var(--space-6) 0;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity, .opi-activity.opi-activity *,
+.opi-activity.opi-activity *::before,
+.opi-activity.opi-activity *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+}
+.opi-activity.opi-activity .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.opi-activity.opi-activity .container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+@media (min-width: 40em) {
+.opi-activity.opi-activity .container {
+  padding-inline: var(--space-5);
+}
+}
+.opi-activity.opi-activity .prose {
+  max-width: var(--measure);
+}
+.opi-activity.opi-activity .text-muted {
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .section {
+  padding-block: var(--space-7);
+}
+.opi-activity.opi-activity .section--tinted {
+  background-color: var(--colour-surface);
+  border-block: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .section__header {
+  max-width: var(--measure);
+  margin-bottom: var(--space-5);
+}
+.opi-activity.opi-activity .section__header > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-7) var(--space-6);
+  border-bottom: 1px solid var(--colour-border);
+  
+  background-image: linear-gradient(
+    180deg,
+    var(--colour-accent-soft) 0%,
+    var(--colour-page) 100%
+  );
+}
+.opi-activity.opi-activity .hero__eyebrow {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .hero h1 {
+  max-width: 20ch;
+  margin-bottom: var(--space-4);
+}
+.opi-activity.opi-activity .hero__lead {
+  max-width: var(--measure);
+  font-size: var(--text-lg);
+  color: var(--colour-text-muted);
+}
+@media (min-width: 48em) {
+.opi-activity.opi-activity .hero {
+  padding-block: var(--space-8) var(--space-7);
+}
+.opi-activity.opi-activity .hero h1 {
+  font-size: 44px;
+}
+}
+.opi-activity.opi-activity .button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  
+  min-height: 44px;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .button--primary {
+  background-color: var(--colour-accent);
+  border-color: var(--colour-accent);
+  
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--primary:hover {
+  background-color: var(--colour-accent-hover);
+  border-color: var(--colour-accent-hover);
+  color: var(--colour-on-accent);
+}
+.opi-activity.opi-activity .button--secondary {
+  background-color: transparent;
+  border-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .button--secondary:hover {
+  background-color: var(--colour-surface);
+  border-color: var(--colour-accent);
+  color: var(--colour-accent);
+}
+.opi-activity.opi-activity .card--cognitive {
+  --card-accent: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .card--research-methods {
+  --card-accent: var(--colour-research-methods);
+}
+.opi-activity.opi-activity .card--neuropsychology {
+  --card-accent: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .card--social-critical-psychology {
+  --card-accent: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .card--personality-individual-differences {
+  --card-accent: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 650;
+  line-height: 1.4;
+  padding: 3.2px var(--space-3);
+  border-radius: 999px;
+  border: 1px solid var(--colour-status-border);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+}
+.opi-activity.opi-activity .badge__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex: none;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed var(--colour-border-strong);
+  border-radius: var(--radius-lg);
+  background-color: var(--colour-surface);
+  padding: var(--space-5);
+  text-align: left;
+}
+.opi-activity.opi-activity .placeholder__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+}
+.opi-activity.opi-activity .placeholder > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .split {
+  display: grid;
+  gap: var(--space-6);
+}
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split {
+  grid-template-columns: 3fr 2fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .panel {
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.opi-activity.opi-activity .panel > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .panel__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .section--tinted {
+  border-block: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .hero {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .button--primary {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .button--secondary {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .button:hover {
+  border-color: Highlight;
+}
+.opi-activity.opi-activity .panel {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .placeholder {
+  border: 2px dashed CanvasText;
+}
+.opi-activity.opi-activity .badge {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .badge__dot {
+  background-color: CanvasText;
+}
+.opi-activity.opi-activity code {
+  border-color: CanvasText;
+}
+.opi-activity.opi-activity hr {
+  border-top-color: CanvasText;
+}
+.opi-activity.opi-activity :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+}
+@media print {
+.opi-activity.opi-activity {
+  color: #000;
+  background: #fff;
+}
+.opi-activity.opi-activity a[href^="http"]::after {
+  content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+}
+}
+
+/* components/interactive-shell.css */
+.opi-activity.opi-activity .interactive {
+  --shell-page: var(--colour-page, #ffffff);
+  --shell-surface: var(--colour-surface, #f5f7fa);
+  --shell-raised: var(--colour-surface-raised, #ffffff);
+  --shell-border: var(--colour-border, #d3d9e2);
+  --shell-border-strong: var(--colour-border-strong, #aeb7c4);
+  --shell-text: var(--colour-text, #131820);
+  --shell-muted: var(--colour-text-muted, #4c566a);
+  --shell-accent: var(--colour-accent, #1a4fa0);
+  --shell-accent-soft: var(--colour-accent-soft, #e8eefb);
+  
+  --shell-on-accent: var(--colour-on-accent, #ffffff);
+  --shell-focus: var(--colour-focus, #b45309);
+  --shell-radius: var(--radius-lg, 12px);
+  --shell-gap: var(--space-5, 24px);
+
+  display: block;
+  background-color: var(--shell-raised);
+  color: var(--shell-text);
+  border: 1px solid var(--shell-border);
+  border-radius: var(--shell-radius);
+  
+  overflow-x: clip;
+  overflow-y: visible;
+}
+.opi-activity.opi-activity .interactive__header {
+  padding: var(--shell-gap);
+  border-bottom: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 1.25;
+}
+.opi-activity.opi-activity .interactive__brief {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--shell-muted);
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__body {
+  display: grid;
+  gap: var(--shell-gap);
+  padding: var(--shell-gap);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body {
+  grid-template-columns: minmax(240px, 320px) 1fr;
+    align-items: start;
+}
+}
+.opi-activity.opi-activity .interactive__controls {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__controls fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .interactive__controls legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .control {
+  display: grid;
+  gap: 5.6px;
+}
+.opi-activity.opi-activity .control + .control {
+  margin-top: 16px;
+}
+.opi-activity.opi-activity .control__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.opi-activity.opi-activity .control__label {
+  font-size: 15px;
+  font-weight: 600;
+}
+.opi-activity.opi-activity .control__value {
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--shell-accent);
+}
+.opi-activity.opi-activity .control__hint {
+  font-size: 13px;
+  color: var(--shell-muted);
+}
+.opi-activity.opi-activity .interactive__controls input[type="range"] {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--shell-accent);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  width: 100%;
+  min-height: 44px;
+  padding: 5.6px 9.6px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--shell-text);
+  background-color: var(--shell-raised);
+  border: 1px solid var(--shell-border-strong);
+  border-radius: var(--radius-sm, 4px);
+}
+.opi-activity.opi-activity .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+}
+.opi-activity.opi-activity .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  accent-color: var(--shell-accent);
+  flex: none;
+}
+.opi-activity.opi-activity .interactive__stage {
+  min-height: 256px;
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-md, 8px);
+  background-color: var(--shell-page);
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity .interactive__body--pinned {
+  align-items: stretch;
+}
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: sticky;
+    top: 0;
+    z-index: 2;
+    
+    margin: -16px -16px 0;
+    padding: 16px 16px 12px;
+    background-color: var(--shell-page);
+    border-bottom: 1px solid var(--shell-border);
+}
+}
+@media (min-width: 52em) and (max-height: 30em) {
+.opi-activity.opi-activity .interactive__stage > .stage__primary {
+  position: static;
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
+}
+}
+.opi-activity.opi-activity .interactive__stage > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity :where(.interactive__stage) svg,
+.opi-activity.opi-activity :where(.interactive__stage) canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+.opi-activity.opi-activity .interactive__readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout div {
+  padding: 9.6px 12px;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--radius-sm, 4px);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__readout dt {
+  font-size: 13px;
+  color: var(--shell-muted);
+  margin: 0;
+}
+.opi-activity.opi-activity .interactive__readout dd {
+  margin: 2.4px 0 0;
+  font-size: 18px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .interactive__status {
+  margin: 0;
+  padding: 12px var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+  font-size: 15px;
+  color: var(--shell-muted);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .interactive__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: var(--shell-gap);
+  border-top: 1px solid var(--shell-border);
+}
+.opi-activity.opi-activity .interactive__actions button {
+  min-height: 44px;
+  padding: 6.4px 20px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--shell-on-accent);
+  background-color: var(--shell-accent);
+  border: 1px solid var(--shell-accent);
+  border-radius: var(--radius-md, 8px);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  color: var(--shell-text);
+  background-color: transparent;
+  border-color: var(--shell-border-strong);
+}
+.opi-activity.opi-activity .interactive__actions button:hover {
+  filter: brightness(1.08);
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid var(--shell-border);
+  background-color: var(--shell-surface);
+}
+.opi-activity.opi-activity .interactive__notes > summary {
+  padding: 13.6px var(--shell-gap);
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__notes > div {
+  padding: 0 var(--shell-gap) var(--shell-gap);
+  max-width: 68ch;
+  font-size: 15px;
+}
+.opi-activity.opi-activity .interactive__notes > div > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+.opi-activity.opi-activity .interactive *,
+.opi-activity.opi-activity .interactive *::before,
+.opi-activity.opi-activity .interactive *::after {
+  animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+}
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .interactive,
+.opi-activity.opi-activity .interactive__controls,
+.opi-activity.opi-activity .interactive__stage,
+.opi-activity.opi-activity .interactive__readout div {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__header {
+  border-bottom: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__status,
+.opi-activity.opi-activity .interactive__actions,
+.opi-activity.opi-activity .interactive__notes {
+  border-top: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .interactive__actions button {
+  border: 2px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive__actions button[data-variant="secondary"] {
+  border-width: 1px;
+}
+.opi-activity.opi-activity .interactive__actions button:disabled {
+  opacity: 1;
+    color: GrayText;
+    border-color: GrayText;
+}
+.opi-activity.opi-activity .interactive__controls select,
+.opi-activity.opi-activity .interactive__controls input[type="number"],
+.opi-activity.opi-activity .interactive__controls input[type="text"] {
+  border: 1px solid ButtonText;
+}
+.opi-activity.opi-activity .interactive :focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: 2px;
+}
+.opi-activity.opi-activity .interactive__notes > summary:focus-visible {
+  outline: 3px solid Highlight;
+    outline-offset: -3px;
+}
+.opi-activity.opi-activity .interactive__stage svg {
+  forced-color-adjust: auto;
+}
+}
+
+/* components/tool-kit.css */
+@media (min-width: 56em) {
+.opi-activity.opi-activity .split--wide {
+  grid-template-columns: 1fr 1fr;
+}
+}
+.opi-activity.opi-activity .how-to {
+  padding-left: 19.2px;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .how-to > li {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .table-scroll {
+  overflow-x: auto;
+  
+  position: relative;
+}
+.opi-activity.opi-activity .prediction {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 832px;
+}
+.opi-activity.opi-activity .prediction > *,
+.opi-activity.opi-activity .challenge > * {
+  min-width: 0;
+}
+.opi-activity.opi-activity .prediction__group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.opi-activity.opi-activity .prediction__legend {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-weight: 650;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .prediction .control--choice,
+.opi-activity.opi-activity .challenge .control--choice,
+.opi-activity.opi-activity .evidence .control--choice {
+  display: flex;
+  align-items: center;
+  gap: 9.6px;
+  min-height: 44px;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.opi-activity.opi-activity .prediction .control--choice input,
+.opi-activity.opi-activity .challenge .control--choice input,
+.opi-activity.opi-activity .evidence .control--choice input {
+  width: 18.4px;
+  height: 18.4px;
+  flex: none;
+  accent-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .prediction__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .prediction__error {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-status-border);
+  border-left: 4px solid var(--colour-status-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-status-bg);
+  color: var(--colour-status-text);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .prediction__readback {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback {
+  padding: var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .feedback > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .feedback[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .feedback[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .feedback[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .feedback__verdict {
+  font-weight: 700;
+}
+.opi-activity.opi-activity .verdict {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .verdict__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict__body {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .verdict__body + .verdict__body {
+  margin-top: var(--space-2);
+}
+.opi-activity.opi-activity .verdict__note {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .verdict[data-tone="warn"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .verdict[data-tone="caution"] {
+  border-left-color: var(--colour-cognitive);
+}
+.opi-activity.opi-activity .verdict[data-tone="good"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .goal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--colour-border-strong);
+  border-left: 4px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .goal__label {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .goal__text {
+  flex: 1 1 256px;
+}
+.opi-activity.opi-activity .goal strong {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .goal__checks {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+  display: grid;
+  gap: 2.4px;
+}
+.opi-activity.opi-activity .goal__checks > li {
+  margin-top: 0;
+  padding-left: 22.4px;
+  position: relative;
+}
+.opi-activity.opi-activity .goal__checks > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 9.6px;
+  height: 9.6px;
+  border: 2px solid var(--colour-border-strong);
+  border-radius: 2px;
+}
+.opi-activity.opi-activity .goal__checks > li[data-met="yes"]::before {
+  border-color: var(--colour-accent);
+  background-color: var(--colour-accent);
+}
+.opi-activity.opi-activity .stage-track {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .stage-track > li {
+  margin-top: 0;
+  flex: 1 1 160px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-bottom: 3px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .stage-track > li > span {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.opi-activity.opi-activity .stage-track > li[data-state="done"] {
+  border-bottom-color: var(--colour-border-strong);
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border-bottom-color: var(--colour-accent);
+  background-color: var(--colour-accent-soft);
+  color: var(--colour-text);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .stage__heading {
+  margin: 0;
+  font-size: var(--text-base);
+}
+.opi-activity.opi-activity .data-table,
+.opi-activity.opi-activity .chart__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .data-table th,
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table th,
+.opi-activity.opi-activity .chart__table td {
+  padding: 6.4px 9.6px;
+  border: 1px solid var(--colour-border);
+  text-align: left;
+  vertical-align: top;
+}
+.opi-activity.opi-activity .data-table thead th,
+.opi-activity.opi-activity .chart__table thead th {
+  background-color: var(--colour-surface);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .data-table td,
+.opi-activity.opi-activity .chart__table td {
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__table tbody th,
+.opi-activity.opi-activity .data-table tbody th {
+  font-weight: 550;
+}
+.opi-activity.opi-activity .data-table__total > th,
+.opi-activity.opi-activity .data-table__total > td {
+  border-top: 2px solid var(--colour-border-strong);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart {
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .chart__caption {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__svg {
+  max-width: 100%;
+  height: auto;
+}
+.opi-activity.opi-activity .chart__label,
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__inline,
+.opi-activity.opi-activity .chart__axis {
+  font-family: var(--font-body);
+  fill: var(--colour-text);
+  font-size: 13px;
+}
+.opi-activity.opi-activity .chart__count,
+.opi-activity.opi-activity .chart__axis {
+  fill: var(--colour-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: var(--colour-on-accent);
+  font-size: 12px;
+  font-weight: 650;
+}
+.opi-activity.opi-activity .chart__track {
+  fill: var(--colour-surface);
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__bar {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--one {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: var(--colour-personality-individual-differences);
+}
+.opi-activity.opi-activity .chart__baseline,
+.opi-activity.opi-activity .chart__grid {
+  stroke: var(--colour-border);
+  stroke-width: 1;
+}
+.opi-activity.opi-activity .chart__line {
+  fill: none;
+  stroke: var(--colour-accent);
+  stroke-width: 2.5;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: var(--colour-personality-individual-differences);
+  stroke-dasharray: 6 4;
+}
+.opi-activity.opi-activity .chart__point {
+  fill: var(--colour-accent);
+}
+.opi-activity.opi-activity .reveal > :last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity .reveal__lead {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+.opi-activity.opi-activity .reveal__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(176px, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+  padding: 0;
+  list-style: none;
+}
+.opi-activity.opi-activity .reveal__figures > li {
+  margin-top: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+}
+.opi-activity.opi-activity .reveal__figure-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .reveal__figure-value {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .challenge {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+.opi-activity.opi-activity .challenge__locked {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .panel--caution {
+  background-color: var(--colour-status-bg);
+  border-color: var(--colour-status-border);
+}
+.opi-activity.opi-activity .panel--caution li + li {
+  margin-top: var(--space-3);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .goal,
+.opi-activity.opi-activity .verdict,
+.opi-activity.opi-activity .feedback,
+.opi-activity.opi-activity .prediction__error,
+.opi-activity.opi-activity .prediction__readback,
+.opi-activity.opi-activity .stage-track > li,
+.opi-activity.opi-activity .reveal__figures > li {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .stage-track > li[aria-current="step"] {
+  border: 2px solid Highlight;
+}
+.opi-activity.opi-activity .chart__bar,
+.opi-activity.opi-activity .chart__bar--one {
+  fill: CanvasText;
+}
+.opi-activity.opi-activity .chart__bar--two {
+  fill: Highlight;
+}
+.opi-activity.opi-activity .chart__inline {
+  fill: Canvas;
+}
+.opi-activity.opi-activity .chart__line {
+  stroke: CanvasText;
+}
+.opi-activity.opi-activity .chart__line--two {
+  stroke: Highlight;
+}
+}
+.opi-activity.opi-activity .stage__more {
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface);
+}
+.opi-activity.opi-activity .stage__more > summary {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.opi-activity.opi-activity .stage__more[open] > summary {
+  border-bottom: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity .stage__more > *:not(summary) {
+  margin: var(--space-3);
+}
+
+/* modules/social-critical-psychology/tools/11-measuring-prejudice-instrument-lab/tool.css */
+.opi-activity.opi-activity #latency-lab .interactive__controls,
+.opi-activity.opi-activity #latency-lab .interactive__stage,
+.opi-activity.opi-activity #instrument-lab .interactive__controls,
+.opi-activity.opi-activity #instrument-lab .interactive__stage {
+  min-width: 0;
+}
+.opi-activity.opi-activity #latency-lab .interactive__stage > *,
+.opi-activity.opi-activity #instrument-lab .interactive__stage > * {
+  min-width: 0;
+}
+@media (min-width: 52em) {
+.opi-activity.opi-activity #latency-lab .interactive__body,
+.opi-activity.opi-activity #instrument-lab .interactive__body {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+}
+@media (min-width: 76em) {
+.opi-activity.opi-activity #latency-lab .interactive__body {
+  grid-template-columns: minmax(0, 416px) minmax(0, 1fr);
+}
+.opi-activity.opi-activity #instrument-lab .interactive__body {
+  grid-template-columns: minmax(0, 448px) minmax(0, 1fr);
+}
+}
+.opi-activity.opi-activity #latency-lab .control--choice,
+.opi-activity.opi-activity #instrument-lab .control--choice {
+  align-items: flex-start;
+  gap: 9.6px;
+  font-size: var(--text-sm);
+  line-height: 1.4;
+}
+.opi-activity.opi-activity #latency-lab .control--choice input,
+.opi-activity.opi-activity #instrument-lab .control--choice input {
+  margin-top: 4.8px;
+}
+.opi-activity.opi-activity .stage-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+.opi-activity.opi-activity .stage-nav .button {
+  min-height: 44px;
+}
+.opi-activity.opi-activity .respondent {
+  padding: var(--space-3);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-md);
+  background-color: var(--colour-surface-raised);
+}
+.opi-activity.opi-activity .respondent__id {
+  margin: 0 0 var(--space-1);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .respondent__score {
+  margin: 0 0 var(--space-2);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+.opi-activity.opi-activity .respondent__value {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.opi-activity.opi-activity .respondent__unit {
+  font-size: var(--text-sm);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .respondent + .stage-nav {
+  margin-top: var(--space-3);
+}
+.opi-activity.opi-activity #latency-lab .scatter {
+  max-width: 480px;
+}
+.opi-activity.opi-activity .scatter__selected {
+  fill: none;
+  stroke: var(--colour-social-critical-psychology);
+  stroke-width: 2;
+}
+.opi-activity.opi-activity .scatter__stem {
+  stroke: var(--colour-social-critical-psychology);
+  stroke-width: 1;
+  stroke-dasharray: 2 3;
+}
+.opi-activity.opi-activity #latency-lab .chart__point {
+  fill-opacity: 0.55;
+}
+.opi-activity.opi-activity .verdict + .verdict {
+  margin-top: var(--space-3);
+}
+.opi-activity.opi-activity .instrument__body {
+  display: grid;
+  gap: 1.6px;
+  min-width: 0;
+}
+.opi-activity.opi-activity .instrument__name {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+.opi-activity.opi-activity .instrument__state {
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .evidence__level {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity .evidence__text {
+  margin: 0;
+  padding: var(--space-3);
+  border-left: 4px solid var(--colour-social-critical-psychology);
+  border-radius: var(--radius-sm);
+  background-color: var(--colour-surface-raised);
+  font-size: var(--text-sm);
+  line-height: 1.55;
+}
+.opi-activity.opi-activity [data-levels-body] td {
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity .claims__results {
+  margin: var(--space-3) 0 0;
+  padding-left: 19.2px;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity .claims__results > li {
+  margin-top: 0;
+  padding-left: var(--space-3);
+  border-left: 3px solid var(--colour-border-strong);
+}
+.opi-activity.opi-activity .claims__results > li[data-agreed="yes"] {
+  border-left-color: var(--colour-neuropsychology);
+}
+.opi-activity.opi-activity .claims__results > li[data-agreed="no"] {
+  border-left-color: var(--colour-social-critical-psychology);
+}
+.opi-activity.opi-activity .claims__result-head {
+  margin: 0 0 var(--space-1);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity .respondent,
+.opi-activity.opi-activity .evidence__text,
+.opi-activity.opi-activity .claims__results > li {
+  border: 1px solid CanvasText;
+}
+.opi-activity.opi-activity .scatter__selected,
+.opi-activity.opi-activity .scatter__stem {
+  stroke: Highlight;
+}
+.opi-activity.opi-activity #latency-lab .chart__point {
+  fill: CanvasText;
+    fill-opacity: 1;
+}
+}
+</style>
+
+  <!-- ================= Title and purpose ================= -->
+  <section class="section card--social-critical-psychology" aria-labelledby="page-heading">
+    <div class="container">
+
+      <p class="hero__eyebrow" style="color: var(--colour-social-critical-psychology)">
+        Social and Critical Psychology
+      </p>
+      <h1 id="page-heading">Measuring Prejudice: What Does the Instrument Capture?</h1>
+      <p class="hero__lead">
+        A survey answer, a difference in sorting speed, a shortlist, a
+        colleague's impression and twelve years of appointment figures. Five
+        instruments, all pointed at the same word, all observing something
+        different from it - and sitting at four different levels that cannot
+        be run together.
+      </p>
+
+      <p>
+        <span class="badge">
+          <span class="badge__dot" aria-hidden="true"></span>
+          Entirely simulated - Vantry, its two regions and all 200 respondents are generated by a documented model
+        </span>
+      </p>
+
+      <div class="split split--wide">
+
+        <div class="panel">
+          <h2 class="panel__title">Learning objective</h2>
+          <p>
+            By the end you should be able to say what each instrument
+            directly observes, and where an instrument stops being evidence
+            about a construct and becomes the construct.
+          </p>
+          <p class="text-muted">
+            About 35 minutes. Nothing is timed, and nothing you select is
+            saved or sent anywhere.
+          </p>
+        </div>
+
+        <div class="panel panel--caution">
+          <h2 class="panel__title">This tool does not test you</h2>
+          <p>
+            There is no task here that measures anything about the person
+            using it. The sorting task is run on 200 fictional respondents
+            generated by a seeded model, and you never take it. Vantry, the
+            Uplands and the Lowlands are invented, no group in them stands
+            for any real group anywhere, and no figure is a prevalence
+            estimate, a norm or a published effect.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="how-to">
+        <h2 class="panel__title">How to use this</h2>
+        <ol>
+          <li>Read the setting and commit to an answer to the question below.</li>
+          <li>
+            Experiment 1: look at one fictional respondent's sorting score,
+            predict what they did in a shortlisting task, and find out.
+            Repeat until you are sure.
+          </li>
+          <li>
+            Experiment 2: take each of the five instruments in turn and say
+            what it directly observes.
+          </li>
+          <li>Then judge five conclusions somebody might draw.</li>
+        </ol>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= Setting and prediction ================= -->
+  <section class="section section--tinted" id="opening" aria-labelledby="opening-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="opening-heading">The setting</h2>
+        <p class="prose">
+          Vantry is an invented country with two long-established regional
+          populations: Uplanders, about 18 per cent of the population, and
+          Lowlanders, about 82 per cent. Uplanders hold fewer senior posts
+          than their share of the workforce would suggest. A research team has
+          five instruments and a question, and the question is not "how much
+          prejudice is there" - it is
+          <em>what would each of these actually be evidence of.</em>
+        </p>
+      </div>
+
+      <noscript>
+        <div class="placeholder">
+          <h3 class="placeholder__title">This part needs JavaScript</h3>
+          <p class="prose">
+            Both experiments generate their fictional respondents and draw
+            their charts in your browser, so they cannot run with JavaScript
+            switched off. The debrief and the limitations below are readable
+            without it.
+          </p>
+        </div>
+      </noscript>
+
+      <form class="panel prediction" id="opening-form">
+        <fieldset class="prediction__group">
+          <legend class="prediction__legend">
+            Two hundred people take a latency-based sorting task and then
+            shortlist candidates for a fictional post. How well will the
+            sorting score predict any individual's shortlist?
+          </legend>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="strong">
+            Well - the score is getting at something the person cannot conceal
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="moderate">
+            Moderately - enough to be useful about a particular person
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="weak">
+            Barely - there will be a small average relationship and no useful individual prediction
+          </label>
+          <label class="control--choice">
+            <input type="radio" name="opening" value="none">
+            Not at all - the two are entirely unrelated
+          </label>
+        </fieldset>
+
+        <p class="prediction__error" data-opening-error role="alert" hidden></p>
+
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Record my answer and open experiment 1
+          </button>
+          <button class="button button--secondary" type="button" data-action="skip-opening">
+            Skip - I am demonstrating this
+          </button>
+        </div>
+
+        <div class="feedback" data-opening-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Experiment 1 ================= -->
+  <section class="section" id="experiment-one" aria-labelledby="exp1-heading" hidden>
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="exp1-heading" tabindex="-1">Experiment 1 - a score, and a person</h2>
+        <p class="prose">
+          Two hundred simulated Lowlander respondents did two things. They
+          sorted words and images under two pairings, producing a latency
+          difference score in seconds - larger means faster under one pairing
+          than the other. Then they each chose four candidates from eight for
+          a fictional post, four of whom were coded as Uplanders. You get to
+          see the score first.
+        </p>
+      </div>
+
+      <section class="interactive" id="latency-lab" data-interactive
+               data-reset-message="Whole page cleared. Back to the opening question, with both experiments closed.">
+
+        <header class="interactive__header">
+          <h3 class="interactive__title">Predict one person from one score</h3>
+          <p class="interactive__brief">
+            Nothing is timed. There is no penalty for saying you cannot tell,
+            and that answer is treated seriously.
+          </p>
+        </header>
+
+        <div class="interactive__body interactive__body--pinned">
+
+          <form class="interactive__controls" data-interactive-controls>
+
+            <fieldset>
+              <legend>The respondent in front of you</legend>
+              <div class="respondent" data-respondent></div>
+              <div class="stage-nav">
+                <button class="button button--secondary" type="button" data-action="prev">
+                  Previous
+                </button>
+                <button class="button button--secondary" type="button" data-action="next">
+                  Next respondent
+                </button>
+                <button class="button button--secondary" type="button" data-action="random">
+                  Jump to a random one
+                </button>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Your prediction</legend>
+              <p class="control__hint">
+                Of the four candidates this respondent shortlisted, how many
+                were Uplanders? An even shortlist is two.
+              </p>
+              <div data-guess-options></div>
+              <div class="stage-nav">
+                <button class="button button--primary" type="button" data-action="reveal">
+                  Reveal what they did
+                </button>
+              </div>
+              <p class="control__hint" data-guess-note role="status"></p>
+            </fieldset>
+
+            <fieldset>
+              <legend>Your record so far</legend>
+              <p class="control__hint" data-tally></p>
+            </fieldset>
+
+          </form>
+
+          <div class="interactive__stage" data-interactive-stage>
+
+            <div class="stage__primary">
+              <h4 class="stage__heading">All 200, score against shortlist</h4>
+              <figure class="chart">
+                <figcaption class="visually-hidden">
+                  Latency difference score against the number of Uplander
+                  candidates shortlisted, for 200 simulated respondents, with
+                  the respondent currently selected marked
+                </figcaption>
+                <svg class="chart__svg scatter" data-scatter viewBox="0 0 320 176"
+                     aria-hidden="true" focusable="false"></svg>
+                <p class="chart__caption" data-scatter-text></p>
+              </figure>
+            </div>
+
+            <div data-reveal></div>
+
+            <details class="stage__more">
+              <summary>The same data as a table</summary>
+              <div class="table-scroll">
+                <table class="data-table">
+                  <caption class="visually-hidden">
+                    Mean latency difference score for each shortlist outcome,
+                    with the number of respondents
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Uplanders shortlisted</th>
+                      <th scope="col">Respondents</th>
+                      <th scope="col">Mean latency score</th>
+                      <th scope="col">Range</th>
+                    </tr>
+                  </thead>
+                  <tbody data-bands-body></tbody>
+                </table>
+              </div>
+              <p class="text-muted" data-classify></p>
+            </details>
+
+          </div>
+
+        </div>
+
+        <p class="interactive__status" data-interactive-status role="status"></p>
+
+        <div class="interactive__actions">
+          <button type="button" data-action="auto">
+            Run twenty predictions for me
+          </button>
+          <button type="button" data-variant="secondary" data-interactive-reset>
+            Reset everything
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ================= Experiment 2 ================= -->
+  <section class="section section--tinted" id="experiment-two" aria-labelledby="exp2-heading" hidden>
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="exp2-heading" tabindex="-1">Experiment 2 - five instruments</h2>
+        <p class="prose">
+          Five findings from Vantry, each produced by a different method. For
+          each one, the question is not whether it shows prejudice. It is what
+          the instrument put in front of you, before anybody interpreted it.
+        </p>
+      </div>
+
+      <section class="interactive" id="instrument-lab" data-interactive
+               data-reset-message="Whole page cleared. Back to the opening question, with both experiments closed.">
+
+        <header class="interactive__header">
+          <h3 class="interactive__title">What does this one directly observe?</h3>
+          <p class="interactive__brief">
+            Each answer is followed by what is being inferred, what remains
+            unexplained, and which level of description the finding belongs
+            to.
+          </p>
+          <p class="goal">
+            <span class="goal__label">Progress</span>
+            <span class="goal__text" data-goal-text></span>
+          </p>
+        </header>
+
+        <div class="interactive__body interactive__body--pinned">
+
+          <form class="interactive__controls" data-interactive-controls>
+
+            <fieldset>
+              <legend>Choose an instrument</legend>
+              <div data-instrument-picks></div>
+            </fieldset>
+
+            <fieldset>
+              <legend data-observe-legend>What does it directly observe?</legend>
+              <div data-observe-options></div>
+              <div class="stage-nav">
+                <button class="button button--primary" type="button" data-action="check">
+                  Check this one
+                </button>
+              </div>
+              <p class="control__hint" data-observe-note role="status"></p>
+            </fieldset>
+
+          </form>
+
+          <div class="interactive__stage" data-interactive-stage>
+
+            <div class="stage__primary">
+              <h4 class="stage__heading" data-evidence-heading>The finding</h4>
+              <p class="evidence__level" data-evidence-level></p>
+              <p class="evidence__text" data-evidence-text></p>
+            </div>
+
+            <div data-instrument-feedback></div>
+
+            <div data-levels hidden>
+              <h4 class="stage__heading">Five instruments, four levels</h4>
+              <div class="table-scroll">
+                <table class="data-table">
+                  <caption class="visually-hidden">
+                    For each instrument checked: what it directly observes,
+                    the level it belongs to, and the claim it cannot support
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Instrument</th>
+                      <th scope="col">Directly observes</th>
+                      <th scope="col">Level</th>
+                      <th scope="col">Cannot support</th>
+                    </tr>
+                  </thead>
+                  <tbody data-levels-body></tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <p class="interactive__status" data-interactive-status role="status"></p>
+
+        <div class="interactive__actions">
+          <button type="button" data-variant="secondary" data-interactive-reset>
+            Reset everything
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ================= Challenge ================= -->
+  <section class="section" id="challenge" aria-labelledby="challenge-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="challenge-heading">Challenge - what does the evidence license?</h2>
+        <p class="prose">
+          Five conclusions somebody might draw from the Vantry evidence. Say
+          whether each is supported, partly supported, or not supported.
+        </p>
+      </div>
+
+      <form class="panel challenge" id="claims-form">
+        <div data-claims-list></div>
+        <div class="prediction__actions">
+          <button class="button button--primary" type="submit">
+            Check my judgements
+          </button>
+        </div>
+        <div class="feedback" data-claims-feedback hidden></div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ================= Debrief ================= -->
+  <section class="section section--tinted" id="debrief" aria-labelledby="debrief-heading">
+    <div class="container">
+
+      <div class="section__header">
+        <h2 id="debrief-heading">What this demonstrates</h2>
+      </div>
+
+      <div class="split split--wide">
+
+        <div class="prose">
+          <h3>An average relationship is not an individual prediction</h3>
+          <p>
+            The correlation between the latency score and the shortlist in
+            this simulated sample is small, real, and useless about any
+            particular person. Both things are true at once, and holding them
+            together is the whole skill. A small association tells you
+            something about how a population is arranged; it does not tell you
+            which side of the line the person in front of you is on. Using the
+            score to say anything about an individual - to select, to train,
+            to reassure, to accuse - is a category error, and no amount of
+            statistical significance repairs it.
+          </p>
+
+          <h3>What a latency difference actually is</h3>
+          <p>
+            It is a difference in mean sorting speed between two pairings of
+            categories. That is a real observation about how quickly certain
+            associations become available under time pressure, and it is
+            interesting. It is not a reading taken from somewhere behind the
+            person's answers. Familiarity with the stimuli, the order the
+            blocks came in, how salient each category is and general
+            processing speed all contribute to the number, and none of them is
+            an attitude. Calling it "the real attitude, underneath" is a
+            rhetorical move rather than a measurement claim.
+          </p>
+
+          <h3>Four levels, and the traffic between them</h3>
+          <p>
+            What somebody reports on a form, what their sorting speed does,
+            what they did on one occasion, how they appear to two colleagues,
+            and what an organisation's appointment record looks like over
+            twelve years are five findings at four levels of description. Each
+            is evidence of itself. The traffic between them is where the
+            trouble is: an appointments gap does not become explained because
+            a sample of individuals showed an association effect, and a
+            population of individuals with no measurable association effect
+            would not thereby be shown to have a fair appointments process.
+          </p>
+
+          <h3>Why self-report is not simply the weaker instrument</h3>
+          <p>
+            A survey answer is often dismissed as contaminated by social
+            desirability, and then a latency score is treated as the honest
+            version. But what people are willing to say is itself worth
+            knowing, and a narrowing self-report gap over ten years might mean
+            attitudes changed, or that what is sayable changed, or both - and
+            that second possibility is a finding about a society, not noise in
+            a measurement. The instrument observes what people will write down
+            under these conditions. That is a real object of study.
+          </p>
+
+          <h3>The instrument is not the construct</h3>
+          <p>
+            Every one of the five findings is a trace left by a procedure. The
+            moment a research programme starts saying "prejudice" when it
+            means "the score our task produces", the construct has quietly
+            been replaced by the instrument, and every subsequent finding is a
+            finding about the instrument. That is not a hypothetical failure
+            mode. It is the ordinary drift of a successful measure, and the
+            defence against it is exactly the question this tool keeps asking:
+            what did the procedure put in front of us, before anybody
+            interpreted it?
+          </p>
+        </div>
+
+        <aside class="panel panel--caution" aria-labelledby="limits-heading">
+          <h3 class="panel__title" id="limits-heading">
+            What this does <em>not</em> demonstrate
+          </h3>
+          <ul>
+            <li>
+              <strong>All the data are generated.</strong> The 200
+              respondents, the survey, the informant ratings and the twelve
+              years of appointment figures were produced by a documented
+              model.
+            </li>
+            <li>
+              <strong>It does not show that latency tasks are worthless.</strong>
+              The error demonstrated here is in the inference to an
+              individual, not in the measurement.
+            </li>
+            <li>
+              <strong>It does not show that self-report is trustworthy.</strong>
+              It shows that "contaminated by social desirability" and
+              "measuring something else that matters" can be the same
+              sentence, which is not the same as endorsing the measure.
+            </li>
+            <li>
+              <strong>It does not tell you what causes the Vantry
+              appointments gap.</strong> An outcome disparity is consistent
+              with several processes - what counts as relevant experience,
+              where posts are advertised, who is on panels, who applies - and
+              distinguishing them requires evidence this tool does not
+              contain.
+            </li>
+            <li>
+              <strong>It is not a review of the real literature.</strong> The
+              arguments about latency-based measures, their reliability and
+              their predictive validity are live, technical and contested, and
+              a simulated demonstration is a way into them rather than a
+              summary of them.
+            </li>
+          </ul>
+        </aside>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+<script>
+/* ---- components/interactive-shell.js ---- */
+/* =========================================================================
+   Open Psychology Interactives — interactive shell helper
+   -------------------------------------------------------------------------
+   A very small vanilla-JS helper that every interactive in this collection
+   uses. It deliberately does *not* draw anything or know anything about
+   statistics, personality or neuropsychology. Its job is the repetitive,
+   easy-to-get-wrong accessibility plumbing:
+
+     * announcing changes through a polite live region;
+     * keeping a range slider and its <output> in step;
+     * wiring the standard Reset button;
+     * reporting the reader's reduced-motion preference.
+
+   Usage (see docs/adapting-a-tool.md for the full markup contract):
+
+       <script src="../../components/interactive-shell.js" defer><\/script>
+       <script src="tool.js" defer><\/script>
+
+       // in tool.js
+       const shell = InteractiveShell.attach('#sampling-demo');
+       shell.onReset(() => { ...restore defaults...; draw(); });
+       shell.bindRange('#sample-size', { format: n => n + ' cases' });
+       shell.announce('Sample of 25 drawn. Mean 4.8.');
+
+   Every published interactive is written against this module.
+
+   Exposed as a global (window.InteractiveShell) rather than an ES module so
+   that a single interactive folder can be opened directly from disk over
+   file:// — ES modules are blocked by CORS in that situation, plain scripts
+   are not. That constraint is the whole reason for the older syntax here.
+   ========================================================================= */
+
+(function (global) {
+  "use strict";
+
+  /* -----------------------------------------------------------------------
+     Internal helpers
+     --------------------------------------------------------------------- */
+
+  /**
+   * Accept either a CSS selector or an element and return an element.
+   * @param {string|Element} target
+   * @param {ParentNode} [scope]
+   * @returns {Element|null}
+   */
+  function resolve(target, scope) {
+    if (!target) {
+      return null;
+    }
+    if (typeof target === "string") {
+      return (scope || document).querySelector(target);
+    }
+    return target;
+  }
+
+  /**
+   * True when the reader has asked the operating system to reduce motion.
+   * Interactives should check this before animating anything — for example
+   * by drawing a sampling distribution in one step instead of animating
+   * each draw.
+   * @returns {boolean}
+   */
+  function prefersReducedMotion() {
+    return (
+      typeof global.matchMedia === "function" &&
+      global.matchMedia("(prefers-reduced-motion: reduce)").matches
+    );
+  }
+
+  /* -----------------------------------------------------------------------
+     Shell controller
+     --------------------------------------------------------------------- */
+
+  /**
+   * Attach the shell behaviour to one `.interactive` element.
+   *
+   * @param {string|Element} target  Selector or element for the shell root.
+   * @returns {object|null}  Controller, or null if the root was not found.
+   */
+  function attach(target) {
+    var root = resolve(target);
+
+    if (!root) {
+      if (global.console && console.warn) {
+        console.warn("InteractiveShell: root element not found.", target);
+      }
+      return null;
+    }
+
+    var controls = root.querySelector("[data-interactive-controls]");
+    var stage = root.querySelector("[data-interactive-stage]");
+    var status = root.querySelector("[data-interactive-status]");
+    var resetButton = root.querySelector("[data-interactive-reset]");
+    var resetHandlers = [];
+    // Every range bound with bindRange() registers its sync function here, so
+    // that reset() can refresh the visible values after the tool's own reset
+    // handlers have restored the inputs. See reset() for why this is needed.
+    var rangeSyncs = [];
+
+    /* --- Live region ----------------------------------------------------
+       The status element is marked up as role="status" (implicitly
+       aria-live="polite"). Two details matter:
+
+         1. Assistive technology only announces *changes* to a live region,
+            so writing the same string twice is silently dropped. We add a
+            trailing zero-width space on repeat messages to force an
+            announcement when a student re-runs the same action.
+         2. Announcements are debounced. A slider dragged across its range
+            fires dozens of input events; without a delay a screen reader
+            would queue every intermediate value and fall far behind.
+       ------------------------------------------------------------------ */
+
+    var announceTimer = null;
+    var lastMessage = "";
+
+    /**
+     * Announce a short sentence describing what just changed.
+     * @param {string} message
+     * @param {object} [options]
+     * @param {boolean} [options.immediate]  Skip the debounce delay. Use for
+     *   discrete actions (button presses); leave off for continuous input.
+     */
+    function announce(message, options) {
+      if (!status) {
+        return;
+      }
+
+      var text = String(message == null ? "" : message);
+      var immediate = Boolean(options && options.immediate);
+
+      if (announceTimer !== null) {
+        global.clearTimeout(announceTimer);
+        announceTimer = null;
+      }
+
+      function write() {
+        // Force a change when the text is identical to last time.
+        status.textContent = text === lastMessage ? text + "​" : text;
+        lastMessage = text;
+      }
+
+      if (immediate) {
+        write();
+      } else {
+        announceTimer = global.setTimeout(write, 350);
+      }
+    }
+
+    /* --- Reset ---------------------------------------------------------- */
+
+    /**
+     * Register a callback to run when the Reset button is pressed.
+     * Several may be registered; they run in the order added.
+     * @param {Function} handler
+     */
+    function onReset(handler) {
+      if (typeof handler === "function") {
+        resetHandlers.push(handler);
+      }
+    }
+
+    /**
+     * Run the reset handlers. Called by the button and available directly so
+     * an interactive can reset itself on first load.
+     *
+     * Bound ranges are re-synced afterwards. A reset handler restores an
+     * input by assigning to `input.value`, and assigning to a value in script
+     * does not fire an `input` event — so without this step the slider would
+     * jump back to its default while its <output> went on showing the old
+     * number. Syncing here, after the handlers have run, also means the sync
+     * sees the restored values regardless of the order things were
+     * registered in.
+     *
+     * @param {object} [options]
+     * @param {boolean} [options.silent]  Suppress the status announcement.
+     */
+    function reset(options) {
+      resetHandlers.forEach(function (handler) {
+        handler();
+      });
+      rangeSyncs.forEach(function (sync) {
+        sync();
+      });
+      if (!options || !options.silent) {
+        announce(
+          root.getAttribute("data-reset-message") ||
+            "Reset to the starting values.",
+          { immediate: true }
+        );
+      }
+    }
+
+    if (resetButton) {
+      resetButton.addEventListener("click", function (event) {
+        // Reset buttons commonly sit inside the controls <form>; stop the
+        // browser's own form reset from fighting with ours.
+        event.preventDefault();
+        reset();
+      });
+    }
+
+    /* --- Range binding --------------------------------------------------
+       Keeps a slider's <output> in step with its value. The <output> must
+       carry `for="<input id>"`, which is what associates the two for
+       assistive technology; this only handles the visible text.
+
+       Optionally sets aria-valuetext, which is how you make a screen reader
+       say "25 cases" or "medium correlation" instead of a bare "25".
+       ------------------------------------------------------------------ */
+
+    /**
+     * @param {string|Element} inputTarget  The range (or number) input.
+     * @param {object} [options]
+     * @param {Function} [options.format]  value:number -> string shown in the
+     *   <output>. Defaults to the raw value.
+     * @param {Function} [options.describe]  value:number -> string used for
+     *   aria-valuetext. Defaults to options.format.
+     * @param {Function} [options.onInput]  value:number -> void, called after
+     *   the display has been updated. Use it to redraw.
+     * @returns {HTMLInputElement|null}
+     */
+    function bindRange(inputTarget, options) {
+      var input = resolve(inputTarget, root);
+      if (!input) {
+        return null;
+      }
+
+      var settings = options || {};
+      var format =
+        typeof settings.format === "function"
+          ? settings.format
+          : function (value) {
+              return String(value);
+            };
+      var describe =
+        typeof settings.describe === "function" ? settings.describe : format;
+
+      // <output for="the-input-id"> is the conventional pairing.
+      var output = input.id
+        ? root.querySelector('output[for="' + input.id + '"]')
+        : null;
+
+      function sync() {
+        var value = Number(input.value);
+        if (output) {
+          output.textContent = format(value);
+        }
+        // Only meaningful for widgets with an implicit or explicit slider
+        // role; harmless elsewhere.
+        input.setAttribute("aria-valuetext", describe(value));
+        if (typeof settings.onInput === "function") {
+          settings.onInput(value);
+        }
+      }
+
+      input.addEventListener("input", sync);
+      // Registered so reset() can refresh the display after the tool's own
+      // reset handlers have put the input back to its default.
+      rangeSyncs.push(sync);
+      sync();
+
+      return input;
+    }
+
+    /* --- Public surface -------------------------------------------------- */
+
+    return {
+      /** The `.interactive` root element. */
+      root: root,
+      /** The controls panel, or null if the shell has none. */
+      controls: controls,
+      /** The stage element where the visualisation is drawn. */
+      stage: stage,
+      /** The live-region element. */
+      status: status,
+      announce: announce,
+      onReset: onReset,
+      reset: reset,
+      bindRange: bindRange,
+      prefersReducedMotion: prefersReducedMotion
+    };
+  }
+
+  /* -----------------------------------------------------------------------
+     Export
+     --------------------------------------------------------------------- */
+
+  global.InteractiveShell = {
+    attach: attach,
+    prefersReducedMotion: prefersReducedMotion
+  };
+})(window);
+
+/* ---- modules/social-critical-psychology/tools/11-measuring-prejudice-instrument-lab/tool.js ---- */
+/* =========================================================================
+   Measuring Prejudice: What Does the Instrument Capture?
+   -------------------------------------------------------------------------
+   Two sequential experiments in one fictional country (Vantry), whose two
+   regional populations - Uplanders and Lowlanders - stand for no real group
+   anywhere.
+
+   EXPERIMENT 1  A score, and a person.
+     200 simulated respondents each have a latency difference score from a
+     sorting task and a shortlisting outcome (how many of the four candidates
+     they chose were Uplanders, out of four Uplanders among eight). The
+     learner sees the score, predicts the shortlist, and finds out. The
+     association is small, real, and useless about any individual - which is
+     the point, and is why the tool prints both the correlation and the
+     accuracy of predicting from the score against the base rate of simply
+     guessing "even" every time.
+
+   EXPERIMENT 2  Five instruments.
+     Explicit self-report, latency-based association, behavioural choice,
+     informant report and institutional outcomes. For each, the learner says
+     what it DIRECTLY OBSERVES, before anybody interprets it. The feedback
+     then names what is inferred, what alternative explanations remain, the
+     level of description the finding belongs to, and the claim it cannot
+     support. A growing table sets the five against each other.
+
+   WHY THE LEARNER NEVER TAKES THE TASK
+   ------------------------------------
+   A tool that produced a number about the user's own associations and then
+   explained that such numbers do not predict behaviour would be teaching one
+   thing and doing another. The sorting task is run only on fictional
+   respondents. Nothing on this page measures, scores or labels the person
+   using it.
+
+   THE MODEL (all figures invented; nothing is a norm or a published effect)
+   ------------------------------------------------------------------------
+   mulberry32 seeded at 20260811, with Box-Muller normal draws. For each of
+   200 respondents:
+
+       z   ~ N(0,1)                        a latent association strength
+       D   = 0.34 + 0.22 z + 0.26 e1       latency difference score, seconds
+       b   = -0.30 z + e2                  a behavioural latent
+       S   = round(2 + 0.85 b), 0..4       Uplanders shortlisted, of four
+       W   = 13 + 2.0 z + 8 e3             self-reported warmth gap, points
+
+   The construction gives a population correlation between D and the
+   behavioural latent of about -0.19, which is deliberately of the same order
+   as the correlations reported in meta-analyses of real latency-behaviour
+   relationships. Rounding and clamping attenuate it slightly. Every reported
+   figure is computed from the generated sample at run time rather than
+   written into the page, so the numbers in the teaching notes can be checked
+   against what the tool actually produces.
+
+   No data leave the browser. There is no storage and no network request.
+   ========================================================================= */
+
+(function () {
+  "use strict";
+
+  var SEED = 20260811;
+  var N = 200;
+  var SHORTLIST_MAX = 4;
+
+  /* --- Seeded randomness --------------------------------------------------- */
+
+  function mulberry32(a) {
+    return function () {
+      a |= 0;
+      a = (a + 0x6D2B79F5) | 0;
+      var t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  function normalPair(rand) {
+    /* Box-Muller. Returns one standard normal draw per call, caching the
+       second so no draw is wasted. */
+    var u = 1 - rand();
+    var v = rand();
+    return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+  }
+
+  function buildSample() {
+    var rand = mulberry32(SEED);
+    var people = [];
+    for (var i = 0; i < N; i += 1) {
+      var z = normalPair(rand);
+      var e1 = normalPair(rand);
+      var e2 = normalPair(rand);
+      var e3 = normalPair(rand);
+      var d = 0.34 + 0.22 * z + 0.26 * e1;
+      var behaviour = -0.30 * z + e2;
+      var shortlist = Math.round(2 + 0.85 * behaviour);
+      if (shortlist < 0) { shortlist = 0; }
+      if (shortlist > SHORTLIST_MAX) { shortlist = SHORTLIST_MAX; }
+      var warmth = 13 + 2.0 * z + 8 * e3;
+      people.push({
+        id: i + 1,
+        d: d,
+        shortlist: shortlist,
+        warmth: warmth,
+        /* A small deterministic vertical offset so 200 points on five
+           discrete rows can be told apart. Documented, not decorative. */
+        jitter: (rand() - 0.5) * 0.7
+      });
+    }
+    return people;
+  }
+
+  function correlation(xs, ys) {
+    var n = xs.length;
+    var mx = 0;
+    var my = 0;
+    var i;
+    for (i = 0; i < n; i += 1) { mx += xs[i]; my += ys[i]; }
+    mx /= n; my /= n;
+    var sxy = 0;
+    var sxx = 0;
+    var syy = 0;
+    for (i = 0; i < n; i += 1) {
+      var dx = xs[i] - mx;
+      var dy = ys[i] - my;
+      sxy += dx * dy; sxx += dx * dx; syy += dy * dy;
+    }
+    return sxy / Math.sqrt(sxx * syy);
+  }
+
+  function median(values) {
+    var sorted = values.slice().sort(function (a, b) { return a - b; });
+    var mid = Math.floor(sorted.length / 2);
+    return sorted.length % 2 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
+  }
+
+  /* --- Bands ------------------------------------------------------------------ */
+
+  var BANDS = [
+    { id: "fewer", label: "Fewer Uplanders (0 or 1 of 4)", test: function (s) { return s <= 1; } },
+    { id: "even", label: "An even shortlist (2 of 4)", test: function (s) { return s === 2; } },
+    { id: "more", label: "More Uplanders (3 or 4 of 4)", test: function (s) { return s >= 3; } },
+    { id: "cannot", label: "You cannot tell from this score", test: null }
+  ];
+
+  function bandOf(shortlist) {
+    if (shortlist <= 1) { return "fewer"; }
+    if (shortlist === 2) { return "even"; }
+    return "more";
+  }
+
+  /* --- The five instruments ---------------------------------------------------- */
+
+  var INSTRUMENTS = [
+    {
+      id: "selfreport",
+      name: "Explicit self-report",
+      level: "Individual - what a person is willing to state",
+      finding:
+        "A national survey of 2,400 simulated respondents asked people to rate " +
+        "how warmly they felt towards each region on a 0 to 100 scale. Mean " +
+        "warmth towards Uplanders was 61; towards Lowlanders, 74. The gap has " +
+        "narrowed from 22 points to 13 over ten years.",
+      options: [
+        { value: "attitude", label: "A person's attitude towards Uplanders" },
+        { value: "written", label: "What people are willing to write down, on this scale, under these conditions", correct: true },
+        { value: "feeling", label: "How warmly people actually feel" },
+        { value: "change", label: "That prejudice in Vantry has fallen by nine points" }
+      ],
+      inferred:
+        "An underlying evaluative attitude, and - from the ten-year change - " +
+        "that the attitude has shifted.",
+      remains:
+        "That what is sayable changed rather than what is felt; that the " +
+        "thermometer format invites a number people can defend rather than one " +
+        "they hold; that who agreed to take part changed over ten years; and " +
+        "that a difference of 13 points on an invented scale has no natural " +
+        "unit at all.",
+      cannot:
+        "That any individual respondent feels what they wrote, or that the " +
+        "ten-year narrowing is a change in feeling rather than in what can be " +
+        "said."
+    },
+    {
+      id: "latency",
+      name: "Latency-based association task",
+      level: "Individual - a difference in processing speed",
+      finding:
+        "The 200 simulated respondents in experiment 1 sorted words and images " +
+        "under two pairings of categories. Sorting was faster on average under " +
+        "one pairing than the other, and the distribution of individual scores " +
+        "overlaps heavily with zero.",
+      options: [
+        { value: "hidden", label: "An attitude the respondent is unwilling or unable to report" },
+        { value: "speed", label: "A difference in mean sorting speed between two pairings of categories", correct: true },
+        { value: "bias", label: "How biased each respondent is" },
+        { value: "behaviour", label: "How each respondent will behave towards Uplanders" }
+      ],
+      inferred:
+        "The relative accessibility of an association in memory, and from " +
+        "that, an evaluative attitude the person may not report.",
+      remains:
+        "Familiarity and frequency of the particular stimuli; block order and " +
+        "practice; the salience asymmetry between a large and a small category; " +
+        "general processing speed; and the plain fact that an association " +
+        "becoming available quickly is not the same as endorsing it.",
+      cannot:
+        "That any individual respondent will treat an Uplander differently - " +
+        "which is what experiment 1 was for - or that the number is a reading " +
+        "taken from behind the person's own answers."
+    },
+    {
+      id: "behaviour",
+      name: "Behavioural choice",
+      level: "Individual - one act, on one occasion",
+      finding:
+        "Each of the 200 respondents shortlisted four of eight fictional " +
+        "candidates for a fictional post. Four candidates were coded as " +
+        "Uplanders, all other details were identical, and the pairings were " +
+        "rotated across respondents.",
+      options: [
+        { value: "disposition", label: "A person's disposition to discriminate" },
+        { value: "files", label: "Which files a person selected, in one task, on one occasion", correct: true },
+        { value: "hiring", label: "How that person hires in real life" },
+        { value: "prejudice", label: "The behavioural component of prejudice" }
+      ],
+      inferred:
+        "A disposition to treat people differently, and often - with no " +
+        "warrant - how the person would act in a real appointment.",
+      remains:
+        "One occasion is not a disposition; the respondent may have worked out " +
+        "what the study was about; a shortlist in a study costs nobody a job; " +
+        "and rotating names controls the candidate but not what the respondent " +
+        "took the task to be asking of them.",
+      cannot:
+        "That the same person would do the same thing where it mattered, or " +
+        "that a pattern across 200 people in a study describes a hiring process " +
+        "anywhere."
+    },
+    {
+      id: "informant",
+      name: "Informant report",
+      level: "Dyadic - how a person appears to particular others",
+      finding:
+        "Two colleagues of each of 60 simulated employees rated how comfortable " +
+        "that person seemed working with Uplander colleagues. Agreement between " +
+        "the two informants was moderate.",
+      options: [
+        { value: "truth", label: "The truth about the person, from people who know them" },
+        { value: "appears", label: "How a person appears to two particular other people, who share their workplace", correct: true },
+        { value: "attitude", label: "The employee's attitude, uncontaminated by self-presentation" },
+        { value: "climate", label: "The organisation's climate" }
+      ],
+      inferred:
+        "An attitude and its expression in ordinary interaction, on the " +
+        "grounds that colleagues see what a questionnaire cannot.",
+      remains:
+        "The informants share the workplace's norms about what comfortable " +
+        "looks like; appearing at ease is a social skill as much as an " +
+        "attitude; the two informants were chosen somehow; and their own views " +
+        "shape what they notice. Moderate agreement between two observers is " +
+        "consistent with both seeing the person clearly and both seeing the " +
+        "same workplace.",
+      cannot:
+        "That the employee holds the attitude ascribed to them, or that a " +
+        "workplace where everybody seems comfortable is one where nothing is " +
+        "happening."
+    },
+    {
+      id: "institutional",
+      name: "Institutional outcomes",
+      level: "Institutional - a distribution of outcomes over time",
+      finding:
+        "Uplanders are 18 per cent of the Vantry workforce, 19 per cent of " +
+        "applicants to senior posts and 7 per cent of appointments. The gap is " +
+        "present in all six regions and has not moved in twelve years.",
+      options: [
+        { value: "discrimination", label: "Discrimination in the appointments process" },
+        { value: "distribution", label: "A distribution of outcomes across an organisation over time", correct: true },
+        { value: "attitudes", label: "The accumulated attitudes of the people who sat on panels" },
+        { value: "merit", label: "That the two groups differ in what the process is measuring" }
+      ],
+      inferred:
+        "Discrimination - which is one candidate explanation among several, and " +
+        "the most important of the five inferential steps on this page to slow " +
+        "down.",
+      remains:
+        "What is counted as relevant experience and who accumulates it; where " +
+        "posts are advertised and who sees them; who sits on panels and what " +
+        "they are asked to weigh; which posts people apply for and why; and " +
+        "prior stages that shaped the applicant pool long before the panel met. " +
+        "An outcome pattern this stable does not need anybody's attitude to " +
+        "sustain it, which is exactly why it is not evidence about anybody's " +
+        "attitude.",
+      cannot:
+        "That any individual acted on a prejudice; and, running the other way, " +
+        "no study of individual attitudes - however large - can confirm or " +
+        "refute it, because it is a claim about a different object."
+    }
+  ];
+
+  /* --- The challenge ------------------------------------------------------------ */
+
+  var CLAIMS = [
+    {
+      id: "cross",
+      text:
+        "\"Uplanders hold only 7 per cent of senior posts because Lowlanders " +
+        "have negative implicit associations.\"",
+      answer: "no",
+      why:
+        "Two objects, one sentence. The appointments record is a fact about an " +
+        "organisation over twelve years; the association effect is an average " +
+        "over a sample of individuals. Even if every Lowlander in Vantry " +
+        "scored zero on the sorting task, the record could look exactly the " +
+        "same - because what counts as relevant experience, where posts are " +
+        "advertised and who sits on panels do not require anybody to hold " +
+        "anything."
+    },
+    {
+      id: "individual",
+      text:
+        "\"Respondent 118 has one of the largest latency scores in the sample, " +
+        "so we should not put her on an appointment panel.\"",
+      answer: "no",
+      why:
+        "A small average association across 200 people supports no " +
+        "statement about any " +
+        "one of them, and the accuracy figure printed beside the scatter shows " +
+        "how badly the score performs as an individual prediction - worse, in " +
+        "this sample, than guessing \"even\" every time. Using it to select, " +
+        "exclude or accuse is a category error that no significance test " +
+        "repairs."
+    },
+    {
+      id: "narrowing",
+      text:
+        "\"The self-reported warmth gap narrowed from 22 points to 13 over ten " +
+        "years, so prejudice in Vantry has fallen.\"",
+      answer: "partly",
+      why:
+        "Something changed, and the survey cannot say what. Attitudes may have " +
+        "shifted; what is sayable may have shifted; both may have. The second " +
+        "possibility is not noise to be subtracted - a change in what a country " +
+        "will say out loud is itself a finding about that country, and it is " +
+        "one that the appointments record suggests did not reach the " +
+        "appointments record."
+    },
+    {
+      id: "realattitude",
+      text:
+        "\"The sorting task and the survey disagree, so the sorting task is " +
+        "measuring the real attitude and the survey is measuring what people " +
+        "want us to think.\"",
+      answer: "no",
+      why:
+        "Two instruments disagreeing tells you they are measuring different " +
+        "things. It does not tell you which one is the real one, and there is " +
+        "no procedure in the design that could. \"Real attitude, underneath\" " +
+        "is a rhetorical promotion of one instrument, not a measurement claim - " +
+        "and it is the exact moment at which a construct gets quietly replaced " +
+        "by the score a task happens to produce."
+    },
+    {
+      id: "outcome",
+      text:
+        "\"The appointments record shows that Uplanders face discrimination in " +
+        "Vantry.\"",
+      answer: "partly",
+      why:
+        "It shows a stable, patterned disparity that has survived twelve years " +
+        "and six regions, which is a serious finding and demands explanation. " +
+        "It does not by itself establish which process produced it, and the " +
+        "candidates are not interchangeable: a panel weighing the wrong things, " +
+        "an advertising route that reaches the wrong people and a pipeline " +
+        "shaped decades earlier call for different remedies. Treating the " +
+        "disparity as self-explanatory skips the question that decides what to " +
+        "do about it."
+    }
+  ];
+
+  var CLAIM_OPTIONS = [
+    { value: "yes", label: "Supported by this evidence" },
+    { value: "partly", label: "Partly - it needs a qualification" },
+    { value: "no", label: "Not supported" }
+  ];
+
+  var CLAIM_LABELS = {};
+  CLAIM_OPTIONS.forEach(function (o) { CLAIM_LABELS[o.value] = o.label; });
+
+  /* =======================================================================
+     Helpers
+     ===================================================================== */
+
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) { node.className = className; }
+    if (text !== undefined) { node.textContent = text; }
+    return node;
+  }
+
+  function clear(node) {
+    while (node.firstChild) { node.removeChild(node.firstChild); }
+  }
+
+  function fixed(value, places) {
+    return Number(value).toFixed(places === undefined ? 2 : places);
+  }
+
+  var $ = function (s, scope) { return (scope || document).querySelector(s); };
+  var $$ = function (s, scope) {
+    return Array.prototype.slice.call((scope || document).querySelectorAll(s));
+  };
+
+  /* =======================================================================
+     Shared page furniture
+     ===================================================================== */
+
+  var openingForm = $("#opening-form");
+  var openingError = $("[data-opening-error]");
+  var openingFeedback = $("[data-opening-feedback]");
+  var expOne = $("#experiment-one");
+  var expTwo = $("#experiment-two");
+
+  var claimsForm = $("#claims-form");
+  var claimsList = $("[data-claims-list]");
+  var claimsFeedback = $("[data-claims-feedback]");
+
+  function showFeedback(container, tone, verdict, text) {
+    clear(container);
+    container.setAttribute("data-tone", tone);
+    var p = make("p");
+    p.appendChild(make("strong", "feedback__verdict", verdict));
+    if (text) { p.appendChild(document.createTextNode(" " + text)); }
+    container.appendChild(p);
+    container.hidden = false;
+  }
+
+  /* =======================================================================
+     Experiment 1
+     ===================================================================== */
+
+  var latencyShell = InteractiveShell.attach("#latency-lab");
+  if (!latencyShell) { return; }
+
+  var PEOPLE = buildSample();
+  var R = correlation(
+    PEOPLE.map(function (p) { return p.d; }),
+    PEOPLE.map(function (p) { return p.shortlist; })
+  );
+  var D_MEDIAN = median(PEOPLE.map(function (p) { return p.d; }));
+
+  /* Base rate: how often would you be right by always saying "even"? */
+  var BAND_COUNTS = { fewer: 0, even: 0, more: 0 };
+  PEOPLE.forEach(function (p) { BAND_COUNTS[bandOf(p.shortlist)] += 1; });
+  var BASE_BAND = Object.keys(BAND_COUNTS).reduce(function (best, key) {
+    return BAND_COUNTS[key] > BAND_COUNTS[best] ? key : best;
+  }, "fewer");
+  var BASE_RATE = BAND_COUNTS[BASE_BAND] / N;
+
+  /* How often does "above the median score means fewer Uplanders shortlisted"
+     get it right, counted over the respondents where the rule commits? */
+  var RULE_HITS = 0;
+  var RULE_TRIED = 0;
+  PEOPLE.forEach(function (p) {
+    var predicted = p.d > D_MEDIAN ? "fewer" : "more";
+    var actual = bandOf(p.shortlist);
+    if (actual === "even") { return; }
+    RULE_TRIED += 1;
+    if (predicted === actual) { RULE_HITS += 1; }
+  });
+  var RULE_RATE = RULE_TRIED ? RULE_HITS / RULE_TRIED : 0;
+
+  var respondentBox = $("[data-respondent]");
+  var guessOptions = $("[data-guess-options]");
+  var guessNote = $("[data-guess-note]");
+  var tally = $("[data-tally]");
+  var scatterSvg = $("[data-scatter]");
+  var scatterText = $("[data-scatter-text]");
+  var revealBox = $("[data-reveal]");
+  var bandsBody = $("[data-bands-body]");
+  var classifyLine = $("[data-classify]");
+
+  var EXP1_INITIAL = { index: 0, guess: null, revealed: false, made: 0, hits: 0, declined: 0 };
+  var exp1 = null;
+
+  function current() { return PEOPLE[exp1.index]; }
+
+  function percentileOf(person) {
+    var below = 0;
+    PEOPLE.forEach(function (p) { if (p.d < person.d) { below += 1; } });
+    return Math.round((below / N) * 100);
+  }
+
+  function renderRespondent() {
+    clear(respondentBox);
+    var person = current();
+    respondentBox.appendChild(make("p", "respondent__id",
+      "Respondent " + person.id + " of " + N));
+    var row = make("p", "respondent__score");
+    row.appendChild(make("span", "respondent__value", fixed(person.d) + " s"));
+    row.appendChild(make("span", "respondent__unit", "latency difference score"));
+    respondentBox.appendChild(row);
+    respondentBox.appendChild(make("p", "control__hint",
+      "Larger means faster sorting under one pairing than the other. This " +
+      "respondent is at about the " + percentileOf(person) +
+      "th percentile of the 200. Nothing else about them is known to you."));
+  }
+
+  function buildGuessOptions() {
+    clear(guessOptions);
+    BANDS.forEach(function (band) {
+      var label = make("label", "control--choice");
+      var input = document.createElement("input");
+      input.type = "radio";
+      input.name = "guess";
+      input.value = band.id;
+      input.checked = exp1.guess === band.id;
+      input.disabled = exp1.revealed;
+      input.addEventListener("change", function () { exp1.guess = band.id; });
+      label.appendChild(input);
+      label.appendChild(make("span", null, band.label));
+      guessOptions.appendChild(label);
+    });
+  }
+
+  var NS = "http://www.w3.org/2000/svg";
+  var PLOT = { left: 40, right: 306, top: 16, bottom: 138 };
+
+  function xFor(d) {
+    var lo = -0.4;
+    var hi = 1.2;
+    var t = (d - lo) / (hi - lo);
+    if (t < 0) { t = 0; }
+    if (t > 1) { t = 1; }
+    return PLOT.left + t * (PLOT.right - PLOT.left);
+  }
+
+  function yFor(shortlist, jitter) {
+    var t = shortlist / SHORTLIST_MAX;
+    var base = PLOT.bottom - t * (PLOT.bottom - PLOT.top);
+    return base + (jitter || 0) * 9;
+  }
+
+  function drawScatter() {
+    clear(scatterSvg);
+
+    /* Axes, labelled in words underneath as well. */
+    var axis = document.createElementNS(NS, "line");
+    axis.setAttribute("x1", String(PLOT.left));
+    axis.setAttribute("x2", String(PLOT.right));
+    axis.setAttribute("y1", String(PLOT.bottom + 8));
+    axis.setAttribute("y2", String(PLOT.bottom + 8));
+    axis.setAttribute("class", "chart__baseline");
+    scatterSvg.appendChild(axis);
+
+    [0, 1, 2, 3, 4].forEach(function (level) {
+      var y = yFor(level, 0);
+      var grid = document.createElementNS(NS, "line");
+      grid.setAttribute("x1", String(PLOT.left));
+      grid.setAttribute("x2", String(PLOT.right));
+      grid.setAttribute("y1", String(y));
+      grid.setAttribute("y2", String(y));
+      grid.setAttribute("class", "chart__grid");
+      scatterSvg.appendChild(grid);
+
+      var tick = document.createElementNS(NS, "text");
+      tick.setAttribute("x", String(PLOT.left - 6));
+      tick.setAttribute("y", String(y + 4));
+      tick.setAttribute("text-anchor", "end");
+      tick.setAttribute("class", "chart__axis");
+      tick.textContent = String(level);
+      scatterSvg.appendChild(tick);
+    });
+
+    [-0.4, 0, 0.4, 0.8, 1.2].forEach(function (value) {
+      var label = document.createElementNS(NS, "text");
+      label.setAttribute("x", String(xFor(value)));
+      label.setAttribute("y", String(PLOT.bottom + 22));
+      label.setAttribute("text-anchor", "middle");
+      label.setAttribute("class", "chart__axis");
+      label.textContent = value.toFixed(1);
+      scatterSvg.appendChild(label);
+    });
+
+    var yTitle = document.createElementNS(NS, "text");
+    yTitle.setAttribute("x", "4");
+    yTitle.setAttribute("y", "10");
+    yTitle.setAttribute("class", "chart__axis");
+    yTitle.textContent = "Uplanders shortlisted";
+    scatterSvg.appendChild(yTitle);
+
+    var xTitle = document.createElementNS(NS, "text");
+    xTitle.setAttribute("x", String(PLOT.right));
+    xTitle.setAttribute("y", String(PLOT.bottom + 34));
+    xTitle.setAttribute("text-anchor", "end");
+    xTitle.setAttribute("class", "chart__axis");
+    xTitle.textContent = "Latency difference score (s)";
+    scatterSvg.appendChild(xTitle);
+
+    PEOPLE.forEach(function (person) {
+      var dot = document.createElementNS(NS, "circle");
+      dot.setAttribute("cx", String(xFor(person.d)));
+      dot.setAttribute("cy", String(yFor(person.shortlist, person.jitter)));
+      dot.setAttribute("r", "2");
+      dot.setAttribute("class", "chart__point");
+      scatterSvg.appendChild(dot);
+    });
+
+    /* The selected respondent gets a ring and a cross-hair, so it is found by
+       shape and position rather than by colour. */
+    var person = current();
+    var mark = document.createElementNS(NS, "circle");
+    mark.setAttribute("cx", String(xFor(person.d)));
+    mark.setAttribute("cy", String(yFor(person.shortlist, person.jitter)));
+    mark.setAttribute("r", "6");
+    mark.setAttribute("class", "scatter__selected");
+    scatterSvg.appendChild(mark);
+
+    var stem = document.createElementNS(NS, "line");
+    stem.setAttribute("x1", String(xFor(person.d)));
+    stem.setAttribute("x2", String(xFor(person.d)));
+    stem.setAttribute("y1", String(PLOT.top - 6));
+    stem.setAttribute("y2", String(PLOT.bottom + 8));
+    stem.setAttribute("class", "scatter__stem");
+    scatterSvg.appendChild(stem);
+
+    scatterText.textContent =
+      "Two hundred simulated respondents. The correlation between the latency " +
+      "difference score and the number of Uplanders shortlisted is " +
+      fixed(R) + ". The respondent currently selected is number " + person.id +
+      ", with a score of " + fixed(person.d) + " seconds" +
+      (exp1.revealed
+        ? " and a shortlist of " + person.shortlist + " of 4."
+        : "; their shortlist is not shown until you reveal it.") +
+      " A perfectly predictive score would put every point on a single rising " +
+      "or falling line.";
+  }
+
+  function renderBands() {
+    clear(bandsBody);
+    [0, 1, 2, 3, 4].forEach(function (level) {
+      var group = PEOPLE.filter(function (p) { return p.shortlist === level; });
+      if (!group.length) { return; }
+      var scores = group.map(function (p) { return p.d; });
+      var mean = scores.reduce(function (a, b) { return a + b; }, 0) / scores.length;
+      var lo = Math.min.apply(null, scores);
+      var hi = Math.max.apply(null, scores);
+      var tr = make("tr");
+      var th = make("th", null, String(level) + " of 4");
+      th.setAttribute("scope", "row");
+      tr.appendChild(th);
+      tr.appendChild(make("td", null, String(group.length)));
+      tr.appendChild(make("td", null, fixed(mean) + " s"));
+      tr.appendChild(make("td", null, fixed(lo) + " to " + fixed(hi) + " s"));
+      bandsBody.appendChild(tr);
+    });
+    classifyLine.textContent =
+      "Rule check: taking a score above the sample median (" +
+      fixed(D_MEDIAN) + " s) to mean \"fewer Uplanders\" and below it to mean " +
+      "\"more\" gets it right for " + Math.round(RULE_RATE * 100) +
+      " per cent of the " + RULE_TRIED + " respondents whose shortlist was not " +
+      "even. Meanwhile " + Math.round(BASE_RATE * 100) + " per cent of all 200 " +
+      "shortlists were even, so answering \"an even shortlist\" every single " +
+      "time would be right " + Math.round(BASE_RATE * 100) + " per cent of the " +
+      "time without looking at any score at all.";
+  }
+
+  function renderTally() {
+    if (!exp1.made && !exp1.declined) {
+      tally.textContent =
+        "No predictions yet. Guessing \"an even shortlist\" every time would " +
+        "be right about " + Math.round(BASE_RATE * 100) + " per cent of the " +
+        "time, which is the number your own accuracy has to beat.";
+      return;
+    }
+    tally.textContent =
+      "You have committed to " + exp1.made + " prediction" +
+      (exp1.made === 1 ? "" : "s") + " and been right " + exp1.hits +
+      (exp1.made ? " (" + Math.round((exp1.hits / exp1.made) * 100) + " per cent)" : "") +
+      ". Always answering \"an even shortlist\" would be right about " +
+      Math.round(BASE_RATE * 100) + " per cent of the time. You have declined " +
+      "to guess " + exp1.declined + " time" + (exp1.declined === 1 ? "" : "s") + ".";
+  }
+
+  function renderReveal() {
+    clear(revealBox);
+    if (!exp1.revealed) { return; }
+    var person = current();
+    var actual = bandOf(person.shortlist);
+    var declined = exp1.guess === "cannot";
+    var right = !declined && exp1.guess === actual;
+
+    var box = make("div", "verdict");
+    box.setAttribute("data-tone", declined ? "good" : (right ? "neutral" : "warn"));
+    box.appendChild(make("h5", "verdict__title",
+      "Respondent " + person.id + " shortlisted " + person.shortlist +
+      " Uplander" + (person.shortlist === 1 ? "" : "s") + " of 4"));
+
+    if (declined) {
+      box.appendChild(make("p", "verdict__body",
+        "You declined to guess, and that is the answer the data support. A " +
+        "score of " + fixed(person.d) + " seconds is consistent with every one " +
+        "of the five possible shortlists in this sample - look at the range " +
+        "column in the table below."));
+    } else if (right) {
+      box.appendChild(make("p", "verdict__body",
+        "You were right, and the honest reading of being right is that you had " +
+        "roughly a one-in-three chance and the most common shortlist is the " +
+        "even one. Keep going: the accuracy figure beside the scatter is what " +
+        "matters, not any single case."));
+    } else {
+      box.appendChild(make("p", "verdict__body",
+        "Not this time. The score pointed one way and the person went another, " +
+        "which will keep happening, because the correlation across all 200 is " +
+        fixed(R) + " - real, small, and not enough to say anything about a " +
+        "particular person."));
+    }
+
+    box.appendChild(make("p", "verdict__note",
+      "This respondent also reported a warmth gap of " +
+      Math.round(person.warmth) + " points on the survey scale, which is a " +
+      "third number that agrees with neither of the other two in any reliable " +
+      "way. Three instruments, three answers, one fictional person."));
+    revealBox.appendChild(box);
+  }
+
+  function renderExp1(options) {
+    renderRespondent();
+    buildGuessOptions();
+    drawScatter();
+    renderBands();
+    renderTally();
+    renderReveal();
+    if (options && options.announce) {
+      latencyShell.announce(options.announce, { immediate: true });
+    }
+  }
+
+  function goTo(index) {
+    exp1.index = ((index % N) + N) % N;
+    exp1.guess = null;
+    exp1.revealed = false;
+    guessNote.textContent = "";
+    renderExp1({
+      announce: "Respondent " + current().id + ", latency difference score " +
+        fixed(current().d) + " seconds. Their shortlist is not shown yet."
+    });
+  }
+
+  $('[data-action="prev"]').addEventListener("click", function () { goTo(exp1.index - 1); });
+  $('[data-action="next"]').addEventListener("click", function () { goTo(exp1.index + 1); });
+  $('[data-action="random"]').addEventListener("click", function () {
+    goTo(Math.floor(Math.random() * N));
+  });
+
+  $('[data-action="reveal"]').addEventListener("click", function () {
+    if (exp1.revealed) {
+      guessNote.textContent = "Already revealed. Move to another respondent.";
+      latencyShell.announce(guessNote.textContent, { immediate: true });
+      return;
+    }
+    if (!exp1.guess) {
+      guessNote.textContent =
+        "Choose one of the four first. \"You cannot tell from this score\" is " +
+        "a real answer here, not a way of opting out.";
+      latencyShell.announce(guessNote.textContent, { immediate: true });
+      return;
+    }
+    guessNote.textContent = "";
+    exp1.revealed = true;
+    var actual = bandOf(current().shortlist);
+    if (exp1.guess === "cannot") {
+      exp1.declined += 1;
+    } else {
+      exp1.made += 1;
+      if (exp1.guess === actual) { exp1.hits += 1; }
+    }
+    renderExp1({
+      announce: "Respondent " + current().id + " shortlisted " +
+        current().shortlist + " of 4. " +
+        (exp1.made
+          ? "Your running accuracy is " +
+            Math.round((exp1.hits / exp1.made) * 100) + " per cent against a " +
+            "base rate of " + Math.round(BASE_RATE * 100) + " per cent."
+          : "You have declined to guess " + exp1.declined + " times.")
+    });
+  });
+
+  $('[data-action="auto"]').addEventListener("click", function () {
+    /* Twenty respondents, always predicting the direction the score points.
+       Deterministic: it walks forward from wherever the learner is. */
+    var start = exp1.index;
+    for (var step = 1; step <= 20; step += 1) {
+      var person = PEOPLE[(start + step) % N];
+      var predicted = person.d > D_MEDIAN ? "fewer" : "more";
+      exp1.made += 1;
+      if (predicted === bandOf(person.shortlist)) { exp1.hits += 1; }
+    }
+    exp1.index = (start + 20) % N;
+    exp1.guess = null;
+    exp1.revealed = false;
+    renderExp1({
+      announce: "Twenty predictions made from the score alone. Accuracy " +
+        Math.round((exp1.hits / exp1.made) * 100) + " per cent, against " +
+        Math.round(BASE_RATE * 100) + " per cent for answering \"even\" every " +
+        "time without looking at anything."
+    });
+  });
+
+  /* =======================================================================
+     Experiment 2
+     ===================================================================== */
+
+  var instrumentShell = InteractiveShell.attach("#instrument-lab");
+  if (!instrumentShell) { return; }
+
+  var instrumentPicks = $("[data-instrument-picks]");
+  var observeLegend = $("[data-observe-legend]");
+  var observeOptions = $("[data-observe-options]");
+  var observeNote = $("[data-observe-note]");
+  var evidenceHeading = $("[data-evidence-heading]");
+  var evidenceLevel = $("[data-evidence-level]");
+  var evidenceText = $("[data-evidence-text]");
+  var instrumentFeedback = $("[data-instrument-feedback]");
+  var levels = $("[data-levels]");
+  var levelsBody = $("[data-levels-body]");
+  var goalText = $("[data-goal-text]");
+
+  var EXP2_INITIAL = { index: 0, choice: null, checked: {}, answers: {} };
+  var exp2 = null;
+
+  function currentInstrument() { return INSTRUMENTS[exp2.index]; }
+
+  function buildInstrumentPicks() {
+    clear(instrumentPicks);
+    INSTRUMENTS.forEach(function (instrument, index) {
+      var label = make("label", "control--choice");
+      var input = document.createElement("input");
+      input.type = "radio";
+      input.name = "instrument";
+      input.value = instrument.id;
+      input.checked = index === exp2.index;
+      input.addEventListener("change", function () {
+        exp2.index = index;
+        exp2.choice = exp2.answers[instrument.id] || null;
+        observeNote.textContent = "";
+        renderExp2({
+          announce: instrument.name + " selected. " + instrument.level + "."
+        });
+      });
+      label.appendChild(input);
+      var body = make("span", "instrument__body");
+      body.appendChild(make("span", "instrument__name", instrument.name));
+      body.appendChild(make("span", "instrument__state",
+        exp2.checked[instrument.id] ? "checked" : "not yet checked"));
+      label.appendChild(body);
+      instrumentPicks.appendChild(label);
+    });
+  }
+
+  function buildObserveOptions() {
+    var instrument = currentInstrument();
+    clear(observeOptions);
+    observeLegend.textContent =
+      "What does " + instrument.name.toLowerCase() + " directly observe?";
+    instrument.options.forEach(function (option) {
+      var label = make("label", "control--choice");
+      var input = document.createElement("input");
+      input.type = "radio";
+      input.name = "observe-" + instrument.id;
+      input.value = option.value;
+      input.checked = exp2.choice === option.value;
+      input.disabled = Boolean(exp2.checked[instrument.id]);
+      input.addEventListener("change", function () { exp2.choice = option.value; });
+      label.appendChild(input);
+      label.appendChild(make("span", null, option.label));
+      observeOptions.appendChild(label);
+    });
+  }
+
+  function renderInstrumentFeedback() {
+    clear(instrumentFeedback);
+    var instrument = currentInstrument();
+    if (!exp2.checked[instrument.id]) { return; }
+    var given = exp2.answers[instrument.id];
+    var correctOption = instrument.options.filter(function (o) { return o.correct; })[0];
+    var chosenOption = instrument.options.filter(function (o) {
+      return o.value === given;
+    })[0];
+
+    var first = make("div", "verdict");
+    first.setAttribute("data-tone", given === correctOption.value ? "good" : "caution");
+    first.appendChild(make("h5", "verdict__title",
+      given === correctOption.value
+        ? "What it directly observes - yes"
+        : "What it directly observes - not quite"));
+    first.appendChild(make("p", "verdict__body",
+      "It observes: " + correctOption.label.toLowerCase() + "." +
+      (given === correctOption.value ? " That is what you said."
+        : " You said “" + chosenOption.label + "”, which is already " +
+          "an interpretation of the trace rather than the trace itself.")));
+    instrumentFeedback.appendChild(first);
+
+    var second = make("div", "verdict");
+    second.setAttribute("data-tone", "neutral");
+    second.appendChild(make("h5", "verdict__title", "What is inferred from it"));
+    second.appendChild(make("p", "verdict__body", instrument.inferred));
+    instrumentFeedback.appendChild(second);
+
+    var third = make("div", "verdict");
+    third.setAttribute("data-tone", "warn");
+    third.appendChild(make("h5", "verdict__title", "What it cannot support"));
+    third.appendChild(make("p", "verdict__body", instrument.cannot));
+    instrumentFeedback.appendChild(third);
+
+    /* The confounds are the longest part of each instrument and the part a
+       learner needs least at the moment of the answer, so they open on
+       request rather than arriving with the verdict. */
+    var more = make("details", "stage__more");
+    more.appendChild(make("summary", null, "What remains unexplained"));
+    more.appendChild(make("p", null, instrument.remains));
+    instrumentFeedback.appendChild(more);
+  }
+
+  function renderLevels() {
+    var done = Object.keys(exp2.checked).length;
+    levels.hidden = done === 0;
+    clear(levelsBody);
+    INSTRUMENTS.forEach(function (instrument) {
+      if (!exp2.checked[instrument.id]) { return; }
+      var correctOption = instrument.options.filter(function (o) { return o.correct; })[0];
+      var tr = make("tr");
+      var th = make("th", null, instrument.name);
+      th.setAttribute("scope", "row");
+      tr.appendChild(th);
+      tr.appendChild(make("td", null, correctOption.label));
+      tr.appendChild(make("td", null, instrument.level));
+      tr.appendChild(make("td", null, instrument.cannot));
+      levelsBody.appendChild(tr);
+    });
+  }
+
+  function renderGoal() {
+    var done = Object.keys(exp2.checked).length;
+    clear(goalText);
+    var list = make("ul", "goal__checks");
+    var levelsSeen = {};
+    INSTRUMENTS.forEach(function (instrument) {
+      if (exp2.checked[instrument.id]) {
+        levelsSeen[instrument.level.split(" - ")[0]] = true;
+      }
+    });
+    var levelCount = Object.keys(levelsSeen).length;
+    [
+      { label: "Instruments checked", detail: done + " of 5", met: done === 5 },
+      { label: "Levels of description reached", detail: levelCount + " of 3", met: levelCount >= 3 }
+    ].forEach(function (check) {
+      var li = make("li");
+      li.textContent = check.label + " - " + check.detail +
+        (check.met ? " (met)" : " (not yet)");
+      li.setAttribute("data-met", check.met ? "yes" : "no");
+      list.appendChild(li);
+    });
+    goalText.appendChild(list);
+  }
+
+  function renderExp2(options) {
+    var instrument = currentInstrument();
+    buildInstrumentPicks();
+    buildObserveOptions();
+    evidenceHeading.textContent = instrument.name;
+    evidenceLevel.textContent = instrument.level;
+    evidenceText.textContent = instrument.finding;
+    renderInstrumentFeedback();
+    renderLevels();
+    renderGoal();
+    if (options && options.announce) {
+      instrumentShell.announce(options.announce, { immediate: true });
+    }
+  }
+
+  $('[data-action="check"]').addEventListener("click", function () {
+    var instrument = currentInstrument();
+    if (exp2.checked[instrument.id]) {
+      observeNote.textContent =
+        "This one is already checked. Choose another instrument above.";
+      instrumentShell.announce(observeNote.textContent, { immediate: true });
+      return;
+    }
+    if (!exp2.choice) {
+      observeNote.textContent = "Choose one option before checking.";
+      instrumentShell.announce(observeNote.textContent, { immediate: true });
+      return;
+    }
+    observeNote.textContent = "";
+    exp2.checked[instrument.id] = true;
+    exp2.answers[instrument.id] = exp2.choice;
+    var correctOption = instrument.options.filter(function (o) { return o.correct; })[0];
+    renderExp2({
+      announce: instrument.name + " checked. It directly observes " +
+        correctOption.label.toLowerCase() + ". The inference, the alternatives " +
+        "and what it cannot support are beside you."
+    });
+  });
+
+  /* =======================================================================
+     Challenge
+     ===================================================================== */
+
+  function buildClaims() {
+    clear(claimsList);
+    CLAIMS.forEach(function (claim, index) {
+      var group = make("fieldset", "prediction__group");
+      group.appendChild(make("legend", "prediction__legend",
+        (index + 1) + ". " + claim.text));
+      CLAIM_OPTIONS.forEach(function (option) {
+        var label = make("label", "control--choice");
+        var input = document.createElement("input");
+        input.type = "radio";
+        input.name = "claim-" + claim.id;
+        input.value = option.value;
+        label.appendChild(input);
+        label.appendChild(make("span", null, option.label));
+        group.appendChild(label);
+      });
+      claimsList.appendChild(group);
+    });
+  }
+
+  claimsForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answers = CLAIMS.map(function (claim) {
+      var picked = $('input[name="claim-' + claim.id + '"]:checked', claimsForm);
+      return picked ? picked.value : null;
+    });
+    if (answers.indexOf(null) !== -1) {
+      showFeedback(claimsFeedback, "caution", "One judgement per claim, please.",
+        "None of the five is a trick, and two of them are genuinely partial.");
+      return;
+    }
+    var right = 0;
+    CLAIMS.forEach(function (claim, index) {
+      if (answers[index] === claim.answer) { right += 1; }
+    });
+    clear(claimsFeedback);
+    claimsFeedback.setAttribute("data-tone", right >= 4 ? "good" : "caution");
+    var lead = make("p");
+    lead.appendChild(make("strong", "feedback__verdict", right + " of 5 match."));
+    lead.appendChild(document.createTextNode(
+      " None of the five is supported outright, and the two partial ones are " +
+      "partial for different reasons - one because the measure is ambiguous, " +
+      "one because the finding is real but does not name its own cause."));
+    claimsFeedback.appendChild(lead);
+    var list = make("ol", "claims__results");
+    CLAIMS.forEach(function (claim, index) {
+      var li = make("li");
+      var agreed = answers[index] === claim.answer;
+      li.setAttribute("data-agreed", agreed ? "yes" : "no");
+      var head = make("p", "claims__result-head");
+      head.appendChild(make("strong", null,
+        (index + 1) + ": " + CLAIM_LABELS[claim.answer] + "."));
+      head.appendChild(document.createTextNode(
+        agreed ? " That is what you said."
+          : " You said: " + CLAIM_LABELS[answers[index]].toLowerCase() + "."));
+      li.appendChild(head);
+      li.appendChild(make("p", null, claim.why));
+      list.appendChild(li);
+    });
+    claimsFeedback.appendChild(list);
+    claimsFeedback.hidden = false;
+    latencyShell.announce("Five claims judged. " + right + " match.",
+      { immediate: true });
+  });
+
+  /* =======================================================================
+     Opening prediction
+     ===================================================================== */
+
+  var OPENING = {
+    strong: {
+      tone: "caution",
+      verdict: "That is the popular account, and experiment 1 is an argument against it.",
+      text:
+        "\"Something the person cannot conceal\" is a claim about what the " +
+        "score is, not a finding about what it predicts. Watch how often the " +
+        "score points one way and the respondent goes the other."
+    },
+    moderate: {
+      tone: "caution",
+      verdict: "Not in this sample, and not in the real meta-analyses either.",
+      text:
+        "The relationship in the simulated data is deliberately of the same " +
+        "order as those reported for real latency-behaviour correlations. It " +
+        "is real at the level of a population and does not survive the trip " +
+        "down to one person."
+    },
+    weak: {
+      tone: "good",
+      verdict: "That is exactly it, and holding both halves is the skill.",
+      text:
+        "A small average association is a genuine fact about how a population " +
+        "is arranged. It supports no statement about which side of any line " +
+        "the person in front of you falls on."
+    },
+    none: {
+      tone: "caution",
+      verdict: "Slightly too strong, and the overcorrection matters.",
+      text:
+        "They are related, just weakly. Concluding that a latency task " +
+        "measures nothing is as much a misreading as concluding that it " +
+        "measures a hidden self, and it throws away a real finding about a " +
+        "population."
+    }
+  };
+
+  function lockForm(form) {
+    $$("input, button, select", form).forEach(function (c) { c.disabled = true; });
+  }
+
+  function unlockForm(form) {
+    $$("input, button, select", form).forEach(function (c) { c.disabled = false; });
+    form.reset();
+  }
+
+  function openLabs() {
+    expOne.hidden = false;
+    expTwo.hidden = false;
+    renderExp1();
+    renderExp2();
+    latencyShell.announce(
+      "Both experiments open. Experiment 1 starts at respondent 1.",
+      { immediate: true });
+  }
+
+  openingForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var answer = $('input[name="opening"]:checked', openingForm);
+    if (!answer) {
+      openingError.textContent = "Choose an answer before opening the experiments.";
+      openingError.hidden = false;
+      return;
+    }
+    openingError.hidden = true;
+    var feedback = OPENING[answer.value];
+    showFeedback(openingFeedback, feedback.tone, feedback.verdict, feedback.text);
+    lockForm(openingForm);
+    openLabs();
+    $("#exp1-heading").focus();
+  });
+
+  $('[data-action="skip-opening"]').addEventListener("click", function () {
+    openingError.hidden = true;
+    showFeedback(openingFeedback, "neutral",
+      "Prediction skipped - demonstration mode.", "");
+    lockForm(openingForm);
+    openLabs();
+  });
+
+  /* =======================================================================
+     Start-up
+     ===================================================================== */
+
+  /* One handler, registered on BOTH shells, so either reset button restores
+     the whole page. Registering a per-experiment handler on its own shell
+     would leave a learner who reset experiment 2 with experiment 1 still
+     part-answered and the prediction gate reopened - which is exactly the
+     inconsistent state the reset is meant to prevent. */
+  function resetAll() {
+    exp1 = JSON.parse(JSON.stringify(EXP1_INITIAL));
+    exp2 = JSON.parse(JSON.stringify(EXP2_INITIAL));
+    guessNote.textContent = "";
+    observeNote.textContent = "";
+    unlockForm(openingForm);
+    openingFeedback.hidden = true;
+    openingError.hidden = true;
+    expOne.hidden = true;
+    expTwo.hidden = true;
+    claimsForm.reset();
+    claimsFeedback.hidden = true;
+    renderExp1();
+    renderExp2();
+  }
+
+  latencyShell.onReset(resetAll);
+  instrumentShell.onReset(resetAll);
+
+  buildClaims();
+
+  latencyShell.reset({ silent: true });
+  instrumentShell.reset({ silent: true });
+  latencyShell.announce(
+    "Ready. Answer the question above to open both experiments.",
+    { immediate: true });
+})();
+
+</script>
+</div>
