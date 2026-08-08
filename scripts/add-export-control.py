@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
-"""Add (or update) the "Copy activity HTML" control on a tool page.
+"""Add (or update) the lecturer reuse controls on a tool page.
 
     python scripts/add-export-control.py --all
     python scripts/add-export-control.py --all --check
     python scripts/add-export-control.py <tool-dir> [...]
 
-Two edits per page: the shared script in <head>, and the control itself as the
-last thing inside <main>.
+Two edits per page: the shared scripts in <head>, and the controls themselves
+as the last thing inside <main>. There are two of them now, Copy and Download,
+in one block so that a single attribute keeps both out of an exported copy.
 
 Inside <main>, and last, for two reasons. It has to be inside <main> because
 that is what the exporter reads, and the exporter is what removes the control
@@ -63,18 +64,27 @@ BLOCK = """    <!-- Utility controls, last inside <main> so that they do not sit
               Full screen
             </button>
           </div>
-          <!-- A control of this website only. The attribute below is what
-               scripts/build-standalone.py looks for to leave this out of a
+          <!-- Controls of this website only. The attribute below is what
+               scripts/build-standalone.py looks for to leave these out of a
                copy, which is also why this comment sits inside the block
-               rather than above it. -->
-          <div class="activity-utilities__copy" data-activity-export>
+               rather than above it. Both controls go; Full screen, above,
+               stays, because it belongs to the activity. -->
+          <div class="activity-utilities__lecturer" data-activity-export>
             <button type="button" data-copy-activity="standalone.html">
               Copy activity HTML
             </button>
+            <!-- A plain link, deliberately. The browser fetches the committed
+                 artefact itself, so the download needs no script, works with
+                 JavaScript unavailable, and cannot differ from what Copy puts
+                 on the clipboard. -->
+            <a class="activity-utilities__download" href="standalone.html"
+               download="{slug}.html" data-download-activity>
+              Download activity HTML
+            </a>
             <p class="activity-utilities__note" data-copy-activity-note>
-              For teaching elsewhere: copies this activity as one self-contained
-              block of HTML, styled so it will not disturb the page you paste
-              it into.
+              For teaching elsewhere: take this activity as one self-contained
+              block of HTML, on the clipboard or as a file. Either way it is
+              styled so that it will not disturb the page you put it into.
             </p>
           </div>
         </div>
@@ -101,7 +111,7 @@ def site_root(index_path):
     return "../" * depth
 
 
-def transform(text, root):
+def transform(text, root, slug):
     changed = []
 
     # 1. The script tags, immediately after the shell they sit alongside.
@@ -133,7 +143,8 @@ def transform(text, root):
     m = re.search(r"\s*</main\s*>", text)
     if not m:
         raise SystemExit("  no </main> to insert before")
-    text = text[:m.start()] + "\n\n" + BLOCK + "\n  </main>" + text[m.end():]
+    text = (text[:m.start()] + "\n\n" + BLOCK.format(slug=slug)
+            + "\n  </main>" + text[m.end():])
     if "removed previous block" not in changed:
         changed.append("export block")
 
@@ -157,7 +168,7 @@ def main():
     would_change = 0
     for index in targets:
         original = index.read_text(encoding="utf-8")
-        updated, changed = transform(original, site_root(index))
+        updated, changed = transform(original, site_root(index), index.parent.name)
         if updated == original:
             continue
         would_change += 1

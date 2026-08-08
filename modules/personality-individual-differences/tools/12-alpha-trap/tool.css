@@ -749,12 +749,44 @@
   box-shadow: inset 0 0 0 1px var(--colour-accent);
 }
 
-.activity-utilities__copy {
+/* The two controls that belong to this website rather than to the activity.
+   Both are removed from an exported copy; Full screen, which sits outside this
+   wrapper, is not. */
+.activity-utilities__lecturer {
   display: flex;
   flex: 1 1 20rem;
   flex-wrap: wrap;
   align-items: baseline;
   gap: var(--space-3) var(--space-4);
+}
+
+/* Download is a link rather than a button, because it points at a file and the
+   browser fetches it: there is nothing for a script to do. That keeps it
+   working where JavaScript does not, and it guarantees the bytes are the
+   committed standalone.html rather than anything reassembled at press time.
+   The cost is that it has to be told to size and look like the buttons it
+   stands next to. */
+.activity-utilities__download {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0.4rem 1rem;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--colour-text);
+  text-decoration: none;
+  background-color: var(--colour-surface);
+  border: 1px solid var(--colour-border-strong, var(--colour-border));
+  border-radius: var(--radius-sm);
+}
+
+/* Presented as a button among buttons, so the underline is dropped at rest and
+   brought back on hover and focus rather than given up altogether. */
+.activity-utilities__download:hover,
+.activity-utilities__download:focus-visible {
+  background-color: var(--colour-page);
+  text-decoration: underline;
 }
 
 .activity-utilities__note {
@@ -771,6 +803,11 @@
 
   .activity-utilities button[aria-pressed="true"] {
     border: 2px solid Highlight;
+  }
+
+  .activity-utilities__download {
+    color: LinkText;
+    border: 1px solid LinkText;
   }
 }
 

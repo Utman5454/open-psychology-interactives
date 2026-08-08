@@ -530,8 +530,9 @@ def assert_self_contained(css, js, markup, tool):
         problems.append("markup contains a <script src=...>")
     if re.search(r'<link\b[^>]*rel=["\']?\s*stylesheet', markup, re.I):
         problems.append("markup contains a <link rel=stylesheet>")
-    if re.search(r"data-activity-export|data-copy-activity", markup, re.I):
-        problems.append("markup still contains the export control")
+    if re.search(r"data-activity-export|data-copy-activity|data-download-activity",
+                 markup, re.I):
+        problems.append("markup still contains a lecturer control")
     for m in re.finditer(r'\b(?:src|href)\s*=\s*"([^"]+)"', markup):
         value = m.group(1)
         if value.startswith(("data:", "#", "http://", "https://", "mailto:")):
