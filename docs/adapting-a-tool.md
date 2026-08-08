@@ -12,8 +12,9 @@ shell.
 > verdicts, tables and charts. A tool folder plus those four files is
 > self-contained.
 >
-> If you want one activity rather than a whole tool folder, every tool has a
-> **Copy activity HTML** button; see [Just one activity, without the
+> If you want one activity rather than a whole tool folder, every tool has
+> **Copy activity HTML** and **Download activity HTML** controls; see [Just
+> one activity, without the
 > repository](#just-one-activity-without-the-repository).
 
 ---
@@ -49,18 +50,25 @@ nothing to compile.
 
 ### Just one activity, without the repository
 
-If you only want a single activity on a page of your own, every tool carries a
-**Copy activity HTML** button at the foot of the page. It puts a complete,
-self-contained copy of that one activity on your clipboard: markup, styles,
-script and accessibility text in a single block, with no stylesheet links, no
-script tags pointing anywhere, no images and no network requests at all. Paste
-it into a blank `.html` file and open it, or into any page that accepts HTML —
-a VLE page, a module handbook, your own site.
+If you only want a single activity on a page of your own, every tool carries
+two controls at the foot of the page:
+
+* **Copy activity HTML** puts a complete, self-contained copy of that one
+  activity on your clipboard. Paste it into a blank `.html` file and open it,
+  or into any page that accepts HTML — a VLE page, a module handbook, your own
+  site.
+* **Download activity HTML** saves the same thing as a file, named after the
+  activity. Use this when you want a file to keep, to email, or to upload.
+
+Either way you get markup, styles, script and accessibility text in a single
+block, with no stylesheet links, no script tags pointing anywhere, no images
+and no network requests at all. The two controls hand you the same bytes: the
+committed `standalone.html`, not two separately assembled versions of it.
 
 What you get is the activity — the objective, the prediction, the laboratory,
 the challenge and the debrief. What you do not get is this site's header,
-navigation, breadcrumbs or footer, the Copy button itself, or any link back
-here.
+navigation, breadcrumbs or footer, the Copy and Download controls themselves,
+or any link back here.
 
 The teaching notes are deliberately not included, because they are written for
 whoever is running the session rather than for the page. Take
@@ -75,7 +83,8 @@ on, so a page that flattens list padding, colours every `td`, or restyles every
 
 The copy keeps its **Full screen** button, which expands just the activity —
 useful when it is sitting in the middle of a busy VLE page. It does not keep
-the Copy button; that one belongs to this site.
+Copy or Download; those two belong to this site, and a copy carrying them
+would be offering a file that is not there.
 
 Two things to know:
 
@@ -90,8 +99,8 @@ Two things to know:
   removes itself rather than sitting there doing nothing. Everything else works
   as normal.
 
-The file behind the button is `standalone.html` in the tool's own folder, so it
-can also be opened, read or downloaded directly. It is generated rather than
+The file behind both controls is `standalone.html` in the tool's own folder, so
+it can also be opened or read directly. It is generated rather than
 maintained by hand — see [Regenerating a standalone
 copy](#regenerating-a-standalone-copy) if you change a tool.
 
@@ -496,7 +505,29 @@ should not have to work through an activity to expand or copy it.
 Note that the two scripts are keyed differently: this script removes a previous
 block by `data-activity-utilities`, the outer wrapper, while the exporter
 removes only the inner `data-activity-export`. Using the exporter's key here
-would strip the copy control and let the utilities row accumulate on each run.
+would strip the lecturer controls and let the utilities row accumulate on each
+run.
+
+The row holds three controls, and they divide two to one:
+
+| Control | Element | In an export? |
+| --- | --- | --- |
+| Full screen | `<button>` | **Yes** — it is a usability control, and most useful once the activity is embedded in someone else's page |
+| Copy activity HTML | `<button>` | No |
+| Download activity HTML | `<a href="standalone.html" download="<slug>.html">` | No |
+
+Copy and Download sit inside one `[data-activity-export]` wrapper, so a single
+attribute keeps both out of a copy and there is nothing extra for the exporter
+to know about. `assert_self_contained` names all three attributes anyway, so a
+strip that ever failed would break the build rather than ship a copy carrying a
+button that points at a file which is not there.
+
+Download is a link, not a button, and that is the whole implementation — no
+JavaScript at all. The browser fetches the committed artefact itself, which
+means it keeps working with scripting unavailable, and it cannot drift from
+what Copy puts on the clipboard, because there is no second code path to drift.
+The only cost is that a link has to be told to size and look like the buttons
+beside it, which `.activity-utilities__download` does.
 
 ## Optional learner support
 

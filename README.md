@@ -168,9 +168,10 @@ Two things do need updating in a fork:
 │   ├── activity-fullscreen.js     the "Full screen" control (travels into copies)
 │   ├── learner-help.js            the optional "Need a hand?" guide (16 tools)
 │   └── copy-activity.js           the "Copy activity HTML" control (excluded from copies)
+│                                  ("Download activity HTML" is a plain link and needs no script)
 ├── scripts/
 │   ├── build-standalone.py        generates each tool's standalone.html
-│   └── add-export-control.py      adds the copy control to a tool page
+│   └── add-export-control.py      adds the lecturer controls to a tool page
 ├── modules/
 │   ├── cognitive/
 │   │   ├── index.html             module landing page
@@ -200,10 +201,11 @@ Each tool lives at `modules/<module-slug>/tools/<tool-slug>/` and contains
 `index.html`, `metadata.json`, `teaching-notes.md` and `standalone.html`.
 
 `standalone.html` is generated, not written by hand. It is the embeddable copy
-of that one activity, and it is what the **Copy activity HTML** button on each
-tool page puts on the clipboard: markup, styles, script and accessibility text
-in a single block, scoped to a `.opi-activity` wrapper so it can be pasted into
-a VLE page without disturbing what is already there. Rebuild the copies with
+of that one activity. It is what **Copy activity HTML** puts on the clipboard
+and what **Download activity HTML** saves as a file — the same bytes either
+way: markup, styles, script and accessibility text in a single block, scoped to
+a `.opi-activity` wrapper so it can be pasted into a VLE page without
+disturbing what is already there. Rebuild the copies with
 
 ```sh
 python scripts/build-standalone.py --all
