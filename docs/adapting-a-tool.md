@@ -4,13 +4,17 @@ How to take a tool from this project and change it for your own course, and —
 because the two are the same job — how to build a new one against the shared
 shell.
 
-> **Current status.** Twelve tools are published, all in Personality and
-> Individual Differences, so there is plenty to copy. They are built on the
-> shared shell (`components/interactive-shell.css` and
-> `components/interactive-shell.js`), documented here in full, plus
-> `components/tool-kit.css`, which styles the page furniture around the shell —
-> prediction panels, feedback boxes, verdicts, tables and charts. A tool folder
-> plus those four files is self-contained.
+> **Current status.** Seventy-five tools are published across all five modules,
+> so there is plenty to copy. They are built on the shared shell
+> (`components/interactive-shell.css` and `components/interactive-shell.js`),
+> documented here in full, plus `components/tool-kit.css`, which styles the
+> page furniture around the shell — prediction panels, feedback boxes,
+> verdicts, tables and charts. A tool folder plus those four files is
+> self-contained.
+>
+> If you want one activity rather than a whole tool folder, every tool has a
+> **Copy activity HTML** button; see [Just one activity, without the
+> repository](#just-one-activity-without-the-repository).
 
 ---
 
@@ -45,24 +49,38 @@ nothing to compile.
 
 ### Just one activity, without the repository
 
-If you only want a single activity on a page of your own, some tools carry a
-**Copy activity HTML** button near the foot of the page. It puts a complete,
+If you only want a single activity on a page of your own, every tool carries a
+**Copy activity HTML** button at the foot of the page. It puts a complete,
 self-contained copy of that one activity on your clipboard: markup, styles,
-script and accessibility text in a single file, with no stylesheet links, no
+script and accessibility text in a single block, with no stylesheet links, no
 script tags pointing anywhere, no images and no network requests at all. Paste
-it into a blank `.html` file and open it, or into any page that accepts HTML.
+it into a blank `.html` file and open it, or into any page that accepts HTML —
+a VLE page, a module handbook, your own site.
 
 What you get is the activity — the objective, the prediction, the laboratory,
 the challenge and the debrief. What you do not get is this site's header,
-navigation, breadcrumbs or footer, and no link points back here.
+navigation, breadcrumbs or footer, the Copy button itself, or any link back
+here.
 
 The teaching notes are deliberately not included, because they are written for
 whoever is running the session rather than for the page. Take
 `teaching-notes.md` from the tool's folder if you want them.
 
-> **Prototype.** The button is currently on one tool,
-> `modules/research-methods/tools/20-homoscedasticity-residual-diagnostics/`,
-> while the mechanism is evaluated.
+**It will not disturb the page you paste it into.** Everything is wrapped in a
+`<div class="opi-activity">` and every style is scoped to it, so nothing the
+copy carries can reach your headings, buttons, tables or typography. The
+defence runs the other way too: the activity restates the styling it depends
+on, so a page that flattens list padding or restyles every `button` does not
+flatten or restyle the activity.
+
+Two things to know:
+
+- **One copy per page.** Activities use element IDs internally, and two copies
+  on the same page would collide. Different activities on one page are usually
+  fine; the same one twice is not.
+- **Paste as HTML, not as text.** An editor that escapes the markup, or one
+  that strips `<style>` and `<script>`, will give you the words without the
+  activity. Most VLEs have an HTML or source view that pastes it properly.
 
 The file behind the button is `standalone.html` in the tool's own folder, so it
 can also be opened, read or downloaded directly. It is generated rather than
@@ -78,8 +96,12 @@ one of them:
 modules/<module-slug>/tools/<tool-slug>/
 ├── index.html          the tool itself
 ├── metadata.json       the catalogue record
-└── teaching-notes.md   educator guidance
+├── teaching-notes.md   educator guidance
+└── standalone.html     generated; the embeddable copy of the activity
 ```
+
+`standalone.html` is the only generated file in the repository. Do not edit it
+by hand — see [Regenerating the exports](#regenerating-the-exports).
 
 The five module slugs are fixed:
 
@@ -331,56 +353,94 @@ notes where appropriate.
 If you adapt a tool, adapt its teaching notes too — notes that describe a
 different version of the tool are worse than none.
 
-## Regenerating a standalone copy
+## Regenerating the exports
 
-Tools that offer **Copy activity HTML** keep the copy in `standalone.html`
-beside `index.html`. It is generated, and it is committed so that it can be
-reviewed in a diff and opened directly. Regenerate it whenever you change the
-tool's markup, script or styles, or whenever you change one of the shared
-stylesheets:
+Every tool keeps its exported copy in `standalone.html`, beside `index.html`.
+The canonical files are the source of truth; `standalone.html` is generated
+from them, and committed so it can be reviewed in a diff and opened directly.
 
-```sh
-python scripts/build-standalone.py modules/research-methods/tools/20-homoscedasticity-residual-diagnostics/
-```
-
-`--check` reports whether the committed file matches what the sources would
-produce now, and exits non-zero if it does not, so it can be used as a guard:
+**Two commands.** Rebuild:
 
 ```sh
-python scripts/build-standalone.py --check modules/*/tools/*/
+python scripts/build-standalone.py --all
 ```
 
-The script takes the contents of `<main>`, drops the block marked
-`data-activity-export` (the copy button itself, which would be meaningless in
-the copy), inlines the shared stylesheets with the site-chrome rules removed,
-inlines `components/interactive-shell.js` and the tool's own `tool.js`, and
-leaves out `assets/js/main.js` entirely — that file is navigation, the footer
-year and the catalogue fetch, none of which an activity calls, and the
-catalogue fetch would be a dependency on this repository.
+and check, which is the same build compared against what is committed. It
+prints every stale export and exits non-zero, so it works as a guard in a
+pre-commit hook or CI:
 
-It refuses to write a file that still has a relative `src` or `href` in the
-markup, or an unescaped `</script` in the inlined JavaScript. The second check
-is not hypothetical: the shell's own documentation comment contains a literal
-`</script>`, which ends the inlined block early if it is not escaped.
-
-Adding the button to a tool takes two edits to its `index.html` — the script
-tag:
-
-```html
-<script src="../../../../components/copy-activity.js" defer></script>
+```sh
+python scripts/build-standalone.py --all --check
 ```
 
-and the block itself, which must sit outside any section that starts `hidden`,
-so that it is reachable without working through the activity first:
+Rebuild after changing a tool's markup, script or styles, **and** after
+changing any of `assets/css/main.css`, `components/interactive-shell.css`,
+`components/tool-kit.css` or `components/interactive-shell.js` — those are
+inlined into all seventy-five, so one edit makes every export stale. `--check`
+is what stops that going unnoticed.
 
-```html
-<div class="activity-export" data-activity-export>
-  <button type="button" data-copy-activity="standalone.html">
-    Copy activity HTML
-  </button>
-  <p class="activity-export__note" data-copy-activity-note>…</p>
-</div>
+Nothing else is needed: no npm, no bundler, no lockfile. Python 3 and the
+standard library.
+
+### What the build does
+
+1. Takes the contents of `<main>`, and removes any element marked
+   `data-activity-export` (the Copy control) or `data-instructor-only`
+   (material addressed to whoever is running the session).
+2. Inlines the four stylesheets, dropping the site-chrome rules, and rewrites
+   every selector to sit under `.opi-activity` — see below.
+3. Inlines `components/interactive-shell.js` and the tool's `tool.js`, and
+   leaves out `assets/js/main.js` entirely: that file is navigation, the footer
+   year and the catalogue fetch, none of which an activity calls, and the
+   catalogue fetch would be a dependency on this repository.
+4. Refuses to write anything that is not self-contained.
+
+### How the styles are made safe to embed
+
+The copy has to survive a page it knows nothing about, and leave that page
+alone. Both directions come out of one specificity ladder:
+
+| | selector | specificity |
+| --- | --- | --- |
+| the host page's own rules | `h1`, `button`, `td` | (0,0,1) |
+| the export's defensive reset | `.opi-activity *` | (0,1,0) |
+| the activity's own rules | `.opi-activity.opi-activity …` | (0,2,0)+ |
+
+The reset is `all: revert`, which throws away the host's declarations and lets
+inherited properties fall back to what the wrapper sets. Repeating the class on
+the activity's own rules keeps them above the reset. Elements *inside* an
+`<svg>` are left out of the revert so chart presentation attributes survive.
+
+`:root`, `html` and `body` map onto the wrapper, minus the declarations that
+belong to a page rather than a `<div>` — `body` is a flex column filling the
+viewport, and a copy of that would stretch the activity to full screen height
+inside somebody's article.
+
+`rem` lengths are resolved to `px` in declarations, though not in media query
+preludes, which are already immune. The site sets no root font size, so this
+reproduces the canonical rendering exactly while making it immune to a host
+that writes `html { font-size: 62.5% }`.
+
+### Refusals
+
+The build fails rather than writing a copy that has an unescaped `</script` in
+its JavaScript, an unscoped selector, a relative `src` or `href` in the markup,
+or the export control still in it. None of these is hypothetical — each one is
+a bug this script shipped once. The shell's own documentation comment contains
+a literal `</script>`, which ends the inlined block early if it is not escaped.
+
+### Adding the control to a new tool
+
+```sh
+python scripts/add-export-control.py <tool-dir>     # or --all, or --check
 ```
+
+It is idempotent, and it will move a control that has drifted from the current
+markup. It adds the shared script after the shell it depends on, and puts the
+control last inside `<main>` — inside, because that is what the exporter reads
+and therefore what it can remove; last, because most tools keep the laboratory
+in a section that starts `hidden`, and a lecturer should not have to work
+through the activity to take a copy of it.
 
 ## Rules worth keeping when you adapt
 

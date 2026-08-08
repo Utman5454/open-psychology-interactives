@@ -163,11 +163,16 @@ Two things do need updating in a fork:
 │   └── js/main.js                 nav toggle, footer year, catalogue loading
 ├── components/
 │   ├── interactive-shell.css      shared frame for every tool
-│   └── interactive-shell.js       live region, reset wiring, slider labelling
+│   ├── interactive-shell.js       live region, reset wiring, slider labelling
+│   ├── tool-kit.css               page furniture around the shell
+│   └── copy-activity.js           the "Copy activity HTML" control
+├── scripts/
+│   ├── build-standalone.py        generates each tool's standalone.html
+│   └── add-export-control.py      adds the copy control to a tool page
 ├── modules/
 │   ├── cognitive/
 │   │   ├── index.html             module landing page
-│   │   └── tools/                 one folder per tool (empty today)
+│   │   └── tools/                 one folder per tool
 │   ├── research-methods/
 │   │   ├── index.html
 │   │   └── tools/
@@ -189,8 +194,29 @@ Two things do need updating in a fork:
 └── LICENSE
 ```
 
-Each tool will live at `modules/<module-slug>/tools/<tool-slug>/` and contain
-`index.html`, `metadata.json` and `teaching-notes.md`.
+Each tool lives at `modules/<module-slug>/tools/<tool-slug>/` and contains
+`index.html`, `metadata.json`, `teaching-notes.md` and `standalone.html`.
+
+`standalone.html` is generated, not written by hand. It is the embeddable copy
+of that one activity, and it is what the **Copy activity HTML** button on each
+tool page puts on the clipboard: markup, styles, script and accessibility text
+in a single block, scoped to a `.opi-activity` wrapper so it can be pasted into
+a VLE page without disturbing what is already there. Rebuild the copies with
+
+```sh
+python scripts/build-standalone.py --all
+```
+
+and verify that none has gone stale — which happens whenever a tool or one of
+the shared stylesheets changes — with
+
+```sh
+python scripts/build-standalone.py --all --check
+```
+
+which exits non-zero if any committed copy no longer matches its source. There
+is no build step for the site itself; this is the only generated artefact, and
+Python 3 is all it needs.
 
 `data/catalogue.json` is the single source of truth for what has been published.
 Adding an entry there is what makes a tool appear on its module page; the page's
