@@ -32,6 +32,7 @@
   <script src="../../../../assets/js/main.js" defer></script>
   <script src="../../../../components/interactive-shell.js" defer></script>
   <script src="../../../../components/activity-fullscreen.js" defer></script>
+  <script src="../../../../components/learner-help.js" defer></script>
   <script src="../../../../components/copy-activity.js" defer></script>
   <script src="tool.js" defer></script>
 </head>
@@ -311,6 +312,98 @@
             real research meeting nobody does either.
           </p>
         </div>
+
+        <!-- Optional learner support. Collapsed, secondary, and skipped entirely by
+             anybody who does not need it. It is part of the exercise rather than of
+             this website, so it travels into an exported copy - see
+             components/learner-help.js. -->
+        <details class="helper" data-learner-help>
+          <summary class="helper__summary">Need a hand?</summary>
+
+          <div class="helper__body">
+
+            <p class="helper__offer">
+              <button class="helper__start" type="button" data-guide-start>
+                Show me what to do
+              </button>
+            </p>
+
+            <div class="helper__guide" data-guide hidden>
+              <p class="helper__progress" data-guide-progress></p>
+              <div class="helper__step" data-guide-text tabindex="-1"
+                   aria-live="polite"></div>
+              <div class="helper__actions">
+                <button type="button" data-guide-prev>Back</button>
+                <button type="button" data-guide-next>Next</button>
+                <button type="button" data-variant="secondary" data-guide-close>
+                  Close the guide
+                </button>
+              </div>
+              <p class="helper__aside">
+                Nothing here changes the controls for you, and none of it says what
+                you are going to find.
+              </p>
+            </div>
+
+            <!-- Steps as content, not code, so they read as copy and can be revised
+                 without touching the component. `target` is the thing the step is
+                 about; it gets an outline, and every step also names it in words. -->
+            <script type="application/json" data-guide-steps>
+            [
+              { "text": "Declare a starting point, then watch the specification table on the right begin to fill in.",
+                "target": "#lens-switch [data-spec-body]" },
+              { "text": "Work through the study decisions. Each one narrows what this study is going to be.",
+                "target": "#lens-switch [data-decision-list]" },
+              { "text": "Now read what the study you have specified could and could not say.",
+                "target": "#lens-switch [data-appraisal-body]" },
+              { "text": "Go back and build the same case again from a different starting point, keeping your interest in the case the same.",
+                "target": "#lens-switch [data-lens-choices]" },
+              { "text": "Compare the rows at the bottom. Neither is the right answer: what did each starting point make it possible to ask?",
+                "target": "#lens-switch [data-comparison-body]" }
+            ]
+            </script>
+
+            <details class="helper__terms">
+              <summary class="helper__summary">Key terms</summary>
+              <dl class="helper__glossary">
+
+                <dt>Ontology</dt>
+                <dd>
+                  What a position takes its research object to be &mdash; an
+                  underlying mechanism, a regularity among observables, or something
+                  produced in talk.
+                </dd>
+
+                <dt>Epistemology</dt>
+                <dd>
+                  What that position treats as knowledge of the object, and
+                  therefore what could count as evidence about it.
+                </dd>
+
+                <dt>Positivism</dt>
+                <dd>
+                  Looking for regularities among observable quantities, and treating
+                  careful measurement of them as the route to knowledge.
+                </dd>
+
+                <dt>Critical realism</dt>
+                <dd>
+                  Holding that there are real structures beyond what is observed,
+                  while our access to them stays fallible and theory-laden.
+                </dd>
+
+                <dt>Social constructionism</dt>
+                <dd>
+                  Treating the object of study as produced in interaction and
+                  language. It is a claim about how the object comes to be what it
+                  is, not a claim that nothing is real.
+                </dd>
+
+              </dl>
+            </details>
+
+          </div>
+        </details>
 
         <section class="interactive" id="lens-switch" data-interactive
                  data-reset-message="Everything cleared. Back to the opening question.">

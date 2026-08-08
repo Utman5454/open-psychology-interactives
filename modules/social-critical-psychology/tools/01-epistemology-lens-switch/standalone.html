@@ -1288,6 +1288,123 @@
 .opi-activity:fullscreen > .section:first-child {
   padding-top: var(--space-5);
 }
+.opi-activity.opi-activity.opi-activity .helper {
+  margin-bottom: var(--space-4);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity.opi-activity .helper__summary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  padding: 0 var(--space-2);
+  font-weight: 600;
+  color: var(--colour-text-muted);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+}
+.opi-activity.opi-activity.opi-activity .helper__summary:hover {
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity.opi-activity .helper[open] > .helper__summary {
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity.opi-activity .helper__body {
+  margin: var(--space-2) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border-left: 3px solid var(--colour-border-strong);
+  background-color: var(--colour-surface);
+  border-radius: var(--radius-sm);
+}
+.opi-activity.opi-activity.opi-activity .helper__offer {
+  margin: 0;
+}
+.opi-activity.opi-activity.opi-activity .helper__start,
+.opi-activity.opi-activity.opi-activity .helper__actions button {
+  min-height: 44px;
+  padding: 6.4px 16px;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--colour-on-accent);
+  background-color: var(--colour-accent);
+  border: 1px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+.opi-activity.opi-activity.opi-activity .helper__actions button[data-variant="secondary"] {
+  color: var(--colour-text);
+  background-color: transparent;
+  border-color: var(--colour-border-strong);
+}
+.opi-activity.opi-activity.opi-activity .helper__actions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.opi-activity.opi-activity.opi-activity .helper__progress {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity.opi-activity .helper__step {
+  margin: 0 0 var(--space-3);
+  max-width: 672px;
+  min-height: 3.4em;
+}
+@media (max-width: 40em) {
+.opi-activity.opi-activity.opi-activity .helper__step {
+  min-height: 6.8em;
+}
+}
+.opi-activity.opi-activity.opi-activity .helper__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.opi-activity.opi-activity.opi-activity .helper__aside {
+  margin: var(--space-3) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity.opi-activity .helper__terms {
+  margin-top: var(--space-4);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity.opi-activity .helper__glossary {
+  margin: var(--space-2) 0 0;
+  display: grid;
+  gap: var(--space-2);
+}
+.opi-activity.opi-activity.opi-activity .helper__body > .helper__glossary {
+  margin-top: 0;
+}
+.opi-activity.opi-activity.opi-activity .helper__glossary dt {
+  font-weight: 650;
+}
+.opi-activity.opi-activity.opi-activity .helper__glossary dd {
+  margin: 0 0 var(--space-2);
+  max-width: 672px;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity.opi-activity .helper__glossary dd:last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity.opi-activity [data-guide-target] {
+  outline: 3px solid var(--colour-focus);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity.opi-activity [data-guide-target] {
+  outline: 3px solid Highlight;
+}
+.opi-activity.opi-activity.opi-activity .helper__body {
+  border-left: 3px solid CanvasText;
+}
+}
 
 /* modules/social-critical-psychology/tools/01-epistemology-lens-switch/tool.css */
 .opi-activity.opi-activity.opi-activity #lens-switch .interactive__controls,
@@ -1757,6 +1874,98 @@
           real research meeting nobody does either.
         </p>
       </div>
+
+      <!-- Optional learner support. Collapsed, secondary, and skipped entirely by
+           anybody who does not need it. It is part of the exercise rather than of
+           this website, so it travels into an exported copy - see
+           components/learner-help.js. -->
+      <details class="helper" data-learner-help>
+        <summary class="helper__summary">Need a hand?</summary>
+
+        <div class="helper__body">
+
+          <p class="helper__offer">
+            <button class="helper__start" type="button" data-guide-start>
+              Show me what to do
+            </button>
+          </p>
+
+          <div class="helper__guide" data-guide hidden>
+            <p class="helper__progress" data-guide-progress></p>
+            <div class="helper__step" data-guide-text tabindex="-1"
+                 aria-live="polite"></div>
+            <div class="helper__actions">
+              <button type="button" data-guide-prev>Back</button>
+              <button type="button" data-guide-next>Next</button>
+              <button type="button" data-variant="secondary" data-guide-close>
+                Close the guide
+              </button>
+            </div>
+            <p class="helper__aside">
+              Nothing here changes the controls for you, and none of it says what
+              you are going to find.
+            </p>
+          </div>
+
+          <!-- Steps as content, not code, so they read as copy and can be revised
+               without touching the component. `target` is the thing the step is
+               about; it gets an outline, and every step also names it in words. -->
+          <script type="application/json" data-guide-steps>
+          [
+            { "text": "Declare a starting point, then watch the specification table on the right begin to fill in.",
+              "target": "#lens-switch [data-spec-body]" },
+            { "text": "Work through the study decisions. Each one narrows what this study is going to be.",
+              "target": "#lens-switch [data-decision-list]" },
+            { "text": "Now read what the study you have specified could and could not say.",
+              "target": "#lens-switch [data-appraisal-body]" },
+            { "text": "Go back and build the same case again from a different starting point, keeping your interest in the case the same.",
+              "target": "#lens-switch [data-lens-choices]" },
+            { "text": "Compare the rows at the bottom. Neither is the right answer: what did each starting point make it possible to ask?",
+              "target": "#lens-switch [data-comparison-body]" }
+          ]
+          </script>
+
+          <details class="helper__terms">
+            <summary class="helper__summary">Key terms</summary>
+            <dl class="helper__glossary">
+
+              <dt>Ontology</dt>
+              <dd>
+                What a position takes its research object to be &mdash; an
+                underlying mechanism, a regularity among observables, or something
+                produced in talk.
+              </dd>
+
+              <dt>Epistemology</dt>
+              <dd>
+                What that position treats as knowledge of the object, and
+                therefore what could count as evidence about it.
+              </dd>
+
+              <dt>Positivism</dt>
+              <dd>
+                Looking for regularities among observable quantities, and treating
+                careful measurement of them as the route to knowledge.
+              </dd>
+
+              <dt>Critical realism</dt>
+              <dd>
+                Holding that there are real structures beyond what is observed,
+                while our access to them stays fallible and theory-laden.
+              </dd>
+
+              <dt>Social constructionism</dt>
+              <dd>
+                Treating the object of study as produced in interaction and
+                language. It is a claim about how the object comes to be what it
+                is, not a claim that nothing is real.
+              </dd>
+
+            </dl>
+          </details>
+
+        </div>
+      </details>
 
       <section class="interactive" id="lens-switch" data-interactive
                data-reset-message="Everything cleared. Back to the opening question.">
@@ -2527,6 +2736,205 @@
   }
 
   global.ActivityFullscreen = { init: init };
+})(window);
+
+/* ---- components/learner-help.js ---- */
+/* =========================================================================
+   Open Psychology Interactives — optional learner support
+   -------------------------------------------------------------------------
+   Drives the "Need a hand?" disclosure: a step-at-a-time guide that points a
+   learner at the part of the activity they should be looking at, and a short
+   glossary. Both are optional and collapsed, so a learner who is not stuck
+   sees the page they would have seen anyway.
+
+   This is learner support, not repository furniture, so it travels into an
+   exported copy. scripts/build-standalone.py inlines this file for any tool
+   whose markup contains data-learner-help.
+
+   What it deliberately does not do
+   --------------------------------
+     * change a control on the learner's behalf - the steps ask them to do it,
+       because the point is that they act and then look;
+     * say whether a prediction was right;
+     * state the conclusion the activity exists to produce. Step 4 and step 5
+       ask what happened; they do not answer it.
+
+   Markup contract:
+
+       <details class="helper" data-learner-help>
+         <summary>Need a hand?</summary>
+         ...
+         <button data-guide-start>Show me what to do</button>
+         <div data-guide hidden>
+           <p data-guide-progress></p>
+           <div data-guide-text tabindex="-1" aria-live="polite"></div>
+           <button data-guide-prev>Back</button>
+           <button data-guide-next>Next</button>
+           <button data-guide-close>Close</button>
+         </div>
+       </details>
+
+   Steps come from a <script type="application/json" data-guide-steps> block
+   inside the disclosure, so the copy is content rather than code: each entry
+   is {"text": "...", "target": "<css selector>"} and `target` is optional.
+
+   Exposed as a global rather than an ES module, for the same reason as the
+   rest of the collection: a tool folder opened from disk over file:// cannot
+   load modules.
+   ========================================================================= */
+
+(function (global) {
+  "use strict";
+
+  var doc = global.document;
+
+  /** Marks the element a step is pointing at. Outline, not border: an outline
+      is drawn outside the box and shifts nothing. */
+  var HIGHLIGHT_ATTRIBUTE = "data-guide-target";
+
+  function parseSteps(root) {
+    var holder = root.querySelector("[data-guide-steps]");
+    if (!holder) {
+      return [];
+    }
+    try {
+      var parsed = JSON.parse(holder.textContent);
+      return Array.isArray(parsed) ? parsed : [];
+    } catch (error) {
+      if (global.console && console.warn) {
+        console.warn("learner-help: could not parse the guide steps.", error);
+      }
+      return [];
+    }
+  }
+
+  function init(root) {
+    var steps = parseSteps(root);
+    var startButton = root.querySelector("[data-guide-start]");
+    var guide = root.querySelector("[data-guide]");
+    var textBox = root.querySelector("[data-guide-text]");
+    var progress = root.querySelector("[data-guide-progress]");
+    var prev = root.querySelector("[data-guide-prev]");
+    var next = root.querySelector("[data-guide-next]");
+    var close = root.querySelector("[data-guide-close]");
+
+    if (!steps.length || !startButton || !guide || !textBox) {
+      // Nothing to drive. Leave the glossary alone — it is plain markup and
+      // works without any of this.
+      if (startButton) {
+        startButton.hidden = true;
+      }
+      return;
+    }
+
+    var index = 0;
+    var highlighted = null;
+
+    function clearHighlight() {
+      if (highlighted) {
+        highlighted.removeAttribute(HIGHLIGHT_ATTRIBUTE);
+        highlighted = null;
+      }
+    }
+
+    /**
+     * The highlight is decoration. Every step names its target in words, so a
+     * reader who never sees the outline is not missing an instruction.
+     */
+    function highlight(selector) {
+      clearHighlight();
+      if (!selector) {
+        return;
+      }
+      var target = doc.querySelector(selector);
+      if (!target) {
+        return;
+      }
+      target.setAttribute(HIGHLIGHT_ATTRIBUTE, "");
+      highlighted = target;
+    }
+
+    function render() {
+      var step = steps[index];
+      textBox.textContent = step.text;
+      if (progress) {
+        progress.textContent = "Step " + (index + 1) + " of " + steps.length;
+      }
+      if (prev) {
+        prev.disabled = index === 0;
+      }
+      if (next) {
+        next.disabled = index === steps.length - 1;
+      }
+      highlight(step.target);
+    }
+
+    function open() {
+      index = 0;
+      guide.hidden = false;
+      startButton.hidden = true;
+      render();
+      // Focus the step itself: the reader hears the step, and the buttons
+      // follow it in document order.
+      textBox.focus();
+    }
+
+    function shut(options) {
+      guide.hidden = true;
+      startButton.hidden = false;
+      clearHighlight();
+      if (!options || options.restoreFocus !== false) {
+        startButton.focus();
+      }
+    }
+
+    startButton.addEventListener("click", open);
+
+    if (next) {
+      next.addEventListener("click", function () {
+        if (index < steps.length - 1) {
+          index += 1;
+          render();
+        }
+      });
+    }
+
+    if (prev) {
+      prev.addEventListener("click", function () {
+        if (index > 0) {
+          index -= 1;
+          render();
+        }
+      });
+    }
+
+    if (close) {
+      close.addEventListener("click", function () {
+        shut();
+      });
+    }
+
+    /* Collapsing the disclosure must take the highlight with it, or an outline
+       is left sitting on a control with nothing on screen explaining it. */
+    root.addEventListener("toggle", function () {
+      if (!root.open) {
+        shut({ restoreFocus: false });
+      }
+    });
+  }
+
+  function initAll() {
+    var roots = doc.querySelectorAll("[data-learner-help]");
+    Array.prototype.forEach.call(roots, init);
+  }
+
+  if (doc.readyState === "loading") {
+    doc.addEventListener("DOMContentLoaded", initAll);
+  } else {
+    initAll();
+  }
+
+  global.LearnerHelp = { init: initAll };
 })(window);
 
 /* ---- modules/social-critical-psychology/tools/01-epistemology-lens-switch/tool.js ---- */

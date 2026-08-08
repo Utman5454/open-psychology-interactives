@@ -32,6 +32,7 @@
   <script src="../../../../assets/js/main.js" defer></script>
   <script src="../../../../components/interactive-shell.js" defer></script>
   <script src="../../../../components/activity-fullscreen.js" defer></script>
+  <script src="../../../../components/learner-help.js" defer></script>
   <script src="../../../../components/copy-activity.js" defer></script>
   <script src="tool.js" defer></script>
 </head>
@@ -247,6 +248,91 @@
             see the score first.
           </p>
         </div>
+
+        <!-- Optional learner support. Collapsed, secondary, and skipped entirely by
+             anybody who does not need it. It is part of the exercise rather than of
+             this website, so it travels into an exported copy - see
+             components/learner-help.js. -->
+        <details class="helper" data-learner-help>
+          <summary class="helper__summary">Need a hand?</summary>
+
+          <div class="helper__body">
+
+            <p class="helper__offer">
+              <button class="helper__start" type="button" data-guide-start>
+                Show me what to do
+              </button>
+            </p>
+
+            <div class="helper__guide" data-guide hidden>
+              <p class="helper__progress" data-guide-progress></p>
+              <div class="helper__step" data-guide-text tabindex="-1"
+                   aria-live="polite"></div>
+              <div class="helper__actions">
+                <button type="button" data-guide-prev>Back</button>
+                <button type="button" data-guide-next>Next</button>
+                <button type="button" data-variant="secondary" data-guide-close>
+                  Close the guide
+                </button>
+              </div>
+              <p class="helper__aside">
+                Nothing here changes the controls for you, and none of it says what
+                you are going to find.
+              </p>
+            </div>
+
+            <!-- Steps as content, not code, so they read as copy and can be revised
+                 without touching the component. `target` is the thing the step is
+                 about; it gets an outline, and every step also names it in words. -->
+            <script type="application/json" data-guide-steps>
+            [
+              { "text": "One respondent, one score. Commit to a prediction &mdash; including “cannot tell”, if that is your answer.",
+                "target": "#latency-lab [data-guess-options]" },
+              { "text": "Now look at all 200 people, score on one axis and what happened to them on the other.",
+                "target": "#latency-lab [data-scatter]" },
+              { "text": "Find your respondent's score band in the table, and compare the band with the individual you were asked about.",
+                "target": "#latency-lab [data-bands-body]" },
+              { "text": "Move to the second experiment. Choose an instrument and say what it directly observes, before reading the answer.",
+                "target": "#instrument-lab [data-observe-options]" },
+              { "text": "Now read the five instruments against the four levels of description. Where does each finding sit?",
+                "target": "#instrument-lab [data-levels-body]" }
+            ]
+            </script>
+
+            <details class="helper__terms">
+              <summary class="helper__summary">Key terms</summary>
+              <dl class="helper__glossary">
+
+                <dt>Response latency</dt>
+                <dd>
+                  How long somebody takes to respond. A difference between
+                  conditions is directly a difference in times.
+                </dd>
+
+                <dt>Level of description</dt>
+                <dd>
+                  Whether a finding is about an individual, an interaction, an
+                  institution or a population. Evidence at one level does not carry
+                  to another for free.
+                </dd>
+
+                <dt>Construct</dt>
+                <dd>
+                  What you mean to be studying, as distinct from the observable
+                  thing standing in for it.
+                </dd>
+
+                <dt>Average relationship</dt>
+                <dd>
+                  An association holding across a sample. It is not a prediction
+                  about any member of it.
+                </dd>
+
+              </dl>
+            </details>
+
+          </div>
+        </details>
 
         <section class="interactive" id="latency-lab" data-interactive
                  data-reset-message="Whole page cleared. Back to the opening question, with both experiments closed.">

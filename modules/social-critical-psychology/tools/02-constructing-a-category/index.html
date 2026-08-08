@@ -32,6 +32,7 @@
   <script src="../../../../assets/js/main.js" defer></script>
   <script src="../../../../components/interactive-shell.js" defer></script>
   <script src="../../../../components/activity-fullscreen.js" defer></script>
+  <script src="../../../../components/learner-help.js" defer></script>
   <script src="../../../../components/copy-activity.js" defer></script>
   <script src="tool.js" defer></script>
 </head>
@@ -254,6 +255,84 @@
         <div class="section__header">
           <h2 id="lab-heading" tabindex="-1">The object-status laboratory</h2>
         </div>
+
+        <!-- Optional learner support. Collapsed, secondary, and skipped entirely by
+             anybody who does not need it. It is part of the exercise rather than of
+             this website, so it travels into an exported copy - see
+             components/learner-help.js. -->
+        <details class="helper" data-learner-help>
+          <summary class="helper__summary">Need a hand?</summary>
+
+          <div class="helper__body">
+
+            <p class="helper__offer">
+              <button class="helper__start" type="button" data-guide-start>
+                Show me what to do
+              </button>
+            </p>
+
+            <div class="helper__guide" data-guide hidden>
+              <p class="helper__progress" data-guide-progress></p>
+              <div class="helper__step" data-guide-text tabindex="-1"
+                   aria-live="polite"></div>
+              <div class="helper__actions">
+                <button type="button" data-guide-prev>Back</button>
+                <button type="button" data-guide-next>Next</button>
+                <button type="button" data-variant="secondary" data-guide-close>
+                  Close the guide
+                </button>
+              </div>
+              <p class="helper__aside">
+                Nothing here changes the controls for you, and none of it says what
+                you are going to find.
+              </p>
+            </div>
+
+            <!-- Steps as content, not code, so they read as copy and can be revised
+                 without touching the component. `target` is the thing the step is
+                 about; it gets an outline, and every step also names it in words. -->
+            <script type="application/json" data-guide-steps>
+            [
+              { "text": "Stage 1. Choose which recurring features your description will be built from, and read what they pick out.",
+                "target": "#category-lab [data-feature-table]" },
+              { "text": "Stage 2. Choose a name, then read what the name brings with it that the features did not.",
+                "target": "#category-lab [data-name-verdict]" },
+              { "text": "Stage 3. Move the boundary requirements, and watch how many people the category now contains.",
+                "target": "#threshold-range" },
+              { "text": "Stage 4. Read who your instrument still finds, and who it now does not.",
+                "target": "#category-lab [data-detect-table]" },
+              { "text": "Now go back to stage 1 and change one feature, then walk forward again. Which later results moved, and which had already set?",
+                "target": "#category-lab [data-feature-choices]" }
+            ]
+            </script>
+
+            <details class="helper__terms">
+              <summary class="helper__summary">Key terms</summary>
+              <dl class="helper__glossary">
+
+                <dt>Reification</dt>
+                <dd>
+                  Treating the product of a classification as a thing that was there
+                  all along waiting to be found.
+                </dd>
+
+                <dt>Boundary</dt>
+                <dd>
+                  The rule deciding who is inside the category: how many features,
+                  for how long, with how much interference.
+                </dd>
+
+                <dt>Prevalence</dt>
+                <dd>
+                  How many people the category contains. It depends on where the
+                  boundary was put as much as on the people.
+                </dd>
+
+              </dl>
+            </details>
+
+          </div>
+        </details>
 
         <section class="interactive" id="category-lab" data-interactive
                  data-reset-message="Everything cleared. Back to nine accounts and no category.">
