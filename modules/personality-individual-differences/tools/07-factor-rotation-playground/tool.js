@@ -631,12 +631,7 @@
       "Mathematically, nothing changed: the same configuration of points, the " +
         "same communalities, the same fit, the same reproduced correlation " +
         "matrix. What changed is interpretive — which items count as salient " +
-        "on which factor, and therefore what anybody would call the factors. " +
-        "This does not make rotation arbitrary. Simple structure is a defensible " +
-        "criterion, adopted because solutions that satisfy it are easier to " +
-        "interpret and to compare across studies. But it is a criterion people " +
-        "chose, not a fact the data forced on anyone — and a solution that " +
-        "meets it is not thereby the true one."
+        "on which factor, and therefore what anybody would call the factors."
     );
     shell.announce("Challenge answered.", { immediate: true });
   });

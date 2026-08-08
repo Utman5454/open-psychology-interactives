@@ -416,8 +416,8 @@
       "first preset is manufactured: the author decided which token would win, " +
       "then chose numbers that made it win. Second, the three coordinates are " +
       "printed as three numbers and are never given names, because naming a " +
-      "coordinate after the thing it appears to track is the interpretive " +
-      "error this page exists to make visible."));
+      "coordinate after the thing it appears to track is exactly the " +
+      "interpretive error to avoid."));
     provenance.appendChild(make("p", null,
       "In a real model these numbers are learned from data by gradient descent. " +
       "Nobody chooses what a coordinate means, many heads produce patterns that " +

@@ -531,8 +531,8 @@
       tone: "good",
       verdict: "Also right.",
       text:
-        "From an average alone you genuinely cannot tell. That is the position " +
-        "the rest of this page is designed to make concrete."
+        "From an average alone you genuinely cannot tell. The rest of this " +
+        "page shows what the average is hiding."
     }
   };
 
@@ -580,15 +580,13 @@
       challengeFeedback,
       correct ? "good" : "caution",
       correct ? "Yes — Cal." : "Not quite — it is Cal.",
-      "Cal's self-esteem is strongly contingent on one domain and barely " +
-        "responsive to the others. Deliver a criticism in work or study and " +
-        "Cal drops further than anyone; deliver the same criticism in " +
-        "friendship and Cal hardly moves. Bea, by contrast, moves a great " +
-        "deal all the time without any event at all — that is volatility, not " +
-        "contingency, and the two are separate. Dee reacts moderately to " +
-        "everything and takes far longer to return, which is recovery, a third " +
-        "separate thing. Try it: add the same criticism in each domain and " +
-        "compare who moves."
+      "Cal is strongly contingent on one domain and barely responsive to the " +
+        "others: a criticism in work or study drops Cal further than anyone, " +
+        "and the same criticism in friendship hardly moves them. Bea moves a " +
+        "great deal all the time with no event at all — volatility, not " +
+        "contingency. Dee reacts moderately to everything and takes far longer " +
+        "to return — recovery, a third thing. Try the same criticism in each " +
+        "domain."
     );
     shell.announce("Challenge answered.", { immediate: true });
   });

@@ -528,9 +528,8 @@
       make("p", null,
         "One observation is a poor estimate of anybody's typical level, and " +
         "it is worst for the people who vary most. Two of these four have the " +
-        "same underlying level as each other; from a single moment there is " +
-        "no way to know that, and no way to know which of the four you are " +
-        "seeing at an unrepresentative time.")
+        "same underlying level; from a single moment there is no way to know " +
+        "which two, or who you have caught on an unrepresentative day.")
     );
   }
 
@@ -937,10 +936,7 @@
         "within-person spreads (" + fmt(data.truth.ada.sd) + " and " +
         fmt(data.truth.bo.sd) + "). A questionnaire asking 'in general, how " +
         "do you feel?' would give them the same score and describe them as " +
-        "the same person. They are not living the same fortnight. " +
-        "Within-person variability is a stable, measurable characteristic in " +
-        "its own right — people differ reliably in how much they fluctuate — " +
-        "and a single trait score throws it away entirely."
+        "the same person. They are not living the same fortnight."
     );
     shell.announce("Challenge 1 answered.", { immediate: true });
   });
@@ -957,16 +953,11 @@
       challengeBFeedback,
       correct ? "good" : "caution",
       correct ? "Yes." : "Not quite.",
-      "From one observation you cannot separate them, and that is the point. " +
-        "A momentary score is a person's typical level plus wherever they " +
-        "happen to be today plus measurement error, and a single reading " +
-        "gives you the sum of the three with no way to divide it. Turn the " +
-        "measurement-error slider up and down and watch the series get " +
-        "noisier while every person's mean stays where it was: error and real " +
-        "fluctuation look identical in one observation and come apart across " +
-        "many. That is the whole argument for repeated measurement, and it is " +
-        "why 'how are you today?' and 'what are you like?' are different " +
-        "questions."
+      "From one observation you cannot separate them. A momentary score is a " +
+        "person's typical level, plus wherever they happen to be today, plus " +
+        "measurement error - and one reading gives you the sum of the three " +
+        "with no way to divide it. \"How are you today?\" and \"what are you " +
+        "like?\" are different questions."
     );
     shell.announce("Challenge 2 answered.", { immediate: true });
   });

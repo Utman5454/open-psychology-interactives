@@ -401,14 +401,12 @@
     });
     symmetry.textContent =
       "Reading down the first two rows: the effect of feedback changes by " +
-      signed(t.feedbackInComplex - t.feedbackInSimple) + " points when you " +
-      "move from the simple task to the complex one. Reading down the last " +
-      "two: the effect of task changes by " +
-      signed(t.taskInDelayed - t.taskInImmediate) + " points when you move " +
-      "from immediate to delayed feedback. They are the same number, because " +
-      "both are the same subtraction of the same four means in a different " +
-      "order. That is why an interaction has no direction of its own and why " +
-      "swapping the axes cannot change it.";
+      signed(t.feedbackInComplex - t.feedbackInSimple) + " points between the " +
+      "simple task and the complex one. Reading down the last two: the effect " +
+      "of task changes by " + signed(t.taskInDelayed - t.taskInImmediate) +
+      " points between immediate and delayed feedback. The same number both " +
+      "times - the same four means, subtracted in a different order. An " +
+      "interaction has no direction of its own.";
   }
 
   function describe(t) {
@@ -423,9 +421,7 @@
           "The lines are parallel to within " + fmt(Math.abs(i)) + " points. " +
           "Delaying feedback changes the score by " + signed(fs) + " on the " +
           "simple task and " + signed(fc) + " on the complex one - the same " +
-          "effect in both, so the two main effects say everything there is to " +
-          "say. Feedback: " + signed(t.mainFeedback) + " points overall. Task: " +
-          signed(t.mainTask) + " points overall."
+          "effect in both. The two main effects say everything there is to say."
       };
     }
 
@@ -442,19 +438,18 @@
     if (crossed) {
       return {
         tone: "warn",
-        text: sentence + " Because the effect reverses direction, this is a " +
-          "disordinal - crossover - interaction, and the main effect of " +
-          "feedback (" + signed(t.mainFeedback) + ") is a summary of two " +
-          "opposite things. Describing it on its own would be misleading, " +
-          "which is why the sentence above names both simple effects."
+        text: sentence + " The effect reverses direction, which makes this a " +
+          "disordinal - crossover - interaction. The main effect of feedback (" +
+          signed(t.mainFeedback) + ") averages two opposite things, so it " +
+          "cannot be reported on its own."
       };
     }
     return {
       tone: "caution",
-      text: sentence + " The effect points the same way in both conditions " +
-        "and is merely larger in one, so this is an ordinal interaction. The " +
-        "main effect of feedback (" + signed(t.mainFeedback) + ") can be " +
-        "described alongside it, as long as you say where it is bigger."
+      text: sentence + " The effect points the same way in both conditions, " +
+        "just further in one: an ordinal interaction. The main effect of " +
+        "feedback (" + signed(t.mainFeedback) + ") can be described alongside " +
+        "it, as long as you say where it is bigger."
     };
   }
 
@@ -476,23 +471,18 @@
         "errors from zero" +
         (i / seInteraction < 2
           ? ", which is not a lot to build a story on."
-          : ", which is a pattern worth taking seriously.") +
-        " Note that this is the right comparison, and whether the individual " +
-        "error bars overlap is not.");
+          : ", which is a pattern worth taking seriously."));
     } else {
       parts.push(
-        "No uncertainty is being shown. Four means from any real study will " +
-        "almost never line up exactly, so non-parallel lines are guaranteed " +
-        "before anything interesting happens. Choose an error bar setting " +
-        "before believing the shape.");
+        "No uncertainty is being shown, and four means will almost never line " +
+        "up exactly, so non-parallel lines are guaranteed. Choose an error bar " +
+        "setting before believing the shape.");
     }
 
     if (scale === "zoom") {
       parts.push(
-        "The axis is zoomed to the data, which is the default in most " +
-        "software and makes every pattern look decisive. Switch to the full " +
-        "scale to see the same numbers against the outcome they were measured " +
-        "on.");
+        "The axis is zoomed to the data - the software default, and it makes " +
+        "every pattern look decisive. Try the full scale.");
     }
 
     caveat.textContent = parts.join(" ");
@@ -795,8 +785,7 @@
     p.appendChild(document.createTextNode(
       " The correct sentence is: delaying feedback raised scores on complex " +
       "tasks and lowered scores on simple tasks, so overall the effect of " +
-      "feedback reversed direction between the two task types. A reader who " +
-      "gets only \"there was a significant interaction\" learns none of that."));
+      "feedback reversed direction between the two task types."));
     challengeFeedback.appendChild(p);
 
     var list = make("ul");

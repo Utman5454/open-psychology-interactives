@@ -401,8 +401,7 @@
   var STEPS = {
     "1": {
       hint:
-        "Read the matrix, then reorder it by method and read it again. The " +
-        "sliders ask what would have to be true for the shared label to be honest.",
+        "Read the matrix, then reorder it by method and read it again.",
       announce: "Step 1. What these measures have in common."
     },
     "2": {

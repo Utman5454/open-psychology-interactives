@@ -683,10 +683,10 @@
       "scale asks about something broader than the act, so less of what it " +
       "measures is relevant to whether this person speaks up on Thursday."));
     matrixNote.appendChild(make("p", "verdict__body",
-      "Across a row: the setting changes, and the people and the measure do " +
-      "not. Under uniform conditions attitude is the only thing left varying, " +
-      "so it accounts for most of the differences in behaviour. In real teams " +
-      "the conditions vary too, and they are not in the questionnaire."));
+      "Across a row: the setting changes, the people and the measure do not. " +
+      "Under uniform conditions attitude is nearly the only thing left " +
+      "varying, so it accounts for most of the differences. In real teams the " +
+      "conditions vary too, and they are not in the questionnaire."));
     matrixNote.appendChild(make("p", "verdict__note",
       "Every cell uses the same 300 simulated people and the same attitude " +
       "draws, so nothing here can be explained by a different sample."));
@@ -899,9 +899,8 @@
           why:
             "The inference from \"does not do it\" to \"did not really mean " +
             "it\" requires that the occasion arose and he declined. In Marek's " +
-            "team the disagreements are settled elsewhere. Attributing the " +
-            "absence of a behaviour to the absence of a disposition is the " +
-            "fundamental move this whole laboratory is about."
+            "team the disagreements are settled elsewhere. The absence of a " +
+            "behaviour is not the absence of a disposition."
         };
       }
     },
@@ -953,8 +952,8 @@
             "changes the association here is whether the measure is about the " +
             "same target, context and time as the behaviour. A perfectly " +
             "reliable values questionnaire will still predict Thursday's " +
-            "meeting poorly, and no amount of extra items will fix that, " +
-            "because it is not a defect."
+            "meeting poorly, and no extra items will fix it. That is not a " +
+            "defect."
         };
       }
     }

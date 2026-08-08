@@ -673,10 +673,9 @@
       answer: "normative",
       why:
         "Private responding removes the audience and leaves the evidence " +
-        "untouched. In the model the audience factor appears only in the " +
-        "normative term, which is not a modelling convenience - it is the " +
-        "operational definition that makes the two routes different claims " +
-        "rather than two words."
+        "untouched. In the model the audience factor enters only the normative " +
+        "term - which is what makes the two routes different claims rather " +
+        "than two words."
     },
     {
       id: "harder",
@@ -705,11 +704,10 @@
         "having nothing to do with them.",
       answer: "normative",
       why:
-        "Identification enters the normative term only, and this is the " +
-        "amendment the classic two-route account lacks. It is also the point at " +
-        "which conformity stops looking like a general property of people in " +
-        "groups and starts looking like a property of a relationship between " +
-        "particular groups."
+        "Identification enters the normative term only - the amendment the " +
+        "classic two-route account lacks. Conformity stops looking like a " +
+        "property of people in groups and starts looking like a property of a " +
+        "relationship between particular groups."
     },
     {
       id: "expert",

@@ -558,8 +558,7 @@
         "Removing words removes reading. It leaves the conventions of formal " +
         "testing, familiarity with abstract puzzles as a genre, the " +
         "expectation that speed is wanted, the response medium, and knowing " +
-        "when to guess. You are about to watch five of the six demands survive " +
-        "the removal of language."
+        "when to guess. Work through the six demands below."
     },
     reading: {
       tone: "good",
@@ -673,8 +672,7 @@
       good: false,
       text:
         "The absence of words is not evidence of anything. It is the claim " +
-        "under examination, not support for it — which is what this whole page " +
-        "has been about."
+        "under examination, not support for it."
     },
     expert: {
       good: false,
@@ -734,12 +732,11 @@
 
     evidenceFeedback.appendChild(
       make("p", null,
-        "The general shape of the answer: comparability is something you " +
-        "establish with evidence about how the test behaves, not something " +
-        "you infer from what the test looks like. Until that evidence exists, " +
-        "the honest position is that scores from different groups may not be " +
-        "on the same scale — which is a statement about the test, not about " +
-        "the people.")
+        "Comparability is something you establish with evidence about how the " +
+        "test behaves, not something you infer from what the test looks like. " +
+        "Until that evidence exists, the honest position is that scores from " +
+        "different groups may not be on the same scale — a statement about " +
+        "the test, not about the people.")
     );
 
     shell.announce("Evidence challenge answered.", { immediate: true });

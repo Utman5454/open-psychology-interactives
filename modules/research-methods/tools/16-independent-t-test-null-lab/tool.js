@@ -488,9 +488,7 @@
         "The two standard deviations differ by a factor of " + fmt(ratio, 1) +
         ". This is the classic pooled-variance test, which assumes they are " +
         "equal, and with a ratio this large the pooled figure of " +
-        fmt(r.pooled, 1) + " describes neither group. Welch's version does " +
-        "not make that assumption and is a reasonable default; it is not " +
-        "computed here.");
+        fmt(r.pooled, 1) + " describes neither group.");
     }
     if (r.df < 10) {
       lines.push(

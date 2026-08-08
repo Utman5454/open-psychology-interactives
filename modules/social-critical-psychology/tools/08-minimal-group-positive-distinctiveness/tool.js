@@ -110,11 +110,9 @@
       why:
         "Structural inequalities persist through arrangements - contracts, " +
         "planning rules, hiring practices, inherited assets - that carry on " +
-        "producing outcomes whatever any individual allocates. A model in which " +
-        "such inequalities are the sum of individual allocations gets the " +
-        "direction of explanation the wrong way round, and the third condition " +
-        "in this laboratory is a hint at why: the same choice does something " +
-        "quite different depending on where the categories already stand."
+        "producing outcomes whatever any individual allocates. A model in " +
+        "which they are the sum of individual allocations has the direction of " +
+        "explanation the wrong way round."
     },
     {
       id: "hostility",
@@ -134,9 +132,8 @@
       why:
         "Six allocations between two invented categories, made by somebody who " +
         "knows the categories are invented, in a browser, with nothing at " +
-        "stake. Nothing is stored and no score is produced for anybody. If a " +
-        "tool like this ever told you something about your character, that " +
-        "would be a reason to distrust the tool."
+        "stake. If a tool like this ever told you something about your " +
+        "character, that would be a reason to distrust the tool."
     }
   ];
 
@@ -459,9 +456,8 @@
       "careful about lifting the finding out of the laboratory, and not a " +
       "reason to doubt it inside one."));
     comparisonNote.appendChild(make("p", "verdict__note",
-      "The starting positions here are stipulated. Being told your category " +
-      "holds 400 points is not the same as belonging to an advantaged group, " +
-      "which involves knowing why, for how long, and at whose expense."));
+      "The starting positions here are stipulated. Nothing in the laboratory " +
+      "tells you how a category came to hold four times as much."));
   }
 
   function renderGoal() {

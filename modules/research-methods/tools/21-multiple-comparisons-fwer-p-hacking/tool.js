@@ -471,19 +471,19 @@
         "Across " + tally.runs + " experiments, " +
         pct(tally.anyFalse / tally.runs) + " produced at least one false " +
         "positive, against " + pct(fwer) + " predicted. The correction has " +
-        "done exactly what it promises: the family-wise rate is back down to " +
-        "roughly the per-test rate you started with. Now read the last figure " +
-        "in the readout before deciding it was free.";
+        "done what it promises: the family-wise rate is back down to roughly " +
+        "the per-test rate you started with. Now read the last figure in the " +
+        "readout.";
     } else {
       tone = "warn";
       text =
         "Across " + tally.runs + " experiments, " +
         pct(tally.anyFalse / tally.runs) + " produced at least one false " +
         "positive, against " + pct(fwer) + " predicted by " +
-        "1 minus (1 minus alpha) to the power k. Every individual test was " +
-        "behaving exactly as advertised at " + fmt(s.alpha, 2) + "; nothing is " +
-        "broken. What changed is the question - \"did anything come out?\" - " +
-        "and that question has an error rate of its own.";
+        "1 minus (1 minus alpha) to the power k. Every individual test behaved " +
+        "exactly as advertised at " + fmt(s.alpha, 2) + ". What changed is the " +
+        "question - \"did anything come out?\" - and that question has an " +
+        "error rate of its own.";
     }
     interpretation.textContent = text;
     verdictBox.setAttribute("data-tone", tone);
@@ -498,21 +498,12 @@
         fmt(REAL_D) + ". So far " +
         (tally.realTotal
           ? pct(tally.realHits / tally.realTotal) + " of them have been detected"
-          : "none have been tested yet") + "." + uncorrectedPowerHint +
-        " A correction is a trade, and there is no setting of the dial that " +
-        "gives you both.");
+          : "none have been tested yet") + "." + uncorrectedPowerHint);
     } else {
       lines.push(
         "Every null in this family is true, so every cross on the grid is a " +
         "false positive. Set some real effects with the second slider to see " +
         "what a correction costs as well as what it buys.");
-    }
-    if (s.corrected) {
-      lines.push(
-        "Bonferroni is the simplest correction and not the best: Holm's " +
-        "step-down procedure controls the same rate with more power and no " +
-        "extra assumptions, and false-discovery-rate procedures control a " +
-        "different and often more appropriate quantity.");
     }
     costNote.textContent = lines.join(" ");
   }
@@ -848,19 +839,15 @@
         "p " + fmtP(p) + " — a significant result, in data with no effect in it.",
         "It took " + count + " analys" + (count === 1 ? "is" : "es") +
         " to get here, and this is the one that would have been written up. " +
-        "Nothing you did was fraudulent: choosing an outcome, deciding who to " +
-        "exclude, looking at a subgroup and adjusting for a baseline are all " +
-        "ordinary decisions, and each one is defensible on its own. What has " +
-        "gone is the meaning of the number. A p-value of " + fmt(p, 3) +
-        " means \"data at least this extreme would appear " + pct(p) +
-        " of the time if nothing were going on and this were the only " +
-        "analysis\" - and it was not the only analysis.");
+        "Nothing you did was fraudulent - each of those decisions is " +
+        "defensible on its own. What has gone is the meaning of the number: " +
+        "p = " + fmt(p, 3) + " is a statement about the only analysis, and " +
+        "this was not the only analysis.");
       var next = make("p");
       next.appendChild(make("strong", null, "Now press “Show me every path”. "));
       next.appendChild(document.createTextNode(
-        "The question that matters is not whether this analysis was " +
-        "reasonable. It is how many other reasonable ones there were, " +
-        "including the ones you considered and rejected without running."));
+        "The question is not whether this analysis was reasonable. It is how " +
+        "many other reasonable ones there were."));
       gardenFeedback.appendChild(next);
     } else if (already) {
       showFeedback(gardenFeedback, "neutral",
@@ -907,14 +894,10 @@
       "Of the 72 analyses available on this dataset, " + sig +
       " reach p below .05, and the smallest of all of them is p " +
       fmtP(Math.min.apply(null, pathP)).replace("= ", "") + ". Every one of " +
-      "those is a false positive, because the data were generated with no " +
-      "difference between the groups on anything. You ran " +
-      triedOrder.length + (best === null ? "" :
-        " and found " + fmtP(pathP[best]).replace("= ", "")) + ". " +
-      "Note that the paths are not independent - they share participants and " +
-      "correlated outcomes - so no simple correction applies, and note too " +
-      "that a real analysis has far more than 72 paths in it. The count here " +
-      "is bounded only because a menu had to fit on a page.";
+      "those is a false positive: the data were generated with no difference " +
+      "between the groups on anything. You ran " + triedOrder.length +
+      (best === null ? "" :
+        " and found " + fmtP(pathP[best]).replace("= ", "")) + ".";
 
     gardenShell.announce(
       sig + " of the 72 available analyses reach p below .05, and every one " +
@@ -977,8 +960,7 @@
       text:
         "1 minus 0.95 to the twentieth power. Nearly two experiments in three " +
         "will produce something to write about, in data where there is " +
-        "nothing whatsoever to find. And note that the rate passes a half at " +
-        "only fourteen tests."
+        "nothing whatsoever to find."
     },
     ninetyfive: {
       tone: "caution",
@@ -1041,39 +1023,31 @@
       why:
         "Planned multiplicity. The number of tests was fixed before the data " +
         "existed, the family was named, a correction was specified, and all " +
-        "four results were reported. Several tests are not a problem; several " +
-        "tests presented as one is."
+        "four results were reported."
     },
     {
       id: "v1", answer: "exploratory", title: "Study B",
       why:
         "Exploratory analysis, and entirely legitimate. Twelve variables with " +
         "no prior hypotheses cannot support confirmatory inference, and the " +
-        "team does not claim it does: everything measured and everything tried " +
-        "is reported, and the finding is labelled as needing an independent " +
-        "replication. Exploration is how hypotheses are generated, and the " +
-        "only requirement is that it is called by its name."
+        "team does not claim it does: everything tried is reported, and the " +
+        "finding is labelled as needing an independent replication."
     },
     {
       id: "v2", answer: "selective", title: "Study C",
       why:
         "Undisclosed selective reporting, and the only one of the four that " +
         "is a problem. Eight analyses were available, one was reported as " +
-        "though it were the plan, and the reader has no way to know. The " +
-        "p-value of .04 means what it says only if that analysis was the only " +
-        "one - which is precisely the claim being made implicitly and " +
-        "falsely. Notice that nothing here requires anyone to have intended " +
-        "to deceive: this is what Experiment 2 feels like from the inside."
+        "though it were the plan, and the reader has no way to know. Nothing " +
+        "here requires anyone to have intended to deceive."
     },
     {
       id: "v3", answer: "confirmatory", title: "Study D",
       why:
-        "Confirmatory inference, and the reason preregistration exists. One " +
-        "hypothesis, one outcome, one exclusion rule and one analysis, all " +
-        "fixed before the data, and the result reported whichever way it came " +
-        "out. This is the only route by which a p-value means what it says, " +
-        "and publishing the non-significant result is part of what makes it " +
-        "work rather than a failure of the study."
+        "Confirmatory inference. One hypothesis, one outcome, one exclusion " +
+        "rule and one analysis, all fixed before the data, and the result " +
+        "reported whichever way it came out. Publishing the non-significant " +
+        "result is part of what makes it work, not a failure of the study."
     }
   ];
 

@@ -717,10 +717,8 @@
         "the estimate table: h² rises above the truth and c² falls below it. " +
         "That violation raises the MZ correlation without touching the DZ " +
         "correlation, and h² is twice the gap between them. Assortative mating " +
-        "pushes the other way — it raises r(DZ) and makes h² an underestimate " +
-        "— so a study with both violations can report a heritability that " +
-        "looks unremarkable while being wrong twice over. This is why the " +
-        "assumptions are argued about rather than assumed."
+        "pushes the other way, so a study with both violations can report a " +
+        "heritability that looks unremarkable while being wrong twice over."
     );
     shell.announce("Challenge answered.", { immediate: true });
   });

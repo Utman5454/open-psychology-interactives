@@ -671,13 +671,13 @@
 
     verdictBody.appendChild(
       make("p", null,
-        "There is no correct answer to this case, and the tool does not have " +
-        "one. Priya is fictional and her behaviour was written to be " +
-        "compatible with all eight accounts. That is not a trick: it is the " +
-        "ordinary condition of explaining a person from the outside. What " +
-        "distinguishes a good explanation from a plausible one is not how " +
-        "comfortably it fits what you have already seen, but how much it tells " +
-        "you to expect next — and whether anyone has looked."));
+        "There is no correct answer to this case. Priya is fictional and her " +
+        "behaviour was written to be compatible with all eight accounts - not " +
+        "as a trick, but because that is the ordinary condition of explaining " +
+        "a person from the outside. What distinguishes a good explanation from " +
+        "a plausible one is not how comfortably it fits what you have already " +
+        "seen, but how much it tells you to expect next, and whether anyone " +
+        "has looked."));
 
     verdictBody.appendChild(
       make("p", "verdict__note",

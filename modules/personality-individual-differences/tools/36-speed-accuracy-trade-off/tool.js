@@ -415,10 +415,9 @@
       resultsBody.appendChild(
         make("p", null,
           "Those are anticipations rather than reactions, so there is nothing " +
-          "here to average. That is itself the first lesson about reaction-time " +
-          "data: a response is not a datum simply because it was recorded. Run " +
-          "the block again, or use the strategy simulator below, which makes " +
-          "every point on this page without the task."));
+          "here to average. A response is not a datum simply because it was " +
+          "recorded. Run the block again, or use the strategy simulator " +
+          "below."));
       yourPoint.hidden = true;
       return;
     }
@@ -436,8 +435,7 @@
           "perceives nine arrows and decides that quickly, so those are " +
           "anticipations rather than reactions and have been set aside before " +
           "anything was averaged. Deciding what counts as a response at all is " +
-          "the first cleaning decision, and it is made before any of the ones " +
-          "usually written about."));
+          "the first cleaning decision."));
     }
 
     resultsBody.appendChild(
@@ -445,8 +443,7 @@
         "Neither number means anything on its own. Somebody who answered " +
         "faster than you may have been less accurate; somebody slower may have " +
         "been more accurate; and both could have exactly your ability on this " +
-        "task. That is what the plot below is for — it shows speed and " +
-        "accuracy together, because looking at either alone is the mistake."));
+        "task. The plot below shows the two together."));
 
     var figures = make("ul", "reveal__figures");
     [
@@ -489,9 +486,7 @@
       make("p", "verdict__note",
         "This is a handful of trials in a browser, in unknown conditions, on " +
         "unknown hardware. It estimates your response caution on this task at " +
-        "this moment. It does not measure intelligence, impulsivity, attention " +
-        "or inhibition, and it is not a clinical or diagnostic measure of " +
-        "anything."));
+        "this moment, and nothing more stable than that."));
 
     yourPoint.textContent =
       "Your block: " + pct(accuracy) + " correct, median " +
@@ -698,11 +693,9 @@
         "drift rates — they are equally able — and produce accuracies from " +
         pct(expectedAccuracy(1.5, 0.55)) + " to " + pct(expectedAccuracy(1.5, 1.75)) +
         ". \"Lower drift rate\" has a genuinely lower ability and sits at a " +
-        "middling accuracy. So an accuracy score alone cannot separate a " +
-        "cautious person from an able one, and a speed score alone cannot " +
-        "separate an impulsive person from a fast one. Only the two together, " +
-        "or a model fitted to the whole distribution, can — which is why " +
-        "modern reaction-time work fits models rather than comparing means."
+        "middling accuracy. An accuracy score alone cannot separate a cautious " +
+        "person from an able one; a speed score alone cannot separate an " +
+        "impulsive person from a fast one."
     );
     shell.announce("Challenge answered.", { immediate: true });
   });

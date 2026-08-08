@@ -610,8 +610,7 @@
         "Before a mean difference can be interpreted, someone has to show that " +
         "the items mean the same thing in both groups. Otherwise you cannot " +
         "tell a difference in the trait from a difference in how the questions " +
-        "land, and the tool below lets you manufacture the second while holding " +
-        "the first at exactly zero."
+        "land. The tool below is where that gets tested."
     },
     bias: {
       tone: "caution",

@@ -669,11 +669,10 @@
 
     verdictBody.appendChild(
       make("p", null,
-        "In the table below, the two domain-score columns are identical for " +
-        "every observation — they have to be, because both people have the " +
-        "same domain score and a domain score is one number. The facet " +
-        "columns separate them. A prediction that uses the broad score alone " +
-        "cannot do better than guessing here, however reliable that score is.")
+        "The two domain-score columns are identical: both people have the same " +
+        "domain score, and a domain score is one number. The facet columns " +
+        "separate them. A prediction from the broad score alone cannot beat " +
+        "guessing here, however reliable that score is.")
     );
 
     verdictBody.appendChild(
@@ -879,13 +878,10 @@
     var tone = answer.value === "flips" ? "good" : "caution";
     var verdict = answer.value === "flips" ? "Yes." : "Not quite.";
     var text =
-      "Drag the slider and watch. Because the two people trade one facet " +
-      "against the other, moving the item mix moves their scores in opposite " +
-      "directions, and their rank order reverses at the crossover. A broad " +
-      "score is not a property of a person alone: it is a property of a person " +
-      "and the questionnaire that produced it. Two published measures of the " +
-      "'same' domain that sample facets differently can rank the same two " +
-      "people in opposite orders, and both can be perfectly reliable.";
+      "Drag the slider and watch. The two people trade one facet against the " +
+      "other, so moving the item mix moves their scores in opposite " +
+      "directions. A broad score is not a property of a person alone: it " +
+      "belongs to the questionnaire that produced it as well.";
     showFeedback(mixFeedback, tone, verdict, text);
     mixRange.disabled = false;
     shell.announce("Prediction recorded. The item-mix slider is now active.", {

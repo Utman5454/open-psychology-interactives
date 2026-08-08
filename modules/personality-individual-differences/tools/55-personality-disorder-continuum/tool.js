@@ -669,20 +669,18 @@
       text =
         "Unusual, and working. The traits are distinctive, they flex when a " +
         "situation asks them to, and they are not interfering with the life " +
-        "being lived. There is nothing here that supports a disorder-level " +
-        "interpretation, however unusual the profile looks. A rule that " +
-        "counts unusual features would flag it anyway, which is an argument " +
-        "against that rule rather than a finding about this profile.";
+        "being lived. Nothing here supports a disorder-level interpretation, " +
+        "however unusual the profile looks.";
     } else if (v.persistence < 40 && f >= 45) {
       tone = "caution";
       text =
         "Inflexible, and confined. The difficulty is real but it does not " +
         "persist across settings or across time, and personality-disorder " +
         "concepts require exactly that persistence. The more parsimonious " +
-        "explanations come first: what is happening in that setting, what " +
-        "changed recently, whether the environment is one that would produce " +
-        "this response in most people. A pattern that appears in one place " +
-        "is a fact about a person and a place together.";
+        "explanations come first: what is happening in that setting, and " +
+        "whether it is an environment that would produce this response in most " +
+        "people. A pattern that appears in one place is a fact about a person " +
+        "and a place together.";
     } else if (v.distress >= 70 && f < 40) {
       tone = "caution";
       text =
@@ -746,9 +744,8 @@
       text:
         "Inflexibility, persistence across situations and over time, and " +
         "interference with functioning are what current definitions rest on — " +
-        "not the unusualness of the traits themselves. The tool lets you hold " +
-        "traits constant and move everything else, which is the demonstration " +
-        "worth seeing."
+        "not the unusualness of the traits themselves. Below, you can hold the " +
+        "traits constant and move everything else."
     },
     judgement: {
       tone: "good",
@@ -759,7 +756,7 @@
         "different cultural settings. That is not an argument that the " +
         "difficulties are imaginary — they are not — but it is a reason to " +
         "hold the category more lightly than the suffering it is meant to " +
-        "describe. The threshold slider below is there for exactly this."
+        "describe. Try the threshold slider below."
     }
   };
 
@@ -840,8 +837,8 @@
     norms: {
       defensible: false,
       text:
-        "Being unlike the people around them. This one is worth dwelling on. " +
-        "Judgements of what is normal are made from somewhere, and a pattern " +
+        "Being unlike the people around them. Judgements of what is normal are " +
+        "made from somewhere, and a pattern " +
         "that looks disordered from one cultural position may be an " +
         "intelligible response from another. Deviation from local norms is a " +
         "prompt to ask questions, never a criterion."

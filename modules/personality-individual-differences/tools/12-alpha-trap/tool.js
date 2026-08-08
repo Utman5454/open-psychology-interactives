@@ -1191,9 +1191,7 @@
       text:
         "Scale B is the only one that covers the construct without buying its " +
         "alpha through repetition. 0.79 is adequate for research use, and it " +
-        "is being earned by ten items that ask genuinely different questions. " +
-        "It would be the right choice even though two other scales report a " +
-        "different alpha — one higher, one lower."
+        "is being earned by ten items that ask genuinely different questions."
     },
     c: {
       tone: "caution",
@@ -1201,9 +1199,9 @@
       text:
         "Scale C covers the ground, and breadth matters — but 0.51 means " +
         "roughly half the variance in its total score is measurement error. " +
-        "That is a real problem, and it is the problem alpha is genuinely good " +
-        "at detecting. Low alpha is a warning worth heeding; high alpha is " +
-        "simply not the reassurance it is usually taken for."
+        "That is exactly what alpha is good at detecting. Low alpha is a " +
+        "warning worth heeding; high alpha is not the reassurance it is " +
+        "usually taken for."
     }
   };
 

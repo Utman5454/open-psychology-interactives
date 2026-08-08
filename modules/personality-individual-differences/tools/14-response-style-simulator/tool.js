@@ -544,17 +544,15 @@
         " and the attentive one " + attScore + " — a gap of " + gap +
         " points. Agreeing with an item and with its opposite largely cancels " +
         "in the recoded total, so acquiescence mostly washes out of the score " +
-        "while remaining plainly visible in the raw grid. It does not cancel " +
-        "completely: the scale stops at 5, so the shift towards agreement is " +
-        "truncated at the top and cannot be fully undone by recoding. Real " +
-        "balanced scales have the same residual, for the same reason. Now " +
-        "switch balanced keying off."
+        "while staying plainly visible in the raw grid. Not completely: the " +
+        "scale stops at 5, so the shift towards agreement is truncated at the " +
+        "top. Real balanced scales carry the same residual. Now switch " +
+        "balanced keying off."
       : "With every item worded the same way, the acquiescent respondent " +
         "scores " + acqScore + " and the attentive one " + attScore +
         " — a gap of " + gap + " points. Nothing cancels, so agreeing with " +
         "everything is indistinguishable from a high standing on the trait. " +
-        "This is the strongest practical argument for balanced keying, and it " +
-        "is why unbalanced scales are hard to defend.";
+        "This is the practical argument for balanced keying.";
     balanceNote.setAttribute("data-tone", state.balanced ? "good" : "warn");
   }
 
@@ -632,9 +630,9 @@
     challengeFeedback.appendChild(
       make("p", null,
         overreached
-          ? "On the second question you went further than the evidence allows. " +
-            "A response pattern is evidence about a pattern. It cannot tell you " +
-            "why: the same grid is produced by carelessness, by a genuine trait, " +
+          ? "You went further than the evidence allows. A response pattern is " +
+            "evidence about a pattern; it cannot tell you why. The same grid " +
+            "is produced by carelessness, by a genuine trait, " +
             "by a culturally normal way of using rating scales, by someone " +
             "fatigued or in pain, by a person navigating a badly built form with " +
             "a screen reader, and by someone answering honestly about a life in " +

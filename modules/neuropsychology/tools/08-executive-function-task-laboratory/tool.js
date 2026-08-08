@@ -782,9 +782,8 @@
       verdict: "Two steps beyond the evidence.",
       text:
         "It assumes the task measures one process and that the process has one " +
-        "location. Executive tasks are impaired by damage in many places, " +
-        "frontal damage does not reliably impair them, and this tool mentions " +
-        "no anatomy at all on purpose."
+        "location. Executive tasks are impaired by damage in many places, and " +
+        "frontal damage does not reliably impair them."
     },
     several: {
       tone: "good",
@@ -861,9 +860,8 @@
       tone: "caution",
       verdict: "That would make it worse.",
       text:
-        "Adding a region would add a second unsupported inference on top of " +
-        "the first. Executive tasks are impaired by damage in many places, and " +
-        "frontal damage does not reliably impair them."
+        "Adding a region would put a second unsupported inference on top of " +
+        "the first."
     },
     nothing: {
       tone: "caution",

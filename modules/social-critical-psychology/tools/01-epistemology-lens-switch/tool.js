@@ -150,10 +150,10 @@
     id: "individual",
     name: "Person-centred realism (a fourth position)",
     note:
-      "This locates the problem inside a minority of pupils. It is a coherent " +
-      "research programme with a long history, and it is the design a school " +
-      "is most likely to fund. It is not entailed by any of the three " +
-      "positions on offer, and nothing in the case so far points to it."
+      "This locates the problem inside a minority of pupils - a coherent " +
+      "research programme, and the design a school is most likely to fund. It " +
+      "is not entailed by any of the three positions on offer, and nothing in " +
+      "the case points to it."
   };
 
   /* =======================================================================
@@ -506,12 +506,10 @@
       verdict: "No design on this page supports it.",
       why:
         "The 58% is a rise in referrals, and the rule about when to refer " +
-        "changed in the middle of the period. A measurement study starting now " +
-        "cannot reach backwards into a record collected under a different rule; " +
-        "a mechanism study can say the rule is a candidate cause of the rise, " +
-        "which is the opposite of this sentence; and a constructionist study " +
-        "takes the referral apart rather than totalling it. The word doing the " +
-        "damage is \"behaviour\", where the data say \"referrals\"."
+        "changed in the middle of the period. A mechanism study can say the " +
+        "rule is a candidate cause of that rise, which is the opposite of this " +
+        "sentence. The word doing the damage is \"behaviour\", where the data " +
+        "say \"referrals\"."
     },
     {
       id: "newstaff",
@@ -524,9 +522,8 @@
         "It is a claim about an association in a measure, stated as an " +
         "association and no more. Notice how careful the wording has to be: " +
         "\"recorded incidents\", not \"disruption\", and no suggestion about " +
-        "why. A multilevel model on sampled lessons is exactly the instrument " +
-        "for this, and it still says nothing about whether new staff are " +
-        "managing classes differently or referring differently."
+        "why. It says nothing about whether new staff manage classes " +
+        "differently or refer differently."
     },
     {
       id: "rule",
@@ -541,8 +538,7 @@
         "retroduction produces. It earns the word \"generated\" only if the " +
         "study also reports the departments where the same rule and the same " +
         "disruption to rooms did not produce a rise. Without the negative " +
-        "cases it is a plausible story, and plausible stories are this " +
-        "position's characteristic failure mode."
+        "cases it is a plausible story."
     },
     {
       id: "produced",
@@ -556,8 +552,7 @@
         "a single act; an interaction between several people in a badly " +
         "timetabled room cannot be entered. What comes out the other side is an " +
         "attributable act by an individual. That is a claim about what a " +
-        "document does, and documentary and discourse analysis is how you would " +
-        "support it. It does not claim that nothing happened in the lesson."
+        "document does."
     },
     {
       id: "screen",
@@ -570,12 +565,10 @@
       why:
         "The first half assumes the increase has pupil-level causes, which is " +
         "the conclusion, not the premise - and the most obvious candidate cause " +
-        "in the case is a policy. The second half is a resource decision, and no " +
-        "study licenses one on its own: what to do also depends on what the " +
-        "school values, what it can afford and who bears the cost. Even a " +
-        "perfectly executed screening study would establish an association " +
-        "between scores and referrals, which is not the same as identifying a " +
-        "cause of a change."
+        "in the case is a policy. The second half is a resource decision, and " +
+        "no study licenses one on its own. Even a perfect screening study " +
+        "would find an association between scores and referrals, not the cause " +
+        "of a change."
     }
   ];
 
@@ -1001,10 +994,6 @@
         note += " " + INDIVIDUAL.note;
       }
       box.appendChild(make("p", "verdict__body", note));
-      box.appendChild(make("p", "verdict__note",
-        "In tension is not forbidden. Deliberate mixed designs are normal and " +
-        "often better; what is not defensible is combining positions without " +
-        "noticing."));
     }
     choiceFeedback.appendChild(box);
   }
@@ -1037,10 +1026,9 @@
 
     if (matched < 5) {
       appraisalBody.appendChild(make("p", "verdict__body",
-        "Off-position decisions: " + offLens.join("; ") + ". A design like this " +
-        "can be perfectly good - most real research is impure - but the report " +
-        "has to say what it is doing at each of those points, because the " +
-        "reader will otherwise assume a single set of premises throughout."));
+        "Off-position decisions: " + offLens.join("; ") + ". A design like " +
+        "this can be perfectly good - most real research is impure - but the " +
+        "report has to say what it is doing at each of those points."));
     }
 
     appraisalBody.appendChild(make("p", "verdict__body",

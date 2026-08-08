@@ -185,8 +185,7 @@
         "self-regulation, and that is a coherent reading. An identity account " +
         "reads the same fact as a crowd being treated with contempt for six " +
         "hours, which is what makes the treatment illegitimate and the " +
-        "category available. The observation on its own does not choose " +
-        "between them, and noticing that is the skill."
+        "category available. The observation does not choose between them."
     },
     {
       id: "onemass",
@@ -196,12 +195,11 @@
         "off as a single block by officers in identical uniform.\"",
       answer: "esim",
       why:
-        "This is the elaborated model's most distinctive claim and a " +
-        "deindividuation account has nothing to say about it. Being handled " +
-        "as one mass is itself an argument that you are one, and it can " +
-        "create the shared category that was not there before. The " +
-        "deindividuation account treats the crowd as the thing to be " +
-        "explained and the policing as the response to it."
+        "A deindividuation account has nothing to say about this. Being " +
+        "handled as one mass is itself an argument that you are one, and it " +
+        "can create the shared category that was not there before - where " +
+        "deindividuation treats the crowd as the thing to be explained and " +
+        "the policing as a response to it."
     },
     {
       id: "selfreport",
@@ -581,10 +579,9 @@
     if (result.acting === 0) {
       tone = "neutral";
       verdictText =
-        "Nothing happened, so neither account is being tested. It is worth " +
-        "noticing that this is a possible outcome at all: most demonstrations " +
-        "on most afternoons end with everyone going home, and a literature " +
-        "built only on the events that did not is a biased sample.";
+        "Nothing happened, so neither account is being tested - which is a " +
+        "possible outcome, and the commonest one. Change the policing or the " +
+        "legitimacy and run it again.";
     } else if (result.selectivity >= 0.60) {
       tone = "warn";
       verdictText =

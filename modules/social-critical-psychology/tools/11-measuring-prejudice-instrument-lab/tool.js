@@ -321,8 +321,8 @@
         "so we should not put her on an appointment panel.\"",
       answer: "no",
       why:
-        "This is the error experiment 1 exists to make visible. A small " +
-        "average association across 200 people supports no statement about any " +
+        "A small average association across 200 people supports no " +
+        "statement about any " +
         "one of them, and the accuracy figure printed beside the scatter shows " +
         "how badly the score performs as an individual prediction - worse, in " +
         "this sample, than guessing \"even\" every time. Using it to select, " +
@@ -1098,8 +1098,7 @@
       text:
         "A small average association is a genuine fact about how a population " +
         "is arranged. It supports no statement about which side of any line " +
-        "the person in front of you falls, and experiment 1 lets you feel the " +
-        "difference rather than being told it."
+        "the person in front of you falls on."
     },
     none: {
       tone: "caution",

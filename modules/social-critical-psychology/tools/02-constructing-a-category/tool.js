@@ -1286,9 +1286,8 @@
               "it looks like the social explanation, and it is an artefact of " +
               "your own definition."
             : "Hours played no part in defining the category, so an association " +
-              "with hours is informative. It is also the sentence most likely " +
-              "to be dropped from the executive summary, because it points at " +
-              "an arrangement rather than a person."
+              "with hours is informative - and it points at an arrangement " +
+              "rather than at a person."
         };
       }
     },
@@ -1302,9 +1301,7 @@
           why:
             "Nothing here establishes that the category has a course, that " +
             "earlier is better, or that any intervention works. Three separate " +
-            "claims are smuggled in by one familiar sentence. It is also the " +
-            "sentence that sells screening, which is why it appears so often " +
-            "before any of the three has been tested."
+            "claims, smuggled in by one familiar sentence."
         };
       }
     },
@@ -1318,10 +1315,8 @@
           why:
             "The nine accounts are the material the category was made from. " +
             "They cannot also be the evidence that it carves anything at a " +
-            "joint - that would need a comparison, a rival account and a way " +
-            "of being wrong. Distinctness is exactly what the comparison " +
-            "column in stage 1 was for, and most of the commonest features " +
-            "failed it."
+            "joint. Distinctness is what the comparison column in stage 1 was " +
+            "for, and most of the commonest features failed it."
         };
       }
     }

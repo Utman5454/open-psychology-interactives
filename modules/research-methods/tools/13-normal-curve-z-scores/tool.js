@@ -358,12 +358,11 @@
       ]));
     });
     standardNote.textContent =
-      "Standardising does not change anything about the distribution; it " +
-      "relabels the axis. A z of +1 is at a raw score of " +
-      fmt(s.mu + s.sigma, 1) + " here and would be somewhere else on any other " +
-      "test, and the area below it is 84.1% in both cases. That is the entire " +
-      "use of the z-score: it makes the areas comparable across tests whose " +
-      "raw scales have nothing to do with each other.";
+      "Standardising does not change the distribution; it relabels the axis. " +
+      "A z of +1 is a raw score of " + fmt(s.mu + s.sigma, 1) + " here and " +
+      "would be something else on another test, and the area below it is " +
+      "84.1% in both cases. That is what a z-score buys: comparable areas " +
+      "across unrelated raw scales.";
   }
 
   function renderCurveReadout() {
@@ -393,29 +392,23 @@
     if (Math.abs(z) < 0.5) {
       tone = "neutral";
       text =
-        "A score of " + s.x + " on a distribution with mean " + s.mu +
-        " and standard deviation " + s.sigma + " is z = " + fmt(z) + ": " +
-        "thoroughly ordinary, at the " + ordinal(below) + " percentile. Note " +
-        "that the raw score has not moved from where it was; whether it counts " +
-        "as ordinary is entirely a statement about the distribution around it.";
+        "z = " + fmt(z) + ": thoroughly ordinary, at the " + ordinal(below) +
+        " percentile. The raw score has not moved. Whether it counts as " +
+        "ordinary is a statement about the distribution around it.";
     } else if (Math.abs(z) < 2) {
       tone = "caution";
       text =
-        "z = " + fmt(z) + ", so the score sits " + fmt(Math.abs(z)) +
-        " standard deviations " + (z > 0 ? "above" : "below") + " the mean, at " +
-        "the " + ordinal(below) + " percentile, with " + pct(1 - below) +
-        " of the distribution above it. Say which of those three you mean: the " +
-        "z-score, the share below and the share above are three different " +
-        "sentences about one score.";
+        "z = " + fmt(z) + ": " + fmt(Math.abs(z)) + " standard deviations " +
+        (z > 0 ? "above" : "below") + " the mean, at the " + ordinal(below) +
+        " percentile, with " + pct(1 - below) + " above it. Three different " +
+        "sentences about one score - say which one you mean.";
     } else {
       tone = "good";
       text =
         "z = " + fmt(z) + ". Only " + pct(z > 0 ? 1 - below : below) +
         " of this distribution lies further out in that direction, and " +
         pct(2 * (1 - phi(Math.abs(z)))) + " lies at least this far from the " +
-        "mean in either direction. The gap between those two numbers is where " +
-        "most arithmetic errors in this topic live - a one-tailed area is not " +
-        "a two-tailed one.";
+        "mean in either direction. A one-tailed area is not a two-tailed one.";
     }
 
     interpretation.textContent = text;
@@ -426,10 +419,9 @@
       bandNote.textContent =
         "The highlighted region runs from " + fmt(s.mu - s.band * s.sigma, 1) +
         " to " + fmt(s.mu + s.band * s.sigma, 1) + " and contains " +
-        pct(area) + " of the distribution. Drag " + "μ" + " or " +
-        "σ" + " as far as you like: those raw-score limits will move a " +
-        "long way and that percentage will not move at all, because it is a " +
-        "property of the shape rather than of this particular test.";
+        pct(area) + " of the distribution. Now drag " + "μ" + " or " +
+        "σ" + ". Those raw-score limits travel a long way; the percentage " +
+        "does not. It belongs to the shape, not to this test.";
     } else {
       bandNote.textContent =
         "Choose a standard-deviation region in the last control to see the " +
@@ -677,9 +669,8 @@
       text:
         "5% is the area outside plus or minus two standard deviations - both " +
         "tails together. The question asked only about scores above 70, which " +
-        "is one of those tails, so it is half of that: 2.3%. Choose the " +
-        "mu plus or minus 2 sigma highlight in the experiment and read the " +
-        "figure it gives you, then halve what is left over."
+        "is one of those tails: 2.3%. Highlight mu plus or minus 2 sigma in " +
+        "the experiment."
     },
     twohalf: {
       tone: "good",
@@ -755,11 +746,9 @@
     anydist: {
       correct: false,
       text:
-        "Wrong, and it is the single most common over-generalisation in this " +
-        "topic. 68.3% is a property of the normal curve. In a strongly skewed " +
-        "distribution the figure can be well above or below it, and for some " +
-        "shapes the mean plus or minus one standard deviation is not even a " +
-        "sensible interval to quote."
+        "Wrong, and it is the most common over-generalisation in this topic. " +
+        "68.3% is a property of the normal curve. In a strongly skewed " +
+        "distribution the figure can sit well above or below it."
     },
     seventy: {
       correct: false,
@@ -767,18 +756,15 @@
         "Wrong, because the statement is incomplete. 70 is z = 2.00 when the " +
         "mean is 50 and the SD is 10, and z = 0.00 when the mean is 70. Leave " +
         "the score at 70 in Experiment 1 and drag the mean: the percentile " +
-        "travels the whole range without the student answering another " +
-        "question."
+        "travels the whole range."
     },
     shape: {
       correct: false,
       text:
         "Wrong. Subtracting a constant and dividing by a constant is a linear " +
-        "change of units: it moves the distribution to a mean of 0 and a " +
-        "standard deviation of 1 and leaves the shape exactly as it was. A " +
-        "skewed variable standardises into an equally skewed variable. " +
-        "Standardising is not normalising, and the two words are unhelpfully " +
-        "similar."
+        "change of units, and it leaves the shape exactly as it was. A skewed " +
+        "variable standardises into an equally skewed variable. Standardising " +
+        "is not normalising."
     },
     areaone: {
       correct: true,

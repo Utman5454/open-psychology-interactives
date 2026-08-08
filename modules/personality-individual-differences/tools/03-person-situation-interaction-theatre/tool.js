@@ -562,13 +562,11 @@
       );
     }
     return (
-      "This one usually catches people out. The anonymous discussion is also " +
-      "a weak situation, so you might expect the same ranking as the party — " +
-      "but it affords a different trait, and it affords it in the opposite " +
-      "direction. With no reputational cost, politeness stops holding anyone " +
-      "back, so the most polite character drops and the least polite rises. " +
-      "Nobody's personality changed between the two situations. What changed " +
-      "is which part of it the situation let out."
+      "The anonymous discussion is also a weak situation, but it affords a " +
+      "different trait, and in the opposite direction. With no reputational " +
+      "cost, politeness stops holding anyone back: the most polite character " +
+      "drops and the least polite rises. Nobody's personality changed. What " +
+      "changed is which part of it the situation let out."
     );
   }
 
@@ -993,12 +991,8 @@
       "You have the spread down to " + fmt(currentSpread, 1) + " points. " +
         "When a situation is strong enough, everyone does roughly the same " +
         "thing, so the behaviour tells you almost nothing about who they are. " +
-        "The traits have not gone anywhere — the trait scores in the cast list " +
-        "are unchanged — but this situation has stopped letting them show. " +
-        "This is why low observed variance is not evidence of low trait " +
-        "variance, and why studies run entirely in strong situations find " +
-        "personality does not predict much. The finding is about the " +
-        "situations that were sampled."
+        "The trait scores in the cast list are unchanged. Low observed " +
+        "variance is not evidence of low trait variance."
     );
     shell.announce("Challenge answered.", { immediate: true });
   });

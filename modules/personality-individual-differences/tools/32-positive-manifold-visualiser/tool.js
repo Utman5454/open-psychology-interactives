@@ -576,11 +576,9 @@
       text =
         "The manifold holds — every correlation is positive — and it is not " +
         "uniform: tasks in the same group correlate " + fmt(meanWithin) +
-        " on average against " + fmt(meanAcross) + " across groups. A first " +
-        "factor is still extracted and every task still loads positively on " +
-        "it, which is what makes this configuration instructive. The positive " +
-        "loadings are not evidence of a single general ability; they follow " +
-        "from every correlation being positive, and here the structure " +
+        " on average against " + fmt(meanAcross) + " across groups. The " +
+        "positive loadings are not evidence of a single general ability; they " +
+        "follow from every correlation being positive, and the structure " +
         "underneath is plainly two groups.";
     } else if (factor.proportion > 0.5) {
       tone = "good";
@@ -616,9 +614,8 @@
         "A first factor is a summary of a correlation matrix. It exists " +
         "whenever the correlations do, and its loadings are positive whenever " +
         "the correlations are positive. Whether it corresponds to anything in " +
-        "a head is a separate question that the factor analysis cannot answer, " +
-        "and you are about to build matrices where the same positive first " +
-        "factor sits on top of quite different structures."
+        "a head is a separate question, and the factor analysis cannot answer " +
+        "it."
     },
     summary: {
       tone: "good",
@@ -698,14 +695,10 @@
       correct ? "good" : "caution",
       correct ? "Yes." : "Not quite.",
       "Load \"Broad group factors\" and look at the first-factor loadings: all " +
-        "six tasks load positively, and the underlying structure is two " +
-        "groups rather than one general ability. Then load \"Strong general " +
-        "factor\" and look again — the loadings look similar. A positive first " +
-        "factor is compatible with both structures, which is precisely why " +
-        "extracting one settles nothing on its own. Distinguishing the two " +
-        "requires looking at whether the correlations are uniform, fitting " +
-        "models that allow group factors, and bringing in evidence from " +
-        "outside the matrix altogether."
+        "six tasks load positively while the structure underneath is two " +
+        "groups. Then load \"Strong general factor\" and look again — the " +
+        "loadings look much the same. A positive first factor is compatible " +
+        "with both, which is why extracting one settles nothing."
     );
     shell.announce("Challenge answered.", { immediate: true });
   });

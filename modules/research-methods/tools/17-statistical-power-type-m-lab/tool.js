@@ -464,19 +464,17 @@
       tone = "warn";
       text =
         "Power is " + pct(p.power) + ". If the effect really is " + fmt(s.d) +
-        ", this study fails to detect it roughly " + pct(p.beta) + " of the " +
-        "time - and to reach significance at all it would have to observe an " +
-        "effect of at least " + fmt(p.threshold) + ", which is " +
-        fmt(p.threshold / s.d, 1) + " times the truth. That last number is " +
-        "what Experiment 2 is about.";
+        ", this study misses it " + pct(p.beta) + " of the time. To reach " +
+        "significance at all it would have to observe at least " +
+        fmt(p.threshold) + " - " + fmt(p.threshold / s.d, 1) + " times the " +
+        "truth. That inflation is Experiment 2.";
     } else if (p.power < 0.8) {
       tone = "caution";
       text =
         "Power is " + pct(p.power) + ", so this study misses a real effect of " +
-        fmt(s.d) + " about " + pct(p.beta) + " of the time. Note that the " +
-        "threshold sits at " + fmt(p.threshold) + " on the same scale as the " +
-        "effect: a significant result here still means observing something " +
-        "noticeably larger than the truth.";
+        fmt(s.d) + " about " + pct(p.beta) + " of the time. The threshold sits " +
+        "at " + fmt(p.threshold) + " on the same scale: a significant result " +
+        "here still means observing something larger than the truth.";
     } else {
       tone = "good";
       text =
@@ -484,8 +482,7 @@
         fmt(s.d) + " most of the time, and its rejection threshold of " +
         fmt(p.threshold) + " is close enough to the true value that a " +
         "significant result is not badly inflated. A non-significant result " +
-        "from a study like this is genuinely informative, which is not true " +
-        "of an underpowered one.";
+        "from a study like this is genuinely informative.";
     }
     interpretation.textContent = text;
     verdictBox.setAttribute("data-tone", tone);
@@ -497,9 +494,8 @@
         "than after."
       : "To reach " + Math.round(s.target * 100) + "% power for d = " + fmt(s.d) +
         " at α = " + s.alpha + " you would need " + need + " per group, " +
-        (2 * need) + " in total. Halve the effect size you want to detect and " +
-        "that figure roughly quadruples, which is the single most useful thing " +
-        "to know when planning anything.";
+        (2 * need) + " in total. Halve the effect you want to detect and that " +
+        "figure roughly quadruples.";
   }
 
   powerShell.bindRange(dRange, {
@@ -845,9 +841,8 @@
       verdict: "Yes — the tool puts it at 32.9%.",
       text:
         "Two studies in three would fail to detect a real medium-sized " +
-        "effect. Ask what that implies about a literature where designs of " +
-        "this size are the norm, and then look at what the third study - the " +
-        "one that succeeded - would have had to observe to get there."
+        "effect. Now look at what the third study - the one that succeeded - " +
+        "would have had to observe to get there."
     },
     five: {
       tone: "warn",
@@ -920,8 +915,8 @@
         "Wrong, and it is the most common misuse of the concept. Observed " +
         "power computed from the study's own result is a one-to-one function " +
         "of the p-value: a high p always gives low observed power, by " +
-        "construction. It therefore contains no information the p-value did " +
-        "not already carry, and it certainly cannot explain the p-value."
+        "construction. It carries no information the p-value did not already " +
+        "have."
     },
     informative: {
       correct: true,
@@ -934,11 +929,10 @@
     doubling: {
       correct: false,
       text:
-        "Wrong. Power is not linear in n and cannot be, since it is bounded " +
-        "above by 1. In Experiment 1, going from 20 to 40 per group at " +
-        "d = 0.50 takes power from 32.9% to 59.7% - a large gain, and not a " +
-        "doubling; going from 100 to 200 takes it from 94% to 99.9%, because " +
-        "it is already near the ceiling."
+        "Wrong. Power is not linear in n; it is bounded above by 1. In " +
+        "Experiment 1, 20 to 40 per group at d = 0.50 takes power from 32.9% " +
+        "to 59.7% - a large gain, not a doubling. From 100 to 200 it goes 94% " +
+        "to 99.9%, already near the ceiling."
     },
     eighty: {
       correct: true,
@@ -961,9 +955,8 @@
         "Wrong, and it is the mirror-image error. Every individual " +
         "underpowered study estimates the effect without bias - the mean of " +
         "all two thousand estimates in Experiment 2 lands on the truth. The " +
-        "exaggeration belongs to the filter, not to the studies, and the " +
-        "distinction matters because it points at publication and reporting " +
-        "practices rather than at anybody's arithmetic."
+        "exaggeration belongs to the filter, not to the studies - which points " +
+        "at publication practice rather than at anybody's arithmetic."
     }
   };
 
