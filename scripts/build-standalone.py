@@ -87,6 +87,15 @@ SHARED_JS = [
     REPO / "components" / "activity-fullscreen.js",
 ]
 
+#: Shared scripts inlined only for tools whose markup asks for them, keyed on
+#: the attribute the component looks for. This keeps a component that one tool
+#: uses out of the other seventy-four exports — which matters while a pattern
+#: is being prototyped, because adding it unconditionally would rewrite every
+#: export and bury the change under noise.
+CONDITIONAL_JS = {
+    "data-learner-help": REPO / "components" / "learner-help.js",
+}
+
 # Rule blocks whose selectors are *entirely* site chrome. A block is dropped
 # only when every one of its selectors matches one of these prefixes, so an
 # unrecognised selector is always kept. Keeping a dead rule costs a few bytes;
@@ -665,19 +674,27 @@ def build(tool_dir):
         raw = strip_comments(path.read_text(encoding="utf-8"))
         css_parts.append(f"/* {rel} */\n" + transform_css(raw))
 
+    markup, stripped = strip_export_control(extract_main(html, name))
+    if stripped == 0:
+        print(f"  note: {name} has no [data-activity-export] block")
+    body = reindent(markup.strip("\n"), 2)
+
+    # Conditional components are decided from the *stripped* markup, so a
+    # component used only by a block that never reaches the copy is not
+    # inlined into it either.
+    scripts = list(SHARED_JS)
+    for attribute, path in CONDITIONAL_JS.items():
+        if attribute in body:
+            scripts.append(path)
+
     js_parts = []
-    for path in SHARED_JS + [tool_dir / "tool.js"]:
+    for path in scripts + [tool_dir / "tool.js"]:
         if not path.exists():
             continue
         rel = path.relative_to(REPO).as_posix()
         js_parts.append(
             f"/* ---- {rel} ---- */\n"
             + escape_for_script(path.read_text(encoding="utf-8"), rel))
-
-    markup, stripped = strip_export_control(extract_main(html, name))
-    if stripped == 0:
-        print(f"  note: {name} has no [data-activity-export] block")
-    body = reindent(markup.strip("\n"), 2)
 
     css_payload = escape_for_style("\n\n".join(css_parts), name)
     js_payload = "\n".join(js_parts)

@@ -32,6 +32,7 @@
   <script src="../../../../assets/js/main.js" defer></script>
   <script src="../../../../components/interactive-shell.js" defer></script>
   <script src="../../../../components/activity-fullscreen.js" defer></script>
+  <script src="../../../../components/learner-help.js" defer></script>
   <script src="../../../../components/copy-activity.js" defer></script>
   <script src="tool.js" defer></script>
 </head>
@@ -247,6 +248,106 @@
             from it show up.
           </p>
         </div>
+
+        <!-- Optional learner support. Collapsed, secondary, and skipped
+             entirely by anybody who does not need it. It is part of the
+             exercise rather than of this website, so it travels into an
+             exported copy - see components/learner-help.js. -->
+        <details class="helper" data-learner-help>
+          <summary class="helper__summary">Need a hand?</summary>
+
+          <div class="helper__body">
+
+            <p class="helper__offer">
+              <button class="helper__start" type="button" data-guide-start>
+                Show me what to do
+              </button>
+            </p>
+
+            <div class="helper__guide" data-guide hidden>
+              <p class="helper__progress" data-guide-progress></p>
+              <div class="helper__step" data-guide-text tabindex="-1"
+                   aria-live="polite"></div>
+              <div class="helper__actions">
+                <button type="button" data-guide-prev>Back</button>
+                <button type="button" data-guide-next>Next</button>
+                <button type="button" data-variant="secondary" data-guide-close>
+                  Close the guide
+                </button>
+              </div>
+              <p class="helper__aside">
+                Nothing here changes the controls for you, and none of it says
+                what you are going to find.
+              </p>
+            </div>
+
+            <!-- Steps as content, not code, so they read as copy and can be
+                 revised without touching the component. `target` is the thing
+                 the step is about; it gets an outline, and every step also
+                 names it in words. -->
+            <script type="application/json" data-guide-steps>
+            [
+              { "text": "Start with the upper graph. That is the data as it was collected, with the fitted line drawn through it.",
+                "target": "#hetero .chart" },
+              { "text": "Now look at the panel underneath. Each point there is one observation's distance from that line — its residual.",
+                "target": "#hetero .chart" },
+              { "text": "Set Residual variance to “Grows with the fitted value”.",
+                "target": "#pattern-select" },
+              { "text": "Watch the lower panel. What happens to the spread of the residuals as you move from left to right?",
+                "target": "#hetero .chart" },
+              { "text": "Now look at the estimated slope and the standard error beside it. What changed, and what stayed roughly where it was?",
+                "target": "#hetero [data-readout]" }
+            ]
+            </script>
+
+            <details class="helper__terms">
+              <summary class="helper__summary">Key terms</summary>
+              <dl class="helper__glossary">
+
+                <dt>Fitted value</dt>
+                <dd>
+                  What the line predicts for an observation. It is the
+                  horizontal axis of the lower panel.
+                </dd>
+
+                <dt>Residual</dt>
+                <dd>
+                  How far one observation fell from the line: observed minus
+                  fitted. One residual per person in the study.
+                </dd>
+
+                <dt>Residual variance</dt>
+                <dd>
+                  How widely the residuals are spread out. This activity varies
+                  it deliberately, using the menu at the top of the controls.
+                </dd>
+
+                <dt>Homoscedasticity</dt>
+                <dd>
+                  The residual spread stays roughly constant across the fitted
+                  values. It is one of the assumptions the standard errors in a
+                  regression output rest on.
+                </dd>
+
+                <dt>Heteroscedasticity</dt>
+                <dd>
+                  The residual spread changes with the fitted value &mdash; the
+                  fan or megaphone shape. The same word covers spread that
+                  grows, shrinks, or bulges in the middle.
+                </dd>
+
+                <dt>Standard error</dt>
+                <dd>
+                  How much the estimated slope would move about from one sample
+                  to the next. It is what turns an estimate into a confidence
+                  interval and a test.
+                </dd>
+
+              </dl>
+            </details>
+
+          </div>
+        </details>
 
         <section class="interactive" id="hetero" data-interactive
                  data-reset-message="Everything cleared. Back to the opening predictions.">
