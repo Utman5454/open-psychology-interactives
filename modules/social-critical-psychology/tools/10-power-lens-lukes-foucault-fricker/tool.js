@@ -403,10 +403,9 @@
         "Two different things went wrong with the people who spoke. One is " +
         "about belief: eleven of fourteen reports came from the groups whose " +
         "word carries least, and \"a smell that gets into your throat\" was " +
-        "received as an odour complaint. The other is not about belief at all - " +
+        "received as an odour complaint. The other is not about belief at all: " +
         "the system has no category for an intermittent exposure with delayed " +
-        "symptoms, so even a speaker who is entirely trusted has nothing to put " +
-        "in the box.",
+        "symptoms, so even a trusted speaker has nothing to put in the box.",
       shadowText:
         "The wrong is located in an epistemic relation, which makes it nameable " +
         "and also makes it look like a matter of how individuals receive " +

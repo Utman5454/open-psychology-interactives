@@ -368,10 +368,9 @@
       why:
         "A correlation between people measures how they vary within one " +
         "setting. The rota, the queue and the target are the same for all " +
-        "fourteen, so they cannot appear in that correlation at all - which " +
-        "means the correlation cannot be evidence against them. It is a real, " +
-        "orderly finding about how these fourteen people differ from each " +
-        "other, and it survives every intervention in experiment 2 unchanged."
+        "fourteen, so they cannot appear in that correlation at all and it " +
+        "cannot be evidence against them. It is a real, orderly finding about " +
+        "how these fourteen differ from each other."
     },
     {
       id: "dontmatter",
@@ -421,8 +420,7 @@
         "at recruitment is not matched now - three people have left Team B, " +
         "and they were the three most exhausted, which changes the composition " +
         "in exactly the direction that complicates the comparison. Nobody " +
-        "randomised anyone to a rota. This is a quasi-experimental comparison " +
-        "open to the usual objections, and saying so is not hedging."
+        "randomised anyone to a rota. Saying so is not hedging."
     }
   ];
 

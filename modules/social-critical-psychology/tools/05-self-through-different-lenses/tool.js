@@ -106,10 +106,9 @@
         "There is a live discrepancy between Nadia's actual self and an ought " +
         "self - \"further on by now\" - and a second one between her actual self " +
         "and an ideal she can describe in some detail. The framework predicts " +
-        "that these two gaps will not feel the same: the ought discrepancy " +
-        "should produce agitation and the ideal discrepancy something closer to " +
-        "flatness, and which one dominates should shift with what has been made " +
-        "salient that week.",
+        "that the two gaps will not feel the same: the ought discrepancy " +
+        "should produce agitation, the ideal discrepancy something closer to " +
+        "flatness.",
       note:
         "Sharp about the structure of a gap. Completely silent about where the " +
         "standard came from, which is arguably the more interesting question."
@@ -163,9 +162,8 @@
         "memberships are salient, and in one of them her category is assigned " +
         "rather than chosen - \"the one who came from a trade\" is not a " +
         "self-description. The tutor's remark makes that category relevant to " +
-        "performance, which is a change in the situation and not in Nadia. The " +
-        "framework predicts that her sense of herself will shift with which " +
-        "membership is made salient.",
+        "performance - a change in the situation, not in Nadia - and her sense " +
+        "of herself should shift with whichever membership is salient.",
       note:
         "The framework that comes closest to putting something outside her into " +
         "the account - and it does so by representing it as a perceived group " +
@@ -182,9 +180,8 @@
         "The question Nadia is asking - which one is the real me - is on this " +
         "account the wrong question rather than an unanswered one. She is not " +
         "one self appearing in different lighting; she is differently " +
-        "constituted with her sister, at the shop and on the course, and the " +
-        "search for the version underneath is an artefact of the way the " +
-        "question is usually put. What varies is not a mask but the relation.",
+        "constituted with her sister, at the shop and on the course. What " +
+        "varies is not a mask but the relation.",
       note:
         "The only framework here that disagrees about what a self is rather " +
         "than about which part of it to study. It buys that at the cost of " +
@@ -247,9 +244,9 @@
         "No framework on this board can support it. Six of the seven mark that " +
         "statement as something they have no concept for, and the seventh can " +
         "only reach it as a change in how believable a future self is. The " +
-        "claim may well be true. What the exercise shows is that the vocabulary " +
-        "in use cannot express it, and that instruments built from this " +
-        "vocabulary will not collect the evidence that would test it."
+        "claim may well be true. The vocabulary in use cannot express it, so " +
+        "instruments built from it will not collect the evidence that would " +
+        "test it."
     },
     {
       id: "realself",
