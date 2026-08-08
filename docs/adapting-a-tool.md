@@ -43,6 +43,32 @@ cd open-psychology-interactives
 Everything works from your own disk. There is no install step, no `npm install`,
 nothing to compile.
 
+### Just one activity, without the repository
+
+If you only want a single activity on a page of your own, some tools carry a
+**Copy activity HTML** button near the foot of the page. It puts a complete,
+self-contained copy of that one activity on your clipboard: markup, styles,
+script and accessibility text in a single file, with no stylesheet links, no
+script tags pointing anywhere, no images and no network requests at all. Paste
+it into a blank `.html` file and open it, or into any page that accepts HTML.
+
+What you get is the activity — the objective, the prediction, the laboratory,
+the challenge and the debrief. What you do not get is this site's header,
+navigation, breadcrumbs or footer, and no link points back here.
+
+The teaching notes are deliberately not included, because they are written for
+whoever is running the session rather than for the page. Take
+`teaching-notes.md` from the tool's folder if you want them.
+
+> **Prototype.** The button is currently on one tool,
+> `modules/research-methods/tools/20-homoscedasticity-residual-diagnostics/`,
+> while the mechanism is evaluated.
+
+The file behind the button is `standalone.html` in the tool's own folder, so it
+can also be opened, read or downloaded directly. It is generated rather than
+maintained by hand — see [Regenerating a standalone
+copy](#regenerating-a-standalone-copy) if you change a tool.
+
 ## Where tools live
 
 The repository is organised into five canonical modules. Every tool sits inside
@@ -304,6 +330,57 @@ notes where appropriate.
 
 If you adapt a tool, adapt its teaching notes too — notes that describe a
 different version of the tool are worse than none.
+
+## Regenerating a standalone copy
+
+Tools that offer **Copy activity HTML** keep the copy in `standalone.html`
+beside `index.html`. It is generated, and it is committed so that it can be
+reviewed in a diff and opened directly. Regenerate it whenever you change the
+tool's markup, script or styles, or whenever you change one of the shared
+stylesheets:
+
+```sh
+python scripts/build-standalone.py modules/research-methods/tools/20-homoscedasticity-residual-diagnostics/
+```
+
+`--check` reports whether the committed file matches what the sources would
+produce now, and exits non-zero if it does not, so it can be used as a guard:
+
+```sh
+python scripts/build-standalone.py --check modules/*/tools/*/
+```
+
+The script takes the contents of `<main>`, drops the block marked
+`data-activity-export` (the copy button itself, which would be meaningless in
+the copy), inlines the shared stylesheets with the site-chrome rules removed,
+inlines `components/interactive-shell.js` and the tool's own `tool.js`, and
+leaves out `assets/js/main.js` entirely — that file is navigation, the footer
+year and the catalogue fetch, none of which an activity calls, and the
+catalogue fetch would be a dependency on this repository.
+
+It refuses to write a file that still has a relative `src` or `href` in the
+markup, or an unescaped `</script` in the inlined JavaScript. The second check
+is not hypothetical: the shell's own documentation comment contains a literal
+`</script>`, which ends the inlined block early if it is not escaped.
+
+Adding the button to a tool takes two edits to its `index.html` — the script
+tag:
+
+```html
+<script src="../../../../components/copy-activity.js" defer></script>
+```
+
+and the block itself, which must sit outside any section that starts `hidden`,
+so that it is reachable without working through the activity first:
+
+```html
+<div class="activity-export" data-activity-export>
+  <button type="button" data-copy-activity="standalone.html">
+    Copy activity HTML
+  </button>
+  <p class="activity-export__note" data-copy-activity-note>…</p>
+</div>
+```
 
 ## Rules worth keeping when you adapt
 
