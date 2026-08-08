@@ -73,10 +73,8 @@
       sparing: false,
       why:
         "In front of the chiasm nothing has crossed yet, so a nerve carries " +
-        "one eye and only one eye. Damage anywhere along it removes that eye's " +
-        "whole field and leaves the other untouched. A defect confined to one " +
-        "eye is therefore in front of the chiasm - which is the single most " +
-        "useful thing a field examination tells you."
+        "one eye and only one eye. A defect confined to one eye is therefore " +
+        "in front of the chiasm."
     },
     {
       id: "chiasm",
@@ -88,12 +86,10 @@
       sparing: false,
       why:
         "The crossing fibres come from the nasal half of each retina, and the " +
-        "nasal retina sees the OUTER half of that eye's field. Damage in the " +
-        "middle of the chiasm therefore takes the outer half of both fields - " +
-        "the left of the left eye and the right of the right eye. Note that " +
-        "the two missing halves are on opposite sides of the world, which is " +
-        "why this pattern is unmistakable and why nothing behind the chiasm " +
-        "can produce it."
+        "nasal retina sees the OUTER half of that eye's field. So the middle " +
+        "of the chiasm takes the outer half of both fields: the left of the " +
+        "left eye and the right of the right eye. Two missing halves on " +
+        "opposite sides of the world - nothing behind the chiasm can do that."
     },
     {
       id: "tract",
@@ -105,12 +101,9 @@
       sparing: false,
       why:
         "Behind the chiasm each side carries the opposite half of the world " +
-        "from both eyes. The right tract carries the left half of the world, " +
-        "so damage to it removes the left half of both fields with a border " +
-        "down the vertical midline. The two eyes' defects are often slightly " +
-        "different in extent here - the fibres from the two eyes are not yet " +
-        "fully intermingled - which is the traditional clue that a defect is " +
-        "this far forward."
+        "from both eyes. The right tract carries the left half, so damage " +
+        "removes the left half of both fields with a border down the vertical " +
+        "midline."
     },
     {
       id: "temporal",
@@ -123,10 +116,9 @@
       why:
         "The radiation splits. Fibres carrying the UPPER part of the opposite " +
         "field sweep forward and down into the temporal lobe before turning " +
-        "back, so damage there removes the upper quadrant on the opposite " +
-        "side in both eyes. A quadrant defect is one of the few field findings " +
-        "that narrows the location usefully - it says the damage is in the " +
-        "radiation rather than the tract, and which part of it."
+        "back, so damage there removes the upper quadrant on the opposite side " +
+        "in both eyes. A quadrant defect is one of the few field findings that " +
+        "narrows the location usefully."
     },
     {
       id: "parietal",
@@ -153,14 +145,10 @@
       description: "Loss of the left half of the world in both eyes, centre often spared",
       sparing: true,
       why:
-        "In quadrant terms this is identical to the optic tract case, and that " +
-        "is the honest answer to whether a field pattern localises damage: it " +
-        "says which side and that the damage is behind the chiasm, and it " +
-        "stops. The traditional additional clues are congruity - the two eyes' " +
-        "defects match closely this far back - and sparing of the very centre " +
-        "of the field, drawn here as an unaffected disc. Both are clues rather " +
-        "than proof; why macular sparing happens is still argued about, and " +
-        "imaging is what settles the question in practice."
+        "In quadrant terms this is identical to the optic tract case. That is " +
+        "the honest answer to whether a field pattern localises damage: it " +
+        "says which side, and that the damage is behind the chiasm, and it " +
+        "stops."
     }
   ];
 
@@ -339,8 +327,7 @@
       : site.title + " - predict first";
     siteBrief.textContent = state.revealed
       ? site.description + ". Read the explanation, then try another point."
-      : "Tick the quadrants you expect to go dark before you reveal anything - " +
-        "the reveal is worth much less if you have already seen it.";
+      : "Tick the quadrants you expect to go dark in each eye, then reveal.";
     fieldsCaption.textContent = state.revealed
       ? "The field pattern, with your prediction marked by a dot"
       : "Your prediction so far - dots mark the quadrants you have ticked";
@@ -596,9 +583,8 @@
 
     if (site.sparing) {
       revealFeedback.appendChild(make("p", "text-muted",
-        "The unaffected disc at the centre of each field is macular sparing. " +
-        "It is drawn because every textbook draws it; why it happens is still " +
-        "argued about, and it is a clue rather than proof."));
+        "The unaffected disc at the centre of each field is macular sparing - " +
+        "a clue that a defect is this far back, not proof of it."));
     }
 
     revealFeedback.setAttribute("data-tone", hits === 8 ? "good" : "caution");
@@ -617,11 +603,9 @@
       verdict: "Yes.",
       text:
         "Nasal retina, temporal field. The nasal half of each retina looks " +
-        "outwards, so the fibres that cross carry the outer half of each eye's " +
-        "view of the world. That is why damage in the middle of the chiasm " +
-        "takes the outer half of both fields, and why everything behind the " +
-        "chiasm carries the opposite half of the world rather than one whole " +
-        "eye."
+        "outwards, so the fibres that cross carry the outer half of each " +
+        "eye's view of the world. Everything else in the tool follows from " +
+        "that."
     },
     temporal: {
       tone: "caution",
@@ -629,8 +613,8 @@
       text:
         "The temporal half of each retina sees the INNER (nasal) half of that " +
         "eye's field, and those fibres stay on their own side. It is the nasal " +
-        "retina that crosses, and it sees the outer field. Work the first case " +
-        "in the mapper and the second, and the logic falls into place quickly."
+        "retina that crosses, and it sees the outer field. Work the first two " +
+        "cases in the mapper."
     },
     all: {
       tone: "caution",
@@ -740,13 +724,6 @@
           return o.label.toLowerCase() + " - " + o.why;
         }).join("; ") + "."));
     }
-
-    challengeFeedback.appendChild(make("p", "text-muted",
-      "What narrows it further is not the field pattern. Congruity - how " +
-      "closely the two eyes' defects match - and sparing of the very centre of " +
-      "the field are the traditional clues, and both are unreliable enough " +
-      "that imaging is what decides it. The rest of the examination usually " +
-      "contributes more than the field chart does."));
 
     challengeFeedback.setAttribute("data-tone",
       missed.length === 0 && wrong.length === 0 ? "good" : "caution");

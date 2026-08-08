@@ -530,9 +530,8 @@
       ". The same seed always gives the same five.";
     tableHeading.textContent = "The five people at five time points";
     tableNote.textContent =
-      "Every value is a simulated observation, not data. Compare any two " +
-      "adjacent months in one row and ask whether the difference means " +
-      "anything.";
+      "Every value is a simulated observation, not data. Compare two adjacent " +
+      "months in one row and ask whether the difference means anything.";
 
     drawFan(series, sd);
     renderFanTable(series);
@@ -544,11 +543,11 @@
       "At " + state.month + " month" + (state.month === 1 ? "" : "s") +
       " the five simulated people span " + spread.toFixed(0) + " points, from " +
       Math.min.apply(null, atMonth).toFixed(0) + " to " +
-      Math.max.apply(null, atMonth).toFixed(0) + ". They have the same injury, " +
-      "the same rehabilitation and the same underlying model. A single " +
-      "person's curve is one draw from this fan, and a difference between two " +
-      "adjacent months is smaller than the measurement noise alone (standard " +
-      "deviation " + sd + " points) for most of the range.";
+      Math.max.apply(null, atMonth).toFixed(0) + ". Same injury, same " +
+      "rehabilitation, same underlying model. A single person's curve is one " +
+      "draw from this fan, and over most of the range the change between two " +
+      "adjacent months is smaller than the measurement noise on its own " +
+      "(standard deviation " + sd + " points).";
     interpretation.setAttribute("data-tone", "caution");
   }
 
@@ -594,10 +593,9 @@
       parts.relearning.toFixed(0) + " from relearning, " +
       parts.compensation.toFixed(0) + " from compensation and " +
       parts.practice.toFixed(0) + " from having taken the same test " +
-      "repeatedly. The untrained task scores " + untrained.toFixed(0) +
-      " because compensation and practice do not reach it: the " +
-      gap.toFixed(0) + "-point gap is those two and nothing else. No amount " +
-      "of measuring the trained task would have separated them.";
+      "repeatedly. The untrained task scores " + untrained.toFixed(0) + ": the " +
+      gap.toFixed(0) + "-point gap is compensation and practice, and nothing " +
+      "else. No amount of measuring the trained task would have separated them.";
     interpretation.setAttribute("data-tone", gap >= 12 ? "warn" : "caution");
   }
 

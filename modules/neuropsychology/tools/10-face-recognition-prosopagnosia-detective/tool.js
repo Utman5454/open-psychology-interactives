@@ -533,7 +533,7 @@
           ? "The non-face object task is affected too, which means this is not a face-specific account at all."
           : "The non-face object task is within range.") + " " +
         (voiceHit
-          ? "The voice route is affected as well, so whatever this is, it is not confined to faces - it sits where the two routes have already joined."
+          ? "The voice route is affected too, so this sits where the two routes have already joined."
           : "The voice route is untouched, so the difficulty sits on the face route, before the two routes join.");
       interpretation.setAttribute("data-tone", "caution");
     }
@@ -804,9 +804,7 @@
 
   function checkAccount() {
     if (!state.account) {
-      accountError.textContent =
-        "Choose an account before checking. Committing to one is what makes " +
-        "the feedback worth reading.";
+      accountError.textContent = "Choose an account before checking.";
       accountError.hidden = false;
       return;
     }
@@ -842,7 +840,7 @@
       lead.appendChild(document.createTextNode(
         " Every one of the six leaves at least one task within range, and " +
         "this profile has none. Reaching for a component here would be " +
-        "reading a pattern into a profile that has none."));
+        "reading in a pattern that is not there."));
     } else if (fits.length === 0) {
       lead.appendChild(make("strong", "feedback__verdict",
         "No component fits this profile - including that one."));
@@ -1008,9 +1006,8 @@
       text:
         "Without matched difficulty, impaired faces with intact objects is " +
         "the pattern you would expect from a general perceptual difficulty as " +
-        "well as from a face-specific one. This is the standard objection to " +
-        "single dissociations, and it is why control tasks are chosen for " +
-        "difficulty rather than for convenience."
+        "much as from a face-specific one. Control tasks have to be chosen " +
+        "for difficulty, not for convenience."
     },
     scan: {
       tone: "caution",

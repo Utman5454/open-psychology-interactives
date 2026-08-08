@@ -500,25 +500,22 @@
     if (ids.length === 0) {
       tone = "good";
       text =
-        "Every region and every pathway is intact and all four tasks run " +
-        "normally. Damage one thing and watch which tasks notice - the " +
-        "answer depends on the routes, not only on the boxes.";
+        "Everything intact, all four tasks normal. Damage one thing and watch " +
+        "which tasks notice.";
     } else if (failing.length === 0) {
       tone = "good";
       text =
         describeDamage().charAt(0).toUpperCase() + describeDamage().slice(1) +
         ", and no task on the list notices. Damage is not the same as " +
-        "deficit: whether it shows depends on whether anything you measure " +
-        "needs that part of the network. A different set of tasks might have " +
-        "found it.";
+        "deficit: it shows only if something you measure needs that part of " +
+        "the network.";
     } else if (nodesHurt.length === 0) {
       tone = "warn";
       text =
         "Every region is intact. " + affected + " still not normal, because " +
         edgesCut.map(elementName).join(" and ") +
-        (edgesCut.length === 1 ? " has" : " have") + " been cut. This is the " +
-        "state a purely region-based account cannot describe: there is nothing " +
-        "to point at on a map of regions, and the deficit is real.";
+        (edgesCut.length === 1 ? " has" : " have") + " been cut. Nothing to " +
+        "point at on a map of regions, and the deficit is real.";
     } else {
       tone = "caution";
       var alternatives = otherCausesOf(profileOf(damaged));
@@ -559,40 +556,34 @@
       tone: "caution",
       verdict: "That would break more than this.",
       text:
-        "Damage the speech-output region and naming fails too, along with " +
-        "saying what is being described - anything that has to come out of " +
-        "the mouth. This person names pictures normally, so whatever is wrong " +
-        "is not at the output end. Load the \"speech output damaged\" preset " +
-        "and compare."
+        "Damage the speech-output region and naming fails too - anything that " +
+        "has to come out of the mouth. This person names pictures normally. " +
+        "Load the \"speech output damaged\" preset and compare."
     },
     store: {
       tone: "caution",
       verdict: "Same problem.",
       text:
-        "The store of word sounds is used by naming as well as by repetition. " +
-        "Damage it and naming goes too. The profile you were given spares " +
-        "naming, so the failure has to be somewhere used by repetition and " +
-        "not by naming - which, in this network, is a pathway rather than a " +
-        "region."
+        "The word-sound store is used by naming as well as by repetition, so " +
+        "damaging it takes naming too. The failure has to be somewhere " +
+        "repetition uses and naming does not. Look for it in the network."
     },
     pathway: {
       tone: "good",
       verdict: "Yes.",
       text:
-        "The route from heard speech straight to word sounds is used by " +
-        "repetition and by nothing else. Cut it and repetition has to go the " +
-        "long way round through meaning, which works for familiar words and " +
-        "not for unfamiliar ones - exactly the pattern described. Every region " +
-        "is intact. Load the first preset and look at the diagram."
+        "The direct route from heard speech to word sounds is used by " +
+        "repetition and nothing else. Cut it and repetition goes the long way " +
+        "round through meaning, which works for familiar words and not for " +
+        "unfamiliar ones. Every region is intact. Load the second preset."
     },
     hearing: {
       tone: "caution",
       verdict: "That would take comprehension with it.",
       text:
-        "Damage the region that analyses heard speech and this person could " +
-        "not follow what you said either. They can. So the incoming analysis " +
-        "is working and the failure is further along - and, as it turns out, " +
-        "between regions rather than in one."
+        "Damage that region and this person could not follow what you said " +
+        "either. They can, so the incoming analysis is working and the failure " +
+        "is further along. Find it in the network."
     }
   };
 
@@ -703,9 +694,7 @@
     }
 
     challengeFeedback.appendChild(make("p", "text-muted",
-      "Load each of the three in the network above and compare the chips. " +
-      "That three separate failures are indistinguishable from the outside is " +
-      "the general shape of the inference problem, not a quirk of this toy."));
+      "Load each of the three in the network above and compare the chips."));
 
     challengeFeedback.setAttribute("data-tone",
       missed.length === 0 && wrong.length === 0 ? "good" : "caution");
@@ -748,8 +737,7 @@
     challengeForm.reset();
     challengeFeedback.hidden = true;
     challengeError.hidden = true;
-    presetNote.textContent =
-      "Five states worth comparing. The second one is the argument of the tool.";
+    presetNote.textContent = "Five states worth comparing.";
     render();
   });
 

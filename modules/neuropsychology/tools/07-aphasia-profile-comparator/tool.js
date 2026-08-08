@@ -157,35 +157,28 @@
      ids joined in either order. */
   var PAIR_NOTES = {
     "A|D":
-      "As clean a separation as this material offers. Effortful output, good " +
-      "understanding, and five points between them on repetition alone. " +
-      "Whatever differs between these two people is needed for repeating a " +
-      "sentence and is not needed for understanding one or for producing " +
-      "effortful speech - which points at a route rather than at a region.",
+      "A clean separation: repetition differs by five points while the rest of " +
+      "the profile barely moves. That makes repetition the informative measure " +
+      "for this comparison.",
     "A|B":
-      "Two measures separate these almost equally: fluency by seven and " +
-      "understanding by six. \"The largest gap\" is a weak answer here. If you " +
-      "could have only one measure, understanding is the better choice, " +
-      "because fluency is a compound of six things and understanding is " +
-      "closer to a single question.",
+      "Two measures separate these almost equally - fluency by seven, " +
+      "understanding by six. \"The largest gap\" is a weak answer here, and " +
+      "understanding is the better one: fluency bundles six things together.",
     "C|D":
-      "The mirror image of each other on repetition: one repeats far worse " +
-      "than they speak or understand, the other far better. Two profiles " +
-      "erring in opposite directions on the same measure is worth more than " +
-      "either alone - it is the crossover argument applied to a language " +
-      "profile.",
+      "Mirror images on repetition: one repeats far worse than they speak or " +
+      "understand, the other far better. Two profiles erring in opposite " +
+      "directions on the same measure are worth more than either alone.",
     "B|C":
-      "Both fluent, and they differ by six points on understanding. This is " +
-      "the contrast that fluency alone cannot make: two people can be equally " +
-      "fluent and differ completely in whether they follow what is said.",
+      "Both fluent, six points apart on understanding. This is the contrast " +
+      "fluency alone cannot make.",
     "A|C":
-      "Fluency separates them most, and repetition barely at all - both are " +
-      "poor at it, for what may well be different reasons. A measure on which " +
-      "two profiles agree is not evidence that the same thing is wrong.",
+      "Fluency separates them most and repetition barely at all - both are " +
+      "poor at it, quite possibly for different reasons. Agreement on a " +
+      "measure is not evidence that the same thing is wrong.",
     "E|F":
-      "Profile E is uniformly low and profile F is uneven. The separations are " +
-      "large everywhere, which makes the comparison easy and uninformative: " +
-      "when everything differs, no single measure is carrying the contrast."
+      "One profile uniformly low, one uneven. The separations are large " +
+      "everywhere, which makes the comparison easy and uninformative: when " +
+      "everything differs, no single measure carries the contrast."
   };
 
   /* =======================================================================
@@ -508,8 +501,7 @@
         "other here (" + close.map(function (row) {
           return row.measure.short.toLowerCase() + " " + row.gap;
         }).join(", ") + "). When separations are that close, \"the largest " +
-        "gap\" stops being a useful answer, and which measure you would rather " +
-        "have depends on how much else each one bundles together."));
+        "gap\" stops being a useful answer."));
     }
 
     var key = [state.left, state.right].sort().join("|");
@@ -534,22 +526,18 @@
       tone: "caution",
       verdict: "Not on this evidence.",
       text:
-        "They are matched on everything else in the description - both " +
-        "effortful, both understanding well. A difference confined to one " +
-        "measure while the rest match is the opposite of a severity " +
-        "difference: severity moves everything together. Compare profiles A " +
-        "and D in the tool and look at how flat the other five separations are."
+        "Severity moves everything together. A difference confined to one " +
+        "measure while the rest match is the opposite of that. Compare " +
+        "profiles A and D below."
     },
     route: {
       tone: "good",
       verdict: "Yes.",
       text:
-        "Repeating a sentence can be done by understanding it and saying it, " +
-        "or by a shorter route from the sounds coming in to the sounds going " +
-        "out with meaning left out. Two people matched on understanding and on " +
-        "speech who differ on repetition differ in whether that short route is " +
-        "available - which is a claim about a connection rather than about a " +
-        "region."
+        "Repetition can take a short route from the sounds coming in to the " +
+        "sounds going out, with meaning left out. Two people matched on " +
+        "understanding and on speech who differ on repetition differ in " +
+        "whether that route is available."
     },
     category: {
       tone: "caution",
@@ -630,12 +618,10 @@
       verdict: "Yes.",
       text:
         "The classical categories were built from which symptoms tended to " +
-        "occur together in the cases available a century ago. They are useful " +
-        "shorthand and they are prototypes drawn through a continuous space. A " +
-        "substantial minority of people assessed after a stroke fit none of " +
-        "them, the same label covers very different profiles, and the " +
-        "anatomical claims attached to them are much looser than the diagrams " +
-        "imply."
+        "occur together in the cases available a century ago: useful " +
+        "shorthand, and prototypes drawn through a continuous space. A " +
+        "substantial minority of people fit none of them, and the same label " +
+        "covers very different profiles."
     },
     nolocal: {
       tone: "caution",

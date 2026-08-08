@@ -542,8 +542,7 @@
         result.minutes + " min chosen"));
 
     timeText.textContent = result.chosen.length === 0
-      ? "No tasks chosen yet. The bar fills as you tick them, and the vertical "
-        + "line is the end of the session."
+      ? "No tasks chosen yet. The vertical line is the end of the session."
       : result.chosen.length + " task" +
         (result.chosen.length === 1 ? "" : "s") + ", " + result.minutes +
         " minutes of a " + BUDGET + "-minute session" +
@@ -641,9 +640,7 @@
     var result = evaluate();
 
     if (!result.chosen.length) {
-      submitError.textContent =
-        "Choose at least one task before submitting. An empty battery is a " +
-        "defensible decision in real life, and not one this tool can score.";
+      submitError.textContent = "Choose at least one task before submitting.";
       submitError.hidden = false;
       return;
     }
@@ -677,10 +674,8 @@
     }
     if (result.heavy) {
       submitFeedback.appendChild(make("p", null,
-        "At " + result.minutes + " minutes this fits the session on paper. In " +
-        "practice the tasks administered last are measuring fatigue as well " +
-        "as whatever they are named after - and the context measures are " +
-        "usually the ones scheduled last."));
+        "At " + result.minutes + " minutes this fits the session on paper. " +
+        "Note which tasks end up last: the context measures usually are."));
     }
     if (result.redundant.length) {
       submitFeedback.appendChild(make("p", null,
@@ -748,9 +743,9 @@
       ? "You could not say: " + couldNot.join("; ") + "."
       : "There is nothing on the four checks that this battery leaves open.";
     verdictNote.textContent =
-      "Both halves are about the design of the battery, not about any person. " +
-      "No score is produced here, and a battery that passes all four checks " +
-      "can still reach the wrong conclusion.";
+      "Both halves are about the design of the battery, not about any person - " +
+      "and a battery that passes all four checks can still reach the wrong " +
+      "conclusion.";
     verdict.setAttribute("data-tone", failed.length === 0 ? "good" : "warn");
     verdict.hidden = false;
   }

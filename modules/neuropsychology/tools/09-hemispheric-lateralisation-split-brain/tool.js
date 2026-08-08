@@ -440,9 +440,7 @@
 
   function runTrial() {
     if (!state.predicted) {
-      trialError.textContent =
-        "Predict the outcome before running the trial. Committing first is " +
-        "what makes the result worth seeing.";
+      trialError.textContent = "Predict the outcome before running the trial.";
       trialError.hidden = false;
       return;
     }
@@ -500,15 +498,13 @@
   function flipSentence(trial) {
     if (trial.callosum === "intact") {
       return "With the callosum intact every combination works, so this trial " +
-        "carries no information about lateralisation at all. Section it and " +
-        "run the same trial again to find out whether this is one of the " +
-        "combinations that changes.";
+        "carries no information about lateralisation. Section it and run the " +
+        "same trial again.";
     }
     if (trial.success) {
       return "This one succeeds because the hemisphere that received the item " +
-        "is also the one that controls the channel. Keep everything else and " +
-        "switch to the other hand: the same item, the same hemisphere, and " +
-        "the opposite outcome.";
+        "also controls the channel. Keep everything else and switch to the " +
+        "other hand.";
     }
     var partner = CHANNELS.filter(function (c) {
       return c.hemisphere === trial.field.hemisphere;
@@ -549,8 +545,8 @@
       "and the model reports what its routing rules give.";
     tableHeading.textContent = "Trials you have run";
     tableNote.textContent = state.log.length
-      ? "Every row is a trial you set up yourself. Rows where your prediction " +
-        "and the outcome disagree are the ones worth reading twice."
+      ? "Rows where your prediction and the outcome disagree are the ones " +
+        "worth reading twice."
       : "No trials yet. Set one up on the left and run it.";
 
     var field = currentField();
@@ -605,8 +601,8 @@
       conditionsBody.textContent =
         "Without fixation monitoring you do not know which hemisphere " +
         "received the word, so neither a report nor a silence tells you " +
-        "anything. This is the condition that is easiest to lose and hardest " +
-        "to notice afterwards, because the data still look like data.";
+        "anything. Easy to lose, and hard to notice afterwards, because the " +
+        "data still look like data.";
       conditionsOutcome.setAttribute("data-tone", "warn");
     } else if (others.length) {
       conditionsTitle.textContent = "The word is reported - and the account is untouched";
@@ -860,10 +856,8 @@
       text:
         "“Not conscious of it” restates the fact that they could not say " +
         "so. The question is why saying so is unavailable while picking it up " +
-        "is not, and the answer is which hemisphere received it and which " +
-        "controls each channel. Whether the right hemisphere's experience " +
-        "counts as conscious is a separate argument that split-brain data " +
-        "have never settled."
+        "is not. Whether the right hemisphere's experience counts as " +
+        "conscious is a separate argument, and not one these data settle."
     },
     routing: {
       tone: "good",

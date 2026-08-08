@@ -765,27 +765,23 @@
         "both directions. This is what the task looks like when nothing is " +
         "wrong with it.",
       ego:
-        "Every mark is to the right of the true middle, and the error is " +
-        "largest for the line printed furthest left. That gradient across the " +
-        "page is the signature of neglect organised around the viewer: what " +
-        "is under-weighted is the left of the space, so a line sitting further " +
-        "into that space loses more of itself.",
+        "Every mark is right of the true middle, and the error is largest for " +
+        "the line printed furthest left. That gradient across the page is the " +
+        "signature of viewer-centred neglect: a line sitting further into the " +
+        "under-attended space loses more of itself.",
       allo:
-        "Every mark is to the right of the true middle by about the same " +
-        "fraction of each line, wherever on the page the line sits. The error " +
-        "is tied to the object rather than to the page - which is why the " +
-        "left-hand and right-hand lines come out the same.",
+        "Every mark is right of the true middle by about the same fraction of " +
+        "each line, wherever on the page the line sits. The error is tied to " +
+        "the object, not to the page.",
       field:
-        "The marks are slightly to the LEFT of the true middle - the opposite " +
-        "direction from neglect. People with a field loss and intact attention " +
-        "tend to err towards the blind side on this task. Two people who both " +
-        "\"miss things on the left\" therefore point in opposite directions " +
-        "here, which is the cleanest single-task separation available.",
+        "The marks sit slightly to the LEFT of the true middle - the opposite " +
+        "direction from neglect. A field loss with attention intact tends to " +
+        "pull the mark towards the blind side.",
       both:
-        "Rightward, like neglect, but a little smaller: the leftward pull of " +
-        "the field loss partly cancels the rightward pull of the neglect. " +
-        "Mixed presentations are common and produce intermediate numbers that " +
-        "are hard to read on their own."
+        "Rightward, like neglect, but smaller: the leftward pull of the field " +
+        "loss partly cancels the rightward pull of the neglect. Mixed " +
+        "presentations produce intermediate numbers that are hard to read on " +
+        "their own."
     },
     cancel: {
       control:
@@ -796,15 +792,12 @@
         "rather than stopping at a line. Neglect is graded, not a border: the " +
         "further left a target sits, the less likely it is to be attended.",
       allo:
-        "A milder leftward gradient. Cancellation is not the task that shows " +
-        "object-centred neglect at its clearest, because each star is small " +
-        "and roughly symmetrical - it is the copying task that separates this " +
-        "profile from the one above.",
+        "A milder leftward gradient. Each star is small and roughly " +
+        "symmetrical, so cancellation is not the task that shows " +
+        "object-centred neglect clearly. Try copying.",
       field:
         "A narrow strip missed at the very edge of the page, and everything " +
-        "else found. That is a hole in the input rather than a gradient of " +
-        "attention - and it disappears entirely once the person is given time " +
-        "to search.",
+        "else found. A hole in the input rather than a gradient of attention.",
       both:
         "The gradient of neglect plus the strip of field loss. The two are " +
         "hard to tell apart on this task alone, which is why cancellation is " +
@@ -813,22 +806,19 @@
     copy: {
       control: "The copy is complete.",
       ego:
-        "Everything on the left of the page is absent: the left-hand tree, the " +
-        "left length of fence, and the left half of the house. Note that what " +
-        "decides whether a part survives is where it sits on the page, not " +
-        "which object it belongs to.",
+        "Everything on the left of the page is absent: the left-hand tree, " +
+        "the left length of fence, the left half of the house. What decides " +
+        "whether a part survives is where it sits on the page, not which " +
+        "object it belongs to.",
       allo:
-        "Every object appears, and every one of them is missing its own left " +
-        "half - including the tree on the RIGHT-hand side of the page. That " +
-        "omission is not on the left of anything except the tree it belongs " +
-        "to, which is very hard to explain as a failure to look far enough " +
-        "left, and is the main reason object-centred neglect is treated as a " +
-        "separate phenomenon.",
+        "Every object appears, and every one is missing its own left half - " +
+        "including the tree on the RIGHT of the page. That omission is not on " +
+        "the left of anything except the tree it belongs to, which is very " +
+        "hard to explain as a failure to look far enough left.",
       field:
         "The copy is complete. A hole in the visual input does not stop " +
         "anybody copying a picture: the eyes move, the information gets in, " +
-        "and the person knows to check. This is the observation that most " +
-        "cleanly separates field loss from neglect.",
+        "and the person knows to check.",
       both:
         "The viewer-centred pattern: the left of the page is gone. The field " +
         "loss adds nothing visible here, because copying survives it."
@@ -839,25 +829,27 @@
     control: "The prompt changes nothing, because nothing was being missed.",
     ego:
       "The prompt helps and does not fix it. Attention can be pushed leftwards " +
-      "by an instruction, and it drifts back; improvement under cueing is " +
-      "informative about mechanism rather than a measure of severity.",
+      "by an instruction, and it drifts back.",
     allo:
       "On bisection and cancellation the prompt helps a little. On the copying " +
       "task it does nothing at all, because \"check the whole page\" is an " +
       "instruction about the page, and the page is not the frame that is " +
       "failing.",
     field:
-      "The prompt rescues cancellation completely. The strategy was already " +
-      "available and only needed time - which is exactly what does not happen " +
-      "in neglect.",
+      "The prompt rescues cancellation completely: the strategy was already " +
+      "available and only needed the time.",
     both:
       "Partial improvement, as for neglect alone. The field-loss component " +
       "responds to searching; the neglect component only partly does."
   };
 
+  /* The cue note only appears once the prompt is actually on. Before that it
+     would be telling the learner the result of a manipulation they have not
+     tried yet. */
   function renderInterpretation(profile) {
     interpretationBody.textContent = READINGS[state.task][profile.id];
-    interpretationNote.textContent = CUE_NOTES[profile.id];
+    interpretationNote.textContent = state.cued ? CUE_NOTES[profile.id] : "";
+    interpretationNote.hidden = !state.cued;
     interpretation.setAttribute("data-tone",
       profile.id === "control" ? "good" : profile.id === "field" ? "caution" : "warn");
   }
@@ -869,12 +861,10 @@
       tone: "caution",
       verdict: "Close, and it is the best single task.",
       text:
-        "Bisection does separate them, and it does so in the most striking " +
-        "way: neglect marks to the right of the true middle, field loss " +
-        "slightly to the left. But bisection error is variable, it depends on " +
-        "line length and position, and a mild case can land inside the normal " +
-        "range. Run it, then run copying, and see which one you would rather " +
-        "rely on."
+        "It does separate them, and strikingly: neglect marks to the right of " +
+        "the true middle, field loss slightly to the left. But the error is " +
+        "variable and a mild case can land inside the normal range. Run it, " +
+        "then run copying."
     },
     cancellation: {
       tone: "caution",
@@ -901,9 +891,8 @@
       verdict: "The safest answer, and worth defending.",
       text:
         "In practice, yes: the two can occur together, severity varies, and " +
-        "any single task can mislead. That said, the copying task comes closest " +
-        "to a clean separation, and bisection has the useful property of " +
-        "erring in opposite directions. Run all three and see which you would " +
+        "any single task can mislead. Even so, one of the three comes much " +
+        "closer than the others. Run all three and decide which you would " +
         "want first."
     }
   };
@@ -984,11 +973,11 @@
       "the copy - including the tree on the right - and would mark to the right " +
       "of the middle on every line. Neither is what happened here.",
     field:
-      "Yes. A complete copy rules out neglect fairly firmly; the misses " +
-      "confined to a narrow strip at the very edge of the page look like a " +
-      "hole in the input rather than a gradient of attention; and the leftward " +
-      "bisection error is the direction associated with field loss rather than " +
-      "with neglect. All three point the same way.",
+      "All three results point the same way: a complete copy rules out " +
+      "neglect fairly firmly, misses confined to a narrow strip at the page " +
+      "edge look like a hole in the input rather than a gradient of " +
+      "attention, and the leftward bisection error runs in the field-loss " +
+      "direction.",
     both:
       "If neglect were present the copy would not be complete, and the " +
       "bisection error would be rightward or close to zero rather than " +
@@ -1015,10 +1004,6 @@
         "field loss without neglect. Load it in the laboratory above and " +
         "compare all three tasks."));
     }
-    challengeFeedback.appendChild(make("p", "text-muted",
-      "One fictional case is not how anybody decides this. Real assessment " +
-      "uses a battery of tasks, observation of everyday behaviour, and a " +
-      "clinician - and the two conditions frequently occur together."));
     challengeFeedback.setAttribute("data-tone", right ? "good" : "caution");
     challengeFeedback.hidden = false;
     shell.announce("Challenge answered.", { immediate: true });

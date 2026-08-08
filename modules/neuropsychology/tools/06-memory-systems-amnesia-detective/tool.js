@@ -168,16 +168,14 @@
       },
       why: {
         A:
-          "Span is at the control average and delayed recall is four and a half " +
-          "SDs below it. One measure clearly intact, a comparable one clearly " +
-          "not - which is what supporting a distinction takes. Note it is a " +
-          "single dissociation, so it is compatible with delayed recall simply " +
-          "being the more demanding task.",
+          "Span at the control average, delayed recall four and a half SDs " +
+          "below. One measure clearly intact, a comparable one clearly not. " +
+          "It is a single dissociation, so delayed recall being the more " +
+          "demanding task survives as an explanation.",
         B:
-          "This is the reverse shape, and it is worth more than profile A. Span " +
-          "is three and a half SDs below and delayed recall is within the " +
-          "control range. Put A and B together and you have a crossover, which " +
-          "rules out either task being simply the harder one.",
+          "The reverse shape, and worth more than profile A: span three and a " +
+          "half SDs below, delayed recall within the control range. Put A and " +
+          "B together and you have a crossover.",
         C:
           "Span at the control average, delayed recall four SDs below. Same " +
           "structure of evidence as profile A.",
@@ -214,10 +212,9 @@
           "recall at floor.",
         D:
           "Both are impaired, which supports nothing either way. Worse, the " +
-          "episodic measures here use words, so their impairment may be a " +
-          "consequence of the word-knowledge loss rather than independent of " +
-          "it. This is the profile that most needs measures made of something " +
-          "other than words.",
+          "episodic measures here are made of words, so their impairment may " +
+          "be a consequence of the word-knowledge loss rather than independent " +
+          "of it.",
         E:
           "Nothing is clearly impaired, so nothing is contrasted."
       }
@@ -244,10 +241,9 @@
           "as profile A.",
         D:
           "Skill learning is intact and the verbal measures are not - but the " +
-          "skill task differs from them in the memory system it is supposed to " +
-          "tap AND in its material and its response. A contrast that varies two " +
-          "things at once cannot be pinned on either. This is task impurity in " +
-          "its purest form.",
+          "skill task differs from them in the memory it is supposed to tap " +
+          "AND in its material and its response. Task impurity in its purest " +
+          "form: a contrast that varies two things cannot be pinned on either.",
         E:
           "Nothing is clearly impaired, so nothing is contrasted."
       }
@@ -270,13 +266,10 @@
           "Neither recall nor recognition is clearly impaired, so the question " +
           "does not arise for this profile.",
         C:
-          "This is the pattern the retrieval account is always argued from, and " +
-          "it does not establish it. Recognition is the easier task: a trace too " +
-          "weak to be produced from nothing can still be strong enough to be " +
-          "picked out of two options. Until the two tasks are matched so that " +
-          "healthy controls find them equally hard, the difference between them " +
-          "is a difference in difficulty as much as a difference in process. " +
-          "The pattern is suggestive and it is not decisive.",
+          "This is the pattern the retrieval account is always argued from, " +
+          "and it does not establish it. Recognition is the easier task: a " +
+          "trace too weak to be produced from nothing can still be strong " +
+          "enough to be picked out of two options. Suggestive, not decisive.",
         D:
           "Recall and recognition are impaired to a similar degree, and both " +
           "use words this person no longer knows well. Nothing here separates " +
@@ -312,12 +305,10 @@
         E:
           "Every measure sits between 0.9 and 1.4 SDs below its controls and " +
           "none is clearly below. That shape is what a general reduction looks " +
-          "like - and \"general reduction\" is not the same as \"brain damage\". " +
-          "Reduced effort, five hours of sleep, pain, medication, low mood, " +
-          "being tested at the end of a long afternoon, and a control group " +
-          "recruited from a university when this person left school at 16 all " +
-          "produce it too. Nothing in the profile chooses between them, and " +
-          "several are worth ruling out before any memory system is mentioned."
+          "like - and a general reduction is not the same as brain damage. " +
+          "Five hours of sleep, pain, medication, low mood, the end of a long " +
+          "afternoon, and a control group recruited from a university all " +
+          "produce it too. Read the case notes."
       }
     }
   ];
@@ -597,11 +588,10 @@
 
     var answered = countAnswered();
     gridNote.textContent = answered < CASES.length * CLAIMS.length
-      ? "Cells you have not judged yet show a dash. Of the twenty-five, eight " +
-        "support a claim, five count against one, and twelve cannot decide."
+      ? "Cells you have not judged yet show a dash."
       : "All twenty-five judged. Eight cells support a claim, five count " +
-        "against one, and twelve cannot decide - and row 4 is never supported " +
-        "anywhere, which is the argument of the tool.";
+        "against one, twelve cannot decide - and row 4 is never supported " +
+        "anywhere.";
   }
 
   /* --- Judging ---------------------------------------------------------- */
@@ -609,9 +599,7 @@
   function judge() {
     var chosen = $('input[name="verdict"]:checked', verdictControls);
     if (!chosen) {
-      showFeedback(claimFeedback, "caution", "Choose one of the three first.",
-        "All three are used somewhere in the grid, and one of them is used " +
-        "twelve times.");
+      showFeedback(claimFeedback, "caution", "Choose one of the three first.", "");
       return;
     }
 
@@ -633,10 +621,8 @@
 
     if (!right) {
       claimFeedback.appendChild(make("p", "text-muted",
-        "The grid is a position to argue with rather than a key. If you can " +
-        "make the case for your answer from the numbers on screen, make it - " +
-        "several of these cells are genuinely arguable, and the retrieval row " +
-        "most of all."));
+        "The grid is a position to argue with, not a key. If you can make the " +
+        "case for your answer from the numbers on screen, make it."));
     }
 
     claimFeedback.setAttribute("data-tone", right ? "good" : "caution");
@@ -662,10 +648,8 @@
       text:
         "The evidence shows that the two tasks do not depend on all the same " +
         "things. \"Separate systems\" adds a claim about how memory is " +
-        "organised that a pair of scores cannot deliver. The multiple-systems " +
-        "account is a good theory with a great deal of converging support - " +
-        "and no single profile establishes it, which is why the wording is " +
-        "worth keeping honest."
+        "organised that a pair of scores cannot deliver. Good theory, more " +
+        "than one profile's worth of evidence required."
     },
     separable: {
       tone: "good",
@@ -740,14 +724,12 @@
       tone: "good",
       verdict: "Yes - this is the one that changes the argument.",
       text:
-        "The whole problem is that recognition is the easier task, so a trace " +
-        "too weak to be recalled can still be recognised. Make the recognition " +
-        "test hard enough that healthy controls score no better on it than on " +
-        "recall - more similar foils, more items, longer lists - and the " +
-        "comparison becomes a comparison between processes rather than between " +
-        "difficulties. If recognition is still spared once the difficulty is " +
-        "equated, the retrieval account has evidence. It is hard to do well, " +
-        "and it is the right thing to attempt."
+        "The problem is that recognition is the easier task. Make it hard " +
+        "enough that healthy controls score no better on it than on recall - " +
+        "more similar foils, more items - and the comparison becomes one " +
+        "between processes rather than between difficulties. If recognition " +
+        "is still spared once difficulty is equated, the retrieval account " +
+        "has evidence."
     },
     more: {
       tone: "caution",

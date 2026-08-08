@@ -88,11 +88,9 @@
         "of the vessel that failed, and one vessel supplies several " +
         "functionally distinct regions together.",
       effect:
-        "Those regions are therefore damaged together in case after case. The " +
+        "Those regions are damaged together in case after case. The " +
         "co-occurrence is systematic rather than random, so it does not " +
-        "average away as the sample grows - which is why lesion-symptom " +
-        "mapping has to model vascular structure explicitly, and why maps are " +
-        "biased towards the middle of common territories.",
+        "average away as the sample grows.",
       ceiling: 32,
       marks: ["core", "extent", "territory"]
     },
@@ -108,9 +106,7 @@
       effect:
         "Part of what she cannot do reflects tissue that is intact but " +
         "temporarily not working. A deficit measured now overstates what the " +
-        "lesion itself accounts for, and some of the improvement over the next " +
-        "months will be these effects resolving rather than anything " +
-        "reorganising.",
+        "lesion itself accounts for.",
       ceiling: 26,
       marks: ["core", "extent", "territory", "diaschisis"]
     },
@@ -125,10 +121,9 @@
         "level does not appear on any scan.",
       effect:
         "\"Comprehension appears good\" means good against a general standard, " +
-        "not against hers. A score at the population average may be a large " +
+        "not against hers: a score at the population average may be a large " +
         "loss for this person. And if her language organisation is atypical, " +
-        "the region-to-function mapping assumed by the inference may not be " +
-        "the one she has.",
+        "the region-to-function mapping the inference assumes may not be hers.",
       ceiling: 21,
       marks: ["core", "extent", "territory", "diaschisis", "atypical"]
     },
@@ -162,8 +157,7 @@
       effect:
         "The production-versus-comprehension dissociation that motivated the " +
         "whole inference is much smaller than the summary suggested. Two tasks " +
-        "with the same name are not interchangeable evidence, and the direction " +
-        "of a dissociation can depend on which version of a task was used.",
+        "with the same name are not interchangeable evidence.",
       ceiling: 12,
       marks: ["core", "extent", "territory", "diaschisis", "atypical", "old"]
     }
@@ -237,10 +231,8 @@
         "speech output in Person M, at two weeks, on the tasks she was given.",
       answer: "well",
       why:
-        "This is the claim lesion evidence is built to support. It is about " +
-        "one person, one time and the tasks actually used, and every " +
-        "complication above leaves it standing - the lesion is still the " +
-        "reason she cannot do what she could do before."
+        "The claim lesion evidence is built to support: one person, one time, " +
+        "the tasks actually used. Every complication above leaves it standing."
     },
     {
       id: "region",
@@ -251,10 +243,9 @@
       why:
         "The lesion is bigger than the label, sits in a territory that damages " +
         "several regions together, and includes white matter connecting to " +
-        "undamaged tissue. Even with a hundred such cases the vascular " +
-        "co-occurrence would not resolve on its own. And \"is where X is " +
-        "produced\" is a claim about function, which necessity evidence does " +
-        "not deliver."
+        "undamaged tissue. Even a hundred such cases would not resolve the " +
+        "vascular co-occurrence. And \"is where X is produced\" is a claim " +
+        "about function, which necessity evidence does not deliver."
     },
     {
       id: "predict",
@@ -408,7 +399,7 @@
       ? "All six complications revealed"
       : "Lock this rating and reveal the next complication";
     remaining.textContent = done
-      ? "Nothing further. Your last rating still counts - the summary below uses it."
+      ? "Nothing further. Your last rating still counts."
       : (COMPLICATIONS.length - state.step) + " of " + COMPLICATIONS.length +
         " complications still unrevealed.";
 
@@ -573,9 +564,9 @@
     var gap = yours - ceiling;
     if (gap > 20) {
       gaugeVerdict.textContent =
-        "You are " + gap + " points beyond what this evidence can carry. " +
-        "That is the size of the claim you would be making on your own account " +
-        "rather than on the case's.";
+        "You are " + gap + " points beyond what this evidence can carry - " +
+        "that gap is the part of the claim you are making on your own account, " +
+        "not the case's.";
       gaugeVerdict.setAttribute("data-tone", "warn");
     } else if (gap > 5) {
       gaugeVerdict.textContent =
@@ -589,9 +580,9 @@
       gaugeVerdict.setAttribute("data-tone", "good");
     } else {
       gaugeVerdict.textContent =
-        "You are " + Math.abs(gap) + " points below the ceiling. Nothing wrong " +
-        "with caution, but note that the case still supports something: the " +
-        "specific claim about this person's tissue is not in doubt.";
+        "You are " + Math.abs(gap) + " points below the ceiling. Caution is " +
+        "fine, but the case does support something: the specific claim about " +
+        "this person's tissue is not in doubt.";
       gaugeVerdict.setAttribute("data-tone", "neutral");
     }
   }
@@ -707,11 +698,10 @@
       tone: "caution",
       verdict: "That is the sentence the tool is about.",
       text:
-        "It is the natural reading of the notes and it is a claim about what " +
-        "tissue does, which damage cannot deliver. Necessity - the task could " +
-        "not be done without this tissue - is what a lesion speaks to. What " +
-        "the tissue contributes is a further question. Six complications " +
-        "follow; watch how many of them bear on this claim."
+        "The natural reading of the notes, and a claim about what tissue " +
+        "does - which damage cannot deliver. A lesion speaks to necessity: " +
+        "the task could not be done without this tissue. What the tissue " +
+        "contributes is a further question."
     },
     necessary: {
       tone: "good",
@@ -726,20 +716,19 @@
       tone: "caution",
       verdict: "A step beyond the case.",
       text:
-        "This is a population claim - it says something about people in " +
-        "general - and one case cannot establish how often anything happens. " +
-        "It is a good hypothesis and a reasonable thing to go and test. The " +
-        "complications below explain why testing it is harder than collecting " +
+        "A population claim, and one case cannot establish how often anything " +
+        "happens. It is a good hypothesis and worth testing - the " +
+        "complications below explain why testing it takes more than collecting " +
         "more patients."
     },
     nothing: {
       tone: "caution",
       verdict: "Too strong the other way.",
       text:
-        "Lesion evidence is one of very few sources of evidence about " +
-        "necessity, which is exactly what functional imaging cannot supply: " +
-        "activation shows involvement, not indispensability. The case does " +
-        "support something. The exercise is about establishing what."
+        "A lesion is one of very few sources of evidence about necessity, " +
+        "which is exactly what functional imaging cannot supply: activation " +
+        "shows involvement, not indispensability. The case supports " +
+        "something. The exercise is establishing what."
     }
   };
 
@@ -802,8 +791,8 @@
 
     if (answers.some(function (value) { return value === null; })) {
       challengeError.textContent =
-        "Sort all four claims before checking - the comparison between them is " +
-        "the whole exercise.";
+        "Sort all four claims before checking - the comparison between them " +
+        "is the exercise.";
       challengeError.hidden = false;
       return;
     }

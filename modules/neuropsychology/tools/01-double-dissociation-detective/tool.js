@@ -102,12 +102,10 @@
         "on the naming task were mostly of the form \"I know what it is, I " +
         "just cannot get the word\".",
       commentary:
-        "This is a single dissociation, and it is worth having. It says the " +
-        "two tasks can come apart, which rules out the idea that naming a " +
-        "picture is nothing but comprehending it plus speaking. What it cannot " +
-        "rule out is that naming is simply the more demanding of the two, so " +
-        "that any general reduction shows up there first. One person can never " +
-        "settle that, however large the gap."
+        "A single dissociation, and worth having: the two tasks come apart, " +
+        "so naming a picture is not simply comprehending it plus speaking. " +
+        "What it cannot rule out is that naming is the more demanding task. " +
+        "One person never settles that, however large the gap."
     },
 
     {
@@ -148,11 +146,9 @@
         "team as tiring quickly. Both completed 40 items on each task in a " +
         "single session.",
       commentary:
-        "Two people, two resolvable differences, and no crossover: both are " +
-        "further below their controls on delayed recall than on immediate " +
-        "recall. That is exactly the pattern a single graded impairment " +
-        "produces when one task makes more of the same demand than the other, " +
-        "and it is also the pattern two separate deficits would produce. The " +
+        "Two resolvable differences, both the same way round: further below " +
+        "controls on delayed recall than on immediate recall. One graded " +
+        "impairment produces that, and so would two separate deficits. The " +
         "second person adds severity, not logic. Only a reversal adds logic."
     },
 
@@ -194,16 +190,13 @@
         "examiner. Neither reported difficulty seeing the material or moving " +
         "the hand they used.",
       commentary:
-        "This is the crossover. Because Person A is worse on naming while " +
-        "Person B is worse on block design, neither task can be \"the harder " +
-        "one\": a task cannot be more demanding for one person and less " +
+        "This is the crossover. Neither task can be \"the harder one\", " +
+        "because a task cannot be more demanding for one person and less " +
         "demanding for another simply by being more demanding. That single " +
-        "piece of logic is the entire contribution of a double dissociation, " +
-        "and it is a real contribution. What it supports is that the two tasks " +
-        "draw on at least partly separable processing. It says nothing about " +
-        "where either process is, and it does not require two tidy modules - " +
-        "overlapping networks and damaged connectionist systems produce " +
-        "crossovers too."
+        "piece of logic is the whole contribution of a double dissociation, " +
+        "and it is a real one: these two tasks draw on at least partly " +
+        "separable processing. Where that processing sits is a different " +
+        "question, and this file does not touch it."
     },
 
     {
@@ -241,14 +234,12 @@
         "face task was the second thing she did that morning. She described " +
         "the word pairs as \"impossible - nobody could do that\".",
       commentary:
-        "The raw gap is 58 points and it is the largest on this page. It is " +
-        "also not a dissociation at all. Healthy controls average 52% on the " +
-        "word-pair task and 95% on the face task, so the two percentages are " +
-        "readings from different rulers. Referenced to their own controls the " +
-        "two scores are within a fifth of a control standard deviation of each " +
-        "other. Whenever two percentages are compared directly, ask what the " +
-        "control groups did - and note that this person's remark about the " +
-        "task being impossible was, for once, close to accurate."
+        "The largest raw gap on this page, and not a dissociation at all. " +
+        "Controls average 52% on the word pairs and 95% on the faces, so the " +
+        "two percentages are readings from different rulers. Against their own " +
+        "controls the two scores sit within a fifth of a control SD of each " +
+        "other, and this person's remark about the task being impossible was, " +
+        "for once, close to accurate."
     },
 
     {
@@ -289,14 +280,12 @@
         "version of this fictional study used 40 items per task. The slider " +
         "asks what would have been claimable if it had used more.",
       commentary:
-        "Nothing about these two people changes as you move the slider. The " +
-        "percentages are fixed; only how precisely they are estimated changes. " +
-        "At 40 items neither difference is larger than its own interval, so " +
-        "the crossover in the point estimates is not a crossover in the " +
-        "evidence. Somewhere around 50 items one difference becomes " +
-        "resolvable, and from about 55 upwards both do and the same three " +
-        "scores become a double dissociation. Short tasks do not merely make " +
-        "findings noisy; they decide which findings you are entitled to claim."
+        "Nothing about these two people changes as you move the slider; only " +
+        "the precision of the estimates does. At 40 items the crossover is in " +
+        "the point estimates and not in the evidence. Around 50 items one " +
+        "difference becomes resolvable, and from about 55 both do - the same " +
+        "four scores, now a double dissociation. Test length decides what you " +
+        "are entitled to claim."
     },
 
     {
@@ -339,15 +328,12 @@
         "with glasses is well below the range of the control group. Both " +
         "completed 40 items on each task with the same examiner.",
       commentary:
-        "The crossover is real and it is well outside measurement error. It " +
-        "still does not separate visual from tactile object recognition, " +
-        "because the two people differ in exactly the two peripheral channels " +
-        "the two tasks depend on. One cannot feel the objects properly; the " +
-        "other cannot see the photographs properly. A crossover isolates the " +
-        "process you had in mind only when nothing else that differs between " +
-        "the tasks could produce the same crossover, and here something " +
-        "obviously could. Most real cases look like this before the follow-up " +
-        "testing that rules the alternatives out."
+        "The crossover is real and well outside measurement error, and it " +
+        "still does not separate visual from tactile object recognition. One " +
+        "person cannot feel the objects properly; the other cannot see the " +
+        "photographs properly. A crossover isolates the process you had in " +
+        "mind only when nothing else that differs between the tasks could " +
+        "produce the same reversal, and here something obviously could."
     }
   ];
 
@@ -503,8 +489,7 @@
       if (result.verdict === "insufficient") {
         return "A crossover in the point estimates is not a crossover in the " +
           "evidence. At " + result.items + " items neither difference is larger " +
-          "than its own interval, so the reversal you can see in the chart is " +
-          "within what this test length cannot distinguish from no difference.";
+          "than its own interval.";
       }
       if (result.verdict === "severity") {
         return "Both people are further below controls on the same task. " +
@@ -527,11 +512,10 @@
     }
     if (chosen === "confounded") {
       if (result.verdict === "double") {
-        return "Worth being suspicious, and here the suspicion does not land: " +
-          "the two tasks were matched on items and session length, and the " +
-          "case notes record no sensory or motor difference that could produce " +
-          "the reversal. Impurity has to be argued from something in the case, " +
-          "not assumed.";
+        return "Worth being suspicious, and here it does not land: the tasks " +
+          "were matched on items and session length, and the case notes record " +
+          "no sensory or motor difference that could produce the reversal. " +
+          "Impurity has to be argued from the case, not assumed.";
       }
       return "There is no resolvable crossover here to be confounded in the " +
         "first place.";
@@ -649,8 +633,8 @@
       verdictFeedback.hidden = true;
       render();
       shell.announce(
-        "Test length now " + v + " items per task. The intervals have changed, " +
-        "so return a verdict again."
+        "Test length now " + v + " items per task. The intervals have " +
+        "changed - return a verdict again."
       );
     }
   });
@@ -862,9 +846,7 @@
   function submitVerdict() {
     var chosen = $('input[name="verdict"]:checked', controlsForm);
     if (!chosen) {
-      showFeedback(verdictFeedback, "caution", "Choose a verdict first.",
-        "Every option on the list is defensible for some pattern of scores. " +
-        "Pick the one you would defend for this one.");
+      showFeedback(verdictFeedback, "caution", "Choose a verdict first.", "");
       shell.announce("No verdict chosen yet.", { immediate: true });
       return;
     }
@@ -893,9 +875,8 @@
 
     if (result.verdict === "confounded" || caseDef.impure) {
       var pointer = make("p", "text-muted",
-        "The arithmetic cannot see this. Nothing in the chart distinguishes a " +
-        "crossover that isolates a process from one that does not - only the " +
-        "case notes and the task-demands table can.");
+        "The arithmetic cannot see this. Only the case notes and the " +
+        "task-demands table can.");
       body.appendChild(pointer);
       demandsDetails.open = true;
     }
@@ -922,43 +903,35 @@
       tone: "caution",
       verdict: "That is the step to be careful about.",
       text:
-        "It is the natural reading, and it is one step further than the " +
-        "evidence goes. A single person scoring badly on one task and well on " +
-        "another is equally well explained by the failed task simply being the " +
-        "more demanding one, so that a general reduction in capacity shows up " +
-        "there first. Case 3 in the files below is what it takes to rule that out."
+        "The natural reading, and one step further than the evidence goes. " +
+        "The failed task may simply be the more demanding one. Case 3 below " +
+        "is what it takes to rule that out."
     },
     harder: {
       tone: "caution",
       verdict: "Possible, and not established either.",
       text:
-        "Task difficulty is the rival explanation that a single case cannot " +
-        "exclude - but it is a rival, not the answer. The honest position is " +
-        "that both readings survive. What decides between them is a second " +
-        "person showing the reverse pattern, which is what a double " +
-        "dissociation is for."
+        "Task difficulty is the rival a single case cannot exclude - but it " +
+        "is a rival, not the answer. Both readings survive. What decides " +
+        "between them is a second person showing the reverse pattern."
     },
     open: {
       tone: "good",
       verdict: "Yes.",
       text:
-        "A single dissociation puts a difference on the table and leaves at " +
-        "least two explanations alive: separable processes, or one task making " +
-        "more of the same demand. It also leaves open whether the difference " +
-        "is bigger than measurement error, and whether the two tasks are " +
-        "comparable to begin with. The six files below take those apart one at " +
-        "a time."
+        "It puts a difference on the table and leaves at least two " +
+        "explanations alive: separable processes, or one task making more of " +
+        "the same demand. The six files below take the alternatives apart one " +
+        "at a time."
     },
     nothing: {
       tone: "caution",
       verdict: "Too strong the other way.",
       text:
-        "Single cases have carried a great deal of weight in neuropsychology, " +
-        "and reasonably so: a person who can do A but not B shows that A does " +
-        "not require everything B requires, which rules out some models " +
-        "outright. The limit is narrower than \"nothing\" - it is that one " +
-        "person cannot separate a functional difference from a difficulty " +
-        "difference."
+        "A person who can do A but not B shows that A does not require " +
+        "everything B requires, which rules some models out. The limit is " +
+        "narrower than \"nothing\": one person cannot separate a functional " +
+        "difference from a difficulty difference."
     }
   };
 
@@ -1000,42 +973,36 @@
       verdict: "That is the sentence to push back on.",
       text:
         "The crossover is evidence about tasks, not about tissue. It supports " +
-        "the two tasks drawing on at least partly separable processing; it says " +
-        "nothing about whether that processing is in one region, spread over a " +
-        "network, or the same tissue used in two ways. A double dissociation " +
-        "between tasks is compatible with a great deal of anatomy, including " +
-        "damage to a single undivided system - connectionist models produce " +
-        "crossovers from exactly that."
+        "at least partly separable processing; it says nothing about whether " +
+        "that processing sits in one region, spreads over a network, or uses " +
+        "the same tissue in two ways. Damage to a single undivided system " +
+        "produces crossovers too."
     },
     separable: {
       tone: "good",
       verdict: "Yes.",
       text:
         "Separable processing, anatomy open. The crossover rules out the one " +
-        "rival that a single case cannot - that one task is simply more " +
-        "demanding - and stops there. Adding the anatomy requires lesion " +
-        "information, imaging and, in practice, many more cases; and even then " +
-        "the finding constrains models rather than proving one."
+        "rival a single case cannot - that one task is simply more demanding - " +
+        "and stops there. Anatomy needs lesion information, imaging and many " +
+        "more cases, and even then it constrains models rather than proving one."
     },
     difficulty: {
       tone: "caution",
       verdict: "Not what it shows.",
       text:
-        "The crossover does not establish that the tasks are equally " +
-        "difficult - it establishes that a difficulty difference cannot be the " +
-        "whole story, which is not the same claim. The two tasks may well " +
-        "differ in difficulty; what they cannot do is differ in a way that " +
-        "makes each of them the harder one for a different person."
+        "It establishes that a difficulty difference cannot be the whole " +
+        "story, which is a different claim. The two tasks may well differ in " +
+        "difficulty; what they cannot do is make each of them the harder one " +
+        "for a different person."
     },
     nothing: {
       tone: "caution",
       verdict: "Too strong.",
       text:
-        "Two people are certainly not a syndrome, and a pair of cases is thin " +
-        "evidence for anything general. But the crossover does real logical " +
-        "work: it removes an explanation that no amount of extra single cases " +
-        "could remove. Treat it as a constraint on models rather than as " +
-        "nothing, or as proof."
+        "Two cases are thin evidence for anything general. But the crossover " +
+        "removes an explanation that no number of extra single cases could " +
+        "remove. A constraint on models, then - neither nothing nor proof."
     }
   };
 

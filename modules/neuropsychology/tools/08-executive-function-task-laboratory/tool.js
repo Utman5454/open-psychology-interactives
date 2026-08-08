@@ -435,9 +435,9 @@
       : "Tick your prediction, then reveal";
     tableHeading.textContent = "Your prediction against the model";
     tableNote.textContent =
-      "A shaded row is one where your tick and the model disagree. The model " +
-      "is an argument about task demands, so a disagreement is worth arguing " +
-      "about rather than a mistake.";
+      "A shaded row is one where your tick and the model disagree. The " +
+      "weights are an argument about task demands, so a disagreement is worth " +
+      "arguing about rather than a mistake.";
     revealProgress.textContent = count + " of " + TASKS.length +
       " tasks revealed." + (count === TASKS.length
         ? " Experiment 2 is now available."
@@ -454,10 +454,8 @@
       }).length;
       interpretationBody.textContent =
         task.name + " loads on " + nonZero + " of the six capacities. No task " +
-        "in this set loads on fewer than five, which is the point of the " +
-        "matrix: a task named after a process requires that process and " +
-        "several others, so a low score on it is not a reading of that " +
-        "process.";
+        "in this set loads on fewer than five: a task named after a process " +
+        "requires that process and several others.";
       interpretation.setAttribute("data-tone", "caution");
     }
   }
@@ -476,10 +474,9 @@
     tableHeading.textContent = "The four tasks at these settings";
     tableNote.textContent =
       "On this scale 100 is the typical level, not a ceiling. For the two " +
-      "timed tasks the accuracy and speed columns are the summary score with " +
-      "the strategy setting traded between them, so a person working fast and " +
-      "carelessly can pass 100 on speed while falling below it on accuracy. " +
-      "The summary score is their mean and never moves.";
+      "timed tasks, the accuracy and speed columns are the summary score with " +
+      "the strategy setting traded between them; the summary score is their " +
+      "mean.";
 
     drawScores(rows);
     renderScoreTable(rows);
@@ -487,10 +484,9 @@
     interpretation.hidden = false;
     if (spread < 0.5) {
       interpretationBody.textContent =
-        "All four tasks score the same. Either nothing is reduced, or " +
-        "everything is reduced by the same amount - and a uniformly low " +
-        "profile identifies nothing at all. Reduce one capacity on its own to " +
-        "see what a selective reduction looks like.";
+        "All four tasks score the same. Either nothing is reduced or " +
+        "everything is reduced equally, and a uniformly low profile identifies " +
+        "nothing. Reduce one capacity on its own.";
       interpretation.setAttribute("data-tone", "neutral");
     } else {
       interpretationBody.textContent =
@@ -749,15 +745,15 @@
           return c.short.toLowerCase() + " (weight " +
             task.weights[c.id].toFixed(2) + ")";
         }).join("; ") + ". Most people tick the process the task is named " +
-        "after and stop, and that is the habit the matrix is here to break."));
+        "after and stop there."));
     }
     if (extra.length) {
       stageFeedback.appendChild(make("p", null,
         "You included " + extra.map(function (c) {
           return c.short.toLowerCase();
-        }).join(" and ") + ", which the model gives no weight at all. That is " +
-        "a defensible disagreement - the weights are an argument about task " +
-        "demands, not a measurement of them."));
+        }).join(" and ") + ", which the model gives no weight at all. A " +
+        "defensible disagreement: the weights are an argument, not a " +
+        "measurement."));
     }
 
     stageFeedback.setAttribute("data-tone",
@@ -856,12 +852,10 @@
       tone: "good",
       verdict: "Yes.",
       text:
-        "Load \"reduced inhibition only\" and then \"reduced processing speed " +
-        "only\" and compare. Both make the colour-word task the lowest of the " +
-        "four. The report's conclusion is one of at least two readings, and " +
-        "the way to choose between them is to measure processing speed " +
-        "independently - on a task with almost no executive load - and see " +
-        "whether it accounts for the difference."
+        "Load \"reduced inhibition only\", then \"reduced processing speed " +
+        "only\", and compare. Both make the colour-word task the lowest of " +
+        "the four. To choose between them you would measure processing speed " +
+        "on a task with almost no executive load."
     },
     frontal: {
       tone: "caution",
