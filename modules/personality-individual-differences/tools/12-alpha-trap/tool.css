@@ -800,3 +800,179 @@ main:fullscreen > .section:first-child,
 .opi-activity:fullscreen > .section:first-child {
   padding-top: var(--space-5);
 }
+
+/* -------------------------------------------------------------------------
+   Optional learner support
+   -------------------------------------------------------------------------
+   The "Need a hand?" and "Key terms" disclosures. Both are deliberately
+   subordinate to the activity: smaller type, no fill, a plain summary rather
+   than a button. Collapsed, either one is a single line, and a learner who
+   does not need it reads past it.
+
+   Two shapes use these rules:
+
+     .helper[data-learner-help]  a guide plus a nested "Key terms" list. The
+                                 attribute is what components/learner-help.js
+                                 binds to.
+     .helper                     "Key terms" alone, with no script at all.
+
+   Sixteen activities have the guide; the rest that have support carry the
+   glossary only, because a guide there would restate what the page already
+   says. See docs/adapting-a-tool.md.
+   ---------------------------------------------------------------------- */
+
+.helper {
+  margin-bottom: var(--space-4);
+  font-size: var(--text-sm);
+}
+
+.helper__summary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 2.75rem;
+  padding: 0 var(--space-2);
+  font-weight: 600;
+  color: var(--colour-text-muted);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+}
+
+.helper__summary:hover {
+  color: var(--colour-text);
+}
+
+.helper[open] > .helper__summary {
+  color: var(--colour-text);
+}
+
+.helper__body {
+  margin: var(--space-2) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border-left: 3px solid var(--colour-border-strong);
+  background-color: var(--colour-surface);
+  border-radius: var(--radius-sm);
+}
+
+.helper__offer {
+  margin: 0;
+}
+
+.helper__start,
+.helper__actions button {
+  min-height: 2.75rem;
+  padding: 0.4rem 1rem;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--colour-on-accent);
+  background-color: var(--colour-accent);
+  border: 1px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.helper__actions button[data-variant="secondary"] {
+  color: var(--colour-text);
+  background-color: transparent;
+  border-color: var(--colour-border-strong);
+}
+
+.helper__actions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.helper__progress {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+
+/* The step is the one thing in here that should read as prose.
+
+   min-height reserves two lines. Without it a step that wraps to a second line
+   makes the panel taller and pushes the activity down by a line, so the thing
+   the learner has just been told to look at moves as they press Next. Every
+   step in the collection is written to fit two lines at a normal reading
+   width, which is what makes one shared reservation workable. */
+.helper__step {
+  margin: 0 0 var(--space-3);
+  max-width: 42rem;
+  min-height: 3.4em;
+}
+
+/* On a phone the same sentences wrap to as many as four lines, so two is not
+   enough to hold the panel still. Reserving four costs some blank space under
+   the shorter steps and buys an activity that does not move under the reader. */
+@media (max-width: 40em) {
+  .helper__step {
+    min-height: 6.8em;
+  }
+}
+
+.helper__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.helper__aside {
+  margin: var(--space-3) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+
+/* The nested glossary inside a guide. Where the glossary is the whole body,
+   it needs no divider above it. */
+.helper__terms {
+  margin-top: var(--space-4);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--colour-border);
+}
+
+.helper__glossary {
+  margin: var(--space-2) 0 0;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.helper__body > .helper__glossary {
+  margin-top: 0;
+}
+
+.helper__glossary dt {
+  font-weight: 650;
+}
+
+.helper__glossary dd {
+  margin: 0 0 var(--space-2);
+  max-width: 42rem;
+  color: var(--colour-text-muted);
+}
+
+.helper__glossary dd:last-child {
+  margin-bottom: 0;
+}
+
+/* The step's target. An outline is painted outside the box, so nothing on the
+   page moves when it appears or goes - which matters because these sit beside
+   charts that are expensive to reflow. Decoration only: every step names its
+   target in words, so nothing depends on seeing this. */
+[data-guide-target] {
+  outline: 3px solid var(--colour-focus);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+@media (forced-colors: active) {
+  [data-guide-target] {
+    outline: 3px solid Highlight;
+  }
+
+  .helper__body {
+    border-left: 3px solid CanvasText;
+  }
+}

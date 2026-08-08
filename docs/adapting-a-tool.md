@@ -498,6 +498,72 @@ block by `data-activity-utilities`, the outer wrapper, while the exporter
 removes only the inner `data-activity-export`. Using the exporter's key here
 would strip the copy control and let the utilities row accumulate on each run.
 
+## Optional learner support
+
+Seventy-three of the seventy-five activities carry a collapsed disclosure above
+the workspace. Two shapes, and the difference is deliberate:
+
+| Shape | Markup | What it is |
+| --- | --- | --- |
+| Guide plus glossary | `<details class="helper" data-learner-help>` | A step-at-a-time guide labelled **Need a hand?**, with **Key terms** nested inside it. Sixteen activities. |
+| Glossary alone | `<details class="helper">` | **Key terms** on its own, with no JavaScript at all. Fifty-seven activities. |
+
+Both are collapsed by default and both travel into an exported copy — they are
+part of the exercise rather than part of this website. `Copy activity HTML`
+stays excluded, because that one belongs to the repository.
+
+Which activities have a guide is a judgement about need, not a house style.
+A guide is warranted where a learner has to hold **two or more live outputs
+against each other** and the page does not already say which two. Every
+Cognitive and Research Methods page carries a four- to six-step how-to list
+that already does that pointing, which is why only one activity in Research
+Methods has a guide: `20-homoscedasticity-residual-diagnostics`, whose display
+is two stacked panels its how-to never distinguishes, and which was the case
+tested in a live teaching platform. Absence of a how-to list, sophisticated
+subject matter and a large number of controls are each, on their own, not
+grounds for a guide.
+
+### What a guide may and may not do
+
+Steps come from a `<script type="application/json" data-guide-steps>` block, so
+the copy is content and can be revised without touching the component. Each
+entry is `{"text": "…", "target": "<css selector>"}`, and `target` is optional.
+
+Each step does exactly one job: direct attention, ask for a manipulation, ask
+for a comparison, or ask what changed. A step never states the conclusion the
+activity exists to produce, never moves a control on the learner's behalf, and
+never says whether a prediction was right. The learner keeps using the activity
+with the guide open; nothing is modal.
+
+The highlight is an `outline`, which is painted outside the box and so shifts
+nothing on the page. It is decoration: every step names its target in words, so
+a reader who never sees the outline has lost no instruction.
+
+`.helper__step` reserves two lines of height, four below `40em`. Without that,
+a step that wraps makes the panel taller and pushes the thing the learner was
+just told to look at down the page as they press Next.
+
+### What belongs in Key terms
+
+A term earns its place only if not knowing it would stop a learner using or
+reading **this** activity. Ordinary words are not defined, and nothing already
+stated plainly beside the interaction is restated. Definitions run to one or
+two sentences. There is no quota: the glossaries range from three terms to six,
+and three is not a deficiency.
+
+Cognitive activities are the delicate case. A definition there must not reveal
+the effect the learner is about to experience — naming the conditions and the
+measures is fair, reporting what they will find is not. The false-memory
+glossary, for instance, defines recognition, confidence and source without
+mentioning that any test word is related to a studied one.
+
+### The styles
+
+`.helper*` and `[data-guide-target]` live in `components/tool-kit.css`.
+`12-alpha-trap` predates that file and keeps its own stylesheet, so anything
+added to the shared block has to be mirrored there — see the note under
+[Where tools live](#where-tools-live).
+
 ## Rules worth keeping when you adapt
 
 You may of course do as you like with your copy. These are the constraints the

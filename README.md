@@ -165,7 +165,9 @@ Two things do need updating in a fork:
 │   ├── interactive-shell.css      shared frame for every tool
 │   ├── interactive-shell.js       live region, reset wiring, slider labelling
 │   ├── tool-kit.css               page furniture around the shell
-│   └── copy-activity.js           the "Copy activity HTML" control
+│   ├── activity-fullscreen.js     the "Full screen" control (travels into copies)
+│   ├── learner-help.js            the optional "Need a hand?" guide (16 tools)
+│   └── copy-activity.js           the "Copy activity HTML" control (excluded from copies)
 ├── scripts/
 │   ├── build-standalone.py        generates each tool's standalone.html
 │   └── add-export-control.py      adds the copy control to a tool page
