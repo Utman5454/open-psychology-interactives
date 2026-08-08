@@ -202,12 +202,11 @@
           label: "How ill each patient is on admission",
           answer: "confound",
           note:
-            "The decisive one, and the reason this comparison cannot be read " +
-            "as it stands. Sicker patients are sent to the monitored ward " +
+            "The decisive one. Sicker patients go to the monitored ward " +
             "precisely because they are sicker, and being sicker lengthens the " +
-            "stay. The ward is standing in for severity. This pattern - the " +
-            "reason for the exposure also predicts the outcome - is called " +
-            "confounding by indication."
+            "stay, so the ward is standing in for severity. When the reason " +
+            "for the exposure also predicts the outcome, that is confounding " +
+            "by indication."
         },
         {
           label: "Which consultant is responsible for the patient",
@@ -265,12 +264,10 @@
           label: "Measure severity at admission and adjust for it statistically",
           blocks: { severity: 0.75 },
           note:
-            "Removes most of the severity bias and none of the rest. Read the " +
-            "conditions: the adjustment works only if severity was measured, " +
-            "measured well, and entered into the model in roughly the right " +
-            "form. A severity score that captures three quarters of what " +
-            "matters removes three quarters of the bias and leaves the " +
-            "remainder looking like a result."
+            "Removes most of the severity bias and none of the rest, and only " +
+            "if severity was measured, measured well, and entered in roughly " +
+            "the right form. A score capturing three quarters of what matters " +
+            "leaves the last quarter looking like a result."
         },
         {
           id: "matchsev",
@@ -781,10 +778,9 @@
       text =
         "Every confound in the diagram is blocked, and the estimate has " +
         "landed on the true effect of " + fmt(current().trueEffect) + " " +
-        current().unit + ". Two cautions before anyone celebrates. The tool " +
-        "knows the true effect because it invented it; a real study never " +
-        "gets to check. And the list of confounds is the list somebody thought " +
-        "of - blocking all of them says nothing about the ones nobody named.";
+        current().unit + ". Two cautions. The tool knows the true effect " +
+        "because it invented it; a real study never gets to check. And this " +
+        "is the list of confounds somebody thought of.";
     } else if (removed < 0.005) {
       tone = "warn";
       text =
@@ -982,8 +978,7 @@
         "must affect marks. With only the first, motivation is picked up by " +
         "library use and goes nowhere. With only the second, it is noise. Only " +
         "with both does part of the library-use difference actually belong to " +
-        "motivation. That pair of conditions is what the whole tool is built " +
-        "on."
+        "motivation."
     },
     uncontrolled: {
       tone: "caution",

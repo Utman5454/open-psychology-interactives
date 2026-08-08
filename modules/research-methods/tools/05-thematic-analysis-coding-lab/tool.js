@@ -1262,23 +1262,19 @@
       tone: "caution",
       verdict: "That is the right move for a different method.",
       text:
-        "Agreeing a scheme and recoding to consensus is exactly right in " +
-        "content analysis or coding reliability studies, where the codes are " +
-        "meant to be applied consistently by anyone. Reflexive thematic " +
-        "analysis makes the opposite bet: the analyst's engagement is the " +
-        "instrument, so pressing two analysts towards agreement removes the " +
-        "thing the method relies on."
+        "Agreeing a scheme and recoding to consensus is right for content " +
+        "analysis, where codes are meant to be applied consistently by " +
+        "anyone. Reflexive thematic analysis makes the opposite bet: the " +
+        "analyst's engagement is the instrument."
     },
     wrong: {
       tone: "caution",
       verdict: "Possible, and it is not what difference by itself shows.",
       text:
-        "A code can certainly be indefensible - unsupported by the extract, " +
-        "internally incoherent, or a theoretical label smuggled in as a " +
-        "description, and you will meet all three in the code banks below. But " +
-        "two readings can both be traceable to the same words and still differ, " +
-        "because they were made from different positions and for different " +
-        "questions."
+        "A code can certainly be indefensible, and you will meet three kinds " +
+        "in the banks below. But two readings can both be traceable to the " +
+        "same words and still differ, because they were made from different " +
+        "positions and for different questions."
     },
     expected: {
       tone: "good",
@@ -1294,11 +1290,9 @@
       verdict: "This is the misreading worth catching early.",
       text:
         "Rejecting agreement as the criterion is not the same as having no " +
-        "criterion. Several code banks below contain labels that would not " +
-        "survive scrutiny - a judgement dressed as a description, a " +
-        "theoretical construct imported wholesale, a category that files the " +
-        "extract without saying anything about it. Interpretation is " +
-        "accountable to the data even when it is not reducible to it."
+        "criterion. Several banks below contain labels that would not survive " +
+        "scrutiny. Interpretation is accountable to the data even when it is " +
+        "not reducible to it."
     }
   };
 
@@ -1376,9 +1370,8 @@
         "Not a code but a diagnosis. Self-efficacy is a construct with a " +
         "literature, a measure and an implied cause, and none of it is in " +
         "these two sentences: Kwame says he cares what staff think, not that " +
-        "he doubts he can do the work. Labels like this feel like progress " +
-        "because they sound technical, and they close the analysis rather than " +
-        "opening it."
+        "he doubts he can do the work. A label like this closes the analysis " +
+        "rather than opening it."
     },
     topic: {
       usable: false,

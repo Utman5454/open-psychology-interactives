@@ -594,44 +594,37 @@
         (missedNames.length
           ? missedNames.join(", ") + " untouched"
           : "no facet completely untouched") +
-        ". That gap is construct under-representation: a study using only this " +
-        "measure will report a number about " + current().name.toLowerCase() +
-        " that contains no information at all about those parts of it. The " +
-        "list beneath shows the other half of the problem - what the measure " +
-        "picks up that is not the construct.";
+        ". That gap is construct under-representation: a number from this " +
+        "study carries no information at all about the parts it misses. The " +
+        "list beneath is the other half of the problem.";
     } else if (familyCount === 1) {
       tone = "caution";
       text =
         measures.length + " measures, all from the same family (" +
         measures[0].family.toLowerCase() + "). Coverage is up, at " +
         stats.total + " of " + stats.maximum +
-        " points, but measures from one family tend to share the same " +
-        "irrelevant influences, so agreement between them is weaker evidence " +
-        "than it looks. Two self-reports agreeing may show only that the same " +
-        "person answered both in the same mood.";
+        " points - but measures from one family share the same irrelevant " +
+        "influences, so agreement between them is weaker evidence than it " +
+        "looks.";
     } else if (stats.missed === 0) {
       tone = stats.feasibility === 1 ? "caution" : "good";
       text =
         measures.length + " measures from " + familyCount +
         " families, reaching every facet at least partly (" + stats.total +
-        " of " + stats.maximum + " points). Where they disagree you learn " +
-        "something: disagreement between families is usually informative " +
-        "rather than a failure. The cost is on screen too - reactivity is " +
-        RATING_WORD[stats.reactivity] + " and feasibility is " +
-        RATING_WORD[stats.feasibility] +
-        ". And full coverage of a facet list is not the construct: the list " +
-        "is a model somebody wrote down, and a different model would score " +
-        "this plan differently.";
+        " of " + stats.maximum + " points). Disagreement between families is " +
+        "usually informative rather than a failure. The cost is on screen: " +
+        "reactivity " + RATING_WORD[stats.reactivity].toLowerCase() +
+        ", feasibility " + RATING_WORD[stats.feasibility].toLowerCase() +
+        ". And full coverage of a facet list is still not the construct.";
     } else {
       tone = "caution";
       text =
         measures.length + " measures from " + familyCount + " families, " +
         stats.total + " of " + stats.maximum + " points, with " + stats.missed +
         " facet" + (stats.missed === 1 ? "" : "s") +
-        " still not reached at all. Mixing families is the right instinct - it " +
-        "stops one set of irrelevant influences running through everything - " +
-        "but the uncovered facets are still missing from any claim this study " +
-        "can make.";
+        " still not reached at all. Mixing families is the right instinct, " +
+        "but the uncovered facets are missing from any claim this study can " +
+        "make.";
     }
 
     interpretation.textContent = text;
@@ -703,11 +696,10 @@
       tone: "caution",
       verdict: "The broadest single measure, and still not close.",
       text:
-        "A multi-item scale does reach more facets than anything else here, " +
-        "because it can ask about several at once. What it cannot do is tell " +
-        "you what a student actually did, and everything it records passes " +
-        "through the same filter: how that person reads the questions, on that " +
-        "day, knowing who might see the answers."
+        "A multi-item scale does reach more facets than anything else here. " +
+        "What it cannot do is tell you what a student actually did, and " +
+        "everything it records passes through one filter: how that person " +
+        "reads the questions, on that day."
     },
     attendance: {
       tone: "warn",
@@ -735,17 +727,15 @@
         "Logged hours are convenient because the system records them anyway. " +
         "They confuse time with effort, score a student who downloads " +
         "everything and works offline at zero, and rise when a tab is left " +
-        "open at lunch. The challenge at the bottom of this page is built " +
-        "around exactly this measure."
+        "open at lunch."
     },
     none: {
       tone: "good",
       verdict: "Yes, and that is the whole tool.",
       text:
-        "No operational definition is the construct. Each one reaches part of " +
-        "it and brings something irrelevant along. The useful question is not " +
-        "which measure is right but what a particular measure would let you " +
-        "claim, and what it would leave you unable to say."
+        "No operational definition is the construct. Each reaches part of it " +
+        "and brings something irrelevant along. The question is not which " +
+        "measure is right, but what a measure would let you claim."
     }
   };
 

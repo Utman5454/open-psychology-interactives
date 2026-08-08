@@ -417,9 +417,7 @@
       verdict: function () { return "partly"; },
       note: function () {
         return "Supported by exactly one participant and stated as though it " +
-          "were about a group. Toby is the only person in the dataset with " +
-          "that comparison, and he is also the reason several readings can see " +
-          "the norm at all. The honest version keeps him singular: 'one " +
+          "were about a group. The honest version keeps Toby singular: 'one " +
           "participant, who arrived with a different working life, described " +
           "the norm as visible and resistible'. Whether that generalises is a " +
           "question these data cannot answer.";
@@ -434,13 +432,11 @@
       },
       note: function (state) {
         return state.lens === "experiential"
-          ? "This is the reading-dependent one, and under the experiential " +
-            "lens it does not hold. That lens stays with what things were " +
-            "like for these people; it has no vantage point from which to " +
-            "compare settings, so a claim about settings rather than persons " +
-            "is not something it can pay for. Toby's comparison is available " +
-            "in the data and this reading treats it as his experience, not as " +
-            "evidence about a place."
+          ? "The reading-dependent one, and under the experiential lens it " +
+            "does not hold. That lens stays with what things were like for " +
+            "these people and has no vantage point from which to compare " +
+            "settings. Toby's comparison is in the data, and this reading " +
+            "treats it as his experience rather than as evidence about a place."
           : "Under the lens you have selected this holds, with care. Both the " +
             "social-psychological and the critical readings have a route to " +
             "it: Toby's comparison with eleven years of office work makes the " +

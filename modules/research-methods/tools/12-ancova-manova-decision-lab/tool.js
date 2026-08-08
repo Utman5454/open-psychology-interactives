@@ -447,12 +447,10 @@
       text =
         "The two groups started in almost the same place - " + signed(t.covGap) +
         " points apart in September - so adjustment barely moves the estimate: " +
-        signed(t.unadjusted) + " becomes " + signed(t.adjusted) + ". This is " +
-        "the ordinary case under random allocation, and it is worth being " +
-        "clear that the covariate is not earning its place by correcting " +
-        "anything. It is earning it by explaining part of the variation in " +
-        "June scores, which shrinks the residual variance and makes the " +
-        "comparison more precise.";
+        signed(t.unadjusted) + " becomes " + signed(t.adjusted) + ". The " +
+        "ordinary case under random allocation: the covariate is not " +
+        "correcting anything. It is explaining part of the variation in June " +
+        "scores, which shrinks the residual variance and buys precision.";
     } else if (!intact) {
       tone = "caution";
       text =
@@ -468,12 +466,11 @@
         "The groups differ by " + signed(t.covGap) + " points on the covariate " +
         "and were not randomly formed. Adjustment moves the estimate by " +
         fmt(moved) + " points, from " + signed(t.unadjusted) + " to " +
-        signed(t.adjusted) + ", and here that number is not the causal effect " +
-        "of the programme. It is what the June difference looks like among " +
-        "students who started at the same September score - a real quantity, " +
-        "and one that equals the causal effect only if nothing else about " +
-        "the two classes differs. Note that the arithmetic gave you no " +
-        "warning: the same numbers appeared when allocation was random.";
+        signed(t.adjusted) + ", and that number is not the causal effect of " +
+        "the programme. It is the June difference among students who started " +
+        "at the same September score, which equals the causal effect only if " +
+        "nothing else about the two classes differs. The arithmetic gave you " +
+        "no warning.";
     }
 
     interpretation.textContent = text;

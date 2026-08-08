@@ -449,11 +449,10 @@
     if (!means.length) {
       tone = "caution";
       text =
-        pop.note + " Nothing has been drawn yet. The theory says the means of " +
-        "samples of " + n + " should sit around " + fmt(pop.mu, 1) +
-        " with a standard deviation of " + fmt(se) + " - which is " +
-        fmt(pop.sigma / se, 1) + " times narrower than the population above. " +
-        "Press Draw one sample a few times and watch where the means land.";
+        pop.note + " The theory says means of samples of " + n +
+        " should sit around " + fmt(pop.mu, 1) + " with a standard deviation " +
+        "of " + fmt(se) + " - " + fmt(pop.sigma / se, 1) + " times narrower " +
+        "than the population above. Draw a few and watch.";
     } else if (means.length < 12) {
       tone = "neutral";
       text =
@@ -469,9 +468,9 @@
         ". They are centred on " + fmt(observed.mean, 2) + " against a " +
         "population mean of " + fmt(pop.mu, 1) + ", and their spread is " +
         fmt(observed.sd) + " against a predicted standard error of " +
-        fmt(se) + ". Note which two things did the work: the centre is right " +
-        "whatever the population looks like, and the spread is the population " +
-        "standard deviation divided by the square root of " + n + ".";
+        fmt(se) + ". The centre is right whatever the population looks like, " +
+        "and the spread is the population standard deviation divided by the " +
+        "square root of " + n + ".";
     }
 
     interpretation.textContent = text;

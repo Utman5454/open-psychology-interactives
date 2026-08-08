@@ -83,13 +83,11 @@
             "Students feel anxious about asking questions in seminars",
           answer: "staging",
           note:
-            "True, supported, and the one most people call a theme. Read it " +
-            "again and ask what it explains. It reports a shared feeling; it " +
-            "does not say what produces the feeling, what the feeling is " +
-            "about, or why Lena's experience of asking was fine. There is no " +
-            "single concept holding the extracts together - only a common " +
-            "mood. Perfectly good as a working heading in week two of the " +
-            "analysis."
+            "True, supported, and the one most people call a theme. Ask what " +
+            "it explains. It reports a shared feeling without saying what " +
+            "produces it, or why Lena's experience of asking was fine. No " +
+            "single concept is holding the extracts together - only a common " +
+            "mood."
         },
         {
           text:
@@ -98,13 +96,11 @@
             "speaks first",
           answer: "theme",
           note:
-            "A developed theme. The central organising concept is visibility - " +
-            "one idea that explains Ama's decision not to ask, Lena's " +
-            "description of the first question as the expensive one, and the " +
-            "two silent students who wanted to ask the same thing. It makes a " +
-            "claim you could disagree with, which is the test. Note also what " +
-            "it is not: it says nothing about anxiety, so it survives the fact " +
-            "that Lena was not anxious."
+            "A developed theme. One organising concept - visibility - " +
+            "explains Ama's decision not to ask, Lena's description of the " +
+            "first question as the expensive one, and the two silent students. " +
+            "It makes a claim you could disagree with, and it says nothing " +
+            "about anxiety, so it survives the fact that Lena was not anxious."
         },
         {
           text: "Seminar silence is caused by student anxiety",
@@ -114,8 +110,7 @@
             "given afterwards cannot establish what produced a silence. " +
             "Second, the data contradict it: Lena reports two people who " +
             "wanted to ask and did not, and gives no indication that either " +
-            "was anxious. Causal language is where qualitative write-ups most " +
-            "often overreach, usually by accident and usually in the abstract."
+            "was anxious."
         }
       ]
     },
@@ -175,10 +170,9 @@
             "This attributes an intention to an organisation, and nobody from " +
             "the organisation was interviewed. The extracts support a claim " +
             "about effects - information travels through networks, replies " +
-            "discharge rather than help - and say nothing whatever about " +
-            "anyone's purposes. A critical reading is entitled to describe how " +
-            "a system works; asserting that somebody designed it that way on " +
-            "purpose is a different and much larger claim."
+            "discharge rather than help - and nothing whatever about anyone's " +
+            "purposes. Describing how a system works and asserting that " +
+            "somebody designed it that way are different claims."
         }
       ]
     },
@@ -211,11 +205,10 @@
           answer: "staging",
           note:
             "True of Toby, supported by his own words, and it does two things " +
-            "a theme should not. It rests on one participant, and it makes the " +
+            "a theme should not: it rests on one participant, and it makes the " +
             "finding about a category of student rather than about what the " +
-            "setting does. Note the loss: Toby's value to the analysis is that " +
-            "his comparison makes a norm visible, and this sentence turns him " +
-            "into an example of a demographic."
+            "setting does. Toby's value was that his comparison makes a norm " +
+            "visible. This turns him into a demographic."
         },
         {
           text:
@@ -227,20 +220,18 @@
             "information is received as a statement about the person making " +
             "it. It covers Kwame protecting the version of himself staff hold, " +
             "Toby noticing that the same act means something different here, " +
-            "and Ama's reluctance to be the one who has not understood. The " +
-            "final clause makes the claim sharp enough to be wrong."
+            "and Ama's reluctance to be the one who has not understood - and " +
+            "the final clause makes it sharp enough to be wrong."
         },
         {
           text:
             "Students with lower self-esteem are less likely to seek support",
           answer: "overreach",
           note:
-            "Two things at once, and both outside what these data can deliver. " +
-            "It imports a construct nobody measured, and it makes a " +
-            "between-person comparison - some students against others - from " +
-            "six accounts collected without any such comparison in mind. " +
-            "Qualitative data can show what asking means to someone; they " +
-            "cannot rank people on a trait and relate it to behaviour."
+            "Two things at once, both outside what these data can deliver. It " +
+            "imports a construct nobody measured, and it makes a " +
+            "between-person comparison from six accounts collected without " +
+            "any such comparison in mind."
         }
       ]
     }

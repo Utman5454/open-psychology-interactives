@@ -452,19 +452,17 @@
         "d = " + fmt(v.d) + ". The two distributions still share " + pct(v.ovl) +
         " of their area, and a randomly chosen member of group B beats a " +
         "randomly chosen member of group A only " + pct(v.cles) + " of the " +
-        "time - so " + pct(1 - v.cles) + " of such pairs go the other way. " +
-        "Effects of this size are common and can matter a great deal; what " +
-        "they never support is a sentence of the form \"group B are higher\" " +
-        "said about people.";
+        "time, so " + pct(1 - v.cles) + " of such pairs go the other way. " +
+        "Effects this size can matter a great deal. What they never support " +
+        "is \"group B are higher\", said about people.";
     } else if (d < 1.0) {
       tone = "good";
       text =
         "d = " + fmt(v.d) + ", the sort of figure that gets called large. The " +
         "two distributions still overlap by " + pct(v.ovl) + "; " + pct(v.u3) +
         " of group B sits above group A's mean, which means " + pct(1 - v.u3) +
-        " does not; and the chance that a random B beats a random A is " +
-        pct(v.cles) + ". A reader given only the value of d will picture " +
-        "something much cleaner than this.";
+        " does not; and a random B beats a random A " + pct(v.cles) + " of " +
+        "the time. A reader given only d will picture something much cleaner.";
     } else {
       tone = "good";
       text =

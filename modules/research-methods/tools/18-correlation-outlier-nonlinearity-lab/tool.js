@@ -371,10 +371,9 @@
         "much say."
       : "Removing the ringed observation changes r by " + fmt(shift) +
         ", from " + fmt(s.r) + " to " + fmt(without.r) + ". One observation in " +
-        s.n + " is deciding a large part of the answer. Note that this is a " +
-        "diagnostic and not a licence: an unusual point may be a recording " +
-        "error or the most informative case in the set, and which it is has to " +
-        "be argued rather than tested.";
+        s.n + " is deciding a large part of the answer. A diagnostic, not a " +
+        "licence: an unusual point may be a recording error or the most " +
+        "informative case in the set, and which one has to be argued.";
 
     var tone;
     var text;

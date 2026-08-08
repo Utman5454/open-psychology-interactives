@@ -624,8 +624,8 @@
         text += "Across " + history.length + " draws the estimates average " +
           fmt(mean(history)) + " against a truth of " + fmt(TRUE_MEAN) +
           " - a running difference of " + fmt(runningBias) +
-          " hours, which is about what you would expect from chance alone. " +
-          "The dots scatter; they do not sit to one side. " +
+          " hours, about what chance alone gives. The dots scatter; they do " +
+          "not sit to one side. " +
           (spread !== null
             ? "Their spread is " + fmt(spread) + " hours, and that is the part " +
               "a bigger sample shrinks."
@@ -635,24 +635,21 @@
         text += "Across " + history.length + " draws the estimates average " +
           fmt(mean(history)) + " against a truth of " + fmt(TRUE_MEAN) +
           " - a running difference of " + (runningBias > 0 ? "+" : "") +
-          fmt(runningBias) + " hours. The cloud is not centred on the line, " +
-          "and repeating the study is what makes that visible. " +
+          fmt(runningBias) + " hours. The cloud is not centred on the line. " +
           (spread !== null
             ? "The spread between draws is " + fmt(spread) + " hours: raise the " +
               "sample size and the spread shrinks while the offset stays " +
               "exactly where it is."
             : "") +
           (unbiasedMethod && tilt > 0
-            ? " Note where this bias came from: the selection is random, and " +
-              "the non-response tilt has reintroduced exactly the problem " +
-              "randomisation was supposed to remove."
+            ? " The selection here is random. The non-response tilt has put " +
+              "back exactly the problem randomisation removed."
             : "");
       } else {
         tone = "caution";
-        text += "One or two draws tell you very little - a single estimate " +
-          "from a badly selected sample can land on the truth by accident, " +
-          "and one from a perfect sample can miss by an hour. Draw at least " +
-          "eight before deciding whether the cloud is centred.";
+        text += "One or two draws tell you very little: a badly selected " +
+          "sample can land on the truth by accident, and a perfect one can " +
+          "miss by an hour. Draw at least eight.";
       }
     }
 
@@ -708,11 +705,11 @@
       tone: "warn",
       verdict: "This is the belief the tool exists to break.",
       text:
-        "Nine hundred responses make the estimate precise, not correct. If the " +
-        "people who answer a social-media link differ systematically from the " +
-        "people who do not - and they do - then the average of those 900 is a " +
-        "very good estimate of the wrong quantity. Choose the volunteer method " +
-        "below, draw twenty samples, and then push the size to 1,000."
+        "Nine hundred responses make the estimate precise, not correct. If " +
+        "the people who answer a social-media link differ from the people who " +
+        "do not, the average of those 900 is a very good estimate of the " +
+        "wrong quantity. Choose the volunteer method below and draw twenty " +
+        "samples."
     },
     precise: {
       tone: "good",
@@ -817,19 +814,16 @@
       text:
         "Helps, and helps most when it reaches the people who are hardest to " +
         "reach. Chasing non-responders reduces bias only to the extent that " +
-        "the ones you eventually get resemble the ones you never get - which " +
-        "is why effort is usually better spent on the least reachable groups " +
-        "than on the easiest additional responses."
+        "the ones you eventually get resemble the ones you never get, so the " +
+        "effort belongs with the least reachable rather than the easiest."
     },
     weight: {
       helps: true,
       text:
         "Partly. Weighting to the register's year and commuting mix removes " +
-        "the part of the bias that runs through those two variables and " +
-        "leaves everything else - part-time work, and the fact that heavier " +
-        "studiers were more likely to be in the library at all. Weighting " +
-        "corrects the variables you have; the quota method in the simulator " +
-        "shows what that looks like from the inside."
+        "the bias that runs through those two variables and leaves everything " +
+        "else - part-time work, and the fact that heavier studiers were in " +
+        "the library at all. Weighting corrects the variables you have."
     },
     ci: {
       helps: false,

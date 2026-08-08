@@ -424,9 +424,8 @@
         " + " + fmt(SUMMARY.b1) + " × minutes, with a squared error total of " +
         fmt(BEST.sse, 0) + " and " + pct(BEST.r2) + " of the variance " +
         "accounted for. Your best attempt reached " + fmt(bestSoFar, 0) +
-        ". The slope says that two people differing by one minute of daily " +
-        "practice differ on average by " + fmt(SUMMARY.b1) + " points - a " +
-        "comparison between people, not a prediction about changing anybody.";
+        ". The slope compares people who differ by one minute of daily " +
+        "practice. It is not a prediction about changing anybody.";
     }
     interpretation.textContent = text;
     verdictBox.setAttribute("data-tone", tone);

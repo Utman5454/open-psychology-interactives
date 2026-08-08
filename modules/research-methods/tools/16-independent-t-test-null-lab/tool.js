@@ -473,11 +473,9 @@
         "The groups did not differ significantly, " + stat + ", " +
         Math.round((1 - r.s.alpha) * 100) + "% CI [" + fmt(r.ciLo, 1) + ", " +
         fmt(r.ciHi, 1) + "]. The observed t is out towards the tail without " +
-        "reaching the critical value, which is the case most often written " +
-        "up as a \"trend\" or \"approaching significance\". Both phrases " +
-        "describe a result that failed the rule the authors themselves chose. " +
-        "Report the estimate and its interval and let the reader see how much " +
-        "the study could not settle.";
+        "reaching the critical value - the case usually written up as a " +
+        "\"trend\". That describes a result that failed the rule the authors " +
+        "chose. Report the estimate and its interval instead.";
     }
 
     interpretation.textContent = text;

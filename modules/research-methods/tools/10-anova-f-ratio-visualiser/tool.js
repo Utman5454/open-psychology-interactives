@@ -472,19 +472,17 @@
       text =
         "The three populations are identical: every difference between the " +
         "bars is sampling noise. F came out at " + fmt(a.f) + ", p " +
-        fmtP(a.p) + ". Draw a new sample four or five times and watch it " +
-        "bounce around 1. That is what F does when nothing is going on, " +
-        "because both halves of the fraction are then estimating the same " +
+        fmtP(a.p) + ". Draw four or five more samples and watch it bounce " +
+        "around 1 - both halves of the fraction are estimating the same " +
         "population variance.";
     } else if (a.f < 1.5) {
       tone = "caution";
       text =
         "F = " + fmt(a.f) + ", p " + fmtP(a.p) + ". The population means " +
         "really do differ - the separation slider is at " + fmt(s.sep, 1) +
-        " - and this sample cannot see it, because the within-group spread " +
-        "of " + s.within + " swamps a gap of that size at n = " + s.n + " per " +
-        "group. Note carefully what has not happened: nothing has shown the " +
-        "groups to be the same.";
+        " - and this sample cannot see it: a within-group spread of " +
+        s.within + " swamps a gap that size at n = " + s.n + " per group. " +
+        "Nothing here has shown the groups to be the same.";
     } else if (a.p > 0.05) {
       tone = "caution";
       text =
@@ -492,8 +490,7 @@
         (100 * a.eta).toFixed(1) + "% of the total variation lying between " +
         "the groups. A real difference is present in the populations and this " +
         "sample has not established it. Raise n and watch F climb with the " +
-        "separation untouched - which is the clearest evidence you will get " +
-        "that F is not a measure of how big the difference is.";
+        "separation untouched: F is not a measure of how big the difference is.";
     } else {
       tone = "good";
       text =
@@ -501,9 +498,8 @@
         "square is " + fmt(a.f) + " times the within-groups mean square, and " +
         (100 * a.eta).toFixed(1) + "% of the total variation lies between the " +
         "groups. Say the modest thing: these data sit awkwardly with all " +
-        "three population means being equal. They do not say which groups " +
-        "differ - Experiment 2 is about exactly that - and they do not say " +
-        "the difference is large.";
+        "three population means being equal. Not which groups differ, and not " +
+        "that the difference is large.";
     }
 
     interpretation.textContent = text;
@@ -768,10 +764,9 @@
       "All three patterns have a between-groups sum of squares of exactly " +
       "540.0, so with 30 people per group and a within-group standard " +
       "deviation of 6 they all give F(2, 87) = 7.50. Open the table below and " +
-      "check. The three shapes are quite different - evenly spaced, one group " +
-      "above, one group below - and F cannot separate them, because it is " +
-      "built from the squared distances of the means from the grand mean and " +
-      "squaring discards both the direction and the arrangement.";
+      "check. Three quite different shapes, one F: it is built from the " +
+      "squared distances of the means from the grand mean, and squaring " +
+      "discards the direction and the arrangement.";
     showFeedback(patternFeedback, right ? "good" : "caution", lead, body);
 
     var next = make("p");
@@ -779,9 +774,8 @@
     next.appendChild(document.createTextNode(
       "A planned contrast, if you knew before collecting the data which " +
       "comparison you cared about, or a post-hoc comparison with an " +
-      "adjustment if you did not. Both answer a different question from the " +
-      "omnibus test, and both are separate decisions that have to be " +
-      "declared, because every extra comparison has its own error rate."));
+      "adjustment if you did not. Both are separate decisions that have to be " +
+      "declared."));
     patternFeedback.appendChild(next);
 
     patternShell.announce(lead + " All three patterns give F = 7.50.",
@@ -836,22 +830,17 @@
       verdict: "The right direction, and not far enough.",
       text:
         "F falls by more than half. The denominator is a mean SQUARE - a " +
-        "variance - so doubling the standard deviation multiplies it by four. " +
-        "Precisely, the amount by which F exceeds 1 is divided by four: for " +
-        "this study F drops from about 54 on average to about 14. Compare the " +
-        "first two presets in the worked-examples menu."
+        "variance - so doubling the standard deviation multiplies it by four, " +
+        "and F drops from about 54 on average to about 14."
     },
     quarter: {
       tone: "good",
       verdict: "Yes — because the denominator is a variance.",
       text:
         "Doubling the within-group standard deviation quadruples the " +
-        "within-groups mean square. Stated exactly, it is the amount by " +
-        "which F exceeds 1 that divides by four, so for the study described " +
-        "above F falls from about 54 on average to about 14 - close to a " +
-        "quarter, and closer the larger F was to begin with. Sample-to-sample " +
-        "wobble means no single run lands on the expected value, which is " +
-        "worth watching too."
+        "within-groups mean square. Exactly: it is the amount by which F " +
+        "exceeds 1 that divides by four, so F falls from about 54 on average " +
+        "to about 14. No single run lands on the expected value."
     },
     double: {
       tone: "warn",

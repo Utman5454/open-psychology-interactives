@@ -293,8 +293,7 @@
           standing: "given",
           note:
             "Already answered: the vignette says participants were randomly " +
-            "assigned. Reading the design description before deciding what is " +
-            "missing is half the skill."
+            "assigned."
         },
         independence: {
           standing: "none",
@@ -389,13 +388,12 @@
         independence: {
           standing: "key",
           note:
-            "This is the one. Each worker supplies 14 pairs of observations, " +
-            "so 560 rows are nested within 40 people. Treating them as 560 " +
-            "independent observations will overstate the precision badly. It " +
-            "also runs together two different questions: whether people who " +
-            "sleep more perform better, and whether a person performs better " +
-            "after their own longer nights. Those can even point in opposite " +
-            "directions."
+            "This is the one. Each worker supplies 14 pairs, so 560 rows are " +
+            "nested within 40 people, and treating them as 560 independent " +
+            "observations badly overstates the precision. It also merges two " +
+            "questions - whether people who sleep more perform better, and " +
+            "whether a person performs better after their own longer nights - " +
+            "which can point in opposite directions."
         },
         measurement: {
           standing: "fair",
@@ -687,11 +685,10 @@
             "model the outcome. Note what this cannot do - it can only test " +
             "reasons somebody thought of first.",
           mixed:
-            "Defensible, and here it is more than a compromise: a qualitative " +
+            "Defensible, and here more than a compromise: a qualitative " +
             "strand can generate candidate reasons and a quantitative strand " +
-            "can ask how far they extend across the cohort. That only counts " +
-            "as mixed methods if each strand is given its own stated question " +
-            "and the two are integrated at the end."
+            "can ask how far they extend. It counts as mixed methods only if " +
+            "each strand has its own stated question."
         }
       },
       design: {
@@ -722,8 +719,7 @@
             "The decision the whole study waits on. Until the researcher says " +
             "what would count as an answer - a set of conditions, or an " +
             "account of how students make sense of what happens - no design " +
-            "and no analysis can be chosen. This is not a preliminary; it is " +
-            "the substance."
+            "can be chosen."
         },
         allocation: {
           standing: "key",
@@ -1123,31 +1119,28 @@
       tone: "caution",
       verdict: "That is the flowchart answer.",
       text:
-        "The data you have constrain what you can do, but they are downstream " +
-        "of everything that matters: someone decided what to collect, from " +
-        "whom, and under what conditions, and those decisions were made to " +
-        "support a particular kind of claim. Starting from the data means " +
-        "inheriting those decisions without examining them."
+        "The data constrain what you can do, and they are downstream of " +
+        "everything that matters: someone decided what to collect, from whom, " +
+        "and under what conditions. Starting there means inheriting those " +
+        "decisions without examining them."
     },
     measurement: {
       tone: "caution",
       verdict: "Necessary, and nowhere near sufficient.",
       text:
-        "Level of measurement rules some analyses in and others out, and you " +
-        "will need it. But two studies with an identical continuous outcome " +
-        "can require entirely different treatment, because one allocated its " +
-        "conditions and the other did not, or because one measured people once " +
-        "and the other fourteen times."
+        "Level of measurement rules some analyses in and out, and you will " +
+        "need it. But two studies with an identical continuous outcome can " +
+        "need entirely different treatment - one allocated its conditions and " +
+        "the other did not."
     },
     claim: {
       tone: "good",
       verdict: "Yes.",
       text:
-        "Everything else follows from this. The claim decides what design " +
-        "could support it; the design decides what data structure you end up " +
-        "with; and only then does the choice of analysis become a technical " +
-        "question. Working the other way round produces studies that compute " +
-        "something correct and answer nothing."
+        "The claim decides what design could support it; the design decides " +
+        "what data structure you end up with; only then is the analysis a " +
+        "technical question. Work the other way round and you get studies " +
+        "that compute something correct and answer nothing."
     },
     groups: {
       tone: "caution",
@@ -1249,11 +1242,10 @@
       defensible: false,
       text:
         "Not defensible as a prevalence. Counting theme mentions in 18 " +
-        "purposively recruited transcripts produces a number that looks like a " +
-        "rate and is not one: what people mention in an interview depends on " +
-        "what they were asked and what they thought worth saying. Reporting " +
-        "patterns as \"several participants\" is fine; reporting them as a " +
-        "percentage of a population is not."
+        "purposively recruited transcripts produces a number that looks like " +
+        "a rate and is not one - what people mention depends on what they " +
+        "were asked. \"Several participants\" is fine; a percentage of a " +
+        "population is not."
     }
   };
 

@@ -408,27 +408,25 @@
       text =
         total + (total === 1 ? " study" : " studies") + " drawn, " + hits +
         " of them containing the true mean of " + fmt(TRUE_MEAN) + ". With so " +
-        "few, the running percentage is meaningless. The thing worth noticing " +
-        "is that you can only tell which ones missed because the simulation " +
-        "told you the truth first. A real research team sees one bar and has " +
-        "no way of knowing which kind it is.";
+        "few the running percentage means nothing. Notice instead that you " +
+        "can only tell which ones missed because the simulation told you the " +
+        "truth first. A real team sees one bar.";
     } else if (Math.abs(coverage - s.level) <= 6) {
       tone = "good";
       text =
         hits + " of " + total + " intervals contained the true mean: " +
         coverage.toFixed(1) + "% against a nominal " + s.level + "%. That is " +
-        "what the confidence level is a statement about - the long-run " +
+        "what the confidence level is a statement about: the long-run " +
         "behaviour of the procedure, not the interval in front of you. Now " +
-        "drag the sample size and watch: the bars change length, and this " +
-        "percentage does not.";
+        "drag the sample size. The bars change length; this percentage does " +
+        "not.";
     } else {
       tone = "caution";
       text =
         hits + " of " + total + " intervals contained the true mean: " +
         coverage.toFixed(1) + "% against a nominal " + s.level + "%. A gap " +
-        "this size at " + total + " studies is ordinary sampling noise in the " +
-        "coverage estimate itself - the count of hits is a random variable " +
-        "too. Run more studies and it will settle towards " + s.level + "%.";
+        "this size at " + total + " studies is sampling noise in the coverage " +
+        "estimate itself. Run more and it settles towards " + s.level + "%.";
     }
 
     interpretation.textContent = text;
@@ -857,11 +855,11 @@
       tone: "caution",
       verdict: "The most instructive wrong answer here.",
       text:
-        "Larger samples do give better studies - the intervals become much " +
-        "narrower, which is a real gain in precision. But coverage is fixed by " +
-        "the confidence level, not by n: a 95% procedure catches the truth " +
-        "about 95% of the time whether its intervals are enormous or tiny. " +
-        "Run the hundred at n = 25 and again at n = 200 and compare."
+        "Larger samples do give narrower intervals, which is a real gain in " +
+        "precision. But coverage is fixed by the confidence level, not by n: " +
+        "a 95% procedure catches the truth about 95% of the time whether its " +
+        "intervals are enormous or tiny. Run the hundred at n = 25 and again " +
+        "at n = 200."
     },
     sixtyeight: {
       tone: "caution",

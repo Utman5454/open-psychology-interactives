@@ -407,11 +407,10 @@
     if (!draws.length) {
       tone = "caution";
       text =
-        "Nothing has been run yet. The model says the difference should sit " +
-        "around zero with a standard error of " + fmt(se) + " points, so a " +
-        "reported difference of " + fmt(s.obs, 1) + " is " + fmt(s.obs / se) +
-        " standard errors out. Press Run 20 more, slowly, and watch the first " +
-        "few land.";
+        "Nothing run yet. The model puts the difference around zero with a " +
+        "standard error of " + fmt(se) + " points, so a reported difference " +
+        "of " + fmt(s.obs, 1) + " is " + fmt(s.obs / se) + " standard errors " +
+        "out. Run twenty and watch where they land.";
     } else if (s.obs === 0) {
       tone = "caution";
       text =
@@ -426,34 +425,30 @@
         "exactly zero, " + (data.below + data.above) + " produced a difference " +
         "at least as far from zero as " + fmt(s.obs, 1) + " points. That is p " +
         fmtP((data.below + data.above) / draws.length) +
-        ". Read it carefully: a result this size is unremarkable in a world " +
-        "where nothing is going on. It does not follow that nothing is going " +
-        "on, and it certainly does not follow that the effect is zero - only " +
-        "that this design could not tell the two apart.";
+        ". A result this size is unremarkable in a world where nothing is " +
+        "going on. That is not the same as nothing going on - this design " +
+        "could not tell the two apart.";
     } else if (theoretical > 0.02) {
       tone = "caution";
       text =
         (data.below + data.above) + " of " + draws.length +
         " null studies reached " + fmt(s.obs, 1) + " points or further from " +
         "zero, giving p " + fmtP((data.below + data.above) / draws.length) +
-        ". The honest sentence is: data like these would be somewhat unusual " +
-        "if the null model held. The sentence to avoid is any version of " +
-        "\"there is a " + Math.round(theoretical * 100) + "% chance the null " +
-        "is true\" - that reverses the conditional and the calculation never " +
-        "went in that direction.";
+        ". The honest sentence: data like these would be somewhat unusual if " +
+        "the null model held. Not \"there is a " +
+        Math.round(theoretical * 100) + "% chance the null is true\" - that " +
+        "reverses the conditional.";
     } else {
       tone = "good";
       text =
         "Only " + (data.below + data.above) + " of " + draws.length +
         " null studies reached " + fmt(s.obs, 1) + " points or further from " +
         "zero: p " + fmtP((data.below + data.above) / draws.length) +
-        ". Data like these would be rare under the null model. Note what that " +
-        "leaves open. An effect is one explanation; dependence between " +
-        "observations, a skewed population, or a comparison chosen after " +
-        "looking are others, and the tail area cannot distinguish them. Note " +
-        "also that " + fmt(s.obs, 1) + " points is the same difference " +
-        "whatever the p-value says - drag the sample size and watch p move " +
-        "while the finding does not.";
+        ". Rare under the null model. An effect is one explanation; " +
+        "dependence between observations, a skewed population and a " +
+        "comparison chosen after looking are others, and a tail area cannot " +
+        "separate them. Drag the sample size: p moves and the " +
+        fmt(s.obs, 1) + "-point difference does not.";
     }
 
     interpretation.textContent = text;
@@ -612,12 +607,10 @@
     "prob-null": {
       correct: false,
       text:
-        "Wrong, and it is the most common error in the literature. The " +
-        "calculation starts by assuming the null model and asks what data it " +
-        "would produce. It cannot end by telling you how likely that " +
-        "assumption was, because nothing about the plausibility of the " +
-        "hypothesis ever entered it. Getting a probability for a hypothesis " +
-        "requires a prior, which frequentist testing does not use."
+        "Wrong, and the most common error in the literature. The calculation " +
+        "starts by assuming the null model and asks what data it would " +
+        "produce. It cannot end by telling you how likely that assumption " +
+        "was: a probability for a hypothesis needs a prior, and none entered."
     },
     chance: {
       correct: false,
@@ -649,12 +642,10 @@
     replicate: {
       correct: false,
       text:
-        "Wrong. 1 - p is not the probability of replication, and the two are " +
-        "not related in any simple way. What a repeat study would do depends " +
-        "on the true effect, which is unknown, and on the new study's sample " +
-        "size. The probability of a significant replication is a power " +
-        "calculation, and it needs an assumed effect the p-value does not " +
-        "supply."
+        "Wrong. 1 - p is not the probability of replication. What a repeat " +
+        "study would do depends on the true effect, which is unknown, and on " +
+        "the new study's sample size. That is a power calculation, and it " +
+        "needs an assumed effect the p-value does not supply."
     }
   };
 
