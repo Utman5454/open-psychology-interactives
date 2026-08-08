@@ -1288,6 +1288,123 @@
 .opi-activity:fullscreen > .section:first-child {
   padding-top: var(--space-5);
 }
+.opi-activity.opi-activity.opi-activity .helper {
+  margin-bottom: var(--space-4);
+  font-size: var(--text-sm);
+}
+.opi-activity.opi-activity.opi-activity .helper__summary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  padding: 0 var(--space-2);
+  font-weight: 600;
+  color: var(--colour-text-muted);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+}
+.opi-activity.opi-activity.opi-activity .helper__summary:hover {
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity.opi-activity .helper[open] > .helper__summary {
+  color: var(--colour-text);
+}
+.opi-activity.opi-activity.opi-activity .helper__body {
+  margin: var(--space-2) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border-left: 3px solid var(--colour-border-strong);
+  background-color: var(--colour-surface);
+  border-radius: var(--radius-sm);
+}
+.opi-activity.opi-activity.opi-activity .helper__offer {
+  margin: 0;
+}
+.opi-activity.opi-activity.opi-activity .helper__start,
+.opi-activity.opi-activity.opi-activity .helper__actions button {
+  min-height: 44px;
+  padding: 6.4px 16px;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--colour-on-accent);
+  background-color: var(--colour-accent);
+  border: 1px solid var(--colour-accent);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+.opi-activity.opi-activity.opi-activity .helper__actions button[data-variant="secondary"] {
+  color: var(--colour-text);
+  background-color: transparent;
+  border-color: var(--colour-border-strong);
+}
+.opi-activity.opi-activity.opi-activity .helper__actions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.opi-activity.opi-activity.opi-activity .helper__progress {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity.opi-activity .helper__step {
+  margin: 0 0 var(--space-3);
+  max-width: 672px;
+  min-height: 3.4em;
+}
+@media (max-width: 40em) {
+.opi-activity.opi-activity.opi-activity .helper__step {
+  min-height: 6.8em;
+}
+}
+.opi-activity.opi-activity.opi-activity .helper__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.opi-activity.opi-activity.opi-activity .helper__aside {
+  margin: var(--space-3) 0 0;
+  font-size: var(--text-xs);
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity.opi-activity .helper__terms {
+  margin-top: var(--space-4);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--colour-border);
+}
+.opi-activity.opi-activity.opi-activity .helper__glossary {
+  margin: var(--space-2) 0 0;
+  display: grid;
+  gap: var(--space-2);
+}
+.opi-activity.opi-activity.opi-activity .helper__body > .helper__glossary {
+  margin-top: 0;
+}
+.opi-activity.opi-activity.opi-activity .helper__glossary dt {
+  font-weight: 650;
+}
+.opi-activity.opi-activity.opi-activity .helper__glossary dd {
+  margin: 0 0 var(--space-2);
+  max-width: 672px;
+  color: var(--colour-text-muted);
+}
+.opi-activity.opi-activity.opi-activity .helper__glossary dd:last-child {
+  margin-bottom: 0;
+}
+.opi-activity.opi-activity.opi-activity [data-guide-target] {
+  outline: 3px solid var(--colour-focus);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity.opi-activity [data-guide-target] {
+  outline: 3px solid Highlight;
+}
+.opi-activity.opi-activity.opi-activity .helper__body {
+  border-left: 3px solid CanvasText;
+}
+}
 
 /* modules/neuropsychology/tools/06-memory-systems-amnesia-detective/tool.css */
 .opi-activity.opi-activity.opi-activity #memory .interactive__controls,
@@ -1499,6 +1616,90 @@
       <div class="section__header">
         <h2 id="profiles-heading" tabindex="-1">The profiles</h2>
       </div>
+
+      <!-- Optional learner support. Collapsed, secondary, and skipped entirely by
+           anybody who does not need it. It is part of the exercise rather than of
+           this website, so it travels into an exported copy - see
+           components/learner-help.js. -->
+      <details class="helper" data-learner-help>
+        <summary class="helper__summary">Need a hand?</summary>
+
+        <div class="helper__body">
+
+          <p class="helper__offer">
+            <button class="helper__start" type="button" data-guide-start>
+              Show me what to do
+            </button>
+          </p>
+
+          <div class="helper__guide" data-guide hidden>
+            <p class="helper__progress" data-guide-progress></p>
+            <div class="helper__step" data-guide-text tabindex="-1"
+                 aria-live="polite"></div>
+            <div class="helper__actions">
+              <button type="button" data-guide-prev>Back</button>
+              <button type="button" data-guide-next>Next</button>
+              <button type="button" data-variant="secondary" data-guide-close>
+                Close the guide
+              </button>
+            </div>
+            <p class="helper__aside">
+              Nothing here changes the controls for you, and none of it says what
+              you are going to find.
+            </p>
+          </div>
+
+          <!-- Steps as content, not code, so they read as copy and can be revised
+               without touching the component. `target` is the thing the step is
+               about; it gets an outline, and every step also names it in words. -->
+          <script type="application/json" data-guide-steps>
+          [
+            { "text": "Start with the chart. Each bar is one of seven measures, and its height is this profile's distance from that measure's own control group.",
+              "target": "#memory [data-profile]" },
+            { "text": "Read the table below it for the same seven numbers written out. Note which measures sit close to their controls, not only which sit low.",
+              "target": "#memory [data-measure-table]" },
+            { "text": "Now read the claim above the controls, and work out which of those seven measures could bear on it at all.",
+              "target": "#memory [data-case-brief]" },
+            { "text": "Once you have judged this claim on every profile, read the grid. Take one claim across all five: does any single profile settle it on its own?",
+              "target": "#memory [data-grid-table]" }
+          ]
+          </script>
+
+          <details class="helper__terms">
+            <summary class="helper__summary">Key terms</summary>
+            <dl class="helper__glossary">
+
+              <dt>Control group</dt>
+              <dd>
+                The comparison sample for one measure. Each measure here has its
+                own, which is why a profile is read measure by measure rather than
+                as a single score.
+              </dd>
+
+              <dt>Episodic and semantic memory</dt>
+              <dd>
+                Memory for particular experienced events, and memory for facts not
+                tied to the occasion on which they were learned.
+              </dd>
+
+              <dt>Recall and recognition</dt>
+              <dd>
+                Producing the material yourself, and picking it out from
+                alternatives. They make different demands, so a gap between them
+                has more than one reading.
+              </dd>
+
+              <dt>Dissociation</dt>
+              <dd>
+                A pattern in which one measure is impaired and another is not. What
+                it supports depends on what else the profile contains.
+              </dd>
+
+            </dl>
+          </details>
+
+        </div>
+      </details>
 
       <section class="interactive" id="memory" data-interactive
                data-reset-message="All five profiles cleared. Back to the opening question.">
@@ -2304,6 +2505,205 @@
   }
 
   global.ActivityFullscreen = { init: init };
+})(window);
+
+/* ---- components/learner-help.js ---- */
+/* =========================================================================
+   Open Psychology Interactives — optional learner support
+   -------------------------------------------------------------------------
+   Drives the "Need a hand?" disclosure: a step-at-a-time guide that points a
+   learner at the part of the activity they should be looking at, and a short
+   glossary. Both are optional and collapsed, so a learner who is not stuck
+   sees the page they would have seen anyway.
+
+   This is learner support, not repository furniture, so it travels into an
+   exported copy. scripts/build-standalone.py inlines this file for any tool
+   whose markup contains data-learner-help.
+
+   What it deliberately does not do
+   --------------------------------
+     * change a control on the learner's behalf - the steps ask them to do it,
+       because the point is that they act and then look;
+     * say whether a prediction was right;
+     * state the conclusion the activity exists to produce. Step 4 and step 5
+       ask what happened; they do not answer it.
+
+   Markup contract:
+
+       <details class="helper" data-learner-help>
+         <summary>Need a hand?</summary>
+         ...
+         <button data-guide-start>Show me what to do</button>
+         <div data-guide hidden>
+           <p data-guide-progress></p>
+           <div data-guide-text tabindex="-1" aria-live="polite"></div>
+           <button data-guide-prev>Back</button>
+           <button data-guide-next>Next</button>
+           <button data-guide-close>Close</button>
+         </div>
+       </details>
+
+   Steps come from a <script type="application/json" data-guide-steps> block
+   inside the disclosure, so the copy is content rather than code: each entry
+   is {"text": "...", "target": "<css selector>"} and `target` is optional.
+
+   Exposed as a global rather than an ES module, for the same reason as the
+   rest of the collection: a tool folder opened from disk over file:// cannot
+   load modules.
+   ========================================================================= */
+
+(function (global) {
+  "use strict";
+
+  var doc = global.document;
+
+  /** Marks the element a step is pointing at. Outline, not border: an outline
+      is drawn outside the box and shifts nothing. */
+  var HIGHLIGHT_ATTRIBUTE = "data-guide-target";
+
+  function parseSteps(root) {
+    var holder = root.querySelector("[data-guide-steps]");
+    if (!holder) {
+      return [];
+    }
+    try {
+      var parsed = JSON.parse(holder.textContent);
+      return Array.isArray(parsed) ? parsed : [];
+    } catch (error) {
+      if (global.console && console.warn) {
+        console.warn("learner-help: could not parse the guide steps.", error);
+      }
+      return [];
+    }
+  }
+
+  function init(root) {
+    var steps = parseSteps(root);
+    var startButton = root.querySelector("[data-guide-start]");
+    var guide = root.querySelector("[data-guide]");
+    var textBox = root.querySelector("[data-guide-text]");
+    var progress = root.querySelector("[data-guide-progress]");
+    var prev = root.querySelector("[data-guide-prev]");
+    var next = root.querySelector("[data-guide-next]");
+    var close = root.querySelector("[data-guide-close]");
+
+    if (!steps.length || !startButton || !guide || !textBox) {
+      // Nothing to drive. Leave the glossary alone — it is plain markup and
+      // works without any of this.
+      if (startButton) {
+        startButton.hidden = true;
+      }
+      return;
+    }
+
+    var index = 0;
+    var highlighted = null;
+
+    function clearHighlight() {
+      if (highlighted) {
+        highlighted.removeAttribute(HIGHLIGHT_ATTRIBUTE);
+        highlighted = null;
+      }
+    }
+
+    /**
+     * The highlight is decoration. Every step names its target in words, so a
+     * reader who never sees the outline is not missing an instruction.
+     */
+    function highlight(selector) {
+      clearHighlight();
+      if (!selector) {
+        return;
+      }
+      var target = doc.querySelector(selector);
+      if (!target) {
+        return;
+      }
+      target.setAttribute(HIGHLIGHT_ATTRIBUTE, "");
+      highlighted = target;
+    }
+
+    function render() {
+      var step = steps[index];
+      textBox.textContent = step.text;
+      if (progress) {
+        progress.textContent = "Step " + (index + 1) + " of " + steps.length;
+      }
+      if (prev) {
+        prev.disabled = index === 0;
+      }
+      if (next) {
+        next.disabled = index === steps.length - 1;
+      }
+      highlight(step.target);
+    }
+
+    function open() {
+      index = 0;
+      guide.hidden = false;
+      startButton.hidden = true;
+      render();
+      // Focus the step itself: the reader hears the step, and the buttons
+      // follow it in document order.
+      textBox.focus();
+    }
+
+    function shut(options) {
+      guide.hidden = true;
+      startButton.hidden = false;
+      clearHighlight();
+      if (!options || options.restoreFocus !== false) {
+        startButton.focus();
+      }
+    }
+
+    startButton.addEventListener("click", open);
+
+    if (next) {
+      next.addEventListener("click", function () {
+        if (index < steps.length - 1) {
+          index += 1;
+          render();
+        }
+      });
+    }
+
+    if (prev) {
+      prev.addEventListener("click", function () {
+        if (index > 0) {
+          index -= 1;
+          render();
+        }
+      });
+    }
+
+    if (close) {
+      close.addEventListener("click", function () {
+        shut();
+      });
+    }
+
+    /* Collapsing the disclosure must take the highlight with it, or an outline
+       is left sitting on a control with nothing on screen explaining it. */
+    root.addEventListener("toggle", function () {
+      if (!root.open) {
+        shut({ restoreFocus: false });
+      }
+    });
+  }
+
+  function initAll() {
+    var roots = doc.querySelectorAll("[data-learner-help]");
+    Array.prototype.forEach.call(roots, init);
+  }
+
+  if (doc.readyState === "loading") {
+    doc.addEventListener("DOMContentLoaded", initAll);
+  } else {
+    initAll();
+  }
+
+  global.LearnerHelp = { init: initAll };
 })(window);
 
 /* ---- modules/neuropsychology/tools/06-memory-systems-amnesia-detective/tool.js ---- */

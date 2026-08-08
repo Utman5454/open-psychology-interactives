@@ -32,6 +32,7 @@
   <script src="../../../../assets/js/main.js" defer></script>
   <script src="../../../../components/interactive-shell.js" defer></script>
   <script src="../../../../components/activity-fullscreen.js" defer></script>
+  <script src="../../../../components/learner-help.js" defer></script>
   <script src="../../../../components/copy-activity.js" defer></script>
   <script src="tool.js" defer></script>
 </head>
@@ -224,6 +225,90 @@
         <div class="section__header">
           <h2 id="profiles-heading" tabindex="-1">The profiles</h2>
         </div>
+
+        <!-- Optional learner support. Collapsed, secondary, and skipped entirely by
+             anybody who does not need it. It is part of the exercise rather than of
+             this website, so it travels into an exported copy - see
+             components/learner-help.js. -->
+        <details class="helper" data-learner-help>
+          <summary class="helper__summary">Need a hand?</summary>
+
+          <div class="helper__body">
+
+            <p class="helper__offer">
+              <button class="helper__start" type="button" data-guide-start>
+                Show me what to do
+              </button>
+            </p>
+
+            <div class="helper__guide" data-guide hidden>
+              <p class="helper__progress" data-guide-progress></p>
+              <div class="helper__step" data-guide-text tabindex="-1"
+                   aria-live="polite"></div>
+              <div class="helper__actions">
+                <button type="button" data-guide-prev>Back</button>
+                <button type="button" data-guide-next>Next</button>
+                <button type="button" data-variant="secondary" data-guide-close>
+                  Close the guide
+                </button>
+              </div>
+              <p class="helper__aside">
+                Nothing here changes the controls for you, and none of it says what
+                you are going to find.
+              </p>
+            </div>
+
+            <!-- Steps as content, not code, so they read as copy and can be revised
+                 without touching the component. `target` is the thing the step is
+                 about; it gets an outline, and every step also names it in words. -->
+            <script type="application/json" data-guide-steps>
+            [
+              { "text": "Start with the chart. Each bar is one of seven measures, and its height is this profile's distance from that measure's own control group.",
+                "target": "#memory [data-profile]" },
+              { "text": "Read the table below it for the same seven numbers written out. Note which measures sit close to their controls, not only which sit low.",
+                "target": "#memory [data-measure-table]" },
+              { "text": "Now read the claim above the controls, and work out which of those seven measures could bear on it at all.",
+                "target": "#memory [data-case-brief]" },
+              { "text": "Once you have judged this claim on every profile, read the grid. Take one claim across all five: does any single profile settle it on its own?",
+                "target": "#memory [data-grid-table]" }
+            ]
+            </script>
+
+            <details class="helper__terms">
+              <summary class="helper__summary">Key terms</summary>
+              <dl class="helper__glossary">
+
+                <dt>Control group</dt>
+                <dd>
+                  The comparison sample for one measure. Each measure here has its
+                  own, which is why a profile is read measure by measure rather than
+                  as a single score.
+                </dd>
+
+                <dt>Episodic and semantic memory</dt>
+                <dd>
+                  Memory for particular experienced events, and memory for facts not
+                  tied to the occasion on which they were learned.
+                </dd>
+
+                <dt>Recall and recognition</dt>
+                <dd>
+                  Producing the material yourself, and picking it out from
+                  alternatives. They make different demands, so a gap between them
+                  has more than one reading.
+                </dd>
+
+                <dt>Dissociation</dt>
+                <dd>
+                  A pattern in which one measure is impaired and another is not. What
+                  it supports depends on what else the profile contains.
+                </dd>
+
+              </dl>
+            </details>
+
+          </div>
+        </details>
 
         <section class="interactive" id="memory" data-interactive
                  data-reset-message="All five profiles cleared. Back to the opening question.">

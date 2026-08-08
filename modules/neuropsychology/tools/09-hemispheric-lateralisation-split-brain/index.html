@@ -32,6 +32,7 @@
   <script src="../../../../assets/js/main.js" defer></script>
   <script src="../../../../components/interactive-shell.js" defer></script>
   <script src="../../../../components/activity-fullscreen.js" defer></script>
+  <script src="../../../../components/learner-help.js" defer></script>
   <script src="../../../../components/copy-activity.js" defer></script>
   <script src="tool.js" defer></script>
 </head>
@@ -243,6 +244,90 @@
           <li><span>1</span> Building a trial</li>
           <li><span>2</span> What the result depends on</li>
         </ol>
+
+        <!-- Optional learner support. Collapsed, secondary, and skipped entirely by
+             anybody who does not need it. It is part of the exercise rather than of
+             this website, so it travels into an exported copy - see
+             components/learner-help.js. -->
+        <details class="helper" data-learner-help>
+          <summary class="helper__summary">Need a hand?</summary>
+
+          <div class="helper__body">
+
+            <p class="helper__offer">
+              <button class="helper__start" type="button" data-guide-start>
+                Show me what to do
+              </button>
+            </p>
+
+            <div class="helper__guide" data-guide hidden>
+              <p class="helper__progress" data-guide-progress></p>
+              <div class="helper__step" data-guide-text tabindex="-1"
+                   aria-live="polite"></div>
+              <div class="helper__actions">
+                <button type="button" data-guide-prev>Back</button>
+                <button type="button" data-guide-next>Next</button>
+                <button type="button" data-variant="secondary" data-guide-close>
+                  Close the guide
+                </button>
+              </div>
+              <p class="helper__aside">
+                Nothing here changes the controls for you, and none of it says what
+                you are going to find.
+              </p>
+            </div>
+
+            <!-- Steps as content, not code, so they read as copy and can be revised
+                 without touching the component. `target` is the thing the step is
+                 about; it gets an outline, and every step also names it in words. -->
+            <script type="application/json" data-guide-steps>
+            [
+              { "text": "Build one trial: what is presented, which side it appears on, and how the answer is given.",
+                "target": "#split [data-stage-one-controls]" },
+              { "text": "Before running it, read the diagram. It shows where the information can and cannot travel in this configuration.",
+                "target": "#split [data-route]" },
+              { "text": "Run the trial with the callosum intact, then run the identical trial with it cut. Change nothing else.",
+                "target": "#split [data-callosum-controls]" },
+              { "text": "Compare the two outcomes. Then find a configuration where cutting the callosum makes no difference at all.",
+                "target": "#split [data-main-table]" },
+              { "text": "In Experiment 2, switch off one condition the classic trial depends on, and read what becomes of it.",
+                "target": "#split [data-condition-controls]" }
+            ]
+            </script>
+
+            <details class="helper__terms">
+              <summary class="helper__summary">Key terms</summary>
+              <dl class="helper__glossary">
+
+                <dt>Corpus callosum</dt>
+                <dd>
+                  The band of fibres carrying information between the hemispheres.
+                  Cutting it is the manipulation here.
+                </dd>
+
+                <dt>Visual field</dt>
+                <dd>
+                  Which side of the fixation point something appears on. It decides
+                  which hemisphere receives it first, whichever eye is open.
+                </dd>
+
+                <dt>Response channel</dt>
+                <dd>
+                  How the answer is given &mdash; speech, left hand or right hand.
+                  Each one is reachable from different parts of the system.
+                </dd>
+
+                <dt>Lateralisation</dt>
+                <dd>
+                  A function being handled more by one hemisphere than by the other.
+                  It is a tendency across people, not a switch inside one.
+                </dd>
+
+              </dl>
+            </details>
+
+          </div>
+        </details>
 
         <section class="interactive" id="split" data-interactive
                  data-reset-message="Laboratory cleared. Back to experiment 1 with no trials run.">

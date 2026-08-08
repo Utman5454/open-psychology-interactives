@@ -32,6 +32,7 @@
   <script src="../../../../assets/js/main.js" defer></script>
   <script src="../../../../components/interactive-shell.js" defer></script>
   <script src="../../../../components/activity-fullscreen.js" defer></script>
+  <script src="../../../../components/learner-help.js" defer></script>
   <script src="../../../../components/copy-activity.js" defer></script>
   <script src="tool.js" defer></script>
 </head>
@@ -241,6 +242,96 @@
           <li><span>1</span> Five people, not one curve</li>
           <li><span>2</span> What is doing the work</li>
         </ol>
+
+        <!-- Optional learner support. Collapsed, secondary, and skipped entirely by
+             anybody who does not need it. It is part of the exercise rather than of
+             this website, so it travels into an exported copy - see
+             components/learner-help.js. -->
+        <details class="helper" data-learner-help>
+          <summary class="helper__summary">Need a hand?</summary>
+
+          <div class="helper__body">
+
+            <p class="helper__offer">
+              <button class="helper__start" type="button" data-guide-start>
+                Show me what to do
+              </button>
+            </p>
+
+            <div class="helper__guide" data-guide hidden>
+              <p class="helper__progress" data-guide-progress></p>
+              <div class="helper__step" data-guide-text tabindex="-1"
+                   aria-live="polite"></div>
+              <div class="helper__actions">
+                <button type="button" data-guide-prev>Back</button>
+                <button type="button" data-guide-next>Next</button>
+                <button type="button" data-variant="secondary" data-guide-close>
+                  Close the guide
+                </button>
+              </div>
+              <p class="helper__aside">
+                Nothing here changes the controls for you, and none of it says what
+                you are going to find.
+              </p>
+            </div>
+
+            <!-- Steps as content, not code, so they read as copy and can be revised
+                 without touching the component. `target` is the thing the step is
+                 about; it gets an outline, and every step also names it in words. -->
+            <script type="application/json" data-guide-steps>
+            [
+              { "text": "Experiment 1 shows five simulated people rather than one average curve. Start with the spread between the lines.",
+                "target": "#recovery [data-fan]" },
+              { "text": "Now turn the measurement noise up and look at the same five again. How much of what looked like change is still there?",
+                "target": "#recovery [data-noise-controls]" },
+              { "text": "Go to Experiment 2. This bar breaks one person's trained score into the processes that contributed to it.",
+                "target": "#recovery [data-decomp]" },
+              { "text": "Raise “Compensatory strategy use”.",
+                "target": "#comp-range" },
+              { "text": "Now compare the trained task with the task this person has never practised. Did both of them move?",
+                "target": "#recovery [data-transfer]" }
+            ]
+            </script>
+
+            <details class="helper__terms">
+              <summary class="helper__summary">Key terms</summary>
+              <dl class="helper__glossary">
+
+                <dt>Spontaneous recovery</dt>
+                <dd>
+                  Improvement in the period after an injury that happens without
+                  treatment, as acute effects subside.
+                </dd>
+
+                <dt>Diaschisis</dt>
+                <dd>
+                  Reduced functioning in undamaged tissue connected to the injury.
+                  Its resolution is one of the things that lifts a score.
+                </dd>
+
+                <dt>Restitution and compensation</dt>
+                <dd>
+                  Getting the original way of doing the task back, and reaching the
+                  same outcome by a different route. Both raise a trained score.
+                </dd>
+
+                <dt>Measurement noise</dt>
+                <dd>
+                  Variation in a score between occasions that is not a change in the
+                  person.
+                </dd>
+
+                <dt>Transfer</dt>
+                <dd>
+                  Whether an improvement also shows up on a task that was never
+                  practised.
+                </dd>
+
+              </dl>
+            </details>
+
+          </div>
+        </details>
 
         <section class="interactive" id="recovery" data-interactive
                  data-reset-message="Simulator cleared. Back to experiment 1 at the starting settings.">
