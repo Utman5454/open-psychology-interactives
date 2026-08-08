@@ -32,6 +32,7 @@
   <script src="../../../../assets/js/main.js" defer></script>
   <script src="../../../../components/interactive-shell.js" defer></script>
   <script src="../../../../components/activity-fullscreen.js" defer></script>
+  <script src="../../../../components/learner-help.js" defer></script>
   <script src="../../../../components/copy-activity.js" defer></script>
   <script src="tool.js" defer></script>
 </head>
@@ -207,6 +208,89 @@
         <div class="section__header">
           <h2 id="visualiser-heading" tabindex="-1">The visualiser</h2>
         </div>
+
+        <!-- Optional learner support. Collapsed, secondary, and skipped entirely by
+             anybody who does not need it. It is part of the exercise rather than of
+             this website, so it travels into an exported copy - see
+             components/learner-help.js. -->
+        <details class="helper" data-learner-help>
+          <summary class="helper__summary">Need a hand?</summary>
+
+          <div class="helper__body">
+
+            <p class="helper__offer">
+              <button class="helper__start" type="button" data-guide-start>
+                Show me what to do
+              </button>
+            </p>
+
+            <div class="helper__guide" data-guide hidden>
+              <p class="helper__progress" data-guide-progress></p>
+              <div class="helper__step" data-guide-text tabindex="-1"
+                   aria-live="polite"></div>
+              <div class="helper__actions">
+                <button type="button" data-guide-prev>Back</button>
+                <button type="button" data-guide-next>Next</button>
+                <button type="button" data-variant="secondary" data-guide-close>
+                  Close the guide
+                </button>
+              </div>
+              <p class="helper__aside">
+                Nothing here changes the controls for you, and none of it says what
+                you are going to find.
+              </p>
+            </div>
+
+            <!-- Steps as content, not code, so they read as copy and can be revised
+                 without touching the component. `target` is the thing the step is
+                 about; it gets an outline, and every step also names it in words. -->
+            <script type="application/json" data-guide-steps>
+            [
+              { "text": "Start with the bars. They show how each task's variance splits between what every task shares, what its group shares, and what belongs to it alone.",
+                "target": "#manifold [data-variance-bar]" },
+              { "text": "Now read the correlation matrix. Every number in it follows from the bars above.",
+                "target": "#manifold [data-matrix]" },
+              { "text": "Raise “Shared by every task” and watch the matrix rather than the loadings.",
+                "target": "#shared-range" },
+              { "text": "Now look at the first factor's loadings for the same setting.",
+                "target": "#manifold [data-loading-chart]" },
+              { "text": "Set “Shared by every task” to zero and raise “Shared within a group” instead. What happens to the correlations, and what happens to the first factor?",
+                "target": "#manifold [data-loading-table]" }
+            ]
+            </script>
+
+            <details class="helper__terms">
+              <summary class="helper__summary">Key terms</summary>
+              <dl class="helper__glossary">
+
+                <dt>Positive manifold</dt>
+                <dd>
+                  The finding that scores on diverse cognitive tasks tend to
+                  correlate positively with one another.
+                </dd>
+
+                <dt>General factor</dt>
+                <dd>
+                  A factor on which every task loads positively.
+                </dd>
+
+                <dt>Group factor</dt>
+                <dd>
+                  Variance shared by some tasks and not others &mdash; the three
+                  verbal-ish ones here, for instance.
+                </dd>
+
+                <dt>Specific variance and measurement error</dt>
+                <dd>
+                  What belongs to one task alone, and what is noise. Neither of them
+                  contributes to any correlation.
+                </dd>
+
+              </dl>
+            </details>
+
+          </div>
+        </details>
 
         <section class="interactive" id="manifold" data-interactive
                  data-reset-message="Everything cleared. Back to the opening question.">

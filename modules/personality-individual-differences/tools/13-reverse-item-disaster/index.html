@@ -32,6 +32,7 @@
   <script src="../../../../assets/js/main.js" defer></script>
   <script src="../../../../components/interactive-shell.js" defer></script>
   <script src="../../../../components/activity-fullscreen.js" defer></script>
+  <script src="../../../../components/learner-help.js" defer></script>
   <script src="../../../../components/copy-activity.js" defer></script>
   <script src="tool.js" defer></script>
 </head>
@@ -207,6 +208,91 @@
         <div class="section__header">
           <h2 id="scorer-heading" tabindex="-1">Score it four ways</h2>
         </div>
+
+        <!-- Optional learner support. Collapsed, secondary, and skipped entirely by
+             anybody who does not need it. It is part of the exercise rather than of
+             this website, so it travels into an exported copy - see
+             components/learner-help.js. -->
+        <details class="helper" data-learner-help>
+          <summary class="helper__summary">Need a hand?</summary>
+
+          <div class="helper__body">
+
+            <p class="helper__offer">
+              <button class="helper__start" type="button" data-guide-start>
+                Show me what to do
+              </button>
+            </p>
+
+            <div class="helper__guide" data-guide hidden>
+              <p class="helper__progress" data-guide-progress></p>
+              <div class="helper__step" data-guide-text tabindex="-1"
+                   aria-live="polite"></div>
+              <div class="helper__actions">
+                <button type="button" data-guide-prev>Back</button>
+                <button type="button" data-guide-next>Next</button>
+                <button type="button" data-variant="secondary" data-guide-close>
+                  Close the guide
+                </button>
+              </div>
+              <p class="helper__aside">
+                Nothing here changes the controls for you, and none of it says what
+                you are going to find.
+              </p>
+            </div>
+
+            <!-- Steps as content, not code, so they read as copy and can be revised
+                 without touching the component. `target` is the thing the step is
+                 about; it gets an outline, and every step also names it in words. -->
+            <script type="application/json" data-guide-steps>
+            [
+              { "text": "Begin with the correct scoring method, and read the table of answers as scored. It is the baseline for everything else.",
+                "target": "#reverse [data-totals-table]" },
+              { "text": "Now switch to one of the wrong methods. Nobody's answers change; only what they are turned into.",
+                "target": "#method-select" },
+              { "text": "Look at the item-total relationships. Which items look different from before, and which look untouched?",
+                "target": "#reverse [data-item-table]" },
+              { "text": "Now look at the profiles, and compare the order of the six respondents with their order under correct scoring.",
+                "target": "#reverse [data-profile-chart]" },
+              { "text": "Try the remaining wrong methods. Does every one of them leave a mark in the item statistics?",
+                "target": "#reverse [data-item-table]" }
+            ]
+            </script>
+
+            <details class="helper__terms">
+              <summary class="helper__summary">Key terms</summary>
+              <dl class="helper__glossary">
+
+                <dt>Reverse-keyed item</dt>
+                <dd>
+                  An item worded so that agreeing with it indicates less of the
+                  trait rather than more.
+                </dd>
+
+                <dt>Recoding</dt>
+                <dd>
+                  Replacing a reverse-keyed answer with its complement before
+                  scoring. Reading an item as reversed is not the same as having
+                  recoded it.
+                </dd>
+
+                <dt>Item-total correlation</dt>
+                <dd>
+                  How strongly one item agrees with the total of the rest of the
+                  scale.
+                </dd>
+
+                <dt>Apparent profile</dt>
+                <dd>
+                  The pattern of scores a respondent appears to have once a scoring
+                  method has been applied &mdash; what a reader of the results sees.
+                </dd>
+
+              </dl>
+            </details>
+
+          </div>
+        </details>
 
         <section class="interactive" id="reverse" data-interactive
                  data-reset-message="Everything cleared. Back to the opening question.">

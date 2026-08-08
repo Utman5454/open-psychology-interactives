@@ -32,6 +32,7 @@
   <script src="../../../../assets/js/main.js" defer></script>
   <script src="../../../../components/interactive-shell.js" defer></script>
   <script src="../../../../components/activity-fullscreen.js" defer></script>
+  <script src="../../../../components/learner-help.js" defer></script>
   <script src="../../../../components/copy-activity.js" defer></script>
   <script src="tool.js" defer></script>
 </head>
@@ -161,6 +162,95 @@
             </p>
           </div>
         </noscript>
+
+        <!-- Optional learner support. Collapsed, secondary, and skipped entirely by
+             anybody who does not need it. It is part of the exercise rather than of
+             this website, so it travels into an exported copy - see
+             components/learner-help.js. -->
+        <details class="helper" data-learner-help>
+          <summary class="helper__summary">Need a hand?</summary>
+
+          <div class="helper__body">
+
+            <p class="helper__offer">
+              <button class="helper__start" type="button" data-guide-start>
+                Show me what to do
+              </button>
+            </p>
+
+            <div class="helper__guide" data-guide hidden>
+              <p class="helper__progress" data-guide-progress></p>
+              <div class="helper__step" data-guide-text tabindex="-1"
+                   aria-live="polite"></div>
+              <div class="helper__actions">
+                <button type="button" data-guide-prev>Back</button>
+                <button type="button" data-guide-next>Next</button>
+                <button type="button" data-variant="secondary" data-guide-close>
+                  Close the guide
+                </button>
+              </div>
+              <p class="helper__aside">
+                Nothing here changes the controls for you, and none of it says what
+                you are going to find.
+              </p>
+            </div>
+
+            <!-- Steps as content, not code, so they read as copy and can be revised
+                 without touching the component. `target` is the thing the step is
+                 about; it gets an outline, and every step also names it in words. -->
+            <script type="application/json" data-guide-steps>
+            [
+              { "text": "Start with the raw answers. Read one respondent's row across all twenty items before you look at any statistic.",
+                "target": "#styles [data-grids]" },
+              { "text": "Now find that person in the summary statistics: their mean, their spread, and how much they agree.",
+                "target": "#styles [data-stats-table]" },
+              { "text": "Switch to how the scale gets used, which shows which of the five points each respondent actually chose.",
+                "target": "#styles [data-dist-chart]" },
+              { "text": "Now take two respondents whose totals came out similar. What is different about how each of them got there?",
+                "target": "#styles [data-stats-table]" },
+              { "text": "Finally, the mystery respondent. Which of the patterns you have just looked at does their row resemble?",
+                "target": "#styles [data-mystery-grid]" }
+            ]
+            </script>
+
+            <details class="helper__terms">
+              <summary class="helper__summary">Key terms</summary>
+              <dl class="helper__glossary">
+
+                <dt>Acquiescence</dt>
+                <dd>
+                  Tending to agree, more or less whatever the item says.
+                </dd>
+
+                <dt>Extreme and midpoint responding</dt>
+                <dd>
+                  Preferring the ends of the scale, or preferring the middle of it,
+                  independently of the content of the items.
+                </dd>
+
+                <dt>Straight-lining</dt>
+                <dd>
+                  Giving the same answer to every item.
+                </dd>
+
+                <dt>Impression management</dt>
+                <dd>
+                  Answering so as to present a particular picture. A pattern in the
+                  data can show that this is possible; it cannot show that it
+                  happened.
+                </dd>
+
+                <dt>Balanced keying</dt>
+                <dd>
+                  Writing a scale with some items reversed, so that agreeing with
+                  everything no longer produces a high score.
+                </dd>
+
+              </dl>
+            </details>
+
+          </div>
+        </details>
 
         <section class="interactive" id="styles" data-interactive
                  data-reset-message="Everything cleared and a new pattern drawn.">
