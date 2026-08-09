@@ -160,9 +160,9 @@
       name: "Method effects turned up",
       mix: 0.16, questionnaireMethod: 0.45, testMethod: 0.45,
       note:
-        "Everything sharing a format correlates more. Notice that this " +
-        "inflates correlations within a method and leaves the ones across " +
-        "methods exactly where they were."
+        "Everything sharing a format correlates more. This inflates " +
+          "correlations within a method and leaves the ones across " +
+          "methods exactly where they were."
     },
     nomethod: {
       name: "Method effects removed",

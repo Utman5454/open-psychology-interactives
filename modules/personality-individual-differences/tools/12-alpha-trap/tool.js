@@ -1072,9 +1072,8 @@
     var text;
     if (predictedOutcome === "unknown") {
       text =
-        "You predicted that alpha on its own would not tell you what the " +
-        "scale correlates with. That is the answer this demonstration is " +
-        "built to support: the observed correlation was " +
+        "You predicted that alpha on its own would not tell you what " +
+          "the scale correlates with. The observed correlation was " +
         formatStat(metrics.outcome) +
         ", and nothing about alpha would have let you anticipate it.";
     } else if (breadthRight && outcomeRight) {
@@ -1189,9 +1188,10 @@
       tone: "good",
       verdict: "Yes.",
       text:
-        "Scale B is the only one that covers the construct without buying its " +
-        "alpha through repetition. 0.79 is adequate for research use, and it " +
-        "is being earned by ten items that ask genuinely different questions."
+        "Scale B is the only one that covers the construct without " +
+          "buying its alpha through repetition. 0.79 clears the .70 " +
+          "conventionally asked for, and it is being earned by ten items " +
+          "that ask genuinely different questions."
     },
     c: {
       tone: "caution",
@@ -1270,8 +1270,7 @@
 
     if (!alphaGuess || !outcomeGuess) {
       transferError.textContent =
-        "Answer both parts before applying the change — the prediction is the " +
-        "point of the exercise.";
+        "Answer both parts before applying the change.";
       transferError.hidden = false;
       return;
     }
@@ -1389,8 +1388,7 @@
     predictionError.hidden = true;
     state.prediction = null;
     predictionReadback.textContent =
-      "Prediction skipped — demonstration mode. With a class, ask the two " +
-      "questions aloud and take a show of hands before continuing.";
+      "Prediction skipped — demonstration mode.";
     predictionReadback.hidden = false;
     lockPredictionForm();
     startRoundOne();

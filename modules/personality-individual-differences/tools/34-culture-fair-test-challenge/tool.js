@@ -562,7 +562,7 @@
     },
     reading: {
       tone: "good",
-      verdict: "Yes — and that is the whole point.",
+      verdict: "Yes.",
       text:
         "Removing language removes the reading demand and nothing else. " +
         "Everything else a test asks of a person for reasons unrelated to " +
@@ -594,7 +594,7 @@
     var answer = $('input[name="opening"]:checked', openingForm);
     if (!answer) {
       openingError.textContent =
-        "Choose an answer before designing. Committing first is the point.";
+        "Choose an answer before designing.";
       openingError.hidden = false;
       return;
     }
@@ -609,7 +609,7 @@
     openingError.hidden = true;
     showFeedback(
       openingFeedback, "neutral", "Prediction skipped — demonstration mode.",
-      "With a class, ask the question aloud before unlocking the designer.");
+      "");
     lockForm(openingForm);
     startDesigning();
   });
@@ -619,8 +619,8 @@
     setEnabled(true);
     render();
     shell.announce(
-      "Designer unlocked. The starting design is a deliberately poor one — " +
-        "change it and watch the demands move.",
+      "Designer unlocked. The starting design is a poor one — change it " +
+        "and watch the demands move.",
       { immediate: true }
     );
   }

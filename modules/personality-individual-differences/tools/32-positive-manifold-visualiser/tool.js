@@ -642,9 +642,9 @@
       tone: "good",
       verdict: "Reasonable.",
       text:
-        "The honest position for someone meeting this for the first time. The " +
-        "pattern is solid; the interpretation is not settled; and the tool " +
-        "below is about keeping those two things apart."
+        "The honest position for someone meeting this for the first " +
+          "time. The pattern is solid; the interpretation is not settled; " +
+          "and the two are worth keeping apart."
     }
   };
 

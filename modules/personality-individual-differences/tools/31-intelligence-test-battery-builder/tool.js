@@ -193,9 +193,10 @@
       minutes: 60,
       burdenCap: 12,
       brief:
-        "The purpose is to describe a profile of strengths and difficulties " +
-        "that a teacher could act on. A flat composite score is of little use " +
-        "here; which domains differ from each other is the point.",
+        "The purpose is to describe a profile of strengths and " +
+          "difficulties that a teacher could act on. A flat composite " +
+          "score is of little use here; what matters is which domains " +
+          "differ from each other.",
       wants: { coverage: 0.5, composite: 0.15, cultural: 0.2, burden: 0.15 },
       guidance:
         "Coverage matters most: you cannot describe a profile across domains " +
@@ -878,7 +879,7 @@
     predictionError.hidden = true;
     showFeedback(
       predictionFeedback, "neutral", "Prediction skipped — demonstration mode.",
-      "With a class, ask the question aloud before unlocking the task list.");
+      "");
     lockForm(predictionForm);
     startBuilding();
   });

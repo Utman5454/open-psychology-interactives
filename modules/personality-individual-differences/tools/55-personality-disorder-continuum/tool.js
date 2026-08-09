@@ -292,8 +292,8 @@
   var challengeFeedback = $("[data-challenge-feedback]");
 
   var DEFAULT_NOTE =
-    "Four configurations worth comparing. The first two have identical trait " +
-    "extremity, which is the point of them.";
+    "Four configurations worth comparing. The first two have identical " +
+      "trait extremity.";
 
   /* Two views, one at a time.
      Six sliders, a rule, a threshold, two charts and two tables on one screen
@@ -704,9 +704,8 @@
       tone = "good";
       text =
         "A profile within the ordinary range of human variation. People " +
-        "differ, and differing is not a disorder. If you want to see the " +
-        "point of the tool, raise trait extremity on its own and watch what " +
-        "the two category rules do with it.";
+          "differ, and differing is not a disorder. Raise trait extremity " +
+          "on its own and watch what the two category rules do with it.";
     }
 
     interpretation.textContent = text;
@@ -720,7 +719,7 @@
   var OPENING = {
     unusual: {
       tone: "caution",
-      verdict: "This is the answer the tool is built to complicate.",
+      verdict: "That is the answer to complicate.",
       text:
         "Unusualness is a statistical fact about a distribution, not a " +
         "clinical one about a person. Plenty of people are unusual in ways " +

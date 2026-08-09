@@ -868,7 +868,7 @@
     event.preventDefault();
     var answer = $('input[name="mix-prediction"]:checked', mixForm);
     if (!answer) {
-      mixError.textContent = "Choose an answer first — the prediction is the point.";
+      mixError.textContent = "Choose an answer first.";
       mixError.hidden = false;
       return;
     }
@@ -958,8 +958,7 @@
     state.stage = "investigate";
     showFeedback(
       openingFeedback, "neutral", "Prediction skipped — demonstration mode.",
-      "With a class, ask the question aloud and take a show of hands before " +
-        "unlocking the investigation."
+      ""
     );
     lockForm(openingForm);
     renderActions();

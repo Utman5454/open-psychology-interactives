@@ -39,7 +39,9 @@ After the activity a student should be able to:
 
 ## Preparation
 
-None.
+None. With a class, ask the prediction question aloud and take a show of
+hands before unlocking the playground; the page no longer says so, so the
+show of hands is yours to take.
 
 ## The prediction question
 

@@ -690,8 +690,7 @@
     openingError.hidden = true;
     showFeedback(
       openingFeedback, "neutral", "Prediction skipped — demonstration mode.",
-      "With a class, ask the definition question aloud before opening the " +
-        "simulator.");
+      "");
     lockForm(openingForm);
     mainSection.hidden = false;
     regenerate();
