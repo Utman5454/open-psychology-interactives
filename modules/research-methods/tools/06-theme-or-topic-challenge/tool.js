@@ -204,11 +204,12 @@
             "workplaces they have come from",
           answer: "staging",
           note:
-            "True of Toby, supported by his own words, and it does two things " +
-            "a theme should not: it rests on one participant, and it makes the " +
-            "finding about a category of student rather than about what the " +
-            "setting does. Toby's value was that his comparison makes a norm " +
-            "visible. This turns him into a demographic."
+            "True of Toby, and supported by his own words. It does two " +
+              "things a theme should not: it rests on one participant, " +
+              "and it makes the finding about a category of student " +
+              "rather than about what the setting does. Toby's value was " +
+              "that his comparison makes a norm visible. This turns him " +
+              "into a demographic."
         },
         {
           text:
@@ -216,12 +217,13 @@
             "are, so the cost of asking is paid in identity rather than in time",
           answer: "theme",
           note:
-            "A developed theme. The organising concept is that a request for " +
-            "information is received as a statement about the person making " +
-            "it. It covers Kwame protecting the version of himself staff hold, " +
-            "Toby noticing that the same act means something different here, " +
-            "and Ama's reluctance to be the one who has not understood - and " +
-            "the final clause makes it sharp enough to be wrong."
+            "A developed theme. The organising concept is that a " +
+              "request for information is received as a statement about " +
+              "the person making it. It covers Kwame protecting the " +
+              "version of himself staff hold, Toby noticing that the same " +
+              "act means something different here, and Ama's reluctance " +
+              "to be the one who has not understood. The final clause " +
+              "makes it sharp enough to be wrong."
         },
         {
           text:
