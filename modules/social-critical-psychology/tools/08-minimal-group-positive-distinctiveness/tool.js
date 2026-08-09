@@ -436,9 +436,9 @@
     comparisonNote.setAttribute("data-tone", ids.length >= 2 ? "warn" : "neutral");
     if (ids.length < 2) {
       comparisonNote.appendChild(make("p", "verdict__body",
-        "One condition completed. Change the starting position above and make " +
-        "the same six allocations again - the comparison is the part of this " +
-        "laboratory that the classic paradigm does not contain."));
+        "One condition completed. Change the starting position above " +
+          "and make the same six allocations again. The classic paradigm " +
+          "contains no such comparison."));
       return;
     }
     comparisonNote.appendChild(make("h5", "verdict__title",
@@ -450,11 +450,11 @@
       "as much, the same choice widens an existing gap; where it holds a " +
       "quarter, favouring your own side narrows one."));
     comparisonNote.appendChild(make("p", "verdict__body",
-      "Notice that the strategy profile cannot tell those apart. A study " +
-      "reporting only the allocation strategies of its participants would " +
-      "report the same thing in all three worlds - which is a reason to be " +
-      "careful about lifting the finding out of the laboratory, and not a " +
-      "reason to doubt it inside one."));
+      "The strategy profile cannot tell those apart. A study reporting " +
+        "only the allocation strategies of its participants would report " +
+        "the same thing in all three worlds - which is a reason to be " +
+        "careful about lifting the finding out of the laboratory, and not " +
+        "a reason to doubt it inside one."));
     comparisonNote.appendChild(make("p", "verdict__note",
       "The starting positions here are stipulated. Nothing in the laboratory " +
       "tells you how a category came to hold four times as much."));

@@ -278,9 +278,8 @@
         { value: "merit", label: "That the two groups differ in what the process is measuring" }
       ],
       inferred:
-        "Discrimination - which is one candidate explanation among several, and " +
-        "the most important of the five inferential steps on this page to slow " +
-        "down.",
+        "Discrimination - which is one candidate explanation among " +
+          "several, and the step to slow down at.",
       remains:
         "What is counted as relevant experience and who accumulates it; where " +
         "posts are advertised and who sees them; who sits on panels and what " +
@@ -1087,10 +1086,10 @@
       tone: "caution",
       verdict: "Not in this sample, and not in the real meta-analyses either.",
       text:
-        "The relationship in the simulated data is deliberately of the same " +
-        "order as those reported for real latency-behaviour correlations. It " +
-        "is real at the level of a population and does not survive the trip " +
-        "down to one person."
+        "The relationship in the simulated data is of the same order as " +
+          "those reported for real latency-behaviour correlations. It is " +
+          "real at the level of a population and does not survive the " +
+          "trip down to one person."
     },
     weak: {
       tone: "good",

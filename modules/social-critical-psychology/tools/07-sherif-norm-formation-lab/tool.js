@@ -589,7 +589,7 @@
     },
     persist: {
       tone: "good",
-      verdict: "That is the result the demonstration is built around.",
+      verdict: "That is what happens.",
       text:
         "And the reason it matters is that persistence rules out the simplest " +
         "explanation. Nobody sees round 11. If the group's range comes with " +
@@ -600,10 +600,9 @@
       tone: "caution",
       verdict: "There is no true answer here.",
       text:
-        "The display has no scale and no reference object. That is not a " +
-        "limitation of the demonstration; it is the condition that makes it " +
-        "work, and it is also the boundary condition on how far the result " +
-        "generalises to judgements that can be checked."
+        "The display has no scale and no reference object. That absence " +
+          "is the condition that makes it work, and the boundary on how " +
+          "far the result generalises to judgements that can be checked."
     }
   };
 

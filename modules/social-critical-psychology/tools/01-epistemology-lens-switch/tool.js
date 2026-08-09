@@ -611,7 +611,7 @@
     },
     object: {
       tone: "good",
-      verdict: "That is the argument of the tool.",
+      verdict: "That is the argument here.",
       text:
         "Watch it happen in the specification: change nothing but the first " +
         "row and the legitimate question, the admissible evidence, the method " +
@@ -1038,9 +1038,8 @@
     appraisalBody.appendChild(make("p", "verdict__body",
       "What it makes hard to see: " + lens.hides));
     appraisalBody.appendChild(make("p", "verdict__note",
-      "Where it points: " + lens.action + ". Notice that the intervention " +
-      "follows from the object, not from the findings - the findings only " +
-      "tell you how much of it to do."));
+      "Where it points: " + lens.action + ". The intervention follows from the object, not from the " +
+        "findings - the findings only tell you how much of it to do."));
   }
 
   function recordBuild() {
@@ -1082,7 +1081,7 @@
 
     comparisonNote.textContent = ids.length < 2
       ? "One lens run. Use \"Run another lens on this case\" to build a second " +
-        "study from the same evidence - the comparison is the point of the tool."
+        "study from the same evidence, then compare the two."
       : "Same school, same log, same policy change, same focus groups. The rows " +
         "differ because the first decision differed. Ask which column your own " +
         "discipline trains you to fill in first, and what that habit costs.";
@@ -1121,8 +1120,8 @@
     state.lens = null;
     $$('input[name="lens"]').forEach(function (input) { input.checked = false; });
     lensNote.textContent =
-      "Choose a starting point. The tool will not tell you which one is right, " +
-      "because that is not a question it can answer.";
+      "Choose a starting point. Which one is right is not a question a study " +
+      "design can settle.";
     decisionsSet.hidden = true;
     appraisal.hidden = true;
     render();
@@ -1274,8 +1273,8 @@
     labSection.hidden = true;
     $$('input[name="lens"]').forEach(function (input) { input.checked = false; });
     lensNote.textContent =
-      "Choose a starting point. The tool will not tell you which one is right, " +
-      "because that is not a question it can answer.";
+      "Choose a starting point. Which one is right is not a question a study " +
+      "design can settle.";
     decisionsSet.hidden = true;
     appraisal.hidden = true;
     claimsForm.reset();

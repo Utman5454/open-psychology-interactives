@@ -157,7 +157,7 @@
       id: "none",
       label: "Do not name it yet - keep the accounts as accounts",
       frame: "None. Nine descriptions stay nine descriptions.",
-      locus: "Undecided, deliberately.",
+      locus: "Undecided.",
       expert: "Nobody in particular. There is no post to appoint to.",
       intervention: "None follows, because there is nothing yet to intervene on.",
       recedes:
@@ -1377,7 +1377,7 @@
     lead.appendChild(document.createTextNode(
       " Claims 2 and 3 are judged against your own stage 1 selection, not " +
       "against a stored key: a different set of features gives different " +
-      "verdicts, which is the point."));
+      "verdicts."));
     claimsFeedback.appendChild(lead);
 
     var list = make("ol", "claims__results");

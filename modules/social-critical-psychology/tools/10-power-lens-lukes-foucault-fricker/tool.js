@@ -983,8 +983,8 @@
     var lead = make("p");
     lead.appendChild(make("strong", "feedback__verdict", right + " of 3 match."));
     lead.appendChild(document.createTextNode(
-      " Notice that none of the three asks you to name a framework. They ask " +
-      "what a particular feature of the case is doing."));
+      "None of the three asks you to name a framework. They ask what a " +
+        "particular feature of the case is doing."));
     claimsFeedback.appendChild(lead);
     var list = make("ol", "claims__results");
     CLAIMS.forEach(function (claim, index) {

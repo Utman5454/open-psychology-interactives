@@ -146,7 +146,7 @@
         "of encouragement, and that her tutor's remark is a verbal persuasion " +
         "effect pointing the wrong way.",
       note:
-        "Deliberately not a theory of global self-worth, which is its main " +
+        "Not a theory of global self-worth, which is its main " +
         "advantage over the constructs it replaced. It has no term for the " +
         "structure that made her hours available to be cut."
     },
@@ -219,7 +219,7 @@
       answer: "identity",
       why:
         "Salience of a group membership as the thing that varies, with the " +
-        "person held constant. Note that this is a claim about the room, " +
+        "person held constant. This is a claim about the room, " +
         "expressed as a claim about her - which is exactly the move the " +
         "framework is built on."
     },
