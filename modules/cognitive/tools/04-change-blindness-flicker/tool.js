@@ -137,7 +137,8 @@
   var TRIALS = [
     {
       id: "tree",
-      name: "Scene 1 — a whole object",
+      name: "Scene 1",
+      descriptor: "a whole object",
       seed: 20260911,
       changeKind: "Presence",
       where: "Centre",
@@ -154,7 +155,8 @@
     },
     {
       id: "window",
-      name: "Scene 2 — a small detail",
+      name: "Scene 2",
+      descriptor: "a small detail",
       seed: 20260912,
       changeKind: "State",
       where: "Right edge",
@@ -175,7 +177,8 @@
     },
     {
       id: "building",
-      name: "Scene 3 — a large area",
+      name: "Scene 3",
+      descriptor: "a large area",
       seed: 20260913,
       changeKind: "Size",
       where: "Left edge",
@@ -198,7 +201,8 @@
     },
     {
       id: "cloud",
-      name: "Scene 4 — something that moves",
+      name: "Scene 4",
+      descriptor: "something that moves",
       seed: 20260914,
       changeKind: "Position",
       where: "Upper centre",
@@ -395,6 +399,16 @@
     return TRIALS.filter(function (t) { return t.id === sceneSelect.value; })[0] || TRIALS[0];
   }
 
+  /* A scene is named twice over. Before the trial it is only its number: the
+     descriptors say what kind of thing changed, and each of them belonged to
+     exactly one answer, so a learner reading the scene picker could choose
+     correctly without searching. Afterwards the descriptor is what makes the
+     comparison between scenes legible, so everything shown once the change
+     has been revealed uses the full name. */
+  function fullName(trial) {
+    return trial.name + " — " + trial.descriptor;
+  }
+
   function prepareTrial(trial) {
     var base = buildScene(trial.seed);
     var changed = trial.apply(cloneScene(base));
@@ -416,10 +430,19 @@
     if (previous) { sceneSelect.value = previous; }
   }
 
+  /* This hint used to print the change type, its location and its size before
+     the trial ran. Each change type belonged to exactly one answer option, so
+     the hint could be read off against the list and the right answer chosen
+     without searching the picture at all. It now says how to search rather
+     than what to look for. The type, location and size are still reported in
+     the results table once the trial is over, where comparing them across
+     trials is the point. */
   function updateSceneHint() {
     var trial = currentTrial();
-    sceneHint.textContent = trial.changeKind + " change, " +
-      trial.where.toLowerCase() + ", " + trial.size.toLowerCase() + ". " +
+    sceneHint.textContent =
+      "Work through the picture region by region — sky, skyline, ground — " +
+      "rather than taking it in as a whole. The change can be anywhere, and " +
+      "it can be large or small. " +
       (state.used.indexOf(trial.id) === -1
         ? "Not yet revealed."
         : "Already revealed — running it again measures your memory for where it was, not change blindness.");
@@ -563,15 +586,42 @@
       " seconds. Now say what changed.", { immediate: true });
   }
 
+  /* The answers to the four scenes are the first four entries of
+     IDENTIFY_OPTIONS, in the order the scenes themselves are listed. Shown in
+     that fixed order, the position of the correct choice simply followed the
+     scene number, so the task could be passed without searching the picture.
+     The six choices are therefore shuffled fresh for every trial.
+
+     This shuffle deliberately does not use the seeded generator above. The
+     scene seeds are constants, so a seeded order would put the answer in the
+     same place every time that scene was run — predictable again, just less
+     obviously. The stimulus stays fully seeded and reproducible; only the
+     order of the choices varies, and nothing measured depends on it.
+
+     The value and its label are one array element, so they cannot drift apart:
+     shuffling moves the pair. */
+  function shuffledIdentifyOptions() {
+    var options = IDENTIFY_OPTIONS.slice();
+    for (var i = options.length - 1; i > 0; i -= 1) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var held = options[i];
+      options[i] = options[j];
+      options[j] = held;
+    }
+    return options;
+  }
+
   function renderIdentifyOptions() {
     clear(identifyOptions);
-    IDENTIFY_OPTIONS.forEach(function (option, index) {
+    shuffledIdentifyOptions().forEach(function (option) {
       var label = make("label", "control--choice");
       var input = document.createElement("input");
       input.type = "radio";
       input.name = "identify";
       input.value = option[0];
-      input.id = "identify-" + index;
+      /* Keyed to the value, not the position, so the id stays stable and
+         unique however the choices are ordered. */
+      input.id = "identify-" + option[0];
       label.appendChild(input);
       label.appendChild(document.createTextNode(" " + option[1]));
       identifyOptions.appendChild(label);
@@ -597,7 +647,7 @@
 
     state.records.push({
       trialId: trial.id,
-      name: trial.name,
+      name: fullName(trial),
       changeKind: trial.changeKind,
       where: trial.where,
       size: trial.size,
@@ -632,8 +682,8 @@
   function showReveal(correct, answer) {
     var trial = state.trial;
     drawScene(revealSvg, state.prepared.changed, { focus: state.prepared.focus });
-    revealCaption.textContent = trial.name + " — the changed version, with the " +
-      "change ringed";
+    revealCaption.textContent = fullName(trial) + ": the changed version, with " +
+      "the change ringed";
     revealText.textContent = state.prepared.text;
 
     clear(resultsBody);
@@ -732,7 +782,7 @@
     TRIALS.forEach(function (trial) {
       var prepared = prepareTrial(trial);
       var item = make("li");
-      item.appendChild(make("strong", null, trial.name + ": "));
+      item.appendChild(make("strong", null, fullName(trial) + ": "));
       item.appendChild(document.createTextNode(prepared.text + " (" +
         trial.changeKind.toLowerCase() + ", " + trial.where.toLowerCase() +
         ", " + trial.size.toLowerCase() + ".)"));
@@ -749,8 +799,8 @@
 
     var first = prepareTrial(TRIALS[0]);
     drawScene(revealSvg, first.changed, { focus: first.focus });
-    revealCaption.textContent = TRIALS[0].name +
-      " — the changed version, with the change ringed";
+    revealCaption.textContent = fullName(TRIALS[0]) +
+      ": the changed version, with the change ringed";
     revealText.textContent = first.text;
 
     renderTrialTable();
