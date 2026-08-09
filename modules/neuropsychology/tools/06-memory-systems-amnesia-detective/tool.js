@@ -724,12 +724,12 @@
       tone: "good",
       verdict: "Yes - this is the one that changes the argument.",
       text:
-        "The problem is that recognition is the easier task. Make it hard " +
-        "enough that healthy controls score no better on it than on recall - " +
-        "more similar foils, more items - and the comparison becomes one " +
-        "between processes rather than between difficulties. If recognition " +
-        "is still spared once difficulty is equated, the retrieval account " +
-        "has evidence."
+        "The problem is that recognition is the easier task. Make it " +
+          "hard enough that healthy controls score no better on it than " +
+          "on recall: more similar foils, more items. The comparison then " +
+          "becomes one between processes rather than between " +
+          "difficulties. If recognition is still spared once difficulty " +
+          "is equated, the retrieval account has evidence."
     },
     more: {
       tone: "caution",

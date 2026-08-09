@@ -775,10 +775,10 @@
       tone: "caution",
       verdict: "This makes it worse, not better.",
       text:
-        "A longer version of the same task measures the same thing with the " +
-        "same confounds, adds nothing about why a score is low, and uses the " +
-        "session time that the measures which would have answered that were " +
-        "going to need."
+        "A longer version of the same task measures the same thing with " +
+          "the same confounds, and adds nothing about why a score is low. " +
+          "It also uses the session time the measures that would have " +
+          "answered that were going to need."
     },
     comparison: {
       tone: "caution",
