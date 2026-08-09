@@ -612,12 +612,12 @@
     costNote.textContent =
       "Across " + COVERAGE_RUNS + " fresh samples from the same generating " +
       "model, the average estimated slope is " + fmt(cov.meanSlope, 3) +
-      " against a true slope of " + fmt(TRUE_B1) + " - the estimate is " +
-      "unbiased however the spread behaves, which is the first half of the " +
-      "lesson. The last row is the exact second half, computed from the known " +
-      "model rather than simulated: the true standard error of the slope is " +
-      fmt(model.trueSE, 3) + " and the classical formula is aiming at " +
-      fmt(model.aimedAt, 3) + ", so it " +
+      " against a true slope of " + fmt(TRUE_B1) + ". The estimate is " +
+      "unbiased however the spread behaves. " +
+      "The last row is computed from the known model rather than simulated: " +
+      "the true standard error of the slope is " + fmt(model.trueSE, 3) +
+      " and the classical formula is aiming at " + fmt(model.aimedAt, 3) +
+      ", so it " +
       (model.ratio > 1.02
         ? "understates the real variability by " +
           fmt(100 * (model.ratio - 1), 0) + " per cent. Intervals built on it " +
@@ -635,9 +635,8 @@
       " The coverage row above is a Monte Carlo estimate from " +
       COVERAGE_RUNS + " samples and carries about a percentage point of its " +
       "own error, so read it as confirmation rather than as the measurement. " +
-      "The robust figure stays near 95% in every case and costs very little " +
-      "when the variance really is constant, which is why many people now use " +
-      "it by default.";
+      "The robust figure stays near 95% in every case, and costs very little " +
+      "when the variance really is constant.";
 
     /* --- Verdict -------------------------------------------------------- */
 
@@ -691,19 +690,15 @@
     }
     if (s.n >= 220 && s.severity > 0 && s.severity < 0.3 && s.pattern !== "constant") {
       lines.push(
-        "This is the other awkward case: a departure small enough to be " +
-        "harmless and a sample large enough that a formal test would report " +
-        "it. Tests for non-constant variance get more sensitive as n grows, " +
-        "so at this size they flag things that do not matter - which is one " +
-        "reason this tool does not compute one.");
+        "The other awkward case: a departure small enough to be harmless, and " +
+        "a sample large enough that a formal test would report it. Tests for " +
+        "non-constant variance get more sensitive as n grows.");
     }
     if (!lines.length) {
       lines.push(
-        "Reading residual plots is a skill and a fallible one: two competent " +
-        "readers routinely disagree about the same picture. A formal test " +
-        "does not settle it either, because its sensitivity depends on the " +
-        "sample size. Say what you saw, report standard errors that do not " +
-        "assume the thing you are unsure about, and let the reader see both.");
+        "Two competent readers can disagree about the same picture. Say what " +
+        "you saw, and report a standard error that does not assume the thing " +
+        "you are unsure about.");
     }
     honesty.textContent = lines.join(" ");
 
@@ -795,11 +790,10 @@
     down: "No, and for the same reason: the estimate is unbiased whatever the " +
       "spread does. The average slope across repeated samples lands on the " +
       "truth.",
-    unbiased: "Correct, and it is the whole point of the laboratory. The " +
-      "coefficient survives; the formula for its standard error does not, " +
-      "because that formula assumes a single common variance. The interval " +
-      "and the test are built on the standard error, so they inherit the " +
-      "problem while looking perfectly normal.",
+    unbiased: "Correct. The coefficient is unbiased; the formula for its " +
+      "standard error is not, because that formula assumes a single common " +
+      "variance. The interval and the test are built on the standard error, " +
+      "so they inherit the problem while looking perfectly normal.",
     invalid: "Too strong. A fan shape is a reason to be careful about the " +
       "standard errors, not a reason to discard the analysis. Robust standard " +
       "errors, a transformation, or weighted least squares are all ordinary " +
@@ -844,9 +838,6 @@
     var p = make("p");
     p.appendChild(make("strong", "feedback__verdict",
       correct + " of the two."));
-    p.appendChild(document.createTextNode(
-      " The second question is the one that decides what you do about a fan " +
-      "shape when you find one."));
     openingFeedback.appendChild(p);
     var list = make("ul");
     var li1 = make("li");
@@ -914,10 +905,9 @@
       title: "Study 4",
       why:
         "There is a fan in the generating model, and sixteen points cannot " +
-        "establish it. Whatever you thought you saw here, a different sample " +
-        "of sixteen from the same model would have looked meaningfully " +
-        "different. Declining to diagnose is the correct reading, and it is " +
-        "the answer people find hardest to give."
+        "establish it. A different sample of sixteen from the same model would " +
+        "have looked meaningfully different. Declining to diagnose is the " +
+        "correct reading."
     }
   ];
 

@@ -1,71 +1,53 @@
 # Open Psychology Interactives
-# Learner-Facing Copy Standard
+# Learner Copy, Voice and Delivery Standard
 
-**Filename:** `LEARNER_COPY_STYLE.md`
+**Filename:** `LEARNER_COPY_STYLE.md`  
+**Status:** Authoritative project standard  
+**Scope:** All learner-facing copy across Open Psychology Interactives
 
-**Purpose:** Use this guide when revising learner-facing copy across the Open Psychology Interactives repository.
+---
 
-This is a writing and interaction standard, not a word-count reduction exercise.
+## 0. Purpose
 
-The central problem this guide is designed to solve is **hierarchy, timing and cognitive load**. Existing tools may contain strong psychological, statistical and methodological content while still feeling heavy because too much of that content appears at the exact moment the learner is meant to act.
+Use this file whenever creating, reviewing or revising learner-facing copy in Open Psychology Interactives.
 
-The aim is to preserve the intellectual sophistication of the complete interactive while changing **when, where and how much explanation appears**.
+This is the **single authoritative writing standard** for the project.
 
-The target rhythm is:
+It replaces earlier learner-copy guidance and incorporates the lessons from the full collection-wide copy audit.
+
+The central problem is **not word count in isolation**.
+
+The problem is:
+
+- hierarchy;
+- timing;
+- cognitive load;
+- sentence architecture;
+- repetition;
+- overqualification;
+- documentation voice;
+- explanation arriving before discovery;
+- dynamic feedback trying to do too many jobs at once.
+
+The collection should remain intellectually sophisticated.
+
+The goal is to change **when, where and how that sophistication appears**.
+
+The target learner rhythm is:
 
 > **short setup → do something → notice something → brief explanation → continue**
 
-During active interaction, keep prose extremely focused.
+Or, more fully:
 
-After the learner has experienced the phenomenon, explanation can deepen.
+> **orient → commit → act → notice → explain briefly → continue → deepen later**
 
----
+The single most important principle is:
 
-## 1. Core principle
-
-The single most important rule is:
-
-> **The closer the learner is to doing something, the less prose they should have to read.**
-
-A learner who is about to choose, drag, compare, predict, reveal, classify or test something needs:
-
-- a clear task;
-- the minimum context needed to perform it;
-- one or two things worth noticing;
-- a reason to continue.
-
-They usually do **not** need, at that moment:
-
-- the full mechanism;
-- every methodological caveat;
-- every alternative interpretation;
-- a literature review;
-- author rationale;
-- a preview of the final debrief;
-- a restatement of what the interface already shows.
-
-Immediate feedback should normally answer:
-
-> **What should I notice from what just happened?**
-
-One feedback box should normally have **one intellectual job**.
-
-If a feedback state is simultaneously:
-
-1. telling the learner whether they were right;
-2. explaining the mechanism;
-3. qualifying the mechanism;
-4. discussing competing interpretations;
-5. relating it to the literature;
-6. previewing the debrief;
-
-then the state is overloaded.
-
-Move some of that work elsewhere.
+> **Write as though you are standing beside the learner while they use the activity: tell them what to do, point out what changed, explain only what becomes useful now, and move everything else out of their way.**
 
 ---
 
-## 2. Target voice
+# 1. The target voice
 
 Write as:
 
@@ -80,7 +62,8 @@ The voice should be:
 - conceptually precise;
 - concrete;
 - easy to scan;
-- occasionally memorable.
+- occasionally memorable;
+- comfortable using technical language when the technical term is part of the learning.
 
 It should sound like someone who understands the material well enough to say less.
 
@@ -90,179 +73,161 @@ It should **not** sound like:
 - a textbook paragraph;
 - a policy document;
 - an ethics application;
+- developer documentation;
+- a methods appendix;
 - generic AI explanation;
-- a script that narrates every pedagogical decision;
+- an author narrating their own teaching design;
 - a lecturer who keeps stopping the activity to explain what the activity is meant to teach.
 
-### 2.1 Spoken-language test
+## 1.1 The standing-beside-the-learner test
 
-Prefer wording a good lecturer could plausibly say aloud.
+Before keeping a sentence, ask:
 
-Prefer:
+> **Would a good lecturer naturally say this aloud to a student at this exact moment?**
 
-> The slope is fine. The uncertainty is not.
+If not, one of four things is usually true:
 
-over:
+1. the sentence should be shorter;
+2. it should arrive later;
+3. it belongs in optional depth;
+4. it belongs in `teaching-notes.md`.
 
-> It is important to recognise that the inferential consequence of this pattern primarily concerns the accuracy of the estimated standard error rather than the unbiasedness of the regression coefficient.
+## 1.2 The speaker-position test
 
-Prefer:
+Ask:
 
-> Same profile. Different category.
+> **Am I speaking to the learner, or describing the pedagogical design to another author?**
 
-over:
+Learner voice:
 
-> The profile remains numerically identical despite being assigned to a different categorical classification under the alternative threshold rule.
+> Keep your eyes on the cross.
 
-The shorter version is not less intelligent when the interaction has already supplied the evidence.
+> Run the same scene again without the blank.
 
----
+> The residuals fan out, but the slope barely moves.
 
-## 3. Preserve technical language when it matters
+> A crossover in the point estimates is not a crossover in the evidence.
 
-Do not replace precise terminology with vague everyday wording simply to sound conversational.
+Documentation voice:
 
-If the technical term is part of the learning, teach it plainly and then use it normally.
+> The comparison the tool is built around...
 
-For example:
+> The quantity this account tracks...
 
-> **Homoscedasticity** means the residual spread stays roughly constant.
+> The page states repeatedly that...
 
-Then continue using *homoscedasticity*.
+> The tool marks combinations as coherent or in tension...
 
-Do not repeatedly translate it back into a longer explanation every time it appears.
+> This is the case that makes traits look obviously real.
 
-The same applies to terms such as:
+Documentation may be useful in metadata, developer notes or `teaching-notes.md`.
 
-- residual;
-- heteroscedasticity;
-- dissociation;
-- latency;
-- construct;
-- validity;
-- inference;
-- impairment;
-- dimensional;
-- threshold;
-- attentional weight;
-- standard error;
-- network;
-- category;
-- association.
-
-The goal is **plain precision**, not avoidance of disciplinary language.
+It should not dominate the learner experience.
 
 ---
 
-## 4. Editorial levels
+# 2. Preserve sophistication, but not necessarily in place
 
-When revising a tool, classify learner-facing prose conceptually into four levels.
+This rule is essential:
 
-These are **editorial categories**. They are not interface labels that should automatically appear on the page.
+> **Preservation does not mean preservation in place.**
 
-### ACTIVE COPY
+A sentence can be:
 
-What the learner needs **now** to perform the task and notice the result.
+- accurate;
+- important;
+- nuanced;
+- methodologically responsible;
 
-Typical content:
+and still be wrong **where it currently appears**.
 
-- short setup;
-- task instruction;
-- prediction question;
-- control hint;
-- immediate result;
-- one key interpretation;
-- next action.
+Do not preserve a caveat before a prediction simply because it is valuable.
 
-Active copy should usually be the shortest and most concrete copy in the tool.
+Do not preserve an explanation inside a button response simply because it is correct.
 
-### OPTIONAL DEPTH
+Do not preserve instructor rationale on a learner page simply because it is useful.
 
-Useful methodological or theoretical detail that is worth preserving but does not need to interrupt the learner.
+Move material to the place where it does the most pedagogical work.
 
-Typical content:
+Useful destinations include:
 
-- fuller mechanism;
-- secondary interpretation;
-- important confound;
-- technical derivation;
-- alternative explanation;
-- measurement qualification;
-- extra methodological detail.
+- optional disclosure;
+- a later result explanation;
+- debrief;
+- limitations;
+- `teaching-notes.md`.
 
-Good homes include:
-
-- disclosure;
-- expandable panel;
-- secondary note;
-- optional “Why?” section.
-
-Optional depth should reward curiosity, not block progress.
-
-### LATER DEBRIEF
-
-Important synthesis that becomes useful **after** the learner has experienced the phenomenon.
-
-Typical content:
-
-- conceptual integration;
-- comparison of competing explanations;
-- methodological implications;
-- theoretical significance;
-- limits of inference;
-- links between stages;
-- broader critical interpretation.
-
-The debrief may be longer because the learner now has something concrete to think with.
-
-### REMOVE / TEACHING NOTES
-
-Content that should not remain in the learner journey.
-
-Typical content:
-
-- repeated caveats;
-- author rationale;
-- facilitator instructions;
-- suggested classroom discussion prompts;
-- “why this pair is useful to demonstrate”;
-- defensive prose written to pre-empt every possible misunderstanding;
-- prose that simply narrates what the graph, profile, animation or simulation already shows;
-- explanations already made clearly elsewhere.
-
-Instructor-facing material belongs in `teaching-notes.md`.
+This is a **redistribution task**, not a deletion contest.
 
 ---
 
-## 5. The learner rhythm
+# 3. The core learner rhythm
 
-A good interaction sequence usually looks like this:
+A strong interaction usually follows this sequence.
 
-1. **Orient**
-   - What is the problem?
-   - What is the learner about to do?
+## 3.1 Orient
 
-2. **Commit**
-   - Ask for a prediction, judgement or choice where useful.
+Answer:
 
-3. **Act**
-   - Let the learner manipulate, compare, classify, reveal or test.
+- What is the interesting problem?
+- What am I about to do?
 
-4. **Notice**
-   - Point to the relationship that matters.
+Keep this short.
 
-5. **Explain briefly**
-   - Give the smallest explanation needed to make sense of the result.
+## 3.2 Commit
 
-6. **Continue**
-   - Send the learner into the next useful action.
+Where useful, ask the learner to:
 
-7. **Deepen later**
-   - Use disclosure or debrief for the larger methodological or theoretical argument.
+- predict;
+- choose;
+- rank;
+- classify;
+- judge;
+- estimate.
 
-The interaction should not repeatedly become:
+Do not tell them the answer first.
 
-> **prompt → click → large explanation → next instruction → another large explanation → disclosure → more explanation**
+## 3.3 Act
+
+Let the learner:
+
+- manipulate;
+- compare;
+- reveal;
+- run;
+- drag;
+- inspect;
+- classify;
+- test.
+
+## 3.4 Notice
+
+Point to the relationship that matters.
+
+Do not narrate everything visible.
+
+## 3.5 Explain briefly
+
+Give the smallest explanation needed to make sense of the result.
+
+## 3.6 Continue
+
+Send the learner into the next useful action.
+
+## 3.7 Deepen later
+
+Use:
+
+- optional depth;
+- challenge;
+- debrief;
+- limitations;
+
+for the larger theoretical, methodological or critical argument.
+
+Avoid this rhythm:
+
+> **prompt → click → essay → instruction → essay → disclosure → more explanation**
 
 Prefer:
 
@@ -270,27 +235,150 @@ Prefer:
 
 ---
 
-## 6. Trust the interaction
+# 4. The closer the learner is to acting, the less prose they should meet
 
-The graph, animation, profile, simulation, slider, score table or comparison is part of the explanation.
+A learner who is about to:
 
-Let it carry some of the teaching.
+- choose;
+- drag;
+- compare;
+- predict;
+- reveal;
+- classify;
+- test;
 
-### Rule
+usually needs:
+
+- a clear task;
+- the minimum context;
+- one thing worth noticing;
+- a reason to continue.
+
+They usually do **not** need at that moment:
+
+- the full mechanism;
+- every caveat;
+- alternative interpretations;
+- a literature review;
+- author rationale;
+- a preview of the final debrief;
+- a restatement of the graph;
+- a defence of the design.
+
+This is not a ban on depth.
+
+It is a rule about **timing**.
+
+---
+
+# 5. Plain precision
+
+Do not replace disciplinary language with vague everyday language merely to sound natural.
+
+If the term is part of the learning:
+
+1. teach it plainly;
+2. then use it normally.
+
+For example:
+
+> **Homoscedasticity** means the residual spread stays roughly constant.
+
+Then continue using *homoscedasticity*.
+
+Do not translate it back into a longer phrase every time.
+
+The goal is:
+
+> **plain precision**
+
+not:
+
+> **simplified vocabulary**
+
+## 5.1 Give a shown number a reference point
+
+**Scope: technical and statistical activities, at the moment a learner is shown a statistic, diagnostic value or numerical magnitude.** This is not a general licence to explain numbers, and not a reason to add exposition anywhere else.
+
+A figure with no reference point cannot be read. `2.41` is not information until the learner knows what it would take for it to matter.
+
+Where a **genuine disciplinary convention** exists, give it briefly, beside the number:
+
+> Coverage of the 95% interval: 86%. It should be 95%.
+
+Where **no accepted cutoff exists**, say so plainly and name what should guide interpretation instead:
+
+> There is no ratio at which a fan becomes a problem. What matters is where the extra spread sits.
+
+Both halves of this matter. An unanchored number invites the learner to invent a threshold; a borrowed threshold teaches a false one.
+
+Rules:
+
+- **Do not invent a cutoff.** Do not borrow one from a different design, a different measure or a different sample size to fill the gap.
+- **"There is no accepted cutoff" is a complete answer.** It is often the more accurate one, and saying it is part of the teaching rather than an admission.
+- **Match the reference point to the quantity actually shown.** A convention for a test statistic is not a convention for an effect size.
+- **Keep it to a clause or a short sentence.** If the anchor needs a paragraph, the number is in the wrong place, or the paragraph belongs in optional depth or the debrief.
+- **State it once.** A reference point is a caveat like any other and gets one home (§9).
+
+---
+
+# 6. Sentence architecture
+
+Many difficult passages are not difficult because the ideas are advanced.
+
+They are difficult because one sentence is trying to do several jobs.
+
+## 6.1 One sentence, one main move
+
+Prefer:
+
+> The slope barely moves. The standard error does.
+
+over:
+
+> The slope remains close to the generating value while the classical standard error increasingly departs from the value implied by the model, which is why the coefficient may appear stable even though the associated inference has become unreliable.
+
+The longer version is not more rigorous.
+
+It has bundled observation, mechanism and implication into one sentence.
+
+## 6.2 Prefer subject → verb → consequence
+
+Prefer:
+
+> Indiscriminate policing brought previously separate sections of the crowd under one shared category.
+
+over:
+
+> The crowd was handled as one mass and a description everyone could recognise themselves in was available, so one category formed across all six sections.
+
+## 6.3 Break qualification chains
+
+Watch for:
+
+> X, because Y, although Z, which is why A rather than B.
+
+Split it.
+
+## 6.4 Short sentences are allowed to carry difficult ideas
+
+When the interaction has already supplied the evidence:
+
+> Same profile. Different category.
+
+may be better than another explanatory paragraph.
+
+Short does not mean simplistic.
+
+---
+
+# 7. Trust the interface
+
+The graph, animation, table, profile, slider, simulation and comparison are part of the explanation.
+
+Let them carry some of the teaching.
 
 > **Do not narrate what the learner can already see unless the sentence directs attention to a meaningful relationship.**
-
-Good:
-
-> Repetition differs while the rest of the profile barely does.
-
-This identifies a relationship that matters.
-
-Poor:
-
-> Profile A scores 3 on repetition, 7 on comprehension, 5 on naming, 6 on reading...
-
-if those values are already clearly visible.
 
 Good:
 
@@ -300,234 +388,25 @@ Poor:
 
 > The residual plot is narrow on the left and wider on the right, while the fitted slope shown above is 0.49...
 
-when the learner can already see both.
+if both are already plainly visible.
 
-The question is not:
+Ask:
 
-> Can this sentence describe the display?
+> **If I delete this sentence, can the learner already see the information?**
 
-The question is:
-
-> Does this sentence help the learner notice something the display alone may not organise conceptually?
+If yes, the sentence needs a stronger reason to exist.
 
 ---
 
-## 7. Do not explain the discovery before it happens
-
-Instructions should usually tell the learner **what to do**, not explain in advance why the result will matter.
-
-Prefer:
-
-> Try the last two patterns.
-
-over:
-
-> The last two are worth visiting because they demonstrate that the inferential consequences depend on where the variance is concentrated rather than simply on the visual prominence of the fan shape.
-
-Let the learner see the difference first.
-
-Then explain it.
-
-### Before interaction
-
-Use copy to:
-
-- establish the task;
-- define unfamiliar controls;
-- state essential safety boundaries;
-- ask for a prediction.
-
-Do not use pre-task copy to deliver the conclusion the interaction is meant to reveal.
-
----
-
-## 8. Dynamic interaction copy
-
-Dynamic and JavaScript-generated text deserves the strictest editing because it appears at moments when the learner is actively doing something.
-
-When revising a tool, inspect **all learner-facing strings in `tool.js`**, not only static HTML.
-
-This includes:
-
-- prediction feedback;
-- correct and incorrect answer feedback;
-- result cards;
-- slider updates;
-- preset messages;
-- reveal states;
-- challenge feedback;
-- stage-unlock text;
-- empty states;
-- reset messages;
-- retry messages;
-- dynamic labels;
-- conditional warnings;
-- tooltips;
-- dynamically inserted disclosures.
-
-### 8.1 Prediction feedback
-
-Prediction feedback should usually:
-
-1. acknowledge the choice;
-2. state the key conceptual consequence;
-3. direct the learner towards the next task.
-
-Typical target:
-
-> Correct. The slope can survive while its standard error fails. Now make that happen in the lab.
-
-Avoid turning every answer option into a mini-essay.
-
-For an incorrect answer, explain **why the distinction matters**, not everything known about the topic.
-
-Good:
-
-> Too strong. A fan shape is a warning about uncertainty, not a reason to discard the regression.
-
-Less good:
-
-> Too strong. A fan shape is a reason to be careful about the standard errors, not a reason to discard the analysis. Robust standard errors, transformation and weighted least squares are all possible responses...
-
-The intervention options may be useful later. They are not necessary for correcting the prediction.
-
-### 8.2 Correct / incorrect feedback
-
-Do not mechanically reward correct answers with “Correct!” plus a paragraph.
-
-Sometimes the best feedback is simply:
-
-> Exactly. Repetition is the thing that changed.
-
-Or:
-
-> Not this time. The score and the shortlist do not line up for this person.
-
-Correctness is secondary to the conceptual observation.
-
-### 8.3 Result cards
-
-A live result card should usually answer:
-
-- What changed?
-- What did not?
-- What is the one relationship worth noticing?
-
-Good:
-
-> The residuals fan out.  
-> The slope is still close to 0.50.  
-> The classical standard error is too small.  
-> **The estimate survives; the uncertainty does not.**
-
-Poor:
-
-A single paragraph that also explains the standard-error formula, confidence interval coverage, leverage, robust alternatives and small-sample uncertainty.
-
-### 8.4 Slider and preset updates
-
-A slider should not trigger a fresh paragraph every time if the conceptual message has not changed.
-
-Prefer:
-
-- short state labels;
-- concise result summaries;
-- values updating visually;
-- one interpretation only when the state crosses into a meaningfully different pattern.
-
-If ten nearby slider values produce the same lesson, do not generate ten verbose variants.
-
-### 8.5 Button-triggered text
-
-A button should not normally reveal an essay.
-
-Use the button to reveal:
-
-- the consequence;
-- the key comparison;
-- one brief interpretation;
-- a next action.
-
-If the result requires more depth, offer it separately.
-
-### 8.6 Sequential stages
-
-At a stage transition, do not recap everything from the previous stage.
-
-Use a bridge.
-
-Good:
-
-> The last three words changed your answer. Nothing around *it* changed.  
-> Now compare that with the machine-side operation.
-
-Poor:
-
-A five-paragraph summary of everything the learner did, what the task did not measure and how this anticipates the next section.
-
-### 8.7 Challenge feedback
-
-Challenges can tolerate slightly more explanation because the learner is now consolidating.
-
-Still, each answer should focus on the distinction the challenge is testing.
-
-Good:
-
-> The spread is fairly even. The band itself bends. That is not heteroscedasticity; the model has missed the shape of the relationship.
-
-Avoid repeating the entire debrief after every challenge item.
-
-### 8.8 Progressive disclosure
-
-Use disclosure when the learner may reasonably want the deeper answer **now**, but most learners do not need it to continue.
-
-Suitable material:
-
-- “Why does that happen?”
-- technical mechanism;
-- confounds;
-- fuller calculation;
-- alternative interpretations;
-- measurement limitations;
-- extra methodological detail.
-
-A disclosure should not be a hidden dumping ground for every paragraph removed from the active task. Edit it too.
-
-### 8.9 Reset and retry copy
-
-Keep reset/retry text functional.
-
-Prefer:
-
-> Reset complete.
-
-or no message at all if the visual reset is obvious.
-
-For retries:
-
-> Try another sample.
-
-> Compare a different pair.
-
-> Change the threshold again.
-
-Avoid motivational filler such as:
-
-> Great effort! Why not have another go and see what you discover?
-
-The tool is for postgraduate learners. Trust them.
-
----
-
-## 9. One feedback box, one intellectual job
+# 8. One feedback box, one intellectual job
 
 Before finalising a dynamic state, ask:
 
-> What is this box for?
+> **What is this box for?**
 
-Possible jobs include:
+Possible jobs:
 
-- confirm the prediction;
+- confirm a prediction;
 - correct one misconception;
 - point out one contrast;
 - state one result;
@@ -536,130 +415,228 @@ Possible jobs include:
 
 If the answer is “all of these”, split or move content.
 
-A state may contain two or three short sentences, but they should work together towards **one main idea**.
+A feedback state can contain two or three short sentences, but they should work towards **one main idea**.
 
 ---
 
-## 10. Repetition and caveats
+# 9. A caveat normally gets one home
 
-### Core rule
+Do not repeat the same qualification in:
 
-> **A caveat normally gets one home.**
-
-Do not automatically repeat the same qualification in:
-
-- opening disclaimer;
+- opening;
 - prediction feedback;
-- result panel;
+- result;
 - disclosure;
 - debrief;
 - limitations.
 
-Before adding a caveat, search the whole tool for the same idea.
+Before adding a caveat, search the whole tool.
 
-If it is already stated clearly in a sensible place, do not restate it unless the new context genuinely changes its meaning.
+If it already exists clearly in a sensible place, do not repeat it unless the new context genuinely changes its meaning.
 
-### 10.1 Necessary safety framing
+## Necessary safety framing
 
-Keep essential safety and ethical boundaries.
+Keep genuine boundaries such as:
 
-Examples:
+- clinical teaching tool, not diagnosis;
+- fictional case, not a real person;
+- simulated values, not empirical evidence;
+- activity does not assess the learner;
+- no medical advice.
 
-- a clinical teaching tool is not a diagnostic tool;
-- a fictional task does not assess the learner;
-- fictional groups are not real populations;
-- simulated values are illustrative;
-- a tool does not provide medical advice.
+State them clearly and proportionately.
 
-State the boundary clearly and proportionately.
+Often one or two sentences are enough.
 
-Usually this can be done in one or two short sentences.
-
-### 10.2 Methodological nuance
-
-Preserve it, but place it where it becomes useful.
-
-Examples:
-
-- a residual plot is a diagnostic, not a verdict;
-- a weak population relationship does not support individual prediction;
-- a category is imposed on continuous variation;
-- a selective behavioural difference does not map automatically onto one brain region;
-- an attention heatmap is not a complete causal explanation.
-
-These may belong in:
-
-- optional depth;
-- challenge feedback;
-- debrief;
-- limitations.
-
-They do not all need to appear before the first interaction.
-
-### 10.3 Defensive over-explanation
+## Defensive over-explanation
 
 Remove prose whose main function is to prevent every imaginable misreading.
 
-Signs include:
+Warning signs:
 
-- multiple sentences beginning with “This does not mean...”;
-- long lists of things the tool cannot establish;
-- caveats repeated after every dynamic result;
-- arguments defending why the activity was designed a particular way;
-- pre-emptive responses to objections the learner has not encountered.
-
-The aim is not to remove intellectual caution.
-
-It is to stop caution from becoming the dominant learner experience.
+- several sentences beginning “This does not mean...”;
+- long lists of what the tool cannot establish;
+- caveats repeated after every result;
+- design decisions defended to the learner;
+- objections answered before the learner has encountered them.
 
 ---
 
-## 11. Openings
+# 10. Answer-leak test
 
-An opening should establish:
+Before every prediction or manipulation, ask:
+
+> **Has any visible copy already told the learner what will happen, which answer is expected, or why the manipulation matters?**
+
+If yes, move it.
+
+Examples of answer leakage:
+
+> Most people get this one wrong, which is the point.
+
+> Expect to notice more, which is itself one of the findings.
+
+> The last two patterns show that the cost depends on where the spread sits.
+
+These belong **after** the action.
+
+---
+
+# 11. Rationale is not instruction
+
+Instructions should tell the learner what to do.
+
+They should not explain why the author designed the sequence that way.
+
+Prefer:
+
+> Try the last two patterns as well.
+
+over:
+
+> The last two are worth visiting. They show that what a fan shape costs depends on where the extra spread sits.
+
+Let the learner discover the reason.
+
+---
+
+# 12. Avoid documentation voice
+
+Review learner-facing uses of:
+
+- tool;
+- page;
+- deliberately;
+- worth;
+- point;
+- precisely;
+- “the section below”;
+- “this is why”;
+- “the comparison is”;
+- “the tool marks”;
+- “the page states”.
+
+Do **not** delete these automatically.
+
+Ask whether the sentence is describing the psychology, the learner's action, or the result — or describing the **author's design**.
+
+Avoid:
+
+> The comparison is the point of the tool.
+
+Prefer:
+
+> Run the same scene without the blank and compare the two searches.
+
+Avoid:
+
+> It is a device for making two theories argue with each other in a way you can point at.
+
+Prefer:
+
+> The figures come from a simple teaching model. Use them to compare what the two accounts predict.
+
+---
+
+# 13. Avoid authorial spotlighting
+
+Do not repeatedly tell the learner something is:
+
+- important;
+- interesting;
+- worth noticing;
+- worth dwelling on;
+- precisely the point;
+- deliberately included.
+
+State the relationship clearly enough that its importance is apparent.
+
+---
+
+# 14. Avoid performative cleverness
+
+A memorable line should earn its memorability through the idea.
+
+Avoid:
+
+> A tool that let you believe otherwise would be doing you a disservice.
+
+Prefer:
+
+> Neither account explains every crowd event well.
+
+---
+
+# 15. Surface-specific writing contracts
+
+## 15.1 Catalogue descriptions
+
+### Job
+
+Make the tool understandable and worth opening.
+
+Answer:
+
+- What will I do?
+- What idea will I see?
+
+Usually omit implementation details, seeds, every control, every caveat and lecturer routes.
+
+### Default length
+
+One or two sentences.
+
+---
+
+## 15.2 Openings / hooks
+
+### Job
+
+Orient and create interest.
+
+A good opening establishes:
 
 - the interesting problem;
 - the contrast or phenomenon;
 - what the learner will do.
 
-It should not function as a mini literature review.
+Do not turn the opening into a literature review or caveat stack.
 
-Typical target: **roughly 20–45 words**.
-
-Example:
-
-> Psychology and AI both use the word *attention*. They do not mean the same thing.  
-> In this activity, you will do both kinds on the same sentence and compare them.
-
-An opening may be longer when essential context genuinely cannot be supplied later, but longer should be a deliberate choice.
+Typical length: roughly 20–45 words.
 
 ---
 
-## 12. Learning objectives
+## 15.3 Safety / framing
 
-A learning objective should normally be:
+### Job
 
-- one sentence;
-- roughly 15–30 words;
-- focused on the central intellectual move.
-
-Avoid inventorying every subskill in the tool.
+Set the necessary boundary.
 
 Prefer:
 
-> By the end, you should be able to spot non-constant residual variance and explain what it does, and does not, damage in a regression.
+> All cases and scores are fictional. This is a teaching activity, not a clinical assessment.
 
-over:
-
-> By the end you should be able to define homoscedasticity as approximately constant conditional residual variance, read a residual-against-fitted plot, explain why non-constant variance leaves the slope estimate unbiased while making its standard error untrustworthy, and say why one residual plot is a diagnostic rather than a verdict.
-
-The fuller outcomes can still be achieved. They do not all need to appear in the opening sentence.
+over a paragraph listing every form of diagnosis or professional judgement the page does not provide.
 
 ---
 
-## 13. Instructions
+## 15.4 Learning objectives
 
-Pre-task instructions should usually be **1–3 short sentences**.
+### Job
+
+Name the central intellectual move.
+
+Usually one sentence, roughly 15–30 words.
+
+Avoid inventorying every subskill.
+
+---
+
+## 15.5 Instructions
+
+### Job
+
+Tell the learner what to do.
 
 Use imperative verbs:
 
@@ -671,124 +648,95 @@ Use imperative verbs:
 - inspect;
 - try;
 - switch;
-- move;
 - classify;
-- draw;
-- check.
+- rank;
+- run.
 
-Good:
-
-> Reduce the sample to 16. Draw three new samples. Watch how much the shape changes.
-
-Poor:
-
-> It is useful to reduce the sample size because doing so demonstrates that small samples can produce visually unstable residual patterns, which is important when interpreting heteroscedasticity.
-
-The learner should usually perform the action before receiving the explanation.
+Avoid explaining the result in advance.
 
 ---
 
-## 14. Prediction questions
+## 15.6 Prediction questions
 
-Prediction questions work best when they create a meaningful commitment.
+### Job
 
-They should:
+Create meaningful commitment.
 
-- isolate the key conceptual contrast;
-- use plausible alternatives;
-- avoid long stem explanations;
-- avoid giving away the result;
-- lead naturally into the activity.
-
-Prediction options should carry some of the intellectual work.
-
-Do not add a paragraph before the question explaining the distinction the learner is meant to predict.
+Do not front-load theory that makes one answer obvious.
 
 ---
 
-## 15. Immediate feedback
+## 15.7 Control descriptions
 
-Typical warning range: **roughly 15–40 words**.
+### Job
 
-The target is not a fixed length.
+Explain what the control changes.
 
-A five-word result may be perfect:
-
-> **Same profile. Different category.**
-
-A 60-word explanation may be justified if the learner has reached a point where that depth is genuinely useful.
-
-The question is always:
-
-> Is this the right amount of explanation **at this moment**?
-
-Immediate feedback should usually contain **one principal idea**.
+Do not explain the consequence before the learner tries it.
 
 ---
 
-## 16. Live result text
+## 15.8 Immediate feedback
 
-Typical warning range: **roughly 20–50 words**.
+### Job
 
-A good result card often has this shape:
+Answer:
 
-1. observation;
-2. comparison;
-3. conceptual anchor.
+> **What should I notice from what just happened?**
 
-For example:
+Usually verdict + one distinction + next move.
 
-> The residuals fan out.  
-> The slope is still close to 0.50.  
-> The classical standard error is too small.  
+Do not routinely include mechanism, caveat, literature and transfer in the same box.
+
+---
+
+## 15.9 Live result panels
+
+Use a hierarchy:
+
+1. What happened?
+2. What should I notice?
+3. optional Why?
+4. later What does it mean?
+
+Strong:
+
+> The classical standard error is 18% too small.  
 > **The estimate survives; the uncertainty does not.**
 
-Do not pad a concise state merely to meet a target.
+---
 
-Do not compress a genuinely necessary explanation merely to stay under one.
+## 15.10 Optional depth / “Why?”
 
-These ranges are warnings against uncontrolled growth, not templates.
+### Job
+
+Reward curiosity without blocking progress.
+
+Good content:
+
+- mechanism;
+- fuller calculation;
+- confounds;
+- alternative interpretations;
+- technical detail.
+
+Still edit it. Optional depth is not a dumping ground.
 
 ---
 
-## 17. Strong conceptual anchors
+## 15.11 Challenge / transfer
 
-Short, memorable lines are encouraged when they **compress an argument the learner has just experienced**.
+### Job
 
-Examples from the calibrated tools:
+Make the learner use the distinction in a new case.
 
-> **The estimate survives; the uncertainty does not.**
-
-> **The instrument is not the construct.**
-
-> **The exercise is the prediction, not the arithmetic.**
-
-> **Same profile. Different category.**
-
-> **Two levels. One causal claim. No bridge.**
-
-> **A label can summarise a profile. It should not replace the profile.**
-
-These work because the interaction has already supplied the evidence.
-
-Do not manufacture slogans merely because the style guide contains them.
-
-A conceptual anchor should:
-
-- name a distinction;
-- compress a result;
-- be earned by the interaction;
-- make the idea easier to carry forward.
-
-If a short line oversimplifies a genuinely contested issue, do not use it.
+Do not explain before they answer.
 
 ---
 
-## 18. Debriefs
+## 15.12 Debriefs
 
 The debrief is where the tool can breathe.
-
-It may be longer than active copy because the learner now has an experience to interpret.
 
 A good debrief should:
 
@@ -796,721 +744,574 @@ A good debrief should:
 - connect stages;
 - name the larger distinction;
 - preserve methodological nuance;
-- address important limitations;
 - show why the interaction mattered.
 
-Do not simply repeat:
+Ask:
 
-- the prediction;
-- each button result;
-- every displayed value;
-- every caveat already stated elsewhere.
-
-### Good debrief question
-
-> What can the learner now understand that was difficult to explain before they used the tool?
+> **What can the learner now understand that was difficult to explain before they used the tool?**
 
 Write that.
 
-### Good debrief structure
+---
 
-Two to four genuinely distinct sections are usually stronger than seven overlapping sections.
+## 15.13 Limitations
 
-Possible structure:
+Limitations should add **newly useful boundaries**.
 
-1. What happened?
-2. What does it mean?
-3. What does it not establish?
-4. Why does the distinction matter?
+There is no quota.
 
-This is a guide, not a mandatory template.
+Do not automatically create six limitations because other tools have six.
 
 ---
 
-## 19. Limitations
+## 15.14 Key terms
 
-Limitations should contain **newly useful boundaries**, not a second debrief.
+### Job
 
-Before keeping a limitation, ask:
+Give a quick, usable meaning for terms needed here.
 
-- Has this already been stated?
-- Is it important enough to retain?
-- Is “limitations” genuinely the best home?
-- Does it change how the learner should interpret the activity?
-
-Avoid five to seven bullets that merely restate the opening caution panel.
+Teach plainly, then use the term normally.
 
 ---
 
-## 20. Instructor-facing versus learner-facing copy
+## 15.15 Need a hand?
 
-Instructor rationale, demonstration advice and facilitation material belong in `teaching-notes.md`.
+### Job
 
-Examples to remove from learner-facing pages:
+Guide attention without revealing the answer.
 
-- “Notes for whoever is running this”
-- “Start with A versus D”
-- “Ask the room what they notice”
+Good help says:
+
+- where to look;
+- what to compare;
+- what to change first.
+
+It should not become a hidden mini-lecture.
+
+---
+
+## 15.16 Reset / retry copy
+
+Keep it functional.
+
+Prefer:
+
+> Try another sample.
+
+Avoid motivational filler.
+
+The learners are adults. Trust them.
+
+---
+
+# 16. Instructor-facing versus learner-facing copy
+
+Instructor rationale belongs in `teaching-notes.md`.
+
+Move material such as:
+
+- “Running this for a group?”
+- “Ask the room...”
 - “This pair is useful because...”
-- “From the front, run Stage 1 first”
-- suggested discussion questions for the lecturer;
-- comments explaining why the author designed the activity in a particular order.
+- “Most people get this wrong...”
+- “Worth raising with a class...”
+- demonstration sequencing advice.
 
 The learner page should contain what the learner needs.
 
 The teaching notes should contain what the instructor needs.
 
-Do not blur the two.
+---
+
+# 17. Strong existing calibration examples
+
+These lines already exist in the project and exemplify the target voice.
+
+Do not copy them mechanically.
+
+## Research Methods
+
+> **The estimate survives; the uncertainty does not.**
+
+> **Nine hundred responses make the estimate precise, not correct.**
+
+> **Prevalence is not what makes a theme.**
+
+> **A residual plot is a general diagnostic, not a heteroscedasticity detector.**
+
+> **The curve is exact; data are not.**
+
+> **Reliability limits validity but does not supply it.**
+
+## Neuropsychology
+
+> **A crossover in the point estimates is not a crossover in the evidence.**
+
+> **The crossover is evidence about tasks, not about tissue.**
+
+> **A double dissociation constrains, it does not prove.**
+
+> **A contrast that varies two things cannot be pinned on either.**
+
+## Social and Critical Psychology
+
+> **The policing did not respond to that category; it helped make it.**
+
+> **The instrument is not the construct.**
+
+> **Twenty-two comments existed; the method decided they were not a theme.**
+
+## Personality and Individual Differences
+
+> **Nobody's personality changed. What changed is which part of it the situation let out.**
+
+> **Low observed variance is not evidence of low trait variance.**
+
+> **Two people, the same broad trait score, and behaviour that looks nothing alike.**
 
 ---
 
-## 21. Preserve sophistication
+# 18. Negative calibration examples
 
-A concise interactive must not become a simplistic one.
+## Meta-pedagogy
 
-When editing, do **not**:
+Avoid:
 
-- remove a distinction merely because it is technical;
-- turn contested claims into certainties;
-- erase methodological limitations;
-- replace precise terminology with vague everyday language;
-- remove critical comparison between levels or frameworks;
-- convert a diagnostic into a rule;
-- imply causation where only association is shown;
-- collapse population and individual inference;
-- collapse description and explanation;
-- remove psychometric or measurement nuance;
-- turn postgraduate content into introductory-level simplification;
-- shorten every paragraph by a fixed percentage.
-
-Instead:
-
-> **Move depth to the point where it becomes useful.**
-
-A long debrief can be excellent.
-
-A long result card is usually suspicious.
-
-A detailed disclosure can be valuable.
-
-A detailed “Correct!” response usually is not.
-
----
-
-## 22. Module-sensitive guidance
-
-### Cognitive Psychology
-
-Let learners experience the effect before explaining the mechanism.
-
-Task instructions should be especially lean because cognitive demonstrations lose force when the result is explained in advance.
-
-Priorities:
-
-- preserve experimental distinctions;
-- distinguish behaviour from mechanism;
-- avoid anthropomorphic language unless it is the topic being examined;
-- do not use long conceptual warnings before the demonstration;
-- move theoretical comparison into debrief once the learner has experienced both sides.
-
-### Research Methods
-
-Preserve statistical and methodological precision.
-
-Keep clear distinctions between:
-
-- observation;
-- diagnostic pattern;
-- statistical consequence;
-- inferential consequence;
-- decision.
-
-Do not turn diagnostics into rigid rules.
+> A tool that let you believe otherwise would be doing you a disservice.
 
 Prefer:
 
-> Small sample. Do not diagnose the shape yet.
+> Neither account explains every crowd event well.
 
-over:
+## Design narration
 
-> This plot is invalid because the sample is small.
+Avoid:
 
-Keep terms such as standard error, residual, homoscedasticity, leverage and coverage when they matter.
+> It is a device for making two theories argue with each other in a way you can point at.
 
-Explain them plainly.
+Prefer:
 
-### Neuropsychology
+> The figures come from a simple teaching model. Use them to compare what the two accounts predict.
 
-Preserve distinctions around:
+## Abstract result narration
 
-- dissociation;
-- selective impairment;
-- route and network inference;
-- profile comparison;
-- severity;
-- category versus mechanism;
-- uncertainty.
+Avoid:
 
-Avoid clinical-textbook density during active comparison.
+> The quantity this account tracks — identifiability plus how much of the crowd was swept in — comes out at...
 
-The learner should first see the separation.
+Prefer:
 
-Then discuss what kind of inference that separation supports.
+> Deindividuation predicts plenty of action here.
 
-Do not silently convert behavioural profiles into claims about single brain regions.
+Then point to the pattern it fails to explain.
 
-### Social & Critical Psychology
+## Instructional priming
 
-Preserve competing lenses and levels of analysis.
+Avoid:
 
-Concision must not turn critical reasoning into one “correct” ideological answer.
+> Most people get this one wrong, which is the point.
 
-Keep distinctions between:
+Prefer:
 
-- observed procedure;
-- inferred construct;
-- alternative explanation;
-- individual-level claim;
-- group-level claim;
-- institutional-level claim.
+> Rank them again for the anonymous online discussion.
 
-Where appropriate, use the reusable structure:
+## Answer leakage
 
-> **Observed**  
-> **Possible inference**  
-> **Not established**
+Avoid:
 
-Do not let the structure imply that only one interpretation is ever legitimate when the evidence remains contestable.
+> Switch it off for a fully self-paced run — and expect to notice more, which is itself one of the findings.
 
-### Personality & Individual Differences
+Prefer:
 
-Preserve:
+> Switch this off for a self-paced run.
 
-- psychometric nuance;
-- dimensional thinking;
-- threshold effects;
-- impairment and functioning;
-- clinical uncertainty;
-- responsible safety boundaries.
+## Ominous over-explanation
 
-Do not let disclaimers overwhelm the activity.
+Avoid:
 
-State essential safety framing briefly at the start.
+> The demonstration is over for you — permanently, not just today. There is nothing on this page that is dangerous or unpleasant...
 
-Move fuller assessment caveats into optional depth or debrief.
+Prefer:
 
-Do not imply that a slider configuration is a diagnosis.
-
-Do not remove the distinction between unusualness, distress, persistence, inflexibility and impairment.
+> **This demonstration works once.** Do the task before reading on. Once you know what to look for, the surprise is gone.
 
 ---
 
-## 23. Calibrated exemplars
+# 19. Module-sensitive guidance
 
-The following five patterns define the intended style.
+## Cognitive Psychology
 
-They are examples of **timing and hierarchy**, not phrases that must be copied mechanically.
+Priority:
 
-### 23.1 Cognitive 12: Human Attention versus AI Attention
+> **experience first; mechanism later**
 
-**Before**
+Keep task instructions especially lean.
 
-The page explains at length, before the learner has seen the computation, why a transformer attention weight is not human noticing, caring or focusing.
+Do not tell learners what the manipulation will do before they try it.
 
-**After**
+## Research Methods
 
-> Psychology and AI both use the word *attention*. They do not mean the same thing.  
-> In this activity, you will do both kinds on the same sentence and compare them.
+Priority:
 
-After the human task:
+> **observation → inferential consequence → methodological nuance**
 
-> The last three words changed your answer.  
-> Nothing around *it* changed.  
-> **You used the sentence as a whole to resolve the pronoun.**  
-> Now compare that with the machine-side operation.
+Use technical vocabulary confidently.
 
-**Rule illustrated:** experience the human and computational tasks first; deliver the full conceptual comparison later.
+Do not turn result panels into methods sections.
 
----
+## Neuropsychology
 
-### 23.2 Research Methods 20: Homoscedasticity and Residual Diagnostics
+Priority:
 
-**Before**
+> **task pattern → supported inference → anatomical boundary**
 
-A live result explains the pattern, the coefficient, standard error, confidence interval, test behaviour and methodological qualification in one state.
+Keep fictional/clinical framing proportionate.
 
-**After**
+## Social and Critical Psychology
 
-> The residuals fan out.  
-> The slope is still close to 0.50.  
-> The classical standard error is too small.  
-> **The estimate survives; the uncertainty does not.**
+Priority:
 
-Optional depth can then explain why.
+> **let frameworks produce different readings before delivering the critical essay**
 
-**Rule illustrated:** observation first; deeper inferential explanation later.
+This module can legitimately contain more prose.
 
----
+That does not mean all of it belongs before the interaction.
 
-### 23.3 Neuropsychology 07: Aphasia Profile Comparator
+## Personality and Individual Differences
 
-**Before**
+Priority:
 
-A pair comparison moves immediately from the numerical difference to a full route-versus-region argument.
+> **keep person, situation, trait, state, measurement and category distinct**
 
-**After**
-
-> **This is a clean separation: repetition differs, while the rest of the profile barely does.**  
-> That makes repetition the informative measure for this comparison.
-
-Optional depth:
-
-> Repetition can use a relatively direct route from heard sounds to spoken sounds. A selective repetition difference therefore supports a more specific inference than overall severity.
-
-**Rule illustrated:** show the profile separation first; explain the route or network inference after the learner has seen it.
+Avoid quasi-assessment language around fictional profiles.
 
 ---
 
-### 23.4 SCP 11: Measuring Prejudice
-
-**Before**
-
-Each instrument produces a dense four-part mini-essay covering observation, inference, confounds and unsupported conclusions.
-
-**After**
-
-> **Observed:** a difference in sorting speed.  
-> **Possible inference:** one association was more accessible than another.  
-> **Not established:** how this individual will behave.
-
-Confounds sit in optional depth.
-
-**Rule illustrated:** separate evidence from inference without forcing every qualification into the immediate result.
-
----
-
-### 23.5 PID 55: Personality Disorder Continuum
-
-**Before**
-
-The tool opens with several paragraphs of diagnostic and clinical caveating, then keeps a long “what is still unknown” panel visible throughout the active task.
-
-**After**
-
-Opening:
-
-> **Teaching tool only:** this is not a self-test and does not diagnose anyone.
-
-During the comparison:
-
-> Trait extremity did not move.  
-> Flexibility, persistence and interference did.  
-> **Same unusual traits. Very different clinical significance.**
-
-Fuller assessment boundaries sit in optional depth.
-
-**Rule illustrated:** state the essential safety boundary once; keep richer clinical caveats available without allowing them to dominate the interaction.
-
----
-
-## 24. Revision workflow for Claude Code
-
-When revising an existing interactive, follow this procedure.
-
-### Step 1: Read the complete tool
-
-Read:
-
-- `index.html`;
-- `tool.js`;
-- `teaching-notes.md`;
-- relevant metadata or configuration files.
-
-Do not revise from the static HTML alone.
-
-### Step 2: Identify the central teaching claim
-
-Write down, privately, the one or two ideas the learner should carry away.
-
-Examples:
-
-- the estimate can survive while uncertainty fails;
-- a selective behavioural separation supports a more specific inference than general severity;
-- instrument output and construct are not identical;
-- continuous profiles can change category when the threshold changes.
-
-Use this to decide what deserves emphasis.
-
-### Step 3: Trace the real learner journey
-
-Follow the tool in order.
-
-Include every state created dynamically by JavaScript.
-
-Map:
-
-- what the learner sees first;
-- what they click;
-- what appears after the click;
-- what changes after each control;
-- where new instructions appear;
-- what feedback appears;
-- what remains on screen;
-- what disclosures open;
-- what appears in the debrief.
-
-Do not assume the source-file order matches the learner experience.
-
-### Step 4: Classify the copy
-
-Conceptually mark each learner-facing text unit as:
-
-- ACTIVE;
-- OPTIONAL DEPTH;
-- LATER DEBRIEF;
-- REMOVE / MOVE TO TEACHING NOTES.
-
-Do not add these labels to the interface unless they genuinely belong there.
-
-### Step 5: Find repetition before rewriting
-
-Search the whole tool for repeated ideas.
-
-Typical repeated ideas include:
-
-- safety disclaimers;
-- “what this cannot prove”;
-- methodological caveats;
-- interpretation boundaries;
-- explanations of the same graph;
-- “this is not a diagnosis”;
-- “correlation does not predict the individual”;
-- “the measure is not the construct”.
-
-Choose the best home for each.
-
-### Step 6: Rewrite active copy first
-
-Start with:
-
-- opening;
-- task instructions;
-- prediction;
-- immediate feedback;
-- result cards;
-- slider and preset text;
-- stage transitions;
-- challenge feedback.
-
-Make the interaction move.
-
-Do not begin by polishing the debrief while leaving overloaded dynamic states untouched.
-
-### Step 7: Consolidate caveats
-
-For each important caveat, ask:
-
-> Where does this do the most pedagogical work?
-
-Put it there.
-
-Do not preserve duplicates simply because they already exist in different files or functions.
-
-### Step 8: Move instructor rationale
-
-Move facilitator-only material into `teaching-notes.md`.
-
-Do not delete useful instructor content merely because it does not belong on the learner page.
-
-### Step 9: Preserve useful depth
-
-After simplifying active states, make sure important content has not vanished.
-
-Where appropriate, retain it in:
-
-- disclosure;
-- debrief;
-- limitations;
-- teaching notes.
-
-This is a redistribution pass, not a deletion contest.
-
-### Step 10: Run the interaction
-
-Use the tool as a learner.
-
-Read every dynamic state in context.
-
-Ask:
-
-- Does the page keep moving?
-- Does a click reveal too much?
-- Is the explanation arriving at the right time?
-- Is the interface already showing what the prose says?
-- Is a caveat repeated?
-- Does the debrief now feel earned?
-
-### Step 11: Re-read the full copy as one experience
-
-A tool may contain individually good sentences and still feel repetitive in sequence.
-
-Read from top to bottom.
-
-Pay special attention to transitions such as:
-
-> feedback → new instruction → result → disclosure
-
-These are common overload points.
-
-### Step 12: Preserve behavioural and technical correctness
-
-Do not change:
-
-- calculations;
-- scoring;
-- branching logic;
-- labels whose wording is functionally tied to code;
-- data meaning;
-- accessibility semantics;
-- safety behaviour;
-
-unless the task explicitly includes those changes.
-
-When changing a dynamic string, confirm that placeholders and interpolated values still work.
-
----
-
-## 25. Practical editing heuristics
-
-Use these as judgement aids.
-
-### If a paragraph appears immediately after a click
-
-Assume it is too long until proven otherwise.
-
-Ask what single idea must survive.
-
-### If a paragraph begins “What this does not mean...”
-
-Search for the same caveat elsewhere before keeping it.
-
-### If the result card contains more than one “because”
-
-It may be doing debrief work.
-
-### If instructions contain “because”
-
-Consider whether the explanation should come after the action.
-
-### If a result describes every visible value
-
-Cut it to the relationship between the values.
-
-### If the learner is told the same conceptual warning at the top and bottom
-
-Keep the stronger version and change the other section's job.
-
-### If a disclaimer is longer than the opening hook
-
-Check whether methodological nuance has been mistaken for necessary safety framing.
-
-### If an incorrect-answer response explains three alternative methods
-
-Move the alternatives later unless choosing between them is the point of the question.
-
-### If every dynamic state ends with a caveat
-
-Consolidate the caveat.
-
-### If the debrief reads like a transcript of the interaction
-
-Rewrite it as synthesis.
-
----
-
-## 26. Copy-density guidance
-
-These ranges are **warning thresholds, not rigid templates**.
-
-| Copy type | Typical range |
-| --- | --- |
-| Opening hook | roughly 20–45 words |
-| Learning objective | normally 1 sentence, roughly 15–30 words |
-| Pre-task instruction | normally 1–3 short sentences |
-| Prediction feedback | roughly 15–40 words |
-| Live result | normally 20–50 words |
-| Immediate feedback | one principal idea |
-| Debrief | may be substantially longer after interaction |
-
-A brilliant five-word result should not be padded to twenty words.
-
-A genuinely necessary 60-word explanation is acceptable if that is the right pedagogical moment.
-
-Do not rewrite to a quota.
-
-Use the ranges to notice when a dynamic state has quietly turned into an essay.
-
----
-
-## 27. What not to optimise for
+# 20. Do not optimise for word count
 
 Do not optimise for:
 
 - shortest possible page;
 - lowest word count;
 - identical box lengths;
-- identical sentence structures;
-- simplified vocabulary at all costs;
+- simplified vocabulary;
 - cheerful tone;
 - maximum friendliness;
 - maximum explanation;
-- mechanically consistent feedback length;
 - fixed percentage reductions.
 
-The goal is a better **learning rhythm**.
+A 70-word debrief paragraph may be excellent.
 
-A long page with strong hierarchy can work very well.
+A 35-word button response may be far too long.
 
-A short page can still feel exhausting if every action triggers another explanation.
+The question is:
+
+> **How much does the learner need at this moment?**
 
 ---
 
-## 28. QA checklist
+# 21. Avoid template voice
 
-Before completing a copy revision, check the entire learner journey.
+Consistency of interface is useful.
 
-### Orientation
+Consistency of argumentative structure is not always useful.
+
+Do not automatically require every tool to have:
+
+- the same number of caveats;
+- `What this demonstrates`;
+- `What this does not demonstrate`;
+- the same debrief shape;
+- the same disclaimer structure;
+- the same number of Key terms;
+- the same catalogue length.
+
+The structure should follow the teaching need.
+
+---
+
+# 22. Rewrite workflow
+
+## Step 1: Read the complete source
+
+Inspect:
+
+- `index.html`;
+- `tool.js`;
+- other JavaScript with learner-facing strings;
+- metadata/catalogue descriptions;
+- `teaching-notes.md`;
+- help/glossary content.
+
+Do not revise static HTML alone.
+
+## Step 2: Identify the central teaching move
+
+Write privately:
+
+> **What distinction should the learner be better able to make after using this tool?**
+
+## Step 3: Trace the real learner journey
+
+Follow the interface in order.
+
+## Step 4: Give each block one job
+
+Use:
+
+- ORIENT;
+- INSTRUCT;
+- COMMIT;
+- REPORT;
+- INTERPRET;
+- DEEPEN;
+- QUALIFY;
+- TRANSFER.
+
+If a block has four jobs, split or move it.
+
+## Step 5: Run the answer-leak test
+
+Has visible copy already explained the expected result?
+
+If yes, move it.
+
+## Step 6: Search for documentation voice
+
+Review likely warning terms such as:
+
+- tool;
+- page;
+- deliberately;
+- worth;
+- point;
+- precisely;
+- “which is why”;
+- “this is why”.
+
+Do not mass-delete.
+
+## Step 7: Find repetition before rewriting
+
+Choose one best home for repeated caveats and explanations.
+
+## Step 8: Rewrite active copy first
+
+Prioritise:
+
+- opening;
+- task instructions;
+- prediction;
+- controls;
+- immediate feedback;
+- result cards;
+- dynamic JavaScript;
+- stage transitions.
+
+## Step 9: Move instructor rationale
+
+Transfer lecturer-facing material to `teaching-notes.md`.
+
+## Step 10: Preserve useful depth
+
+Rehome rather than delete.
+
+## Step 11: Read the learner journey aloud
+
+Mark every place where:
+
+- the sentence needs a second breath;
+- it sounds like documentation;
+- the model is showing off its nuance;
+- the explanation arrives too early;
+- the same idea appears again.
+
+Rewrite those places.
+
+## Step 12: Run the interaction
+
+Judge the copy in the interface, not only in source files.
+
+## Step 13: Check technical integrity
+
+Do not change:
+
+- calculations;
+- scoring;
+- branching logic;
+- data meaning;
+- accessibility semantics;
+- required safety behaviour;
+- placeholders/interpolated values;
+- button wiring.
+
+---
+
+# 23. QA checklist
+
+## Orientation
 
 - Can I understand what to do within a few seconds?
-- Is the opening about the interesting problem rather than the author's rationale?
-- Is the learning objective focused on the central intellectual move?
-- Is essential safety framing brief and clear?
+- Is the opening about the interesting problem?
+- Has the answer been withheld?
+- Is safety framing brief?
 
-### Active task
+## Active task
 
-- Are instructions telling me what to do rather than explaining the result in advance?
+- Are instructions telling me what to do?
+- Is author rationale mixed into instructions?
+- Does a control description reveal the effect?
 - Does pressing a button reveal an essay?
-- Does immediate feedback contain more than one main idea?
-- After something interesting happens, does the copy let me continue?
-- Is a result panel mixing observation, mechanism, caveat and literature discussion?
-- Is dynamic JavaScript-generated copy as carefully edited as the static HTML?
+- Does feedback have one main idea?
 
-### Trusting the interface
+## Voice
 
-- Am I being told something the graph, animation, profile or simulation already shows?
-- If I am repeating visible information, am I directing attention to a meaningful relationship?
-- Could the visual interaction carry more of the teaching?
+- Would a good lecturer say this aloud?
+- Is the copy speaking about psychology rather than about the tool?
+- Is the prose confident enough to stop qualifying itself?
+- Is any sentence trying to sound clever?
+- Does each sentence have one main move?
 
-### Repetition and caveats
+## Trusting the interface
 
-- Has the same caveat appeared somewhere else?
-- Does this qualification have one sensible home?
-- Is this necessary safety framing, useful methodological nuance or defensive over-explanation?
-- Have I repeated “what this does not show” in the opening, feedback, debrief and limitations?
+- Am I being told what the graph already shows?
+- Could the interface carry more of the teaching?
 
-### Timing
+## Repetition
 
-- Is the explanation arriving before the learner could discover the result?
-- Have I explained why a manipulation matters before the learner tries it?
-- Could this mechanism move to optional depth?
-- Could this interpretation wait until the debrief?
+- Has the same caveat appeared elsewhere?
+- Is the same conclusion being repeated?
+- Is the debrief replaying the activity?
+- Are limitations repeating the opening?
 
-### Feedback
+## Timing
 
-- Does each feedback box have one intellectual job?
-- Does correct/incorrect feedback focus on the distinction being tested?
-- Does feedback direct the learner towards the next useful action?
-- Are repeated state updates genuinely different enough to justify separate prose?
+- Is explanation arriving before discovery?
+- Has the manipulation been explained before it is tried?
+- Could this mechanism move later?
 
-### Instructor versus learner copy
+## Dynamic copy
 
-- Is instructor-facing material visible to students?
-- Are facilitator prompts, demonstration advice or author rationale still in the learner page?
-- Should any of this move to `teaching-notes.md`?
+- Has every learner-facing string in `tool.js` been reviewed?
+- Do live states contain more than one intellectual job?
+- Do placeholders still produce natural sentences?
 
-### Debrief
+## Instructor versus learner
 
-- Does the debrief synthesise rather than replay?
-- Does it connect the learner's observations into a larger argument?
-- Does it preserve the important methodological or theoretical distinction?
-- Are limitations adding something new?
+- Is lecturer advice visible to students?
+- Should it move to `teaching-notes.md`?
 
-### Intellectual quality
+## Debrief
 
-- Have I preserved technical terminology where it matters?
-- Have I preserved uncertainty where the evidence is uncertain?
-- Have I preserved competing interpretations where they matter?
-- Have I accidentally turned a diagnostic into a rule?
-- Have I collapsed observation into inference?
-- Have I collapsed group-level evidence into individual-level claims?
-- Have I removed a difficult idea merely because it was difficult?
-- Does the tool still sound intelligent?
+- Does it synthesise rather than replay?
+- Does it preserve the important distinction?
+- Are limitations adding something genuinely new?
+
+## Intellectual quality
+
+- Have technical terms been preserved?
+- Is uncertainty preserved?
+- Has observation been collapsed into inference?
+- Has measurement been collapsed into construct?
+- Has group evidence been collapsed into individual prediction?
+- Has a contested issue become certain?
+
+## Final question
+
+> **Does the tool still sound intelligent, but now feel easier to think with?**
+
+---
+
+# 24. Calibration before any collection-wide rewrite
+
+Do **not** immediately apply this standard to all 75 tools.
+
+First revise these five:
+
+1. **Cognitive 03 — Inattentional Blindness**
+2. **Research Methods 20 — Homoscedasticity and Residual Diagnostics**
+3. **Neuropsychology 01 — Double Dissociation Detective**
+4. **Social & Critical 09 — Crowd Behaviour Laboratory**
+5. **Personality 03 — Person–Situation Interaction Theatre**
+
+For each tool:
+
+1. preserve behaviour;
+2. revise static and dynamic learner copy;
+3. move instructor rationale where necessary;
+4. compare original and revised learner path;
+5. run the activity;
+6. check all dynamic states;
+7. report what this standard handled well;
+8. report any place where it produced a worse result.
+
+Do not scale until the five are reviewed.
+
+---
+
+# 25. Calibration success criteria
+
+Do not judge primarily by word count.
+
+For each pilot tool ask:
+
+### Entry
+- Do I understand the problem quickly?
+- Has the answer been withheld?
+- Do I reach an action before receiving a mini-lecture?
+
+### During action
+- Does each state have one main idea?
+- Can I act again quickly?
+- Is the interface doing part of the explanation?
 
 ### Voice
+- Would a lecturer say this?
+- Does it avoid documentation voice?
+- Does it trust the learner?
 
-- Would a good lecturer actually say this aloud?
-- Does the copy sound confident enough not to qualify every sentence?
-- Is it natural without becoming generic?
-- Is there a strong conceptual sentence where one has been earned?
-- Have I avoided manufacturing slogans where none are needed?
+### Depth
+- Has any important distinction disappeared?
+- Is deeper material still available at the right time?
+- Does the debrief now add rather than repeat?
 
-### Final learner-flow check
-
-Read the interaction from beginning to end and ask:
-
-> **Does this now feel like short setup → do something → notice something → brief explanation → continue?**
-
-If not, keep editing.
-
----
-
-## 29. Final instruction to the revising model
-
-Do not treat this guide as a request to “make the copy shorter”.
-
-Treat it as a request to **rebuild the hierarchy of explanation**.
-
-Preserve the psychology.
-
-Preserve the methodological distinctions.
-
-Preserve the interesting complications.
-
-But put each piece of explanation where it does the most teaching.
-
-During the interaction:
-
-> **say what matters, then let the learner act.**
-
-After the learner has experienced the phenomenon:
-
-> **give the nuance somewhere it can actually be understood.**
-
-### Accessibility exception
-
-Do not remove or substantially weaken text that provides a non-visual equivalent for a chart, diagram, animation or other visual result.
-
-Accessibility text is not redundant simply because a sighted learner can see the same information.
-
-Distinguish between:
-
-- **visible learner-facing prose that unnecessarily narrates a visual**, which may be shortened; and
-- **accessible text equivalents, tables, captions, `aria` content or screen-reader descriptions**, which must preserve the information needed to understand the result without seeing it.
-
-Do not hide, remove or weaken important accessibility information merely to reduce apparent word count.
+### Character
+- Were the strongest existing lines preserved?
+- Does the tool still have intellectual personality?
+- Has it avoided generic educational voice?
 
 ---
 
-### Scope of this pass
+# 26. What not to do
 
-This is primarily a **learner-copy and information-hierarchy pass**.
+Do not:
 
-Do not redesign a working interaction, replace controls, change data visualisations, alter task sequencing or introduce new functionality simply because different copy might support a different design.
+- mechanically shorten every paragraph;
+- remove difficult material because it is difficult;
+- replace technical vocabulary with vague terms;
+- remove uncertainty;
+- flatten contested material;
+- turn every result into a slogan;
+- add cheerful motivational filler;
+- rewrite all tools into identical structures;
+- preserve every caveat where it currently sits;
+- revise HTML while ignoring dynamic JavaScript;
+- use an AI rewrite without tracing the learner journey.
 
-Small structural changes are appropriate when they improve hierarchy without changing the interaction itself. Examples include:
+---
 
-- moving existing prose into an existing disclosure or debrief;
-- consolidating repeated caveats;
-- moving instructor-facing material into `teaching-notes.md`.
+# 27. Final principle
 
-If a tool appears to require substantial UX redesign rather than copy revision, **flag it separately rather than redesigning it during this pass**.
+The project does not need less psychology.
+
+It needs:
+
+> **less authorial scaffolding between the learner and the psychology.**
+
+The collection should sound like the person explaining it:
+
+> **knows exactly when to stop talking.**
+
+Operationally:
+
+> **Say what matters. Let the learner do something. Point out what changed. Explain more only when it becomes useful.**

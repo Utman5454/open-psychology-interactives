@@ -1561,9 +1561,9 @@
       </p>
       <h1 id="page-heading">Homoscedasticity and Residual Diagnostics</h1>
       <p class="hero__lead">
-        The same fictional data, twice: once as a scatterplot and once as
-        residuals against fitted values. One of those two pictures shows you
-        what the model got wrong, and it is not the one people look at.
+        The same fictional data, twice: once as a scatterplot with a fitted
+        line, once as residuals against fitted values. Same numbers, and they
+        do not read the same way.
       </p>
 
       <p>
@@ -1587,16 +1587,14 @@
           </p>
         </div>
 
-        <div class="panel panel--caution">
-          <h2 class="panel__title">What a fan shape does and does not mean</h2>
+        <div class="panel">
+          <h2 class="panel__title">The word for it</h2>
           <p>
-            Heteroscedasticity does not make the fitted slope wrong. Across
-            repeated samples it still lands on the truth, on average. What it
-            breaks is the <strong>standard error</strong>, and with it the
-            confidence interval and the test &mdash; which is a quieter
-            failure and a more dangerous one, because nothing on the output
-            looks unusual. Equally, a visible fan is not on its own grounds
-            for discarding a study.
+            <strong>Homoscedasticity</strong> means the residual spread stays
+            roughly constant across the fitted values. When the spread grows,
+            shrinks or bulges instead, that is
+            <strong>heteroscedasticity</strong>. Both words describe the shape
+            of a picture.
           </p>
         </div>
 
@@ -1606,7 +1604,7 @@
         <li>Answer the two prediction questions to open the laboratory.</li>
         <li>Fan the variance out and compare the two views of the same data.</li>
         <li>Read the residual spread across the low, middle and high thirds.</li>
-        <li>Watch the classical and robust standard errors come apart.</li>
+        <li>Compare the classical and robust standard errors.</li>
       </ol>
 
     </div>
@@ -1816,9 +1814,8 @@
         <header class="interactive__header">
           <h3 class="interactive__title">Two views of one dataset</h3>
           <p class="interactive__brief">
-            The true slope is fixed at 0.50 throughout. Whatever you do to the
-            spread, the estimate keeps landing near it &mdash; and the number
-            beside it stops being able to say so.
+            The true slope is fixed at 0.50. The controls change only the
+            spread around it.
           </p>
         </header>
 
@@ -1838,9 +1835,7 @@
                   <option value="middle">Widest in the middle</option>
                 </select>
                 <p class="control__hint">
-                  The last two are worth visiting. They show that what a fan
-                  shape costs depends on <em>where</em> the extra spread sits,
-                  not merely on how obvious it looks.
+                  Try the last two patterns as well.
                 </p>
               </div>
               <div class="control">
@@ -1866,9 +1861,8 @@
                 </div>
                 <input type="range" id="n-range" min="20" max="300" step="10" value="120">
                 <p class="control__hint">
-                  Worth changing twice: once to see how much harder a small
-                  sample is to read, and once to see a formal test change its
-                  mind about the same pattern.
+                  How many people the fictional study has. Try it small as
+                  well as large.
                 </p>
               </div>
               <div class="control">
@@ -1909,6 +1903,12 @@
                     <tbody data-region-table></tbody>
                   </table>
                 </div>
+                <p class="text-muted">
+                  No convention sets a ratio at which a fan becomes a problem.
+                  What matters is whether the extra spread sits where the line
+                  is most sensitive to it &mdash; which is what the two
+                  standard errors show.
+                </p>
               </figure>
               <dl class="interactive__readout" data-readout></dl>
             </div>
@@ -1975,9 +1975,7 @@
         <h2 id="challenge-heading" tabindex="-1">Challenge &mdash; read four residual plots</h2>
         <p class="prose">
           Four fictional studies, each shown as residuals against fitted
-          values. Say what each one shows. One of them has an answer that is
-          not about variance at all, and one has an answer that is not a
-          diagnosis.
+          values. Say what each one shows.
         </p>
       </div>
 
@@ -2124,19 +2122,23 @@
             that error while looking entirely ordinary on the output.
           </p>
           <p>
-            How much it costs, and in which direction, is the part worth
-            learning properly. The classical formula goes wrong to the extent
-            that the variance lines up with <strong>leverage</strong> &mdash;
-            which is largest at the two extremes of the predictor. Variance
-            concentrated at both ends therefore makes the classical 95%
-            interval far too narrow, covering the truth about 86% of the time
-            in this laboratory; a plain megaphone puts extra variance at one
-            extreme and least at the other, so the two partly cancel and
-            coverage lands nearer 93%; and variance concentrated in the middle
-            makes the interval <em>conservative</em>, covering about 99% of
-            the time, which costs power rather than credibility. The
-            heteroscedasticity-consistent standard error stays near its
-            nominal level in all four cases and costs almost nothing when the
+            How much it costs depends on where the extra spread sits. The
+            classical formula goes wrong to the extent that the variance lines
+            up with <strong>leverage</strong>, which is largest at the two
+            extremes of the predictor.
+          </p>
+          <p>
+            Variance concentrated at both ends makes the classical 95%
+            interval far too narrow: it covers the truth about 86% of the time
+            here. A plain megaphone puts the extra variance at one extreme and
+            the least at the other, so the two partly cancel and coverage
+            lands nearer 93%. Variance concentrated in the middle makes the
+            interval <em>conservative</em> instead &mdash; about 99% coverage,
+            which costs power rather than credibility.
+          </p>
+          <p>
+            The heteroscedasticity-consistent standard error stays near its
+            nominal level in all four cases, and costs almost nothing when the
             variance turns out to be constant after all.
           </p>
 
@@ -2174,17 +2176,13 @@
             </li>
             <li>
               <strong>No formal test is computed here.</strong> Breusch&ndash;Pagan
-              and White's test exist and are worth knowing, and they are
-              deliberately absent because a test result invites the discussion
-              to collapse into a threshold when the picture is the more
-              informative object.
+              and White's test exist and are worth knowing.
             </li>
             <li>
               <strong>Constant variance is one assumption of several.</strong>
               Linearity, independence and the behaviour of the tails all
               matter too, and the same residual plot speaks to the first of
-              those &mdash; which is why one of the four challenge plots has
-              an answer that is not about variance at all.
+              those.
             </li>
             <li>
               <strong>Robust standard errors are not a cure-all.</strong> They
@@ -3525,12 +3523,12 @@
     costNote.textContent =
       "Across " + COVERAGE_RUNS + " fresh samples from the same generating " +
       "model, the average estimated slope is " + fmt(cov.meanSlope, 3) +
-      " against a true slope of " + fmt(TRUE_B1) + " - the estimate is " +
-      "unbiased however the spread behaves, which is the first half of the " +
-      "lesson. The last row is the exact second half, computed from the known " +
-      "model rather than simulated: the true standard error of the slope is " +
-      fmt(model.trueSE, 3) + " and the classical formula is aiming at " +
-      fmt(model.aimedAt, 3) + ", so it " +
+      " against a true slope of " + fmt(TRUE_B1) + ". The estimate is " +
+      "unbiased however the spread behaves. " +
+      "The last row is computed from the known model rather than simulated: " +
+      "the true standard error of the slope is " + fmt(model.trueSE, 3) +
+      " and the classical formula is aiming at " + fmt(model.aimedAt, 3) +
+      ", so it " +
       (model.ratio > 1.02
         ? "understates the real variability by " +
           fmt(100 * (model.ratio - 1), 0) + " per cent. Intervals built on it " +
@@ -3548,9 +3546,8 @@
       " The coverage row above is a Monte Carlo estimate from " +
       COVERAGE_RUNS + " samples and carries about a percentage point of its " +
       "own error, so read it as confirmation rather than as the measurement. " +
-      "The robust figure stays near 95% in every case and costs very little " +
-      "when the variance really is constant, which is why many people now use " +
-      "it by default.";
+      "The robust figure stays near 95% in every case, and costs very little " +
+      "when the variance really is constant.";
 
     /* --- Verdict -------------------------------------------------------- */
 
@@ -3604,19 +3601,15 @@
     }
     if (s.n >= 220 && s.severity > 0 && s.severity < 0.3 && s.pattern !== "constant") {
       lines.push(
-        "This is the other awkward case: a departure small enough to be " +
-        "harmless and a sample large enough that a formal test would report " +
-        "it. Tests for non-constant variance get more sensitive as n grows, " +
-        "so at this size they flag things that do not matter - which is one " +
-        "reason this tool does not compute one.");
+        "The other awkward case: a departure small enough to be harmless, and " +
+        "a sample large enough that a formal test would report it. Tests for " +
+        "non-constant variance get more sensitive as n grows.");
     }
     if (!lines.length) {
       lines.push(
-        "Reading residual plots is a skill and a fallible one: two competent " +
-        "readers routinely disagree about the same picture. A formal test " +
-        "does not settle it either, because its sensitivity depends on the " +
-        "sample size. Say what you saw, report standard errors that do not " +
-        "assume the thing you are unsure about, and let the reader see both.");
+        "Two competent readers can disagree about the same picture. Say what " +
+        "you saw, and report a standard error that does not assume the thing " +
+        "you are unsure about.");
     }
     honesty.textContent = lines.join(" ");
 
@@ -3708,11 +3701,10 @@
     down: "No, and for the same reason: the estimate is unbiased whatever the " +
       "spread does. The average slope across repeated samples lands on the " +
       "truth.",
-    unbiased: "Correct, and it is the whole point of the laboratory. The " +
-      "coefficient survives; the formula for its standard error does not, " +
-      "because that formula assumes a single common variance. The interval " +
-      "and the test are built on the standard error, so they inherit the " +
-      "problem while looking perfectly normal.",
+    unbiased: "Correct. The coefficient is unbiased; the formula for its " +
+      "standard error is not, because that formula assumes a single common " +
+      "variance. The interval and the test are built on the standard error, " +
+      "so they inherit the problem while looking perfectly normal.",
     invalid: "Too strong. A fan shape is a reason to be careful about the " +
       "standard errors, not a reason to discard the analysis. Robust standard " +
       "errors, a transformation, or weighted least squares are all ordinary " +
@@ -3757,9 +3749,6 @@
     var p = make("p");
     p.appendChild(make("strong", "feedback__verdict",
       correct + " of the two."));
-    p.appendChild(document.createTextNode(
-      " The second question is the one that decides what you do about a fan " +
-      "shape when you find one."));
     openingFeedback.appendChild(p);
     var list = make("ul");
     var li1 = make("li");
@@ -3827,10 +3816,9 @@
       title: "Study 4",
       why:
         "There is a fan in the generating model, and sixteen points cannot " +
-        "establish it. Whatever you thought you saw here, a different sample " +
-        "of sixteen from the same model would have looked meaningfully " +
-        "different. Declining to diagnose is the correct reading, and it is " +
-        "the answer people find hardest to give."
+        "establish it. A different sample of sixteen from the same model would " +
+        "have looked meaningfully different. Declining to diagnose is the " +
+        "correct reading."
     }
   ];
 

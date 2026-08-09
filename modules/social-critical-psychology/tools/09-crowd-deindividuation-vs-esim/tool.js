@@ -498,10 +498,13 @@
     one.setAttribute("data-tone", "neutral");
     one.appendChild(make("h5", "verdict__title",
       "Read as a deindividuation account would"));
+    var predicts = result.disinhibition >= 0.60
+      ? "plenty of action"
+      : result.disinhibition >= 0.35 ? "some action" : "little action";
     one.appendChild(make("p", "verdict__body",
-      "The quantity this account tracks - identifiability plus how much of the " +
-      "crowd was swept in - comes out at " + fixed(result.disinhibition) +
-      " on a 0 to 1 scale. " +
+      "Deindividuation predicts " + predicts + " here: " +
+      fixed(result.disinhibition) + " on a 0 to 1 scale, from anonymity and " +
+      "how much of the crowd was swept in. " +
       (state.anonymity === "anonymous"
         ? "People were anonymous in the mass: on this account, the condition " +
           "under which personal standards stop governing behaviour."
@@ -748,8 +751,7 @@
     if (answers.indexOf(null) !== -1) {
       showFeedback(claimsFeedback, "caution",
         "One judgement per observation, please.",
-        "A blank is not a verdict, and the observations are meant to be " +
-        "uncomfortable rather than skippable.");
+        "A blank is not a verdict.");
       return;
     }
     var right = 0;

@@ -84,6 +84,13 @@
     "circle": "circle"
   };
 
+  /* Each variant carries two descriptions, and they are not interchangeable.
+     `setup` is shown beside the select BEFORE a run, so it states only what
+     the display contains. `designPoint` is shown in the variant table, which
+     lives inside the reveal section and is therefore never visible until the
+     learner has already answered. Saying there what each variant changes is
+     the whole value of the table; saying it beforehand would answer the
+     question the run is asking. */
   var VARIANTS = [
     {
       id: "A",
@@ -93,43 +100,47 @@
       target: { shape: "triangle-down", solid: true },
       starSolid: false,
       starR: 36,
+      setup: "48 shapes. The baseline run.",
       designPoint: "The baseline. A moderately crowded display and a large " +
         "outlined object that shares nothing with the counted set."
     },
     {
       id: "B",
-      name: "B — Heavier load, less salient object",
+      name: "B — More items",
       seed: 20260902,
       items: 72,
       target: { shape: "triangle-down", solid: true },
       starSolid: false,
       starR: 24,
+      setup: "72 shapes. The most crowded display.",
       designPoint: "Half again as many items and a smaller object. Two of the " +
         "factors that push noticing down, changed at once."
     },
     {
       id: "C",
-      name: "C — Object shares the counted fill",
+      name: "C — A different kind to count",
       seed: 20260903,
       items: 48,
       target: { shape: "square", solid: false },
       starSolid: false,
       starR: 36,
+      setup: "48 shapes, and you count outlined squares rather than solid " +
+        "triangles.",
       designPoint: "The counted items are now outlined, and so is the " +
         "unexpected object. Similarity to the attended set usually raises " +
         "noticing."
     },
     {
       id: "D",
-      name: "D — Light load, solid object",
+      name: "D — Fewer items",
       seed: 20260904,
       items: 30,
       target: { shape: "triangle-down", solid: true },
       starSolid: true,
       starR: 36,
-      designPoint: "Half the items and a filled object. The easiest version, " +
-        "and the one to use if you want to show that the phenomenon is not " +
-        "inevitable."
+      setup: "30 shapes. The least crowded display.",
+      designPoint: "Half the items and a filled object — the two changes that " +
+        "most favour noticing."
     }
   ];
 
@@ -458,7 +469,7 @@
 
   function updateVariantHint() {
     var variant = currentVariant();
-    variantHint.textContent = variant.designPoint +
+    variantHint.textContent = variant.setup +
       (state.used.indexOf(variant.id) === -1
         ? " Not used yet in this browser session."
         : " Already used in this browser session — anybody who has seen it is no longer a naive observer.");
@@ -554,9 +565,7 @@
     event.preventDefault();
     var answer = $('input[name="notice"]:checked', noticeForm);
     if (!answer) {
-      noticeError.textContent =
-        "Choose one. \"No\" is a perfectly good answer and is what a great " +
-        "many people say.";
+      noticeError.textContent = "Choose one before continuing.";
       noticeError.hidden = false;
       return;
     }
@@ -589,10 +598,7 @@
         "without the ring, with the instruction to count the " +
         targetLabel(display.variant.target) + ", and nothing else."));
       revealBody.appendChild(make("p", null,
-        "The question afterwards offers six answers: no, a vague yes, and four " +
-        "named objects of which only one is correct. Offering the correct " +
-        "object by name makes a yes answer easier than an open question would, " +
-        "which is a real limitation and is stated in the debrief."));
+        "The question afterwards offers six answers, only one of them correct."));
     } else {
       var correct = display.count;
       var reported = state.reportedCount;
@@ -609,38 +615,33 @@
 
       revealBody.appendChild(make("p", null,
         noticed
-          ? "That happens often, and it is the finding rather than a " +
-            "failure. Noticing rates move with task load, similarity, size " +
-            "and expectation. The variant table shows what each one changes."
+          ? "That happens often, and it is not a failure. Noticing moves with " +
+            "task load, similarity, size and expectation — the table below " +
+            "shows what each variant changes."
           : partial
-            ? "The most interesting of the six answers. Something survived " +
-              "far enough to leave a trace and not far enough to be named — " +
-              "which is exactly where perception and memory accounts differ."
-            : "The star was drawn about " +
-              Math.round(display.star.r / SHAPE_R * 10) / 10 + " times the " +
-              "width of the shapes you were counting, and it was on screen the " +
-              "whole time. It is very likely that your eyes landed on it. What " +
+            ? "Something survived far enough to leave a trace, and not far " +
+              "enough to be named. That gap is where perception and memory " +
+              "accounts of this finding part company."
+            : "It was on screen the whole time, and far larger than anything " +
+              "you were counting. Your eyes very likely landed on it. What " +
               "did not happen is that it entered a report."));
 
+      var seconds = Math.round(state.viewedMs / 1000);
       revealBody.appendChild(make("p", null,
         "Your count was " + reported + "; there were " + correct + ". " +
         (off === 0
-          ? "Exactly right — which is worth knowing, because it shows the " +
-            "count was not going badly enough to explain anything else."
+          ? "Exactly right."
           : off <= 2
-            ? "Close, so the counting task was working as intended: absorbing, " +
-              "but not so hard that you gave up on it."
-            : "Some way out, which is fair enough — the count is there to " +
-              "occupy attention rather than to be scored.") +
-        " You looked at the display for about " +
-        Math.round(state.viewedMs / 1000) + " second" +
-        (Math.round(state.viewedMs / 1000) === 1 ? "" : "s") +
+            ? "Close."
+            : "Some way out, which is fine — the count was there to occupy " +
+              "your attention, not to be scored.") +
+        " You had the display for about " + seconds + " second" +
+        (seconds === 1 ? "" : "s") +
         (state.limited ? ", with the 25-second limit on." : ", self-paced.")));
 
       revealBody.appendChild(make("p", "verdict__note",
-        "One trial, one binary answer — not a measurement of your " +
-        "attention. You are also no longer naive: further variants show you " +
-        "the design, they cannot test you."));
+        "You are no longer a naive observer. Another variant will show you " +
+        "the design; it cannot test you."));
     }
 
     renderVariantTable();
@@ -670,26 +671,26 @@
      Opening judgement
      ===================================================================== */
 
+  /* These fire before the display appears, so none of them may say what the
+     counting task is for. That belongs in the reveal, and is there. */
   var OPENING = {
     exact: {
       tone: "neutral", verdict: "Ambitious.",
-      text: "Counting a particular kind of shape among several dozen others " +
-        "is harder than it sounds, which is exactly why the task was chosen."
+      text: "Counting one kind of shape among several dozen others is harder " +
+        "than it sounds."
     },
     one: {
       tone: "neutral", verdict: "Reasonable.",
-      text: "Most people land within one or two. The count is there to occupy " +
-        "your attention rather than to be scored, so do take it seriously."
+      text: "Most people land within one or two. Take it seriously and see."
     },
     three: {
       tone: "neutral", verdict: "Also reasonable.",
-      text: "Do try to be accurate anyway. The demonstration depends on the " +
-        "counting task actually being attended to."
+      text: "Try to be accurate anyway."
     },
     unsure: {
       tone: "neutral", verdict: "Sensible.",
       text: "Crowding matters a great deal, and the variants differ in exactly " +
-        "that. Take the count seriously and see."
+        "that."
     }
   };
 
@@ -721,8 +722,8 @@
   skipOpening.addEventListener("click", function () {
     openingError.hidden = true;
     showFeedback(openingFeedback, "neutral", "Skipped.",
-      "The display is unlocked. If you are running this for a group, take the " +
-      "demonstrator route first so you know what they are about to be asked.");
+      "The display is unlocked. Take the demonstrator route first if you want " +
+      "the design without spending a variant.");
     lockForm(openingForm);
     unlockTask("Skipped. Display unlocked.");
   });
@@ -817,9 +818,7 @@
 
     if (!answered) {
       showFeedback(challengeFeedback, "caution", "Nothing chosen yet.",
-        "Answer at least one. Ask yourself each time whether the change makes " +
-        "the primary task harder, or makes the object more like what is being " +
-        "attended to.");
+        "Answer at least one row first.");
       return;
     }
 
@@ -841,9 +840,8 @@
     challengeFeedback.appendChild(list);
 
     challengeFeedback.appendChild(make("p", null,
-      "The tool gives no percentages for any of these, deliberately. The " +
-      "direction of each effect is well replicated; the size of it belongs to " +
-      "whichever study measured it, and would not transfer to this display."));
+      "The direction of each effect is well replicated. The size of it belongs " +
+      "to whichever study measured it, and would not transfer to this display."));
 
     shell.announce("Challenge marked: " + right + " of " +
       CHALLENGE_CHANGES.length + " correct.", { immediate: true });

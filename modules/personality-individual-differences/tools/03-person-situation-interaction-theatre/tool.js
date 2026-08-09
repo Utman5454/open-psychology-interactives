@@ -122,7 +122,7 @@
       norm: 72,
       strength: 0.72,
       note:
-        "A strong situation: everybody knows the script, and almost everybody performs it. Differences shrink."
+        "A strong situation: everybody knows the script, and almost everybody performs it."
     },
     {
       id: "project",
@@ -142,7 +142,7 @@
       norm: 62,
       strength: 0.78,
       note:
-        "Strong and unambiguous. It also afford a different trait: composure matters here far more than sociability."
+        "Strong and unambiguous. It also affords a different trait: composure matters here far more than sociability."
     },
     {
       id: "anonymous",
@@ -557,8 +557,7 @@
         "The party affords extraversion and very little else, and it prescribes " +
         "almost nothing — situation strength 0.20. In a weak situation like " +
         "this, behaviour is mostly the person, so the ranking follows the " +
-        "trait the situation happens to afford. This is the case that makes " +
-        "traits look obviously real."
+        "trait the situation happens to afford."
       );
     }
     return (

@@ -211,6 +211,12 @@ megaphone at n = 120; **a curved mean function with constant variance** at
 n = 120, whose correct reading is not about variance at all; and a megaphone at
 **n = 16**, whose correct reading is that it cannot be diagnosed.
 
+Plot 4 is the one to spend time on in a debrief. "Too few observations to
+judge" is the answer students find hardest to give — declining to diagnose
+feels like failing the question rather than answering it, and saying so out
+loud is usually more useful than the plot itself. The page no longer tells them
+this in advance, so the observation is yours to make.
+
 ## Citation and evidence notes
 
 - **Anscombe and Tukey (1963)** and **Tukey (1977)** on residual analysis as the

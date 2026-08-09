@@ -277,8 +277,7 @@
       notes:
         "Both were tested about a year after a stroke, both were fluent " +
         "readers before it, and both wear their usual glasses. The published " +
-        "version of this fictional study used 40 items per task. The slider " +
-        "asks what would have been claimable if it had used more.",
+        "version of this fictional study used 40 items per task.",
       commentary:
         "Nothing about these two people changes as you move the slider; only " +
         "the precision of the estimates does. At 40 items the crossover is in " +
@@ -904,8 +903,7 @@
       verdict: "That is the step to be careful about.",
       text:
         "The natural reading, and one step further than the evidence goes. " +
-        "The failed task may simply be the more demanding one. Case 3 below " +
-        "is what it takes to rule that out."
+        "The failed task may simply be the more demanding one."
     },
     harder: {
       tone: "caution",

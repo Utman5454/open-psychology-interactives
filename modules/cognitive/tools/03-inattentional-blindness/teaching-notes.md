@@ -131,12 +131,22 @@ the primary task before the critical display appears.
 Verified against the running tool. Each is deterministic: the same display
 appears every time.
 
-| Variant | Seed | Items | Count | Correct count | Unexpected object | Object position |
-| --- | --- | --- | --- | --- | --- | --- |
-| A — Standard | 20260901 | 48 | solid downward triangles | 9 | outlined star, 2.4× shape width | row 7 of 7, column 10 of 12 |
-| B — Heavier load, less salient | 20260902 | 72 | solid downward triangles | 9 | outlined star, 1.6× shape width | row 1 of 7, column 3 of 12 |
-| C — Object shares counted fill | 20260903 | 48 | outlined squares | 6 | outlined star, 2.4× shape width | row 7 of 7, column 3 of 12 |
-| D — Light load, solid object | 20260904 | 30 | solid downward triangles | 6 | solid star, 2.4× shape width | row 2 of 7, column 3 of 12 |
+The names the learner sees are deliberately neutral — they sit in a select
+box before the run, where "heavier load, less salient object" would give the
+design away. What each variant *changes* is stated in the variant table, which
+is inside the reveal section and therefore invisible until the learner has
+answered.
+
+| Variant (as labelled) | What it changes | Seed | Items | Count | Correct count | Unexpected object | Object position |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| A — Standard | baseline | 20260901 | 48 | solid downward triangles | 9 | outlined star, 2.4× shape width | row 7 of 7, column 10 of 12 |
+| B — More items | heavier load, less salient object | 20260902 | 72 | solid downward triangles | 9 | outlined star, 1.6× shape width | row 1 of 7, column 3 of 12 |
+| C — A different kind to count | object shares the counted fill | 20260903 | 48 | outlined squares | 6 | outlined star, 2.4× shape width | row 7 of 7, column 3 of 12 |
+| D — Fewer items | light load, solid object | 20260904 | 30 | solid downward triangles | 6 | solid star, 2.4× shape width | row 2 of 7, column 3 of 12 |
+
+**Variant D is the one to use if you want to show that the phenomenon is not
+inevitable.** Half the items and a filled object are the two changes that most
+favour noticing, so it is the version most likely to be seen.
 
 Design details that matter if you are adapting it:
 
