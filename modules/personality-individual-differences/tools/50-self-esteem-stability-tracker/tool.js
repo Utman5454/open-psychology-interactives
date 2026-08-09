@@ -502,11 +502,11 @@
       tone: "caution",
       verdict: "Not quite.",
       text:
-        "An average is one number and these four differ on at least three " +
-        "others: how much they move from day to day with nothing happening, " +
-        "what kinds of event move them at all, and how long it takes them to " +
-        "come back. Two of the four have almost identical averages and " +
-        "entirely different six weeks."
+        "An average is one number, and these four differ on at least " +
+          "three others. How much they move from day to day with nothing " +
+          "happening, what kinds of event move them at all, and how long " +
+          "they take to come back. Two of the four have almost identical " +
+          "averages and entirely different six weeks."
     },
     varies: {
       tone: "good",

@@ -630,14 +630,11 @@
     challengeFeedback.appendChild(
       make("p", null,
         overreached
-          ? "You went further than the evidence allows. A response pattern is " +
-            "evidence about a pattern; it cannot tell you why. The same grid " +
-            "is produced by carelessness, by a genuine trait, " +
-            "by a culturally normal way of using rating scales, by someone " +
-            "fatigued or in pain, by a person navigating a badly built form with " +
-            "a screen reader, and by someone answering honestly about a life in " +
-            "which these items do not apply. Flagging a pattern is legitimate; " +
-            "attributing a motive to it is not."
+          ? "You went further than the evidence allows. A response " +
+            "pattern is evidence about a pattern; it cannot tell you why. " +
+            "Nothing in the grid separates carelessness from a genuine " +
+            "trait, or either from a form that was hard to use. Flagging " +
+            "a pattern is legitimate; attributing a motive to it is not."
           : "And you were right to refuse the second question. The pattern is " +
             "detectable; the reason for it is not. Screening on response " +
             "patterns is defensible as a data-quality decision, stated as such. " +
