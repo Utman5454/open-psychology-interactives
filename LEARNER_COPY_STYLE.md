@@ -370,6 +370,84 @@ may be better than another explanatory paragraph.
 
 Short does not mean simplistic.
 
+## 6.5 Sentence-level readability
+
+**Scope: the shape of individual sentences.** This layer sits underneath the
+rest of §6 and replaces none of it. It lowers the effort of reading a sentence.
+It does not decide what the sentence says.
+
+The goal is:
+
+> **simple sentence structure without simple psychology.**
+
+Adapted from the controlled-language principles of ASD-STE100:
+
+- **Use the active voice where natural.** "Indiscriminate policing brought the
+  sections under one category", not "the sections were brought under one
+  category".
+- **Give one instruction in one sentence.** Two actions are two sentences.
+- **Keep procedural sentences to about 20 words or less.** Instructions,
+  prompts, control descriptions, anything a learner reads while acting.
+- **Keep descriptive sentences to about 25 words or less.** Results,
+  interpretation, debrief, limitations.
+- **Prefer simple sentence structures.** One main clause, at most one
+  subordinate clause.
+- **Prefer simple tenses.** "The slope barely moves", not "the slope will have
+  been moving".
+- **Avoid noun clusters longer than three words where practical.** "control
+  group average" is fine; "control-referenced task difficulty estimate" is not.
+
+### What this layer must not do
+
+- **Preserve required terminology.** Psychological, statistical,
+  methodological and clinical terms stay. Heteroscedasticity, double
+  dissociation, measurement invariance, confidence interval and standard error
+  are not candidates for simplification. §5 governs; this section is
+  subordinate to it.
+- **Do not simplify a sentence if doing so changes the meaning, removes
+  uncertainty, or weakens an important distinction.** A shorter sentence that
+  is less true is a worse sentence. Leave it long and say so.
+
+### The anti-repetition rule
+
+> **Do not create repetition simply to keep sentences short. Each sentence
+> should add, develop, contrast, or clarify something. Read neighbouring
+> sentences together so they build naturally rather than restating the same
+> noun, definition, or conclusion.**
+
+Splitting a long sentence often tempts you to repeat its subject in both
+halves. Resist it. Use a pronoun, a contrast, or a shorter second sentence
+that moves the idea on.
+
+Avoid:
+
+> The classical standard error assumes one common variance. The classical
+> standard error is wrong when there is not one.
+
+Prefer:
+
+> The classical standard error assumes one common variance. There is not one.
+
+### Targets, not rules
+
+> **Treat 20 and 25 words as targets, not ceilings. A clear 26–30 word
+> sentence is better than two fragmented sentences.**
+
+The word counts are strong readability targets. They are not a licence to
+delete, and not a quota to enforce sentence by sentence. A 30-word sentence
+that carries one clean idea is better than two 15-word sentences that carry
+one and a half.
+
+**Do not split a sentence if splitting it makes the surrounding passage
+repetitive, fragmented, or harder to follow.** Check the result in place, not
+on its own. A split that forces the second half to restate the subject of the
+first has made the passage worse, and a paragraph of short declaratives is
+harder to read than the one long sentence it replaced.
+
+The voice must not become childish, fragmented, robotic or repetitive. If a
+revision reads like a list of clipped assertions, it has failed this section
+even if every sentence is under the limit.
+
 ---
 
 # 7. Trust the interface

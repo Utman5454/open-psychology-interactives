@@ -1060,10 +1060,11 @@
       tone: "caution",
       verdict: "Right about the literature, wrong about the individual.",
       text:
-        "Modest attitude-behaviour correlations are a real and well-replicated " +
-        "finding. But a correlation across a sample does not license a " +
-        "frequency for one person - and experiment 3 shows that the size of " +
-        "the correlation is partly a fact about the setting the study ran in."
+        "Modest attitude-behaviour correlations are a real and " +
+          "well-replicated finding. But a correlation across a sample " +
+          "does not license a frequency for one person. Experiment 3 " +
+          "shows that the size of the correlation is partly a fact about " +
+          "the setting the study ran in."
     },
     cannot: {
       tone: "good",

@@ -146,10 +146,10 @@
       reduces: true,
       apply: "Expected outcome of Option A: 270 seedlings saved. " +
         "Expected outcome of Option B: 270 seedlings saved.",
-      why: "Reduces the asymmetry, because it makes the equivalence a stated fact " +
-        "rather than something the reader has to compute. Note what it does not " +
-        "do: it does not make the two options identical in every respect, since " +
-        "they still differ in variance, and preferring one variance to another is " +
+      why: "Reduces the asymmetry, because it makes the equivalence a stated " +
+        "fact rather than something the reader has to compute. It does " +
+        "not make the two options identical in every respect. They still " +
+        "differ in variance, and preferring one variance to another is " +
         "not an error."
     },
     {

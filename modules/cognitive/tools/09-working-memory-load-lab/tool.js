@@ -978,9 +978,10 @@
     hardest: {
       tone: "caution", verdict: "A reasonable guess, and testable.",
       text: "Sheer difficulty does matter. But a same-domain task costs more " +
-        "than a different-domain task of comparable difficulty, which is why " +
-        "the worked example crosses both concurrent tasks with both kinds of " +
-        "material — that crossing is what separates similarity from difficulty."
+        "than a different-domain task of comparable difficulty. That is " +
+        "why the worked example crosses both concurrent tasks with both " +
+        "kinds of material: the crossing separates similarity from " +
+        "difficulty."
     }
   };
 

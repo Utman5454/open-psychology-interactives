@@ -396,11 +396,12 @@
       "and a normalisation.";
 
     weightNote.textContent =
-      "This is the whole operation as implemented here. A real attention layer " +
-      "would now use these ten numbers as coefficients in a weighted sum of " +
-      "ten value vectors, which this page does not have, and would do so in " +
-      "many heads across many layers. The weights are not the output, and they " +
-      "are not the reason for the output.";
+      "This is the whole operation as implemented here. A real " +
+        "attention layer would now use these ten numbers as coefficients " +
+        "in a weighted sum of ten value vectors, which this page does not " +
+        "have. It would do so in many heads across many layers. The " +
+        "weights are not the output, and they are not the reason for the " +
+        "output.";
   }
 
   function renderProvenance() {

@@ -774,11 +774,11 @@
       "than reporting raw rates."));
 
     resultsBody.appendChild(make("p", null,
-      "Notice what this is not. Every intrusion here is to a word that fits " +
-      "the theme of what was studied. A memory system that keeps the gist of " +
-      "things is one that will occasionally accept a good fit to the gist, and " +
-      "that trade is what makes it useful for anything other than reciting " +
-      "lists."));
+      "Notice what this is not. Every intrusion here is to a word that " +
+        "fits the theme of what was studied. A memory system that keeps " +
+        "the gist will occasionally accept a good fit to it. That trade " +
+        "is what makes the system useful for anything beyond reciting " +
+        "lists."));
   }
 
   function renderItemTable(meta) {

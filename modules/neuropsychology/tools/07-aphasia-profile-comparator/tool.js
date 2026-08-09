@@ -65,10 +65,10 @@
       id: "repetition", name: "Repeating what was said", short: "Repetition",
       asks: "Saying back single words and then short sentences, immediately after hearing them",
       note:
-        "The most informative measure in the set, because it can be done by a " +
-        "short route from the sounds coming in to the sounds going out, " +
-        "without meaning being involved. Disproportionate difficulty here, or " +
-        "disproportionate sparing, is evidence about a connection."
+        "The most informative measure in the set, because repeating a " +
+          "word does not require understanding it. Disproportionate " +
+          "difficulty here, or disproportionate sparing, is evidence " +
+          "about a connection."
     },
     {
       id: "naming", name: "Naming things", short: "Naming",
@@ -88,9 +88,9 @@
       id: "writing", name: "Writing", short: "Writing",
       asks: "Writing the names of pictured objects, and one sentence about a scene",
       note:
-        "Depends on hand movement as well as on language, and is the measure " +
-        "most often left out of an assessment - which is a reason to be careful " +
-        "reading a profile that has it and one that does not."
+        "Depends on hand movement as well as on language, and is the " +
+          "measure most often left out of an assessment. Be careful " +
+          "comparing a profile that has it with one that does not."
     }
   ];
 
@@ -534,10 +534,9 @@
       tone: "good",
       verdict: "Yes.",
       text:
-        "Repetition can take a short route from the sounds coming in to the " +
-        "sounds going out, with meaning left out. Two people matched on " +
-        "understanding and on speech who differ on repetition differ in " +
-        "whether that route is available."
+        "Repetition can take a short route that bypasses meaning. Two " +
+          "people matched on understanding and on speech who differ on " +
+          "repetition differ in whether that route is available."
     },
     category: {
       tone: "caution",
@@ -553,11 +552,11 @@
       tone: "caution",
       verdict: "Artificial, and unusually informative for that reason.",
       text:
-        "Nobody repeats sentences in daily life, and that is close to why the " +
-        "task is useful: it can be done without meaning being involved, so it " +
-        "isolates something the natural tasks confound. Ecological validity " +
-        "and diagnostic value are different virtues and often pull in " +
-        "different directions."
+        "Nobody repeats sentences in daily life, and that is close to " +
+          "why the task is useful. It can be done without understanding " +
+          "the word, so it isolates something the natural tasks confound. " +
+          "Ecological validity and diagnostic value are different virtues " +
+          "and often pull in different directions."
     }
   };
 

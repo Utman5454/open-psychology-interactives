@@ -858,8 +858,8 @@
       text: "A quarter of a second does not erase visual memory; people can " +
         "hold information across far longer gaps. And the effect survives " +
         "when the interruption is an eye movement, a cut in a film, or a " +
-        "splash of mud briefly obscuring part of the scene — none of which is " +
-        "a blank interval at all. What those have in common is disrupting the " +
+        "splash of mud briefly obscuring part of the scene. None of those " +
+        "is a blank interval. What those have in common is disrupting the " +
         "local transient."
     }
   };

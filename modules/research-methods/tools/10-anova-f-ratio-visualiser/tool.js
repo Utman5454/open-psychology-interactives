@@ -761,12 +761,12 @@
       : "Not pattern " + chosen.value.toUpperCase() + ", or rather: not only " +
         "pattern " + chosen.value.toUpperCase() + ".";
     var body =
-      "All three patterns have a between-groups sum of squares of exactly " +
-      "540.0, so with 30 people per group and a within-group standard " +
-      "deviation of 6 they all give F(2, 87) = 7.50. Open the table below and " +
-      "check. Three quite different shapes, one F: it is built from the " +
-      "squared distances of the means from the grand mean, and squaring " +
-      "discards the direction and the arrangement.";
+      "All three patterns have a between-groups sum of squares of " +
+        "exactly 540.0. With 30 people per group and a within-group " +
+        "standard deviation of 6, they all give F(2, 87) = 7.50. Open the " +
+        "table below and check. Three quite different shapes, one F: it " +
+        "is built from the squared distances of the means from the grand " +
+        "mean, and squaring discards the direction and the arrangement.";
     showFeedback(patternFeedback, right ? "good" : "caution", lead, body);
 
     var next = make("p");
@@ -829,9 +829,9 @@
       tone: "caution",
       verdict: "The right direction, and not far enough.",
       text:
-        "F falls by more than half. The denominator is a mean SQUARE - a " +
-        "variance - so doubling the standard deviation multiplies it by four, " +
-        "and F drops from about 54 on average to about 14."
+        "F falls by more than half. The denominator is a mean SQUARE, a " +
+          "variance. Doubling the standard deviation multiplies it by " +
+          "four, and F drops from about 54 on average to about 14."
     },
     quarter: {
       tone: "good",
@@ -939,11 +939,11 @@
     ttests: {
       correct: false,
       text:
-        "Wrong in both directions. Three pairwise t-tests ask three separate " +
-        "questions rather than the one the omnibus test asks, and running " +
-        "them raises the chance of at least one false positive above the " +
-        "nominal level. The connection is real but narrower: with only TWO " +
-        "groups, F is exactly t squared."
+        "Wrong in both directions. Three pairwise t-tests ask three " +
+          "separate questions rather than the one the omnibus test asks. " +
+          "Running them raises the chance of at least one false positive " +
+          "above the nominal level. The connection is real but narrower: " +
+          "with only TWO groups, F is exactly t squared."
     },
     equivalent: {
       correct: false,

@@ -1139,11 +1139,11 @@
       id: "absent",
       text: "Target-absent trials produced a steeper slope than target-present trials.",
       answer: "supported",
-      why: "Again a description rather than an explanation. Note that the " +
-        "worked example has this ratio built into its generator, so the " +
-        "simulated data illustrate the pattern rather than evidencing it; " +
-        "your own block, if you ran one, is the only place it could show up " +
-        "by itself."
+      why: "Again a description rather than an explanation. The worked " +
+        "example has this ratio built into its generator, so the " +
+        "simulated data illustrate the pattern rather than evidencing it. " +
+        "Your own block, if you ran one, is the only place it could show " +
+        "up by itself."
     },
     {
       id: "faster",

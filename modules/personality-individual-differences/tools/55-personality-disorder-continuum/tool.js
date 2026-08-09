@@ -731,11 +731,11 @@
       tone: "caution",
       verdict: "Part of it, and an important part.",
       text:
-        "Distress matters enormously and is a reason for help by itself. But " +
-        "it is neither necessary nor sufficient here: some patterns cause " +
-        "little distress to the person and considerable difficulty in their " +
-        "life, and a great deal of distress has causes that have nothing to " +
-        "do with personality."
+        "Distress matters enormously and is a reason for help by " +
+          "itself. But it is neither necessary nor sufficient here. Some " +
+          "patterns cause little distress and considerable difficulty in " +
+          "a person's life. And a great deal of distress has causes that " +
+          "have nothing to do with personality."
     },
     inflexible: {
       tone: "good",
@@ -750,12 +750,13 @@
       tone: "good",
       verdict: "A serious answer, and not a cynical one.",
       text:
-        "Where the line goes is a decision taken by people, it has moved " +
-        "several times in living memory, and it does different work in " +
-        "different cultural settings. That is not an argument that the " +
-        "difficulties are imaginary — they are not — but it is a reason to " +
-        "hold the category more lightly than the suffering it is meant to " +
-        "describe. Try the threshold slider below."
+        "Where the line goes is a decision taken by people, it has " +
+          "moved several times in living memory, and it does different " +
+          "work in different cultural settings. That is not an argument " +
+          "that the difficulties are imaginary. The difficulties are " +
+          "real. But it is a reason to hold the category more lightly " +
+          "than the suffering it is meant to describe. Try the threshold " +
+          "slider below."
     }
   };
 
@@ -828,10 +829,11 @@
     distress: {
       defensible: false,
       text:
-        "Distress alone. Distress is a reason to offer help and it belongs in " +
-        "any assessment, but by itself it does not distinguish a personality " +
-        "pattern from grief, exhaustion, a hostile environment, or an " +
-        "ordinary bad year. It is neither necessary nor sufficient."
+        "Distress alone. Distress is a reason to offer help, and it " +
+          "belongs in any assessment. By itself it does not distinguish a " +
+          "personality pattern from grief, exhaustion, a hostile " +
+          "environment, or an ordinary bad year. It is neither necessary " +
+          "nor sufficient."
     },
     norms: {
       defensible: false,
@@ -845,10 +847,10 @@
     colleague: {
       defensible: false,
       text:
-        "Someone finding them difficult. Interpersonal impact matters and it " +
-        "is one of the six dimensions here, but a single person's irritation " +
-        "is not evidence about a personality, and the relationship it comes " +
-        "from has two people in it."
+        "Someone finding them difficult. Interpersonal impact matters, " +
+          "and it is one of the six dimensions here. But a single " +
+          "person's irritation is not evidence about a personality, and " +
+          "the relationship it comes from has two people in it."
     }
   };
 

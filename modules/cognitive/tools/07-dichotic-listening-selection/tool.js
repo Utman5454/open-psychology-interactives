@@ -1245,11 +1245,11 @@
       id: "priming",
       text: "An unattended word makes a related word easier to process in a later test, even when the person cannot report having seen or heard it.",
       answer: "early",
-      why: "Meaning must have been extracted for a related word to be primed, " +
-        "so a filter before meaning is in trouble. Note what it does not " +
-        "settle: attenuation predicts exactly this, and so does late " +
-        "selection, so the finding rules one account out rather than choosing " +
-        "between the other two."
+      why: "Meaning must have been extracted for a related word to be " +
+        "primed, so a filter before meaning is in trouble. What it does " +
+        "not settle: attenuation predicts exactly this, and so does late " +
+        "selection. The finding rules one account out rather than " +
+        "choosing between the other two."
     },
     {
       id: "load",

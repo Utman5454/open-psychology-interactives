@@ -933,9 +933,10 @@
     if (meta.mode === "count") {
       var note = make("tr");
       var cellNote = make("td", null,
-        "In counting mode the number has no per-item choice response, so its " +
-        "accuracy is the counting error rather than a percentage, and in the " +
-        "dual block it is on screen for exactly as long as the letter takes.");
+        "In counting mode the number has no per-item choice response, " +
+          "so its accuracy is the counting error rather than a " +
+          "percentage. In the dual block it is on screen for exactly as " +
+          "long as the letter takes.");
       cellNote.setAttribute("colspan", "6");
       note.appendChild(cellNote);
       costTable.appendChild(note);
@@ -1208,10 +1209,10 @@
       text: "One student's cost was 90 ms and another's was 260 ms, so the first is the better multitasker.",
       answer: "neither",
       why: "Three problems before you reach the theories. The two costs were " +
-        "never referred to a common baseline; a difference between two noisy " +
-        "means from twenty trials is mostly noise; and dual-task costs are " +
-        "specific to the task pair, so “multitasker” names a trait the design " +
-        "never measured."
+        "never referred to a common baseline. A difference between two " +
+        "noisy means from twenty trials is mostly noise. And dual-task " +
+        "costs are specific to the task pair, so “multitasker” names a " +
+        "trait the design never measured."
     }
   ];
 
