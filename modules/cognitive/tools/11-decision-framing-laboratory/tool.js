@@ -180,8 +180,8 @@
         "seedling upright in the morning sun.",
       why: "Increases the asymmetry rather than reducing it. Vividness makes an " +
         "outcome easier to bring to mind, which changes how likely and how " +
-        "significant it feels — which is precisely the kind of influence the " +
-        "rewrite is trying to remove."
+        "significant it feels — the kind of influence the rewrite is trying " +
+        "to remove."
     },
     {
       id: "bigger",
@@ -511,11 +511,11 @@
       "the pair and ask whether you would have chosen the same way."));
     resultsBody.appendChild(make("p", null,
       state.reference === "owned"
-        ? "One more thing to notice. The stock was described as long " +
+        ? "The stock was described as long " +
           "established and unambiguously yours, so the natural reference point " +
           "was the full amount, and every outcome was a loss from it. Try the " +
           "other setting and see whether the wording reads differently."
-        : "One more thing to notice. The stock was described as having only " +
+        : "The stock was described as having only " +
           "just arrived and not yet been logged as yours. If your reference " +
           "point was “nothing yet”, then the loss-framed version was not " +
           "describing a loss at all. Which reference point did you actually " +
@@ -761,8 +761,7 @@
   skipOpening.addEventListener("click", function () {
     openingError.hidden = true;
     showFeedback(openingFeedback, "neutral", "Prediction skipped.",
-      "The laboratory is unlocked. If you are demonstrating, split the room " +
-      "between the two certainty settings before anybody starts.");
+      "The laboratory is unlocked.");
     lockForm(openingForm);
     unlockLab("Prediction skipped. Laboratory unlocked.");
   });
@@ -816,10 +815,9 @@
     showFeedback(challengeFeedback,
       right === EDITS.length ? "good" : "caution",
       right + " of " + EDITS.length + " judged correctly.",
-      "Four of the six reduce the asymmetry and two do not. The two that do " +
-      "not are worth dwelling on: making an outcome vivid and making the " +
-      "numbers larger both make the problem feel more consequential without " +
-      "touching the thing that produces the effect.");
+      "Four of the six reduce the asymmetry and two do not. Making an outcome " +
+      "vivid and making the numbers larger both make the problem feel more " +
+      "consequential without touching the thing that produces the effect.");
 
     var list = make("ul");
     EDITS.forEach(function (edit) {

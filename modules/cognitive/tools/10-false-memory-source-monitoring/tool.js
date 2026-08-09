@@ -897,9 +897,7 @@
   skipOpening.addEventListener("click", function () {
     openingError.hidden = true;
     showFeedback(openingFeedback, "neutral", "Prediction skipped.",
-      "The task is unlocked. If you are demonstrating, let the room study " +
-      "first and say nothing about the design until they have finished the " +
-      "test.");
+      "The task is unlocked.");
     lockForm(openingForm);
     unlockTask("Prediction skipped. Study phase unlocked.");
   });

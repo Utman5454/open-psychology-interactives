@@ -1085,8 +1085,7 @@
     var answer = $('input[name="opening"]:checked', openingForm);
     if (!answer) {
       openingError.textContent =
-        "Choose one of the four patterns before going on. Committing to an " +
-        "answer first is the point of this step.";
+        "Choose one of the four patterns before going on.";
       openingError.hidden = false;
       return;
     }
@@ -1100,9 +1099,7 @@
   skipOpening.addEventListener("click", function () {
     openingError.hidden = true;
     showFeedback(openingFeedback, "neutral", "Prediction skipped.",
-      "Everything is unlocked. If you are running this with a group, take the " +
-      "prediction aloud before you show a display — the contrast lands harder " +
-      "when the room has committed to an answer.");
+      "Everything is unlocked.");
     lockForm(openingForm);
     unlockPage("Prediction skipped. Laboratory unlocked.");
   });
@@ -1153,8 +1150,7 @@
       text: "Adding items made feature search faster.",
       answer: "contradicted",
       why: "The feature slope is small and positive. A negative slope in " +
-        "somebody's own 18-trial block is noise, not a finding — which is " +
-        "itself worth knowing about small samples."
+        "somebody's own 18-trial block is noise, not a finding."
     }
   ];
 

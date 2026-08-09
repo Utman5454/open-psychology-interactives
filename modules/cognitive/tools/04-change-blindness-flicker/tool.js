@@ -676,16 +676,12 @@
         "the change announced its own location."));
     } else {
       resultsBody.appendChild(make("p", null,
-        "Run the same scene again with the blank switched off. That comparison " +
-        "is the point of the tool, and it is much more informative than any " +
-        "single time."));
+        "Run the same scene without the blank and compare the two searches."));
     }
 
     resultsBody.appendChild(make("p", "verdict__note",
       "Your own times, in your own browser, at whatever size your screen " +
-      "gives the scene. They are not comparable with published figures — this " +
-      "alternation is deliberately slower than the standard paradigm — and " +
-      "they measure nothing about you."));
+      "gives the scene. They measure nothing about you."));
 
     renderTrialTable();
     resultsSection.hidden = false;

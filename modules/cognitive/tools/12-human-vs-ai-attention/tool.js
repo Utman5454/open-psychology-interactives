@@ -523,7 +523,7 @@
 
   var OPENING = {
     "nothing-much": {
-      tone: "good", verdict: "That is the position this page will end at.",
+      tone: "good", verdict: "Yes.",
       text: "Two processes producing the same output is not evidence that they " +
         "are the same process, and it is not evidence that either explains the " +
         "other. Hold onto that while you do the next two stages."
@@ -535,7 +535,7 @@
         "the arithmetic could correspond to the thing you did in stage 1."
     },
     explains: {
-      tone: "caution", verdict: "This is the specific error the debrief is about.",
+      tone: "caution", verdict: "That is a step too far.",
       text: "Attention weights are one factor in one operation in one layer. " +
         "They can be altered substantially without altering the output, and " +
         "identical outputs can arise from very different weights. A heatmap is " +
@@ -574,9 +574,7 @@
   skipOpening.addEventListener("click", function () {
     openingError.hidden = true;
     showFeedback(openingFeedback, "neutral", "Prediction skipped.",
-      "Stage 1 is unlocked. From the front, run stage 1 with the room first " +
-      "and only then open stage 2 — the order matters, because it is much " +
-      "harder to over-read the weights when you have just done the human task.");
+      "Stage 1 is unlocked.");
     lockForm(openingForm);
     unlockHuman("Prediction skipped. Stage 1 unlocked.");
   });

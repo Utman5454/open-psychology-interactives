@@ -1129,8 +1129,7 @@
       (answered < CHALLENGE_ITEMS.length
         ? " (" + (CHALLENGE_ITEMS.length - answered) + " left blank)." : "."),
       "Two of these five are about something this laboratory does not " +
-      "manipulate. Recognising when a finding is outside the reach of a design " +
-      "is the skill worth taking away.");
+      "manipulate. A finding can be outside the reach of a design.");
 
     var list = make("ul");
     CHALLENGE_ITEMS.forEach(function (item) {

@@ -1127,9 +1127,8 @@
     },
     neither: {
       tone: "caution", verdict: "Almost never, even for very easy tasks.",
-      text: "Two tasks this simple still interfere, and that is the point: the " +
-        "cost is not about difficulty in any everyday sense. Run the blocks and " +
-        "see how large it is."
+      text: "Two tasks this simple still interfere. The cost is not about " +
+        "difficulty in any everyday sense. Run the blocks and see how large it is."
     }
   };
 

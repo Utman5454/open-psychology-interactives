@@ -73,7 +73,10 @@ the common answer and gets feedback rather than a mark — it is half right, and
 the surprising half is that adding twenty-four items to a feature display is
 almost free.
 
-A **skip** button unlocks everything for demonstrators.
+A **skip** button unlocks everything for demonstrators. If you are running
+this with a group, take the prediction aloud before you show a display: the
+contrast lands harder when the room has committed to an answer. The page no
+longer says this, so it is yours to do.
 
 ## The demonstration worth doing from the front
 

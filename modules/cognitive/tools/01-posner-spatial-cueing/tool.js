@@ -838,9 +838,8 @@
     var sentences = [];
     if (benefit === null || cost === null) {
       sentences.push(
-        "At least one condition has too few usable trials to compare, which " +
-        "is itself worth noticing: the invalid cell is the smallest one in " +
-        "this design.");
+        "At least one condition has too few usable trials to compare. The " +
+        "invalid cell is the smallest in this design, so it runs out first.");
     } else {
       sentences.push(
         (benefit > 0

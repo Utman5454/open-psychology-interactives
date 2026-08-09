@@ -1203,8 +1203,7 @@
   skipOpening.addEventListener("click", function () {
     openingError.hidden = true;
     showFeedback(openingFeedback, "neutral", "Prediction skipped.",
-      "The experiment is unlocked. If you are demonstrating this, let the " +
-      "room run one trial before you say anything about the design.");
+      "The experiment is unlocked.");
     lockForm(openingForm);
     unlockExperiment("Prediction skipped. Experiment unlocked.");
   });
@@ -1322,10 +1321,10 @@
       right + " of " + CHALLENGE_ITEMS.length + " correct" +
       (answered < CHALLENGE_ITEMS.length
         ? " (" + (CHALLENGE_ITEMS.length - answered) + " left blank)." : "."),
-      "Notice that attenuation is not an option anywhere. It absorbs every " +
-      "finding on this list, which is its strength and, as a theory, its " +
-      "problem: a model that cannot be embarrassed by any result is not being " +
-      "tested by any of them.");
+      "Attenuation is not an option anywhere on this list. It absorbs every " +
+      "finding, which is its strength and, as a theory, its problem: a model " +
+      "that cannot be embarrassed by any result is not being tested by any of " +
+      "them.");
 
     var list = make("ul");
     CHALLENGE_ITEMS.forEach(function (item) {
