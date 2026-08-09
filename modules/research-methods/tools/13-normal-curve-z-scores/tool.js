@@ -592,8 +592,8 @@
       " percentile, and z = " + fmt(zB) + " on Test B (mean " + c.muB + ", SD " +
       c.sigmaB + "), putting it at the " + ordinal(phi(zB)) + ". " +
       (truth === "same"
-        ? "The two are close enough to call level - which is worth noticing, " +
-          "because the two tests look nothing alike."
+        ? "The two are close enough to call level, and the two tests look " +
+          "nothing alike."
         : "It is more unusual on Test " + truth.toUpperCase() + ".");
     showFeedback(compareFeedback, right ? "good" : "caution", lead, body);
 
@@ -665,7 +665,7 @@
     },
     five: {
       tone: "caution",
-      verdict: "The most instructive wrong answer on this page.",
+      verdict: "The most instructive wrong answer.",
       text:
         "5% is the area outside plus or minus two standard deviations - both " +
         "tails together. The question asked only about scores above 70, which " +

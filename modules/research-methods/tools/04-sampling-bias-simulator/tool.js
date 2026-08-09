@@ -703,7 +703,7 @@
   var OPENING = {
     accurate: {
       tone: "warn",
-      verdict: "This is the belief the tool exists to break.",
+      verdict: "That is the belief to give up.",
       text:
         "Nine hundred responses make the estimate precise, not correct. If " +
         "the people who answer a social-media link differ from the people who " +

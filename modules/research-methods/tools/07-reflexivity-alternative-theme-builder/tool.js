@@ -275,7 +275,7 @@
       coherence: "strong",
       coherenceNote:
         "The question asks what the setting does; the lens is built to see " +
-        "settings. This pairing produces the most confident account in the tool " +
+        "settings. This pairing produces the most confident account here " +
         "and should be read alongside the most sceptical one.",
       themes: [
         "Help routed through an act of self-identification, so that receiving " +
@@ -347,7 +347,7 @@
       coherence: "strong",
       coherenceNote:
         "The question asks how a category is produced and by whom; the lens is " +
-        "built to trace exactly that. The strongest match in the tool, and the " +
+        "built to trace exactly that. The strongest match here, and the " +
         "one most obliged to show its working.",
       themes: [
         "A category constituted by the machinery that offers to help: to " +
@@ -676,7 +676,7 @@
       ? "Nothing was added to or taken from the dataset. " + moved.join("; ") +
         ". Same six people, two studies."
       : "These two accounts draw on the six extracts in the same proportions, " +
-        "which is worth noticing: the difference between them is in what they " +
+        "and the difference between them is in what they " +
         "claim rather than in what they read.";
 
     compareBlock.hidden = false;
@@ -743,9 +743,9 @@
       li.appendChild(make("strong", null,
         "“" + claim.text + "” — " +
         (chosen === truth
-          ? "you said " + VERDICT_LABEL[truth].toLowerCase() + ", and so does the tool. "
+          ? "you said " + VERDICT_LABEL[truth].toLowerCase() + ", and so does this. "
           : "you said " + VERDICT_LABEL[chosen].toLowerCase() +
-            "; the tool would say " + VERDICT_LABEL[truth].toLowerCase() + ". ")));
+            "; this reads as " + VERDICT_LABEL[truth].toLowerCase() + ". ")));
       li.appendChild(document.createTextNode(claim.note(s)));
       list.appendChild(li);
     });
@@ -790,7 +790,7 @@
     },
     anything: {
       tone: "warn",
-      verdict: "The misreading this tool exists to correct.",
+      verdict: "That is the misreading to give up.",
       text:
         "Two of the nine pairings below do not hold together, and the tool " +
         "says which and why. Two of the five claims in the accountability " +

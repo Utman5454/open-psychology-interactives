@@ -918,7 +918,7 @@
       right === 5 ? "good" : right >= 3 ? "caution" : "warn");
     var lead = make("p");
     lead.appendChild(make("strong", "feedback__verdict",
-      right + " of 5 classified as the tool has them. "));
+      right + " of 5 classified the same way. "));
     lead.appendChild(document.createTextNode(
       "Read every note, including the ones you got right — the reasoning " +
       "matters more than the label. Then open the repair bench."));

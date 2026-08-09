@@ -775,7 +775,7 @@
 
     var tone = right === 3 ? "good" : right === 0 ? "warn" : "caution";
     var lead = right === 3
-      ? "Yes — and notice that the sentence never uses the word \"interaction\"."
+      ? "Yes — and the sentence never uses the word \"interaction\"."
       : right + " of the three gaps.";
 
     clear(challengeFeedback);

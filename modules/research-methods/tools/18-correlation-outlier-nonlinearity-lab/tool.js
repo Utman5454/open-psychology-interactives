@@ -479,7 +479,7 @@
   var OPENING = {
     high: {
       tone: "caution",
-      verdict: "Not this one — and the reason is the point of the page.",
+      verdict: "Not this one.",
       text:
         "A high positive r would mean the points lie close to an upward " +
         "straight line. A U-shape goes down and then up, so the two halves " +

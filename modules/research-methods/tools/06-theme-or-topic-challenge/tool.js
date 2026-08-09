@@ -396,8 +396,8 @@
       head.appendChild(make("span", "part__standing",
         correct
           ? "you said " + CATEGORY_SHORT[candidate.answer] +
-            " — the tool agrees"
-          : "you said " + CATEGORY_SHORT[chosen] + "; the tool would call it " +
+            " — that matches"
+          : "you said " + CATEGORY_SHORT[chosen] + "; this reads as " +
             CATEGORY_SHORT[candidate.answer]));
       block.appendChild(head);
       block.appendChild(make("p", "part__body", candidate.note));
@@ -408,7 +408,7 @@
       right === 4 ? "good" : right >= 2 ? "caution" : "warn");
     var lead = make("p");
     lead.appendChild(make("strong", "feedback__verdict",
-      right + " of 4 match the tool's reading. "));
+      right + " of 4 match. "));
     lead.appendChild(document.createTextNode(
       "Read every note. The distinction between the staging post and the " +
       "developed theme is the one worth arguing about, and a supervisor might " +
