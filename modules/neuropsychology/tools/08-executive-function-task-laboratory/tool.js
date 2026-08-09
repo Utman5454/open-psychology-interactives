@@ -865,7 +865,7 @@
     },
     nothing: {
       tone: "caution",
-      verdict: "That is the assumption the tool exists to question.",
+      verdict: "That is the assumption to question.",
       text:
         "The colour-word task loads on inhibition at 0.90 and also on " +
         "processing speed at 0.70 and sustained effort at 0.50. It is named " +

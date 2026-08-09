@@ -917,7 +917,7 @@
         ? " What does fit: " + fits.map(function (c) {
             return c.name.toLowerCase();
           }).join(" and ") + "."
-        : " Every one of the six fails somewhere, which is itself the finding.");
+        : " Every one of the six fails somewhere.");
   }
 
   /* --- Opening prediction ----------------------------------------------- */

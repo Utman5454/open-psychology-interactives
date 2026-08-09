@@ -677,7 +677,7 @@
     synthesis.appendChild(make("h4", "stage__heading", "What the case still supports"));
     synthesis.appendChild(make("p", null,
       "The complications bear far harder on the general claim than on the " +
-      "specific one. That asymmetry is the point: lesion evidence is strong " +
+      "specific one. Lesion evidence is strong " +
       "about necessity in a person and weak about what a region does."));
     var list = make("ul", "trap__synthesis");
     SYNTHESIS.forEach(function (item) {
@@ -696,7 +696,7 @@
   var OPENING = {
     produces: {
       tone: "caution",
-      verdict: "That is the sentence the tool is about.",
+      verdict: "That is the sentence to be careful with.",
       text:
         "The natural reading of the notes, and a claim about what tissue " +
         "does - which damage cannot deliver. A lesion speaks to necessity: " +
