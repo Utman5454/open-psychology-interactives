@@ -54,14 +54,16 @@ implemented and what is checked.
 
 **Colour and contrast**
 
-- Body text meets or exceeds 4.5:1 against its background in both the light and
-  dark palettes; the ratios are recorded in comments next to the tokens in
+- Body text meets or exceeds 4.5:1 against its background in the dark palette
+  the site ships; the ratios are recorded in comments next to the tokens in
   `assets/css/main.css`.
 - Colour is never the only carrier of meaning. The five module accent colours
   are always accompanied by a text label, and status is stated in words ("In
   preparation") rather than shown as a coloured dot alone.
-- A dark palette is provided and applied from `prefers-color-scheme`; both
-  palettes are contrast-checked.
+- The dark palette is the site's single, permanent theme. It is applied
+  unconditionally rather than from `prefers-color-scheme`, so the appearance
+  does not change with the browser or operating system colour preference. It is
+  contrast-checked throughout.
 - `forced-colors` blocks in both `main.css` (site chrome: header, footer,
   navigation, menu toggle, buttons, cards, badges, panels, focus rings, skip
   link) and `interactive-shell.css` (the tool shell) keep boundaries, control

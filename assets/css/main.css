@@ -10,9 +10,11 @@
 
    Conventions used throughout:
      * Design tokens are CSS custom properties declared on :root.
-     * Light and dark palettes are both defined; the dark palette is applied
-       automatically via prefers-color-scheme. No JavaScript is required for
-       theming, so the site is fully styled with scripting disabled.
+     * The site has one permanent theme: dark. Both palettes are still
+       declared, but the dark one is applied unconditionally, so the
+       appearance never follows the browser or operating system colour
+       preference. No JavaScript is required for theming, so the site is
+       fully styled with scripting disabled.
      * Sizes use rem so the layout respects the reader's browser font size.
      * No external fonts, images or icon libraries are loaded. Everything is
        either system fonts or inline SVG, which keeps the site fast, offline
@@ -108,39 +110,38 @@
   --container: 72rem;
 }
 
-/* Dark palette. Applied only when the reader's system asks for it, so we
-   never override an explicit preference. Contrast ratios were checked
-   against --colour-page in the same block. */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --colour-page: #0f141b;
-    --colour-surface: #161d27;
-    --colour-surface-raised: #1a2230;
-    --colour-border: #2c3644;
-    --colour-border-strong: #44506180;
+/* Dark palette — the site's only theme. It is declared after the block above
+   with the same specificity, so it always wins, whatever the reader's system
+   or browser colour preference says. Contrast ratios were checked against
+   --colour-page in the same block. */
+:root {
+  --colour-page: #0f141b;
+  --colour-surface: #161d27;
+  --colour-surface-raised: #1a2230;
+  --colour-border: #2c3644;
+  --colour-border-strong: #44506180;
 
-    --colour-text: #e9edf3;       /* 15.7:1 on --colour-page */
-    --colour-text-muted: #a8b2c1; /*  8.6:1 on --colour-page, 7.9:1 on surface */
+  --colour-text: #e9edf3;       /* 15.7:1 on --colour-page */
+  --colour-text-muted: #a8b2c1; /*  8.6:1 on --colour-page, 7.9:1 on surface */
 
-    --colour-accent: #8fb6ff;     /*  9.1:1 on --colour-page */
-    --colour-accent-hover: #b3cdff;
-    --colour-accent-soft: #1b2740;
-    --colour-on-accent: #0f141b;  /*  9.1:1 on --colour-accent */
-    --colour-focus: #f0b429;
+  --colour-accent: #8fb6ff;     /*  9.1:1 on --colour-page */
+  --colour-accent-hover: #b3cdff;
+  --colour-accent-soft: #1b2740;
+  --colour-on-accent: #0f141b;  /*  9.1:1 on --colour-accent */
+  --colour-focus: #f0b429;
 
-    --colour-cognitive: #e2ab5f;
-    --colour-research-methods: #8fb6ff;
-    --colour-neuropsychology: #6fc3b4;
-    --colour-social-critical-psychology: #f19aa8;
-    --colour-personality-individual-differences: #db9ccd;
+  --colour-cognitive: #e2ab5f;
+  --colour-research-methods: #8fb6ff;
+  --colour-neuropsychology: #6fc3b4;
+  --colour-social-critical-psychology: #f19aa8;
+  --colour-personality-individual-differences: #db9ccd;
 
-    --colour-status-bg: #241f14;
-    --colour-status-text: #e2cf9f;
-    --colour-status-border: #4a4028;
+  --colour-status-bg: #241f14;
+  --colour-status-text: #e2cf9f;
+  --colour-status-border: #4a4028;
 
-    --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
-    --shadow-md: 0 2px 10px rgb(0 0 0 / 0.45);
-  }
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 2px 10px rgb(0 0 0 / 0.45);
 }
 
 /* -------------------------------------------------------------------------
