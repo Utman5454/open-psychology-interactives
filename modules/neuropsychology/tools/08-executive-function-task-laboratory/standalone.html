@@ -1770,6 +1770,13 @@
               <fieldset>
                 <legend>Capacities</legend>
                 <div data-capacity-controls></div>
+                <!-- Two capacities are enough to show that one task score
+                     moves for more than one reason. The presets set all six,
+                     so the demonstration never needs this opened. -->
+                <details class="stage__more">
+                  <summary>The other four capacities</summary>
+                  <div data-capacity-controls-more></div>
+                </details>
               </fieldset>
 
               <fieldset>
@@ -1951,56 +1958,8 @@
       <div class="split split--wide">
 
         <div class="prose">
-          <h3>There is no pure executive task</h3>
           <p>
-            Every row of the weight matrix has at least five non-zero entries.
-            That is not a limitation of this model; it is the central finding
-            of the executive-function literature. Tasks named after a process
-            load on that process and on several others, and the shared
-            variance between executive tasks is routinely larger than the
-            variance unique to any one of them.
-          </p>
-
-          <h3>One low score identifies nothing</h3>
-          <p>
-            Reduced inhibition makes the colour-word task the lowest of the
-            four. So does reduced processing speed. Reduced updating makes
-            the running-total task the lowest, and so does reduced sustained
-            effort. The mapping from a low score to a reduced capacity is
-            many-to-one, which means the inference from the first to the
-            second needs something the score cannot supply.
-          </p>
-
-          <h3>Speed and effort are not extras</h3>
-          <p>
-            Both appear in all four tasks, so a reduction in either lowers
-            everything. That is why a profile of executive scores so often
-            looks uniformly low, and why processing speed has to be measured
-            and partialled out before an executive interpretation is worth
-            anything. Sustained effort is worse still: it varies within a
-            session, so the same person tested at the start and the end of a
-            two-hour assessment produces two different profiles.
-          </p>
-
-          <h3>A summary score hides the strategy</h3>
-          <p>
-            Move the strategy slider and the summary score for the timed
-            tasks does not change at all, while accuracy and speed move in
-            opposite directions. Two people with identical scores can be doing
-            entirely different things - one slow and careful, one fast and
-            error-prone - and the difference between them is often the more
-            informative finding. Any assessment that reports one number per
-            task has thrown it away.
-          </p>
-
-          <h3>"Executive function" is a description, not a mechanism</h3>
-          <p>
-            The evidence supports several partly separable capacities that
-            also share a great deal, rather than one faculty or a set of
-            independent modules. Whether the shared part is a single common
-            factor, general processing speed, working-memory capacity or the
-            overlap between tasks is argued about, and no arrangement of
-            these four tasks would settle it.
+            Every one of these tasks loads on several processes at once, so one low score never identifies which capacity is reduced. That is the task-impurity problem, and it is why a battery reports converging patterns across tasks rather than a diagnosis from any single one. Speed and sustained effort are part of the pattern, not nuisance.
           </p>
         </div>
 
@@ -2010,31 +1969,10 @@
           </h3>
           <ul>
             <li>
-              <strong>The weights are an argument.</strong> They were chosen
-              to make particular points about task demands. They are not
-              measured loadings, they are not published values, and a
-              reasonable person would argue with several of them.
+              <strong>The weights are invented.</strong> Every task-by-process weight is authored to make impurity visible. No real test's factor structure is reproduced.
             </li>
             <li>
-              <strong>Six capacities is a simplification.</strong> The
-              literature separates several kinds of inhibition, distinguishes
-              switching costs of different sorts, and disagrees about whether
-              planning belongs on the list at all.
-            </li>
-            <li>
-              <strong>A weighted average is not how performance works.</strong>
-              Real tasks have thresholds, floor and ceiling effects, strategy
-              changes and interactions between capacities that a linear model
-              cannot represent.
-            </li>
-            <li>
-              <strong>No anatomy.</strong> The tool names no brain region
-              anywhere, and nothing in it supports a claim about one.
-            </li>
-            <li>
-              <strong>No assessment of anybody.</strong> The fictional person
-              in the opening scenario has no diagnosis and no prognosis, and
-              neither does anyone else on this page.
+              <strong>This is not assessment.</strong> No profile here is a patient, no score is clinical, and nothing on the page evaluates the person using it.
             </li>
           </ul>
         </aside>
@@ -2974,6 +2912,11 @@
   var processControls = $("[data-process-controls]");
   var presetHost = $("[data-presets]");
   var capacityControls = $("[data-capacity-controls]");
+  var capacityControlsMore = $("[data-capacity-controls-more]");
+
+  /* Inhibition and switching are the pair that pull the four tasks apart, so
+     they are the two on show. The presets move all six. */
+  var CAPACITY_CORE = ["inhibit", "switch"];
   var strategyRange = $("#strategy-range");
   var weightsSvg = $("[data-weights]");
   var weightsText = $("[data-weights-text]");
@@ -3095,7 +3038,8 @@
     input.step = "5";
     input.value = "100";
     wrap.appendChild(input);
-    capacityControls.appendChild(wrap);
+    (CAPACITY_CORE.indexOf(capacity.id) === -1 ? capacityControlsMore : capacityControls)
+      .appendChild(wrap);
     capacityInputs[capacity.id] = input;
 
     shell.bindRange(input, {

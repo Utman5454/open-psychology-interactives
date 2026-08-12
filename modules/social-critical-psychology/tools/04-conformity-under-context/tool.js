@@ -281,7 +281,18 @@
   var labSection = $("#lab-section");
 
   var presetBox = $("[data-presets]");
+  var presetBoxMore = $("[data-presets-more]");
   var controlBox = $("[data-controls]");
+  var controlBoxMore = $("[data-controls-more]");
+
+  /* The two the activity opens with: how many others break with the majority,
+     and whether the participant answers aloud. Everything else about the
+     situation is one disclosure away and scores identically. */
+  var CONTROL_CORE = ["dissenters", "audience"];
+
+  /* The three conditions that exercise the two controls on show. The other
+     three move the parameters behind the disclosure and sit beside them. */
+  var PRESET_CORE = ["classic", "ally", "private"];
   var rateLine = $("[data-rate]");
   var routeSvg = $("[data-routes]");
   var routeText = $("[data-routes-text]");
@@ -318,6 +329,7 @@
 
   function buildPresets() {
     clear(presetBox);
+    clear(presetBoxMore);
     PRESETS.forEach(function (preset) {
       var button = make("button", "button button--secondary", preset.label);
       button.type = "button";
@@ -334,12 +346,14 @@
           preset.note, { immediate: true });
         historyNote.textContent = preset.note;
       });
-      presetBox.appendChild(button);
+      (PRESET_CORE.indexOf(preset.id) === -1 ? presetBoxMore : presetBox)
+        .appendChild(button);
     });
   }
 
   function buildControls() {
     clear(controlBox);
+    clear(controlBoxMore);
     CONTROLS.forEach(function (control) {
       var wrap = make("div", "control");
       var header = make("div", "control__header");
@@ -375,7 +389,8 @@
       input.addEventListener("change", function () { onControl(control, input); });
       wrap.appendChild(input);
       wrap.appendChild(make("p", "control__hint", control.hint));
-      controlBox.appendChild(wrap);
+      (CONTROL_CORE.indexOf(control.id) === -1 ? controlBoxMore : controlBox)
+        .appendChild(wrap);
     });
   }
 

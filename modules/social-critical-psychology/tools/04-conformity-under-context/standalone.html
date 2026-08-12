@@ -1770,11 +1770,22 @@
                 in the comparison table underneath the result.
               </p>
               <div class="preset-buttons" data-presets></div>
+              <details class="stage__more">
+                <summary>Three more classic conditions</summary>
+                <div class="preset-buttons" data-presets-more></div>
+              </details>
             </fieldset>
 
             <fieldset data-stage="1">
               <legend>The situation</legend>
               <div data-controls></div>
+              <!-- One ally is the finding; whether the answer is public or
+                   private is what separates the two routes. The other four
+                   situational parameters feed the model unchanged. -->
+              <details class="stage__more">
+                <summary>More of the situation</summary>
+                <div data-controls-more></div>
+              </details>
             </fieldset>
 
             <fieldset data-stage="2">
@@ -1938,62 +1949,8 @@
       <div class="split split--wide">
 
         <div class="prose">
-          <h3>Two routes, distinguished by what moves them</h3>
           <p>
-            Informational influence is a response to uncertainty: other people
-            are evidence about what is the case, and the harder the judgement
-            the better evidence they are. Normative influence is a response to
-            the social consequences of dissenting: it needs an audience. The
-            manipulation that separates them is not a debate about
-            definitions - it is the private response condition, which strips
-            out the audience and leaves the evidence. Where private responding
-            barely helps, the person is not caving in; they have been
-            persuaded.
-          </p>
-
-          <h3>Unanimity is not a headcount</h3>
-          <p>
-            Adding a fourth, fifth or sixth confederate does very little.
-            Removing the unanimity does a great deal, and the size of the
-            remaining majority hardly matters. What a single dissenter changes
-            is not the arithmetic of the group but the availability of another
-            answer: once one person has said something else out loud, the
-            majority position stops being the only thing it is possible to say.
-          </p>
-
-          <h3>It matters who the group is</h3>
-          <p>
-            The classic account represents the others as an audience and as a
-            source of information, and is silent about whether they are
-            <em>your</em> group. Turn identification down and the normative
-            route weakens sharply even with everything else held constant.
-            This is the social-identity amendment: influence flows along the
-            lines of who counts as us, and a unanimous majority of people you
-            do not regard as comparable to yourself is a much weaker thing than
-            the number suggests.
-          </p>
-
-          <h3>The headline percentage is a distribution</h3>
-          <p>
-            A rate of a third across critical rounds is compatible with
-            everybody conforming a third of the time, and it is also
-            compatible - which is closer to what happens - with a quarter of
-            people never conforming at all, a middle group conforming
-            occasionally, and a minority conforming most of the time.
-            Experiment 2 shows the distribution behind whatever number you have
-            been reading. "People conform" and "most people mostly resisted"
-            can be two descriptions of the same result.
-          </p>
-
-          <h3>Classic effects are not constants</h3>
-          <p>
-            The rates in the original studies are not physical constants of the
-            species. They depend on how ambiguous the task is, who the majority
-            are taken to be, what dissent costs in that setting, and what the
-            participants think the study is for. Later replications in
-            different decades and countries have produced a wide range of
-            figures, and reading that variation as noise around a true value
-            gets the situation backwards: the variation is the finding.
+            Going along with a majority has two routes: wanting to fit in, and taking the group as evidence about an ambiguous world. What separates them is what moves them. Answering privately removes the audience and leaves the evidence; making the judgement harder does the reverse. And one ally collapses conformity far more than removing one voice from a majority should — unanimity is not a headcount.
           </p>
         </div>
 
@@ -2003,35 +1960,10 @@
           </h3>
           <ul>
             <li>
-              <strong>No historical study is reproduced.</strong> The task, the
-              stimuli, the procedure and the numbers are invented. The presets
-              are named after recognisable set-ups so the comparison is
-              legible; they are not those experiments and their outputs are not
-              those results.
+              <strong>The figures are a teaching model.</strong> Rates are generated from the parameters you set, not from Asch's data or anyone else's, and no number here is an effect size.
             </li>
             <li>
-              <strong>Two routes is a simplification.</strong> Referent
-              informational influence, self-categorisation, obedience to a
-              perceived experimenter demand, politeness and simple boredom are
-              all absent from the model.
-            </li>
-            <li>
-              <strong>Going along is not the same as believing.</strong> The
-              model estimates a public response. Whether the person's private
-              judgement changed is a separate question, and the private
-              condition is the closest this tool gets to it.
-            </li>
-            <li>
-              <strong>Conformity is not a character flaw.</strong> Agreeing
-              with five other people who all say the same thing is often
-              sensible, and the ability of a group to converge is the basis of
-              most of what people know. The interesting question is when it
-              goes wrong.
-            </li>
-            <li>
-              <strong>Nobody is assessed.</strong> No task is administered to
-              the person using the tool, and the simulated participants are not
-              modelled on anybody.
+              <strong>Classic effects are not constants.</strong> Conformity rates vary by decade, culture and task. A percentage from one study is a fact about its conditions.
             </li>
           </ul>
         </aside>
@@ -3034,7 +2966,18 @@
   var labSection = $("#lab-section");
 
   var presetBox = $("[data-presets]");
+  var presetBoxMore = $("[data-presets-more]");
   var controlBox = $("[data-controls]");
+  var controlBoxMore = $("[data-controls-more]");
+
+  /* The two the activity opens with: how many others break with the majority,
+     and whether the participant answers aloud. Everything else about the
+     situation is one disclosure away and scores identically. */
+  var CONTROL_CORE = ["dissenters", "audience"];
+
+  /* The three conditions that exercise the two controls on show. The other
+     three move the parameters behind the disclosure and sit beside them. */
+  var PRESET_CORE = ["classic", "ally", "private"];
   var rateLine = $("[data-rate]");
   var routeSvg = $("[data-routes]");
   var routeText = $("[data-routes-text]");
@@ -3071,6 +3014,7 @@
 
   function buildPresets() {
     clear(presetBox);
+    clear(presetBoxMore);
     PRESETS.forEach(function (preset) {
       var button = make("button", "button button--secondary", preset.label);
       button.type = "button";
@@ -3087,12 +3031,14 @@
           preset.note, { immediate: true });
         historyNote.textContent = preset.note;
       });
-      presetBox.appendChild(button);
+      (PRESET_CORE.indexOf(preset.id) === -1 ? presetBoxMore : presetBox)
+        .appendChild(button);
     });
   }
 
   function buildControls() {
     clear(controlBox);
+    clear(controlBoxMore);
     CONTROLS.forEach(function (control) {
       var wrap = make("div", "control");
       var header = make("div", "control__header");
@@ -3128,7 +3074,8 @@
       input.addEventListener("change", function () { onControl(control, input); });
       wrap.appendChild(input);
       wrap.appendChild(make("p", "control__hint", control.hint));
-      controlBox.appendChild(wrap);
+      (CONTROL_CORE.indexOf(control.id) === -1 ? controlBoxMore : controlBox)
+        .appendChild(wrap);
     });
   }
 

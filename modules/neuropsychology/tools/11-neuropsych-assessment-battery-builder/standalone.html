@@ -1703,6 +1703,17 @@
               </div>
             </fieldset>
 
+            <div class="control" data-menu-opener>
+              <button class="button button--primary" type="button" data-action="open-menu">
+                Choose the tasks
+              </button>
+              <p class="control__hint">
+                Read the referral first. The battery is only defensible against
+                a question.
+              </p>
+            </div>
+
+            <div data-task-menu hidden>
             <fieldset>
               <legend>Attention and speed</legend>
               <div data-tasks-attention></div>
@@ -1736,6 +1747,8 @@
                 whether anything else in the battery can be interpreted.
               </p>
             </fieldset>
+
+            </div>
 
             <fieldset>
               <legend>Submit</legend>
@@ -1899,52 +1912,8 @@
       <div class="split split--wide">
 
         <div class="prose">
-          <h3>The referral question decides what is relevant</h3>
           <p>
-            The same task is essential in one battery and a waste of fifteen
-            minutes in another. Nothing on the menu is good or bad on its
-            own. A battery assembled from a list of respected tasks, without
-            a question in front of it, produces a great many numbers and no
-            argument.
-          </p>
-
-          <h3>Two measures of the same thing are not a waste</h3>
-          <p>
-            A single score carries measurement error, task-specific demands
-            and whatever happened in the ten minutes it was administered. Two
-            tasks that make the same demand in different ways either agree,
-            which is evidence, or disagree, which is information about the
-            tasks. One task can do neither.
-          </p>
-
-          <h3>You need a domain you expect to be intact</h3>
-          <p>
-            Without one, every finding is "this person scored low on the
-            things we tested", which is compatible with a selective
-            difficulty and equally compatible with a general one. The
-            comparison domain is what turns a list of low scores into a
-            pattern, and it is usually the first thing dropped when time runs
-            short.
-          </p>
-
-          <h3>The measures that answer nothing are the ones that matter</h3>
-          <p>
-            Mood, fatigue, effort, sensory function and premorbid level
-            answer no referral question. They decide whether the answers to
-            the referral question mean anything. A low score has several
-            explanations that are cheaper to check and more common than the
-            one in the referral letter, and a battery that has not checked
-            them has not ruled them out.
-          </p>
-
-          <h3>Longer is not better</h3>
-          <p>
-            Session time is finite and so is the person's attention. Past
-            about seventy minutes the tasks administered last are measuring
-            fatigue as much as anything else, which is a problem precisely
-            because the interesting tasks tend to be scheduled first and the
-            context measures last. A battery is a set of decisions about what
-            to leave out.
+            A battery is a set of inferences, and the referral decides which ones are needed. That is why the tasks that answer nothing matter: a domain you expect to be intact, and a validity check, are what let you say a low score means what you think it means. Longer is not better, and two measures of the same thing are not waste.
           </p>
         </div>
 
@@ -1954,26 +1923,10 @@
           </h3>
           <ul>
             <li>
-              <strong>Nobody is assessed and nothing is scored.</strong> The
-              tool evaluates the design of a battery, not a person. No
-              fictional person in it receives a result.
+              <strong>Fictional throughout.</strong> The referrals, the tasks and the scoring are authored for teaching. No published test, norm or cut-off is reproduced.
             </li>
             <li>
-              <strong>Four checks is a caricature.</strong> Real selection
-              also weighs the person's language, literacy, education,
-              cultural background, sensory and motor limitations, the
-              availability of norms that fit them, how the results will be
-              used and what the person actually wants from the assessment.
-            </li>
-            <li>
-              <strong>The domains are conveniences.</strong> Every task loads
-              on several of them, which is the point made at length by the
-              Executive Function Task Laboratory in this module.
-            </li>
-            <li>
-              <strong>No diagnosis, no anatomy, no prognosis.</strong> The
-              tool names no brain region and reaches no conclusion about any
-              fictional person's condition.
+              <strong>This is not clinical training.</strong> Choosing a defensible battery on paper is not assessment, and nothing here evaluates anybody.
             </li>
           </ul>
         </aside>
@@ -2768,6 +2721,26 @@
   };
 
   var referralSelect = $("[data-referral-select]");
+  var taskMenu = $("[data-task-menu]");
+  var menuOpener = $("[data-menu-opener]");
+
+  /* The task menu opens on request, so the referral is read on its own first.
+     Nothing is removed from the menu: choosing well needs the tasks that do
+     not fit as well as the ones that do. */
+  function openTaskMenu() {
+    if (!taskMenu.hidden) { return; }
+    taskMenu.hidden = false;
+    menuOpener.hidden = true;
+    shell.announce("Task menu open. Choose the tasks this referral needs.",
+      { immediate: true });
+  }
+
+  function closeTaskMenu() {
+    taskMenu.hidden = true;
+    menuOpener.hidden = false;
+  }
+
+  $('[data-action="open-menu"]').addEventListener("click", openTaskMenu);
   var referralText = $("[data-referral-text]");
   var goalText = $("[data-goal-text]");
   var timeSvg = $("[data-time]");
@@ -2857,6 +2830,7 @@
   }
 
   $('[data-action="worked"]').addEventListener("click", function () {
+    openTaskMenu();
     state.chosen = {};
     referral().worked.forEach(function (id) { state.chosen[id] = true; });
     state.submitted = false;
@@ -3398,6 +3372,7 @@
   shell.onReset(function () {
     state = initialState();
     referralSelect.value = REFERRALS[0].id;
+    closeTaskMenu();
     syncTaskBoxes();
     unlockForm(openingForm);
     openingFeedback.hidden = true;

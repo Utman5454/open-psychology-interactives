@@ -272,6 +272,26 @@
   };
 
   var referralSelect = $("[data-referral-select]");
+  var taskMenu = $("[data-task-menu]");
+  var menuOpener = $("[data-menu-opener]");
+
+  /* The task menu opens on request, so the referral is read on its own first.
+     Nothing is removed from the menu: choosing well needs the tasks that do
+     not fit as well as the ones that do. */
+  function openTaskMenu() {
+    if (!taskMenu.hidden) { return; }
+    taskMenu.hidden = false;
+    menuOpener.hidden = true;
+    shell.announce("Task menu open. Choose the tasks this referral needs.",
+      { immediate: true });
+  }
+
+  function closeTaskMenu() {
+    taskMenu.hidden = true;
+    menuOpener.hidden = false;
+  }
+
+  $('[data-action="open-menu"]').addEventListener("click", openTaskMenu);
   var referralText = $("[data-referral-text]");
   var goalText = $("[data-goal-text]");
   var timeSvg = $("[data-time]");
@@ -361,6 +381,7 @@
   }
 
   $('[data-action="worked"]').addEventListener("click", function () {
+    openTaskMenu();
     state.chosen = {};
     referral().worked.forEach(function (id) { state.chosen[id] = true; });
     state.submitted = false;
@@ -902,6 +923,7 @@
   shell.onReset(function () {
     state = initialState();
     referralSelect.value = REFERRALS[0].id;
+    closeTaskMenu();
     syncTaskBoxes();
     unlockForm(openingForm);
     openingFeedback.hidden = true;

@@ -1812,28 +1812,10 @@
                   is not.
                 </p>
               </div>
-              <div class="control">
-                <div class="control__header">
-                  <label class="control__label" for="slope-range">Difference between the two slopes</label>
-                  <output class="control__value" for="slope-range">0.00</output>
-                </div>
-                <input type="range" id="slope-range" min="-1" max="1" step="0.05" value="0">
-                <p class="control__hint">
-                  ANCOVA assumes this is zero &mdash; the
-                  homogeneity-of-regression-slopes assumption.
-                </p>
-              </div>
             </fieldset>
 
             <fieldset>
               <legend>The programme itself</legend>
-              <div class="control">
-                <div class="control__header">
-                  <label class="control__label" for="effect-range">True programme effect</label>
-                  <output class="control__value" for="effect-range">6</output>
-                </div>
-                <input type="range" id="effect-range" min="0" max="12" step="1" value="6">
-              </div>
               <div class="control">
                 <label class="control__label" for="design-select">How groups were formed</label>
                 <select id="design-select">
@@ -1845,6 +1827,28 @@
                   adjusted difference is allowed to mean.
                 </p>
               </div>
+              <!-- Adjustment is met with three controls: how well the covariate predicts, how far apart the groups already were, and how the groups were formed. The size of the true effect and the slope difference that breaks the assumption are a second question. -->
+              <details class="stage__more">
+                <summary>More of the design</summary>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="slope-range">Difference between the two slopes</label>
+                  <output class="control__value" for="slope-range">0.00</output>
+                </div>
+                <input type="range" id="slope-range" min="-1" max="1" step="0.05" value="0">
+                <p class="control__hint">
+                  ANCOVA assumes this is zero &mdash; the
+                  homogeneity-of-regression-slopes assumption.
+                </p>
+              </div>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="effect-range">True programme effect</label>
+                  <output class="control__value" for="effect-range">6</output>
+                </div>
+                <input type="range" id="effect-range" min="0" max="12" step="1" value="6">
+              </div>
+              </details>
             </fieldset>
 
           </form>
@@ -2175,53 +2179,8 @@
       <div class="split split--wide">
 
         <div class="prose">
-          <h3>A covariate's main job is precision, not correction</h3>
           <p>
-            Under random allocation the groups already start in roughly the
-            same place, so adjusting barely moves the estimated difference.
-            What it moves is the residual variance: the covariate explains
-            part of the variation in the outcome that would otherwise be
-            noise, and the comparison becomes more precise. That is a good
-            enough reason to use one, and it is a completely different reason
-            from the one usually given.
-          </p>
-
-          <h3>Adjustment answers a conditional question</h3>
-          <p>
-            The adjusted difference is the vertical gap between two regression
-            lines at a particular value of the covariate. When groups were
-            randomly formed, that gap estimates the causal effect. When they
-            were not, it estimates what the difference would look like among
-            people matched on the covariate &mdash; which is a real quantity,
-            and is not the causal effect unless nothing else differs between
-            the groups. Reaching for ANCOVA to repair non-equivalent groups is
-            the most common misuse of the technique, and the tool shows that
-            the arithmetic gives you no warning at all.
-          </p>
-
-          <h3>Equal slopes is an assumption with a visible cost</h3>
-          <p>
-            If the two groups have different regression slopes, there is no
-            single adjusted difference to report. The gap between the lines
-            depends on where you measure it, and the disclosure in
-            Experiment 1 shows three different answers from the same data. That is not a
-            technicality but a finding &mdash; the effect depends on the
-            covariate, which is a covariate-by-treatment interaction and is
-            worth reporting as one.
-          </p>
-
-          <h3>Multivariate is a different question, not a cheaper one</h3>
-          <p>
-            A multivariate test asks whether the group centres are separated
-            in the space defined by all the outcomes together, using the
-            correlations among them. When the outcomes are highly correlated
-            and the differences point the same way, it adds very little
-            &mdash; the outcomes are one thing measured twice. When the
-            differences run across the within-group correlation, it can find a
-            separation far larger than anything visible on either axis. Both
-            are real; neither makes it a device for running several tests
-            without paying for them, and the follow-up univariate tests
-            inherit the whole multiplicity problem.
+            Adjusting for a covariate answers a conditional question: how far apart would the groups be if they had started level? With random allocation that question has an answer, and adjustment mostly buys precision. With intact groups it may have none, because the thing you are adjusting away could be the difference itself. The arithmetic is identical either way, which is what makes it dangerous.
           </p>
         </div>
 
@@ -2231,37 +2190,10 @@
           </h3>
           <ul>
             <li>
-              <strong>No real study.</strong> The tutoring programme, the
-              reading intervention and every number in them are invented. The
-              data are generated from a stated model with a documented seed.
+              <strong>The design decides the meaning, not the software.</strong> Nothing in the output tells you whether groups were randomised. The adjusted difference is reported with the same confidence in both cases.
             </li>
             <li>
-              <strong>No test statistics.</strong> The tool reports adjusted
-              differences and separations in standard-deviation units rather
-              than F or Wilks' lambda, because what matters here is what the
-              quantities mean, and a test statistic invites the discussion to
-              collapse into a threshold.
-            </li>
-            <li>
-              <strong>Two outcomes, not many.</strong> Experiment 2 uses two
-              so that the plane can be drawn. Real multivariate analyses with
-              five or ten outcomes behave the same way in principle and are
-              far harder to see, which is a reason for caution rather than
-              confidence.
-            </li>
-            <li>
-              <strong>The design menu changes nothing computational.</strong>
-              Switching between random allocation and intact classes alters
-              only the interpretation offered. That is the honest state of
-              affairs: the software cannot tell how the groups were formed,
-              and neither can the numbers.
-            </li>
-            <li>
-              <strong>Causal inference has a larger literature than this.</strong>
-              Propensity methods, instrumental variables, difference-in-
-              differences and regression discontinuity all address
-              non-equivalent groups more carefully than covariate adjustment,
-              and each carries assumptions of its own.
+              <strong>The numbers are simulated.</strong> Every figure comes from the parameters you set, and none estimates any real programme or outcome.
             </li>
           </ul>
         </aside>

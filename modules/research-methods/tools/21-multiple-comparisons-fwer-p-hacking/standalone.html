@@ -1767,29 +1767,10 @@
                 </div>
                 <input type="range" id="k-range" min="1" max="60" step="1" value="20">
               </div>
-              <div class="control">
-                <div class="control__header">
-                  <label class="control__label" for="real-range">How many have a real effect</label>
-                  <output class="control__value" for="real-range">0</output>
-                </div>
-                <input type="range" id="real-range" min="0" max="10" step="1" value="0">
-                <p class="control__hint">
-                  The rest have nothing to find. Any real effects are of a
-                  fixed size, <em>d</em>&nbsp;=&nbsp;0.60 with 40 per group.
-                </p>
-              </div>
             </fieldset>
 
             <fieldset>
               <legend>The decision rule</legend>
-              <div class="control">
-                <label class="control__label" for="alpha-select">Per-test &alpha;</label>
-                <select id="alpha-select">
-                  <option value="0.10">.10</option>
-                  <option value="0.05" selected>.05</option>
-                  <option value="0.01">.01</option>
-                </select>
-              </div>
               <div class="control">
                 <label class="control__label" for="correct-select">Correction</label>
                 <select id="correct-select">
@@ -1801,10 +1782,33 @@
                   correction is advertised for.
                 </p>
               </div>
+              <!-- The false-positive demonstration needs two things: how many tests, and whether they are corrected. Holding real effects at zero is what makes every hit a false one, so it stays at zero unless the learner opens this. -->
+              <details class="stage__more">
+                <summary>Change the family and the rule</summary>
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="real-range">How many have a real effect</label>
+                  <output class="control__value" for="real-range">0</output>
+                </div>
+                <input type="range" id="real-range" min="0" max="10" step="1" value="0">
+                <p class="control__hint">
+                  The rest have nothing to find. Any real effects are of a
+                  fixed size, <em>d</em>&nbsp;=&nbsp;0.60 with 40 per group.
+                </p>
+              </div>
+              <div class="control">
+                <label class="control__label" for="alpha-select">Per-test &alpha;</label>
+                <select id="alpha-select">
+                  <option value="0.10">.10</option>
+                  <option value="0.05" selected>.05</option>
+                  <option value="0.01">.01</option>
+                </select>
+              </div>
               <div class="control">
                 <label class="control__label" for="seed-input">Random seed</label>
                 <input type="number" id="seed-input" value="4711" step="1" min="1" max="999999">
               </div>
+              </details>
             </fieldset>
 
           </form>
@@ -1952,6 +1956,10 @@
                   <option value="2">Returning students only</option>
                 </select>
               </div>
+              <!-- Three choices are enough to make a garden. The fourth is here
+                   for anyone who wants it; the path arithmetic is unchanged. -->
+              <details class="stage__more">
+                <summary>One more thing you could have varied</summary>
               <div class="control">
                 <label class="control__label" for="covariate-select">Baseline score</label>
                 <select id="covariate-select">
@@ -1963,6 +1971,7 @@
                   reportable analysis. There are 72 of them.
                 </p>
               </div>
+              </details>
             </fieldset>
 
           </form>
@@ -2169,64 +2178,8 @@
       <div class="split split--wide">
 
         <div class="prose">
-          <h3>The error rate belongs to the family, not to the test</h3>
           <p>
-            Each individual test in Experiment 1 is behaving exactly as
-            advertised: a 5% chance of a false positive, every time. Nothing
-            is broken. What changes is the question you are implicitly asking
-            &mdash; "did anything come out?" &mdash; and the answer to that
-            question has its own error rate,
-            1 &minus; (1 &minus; &alpha;)<sup>k</sup>, which reaches a half by
-            fourteen tests and 64% by twenty. Deciding which tests belong in
-            the family is a judgement about the claim being made, not a
-            property of the software, and it is the judgement that most
-            corrections quietly depend on.
-          </p>
-
-          <h3>A correction is a trade, and both sides are visible</h3>
-          <p>
-            Bonferroni tests each hypothesis at &alpha;/k, which does what it
-            promises: the family-wise false-positive rate drops back to about
-            &alpha;. The readout shows the price in the same breath. With five
-            real effects among twenty tests, the correction takes the
-            detection rate for those real effects down sharply, because every
-            one of them is now being judged against a threshold twenty times
-            stricter. There is no setting of that dial that gives you both,
-            and choosing where to sit on it is a decision about which mistake
-            you would rather make.
-          </p>
-
-          <h3>Flexibility does the same damage without any tests being run</h3>
-          <p>
-            In Experiment 2 the analyst runs one test at a time and reports
-            one <em>p</em>-value. There is no correction to apply, because on
-            the face of it there is nothing to correct for. But the dataset
-            contains no effect at all, and among the seventy-two defensible
-            analyses of it there are almost always several below .05. The
-            number that ends up in the paper is not a random draw from a
-            null distribution. It is the smallest of however many were
-            looked at, including the ones considered and abandoned before
-            anybody clicked anything. That is the garden of forking paths, and
-            it does its damage whether or not the paths were consciously
-            walked.
-          </p>
-
-          <h3>Four practices that look alike and are not</h3>
-          <p>
-            <strong>Planned multiplicity</strong> is knowing in advance that
-            you will run several tests and saying so, usually with a
-            correction. <strong>Exploratory analysis</strong> is looking
-            without a prior hypothesis and labelling the result as
-            provisional; it is legitimate and useful, and it is not
-            confirmatory evidence. <strong>Undisclosed selective
-            reporting</strong> is running several analyses and presenting one
-            as though it were the plan; this is the only one of the four that
-            is a problem, and it rarely feels like misconduct from the inside.
-            <strong>Confirmatory inference</strong> is testing a stated
-            hypothesis with a stated analysis fixed before the data, and it is
-            the only route by which a <em>p</em>-value means what it says.
-            Preregistration is not a moral test &mdash; it is simply a record
-            of which of these four you are doing.
+            Each test keeps its own 5% error rate; what climbs is the chance that <em>somewhere</em> in the family a null result is declared significant. Twenty independent tests at .05 give roughly a two-in-three chance of at least one false positive, with nothing wrong in the data. Analytic flexibility does the same damage without any test being repeated, because the path was chosen after seeing where the result fell.
           </p>
         </div>
 
@@ -2236,41 +2189,10 @@
           </h3>
           <ul>
             <li>
-              <strong>No real study, and no real dataset.</strong> Everything
-              is generated from a documented seed, and the ninety students in
-              Experiment 2 are invented. The generating model contains no
-              group difference on anything, which is why every significant
-              result you find there is a false one by construction.
+              <strong>Correction is a trade, not a fix.</strong> Controlling the family-wise rate costs power. The right family is a judgement about what was planned, and no procedure decides it for you.
             </li>
             <li>
-              <strong>Independence is assumed in Experiment 1 and false in
-              Experiment 2.</strong> The formula
-              1 &minus; (1 &minus; &alpha;)<sup>k</sup> requires independent
-              tests. Real families of tests overlap, which usually makes the
-              true family-wise rate somewhat lower than the formula says
-              &mdash; and never as low as &alpha;.
-            </li>
-            <li>
-              <strong>Bonferroni is not the only correction, or the best
-              one.</strong> Holm's step-down procedure controls the same rate
-              with more power and no extra assumptions; false-discovery-rate
-              procedures control a different and often more appropriate
-              quantity. The tool uses Bonferroni because it is the one whose
-              arithmetic can be read off the screen.
-            </li>
-            <li>
-              <strong>Seventy-two is a small garden.</strong> A real analysis
-              has more outcomes, more covariates, more ways to code a
-              variable and more decisions about who counts as a participant.
-              The count here is bounded only because a menu had to fit on a
-              page.
-            </li>
-            <li>
-              <strong>Correcting after the fact is not a repair.</strong>
-              Applying a correction to the analyses you happened to run does
-              not recover the ones you thought about and did not, and no
-              statistical procedure can reconstruct a decision process that
-              was not recorded. The remedy is a record, not a formula.
+              <strong>This is simulation, not evidence.</strong> The tests are generated from a documented seed. Nothing here estimates a real false-positive rate in any literature.
             </li>
           </ul>
         </aside>

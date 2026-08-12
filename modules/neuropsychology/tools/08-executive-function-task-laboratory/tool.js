@@ -218,6 +218,11 @@
   var processControls = $("[data-process-controls]");
   var presetHost = $("[data-presets]");
   var capacityControls = $("[data-capacity-controls]");
+  var capacityControlsMore = $("[data-capacity-controls-more]");
+
+  /* Inhibition and switching are the pair that pull the four tasks apart, so
+     they are the two on show. The presets move all six. */
+  var CAPACITY_CORE = ["inhibit", "switch"];
   var strategyRange = $("#strategy-range");
   var weightsSvg = $("[data-weights]");
   var weightsText = $("[data-weights-text]");
@@ -339,7 +344,8 @@
     input.step = "5";
     input.value = "100";
     wrap.appendChild(input);
-    capacityControls.appendChild(wrap);
+    (CAPACITY_CORE.indexOf(capacity.id) === -1 ? capacityControlsMore : capacityControls)
+      .appendChild(wrap);
     capacityInputs[capacity.id] = input;
 
     shell.bindRange(input, {
