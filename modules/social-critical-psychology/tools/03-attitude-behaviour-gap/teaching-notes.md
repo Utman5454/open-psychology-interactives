@@ -38,9 +38,9 @@ After the activity a student should be able to:
 
 ## Estimated duration
 
-- **Demonstration from the front:** 8 minutes — experiment 1, then Marek.
-- **Students in pairs, all three experiments:** 30 minutes.
-- **With the challenge and the debrief:** 45 minutes.
+- **Demonstration from the front:** 5 minutes — experiment 1, then Marek's opportunity slider.
+- **Students in pairs, the two experiments:** 15 minutes.
+- **With the optional depth, the challenge and the debrief:** 35 minutes.
 
 ## Preparation
 
@@ -89,14 +89,21 @@ feedback for each names the specific step it skips.
 
 ## Activity sequence
 
-1. **Commit to the opening judgement.** It gates the laboratory.
+1. **Commit to the opening judgement.**
 2. **Experiment 1.** Predict all four, then reveal. The tool will not advance
-   until both are done.
-3. **Experiment 2.** Load Marek. Move one slider at a time. Then load Devi and
-   ask which single change would raise her most.
-4. **The measure control.** Same person, three questionnaires, three estimates.
-5. **Experiment 3.** Setting first, then measure.
-6. **The four claims.** Two are marked against the settings currently in force.
+   until both are done. Every colleague answered *"I speak up when I disagree in
+   a team meeting"* with 6.2 out of 7.
+3. **Experiment 2.** Marek is already loaded and there is one slider on screen:
+   his opportunity to speak up. Take it to the top and read the estimate aloud.
+   His attitude has not moved. That is the whole activity, and it is where a
+   fifteen-minute class should stop.
+4. **Optional, if there is time.** **More of the situation** opens the other five
+   conditions, the person selector and the control for what the questionnaire
+   asked about. **Go deeper** opens the 300-colleague version, where the same
+   attitudes produce a high correlation under uniform conditions and a low one in
+   varying teams.
+5. **The two claims.** Both are about the four colleagues and neither depends on
+   how the model is currently set.
 
 ## Debrief questions
 

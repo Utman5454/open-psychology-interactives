@@ -1,12 +1,27 @@
 /* =========================================================================
    Attitude-Behaviour Gap Laboratory
    -------------------------------------------------------------------------
-   One fictional behaviour - voicing disagreement in a team meeting - and three
-   staged experiments on what stands between a measured evaluation and an act.
+   One fictional behaviour - speaking up when you disagree in a team meeting -
+   and two staged experiments on what stands between a measured evaluation and
+   an act.
 
        1. Four colleagues, identical attitude scores, four working lives
-       2. One colleague, six conditions, moved one at a time
-       3. 300 simulated colleagues, and what happens to the correlation
+       2. Marek, and one condition
+
+   THE SHAPE OF THE ACTIVITY
+   -------------------------
+   The whole teaching point is reached with one slider. Four colleagues answer
+   the same item - "I speak up when I disagree in a team meeting" - identically,
+   and behave differently. The learner predicts, is shown the estimates, then
+   takes Marek, whose attitude is as strong as Rowan's and whose behaviour is
+   rare, and moves OPPORTUNITY. His behaviour changes; his attitude does not.
+   That is the gap, and it needs no understanding of the model beneath it.
+
+   Everything else is optional depth and is collapsed so that it cannot compete:
+   the other five conditions and the correspondence control sit behind "More of
+   the situation", and the population-level argument - where a correlation
+   between attitude and behaviour comes from, and how restricting the range of
+   conditions inflates it - sits behind "Go deeper", with its own controls.
 
    THE EDUCATIONAL MODEL
    ---------------------
@@ -319,6 +334,7 @@
 
   var predictionBox = $("[data-person-predictions]");
   var sliderBox = $("[data-sliders]");
+  var sliderBoxMore = $("[data-sliders-more]");
   var personSelect = $("#person-select");
   var correspondenceSelect = $("#correspondence-select");
   var peopleTable = $("[data-people-table]");
@@ -340,14 +356,21 @@
   var claimsList = $("[data-claims-list]");
   var claimsFeedback = $("[data-claims-feedback]");
 
-  var STAGE_COUNT = 3;
+  var STAGE_COUNT = 2;
+
+  /* Experiment 2 opens with one slider: OPPORTUNITY, the condition that
+     multiplies rather than adds. The attitude stays where the questionnaire
+     put it, which is the point - behaviour moves while the attitude does not.
+     The other five conditions are one disclosure away and the model is
+     unchanged. */
+  var CONDITION_CORE = ["opportunity"];
 
   var INITIAL = {
     stage: 1,
     unlocked: false,
     predictions: {},
     revealed: false,
-    person: "priya",
+    person: "marek",
     values: null,
     correspondence: "middle",
     setting: "lab",
@@ -441,7 +464,9 @@
 
   function buildSliders() {
     clear(sliderBox);
+    clear(sliderBoxMore);
     CONDITIONS.forEach(function (condition) {
+      var host = CONDITION_CORE.indexOf(condition.id) === -1 ? sliderBoxMore : sliderBox;
       var wrap = make("div", "control");
       var header = make("div", "control__header");
       var label = make("label", "control__label", condition.label);
@@ -472,7 +497,7 @@
           ? " Coefficient " + fmt(condition.id === "constraint"
               ? -B[condition.coefficient] : B[condition.coefficient]) + "."
           : " Multiplies the result.")));
-      sliderBox.appendChild(wrap);
+      host.appendChild(wrap);
     });
   }
 
@@ -739,7 +764,6 @@
       return state.revealed
         ? null : "Press \"Show the model's answers\" before continuing.";
     },
-    function () { return null; },
     function () { return null; }
   ];
 
@@ -751,7 +775,8 @@
       heading.setAttribute("tabindex", "-1");
       heading.focus();
     }
-    shell.announce("Experiment " + state.stage + " of 3.", { immediate: true });
+    shell.announce("Experiment " + state.stage + " of " + STAGE_COUNT + ".",
+      { immediate: true });
   }
 
   $('[data-action="next"]').addEventListener("click", function () {
@@ -803,7 +828,14 @@
       }
     });
     $('[data-action="prev"]').disabled = state.stage === 1;
-    $('[data-action="next"]').disabled = state.stage === STAGE_COUNT;
+    var next = $('[data-action="next"]');
+    next.disabled = state.stage === STAGE_COUNT;
+    /* Name the destination rather than the direction, so a learner on
+       experiment 2 can see that a third one exists and what it costs to
+       reach it. */
+    next.textContent = state.stage === STAGE_COUNT
+      ? "Next experiment"
+      : "Go to Experiment " + (state.stage + 1);
 
     renderPeople();
     renderExperiment2();
@@ -904,59 +936,6 @@
         };
       }
     },
-    {
-      id: "correlation",
-      text:
-        "\"In our study, attitude correlated with behaviour at the level shown " +
-        "on screen, so attitudes are \" - as strong or as weak as that number " +
-        "makes them sound.",
-      judge: function () {
-        var r = correlation(sampleFor(state.setting, state.measure));
-        return {
-          answer: state.setting === "lab" ? "no" : "partly",
-          verdict: state.setting === "lab"
-            ? "Not supported - the setting is doing the work."
-            : "Partly - the number is honest for this setting.",
-          evidence: "You currently have r = " + fmt(r) + " in the " +
-            (state.setting === "lab" ? "uniform-conditions" : "real-teams") +
-            " condition with " + CORRESPONDENCE[state.measure].label + ".",
-          why: state.setting === "lab"
-            ? "Under uniform conditions attitude is very nearly the only thing " +
-              "left varying, so it must account for most of the differences. " +
-              "The correlation is a description of how little the conditions " +
-              "varied, not of how powerful attitudes are. Switch to real teams " +
-              "and read the same sentence again."
-            : "In the varying condition the number does describe how well the " +
-              "measure tracks behaviour across ordinary teams. It still says " +
-              "nothing about any individual, and it would change again with a " +
-              "different measure - look down the column."
-        };
-      }
-    },
-    {
-      id: "measure",
-      text:
-        "\"The weak association means the attitude questionnaire needs to be " +
-        "more reliable.\"",
-      judge: function () {
-        return {
-          answer: state.measure === "general" ? "partly" : "no",
-          verdict: state.measure === "general"
-            ? "Partly - though the problem is correspondence, not reliability."
-            : "Not supported.",
-          evidence: "The measure in use is " + CORRESPONDENCE[state.measure].label +
-            ", carrying " + Math.round(CORRESPONDENCE[state.measure].weight * 100) +
-            " per cent of the disposition into this act.",
-          why:
-            "Reliability is about whether a measure agrees with itself. What " +
-            "changes the association here is whether the measure is about the " +
-            "same target, context and time as the behaviour. A perfectly " +
-            "reliable values questionnaire will still predict Thursday's " +
-            "meeting poorly, and no extra items will fix it. That is not a " +
-            "defect."
-        };
-      }
-    }
   ];
 
   var CLAIM_LABELS = {};

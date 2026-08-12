@@ -38,19 +38,24 @@ After the activity a student should be able to:
 
 ## Estimated duration
 
-- **Demonstration from the front:** 10 minutes — one lens run cleanly, then the
+- **Demonstration from the front:** 8 minutes — one lens run cleanly, then the
   first row changed and the specification re-read.
-- **Students in pairs, two lenses each:** 30 minutes.
-- **With the five claims and the debrief:** 45 minutes.
+- **Students in pairs, two lenses each:** 20 minutes.
+- **With the two extra decisions, the five claims and the debrief:** 40 minutes.
 
 ## Preparation
 
-None. Read the case panel aloud, or ask a student to. The one sentence that has
-to land before anyone touches the tool is: *a logged incident is a referral typed
-into the behaviour system by a member of staff.*
+None. Read the case aloud, or ask a student to. The one sentence that has to land
+before anyone touches the tool is: *a logged incident is a referral typed into
+the behaviour system by a member of staff.*
 
-If you have twenty minutes rather than forty-five, cut the challenge and run two
-lenses.
+The school's full evidence file — six items — sits inside the activity under
+**The evidence the school holds**, so it is to hand while the decisions are being
+made rather than read as a preamble. Open it on the projector before you start if
+you want the class to have seen it.
+
+If you have fifteen minutes rather than forty, run two lenses and stop at the
+comparison table. The challenge unlocks after the second lens and can be left.
 
 ## The demonstration worth doing from the front
 
@@ -82,18 +87,26 @@ take the object to be — and the specification table is the argument for it.
 
 ## Activity sequence
 
-1. **Read the case.** Six pieces of evidence, held in common by all three teams.
+1. **Read the case.** Four sentences. The evidence file is inside the activity.
 2. **Commit to the prediction.** It gates the tool.
-3. **Declare a position and build a study.** Five decisions. The specification
-   fills in live; the feedback under it says what the current choice commits you
-   to and, where relevant, what tension it creates.
+3. **Declare a position and build a study.** Three decisions — the research
+   object, the legitimate question, the method. The specification fills in live;
+   the feedback under it says what the current choice commits you to and, where
+   relevant, what tension it creates.
 4. **Read the appraisal.** Three sentences that matter: what it could claim, what
    it could not, what it makes hard to see.
-5. **Run a second lens on the same case.** The comparison table is the payoff.
+5. **Run a second lens on the same case.** The comparison table is the payoff,
+   and it is reached after six decisions rather than ten.
 6. **Deliberately build an incoherent study.** Declare social constructionist and
    choose the observation-schedule method. Read the tension note. Ask whether the
    design is *wrong* or merely *undeclared*.
-7. **The five claims.** Two of them are supported by no design on the page.
+7. **Optional — specify the rest of the study.** *Specify the rest of the study*
+   adds what counts as evidence and the claim the design could support. Worth
+   doing on one lens rather than all three: by then the cascade is established
+   and the two extra rows land as confirmation.
+8. **The five claims.** Unlocked once two lenses have been run, because two of
+   the claims are supported by no design on the page and that is only arguable
+   with more than one design in front of you.
 
 ## Debrief questions
 
@@ -190,6 +203,13 @@ construct / individual*, and no option is labelled with the position it belongs
 to. Coherence is the count of decisions whose home position equals the declared
 position, out of the number of decisions made so far.
 
+Five decisions are authored. Three are presented in the first pass — object,
+question, method, in that order — and *Specify the rest of the study* adds
+evidence and claim. The data are unchanged: `SEQUENCE` in `tool.js` decides the
+presentation order and `CORE_COUNT` decides where the first pass stops, so a
+build appraised over three decisions reports "of 3" and a build appraised over
+five reports "of 5".
+
 | Home | Position | Where it appears |
 | --- | --- | --- |
 | `measure` | Realist / positivist | First option of every decision |
@@ -199,12 +219,16 @@ position, out of the number of decisions made so far.
 
 **Reference values a lecturer can check.** Pressing **Worked example** with
 critical realism declared (the default when nothing is declared) selects the
-second option of all five decisions and reports "A coherent critical realist
-study". Choosing the third option of decision 1 while realist/positivist is
-declared produces "0 of your 1 decision follow from realist / positivist
-premises" and the tension line for that option. The challenge answers are:
-claim 1 — none; claim 2 — realist/positivist; claim 3 — critical realist;
-claim 4 — social constructionist; claim 5 — none.
+second option of every decision and reports "A coherent critical realist study".
+Choosing the third option of decision 1 while realist/positivist is declared
+produces "0 of your 1 decision follow from realist / positivist premises" and the
+tension line for that option. The challenge answers are: claim 1 — none; claim 2
+— realist/positivist; claim 3 — critical realist; claim 4 — social
+constructionist; claim 5 — none.
+
+Two lenses are needed to unlock the challenge. **Worked example** completes a
+build, so pressing it, then *Run another lens on this case*, declaring a second
+position and pressing it again is the quickest route there from the front.
 
 ## Citation and evidence notes
 

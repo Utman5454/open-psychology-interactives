@@ -46,27 +46,33 @@ After the activity a student should be able to:
 
 ## Estimated duration
 
-- **Demonstration from the front:** 10 minutes — the matrix, reordered, and
-  the two method sliders.
-- **Students in pairs:** 30 minutes.
-- **With the five claims and the debrief:** 45 minutes.
+- **Demonstration from the front:** 6 minutes — the three bars, the slider,
+  then step 2.
+- **Students in pairs:** 20 minutes.
+- **With the five claims and the debrief:** 30 minutes.
 
 ## Preparation
 
 Nothing to install. Open the page, answer or skip the opening question, and the
 laboratory unlocks. Everything runs in the browser tab.
 
-If you want to project it, the "Grouped by how they were collected" ordering is
-the version to have on screen; the block structure is obvious at the back of a
-lecture theatre.
+The activity opens on three bars rather than a matrix, so the argument is
+legible from the back of a lecture theatre: self-report EI overlaps a personality
+questionnaire, ability EI overlaps a reasoning test, and the two EI measures
+overlap each other least of all. The full matrix is the evidence behind those
+bars and sits one click away under **Every measure against every other**, still
+grouped by collection method and still marking the two key cells.
 
 ## Two steps
 
-The laboratory asks one question at a time. **Step 1** is what the measures
-have in common: the sliders, the ordering and the matrix. **Step 2** is whether
-any of it adds anything: the scatterplot and the incremental analysis. The
-model is shared, so whatever is set in step 1 is what step 2 analyses, and
-moving between them changes nothing except what is on screen.
+The laboratory follows one sentence: *both EI measures overlap something
+ordinary, so does either add anything beyond it?* **Step 1** shows the overlaps,
+with a single control. **Step 2** asks the question they raise: one radio group,
+one table. The model is shared, so whatever is set in step 1 is what step 2
+analyses, and moving between them changes nothing except what is on screen.
+
+The two method sliders and their presets sit behind **Set the shared method by
+hand**. A class can reach the whole argument without opening it.
 
 ## The demonstration worth doing from the front
 
@@ -93,18 +99,21 @@ depend on how each measure was collected rather than on the label.
 ## Activity sequence
 
 1. **Commit to an answer.**
-2. **Read the matrix**, then reorder it by method and read it again.
-3. **Turn both method sliders to zero.** Ask what survives.
-4. **Turn them up to maximum.** Ask what changed and what did not — the
-   across-method correlations do not move at all.
-5. **Move the mix slider to 100.** Now the self-report scale correlates with
-   the tasks and not with the personality questionnaire.
-6. **Move to step 2 and run the incremental analysis.** Add the self-report scale; note the
-   change. Then add the emotion-management task instead and note that the
-   measure with the *smaller* raw correlation adds more.
-7. **Judge the five claims.** They are scored against whatever the student has
-   currently set, so a pair who moved the sliders will get different verdicts —
-   which is worth surfacing rather than fixing.
+2. **Read the three bars.** The first two are long: each EI measure overlaps an
+   ordinary measure. The third is short, and it is the one that does the damage
+   — the two measures wearing the same label agree with each other least of all.
+3. **Slide "What the self-report scale is really made of" to the right.** The
+   bars swap over. Ask what would have had to be true for the evidence to look
+   like that.
+4. **Move to step 2.** Add the self-report scale and note the change. Then add
+   the emotion-management task instead, and note that the measure with the
+   *smaller* raw correlation adds more.
+5. **Judge the five claims.**
+
+If there is time, **Set the shared method by hand** opens the two method
+sliders. Turning both to zero is the demonstration worth having: most of the
+pattern survives, because the overlap between the self-report scale and the
+personality questionnaire is content, not shared format.
 
 ## Debrief questions
 
@@ -150,13 +159,15 @@ depend on how each measure was collected rather than on the label.
 
 ## Accessibility considerations
 
-- The correlation matrix is an ordinary table. Every cell states its number,
-  every row header names the collection method, and pairs sharing a method are
-  marked with a dotted underline as well as by ordering — the tint carries no
-  information of its own.
-- The scatterplot is hidden from assistive technology and paired with a visible
-  table giving the pair, the model correlation with a plain-language band, the
-  correlation observed in the simulated sample, and the variance shared.
+- The overlap bars carry no information of their own: each row states its
+  relationship in words and its correlation as a figure, and the bar itself is
+  `aria-hidden`. The row that is a contrast rather than an overlap is hatched as
+  well as tinted, and its label says which it is.
+- The correlation matrix behind them is an ordinary table. Every cell states its
+  number, every row header names the collection method, and pairs sharing a
+  method are marked with a dotted underline as well as by grouping.
+- The two cells the activity turns on carry a visually hidden phrase naming
+  them as such, so the emphasis never depends on the tint.
 - Every slider announces what it controls in words: "almost entirely general
   dispositions — a personality questionnaire under another name" rather than
   "16".

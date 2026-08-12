@@ -613,9 +613,10 @@
 .opi-activity.opi-activity.opi-activity .interactive__body--pinned {
   align-items: stretch;
 }
-.opi-activity.opi-activity.opi-activity .interactive__stage > .stage__primary {
+.opi-activity.opi-activity.opi-activity .interactive__stage > .stage__primary:last-child {
   position: sticky;
-    top: 0;
+    
+    top: var(--shell-pin-offset, 0px);
     z-index: 2;
     
     margin: -16px -16px 0;
@@ -625,7 +626,7 @@
 }
 }
 @media (min-width: 52em) and (max-height: 30em) {
-.opi-activity.opi-activity.opi-activity .interactive__stage > .stage__primary {
+.opi-activity.opi-activity.opi-activity .interactive__stage > .stage__primary:last-child {
   position: static;
     margin: 0;
     padding: 0;
@@ -1604,9 +1605,9 @@
       </p>
       <h1 id="page-heading">Attitude-Behaviour Gap Laboratory</h1>
       <p class="hero__lead">
-        Four fictional colleagues answer a questionnaire about speaking up
-        when they disagree in a meeting. All four score 6.2 out of 7. Then
-        they go to work.
+        Four fictional colleagues are asked how strongly they agree that they
+        speak up when they disagree in a team meeting. All four score 6.2 out
+        of 7. Then they go to work.
       </p>
 
       <p>
@@ -1621,12 +1622,11 @@
         <div class="panel">
           <h2 class="panel__title">Learning objective</h2>
           <p>
-            By the end you should be able to name the conditions standing
-            between a measured evaluation and an action, and say which of
-            them add and which gate.
+            By the end you should be able to say why a strong attitude
+            towards a behaviour does not, on its own, predict the behaviour.
           </p>
           <p class="text-muted">
-            About 30 minutes. Nothing you do here is saved or sent anywhere.
+            About 15 minutes. Nothing you do here is saved or sent anywhere.
           </p>
         </div>
 
@@ -1654,13 +1654,8 @@
             actually do, then see the model's answer for each.
           </li>
           <li>
-            Experiment 2: take one of them and move the six conditions one at
-            a time.
-          </li>
-          <li>
-            Experiment 3: run the whole thing across 300 simulated people and
-            watch the correlation change with the setting and with the
-            measure.
+            Experiment 2: take Marek and move his opportunity to speak up.
+            Watch his behaviour change while his attitude does not.
           </li>
         </ol>
       </div>
@@ -1825,13 +1820,13 @@
         <header class="interactive__header">
           <h3 class="interactive__title">From a score to an action</h3>
           <p class="interactive__brief">
-            Each experiment shows only its own controls and its own result.
-            Experiment 1 asks you to predict before it answers.
+            Four colleagues, the same attitude to speaking up, and four
+            different working lives. Experiment 1 asks you to predict before it
+            answers.
           </p>
           <ol class="stage-track" data-stage-track>
             <li data-stage="1"><span>1.</span> Four people, one score</li>
-            <li data-stage="2"><span>2.</span> Move one condition at a time</li>
-            <li data-stage="3"><span>3.</span> The correlation itself</li>
+            <li data-stage="2"><span>2.</span> Marek, and one condition</li>
           </ol>
         </header>
 
@@ -1842,9 +1837,10 @@
             <fieldset data-stage="1">
               <legend>Experiment 1. Predict each colleague</legend>
               <p class="control__hint">
-                All four score 6.2 on the same questionnaire. Only their
-                circumstances differ. Say what you expect for each, then press
-                the button to see what the model gives.
+                All four scored 6.2 out of 7 on the same item &mdash;
+                <em>"I speak up when I disagree in a team meeting"</em>. Only
+                their circumstances differ. Say how often you expect each of
+                them actually to speak up, then press the button.
               </p>
               <div data-person-predictions></div>
               <button class="button button--primary" type="button" data-action="reveal">
@@ -1853,70 +1849,44 @@
             </fieldset>
 
             <fieldset data-stage="2">
-              <legend>Experiment 2. The six conditions</legend>
-              <div class="control">
-                <div class="control__header">
-                  <label class="control__label" for="person-select">Start from</label>
-                </div>
-                <select id="person-select"></select>
-                <p class="control__hint">
-                  Loads that colleague's circumstances. Then move one slider at
-                  a time and watch the figure at the top of the result.
-                </p>
-              </div>
-              <div data-sliders></div>
-              <div class="control">
-                <div class="control__header">
-                  <label class="control__label" for="correspondence-select">
-                    What the questionnaire asked about
-                  </label>
-                </div>
-                <select id="correspondence-select">
-                  <option value="general">Values in general - "open debate matters"</option>
-                  <option value="middle" selected>The behaviour in general - "I speak up when I disagree"</option>
-                  <option value="specific">This action, here - "I will say so in Thursday's meeting"</option>
-                </select>
-                <p class="control__hint">
-                  The same person, the same disposition; only the question
-                  changes. Compatibility between measure and behaviour is a
-                  property of the instrument, not of the person.
-                </p>
-              </div>
-            </fieldset>
-
-            <fieldset data-stage="3">
-              <legend>Experiment 3. 300 simulated colleagues</legend>
+              <legend>Experiment 2. Marek, and one condition</legend>
               <p class="control__hint">
-                Everyone's attitude is drawn from the same distribution. Only
-                the setting and the measure change.
+                Marek's attitude does not move. Only his opportunity to speak
+                up does.
               </p>
-              <fieldset class="subfield">
-                <legend>The setting</legend>
-                <label class="control--choice">
-                  <input type="radio" name="setting" value="lab" checked>
-                  Uniform conditions - everyone gets the same chaired meeting,
-                  the same standing, the same opportunity
-                </label>
-                <label class="control--choice">
-                  <input type="radio" name="setting" value="field">
-                  Real teams - conditions vary as much as attitudes do
-                </label>
-              </fieldset>
-              <fieldset class="subfield">
-                <legend>The measure</legend>
-                <label class="control--choice">
-                  <input type="radio" name="measure" value="general">
-                  A general values questionnaire
-                </label>
-                <label class="control--choice">
-                  <input type="radio" name="measure" value="middle" checked>
-                  A behaviour-level attitude scale
-                </label>
-                <label class="control--choice">
-                  <input type="radio" name="measure" value="specific">
-                  A specific intention, matched to the action
-                </label>
-              </fieldset>
+              <div data-sliders></div>
+
+              <!-- Everything else about the model. The gap lands on one
+                   slider; the rest is for anyone who wants it. -->
+              <details class="stage__more">
+                <summary>More of the situation</summary>
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="person-select">Start from</label>
+                  </div>
+                  <select id="person-select"></select>
+                  <p class="control__hint">
+                    Loads that colleague's circumstances.
+                  </p>
+                </div>
+                <div data-sliders-more></div>
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="correspondence-select">
+                      What the questionnaire asked about
+                    </label>
+                  </div>
+                  <select id="correspondence-select">
+                    <option value="general">Values in general - "open debate matters"</option>
+                    <option value="middle" selected>The behaviour in general - "I speak up when I disagree"</option>
+                    <option value="specific">This action, here - "I will say so in Thursday's meeting"</option>
+                  </select>
+                  <p class="control__hint">
+                    The same person, the same disposition; only the question
+                    changes.
+                  </p>
+                </div>
+              </details>
             </fieldset>
 
             <div class="stage-nav">
@@ -1944,7 +1914,7 @@
                   <thead>
                     <tr>
                       <th scope="col">Colleague</th>
-                      <th scope="col">Attitude</th>
+                      <th scope="col">Attitude to speaking up</th>
                       <th scope="col">You said</th>
                       <th scope="col">Model</th>
                     </tr>
@@ -1988,8 +1958,48 @@
               </figure>
             </div>
 
-            <div class="stage__primary" data-stage="3" hidden>
-              <h4 class="stage__heading">Attitude against behaviour, 300 people</h4>
+            <!-- Optional depth. The population-level argument - where a
+                 correlation between attitude and behaviour comes from, and
+                 why restricting the range of conditions inflates it - is a
+                 second idea. It is collapsed so it cannot compete with the
+                 first, and its controls travel with it. -->
+            <details class="stage__more" data-deeper>
+              <summary>Go deeper: 300 colleagues, and where a correlation comes from</summary>
+
+              <p class="prose">
+                Everyone's attitude is drawn from the same distribution. Only
+                the setting and the measure change.
+              </p>
+
+              <fieldset class="subfield">
+                <legend>The setting</legend>
+                <label class="control--choice">
+                  <input type="radio" name="setting" value="lab" checked>
+                  Uniform conditions - everyone gets the same chaired meeting,
+                  the same standing, the same opportunity
+                </label>
+                <label class="control--choice">
+                  <input type="radio" name="setting" value="field">
+                  Real teams - conditions vary as much as attitudes do
+                </label>
+              </fieldset>
+
+              <fieldset class="subfield">
+                <legend>The measure</legend>
+                <label class="control--choice">
+                  <input type="radio" name="measure" value="general">
+                  A general values questionnaire
+                </label>
+                <label class="control--choice">
+                  <input type="radio" name="measure" value="middle" checked>
+                  A behaviour-level attitude scale
+                </label>
+                <label class="control--choice">
+                  <input type="radio" name="measure" value="specific">
+                  A specific intention, matched to the action
+                </label>
+              </fieldset>
+
               <p class="prevalence" data-correlation></p>
               <div class="table-scroll">
                 <table class="data-table">
@@ -2007,9 +2017,7 @@
                   <tbody data-matrix-table></tbody>
                 </table>
               </div>
-            </div>
 
-            <div data-stage="3" hidden>
               <figure class="chart">
                 <figcaption class="chart__caption">
                   The selected cell, as a scatterplot
@@ -2018,14 +2026,12 @@
                      aria-hidden="true" focusable="false"></svg>
                 <p class="chart__caption" data-scatter-text></p>
               </figure>
-            </div>
+
+              <div class="verdict" data-matrix-note></div>
+            </details>
 
             <div data-secondary="2" hidden>
               <div class="verdict" data-interpretation></div>
-            </div>
-
-            <div data-secondary="3" hidden>
-              <div class="verdict" data-matrix-note></div>
             </div>
 
           </div>
@@ -2053,10 +2059,9 @@
     <div class="container">
 
       <div class="section__header">
-        <h2 id="challenge-heading">Challenge - four things a report might say</h2>
+        <h2 id="challenge-heading">Challenge - two things a report might say</h2>
         <p class="prose">
-          Judge each against the model as you currently have it set. Two of
-          them change their verdict depending on your settings.
+          Both sentences are about the four colleagues you have just met.
         </p>
       </div>
 
@@ -2084,62 +2089,14 @@
       <div class="split split--wide">
 
         <div class="prose">
-          <h3>A score is an answer to a question, not a summary of a life</h3>
           <p>
-            Aisha's 6.2 is a reliable and valid measurement of how she
-            evaluates voicing disagreement. It is not a measurement of how
-            often she does it, and nothing about improving the questionnaire
-            would make it one. The gap between the two is not measurement
-            error to be engineered away; it is occupied by other people, a
-            chair, a room, a rota and a career.
-          </p>
-
-          <h3>Some conditions add; one of them gates</h3>
-          <p>
-            Norms, confidence and habit shift the odds. Opportunity does not:
-            if the occasion does not arise, nothing else matters, which is why
-            it multiplies in the model rather than adding. Marek has every
-            internal condition Rowan has and does the behaviour far less
-            often. A great deal of applied psychology is aimed at the terms
-            that add, in situations where the term that gates is doing the
-            work.
-          </p>
-
-          <h3>Correspondence is a property of the instrument</h3>
-          <p>
-            The same person, the same disposition, three questionnaires. A
-            general values scale correlates weakly with a specific act; a
-            measure matched to the action in target, context and time
-            correlates far better. This is the compatibility principle from the reasoned-action
-            tradition. It explains a large part of the historical "attitudes
-            do not predict behaviour" literature without anyone having to be
-            wrong about attitudes.
-          </p>
-
-          <h3>The correlation is a fact about the sample's conditions</h3>
-          <p>
-            Experiment 3 holds the attitude distribution fixed and changes only
-            how much the conditions vary. In uniform conditions the
-            correlation is high, because attitude is the only thing left
-            varying. In real teams it falls, because the outcome now depends on
-            things the questionnaire never asked about. An attitude-behaviour
-            correlation is therefore partly a description of the setting the
-            study was run in - which is worth remembering before generalising
-            one.
-          </p>
-
-          <h3>Where this leaves the individual-level account</h3>
-          <p>
-            The reasoned-action models are among the most successful
-            individual-level frameworks in social psychology, and this tool is
-            built on their logic. The critical point is not that they are wrong but that they are
-            a particular level of description. They represent norms as a
-            perception inside a head, and constraints as a perceived
-            control. That is exactly right if you want to predict an
-            individual, and exactly wrong if you want to explain why the
-            chair closes discussion at ten past. Both questions are legitimate;
-            they are not the same question, and the questionnaire only answers
-            one of them.
+            Rowan, Devi, Marek and Priya gave the same answer to the same
+            question and did not behave the same way. Marek's case is the sharp
+            one: every internal condition is as strong as Rowan's, and the
+            occasion to disagree almost never arises. A course aimed at his
+            attitude would change nothing. What a score measures is an answer
+            to a question; whether the answer becomes an action depends on the
+            room.
           </p>
         </div>
 
@@ -2149,39 +2106,14 @@
           </h3>
           <ul>
             <li>
-              <strong>The coefficients are invented.</strong> They are printed
-              on screen and in the teaching notes so that nothing is hidden,
-              and they are chosen to make a pattern visible. They are not
-              estimates, and the correlations that follow from them are not
-              findings.
-            </li>
-            <li>
-              <strong>Six conditions is a simplification.</strong> Real behaviour also depends on mood, fatigue, what happened in
-              the last meeting, who else is in the room and what is at
-              stake. None of that is modelled here.
-            </li>
-            <li>
               <strong>It does not show that attitudes are unimportant.</strong>
-              Attitude is the largest single coefficient in the model. The
-              claim is about what a single measured evaluation licenses on its
-              own, not about whether evaluations matter.
+              Attitude carries the largest coefficient in the model. It is
+              necessary and it is not sufficient.
             </li>
             <li>
-              <strong>It does not test the theory of planned behaviour.</strong>
-              A simulation cannot test a theory. This is an illustration of the
-              logic of such models and of one of their standard criticisms, not
-              evidence for or against any of them.
-            </li>
-            <li>
-              <strong>Nobody is assessed.</strong> The questionnaire is never
-              administered to you. All four colleagues are fictional, and no
-              real workplace is described.
-            </li>
-            <li>
-              <strong>Speaking up is not always the right thing to do.</strong>
-              The model estimates a frequency, not a virtue. Whether voicing disagreement is wise in a particular meeting
-              is a question the model has no view about. The costs of doing
-              so fall very unevenly across a workforce.
+              <strong>The figures are invented.</strong> The coefficients were
+              chosen to make a teaching pattern visible. They estimate nothing
+              and should never be quoted as effect sizes.
             </li>
           </ul>
         </aside>
@@ -2904,12 +2836,27 @@
 /* =========================================================================
    Attitude-Behaviour Gap Laboratory
    -------------------------------------------------------------------------
-   One fictional behaviour - voicing disagreement in a team meeting - and three
-   staged experiments on what stands between a measured evaluation and an act.
+   One fictional behaviour - speaking up when you disagree in a team meeting -
+   and two staged experiments on what stands between a measured evaluation and
+   an act.
 
        1. Four colleagues, identical attitude scores, four working lives
-       2. One colleague, six conditions, moved one at a time
-       3. 300 simulated colleagues, and what happens to the correlation
+       2. Marek, and one condition
+
+   THE SHAPE OF THE ACTIVITY
+   -------------------------
+   The whole teaching point is reached with one slider. Four colleagues answer
+   the same item - "I speak up when I disagree in a team meeting" - identically,
+   and behave differently. The learner predicts, is shown the estimates, then
+   takes Marek, whose attitude is as strong as Rowan's and whose behaviour is
+   rare, and moves OPPORTUNITY. His behaviour changes; his attitude does not.
+   That is the gap, and it needs no understanding of the model beneath it.
+
+   Everything else is optional depth and is collapsed so that it cannot compete:
+   the other five conditions and the correspondence control sit behind "More of
+   the situation", and the population-level argument - where a correlation
+   between attitude and behaviour comes from, and how restricting the range of
+   conditions inflates it - sits behind "Go deeper", with its own controls.
 
    THE EDUCATIONAL MODEL
    ---------------------
@@ -3222,6 +3169,7 @@
 
   var predictionBox = $("[data-person-predictions]");
   var sliderBox = $("[data-sliders]");
+  var sliderBoxMore = $("[data-sliders-more]");
   var personSelect = $("#person-select");
   var correspondenceSelect = $("#correspondence-select");
   var peopleTable = $("[data-people-table]");
@@ -3243,14 +3191,21 @@
   var claimsList = $("[data-claims-list]");
   var claimsFeedback = $("[data-claims-feedback]");
 
-  var STAGE_COUNT = 3;
+  var STAGE_COUNT = 2;
+
+  /* Experiment 2 opens with one slider: OPPORTUNITY, the condition that
+     multiplies rather than adds. The attitude stays where the questionnaire
+     put it, which is the point - behaviour moves while the attitude does not.
+     The other five conditions are one disclosure away and the model is
+     unchanged. */
+  var CONDITION_CORE = ["opportunity"];
 
   var INITIAL = {
     stage: 1,
     unlocked: false,
     predictions: {},
     revealed: false,
-    person: "priya",
+    person: "marek",
     values: null,
     correspondence: "middle",
     setting: "lab",
@@ -3344,7 +3299,9 @@
 
   function buildSliders() {
     clear(sliderBox);
+    clear(sliderBoxMore);
     CONDITIONS.forEach(function (condition) {
+      var host = CONDITION_CORE.indexOf(condition.id) === -1 ? sliderBoxMore : sliderBox;
       var wrap = make("div", "control");
       var header = make("div", "control__header");
       var label = make("label", "control__label", condition.label);
@@ -3375,7 +3332,7 @@
           ? " Coefficient " + fmt(condition.id === "constraint"
               ? -B[condition.coefficient] : B[condition.coefficient]) + "."
           : " Multiplies the result.")));
-      sliderBox.appendChild(wrap);
+      host.appendChild(wrap);
     });
   }
 
@@ -3642,7 +3599,6 @@
       return state.revealed
         ? null : "Press \"Show the model's answers\" before continuing.";
     },
-    function () { return null; },
     function () { return null; }
   ];
 
@@ -3654,7 +3610,8 @@
       heading.setAttribute("tabindex", "-1");
       heading.focus();
     }
-    shell.announce("Experiment " + state.stage + " of 3.", { immediate: true });
+    shell.announce("Experiment " + state.stage + " of " + STAGE_COUNT + ".",
+      { immediate: true });
   }
 
   $('[data-action="next"]').addEventListener("click", function () {
@@ -3706,7 +3663,14 @@
       }
     });
     $('[data-action="prev"]').disabled = state.stage === 1;
-    $('[data-action="next"]').disabled = state.stage === STAGE_COUNT;
+    var next = $('[data-action="next"]');
+    next.disabled = state.stage === STAGE_COUNT;
+    /* Name the destination rather than the direction, so a learner on
+       experiment 2 can see that a third one exists and what it costs to
+       reach it. */
+    next.textContent = state.stage === STAGE_COUNT
+      ? "Next experiment"
+      : "Go to Experiment " + (state.stage + 1);
 
     renderPeople();
     renderExperiment2();
@@ -3807,59 +3771,6 @@
         };
       }
     },
-    {
-      id: "correlation",
-      text:
-        "\"In our study, attitude correlated with behaviour at the level shown " +
-        "on screen, so attitudes are \" - as strong or as weak as that number " +
-        "makes them sound.",
-      judge: function () {
-        var r = correlation(sampleFor(state.setting, state.measure));
-        return {
-          answer: state.setting === "lab" ? "no" : "partly",
-          verdict: state.setting === "lab"
-            ? "Not supported - the setting is doing the work."
-            : "Partly - the number is honest for this setting.",
-          evidence: "You currently have r = " + fmt(r) + " in the " +
-            (state.setting === "lab" ? "uniform-conditions" : "real-teams") +
-            " condition with " + CORRESPONDENCE[state.measure].label + ".",
-          why: state.setting === "lab"
-            ? "Under uniform conditions attitude is very nearly the only thing " +
-              "left varying, so it must account for most of the differences. " +
-              "The correlation is a description of how little the conditions " +
-              "varied, not of how powerful attitudes are. Switch to real teams " +
-              "and read the same sentence again."
-            : "In the varying condition the number does describe how well the " +
-              "measure tracks behaviour across ordinary teams. It still says " +
-              "nothing about any individual, and it would change again with a " +
-              "different measure - look down the column."
-        };
-      }
-    },
-    {
-      id: "measure",
-      text:
-        "\"The weak association means the attitude questionnaire needs to be " +
-        "more reliable.\"",
-      judge: function () {
-        return {
-          answer: state.measure === "general" ? "partly" : "no",
-          verdict: state.measure === "general"
-            ? "Partly - though the problem is correspondence, not reliability."
-            : "Not supported.",
-          evidence: "The measure in use is " + CORRESPONDENCE[state.measure].label +
-            ", carrying " + Math.round(CORRESPONDENCE[state.measure].weight * 100) +
-            " per cent of the disposition into this act.",
-          why:
-            "Reliability is about whether a measure agrees with itself. What " +
-            "changes the association here is whether the measure is about the " +
-            "same target, context and time as the behaviour. A perfectly " +
-            "reliable values questionnaire will still predict Thursday's " +
-            "meeting poorly, and no extra items will fix it. That is not a " +
-            "defect."
-        };
-      }
-    }
   ];
 
   var CLAIM_LABELS = {};

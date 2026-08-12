@@ -613,9 +613,10 @@
 .opi-activity.opi-activity.opi-activity .interactive__body--pinned {
   align-items: stretch;
 }
-.opi-activity.opi-activity.opi-activity .interactive__stage > .stage__primary {
+.opi-activity.opi-activity.opi-activity .interactive__stage > .stage__primary:last-child {
   position: sticky;
-    top: 0;
+    
+    top: var(--shell-pin-offset, 0px);
     z-index: 2;
     
     margin: -16px -16px 0;
@@ -625,7 +626,7 @@
 }
 }
 @media (min-width: 52em) and (max-height: 30em) {
-.opi-activity.opi-activity.opi-activity .interactive__stage > .stage__primary {
+.opi-activity.opi-activity.opi-activity .interactive__stage > .stage__primary:last-child {
   position: static;
     margin: 0;
     padding: 0;
@@ -1640,7 +1641,7 @@
       </p>
       <h1 id="page-heading">Constructing a Category</h1>
       <p class="hero__lead">
-        Nine messy fictional accounts and five decisions. By the end there is
+        Six messy fictional accounts and five decisions. By the end there is
         a named condition with a boundary, a questionnaire, a prevalence
         figure, a training course and a place in somebody's spreadsheet - and
         nothing new has been discovered.
@@ -1663,14 +1664,14 @@
             constructed” does not mean “made up”.
           </p>
           <p class="text-muted">
-            About 35 minutes. Nothing you do here is saved or sent anywhere.
+            About 25 minutes. Nothing you do here is saved or sent anywhere.
           </p>
         </div>
 
         <div class="panel panel--caution">
           <h2 class="panel__title">Construction is not fabrication</h2>
           <p>
-            The nine people describe something. They are tired, they dread
+            The six people describe something. They are tired, they dread
             opening their messages, they stay up late for an hour of quiet.
             Nothing in this activity suggests they are inventing it, and
             nothing here is a criticism of anyone who finds a category useful
@@ -1686,11 +1687,11 @@
       <div class="how-to">
         <h2 class="panel__title">How to use this</h2>
         <ol>
-          <li>Read the nine accounts.</li>
+          <li>Read the six accounts.</li>
           <li>Commit to an answer to the question below.</li>
           <li>
-            Work through the five stages in order. Each one exposes only its
-            own controls and its own result.
+            Work through the five stages in order. Each adds one result to the
+            panel tracking the category you are building.
           </li>
           <li>
             At the end, go back and change one decision - the threshold is the
@@ -1711,7 +1712,7 @@
         <p class="prose">
           A fictional research team collected open-ended responses to the
           question "Is there anything about daily life at the moment that you
-          find difficult to put a name to?" Nine of them are below. They have
+          find difficult to put a name to?" Six of them are below. They have
           not been coded, grouped or tidied. This is the whole of what exists
           before the category does.
         </p>
@@ -1720,7 +1721,7 @@
       <ol class="accounts" data-accounts></ol>
 
       <p class="text-muted">
-        All nine are invented for teaching. No real respondent, dataset,
+        All six are invented for teaching. No real respondent, dataset,
         survey or published category is reproduced.
       </p>
 
@@ -1760,7 +1761,7 @@
           </label>
           <label class="control--choice">
             <input type="radio" name="opening" value="accounts">
-            How well the nine accounts represent everyone else
+            How well the six accounts represent everyone else
           </label>
           <label class="control--choice">
             <input type="radio" name="opening" value="threshold">
@@ -1881,14 +1882,14 @@
       </details>
 
       <section class="interactive" id="category-lab" data-interactive
-               data-reset-message="Everything cleared. Back to nine accounts and no category.">
+               data-reset-message="Everything cleared. Back to six accounts and no category.">
 
         <header class="interactive__header">
           <h3 class="interactive__title">Five stages from a description to a thing</h3>
           <p class="interactive__brief">
-            Each stage shows only its own controls and its own result. You can
-            go back at any point, and going back is where most of the learning
-            is.
+            The category you are building stays at the top of the panel and
+            fills in as you go. You can go back at any point, and going back is
+            where most of the learning is.
           </p>
           <ol class="stage-track" data-stage-track>
             <li data-stage="1"><span>1.</span> Find the pattern</li>
@@ -1907,7 +1908,7 @@
             <fieldset data-stage="1">
               <legend>Stage 1. Which features recur?</legend>
               <p class="control__hint">
-                Tick the features you think define what these nine people are
+                Tick the features you think define what these six people are
                 describing. Choose at least three. The table beside you shows
                 how often each one appears here, and how often it appears in a
                 comparison set of accounts from people who said nothing was
@@ -1944,31 +1945,40 @@
                 <input type="range" id="threshold-range" min="1" max="6" step="1" value="3">
               </div>
 
-              <div class="control">
-                <div class="control__header">
-                  <label class="control__label" for="duration-select">
-                    Duration requirement
-                  </label>
-                </div>
-                <select id="duration-select">
-                  <option value="none">None stated</option>
-                  <option value="short" selected>At least one month</option>
-                  <option value="long">At least six months</option>
-                </select>
-              </div>
+              <!-- Real criteria carry more than a feature count. The other
+                   two conditions are folded away so the first pass is one
+                   slider against one prevalence figure; they still move
+                   independently once opened, because the sensitivity
+                   argument depends on that. -->
+              <details class="stage__more">
+                <summary>The other two conditions in the rule</summary>
 
-              <div class="control">
-                <div class="control__header">
-                  <label class="control__label" for="impairment-select">
-                    Interference requirement
-                  </label>
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="duration-select">
+                      Duration requirement
+                    </label>
+                  </div>
+                  <select id="duration-select">
+                    <option value="none">None stated</option>
+                    <option value="short" selected>At least one month</option>
+                    <option value="long">At least six months</option>
+                  </select>
                 </div>
-                <select id="impairment-select">
-                  <option value="none">None stated</option>
-                  <option value="some" selected>Gets in the way of ordinary activities</option>
-                  <option value="marked">Gets markedly in the way</option>
-                </select>
-              </div>
+
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="impairment-select">
+                      Interference requirement
+                    </label>
+                  </div>
+                  <select id="impairment-select">
+                    <option value="none">None stated</option>
+                    <option value="some" selected>Gets in the way of ordinary activities</option>
+                    <option value="marked">Gets markedly in the way</option>
+                  </select>
+                </div>
+              </details>
             </fieldset>
 
             <!-- Stage 4 -->
@@ -1976,7 +1986,7 @@
               <legend>Stage 4. Which items go in?</legend>
               <p class="control__hint">
                 Choose five items for a short screening questionnaire. The
-                result shows which of the original nine accounts your
+                result shows which of the original six accounts your
                 instrument would still find.
               </p>
               <div data-item-choices></div>
@@ -1984,12 +1994,16 @@
 
             <!-- Stage 5 -->
             <fieldset data-stage="5">
-              <legend>Stage 5. Five things that happen next</legend>
+              <legend>Stage 5. Things that happen next</legend>
               <p class="control__hint">
                 You no longer control the category. You control only what you
                 do when somebody else picks it up.
               </p>
               <div data-event-choices></div>
+              <details class="stage__more">
+                <summary>Three more decisions land on your desk</summary>
+                <div data-event-choices-more></div>
+              </details>
             </fieldset>
 
             <div class="stage-nav">
@@ -2006,22 +2020,31 @@
 
           <div class="interactive__stage" data-interactive-stage>
 
-            <!-- One primary per stage; only the active one is ever shown. -->
+            <!-- Pinned across every stage. The category under construction is
+                 the one thing that persists from stage 1 to stage 5, so it is
+                 the one panel that never moves: each stage then adds a single
+                 result beneath it rather than replacing the whole view. -->
+            <div class="stage__primary">
+              <h4 class="stage__heading">The category so far</h4>
+              <dl class="interactive__readout" data-summary></dl>
+            </div>
 
-            <div class="stage__primary" data-stage="1">
+            <!-- One result block per stage; only the active one is shown. -->
+
+            <div data-stage="1">
               <h4 class="stage__heading">What your features pick out</h4>
               <div class="table-scroll">
                 <table class="data-table">
                   <caption class="visually-hidden">
-                    Each selected feature, the number of the nine accounts it
-                    appears in, and the number of nine comparison accounts it
+                    Each selected feature, the number of the six accounts it
+                    appears in, and the number of six comparison accounts it
                     appears in
                   </caption>
                   <thead>
                     <tr>
                       <th scope="col">Feature</th>
-                      <th scope="col">In the 9</th>
-                      <th scope="col">In 9 comparisons</th>
+                      <th scope="col">In the 6</th>
+                      <th scope="col">In 6 comparisons</th>
                       <th scope="col">Distinguishing?</th>
                     </tr>
                   </thead>
@@ -2031,12 +2054,12 @@
               <p class="spec__coherence" data-feature-verdict></p>
             </div>
 
-            <div class="stage__primary" data-stage="2" hidden>
+            <div data-stage="2" hidden>
               <h4 class="stage__heading">What the name imports</h4>
               <div class="verdict" data-name-verdict></div>
             </div>
 
-            <div class="stage__primary" data-stage="3" hidden>
+            <div data-stage="3" hidden>
               <h4 class="stage__heading">How many people have it</h4>
               <p class="prevalence" data-prevalence></p>
               <figure class="chart">
@@ -2066,12 +2089,12 @@
               <p class="spec__coherence" data-boundary-note></p>
             </div>
 
-            <div class="stage__primary" data-stage="4" hidden>
+            <div data-stage="4" hidden>
               <h4 class="stage__heading">Who your instrument still finds</h4>
               <div class="table-scroll">
                 <table class="data-table">
                   <caption class="visually-hidden">
-                    Each of the nine original accounts and whether the
+                    Each of the six original accounts and whether the
                     questionnaire would detect it
                   </caption>
                   <thead>
@@ -2087,7 +2110,7 @@
               <p class="spec__coherence" data-detect-note></p>
             </div>
 
-            <div class="stage__primary" data-stage="5" hidden>
+            <div data-stage="5" hidden>
               <h4 class="stage__heading">Object status</h4>
               <p class="prevalence" data-status-label></p>
               <figure class="chart">
@@ -2104,7 +2127,7 @@
             <!-- Secondary, per stage -->
             <div data-secondary="1">
               <details class="stage__more">
-                <summary>The nine accounts, for reference</summary>
+                <summary>The six accounts, for reference</summary>
                 <ol class="accounts accounts--compact" data-accounts-compact></ol>
               </details>
             </div>
@@ -2196,71 +2219,14 @@
       <div class="split split--wide">
 
         <div class="prose">
-          <h3>Reification has identifiable steps</h3>
           <p>
-            "Reification" is often taught as an attitude - treating an
-            abstraction as a thing - and then left there. This activity breaks
-            it into moves you can point at. Selecting features fixes what will
-            count. Naming imports a frame and an expert. Setting a threshold
-            converts a continuum into two kinds of people. Building an
-            instrument makes the category operationally prior to the
-            experience. Institutional uptake makes it costly to question,
-            because budgets, job titles and training contracts now depend on
-            it existing.
-          </p>
-
-          <h3>Prevalence is manufactured, not discovered</h3>
-          <p>
-            Nothing about the 400 simulated respondents changes when you move
-            the threshold. Their answers are fixed. What changes is where the
-            line is, and the prevalence figure follows from the line. Every
-            real prevalence estimate has this property, which is why the
-            respectable ones report their criteria and their sensitivity
-            analyses, and why a headline figure without them tells you almost
-            nothing.
-          </p>
-
-          <h3>The name does work before any evidence arrives</h3>
-          <p>
-            "Syndrome" recruits clinicians and points at treatment.
-            "Dependence" recruits a moral vocabulary and points at the
-            individual's willpower. "Poverty" recruits a distributional
-            vocabulary and points at how a resource is shared out. These are
-            not neutral labels for the same object; they make different things
-            askable, and they nominate different people as the ones who know.
-          </p>
-
-          <h3>Instruments police their own boundary</h3>
-          <p>
-            Once a five-item questionnaire exists, the people it does not
-            detect are, administratively, people who do not have the thing -
-            however they describe their lives. Two of the nine accounts are
-            written to fall outside a conventional instrument. Institutionally
-            they now have no name for what they said, which is the opposite of
-            what the category was built to provide.
-          </p>
-
-          <h3>Constructed, and real</h3>
-          <p>
-            None of this shows that the nine people are mistaken. Critical
-            realism puts it well: our categories are fallible, historically
-            situated human products, and there is still something they are
-            categories <em>of</em>. A well-made category can carve that
-            something usefully; a badly made one carves it in a way that
-            serves the institution doing the carving. The interesting question
-            is never "is it socially constructed" - everything in this
-            vocabulary is - but "constructed how, by whom, at what cost, and
-            what would a better construction look like".
-          </p>
-
-          <h3>Categories loop back</h3>
-          <p>
-            People learn the category, recognise themselves in it, and start
-            describing their experience in its terms. Later accounts then
-            confirm it. That loop is not a scandal. It is how a shared vocabulary for
-            inner life ever gets built. But it does mean that the fit
-            between a category and the accounts people give is weak evidence
-            for the category once the category is well known.
+            Reification is usually taught as an attitude &mdash; treating an
+            abstraction as a thing &mdash; and left there. Here it has steps
+            you can point at: selecting features fixed what would count,
+            naming imported a frame and an expert, a threshold turned a
+            continuum into two kinds of people, and an instrument made the
+            category prior to the experience it came from. Nobody was careless
+            and nothing new was discovered.
           </p>
         </div>
 
@@ -2273,38 +2239,14 @@
               <strong>It does not show that categories are bogus.</strong>
               Classification is how any science gets started, and a category
               that names something people could not previously name is a real
-              gain. The activity is about how classification can harden, not
-              about whether to classify.
+              gain. This is about how classification hardens, not about
+              whether to classify.
             </li>
             <li>
-              <strong>It is not an argument about any real diagnosis or
-              construct.</strong> The category built here is invented, its
-              name is invented, and no published criteria, instrument, item or
-              prevalence estimate is reproduced or referred to.
-            </li>
-            <li>
-              <strong>The simulated population is a model, not data.</strong>
-              The 400 respondents are generated from a documented latent-trait
-              model with a fixed seed. The prevalence figures show how a
-              threshold behaves; they estimate nothing about anybody.
-            </li>
-            <li>
-              <strong>Nobody is assessed.</strong> The questionnaire is never
-              administered to you. The tool asks nothing about your own
-              experience and produces no score for anyone.
-            </li>
-            <li>
-              <strong>Institutional uptake is not automatic.</strong> The five
-              events are stylised, and each offers a route that keeps the
-              category accountable. Real uptake is slower, contested, and
-              often resisted from inside the institution.
-            </li>
-            <li>
-              <strong>Being hard to measure is not evidence of being
-              unreal.</strong> Several things in this vocabulary - grief,
-              loneliness, exhaustion - are difficult to operationalise and
-              obviously real. Difficulty of measurement is a fact about
-              instruments.
+              <strong>Constructed is not unreal.</strong> Our categories are
+              fallible human products, and there is still something they are
+              categories <em>of</em>. The useful question is never whether a
+              category is constructed but how, by whom, and at what cost.
             </li>
           </ul>
         </aside>
@@ -3027,7 +2969,7 @@
 /* =========================================================================
    Constructing a Category / Object-Status Laboratory
    -------------------------------------------------------------------------
-   Nine messy fictional accounts and five stages that turn them into a named
+   Six messy fictional accounts and five stages that turn them into a named
    condition with a boundary, an instrument, a prevalence figure and
    institutional force.
 
@@ -3035,16 +2977,31 @@
        2. Name it             - what a name imports before any evidence
        3. Draw the boundary   - a threshold applied to 400 simulated people
        4. Build the instrument- five items, and who they no longer find
-       5. Let it loose        - five institutional decisions, and what hardens
+       5. Let it loose        - institutional decisions, and what hardens
+
+   ONE PANEL, FIVE STAGES
+   ----------------------
+   The category under construction is pinned at the top of the stage area and
+   fills in as the learner goes: name, features, boundary, prevalence,
+   instrument, object status. Each stage then contributes one result beneath it
+   rather than replacing the whole view, so there is one layout to learn
+   instead of five. A row appears only once its stage has been reached
+   (`state.reached`), so the panel never answers a question ahead of time.
+
+   Two of stage 5's decisions are on offer at once; the other three sit behind
+   a disclosure and score identically. Stage 3 likewise shows the threshold
+   alone, with the duration and interference rules one click away - they still
+   move independently, because the sensitivity argument depends on that.
 
    THE EDUCATIONAL MODEL
    ---------------------
-   Stage 1 is authored, not simulated. Each of the nine accounts carries a
+   Stage 1 is authored, not simulated. Each of the six accounts carries a
    hand-written feature list; the comparison counts (how often the same
-   feature appears in nine accounts from people who said nothing was hard to
-   name) are authored figures chosen so that the most prevalent features -
-   tiredness, poor sleep, difficulty concentrating - are the least
-   distinguishing. That is the point of the stage.
+   feature appears in six accounts from people who said nothing was hard to
+   name) are authored figures chosen so that the features a reader reaches for
+   first - poor sleep, difficulty concentrating - are the least distinguishing,
+   and so that long or unpredictable hours is exactly as common outside the set
+   as inside it. That is the point of the stage.
 
    Stage 3 uses a simple simulated population. Each of 400 respondents has a
    latent "load" drawn from a standard normal (seeded mulberry32 + Box-Muller,
@@ -3056,10 +3013,11 @@
    met. Nothing about the 400 people changes when the threshold moves; only
    the line does, and the prevalence figure follows the line.
 
-   Stage 4 scores each of the nine original accounts against the chosen items:
+   Stage 4 scores each of the six original accounts against the chosen items:
    an account is detected when it would endorse three or more of the five.
-   Accounts 7 and 9 are deliberately written so that an instrument built from
-   the most obvious items misses them.
+   Accounts 3 and 6 are deliberately written so that an instrument built from
+   the most obvious items misses them: both describe difficulty that arises
+   from hours and obligations rather than from anything inside the person.
 
    Stage 5 keeps an "object status" index from 12 to 100. Every institutional
    decision offers an uncritical route, a route that keeps the category
@@ -3087,18 +3045,18 @@
      ===================================================================== */
 
   var FEATURES = [
-    { id: "tired", label: "Tiredness that sleep does not fix", comparison: 5, kind: "person" },
+    { id: "tired", label: "Tiredness that sleep does not fix", comparison: 3, kind: "person" },
     { id: "behind", label: "Feeling behind on things you are supposed to have seen", comparison: 1, kind: "person" },
-    { id: "dread", label: "Dread before opening messages", comparison: 1, kind: "person" },
-    { id: "switch", label: "Starting something new before finishing the last", comparison: 2, kind: "person" },
-    { id: "late", label: "Staying up late for uninterrupted time", comparison: 2, kind: "person" },
-    { id: "concentrate", label: "Difficulty concentrating for long", comparison: 5, kind: "person" },
-    { id: "guilt", label: "Guilt about how the time was spent", comparison: 3, kind: "person" },
-    { id: "sleep", label: "Sleeping badly", comparison: 6, kind: "person" },
-    { id: "calls", label: "Avoiding phone calls", comparison: 3, kind: "person" },
-    { id: "low", label: "Feeling low", comparison: 4, kind: "person" },
-    { id: "money", label: "Worry about money", comparison: 5, kind: "situation" },
-    { id: "hours", label: "Long or unpredictable working hours", comparison: 4, kind: "situation" }
+    { id: "dread", label: "Dread before opening messages", comparison: 0, kind: "person" },
+    { id: "switch", label: "Starting something new before finishing the last", comparison: 1, kind: "person" },
+    { id: "late", label: "Staying up late for uninterrupted time", comparison: 1, kind: "person" },
+    { id: "concentrate", label: "Difficulty concentrating for long", comparison: 3, kind: "person" },
+    { id: "guilt", label: "Guilt about how the time was spent", comparison: 2, kind: "person" },
+    { id: "sleep", label: "Sleeping badly", comparison: 5, kind: "person" },
+    { id: "calls", label: "Avoiding phone calls", comparison: 2, kind: "person" },
+    { id: "low", label: "Feeling low", comparison: 3, kind: "person" },
+    { id: "money", label: "Worry about money", comparison: 4, kind: "situation" },
+    { id: "hours", label: "Long or unpredictable working hours", comparison: 2, kind: "situation" }
   ];
 
   var ACCOUNTS = [
@@ -3122,38 +3080,6 @@
     {
       id: 3,
       text:
-        "I do not answer the phone any more. I look at who it is and I let it " +
-        "go, and then I feel a small drop when I see the notification. My " +
-        "shifts move around every fortnight so I am never sure what day it is.",
-      features: ["tired", "dread", "calls", "behind", "hours"]
-    },
-    {
-      id: 4,
-      text:
-        "The work does not stop when I leave, it just stops being visible. I " +
-        "sit down at eleven to do the bit I actually care about and then " +
-        "resent the whole day for it.",
-      features: ["late", "guilt", "behind", "switch", "concentrate", "hours", "tired"]
-    },
-    {
-      id: 5,
-      text:
-        "It is not sadness exactly. It is that I open my messages and " +
-        "something in my chest goes tight, and I am flat for an hour " +
-        "afterwards, and I have not slept properly since the spring.",
-      features: ["tired", "sleep", "low", "behind", "dread"]
-    },
-    {
-      id: 6,
-      text:
-        "I cannot watch anything without also doing something else, and then " +
-        "I have not really watched it, so I watch it again. I am always " +
-        "halfway through four things.",
-      features: ["switch", "concentrate", "dread", "behind", "late", "tired"]
-    },
-    {
-      id: 7,
-      text:
         "Honestly it is the hours. I do not know what I am working until the " +
         "Thursday before, so I cannot arrange anything, and the money is " +
         "never the same twice. I am shattered and I sleep in the afternoon " +
@@ -3161,7 +3087,15 @@
       features: ["hours", "money", "tired", "sleep", "calls"]
     },
     {
-      id: 8,
+      id: 4,
+      text:
+        "It is not sadness exactly. It is that I open my messages and " +
+        "something in my chest goes tight, and I am flat for an hour " +
+        "afterwards, and I have not slept properly since the spring.",
+      features: ["tired", "sleep", "low", "behind", "dread"]
+    },
+    {
+      id: 5,
       text:
         "There is a low hum of being behind. Not a crisis, just a hum. I open " +
         "something, do a third of it, open something else, and at the end of " +
@@ -3169,7 +3103,7 @@
       features: ["dread", "behind", "guilt", "switch", "concentrate", "tired"]
     },
     {
-      id: 9,
+      id: 6,
       text:
         "My mother is up the road and I go every evening, and then it is ten " +
         "o'clock and that is my time, so I take it, and I am wrecked, and I " +
@@ -3182,7 +3116,7 @@
     {
       id: "none",
       label: "Do not name it yet - keep the accounts as accounts",
-      frame: "None. Nine descriptions stay nine descriptions.",
+      frame: "None. Six descriptions stay six descriptions.",
       locus: "Undecided.",
       expert: "Nobody in particular. There is no post to appoint to.",
       intervention: "None follows, because there is nothing yet to intervene on.",
@@ -3294,7 +3228,7 @@
           id: "c", label: "Decline", delta: 2,
           consequence:
             "The category stays inside the research group. So does whatever " +
-            "use it might have been to the nine people.",
+            "use it might have been to the six people.",
           lost: "Reach. Refusing is a choice with costs too."
         }
       ]
@@ -3420,6 +3354,14 @@
       ]
     }
   ];
+
+  /* Stage 5 opens with two decisions rather than five. These two are the ones
+     that reach back into stages the learner has just been through - the press
+     asks for the prevalence figure from stage 3, the manager asks to use the
+     instrument from stage 4 - so the hardening is felt as a consequence of
+     their own earlier decisions rather than as a fresh quiz. The other three
+     are one disclosure away and score identically. */
+  var EVENT_CORE = ["press", "manager"];
 
   var STATUS_BANDS = [
     { min: 0, label: "A description somebody wrote down" },
@@ -3587,6 +3529,8 @@
   var nameChoices = $("[data-name-choices]");
   var itemChoices = $("[data-item-choices]");
   var eventChoices = $("[data-event-choices]");
+  var eventChoicesMore = $("[data-event-choices-more]");
+  var summaryList = $("[data-summary]");
 
   var featureTable = $("[data-feature-table]");
   var featureVerdict = $("[data-feature-verdict]");
@@ -3616,6 +3560,10 @@
 
   var INITIAL = {
     stage: 1,
+    /* High-water mark. The summary panel reports a stage's result only once
+       that stage has been reached, so nothing on it answers a question the
+       learner has not been asked yet. Going back does not un-reveal. */
+    reached: 1,
     unlocked: false,
     selected: [],
     name: null,
@@ -3664,8 +3612,8 @@
       var body = make("span", "feature-option__body");
       body.appendChild(make("span", null, feature.label));
       body.appendChild(make("span", "feature-option__counts",
-        "in " + inSetCount(feature.id) + " of the 9; in " + feature.comparison +
-        " of 9 comparisons"));
+        "in " + inSetCount(feature.id) + " of the 6; in " + feature.comparison +
+        " of 6 comparisons"));
       label.appendChild(body);
       featureChoices.appendChild(label);
     });
@@ -3719,7 +3667,9 @@
 
   function buildEventChoices() {
     clear(eventChoices);
+    clear(eventChoicesMore);
     EVENTS.forEach(function (event) {
+      var host = EVENT_CORE.indexOf(event.id) === -1 ? eventChoicesMore : eventChoices;
       var group = make("fieldset", "event");
       var legend = make("legend", "event__legend", event.text);
       group.appendChild(legend);
@@ -3738,7 +3688,7 @@
         label.appendChild(make("span", null, option.label));
         group.appendChild(label);
       });
-      eventChoices.appendChild(group);
+      host.appendChild(group);
     });
   }
 
@@ -3772,8 +3722,8 @@
       var th = make("th", null, feature.label);
       th.setAttribute("scope", "row");
       row.appendChild(th);
-      row.appendChild(make("td", null, String(inSetCount(id)) + " of 9"));
-      row.appendChild(make("td", null, String(feature.comparison) + " of 9"));
+      row.appendChild(make("td", null, String(inSetCount(id)) + " of 6"));
+      row.appendChild(make("td", null, String(feature.comparison) + " of 6"));
       row.appendChild(make("td", null,
         diff >= 3 ? "distinguishes"
           : diff >= 1 ? "weakly"
@@ -3797,7 +3747,7 @@
     });
 
     var text =
-      "Your set covers " + coverage + " of the 9 accounts (at least two " +
+      "Your set covers " + coverage + " of the 6 accounts (at least two " +
       "features present). " + strong + " of your " + state.selected.length +
       " features distinguish this group from the comparisons; " + weakOrNone +
       (weakOrNone === 1 ? " does not, or barely does." : " do not, or barely do.");
@@ -3815,7 +3765,7 @@
 
     featureVerdict.textContent = text;
     featureVerdict.setAttribute("data-state",
-      strong >= 2 && coverage >= 6 ? "ok" : "tension");
+      strong >= 2 && coverage >= 4 ? "ok" : "tension");
   }
 
   /* --- Stage 2 ------------------------------------------------------------ */
@@ -3825,7 +3775,7 @@
     clear(nameCompare);
     if (!state.name) {
       nameVerdict.appendChild(make("p", "verdict__body",
-        "Choose a name. Nothing about the nine accounts will change; " +
+        "Choose a name. Nothing about the six accounts will change; " +
         "everything about what happens next will."));
       return;
     }
@@ -3847,7 +3797,7 @@
 
     nameCompare.setAttribute("data-tone", "neutral");
     nameCompare.appendChild(make("h5", "verdict__title",
-      "The same nine accounts, under the other names"));
+      "The same six accounts, under the other names"));
     NAMES.forEach(function (other) {
       if (other.id === entry.id) { return; }
       var p = make("p", "verdict__body");
@@ -4020,7 +3970,7 @@
         missed.join(", ") + ". Those people described something. " +
         "Administratively they now do not have it, which is the opposite of " +
         "what the category was built to provide."
-      : "Your instrument finds all nine. Check what that cost: an instrument " +
+      : "Your instrument finds all six. Check what that cost: an instrument " +
         "wide enough to catch every account will also catch a great many " +
         "people who were not describing anything in particular.";
 
@@ -4120,7 +4070,7 @@
     if (answered === EVENTS.length) {
       var li2 = make("li", "consequence consequence--final");
       li2.appendChild(make("p", "consequence__text",
-        "Nothing new has been discovered since stage 1. The nine accounts are " +
+        "Nothing new has been discovered since stage 1. The six accounts are " +
         "unchanged. What has changed is that there is now a name, a line, an " +
         "instrument, a figure and a set of people whose work depends on the " +
         "category being the kind of thing it is taken to be. That is what " +
@@ -4128,6 +4078,64 @@
         "but a sequence of individually reasonable decisions."));
       consequences.appendChild(li2);
     }
+  }
+
+  /* --- The pinned summary --------------------------------------------------
+     The one panel that survives every stage change. It carries the category
+     under construction, so each stage adds a result underneath rather than
+     replacing the whole right-hand side, and the learner has one layout to
+     learn instead of five.
+     ----------------------------------------------------------------------- */
+
+  function renderSummary() {
+    clear(summaryList);
+
+    var rows = [
+      ["Name", state.name
+        ? (state.name === "none" ? "deliberately unnamed" : nameById(state.name).label)
+        : "not yet named"],
+      ["Defining features", state.selected.length
+        ? state.selected.length + " of " + FEATURES.length
+        : "none chosen"]
+    ];
+
+    if (state.reached >= 3) {
+      var bands = classify(state.selected, state.threshold, state.duration, state.impairment);
+      rows.push(["Boundary", state.threshold + " feature" +
+        (state.threshold === 1 ? "" : "s") + " required"]);
+      rows.push(["Prevalence", pct(bands.meets)]);
+    }
+
+    if (state.reached >= 4) {
+      rows.push(["Instrument", state.items.length === 5
+        ? "5 items, finding " + detectedCount() + " of the 6"
+        : state.items.length + " of 5 items"]);
+    }
+
+    if (state.reached >= 5) {
+      var value = statusIndex();
+      rows.push(["Object status", value + " of 100"]);
+    }
+
+    rows.forEach(function (pair) {
+      var wrap = make("div");
+      wrap.appendChild(make("dt", null, pair[0]));
+      wrap.appendChild(make("dd", null, pair[1]));
+      summaryList.appendChild(wrap);
+    });
+  }
+
+  /* How many of the six original accounts the current instrument would find.
+     Shared by the summary and stage 4 so the two cannot disagree. */
+  function detectedCount() {
+    var chosen = ITEMS.filter(function (item) {
+      return state.items.indexOf(item.id) !== -1;
+    });
+    return ACCOUNTS.filter(function (account) {
+      return chosen.filter(function (item) {
+        return account.features.indexOf(item.feature) !== -1;
+      }).length >= 3;
+    }).length;
   }
 
   /* --- Stage plumbing ------------------------------------------------------ */
@@ -4153,8 +4161,10 @@
 
   function setStage(next) {
     state.stage = Math.max(1, Math.min(STAGE_COUNT, next));
+    state.reached = Math.max(state.reached, state.stage);
     render();
-    var heading = $('.stage__primary[data-stage="' + state.stage + '"] .stage__heading');
+    var heading = $('[data-interactive-stage] [data-stage="' +
+      state.stage + '"] .stage__heading');
     if (heading) {
       heading.setAttribute("tabindex", "-1");
       heading.focus();
@@ -4206,6 +4216,7 @@
     renderStage3();
     renderStage4();
     renderStage5();
+    renderSummary();
   }
 
   /* --- Stage 3 controls ----------------------------------------------------- */
@@ -4221,6 +4232,7 @@
       if (!state) { return; }
       state.threshold = value;
       renderStage3();
+      renderSummary();
     }
   });
 
@@ -4239,12 +4251,14 @@
   durationSelect.addEventListener("change", function () {
     state.duration = durationSelect.value;
     renderStage3();
+    renderSummary();
     shell.announce("Duration requirement changed.");
   });
 
   impairmentSelect.addEventListener("change", function () {
     state.impairment = impairmentSelect.value;
     renderStage3();
+    renderSummary();
     shell.announce("Interference requirement changed.");
   });
 
@@ -4333,13 +4347,13 @@
     },
     {
       id: "distinct",
-      text: "\"The nine accounts show that it is a distinct condition.\"",
+      text: "\"The six accounts show that it is a distinct condition.\"",
       judge: function () {
         return {
           answer: "unsupportable",
           verdict: "Not supportable by this work at all.",
           why:
-            "The nine accounts are the material the category was made from. " +
+            "The six accounts are the material the category was made from. " +
             "They cannot also be the evidence that it carves anything at a " +
             "joint. Distinctness is what the comparison column in stage 1 was " +
             "for, and most of the commonest features failed it."
@@ -4442,7 +4456,7 @@
       tone: "caution",
       verdict: "Representativeness matters, but not most.",
       text:
-        "The nine accounts decide what the category is about. They do not " +
+        "The six accounts decide what the category is about. They do not " +
         "decide how many people it catches - that is settled later, by a " +
         "threshold, and the threshold is a decision rather than a discovery."
     },
@@ -4460,7 +4474,7 @@
       verdict: "The instrument decides who, not how many.",
       text:
         "A questionnaire changes which people are found - and stage 4 shows two " +
-        "of the original nine dropping out of their own category. The headline " +
+        "of the original six dropping out of their own category. The headline " +
         "figure is settled a stage earlier, by the boundary."
     }
   };
@@ -4529,6 +4543,7 @@
        does anything careless. */
     state.events = { training: "b", survey: "b", manager: "b", press: "b", funder: "b" };
     state.stage = 5;
+    state.reached = 5;
     syncControls();
     render();
     shell.announce(
@@ -4549,9 +4564,11 @@
     $$("input[type=checkbox]", itemChoices).forEach(function (input) {
       input.checked = state.items.indexOf(input.value) !== -1;
     });
-    $$("input[type=radio]", eventChoices).forEach(function (input) {
-      var eventId = input.name.replace("event-", "");
-      input.checked = state.events[eventId] === input.value;
+    [eventChoices, eventChoicesMore].forEach(function (host) {
+      $$("input[type=radio]", host).forEach(function (input) {
+        var eventId = input.name.replace("event-", "");
+        input.checked = state.events[eventId] === input.value;
+      });
     });
     thresholdRange.value = String(state.threshold);
     durationSelect.value = state.duration;
@@ -4582,7 +4599,7 @@
 
   shell.reset({ silent: true });
   shell.announce(
-    "Ready. Read the nine accounts, then answer the question above.",
+    "Ready. Read the six accounts, then answer the question above.",
     { immediate: true });
 })();
 

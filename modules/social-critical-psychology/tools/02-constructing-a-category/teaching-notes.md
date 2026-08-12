@@ -13,7 +13,7 @@ Stage 3 is the stage to slow down on. Set the threshold to two features and read
 
 The most easily missed decision is in stage 1: "long or unpredictable working hours" is a feature of an arrangement, not of a person. Including it points the category outwards and makes the eventual intervention a rota; leaving it out points the category inwards and makes the intervention a course. Students almost never notice they have made that choice.
 
-Accounts 7 and 9 are written so that a conventional five-item instrument misses them. Ask what happens, institutionally, to somebody the screening tool does not find.
+Accounts 3 and 6 are written so that a conventional five-item instrument misses them: in both, the difficulty comes from hours and obligations rather than from anything inside the person. Ask what happens, institutionally, to somebody the screening tool does not find.
 
 ## Intended level
 
@@ -41,15 +41,20 @@ After the activity a student should be able to:
 
 - **Demonstration from the front:** 8 minutes — the threshold slider in stage 3,
   and nothing else.
-- **Students in pairs, all five stages:** 35 minutes.
-- **With the challenge and the debrief:** 50 minutes.
+- **Students in pairs, all five stages:** 30 minutes.
+- **With the challenge and the debrief:** 45 minutes.
 
 ## Preparation
 
-None. Have someone read two or three of the nine accounts aloud before anyone
+None. Have someone read two or three of the six accounts aloud before anyone
 touches the tool, so the material lands as description rather than as data.
 
 If you have fifteen minutes, run stages 1 and 3 only.
+
+The panel on the right is pinned: the category being built stays at the top from
+stage 1 to stage 5 and gains a row as each stage settles it. A row appears only
+once its stage has been reached, so nothing on the panel gives away a stage the
+class has not opened yet.
 
 ## The demonstration worth doing from the front
 
@@ -89,16 +94,23 @@ demonstrated rather than asserted in stage 3.
 
 ## Activity sequence
 
-1. **Read the nine accounts.** They are the whole of what exists.
+1. **Read the six accounts.** They are the whole of what exists.
 2. **Commit to the prediction.** It gates the laboratory.
 3. **Stage 1, find the pattern.** The two count columns are the point: the most
    common features are the least distinguishing.
 4. **Stage 2, name it.** Six options, including refusing to name it. Read the
    "what recedes" line for each.
-5. **Stage 3, draw the boundary.** Slider, then the sensitivity table.
+5. **Stage 3, draw the boundary.** The threshold slider is the only control on
+   show. The duration and interference rules are under **The other two
+   conditions in the rule** and still move independently; open them once the
+   class has seen what the threshold alone does.
 6. **Stage 4, build the instrument.** Five items from ten. Note who is missed.
-7. **Stage 5, let it loose.** Five institutional decisions, each with an
-   uncritical route, an accountable route and a refusal.
+7. **Stage 5, let it loose.** Two decisions are on show — the newspaper wants the
+   prevalence figure from stage 3, the manager wants to use the instrument from
+   stage 4 — so the hardening is felt as a consequence of decisions the class has
+   just made. **Three more decisions land on your desk** opens the training,
+   survey and funder decisions, which score identically. Each has an uncritical
+   route, an accountable route and a refusal.
 8. **Go back and change one thing.** Stage 1 is the most instructive return.
 9. **The five claims.** Two of them are marked against the learner's own stage 1
    choices, so different tables get different verdicts.
@@ -106,9 +118,9 @@ demonstrated rather than asserted in stage 3.
 ## Debrief questions
 
 1. At which stage did the accounts stop being accounts?
-2. "Tiredness that sleep does not fix" appears in all nine, and in five of the
-   nine comparison accounts. Why is it nevertheless the feature everyone selects?
-3. What changed about the nine people when you moved the threshold?
+2. "Tiredness that sleep does not fix" appears in all six, and in three of the
+   six comparison accounts. Why is it nevertheless the feature everyone selects?
+3. What changed about the six people when you moved the threshold?
 4. Account 7 is about a rota. Which of the six names has anywhere to put it?
 5. The worked example takes the accountable route at every institutional step and
    still reaches "a thing people are said to have". What would have had to be
@@ -122,9 +134,9 @@ demonstrated rather than asserted in stage 3.
 
 | What students say | What to do with it |
 | --- | --- |
-| "So the category is fake." | The caution panel, and the debrief section "Constructed, and real". The nine people describe something. The question is whether this is a good carving of it. |
+| "So the category is fake." | The caution panel, and the "Constructed is not unreal" limitation. The six people describe something. The question is whether this is a good carving of it. |
 | "The prevalence is what it is; we just measured it." | Stage 3. Same 400 people, six different answers. |
-| "A questionnaire makes it objective." | Stage 4. Five items, two of the original nine no longer detected, and five of five items restating the criteria. |
+| "A questionnaire makes it objective." | Stage 4. Five items, two of the original six no longer detected, and five of five items restating the criteria. |
 | "The name is just a label." | Stage 2, the "what intervention follows" line for each of six names, all before any evidence. |
 | "Reification is something careless people do." | The worked example takes the careful option five times and still lands at 68 of 100. |
 | "This only applies to contested categories." | Ask which uncontested category was never constructed. Then ask what makes the difference between a good construction and a bad one. |
@@ -173,7 +185,7 @@ demonstrated rather than asserted in stage 3.
 ## Optional extension tasks
 
 1. **The other instrument.** Build a five-item questionnaire that finds accounts
-   7 and 9. What has it become a questionnaire about?
+   3 and 6. What has it become a questionnaire about?
 2. **Two press releases.** Write the "one in five" version and the honest
    version. Which one gets printed, and what would have to change for the other
    one to?
@@ -189,9 +201,9 @@ demonstrated rather than asserted in stage 3.
 Documented at the top of `tool.js`.
 
 **Stage 1** is authored. Each account carries a hand-written feature list, and
-each feature carries an authored count for a comparison set of nine accounts from
+each feature carries an authored count for a comparison set of six accounts from
 people who said nothing was hard to name. A feature "distinguishes" when it
-appears at least three more times in the nine than in the nine comparisons.
+appears at least three more times in the six than in the six comparisons.
 
 **Stage 3** simulates 400 respondents with `mulberry32(20260807)` and Box–Muller
 normal draws:
@@ -210,7 +222,7 @@ Duration rules are 0, 1 and 6 months; interference rules are none, 2.5 and 4.0.
 "Just outside" means failing by exactly one of the three conditions.
 
 **Stage 4** detects an account when it would endorse three or more of the five
-chosen items. Items map one-to-one onto features. Accounts 7 and 9 are written so
+chosen items. Items map one-to-one onto features. Accounts 3 and 6 are written so
 that the five most obvious items (dread, behind, switching, staying up late,
 tiredness) miss them.
 
@@ -222,7 +234,7 @@ One option — writing to the funder to object to the framing — subtracts 4.
 ### Reference values a lecturer can check
 
 - Worked example: object status **68 of 100**, "a thing people are said to have";
-  prevalence **28.0%**; accounts **7 and 9** not detected; **5 of 5** items
+  prevalence **28.0%**; accounts **3 and 6** not detected; **5 of 5** items
   restate a criterion.
 - Every institutional decision taken uncritically, with the medical name:
   **100 of 100**, "an administrative fact".

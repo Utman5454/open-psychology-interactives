@@ -240,12 +240,28 @@
    scrolled off the top: they can no longer see what they are doing.
 
    Wrapping the ONE result that answers "what am I looking at to see the
-   effect?" in .stage__primary pins it to the top of the stage while the rest
-   of the page scrolls underneath. Everything below it stays reachable, which
-   is why this is used instead of pinning the whole stage column.
+   effect?" in .stage__primary pins it to the top of the stage while the empty
+   part of the stage column scrolls past underneath.
 
-   Only the primary result should carry this class. Secondary diagnostics,
-   tables and interpretation stay in normal flow beneath it.
+   WHY :last-child
+   ---------------
+   A sticky element travels the full height of its containing block, which here
+   is the whole stage column. An earlier version pinned every .stage__primary,
+   with an opaque background and a z-index above its siblings, so on the way
+   down it painted over every table, verdict and chart beneath it in the same
+   stage — including the ones that had just updated in response to the control
+   the learner was using. The motion that kept the result visible was the same
+   motion that hid everything else.
+
+   Pinning only a primary with nothing after it removes that possibility
+   entirely: there is no following content for it to cover, and it still
+   travels through the stretch space beside a long controls column, which is
+   the case the feature exists for. A stage that puts secondary content after
+   its primary simply does not pin, which is the correct outcome — the learner
+   needs to read that content.
+
+   So: put the primary result last in the stage if you want it pinned, or
+   accept normal flow. Do not reach for a higher z-index to "fix" overlap.
    ---------------------------------------------------------------------- */
 
 @media (min-width: 52em) {
@@ -256,11 +272,14 @@
     align-items: stretch;
   }
 
-  .interactive__stage > .stage__primary {
+  .interactive__stage > .stage__primary:last-child {
     position: sticky;
-    top: 0;
+    /* Cleared for a host page whose own header is sticky. The shell cannot see
+       that header, so the page sets --shell-pin-offset; a standalone export,
+       which carries no site chrome, keeps the 0 default. */
+    top: var(--shell-pin-offset, 0px);
     z-index: 2;
-    /* Span the stage padding so content scrolling under it is covered. */
+    /* Span the stage padding so the stage's own edge does not show through. */
     margin: -1rem -1rem 0;
     padding: 1rem 1rem 0.75rem;
     background-color: var(--shell-page);
@@ -271,7 +290,7 @@
 /* On a short viewport a pinned block would take most of the screen, so it
    returns to normal flow. */
 @media (min-width: 52em) and (max-height: 30em) {
-  .interactive__stage > .stage__primary {
+  .interactive__stage > .stage__primary:last-child {
     position: static;
     margin: 0;
     padding: 0;

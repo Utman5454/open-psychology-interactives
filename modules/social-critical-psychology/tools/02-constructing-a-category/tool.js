@@ -1,7 +1,7 @@
 /* =========================================================================
    Constructing a Category / Object-Status Laboratory
    -------------------------------------------------------------------------
-   Nine messy fictional accounts and five stages that turn them into a named
+   Six messy fictional accounts and five stages that turn them into a named
    condition with a boundary, an instrument, a prevalence figure and
    institutional force.
 
@@ -9,16 +9,31 @@
        2. Name it             - what a name imports before any evidence
        3. Draw the boundary   - a threshold applied to 400 simulated people
        4. Build the instrument- five items, and who they no longer find
-       5. Let it loose        - five institutional decisions, and what hardens
+       5. Let it loose        - institutional decisions, and what hardens
+
+   ONE PANEL, FIVE STAGES
+   ----------------------
+   The category under construction is pinned at the top of the stage area and
+   fills in as the learner goes: name, features, boundary, prevalence,
+   instrument, object status. Each stage then contributes one result beneath it
+   rather than replacing the whole view, so there is one layout to learn
+   instead of five. A row appears only once its stage has been reached
+   (`state.reached`), so the panel never answers a question ahead of time.
+
+   Two of stage 5's decisions are on offer at once; the other three sit behind
+   a disclosure and score identically. Stage 3 likewise shows the threshold
+   alone, with the duration and interference rules one click away - they still
+   move independently, because the sensitivity argument depends on that.
 
    THE EDUCATIONAL MODEL
    ---------------------
-   Stage 1 is authored, not simulated. Each of the nine accounts carries a
+   Stage 1 is authored, not simulated. Each of the six accounts carries a
    hand-written feature list; the comparison counts (how often the same
-   feature appears in nine accounts from people who said nothing was hard to
-   name) are authored figures chosen so that the most prevalent features -
-   tiredness, poor sleep, difficulty concentrating - are the least
-   distinguishing. That is the point of the stage.
+   feature appears in six accounts from people who said nothing was hard to
+   name) are authored figures chosen so that the features a reader reaches for
+   first - poor sleep, difficulty concentrating - are the least distinguishing,
+   and so that long or unpredictable hours is exactly as common outside the set
+   as inside it. That is the point of the stage.
 
    Stage 3 uses a simple simulated population. Each of 400 respondents has a
    latent "load" drawn from a standard normal (seeded mulberry32 + Box-Muller,
@@ -30,10 +45,11 @@
    met. Nothing about the 400 people changes when the threshold moves; only
    the line does, and the prevalence figure follows the line.
 
-   Stage 4 scores each of the nine original accounts against the chosen items:
+   Stage 4 scores each of the six original accounts against the chosen items:
    an account is detected when it would endorse three or more of the five.
-   Accounts 7 and 9 are deliberately written so that an instrument built from
-   the most obvious items misses them.
+   Accounts 3 and 6 are deliberately written so that an instrument built from
+   the most obvious items misses them: both describe difficulty that arises
+   from hours and obligations rather than from anything inside the person.
 
    Stage 5 keeps an "object status" index from 12 to 100. Every institutional
    decision offers an uncritical route, a route that keeps the category
@@ -61,18 +77,18 @@
      ===================================================================== */
 
   var FEATURES = [
-    { id: "tired", label: "Tiredness that sleep does not fix", comparison: 5, kind: "person" },
+    { id: "tired", label: "Tiredness that sleep does not fix", comparison: 3, kind: "person" },
     { id: "behind", label: "Feeling behind on things you are supposed to have seen", comparison: 1, kind: "person" },
-    { id: "dread", label: "Dread before opening messages", comparison: 1, kind: "person" },
-    { id: "switch", label: "Starting something new before finishing the last", comparison: 2, kind: "person" },
-    { id: "late", label: "Staying up late for uninterrupted time", comparison: 2, kind: "person" },
-    { id: "concentrate", label: "Difficulty concentrating for long", comparison: 5, kind: "person" },
-    { id: "guilt", label: "Guilt about how the time was spent", comparison: 3, kind: "person" },
-    { id: "sleep", label: "Sleeping badly", comparison: 6, kind: "person" },
-    { id: "calls", label: "Avoiding phone calls", comparison: 3, kind: "person" },
-    { id: "low", label: "Feeling low", comparison: 4, kind: "person" },
-    { id: "money", label: "Worry about money", comparison: 5, kind: "situation" },
-    { id: "hours", label: "Long or unpredictable working hours", comparison: 4, kind: "situation" }
+    { id: "dread", label: "Dread before opening messages", comparison: 0, kind: "person" },
+    { id: "switch", label: "Starting something new before finishing the last", comparison: 1, kind: "person" },
+    { id: "late", label: "Staying up late for uninterrupted time", comparison: 1, kind: "person" },
+    { id: "concentrate", label: "Difficulty concentrating for long", comparison: 3, kind: "person" },
+    { id: "guilt", label: "Guilt about how the time was spent", comparison: 2, kind: "person" },
+    { id: "sleep", label: "Sleeping badly", comparison: 5, kind: "person" },
+    { id: "calls", label: "Avoiding phone calls", comparison: 2, kind: "person" },
+    { id: "low", label: "Feeling low", comparison: 3, kind: "person" },
+    { id: "money", label: "Worry about money", comparison: 4, kind: "situation" },
+    { id: "hours", label: "Long or unpredictable working hours", comparison: 2, kind: "situation" }
   ];
 
   var ACCOUNTS = [
@@ -96,38 +112,6 @@
     {
       id: 3,
       text:
-        "I do not answer the phone any more. I look at who it is and I let it " +
-        "go, and then I feel a small drop when I see the notification. My " +
-        "shifts move around every fortnight so I am never sure what day it is.",
-      features: ["tired", "dread", "calls", "behind", "hours"]
-    },
-    {
-      id: 4,
-      text:
-        "The work does not stop when I leave, it just stops being visible. I " +
-        "sit down at eleven to do the bit I actually care about and then " +
-        "resent the whole day for it.",
-      features: ["late", "guilt", "behind", "switch", "concentrate", "hours", "tired"]
-    },
-    {
-      id: 5,
-      text:
-        "It is not sadness exactly. It is that I open my messages and " +
-        "something in my chest goes tight, and I am flat for an hour " +
-        "afterwards, and I have not slept properly since the spring.",
-      features: ["tired", "sleep", "low", "behind", "dread"]
-    },
-    {
-      id: 6,
-      text:
-        "I cannot watch anything without also doing something else, and then " +
-        "I have not really watched it, so I watch it again. I am always " +
-        "halfway through four things.",
-      features: ["switch", "concentrate", "dread", "behind", "late", "tired"]
-    },
-    {
-      id: 7,
-      text:
         "Honestly it is the hours. I do not know what I am working until the " +
         "Thursday before, so I cannot arrange anything, and the money is " +
         "never the same twice. I am shattered and I sleep in the afternoon " +
@@ -135,7 +119,15 @@
       features: ["hours", "money", "tired", "sleep", "calls"]
     },
     {
-      id: 8,
+      id: 4,
+      text:
+        "It is not sadness exactly. It is that I open my messages and " +
+        "something in my chest goes tight, and I am flat for an hour " +
+        "afterwards, and I have not slept properly since the spring.",
+      features: ["tired", "sleep", "low", "behind", "dread"]
+    },
+    {
+      id: 5,
       text:
         "There is a low hum of being behind. Not a crisis, just a hum. I open " +
         "something, do a third of it, open something else, and at the end of " +
@@ -143,7 +135,7 @@
       features: ["dread", "behind", "guilt", "switch", "concentrate", "tired"]
     },
     {
-      id: 9,
+      id: 6,
       text:
         "My mother is up the road and I go every evening, and then it is ten " +
         "o'clock and that is my time, so I take it, and I am wrecked, and I " +
@@ -156,7 +148,7 @@
     {
       id: "none",
       label: "Do not name it yet - keep the accounts as accounts",
-      frame: "None. Nine descriptions stay nine descriptions.",
+      frame: "None. Six descriptions stay six descriptions.",
       locus: "Undecided.",
       expert: "Nobody in particular. There is no post to appoint to.",
       intervention: "None follows, because there is nothing yet to intervene on.",
@@ -268,7 +260,7 @@
           id: "c", label: "Decline", delta: 2,
           consequence:
             "The category stays inside the research group. So does whatever " +
-            "use it might have been to the nine people.",
+            "use it might have been to the six people.",
           lost: "Reach. Refusing is a choice with costs too."
         }
       ]
@@ -394,6 +386,14 @@
       ]
     }
   ];
+
+  /* Stage 5 opens with two decisions rather than five. These two are the ones
+     that reach back into stages the learner has just been through - the press
+     asks for the prevalence figure from stage 3, the manager asks to use the
+     instrument from stage 4 - so the hardening is felt as a consequence of
+     their own earlier decisions rather than as a fresh quiz. The other three
+     are one disclosure away and score identically. */
+  var EVENT_CORE = ["press", "manager"];
 
   var STATUS_BANDS = [
     { min: 0, label: "A description somebody wrote down" },
@@ -561,6 +561,8 @@
   var nameChoices = $("[data-name-choices]");
   var itemChoices = $("[data-item-choices]");
   var eventChoices = $("[data-event-choices]");
+  var eventChoicesMore = $("[data-event-choices-more]");
+  var summaryList = $("[data-summary]");
 
   var featureTable = $("[data-feature-table]");
   var featureVerdict = $("[data-feature-verdict]");
@@ -590,6 +592,10 @@
 
   var INITIAL = {
     stage: 1,
+    /* High-water mark. The summary panel reports a stage's result only once
+       that stage has been reached, so nothing on it answers a question the
+       learner has not been asked yet. Going back does not un-reveal. */
+    reached: 1,
     unlocked: false,
     selected: [],
     name: null,
@@ -638,8 +644,8 @@
       var body = make("span", "feature-option__body");
       body.appendChild(make("span", null, feature.label));
       body.appendChild(make("span", "feature-option__counts",
-        "in " + inSetCount(feature.id) + " of the 9; in " + feature.comparison +
-        " of 9 comparisons"));
+        "in " + inSetCount(feature.id) + " of the 6; in " + feature.comparison +
+        " of 6 comparisons"));
       label.appendChild(body);
       featureChoices.appendChild(label);
     });
@@ -693,7 +699,9 @@
 
   function buildEventChoices() {
     clear(eventChoices);
+    clear(eventChoicesMore);
     EVENTS.forEach(function (event) {
+      var host = EVENT_CORE.indexOf(event.id) === -1 ? eventChoicesMore : eventChoices;
       var group = make("fieldset", "event");
       var legend = make("legend", "event__legend", event.text);
       group.appendChild(legend);
@@ -712,7 +720,7 @@
         label.appendChild(make("span", null, option.label));
         group.appendChild(label);
       });
-      eventChoices.appendChild(group);
+      host.appendChild(group);
     });
   }
 
@@ -746,8 +754,8 @@
       var th = make("th", null, feature.label);
       th.setAttribute("scope", "row");
       row.appendChild(th);
-      row.appendChild(make("td", null, String(inSetCount(id)) + " of 9"));
-      row.appendChild(make("td", null, String(feature.comparison) + " of 9"));
+      row.appendChild(make("td", null, String(inSetCount(id)) + " of 6"));
+      row.appendChild(make("td", null, String(feature.comparison) + " of 6"));
       row.appendChild(make("td", null,
         diff >= 3 ? "distinguishes"
           : diff >= 1 ? "weakly"
@@ -771,7 +779,7 @@
     });
 
     var text =
-      "Your set covers " + coverage + " of the 9 accounts (at least two " +
+      "Your set covers " + coverage + " of the 6 accounts (at least two " +
       "features present). " + strong + " of your " + state.selected.length +
       " features distinguish this group from the comparisons; " + weakOrNone +
       (weakOrNone === 1 ? " does not, or barely does." : " do not, or barely do.");
@@ -789,7 +797,7 @@
 
     featureVerdict.textContent = text;
     featureVerdict.setAttribute("data-state",
-      strong >= 2 && coverage >= 6 ? "ok" : "tension");
+      strong >= 2 && coverage >= 4 ? "ok" : "tension");
   }
 
   /* --- Stage 2 ------------------------------------------------------------ */
@@ -799,7 +807,7 @@
     clear(nameCompare);
     if (!state.name) {
       nameVerdict.appendChild(make("p", "verdict__body",
-        "Choose a name. Nothing about the nine accounts will change; " +
+        "Choose a name. Nothing about the six accounts will change; " +
         "everything about what happens next will."));
       return;
     }
@@ -821,7 +829,7 @@
 
     nameCompare.setAttribute("data-tone", "neutral");
     nameCompare.appendChild(make("h5", "verdict__title",
-      "The same nine accounts, under the other names"));
+      "The same six accounts, under the other names"));
     NAMES.forEach(function (other) {
       if (other.id === entry.id) { return; }
       var p = make("p", "verdict__body");
@@ -994,7 +1002,7 @@
         missed.join(", ") + ". Those people described something. " +
         "Administratively they now do not have it, which is the opposite of " +
         "what the category was built to provide."
-      : "Your instrument finds all nine. Check what that cost: an instrument " +
+      : "Your instrument finds all six. Check what that cost: an instrument " +
         "wide enough to catch every account will also catch a great many " +
         "people who were not describing anything in particular.";
 
@@ -1094,7 +1102,7 @@
     if (answered === EVENTS.length) {
       var li2 = make("li", "consequence consequence--final");
       li2.appendChild(make("p", "consequence__text",
-        "Nothing new has been discovered since stage 1. The nine accounts are " +
+        "Nothing new has been discovered since stage 1. The six accounts are " +
         "unchanged. What has changed is that there is now a name, a line, an " +
         "instrument, a figure and a set of people whose work depends on the " +
         "category being the kind of thing it is taken to be. That is what " +
@@ -1102,6 +1110,64 @@
         "but a sequence of individually reasonable decisions."));
       consequences.appendChild(li2);
     }
+  }
+
+  /* --- The pinned summary --------------------------------------------------
+     The one panel that survives every stage change. It carries the category
+     under construction, so each stage adds a result underneath rather than
+     replacing the whole right-hand side, and the learner has one layout to
+     learn instead of five.
+     ----------------------------------------------------------------------- */
+
+  function renderSummary() {
+    clear(summaryList);
+
+    var rows = [
+      ["Name", state.name
+        ? (state.name === "none" ? "deliberately unnamed" : nameById(state.name).label)
+        : "not yet named"],
+      ["Defining features", state.selected.length
+        ? state.selected.length + " of " + FEATURES.length
+        : "none chosen"]
+    ];
+
+    if (state.reached >= 3) {
+      var bands = classify(state.selected, state.threshold, state.duration, state.impairment);
+      rows.push(["Boundary", state.threshold + " feature" +
+        (state.threshold === 1 ? "" : "s") + " required"]);
+      rows.push(["Prevalence", pct(bands.meets)]);
+    }
+
+    if (state.reached >= 4) {
+      rows.push(["Instrument", state.items.length === 5
+        ? "5 items, finding " + detectedCount() + " of the 6"
+        : state.items.length + " of 5 items"]);
+    }
+
+    if (state.reached >= 5) {
+      var value = statusIndex();
+      rows.push(["Object status", value + " of 100"]);
+    }
+
+    rows.forEach(function (pair) {
+      var wrap = make("div");
+      wrap.appendChild(make("dt", null, pair[0]));
+      wrap.appendChild(make("dd", null, pair[1]));
+      summaryList.appendChild(wrap);
+    });
+  }
+
+  /* How many of the six original accounts the current instrument would find.
+     Shared by the summary and stage 4 so the two cannot disagree. */
+  function detectedCount() {
+    var chosen = ITEMS.filter(function (item) {
+      return state.items.indexOf(item.id) !== -1;
+    });
+    return ACCOUNTS.filter(function (account) {
+      return chosen.filter(function (item) {
+        return account.features.indexOf(item.feature) !== -1;
+      }).length >= 3;
+    }).length;
   }
 
   /* --- Stage plumbing ------------------------------------------------------ */
@@ -1127,8 +1193,10 @@
 
   function setStage(next) {
     state.stage = Math.max(1, Math.min(STAGE_COUNT, next));
+    state.reached = Math.max(state.reached, state.stage);
     render();
-    var heading = $('.stage__primary[data-stage="' + state.stage + '"] .stage__heading');
+    var heading = $('[data-interactive-stage] [data-stage="' +
+      state.stage + '"] .stage__heading');
     if (heading) {
       heading.setAttribute("tabindex", "-1");
       heading.focus();
@@ -1180,6 +1248,7 @@
     renderStage3();
     renderStage4();
     renderStage5();
+    renderSummary();
   }
 
   /* --- Stage 3 controls ----------------------------------------------------- */
@@ -1195,6 +1264,7 @@
       if (!state) { return; }
       state.threshold = value;
       renderStage3();
+      renderSummary();
     }
   });
 
@@ -1213,12 +1283,14 @@
   durationSelect.addEventListener("change", function () {
     state.duration = durationSelect.value;
     renderStage3();
+    renderSummary();
     shell.announce("Duration requirement changed.");
   });
 
   impairmentSelect.addEventListener("change", function () {
     state.impairment = impairmentSelect.value;
     renderStage3();
+    renderSummary();
     shell.announce("Interference requirement changed.");
   });
 
@@ -1307,13 +1379,13 @@
     },
     {
       id: "distinct",
-      text: "\"The nine accounts show that it is a distinct condition.\"",
+      text: "\"The six accounts show that it is a distinct condition.\"",
       judge: function () {
         return {
           answer: "unsupportable",
           verdict: "Not supportable by this work at all.",
           why:
-            "The nine accounts are the material the category was made from. " +
+            "The six accounts are the material the category was made from. " +
             "They cannot also be the evidence that it carves anything at a " +
             "joint. Distinctness is what the comparison column in stage 1 was " +
             "for, and most of the commonest features failed it."
@@ -1416,7 +1488,7 @@
       tone: "caution",
       verdict: "Representativeness matters, but not most.",
       text:
-        "The nine accounts decide what the category is about. They do not " +
+        "The six accounts decide what the category is about. They do not " +
         "decide how many people it catches - that is settled later, by a " +
         "threshold, and the threshold is a decision rather than a discovery."
     },
@@ -1434,7 +1506,7 @@
       verdict: "The instrument decides who, not how many.",
       text:
         "A questionnaire changes which people are found - and stage 4 shows two " +
-        "of the original nine dropping out of their own category. The headline " +
+        "of the original six dropping out of their own category. The headline " +
         "figure is settled a stage earlier, by the boundary."
     }
   };
@@ -1503,6 +1575,7 @@
        does anything careless. */
     state.events = { training: "b", survey: "b", manager: "b", press: "b", funder: "b" };
     state.stage = 5;
+    state.reached = 5;
     syncControls();
     render();
     shell.announce(
@@ -1523,9 +1596,11 @@
     $$("input[type=checkbox]", itemChoices).forEach(function (input) {
       input.checked = state.items.indexOf(input.value) !== -1;
     });
-    $$("input[type=radio]", eventChoices).forEach(function (input) {
-      var eventId = input.name.replace("event-", "");
-      input.checked = state.events[eventId] === input.value;
+    [eventChoices, eventChoicesMore].forEach(function (host) {
+      $$("input[type=radio]", host).forEach(function (input) {
+        var eventId = input.name.replace("event-", "");
+        input.checked = state.events[eventId] === input.value;
+      });
     });
     thresholdRange.value = String(state.threshold);
     durationSelect.value = state.duration;
@@ -1556,6 +1631,6 @@
 
   shell.reset({ silent: true });
   shell.announce(
-    "Ready. Read the nine accounts, then answer the question above.",
+    "Ready. Read the six accounts, then answer the question above.",
     { immediate: true });
 })();

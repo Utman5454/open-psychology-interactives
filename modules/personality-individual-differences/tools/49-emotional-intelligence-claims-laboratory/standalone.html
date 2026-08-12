@@ -613,9 +613,10 @@
 .opi-activity.opi-activity.opi-activity .interactive__body--pinned {
   align-items: stretch;
 }
-.opi-activity.opi-activity.opi-activity .interactive__stage > .stage__primary {
+.opi-activity.opi-activity.opi-activity .interactive__stage > .stage__primary:last-child {
   position: sticky;
-    top: 0;
+    
+    top: var(--shell-pin-offset, 0px);
     z-index: 2;
     
     margin: -16px -16px 0;
@@ -625,7 +626,7 @@
 }
 }
 @media (min-width: 52em) and (max-height: 30em) {
-.opi-activity.opi-activity.opi-activity .interactive__stage > .stage__primary {
+.opi-activity.opi-activity.opi-activity .interactive__stage > .stage__primary:last-child {
   position: static;
     margin: 0;
     padding: 0;
@@ -1539,6 +1540,61 @@
 .opi-activity.opi-activity.opi-activity #ei-lab .matrix th[scope="row"] {
   min-width: 192px;
 }
+.opi-activity.opi-activity.opi-activity .overlaps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.opi-activity.opi-activity.opi-activity .overlap {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 5.6px var(--space-3);
+  align-items: baseline;
+}
+.opi-activity.opi-activity.opi-activity .overlap__label {
+  font-weight: 600;
+}
+.opi-activity.opi-activity.opi-activity .overlap__value {
+  font-variant-numeric: tabular-nums;
+  color: var(--colour-text-muted);
+  white-space: nowrap;
+}
+.opi-activity.opi-activity.opi-activity .overlap__track {
+  grid-column: 1 / -1;
+  display: block;
+  height: 12px;
+  border: 1px solid var(--colour-border);
+  border-radius: 999px;
+  background-color: var(--colour-surface);
+  overflow: hidden;
+}
+.opi-activity.opi-activity.opi-activity .overlap__bar {
+  display: block;
+  height: 100%;
+  background-color: var(--colour-accent);
+}
+.opi-activity.opi-activity.opi-activity .overlap[data-kind="contrast"] .overlap__bar {
+  background-color: var(--colour-text-muted);
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.45) 0 3px,
+    rgba(255, 255, 255, 0) 3px 6px
+  );
+}
+@media (forced-colors: active) {
+.opi-activity.opi-activity.opi-activity .overlap__track {
+  border-color: CanvasText;
+}
+.opi-activity.opi-activity.opi-activity .overlap__bar {
+  background-color: Highlight;
+    forced-color-adjust: none;
+}
+.opi-activity.opi-activity.opi-activity .overlap[data-kind="contrast"] .overlap__bar {
+  background-color: GrayText;
+}
+}
 </style>
 
   <!-- ================= Title and purpose ================= -->
@@ -1550,9 +1606,9 @@
       </p>
       <h1 id="page-heading">Emotional-Intelligence Claims Laboratory</h1>
       <p class="hero__lead">
-        Four fictional measures sold under one attractive label, two ordinary
-        measures they have to beat, and five pieces of marketing to judge
-        against the evidence.
+        Two fictional measures sold as emotional intelligence. One overlaps a
+        personality questionnaire; the other overlaps a reasoning test. So the
+        question is what either of them adds.
       </p>
 
       <p>
@@ -1567,12 +1623,12 @@
         <div class="panel">
           <h2 class="panel__title">Learning objective</h2>
           <p>
-            By the end you should be able to tell convergent evidence from
-            method overlap, and say what incremental validity asks that a
-            raw correlation does not.
+            By the end you should be able to say why "it correlates with the
+            outcome" is a weaker claim than "it adds something we did not
+            already have".
           </p>
           <p class="text-muted">
-            About 30 minutes. Nothing you do here is saved or sent anywhere.
+            About 20 minutes. Nothing you do here is saved or sent anywhere.
           </p>
         </div>
 
@@ -1596,17 +1652,15 @@
         <h2 class="panel__title">How to use this</h2>
         <ol>
           <li>Commit to an answer to the question below.</li>
+          <li>Read the three bars.</li>
           <li>
-            Read the correlation matrix, then reorder it by method and read
-            it again.
+            Slide the one control to the right and watch them swap over.
           </li>
           <li>
-            Use the three sliders to ask what would have to be true for the
-            shared label to be honest.
+            Move to step 2 and ask whether either measure adds anything.
           </li>
           <li>
-            Judge the five marketing claims against the evidence as you have
-            it set.
+            Judge the five marketing claims against what you found.
           </li>
         </ol>
       </div>
@@ -1732,13 +1786,11 @@
                about; it gets an outline, and every step also names it in words. -->
           <script type="application/json" data-guide-steps>
           [
-            { "text": "Start with the correlation matrix. Every number in it comes from the sliders below, not from anybody's answers.",
-              "target": "#ei-lab [data-matrix-body]" },
-            { "text": "Raise “Shared questionnaire method” and watch which cells of the matrix move and which do not.",
-              "target": "#questionnaire-range" },
-            { "text": "Pick one of the pairs that moved, and look at that pair as a scatterplot.",
-              "target": "#ei-lab [data-scatter]" },
-            { "text": "Now read the panel asking whether the measure adds anything, with the other predictors already in.",
+            { "text": "Read the three bars. The first two are what each EI measure overlaps with; the third is how much they agree with each other.",
+              "target": "#ei-lab [data-overlaps]" },
+            { "text": "Slide “What the self-report scale is really made of” to the right, and watch the bars swap over.",
+              "target": "#mix-range" },
+            { "text": "Now move to step 2 and read whether either measure adds anything once personality and reasoning are already in.",
               "target": "#ei-lab [data-incremental-body]" },
             { "text": "Compare that with the same measure's raw correlation in the matrix. Are the two telling you the same thing?",
               "target": "#ei-lab [data-matrix-body]" }
@@ -1800,123 +1852,97 @@
               <legend>Where you are</legend>
               <label class="control--choice">
                 <input type="radio" name="lab-step" value="1" checked>
-                1. What do these measures have in common?
+                1. What do they overlap with?
               </label>
               <label class="control--choice">
                 <input type="radio" name="lab-step" value="2">
-                2. Does any of it add anything?
+                2. Do they add anything beyond that?
               </label>
               <p class="control__hint" data-step-hint></p>
             </fieldset>
             <fieldset data-step="1">
-              <legend>Set the study up</legend>
-              <div class="preset-buttons">
-                <button class="button button--secondary" type="button" data-preset="study">
-                  The study as collected
-                </button>
-                <button class="button button--secondary" type="button" data-preset="construct">
-                  If the label were true
-                </button>
-                <button class="button button--secondary" type="button" data-preset="method">
-                  Method effects turned up
-                </button>
-                <button class="button button--secondary" type="button" data-preset="nomethod">
-                  Method effects removed
-                </button>
-              </div>
-              <p class="control__hint" data-preset-note></p>
-            </fieldset>
-
-            <fieldset data-step="1">
-              <legend>What the measures are made of</legend>
+              <legend>Step 1. What do these measures overlap with?</legend>
 
               <div class="control">
                 <div class="control__header">
                   <label class="control__label" for="mix-range">
-                    The self-report scale reflects
+                    What the self-report scale is really made of
                   </label>
                   <output class="control__value" for="mix-range">16% ability</output>
                 </div>
                 <input type="range" id="mix-range" min="0" max="100" step="1" value="16">
                 <p class="control__hint">
-                  From general dispositions at one end to emotion ability at
-                  the other. The total amount of construct variance is fixed:
-                  this points the scale somewhere, it does not improve it.
+                  Slide it to the right to ask what the evidence would look
+                  like if the scale really did measure an emotion ability. The
+                  amount of content is fixed: this points the scale somewhere,
+                  it does not improve it.
                 </p>
               </div>
 
-              <div class="control">
-                <div class="control__header">
-                  <label class="control__label" for="questionnaire-range">
-                    Shared questionnaire method
-                  </label>
-                  <output class="control__value" for="questionnaire-range">.30</output>
+              <!-- Method variance and the row order both belong to a second
+                   look at the matrix, not to the first one. They are one
+                   click away and behave exactly as before; the presets above
+                   reach the same configurations without opening this. -->
+              <details class="stage__more">
+                <summary>Set the shared method by hand</summary>
+
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="questionnaire-range">
+                      Shared questionnaire method
+                    </label>
+                    <output class="control__value" for="questionnaire-range">.30</output>
+                  </div>
+                  <input type="range" id="questionnaire-range" min="0" max="45" step="1" value="30">
                 </div>
-                <input type="range" id="questionnaire-range" min="0" max="45" step="1" value="30">
-              </div>
 
-              <div class="control">
-                <div class="control__header">
-                  <label class="control__label" for="test-range">
-                    Shared testing method
-                  </label>
-                  <output class="control__value" for="test-range">.25</output>
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="test-range">
+                      Shared testing method
+                    </label>
+                    <output class="control__value" for="test-range">.25</output>
+                  </div>
+                  <input type="range" id="test-range" min="0" max="45" step="1" value="25">
+                  <p class="control__hint">
+                    What two measures have in common purely because both are
+                    self-report, or both are timed tests with scored answers.
+                  </p>
                 </div>
-                <input type="range" id="test-range" min="0" max="45" step="1" value="25">
-                <p class="control__hint">
-                  What two measures have in common purely because both are
-                  self-report, or both are timed tests with scored answers.
-                </p>
-              </div>
 
-            </fieldset>
-
-            <fieldset data-step="1">
-              <legend>How to order the matrix</legend>
-              <label class="control--choice">
-                <input type="radio" name="order" value="administered" checked>
-                In the order they were administered
-              </label>
-              <label class="control--choice">
-                <input type="radio" name="order" value="method">
-                Grouped by how they were collected
-              </label>
-            </fieldset>
-
-            <fieldset data-step="2">
-              <legend>Scatterplot</legend>
-              <div class="control">
-                <div class="control__header">
-                  <label class="control__label" for="pair-select">Pair to plot</label>
+                <div class="preset-buttons">
+                  <button class="button button--secondary" type="button" data-preset="method">
+                    Method effects turned up
+                  </button>
+                  <button class="button button--secondary" type="button" data-preset="nomethod">
+                    Method effects removed
+                  </button>
                 </div>
-                <select id="pair-select" class="control__select">
-                  <option value="sr|pq">Self-report EI with personality</option>
-                  <option value="sr|mp">Self-report EI with the emotion task</option>
-                  <option value="mp|er">Emotion task with recognition</option>
-                  <option value="mp|rt">Emotion task with reasoning</option>
-                  <option value="sr|se">Self-report EI with effectiveness</option>
-                  <option value="er|se">Recognition with effectiveness</option>
-                </select>
-              </div>
+                <p class="control__hint" data-preset-note></p>
+              </details>
+
             </fieldset>
 
             <fieldset data-step="2">
-              <legend>Does it add anything?</legend>
+              <legend>Step 2. Does either of them add anything?</legend>
               <p class="control__hint">
-                Predicting observed social effectiveness. The baseline is
-                always the personality questionnaire and the reasoning test.
+                Both EI measures overlap something ordinary. So the question
+                worth asking is whether either one predicts social
+                effectiveness <em>beyond</em> a personality questionnaire and a
+                reasoning test &mdash; the two measures anybody would already
+                have. Choose one and read the change.
               </p>
               <label class="control--choice">
-                <input type="checkbox" name="addition" value="sr" checked>
-                Add the self-report EI questionnaire
+                <input type="radio" name="addition" value="sr" checked>
+                The self-report EI questionnaire
               </label>
               <label class="control--choice">
-                <input type="checkbox" name="addition" value="mp">
-                Add the emotion-management task
+                <input type="radio" name="addition" value="mp">
+                The emotion-management task
               </label>
               <label class="control--choice">
-                <input type="checkbox" name="addition" value="er">
-                Add emotion-recognition accuracy
+                <input type="radio" name="addition" value="sr,mp">
+                Both EI measures
               </label>
             </fieldset>
 
@@ -1924,51 +1950,34 @@
 
           <div class="interactive__stage" data-interactive-stage>
 
-            <!-- Step 1: the matrix is the primary result, pinned so it stays
-                 in view while the sliders beside it are moved. -->
+            <!-- Step 1. The two overlaps, said plainly. A 6x6 matrix is
+                 the evidence, not the point, so it sits one click away. Each
+                 bar is decorative: the label and the figure beside it carry
+                 the same information as text. -->
             <div class="stage__primary" data-step="1">
-              <h4 class="stage__heading">The correlation matrix</h4>
-              <div class="table-scroll">
-                <table class="data-table matrix">
-                  <caption class="visually-hidden">
-                    Model-implied correlation between every pair of measures.
-                    Each row header names the measure and how it was collected.
-                  </caption>
-                  <thead data-matrix-head></thead>
-                  <tbody data-matrix-body></tbody>
-                </table>
-              </div>
-              <p class="control__hint" data-matrix-note></p>
-              <dl class="interactive__readout" data-readout></dl>
-            </div>
+              <h4 class="stage__heading">What each measure overlaps with</h4>
+              <ul class="overlaps" data-overlaps></ul>
+              <p class="control__hint" data-overlap-note></p>
 
-            <div data-step="1">
-              <dl class="interactive__readout" data-readout></dl>
+              <details class="stage__more">
+                <summary>Every measure against every other</summary>
+                <div class="table-scroll">
+                  <table class="data-table matrix">
+                    <caption class="visually-hidden">
+                      Model-implied correlation between every pair of measures.
+                      Each row header names the measure and how it was
+                      collected.
+                    </caption>
+                    <thead data-matrix-head></thead>
+                    <tbody data-matrix-body></tbody>
+                  </table>
+                </div>
+                <p class="control__hint" data-matrix-note></p>
+              </details>
             </div>
 
             <!-- Step 2: one pair at a time, then what it adds. -->
             <div class="stage__primary" data-step="2">
-              <h4 class="stage__heading">One pair, as a scatterplot</h4>
-              <figure class="chart">
-                <figcaption class="visually-hidden">
-                  Simulated scores for 300 of the fictional people on the
-                  selected pair of measures
-                </figcaption>
-                <svg class="chart__svg" data-scatter viewBox="0 0 248 238"
-                     aria-hidden="true" focusable="false"></svg>
-                <div class="table-scroll">
-                  <table class="chart__table">
-                    <caption class="visually-hidden">
-                      The plotted pair, its model correlation, the correlation
-                      observed in the simulated sample, and the variance shared
-                    </caption>
-                    <tbody data-scatter-table></tbody>
-                  </table>
-                </div>
-              </figure>
-            </div>
-
-            <div data-step="2">
               <h4 class="stage__heading">Does it add anything?</h4>
               <div class="table-scroll">
                 <table class="data-table">
@@ -2146,61 +2155,13 @@
       <div class="split split--wide">
 
         <div class="prose">
-          <h3>A label is not a construct</h3>
           <p>
-            Three of the measures here carry the same name and behave
-            differently. That is not a quirk of the simulation: it is the
-            ordinary consequence of a name being attached to measures built
-            on different principles. A questionnaire asks what you think you
-            are like. A scored task asks what you can do. These are different
-            questions, and there is no reason in advance to expect the same
-            answer.
-          </p>
-
-          <h3>Method leaves fingerprints, but it is not the whole story</h3>
-          <p>
-            Two questionnaires correlate partly because both are
-            questionnaires: the same person's tendency to endorse positive
-            statements about themselves shows up in both. Turn that effect off
-            and the overlap between the self-report scale and the personality
-            questionnaire shrinks, but does not disappear. What is left is
-            content overlap — the scale is largely asking about dispositions
-            already covered by agreeableness and emotional stability. "It is
-            only method variance" is a testable claim, and here it fails.
-          </p>
-
-          <h3>Incremental validity is the question worth asking</h3>
-          <p>
-            A measure that correlates with an outcome has cleared a low bar.
-            The question a sceptical reviewer asks is what it adds once the
-            obvious, cheaper measures are already in the model. In this
-            matrix the self-report scale correlates respectably with observed
-            effectiveness, and adds very little once a personality
-            questionnaire is in — while the performance task, which
-            correlates less, adds more. Raw correlations and incremental
-            contributions can point in opposite directions.
-          </p>
-
-          <h3>Construct proliferation</h3>
-          <p>
-            New constructs are cheap to name and expensive to test. The
-            discipline's protection against this is not scepticism about
-            names but a routine: show that measures of the construct converge
-            with each other, diverge from measures of established constructs,
-            and add something to prediction. When those three checks are run
-            and reported honestly, an attractive label costs nothing. When
-            they are not, the label does the work the evidence has not.
-          </p>
-
-          <h3>Why the good version matters too</h3>
-          <p>
-            The "If the label were true" setting is not a joke condition. It
-            shows that the evidence which would justify the claim is
-            obtainable, describable in advance, and not particularly exotic.
-            The complaint made here is not that emotional intelligence could
-            not be a real and useful construct. It is that a name shared by
-            measures which correlate at this level has not yet earned the
-            treatment it gets.
+            The self-report questionnaire overlaps a personality questionnaire
+            heavily; the emotion task overlaps a reasoning test. Both are sold
+            under one label, and they barely agree with each other. That is why
+            the question worth asking is never whether a measure correlates
+            with the outcome, but whether it adds anything once the ordinary
+            measures are already in.
           </p>
         </div>
 
@@ -2210,46 +2171,16 @@
           </h3>
           <ul>
             <li>
-              <strong>Nothing here settles whether emotional intelligence
-              exists.</strong> The correlations are generated by a model with
-              three sliders. A real debate is conducted with real data, and
-              serious researchers disagree about it in good faith.
+              <strong>It does not show that emotional intelligence is
+              nothing.</strong> Ability measures of emotion perception behave
+              like modest, real abilities. The argument is about what a shared
+              label licenses, not about whether anything is there.
             </li>
             <li>
-              <strong>No real measure is reproduced or evaluated.</strong>
-              The six descriptions are fictional method types. No published
-              questionnaire, task, item or scoring key appears here, and no
-              specific test is being criticised.
-            </li>
-            <li>
-              <strong>The numbers are not estimates.</strong> They follow
-              from the sliders. They are chosen to make a teaching pattern
-              visible, not to represent any published finding, and should
-              never be quoted as effect sizes.
-            </li>
-            <li>
-              <strong>Self-report is not worthless.</strong> For some
-              questions — how somebody experiences their own emotional life —
-              asking them is the appropriate method, and a performance task
-              would be the wrong instrument. The problem here is a mismatch
-              between what one method can support and what is being claimed.
-            </li>
-            <li>
-              <strong>Scored tasks are not automatically better.</strong> A
-              consensus key defines the correct answer as the one most people
-              give, which is a defensible choice with real limitations, and
-              such tasks share variance with ordinary cognitive ability.
-            </li>
-            <li>
-              <strong>Nobody is assessed.</strong> The tool produces no score
-              for anyone, asks nothing about the person using it, and cannot
-              tell you anything about your own emotional abilities.
-            </li>
-            <li>
-              <strong>Six measures and one outcome is a simplification.</strong>
-              Real construct-validation programmes use many indicators,
-              multiple outcomes, several samples, and confirmatory models
-              rather than a single matrix.
+              <strong>The figures are generated, not found.</strong> The six
+              measures are fictional method types and every correlation comes
+              from the model described in the teaching notes. No published
+              test is reproduced and no number estimates anything.
             </li>
           </ul>
         </aside>
@@ -2998,6 +2929,23 @@
    correlating strongly with the personality questionnaire, because that
    overlap is dispositional content, not shared format.
 
+   THE ORGANISING THREAD
+   ---------------------
+   Self-report EI overlaps a personality questionnaire. Ability EI overlaps a
+   reasoning test. Therefore the question worth asking is whether either adds
+   anything beyond those. The activity is that sentence, in two steps.
+
+   Step 1 shows the two overlaps as two bars, with a third bar for how little
+   the two EI measures agree with each other - the contrast that makes the
+   question bite. One control: the mix slider, which asks what the evidence
+   would look like if the self-report label were honest. The full 6x6 matrix is
+   the evidence behind the bars and sits in a disclosure; the two method sliders
+   and their presets sit in another.
+
+   Step 2 asks the question the overlaps raise: does either EI measure predict
+   observed effectiveness once a personality questionnaire and a reasoning test
+   are already in the model? One radio, one table, one sentence.
+
    THE ONE SLIDER THAT MATTERS MOST
    --------------------------------
    The self-report scale's content is a fixed amount of common variance split
@@ -3104,10 +3052,30 @@
     }
   ];
 
-  var ORDERS = {
-    administered: ["sr", "mp", "er", "se", "pq", "rt"],
-    method: ["sr", "pq", "mp", "er", "rt", "se"]
-  };
+  /* One order, shipped rather than offered. Grouping by method puts the two
+     relationships the activity is about next to each other: the self-report EI
+     scale beside the personality questionnaire, and the emotion task beside the
+     reasoning test. */
+  var ORDER = ["sr", "pq", "mp", "er", "rt", "se"];
+
+  /* The whole argument, as three rows. The first two are the overlaps that
+     make the third one matter; the third is the contrast, and it is marked as
+     such so nobody reads it as a third overlap. */
+  var OVERLAPS = [
+    { a: "sr", b: "pq", kind: "overlap",
+      label: "Self-report EI overlaps a personality questionnaire" },
+    { a: "mp", b: "rt", kind: "overlap",
+      label: "Ability EI overlaps a reasoning test" },
+    { a: "sr", b: "mp", kind: "contrast",
+      label: "The two EI measures overlap each other" }
+  ];
+
+  /* The two cells the argument turns on, marked in the full matrix for anyone
+     who opens it. */
+  var KEY_PAIRS = [
+    { a: "sr", b: "pq" },
+    { a: "mp", b: "rt" }
+  ];
 
   var BASELINE = ["pq", "rt"];
 
@@ -3145,35 +3113,10 @@
     }
   };
 
-  var SAMPLE = 300;
-
-  var SCATTER_PAIRS = [
-    ["sr", "pq"], ["sr", "mp"], ["mp", "er"], ["mp", "rt"], ["sr", "se"], ["er", "se"]
-  ];
 
   /* =======================================================================
      Seeded randomness — a documented seed keeps the scatterplot identical
      for every student and every projector.
-     ===================================================================== */
-
-  function mulberry32(seed) {
-    var a = seed >>> 0;
-    return function () {
-      a += 0x6d2b79f5;
-      var t = a;
-      t = Math.imul(t ^ (t >>> 15), t | 1);
-      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
-      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-    };
-  }
-
-  function normal(random) {
-    var u = Math.max(random(), 1e-9);
-    return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * random());
-  }
-
-  /* =======================================================================
-     Model
      ===================================================================== */
 
   function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
@@ -3250,38 +3193,6 @@
     return clamp(total, 0, 1);
   }
 
-  /* --- A sample of fictional people, for the scatterplot ----------------- */
-
-  function sample(coef, seed) {
-    var random = mulberry32(seed);
-    var rows = [];
-    for (var i = 0; i < SAMPLE; i += 1) {
-      var f = { P: normal(random), A: normal(random), G: normal(random), Q: normal(random), T: normal(random) };
-      var person = {};
-      MEASURES.forEach(function (measure) {
-        var c = coef[measure.id];
-        var unique = Math.sqrt(Math.max(0, 1 - communality(c)));
-        person[measure.id] =
-          c.P * f.P + c.A * f.A + c.G * f.G + c.Q * f.Q + c.T * f.T + unique * normal(random);
-      });
-      rows.push(person);
-    }
-    return rows;
-  }
-
-  function observedCorrelation(rows, x, y) {
-    var n = rows.length;
-    var mx = 0, my = 0, i;
-    for (i = 0; i < n; i += 1) { mx += rows[i][x]; my += rows[i][y]; }
-    mx /= n; my /= n;
-    var sxy = 0, sxx = 0, syy = 0;
-    for (i = 0; i < n; i += 1) {
-      var dx = rows[i][x] - mx, dy = rows[i][y] - my;
-      sxy += dx * dy; sxx += dx * dx; syy += dy * dy;
-    }
-    return sxy / Math.sqrt(sxx * syy);
-  }
-
   /* =======================================================================
      Formatting helpers
      ===================================================================== */
@@ -3342,9 +3253,8 @@
   var matrixHead = $("[data-matrix-head]");
   var matrixBody = $("[data-matrix-body]");
   var matrixNote = $("[data-matrix-note]");
-  var scatterChart = $("[data-scatter]");
-  var scatterTable = $("[data-scatter-table]");
-  var readout = $("[data-readout]");
+  var overlaps = $("[data-overlaps]");
+  var overlapNote = $("[data-overlap-note]");
   var incrementalBody = $("[data-incremental-body]");
   var incrementalNote = $("[data-incremental-note]");
   var interpretation = $("[data-interpretation]");
@@ -3372,14 +3282,15 @@
   var STEPS = {
     "1": {
       hint:
-        "Read the matrix, then reorder it by method and read it again.",
-      announce: "Step 1. What these measures have in common."
+        "Each bar is how far one measure overlaps another.",
+      announce: "Step 1. What these measures overlap with."
     },
     "2": {
       hint:
-        "The study is set as you left it in step 1. This step asks the harder " +
-        "question: does any of it tell you something the ordinary measures did not?",
-      announce: "Step 2. Whether any of it adds anything."
+        "The study is set as you left it in step 1. Now the question those " +
+        "overlaps raise: does either measure predict anything the ordinary " +
+        "ones did not?",
+      announce: "Step 2. Whether either measure adds anything."
     }
   };
 
@@ -3388,10 +3299,7 @@
     mix: 0.16,
     questionnaireMethod: 0.30,
     testMethod: 0.25,
-    order: "administered",
-    pair: "sr|pq",
     additions: ["sr"],
-    seed: 4917,
     stage: "predict"
   };
 
@@ -3453,27 +3361,11 @@
     onInput: function (v) { state.testMethod = v / 100; render(); }
   });
 
-  $$('input[name="order"]').forEach(function (input) {
-    input.addEventListener("change", function () {
-      if (!input.checked) { return; }
-      state.order = input.value;
-      render();
-      shell.announce(input.value === "method"
-        ? "Matrix reordered so measures sharing a method sit together."
-        : "Matrix back in the order the measures were administered.");
-    });
-  });
-
-  $("#pair-select").addEventListener("change", function () {
-    state.pair = this.value;
-    render();
-  });
 
   $$('input[name="addition"]').forEach(function (input) {
     input.addEventListener("change", function () {
-      state.additions = $$('input[name="addition"]:checked').map(function (el) {
-        return el.value;
-      });
+      /* One radio, one choice; "sr,mp" is the both-measures option. */
+      state.additions = this.value.split(",");
       render();
     });
   });
@@ -3515,11 +3407,8 @@
     $("#mix-range").value = String(Math.round(state.mix * 100));
     $("#questionnaire-range").value = String(Math.round(state.questionnaireMethod * 100));
     $("#test-range").value = String(Math.round(state.testMethod * 100));
-    $('input[name="order"][value="' + state.order + '"]').checked = true;
-    $("#pair-select").value = state.pair;
-    $$('input[name="addition"]').forEach(function (input) {
-      input.checked = state.additions.indexOf(input.value) !== -1;
-    });
+    var addition = $('input[name="addition"][value="' + state.additions.join(",") + '"]');
+    if (addition) { addition.checked = true; }
     syncRanges();
   }
 
@@ -3531,14 +3420,19 @@
     if (mainSection.hidden) { return; }
     var coef = coefficients(state);
     renderMatrix(coef);
-    renderScatter(coef);
-    renderReadout(coef);
+    renderOverlaps(coef);
     renderIncremental(coef);
     renderInterpretation(coef);
   }
 
+  function isKeyPair(x, y) {
+    return KEY_PAIRS.some(function (pair) {
+      return (pair.a === x && pair.b === y) || (pair.a === y && pair.b === x);
+    });
+  }
+
   function renderMatrix(coef) {
-    var order = ORDERS[state.order];
+    var order = ORDER;
 
     clear(matrixHead);
     var head = make("tr");
@@ -3569,104 +3463,57 @@
           if (measureById(rowId).method === measureById(colId).method) {
             cell.setAttribute("data-samemethod", "yes");
           }
+          if (isKeyPair(rowId, colId)) {
+            cell.setAttribute("data-emphasis", "yes");
+            /* Named in words as well as tinted, so the emphasis never depends
+               on colour alone. */
+            cell.appendChild(make("span", "visually-hidden",
+              " (one of the two relationships this activity is about)"));
+          }
         }
         row.appendChild(cell);
       });
       matrixBody.appendChild(row);
     });
 
-    matrixNote.textContent = state.order === "method"
-      ? "Rows and columns are grouped by how the measure was collected: two " +
-        "questionnaires, then three timed tests, then the colleague ratings. " +
-        "Correlations between measures sharing a method are marked in the " +
-        "table below the matrix."
-      : "Rows and columns are in the order the measures were administered. " +
-        "Switch to the grouped order to see what shares a method with what.";
+    matrixNote.textContent =
+      "Rows are grouped by how each measure was collected. The two marked cells " +
+      "are the ones the bars above are drawn from.";
   }
 
-  function renderScatter(coef) {
-    var NS = "http://www.w3.org/2000/svg";
-    var SIZE = 190, LEFT = 46, TOP = 14;
-    var ids = state.pair.split("|");
-    var rows = sample(coef, state.seed);
+  /* Three rows: two overlaps and the contrast between them. The bar is
+     decorative and hidden from assistive technology - the label and the figure
+     beside it say the same thing in text, so this needs no separate
+     alternative. */
+  function renderOverlaps(coef) {
+    clear(overlaps);
+    OVERLAPS.forEach(function (row) {
+      var value = r(coef, row.a, row.b);
+      var item = make("li", "overlap");
+      item.setAttribute("data-kind", row.kind);
 
-    clear(scatterChart);
-    scatterChart.setAttribute("viewBox", "0 0 " + (LEFT + SIZE + 12) + " " + (TOP + SIZE + 34));
+      item.appendChild(make("span", "overlap__label", row.label));
 
-    var frame = document.createElementNS(NS, "rect");
-    frame.setAttribute("x", String(LEFT));
-    frame.setAttribute("y", String(TOP));
-    frame.setAttribute("width", String(SIZE));
-    frame.setAttribute("height", String(SIZE));
-    frame.setAttribute("class", "chart__track");
-    scatterChart.appendChild(frame);
+      var track = make("span", "overlap__track");
+      track.setAttribute("aria-hidden", "true");
+      var bar = make("span", "overlap__bar");
+      bar.style.width = Math.round(Math.max(0, Math.min(1, value)) * 100) + "%";
+      track.appendChild(bar);
+      item.appendChild(track);
 
-    var d = rows.map(function (person) {
-      var x = clamp(person[ids[0]], -3, 3);
-      var y = clamp(person[ids[1]], -3, 3);
-      return "M " + (LEFT + ((x + 3) / 6) * SIZE).toFixed(1) + " " +
-        (TOP + (1 - (y + 3) / 6) * SIZE).toFixed(1) + " l 0.01 0";
-    }).join(" ");
-    var dots = document.createElementNS(NS, "path");
-    dots.setAttribute("d", d);
-    dots.setAttribute("class", "scatter__points");
-    scatterChart.appendChild(dots);
-
-    var xLabel = document.createElementNS(NS, "text");
-    xLabel.setAttribute("x", String(LEFT + SIZE / 2));
-    xLabel.setAttribute("y", String(TOP + SIZE + 18));
-    xLabel.setAttribute("text-anchor", "middle");
-    xLabel.setAttribute("class", "chart__axis");
-    xLabel.textContent = shortOf(ids[0]);
-    scatterChart.appendChild(xLabel);
-
-    var yLabel = document.createElementNS(NS, "text");
-    yLabel.setAttribute("transform", "rotate(-90 14 " + (TOP + SIZE / 2) + ")");
-    yLabel.setAttribute("x", "14");
-    yLabel.setAttribute("y", String(TOP + SIZE / 2));
-    yLabel.setAttribute("text-anchor", "middle");
-    yLabel.setAttribute("class", "chart__axis");
-    yLabel.textContent = shortOf(ids[1]);
-    scatterChart.appendChild(yLabel);
-
-    var model = r(coef, ids[0], ids[1]);
-    var observed = observedCorrelation(rows, ids[0], ids[1]);
-
-    clear(scatterTable);
-    [
-      ["Pair plotted", nameOf(ids[0]) + " with " + nameOf(ids[1])],
-      ["Model correlation", fmt(model) + " (" + band(model) + ")"],
-      ["In these " + SAMPLE + " simulated people", fmt(observed)],
-      ["Variance shared", pct(model * model) + " — the other " +
-        pct(1 - model * model) + " is not accounted for by the other measure"]
-    ].forEach(function (pair) {
-      var row = make("tr");
-      var th = make("th", null, pair[0]);
-      th.setAttribute("scope", "row");
-      row.appendChild(th);
-      row.appendChild(make("td", null, pair[1]));
-      scatterTable.appendChild(row);
+      item.appendChild(make("span", "overlap__value",
+        fmt(value) + " (" + band(value) + ")"));
+      overlaps.appendChild(item);
     });
-  }
 
-  function renderReadout(coef) {
-    clear(readout);
-    var eiPairs = [["sr", "mp"], ["sr", "er"], ["mp", "er"]];
-    var meanEi = eiPairs.reduce(function (total, pair) {
-      return total + r(coef, pair[0], pair[1]);
-    }, 0) / eiPairs.length;
-
-    [
-      ["Self-report with personality", fmt(r(coef, "sr", "pq"))],
-      ["Self-report with emotion task", fmt(r(coef, "sr", "mp"))],
-      ["Emotion task with reasoning", fmt(r(coef, "mp", "rt"))],
-      ["Mean among the three EI measures", fmt(meanEi)]
-    ].forEach(function (pair) {
-      var cell = make("div");
-      cell.appendChild(make("dt", null, pair[0]));
-      cell.appendChild(make("dd", null, pair[1]));
-      readout.appendChild(cell);
-    });
+    var srPq = r(coef, "sr", "pq");
+    var srMp = r(coef, "sr", "mp");
+    overlapNote.textContent = srMp >= srPq
+      ? "The two measures sold as emotional intelligence now agree with each " +
+        "other more than the self-report scale agrees with personality. That " +
+        "is what the label would need in order to be doing honest work."
+      : "Each measure agrees more with an ordinary measure than the two of " +
+        "them agree with each other.";
   }
 
   function renderIncremental(coef) {
@@ -3678,9 +3525,7 @@
     clear(incrementalBody);
     [
       ["Personality questionnaire and reasoning test alone", pct(baseR2)],
-      [state.additions.length
-        ? "Adding " + listNames(state.additions)
-        : "Nothing added yet", pct(fullR2)],
+      ["Adding " + listNames(state.additions), pct(fullR2)],
       ["Change", (change >= 0 ? "+" : "") + pct(change)]
     ].forEach(function (pair, index) {
       var row = make("tr");
@@ -3694,12 +3539,7 @@
     });
 
     var text;
-    if (!state.additions.length) {
-      text =
-        "Choose at least one measure to add. The question incremental " +
-        "validity asks is not whether a measure predicts the outcome, but " +
-        "whether it predicts anything the cheaper measures did not already.";
-    } else if (change < 0.02) {
+    if (change < 0.02) {
       text =
         "Adding " + listNames(state.additions) + " moves the variance " +
         "accounted for by " + (change >= 0 ? "+" : "") + pct(change) +

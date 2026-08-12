@@ -27,6 +27,23 @@
    correlating strongly with the personality questionnaire, because that
    overlap is dispositional content, not shared format.
 
+   THE ORGANISING THREAD
+   ---------------------
+   Self-report EI overlaps a personality questionnaire. Ability EI overlaps a
+   reasoning test. Therefore the question worth asking is whether either adds
+   anything beyond those. The activity is that sentence, in two steps.
+
+   Step 1 shows the two overlaps as two bars, with a third bar for how little
+   the two EI measures agree with each other - the contrast that makes the
+   question bite. One control: the mix slider, which asks what the evidence
+   would look like if the self-report label were honest. The full 6x6 matrix is
+   the evidence behind the bars and sits in a disclosure; the two method sliders
+   and their presets sit in another.
+
+   Step 2 asks the question the overlaps raise: does either EI measure predict
+   observed effectiveness once a personality questionnaire and a reasoning test
+   are already in the model? One radio, one table, one sentence.
+
    THE ONE SLIDER THAT MATTERS MOST
    --------------------------------
    The self-report scale's content is a fixed amount of common variance split
@@ -133,10 +150,30 @@
     }
   ];
 
-  var ORDERS = {
-    administered: ["sr", "mp", "er", "se", "pq", "rt"],
-    method: ["sr", "pq", "mp", "er", "rt", "se"]
-  };
+  /* One order, shipped rather than offered. Grouping by method puts the two
+     relationships the activity is about next to each other: the self-report EI
+     scale beside the personality questionnaire, and the emotion task beside the
+     reasoning test. */
+  var ORDER = ["sr", "pq", "mp", "er", "rt", "se"];
+
+  /* The whole argument, as three rows. The first two are the overlaps that
+     make the third one matter; the third is the contrast, and it is marked as
+     such so nobody reads it as a third overlap. */
+  var OVERLAPS = [
+    { a: "sr", b: "pq", kind: "overlap",
+      label: "Self-report EI overlaps a personality questionnaire" },
+    { a: "mp", b: "rt", kind: "overlap",
+      label: "Ability EI overlaps a reasoning test" },
+    { a: "sr", b: "mp", kind: "contrast",
+      label: "The two EI measures overlap each other" }
+  ];
+
+  /* The two cells the argument turns on, marked in the full matrix for anyone
+     who opens it. */
+  var KEY_PAIRS = [
+    { a: "sr", b: "pq" },
+    { a: "mp", b: "rt" }
+  ];
 
   var BASELINE = ["pq", "rt"];
 
@@ -174,35 +211,10 @@
     }
   };
 
-  var SAMPLE = 300;
-
-  var SCATTER_PAIRS = [
-    ["sr", "pq"], ["sr", "mp"], ["mp", "er"], ["mp", "rt"], ["sr", "se"], ["er", "se"]
-  ];
 
   /* =======================================================================
      Seeded randomness — a documented seed keeps the scatterplot identical
      for every student and every projector.
-     ===================================================================== */
-
-  function mulberry32(seed) {
-    var a = seed >>> 0;
-    return function () {
-      a += 0x6d2b79f5;
-      var t = a;
-      t = Math.imul(t ^ (t >>> 15), t | 1);
-      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
-      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-    };
-  }
-
-  function normal(random) {
-    var u = Math.max(random(), 1e-9);
-    return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * random());
-  }
-
-  /* =======================================================================
-     Model
      ===================================================================== */
 
   function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
@@ -279,38 +291,6 @@
     return clamp(total, 0, 1);
   }
 
-  /* --- A sample of fictional people, for the scatterplot ----------------- */
-
-  function sample(coef, seed) {
-    var random = mulberry32(seed);
-    var rows = [];
-    for (var i = 0; i < SAMPLE; i += 1) {
-      var f = { P: normal(random), A: normal(random), G: normal(random), Q: normal(random), T: normal(random) };
-      var person = {};
-      MEASURES.forEach(function (measure) {
-        var c = coef[measure.id];
-        var unique = Math.sqrt(Math.max(0, 1 - communality(c)));
-        person[measure.id] =
-          c.P * f.P + c.A * f.A + c.G * f.G + c.Q * f.Q + c.T * f.T + unique * normal(random);
-      });
-      rows.push(person);
-    }
-    return rows;
-  }
-
-  function observedCorrelation(rows, x, y) {
-    var n = rows.length;
-    var mx = 0, my = 0, i;
-    for (i = 0; i < n; i += 1) { mx += rows[i][x]; my += rows[i][y]; }
-    mx /= n; my /= n;
-    var sxy = 0, sxx = 0, syy = 0;
-    for (i = 0; i < n; i += 1) {
-      var dx = rows[i][x] - mx, dy = rows[i][y] - my;
-      sxy += dx * dy; sxx += dx * dx; syy += dy * dy;
-    }
-    return sxy / Math.sqrt(sxx * syy);
-  }
-
   /* =======================================================================
      Formatting helpers
      ===================================================================== */
@@ -371,9 +351,8 @@
   var matrixHead = $("[data-matrix-head]");
   var matrixBody = $("[data-matrix-body]");
   var matrixNote = $("[data-matrix-note]");
-  var scatterChart = $("[data-scatter]");
-  var scatterTable = $("[data-scatter-table]");
-  var readout = $("[data-readout]");
+  var overlaps = $("[data-overlaps]");
+  var overlapNote = $("[data-overlap-note]");
   var incrementalBody = $("[data-incremental-body]");
   var incrementalNote = $("[data-incremental-note]");
   var interpretation = $("[data-interpretation]");
@@ -401,14 +380,15 @@
   var STEPS = {
     "1": {
       hint:
-        "Read the matrix, then reorder it by method and read it again.",
-      announce: "Step 1. What these measures have in common."
+        "Each bar is how far one measure overlaps another.",
+      announce: "Step 1. What these measures overlap with."
     },
     "2": {
       hint:
-        "The study is set as you left it in step 1. This step asks the harder " +
-        "question: does any of it tell you something the ordinary measures did not?",
-      announce: "Step 2. Whether any of it adds anything."
+        "The study is set as you left it in step 1. Now the question those " +
+        "overlaps raise: does either measure predict anything the ordinary " +
+        "ones did not?",
+      announce: "Step 2. Whether either measure adds anything."
     }
   };
 
@@ -417,10 +397,7 @@
     mix: 0.16,
     questionnaireMethod: 0.30,
     testMethod: 0.25,
-    order: "administered",
-    pair: "sr|pq",
     additions: ["sr"],
-    seed: 4917,
     stage: "predict"
   };
 
@@ -482,27 +459,11 @@
     onInput: function (v) { state.testMethod = v / 100; render(); }
   });
 
-  $$('input[name="order"]').forEach(function (input) {
-    input.addEventListener("change", function () {
-      if (!input.checked) { return; }
-      state.order = input.value;
-      render();
-      shell.announce(input.value === "method"
-        ? "Matrix reordered so measures sharing a method sit together."
-        : "Matrix back in the order the measures were administered.");
-    });
-  });
-
-  $("#pair-select").addEventListener("change", function () {
-    state.pair = this.value;
-    render();
-  });
 
   $$('input[name="addition"]').forEach(function (input) {
     input.addEventListener("change", function () {
-      state.additions = $$('input[name="addition"]:checked').map(function (el) {
-        return el.value;
-      });
+      /* One radio, one choice; "sr,mp" is the both-measures option. */
+      state.additions = this.value.split(",");
       render();
     });
   });
@@ -544,11 +505,8 @@
     $("#mix-range").value = String(Math.round(state.mix * 100));
     $("#questionnaire-range").value = String(Math.round(state.questionnaireMethod * 100));
     $("#test-range").value = String(Math.round(state.testMethod * 100));
-    $('input[name="order"][value="' + state.order + '"]').checked = true;
-    $("#pair-select").value = state.pair;
-    $$('input[name="addition"]').forEach(function (input) {
-      input.checked = state.additions.indexOf(input.value) !== -1;
-    });
+    var addition = $('input[name="addition"][value="' + state.additions.join(",") + '"]');
+    if (addition) { addition.checked = true; }
     syncRanges();
   }
 
@@ -560,14 +518,19 @@
     if (mainSection.hidden) { return; }
     var coef = coefficients(state);
     renderMatrix(coef);
-    renderScatter(coef);
-    renderReadout(coef);
+    renderOverlaps(coef);
     renderIncremental(coef);
     renderInterpretation(coef);
   }
 
+  function isKeyPair(x, y) {
+    return KEY_PAIRS.some(function (pair) {
+      return (pair.a === x && pair.b === y) || (pair.a === y && pair.b === x);
+    });
+  }
+
   function renderMatrix(coef) {
-    var order = ORDERS[state.order];
+    var order = ORDER;
 
     clear(matrixHead);
     var head = make("tr");
@@ -598,104 +561,57 @@
           if (measureById(rowId).method === measureById(colId).method) {
             cell.setAttribute("data-samemethod", "yes");
           }
+          if (isKeyPair(rowId, colId)) {
+            cell.setAttribute("data-emphasis", "yes");
+            /* Named in words as well as tinted, so the emphasis never depends
+               on colour alone. */
+            cell.appendChild(make("span", "visually-hidden",
+              " (one of the two relationships this activity is about)"));
+          }
         }
         row.appendChild(cell);
       });
       matrixBody.appendChild(row);
     });
 
-    matrixNote.textContent = state.order === "method"
-      ? "Rows and columns are grouped by how the measure was collected: two " +
-        "questionnaires, then three timed tests, then the colleague ratings. " +
-        "Correlations between measures sharing a method are marked in the " +
-        "table below the matrix."
-      : "Rows and columns are in the order the measures were administered. " +
-        "Switch to the grouped order to see what shares a method with what.";
+    matrixNote.textContent =
+      "Rows are grouped by how each measure was collected. The two marked cells " +
+      "are the ones the bars above are drawn from.";
   }
 
-  function renderScatter(coef) {
-    var NS = "http://www.w3.org/2000/svg";
-    var SIZE = 190, LEFT = 46, TOP = 14;
-    var ids = state.pair.split("|");
-    var rows = sample(coef, state.seed);
+  /* Three rows: two overlaps and the contrast between them. The bar is
+     decorative and hidden from assistive technology - the label and the figure
+     beside it say the same thing in text, so this needs no separate
+     alternative. */
+  function renderOverlaps(coef) {
+    clear(overlaps);
+    OVERLAPS.forEach(function (row) {
+      var value = r(coef, row.a, row.b);
+      var item = make("li", "overlap");
+      item.setAttribute("data-kind", row.kind);
 
-    clear(scatterChart);
-    scatterChart.setAttribute("viewBox", "0 0 " + (LEFT + SIZE + 12) + " " + (TOP + SIZE + 34));
+      item.appendChild(make("span", "overlap__label", row.label));
 
-    var frame = document.createElementNS(NS, "rect");
-    frame.setAttribute("x", String(LEFT));
-    frame.setAttribute("y", String(TOP));
-    frame.setAttribute("width", String(SIZE));
-    frame.setAttribute("height", String(SIZE));
-    frame.setAttribute("class", "chart__track");
-    scatterChart.appendChild(frame);
+      var track = make("span", "overlap__track");
+      track.setAttribute("aria-hidden", "true");
+      var bar = make("span", "overlap__bar");
+      bar.style.width = Math.round(Math.max(0, Math.min(1, value)) * 100) + "%";
+      track.appendChild(bar);
+      item.appendChild(track);
 
-    var d = rows.map(function (person) {
-      var x = clamp(person[ids[0]], -3, 3);
-      var y = clamp(person[ids[1]], -3, 3);
-      return "M " + (LEFT + ((x + 3) / 6) * SIZE).toFixed(1) + " " +
-        (TOP + (1 - (y + 3) / 6) * SIZE).toFixed(1) + " l 0.01 0";
-    }).join(" ");
-    var dots = document.createElementNS(NS, "path");
-    dots.setAttribute("d", d);
-    dots.setAttribute("class", "scatter__points");
-    scatterChart.appendChild(dots);
-
-    var xLabel = document.createElementNS(NS, "text");
-    xLabel.setAttribute("x", String(LEFT + SIZE / 2));
-    xLabel.setAttribute("y", String(TOP + SIZE + 18));
-    xLabel.setAttribute("text-anchor", "middle");
-    xLabel.setAttribute("class", "chart__axis");
-    xLabel.textContent = shortOf(ids[0]);
-    scatterChart.appendChild(xLabel);
-
-    var yLabel = document.createElementNS(NS, "text");
-    yLabel.setAttribute("transform", "rotate(-90 14 " + (TOP + SIZE / 2) + ")");
-    yLabel.setAttribute("x", "14");
-    yLabel.setAttribute("y", String(TOP + SIZE / 2));
-    yLabel.setAttribute("text-anchor", "middle");
-    yLabel.setAttribute("class", "chart__axis");
-    yLabel.textContent = shortOf(ids[1]);
-    scatterChart.appendChild(yLabel);
-
-    var model = r(coef, ids[0], ids[1]);
-    var observed = observedCorrelation(rows, ids[0], ids[1]);
-
-    clear(scatterTable);
-    [
-      ["Pair plotted", nameOf(ids[0]) + " with " + nameOf(ids[1])],
-      ["Model correlation", fmt(model) + " (" + band(model) + ")"],
-      ["In these " + SAMPLE + " simulated people", fmt(observed)],
-      ["Variance shared", pct(model * model) + " — the other " +
-        pct(1 - model * model) + " is not accounted for by the other measure"]
-    ].forEach(function (pair) {
-      var row = make("tr");
-      var th = make("th", null, pair[0]);
-      th.setAttribute("scope", "row");
-      row.appendChild(th);
-      row.appendChild(make("td", null, pair[1]));
-      scatterTable.appendChild(row);
+      item.appendChild(make("span", "overlap__value",
+        fmt(value) + " (" + band(value) + ")"));
+      overlaps.appendChild(item);
     });
-  }
 
-  function renderReadout(coef) {
-    clear(readout);
-    var eiPairs = [["sr", "mp"], ["sr", "er"], ["mp", "er"]];
-    var meanEi = eiPairs.reduce(function (total, pair) {
-      return total + r(coef, pair[0], pair[1]);
-    }, 0) / eiPairs.length;
-
-    [
-      ["Self-report with personality", fmt(r(coef, "sr", "pq"))],
-      ["Self-report with emotion task", fmt(r(coef, "sr", "mp"))],
-      ["Emotion task with reasoning", fmt(r(coef, "mp", "rt"))],
-      ["Mean among the three EI measures", fmt(meanEi)]
-    ].forEach(function (pair) {
-      var cell = make("div");
-      cell.appendChild(make("dt", null, pair[0]));
-      cell.appendChild(make("dd", null, pair[1]));
-      readout.appendChild(cell);
-    });
+    var srPq = r(coef, "sr", "pq");
+    var srMp = r(coef, "sr", "mp");
+    overlapNote.textContent = srMp >= srPq
+      ? "The two measures sold as emotional intelligence now agree with each " +
+        "other more than the self-report scale agrees with personality. That " +
+        "is what the label would need in order to be doing honest work."
+      : "Each measure agrees more with an ordinary measure than the two of " +
+        "them agree with each other.";
   }
 
   function renderIncremental(coef) {
@@ -707,9 +623,7 @@
     clear(incrementalBody);
     [
       ["Personality questionnaire and reasoning test alone", pct(baseR2)],
-      [state.additions.length
-        ? "Adding " + listNames(state.additions)
-        : "Nothing added yet", pct(fullR2)],
+      ["Adding " + listNames(state.additions), pct(fullR2)],
       ["Change", (change >= 0 ? "+" : "") + pct(change)]
     ].forEach(function (pair, index) {
       var row = make("tr");
@@ -723,12 +637,7 @@
     });
 
     var text;
-    if (!state.additions.length) {
-      text =
-        "Choose at least one measure to add. The question incremental " +
-        "validity asks is not whether a measure predicts the outcome, but " +
-        "whether it predicts anything the cheaper measures did not already.";
-    } else if (change < 0.02) {
+    if (change < 0.02) {
       text =
         "Adding " + listNames(state.additions) + " moves the variance " +
         "accounted for by " + (change >= 0 ? "+" : "") + pct(change) +

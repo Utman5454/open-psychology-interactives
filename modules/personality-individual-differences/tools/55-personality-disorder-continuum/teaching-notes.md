@@ -64,26 +64,40 @@ After the activity a student should be able to:
 Nothing to install. Open the page, answer or skip the opening question, and the
 tool unlocks.
 
-## Two steps
+## Three steps
 
-**Step 1** is the dimensional view: the six sliders, the profile and what it
-does and does not support. **Step 2** draws a category line across whatever
-step 1 was left set to: the rule, the threshold and the fictional population.
-The profile is shared between them, which is what makes the second step land —
-nothing about the person changes when the category does.
+Each step **adds** a control; nothing already in use is taken away, and both
+views — the profile and the fictional population with the line across it — are
+on screen throughout.
+
+**Step 1, where the line falls.** The profile is fixed and the threshold is the
+only slider. The first thing a student does is move a line and watch a profile
+cross it.
+
+**Step 2, what gets counted.** Adds the rule. The same profile, counted a
+different way, lands on the other side.
+
+**Step 3, move the person.** Hands over the six dimensions. Trait extremity,
+cross-situational persistence and functional impairment are on show; rigidity,
+subjective distress and interpersonal impact are under **More dimensions**,
+together with the two presets that demonstrate them &mdash; *Distress without
+impairment* and *Difficulty in one setting only*.
+
+**Unusual, and working** and **The same traits, much more difficulty** stay on
+show throughout, and all four presets set all six dimensions from any step. The
+demonstration below never needs the disclosure opened.
 
 ## The demonstration worth doing from the front
 
-1. Load **Unusual, and working**. Trait extremity 85 — a genuinely distinctive
-   person. Everything else low. Read the interpretation.
-2. Load **The same traits, much more difficulty**. Point at the trait extremity
-   figure: *still 85*. Everything the tool says has changed.
-3. Go back to the first configuration and leave it alone. Move to **step 2**
-   and switch the category rule from **Count unusual traits** to **Unusual
-   traits and difficulty in functioning, together**. The profile changes sides
-   without changing at all.
-4. Move the threshold slider slowly from 40 to 80 and read the percentages.
-   Ask what has happened to the people between those two lines.
+1. **Step 1.** Leave the profile alone — trait extremity 85, everything else
+   low. Move the threshold slowly from 40 to 80 and read the percentages. Ask
+   what has happened to the people between those two lines.
+2. **Step 2.** Switch the rule from **Count unusual traits** to **Unusual traits
+   and difficulty in functioning, together**. The profile changes sides without
+   changing at all. This is the moment the tool exists for.
+3. **Step 3.** Load **Unusual, and working**, then **The same traits, much more
+   difficulty**. Point at the trait extremity figure: *still 85*. Everything the
+   tool says has changed.
 
 Students find the rule switch more unsettling than the sliders. That is the
 correct reaction to have to a cut-off.

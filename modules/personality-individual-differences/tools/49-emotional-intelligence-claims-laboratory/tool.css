@@ -187,8 +187,83 @@
   margin-top: var(--space-2);
 }
 
-/* The matrix is the primary result of step 1 and is pinned; its row headers
-   are long, so it needs the room. */
+/* The matrix now sits inside a disclosure rather than being the primary
+   result; its row headers are long, so it still needs the room. */
 #ei-lab .matrix th[scope="row"] {
   min-width: 12rem;
+}
+
+/* -------------------------------------------------------------------------
+   The overlap bars
+   -------------------------------------------------------------------------
+   The primary result of step 1: two overlaps and the contrast between them.
+   Each row is label, bar, figure. The bar is aria-hidden and carries no
+   information the text does not, so the row reads correctly with styling or
+   assistive technology alone.
+   ---------------------------------------------------------------------- */
+
+.overlaps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+
+.overlap {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.35rem var(--space-3);
+  align-items: baseline;
+}
+
+.overlap__label {
+  font-weight: 600;
+}
+
+.overlap__value {
+  font-variant-numeric: tabular-nums;
+  color: var(--colour-text-muted);
+  white-space: nowrap;
+}
+
+.overlap__track {
+  grid-column: 1 / -1;
+  display: block;
+  height: 0.75rem;
+  border: 1px solid var(--colour-border);
+  border-radius: 999px;
+  background-color: var(--colour-surface);
+  overflow: hidden;
+}
+
+.overlap__bar {
+  display: block;
+  height: 100%;
+  background-color: var(--colour-accent);
+}
+
+/* The contrast row is the one that is *not* an overlap with an established
+   measure, so it is drawn differently — a hatch as well as a colour, because
+   the distinction must not rest on hue. */
+.overlap[data-kind="contrast"] .overlap__bar {
+  background-color: var(--colour-text-muted);
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.45) 0 3px,
+    rgba(255, 255, 255, 0) 3px 6px
+  );
+}
+
+@media (forced-colors: active) {
+  .overlap__track {
+    border-color: CanvasText;
+  }
+  .overlap__bar {
+    background-color: Highlight;
+    forced-color-adjust: none;
+  }
+  .overlap[data-kind="contrast"] .overlap__bar {
+    background-color: GrayText;
+  }
 }

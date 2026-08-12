@@ -3,13 +3,18 @@
    -------------------------------------------------------------------------
    One fictional case (a reported rise in "low-level disruption" at Meadowbank
    Academy) and three epistemological starting points. The learner declares a
-   position and then makes five decisions that build a study from it:
+   position and then makes three decisions that build a study from it:
 
        1. what the research object is
        2. what question can legitimately be asked
-       3. what counts as evidence
-       4. which method follows
-       5. what claim the study could support
+       3. which method follows
+
+   Two further decisions - what counts as evidence, and what claim the study
+   could support - are held back behind "Specify the rest of the study". They
+   are the same decisions as before and carry the same prose; they are simply
+   not part of the first pass, because the cascade from object to method is
+   already the whole argument and a learner who has seen it once can run a
+   second lens in half the time.
 
    THE EDUCATIONAL MODEL
    ---------------------
@@ -163,6 +168,10 @@
      individual, but they are never labelled with their home position: in a
      real research meeting nobody announces which epistemology an option
      belongs to either.
+
+     DECISIONS is kept in its original authored order. SEQUENCE below decides
+     the order they are *presented* in, so that the three that make up the
+     first pass come first without the data having to be shuffled.
      ===================================================================== */
 
   var DECISIONS = [
@@ -367,8 +376,8 @@
       row: "Method",
       label: "Which method follows?",
       hint:
-        "The method is downstream. Check that it is a way of collecting the " +
-        "evidence you just accepted, about the object you declared.",
+        "The method is downstream. Check that it is a way of getting at the " +
+        "object you declared, not simply a technique you are comfortable with.",
       options: [
         {
           home: "measure",
@@ -431,8 +440,7 @@
       row: "Defensible claim",
       label: "What claim could the study support?",
       hint:
-        "This is where the first decision comes home. Choose the strongest " +
-        "sentence the design would actually license.",
+        "Choose the strongest sentence this design would actually license.",
       options: [
         {
           home: "measure",
@@ -491,6 +499,27 @@
       ]
     }
   ];
+
+  /* Presentation order: object, question, method make the first pass; evidence
+     and claim are added by "Specify the rest of the study". Values are indices
+     into DECISIONS, so `state.answers` stays aligned with the authored data. */
+  var SEQUENCE = [0, 1, 3, 2, 4];
+  var CORE_COUNT = 3;
+
+  /* How many decisions are on offer right now. */
+  function shownCount(state) {
+    return state.extended ? SEQUENCE.length : CORE_COUNT;
+  }
+
+  /* The DECISIONS indices currently on offer, in presentation order. */
+  function shownIndices(state) {
+    return SEQUENCE.slice(0, shownCount(state));
+  }
+
+  /* Two completed lenses unlock the challenge: the two unsupportable claims
+     are only arguable once the learner has more than one design to test them
+     against. */
+  var CLAIMS_UNLOCK_AT = 2;
 
   /* =======================================================================
      The challenge claims
@@ -668,6 +697,7 @@
   var lensNote = $("[data-lens-note]");
   var decisionsSet = $("[data-decisions]");
   var decisionList = $("[data-decision-list]");
+  var extendWrap = $("[data-extend-wrap]");
 
   var specBody = $("[data-spec-body]");
   var coherenceLine = $("[data-coherence]");
@@ -677,8 +707,8 @@
   var comparison = $("[data-comparison]");
   var comparisonBody = $("[data-comparison-body]");
   var comparisonNote = $("[data-comparison-note]");
-  var goalText = $("[data-goal-text]");
 
+  var claimsSection = $("#claims");
   var claimsForm = $("#claims-form");
   var claimsList = $("[data-claims-list]");
   var claimsFeedback = $("[data-claims-feedback]");
@@ -687,11 +717,20 @@
     stage: "predict",
     lens: null,
     answers: [null, null, null, null, null],
+    /* Position within SEQUENCE, not an index into DECISIONS. */
     step: 0,
+    extended: false,
     finished: false,
     completed: {}
   };
   var state = null;
+
+  /* True once every decision currently on offer has an answer. */
+  function allAnswered() {
+    return shownIndices(state).every(function (index) {
+      return state.answers[index] !== null;
+    });
+  }
 
   /* --- Lens chooser ------------------------------------------------------ */
 
@@ -717,27 +756,32 @@
 
   function chooseLens(id) {
     var lens = lensById(id);
+    var complete = allAnswered();
     state.lens = id;
     lensNote.textContent = lens.creed;
     decisionsSet.hidden = false;
-    if (state.answers.indexOf(null) === -1) {
+    if (complete) {
       state.finished = true;
       recordBuild();
     }
     render();
     shell.announce(
       "Starting point: " + lens.name + ". " +
-      (state.answers.indexOf(null) === -1
+      (complete
         ? "Specification re-appraised against the new position."
-        : "Now make decision " + (state.step + 1) + " of 5."),
+        : "Now make decision " + (state.step + 1) + " of " + shownCount(state) + "."),
       { immediate: true });
   }
 
   /* --- Decisions --------------------------------------------------------- */
 
+  /* One <li> per decision, built in presentation order. `position` is the
+     index within SEQUENCE and is what state.step refers to; `index` is the
+     index into DECISIONS and is what state.answers refers to. */
   function buildDecisions() {
     clear(decisionList);
-    DECISIONS.forEach(function (decision, index) {
+    SEQUENCE.forEach(function (index, position) {
+      var decision = DECISIONS[index];
       var item = make("li", "decision-item");
       item.setAttribute("data-index", String(index));
 
@@ -746,15 +790,15 @@
       var summary = make("button", "decision__summary");
       summary.type = "button";
       summary.addEventListener("click", function () {
-        state.step = index;
+        state.step = position;
         render();
-        focusDecision(index);
+        focusDecision(position);
       });
       item.appendChild(summary);
 
       var group = make("fieldset", "decision");
-      var legend = make("legend", "decision__legend",
-        (index + 1) + " of 5. " + decision.label);
+      var legend = make("legend", "decision__legend");
+      legend.setAttribute("data-legend", "");
       group.appendChild(legend);
       group.appendChild(make("p", "decision__hint", decision.hint));
 
@@ -767,7 +811,6 @@
         input.addEventListener("change", function () {
           state.answers[index] = optionIndex;
           renderStage();
-          renderGoal();
           renderNav();
           shell.announce(
             decision.row + " set. " + option.commits);
@@ -782,7 +825,7 @@
       var back = make("button", "button button--secondary", "Previous");
       back.type = "button";
       back.addEventListener("click", function () {
-        state.step = Math.max(0, index - 1);
+        state.step = Math.max(0, position - 1);
         render();
         focusDecision(state.step);
       });
@@ -792,8 +835,8 @@
       next.type = "button";
       next.setAttribute("data-next", "");
       next.addEventListener("click", function () {
-        if (index < DECISIONS.length - 1) {
-          state.step = index + 1;
+        if (position < shownCount(state) - 1) {
+          state.step = position + 1;
           render();
           focusDecision(state.step);
         } else {
@@ -813,8 +856,8 @@
     });
   }
 
-  function focusDecision(index) {
-    var group = decisionList.children[index];
+  function focusDecision(position) {
+    var group = decisionList.children[position];
     if (!group) { return; }
     var first = group.querySelector(".decision input[type=radio]");
     if (first) { first.focus(); }
@@ -825,25 +868,36 @@
   function render() {
     renderDecisions();
     renderStage();
-    renderGoal();
     renderNav();
+    renderExtend();
+    renderClaimsGate();
   }
 
   function renderDecisions() {
-    DECISIONS.forEach(function (decision, index) {
-      var item = decisionList.children[index];
+    var total = shownCount(state);
+    SEQUENCE.forEach(function (index, position) {
+      var decision = DECISIONS[index];
+      var item = decisionList.children[position];
       if (!item) { return; }
+
+      /* Decisions beyond the current pass are not in the document flow at
+         all, so nothing on offer is disabled-but-visible. */
+      item.hidden = position >= total;
+
       var group = item.querySelector(".decision");
       var summary = item.querySelector(".decision__summary");
-      var open = index === state.step;
+      var open = position === state.step && !item.hidden;
       group.hidden = !open;
       summary.hidden = open;
+
+      item.querySelector("[data-legend]").textContent =
+        (position + 1) + " of " + total + ". " + decision.label;
 
       var answer = state.answers[index];
       if (!open) {
         clear(summary);
         var head = make("span", "decision__summary-row");
-        head.appendChild(make("span", null, (index + 1) + ". " + decision.row));
+        head.appendChild(make("span", null, (position + 1) + ". " + decision.row));
         head.appendChild(make("span", "decision__summary-action",
           answer === null ? "Open" : "Change"));
         summary.appendChild(head);
@@ -861,48 +915,36 @@
   }
 
   function renderNav() {
-    DECISIONS.forEach(function (decision, index) {
-      var item = decisionList.children[index];
+    var total = shownCount(state);
+    SEQUENCE.forEach(function (index, position) {
+      var item = decisionList.children[position];
       if (!item) { return; }
       var next = item.querySelector("[data-next]");
       var back = item.querySelector(".decision__nav .button--secondary");
-      back.disabled = index === 0;
+      back.disabled = position === 0;
       next.disabled = state.answers[index] === null;
-      next.textContent = index === DECISIONS.length - 1
+      next.textContent = position === total - 1
         ? "See what this study can claim"
         : "Next";
     });
   }
 
-  function renderGoal() {
-    var made = state.answers.filter(function (value) { return value !== null; }).length;
+  /* The offer to add the last two decisions appears only once the first pass
+     is complete, so it never competes with the decision in hand. */
+  function renderExtend() {
+    extendWrap.hidden = state.extended || !state.lens || !allAnswered();
+  }
+
+  /* The challenge needs more than one design to test the claims against. */
+  function renderClaimsGate() {
     var runs = Object.keys(state.completed).length;
-    clear(goalText);
-    var list = make("ul", "goal__checks");
-    [
-      {
-        label: "Declare a starting point",
-        detail: state.lens ? lensById(state.lens).name : "not yet",
-        met: Boolean(state.lens)
-      },
-      {
-        label: "Make the five decisions",
-        detail: made + " of 5",
-        met: made === 5
-      },
-      {
-        label: "Run a second lens on the same case",
-        detail: runs + " completed",
-        met: runs >= 2
-      }
-    ].forEach(function (check) {
-      var item = make("li");
-      item.textContent = check.label + " - " + check.detail +
-        (check.met ? " (met)" : " (not yet)");
-      item.setAttribute("data-met", check.met ? "yes" : "no");
-      list.appendChild(item);
-    });
-    goalText.appendChild(list);
+    var wasHidden = claimsSection.hidden;
+    claimsSection.hidden = runs < CLAIMS_UNLOCK_AT;
+    if (wasHidden && !claimsSection.hidden) {
+      shell.announce(
+        "Two lenses run. The challenge is now open at the bottom of the page.",
+        { immediate: true });
+    }
   }
 
   function renderStage() {
@@ -914,7 +956,8 @@
 
   function renderSpec() {
     clear(specBody);
-    DECISIONS.forEach(function (decision, index) {
+    shownIndices(state).forEach(function (index) {
+      var decision = DECISIONS[index];
       var answer = state.answers[index];
       var row = make("tr");
       var th = make("th", null, decision.row);
@@ -951,7 +994,8 @@
 
     var made = 0;
     var matched = 0;
-    state.answers.forEach(function (answer, index) {
+    shownIndices(state).forEach(function (index) {
+      var answer = state.answers[index];
       if (answer === null) { return; }
       made += 1;
       if (DECISIONS[index].options[answer].home === state.lens) { matched += 1; }
@@ -971,7 +1015,7 @@
 
   function renderChoiceFeedback() {
     clear(choiceFeedback);
-    var index = state.step;
+    var index = SEQUENCE[state.step];
     var answer = state.answers[index];
     if (answer === null) { return; }
     var decision = DECISIONS[index];
@@ -981,7 +1025,7 @@
     var box = make("div", "verdict");
     box.setAttribute("data-tone", !state.lens ? "neutral" : coherent ? "good" : "caution");
     box.appendChild(make("h4", "verdict__title",
-      "Decision " + (index + 1) + ": what this commits you to"));
+      "Decision " + (state.step + 1) + ": what this commits you to"));
     box.appendChild(make("p", "verdict__body", option.commits));
 
     if (state.lens && !coherent) {
@@ -1007,10 +1051,12 @@
     clear(appraisalBody);
 
     var lens = lensById(state.lens);
+    var indices = shownIndices(state);
+    var total = indices.length;
     var matched = 0;
     var offLens = [];
-    state.answers.forEach(function (answer, index) {
-      var option = DECISIONS[index].options[answer];
+    indices.forEach(function (index) {
+      var option = DECISIONS[index].options[state.answers[index]];
       if (option.home === state.lens) {
         matched += 1;
       } else {
@@ -1018,13 +1064,13 @@
       }
     });
 
-    appraisalBody.setAttribute("data-tone", matched === 5 ? "good" : "caution");
+    appraisalBody.setAttribute("data-tone", matched === total ? "good" : "caution");
     appraisalBody.appendChild(make("h5", "verdict__title",
-      matched === 5
+      matched === total
         ? "A coherent " + lens.name.toLowerCase() + " study"
-        : "A mixed study: " + matched + " of 5 decisions from " + lens.name.toLowerCase()));
+        : "A mixed study: " + matched + " of " + total + " decisions from " + lens.name.toLowerCase()));
 
-    if (matched < 5) {
+    if (matched < total) {
       appraisalBody.appendChild(make("p", "verdict__body",
         "Off-position decisions: " + offLens.join("; ") + ". A design like " +
         "this can be perfectly good - most real research is impure - but the " +
@@ -1043,12 +1089,17 @@
   }
 
   function recordBuild() {
-    if (!state.lens || state.answers.indexOf(null) !== -1) { return; }
+    if (!state.lens || !allAnswered()) { return; }
+    var indices = shownIndices(state);
     var matched = 0;
-    state.answers.forEach(function (answer, index) {
-      if (DECISIONS[index].options[answer].home === state.lens) { matched += 1; }
+    indices.forEach(function (index) {
+      if (DECISIONS[index].options[state.answers[index]].home === state.lens) { matched += 1; }
     });
-    state.completed[state.lens] = { matched: matched, answers: state.answers.slice() };
+    state.completed[state.lens] = {
+      matched: matched,
+      total: indices.length,
+      answers: state.answers.slice()
+    };
   }
 
   function renderComparison() {
@@ -1068,9 +1119,9 @@
       th.setAttribute("scope", "row");
       th.appendChild(make("span", "spec__text", lens.name));
       th.appendChild(make("span", "spec__flag",
-        record.matched === 5
+        record.matched === record.total
           ? "coherent build"
-          : "mixed build: " + record.matched + " of 5"));
+          : "mixed build: " + record.matched + " of " + record.total));
       row.appendChild(th);
       row.appendChild(make("td", null, lens.object));
       row.appendChild(make("td", null, lens.visible));
@@ -1103,19 +1154,34 @@
       });
       return found;
     });
-    state.step = 4;
+    state.step = shownCount(state) - 1;
     state.finished = true;
     recordBuild();
     render();
     shell.announce(
       "Worked example loaded: a coherent " + lensById(lensId).name.toLowerCase() +
-      " study, all five decisions taken from the same premises.",
+      " study, every decision taken from the same premises.",
+      { immediate: true });
+  });
+
+  /* Adds evidence and claim to the pass in hand. The build is re-recorded so
+     the comparison table reports the count the learner actually made. */
+  $('[data-action="extend"]').addEventListener("click", function () {
+    state.extended = true;
+    state.finished = false;
+    state.step = CORE_COUNT;
+    render();
+    focusDecision(CORE_COUNT);
+    shell.announce(
+      "Two decisions added. Decision " + (CORE_COUNT + 1) + " of " +
+      SEQUENCE.length + ": what counts as evidence.",
       { immediate: true });
   });
 
   $('[data-action="another"]').addEventListener("click", function () {
     state.answers = [null, null, null, null, null];
     state.step = 0;
+    state.extended = false;
     state.finished = false;
     state.lens = null;
     $$('input[name="lens"]').forEach(function (input) { input.checked = false; });
@@ -1279,6 +1345,7 @@
     appraisal.hidden = true;
     claimsForm.reset();
     claimsFeedback.hidden = true;
+    claimsSection.hidden = true;
     render();
   });
 

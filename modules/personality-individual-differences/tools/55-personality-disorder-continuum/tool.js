@@ -42,6 +42,28 @@
    The threshold is a slider because where the line goes is a decision, taken
    by people, revisable, and consequential. Moving it changes who is inside.
 
+   HOW THE THREE STEPS ARE ORDERED
+   -------------------------------
+   The line comes before the dimensions. Step 1 fixes the profile and offers
+   the threshold alone, so the first thing a learner does is watch a profile
+   cross a category boundary without anything about that profile changing.
+   Step 2 adds the rule; the same profile is now counted a different way. Step
+   3 hands over the six dimensions themselves - trait extremity, persistence
+   and impairment on show, rigidity, distress and interpersonal impact folded
+   into "More dimensions" together with the two presets that demonstrate them.
+
+   Steps ADD controls rather than swapping them, so nothing already in use
+   disappears.
+
+   ONE DOMINANT RESULT
+   -------------------
+   The categorical view leads and carries the verdict sentence directly under
+   its heading: which side of the line this profile falls on, and what moved it
+   there. Its table doubles as the scatterplot's text alternative and holds both
+   axis figures, the threshold, both rules' verdicts and both population shares.
+   The profile chart follows underneath, and its job is the opposite one - to
+   show that nothing about the person changed.
+
    THE FICTIONAL POPULATION
    ------------------------
    800 fictional profiles, generated once from a documented seed, with trait
@@ -279,7 +301,6 @@
   var populationChart = $("[data-population-chart]");
   var categoryTable = $("[data-category-table]");
   var categoryVerdict = $("[data-category-verdict]");
-  var readout = $("[data-readout]");
   var interpretation = $("[data-interpretation]");
   var presetNote = $("[data-preset-note]");
 
@@ -301,16 +322,30 @@
      dimensional view and the categorical view are separate questions, so they
      are separate steps; the profile itself is shared, and step 2 draws its
      line across whatever step 1 was left set to. */
+  /* Three steps, each ADDING a control rather than swapping one set of
+     controls for another. The profile and the line are both on screen from the
+     start; what changes is how much of the machinery the learner is holding.
+
+       1  the line moves          - one slider, and a profile that crosses it
+       2  the rule changes        - the same profile, counted a different way
+       3  the profile moves       - the six dimensions, three of them folded
+
+     Nothing is removed at any step and the model is untouched. */
   var STEPS = {
     "1": {
-      hint: "Set a profile and read what it does and does not support. Nothing " +
-            "here is a category yet.",
-      announce: "Step 1. The dimensional view."
+      hint: "The profile is fixed. Move the line and watch which side of it " +
+            "this profile falls on.",
+      announce: "Step 1. Where the line falls."
     },
     "2": {
-      hint: "The profile is as you left it. This step asks what changes when a " +
-            "line is drawn across it, and what does not.",
-      announce: "Step 2. Drawing a category line."
+      hint: "Same profile, same line. This step changes what the line is " +
+            "drawn across.",
+      announce: "Step 2. What gets counted."
+    },
+    "3": {
+      hint: "Now the profile itself. Three dimensions are on show and three " +
+            "more are folded away; the presets set all six.",
+      announce: "Step 3. Move the person."
     }
   };
 
@@ -394,9 +429,12 @@
     });
   });
 
+  /* `data-from="n"` means "visible from step n onwards", so a control the
+     learner has already used never disappears from under them. */
   function applyStep() {
-    $$("[data-step]").forEach(function (el) {
-      el.hidden = el.getAttribute("data-step") !== state.step;
+    var current = Number(state.step);
+    $$("[data-from]").forEach(function (el) {
+      el.hidden = Number(el.getAttribute("data-from")) > current;
     });
     $("[data-step-hint]").textContent = STEPS[state.step].hint;
   }
@@ -433,7 +471,6 @@
   function render() {
     if (mainSection.hidden) { return; }
     renderProfile();
-    renderReadout();
     renderCategory();
     renderInterpretation();
   }
@@ -519,22 +556,6 @@
     head.appendChild(headRow);
   }
 
-  function renderReadout() {
-    clear(readout);
-    var f = functioning(state.values);
-    [
-      ["Trait extremity", round(state.values.extremity) + " (" + band(state.values.extremity) + ")"],
-      ["Functioning difficulty", round(f) + " (" + band(f) + ")"],
-      ["Subjective distress", round(state.values.distress) + " (" + band(state.values.distress) + ")"],
-      ["Category line at", String(state.threshold)]
-    ].forEach(function (pair) {
-      var cell = make("div");
-      cell.appendChild(make("dt", null, pair[0]));
-      cell.appendChild(make("dd", null, pair[1]));
-      readout.appendChild(cell);
-    });
-  }
-
   function renderCategory() {
     var NS = "http://www.w3.org/2000/svg";
     var SIZE = 210, LEFT = 40, TOP = 12;
@@ -612,17 +633,15 @@
 
     clear(categoryTable);
     [
+      ["Trait extremity", round(state.values.extremity) + " (" + band(state.values.extremity) + ")"],
+      ["Functioning difficulty", round(f) + " (" + band(f) + ")"],
+      ["Category line at", String(state.threshold)],
       ["This profile, under the rule you have chosen",
         inside ? "above the line" : "below the line"],
       ["The same profile, under the other rule",
         otherRuleInside ? "above the line" : "below the line"],
       ["Fictional profiles above the line — counting unusual traits", pct(traitsShare)],
-      ["Fictional profiles above the line — traits and difficulty together", pct(bothShare)],
-      ["Distance from the line",
-        state.rule === "traits"
-          ? Math.abs(round(state.values.extremity - t)) + " points on trait extremity"
-          : Math.min(Math.abs(state.values.extremity - t), Math.abs(f - t)).toFixed(0) +
-            " points on whichever of the two is closer"]
+      ["Fictional profiles above the line — traits and difficulty together", pct(bothShare)]
     ].forEach(function (pair) {
       var row = make("tr");
       var th = make("th", null, pair[0]);

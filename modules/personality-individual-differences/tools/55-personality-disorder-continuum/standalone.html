@@ -613,9 +613,10 @@
 .opi-activity.opi-activity.opi-activity .interactive__body--pinned {
   align-items: stretch;
 }
-.opi-activity.opi-activity.opi-activity .interactive__stage > .stage__primary {
+.opi-activity.opi-activity.opi-activity .interactive__stage > .stage__primary:last-child {
   position: sticky;
-    top: 0;
+    
+    top: var(--shell-pin-offset, 0px);
     z-index: 2;
     
     margin: -16px -16px 0;
@@ -625,7 +626,7 @@
 }
 }
 @media (min-width: 52em) and (max-height: 30em) {
-.opi-activity.opi-activity.opi-activity .interactive__stage > .stage__primary {
+.opi-activity.opi-activity.opi-activity .interactive__stage > .stage__primary:last-child {
   position: static;
     margin: 0;
     padding: 0;
@@ -1579,16 +1580,17 @@
           <ol>
             <li>Commit to an answer to the question below.</li>
             <li>
-              Load "Unusual, and working", then "The same traits, much more
-              difficulty". The trait extremity is identical.
+              Move the category line and watch which side of it this profile
+              falls on.
             </li>
             <li>
               Switch between the two category rules and watch the same
               profile change sides.
             </li>
             <li>
-              Move the category line and watch how many fictional profiles
-              move with it.
+              Then take the six dimensions. Load "Unusual, and working" and
+              "The same traits, much more difficulty" — the trait extremity is
+              identical.
             </li>
           </ol>
         </div>
@@ -1714,16 +1716,14 @@
                about; it gets an outline, and every step also names it in words. -->
           <script type="application/json" data-guide-steps>
           [
-            { "text": "Start with the profile. It is six numbers, and nothing more than that.",
-              "target": "#continuum [data-profile-chart]" },
-            { "text": "Move “Trait extremity” down to the middle of its range, leaving the other five where they are. Which readouts respond?",
-              "target": "#extremity-range" },
-            { "text": "Now put it back, and raise “Functional impairment” instead. Which readouts respond this time?",
-              "target": "#impairment-range" },
-            { "text": "Switch to the categorical view. It places the same six numbers against a threshold.",
+            { "text": "Start with the line. Every dot is a fictional profile; the cross is the one you are looking at.",
               "target": "#continuum [data-population-chart]" },
-            { "text": "Move the threshold without touching any of the six dimensions. What changed, and what did not?",
-              "target": "#threshold-range" }
+            { "text": "Move the threshold. Nothing about the profile changes. Watch the sentence above the chart.",
+              "target": "#threshold-range" },
+            { "text": "At step 2, change what the line is drawn across. The same profile is counted a different way.",
+              "target": "#continuum [data-category-table]" },
+            { "text": "At step 3 the six numbers themselves are yours to move. This is the profile they describe.",
+              "target": "#continuum [data-profile-chart]" }
           ]
           </script>
 
@@ -1789,15 +1789,23 @@
               <legend>Where you are</legend>
               <label class="control--choice">
                 <input type="radio" name="continuum-step" value="1" checked>
-                1. The dimensional view
+                1. Where the line falls
               </label>
               <label class="control--choice">
                 <input type="radio" name="continuum-step" value="2">
-                2. Drawing a category line
+                2. What gets counted
+              </label>
+              <label class="control--choice">
+                <input type="radio" name="continuum-step" value="3">
+                3. Move the person
               </label>
               <p class="control__hint" data-step-hint></p>
             </fieldset>
-            <fieldset data-step="1">
+
+            <!-- data-from: visible from this step onwards. Each step adds a
+                 control rather than swapping one set for another, so nothing
+                 the learner has already used disappears from under them. -->
+            <fieldset data-from="1">
               <legend>Load a configuration</legend>
               <div class="preset-buttons">
                 <button class="button button--secondary" type="button" data-preset="working">
@@ -1806,85 +1814,14 @@
                 <button class="button button--secondary" type="button" data-preset="difficulty">
                   The same traits, much more difficulty
                 </button>
-                <button class="button button--secondary" type="button" data-preset="distress">
-                  Distress without impairment
-                </button>
-                <button class="button button--secondary" type="button" data-preset="setting">
-                  Difficulty in one setting only
-                </button>
               </div>
               <p class="control__hint" data-preset-note></p>
             </fieldset>
 
-            <fieldset data-step="1">
-              <legend>The six dimensions</legend>
-
-              <div class="control">
-                <div class="control__header">
-                  <label class="control__label" for="extremity-range">Trait extremity</label>
-                  <output class="control__value" for="extremity-range">very high</output>
-                </div>
-                <input type="range" id="extremity-range" min="0" max="100" step="1" value="85">
-                <p class="control__hint">How far from the middle of the range this pattern sits.</p>
-              </div>
-
-              <div class="control">
-                <div class="control__header">
-                  <label class="control__label" for="rigidity-range">Rigidity</label>
-                  <output class="control__value" for="rigidity-range">low</output>
-                </div>
-                <input type="range" id="rigidity-range" min="0" max="100" step="1" value="20">
-                <p class="control__hint">Whether the pattern can flex when a situation calls for something else.</p>
-              </div>
-
-              <div class="control">
-                <div class="control__header">
-                  <label class="control__label" for="persistence-range">Cross-situational persistence</label>
-                  <output class="control__value" for="persistence-range">low</output>
-                </div>
-                <input type="range" id="persistence-range" min="0" max="100" step="1" value="35">
-                <p class="control__hint">Whether it appears across settings and over years, or in one place recently.</p>
-              </div>
-
-              <div class="control">
-                <div class="control__header">
-                  <label class="control__label" for="distress-range">Subjective distress</label>
-                  <output class="control__value" for="distress-range">very low</output>
-                </div>
-                <input type="range" id="distress-range" min="0" max="100" step="1" value="15">
-                <p class="control__hint">How much difficulty the person experiences from the inside.</p>
-              </div>
-
-              <div class="control">
-                <div class="control__header">
-                  <label class="control__label" for="impact-range">Interpersonal impact</label>
-                  <output class="control__value" for="impact-range">low</output>
-                </div>
-                <input type="range" id="impact-range" min="0" max="100" step="1" value="20">
-                <p class="control__hint">How much difficulty other people experience around the pattern.</p>
-              </div>
-
-              <div class="control">
-                <div class="control__header">
-                  <label class="control__label" for="impairment-range">Functional impairment</label>
-                  <output class="control__value" for="impairment-range">very low</output>
-                </div>
-                <input type="range" id="impairment-range" min="0" max="100" step="1" value="10">
-                <p class="control__hint">Interference with work, study, relationships and self-direction.</p>
-              </div>
-
-            </fieldset>
-
-            <fieldset data-step="2">
-              <legend>How the category is defined</legend>
-              <label class="control--choice">
-                <input type="radio" name="rule" value="traits" checked>
-                Count unusual traits
-              </label>
-              <label class="control--choice">
-                <input type="radio" name="rule" value="both">
-                Unusual traits and difficulty in functioning, together
-              </label>
+            <!-- The line comes first. A profile crossing it without changing
+                 is the argument, and it takes one control to see. -->
+            <fieldset data-from="1">
+              <legend>The category line</legend>
 
               <div class="control">
                 <div class="control__header">
@@ -1899,7 +1836,94 @@
               </div>
             </fieldset>
 
-            <fieldset data-step="1">
+            <fieldset data-from="2">
+              <legend>How the category is defined</legend>
+              <label class="control--choice">
+                <input type="radio" name="rule" value="traits" checked>
+                Count unusual traits
+              </label>
+              <label class="control--choice">
+                <input type="radio" name="rule" value="both">
+                Unusual traits and difficulty in functioning, together
+              </label>
+            </fieldset>
+
+            <fieldset data-from="3">
+              <legend>The six dimensions</legend>
+
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="extremity-range">Trait extremity</label>
+                  <output class="control__value" for="extremity-range">very high</output>
+                </div>
+                <input type="range" id="extremity-range" min="0" max="100" step="1" value="85">
+                <p class="control__hint">How far from the middle of the range this pattern sits.</p>
+              </div>
+
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="persistence-range">Cross-situational persistence</label>
+                  <output class="control__value" for="persistence-range">low</output>
+                </div>
+                <input type="range" id="persistence-range" min="0" max="100" step="1" value="35">
+                <p class="control__hint">Whether it appears across settings and over years, or in one place recently.</p>
+              </div>
+
+              <div class="control">
+                <div class="control__header">
+                  <label class="control__label" for="impairment-range">Functional impairment</label>
+                  <output class="control__value" for="impairment-range">very low</output>
+                </div>
+                <input type="range" id="impairment-range" min="0" max="100" step="1" value="10">
+                <p class="control__hint">Interference with work, study, relationships and self-direction.</p>
+              </div>
+
+              <!-- The other three are set by every preset and read out in the
+                   panel throughout; they are here for anyone who wants to move
+                   them by hand. None is computed from the others. -->
+              <details class="stage__more">
+                <summary>More dimensions</summary>
+
+                <div class="preset-buttons">
+                  <button class="button button--secondary" type="button" data-preset="distress">
+                    Distress without impairment
+                  </button>
+                  <button class="button button--secondary" type="button" data-preset="setting">
+                    Difficulty in one setting only
+                  </button>
+                </div>
+
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="rigidity-range">Rigidity</label>
+                    <output class="control__value" for="rigidity-range">low</output>
+                  </div>
+                  <input type="range" id="rigidity-range" min="0" max="100" step="1" value="20">
+                  <p class="control__hint">Whether the pattern can flex when a situation calls for something else.</p>
+                </div>
+
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="distress-range">Subjective distress</label>
+                    <output class="control__value" for="distress-range">very low</output>
+                  </div>
+                  <input type="range" id="distress-range" min="0" max="100" step="1" value="15">
+                  <p class="control__hint">How much difficulty the person experiences from the inside.</p>
+                </div>
+
+                <div class="control">
+                  <div class="control__header">
+                    <label class="control__label" for="impact-range">Interpersonal impact</label>
+                    <output class="control__value" for="impact-range">low</output>
+                  </div>
+                  <input type="range" id="impact-range" min="0" max="100" step="1" value="20">
+                  <p class="control__hint">How much difficulty other people experience around the pattern.</p>
+                </div>
+              </details>
+
+            </fieldset>
+
+            <fieldset data-from="3">
               <legend>Comparison</legend>
               <label class="control--choice">
                 <input type="checkbox" id="compare-toggle">
@@ -1912,10 +1936,35 @@
 
           <div class="interactive__stage" data-interactive-stage>
 
-            <!-- Step 1: the profile itself. Pinned, because it is what the six
-                 sliders move and they run past the fold. -->
-            <div class="stage__primary" data-step="1">
-              <h4 class="stage__heading">The dimensional view</h4>
+            <!-- One dominant result: which side of the line this profile
+                 falls on. The profile itself follows underneath, because its
+                 job is to show that nothing about the person changed. -->
+            <div class="stage__primary" data-from="1">
+              <h4 class="stage__heading">The categorical view</h4>
+              <p class="verdict__body" data-category-verdict></p>
+              <figure class="chart">
+                <figcaption class="visually-hidden">
+                  800 fictional profiles plotted by trait extremity and
+                  functioning difficulty, with the category line drawn across
+                  them and this profile marked with a cross
+                </figcaption>
+                <svg class="chart__svg" data-population-chart viewBox="0 0 266 258"
+                     aria-hidden="true" focusable="false"></svg>
+                <div class="table-scroll">
+                  <table class="chart__table">
+                    <caption class="visually-hidden">
+                      This profile's position on both axes, which side of the
+                      line it falls on under each rule, and what proportion of
+                      the fictional population falls above it
+                    </caption>
+                    <tbody data-category-table></tbody>
+                  </table>
+                </div>
+              </figure>
+            </div>
+
+            <div data-from="1">
+              <h4 class="stage__heading">The same profile, dimension by dimension</h4>
               <figure class="chart">
                 <figcaption class="visually-hidden">
                   The profile's position on each of the six dimensions, from 0
@@ -1934,44 +1983,6 @@
                   </table>
                 </div>
               </figure>
-            </div>
-
-            <div data-step="1">
-              <dl class="interactive__readout" data-readout></dl>
-            </div>
-
-            <!-- Step 2: the same profile, with a line drawn across it. -->
-            <div class="stage__primary" data-step="2">
-              <h4 class="stage__heading">The categorical view</h4>
-              <figure class="chart">
-                <figcaption class="visually-hidden">
-                  800 fictional profiles plotted by trait extremity and
-                  functioning difficulty, with the category line drawn across
-                  them and this profile marked with a cross
-                </figcaption>
-                <svg class="chart__svg" data-population-chart viewBox="0 0 266 258"
-                     aria-hidden="true" focusable="false"></svg>
-                <div class="table-scroll">
-                  <table class="chart__table">
-                    <caption class="visually-hidden">
-                      Which side of the line this profile falls on under each
-                      rule, and what proportion of the fictional population
-                      falls above it
-                    </caption>
-                    <tbody data-category-table></tbody>
-                  </table>
-                </div>
-              </figure>
-            </div>
-
-            <div data-step="2">
-              <p class="control__hint" data-category-verdict></p>
-
-              <p class="control__hint">
-                The 800 profiles are invented, generated once from a documented
-                seed to make the arithmetic of cut-offs visible. They are not a
-                prevalence estimate and describe no real population.
-              </p>
             </div>
 
             <div class="verdict">
@@ -2113,86 +2124,13 @@
       <div class="split split--wide">
 
         <div class="prose">
-          <h3>Unusual is not disordered</h3>
           <p>
-            The first two configurations have identical trait extremity. One
-            describes someone distinctive who is doing fine; the other
-            describes considerable difficulty. Nothing about the traits
-            distinguishes them. What distinguishes them is whether the pattern can flex, whether
-            it persists everywhere, and whether it interferes. Current
-            definitions rest on those three things, not on how far from
-            average someone sits.
-          </p>
-
-          <h3>The same numbers, a different category</h3>
-          <p>
-            Leave a profile untouched and change the rule, and its
-            classification changes. Move the line by ten points and a
-            different set of fictional profiles falls inside. Neither
-            operation touched anybody. Categories are decisions applied to continua. They are
-            revisable, and they have been revised. Hold the label more
-            lightly than the difficulty it is meant to describe.
-          </p>
-
-          <h3>Why a category is used at all</h3>
-          <p>
-            Not because nature comes in kinds. Because services, records,
-            research and funding need thresholds, and because a threshold is
-            how a system decides who gets offered something. That is a
-            practical justification and a good one, and it is a different
-            claim from saying that the category carves anything at a joint.
-          </p>
-
-          <h3>What this is not doing</h3>
-          <p>
-            It never returns a diagnosis, because six numbers cannot support
-            one. No diagnostic interview, criterion set or published
-            questionnaire is reproduced anywhere in it. Diagnosis is a
-            professional judgement made with a person, over time, with
-            history, context and corroboration — not by moving sliders.
-          </p>
-
-          <h3>Distress and impairment are not the same thing</h3>
-          <p>
-            A person can be considerably distressed while functioning well,
-            and can have substantial difficulty in their life while reporting
-            little distress. Both are worth attention and they answer
-            different questions. Someone in distress deserves help whether or
-            not any category applies to them; the category is not the
-            permission slip.
-          </p>
-
-          <h3>Differential explanation comes first</h3>
-          <p>
-            A pattern that appears in one setting and not others is more
-            parsimoniously explained by that setting. A pattern that appeared
-            two years ago has a history worth asking about. Depression,
-            anxiety, physical illness, medication, substance use,
-            neurodevelopmental difference, bereavement and sustained adversity
-            all produce patterns that can look like personality. Ruling them
-            out is the beginning of an assessment, not an afterthought.
-          </p>
-
-          <h3>Whose normal</h3>
-          <p>
-            Every judgement that a pattern is unusual is made from somewhere.
-            Behaviour that reads as suspicious or withdrawn from one position
-            may be an intelligible response to how somebody has been treated,
-            and diagnostic judgements have historically been made unevenly
-            across social groups. This is not an argument that the
-            difficulties are imagined. It is an argument for asking what the
-            pattern is a response to before deciding what it is a sign of.
-          </p>
-
-          <h3>What the label does to the person carrying it</h3>
-          <p>
-            Personality-disorder diagnoses attract more stigma than almost
-            any other, including from professionals. People who have
-            received one frequently report being treated as difficult rather
-            than unwell, sometimes with worse care as a direct result. The
-            patterns these labels point at involve real and often severe
-            suffering, and they respond to treatment. Both things are true,
-            and how the label is used decides which of them a person meets.
+            Nothing about the profile changed while you moved the line, and
+            nothing about it changed when you changed what the line was drawn
+            across &mdash; yet it crossed from one side to the other both
+            times. Where a category boundary sits, and what it counts, are
+            decisions taken by people and revised by people. Unusual traits on
+            their own were never what put anybody above the line.
           </p>
         </div>
 
@@ -2202,41 +2140,17 @@
           </h3>
           <ul>
             <li>
-              <strong>Nothing here diagnoses anybody.</strong> The tool
-              produces no diagnosis for any profile, real or fictional, and
-              cannot be used to reach one. Six sliders are not an assessment.
+              <strong>Nothing here diagnoses anybody.</strong> There is no case,
+              no character and no named condition; no diagnostic material is
+              reproduced; and the tool asks nothing about the person using it.
+              The 800 profiles are invented to make the arithmetic of a cut-off
+              visible and are not a prevalence estimate.
             </li>
             <li>
-              <strong>No diagnostic material is reproduced.</strong> No
-              interview, criterion set, checklist, item or published
-              questionnaire appears anywhere on this page, and no named
-              condition is described.
-            </li>
-            <li>
-              <strong>The 800 profiles are invented.</strong> They exist to
-              make the arithmetic of a cut-off visible. They are not a
-              prevalence estimate and describe no real population.
-            </li>
-            <li>
-              <strong>Six dimensions is a simplification.</strong> Real
-              dimensional models of personality pathology have more, organise
-              them into domains and facets, and are themselves contested.
-            </li>
-            <li>
-              <strong>The functioning composite is illustrative.</strong> Its
-              weights are chosen for teaching, not estimated from anything,
-              and no clinical system computes anything in this way.
-            </li>
-            <li>
-              <strong>Dimensional does not mean uncontroversial.</strong>
-              Moving from categories to dimensions is a live argument with
-              serious objections on both sides, including that dimensions can
-              make difficulty harder to communicate and to fund.
-            </li>
-            <li>
-              <strong>This is not clinical training.</strong> It is a
-              conceptual demonstration for a personality module, and it does
-              not qualify anybody to assess anybody.
+              <strong>Dimensional does not mean uncontroversial.</strong> How
+              many dimensions there are, what they should be called and how
+              functioning should be weighed are all live disagreements. Six
+              numbers and one composite are a teaching simplification.
             </li>
           </ul>
         </aside>
@@ -3000,6 +2914,28 @@
    The threshold is a slider because where the line goes is a decision, taken
    by people, revisable, and consequential. Moving it changes who is inside.
 
+   HOW THE THREE STEPS ARE ORDERED
+   -------------------------------
+   The line comes before the dimensions. Step 1 fixes the profile and offers
+   the threshold alone, so the first thing a learner does is watch a profile
+   cross a category boundary without anything about that profile changing.
+   Step 2 adds the rule; the same profile is now counted a different way. Step
+   3 hands over the six dimensions themselves - trait extremity, persistence
+   and impairment on show, rigidity, distress and interpersonal impact folded
+   into "More dimensions" together with the two presets that demonstrate them.
+
+   Steps ADD controls rather than swapping them, so nothing already in use
+   disappears.
+
+   ONE DOMINANT RESULT
+   -------------------
+   The categorical view leads and carries the verdict sentence directly under
+   its heading: which side of the line this profile falls on, and what moved it
+   there. Its table doubles as the scatterplot's text alternative and holds both
+   axis figures, the threshold, both rules' verdicts and both population shares.
+   The profile chart follows underneath, and its job is the opposite one - to
+   show that nothing about the person changed.
+
    THE FICTIONAL POPULATION
    ------------------------
    800 fictional profiles, generated once from a documented seed, with trait
@@ -3237,7 +3173,6 @@
   var populationChart = $("[data-population-chart]");
   var categoryTable = $("[data-category-table]");
   var categoryVerdict = $("[data-category-verdict]");
-  var readout = $("[data-readout]");
   var interpretation = $("[data-interpretation]");
   var presetNote = $("[data-preset-note]");
 
@@ -3259,16 +3194,30 @@
      dimensional view and the categorical view are separate questions, so they
      are separate steps; the profile itself is shared, and step 2 draws its
      line across whatever step 1 was left set to. */
+  /* Three steps, each ADDING a control rather than swapping one set of
+     controls for another. The profile and the line are both on screen from the
+     start; what changes is how much of the machinery the learner is holding.
+
+       1  the line moves          - one slider, and a profile that crosses it
+       2  the rule changes        - the same profile, counted a different way
+       3  the profile moves       - the six dimensions, three of them folded
+
+     Nothing is removed at any step and the model is untouched. */
   var STEPS = {
     "1": {
-      hint: "Set a profile and read what it does and does not support. Nothing " +
-            "here is a category yet.",
-      announce: "Step 1. The dimensional view."
+      hint: "The profile is fixed. Move the line and watch which side of it " +
+            "this profile falls on.",
+      announce: "Step 1. Where the line falls."
     },
     "2": {
-      hint: "The profile is as you left it. This step asks what changes when a " +
-            "line is drawn across it, and what does not.",
-      announce: "Step 2. Drawing a category line."
+      hint: "Same profile, same line. This step changes what the line is " +
+            "drawn across.",
+      announce: "Step 2. What gets counted."
+    },
+    "3": {
+      hint: "Now the profile itself. Three dimensions are on show and three " +
+            "more are folded away; the presets set all six.",
+      announce: "Step 3. Move the person."
     }
   };
 
@@ -3352,9 +3301,12 @@
     });
   });
 
+  /* `data-from="n"` means "visible from step n onwards", so a control the
+     learner has already used never disappears from under them. */
   function applyStep() {
-    $$("[data-step]").forEach(function (el) {
-      el.hidden = el.getAttribute("data-step") !== state.step;
+    var current = Number(state.step);
+    $$("[data-from]").forEach(function (el) {
+      el.hidden = Number(el.getAttribute("data-from")) > current;
     });
     $("[data-step-hint]").textContent = STEPS[state.step].hint;
   }
@@ -3391,7 +3343,6 @@
   function render() {
     if (mainSection.hidden) { return; }
     renderProfile();
-    renderReadout();
     renderCategory();
     renderInterpretation();
   }
@@ -3477,22 +3428,6 @@
     head.appendChild(headRow);
   }
 
-  function renderReadout() {
-    clear(readout);
-    var f = functioning(state.values);
-    [
-      ["Trait extremity", round(state.values.extremity) + " (" + band(state.values.extremity) + ")"],
-      ["Functioning difficulty", round(f) + " (" + band(f) + ")"],
-      ["Subjective distress", round(state.values.distress) + " (" + band(state.values.distress) + ")"],
-      ["Category line at", String(state.threshold)]
-    ].forEach(function (pair) {
-      var cell = make("div");
-      cell.appendChild(make("dt", null, pair[0]));
-      cell.appendChild(make("dd", null, pair[1]));
-      readout.appendChild(cell);
-    });
-  }
-
   function renderCategory() {
     var NS = "http://www.w3.org/2000/svg";
     var SIZE = 210, LEFT = 40, TOP = 12;
@@ -3570,17 +3505,15 @@
 
     clear(categoryTable);
     [
+      ["Trait extremity", round(state.values.extremity) + " (" + band(state.values.extremity) + ")"],
+      ["Functioning difficulty", round(f) + " (" + band(f) + ")"],
+      ["Category line at", String(state.threshold)],
       ["This profile, under the rule you have chosen",
         inside ? "above the line" : "below the line"],
       ["The same profile, under the other rule",
         otherRuleInside ? "above the line" : "below the line"],
       ["Fictional profiles above the line — counting unusual traits", pct(traitsShare)],
-      ["Fictional profiles above the line — traits and difficulty together", pct(bothShare)],
-      ["Distance from the line",
-        state.rule === "traits"
-          ? Math.abs(round(state.values.extremity - t)) + " points on trait extremity"
-          : Math.min(Math.abs(state.values.extremity - t), Math.abs(f - t)).toFixed(0) +
-            " points on whichever of the two is closer"]
+      ["Fictional profiles above the line — traits and difficulty together", pct(bothShare)]
     ].forEach(function (pair) {
       var row = make("tr");
       var th = make("th", null, pair[0]);
