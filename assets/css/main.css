@@ -375,21 +375,10 @@ hr {
   border-bottom: 1px solid var(--colour-border);
 }
 
-/* The header sits above everything at z-index 50, so anything a tool pins with
-   `top: 0` would slide underneath it and lose its first line. The shell reads
-   --shell-pin-offset for exactly this; the values match scroll-padding-top
-   above, which is measured against the same header. Written as a descendant of
-   .site-header so scripts/build-standalone.py prunes it: an exported activity
-   carries no site chrome and needs no offset. */
-.site-header ~ main .interactive {
-  --shell-pin-offset: 5rem;
-}
-
-@media (max-width: 29em) {
-  .site-header ~ main .interactive {
-    --shell-pin-offset: 9.5rem;
-  }
-}
+/* Nothing inside a tool is pinned, so no tool needs an offset to clear this
+   header. `scroll-padding-top` above is what keeps a keyboard-focused element
+   from landing underneath it; see components/interactive-shell.css for why
+   sticky positioning is not used inside an activity. */
 
 .site-header__inner {
   display: flex;

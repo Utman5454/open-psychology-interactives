@@ -58,10 +58,9 @@
   color: var(--shell-text);
   border: 1px solid var(--shell-border);
   border-radius: var(--shell-radius);
-  /* Clip sideways so a wide table cannot break the rounded box, but do NOT
-     use `overflow: hidden`: that would make this a scroll container and
-     silently disable `position: sticky` on .stage__primary below. `clip`
-     does not create one. */
+  /* Clip sideways so a wide table cannot break the rounded box. `clip` rather
+     than `hidden` because `hidden` would make this a scroll container, which
+     changes how descendants scroll and anchor; `clip` does not create one. */
   overflow-x: clip;
   overflow-y: visible;
 }
@@ -232,69 +231,34 @@
 }
 
 /* -------------------------------------------------------------------------
-   The pinned primary result
+   The primary result
    -------------------------------------------------------------------------
-   Some interactives need a long controls column — a bank of items to choose
-   from, one slider per parameter, a list of things to rate. Without help, the
-   learner scrolls down to reach the fifth control and the thing it changes has
-   scrolled off the top: they can no longer see what they are doing.
+   .stage__primary marks the ONE result that answers "what am I looking at to
+   see the effect?". It is a semantic marker and an ordering convention only:
+   it carries NO positioning.
 
-   Wrapping the ONE result that answers "what am I looking at to see the
-   effect?" in .stage__primary pins it to the top of the stage while the empty
-   part of the stage column scrolls past underneath.
+   This block used to pin that result to the top of the viewport with
+   `position: sticky`, so it stayed in view while a long controls column was
+   worked. The behaviour was removed, and should not be reintroduced. A sticky
+   element travels the full height of its containing block — here the whole
+   stage column — so on the way down it passed over every table, verdict and
+   chart beneath it in the same stage, including the ones that had just
+   updated in response to the control being used. The motion that kept the
+   result visible was the same motion that covered everything else, and no
+   offset, z-index or containment made that acceptable.
 
-   WHY :last-child
-   ---------------
-   A sticky element travels the full height of its containing block, which here
-   is the whole stage column. An earlier version pinned every .stage__primary,
-   with an opaque background and a z-index above its siblings, so on the way
-   down it painted over every table, verdict and chart beneath it in the same
-   stage — including the ones that had just updated in response to the control
-   the learner was using. The motion that kept the result visible was the same
-   motion that hid everything else.
-
-   Pinning only a primary with nothing after it removes that possibility
-   entirely: there is no following content for it to cover, and it still
-   travels through the stretch space beside a long controls column, which is
-   the case the feature exists for. A stage that puts secondary content after
-   its primary simply does not pin, which is the correct outcome — the learner
-   needs to read that content.
-
-   So: put the primary result last in the stage if you want it pinned, or
-   accept normal flow. Do not reach for a higher z-index to "fix" overlap.
+   The project rule is now simply: nothing in a tool follows the viewport.
+   Every graph, readout, result panel and control panel stays in normal
+   document flow. If a result is hard to keep in view, shorten the controls
+   column or move secondary output into a disclosure — do not pin.
    ---------------------------------------------------------------------- */
 
 @media (min-width: 52em) {
-  /* The pin can only travel inside its own column, so the stage has to be as
-     tall as the controls beside it. Add this modifier to .interactive__body
-     whenever the stage contains a .stage__primary. */
+  /* Keeps the stage panel the same height as the controls beside it, so the
+     two columns end level. Purely cosmetic now that nothing is pinned; the
+     class name is kept because 58 tools carry it in their markup. */
   .interactive__body--pinned {
     align-items: stretch;
-  }
-
-  .interactive__stage > .stage__primary:last-child {
-    position: sticky;
-    /* Cleared for a host page whose own header is sticky. The shell cannot see
-       that header, so the page sets --shell-pin-offset; a standalone export,
-       which carries no site chrome, keeps the 0 default. */
-    top: var(--shell-pin-offset, 0px);
-    z-index: 2;
-    /* Span the stage padding so the stage's own edge does not show through. */
-    margin: -1rem -1rem 0;
-    padding: 1rem 1rem 0.75rem;
-    background-color: var(--shell-page);
-    border-bottom: 1px solid var(--shell-border);
-  }
-}
-
-/* On a short viewport a pinned block would take most of the screen, so it
-   returns to normal flow. */
-@media (min-width: 52em) and (max-height: 30em) {
-  .interactive__stage > .stage__primary:last-child {
-    position: static;
-    margin: 0;
-    padding: 0;
-    border-bottom: 0;
   }
 }
 
