@@ -49,10 +49,14 @@ After the activity a student should be able to:
 
 ## Estimated duration
 
-- **Demonstration from the front:** 10 minutes — stage 1 with the room, then
-  the three presets.
-- **Students working through all three stages:** 20 minutes.
-- **With the debrief:** 30 minutes.
+- **Demonstration from the front:** 8 minutes — stage 1 with the room, then
+  the presets.
+- **Students working through all three stages:** 15 minutes.
+- **With the debrief:** 25 minutes.
+
+Head A and the temperature slider are on show; heads B and C sit behind
+**Look at another head**, and the provenance of the numbers behind **Where
+these numbers came from**. A front-of-room demonstration should open both.
 
 ## Preparation
 
@@ -264,9 +268,9 @@ panel.
 2. **Break the illusion further.** Change one number in a key vector so the
    first preset picks the cyclist instead. What does the ease of doing that
    tell you?
-3. **Find the third rhyme, or show there isn't one.** The debrief claims
-   exactly two genuine correspondences. Argue for a third, and see whether it
-   survives being stated precisely.
+3. **Find the second rhyme, or show there isn't one.** The debrief now claims
+   exactly one genuine correspondence — that both allocate limited influence.
+   Argue for a second, and see whether it survives being stated precisely.
 4. **The borrowed-word audit.** "Memory", "learning" and "representation" are
    also borrowed. Pick one and write the two-sentence disambiguation.
 5. **The interpretability claim.** Find a published figure showing attention

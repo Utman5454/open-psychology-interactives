@@ -1594,7 +1594,7 @@
             a model's output.
           </p>
           <p class="text-muted">
-            About 30 minutes. Nothing is timed. Nothing you do here is saved
+            About 15 minutes. Nothing is timed. Nothing you do here is saved
             or sent anywhere.
           </p>
         </div>
@@ -1625,7 +1625,7 @@
         <li>Stage 1: read two sentences that differ by three words and say what "it" refers to in each.</li>
         <li>Stage 2: compute attention weights over the same sentence, by choosing a query position, a head, a temperature and a mask.</li>
         <li>Stage 3: compare the two things you have just done, in the sorting challenge.</li>
-        <li>Read the debrief, which is where the two rhymes and the four divergences are set out.</li>
+        <li>Read the debrief, which is where the one real rhyme and the divergences either side of it are set out.</li>
       </ol>
 
     </div>
@@ -1829,20 +1829,6 @@
                 <select id="query-select"></select>
               </div>
 
-              <div class="control">
-                <label class="control__label" for="head-select">
-                  Which head?
-                </label>
-                <select id="head-select">
-                  <option value="0" selected>Head A</option>
-                  <option value="1">Head B</option>
-                  <option value="2">Head C</option>
-                </select>
-                <p class="control__hint">
-                  Three multipliers applied to the query vector. They have no
-                  assigned meaning.
-                </p>
-              </div>
             </fieldset>
 
             <fieldset>
@@ -1891,6 +1877,24 @@
                   The one that says nothing at all
                 </button>
               </div>
+              <!-- Three attention heads make the same point three times. One is enough to see what the temperature slider does; the others are here for anyone who wants to compare. -->
+              <details class="stage__more">
+                <summary>Look at another head</summary>
+              <div class="control">
+                <label class="control__label" for="head-select">
+                  Which head?
+                </label>
+                <select id="head-select">
+                  <option value="0" selected>Head A</option>
+                  <option value="1">Head B</option>
+                  <option value="2">Head C</option>
+                </select>
+                <p class="control__hint">
+                  Three multipliers applied to the query vector. They have no
+                  assigned meaning.
+                </p>
+              </div>
+              </details>
             </fieldset>
 
           </form>
@@ -1935,12 +1939,12 @@
               <h4 class="verdict__title">What this readout is</h4>
               <p class="verdict__body" data-weight-text></p>
               <p class="verdict__note" data-weight-note></p>
+              <details class="stage__more">
+                <summary>Where these numbers came from</summary>
+                <div data-provenance></div>
+              </details>
             </div>
 
-            <details class="stage__more">
-              <summary>Where these numbers came from</summary>
-              <div data-provenance></div>
-            </details>
 
           </div>
 
@@ -2021,107 +2025,8 @@
       <div class="split split--wide">
 
         <div class="prose">
-          <h3>What a transformer attention weight is, exactly</h3>
           <p>
-            For a chosen position, take its vector. Take the dot product of
-            that vector with the vector of every position in the sequence,
-            including itself. Divide each result by the square root of the
-            vector length, divide again by a temperature, and push the whole
-            list through a softmax so the numbers are non-negative and sum to
-            one. Use those numbers as coefficients in a weighted sum of the
-            value vectors. That is the entire operation. It is a normalised
-            similarity between positions, computed for every pair at once, and
-            nothing in it corresponds to noticing, ignoring, focusing or
-            caring.
-          </p>
-
-          <h3>Where the two genuinely rhyme</h3>
-          <p>
-            Two respects, and they are worth stating precisely because
-            overstating them is how the confusion starts.
-          </p>
-          <p>
-            <strong>Both are forms of selection under a constraint.</strong>
-            A person cannot fully process everything arriving at once, and
-            their behaviour reflects a weighting of some inputs over others. A
-            transformer layer cannot pass every position's representation
-            forward unchanged either: it must produce one output vector per
-            position, and it does so by weighting. Both are, formally,
-            allocation problems. The constraints themselves are not the same kind of thing. One
-            is a limit on a biological system operating in real time; the
-            other is the shape of a matrix. But "everything cannot count
-            equally" is true of both.
-          </p>
-          <p>
-            <strong>Both are shaped by what came before.</strong> Human
-            selection is influenced by expectation, by recent experience and
-            by the task in hand. A transformer's weights depend on the
-            preceding tokens, and under a causal mask depend on nothing else.
-            In both cases the current selection is a function of context
-            rather than of the current input alone.
-          </p>
-
-          <h3>Where they diverge, and it is not close</h3>
-          <p>
-            <strong>There is no experience on the machine side.</strong> The
-            human literature is substantially about awareness: what gets
-            reported, what does not, and the fact that those two come apart.
-            Nothing in a softmax has a corresponding property, and there is no
-            question the model could be asked whose answer would be a report
-            of an experience.
-          </p>
-          <p>
-            <strong>There is no bottleneck of the same kind.</strong> A
-            transformer computes every pairwise score in parallel and then
-            normalises. Nothing waits for anything. The human findings about
-            serial stages, refractory periods and the cost of dividing
-            attention describe a system with a temporal structure that this
-            operation does not have.
-          </p>
-          <p>
-            <strong>There is no cost of dividing it.</strong> Spreading a
-            transformer's weights evenly across ten positions costs exactly
-            what concentrating them on one costs: the same multiplications.
-            Dividing human attention costs accuracy, speed, or both, and the
-            size of that cost is one of the central measurements in the field.
-          </p>
-          <p>
-            <strong>The weights are fully inspectable, and human attention is
-            not.</strong> You have just read every weight to two decimal
-            places. Nobody can read a person's selection off directly; it is
-            inferred from responses, from errors, from eye position, from
-            electrophysiology, and every one of those inferences is contested.
-            This is the one respect in which the machine case is
-            <em>easier</em>, and it produces its own trap, which is the next
-            paragraph.
-          </p>
-
-          <h3>Why a weight map is not an explanation</h3>
-          <p>
-            It is tempting to treat a picture of the weights as a picture of
-            the reason. It is not. The weights are one factor in one operation
-            in one layer, of which there are many, each with many heads;
-            the value vectors they multiply matter as much as the weights
-            themselves; the residual stream carries information past the
-            operation entirely; and the output depends on everything
-            downstream. Empirically, patterns of weights can be altered
-            substantially without altering the model's output, and identical
-            outputs can be produced by very different weight patterns. Reading
-            a heatmap as "why the model said that" is the computational
-            equivalent of reading a single eye-movement record as the reason
-            for a decision — and it is made worse by the fact that the heatmap
-            is so much easier to look at than the alternative.
-          </p>
-
-          <h3>Why the shared word survives anyway</h3>
-          <p>
-            Not because anyone was confused. The operation was named by
-            analogy to a family of models in which a system weights parts of
-            an input differentially, and the name stuck because it is short.
-            Technical vocabulary borrowed from psychology has form here —
-            "memory", "learning" and "representation" all carry the same
-            hazard. The remedy is not to police the word but to be able to say
-            exactly what is being claimed whenever it appears.
+            A transformer attention weight is a softmax over query&ndash;key similarities: a set of positive numbers summing to one, deciding how much each position contributes to the next representation. It rhymes with selective attention in that both allocate limited influence, and diverges in almost every other way &mdash; there is no capacity limit, no serial bottleneck, no cost of switching, and nothing it feels like. The shared word is a useful metaphor and a poor argument.
           </p>
         </div>
 
@@ -2131,41 +2036,10 @@
           </h3>
           <ul>
             <li>
-              <strong>No model was run.</strong> The ten key vectors and the
-              three heads were written by hand for this page and chosen so
-              that the three presets would produce three legible pictures. In
-              a real model these numbers are learned, nobody chooses what they
-              mean, and most heads produce patterns that resist description
-              altogether.
+              <strong>A weight map is not an explanation.</strong> High weight on a token says where influence flowed, not why the model produced what it did. Attention weights are famously weak evidence about a model's reasoning.
             </li>
             <li>
-              <strong>It is not a simulation of a transformer.</strong> It is
-              one attention operation, in one head, over three dimensions and
-              ten tokens, with no value vectors, no residual stream, no
-              feed-forward layers and no second layer. Real models have
-              dozens of layers and many heads each.
-            </li>
-            <li>
-              <strong>It says nothing about how people resolve pronouns.</strong>
-              Stage 1 is a demonstration that you can do it and report it, not
-              a measurement of how. That literature involves reading times,
-              eye movements and manipulations this page does not contain.
-            </li>
-            <li>
-              <strong>Agreement between the two stages would mean very
-              little.</strong> Two processes can produce the same output for
-              unrelated reasons. Disagreement would mean little too.
-            </li>
-            <li>
-              <strong>Nothing here licenses claims about machine
-              understanding, awareness or intent.</strong> Those are separate
-              questions with their own literatures, and a weight vector is not
-              evidence in any of them.
-            </li>
-            <li>
-              <strong>The word "attention" is doing no work in the
-              comparison.</strong> If the operation had been called "weighted
-              pooling", which is what it is, this page would be much shorter.
+              <strong>The numbers are a hand-built illustration.</strong> Ten positions, three-dimensional keys and one head, chosen so the arithmetic is followable. No real model, corpus or benchmark is involved.
             </li>
           </ul>
         </aside>

@@ -41,7 +41,8 @@ by its central question. It follows tools 01 and 06 in this module naturally.
 After the activity a student should be able to:
 
 1. apply three analyses of power to one body of evidence;
-2. name a specific feature each one leaves in shadow;
+2. name a specific feature each one leaves in shadow, having read the tool's
+   account of it;
 3. state the remedy each implies, and what that remedy leaves untouched;
 4. explain why a blind spot follows from the commitment that makes a framework
    useful;
@@ -49,10 +50,16 @@ After the activity a student should be able to:
 
 ## Estimated duration
 
-- **Demonstration from the front:** 10 minutes using the worked example and the
+- **Demonstration from the front:** 8 minutes using the worked example and the
   comparison table.
-- **Students working all three passes themselves:** 30 minutes.
-- **With the transfer case and the debrief:** 60 minutes, or two seminar halves.
+- **Students working all three passes themselves:** 20 minutes.
+- **With the transfer case and the debrief:** 40 minutes.
+
+Each pass now asks for one judgement — which evidence the lens brings into
+focus. What the lens leaves less visible is stated in the feedback rather than
+asked as a second question, which is what brings all three passes inside a
+single seminar slot. If you want students to produce that judgement themselves,
+ask for it aloud before they press **Apply this lens**, then compare.
 
 ## Preparation
 
@@ -202,10 +209,11 @@ Each of the nine items is marked `core`, `partly` or `no` for each lens:
 | 9 The register | **core** | partly | no |
 
 **Reference values a lecturer can check.** The worked example selects exactly the
-core set for each lens — items 2, 4 and 9; then 3, 5 and 6; then 1, 7 and 8 — and
-chooses the shadow answer the case supports each time. Each pass then reports "3
-of the 3 this lens is strongest on", the comparison table fills to three rows,
-and the tool lands on the synthesis with the final judgement not yet recorded.
+core set for each lens — items 2, 4 and 9; then 3, 5 and 6; then 1, 7 and 8. Each
+pass then reports "3 of the 3 this lens is strongest on", the comparison table
+fills to three rows, and the tool lands on the synthesis with the final judgement
+not yet recorded. The shadow verdict is printed for every pass regardless of what
+was selected, because it is no longer a question the learner answers.
 
 Selecting an item marked `no` is never penalised: the feedback explains, item by
 item, why another lens explains it better, and every core item the learner missed

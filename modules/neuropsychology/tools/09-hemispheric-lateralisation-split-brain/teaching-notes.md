@@ -42,10 +42,15 @@ After the activity a student should be able to:
 
 ## Estimated duration
 
-- **Demonstration from the front:** 10 minutes - the classic trial, then the
+- **Demonstration from the front:** 8 minutes - the classic trial, then the
   same trial with the other hand, then the callosum restored.
-- **Students in pairs:** 25 minutes.
-- **With the challenge and debrief:** 40 minutes.
+- **Students in pairs:** 20 minutes.
+- **With the challenge and debrief:** 30 minutes.
+
+The item is fixed unless **Show a different item** is opened, and the callosum
+control sits behind **Cut the corpus callosum, and run the same trial again**.
+The intended order is therefore: run an intact trial first, then open the
+callosum disclosure and run the same trial again.
 
 ## Preparation
 

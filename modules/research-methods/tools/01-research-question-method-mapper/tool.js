@@ -314,236 +314,6 @@
     },
 
     {
-      short: "Sleep",
-      question:
-        "Is sleep duration on one night related to working-memory performance " +
-        "the next day in shift workers?",
-      context:
-        "Fictional study. Forty shift workers keep a sleep diary and complete " +
-        "a working-memory task each day for 14 days.",
-      aim: {
-        strong: ["association"],
-        ok: ["prediction"],
-        notes: {
-          association:
-            "Two things that vary, and the question is whether they vary " +
-            "together. Nothing is allocated, so no causal claim is available " +
-            "however strong the association turns out to be.",
-          prediction:
-            "Defensible if you frame it as forecasting tomorrow's performance " +
-            "from last night's sleep. The model would look similar; the claim " +
-            "would be about forecasting accuracy rather than about a " +
-            "relationship.",
-          difference:
-            "You could split sleep into short and long nights and compare, but " +
-            "that throws away information the question is asking about and " +
-            "invents a cut-point that is not in the data.",
-          explanation:
-            "The question does not ask what sleep does to memory or how. " +
-            "Answering it would need a manipulation, which shift patterns do " +
-            "not permit and this study does not attempt.",
-          description:
-            "Description would report how much people sleep and how they " +
-            "perform. The question is about the link between the two.",
-          interpretation:
-            "There is no meaning-making under investigation; both variables " +
-            "are recorded quantities."
-        }
-      },
-      kind: {
-        strong: ["quantitative"],
-        ok: [],
-        notes: {
-          quantitative: "Two recorded quantities, related to each other.",
-          qualitative:
-            "Workers' accounts of sleep and concentration would be valuable " +
-            "and would not answer this question, which is about covariation.",
-          mixed:
-            "A diary-plus-interview design would be a good study. As written, " +
-            "the question needs only the numeric strand."
-        }
-      },
-      design: {
-        strong: ["repeated"],
-        ok: [],
-        notes: {
-          repeated:
-            "Fourteen days per worker: the same people measured many times. " +
-            "That structure is both the strength and the complication.",
-          survey:
-            "A survey gives one observation per person. Here each person gives " +
-            "fourteen, which is what allows a within-person question at all.",
-          cohort:
-            "The data are being generated prospectively by the study, not " +
-            "drawn from existing records.",
-          between: "There are no allocated groups.",
-          within:
-            "Close in spirit, but \"within-participants experiment\" implies " +
-            "the researcher sets the conditions. Nobody is assigning these " +
-            "workers their sleep.",
-          interview: "The measures are a diary entry and a task score."
-        }
-      },
-      needs: {
-        independence: {
-          standing: "key",
-          note:
-            "This is the one. Each worker supplies 14 pairs, so 560 rows are " +
-            "nested within 40 people, and treating them as 560 independent " +
-            "observations badly overstates the precision. It also merges two " +
-            "questions - whether people who sleep more perform better, and " +
-            "whether a person performs better after their own longer nights - " +
-            "which can point in opposite directions."
-        },
-        measurement: {
-          standing: "fair",
-          note:
-            "Sleep duration from a diary is self-reported and rounded; a " +
-            "working-memory score has a ceiling. Both matter for what the " +
-            "relationship can look like."
-        },
-        sampling: {
-          standing: "fair",
-          note:
-            "Forty shift workers from where, doing what shifts? Shift patterns " +
-            "differ enormously and the answer may not survive the move."
-        },
-        allocation: {
-          standing: "none",
-          note:
-            "Nothing is allocated, and the vignette makes that plain. It is " +
-            "the reason no causal reading is available."
-        },
-        predictors: {
-          standing: "none",
-          note: "One predictor is named, so overlap between predictors is not the issue."
-        },
-        epistemology: {
-          standing: "none",
-          note:
-            "Worth stating in general, but nothing in this question turns on " +
-            "it in the way question 1 does."
-        }
-      }
-    },
-
-    {
-      short: "Forecasting",
-      question:
-        "Which combination of prior attainment, attendance and self-efficacy " +
-        "best forecasts end-of-year marks?",
-      context:
-        "Fictional study. A records office supplies anonymised data on 1,200 " +
-        "students from a previous cohort.",
-      aim: {
-        strong: ["prediction"],
-        ok: ["association"],
-        notes: {
-          prediction:
-            "The word is \"forecasts\", and the criterion is how well the " +
-            "combination does it. That is a question about accuracy, and it " +
-            "should be judged on data the model has not seen.",
-          association:
-            "Defensible: a forecasting model is built out of associations. The " +
-            "difference is what you report — which variables relate to marks, " +
-            "or how close the predicted marks come.",
-          explanation:
-            "The trap. A model can forecast well using variables that produce " +
-            "nothing. Attendance may simply be a symptom of the same thing " +
-            "that produces marks. Forecasting well and explaining are " +
-            "different achievements, and a regression coefficient does not " +
-            "tell you which one you have.",
-          difference:
-            "No groups are being compared. You could split students into " +
-            "bands, but that is an answer to a different question.",
-          description:
-            "Description would report attendance and marks. The question asks " +
-            "how well one set forecasts the other.",
-          interpretation:
-            "No accounts, no meaning-making — the material is administrative " +
-            "records."
-        }
-      },
-      kind: {
-        strong: ["quantitative"],
-        ok: [],
-        notes: {
-          quantitative: "Records, variables and a forecast.",
-          qualitative:
-            "Qualitative work could ask what attendance means to students, " +
-            "which would be a fine study and a different question.",
-          mixed:
-            "Only if a qualitative strand were given a stated job. Bolting one " +
-            "on to explain the coefficients afterwards is a common and weak " +
-            "move."
-        }
-      },
-      design: {
-        strong: ["cohort"],
-        ok: ["survey"],
-        notes: {
-          cohort:
-            "Existing records for a past cohort. The researcher had no hand in " +
-            "what happened.",
-          survey:
-            "Defensible if self-efficacy was collected by questionnaire during " +
-            "the year. The important part is that the data already exist.",
-          repeated:
-            "Each student appears once with an end-of-year mark, so this is " +
-            "not repeated measurement even though the year has a time course.",
-          between: "Nothing was allocated.",
-          within: "Nothing was manipulated within a person.",
-          interview: "The material is numeric records."
-        }
-      },
-      needs: {
-        predictors: {
-          standing: "key",
-          note:
-            "Three predictors that certainly overlap: students with higher " +
-            "prior attainment tend to attend more and to report more " +
-            "confidence. How strongly they overlap decides which coefficients " +
-            "look important, how unstable they are, and whether \"best " +
-            "combination\" has a stable answer at all."
-        },
-        measurement: {
-          standing: "fair",
-          note:
-            "Marks may be bounded and bunched near the top; attendance may be " +
-            "a proportion; self-efficacy is a scale score. Each affects what " +
-            "the model can do."
-        },
-        sampling: {
-          standing: "fair",
-          note:
-            "A previous cohort at one institution. Whether the forecast " +
-            "survives a new cohort is exactly the question a forecasting claim " +
-            "should be tested on."
-        },
-        allocation: {
-          standing: "given",
-          note:
-            "The vignette answers this: these are existing records, so nothing " +
-            "was allocated. Noticing that is what stops you writing a causal " +
-            "sentence about attendance."
-        },
-        independence: {
-          standing: "none",
-          note:
-            "One row per student. Nesting would matter if students were " +
-            "grouped in classes and that were part of the question."
-        },
-        epistemology: {
-          standing: "none",
-          note:
-            "Self-efficacy as a measurable individual quantity is already a " +
-            "commitment, but it is not one that changes the analysis of this " +
-            "question."
-        }
-      }
-    },
-
-    {
       short: "Prevalence",
       question:
         "How common is loneliness among postgraduate researchers at one " +
@@ -790,6 +560,22 @@
   var designSelect = $("#design-select");
   var kindRadios = $$('input[name="kind"]');
   var needBoxes = $$('input[name="needs"]');
+  var decisionSets = $$("[data-decision]");
+
+  /* Each decision appears once the one before it has an answer. The reading on
+     the right fills in as they arrive, so the cascade is visible rather than
+     presented all at once. */
+  function revealDecisions() {
+    var answered = [
+      Boolean(aimSelect.value),
+      kindRadios.some(function (r) { return r.checked; }),
+      Boolean(designSelect.value)
+    ];
+    decisionSets.forEach(function (set) {
+      var n = Number(set.getAttribute("data-decision"));
+      set.hidden = n > 1 && !answered.slice(0, n - 1).every(Boolean);
+    });
+  }
 
   var caseLabel = $("[data-case-label]");
   var caseText = $("[data-case-text]");
@@ -892,6 +678,7 @@
     caseDetail.hidden = true;
     nextButton.textContent =
       i === CASES.length - 1 ? "Go to the challenge" : "Next question";
+    revealDecisions();
     renderReading();
     renderTrack();
   }
@@ -1091,9 +878,11 @@
 
   /* --- Events -------------------------------------------------------------- */
 
-  aimSelect.addEventListener("change", renderReading);
-  designSelect.addEventListener("change", renderReading);
-  kindRadios.forEach(function (r) { r.addEventListener("change", renderReading); });
+  function onDecisionChange() { revealDecisions(); renderReading(); }
+
+  aimSelect.addEventListener("change", onDecisionChange);
+  designSelect.addEventListener("change", onDecisionChange);
+  kindRadios.forEach(function (r) { r.addEventListener("change", onDecisionChange); });
   needBoxes.forEach(function (b) { b.addEventListener("change", renderReading); });
 
   checkButton.addEventListener("click", checkReading);

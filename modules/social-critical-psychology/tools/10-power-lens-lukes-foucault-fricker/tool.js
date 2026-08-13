@@ -576,7 +576,6 @@
   var lensLegend = $("[data-lens-legend]");
   var lensQuestion = $("[data-lens-question]");
   var evidencePicks = $("[data-evidence-picks]");
-  var shadowPicks = $("[data-shadow-picks]");
   var lensNote = $("[data-lens-note]");
   var applyButton = $('[data-action="apply"]');
   var nextButton = $('[data-action="next"]');
@@ -644,25 +643,14 @@
     });
   }
 
+  /* What a lens leaves less visible is stated rather than asked. Each lens now
+     carries one judgement - which items it brings into focus - so all three are
+     reached before the comparison, which is where the argument actually is. */
   function buildShadowPicks() {
-    clear(shadowPicks);
     var lens = LENSES[state.stage];
     if (!lens) { return; }
-    lens.shadow.forEach(function (option) {
-      var label = make("label", "control--choice");
-      var input = document.createElement("input");
-      input.type = "radio";
-      input.name = "shadow-" + lens.key;
-      input.value = option.value;
-      input.checked = state.shadow[state.stage] === option.value;
-      input.disabled = state.applied[state.stage];
-      input.addEventListener("change", function () {
-        state.shadow[state.stage] = option.value;
-      });
-      label.appendChild(input);
-      label.appendChild(make("span", null, option.label));
-      shadowPicks.appendChild(label);
-    });
+    var right = lens.shadow.filter(function (o) { return o.correct; })[0];
+    state.shadow[state.stage] = right.value;
   }
 
   function buildFinalPicks() {
@@ -797,22 +785,18 @@
     itemsBox.appendChild(list);
     detail.appendChild(itemsBox);
 
-    /* The shadow judgement. */
+    /* The shadow judgement. Stated rather than asked, so it has to name the
+       blind spot itself: the label carries what is left less visible and the
+       note carries why that follows from the lens's own commitment. */
     var picked = lens.shadow.filter(function (o) {
       return o.value === state.shadow[state.stage];
     })[0];
     var shadowBox = make("div", "verdict");
-    shadowBox.setAttribute("data-tone", picked.correct ? "good" : "caution");
+    shadowBox.setAttribute("data-tone", "caution");
     shadowBox.appendChild(make("h5", "verdict__title",
-      picked.correct ? "What it leaves less visible - yes"
-        : "What it leaves less visible - not quite"));
+      "What it leaves less visible"));
+    shadowBox.appendChild(make("p", "verdict__body", picked.label + "."));
     shadowBox.appendChild(make("p", "verdict__body", picked.why));
-    if (!picked.correct) {
-      var right = lens.shadow.filter(function (o) { return o.correct; })[0];
-      shadowBox.appendChild(make("p", "verdict__body",
-        "The answer the case supports: " + right.label.toLowerCase() + ". " +
-        right.why));
-    }
     detail.appendChild(shadowBox);
 
     /* The remedy. */
@@ -896,12 +880,6 @@
         "Select at least one item before applying the lens. There is no " +
         "penalty for a selection the key disagrees with - the feedback " +
         "explains every item either way.";
-      shell.announce(lensNote.textContent, { immediate: true });
-      return;
-    }
-    if (!state.shadow[state.stage]) {
-      lensNote.textContent =
-        "Choose one thing this lens leaves less visible before applying it.";
       shell.announce(lensNote.textContent, { immediate: true });
       return;
     }

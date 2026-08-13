@@ -38,10 +38,14 @@ After the activity a student should be able to:
 
 ## Estimated duration
 
-- **Demonstration from the front:** 8 minutes — the first two presets are the
+- **Demonstration from the front:** 6 minutes — the first two presets are the
   argument.
-- **Students in pairs:** 20 minutes.
-- **With the challenge and debrief:** 35 minutes.
+- **Students in pairs:** 15 minutes.
+- **With the challenge and debrief:** 25 minutes.
+
+Loading a case is now the first action, and the region and pathway grids sit
+behind **Change the network yourself**. Students who go straight to the presets
+get the whole argument without opening it; open it for the challenge.
 
 ## Preparation
 
