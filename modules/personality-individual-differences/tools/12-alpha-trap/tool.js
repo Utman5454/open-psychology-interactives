@@ -1,8 +1,8 @@
 /* =========================================================================
    The Alpha Trap
    -------------------------------------------------------------------------
-   Students build a scale from a fictional item bank and watch Cronbach's
-   alpha respond. Because several items are deliberate paraphrases of one
+   Students start with a built five-item scale and watch Cronbach's alpha
+   respond as they add paraphrases to it. Because several items are deliberate paraphrases of one
    another, alpha can be pushed high by repetition alone — at which point the
    scale is revealed to correlate poorly with a simulated outcome.
 
@@ -50,8 +50,8 @@
      drawn between alpha, standardised alpha and ordinal alpha.
    * A single wording family per content area, which makes the structure
      legible to a student in a seminar. Real item pools are messier.
-   * Loadings are chosen so that the target of Round 1 is unreachable without
-     repetition (the widest scale with no repeated wording reaches 0.844).
+   * Loadings are chosen so that the starting scale sits just below the 0.70 a
+     reviewer would ask for, and so that five paraphrases carry it past 0.85.
      That is a property of these numbers, not of alpha in general, and it is
      there to make the trap reliable in a classroom.
 
@@ -102,7 +102,7 @@
     "phone-away": "putting the phone away"
   };
 
-  /* The item bank. Written for this tool; no published instrument is
+  /* The items. Written for this tool; no published instrument is
      reproduced. `family: null` means the item has no near-duplicate. */
   var ITEMS = [
     { id: "P1", facet: "planning", family: null, text: "I work out what a piece of coursework will involve before I start it." },
@@ -141,24 +141,36 @@
     ITEM_BY_ID[item.id] = item;
   });
 
-  /* Round targets. Round 1's 0.85 is deliberately just above the 0.844 that
-     the widest no-repeated-wording scale can reach, so the target cannot be
-     met without repetition. Round 2 asks for a defensible scale instead of a
-     maximal one. */
-  var ROUND_ONE = { targetAlpha: 0.85, minItemsToAdvance: 6 };
-  var ROUND_TWO = {
-    minAlpha: 0.70,
-    minItems: 8,
-    maxItems: 12,
-    requiredFacets: FACETS.length
-  };
+  /* The scale the learner starts with: one distinct item from each of the
+     five content areas. It is short, broad, and its alpha (0.684) sits just
+     under the 0.70 a reviewer would ask for - which is the whole reason
+     anybody reaches for more items. */
+  var BASE_SCALE = ["P1", "O1", "R1", "T1", "F1"];
 
-  /* Worked examples, both computed rather than described: the alpha-chasing
-     shortcut, and a scale that satisfies Round 2. */
-  var EXAMPLES = {
-    round1: ["T2", "T3", "T4", "T5", "T6"],
-    round2: ["P1", "P2", "O1", "O2", "R1", "R2", "T1", "T2", "F1", "F2"]
-  };
+  /* What can be added, one at a time and in this order. All five paraphrase
+     each other and all five sit in one content area, so the scale gets longer
+     and narrower at once. The numbers this produces are the demonstration:
+
+         items  alpha   r(T,Y)   effective areas
+             5  0.684    0.573              5.00
+             6  0.711    0.581              4.50
+             7  0.753    0.574              3.77
+             8  0.793    0.562              3.20
+             9  0.826    0.549              2.79
+            10  0.852    0.536              2.50
+
+     Alpha climbs past every conventional threshold; the correlation with the
+     outcome peaks at the FIRST addition and falls thereafter. One more way of
+     asking the same question does add a little signal. Five more do not. */
+  var ADDITIONS = ["T2", "T3", "T4", "T5", "T6"];
+
+  /* The conventional threshold a reviewer would quote. Nothing in the model
+     depends on it; it is here to be met and then distrusted. */
+  var CONVENTIONAL_ALPHA = 0.70;
+
+  /* The scale left once the repeats are dropped: broad, and the best
+     predictor of the outcome anywhere in this model. */
+  var REPAIRED = BASE_SCALE.concat([ADDITIONS[0]]);
 
   /* =======================================================================
      2. Psychometrics
@@ -262,6 +274,21 @@
       return facetCounts[facet.id].total > 0;
     }).length;
 
+    /* Counting areas alone cannot see this scale narrowing: five paraphrases
+       of one item leave all five areas "covered". Effective breadth is the
+       inverse Simpson index over the area proportions - the number of areas
+       the scale behaves as though it has. Five items one per area gives 5.00;
+       a scale that is 60 per cent punctuality gives 2.50. */
+    var effectiveBreadth = null;
+    if (k > 0) {
+      var concentration = 0;
+      FACETS.forEach(function (facet) {
+        var share = facetCounts[facet.id].total / k;
+        concentration += share * share;
+      });
+      effectiveBreadth = 1 / concentration;
+    }
+
     // r(T, Y). Var(Y) = 1 because Y is standardised, so the denominator is
     // the standard deviation of the total score alone.
     var outcome = null;
@@ -279,52 +306,12 @@
       meanCorrelation: meanCorrelation,
       varTotal: varTotal,
       breadth: breadth,
+      effectiveBreadth: effectiveBreadth,
       facetCounts: facetCounts,
       familyCounts: familyCounts,
       duplicatePairs: duplicatePairs,
       repeatedFamilies: repeatedFamilies,
       outcome: outcome
-    };
-  }
-
-  /**
-   * Does this selection satisfy the Round 2 brief?
-   * @param {object} metrics
-   * @returns {object} { met:boolean, checks:[{label, met}] }
-   */
-  function roundTwoChecks(metrics) {
-    var checks = [
-      {
-        label: "covers all five content areas",
-        detail: metrics.breadth + " of " + ROUND_TWO.requiredFacets,
-        met: metrics.breadth === ROUND_TWO.requiredFacets
-      },
-      {
-        label: "no wording used twice",
-        detail:
-          metrics.duplicatePairs === 0
-            ? "none"
-            : metrics.duplicatePairs + " near-duplicate pairs",
-        met: metrics.duplicatePairs === 0
-      },
-      {
-        label:
-          "between " + ROUND_TWO.minItems + " and " + ROUND_TWO.maxItems + " items",
-        detail: metrics.k + " selected",
-        met: metrics.k >= ROUND_TWO.minItems && metrics.k <= ROUND_TWO.maxItems
-      },
-      {
-        label: "alpha at least " + formatStat(ROUND_TWO.minAlpha),
-        detail: metrics.alpha === null ? "not yet" : formatStat(metrics.alpha),
-        met: metrics.alpha !== null && metrics.alpha >= ROUND_TWO.minAlpha
-      }
-    ];
-
-    return {
-      met: checks.every(function (check) {
-        return check.met;
-      }),
-      checks: checks
     };
   }
 
@@ -381,23 +368,18 @@
   var root = shell.root;
   var page = document;
 
-  var bank = root.querySelector("[data-item-bank]");
   var readout = root.querySelector("[data-readout]");
+  var scaleList = root.querySelector("[data-scale-list]");
+  var addButton = root.querySelector('[data-action="add"]');
+  var dropButton = root.querySelector('[data-action="drop"]');
   var chart = root.querySelector("[data-chart]");
   var chartTable = root.querySelector("[data-chart-table]");
   var goalText = root.querySelector("[data-goal-text]");
-  var meterFill = root.querySelector("[data-meter-fill]");
-  var meterTarget = root.querySelector("[data-meter-target]");
-  var meterCaption = root.querySelector("[data-meter-caption]");
   var redundancyPanel = root.querySelector("[data-redundancy]");
   var redundancyBody = root.querySelector("[data-redundancy-body]");
   var criterionPanel = root.querySelector("[data-criterion]");
   var criterionBody = root.querySelector("[data-criterion-body]");
   var outcomeCell = root.querySelector("[data-outcome-cell]");
-  var advanceButton = root.querySelector('[data-action="advance"]');
-  var exampleButton = root.querySelector('[data-action="example"]');
-  var clearButton = root.querySelector('[data-action="clear"]');
-  var stageTrack = page.querySelector("[data-stage-track]");
 
   var predictionForm = page.getElementById("prediction-form");
   var predictionError = page.querySelector("[data-prediction-error]");
@@ -424,120 +406,101 @@
      reset() only has to restore it and re-render. */
   var INITIAL_STATE = {
     stage: "predict",
-    selected: [],
+    added: 0,
+    repaired: false,
     prediction: null,
-    roundOne: null,
-    roundTwo: null
+    trapped: null
   };
 
   var state = null;
-  var checkboxes = {};
 
-  /* --- Item bank --------------------------------------------------------
-     Built from ITEMS so that an item's text, its content area and its
-     psychometric parameters cannot drift apart. */
+  /* --- The scale, and what can be added to it --------------------------
+     There is no item bank. The learner starts with a built scale and the only
+     move is to add one more way of asking a question already in it. Removing
+     the bank removes the puzzle - which scale scores highest - and leaves the
+     demonstration: what happens to alpha, and to the scale, when you do the
+     thing that raises alpha most cheaply. */
 
-  function buildBank() {
-    FACETS.forEach(function (facet) {
-      var group = make("fieldset", "bank__group");
-      group.appendChild(make("legend", null, facet.name));
-
-      var list = make("ul", "bank__list");
-
-      ITEMS.filter(function (item) {
-        return item.facet === facet.id;
-      }).forEach(function (item) {
-        var row = make("li");
-        var label = make("label", "item");
-        var input = document.createElement("input");
-
-        input.type = "checkbox";
-        input.value = item.id;
-        input.id = "item-" + item.id;
-        input.addEventListener("change", onItemToggle);
-
-        label.setAttribute("for", input.id);
-        label.appendChild(input);
-        label.appendChild(make("span", null, item.text));
-
-        row.appendChild(label);
-        list.appendChild(row);
-        checkboxes[item.id] = input;
-      });
-
-      group.appendChild(list);
-      bank.appendChild(group);
-    });
+  function currentIds() {
+    return BASE_SCALE.concat(ADDITIONS.slice(0, state.added));
   }
 
-  function onItemToggle(event) {
-    var id = event.target.value;
-    if (event.target.checked) {
-      if (state.selected.indexOf(id) === -1) {
-        state.selected.push(id);
-      }
-    } else {
-      state.selected = state.selected.filter(function (existing) {
-        return existing !== id;
-      });
+  function buildScaleList() {
+    while (scaleList.firstChild) {
+      scaleList.removeChild(scaleList.firstChild);
     }
-    render();
-    announceSelection(id, event.target.checked);
-  }
-
-  function announceSelection(id, added) {
-    var metrics = computeMetrics(state.selected);
-    var parts = [
-      (added ? "Added" : "Removed") + " an item.",
-      metrics.k + " " + plural(metrics.k, "item") + " selected."
-    ];
-    if (metrics.alpha !== null) {
-      parts.push("Alpha " + formatStat(metrics.alpha) + ".");
-      parts.push(
-        metrics.breadth + " of " + FACETS.length + " content areas covered."
-      );
-      if (metrics.duplicatePairs > 0) {
-        parts.push(
-          metrics.duplicatePairs +
-            " near-duplicate " +
-            plural(metrics.duplicatePairs, "pair") +
-            "."
-        );
-      }
-    }
-    shell.announce(parts.join(" "));
-  }
-
-  function setSelection(ids) {
-    state.selected = ids.slice();
-    syncCheckboxes();
-    render();
-  }
-
-  function syncCheckboxes() {
-    ITEMS.forEach(function (item) {
-      checkboxes[item.id].checked = state.selected.indexOf(item.id) !== -1;
+    var ids = currentIds();
+    var metrics = computeMetrics(ids);
+    ids.forEach(function (id) {
+      var item = ITEM_BY_ID[id];
+      var row = make("li", "scale__item");
+      var repeated = item.family && metrics.familyCounts[item.family] > 1;
+      row.setAttribute("data-repeated", repeated ? "yes" : "no");
+      row.appendChild(make("span", "scale__area", facetById(item.facet).short));
+      row.appendChild(make("span", "scale__text", item.text));
+      /* Named in words, so the marking is not carried by styling alone. */
+      row.appendChild(make("span", "scale__tag",
+        repeated ? "another way of asking " + FAMILIES[item.family] : "on its own"));
+      scaleList.appendChild(row);
     });
   }
 
-  function setBankEnabled(enabled) {
-    ITEMS.forEach(function (item) {
-      checkboxes[item.id].disabled = !enabled;
-    });
+  function addOne() {
+    if (state.added >= ADDITIONS.length) { return; }
+    var before = computeMetrics(currentIds());
+    state.added += 1;
+    var after = computeMetrics(currentIds());
+    render();
+    shell.announce(
+      "Added another way of asking about " +
+        FAMILIES[ITEM_BY_ID[ADDITIONS[state.added - 1]].family] + ". " +
+        "Alpha " + formatStat(before.alpha) + " to " + formatStat(after.alpha) +
+        ". Effective content areas " + formatStat(before.effectiveBreadth, 1) +
+        " to " + formatStat(after.effectiveBreadth, 1) +
+        ". Correlation with the outcome " + formatStat(before.outcome) +
+        " to " + formatStat(after.outcome) + ".",
+      { immediate: true });
+    if (state.added === ADDITIONS.length) { revealTrap(); }
+  }
+
+  function dropRepeats() {
+    if (state.added <= 1) { return; }
+    var before = computeMetrics(currentIds());
+    state.added = 1;
+    var after = computeMetrics(currentIds());
+    state.repaired = true;
+    render();
+    shell.announce(
+      "Repeats dropped. Alpha falls from " + formatStat(before.alpha) +
+        " to " + formatStat(after.alpha) + ", and the correlation with the " +
+        "outcome rises from " + formatStat(before.outcome) + " to " +
+        formatStat(after.outcome) + ".",
+      { immediate: true });
+  }
+
+  function revealTrap() {
+    if (!revealSection.hidden) { return; }
+    state.trapped = computeMetrics(currentIds());
+    outcomeCell.hidden = false;
+    criterionPanel.hidden = false;
+    buildReveal(state.trapped);
+    revealSection.hidden = false;
+    unlockTransferChallenge();
+    page.getElementById("reveal-heading").focus();
   }
 
   /* --- Rendering -------------------------------------------------------- */
 
   function render() {
-    var metrics = computeMetrics(state.selected);
+    var metrics = computeMetrics(currentIds());
+    buildScaleList();
     renderReadout(metrics);
-    renderMeter(metrics);
     renderChart(metrics);
     renderRedundancy(metrics);
     renderCriterion(metrics);
     renderGoal(metrics);
-    renderStageTrack();
     renderActions(metrics);
+    renderComparison(metrics);
   }
 
   function setMetric(name, value) {
@@ -552,25 +515,14 @@
     setMetric("items", String(metrics.k));
     setMetric("rbar", formatStat(metrics.meanCorrelation));
     setMetric("breadth", metrics.breadth + " of " + FACETS.length);
+    /* The number that shows the scale narrowing while "areas covered" does
+       not move: five items one per area gives 5.0, and a scale that is three
+       fifths punctuality gives 2.5. */
+    setMetric("effective", formatStat(metrics.effectiveBreadth, 1));
     setMetric("duplicates", String(metrics.duplicatePairs));
     setMetric("outcome", formatStat(metrics.outcome));
   }
 
-  function renderMeter(metrics) {
-    var alpha = metrics.alpha === null ? 0 : Math.max(0, metrics.alpha);
-    meterFill.style.width = (alpha * 100).toFixed(1) + "%";
-
-    var target =
-      state.stage === "round2" || state.stage === "complete"
-        ? ROUND_TWO.minAlpha
-        : ROUND_ONE.targetAlpha;
-    meterTarget.style.left = (target * 100).toFixed(1) + "%";
-    meterCaption.textContent = "target " + formatStat(target);
-  }
-
-  /* The chart repeats the table beneath it and is hidden from assistive
-     technology, so it may use colour freely — but each bar still carries its
-     own number as text, which is what makes it readable in greyscale. */
   function renderChart(metrics) {
     var NS = "http://www.w3.org/2000/svg";
     var ROW_HEIGHT = 34;
@@ -732,204 +684,68 @@
   }
 
   function renderGoal(metrics) {
-    while (goalText.firstChild) {
-      goalText.removeChild(goalText.firstChild);
-    }
+    while (goalText.firstChild) { goalText.removeChild(goalText.firstChild); }
 
     if (state.stage === "predict") {
       goalText.textContent =
-        "Record your prediction above to unlock the item bank.";
+        "Record your prediction above to open the scale.";
       return;
     }
 
-    if (state.stage === "round1") {
-      var reached =
-        metrics.alpha !== null && metrics.alpha >= ROUND_ONE.targetAlpha;
-      goalText.appendChild(
-        document.createTextNode("Round 1 — push alpha to ")
-      );
-      goalText.appendChild(
-        make("strong", null, formatStat(ROUND_ONE.targetAlpha))
-      );
-      goalText.appendChild(
-        document.createTextNode(
-          " or above, using any items you like. Currently "
-        )
-      );
+    if (state.added === 0) {
+      goalText.appendChild(document.createTextNode(
+        "Five items, one from each content area. Alpha is "));
       goalText.appendChild(make("strong", null, formatStat(metrics.alpha)));
-      goalText.appendChild(
-        document.createTextNode(reached ? " — target reached." : " — not yet.")
-      );
+      goalText.appendChild(document.createTextNode(
+        ", just under the " + formatStat(CONVENTIONAL_ALPHA) +
+        " a reviewer would ask for. Add an item and watch every number move."));
       return;
     }
 
-    if (state.stage === "reveal") {
-      goalText.textContent =
-        "Round 1 is locked. Read what you built below, then start Round 2.";
-      return;
-    }
-
-    if (state.stage === "round2" || state.stage === "complete") {
-      goalText.appendChild(
-        document.createTextNode(
-          state.stage === "complete"
-            ? "Round 2 complete. Keep experimenting if you wish — the requirements were:"
-            : "Round 2 — build a scale you would defend:"
-        )
-      );
-
-      var list = make("ul", "goal__checks");
-      roundTwoChecks(metrics).checks.forEach(function (check) {
-        var entry = make("li");
-        entry.textContent =
-          check.label + " — " + check.detail + (check.met ? " (met)" : " (not yet)");
-        entry.setAttribute("data-met", check.met ? "yes" : "no");
-        list.appendChild(entry);
-      });
-      goalText.appendChild(list);
-    }
-  }
-
-  function renderStageTrack() {
-    var order = ["predict", "round1", "round2"];
-    var currentStep =
-      state.stage === "predict"
-        ? "predict"
-        : state.stage === "round1" || state.stage === "reveal"
-        ? "round1"
-        : "round2";
-
-    order.forEach(function (step, index) {
-      var node = stageTrack.querySelector('[data-stage-step="' + step + '"]');
-      if (!node) {
-        return;
-      }
-      var isCurrent = step === currentStep;
-      var isDone = order.indexOf(currentStep) > index;
-
-      if (isCurrent) {
-        node.setAttribute("aria-current", "step");
-      } else {
-        node.removeAttribute("aria-current");
-      }
-      node.setAttribute("data-state", isDone ? "done" : isCurrent ? "current" : "todo");
-
-      // "Completed" is stated in text, not carried by styling alone.
-      var marker = node.querySelector(".stage-track__state");
-      if (isDone && !marker) {
-        marker = make("span", "stage-track__state visually-hidden", " (completed)");
-        node.appendChild(marker);
-      } else if (!isDone && marker) {
-        node.removeChild(marker);
-      }
-    });
+    goalText.appendChild(document.createTextNode("Alpha "));
+    goalText.appendChild(make("strong", null, formatStat(metrics.alpha)));
+    goalText.appendChild(document.createTextNode(
+      metrics.alpha >= CONVENTIONAL_ALPHA
+        ? " - above the conventional threshold. Now read the other two rows."
+        : " - not there yet."));
   }
 
   function renderActions(metrics) {
-    var canAdvance = false;
-    var label = "Reveal what I built";
+    var live = state.stage !== "predict";
+    var remaining = ADDITIONS.length - state.added;
 
-    if (state.stage === "round1") {
-      label = "Reveal what I built";
-      canAdvance =
-        metrics.alpha !== null &&
-        (metrics.alpha >= ROUND_ONE.targetAlpha ||
-          metrics.k >= ROUND_ONE.minItemsToAdvance);
-    } else if (state.stage === "reveal") {
-      label = "Start Round 2";
-      canAdvance = true;
-    } else if (state.stage === "round2") {
-      label = "Check my scale";
-      canAdvance = roundTwoChecks(metrics).met;
-    } else if (state.stage === "complete") {
-      label = "Round 2 checked";
-      canAdvance = false;
-    }
+    addButton.disabled = !live || remaining === 0;
+    addButton.textContent = remaining === 0
+      ? "No more ways of asking it"
+      : "Add another way of asking it";
 
-    advanceButton.textContent = label;
-    advanceButton.disabled = !canAdvance;
-
-    var bankLive = state.stage === "round1" || state.stage === "round2" ||
-      state.stage === "complete";
-    exampleButton.disabled = !bankLive;
-    clearButton.disabled = !bankLive;
+    dropButton.hidden = state.added <= 1;
+    dropButton.disabled = !live || state.added <= 1;
   }
 
-  /* --- Stage transitions ------------------------------------------------ */
+  /* The repair is shown as a comparison rather than a second round: the
+     scale that alpha rewarded, against the one that predicts best. */
+  function renderComparison(metrics) {
+    if (!state.repaired || !state.trapped) {
+      comparisonSection.hidden = true;
+      return;
+    }
+    buildComparison(state.trapped, metrics);
+    comparisonSection.hidden = false;
+  }
 
   function setStage(stage) {
     state.stage = stage;
-    setBankEnabled(stage === "round1" || stage === "round2" || stage === "complete");
     render();
   }
 
-  function startRoundOne() {
-    setStage("round1");
+  function startBuilding() {
+    setStage("build");
+    var metrics = computeMetrics(currentIds());
     shell.announce(
-      "Item bank unlocked. Round 1: push alpha to " +
-        formatStat(ROUND_ONE.targetAlpha) +
-        " or above.",
-      { immediate: true }
-    );
-  }
-
-  function revealRoundOne() {
-    state.roundOne = computeMetrics(state.selected);
-
-    outcomeCell.hidden = false;
-    criterionPanel.hidden = false;
-
-    buildReveal(state.roundOne);
-    revealSection.hidden = false;
-
-    setStage("reveal");
-
-    shell.announce(
-      "Round 1 locked. Alpha " +
-        formatStat(state.roundOne.alpha) +
-        ", covering " +
-        state.roundOne.breadth +
-        " of " +
-        FACETS.length +
-        " content areas, correlating " +
-        formatStat(state.roundOne.outcome) +
-        " with the simulated outcome.",
-      { immediate: true }
-    );
-
-    // Send the reader to the explanation rather than leaving them to find it.
-    page.getElementById("reveal-heading").focus();
-  }
-
-  function startRoundTwo() {
-    setSelection([]);
-    setStage("round2");
-    shell.announce(
-      "Round 2. Selection cleared. Build a scale that covers all five " +
-        "content areas without repeating wording.",
-      { immediate: true }
-    );
-  }
-
-  function completeRoundTwo() {
-    state.roundTwo = computeMetrics(state.selected);
-    buildComparison(state.roundOne, state.roundTwo);
-    comparisonSection.hidden = false;
-    unlockTransferChallenge();
-    setStage("complete");
-    shell.announce(
-      "Round 2 checked. Alpha " +
-        formatStat(state.roundTwo.alpha) +
-        " against Round 1's " +
-        formatStat(state.roundOne.alpha) +
-        ", but the outcome correlation rises from " +
-        formatStat(state.roundOne.outcome) +
-        " to " +
-        formatStat(state.roundTwo.outcome) +
-        ".",
-      { immediate: true }
-    );
-    page.getElementById("comparison-heading").focus();
+      "Scale open. Five items, alpha " + formatStat(metrics.alpha) +
+        ", five effective content areas.",
+      { immediate: true });
   }
 
   /* --- The reveal -------------------------------------------------------
@@ -1021,7 +837,7 @@
     }
 
     // What the outcome correlation means, with an explicit counterfactual.
-    var balanced = computeMetrics(EXAMPLES.round2);
+    var balanced = computeMetrics(BASE_SCALE.concat([ADDITIONS[0]]));
     revealBody.appendChild(
       make(
         "p",
@@ -1029,8 +845,8 @@
         "Your scale correlates " +
           formatStat(metrics.outcome) +
           " with a simulated outcome that depends on the whole construct. " +
-          "For comparison, a ten-item scale covering all five areas with no " +
-          "repeated wording reaches alpha " +
+          "For comparison, the same scale with just one of those repeats " +
+          "kept reaches alpha " +
           formatStat(balanced.alpha) +
           " — lower than " +
           (metrics.alpha >= balanced.alpha ? "yours" : "many published scales") +
@@ -1160,11 +976,11 @@
     var outcomeRose = two.outcome > one.outcome;
 
     comparisonVerdict.textContent = alphaFell && outcomeRose
-      ? "Your Round 2 scale has the lower alpha and the higher correlation " +
+      ? "The repaired scale has the lower alpha and the higher correlation " +
         "with the outcome. If alpha were a measure of quality, that " +
         "combination could not happen."
       : outcomeRose
-      ? "Your Round 2 scale correlates more strongly with the outcome. Alpha " +
+      ? "The repaired scale correlates more strongly with the outcome. Alpha " +
         "did not have to fall for that to be true — the point is that the two " +
         "move independently."
       : "Compare the two columns row by row, and note which differences alpha " +
@@ -1243,13 +1059,13 @@
   }
 
   /**
-   * The deadline paraphrases not already in the student's Round 2 scale.
+   * The deadline paraphrases not already in the repaired scale.
    * @returns {string[]}
    */
   function transferAdditions() {
     return ITEMS.filter(function (item) {
       return (
-        item.family === "deadline" && state.roundTwo.ids.indexOf(item.id) === -1
+        item.family === "deadline" && REPAIRED.indexOf(item.id) === -1
       );
     })
       .slice(0, 4)
@@ -1276,17 +1092,15 @@
     }
     transferError.hidden = true;
 
-    var before = state.roundTwo;
-    var after = computeMetrics(before.ids.concat(transferAdditions()));
+    var before = computeMetrics(REPAIRED);
+    var after = computeMetrics(REPAIRED.concat(transferAdditions()));
 
     var alphaDirection = direction(before.alpha, after.alpha);
     var outcomeDirection = direction(before.outcome, after.outcome);
 
-    // Show the enlarged scale in the builder so the change is visible, not
-    // merely asserted. The Round 2 snapshot behind the comparison table is
-    // left untouched.
-    setSelection(after.ids);
-
+    /* The scale on screen is left alone: this challenge asks for a
+       prediction about a hypothetical enlargement, and moving the learner's
+       own scale under them would confuse the two. */
     var gotAlpha = alphaGuess.value === alphaDirection;
     var gotOutcome = outcomeGuess.value === outcomeDirection;
     var tone = gotAlpha && gotOutcome ? "good" : "caution";
@@ -1317,7 +1131,7 @@
         "exists to do, while every conventional reliability statistic " +
         "improved. A reviewer who asks only for a higher alpha is asking for " +
         "this. The builder above now shows the enlarged scale; the comparison " +
-        "table still shows your Round 2 scale as you submitted it."
+        "table still shows the repaired scale as it stood."
     );
 
     shell.announce(
@@ -1375,11 +1189,11 @@
         : "to correlate " +
           describeOutcomePrediction(outcome.value).replace(/,$/, "") +
           " with the outcome.") +
-      " You will be reminded of this after Round 1.";
+      " You will be reminded of this once the additions are done.";
     predictionReadback.hidden = false;
 
     lockPredictionForm();
-    startRoundOne();
+    startBuilding();
     root.scrollIntoView({ block: "start" });
     root.querySelector("input[type=checkbox]").focus();
   }
@@ -1391,7 +1205,7 @@
       "Prediction skipped — demonstration mode.";
     predictionReadback.hidden = false;
     lockPredictionForm();
-    startRoundOne();
+    startBuilding();
   }
 
   function lockPredictionForm() {
@@ -1418,42 +1232,8 @@
 
   /* --- Buttons ----------------------------------------------------------- */
 
-  advanceButton.addEventListener("click", function () {
-    if (state.stage === "round1") {
-      revealRoundOne();
-    } else if (state.stage === "reveal") {
-      startRoundTwo();
-    } else if (state.stage === "round2") {
-      completeRoundTwo();
-    }
-  });
-
-  exampleButton.addEventListener("click", function () {
-    if (state.stage === "round1") {
-      setSelection(EXAMPLES.round1);
-      shell.announce(
-        "Worked example loaded: five items, all paraphrases of one another " +
-          "about meeting deadlines. Alpha " +
-          formatStat(computeMetrics(EXAMPLES.round1).alpha) +
-          " from a scale covering one of five content areas.",
-        { immediate: true }
-      );
-    } else {
-      setSelection(EXAMPLES.round2);
-      shell.announce(
-        "Worked example loaded: ten items covering all five content areas " +
-          "with no repeated wording. Alpha " +
-          formatStat(computeMetrics(EXAMPLES.round2).alpha) +
-          ".",
-        { immediate: true }
-      );
-    }
-  });
-
-  clearButton.addEventListener("click", function () {
-    setSelection([]);
-    shell.announce("Selection cleared.", { immediate: true });
-  });
+  addButton.addEventListener("click", addOne);
+  dropButton.addEventListener("click", dropRepeats);
 
   predictionForm.addEventListener("submit", recordPrediction);
   skipPredictionButton.addEventListener("click", skipPrediction);
@@ -1465,7 +1245,6 @@
   shell.onReset(function () {
     state = JSON.parse(JSON.stringify(INITIAL_STATE));
 
-    syncCheckboxes();
     unlockPredictionForm();
 
     revealSection.hidden = true;
@@ -1487,10 +1266,9 @@
 
   /* --- Start-up ---------------------------------------------------------- */
 
-  buildBank();
   shell.reset({ silent: true });
   shell.announce(
-    "Ready. Record a prediction above to unlock the item bank.",
+    "Ready. Record a prediction above to open the scale.",
     { immediate: true }
   );
 })();

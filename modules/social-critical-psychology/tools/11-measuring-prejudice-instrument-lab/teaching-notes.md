@@ -2,17 +2,17 @@
 
 `modules/social-critical-psychology/tools/11-measuring-prejudice-instrument-lab/`
 
-Twenty predictions made from the latency score alone come out at about 24 per
-cent. Answering "an even shortlist" every time, without looking at anything,
-comes out at 43 per cent.
+Two respondents two hundredths of a second apart shortlisted none and three of
+four. A median split on the score still loses to answering "an even shortlist"
+every time without looking at anything.
 
 ---
 
 ## Running it from the front
 
-Do three or four by hand at the front and let the room call the answers out. The useful moment is the one where a large score belongs to somebody who shortlisted three Uplanders, and it arrives quickly.
+Do the three at the front and let the room call the answers out. The useful moment is the second one: the same score as the first, to within two hundredths of a second, and the opposite shortlist.
 
-Then press Run twenty predictions for me, which always guesses the score's direction, and read the accuracy against the base rate printed beside it. Guessing "even" every single time does better.
+Then read the rule check under the scatter, which is computed over all 200: a median split on the score always guesses the score's direction, and answering "even" every single time does better.
 
 The correlation in this simulated sample is deliberately of the same order as the ones reported in meta-analyses of real latency-behaviour relationships. It is not zero, and the point is not that it is zero: a small average association is a real finding about a population and still supports no statement about any individual in it.
 
@@ -53,16 +53,19 @@ After the activity a student should be able to:
 
 ## Estimated duration
 
-- **Demonstration from the front:** 10 minutes — three predictions by hand, then
-  the twenty-trial run, then the institutional row of the table in experiment 2.
-- **Students working through both experiments:** 25 minutes.
-- **With the challenge and the debrief:** 50–60 minutes.
+- **Demonstration from the front:** 8 minutes — the three respondents, then the
+  institutional row of the table in experiment 2.
+- **Students working through both experiments:** 20 minutes.
+- **With the challenge and the debrief:** 40 minutes.
+
+Experiment 1 is now a fixed sequence of three respondents rather than 200 to
+browse, and experiment 2 opens only when the third is revealed.
 
 ## Preparation
 
-Run experiment 1 yourself and keep going until you get one wrong, which will not
-take long. Note the two numbers you are going to put on the screen: the
-correlation (−0.12 in this sample) and the base rate (43 per cent).
+Run experiment 1 yourself once. Note the two numbers you are going to put on
+the screen: the correlation (−0.12 in this sample) and the base rate (43 per
+cent). Both are printed by the tool, computed from all 200.
 
 Decide in advance how you want to handle the student who concludes that latency
 tasks are worthless. That overcorrection is as much a misreading as the one the
@@ -71,13 +74,17 @@ running notes are written to head it off.
 
 ## The demonstration worth doing from the front
 
-1. **Three by hand.** Put respondent 1 on the screen, read the score aloud, and
-   let the room vote before revealing. A large score belonging to somebody who
-   shortlisted three arrives quickly, and that is the moment.
-2. **Press "Run twenty predictions for me".** It always follows the direction the
-   score points. Read the result: about **24 per cent** correct, against a base
-   rate of **43 per cent**. Guessing "even" every time, with no information at
-   all, does substantially better.
+1. **The first two respondents.** Read respondent 1's score aloud and let the
+   room vote before revealing: 0.93 s, and they shortlisted none of the four.
+   The score looks like it works. Then respondent 2: **0.95 s — two hundredths
+   of a second apart — and they shortlisted three**. That is the moment, and it
+   is worth waiting for the room to notice it themselves.
+2. **The count underneath it.** Of the thirteen respondents scoring between
+   0.85 and 1.05 s, four shortlisted more, five an even number and four fewer.
+   The pair is not a trick; at any one score the whole range is still there.
+3. **The rule check under the scatter.** Read it aloud: a median split on the
+   score does worse than answering "even" every time without looking at
+   anything.
 3. **Open the table** and read the range column. A single score is consistent
    with every one of the five possible shortlists.
 4. **Then experiment 2, last row.** The appointments record is a fact about an
@@ -96,20 +103,22 @@ that the task measures nothing throws away a real finding about a population.
 
 ## Activity sequence
 
-1. **Commit to the prediction.** It opens both experiments.
-2. **Experiment 1**, at least five respondents by hand, using "You cannot tell
-   from this score" whenever it is honest — the tool treats that as a real
-   answer and counts it separately.
-3. **The twenty-trial run**, then the table beneath the scatter.
-4. **Experiment 2**, all five instruments, in any order. Each ends with what is
-   inferred, what remains unexplained and what the instrument cannot support.
+1. **Commit to the prediction.** It opens experiment 1.
+2. **Experiment 1**, three respondents in sequence, using "You cannot tell from
+   this score" whenever it is honest — the tool treats that as a real answer
+   and counts it separately.
+3. **The table and rule check beneath the scatter**, which is where the
+   group-level figure lives.
+4. **Experiment 2**, which opens on the third reveal. All five instruments, in
+   any order. Each ends with what is inferred, what remains unexplained and
+   what the instrument cannot support.
 5. **The five-instrument table**, which is the synthesis.
 6. **The challenge**, then the debrief.
 
 ## Debrief questions
 
 1. The correlation is −0.12 and it is not zero. What is it a fact *about*?
-2. You were right about some respondents. What made you right?
+2. You may have been right about the first respondent. What made you right?
 3. What, exactly, does a latency difference score observe? Name three things
    other than an attitude that contribute to it.
 4. The self-reported gap narrowed from 22 points to 13 over ten years. Give two
@@ -174,10 +183,10 @@ that the task measures nothing throws away a real finding about a population.
 1. **Design the study that would settle it.** What evidence would distinguish the
    candidate explanations of the Vantry appointments record? Write the design,
    then say what it would cost and who would have to agree to it.
-2. **Change the seed.** The model is documented at the top of `tool.js`. Change
-   the coefficient on z in the behavioural latent so the correlation is −0.40 and
-   re-run the twenty-trial prediction. At what value does prediction from the
-   score start to beat the base rate, and would that value be plausible?
+2. **Change the model.** It is documented at the top of `tool.js`. Change the
+   coefficient on z in the behavioural latent so the correlation is −0.40 and
+   read the rule check again. At what value does prediction from the score
+   start to beat the base rate, and would that value be plausible?
 3. **The other direction.** Write 300 words on what would be lost if psychology
    stopped using latency measures entirely.
 4. **Find the drift.** Take one published research programme built on a single
@@ -212,9 +221,18 @@ on the page:
 | Shortlists that were even (2 of 4) | 43% of 200 |
 | Respondents whose shortlist was not even | 114 |
 | Above-median rule, accuracy on those 114 | 57% (chance there is 50%) |
-| Twenty-trial automated run, accuracy | about 24% |
 
-The last two are the pair to put side by side: a rule that beats chance slightly
+| The three featured respondents | score | shortlisted |
+| --- | --- | --- |
+| 121 | 0.93 s | 0 of 4 — follows the trend |
+| 18 | 0.95 s | 3 of 4 — reverses it |
+| 111 | −0.26 s | 1 of 4 — reverses it from the other end |
+
+Of the thirteen respondents scoring between 0.85 and 1.05 s, four shortlisted
+more, five an even number and four fewer.
+
+The base rate and the rule are the pair to put side by side: a rule that beats
+chance slightly
 on the cases where it commits still loses badly to a constant guess across the
 whole sample, because it can never say "even" — which is what 43 per cent of the
 sample did.

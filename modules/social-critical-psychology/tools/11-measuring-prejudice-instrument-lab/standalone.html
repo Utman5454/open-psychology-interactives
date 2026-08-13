@@ -1609,7 +1609,7 @@
             about a construct and becomes the construct.
           </p>
           <p class="text-muted">
-            About 35 minutes. Nothing is timed, and nothing you select is
+            About 20 minutes. Nothing is timed, and nothing you select is
             saved or sent anywhere.
           </p>
         </div>
@@ -1633,13 +1633,13 @@
         <ol>
           <li>Read the setting and commit to an answer to the question below.</li>
           <li>
-            Experiment 1: look at one fictional respondent's sorting score,
-            predict what they did in a shortlisting task, and find out.
-            Repeat until you are sure.
+            Experiment 1: for each of three fictional respondents, read the
+            sorting score, predict what they did in a shortlisting task, and
+            find out.
           </li>
           <li>
-            Experiment 2: take each of the five instruments in turn and say
-            what it directly observes.
+            Experiment 2 opens after the third. Take each of the five
+            instruments in turn and say what it directly observes.
           </li>
           <li>Then judge five conclusions somebody might draw.</li>
         </ol>
@@ -1730,8 +1730,9 @@
           sorted words and images under two pairings, producing a latency
           difference score in seconds - larger means faster under one pairing
           than the other. Then they each chose four candidates from eight for
-          a fictional post, four of whom were coded as Uplanders. You get to
-          see the score first.
+          a fictional post, four of whom were coded as Uplanders. Three of
+          the two hundred are picked out below. You see each score first, and
+          the scatter beside you always shows all 200.
         </p>
       </div>
 
@@ -1821,13 +1822,14 @@
       </details>
 
       <section class="interactive" id="latency-lab" data-interactive
-               data-reset-message="Whole page cleared. Back to the opening question, with both experiments closed.">
+               data-reset-message="Whole page cleared. Back to the opening question, with Experiment 1 closed.">
 
         <header class="interactive__header">
           <h3 class="interactive__title">Predict one person from one score</h3>
           <p class="interactive__brief">
-            Nothing is timed. There is no penalty for saying you cannot tell,
-            and that answer is treated seriously.
+            Three respondents, one at a time. Nothing is timed, and there is
+            no penalty for saying you cannot tell - that answer is treated
+            seriously.
           </p>
         </header>
 
@@ -1838,17 +1840,6 @@
             <fieldset>
               <legend>The respondent in front of you</legend>
               <div class="respondent" data-respondent></div>
-              <div class="stage-nav">
-                <button class="button button--secondary" type="button" data-action="prev">
-                  Previous
-                </button>
-                <button class="button button--secondary" type="button" data-action="next">
-                  Next respondent
-                </button>
-                <button class="button button--secondary" type="button" data-action="random">
-                  Jump to a random one
-                </button>
-              </div>
             </fieldset>
 
             <fieldset>
@@ -1862,12 +1853,15 @@
                 <button class="button button--primary" type="button" data-action="reveal">
                   Reveal what they did
                 </button>
+                <button class="button button--secondary" type="button" data-action="next" hidden>
+                  Next respondent
+                </button>
               </div>
               <p class="control__hint" data-guess-note role="status"></p>
             </fieldset>
 
             <fieldset>
-              <legend>Your record so far</legend>
+              <legend>Your record</legend>
               <p class="control__hint" data-tally></p>
             </fieldset>
 
@@ -1920,9 +1914,6 @@
         <p class="interactive__status" data-interactive-status role="status"></p>
 
         <div class="interactive__actions">
-          <button type="button" data-action="auto">
-            Run twenty predictions for me
-          </button>
           <button type="button" data-variant="secondary" data-interactive-reset>
             Reset everything
           </button>
@@ -1947,7 +1938,7 @@
       </div>
 
       <section class="interactive" id="instrument-lab" data-interactive
-               data-reset-message="Whole page cleared. Back to the opening question, with both experiments closed.">
+               data-reset-message="Whole page cleared. Back to the opening question, with Experiment 1 closed.">
 
         <header class="interactive__header">
           <h3 class="interactive__title">What does this one directly observe?</h3>
@@ -3367,10 +3358,28 @@
   var bandsBody = $("[data-bands-body]");
   var classifyLine = $("[data-classify]");
 
-  var EXP1_INITIAL = { index: 0, guess: null, revealed: false, made: 0, hits: 0, declined: 0 };
+  /* Three respondents, in this order, rather than 200 to browse.
+
+     121 and 18 differ by 0.02 s - the width of a rounding error - and went
+     opposite ways. That pair is the whole argument, and it is not a freak: of
+     the thirteen respondents scoring between 0.85 and 1.05 s, four shortlisted
+     more Uplanders, five an even number and four fewer. 111 comes from the
+     other end of the scale and also goes against the trend, so the lesson is
+     not "high scores are unreliable" but "a score is not a person".
+
+     The scatter, the correlation, the band table and the rule check are all
+     still computed from the full 200: the group-level association is real and
+     has to stay visible, or the tool teaches that the instrument measures
+     nothing. */
+  var FEATURED_IDS = [121, 18, 111];
+
+  var EXP1_INITIAL = { step: 0, guess: null, revealed: false, made: 0, hits: 0, declined: 0 };
   var exp1 = null;
 
-  function current() { return PEOPLE[exp1.index]; }
+  function current() {
+    var id = FEATURED_IDS[exp1.step];
+    return PEOPLE.filter(function (p) { return p.id === id; })[0];
+  }
 
   function percentileOf(person) {
     var below = 0;
@@ -3382,7 +3391,8 @@
     clear(respondentBox);
     var person = current();
     respondentBox.appendChild(make("p", "respondent__id",
-      "Respondent " + person.id + " of " + N));
+      "Respondent " + (exp1.step + 1) + " of " + FEATURED_IDS.length +
+      " (number " + person.id + " in the sample of " + N + ")"));
     var row = make("p", "respondent__score");
     row.appendChild(make("span", "respondent__value", fixed(person.d) + " s"));
     row.appendChild(make("span", "respondent__unit", "latency difference score"));
@@ -3555,18 +3565,23 @@
   function renderTally() {
     if (!exp1.made && !exp1.declined) {
       tally.textContent =
-        "No predictions yet. Guessing \"an even shortlist\" every time would " +
-        "be right about " + Math.round(BASE_RATE * 100) + " per cent of the " +
-        "time, which is the number your own accuracy has to beat.";
+        "No predictions yet. Across the full 200, guessing \"an even " +
+        "shortlist\" every time would be right about " +
+        Math.round(BASE_RATE * 100) + " per cent of the time without looking " +
+        "at a single score.";
       return;
     }
+    /* Three trials cannot establish an accuracy rate, and saying so is part of
+       the teaching: the figure that carries the argument is the correlation
+       over all 200, not the learner's score out of three. */
     tally.textContent =
       "You have committed to " + exp1.made + " prediction" +
-      (exp1.made === 1 ? "" : "s") + " and been right " + exp1.hits +
-      (exp1.made ? " (" + Math.round((exp1.hits / exp1.made) * 100) + " per cent)" : "") +
-      ". Always answering \"an even shortlist\" would be right about " +
-      Math.round(BASE_RATE * 100) + " per cent of the time. You have declined " +
-      "to guess " + exp1.declined + " time" + (exp1.declined === 1 ? "" : "s") + ".";
+      (exp1.made === 1 ? "" : "s") + ", been right " + exp1.hits +
+      " and declined to guess " + exp1.declined + " time" +
+      (exp1.declined === 1 ? "" : "s") + ". Three cases cannot establish an " +
+      "accuracy rate - always answering \"an even shortlist\" would be right " +
+      "about " + Math.round(BASE_RATE * 100) + " per cent of the time across " +
+      "the full 200, and that is the number worth arguing with.";
   }
 
   function renderReveal() {
@@ -3609,6 +3624,52 @@
       "third number that agrees with neither of the other two in any reliable " +
       "way. Three instruments, three answers, one fictional person."));
     revealBox.appendChild(box);
+
+    /* The second respondent is the argument. Two scores 0.02 s apart, opposite
+       outcomes - and the band count that shows the pair is ordinary. */
+    if (exp1.step === 1) {
+      var first = PEOPLE.filter(function (p) { return p.id === FEATURED_IDS[0]; })[0];
+      var near = PEOPLE.filter(function (p) {
+        return p.d >= 0.85 && p.d <= 1.05;
+      });
+      var split = { fewer: 0, even: 0, more: 0 };
+      near.forEach(function (p) { split[bandOf(p.shortlist)] += 1; });
+      var pair = make("div", "verdict");
+      pair.setAttribute("data-tone", "warn");
+      pair.appendChild(make("h5", "verdict__title",
+        "Same score. Opposite shortlist."));
+      pair.appendChild(make("p", "verdict__body",
+        "Respondent " + first.id + " scored " + fixed(first.d) +
+        " s and shortlisted " + first.shortlist + " of 4. This one scored " +
+        fixed(person.d) + " s and shortlisted " + person.shortlist +
+        ". The scores differ by " + fixed(Math.abs(person.d - first.d)) +
+        " s and the behaviour differs by " +
+        Math.abs(person.shortlist - first.shortlist) + " candidates."));
+      pair.appendChild(make("p", "verdict__note",
+        "Not a freak pairing: of the " + near.length + " respondents scoring " +
+        "between 0.85 and 1.05 s, " + split.more + " shortlisted more " +
+        "Uplanders, " + split.even + " an even number and " + split.fewer +
+        " fewer. At any one score, the whole range of behaviour is still there."));
+      revealBox.appendChild(pair);
+    }
+
+    /* The third closes it: the same failure from the other end of the scale. */
+    if (exp1.step === FEATURED_IDS.length - 1) {
+      var close = make("div", "verdict");
+      close.setAttribute("data-tone", "good");
+      close.appendChild(make("h5", "verdict__title",
+        "The instrument is not the construct"));
+      close.appendChild(make("p", "verdict__body",
+        "Three respondents, and the score told you nothing usable about any of " +
+        "them - including this one, at the low end. Across all 200 the " +
+        "correlation is " + fixed(R) + ": real, and far too small to read " +
+        "backwards onto a person. A group-level association and an individual " +
+        "prediction are different claims."));
+      close.appendChild(make("p", "verdict__note",
+        "The scatter beside you is the honest picture. Experiment 2, below, " +
+        "asks the same question of four other instruments."));
+      revealBox.appendChild(close);
+    }
   }
 
   function renderExp1(options) {
@@ -3618,31 +3679,36 @@
     renderBands();
     renderTally();
     renderReveal();
+    if (nextButton) {
+      nextButton.hidden =
+        !exp1.revealed || exp1.step >= FEATURED_IDS.length - 1;
+    }
     if (options && options.announce) {
       latencyShell.announce(options.announce, { immediate: true });
     }
   }
 
-  function goTo(index) {
-    exp1.index = ((index % N) + N) % N;
+  function goTo(step) {
+    if (step >= FEATURED_IDS.length) { return; }
+    exp1.step = step;
     exp1.guess = null;
     exp1.revealed = false;
     guessNote.textContent = "";
     renderExp1({
-      announce: "Respondent " + current().id + ", latency difference score " +
-        fixed(current().d) + " seconds. Their shortlist is not shown yet."
+      announce: "Respondent " + (step + 1) + " of " + FEATURED_IDS.length +
+        ", latency difference score " + fixed(current().d) +
+        " seconds. Their shortlist is not shown yet."
     });
   }
 
-  $('[data-action="prev"]').addEventListener("click", function () { goTo(exp1.index - 1); });
-  $('[data-action="next"]').addEventListener("click", function () { goTo(exp1.index + 1); });
-  $('[data-action="random"]').addEventListener("click", function () {
-    goTo(Math.floor(Math.random() * N));
-  });
+  var nextButton = $('[data-action="next"]');
+  nextButton.addEventListener("click", function () { goTo(exp1.step + 1); });
 
   $('[data-action="reveal"]').addEventListener("click", function () {
     if (exp1.revealed) {
-      guessNote.textContent = "Already revealed. Move to another respondent.";
+      guessNote.textContent = exp1.step < FEATURED_IDS.length - 1
+        ? "Already revealed. Move on to the next respondent."
+        : "Already revealed. Experiment 2 is open below.";
       latencyShell.announce(guessNote.textContent, { immediate: true });
       return;
     }
@@ -3662,37 +3728,21 @@
       exp1.made += 1;
       if (exp1.guess === actual) { exp1.hits += 1; }
     }
+    var last = exp1.step === FEATURED_IDS.length - 1;
     renderExp1({
-      announce: "Respondent " + current().id + " shortlisted " +
+      announce: "Respondent " + (exp1.step + 1) + " shortlisted " +
         current().shortlist + " of 4. " +
-        (exp1.made
-          ? "Your running accuracy is " +
-            Math.round((exp1.hits / exp1.made) * 100) + " per cent against a " +
-            "base rate of " + Math.round(BASE_RATE * 100) + " per cent."
-          : "You have declined to guess " + exp1.declined + " times.")
+        (last ? "That is the third and last. Experiment 2 is now open below."
+              : "Move on to the next respondent.")
     });
+    if (last) { openExpTwo(); }
   });
 
-  $('[data-action="auto"]').addEventListener("click", function () {
-    /* Twenty respondents, always predicting the direction the score points.
-       Deterministic: it walks forward from wherever the learner is. */
-    var start = exp1.index;
-    for (var step = 1; step <= 20; step += 1) {
-      var person = PEOPLE[(start + step) % N];
-      var predicted = person.d > D_MEDIAN ? "fewer" : "more";
-      exp1.made += 1;
-      if (predicted === bandOf(person.shortlist)) { exp1.hits += 1; }
-    }
-    exp1.index = (start + 20) % N;
-    exp1.guess = null;
-    exp1.revealed = false;
-    renderExp1({
-      announce: "Twenty predictions made from the score alone. Accuracy " +
-        Math.round((exp1.hits / exp1.made) * 100) + " per cent, against " +
-        Math.round(BASE_RATE * 100) + " per cent for answering \"even\" every " +
-        "time without looking at anything."
-    });
-  });
+  /* "Run twenty predictions for me" is gone. It sampled twenty respondents to
+     show that a score-based rule underperforms the base rate - which the rule
+     check under the scatter already states, computed over all two hundred and
+     visible without pressing anything. A twenty-draw estimate of a figure the
+     page can report exactly was the weaker of the two. */
 
   /* =======================================================================
      Experiment 2
@@ -4011,12 +4061,22 @@
 
   function openLabs() {
     expOne.hidden = false;
-    expTwo.hidden = false;
     renderExp1();
     renderExp2();
     latencyShell.announce(
-      "Both experiments open. Experiment 1 starts at respondent 1.",
+      "Experiment 1 open, at the first of three respondents.",
       { immediate: true });
+  }
+
+  /* Experiment 2 opens once the three respondents are done, so the instruments
+     are compared by somebody who has already watched one of them fail. */
+  function openExpTwo() {
+    if (!expTwo.hidden) { return; }
+    expTwo.hidden = false;
+    renderExp2();
+    latencyShell.announce(
+      "Experiment 2 is now open: five instruments, and what each one directly " +
+      "observes.", { immediate: true });
   }
 
   openingForm.addEventListener("submit", function (event) {
@@ -4076,7 +4136,7 @@
   latencyShell.reset({ silent: true });
   instrumentShell.reset({ silent: true });
   latencyShell.announce(
-    "Ready. Answer the question above to open both experiments.",
+    "Ready. Answer the question above to open Experiment 1.",
     { immediate: true });
 })();
 

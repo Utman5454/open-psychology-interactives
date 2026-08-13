@@ -1,9 +1,10 @@
 /* =========================================================================
    Memory Systems Detective
    -------------------------------------------------------------------------
-   Five fictional profiles across seven memory measures, and five claims about
+   Three fictional profiles across six memory measures, and three claims about
    separable memory systems. For each claim on each profile the learner decides
    whether the profile supports it, counts against it, or cannot decide it.
+   A fourth profile is available afterwards for anyone who wants it.
 
    THE EDUCATIONAL MODEL
    ---------------------
@@ -15,28 +16,54 @@
    A claim is supported by a profile only when one measure is clearly below its
    controls while a COMPARABLE measure clearly is not. It is counted against
    when the profile shows the opposite of what the claim predicts. Otherwise
-   the profile cannot decide it - which is true of twelve of the twenty-five
-   cells, and is the point of the exercise.
+   the profile cannot decide it - which is true of three of the nine core
+   cells. Profile A settles all three claims and is the only one that does,
+   which is what makes it a textbook case rather than a typical one.
 
-   The intended grid (rows are claims, columns profiles A to E):
+   The core grid (rows are claims, columns profiles), plus the optional D:
 
-                                  A         B         C         D         E
-     1 short-term vs episodic   support   support   support   cannot    cannot
-     2 episodic vs semantic     support   cannot    support   cannot    cannot
-     3 episodic vs skill        support   cannot    support   cannot    cannot
-     4 retrieval vs storage     cannot    cannot    cannot    cannot    cannot
-     5 one general reduction    against   against   against   against   support
+                                  A         B         E    |    D
+     1 short-term vs episodic   support   support   cannot |  cannot
+     2 episodic vs skill        support   cannot    cannot |  cannot
+     3 one general reduction    against   against   support|  against
 
-   Row 4 is never supported anywhere, deliberately. The pattern always cited
-   for a retrieval account - recall at floor with normal recognition - does not
-   establish one, because recognition is the easier task and a trace too weak
-   to be recalled can still be strong enough to be recognised.
+   A and B are the crossover: A is normal on span and at floor after a delay,
+   B is the reverse. Neither alone rules out one task simply being harder; the
+   pair does. E is the profile with nothing clearly wrong anywhere, where the
+   right answer is that no contrast exists and the case notes explain the shape
+   without any damage. D is the material confound: an apparent dissociation
+   that cannot be pinned on the memory system it appears to implicate, because
+   the tasks differ in their material as well.
+
+   WHAT WAS CUT, AND WHY
+   ---------------------
+   The grid was five claims by five profiles. Two rows and one column earned
+   nothing:
+
+     - Profile C (recall at floor, recognition normal) had a verdict column
+       identical to profile A on every one of the five claims. Its one distinct
+       contribution was the retrieval-versus-storage trap, which is a question
+       about designing a better test rather than about reading this profile -
+       so it is now the challenge task, where it does more work.
+     - "Episodic vs semantic" had a verdict row identical to "episodic vs
+       skill" on every profile. Skill learning is kept because it is the
+       stronger contrast and because it is the one measure not made of words,
+       which is what makes D's confound visible.
+     - "Retrieval vs storage" was `cannot` in all twenty-five cells. A row that
+       never discriminates cannot teach a discrimination; the point it carries
+       is in the debrief and in the challenge.
+
+   Removing them leaves every retained cell doing work no other cell does.
 
    DELIBERATE SIMPLIFICATIONS
    --------------------------
-   Seven measures is very few; real batteries separate several things merged
-   here. The intended answers are judgements, and reasonable people would argue
-   about several cells - which the tool says out loud. No anatomy appears
+   Six measures is very few; real batteries separate several things merged
+   here. Span with manipulation was one of seven and is gone: it moved with
+   immediate span in every profile and no claim distinguished them, so it was
+   a second reading of the same thing.
+
+   The intended answers are judgements, and reasonable people would argue about
+   several cells - which the tool says out loud. No anatomy appears
    anywhere, because these distinctions are between what tasks require. No real
    person, published case, clinical instrument or syndrome name is used.
 
@@ -50,14 +77,12 @@
   var WITHIN_RANGE = -1.2;    /* above this counts as within the control range */
 
   /* =======================================================================
-     The seven measures
+     The six measures
      ===================================================================== */
 
   var MEASURES = [
     { id: "span", name: "Immediate span",
       asks: "Repeat a list of digits back straight away" },
-    { id: "working", name: "Span with manipulation",
-      asks: "Repeat the same list back in reverse order" },
     { id: "learning", name: "Learning across trials",
       asks: "How many of sixteen words are recalled by the fifth learning trial" },
     { id: "recall", name: "Free recall after 30 minutes",
@@ -71,7 +96,11 @@
   ];
 
   /* =======================================================================
-     The five fictional profiles
+     The fictional profiles
+
+     The first three are the core grid. D is marked optional: it is reachable
+     from the start, but it is not needed for the argument and the page does
+     not put it in the learner's way until the nine core cells are done.
      ===================================================================== */
 
   var CASES = [
@@ -80,7 +109,7 @@
       brief:
         "Severely impaired on everything after the moment, and unimpaired " +
         "before it.",
-      scores: { span: 0.2, working: -0.3, learning: -3.8, recall: -4.5,
+      scores: { span: 0.2, learning: -3.8, recall: -4.5,
         recognition: -3.6, semantic: 0.1, skill: -0.2 },
       notes:
         "A fictional person of 54, tested eighteen months after an illness " +
@@ -94,7 +123,7 @@
       brief:
         "The reverse shape: very poor at holding material for seconds, and " +
         "nearly normal thirty minutes later.",
-      scores: { span: -3.4, working: -3.0, learning: -1.1, recall: -0.9,
+      scores: { span: -3.4, learning: -1.1, recall: -0.9,
         recognition: -0.2, semantic: 0.3, skill: 0.1 },
       notes:
         "A fictional person of 47, tested a year after a stroke. Left school " +
@@ -103,39 +132,11 @@
         "events. Tested in their first language, with hearing checked."
     },
     {
-      id: "C", title: "Profile C",
-      brief:
-        "Nothing recalled after thirty minutes, and recognition entirely " +
-        "normal.",
-      scores: { span: -0.1, working: -0.4, learning: -2.9, recall: -4.1,
-        recognition: -0.3, semantic: 0.2, skill: -0.1 },
-      notes:
-        "A fictional person of 61, tested two years after an injury. Recall " +
-        "produces almost nothing; shown a word beside one that was not on the " +
-        "list, they pick correctly nearly every time and say they are guessing. " +
-        "Good effort throughout, no reported low mood, no medication affecting " +
-        "alertness."
-    },
-    {
-      id: "D", title: "Profile D",
-      brief:
-        "Word knowledge itself has gone, and every measure that uses words has " +
-        "gone with it.",
-      scores: { span: -0.3, working: -0.6, learning: -2.4, recall: -2.8,
-        recognition: -2.2, semantic: -4.2, skill: -0.2 },
-      notes:
-        "A fictional person of 66, tested during a slowly progressive illness. " +
-        "Struggles to name common objects and cannot define words they used " +
-        "routinely two years ago. Day-to-day events are recounted accurately " +
-        "and in order. Everything except the skill task in this battery is " +
-        "made of words."
-    },
-    {
       id: "E", title: "Profile E",
       brief:
-        "A little below the control average on all seven measures, and " +
-        "selectively below on none.",
-      scores: { span: -1.1, working: -1.3, learning: -1.2, recall: -1.4,
+        "A little below the control average on every measure, and clearly " +
+        "below on none.",
+      scores: { span: -1.1, learning: -1.2, recall: -1.4,
         recognition: -1.0, semantic: -0.9, skill: -1.2 },
       notes:
         "A fictional person of 39, referred after reporting that their memory " +
@@ -144,11 +145,25 @@
         "describing themselves as low in mood since the injury. Left school at " +
         "16; the control group for this battery was recruited from a " +
         "university. Tested late in the afternoon after a two-hour session."
-    }
+    },
+    {
+      id: "D", title: "Profile D", optional: true,
+      brief:
+        "Word knowledge itself has gone, and every measure that uses words has " +
+        "gone with it.",
+      scores: { span: -0.3, learning: -2.4, recall: -2.8,
+        recognition: -2.2, semantic: -4.2, skill: -0.2 },
+      notes:
+        "A fictional person of 66, tested during a slowly progressive illness. " +
+        "Struggles to name common objects and cannot define words they used " +
+        "routinely two years ago. Day-to-day events are recounted accurately " +
+        "and in order. Everything except the skill task in this battery is " +
+        "made of words."
+    },
   ];
 
   /* =======================================================================
-     The five claims, and the intended verdict on each profile
+     The three claims, and the intended verdict on each profile
      ===================================================================== */
 
   var VERDICTS = [
@@ -164,7 +179,7 @@
         "Holding material for seconds and remembering it for half an hour do " +
         "not depend on all the same things.",
       answers: {
-        A: "support", B: "support", C: "support", D: "cannot", E: "cannot"
+        A: "support", B: "support", D: "cannot", E: "cannot"
       },
       why: {
         A:
@@ -176,9 +191,6 @@
           "The reverse shape, and worth more than profile A: span three and a " +
           "half SDs below, delayed recall within the control range. Put A and " +
           "B together and you have a crossover.",
-        C:
-          "Span at the control average, delayed recall four SDs below. Same " +
-          "structure of evidence as profile A.",
         D:
           "Span is normal and delayed recall is nearly three SDs below, which " +
           "looks like support - until you notice that word knowledge is more " +
@@ -191,41 +203,12 @@
       }
     },
     {
-      id: "semantic",
-      text:
-        "Remembering an episode and knowing what a word means do not depend on " +
-        "all the same things.",
-      answers: {
-        A: "support", B: "cannot", C: "support", D: "cannot", E: "cannot"
-      },
-      why: {
-        A:
-          "Word knowledge sits at the control average while learning and recall " +
-          "are around four SDs below. A person who cannot retain anything new " +
-          "and can still define words shows that the two do not require all the " +
-          "same things.",
-        B:
-          "Word knowledge is normal, and so is delayed recall. With neither " +
-          "clearly impaired there is no contrast to read.",
-        C:
-          "Same structure as profile A: word knowledge intact, learning and " +
-          "recall at floor.",
-        D:
-          "Both are impaired, which supports nothing either way. Worse, the " +
-          "episodic measures here are made of words, so their impairment may " +
-          "be a consequence of the word-knowledge loss rather than independent " +
-          "of it.",
-        E:
-          "Nothing is clearly impaired, so nothing is contrasted."
-      }
-    },
-    {
       id: "skill",
       text:
         "Learning a new fact and getting better at a physical skill do not " +
         "depend on all the same things.",
       answers: {
-        A: "support", B: "cannot", C: "support", D: "cannot", E: "cannot"
+        A: "support", B: "cannot", D: "cannot", E: "cannot"
       },
       why: {
         A:
@@ -236,9 +219,6 @@
         B:
           "Skill learning is normal, and so is delayed recall. No contrast, so " +
           "nothing supported.",
-        C:
-          "Skill learning normal, learning and recall at floor. Same structure " +
-          "as profile A.",
         D:
           "Skill learning is intact and the verbal measures are not - but the " +
           "skill task differs from them in the memory it is supposed to tap " +
@@ -249,55 +229,23 @@
       }
     },
     {
-      id: "retrieval",
-      text:
-        "Where a profile shows poor recall, the difficulty is at retrieval " +
-        "rather than at storage.",
-      answers: {
-        A: "cannot", B: "cannot", C: "cannot", D: "cannot", E: "cannot"
-      },
-      why: {
-        A:
-          "Recognition is nearly as impaired as recall, so there is no evidence " +
-          "here of a difficulty specific to producing the material. That is " +
-          "compatible with a storage problem and also with a retrieval problem " +
-          "severe enough to defeat both tasks.",
-        B:
-          "Neither recall nor recognition is clearly impaired, so the question " +
-          "does not arise for this profile.",
-        C:
-          "This is the pattern the retrieval account is always argued from, " +
-          "and it does not establish it. Recognition is the easier task: a " +
-          "trace too weak to be produced from nothing can still be strong " +
-          "enough to be picked out of two options. Suggestive, not decisive.",
-        D:
-          "Recall and recognition are impaired to a similar degree, and both " +
-          "use words this person no longer knows well. Nothing here separates " +
-          "retrieval from storage.",
-        E:
-          "Nothing is clearly impaired, so there is no poor recall to explain."
-      }
-    },
-    {
       id: "general",
       text:
         "This profile is better explained by one general reduction in capacity " +
         "than by any selective loss.",
       answers: {
-        A: "against", B: "against", C: "against", D: "against", E: "support"
+        A: "against", B: "against", D: "against", E: "support"
       },
       why: {
         A:
           "Span, word knowledge and skill learning all sit at the control " +
-          "average while three measures are around four SDs below. A general " +
-          "reduction cannot leave four measures untouched.",
+          "average while learning, recall and recognition are three to four " +
+          "and a half SDs below. A general reduction cannot leave three " +
+          "measures untouched.",
         B:
-          "Span is three and a half SDs below and four other measures are at or " +
-          "above the control average. The impairment is confined to one end of " +
-          "the battery.",
-        C:
-          "Recognition, span, word knowledge and skill learning are all normal. " +
-          "Whatever is wrong is not general.",
+          "Span is three and a half SDs below and nothing else is clearly " +
+          "outside the control range. The impairment is confined to one end " +
+          "of the battery.",
         D:
           "The one thing this profile is not is uniform: word knowledge is four " +
           "SDs below and span and skill learning are at the control average. " +
@@ -314,6 +262,12 @@
   ];
 
   var VERDICT_SHORT = { support: "supports", against: "against", cannot: "cannot decide" };
+
+  /* The nine cells the argument actually runs on. Profile D is judged the same
+     way and appears in the same grid, but it is not counted towards finishing,
+     so nobody is held at the exercise by an optional column. */
+  var CORE_CASES = CASES.filter(function (c) { return !c.optional; });
+  var CORE_CELLS = CORE_CASES.length * CLAIMS.length;
 
   /* =======================================================================
      Helpers
@@ -378,6 +332,7 @@
   var notesBody = $("[data-notes-body]");
   var claimFeedback = $("[data-claim-feedback]");
   var gridTable = $("[data-grid-table]");
+  var gridHead = $("[data-grid-head]");
   var gridNote = $("[data-grid-note]");
   var progress = $("[data-progress]");
   var controlsForm = $("[data-interactive-controls]");
@@ -399,6 +354,9 @@
 
   /* --- Controls, built once --------------------------------------------- */
 
+  /* The optional profile sits inside a disclosure rather than being disabled,
+     so it is one keyboard step away and announced as collapsed. */
+  var extraDetails = null;
   CASES.forEach(function (item, index) {
     var label = make("label", "control--choice");
     var input = document.createElement("input");
@@ -415,7 +373,18 @@
     });
     label.appendChild(input);
     label.appendChild(document.createTextNode(item.title + " - " + shortLabel(item)));
-    caseControls.appendChild(label);
+
+    if (!item.optional) {
+      caseControls.appendChild(label);
+      return;
+    }
+    if (!extraDetails) {
+      extraDetails = make("details", "stage__more");
+      extraDetails.appendChild(make("summary", null,
+        "One more profile, when the three are done"));
+      caseControls.appendChild(extraDetails);
+    }
+    extraDetails.appendChild(label);
   });
 
   function shortLabel(item) {
@@ -478,13 +447,21 @@
     renderMeasureTable(item);
     renderGrid();
 
-    var answered = countAnswered();
-    progress.textContent = answered + " of " + (CASES.length * CLAIMS.length) +
-      " cells in the grid judged.";
+    var core = countCoreAnswered();
+    var extra = countAnswered() - core;
+    progress.textContent = core + " of " + CORE_CELLS + " judged."
+      + (extra ? " Plus " + extra + " on the optional profile." : "");
   }
 
   function countAnswered() {
     return CASES.reduce(function (total, item) {
+      var row = state.answers[item.id] || {};
+      return total + Object.keys(row).length;
+    }, 0);
+  }
+
+  function countCoreAnswered() {
+    return CORE_CASES.reduce(function (total, item) {
       var row = state.answers[item.id] || {};
       return total + Object.keys(row).length;
     }, 0);
@@ -566,14 +543,36 @@
     });
   }
 
+  /* Which columns the grid shows: the three core profiles always, and the
+     optional one only once it has been used, so an untouched column is never
+     sitting there as unfinished work. */
+  function gridCases() {
+    return CASES.filter(function (item) {
+      return !item.optional || Object.keys(state.answers[item.id] || {}).length;
+    });
+  }
+
   function renderGrid() {
+    var shown = gridCases();
+    clear(gridHead);
+    var headRow = make("tr");
+    var corner = make("th", null, "Claim");
+    corner.setAttribute("scope", "col");
+    headRow.appendChild(corner);
+    shown.forEach(function (item) {
+      var th = make("th", null, item.id);
+      th.setAttribute("scope", "col");
+      headRow.appendChild(th);
+    });
+    gridHead.appendChild(headRow);
+
     clear(gridTable);
     CLAIMS.forEach(function (claim, claimIndex) {
       var tr = make("tr");
       var th = make("th", null, (claimIndex + 1) + ". " + claim.text);
       th.setAttribute("scope", "row");
       tr.appendChild(th);
-      CASES.forEach(function (item) {
+      shown.forEach(function (item) {
         var given = (state.answers[item.id] || {})[claim.id];
         var intended = claim.answers[item.id];
         var cell = make("td", null,
@@ -586,12 +585,11 @@
       gridTable.appendChild(tr);
     });
 
-    var answered = countAnswered();
-    gridNote.textContent = answered < CASES.length * CLAIMS.length
+    gridNote.textContent = countCoreAnswered() < CORE_CELLS
       ? "Cells you have not judged yet show a dash."
-      : "All twenty-five judged. Eight cells support a claim, five count " +
-        "against one, twelve cannot decide - and row 4 is never supported " +
-        "anywhere.";
+      : "All nine judged. Four cells support a claim, two count against one, "
+        + "and three cannot decide either way. Only profile A settles all "
+        + "three claims.";
   }
 
   /* --- Judging ---------------------------------------------------------- */
@@ -628,15 +626,13 @@
     claimFeedback.setAttribute("data-tone", right ? "good" : "caution");
     claimFeedback.hidden = false;
 
-    renderGrid();
-    progress.textContent = countAnswered() + " of " +
-      (CASES.length * CLAIMS.length) + " cells in the grid judged.";
+    render();
 
-    if (countAnswered() === CASES.length * CLAIMS.length) { gridDetails.open = true; }
+    if (countCoreAnswered() === CORE_CELLS) { gridDetails.open = true; }
 
     shell.announce(
       (right ? "Agreed. " : "Intended answer: " + VERDICT_SHORT[intended] + ". ") +
-      countAnswered() + " of 25 cells judged.", { immediate: true });
+      countCoreAnswered() + " of " + CORE_CELLS + " judged.", { immediate: true });
   }
 
   /* --- Opening prediction ----------------------------------------------- */
@@ -706,7 +702,7 @@
     profilesSection.hidden = false;
     render();
     $("#profiles-heading").focus();
-    shell.announce("Profiles open. Profile A, claim 1 of 5.", { immediate: true });
+    shell.announce("Profiles open. Profile A, claim 1 of 3.", { immediate: true });
   }
 
   /* --- Challenge -------------------------------------------------------- */
@@ -794,6 +790,7 @@
       function (input) { input.checked = input.value === "A"; });
     syncVerdictRadios();
     gridDetails.open = false;
+    if (extraDetails) { extraDetails.open = false; }
     unlockForm(openingForm);
     openingFeedback.hidden = true;
     openingError.hidden = true;

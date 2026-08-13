@@ -135,70 +135,6 @@
   font-size: var(--text-sm);
 }
 
-/* -------------------------------------------------------------------------
-   Stage track
-   -------------------------------------------------------------------------
-   Which of the three stages the student is in. The current stage carries
-   aria-current="step" and the completed ones carry a visually hidden word,
-   so the state is never conveyed by weight or colour alone.
-   ---------------------------------------------------------------------- */
-
-.stage-track {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 var(--space-5);
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-  font-size: var(--text-sm);
-}
-
-.stage-track > li {
-  margin-top: 0;
-  flex: 1 1 10rem;
-  padding: var(--space-2) var(--space-3);
-  border: 1px solid var(--colour-border);
-  border-bottom: 3px solid var(--colour-border);
-  border-radius: var(--radius-sm);
-  background-color: var(--colour-surface);
-  color: var(--colour-text-muted);
-}
-
-.stage-track > li > span {
-  font-variant-numeric: tabular-nums;
-  font-weight: 700;
-}
-
-.stage-track > li[data-state="done"] {
-  border-bottom-color: var(--colour-border-strong);
-  color: var(--colour-text);
-}
-
-.stage-track > li[aria-current="step"] {
-  border-bottom-color: var(--colour-accent);
-  background-color: var(--colour-accent-soft);
-  color: var(--colour-text);
-  font-weight: 650;
-}
-
-/* -------------------------------------------------------------------------
-   Goal banner
-   ---------------------------------------------------------------------- */
-
-.goal {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: var(--space-2) var(--space-3);
-  margin: var(--space-4) 0 0;
-  padding: var(--space-3) var(--space-4);
-  border: 1px solid var(--colour-border-strong);
-  border-left: 4px solid var(--colour-accent);
-  border-radius: var(--radius-sm);
-  background-color: var(--colour-surface-raised);
-  font-size: var(--text-sm);
-}
-
 .goal__label {
   flex: none;
   font-size: var(--text-xs);
@@ -220,122 +156,66 @@
    Item bank
    ---------------------------------------------------------------------- */
 
-.bank__intro {
-  margin: 0;
-  font-size: var(--text-sm);
-  color: var(--colour-text-muted);
-}
-
-.bank__group + .bank__group {
-  margin-top: var(--space-4);
-}
-
-.bank__list {
+/* The scale, as a read-only list. An item that repeats another's wording is
+   marked by a left rule, a tinted ground AND the words "another way of asking
+   ...", so the marking never rests on colour. */
+.scale {
   list-style: none;
-  padding: 0;
   margin: 0;
+  padding: 0;
   display: grid;
-  gap: 0.25rem;
+  gap: 0.4rem;
 }
 
-.bank__list > li {
-  margin-top: 0;
-}
-
-.item {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.6rem;
-  min-height: 2.75rem;
-  padding: 0.45rem 0.6rem;
-  border: 1px solid transparent;
-  border-radius: var(--radius-sm);
-  font-size: var(--text-sm);
-  line-height: 1.35;
-  cursor: pointer;
-}
-
-.item:hover {
-  background-color: var(--colour-accent-soft);
-}
-
-.item input {
-  width: 1.15rem;
-  height: 1.15rem;
-  margin-top: 0.15rem;
-  flex: none;
-  accent-color: var(--colour-accent);
-}
-
-/* A selected item is already marked by its own checkbox; this is a redundant
-   visual cue for scanning a long list, not the only one. */
-.item:has(input:checked) {
-  border-color: var(--colour-border-strong);
-  background-color: var(--colour-surface-raised);
-  font-weight: 550;
-}
-
-.item input:disabled {
-  cursor: not-allowed;
-}
-
-.item:has(input:disabled) {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-.item:has(input:disabled):hover {
-  background-color: transparent;
-}
-
-/* -------------------------------------------------------------------------
-   Alpha meter
-   -------------------------------------------------------------------------
-   A redundant visual for the headline number, which is also printed in the
-   readout below it. Hidden from assistive technology for that reason.
-   ---------------------------------------------------------------------- */
-
-.meter {
+.scale__item {
   display: grid;
-  gap: 0.35rem;
-}
-
-.meter__scale {
-  position: relative;
-  height: 1.5rem;
-  border: 1px solid var(--colour-border-strong);
+  grid-template-columns: minmax(5.5rem, auto) 1fr;
+  gap: 0.15rem 0.75rem;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--colour-border);
+  border-left: 4px solid var(--colour-border);
   border-radius: var(--radius-sm);
-  background-color: var(--colour-surface);
-  overflow: hidden;
+  background: var(--colour-surface);
 }
 
-.meter__fill {
-  height: 100%;
-  width: 0;
-  background-color: var(--colour-accent);
-  transition: width 220ms ease-out;
+.scale__item[data-repeated="yes"] {
+  border-left-color: var(--colour-warning, #b8860b);
+  background: var(--colour-surface-alt, var(--colour-surface));
 }
 
-/* The Round 1 threshold, drawn as a line with a label beneath the scale. */
-.meter__target {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background-color: var(--colour-text);
-}
-
-.meter__labels {
-  display: flex;
-  justify-content: space-between;
-  font-size: var(--text-xs);
+.scale__area {
+  grid-column: 1;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
   color: var(--colour-text-muted);
-  font-variant-numeric: tabular-nums;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .meter__fill {
-    transition: none;
+.scale__text {
+  grid-column: 2;
+}
+
+.scale__tag {
+  grid-column: 2;
+  font-size: 0.82rem;
+  color: var(--colour-text-muted);
+}
+
+@media (max-width: 30rem) {
+  .scale__item {
+    grid-template-columns: 1fr;
+  }
+  .scale__area,
+  .scale__text,
+  .scale__tag {
+    grid-column: 1;
+  }
+}
+
+@media (forced-colors: active) {
+  .scale__item[data-repeated="yes"] {
+    border-left-color: Highlight;
   }
 }
 
@@ -647,34 +527,14 @@
    ---------------------------------------------------------------------- */
 
 @media (forced-colors: active) {
-  .stage-track > li,
   .goal,
   .verdict,
   .feedback,
   .prediction__error,
   .prediction__readback,
-  .meter__scale,
+  .scale__item,
   .reveal__figures > li {
     border: 1px solid CanvasText;
-  }
-
-  /* Current stage: the accent background is gone, so mark it with a heavier
-     border. aria-current still carries this for assistive technology. */
-  .stage-track > li[aria-current="step"] {
-    border: 2px solid Highlight;
-  }
-
-  /* A selected item is distinguished by the checkbox itself in this mode. */
-  .item:has(input:checked) {
-    border-color: CanvasText;
-  }
-
-  .meter__fill {
-    background-color: Highlight;
-  }
-
-  .meter__target {
-    background-color: CanvasText;
   }
 }
 

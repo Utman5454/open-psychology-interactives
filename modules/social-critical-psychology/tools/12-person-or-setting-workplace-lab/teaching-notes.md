@@ -12,7 +12,7 @@ sitting at 74 because of a rota.
 
 Do not tell the room that more evidence is coming. Let them commit to round 1 believing that is the file. The moment worth having is the one where somebody who confidently chose the individual explanation at round 1 reads item 11 and has to say out loud what changed.
 
-And then push the other way. The correlation of 0.61 does not go away when the rota changes. Those individual differences are real, replicable and stable, and a student who concludes at round 3 that they were an illusion has learned the wrong lesson as thoroughly as the one who stopped at round 1.
+And then push the other way. The correlation of 0.61 does not go away when the rota changes. Those individual differences are real, replicable and stable, and a student who concludes at round 2 that they were an illusion has learned the wrong lesson as thoroughly as the one who stopped at round 1.
 
 Run the two ten-unit extremes back to back: everything individual and relational, against the two structural changes alone. The second gets a lower exhaustion score. Then read what each one leaves untouched, and notice that the structural combination leaves two people with a documented training gap exactly where they were.
 
@@ -39,10 +39,13 @@ After the activity a student should be able to:
 
 ## Estimated duration
 
-- **Demonstration from the front:** 10 minutes — round 1, then round 3, then the
+- **Demonstration from the front:** 8 minutes — round 1, then round 2, then the
   worked example in experiment 2.
-- **Students working through both experiments:** 25 minutes.
-- **With the challenge and the debrief:** 55–65 minutes.
+- **Students working through both experiments:** 20 minutes.
+- **With the challenge and the debrief:** 40 minutes.
+
+The evidence now arrives in two rounds rather than three: round 1 is the
+individual-level file, round 2 is everything else at once. Nothing was cut.
 
 ## Preparation
 
@@ -52,7 +55,7 @@ you will handle the two failure modes, because both will appear in the room:
 - the student who commits to the individual explanation at round 1 and feels
   caught out — they were not caught out; round 1 supports that reading, and the
   tool says so;
-- the student who reaches round 3 and concludes that the individual differences
+- the student who reaches round 2 and concludes that the individual differences
   were an illusion — they were not; the correlation is still there after every
   intervention, and two staff still have a training gap that no rota change
   closes.
@@ -61,13 +64,15 @@ you will handle the two failure modes, because both will appear in the room:
 
 1. **Round 1, and do not tell them more is coming.** Read the four items, take a
    vote, and record it. The individual explanation will win, and it should.
-2. **Round 3.** Read item 11 aloud: two teams matched at recruitment, on the same
+2. **Round 2.** Read item 11 aloud: two teams matched at recruitment, on the same
    floor, thirty-six points apart. Take the vote again. Then point at the trail
    in the pinned panel and say: *nothing about Team B changed between those two
    votes.*
 3. **Experiment 2, "Worked example".** It models both ten-unit extremes.
-   Everything individual and relational reaches **50**; the two structural
-   changes alone reach **35**, below Team A's 38.
+   Everything individual and relational reaches **53**; the two structural
+   changes alone reach **40**, which is close to Team A's 38 without quite
+   reaching it — worth saying aloud, because a structural remedy is not a
+   guarantee of parity either.
 4. **Then read what the structural row leaves running.** Two staff still have a
    documented training gap. That is the sentence that stops the session becoming
    a lecture on how structure beats psychology.
@@ -88,8 +93,7 @@ feedback pushes back on it too.
 ## Activity sequence
 
 1. **Commit to the prediction.** It opens both experiments.
-2. **Round 1**, four items, commit. **Round 2**, seven items, commit. **Round 3**,
-   eleven items, commit.
+2. **Round 1**, four items, commit. **Round 2**, all eleven items, commit.
 3. **Read the trail**, and the closing note about item 1.
 4. **Experiment 2.** Model at least three combinations, including one that is
    entirely individual and one that is entirely structural.
@@ -154,8 +158,8 @@ feedback pushes back on it too.
 - Interventions the budget cannot cover are disabled, dimmed *and* say so in
   their own cost line.
 - The outcome chart is hidden from assistive technology and paired with a
-  sentence giving the before and after scores, the comparison team, the projected
-  leavers and the cost. Every value is printed beside its own bar.
+  sentence giving the before and after scores, the comparison team and the
+  cost. Every value is printed beside its own bar.
 - Both experiments announce every change through the shell's polite live region.
 - Either reset button restores the entire page, including the prediction gate and
   the other experiment.
@@ -185,8 +189,7 @@ feedback pushes back on it too.
 
 Documented in full at the top of `tool.js`. Nothing is random.
 
-Team mean exhaustion starts at **74** on a 0–100 scale; Team A sits at **38**;
-projected leavers start at **3 of 14**.
+Team mean exhaustion starts at **74** on a 0–100 scale; Team A sits at **38**.
 
 | Intervention | Level | Cost | Points off |
 | --- | --- | --- | --- |
@@ -197,25 +200,26 @@ projected leavers start at **3 of 14**.
 | E Rota and recovery redesign | Structural | 5 | 18 |
 | F Target and discretion change | Structural | 5 | 16 |
 
-Plus **3** more for C and D together, and **5** more for E and F together.
-Budget **10**; all six would cost **20**.
-
-    leavers = round( 3 x (after / 74) ^ 1.6 ), floored at 0
+Budget **10**; all six would cost **20**. There are no combination bonuses: a
+package is worth the sum of its parts, because the panel is not a puzzle with a
+best answer. The one interaction that remains is substantive — resilience
+training is halved when nothing structural changes, because the conditions
+reload what the training discharged.
 
 **Reference values a lecturer can check:**
 
-| Combination | Cost | Exhaustion | Leavers |
-| --- | --- | --- | --- |
-| Nothing (the baseline shown before you model anything) | 0 | 74 | 3 |
-| A alone | 2 | 71 | 3 |
-| C + D | 6 | 54 | 2 |
-| A + E | 7 | 50 | 2 |
-| A + B + C + D | 10 | 50 | 2 |
-| B + C + E | 10 | 46 | 1 |
-| E + F | 10 | 35 | 1 |
+| Combination | Cost | Exhaustion |
+| --- | --- | --- |
+| Nothing (the baseline shown before you model anything) | 0 | 74 |
+| A alone | 2 | 71 |
+| C + D | 6 | 57 |
+| A + E | 7 | 50 |
+| A + B + C + D | 10 | 53 |
+| B + C + E | 10 | 46 |
+| E + F | 10 | 40 |
 
 The pair to put on screen is `A + B + C + D` against `E + F`: same cost of ten
-units, fifteen points apart, and the second leaves two people with a documented
+units, thirteen points apart, and the second leaves two people with a documented
 training gap exactly where they were. `B + C + E`, also ten units, is the row
 that reaches all three levels at once and is worth setting beside both.
 

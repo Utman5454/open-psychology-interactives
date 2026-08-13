@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>The Alpha Trap — Open Psychology Interactives</title>
-  <meta name="description" content="Build a questionnaire scale from a simulated item bank and watch Cronbach's alpha rise as you add near-duplicate items. A teaching tool showing why a high alpha is not evidence of validity, unidimensionality or measurement quality.">
+  <meta name="description" content="Start with a built five-item scale, add one near-duplicate item at a time, and watch Cronbach's alpha rise while the scale narrows. A teaching tool showing why a high alpha is not evidence of validity, unidimensionality or measurement quality.">
   <meta name="theme-color" content="#0f141b">
 
   <link rel="canonical" href="https://utman5454.github.io/open-psychology-interactives/modules/personality-individual-differences/tools/12-alpha-trap/">
@@ -96,15 +96,15 @@
         </p>
         <h1 id="page-heading">The Alpha Trap</h1>
         <p class="hero__lead">
-          Build a questionnaire scale by choosing items, and watch how easily
-          Cronbach&rsquo;s alpha can be pushed upwards by asking the same
-          question in five different ways.
+          Start with a built five-item scale, add one paraphrase at a time, and
+          watch Cronbach&rsquo;s alpha climb while the scale quietly stops
+          measuring most of what it was for.
         </p>
 
         <p>
           <span class="badge">
             <span class="badge__dot" aria-hidden="true"></span>
-            Simulated data — a fictional item bank, not a real questionnaire
+            Simulated data — fictional items, not a real questionnaire
           </span>
         </p>
 
@@ -117,23 +117,20 @@
               does not tell you about a scale.
             </p>
             <p class="text-muted">
-              About 20 minutes. Nothing you do here is saved or sent anywhere.
+              About 15 minutes. Nothing you do here is saved or sent anywhere.
             </p>
           </div>
 
           <div class="panel">
             <h2 class="panel__title">How to use this</h2>
             <ol class="how-to">
-              <li>Commit to a prediction before you touch the item bank.</li>
+              <li>Commit to a prediction before you open the scale.</li>
               <li>
-                <strong>Round 1.</strong> Tick items to push alpha to
-                <strong>0.85</strong> or above. Any items you like.
+                Add another way of asking a question the scale already contains.
+                Watch all three numbers, not just alpha.
               </li>
-              <li>Look at what your scale turned out to measure.</li>
-              <li>
-                <strong>Round 2.</strong> Build a scale you would actually
-                defend, and compare the two.
-              </li>
+              <li>Do it four more times, then read what the scale now measures.</li>
+              <li>Drop the repeats, and compare the two scales.</li>
               <li>Work through the two challenges at the foot of the page.</li>
             </ol>
           </div>
@@ -150,10 +147,11 @@
         <div class="section__header">
           <h2 id="prediction-heading">First, a prediction</h2>
           <p class="prose">
-            You are about to be asked to get Cronbach&rsquo;s alpha above 0.85
-            using a bank of 24 items measuring &ldquo;academic
-            conscientiousness&rdquo;. Commit to an answer now — the point of the
-            exercise is largely lost if you read the outcome first.
+            You are about to be given a built five-item scale measuring
+            &ldquo;academic conscientiousness&rdquo;, and the only thing you can
+            do to it is add another way of asking a question it already
+            contains. Commit to an answer now — the point of the exercise is
+            largely lost if you read the outcome first.
           </p>
         </div>
 
@@ -232,20 +230,13 @@
             <h3 class="placeholder__title">This part needs JavaScript</h3>
             <p class="prose">
               The scale builder calculates Cronbach&rsquo;s alpha in your browser
-              as you tick items, so it cannot work with JavaScript switched off.
+              as you change the scale, so it cannot work with JavaScript
+              switched off.
               The rest of this page — what the demonstration shows, its
               limitations, and the teaching notes — is readable without it.
             </p>
           </div>
         </noscript>
-
-        <!-- Progress through the three stages. aria-current="step" marks the
-             active one, so it is not carried by styling alone. -->
-        <ol class="stage-track" data-stage-track>
-          <li data-stage-step="predict"><span>1.</span> Predict</li>
-          <li data-stage-step="round1"><span>2.</span> Chase alpha</li>
-          <li data-stage-step="round2"><span>3.</span> Build it properly</li>
-        </ol>
 
         <!-- Optional learner support. Collapsed, secondary, and skipped entirely by
              anybody who does not need it. It is part of the exercise rather than of
@@ -297,51 +288,46 @@
                  data-reset-message="Everything cleared. Back to the prediction.">
 
           <header class="interactive__header">
-            <h3 class="interactive__title">Academic conscientiousness — item bank</h3>
+            <h3 class="interactive__title">Academic conscientiousness — a five-item scale</h3>
             <p class="interactive__brief">
-              Tick items to put them in your scale. Every figure below is
-              calculated from a fictional correlation model, not from real
-              respondents.
+              The scale is already built. Every figure below is calculated from
+              a fictional correlation model, not from real respondents.
             </p>
             <p class="goal" data-goal>
-              <span class="goal__label">Goal</span>
-              <span class="goal__text" data-goal-text>Record your prediction above to unlock the item bank.</span>
+              <span class="goal__label">Now</span>
+              <span class="goal__text" data-goal-text>Record your prediction above to open the scale.</span>
             </p>
           </header>
 
           <div class="interactive__body interactive__body--pinned">
 
-            <!-- Controls first in the DOM: choose items, then see the result. -->
-            <form class="interactive__controls" data-interactive-controls data-item-bank>
-              <p class="bank__intro">
-                24 items, written for this demonstration. Read them properly
-                before you start ticking.
-              </p>
-              <!-- Fieldsets are built by tool.js from a single source of truth,
-                   so the item text, its content area and its psychometric
-                   parameters cannot drift apart. -->
+            <!-- Controls first in the DOM: act, then see the result. The scale
+                 itself is a list rather than a set of checkboxes, because the
+                 only move here is to add one more way of asking a question the
+                 scale already contains. -->
+            <form class="interactive__controls" data-interactive-controls>
+              <fieldset>
+                <legend>The items in your scale</legend>
+                <ul class="scale" data-scale-list></ul>
+              </fieldset>
+              <fieldset>
+                <legend>Change the scale</legend>
+                <div class="stage-nav">
+                  <button class="button button--primary" type="button" data-action="add">
+                    Add another way of asking it
+                  </button>
+                  <button class="button button--secondary" type="button" data-action="drop" hidden>
+                    Drop the repeats
+                  </button>
+                </div>
+              </fieldset>
             </form>
 
             <div class="interactive__stage" data-interactive-stage>
 
-              <!-- Pinned: the alpha figure is what every checkbox in the item bank changes. -->
+              <!-- Pinned: the alpha figure is what each addition changes. -->
               <div class="stage__primary">
                 <h4 class="stage__heading">Your scale</h4>
-
-                <!-- A redundant visual for the alpha figure printed in the
-                     readout immediately below, so it is hidden from assistive
-                     technology rather than announced twice. -->
-                <div class="meter" aria-hidden="true">
-                  <div class="meter__scale">
-                    <div class="meter__fill" data-meter-fill></div>
-                    <div class="meter__target" data-meter-target></div>
-                  </div>
-                  <p class="meter__labels">
-                    <span>alpha 0</span>
-                    <span data-meter-caption>target 0.85</span>
-                    <span>1</span>
-                  </p>
-                </div>
 
                 <dl class="interactive__readout" data-readout>
                   <div>
@@ -359,6 +345,10 @@
                   <div>
                     <dt>Content areas covered</dt>
                     <dd data-metric="breadth">0 of 5</dd>
+                  </div>
+                  <div>
+                    <dt>Effective content areas</dt>
+                    <dd data-metric="effective">&mdash;</dd>
                   </div>
                   <div>
                     <dt>Near-duplicate pairs</dt>
@@ -404,7 +394,7 @@
                 </p>
               </div>
 
-              <!-- Held back until the end of Round 1. Revealing it earlier
+              <!-- Held back until the fifth addition. Revealing it earlier
                    would answer the prediction question before it is asked. -->
               <div class="verdict verdict--outcome" data-criterion hidden>
                 <h4 class="verdict__title">
@@ -425,15 +415,6 @@
           <p class="interactive__status" data-interactive-status role="status"></p>
 
           <div class="interactive__actions">
-            <button type="button" data-action="advance" disabled>
-              Reveal what I built
-            </button>
-            <button type="button" data-variant="secondary" data-action="example">
-              Show me a worked example
-            </button>
-            <button type="button" data-variant="secondary" data-action="clear">
-              Clear selection
-            </button>
             <button type="button" data-variant="secondary" data-interactive-reset>
               Reset everything
             </button>
@@ -444,7 +425,7 @@
       </div>
     </section>
 
-    <!-- ================= Reveal (Round 1 result) ================= -->
+    <!-- ================= Reveal (what the additions did) ================= -->
     <section class="section section--tinted" id="reveal" aria-labelledby="reveal-heading" hidden>
       <div class="container">
         <div class="section__header">
@@ -454,7 +435,7 @@
       </div>
     </section>
 
-    <!-- ================= Comparison (Round 2 result) ================= -->
+    <!-- ================= Comparison (after dropping the repeats) ================= -->
     <section class="section" id="comparison" aria-labelledby="comparison-heading" hidden>
       <div class="container">
         <div class="section__header">
@@ -464,13 +445,13 @@
           <div class="table-scroll">
             <table class="data-table">
               <caption class="visually-hidden">
-                Round 1 and Round 2 scales compared on five measures
+                The scale with every repeat, and the same scale with the repeats dropped, compared on five measures
               </caption>
               <thead>
                 <tr>
                   <th scope="col">Measure</th>
-                  <th scope="col">Round 1 — chasing alpha</th>
-                  <th scope="col">Round 2 — built properly</th>
+                  <th scope="col">With every repeat</th>
+                  <th scope="col">Repeats dropped</th>
                 </tr>
               </thead>
               <tbody data-comparison-body></tbody>
@@ -488,8 +469,8 @@
         <div class="section__header">
           <h2 id="challenges-heading">Two challenges</h2>
           <p class="prose">
-            The first can be attempted at any point. The second uses the scale
-            you build in Round 2, so it unlocks once you have finished it.
+            The first can be attempted at any point. The second uses your
+            repaired scale, so it unlocks once the additions are done.
           </p>
         </div>
 
@@ -565,14 +546,14 @@
             <h3 class="panel__title">Challenge 2 — predict the effect</h3>
 
             <p class="challenge__locked" data-transfer-locked>
-              This unlocks when you have finished Round 2. It asks you to
-              predict what happens to your own scale when four near-duplicate
-              items are added to it.
+              This unlocks once you have made all five additions. It asks you
+              to predict what happens to a repaired scale when four
+              near-duplicate items are added back to it.
             </p>
 
             <div data-transfer-body hidden>
               <p>
-                A reviewer says your Round 2 scale &ldquo;would be more reliable
+                A reviewer says your repaired scale &ldquo;would be more reliable
                 with a few more items&rdquo;. You add the four remaining
                 deadline paraphrases to it. Predict what happens, then apply it.
               </p>
