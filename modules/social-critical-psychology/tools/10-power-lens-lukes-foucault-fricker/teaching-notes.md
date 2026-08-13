@@ -23,7 +23,7 @@ Introduce the names in the debrief, after the analysis, not before it.
 
 ## Running it from the front
 
-The items that more than one lens claims are the valuable ones. Item 4 - the technicians who stopped reporting - is central to the first lens, is readable as the third lens's silencing effect, and is a textbook case of the second lens's interest in how people come to know what counts. When a student selects it under two lenses and the feedback agrees with them both times, that is the tool working, not a scoring bug.
+The items that more than one lens claims are the valuable ones. Item 3 - the technicians who stopped reporting - is central to the first lens, is readable as the third lens's silencing effect, and is a textbook case of the second lens's interest in how people come to know what counts. When a student selects it under two lenses and the feedback agrees with them both times, that is the tool working, not a scoring bug.
 
 Resist the pull towards a winner. Each pass ends with a remedy, and each remedy is real and would have changed something. The point of the synthesis stage is that implementing any one of them alone leaves a working mechanism in place - and the comparison table names which.
 
@@ -50,10 +50,10 @@ After the activity a student should be able to:
 
 ## Estimated duration
 
-- **Demonstration from the front:** 8 minutes using the worked example and the
+- **Demonstration from the front:** 6 minutes using the worked example and the
   comparison table.
-- **Students working all three passes themselves:** 20 minutes.
-- **With the transfer case and the debrief:** 40 minutes.
+- **Students working all three passes themselves:** 15 minutes.
+- **With the transfer case and the debrief:** 30 minutes.
 
 Each pass now asks for one judgement — which evidence the lens brings into
 focus. What the lens leaves less visible is stated in the feedback rather than
@@ -63,7 +63,7 @@ ask for it aloud before they press **Apply this lens**, then compare.
 
 ## Preparation
 
-Read the nine items yourself and decide, before you look at the key, which lens
+Read the five items yourself and decide, before you look at the key, which lens
 you would put each under. Where you disagree with the key you have found the
 discussion for the session — the overlaps are the point, and the item feedback is
 written to agree with more than one reading where more than one is defensible.
@@ -78,13 +78,14 @@ selections and lands on the synthesis with the comparison table complete.
 
 Read the table's last column aloud, then say what each remedy leaves running:
 
-- Open the agenda completely → the survey still says no exceedance was recorded
-  (item 5) and the manual still requires an instrument reading (item 3).
-- Rewrite every definition and protocol → the committee can still defer the item
-  to any other business (item 2), and nobody is answerable for having done so.
-- Believe every technician and add the missing category → the register still
-  ranks estates risks by insurance exposure (item 9), which is not a judgement
-  about anybody's credibility.
+- Open the agenda completely → the manual still requires an instrument reading
+  that the technicians cannot obtain (item 2).
+- Rewrite the definition and hand over the equipment → the committee can still
+  defer the item to any other business (item 1), and nobody is answerable for
+  having done so.
+- Believe every technician and add the missing category → the definition still
+  decides what can enter the record (item 2), which is not a judgement about
+  anybody's credibility.
 
 Then ask the room the synthesis question before revealing it.
 
@@ -100,11 +101,11 @@ that has nothing to do with belief.
 
 ## Activity sequence
 
-1. **Read the nine-item case file** at the top of the page and commit to the
+1. **Read the five-item case file** at the top of the page and commit to the
    prediction.
-2. **Lens 1.** Select the items it brings into focus; choose what it leaves less
-   visible; apply. Read the item-by-item notes.
-3. **Lens 2**, then **lens 3**, the same way. The nine items never change.
+2. **Lens 1.** Select the items it brings into focus, then apply. Read the
+   item-by-item notes.
+3. **Lens 2**, then **lens 3**, the same way. The five items never change.
 4. **The synthesis.** Read the comparison table, then record the final judgement.
 5. **Read the commitments panel** below the laboratory.
 6. **The Ferrand case** in the challenge, which names no framework at all.
@@ -115,7 +116,7 @@ that has nothing to do with belief.
    power that only looks at decisions?
 2. "A reportable environmental concern is one supported by an instrument
    reading." Who wrote it, and does it matter?
-3. Item 7 and item 8 are two different harms. Say what each one is, and what
+3. Item 4 and item 5 are two different harms. Say what each one is, and what
    remedy each needs.
 4. Which items did more than one lens claim, and were you talked out of any of
    your selections?
@@ -130,10 +131,10 @@ that has nothing to do with belief.
 
 | What students say | What to do with it |
 | --- | --- |
-| "Each item belongs to one framework." | The item notes. Item 4 is agreed with under all three, and the overlap is the most interesting thing in the file. |
+| "Each item belongs to one framework." | The item notes. Item 3 is agreed with under all three, and the overlap is the most interesting thing in the file. |
 | "Somebody must have decided." | Ask them to point at it. There is no decision, and that is the finding. |
-| "It's all just not being believed." | Item 8: there is no category for what happened, so a completely trusted speaker still has nothing to put in the box. Two harms, two remedies. |
-| "The knowledge lens is the deepest one." | Item 2 has names and dates attached, and that lens has little to do with them. Depth here means a different blind spot, not a smaller one. |
+| "It's all just not being believed." | Item 5: there is no category for what happened, so a completely trusted speaker still has nothing to put in the box. Two harms, two remedies. |
+| "The knowledge lens is the deepest one." | Item 1 has names and dates attached, and that lens has little to do with them. Depth here means a different blind spot, not a smaller one. |
 | "So the answer is all three." | Only if they can say what each one alone would leave running. The synthesis feedback insists on that. |
 | "This is a way of blaming managers." | The second lens explicitly points at documents, protocols and nobody in particular. That is one of its costs, not one of its virtues. |
 | "Applying a lens proves something." | It is an interpretation of an invented file. Nothing here is evidence about any real institution. |
@@ -156,7 +157,7 @@ that has nothing to do with belief.
 ## Accessibility considerations
 
 - Nothing is timed and nothing is scored against the person.
-- The nine-item case file is printed in full, once, as an ordered list above the
+- The five-item case file is printed in full, once, as an ordered list above the
   laboratory, and the evidence picker repeats a one-line version of each item so
   the controls are usable without scrolling back.
 - All controls are native checkboxes and radios in labelled fieldsets. Applying a
@@ -176,12 +177,12 @@ that has nothing to do with belief.
 ## Optional extension tasks
 
 1. **The missing lens.** Write the fourth pass. Choose an analysis the tool does
-   not include, say which of the nine items it foregrounds, what it leaves in
+   not include, say which of the five items it foregrounds, what it leaves in
    shadow, and what it would have the College change.
 2. **Sequence the remedies.** The College has one term and a small budget. Order
    the three remedies and defend the order in 400 words, saying what your first
    choice leaves running for a year.
-3. **Rewrite item 3.** Draft a definition of a reportable environmental concern
+3. **Rewrite item 2.** Draft a definition of a reportable environmental concern
    that would have let the technicians' reports into the record, then say what
    new problem your definition creates.
 4. **Read the case backwards.** Take the Ferrand findings and write the four
@@ -194,26 +195,28 @@ that has nothing to do with belief.
 
 There is no model and no randomness. The tool is a key over an invented case.
 
-Each of the nine items is marked `core`, `partly` or `no` for each lens:
+Each of the five items is marked `core`, `partly` or `no` for each lens:
 
 | Item | Who decides | What counts as knowing | Who is believed |
 | --- | --- | --- | --- |
-| 1 Who reported | no | no | **core** |
-| 2 The agenda | **core** | no | no |
-| 3 The definition | partly | **core** | no |
-| 4 Stopping | **core** | partly | partly |
-| 5 The survey | partly | **core** | no |
-| 6 The summary | no | **core** | partly |
-| 7 The log | no | no | **core** |
-| 8 The vocabulary | no | partly | **core** |
-| 9 The register | **core** | partly | no |
+| 1 The agenda | **core** | no | no |
+| 2 The definition | partly | **core** | no |
+| 3 Stopping | **core** | partly | partly |
+| 4 The log | no | no | **core** |
+| 5 The vocabulary | no | partly | **core** |
+
+Every item is core to at least one lens, and three carry an overlap: item 2
+joins lenses 1 and 2, item 5 joins lenses 2 and 3, and item 3 is claimed by all
+three. The second lens has one core item rather than two, which is the cost of
+cutting the file from nine items to five.
 
 **Reference values a lecturer can check.** The worked example selects exactly the
-core set for each lens — items 2, 4 and 9; then 3, 5 and 6; then 1, 7 and 8. Each
-pass then reports "3 of the 3 this lens is strongest on", the comparison table
-fills to three rows, and the tool lands on the synthesis with the final judgement
-not yet recorded. The shadow verdict is printed for every pass regardless of what
-was selected, because it is no longer a question the learner answers.
+core set for each lens — items 1 and 3; then item 2; then items 4 and 5. Lenses 1
+and 3 report "2 of the 2 this lens is strongest on"; lens 2 reports "including the
+one this lens is strongest on". The comparison table fills to three rows, and the
+tool lands on the synthesis with the final judgement not yet recorded. The shadow
+verdict is printed for every pass regardless of what was selected, because it is
+no longer a question the learner answers.
 
 Selecting an item marked `no` is never penalised: the feedback explains, item by
 item, why another lens explains it better, and every core item the learner missed
@@ -229,7 +232,7 @@ is listed too.
   into this material for a psychology student.
 - **Fricker (2007)** for testimonial and hermeneutical injustice, and **Dotson
   (2011)** for the extension to silencing and testimonial smothering, which is
-  what item 4 is closest to.
+  what item 3 is closest to.
 - **Medina (2013)** for a sustained argument that epistemic injustice needs
   institutional as well as individual remedies - directly relevant to the third
   lens's blind spot.

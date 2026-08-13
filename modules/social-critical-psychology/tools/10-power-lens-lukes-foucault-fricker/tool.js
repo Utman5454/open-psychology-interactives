@@ -1,8 +1,8 @@
 /* =========================================================================
    Power Lens Laboratory
    -------------------------------------------------------------------------
-   One fictional institutional case (Brackwell College, Workshop 3) and nine
-   pieces of evidence. The learner works through the same nine items three
+   One fictional institutional case (Brackwell College, Workshop 3) and five
+   pieces of evidence. The learner works through the same five items three
    times, each time asking a different question of them:
 
      stage 0   who decides, and who never has to      (Lukes)
@@ -25,11 +25,30 @@
    THE KEY, AND WHY IT HAS THREE LEVELS
    ------------------------------------
    Every item is marked `core`, `partly` or `no` for each lens. The overlaps
-   are deliberate and are the most valuable part of the activity: item 4 (the
+   are deliberate and are the most valuable part of the activity: item 3 (the
    technicians who stopped reporting) is core to the first lens, partly to the
    second and partly to the third, and a learner who selects it under all
    three is agreed with all three times. The key is one defensible reading of
    an invented case, written to make the contrasts sharp - not a fact.
+
+   WHY FIVE ITEMS
+   --------------
+   The file carried nine. Four of them doubled up: the survey protocol (old 5)
+   repeated the manual's definition, the wellbeing summary (old 6) repeated it
+   again, the risk register (old 9) repeated the agenda item, and the
+   distribution of reporters (old 1) repeated the incident log. Each pair had
+   an identical row in the key, so the second of each taught nothing the first
+   had not. What is left is one item per distinct move, plus the three-way
+   overlap:
+
+     1 agenda      core / no     / no      a non-decision
+     2 definition  partly / core / no      a standard that runs by itself
+     3 stopping    core / partly / partly  the three-way overlap
+     4 log         no / no       / core    testimonial injustice
+     5 vocabulary  no / partly   / core    hermeneutical injustice
+
+   That leaves lens 2 with one core item rather than three. It keeps two
+   overlaps, which is what the comparison actually runs on.
 
    WHAT THIS IS NOT
    ----------------
@@ -49,14 +68,6 @@
   var EVIDENCE = [
     {
       id: 1,
-      short: "Who reported: 11 of 14 reports came from technicians and evening students",
-      text:
-        "Over two years, fourteen written reports were made about fumes and " +
-        "headaches in Workshop 3. Eleven came from technicians and part-time " +
-        "evening students; three came from full-time academic staff."
-    },
-    {
-      id: 2,
       short: "The agenda: deferred twice, then moved to any other business and not minuted",
       text:
         "\"Workshop air quality\" appeared on the Estates Committee agenda " +
@@ -64,7 +75,7 @@
         "was moved to any other business and does not appear in the minutes."
     },
     {
-      id: 3,
+      id: 2,
       short: "The definition: a reportable concern must be \"supported by an instrument reading\"",
       text:
         "The College's Health and Safety Manual defines a reportable " +
@@ -73,7 +84,7 @@
         "access to it."
     },
     {
-      id: 4,
+      id: 3,
       short: "Stopping: \"nothing comes of it\"; \"you learn what counts as a real problem here\"",
       text:
         "Three technicians said in interview that they had stopped reporting " +
@@ -81,25 +92,7 @@
         "a real problem here\"."
     },
     {
-      id: 5,
-      short: "The survey: one fixed point, measured in a week the workshop was shut",
-      text:
-        "An air-quality survey commissioned by Estates measured particulates " +
-        "at a single fixed point, during a week when Workshop 3 was closed for " +
-        "refitting. Its conclusion, \"no exceedance recorded\", is cited in " +
-        "every subsequent paper."
-    },
-    {
-      id: 6,
-      short: "The summary: themes ranked by keyword frequency; \"ventilation\" came seventh",
-      text:
-        "Twenty-two free-text comments in the staff wellbeing survey mentioned " +
-        "the workshop. The published summary reported the top five themes by " +
-        "keyword frequency; \"ventilation\" ranked seventh and was not " +
-        "reported."
-    },
-    {
-      id: 7,
+      id: 4,
       short: "The log: \"a smell that gets into your throat\" recorded as \"odour complaint - no action\"",
       text:
         "Two evening students described \"a smell that gets into your throat\". " +
@@ -107,20 +100,12 @@
         "action\"."
     },
     {
-      id: 8,
+      id: 5,
       short: "The vocabulary: no category for an intermittent exposure with delayed symptoms",
       text:
         "The reporting system has no category for an intermittent exposure " +
         "whose symptoms appear hours later. The nearest available category is " +
         "\"near miss\", which requires an identifiable event."
-    },
-    {
-      id: 9,
-      short: "The register: forty estates risks ranked by insurance exposure; the workshop absent",
-      text:
-        "When a new Principal asked what the outstanding estates risks were, " +
-        "the register listed forty items ranked by insurance exposure. " +
-        "Workshop 3 was not among them."
     }
   ];
 
@@ -134,29 +119,20 @@
         "Ask: what was decided, what never reached the point of being " +
         "decided, and how did people come to want less than they might have?",
       /* item id -> core | partly | no */
-      focus: { 1: "no", 2: "core", 3: "partly", 4: "core", 5: "partly", 6: "no", 7: "no", 8: "no", 9: "core" },
+      focus: { 1: "core", 2: "partly", 3: "core", 4: "no", 5: "no" },
       itemWhy: {
-        1: "Who happened to be doing the reporting is not a question about " +
-           "decisions or agendas. The third lens is built for it.",
-        2: "The clearest thing in the file. Nothing was resolved; an item was " +
+        1: "The clearest thing in the file. Nothing was resolved; an item was " +
            "kept from becoming a question anyone had to answer.",
-        3: "Defensible. A rule that keeps a class of experience out of the " +
+        2: "Defensible. A rule that keeps a class of experience out of the " +
            "record can be read as agenda-setting made permanent - though who " +
            "wrote it, and whether anyone intended it, the file does not say.",
-        4: "The third dimension exactly: people who have learned what counts " +
+        3: "The third dimension exactly: people who have learned what counts " +
            "stop asking, and the institution is spared the trouble of " +
            "refusing them.",
-        5: "Defensible. Estates commissioned it, and a survey that answers a " +
-           "question before it is asked keeps it off the agenda. The lens " +
-           "would want to know who chose the week.",
-        6: "The lens can call this agenda-setting, but what is doing the work " +
-           "is a counting method. The second lens has more to say.",
-        7: "This is a downgrading of a speaker, not a management of an " +
+        4: "This is a downgrading of a speaker, not a management of an " +
            "agenda. The third lens owns it.",
-        8: "An absence in the vocabulary is not a decision anybody took or " +
-           "avoided. The third lens names this precisely.",
-        9: "What the register lists is what the institution can attend to. " +
-           "An item that never appears never needs deciding."
+        5: "An absence in the vocabulary is not a decision anybody took or " +
+           "avoided. The third lens names this precisely."
       },
       shadow: [
         {
@@ -164,22 +140,21 @@
           label: "That an item was repeatedly kept off the agenda",
           correct: false,
           why:
-            "That is what this lens foregrounds, not what it hides. Item 2 is " +
+            "That is what this lens foregrounds, not what it hides. Item 1 is " +
             "its clearest exhibit."
         },
         {
           value: "protocol",
           label:
-            "That a written definition and a sampling protocol go on producing " +
-            "the same answer without anyone deciding anything, ever",
+            "That a written definition goes on producing the same answer " +
+            "without anyone deciding anything, ever",
           correct: true,
           why:
             "This is the cost of an account built around decisions, non-decisions " +
             "and shaped preferences. All three still look for something an agent " +
-            "did or refrained from doing. Items 3, 5 and 6 need no agent at all: " +
-            "the definition and the protocol were written once and now run by " +
-            "themselves, and would keep running if every person in the file were " +
-            "replaced tomorrow."
+            "did or refrained from doing. Item 2 needs no agent at all: the " +
+            "definition was written once and now runs by itself, and would keep " +
+            "running if every person in the file were replaced tomorrow."
         },
         {
           value: "stopped",
@@ -188,40 +163,38 @@
           why:
             "This is the third dimension of the very account you are applying - " +
             "power at its most effective, preventing the grievance from forming. " +
-            "Item 4 is what the lens exists for."
+            "Item 3 is what the lens exists for."
         },
         {
-          value: "register",
-          label: "That the risk register ranks by insurance exposure",
+          value: "words",
+          label: "That there is no category for what the students were describing",
           correct: false,
           why:
-            "The lens reaches this comfortably, by reading the register as a " +
-            "standing agenda. What it is less good at is the fact that the " +
-            "ranking does its work without anybody applying it to Workshop 3."
+            "The lens can reach this, by reading a missing category as an " +
+            "agenda closed in advance. But item 5 is a gap in the vocabulary " +
+            "rather than an item somebody kept off a list."
         }
       ],
       visible:
         "There is no decision anywhere in this file. Nothing was resolved, " +
         "nobody weighed the reports and rejected them - and something happened " +
-        "anyway. An item was deferred, deferred again and unminuted; a register " +
-        "never listed it; and three people stopped reporting because they had " +
-        "learned what counted here.",
+        "anyway. An item was deferred, deferred again and unminuted, and three " +
+        "people stopped reporting because they had learned what counted here.",
       shadowText:
         "Everything this lens sees needs somebody who acted or refrained from " +
-        "acting. The definition in the manual and the sampling protocol in the " +
-        "survey need nobody: written once, they now produce the same answer " +
-        "by themselves.",
+        "acting. The definition in the manual needs nobody: written once, it " +
+        "now produces the same answer by itself.",
       remedy:
         "Make the agenda contestable. Publish every deferral, let staff place " +
         "items on the committee agenda directly, and require that a request is " +
         "either actioned or refused in a recorded decision.",
       remedyLeaves:
-        "The survey protocol still reports no exceedance, and the manual still " +
-        "says a concern needs an instrument reading. A perfectly open agenda " +
-        "can be fed nothing to put on it.",
+        "The manual still says a concern needs an instrument reading, and the " +
+        "technicians still have no equipment. A perfectly open agenda can be " +
+        "fed nothing to put on it.",
       row: {
-        focus: "An item deferred and unminuted, a register that never listed it, and people who stopped reporting",
-        shadow: "A definition and a protocol that keep producing the same answer with nobody deciding anything",
+        focus: "An item deferred and unminuted, and people who stopped reporting",
+        shadow: "A definition that keeps producing the same answer with nobody deciding anything",
         remedy: "Publish deferrals, let staff set the agenda, require a recorded decision either way"
       }
     },
@@ -232,33 +205,22 @@
         "Ask: what is allowed to count as evidence here, which procedures " +
         "produce the institution's version of the truth, and what does the " +
         "classification make it possible to see?",
-      focus: { 1: "no", 2: "no", 3: "core", 4: "partly", 5: "core", 6: "core", 7: "no", 8: "partly", 9: "partly" },
+      focus: { 1: "no", 2: "core", 3: "partly", 4: "no", 5: "partly" },
       itemWhy: {
-        1: "The distribution of reporters is a fact about speakers, not about " +
-           "the procedures that make knowledge. The third lens is built for it.",
-        2: "A deferral is an ordinary act by identifiable people. This lens " +
+        1: "A deferral is an ordinary act by identifiable people. This lens " +
            "has less purchase here than the first one does.",
-        3: "The centrepiece. A definition decides in advance whose experience " +
+        2: "The centrepiece. A definition decides in advance whose experience " +
            "can enter the record, and it decides it permanently, without any " +
-           "occasion.",
-        4: "Defensible and interesting. \"You learn what counts as a real " +
+           "occasion. Nobody had to be dishonest at any point.",
+        3: "Defensible and interesting. \"You learn what counts as a real " +
            "problem here\" is a description of being trained into an " +
            "institution's standard of the real - which is this lens's " +
            "territory as much as the first lens's.",
-        5: "A procedure that produces the institution's official truth. One " +
-           "point, in a week the room was shut, and \"no exceedance recorded\" " +
-           "now travels through every later paper on its own authority.",
-        6: "A counting method that constitutes what the \"themes\" are. " +
-           "Twenty-two comments existed; the method decided they were not a " +
-           "theme.",
-        7: "The downgrading of a speaker is not primarily about procedure. " +
+        4: "The downgrading of a speaker is not primarily about procedure. " +
            "The third lens names it better.",
-        8: "Defensible. An absent category is a limit on what the institution " +
+        5: "Defensible. An absent category is a limit on what the institution " +
            "can know - though the third lens has a sharper name for the harm " +
-           "that follows.",
-        9: "Defensible. A register ranked by insurance exposure is a " +
-           "classification that decides what kind of thing a risk is before " +
-           "anyone looks."
+           "that follows."
       },
       shadow: [
         {
@@ -266,15 +228,16 @@
           label: "That the definition of a reportable concern settles whose experience can enter the record",
           correct: false,
           why:
-            "That is this lens's central exhibit, not its blind spot. Item 3."
+            "That is this lens's central exhibit, not its blind spot. Item 2."
         },
         {
-          value: "survey",
-          label: "That the survey's method produced its own finding",
+          value: "category",
+          label: "That the reporting system has no category for what happened",
           correct: false,
           why:
-            "Also foregrounded. Item 5 is exactly what an account of power " +
-            "working through knowledge is for."
+            "Also foregrounded. A classification that has no slot for an " +
+            "intermittent exposure decides what the College can know it has, " +
+            "which is item 5 read this way."
         },
         {
           value: "agents",
@@ -286,44 +249,41 @@
             "This is the price of treating power as productive and dispersed " +
             "rather than held. It buys you the ability to see a definition as an " +
             "exercise of power; it costs you the vocabulary of interests, " +
-            "responsibility and blame. Item 2 has names and dates attached to it, " +
+            "responsibility and blame. Item 1 has names and dates attached to it, " +
             "and this lens has nothing much to do with them - which matters if " +
             "anybody is going to be held to account."
         },
         {
-          value: "summary",
-          label: "That the wellbeing summary's ranking method buried twenty-two comments",
+          value: "learned",
+          label: "That people were trained into the institution's standard of what is real",
           correct: false,
           why:
-            "Foregrounded. Item 6 is a counting method constituting what counts " +
-            "as a theme, which is this lens at its most useful."
+            "Foregrounded, and shared with the first lens. Item 3 is what being " +
+            "governed by a standard looks like from the inside."
         }
       ],
       visible:
         "The College has produced a body of knowledge in which there is no " +
         "problem, and it did so entirely by legitimate means. A definition " +
-        "settles what can enter the record; a survey measured one point in a " +
-        "week the room was shut and now circulates as authority; a summary " +
-        "method decided that twenty-two comments were not a theme. Nobody had " +
-        "to be dishonest at any point.",
+        "settles what can enter the record, and the equipment that would " +
+        "satisfy it sits with the people who are not reporting. Nobody had to " +
+        "be dishonest at any point.",
       shadowText:
         "Because power is treated as dispersed and productive rather than held, " +
-        "the account has trouble saying who should answer for anything. Item 2 " +
+        "the account has trouble saying who should answer for anything. Item 1 " +
         "has people and dates attached; this lens has little use for them.",
       remedy:
         "Change what counts as knowing. Rewrite the definition of a reportable " +
-        "concern so that repeated symptom reports qualify; change the sampling " +
-        "protocol to cover working conditions; put monitoring equipment in the " +
-        "hands of the people in the room; publish the survey's method alongside " +
-        "its findings.",
+        "concern so that repeated symptom reports qualify, and put monitoring " +
+        "equipment in the hands of the people in the room.",
       remedyLeaves:
         "The Estates Committee can still defer the item, and the reports still " +
         "come from people whose word travels less far. Better evidence does not " +
         "put itself on an agenda.",
       row: {
-        focus: "The definition of a reportable concern, the survey's sampling, and the summary's ranking method",
+        focus: "The definition of a reportable concern, and who holds the equipment that satisfies it",
         shadow: "Identifiable people, interests served, and anybody who could be held answerable",
-        remedy: "Rewrite the definition, change the sampling protocol, hand the monitoring equipment over"
+        remedy: "Rewrite the definition, hand the monitoring equipment over"
       }
     },
     {
@@ -332,40 +292,29 @@
       question:
         "Ask: whose word travelled, whose was downgraded because of who they " +
         "are, and was there anything here that nobody had the words for?",
-      focus: { 1: "core", 2: "no", 3: "no", 4: "partly", 5: "no", 6: "partly", 7: "core", 8: "core", 9: "no" },
+      focus: { 1: "no", 2: "no", 3: "partly", 4: "core", 5: "core" },
       itemWhy: {
-        1: "The distribution is the finding. Eleven of fourteen reports came " +
-           "from the two groups in the building whose word carries least, and " +
-           "the three that came from full-time academics are the ones that " +
-           "reached paper.",
-        2: "A deferral is a matter of agendas, not of credibility. The first " +
+        1: "A deferral is a matter of agendas, not of credibility. The first " +
            "lens owns it.",
-        3: "This lens can note that the rule excludes people without equipment, " +
+        2: "This lens can note that the rule excludes people without equipment, " +
            "but the rule is a procedure. The second lens explains it better.",
-        4: "Defensible and important. People who have repeatedly not been " +
+        3: "Defensible and important. People who have repeatedly not been " +
            "believed stop speaking, and the silence is then read as the absence " +
            "of a problem.",
-        5: "A sampling decision is not about who was believed. The second lens " +
-           "owns it.",
-        6: "Defensible. A method that ranks by keyword frequency can bury " +
-           "testimony without anybody disbelieving a word of it - which is " +
-           "close to, but not the same as, being disbelieved.",
-        7: "Testimonial injustice in one line. \"A smell that gets into your " +
+        4: "Testimonial injustice in one line. \"A smell that gets into your " +
            "throat\" is a symptom report; it was received as an odour " +
            "complaint, and the difference is the speaker.",
-        8: "The other kind of harm, and the one people miss. There is no " +
+        5: "The other kind of harm, and the one people miss. There is no " +
            "category for what happened, so even a completely credible speaker " +
-           "has nothing to put in the box.",
-        9: "The register's ranking has nothing to do with who spoke. The first " +
-           "and second lenses divide this one between them."
+           "has nothing to put in the box."
       },
       shadow: [
         {
           value: "who",
-          label: "That the reports came overwhelmingly from technicians and evening students",
+          label: "That two evening students had their symptom report logged as a complaint about a smell",
           correct: false,
           why:
-            "That is this lens's first exhibit, not its blind spot. Item 1."
+            "That is this lens's first exhibit, not its blind spot. Item 4."
         },
         {
           value: "category",
@@ -374,42 +323,42 @@
           why:
             "Also foregrounded, and it is the half of this account that people " +
             "forget: a gap in the shared vocabulary is a harm even where every " +
-            "speaker is believed. Item 8."
+            "speaker is believed. Item 5."
         },
         {
           value: "grade",
           label: "That the same words from a full-time academic would have travelled further",
           correct: false,
           why:
-            "Foregrounded. This is the comparison item 1 sets up and the reason " +
-            "the distribution of reporters is worth counting at all."
+            "Foregrounded. It is the comparison item 4 sets up, and the reason " +
+            "who was speaking is worth attending to at all."
         },
         {
           value: "machinery",
           label:
-            "That the register, the survey protocol and the manual's definition " +
-            "would produce the same outcome even if every speaker were believed",
+            "That the manual's definition would produce the same outcome even " +
+            "if every speaker were believed",
           correct: true,
           why:
             "This is the cost of locating the wrong in an epistemic relation. It " +
             "makes a real and often invisible harm nameable - and it points at " +
             "how reports are received, which slides easily into the individual " +
             "virtue of whoever receives them. Believe every technician in the " +
-            "building, and item 5 still says no exceedance was recorded and item " +
-            "9 still ranks by insurance value."
+            "building, and item 2 still requires an instrument reading that none " +
+            "of them can obtain."
         }
       ],
       visible:
         "Two different things went wrong with the people who spoke. One is " +
-        "about belief: eleven of fourteen reports came from the groups whose " +
-        "word carries least, and \"a smell that gets into your throat\" was " +
-        "received as an odour complaint. The other is not about belief at all: " +
-        "the system has no category for an intermittent exposure with delayed " +
-        "symptoms, so even a trusted speaker has nothing to put in the box.",
+        "about belief: \"a smell that gets into your throat\" was received as " +
+        "an odour complaint, and the difference is who said it. The other is " +
+        "not about belief at all: the system has no category for an " +
+        "intermittent exposure with delayed symptoms, so even a trusted " +
+        "speaker has nothing to put in the box.",
       shadowText:
         "The wrong is located in an epistemic relation, which makes it nameable " +
         "and also makes it look like a matter of how individuals receive " +
-        "reports. A protocol and a register need no speaker at all, and go on " +
+        "reports. A written definition needs no speaker at all, and goes on " +
         "working whatever anybody believes.",
       remedy:
         "Change credibility and vocabulary. Weight a report by exposure rather " +
@@ -417,12 +366,12 @@
         "intermittent exposure with delayed onset; train the people who receive " +
         "reports in how a symptom report differs from a complaint about a smell.",
       remedyLeaves:
-        "The register still ranks by insurance exposure and the committee can " +
+        "The manual still requires an instrument reading and the committee can " +
         "still defer. Being believed and having the words is not the same as " +
         "being on anybody's list.",
       row: {
-        focus: "Who reported, whose words were downgraded, and what nobody had a category for",
-        shadow: "Machinery that produces the same outcome whether or not anyone is believed",
+        focus: "Whose words were downgraded, and what nobody had a category for",
+        shadow: "A definition that produces the same outcome whether or not anyone is believed",
         remedy: "Weight reports by exposure not grade, add the missing category, train those receiving reports"
       }
     }
@@ -437,17 +386,17 @@
       correct: false,
       why:
         "It is the sharpest single finding, and it is not the whole case. Open " +
-        "the agenda completely and the survey still reports no exceedance, the " +
-        "manual still requires an instrument reading, and the two evening " +
-        "students' reports are still logged as odour complaints."
+        "the agenda completely and the manual still requires an instrument " +
+        "reading, and the two evening students' reports are still logged as " +
+        "odour complaints."
     },
     {
       value: "two",
       label: "The second lens has it: the College produced a body of knowledge in which there was no problem",
       correct: false,
       why:
-        "Also true, and also not the whole case. Rewrite every definition and " +
-        "change every protocol, and the Estates Committee can still defer the " +
+        "Also true, and also not the whole case. Rewrite the definition and " +
+        "hand over the equipment, and the Estates Committee can still defer the " +
         "item to any other business, and nobody is answerable for having done " +
         "so three times."
     },
@@ -456,9 +405,9 @@
       label: "The third lens has it: the wrong people were speaking and they were not believed",
       correct: false,
       why:
-        "True of items 1 and 7, and it stops short. Believe every technician in " +
-        "the building and item 9 still ranks estates risks by insurance " +
-        "exposure, which is not a judgement about anybody's credibility and " +
+        "True of item 4, and it stops short. Believe every technician in the " +
+        "building and item 2 still requires an instrument reading none of them " +
+        "can obtain, which is not a judgement about anybody's credibility and " +
         "would not change."
     },
     {
@@ -700,18 +649,29 @@
     if (!state.applied[state.stage]) {
       primaryBody.appendChild(make("p", "lens__question", lens.question));
       primaryBody.appendChild(make("p", "text-muted",
-        "Select the items this lens brings into focus and one thing it leaves " +
-        "less visible, then press Apply this lens. All nine items are printed " +
-        "in full in the case file above."));
+        "Select the items this lens brings into focus, then press Apply this " +
+        "lens. All five items are printed in full in the case file above."));
       return;
     }
 
     var result = score(state.stage);
     primaryBody.appendChild(make("p", "lens__lead", lens.visible));
+
+    /* One lens has a single core item, so the count has to read naturally at
+       one as well as at two. */
+    var coreClause;
+    if (result.coreTotal === 1) {
+      coreClause = result.core === 1
+        ? ", including the one this lens is strongest on"
+        : ", but not the one this lens is strongest on";
+    } else {
+      coreClause = ", including " + result.core + " of the " + result.coreTotal +
+        " this lens is strongest on";
+    }
+
     primaryBody.appendChild(make("p", "text-muted",
       "You selected " + result.picked + " item" + (result.picked === 1 ? "" : "s") +
-      ", including " + result.core + " of the " + result.coreTotal +
-      " this lens is strongest on" +
+      coreClause +
       (result.wrong ? ", and " + result.wrong + " that another lens explains better."
         : ".")));
   }
@@ -889,7 +849,8 @@
     var result = score(state.stage);
     shell.announce(
       "Lens applied. " + result.core + " of " + result.coreTotal +
-      " central items found. The reading is beside you, with a note on every " +
+      " central item" + (result.coreTotal === 1 ? "" : "s") +
+      " found. The reading is beside you, with a note on every " +
       "item and the remedy this lens implies.",
       { immediate: true });
   });
@@ -901,7 +862,7 @@
       state.stage >= LENSES.length
         ? "Synthesis stage. All three lenses are now in the table."
         : "Lens " + (state.stage + 1) + " of 3: " + LENSES[state.stage].title +
-          ". The same nine items, a different question.",
+          ". The same five items, a different question.",
       { immediate: true });
   });
 
@@ -1013,16 +974,16 @@
       tone: "good",
       verdict: "That is one of the three mechanisms, and the first lens is built for it.",
       text:
-        "Item 2 is its clearest exhibit. Keep hold of it, and then ask what " +
+        "Item 1 is its clearest exhibit. Keep hold of it, and then ask what " +
         "the other two lenses find that this one cannot - because a completely " +
-        "open agenda would still have been fed a survey saying there was no " +
-        "exceedance."
+        "open agenda would still have been fed a definition that only an " +
+        "instrument reading can satisfy."
     },
     belief: {
       tone: "caution",
       verdict: "Half of one of the three, and it is the half people stop at.",
       text:
-        "Being disbelieved is real here - item 7 in one line. But there is a " +
+        "Being disbelieved is real here - item 4 in one line. But there is a " +
         "second harm that has nothing to do with belief: the system has no " +
         "category for what happened, so even a completely trusted speaker has " +
         "nothing to put in the box. The third lens separates them."
@@ -1128,7 +1089,7 @@
 
   shell.reset({ silent: true });
   shell.announce(
-    "Ready. Read the nine items above, then answer the question to open the " +
+    "Ready. Read the five items above, then answer the question to open the " +
     "laboratory.",
     { immediate: true });
 })();

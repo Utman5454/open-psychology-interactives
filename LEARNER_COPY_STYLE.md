@@ -937,7 +937,7 @@ Do not copy them mechanically.
 
 > **The instrument is not the construct.**
 
-> **Twenty-two comments existed; the method decided they were not a theme.**
+> **Convergence under ambiguity is not caving in.**
 
 ## Personality and Individual Differences
 
