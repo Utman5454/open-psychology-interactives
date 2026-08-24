@@ -668,6 +668,110 @@
   background: var(--blue);
 }
 
+/* A performed task departs from the workbook here, and should. A speeded
+   response is worse against a bright page: the ground has to be dark and
+   constant so that ink colour is the only thing changing, and nothing else
+   may sit inside the panel competing for the eye. Every ink used against
+   this ground clears 7:1. */
+.stage--focus {
+  background: #15181D;
+  border-color: #15181D;
+}
+
+.stage__word {
+  font-size: clamp(2.5rem, 8vw, 4.25rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+.stage__fixation {
+  color: #FFFFFF;
+  font-size: 2.5rem;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.stage__feedback {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.875rem;
+  margin: 0;
+  color: #E9EDF3;
+  font-size: var(--text-sm);
+  font-weight: 700;
+  text-align: center;
+}
+
+/* -------------------------------------------------------------------------
+   12b. Response keypad
+
+   The fixed set of responses in a performed task. Not a choice grid: there
+   is no correct option in the abstract, only a correct response to the
+   stimulus currently on screen, and nothing here is ever marked.
+
+   The whole key is the target, the response is named in text, and the
+   keyboard equivalent is printed on the key rather than hidden in the
+   instructions. Where a key carries a colour swatch it is bordered, because
+   a pale swatch on a white key has almost no contrast on its own and the
+   name beside it is what actually identifies the response.
+   ---------------------------------------------------------------------- */
+
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(var(--keypad-columns, 4), minmax(0, 1fr));
+  gap: var(--gap);
+  margin: var(--stack) 0 0;
+  padding: 0;
+  border: 0;
+}
+
+.keypad__key {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  min-height: 4rem;
+  padding: 0.75rem 0.5rem;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--card);
+  color: var(--navy);
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.keypad__key:hover {
+  border-color: var(--teal);
+}
+
+.keypad__key[disabled] {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.keypad__swatch {
+  width: 1.5rem;
+  height: 0.875rem;
+  border: 1px solid var(--navy);
+  border-radius: 3px;
+}
+
+.keypad__hint {
+  color: var(--muted);
+  font-size: var(--text-xs);
+  font-weight: 600;
+}
+
+@media (max-width: 47.5em) {
+  .keypad {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 /* -------------------------------------------------------------------------
    13. Comparison values
 
@@ -994,6 +1098,12 @@
 
 .plot__point--filled {
   fill: var(--blue);
+}
+
+.plot__bar {
+  fill: var(--blue-light);
+  stroke: var(--blue);
+  stroke-width: 1.5;
 }
 
 /* Key elements. Drawn exactly as the data is drawn, so the key needs no
