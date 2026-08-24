@@ -24,6 +24,54 @@ Every decision below is downstream of that.
 
 ---
 
+## The second rule: preserve the mechanism, simplify the lesson
+
+> The Simplified Edition is not a conversion to a standard quiz or workbook
+> interaction. Simulations, visualisations, demonstrations, manipulable
+> models and applied exercises are often the most valuable part of the
+> original and should normally be **retained**. What simplification reduces
+> is the number of simultaneous teaching jobs, controls, stages, cases and
+> explanatory sections **around** that mechanism. Each activity keeps the
+> interaction form best suited to its psychological concept.
+
+The collection's value is concentrated in roughly 2.9 MB of hand-built
+`tool.js` — the models, simulations and demonstrations that a static page
+cannot do. Converting those into multiple choice would discard exactly what
+makes the tools worth having, and would make every activity look the same,
+which the golden reference pack warns against in as many words: *"Do not turn
+every activity into the same interaction. Preserve useful differences between
+prediction tasks, demonstrations, lens switches, evidence judgements,
+consequence chains, and recap activities."*
+
+Three of the seven golden references present no choices at all. The choice
+grid in `patterns.css` is one pattern among seventeen, not the house style.
+
+### What this means for the four verdicts
+
+| Verdict | Meaning under this rule |
+| --- | --- |
+| **KEEP** | The mechanism and its density are already right. Port it; rewrite the copy around it. |
+| **SIMPLIFY** | The default. Mechanism retained and still live. Fewer rounds, cases, controls, stages and explanatory sections around it. |
+| **REBUILD** | Rare. The *interaction* is genuinely wrong for the length — never a working model discarded because a quiz would be quicker to write. |
+| **REPLACE** | Narrows the **lesson's scope**: the simplified activity does one part of what the original did and says so, linking to the original for the rest. Never narrows the mechanism. |
+
+### The test to apply before cutting a control
+
+Ask whether the control belongs to the model or to the lesson around it.
+
+- A control that changes **what the learner is entitled to conclude** is part
+  of the mechanism. Keep it. The precision slider in Double Dissociation
+  Detective and the shared-versus-zoomed scale in the Central Limit Theorem
+  Simulator are both of this kind: remove them and the activity still runs,
+  but it stops teaching the thing it exists to teach.
+- A control that adds **a fourth thing to notice** is part of the lesson.
+  Cut it.
+
+Downgrading a live manipulable model into a static synthesis diagram counts
+as losing the mechanism, not as simplifying it.
+
+---
+
 ## 1. A parallel tree, sharing nothing at runtime
 
 The edition lives entirely under `simplified/`:
