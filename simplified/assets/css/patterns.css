@@ -921,6 +921,143 @@
 }
 
 /* -------------------------------------------------------------------------
+   15c. Interval plot
+
+   A value with its uncertainty, plotted against a reference range: a score
+   against a control group, an estimate against a null, an effect against a
+   benchmark. One row per observation.
+
+   Two things carry meaning and neither is colour. The marker is filled when
+   the whole interval clears the reference band and hollow when it does not,
+   so the distinction survives greyscale. The band itself is dashed, because
+   a pale fill on a pale plot ground has almost no contrast on its own and
+   the edge is the part that means something.
+
+   A plot always needs its numbers somewhere. Put a data table beside or
+   below it; do not print the values into the SVG and call that the text
+   alternative.
+   ---------------------------------------------------------------------- */
+
+.plot {
+  margin-top: var(--stack);
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  background: #FBFAF7;
+  border: 1px solid var(--border);
+}
+
+.plot svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.plot__band {
+  fill: var(--teal-light);
+  stroke: var(--teal);
+  stroke-width: 1;
+  stroke-dasharray: 4 3;
+}
+
+.plot__zero {
+  stroke: var(--teal);
+  stroke-width: 1.5;
+}
+
+.plot__axis {
+  stroke: var(--border);
+  stroke-width: 1;
+}
+
+.plot__label {
+  font: 700 var(--text-sm) var(--font-body);
+  fill: var(--navy);
+}
+
+.plot__sub,
+.plot__tick {
+  font: 500 var(--text-xs) var(--font-body);
+  fill: var(--muted);
+}
+
+.plot__interval {
+  stroke: var(--blue);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.plot__point {
+  fill: var(--card);
+  stroke: var(--blue);
+  stroke-width: 2.5;
+}
+
+.plot__point--filled {
+  fill: var(--blue);
+}
+
+/* Key elements. Drawn exactly as the data is drawn, so the key needs no
+   separate styling; the class exists so that a key marker is never counted
+   as an observation. */
+.plot__key {
+  pointer-events: none;
+}
+
+@media (forced-colors: active) {
+  .plot__band {
+    stroke-width: 2;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   15d. Disclosure
+
+   A labelled `<details>`, for material that must be available but does not
+   have to be on screen: most often the data table behind a chart.
+
+   Only use it where the essential information is already reachable another
+   way. A plot's `<desc>` should state what the plot shows before anything is
+   opened; the table behind this is the full set of values, not the only route
+   to the point. Never put an activity's actual content in here.
+   ---------------------------------------------------------------------- */
+
+.disclosure {
+  margin-top: var(--stack);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--card);
+}
+
+.disclosure > summary {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: var(--target);
+  padding: 0.6875rem 1rem;
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.disclosure > summary::marker {
+  color: var(--teal);
+}
+
+.disclosure[open] > summary {
+  border-bottom: 1px solid var(--border);
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+
+.disclosure__body {
+  padding: 0 1rem 1rem;
+}
+
+.disclosure__body .table-scroll {
+  margin-top: 0.75rem;
+}
+
+/* -------------------------------------------------------------------------
    16. Data table
 
    Every chart needs one of these, or an equivalent readout. It is the text
