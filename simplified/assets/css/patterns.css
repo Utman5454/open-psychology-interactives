@@ -880,6 +880,10 @@
   font-size: var(--text-sm);
 }
 
+.control select {
+  width: 100%;
+}
+
 .control input[type="range"] {
   width: 100%;
   min-height: var(--target);
@@ -889,13 +893,27 @@
 .control select,
 .control input[type="number"],
 .control input[type="text"],
-.entry input {
+.control textarea,
+.entry input,
+.entry textarea {
+  max-width: 100%;
   min-height: var(--target);
   padding: 0.6875rem 0.75rem;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border);
   background: var(--card);
   color: var(--navy);
+}
+
+/* Free text. Sized for a sentence or two, never for an essay: an activity
+   that wants a paragraph is asking the learner to do the wrong amount. */
+.entry textarea,
+.control textarea {
+  width: 100%;
+  min-height: 4.5rem;
+  resize: vertical;
+  font-family: inherit;
+  line-height: 1.5;
 }
 
 /* A label, a small input and a button on one line. */
@@ -1063,6 +1081,11 @@
   stroke-dasharray: 4 3;
 }
 
+.plot__band--alert {
+  fill: var(--coral-light);
+  stroke: var(--coral);
+}
+
 .plot__zero {
   stroke: var(--teal);
   stroke-width: 1.5;
@@ -1090,6 +1113,13 @@
   stroke-linecap: round;
 }
 
+/* Dashed, not merely recoloured: whether an interval covers its reference is
+   the whole point of a coverage plot and must survive greyscale. */
+.plot__interval--miss {
+  stroke: var(--coral);
+  stroke-dasharray: 5 3;
+}
+
 .plot__point {
   fill: var(--card);
   stroke: var(--blue);
@@ -1104,6 +1134,33 @@
   fill: var(--blue-light);
   stroke: var(--blue);
   stroke-width: 1.5;
+}
+
+/* A bar on the wrong side of zero. Direction already carries the sign, so
+   this only makes it easier to find; never rely on the tint alone. */
+.plot__bar--negative {
+  fill: var(--coral-light);
+  stroke: var(--coral);
+}
+
+/* Three roles in one figure, each a different mark as well as a different
+   hue, and each named in text on the page: a population (filled curve), one
+   sample from it (ticks), and the distribution of a statistic (histogram). */
+.plot__density {
+  fill: var(--teal-light);
+  stroke: var(--teal);
+  stroke-width: 2;
+}
+
+.plot__sample {
+  stroke: var(--coral);
+  stroke-width: 2;
+}
+
+.plot__hist {
+  fill: var(--blue-light);
+  stroke: var(--blue);
+  stroke-width: 1;
 }
 
 /* Key elements. Drawn exactly as the data is drawn, so the key needs no
@@ -1168,6 +1225,49 @@
 }
 
 /* -------------------------------------------------------------------------
+   15e. Key terms
+
+   A glossary inside a `.disclosure`, collapsed by default, placed next to the
+   controls a learner is about to operate:
+
+     <details class="disclosure">
+       <summary>Key terms</summary>
+       <div class="disclosure__body">
+         <dl class="glossary">
+           <dt>Term</dt><dd>One or two plain sentences.</dd>
+         </dl>
+       </div>
+     </details>
+
+   For activities where the task cannot be done without the vocabulary:
+   statistical and psychometric ones, mostly. Not a default. An activity whose
+   terms are explained by doing it does not need one, and a glossary that
+   restates what the page already says is furniture.
+
+   Keep each definition to one or two sentences. This is a reminder for
+   someone mid-task, not a teaching section.
+   ---------------------------------------------------------------------- */
+
+.glossary {
+  margin: 0;
+}
+
+.glossary dt {
+  font-size: var(--text-sm);
+  font-weight: 800;
+}
+
+.glossary dd {
+  margin: 0.125rem 0 0.75rem;
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+
+.glossary dd:last-child {
+  margin-bottom: 0;
+}
+
+/* -------------------------------------------------------------------------
    16. Data table
 
    Every chart needs one of these, or an equivalent readout. It is the text
@@ -1229,6 +1329,10 @@
     grid-template-columns: 1fr;
   }
 
+  /* minmax(0, 1fr), not 1fr. A bare 1fr keeps an automatic minimum, so a
+     grid item with a wide intrinsic width, a select whose longest option is
+     long, pushes its track past the viewport and the page scrolls sideways
+     at 320px. */
   .option-grid,
   .reveal-grid,
   .evidence-grid,
@@ -1237,7 +1341,7 @@
   .peers,
   .pair-grid,
   .controls {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .bar-row {

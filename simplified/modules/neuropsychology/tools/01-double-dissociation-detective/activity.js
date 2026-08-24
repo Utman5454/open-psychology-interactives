@@ -335,7 +335,7 @@
       height += HEAD + person.rows.length * ROW + 8;
     });
     var axisY = height + 6;
-    var total = axisY + 34;
+    var total = axisY + 58;
 
     while (chart.childNodes.length > 2) {
       chart.removeChild(chart.lastChild);
@@ -409,13 +409,14 @@
     [-10, -8, -6, -4, -2, 0, 2].forEach(function (tick) {
       var mark = svg("text", {
         x: xOf(tick), y: axisY + 20, "text-anchor": "middle", class: "plot__tick"
-      });
+      });   /* glyphs about axisY+8 to axisY+23 */
       mark.textContent = String(tick);
       chart.appendChild(mark);
     });
 
+    /* Its own band, clear of the axis numbers above it. */
     var caption = svg("text", {
-      x: (AXIS_START + AXIS_END) / 2, y: axisY + 32,
+      x: (AXIS_START + AXIS_END) / 2, y: axisY + 44,
       "text-anchor": "middle", class: "plot__tick"
     });
     caption.textContent = "Control standard deviations from that task's control average";

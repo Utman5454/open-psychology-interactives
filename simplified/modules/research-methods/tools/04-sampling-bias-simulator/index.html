@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sampling Bias Simulator | Simplified Edition</title>
+<meta name="description" content="Draw repeated samples from a generated population of 4,000 students by three recruitment methods, and watch the difference between an estimate that scatters and an estimate that is systematically off.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231C7293'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../../../assets/css/simplified.css">
+<link rel="stylesheet" href="../../../../assets/css/patterns.css">
+<script src="../../../../assets/js/workbook.js" defer></script>
+<script src="activity.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to the activity</a>
+
+<main class="workbook workbook--compact" id="main" data-workbook
+      data-reset-message="Cleared. No samples drawn, back to the starting settings.">
+
+  <section class="hero">
+    <p class="eyebrow">Research Methods &middot; Simplified</p>
+    <h1>Sampling Bias Simulator</h1>
+    <p class="hero__lead">Four thousand students whose true average you can
+      see. Recruit from them, repeatedly, and watch where the estimates land.</p>
+  </section>
+
+  <section class="card" id="card" aria-labelledby="card-heading">
+    <p class="step-label">The simulator</p>
+    <h2 id="card-heading">How you recruit decides where the estimates land</h2>
+    <p class="lead">The population is generated once and never changes, so its
+      true mean weekly study hours is known. Every sample is a real draw from
+      it. Draw a few, then draw a lot.</p>
+
+    <details class="disclosure" id="key-terms">
+      <summary>Key terms</summary>
+      <div class="disclosure__body">
+        <dl class="glossary">
+          <dt>Bias</dt>
+          <dd>The estimates centre on the wrong value. Averaging more of them,
+            or drawing bigger samples, does not move them back.</dd>
+          <dt>Sampling variability</dt>
+          <dd>Estimates scatter around wherever they centre, because each
+            sample is a different set of people. Bigger samples scatter less.</dd>
+          <dt>Convenience sample</dt>
+          <dd>Whoever is easy to reach. Who is easy to reach is usually
+            related to what is being measured.</dd>
+          <dt>Quota sample</dt>
+          <dd>Fixed numbers recruited in each category, filled however is
+            convenient. It corrects the composition of the variable you set a
+            quota on, and nothing else.</dd>
+        </dl>
+      </div>
+    </details>
+
+    <fieldset class="controls" style="--controls-columns: 3">
+      <legend class="visually-hidden">Recruitment settings</legend>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="method">How do you recruit?</label>
+        </div>
+        <select id="method">
+          <option value="convenience" selected>Convenience</option>
+          <option value="quota">Quota on year of study</option>
+          <option value="random">Simple random sample</option>
+        </select>
+        <p class="control__hint" id="method-note"></p>
+      </div>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="size">Students per sample</label>
+          <output class="control__value" for="size">120</output>
+        </div>
+        <input type="range" id="size" min="20" max="600" step="20" value="120">
+        <p class="control__hint">How many people each study recruits.</p>
+      </div>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="seed">Seed</label>
+        </div>
+        <input type="number" id="seed" value="3181" min="1" max="99999" step="1">
+        <p class="control__hint">The same seed draws the same samples again.</p>
+      </div>
+    </fieldset>
+
+    <div class="plot">
+      <svg id="chart" role="img" aria-labelledby="chart-title chart-desc">
+        <title id="chart-title">Where the estimates from repeated samples land</title>
+        <desc id="chart-desc"></desc>
+      </svg>
+      <p class="legend">The solid line is the population mean, which a perfect
+        census would return. Each bar counts studies whose sample mean landed
+        there.</p>
+    </div>
+
+    <ul class="results-grid" style="--results-columns: 3" id="readout"></ul>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="draw-one" type="button">Run one study</button>
+      <button class="btn btn-primary" id="draw-many" type="button">Run 200 studies</button>
+      <button class="btn btn-secondary" id="explain" type="button" disabled>What this shows</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+  </section>
+
+  <p class="workbook-status" data-workbook-status role="status" aria-live="polite"></p>
+
+  <section class="synthesis" id="synthesis" hidden aria-labelledby="result-heading">
+    <p class="step-label">What this shows</p>
+    <h2 id="result-heading">Scatter and being wrong are different failures</h2>
+    <p class="lead">A simple random sample of 20 is all over the place and
+      centred on the truth. A convenience sample of 600 is tightly clustered
+      and centred somewhere else. Only one of those two problems is fixed by
+      recruiting more people.</p>
+
+    <div class="takeaway">
+      <p><strong>Key idea:</strong> Sample size buys precision. Nothing about
+        it buys the right answer. If who ends up in your sample is related to
+        what you are measuring, the estimates centre on the wrong value and go
+        on centring there however many you collect. A quota fixes the
+        composition of the variable you set a quota on and leaves every other
+        selection problem exactly where it was, which is why a table showing a
+        perfect year breakdown is not evidence that a sample is any good.</p>
+    </div>
+
+    <div class="notice notice--caution">
+      <p>The population is generated and the selection weights are invented,
+        chosen to make the effect legible rather than to estimate how much more
+        likely a commuter is to be in a library on a Tuesday. Real
+        non-response depends on the topic, the mode, the incentive and the
+        season. Bias in a mean is also not the only bias selection produces:
+        it distorts variances, subgroup comparisons and associations too, and
+        not always in the same direction.</p>
+    </div>
+
+    <p class="small" style="margin-top: 1.125rem">The longer version adds five
+      recruitment methods including stratified sampling, a non-response dial
+      that applies to every method, a composition table and a select-all
+      challenge. It is at
+      <a href="../../../../../modules/research-methods/tools/04-sampling-bias-simulator/index.html">Sampling
+      Bias Simulator in the main collection</a>.</p>
+  </section>
+</main>
+</body>
+</html>

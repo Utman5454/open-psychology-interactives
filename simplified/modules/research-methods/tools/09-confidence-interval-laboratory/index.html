@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Confidence Interval Laboratory | Simplified Edition</title>
+<meta name="description" content="Run studies against a true value you can see, stack their intervals, and watch what the confidence level does and what the sample size does not.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231C7293'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../../../assets/css/simplified.css">
+<link rel="stylesheet" href="../../../../assets/css/patterns.css">
+<script src="../../../../assets/js/workbook.js" defer></script>
+<script src="activity.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to the activity</a>
+
+<main class="workbook workbook--compact" id="main" data-workbook
+      data-reset-message="Cleared. No studies run, back to the starting settings.">
+
+  <section class="hero">
+    <p class="eyebrow">Research Methods &middot; Simplified</p>
+    <h1>Confidence Interval Laboratory</h1>
+    <p class="hero__lead">The truth stays still. The intervals move around it.
+      Ninety-five per cent is a statement about the intervals.</p>
+  </section>
+
+  <section class="card" id="card" aria-labelledby="card-heading">
+    <p class="step-label">The simulator</p>
+    <h2 id="card-heading">One truth, many studies, one interval each</h2>
+    <p class="lead">A simulated population whose true mean change in walking is
+      exactly 12 minutes a day. Each study draws its own sample and reports its
+      own interval. Only one thing on this page changes how often those
+      intervals contain the truth.</p>
+
+    <details class="disclosure" id="key-terms">
+      <summary>Key terms</summary>
+      <div class="disclosure__body">
+        <dl class="glossary">
+          <dt>Confidence interval</dt>
+          <dd>A range computed from one sample by a procedure that, repeated,
+            captures the true value a stated share of the time.</dd>
+          <dt>Coverage</dt>
+          <dd>The share of intervals that actually contain the true value. It
+            is a property of the procedure across many studies, not of any one
+            interval.</dd>
+          <dt>Confidence level</dt>
+          <dd>The share you asked for when you chose the multiplier: 80, 90, 95
+            or 99 per cent.</dd>
+          <dt>Width</dt>
+          <dd>How long the interval is. Sample size and population spread
+            change the width. Neither changes the coverage.</dd>
+        </dl>
+      </div>
+    </details>
+
+    <fieldset class="controls" style="--controls-columns: 4">
+      <legend class="visually-hidden">Simulation settings</legend>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="level">Confidence level</label>
+        </div>
+        <select id="level">
+          <option value="80">80 per cent</option>
+          <option value="90">90 per cent</option>
+          <option value="95" selected>95 per cent</option>
+          <option value="99">99 per cent</option>
+        </select>
+      </div>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="n">Sample size</label>
+          <output class="control__value" for="n">25</output>
+        </div>
+        <input type="range" id="n" min="5" max="200" step="5" value="25">
+      </div>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="sd">Population SD</label>
+          <output class="control__value" for="sd">20</output>
+        </div>
+        <input type="range" id="sd" min="5" max="40" step="1" value="20">
+      </div>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="seed">Seed</label>
+        </div>
+        <input type="number" id="seed" value="2109" min="1" max="99999" step="1">
+      </div>
+    </fieldset>
+
+    <div class="plot">
+      <svg id="chart" role="img" aria-labelledby="chart-title chart-desc">
+        <title id="chart-title">One interval per study, stacked, against a fixed true value</title>
+        <desc id="chart-desc"></desc>
+      </svg>
+      <p class="legend">One row per study, most recent at the top. The solid
+        line is the true value. Intervals that miss it are drawn as a dashed
+        line.</p>
+    </div>
+
+    <ul class="results-grid" style="--results-columns: 3" id="readout"></ul>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="run1" type="button">Run one study</button>
+      <button class="btn btn-primary" id="run100" type="button">Run 100 studies</button>
+      <button class="btn btn-secondary" id="explain" type="button" disabled>What this shows</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+  </section>
+
+  <p class="workbook-status" data-workbook-status role="status" aria-live="polite"></p>
+
+  <section class="synthesis" id="synthesis" hidden aria-labelledby="result-heading">
+    <p class="step-label">What this shows</p>
+    <h2 id="result-heading">Width and coverage are different things</h2>
+    <p class="lead">Sample size and population spread change how long the
+      intervals are. Neither changes how often they contain the truth. Only the
+      confidence level does, and it does so by changing the width in exchange.</p>
+
+    <div class="takeaway">
+      <p><strong>Key idea:</strong> A confidence level is a property of the
+        procedure, not of the interval in front of you. The one interval your
+        study reports either contains the true value or it does not, and you
+        will never know which. What the ninety-five per cent describes is the
+        long run: repeat the procedure and that share of the intervals will
+        capture the truth. That is why "there is a 95 per cent chance the true
+        value is in this interval" is the wrong sentence, even though the right
+        sentence is harder to say.</p>
+    </div>
+
+    <div class="notice notice--caution">
+      <p>The population standard deviation is treated as known here, because
+        the simulation states it, which is why the multiplier is a normal
+        quantile and why every interval in a run has exactly the same width.
+        A real study estimates the spread from its own sample and uses a t
+        multiplier, which widens the interval at small samples and makes the
+        widths vary from study to study. That estimation is a different tool.
+        Coverage is also exact only because the model is exactly right here;
+        real coverage degrades when the assumptions do.</p>
+    </div>
+
+    <p class="small" style="margin-top: 1.125rem">The longer version adds a
+      second experiment in which four fictional trials are judged against a
+      smallest-change-that-matters threshold, separating an interval that is
+      informative from one that is merely narrow, plus a select-all challenge.
+      It is at
+      <a href="../../../../../modules/research-methods/tools/09-confidence-interval-laboratory/index.html">Confidence
+      Interval Laboratory in the main collection</a>.</p>
+  </section>
+</main>
+</body>
+</html>
