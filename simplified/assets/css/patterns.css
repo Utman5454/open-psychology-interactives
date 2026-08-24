@@ -1,0 +1,843 @@
+/* =========================================================================
+   Open Psychology Interactives — Simplified Edition
+   patterns.css — optional visual patterns
+   -------------------------------------------------------------------------
+   Load after `simplified.css`. Every rule here is optional: nothing in this
+   file is required for an activity to work, and no pattern assumes anything
+   about how an activity is structured or scored.
+
+   The patterns are drawn from the golden references in
+   `docs/simplified-reference/`, generalised so that a pattern is available
+   to any activity rather than tied to the one that first needed it. The
+   reference class names are kept, so a golden example could be pasted in and
+   would look right — with one deliberate exception, described in
+   `simplified.css`: interactive state moves from classes (`.correct`,
+   `.wrong`, `.active`) to `data-state`, because each state also needs a
+   glyph, a border style and a text label to stop colour carrying meaning on
+   its own.
+
+   Pick the pattern that fits the teaching job. Do not reach for the choice
+   grid by default: three of the seven references use no choices at all.
+   ========================================================================= */
+
+/* -------------------------------------------------------------------------
+   1. Notice
+
+   A short flagged aside. The project requires simulated, fictional and
+   illustrative values to be labelled as such (CLAUDE.md), and this is where
+   that label goes. Use `--caution` for content notes and anything a reader
+   should know before they start.
+   ---------------------------------------------------------------------- */
+
+.notice {
+  margin-top: var(--stack);
+  padding: 1rem 1.125rem;
+  border-radius: var(--radius-sm);
+  background: var(--blue-light);
+  border: 1px solid rgb(61 90 128 / 0.25);
+  font-size: var(--text-sm);
+}
+
+.notice--caution {
+  background: var(--gold-light);
+  border-color: var(--gold-strong);
+}
+
+.notice > p {
+  margin: 0;
+}
+
+.notice > p + p {
+  margin-top: 0.5rem;
+}
+
+/* -------------------------------------------------------------------------
+   2. Casebox
+
+   The stimulus: the case, extract, result or scenario the learner is working
+   on. Set slightly larger than body text and ruled in teal, so it reads as
+   the material rather than as instructions about the material.
+   ---------------------------------------------------------------------- */
+
+.casebox {
+  margin-top: var(--stack);
+  padding: 1.375rem 1.5rem;
+  border-left: 5px solid var(--teal);
+  border-radius: var(--radius-sm);
+  background: var(--card);
+  font-size: var(--text-md);
+}
+
+.casebox > p {
+  margin: 0;
+}
+
+.casebox > p + p {
+  margin-top: 0.5rem;
+}
+
+/* -------------------------------------------------------------------------
+   3. Tag and chip strip
+
+   `.tag` names the thing currently on screen — which measure, which lens,
+   which topic. `.chip-strip` lists attributes that all stay true at once.
+   ---------------------------------------------------------------------- */
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 1rem;
+  padding: 0.5625rem 0.75rem;
+  border-radius: var(--radius-pill);
+  background: var(--gold-light);
+  border: 1px solid var(--gold-strong);
+  font-size: var(--text-sm);
+  font-weight: 800;
+}
+
+.chip-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5625rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chip {
+  padding: 0.5625rem 0.75rem;
+  border-radius: var(--radius-pill);
+  background: #FAF8F4;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-size: var(--text-sm);
+  font-weight: 800;
+}
+
+/* -------------------------------------------------------------------------
+   4. Lens head
+
+   A banner naming the frame currently being applied, and the question it
+   asks. Used where the material stays fixed and the interpretation changes.
+   ---------------------------------------------------------------------- */
+
+.lens-head {
+  margin-top: var(--stack);
+  padding: 1.125rem 1.25rem;
+  border-radius: var(--radius-md);
+  background: var(--teal-light);
+  border: 1px solid rgb(28 114 147 / 0.22);
+}
+
+.lens-head strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 1.25rem;
+}
+
+.lens-head span {
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+/* -------------------------------------------------------------------------
+   5. Choice grid
+
+   Markup contract:
+
+     <div class="option-grid" data-workbook-choices>
+       <button class="option" type="button" data-choice="key">
+         <strong>Short label</strong>
+         <span>One line saying what this option claims.</span>
+       </button>
+     </div>
+
+   State is set through `data-state`, not a class:
+
+     data-state="chosen"     selected, not yet judged   teal   solid   dot
+     data-state="correct"    the best-supported answer  green  solid   tick
+     data-state="incorrect"  the answer that was given  gold   dashed  cross
+
+   Three signals, not one: hue, border style and a corner glyph. A reader who
+   cannot distinguish the hues still has a solid-versus-dashed edge and a
+   tick-versus-cross, and workbook.js adds a visually hidden sentence naming
+   the state for anyone using a screen reader.
+
+   Answered options are locked with `aria-disabled="true"`, never the
+   `disabled` attribute. `disabled` removes a button from the tab order, so a
+   keyboard reader who has just answered loses their place and cannot go back
+   over the options to read why. `aria-disabled` keeps them reachable and
+   readable; workbook.js swallows the activation.
+
+   Gold rather than red for an incorrect choice is deliberate and matches the
+   references: the feedback these activities give is "another option is more
+   central here", not "you failed".
+   ---------------------------------------------------------------------- */
+
+.option-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--option-columns, 3), minmax(0, 1fr));
+  gap: var(--gap);
+  margin-top: var(--stack);
+}
+
+.option {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-height: var(--option-min-height, 7.5rem);
+  padding: 1.125rem;
+  padding-right: 2.75rem;
+  text-align: left;
+  color: var(--navy);
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: border-color 120ms ease, background-color 120ms ease;
+}
+
+.option:hover {
+  border-color: var(--teal);
+}
+
+.option strong {
+  display: block;
+  margin-bottom: 0.375rem;
+  font-size: var(--text-md);
+}
+
+.option span {
+  display: block;
+  color: var(--muted);
+  font-size: var(--text-sm);
+  line-height: 1.45;
+}
+
+/* A single-line variant, for recap questions where the option is the whole
+   answer and a supporting line would only pad it out. */
+.option--compact {
+  display: flex;
+  align-items: center;
+  min-height: var(--option-min-height, 6.5rem);
+}
+
+.option--compact strong {
+  margin-bottom: 0;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+/* --- States --- */
+
+.option[data-state="chosen"] {
+  border-color: var(--teal);
+  background: var(--teal-light);
+}
+
+.option[data-state="correct"] {
+  border-color: var(--green);
+  border-style: solid;
+  background: var(--green-light);
+}
+
+.option[data-state="incorrect"] {
+  border-color: var(--gold-strong);
+  border-style: dashed;
+  background: var(--gold-light);
+}
+
+/* The corner glyph. Decorative by construction — a CSS pseudo-element is not
+   dependable in assistive technology, which is why workbook.js writes a real
+   visually hidden sentence as well. */
+.option[data-state]::after {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  font-size: 0.875rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.option[data-state="chosen"]::after {
+  content: "\2022";
+  background: var(--teal);
+  color: #FFFFFF;
+}
+
+.option[data-state="correct"]::after {
+  content: "\2713";
+  background: var(--green);
+  color: #FFFFFF;
+}
+
+.option[data-state="incorrect"]::after {
+  content: "\2715";
+  background: var(--navy);
+  color: #FFFFFF;
+}
+
+/* Locked, but still focusable and still readable. Opacity is left alone on
+   purpose: the text is the thing the learner has come back to re-read. */
+.option[aria-disabled="true"] {
+  cursor: default;
+}
+
+.option[aria-disabled="true"]:hover {
+  border-color: var(--border);
+}
+
+.option[aria-disabled="true"][data-state="chosen"]:hover,
+.option[aria-disabled="true"][data-state="correct"]:hover {
+  border-color: var(--green);
+}
+
+.option[aria-disabled="true"][data-state="incorrect"]:hover {
+  border-color: var(--gold-strong);
+}
+
+@media (forced-colors: active) {
+  .option[data-state] {
+    border-width: 2px;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   6. Paired reveal
+
+   Two boxes side by side, for the move the references use more than any
+   other: say what the evidence supports, then say what it does not.
+
+     "What it brings into focus"  /  "What it backgrounds"
+     "What we can say"            /  "What we still cannot say"
+
+   `.mini--limit` tints the second box so the pair reads as a pair rather
+   than as two unrelated notes.
+   ---------------------------------------------------------------------- */
+
+.reveal-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--reveal-columns, 2), minmax(0, 1fr));
+  gap: var(--gap);
+  margin-top: 0.875rem;
+}
+
+.mini {
+  padding: 1rem;
+  border-radius: var(--radius-sm);
+  background: #FAF8F4;
+  border: 1px solid var(--border);
+}
+
+.mini strong {
+  display: block;
+  margin-bottom: 0.3125rem;
+}
+
+.mini p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.mini--limit {
+  background: var(--gold-light);
+  border-color: var(--gold-strong);
+}
+
+/* -------------------------------------------------------------------------
+   7. Evidence strip
+
+   Small labelled facts about the case as it currently stands. Where a stage
+   adds evidence, this is what visibly grows.
+   ---------------------------------------------------------------------- */
+
+.evidence-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--evidence-columns, 3), minmax(0, 1fr));
+  gap: var(--gap);
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.evidence {
+  padding: 0.9375rem;
+  border-radius: var(--radius-sm);
+  background: #FAF8F4;
+  border: 1px solid var(--border);
+}
+
+.evidence strong {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.evidence span {
+  font-size: var(--text-sm);
+  color: var(--muted);
+}
+
+/* -------------------------------------------------------------------------
+   8. Result tiles
+
+   Large figures with a caption above and a reference point below. The
+   caption below is not optional: a number with nothing to compare it to
+   teaches nothing (LEARNER_COPY_STYLE.md §5.1).
+   ---------------------------------------------------------------------- */
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--results-columns, 4), minmax(0, 1fr));
+  gap: var(--gap);
+  margin: var(--stack) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.result {
+  padding: 1.125rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: #FAF8F4;
+}
+
+.result strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: var(--text-sm);
+  color: var(--muted);
+}
+
+.result .big {
+  font-size: var(--text-2xl);
+  font-weight: 800;
+  color: var(--teal);
+  font-variant-numeric: tabular-nums;
+}
+
+.result .big--small {
+  font-size: var(--text-xl);
+}
+
+.result span {
+  font-size: var(--text-xs);
+  color: var(--muted);
+}
+
+/* -------------------------------------------------------------------------
+   9. Voices
+
+   Several accounts of the same situation, shown together so they can be
+   compared rather than read in turn.
+   ---------------------------------------------------------------------- */
+
+.voice-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--voice-columns, 3), minmax(0, 1fr));
+  gap: var(--gap);
+  margin-top: var(--stack);
+}
+
+.voice {
+  padding: 1.125rem;
+  border-radius: var(--radius-md);
+  background: var(--card);
+  border: 1px solid var(--border);
+}
+
+.voice strong {
+  display: block;
+  margin-bottom: 0.4375rem;
+}
+
+.voice p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+/* -------------------------------------------------------------------------
+   10. Cascade
+
+   A consequence chain: what follows from the step just taken, and what
+   follows from that. The arrows are decorative; the steps are a list, so the
+   sequence is available without seeing them.
+   ---------------------------------------------------------------------- */
+
+.continuation {
+  margin-top: 0.875rem;
+  padding: 1.125rem;
+  border-radius: var(--radius-sm);
+  background: #FAF8F4;
+  border: 1px solid var(--border);
+}
+
+.continuation > strong {
+  display: block;
+  margin-bottom: 0.375rem;
+}
+
+.cascade {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: cascade;
+}
+
+.cascade-step {
+  padding: 0.5625rem 0.6875rem;
+  border-radius: 10px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+/* Between the steps, not inside them, so the arrow is never read as content.
+   `aria-hidden` on a separate element would also work; this needs no markup
+   at all. */
+.cascade-step + .cascade-step::before {
+  content: "\2192";
+  margin-right: 0.5rem;
+  color: var(--coral);
+  font-weight: 900;
+}
+
+/* -------------------------------------------------------------------------
+   11. Comparison bars
+
+   A bar is a second reading of a number that is already on the page in text.
+   `.value` is required, not decorative: it is what a screen reader and a
+   greyscale printout both fall back to.
+   ---------------------------------------------------------------------- */
+
+.compare-bar {
+  margin-top: var(--stack);
+  padding: 1.25rem;
+  border-radius: var(--radius-md);
+  background: #FBFAF7;
+  border: 1px solid var(--border);
+}
+
+.bar-row {
+  display: grid;
+  grid-template-columns: 9.375rem 1fr 3.4375rem;
+  gap: 0.625rem;
+  align-items: center;
+  margin-top: 0.75rem;
+}
+
+.bar-row:first-child {
+  margin-top: 0;
+}
+
+.track {
+  height: 0.75rem;
+  border-radius: var(--radius-pill);
+  background: #E8E4DD;
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background: var(--bar-colour, var(--teal));
+}
+
+.value {
+  text-align: right;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.legend {
+  margin: 0.75rem 0 0;
+  color: var(--muted);
+  font-size: var(--text-xs);
+}
+
+/* -------------------------------------------------------------------------
+   12. Stimulus stage
+
+   A fixed-height area where something is shown, briefly or otherwise.
+
+   If what appears here is timed, the activity must also offer a route that
+   is not timed — a replay, a step control, or a static version with the same
+   information. A one-second exposure with no alternative fails WCAG 2.2
+   SC 2.2.1, and several of these demonstrations are the whole point of the
+   activity, so losing them is not an option either.
+   ---------------------------------------------------------------------- */
+
+.stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  min-height: var(--stage-height, 17.8125rem);
+  margin-top: var(--stack);
+  border-radius: var(--radius-md);
+  background: #FBFAF7;
+  border: 1px solid var(--border);
+}
+
+.stage__message {
+  padding: 1.25rem;
+  color: var(--muted);
+  font-weight: 800;
+  text-align: center;
+}
+
+.stage__mark {
+  position: absolute;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--blue);
+}
+
+/* -------------------------------------------------------------------------
+   13. Comparison values
+
+   Other people's responses, other groups' figures, or any small set of
+   values shown for comparison. Label the source in text: where these are
+   simulated, say so beneath them.
+   ---------------------------------------------------------------------- */
+
+.peers {
+  display: grid;
+  grid-template-columns: repeat(var(--peers-columns, 3), minmax(0, 1fr));
+  gap: var(--gap);
+  margin: var(--stack) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.peer {
+  padding: 0.9375rem;
+  border-radius: var(--radius-sm);
+  background: var(--teal-light);
+  border: 1px solid rgb(28 114 147 / 0.2);
+  text-align: center;
+}
+
+.peer strong {
+  display: block;
+  font-size: var(--text-xl);
+  font-variant-numeric: tabular-nums;
+}
+
+.peer span {
+  font-size: var(--text-sm);
+  color: var(--muted);
+}
+
+/* -------------------------------------------------------------------------
+   14. Paired blocks
+
+   Two plain blocks side by side, for comparing one set of things with
+   another — before and after, one condition and the other.
+   ---------------------------------------------------------------------- */
+
+.pair-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--pair-columns, 2), minmax(0, 1fr));
+  gap: var(--gap);
+  margin-top: var(--stack);
+}
+
+.block {
+  padding: 1.125rem;
+  border-radius: var(--radius-sm);
+  background: var(--card);
+  border: 1px solid var(--border);
+}
+
+.block ol,
+.block ul {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: var(--muted);
+}
+
+.block li + li {
+  margin-top: 0.3125rem;
+}
+
+/* -------------------------------------------------------------------------
+   15. Controls
+
+   For activities that manipulate something rather than choose between
+   options. `<output for="...">` pairs the current value with its input;
+   workbook.js keeps the two in step through `bindRange`.
+   ---------------------------------------------------------------------- */
+
+.controls {
+  display: grid;
+  grid-template-columns: repeat(var(--controls-columns, 2), minmax(0, 1fr));
+  gap: 1.125rem;
+  margin: var(--stack) 0 0;
+  padding: 0;
+  border: 0;
+}
+
+.control__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.control__label {
+  font-weight: 800;
+}
+
+.control__value {
+  color: var(--teal);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.control__hint {
+  margin: 0.375rem 0 0;
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+
+.control input[type="range"] {
+  width: 100%;
+  min-height: var(--target);
+  accent-color: var(--teal);
+}
+
+.control select,
+.control input[type="number"],
+.control input[type="text"],
+.entry input {
+  min-height: var(--target);
+  padding: 0.6875rem 0.75rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--navy);
+}
+
+/* A label, a small input and a button on one line. */
+.entry {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 0.625rem;
+  margin-top: var(--stack);
+}
+
+.entry label {
+  font-weight: 800;
+}
+
+.entry input {
+  width: 9.375rem;
+}
+
+/* An inline validation message. Referenced from the input with
+   `aria-describedby`, so it is read as part of the field rather than
+   appearing silently beside it. */
+.entry__error {
+  flex-basis: 100%;
+  margin: 0;
+  color: var(--coral);
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+.entry__error::before {
+  content: "\26A0\FE0E";
+  margin-right: 0.375rem;
+}
+
+/* -------------------------------------------------------------------------
+   16. Data table
+
+   Every chart needs one of these, or an equivalent readout. It is the text
+   alternative, and it is also what a lecturer reads out loud.
+   ---------------------------------------------------------------------- */
+
+.table-scroll {
+  overflow-x: auto;
+  margin-top: var(--stack);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+
+.data-table caption {
+  padding: 0.75rem 0.75rem 0;
+  color: var(--muted);
+  font-size: var(--text-sm);
+  text-align: left;
+}
+
+.data-table th,
+.data-table td {
+  padding: 0.625rem 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.data-table thead th {
+  background: #FBFAF7;
+  font-weight: 800;
+}
+
+.data-table td {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.data-table tbody tr:last-child th,
+.data-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+/* -------------------------------------------------------------------------
+   17. Responsive
+
+   Every grid in this file collapses to a single column at the shell's one
+   breakpoint, which is what the references do. The bar rows narrow rather
+   than stack, because a label above a bar loses the comparison.
+   ---------------------------------------------------------------------- */
+
+@media (max-width: 47.5em) {
+  .option-grid,
+  .reveal-grid,
+  .evidence-grid,
+  .results-grid,
+  .voice-grid,
+  .peers,
+  .pair-grid,
+  .controls {
+    grid-template-columns: 1fr;
+  }
+
+  .bar-row {
+    grid-template-columns: 6.875rem 1fr 2.8125rem;
+  }
+
+  .entry input {
+    width: 100%;
+  }
+}

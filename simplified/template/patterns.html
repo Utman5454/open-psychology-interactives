@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Pattern gallery — Simplified Edition</title>
+<meta name="description" content="Every optional pattern in patterns.css, shown with neutral content. Not a learner activity.">
+<meta name="robots" content="noindex">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231C7293'/%3E%3C/svg%3E">
+
+<link rel="stylesheet" href="../assets/css/simplified.css">
+<link rel="stylesheet" href="../assets/css/patterns.css">
+</head>
+
+<body>
+
+<a class="skip-link" href="#main">Skip to the gallery</a>
+
+<main class="workbook" id="main">
+
+  <div class="notice notice--caution">
+    <p><strong>This is a reference sheet, not an activity.</strong> Every
+      optional pattern in <code>patterns.css</code> appears once below, with
+      neutral content, so you can see what exists before inventing something
+      new. Pick the pattern that fits the teaching job. Three of the seven
+      golden references use no choices at all.</p>
+  </div>
+
+  <section class="hero">
+    <p class="eyebrow">Simplified Edition</p>
+    <h1>Pattern gallery</h1>
+    <p class="hero__lead">The optional visual patterns available to an
+      activity, and the accessible state contract each one expects.</p>
+  </section>
+
+  <!-- ============================================================ -->
+  <section class="card" aria-labelledby="p-notice">
+    <p class="step-label">Pattern</p>
+    <h2 id="p-notice">Notice</h2>
+    <p class="lead"><code>.notice</code>, <code>.notice--caution</code>. Where
+      the project's requirement to label fictional, simulated and
+      illustrative values is met.</p>
+
+    <div class="notice">
+      <p>A plain aside. Use for anything the reader needs to know that is not
+        part of the material itself.</p>
+    </div>
+
+    <div class="notice notice--caution">
+      <p><strong>Fictional data.</strong> Every figure on this page is
+        simulated for teaching and is not drawn from any real sample.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <section class="card" aria-labelledby="p-stimulus">
+    <p class="step-label">Pattern</p>
+    <h2 id="p-stimulus">Stimulus: casebox, tag, chip strip, lens head</h2>
+    <p class="lead"><code>.casebox</code> holds the material.
+      <code>.tag</code> names what is currently on screen.
+      <code>.chip-strip</code> lists attributes that are all true at once.
+      <code>.lens-head</code> names the frame being applied and the question
+      it asks.</p>
+
+    <p class="tag">Tag: names the current thing</p>
+
+    <div class="casebox">
+      <p>The case, extract, result or scenario the learner is working on.</p>
+      <p>Set slightly larger than body text and ruled in teal, so it reads as
+        the material rather than as instructions about the material.</p>
+    </div>
+
+    <ul class="chip-strip">
+      <li class="chip">Attribute one</li>
+      <li class="chip">Attribute two</li>
+      <li class="chip">Attribute three</li>
+      <li class="chip">Attribute four</li>
+    </ul>
+
+    <div class="lens-head">
+      <strong>Frame name</strong>
+      <span>The question this frame asks of the material.</span>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <section class="card" aria-labelledby="p-choices">
+    <p class="step-label">Pattern</p>
+    <h2 id="p-choices">Choice grid and its states</h2>
+    <p class="lead"><code>.option-grid</code>, <code>.option</code>. Three
+      signals carry each state, never colour alone: hue, border style
+      (solid or dashed) and a corner glyph — plus a visually hidden sentence,
+      shown in the markup below and normally written by
+      <code>workbook.js</code>.</p>
+
+    <div class="option-grid">
+      <button class="option" type="button" data-choice="a">
+        <strong>Untouched</strong>
+        <span>No state set. One line saying what this option claims.</span>
+      </button>
+      <button class="option" type="button" data-choice="b" data-state="chosen">
+        <strong>Chosen</strong>
+        <span>Selected, not yet judged. Teal, solid, dot.</span>
+        <span class="visually-hidden" data-workbook-note> Selected.</span>
+      </button>
+      <button class="option" type="button" data-choice="c" data-state="correct"
+              aria-disabled="true">
+        <strong>Correct</strong>
+        <span>The best-supported answer. Green, solid, tick.</span>
+        <span class="visually-hidden" data-workbook-note> This is the best-supported answer.</span>
+      </button>
+    </div>
+
+    <div class="option-grid" style="--option-columns: 2">
+      <button class="option" type="button" data-choice="d" data-state="incorrect"
+              aria-disabled="true">
+        <strong>Incorrect</strong>
+        <span>The answer that was given. Gold, dashed, cross. Gold rather
+          than red on purpose: the feedback is "another option is more
+          central here", not "you failed".</span>
+        <span class="visually-hidden" data-workbook-note> This is the answer you gave.</span>
+      </button>
+      <button class="option" type="button" data-choice="e" aria-disabled="true">
+        <strong>Locked, unmarked</strong>
+        <span><code>aria-disabled</code>, never the <code>disabled</code>
+          attribute: a locked option stays in the tab order so it can be
+          re-read. Try tabbing through this grid.</span>
+      </button>
+    </div>
+
+    <p class="lead" style="margin-top: 1.125rem">A single-line variant,
+      <code>.option--compact</code>, for recap questions where the option is
+      the whole answer:</p>
+
+    <div class="option-grid" style="--option-columns: 1">
+      <button class="option option--compact" type="button" data-choice="f">
+        <strong>A one-line option, with no supporting sentence beneath it.</strong>
+      </button>
+      <button class="option option--compact" type="button" data-choice="g">
+        <strong>Another of similar length, so length never signals the answer.</strong>
+      </button>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <section class="card" aria-labelledby="p-reveal">
+    <p class="step-label">Pattern</p>
+    <h2 id="p-reveal">Paired reveal</h2>
+    <p class="lead"><code>.reveal-grid</code>, <code>.mini</code>,
+      <code>.mini--limit</code>. The move the golden references use more than
+      any other: say what the evidence supports, then say what it does not.
+      This is what stops feedback collapsing into right-or-wrong.</p>
+
+    <div class="reveal">
+      <p><strong>The verdict, in one sentence.</strong></p>
+      <div class="reveal-grid">
+        <div class="mini">
+          <strong>What this supports</strong>
+          <p>The claim the material can actually carry.</p>
+        </div>
+        <div class="mini mini--limit">
+          <strong>What it still does not show</strong>
+          <p>The claim it cannot carry, however tempting.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <section class="card" aria-labelledby="p-evidence">
+    <p class="step-label">Pattern</p>
+    <h2 id="p-evidence">Evidence strip and result tiles</h2>
+    <p class="lead"><code>.evidence-grid</code> holds small labelled facts
+      about the case as it currently stands — where a stage adds evidence,
+      this is what visibly grows. <code>.results-grid</code> holds large
+      figures. The caption under each figure is not optional: a number with
+      nothing to compare it to teaches nothing.</p>
+
+    <ul class="evidence-grid">
+      <li class="evidence"><strong>Label</strong><span>Value</span></li>
+      <li class="evidence"><strong>Label</strong><span>Value</span></li>
+      <li class="evidence"><strong>Label</strong><span>Not yet observed</span></li>
+    </ul>
+
+    <ul class="results-grid">
+      <li class="result">
+        <strong>First condition</strong>
+        <div class="big">41.2</div>
+        <span>Simulated, 12 observations</span>
+      </li>
+      <li class="result">
+        <strong>Second condition</strong>
+        <div class="big">47.8</div>
+        <span>Simulated, 12 observations</span>
+      </li>
+      <li class="result">
+        <strong>Difference</strong>
+        <div class="big">6.6</div>
+        <span>Second minus first</span>
+      </li>
+      <li class="result">
+        <strong>Reference value</strong>
+        <div class="big big--small">40 &middot; 50</div>
+        <span>The two actual values</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ============================================================ -->
+  <section class="card" aria-labelledby="p-voices">
+    <p class="step-label">Pattern</p>
+    <h2 id="p-voices">Voices and consequence chain</h2>
+    <p class="lead"><code>.voice-grid</code> shows several accounts of the
+      same situation together, so they can be compared rather than read in
+      turn. <code>.continuation</code> with <code>.cascade</code> shows what
+      follows from one of them, and what follows from that.</p>
+
+    <div class="voice-grid">
+      <div class="voice"><strong>First account</strong><p>What one party says about the situation.</p></div>
+      <div class="voice"><strong>Second account</strong><p>What another party says about the same situation.</p></div>
+      <div class="voice"><strong>Third account</strong><p>How it is recorded formally.</p></div>
+    </div>
+
+    <div class="continuation">
+      <strong>What could happen next?</strong>
+      <p class="small">One or two lines on what this account makes thinkable.</p>
+      <ol class="cascade">
+        <li class="cascade-step">First consequence</li>
+        <li class="cascade-step">Second consequence</li>
+        <li class="cascade-step">Third consequence</li>
+        <li class="cascade-step">Where it settles</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <section class="card" aria-labelledby="p-bars">
+    <p class="step-label">Pattern</p>
+    <h2 id="p-bars">Comparison bars and data table</h2>
+    <p class="lead"><code>.compare-bar</code> is a second reading of numbers
+      that are already on the page. <code>.value</code> is required, not
+      decorative: it is what a screen reader and a greyscale printout both
+      fall back to. Set <code>--bar-colour</code> per row where the rows are
+      different kinds of thing.</p>
+
+    <div class="compare-bar">
+      <div class="bar-row">
+        <span>First condition</span>
+        <div class="track"><div class="fill" style="width: 59%"></div></div>
+        <span class="value">41.2</span>
+      </div>
+      <div class="bar-row">
+        <span>Second condition</span>
+        <div class="track"><div class="fill" style="width: 68%"></div></div>
+        <span class="value">47.8</span>
+      </div>
+      <div class="bar-row">
+        <span>Reference</span>
+        <div class="track"><div class="fill" style="width: 71%; --bar-colour: var(--blue)"></div></div>
+        <span class="value">50.0</span>
+      </div>
+      <p class="legend">Longer bars represent higher values. Simulated data.</p>
+    </div>
+
+    <div class="table-scroll">
+      <table class="data-table">
+        <caption>The same figures as a table. Every chart needs one of these,
+          or an equivalent readout.</caption>
+        <thead>
+          <tr><th scope="col">Condition</th><th scope="col">Mean</th><th scope="col">Observations</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">First</th><td>41.2</td><td>12</td></tr>
+          <tr><th scope="row">Second</th><td>47.8</td><td>12</td></tr>
+          <tr><th scope="row">Reference</th><td>50.0</td><td>&mdash;</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <section class="card" aria-labelledby="p-stage">
+    <p class="step-label">Pattern</p>
+    <h2 id="p-stage">Stimulus stage and comparison values</h2>
+    <p class="lead"><code>.stage</code> is a fixed-height area where
+      something is shown. If what appears there is timed, the activity must
+      also offer a route that is not — a replay, a step control, or a static
+      version carrying the same information. <code>.peers</code> shows a
+      small set of values for comparison; where they are simulated, say so
+      beneath them.</p>
+
+    <div class="stage" style="--stage-height: 11rem">
+      <p class="stage__message">Where the material appears. Height is set with
+        <code>--stage-height</code>.</p>
+    </div>
+
+    <ul class="peers">
+      <li class="peer"><span>Source A</span><strong>24</strong></li>
+      <li class="peer"><span>Source B</span><strong>22</strong></li>
+      <li class="peer"><span>Source C</span><strong>23</strong></li>
+    </ul>
+    <p class="small">These are simulated values, not responses from real people.</p>
+  </section>
+
+  <!-- ============================================================ -->
+  <section class="card" aria-labelledby="p-controls">
+    <p class="step-label">Pattern</p>
+    <h2 id="p-controls">Controls and entry</h2>
+    <p class="lead"><code>.controls</code> and <code>.control</code> for
+      activities that manipulate something rather than choose between
+      options. <code>bindRange</code> in <code>workbook.js</code> keeps the
+      <code>&lt;output&gt;</code> in step with its slider.
+      <code>.entry</code> is a label, a small input and a button on one line;
+      <code>.entry__error</code> is referenced from the input with
+      <code>aria-describedby</code>, so a validation message is read as part
+      of the field rather than appearing silently beside it.</p>
+
+    <fieldset class="controls">
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="gallery-range">A quantity</label>
+          <output class="control__value" for="gallery-range">25</output>
+        </div>
+        <input type="range" id="gallery-range" min="2" max="100" step="1" value="25">
+        <p class="control__hint">One line saying what changing this does.</p>
+      </div>
+
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="gallery-select">A choice</label>
+        </div>
+        <select id="gallery-select">
+          <option>First setting</option>
+          <option>Second setting</option>
+        </select>
+        <p class="control__hint">One line saying what each setting is for.</p>
+      </div>
+    </fieldset>
+
+    <div class="entry">
+      <label for="gallery-entry">Your estimate</label>
+      <input id="gallery-entry" type="number" min="1" max="100" inputmode="numeric"
+             aria-describedby="gallery-entry-error">
+      <button class="btn btn-primary" type="button">Submit</button>
+      <p class="entry__error" id="gallery-entry-error">Enter a whole number between 1 and 100.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <section class="card" aria-labelledby="p-blocks">
+    <p class="step-label">Pattern</p>
+    <h2 id="p-blocks">Paired blocks</h2>
+    <p class="lead"><code>.pair-grid</code> and <code>.block</code>, for
+      comparing one set of things with another.</p>
+
+    <div class="pair-grid">
+      <div class="block">
+        <h3>First set</h3>
+        <ol>
+          <li>An item, with <strong>a figure</strong></li>
+          <li>An item, with <strong>a figure</strong></li>
+        </ol>
+      </div>
+      <div class="block">
+        <h3>Second set</h3>
+        <ol>
+          <li>An item, with <strong>a figure</strong></li>
+          <li>An item, with <strong>a figure</strong></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <section class="card" aria-labelledby="p-buttons">
+    <p class="step-label">Shell</p>
+    <h2 id="p-buttons">Buttons, status and takeaway</h2>
+    <p class="lead">These live in <code>simplified.css</code> rather than
+      <code>patterns.css</code>, because every activity has them. Tab into
+      the buttons to see the focus treatment.</p>
+
+    <div class="actions">
+      <button class="btn btn-primary" type="button">Primary</button>
+      <button class="btn btn-secondary" type="button">Secondary</button>
+      <button class="btn btn-primary" type="button" disabled>Disabled</button>
+      <button class="btn btn-secondary" type="button" aria-disabled="true">Locked but focusable</button>
+    </div>
+
+    <p class="workbook-status">Where a one-sentence announcement appears.</p>
+
+    <div class="takeaway">
+      <p><strong>Key idea:</strong> One boxed sentence at the very end. There
+        is exactly one per activity, and that restraint is the point.</p>
+    </div>
+  </section>
+
+</main>
+
+</body>
+</html>

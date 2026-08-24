@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Activity template — Simplified Edition</title>
+<meta name="description" content="The neutral skeleton every Simplified Edition activity is copied from. Not a learner activity.">
+<meta name="robots" content="noindex">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231C7293'/%3E%3C/svg%3E">
+
+<!-- Two levels up, because this file sits at `simplified/template/`.
+     A real activity sits four levels deeper, at
+     `simplified/modules/<module-slug>/tools/<tool-slug>/index.html`,
+     so when you copy this file the three paths below become:
+
+         ../../../../assets/css/simplified.css
+         ../../../../assets/css/patterns.css
+         ../../../../assets/js/workbook.js
+
+     patterns.css is optional. Drop the link if the activity uses none of
+     the optional patterns; load it after simplified.css if it does. -->
+<link rel="stylesheet" href="../assets/css/simplified.css">
+<link rel="stylesheet" href="../assets/css/patterns.css">
+<script src="../assets/js/workbook.js" defer></script>
+<script src="activity.js" defer></script>
+</head>
+
+<body>
+
+<a class="skip-link" href="#main">Skip to the activity</a>
+
+<!-- data-workbook marks the root Workbook.attach() is given.
+     data-reset-message is optional; it is what the live region says after
+     the Reset button is pressed. -->
+<main class="workbook" id="main" data-workbook
+      data-reset-message="Back to the first step. Nothing has been kept.">
+
+  <div class="notice notice--caution">
+    <p><strong>This is a template, not an activity.</strong> It exists to show
+      the shell working end to end and to be copied. The wording in square
+      brackets is scaffolding: replace all of it. See
+      <a href="README.md">README.md</a> for what to change, and
+      <a href="patterns.html">patterns.html</a> for the optional patterns.</p>
+  </div>
+
+  <!-- ===================== Hero =====================
+       Eyebrow, title, one sentence. Nothing else: a learner who is about to
+       act should meet as little prose as possible. Instructions, caveats and
+       background belong later, or in teaching-notes.md. -->
+  <section class="hero">
+    <p class="eyebrow">[Module] &middot; [Stage]</p>
+    <h1>[Activity title]</h1>
+    <p class="hero__lead">[One sentence saying what the learner is about to
+      do, and why the result is worth seeing.]</p>
+  </section>
+
+  <!-- ===================== Progress =====================
+       An ordered list inside a labelled nav. workbook.js writes data-state,
+       aria-current and the hidden "completed" note; the markup only has to
+       name the steps. Set --progress-columns to the number of steps, and
+       --progress-columns-narrow to what should happen below 760px. -->
+  <nav aria-label="Activity progress">
+    <ol class="progress" data-workbook-progress
+        style="--progress-columns: 3; --progress-columns-narrow: 1">
+      <li class="progress__step">1 &middot; [Step one]</li>
+      <li class="progress__step">2 &middot; [Step two]</li>
+      <li class="progress__step">3 &middot; [Step three]</li>
+    </ol>
+  </nav>
+
+  <!-- ===================== Activity card =====================
+       step-label -> heading -> lead -> stimulus -> interaction -> reveal
+       -> actions. The interaction here is a choice grid because it is the
+       shortest thing to demonstrate. It is not the default: swap it for a
+       stage, a set of controls, a cumulative reveal, or whatever the
+       teaching job actually needs. -->
+  <section class="card" id="activity-card" aria-labelledby="activity-heading">
+
+    <p class="step-label" id="step-label">Step 1</p>
+    <h2 id="activity-heading">[The one question this step asks]</h2>
+    <p class="lead">[One or two lines of orientation. If it is longer than
+      this, it probably belongs after the learner has acted.]</p>
+
+    <div class="casebox">
+      <p id="stimulus">[The material the learner is working on: the case, the
+        extract, the result, the scenario.]</p>
+    </div>
+
+    <div class="option-grid" id="options"></div>
+
+    <div class="reveal" id="reveal" hidden></div>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="next" type="button" disabled>
+        Next step
+      </button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>
+        Start again
+      </button>
+    </div>
+
+  </section>
+
+  <!-- The activity's single polite live region. workbook.js writes into it
+       through announce(). Add class="workbook-status workbook-status--quiet"
+       where a visible status line would give away what is coming. -->
+  <p class="workbook-status" data-workbook-status role="status" aria-live="polite"></p>
+
+  <!-- ===================== Synthesis =====================
+       Hidden until the last step is done, so it cannot be read ahead.
+       The diagram should state a relationship the text also states. If it
+       only looks tidy, leave it out.
+
+       Every id in the SVG is prefixed. The golden references reuse id="t",
+       id="d" and id="a" in every file, which collides the moment two
+       activities share a page. -->
+  <section class="synthesis" id="synthesis" hidden aria-labelledby="synthesis-heading">
+
+    <p class="step-label">Compare</p>
+    <h2 id="synthesis-heading">[What the three steps had in common]</h2>
+    <p class="lead">[One or two lines naming the relationship the diagram
+      shows. Not a summary of the activity.]</p>
+
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 900 330" role="img"
+           aria-labelledby="tpl-fig-title tpl-fig-desc">
+        <title id="tpl-fig-title">[Short name for the diagram]</title>
+        <desc id="tpl-fig-desc">[A sentence describing the relationship the
+          diagram shows, for anyone who cannot see it. Describe the argument,
+          not the shapes.]</desc>
+
+        <defs>
+          <marker id="tpl-arrow" viewBox="0 0 10 10" refX="8" refY="5"
+                  markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0 0L10 5L0 10Z" fill="#8CA0AD"/>
+          </marker>
+        </defs>
+
+        <text x="450" y="34" text-anchor="middle" class="col-head">[COLUMN HEADING]</text>
+
+        <rect x="325" y="56" width="250" height="76" rx="20"
+              fill="#EAF4FA" stroke="#1C7293" stroke-width="2"/>
+        <text x="450" y="88" text-anchor="middle" class="node-title">[Shared thing]</text>
+        <text x="450" y="112" text-anchor="middle" class="node-sub">[What stays constant]</text>
+
+        <path d="M390 132 C330 176 250 192 185 226" fill="none"
+              stroke="#8CA0AD" stroke-width="3" marker-end="url(#tpl-arrow)"/>
+        <path d="M450 132 L450 226" stroke="#8CA0AD" stroke-width="3"
+              marker-end="url(#tpl-arrow)"/>
+        <path d="M510 132 C570 176 650 192 715 226" fill="none"
+              stroke="#8CA0AD" stroke-width="3" marker-end="url(#tpl-arrow)"/>
+
+        <rect x="60" y="236" width="250" height="76" rx="20"
+              fill="#FFFFFF" stroke="#3D5A80" stroke-width="2"/>
+        <text x="185" y="268" text-anchor="middle" class="node-title">[Branch one]</text>
+        <text x="185" y="292" text-anchor="middle" class="node-sub">[What it brings into view]</text>
+
+        <rect x="325" y="236" width="250" height="76" rx="20"
+              fill="#FFFFFF" stroke="#D4A853" stroke-width="2"/>
+        <text x="450" y="268" text-anchor="middle" class="node-title">[Branch two]</text>
+        <text x="450" y="292" text-anchor="middle" class="node-sub">[What it brings into view]</text>
+
+        <rect x="590" y="236" width="250" height="76" rx="20"
+              fill="#FFFFFF" stroke="#C0434F" stroke-width="2"/>
+        <text x="715" y="268" text-anchor="middle" class="node-title">[Branch three]</text>
+        <text x="715" y="292" text-anchor="middle" class="node-sub">[What it brings into view]</text>
+      </svg>
+    </div>
+
+    <div class="takeaway">
+      <p><strong>Key idea:</strong> [One sentence. There is exactly one
+        takeaway per activity, and that restraint is the point.]</p>
+    </div>
+
+  </section>
+
+</main>
+
+</body>
+</html>
