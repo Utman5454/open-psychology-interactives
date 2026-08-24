@@ -64,6 +64,7 @@
   var CHOICE_NOTES = {
     chosen: "Selected.",
     correct: "This is the best-supported answer.",
+    partial: "This is a defensible answer, but another reading fits better.",
     incorrect: "This is the answer you gave."
   };
 

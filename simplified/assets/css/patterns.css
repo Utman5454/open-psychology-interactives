@@ -140,6 +140,14 @@
   color: var(--muted);
 }
 
+/* The instruction, kept with the frame it belongs to rather than floating
+   above the options as a separate block. */
+.lens-head__task {
+  margin: 0.625rem 0 0;
+  color: var(--navy);
+  font-weight: 800;
+}
+
 /* -------------------------------------------------------------------------
    5. Choice grid
 
@@ -154,9 +162,17 @@
 
    State is set through `data-state`, not a class:
 
-     data-state="chosen"     selected, not yet judged   teal   solid   dot
-     data-state="correct"    the best-supported answer  green  solid   tick
-     data-state="incorrect"  the answer that was given  gold   dashed  cross
+     data-state="chosen"     selected, not yet judged   teal   solid    dot
+     data-state="correct"    the best-supported answer  green  solid    tick
+     data-state="partial"    defensible, not the best   blue   dotted   plus-minus
+     data-state="incorrect"  the answer that was given  gold   dashed   cross
+
+   `partial` exists because several activities in this collection judge an
+   answer on three levels rather than two: an option can be a defensible
+   reading that another frame nonetheless explains better. Collapsing that to
+   right-or-wrong throws away the overlap, which is often where the teaching
+   is. Use it where the material genuinely supports a middle answer, not to
+   soften a wrong one.
 
    Three signals, not one: hue, border style and a corner glyph. A reader who
    cannot distinguish the hues still has a solid-versus-dashed edge and a
@@ -228,6 +244,28 @@
   line-height: 1.4;
 }
 
+/* A single-line variant. Where every option is one item from a fixed list
+   that is on screen every round, a card each is mostly empty space; a row
+   keeps the whole list visible at once, which is what lets a learner compare
+   them. Put it in a one-column grid: `style="--option-columns: 1"`. */
+.option--row {
+  display: grid;
+  grid-template-columns: minmax(10rem, 16rem) 1fr;
+  gap: 0.125rem 1rem;
+  align-items: baseline;
+  min-height: 0;
+  padding: 0.75rem 2.75rem 0.75rem 1rem;
+}
+
+.option--row strong {
+  margin-bottom: 0;
+  font-size: 1rem;
+}
+
+.option--row span {
+  font-size: var(--text-sm);
+}
+
 /* --- States --- */
 
 .option[data-state="chosen"] {
@@ -239,6 +277,12 @@
   border-color: var(--green);
   border-style: solid;
   background: var(--green-light);
+}
+
+.option[data-state="partial"] {
+  border-color: var(--blue);
+  border-style: dotted;
+  background: var(--blue-light);
 }
 
 .option[data-state="incorrect"] {
@@ -276,10 +320,22 @@
   color: #FFFFFF;
 }
 
+.option[data-state="partial"]::after {
+  content: "\00B1";
+  background: var(--blue);
+  color: #FFFFFF;
+}
+
 .option[data-state="incorrect"]::after {
   content: "\2715";
   background: var(--navy);
   color: #FFFFFF;
+}
+
+/* On a row the glyph belongs beside the text, not above it. */
+.option--row[data-state]::after {
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 /* Locked, but still focusable and still readable. Opacity is left alone on
@@ -295,6 +351,10 @@
 .option[aria-disabled="true"][data-state="chosen"]:hover,
 .option[aria-disabled="true"][data-state="correct"]:hover {
   border-color: var(--green);
+}
+
+.option[aria-disabled="true"][data-state="partial"]:hover {
+  border-color: var(--blue);
 }
 
 .option[aria-disabled="true"][data-state="incorrect"]:hover {
@@ -822,6 +882,10 @@
    ---------------------------------------------------------------------- */
 
 @media (max-width: 47.5em) {
+  .option--row {
+    grid-template-columns: 1fr;
+  }
+
   .option-grid,
   .reveal-grid,
   .evidence-grid,

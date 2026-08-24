@@ -31,6 +31,21 @@ server, a build step or a network request.
 6. Drop the `patterns.css` link if you end up using none of the optional
    patterns.
 
+## Compact activity pages
+
+A tool page has a different job from this template: the learner should see the
+prompt, every option and the control that moves them on without scrolling. Add
+`workbook--compact` beside `workbook` on the root for a tighter vertical
+rhythm — smaller hero, smaller headings, less card padding, `--stack` 14px and
+`--gap` 10px. Text sizes, target sizes and the gaps between interactive
+elements are untouched; it is the same visual system at a closer setting.
+
+Where every option is one entry from a fixed list that is on screen every
+round, `option--row` inside `style="--option-columns: 1"` lays them out as
+single lines instead of cards, which keeps the whole list comparable at a
+glance. `lens-head__task` puts the instruction inside the frame header rather
+than in a block of its own.
+
 ## The markup contract
 
 `workbook.js` looks for these, all optional:
@@ -87,6 +102,7 @@ each state needs more than a tint.
 | `.progress div.active` | `data-state="current"` | `aria-current="step"` |
 | `.progress div.done` | `data-state="done"` | a tick, and a hidden "completed" |
 | `.option.correct` | `data-state="correct"` | solid border, tick, hidden sentence |
+| — | `data-state="partial"` | **dotted** border, plus-minus, hidden sentence; a defensible answer another frame explains better |
 | `.option.wrong` | `data-state="incorrect"` | **dashed** border, cross, hidden sentence |
 | — | `data-state="chosen"` | dot; selected but not yet judged |
 | `option.disabled` | `aria-disabled="true"` | stays in the tab order |

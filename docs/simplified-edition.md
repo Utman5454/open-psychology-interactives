@@ -26,13 +26,16 @@ Every decision below is downstream of that.
 
 ## The second rule: preserve the mechanism, simplify the lesson
 
+> **Preserve the mechanism; simplify the surrounding lesson.**
+>
+> The Simplified Edition should keep strong simulations, visualisations,
+> demonstrations and applied exercises from the originals. Simplification
+> should mainly reduce the number of stages, controls, cases, questions and
+> secondary teaching jobs **around** that core mechanism.
+>
 > The Simplified Edition is not a conversion to a standard quiz or workbook
-> interaction. Simulations, visualisations, demonstrations, manipulable
-> models and applied exercises are often the most valuable part of the
-> original and should normally be **retained**. What simplification reduces
-> is the number of simultaneous teaching jobs, controls, stages, cases and
-> explanatory sections **around** that mechanism. Each activity keeps the
-> interaction form best suited to its psychological concept.
+> interaction. Each activity keeps the interaction form best suited to its
+> psychological concept.
 
 The collection's value is concentrated in roughly 2.9 MB of hand-built
 `tool.js` — the models, simulations and demonstrations that a static page
