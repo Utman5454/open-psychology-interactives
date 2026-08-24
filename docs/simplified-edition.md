@@ -75,6 +75,60 @@ as losing the mechanism, not as simplifying it.
 
 ---
 
+## The third rule: know when to stop
+
+> Once the learner has experienced the key mechanism and the concept has been
+> clearly explained, the activity should end.
+>
+> Do not add another challenge, transfer case, reflection, quiz, secondary
+> concept or extra visual simply because there is room for one.
+
+A simplified activity should normally stop when all four of these are true:
+
+1. the learner has done the thing that reveals the concept;
+2. they have seen the important pattern or consequence;
+3. a brief explanation makes the inference clear;
+4. any essential limitation or caveat has been stated.
+
+Anything after that point has to earn its place by materially improving
+understanding. "There was space on the page" is not a reason, and neither is
+symmetry with another activity.
+
+This is the rule most likely to be broken by accident, because every addition
+looks defensible on its own. The three tests that catch it:
+
+- **Would removing this change what the learner understands?** If not, remove
+  it.
+- **Is this a second teaching job wearing the clothes of a first?** A transfer
+  case is a new case. A reflection prompt is a new task. A second diagram is a
+  second argument.
+- **Does it arrive after the caveat?** Once the limitation has been stated,
+  the activity has finished its argument. Material after that is almost always
+  padding.
+
+Note how this interacts with the second rule. Preserving the mechanism is not a
+licence to preserve everything attached to it: the mechanism earns its place
+automatically, and each thing around it has to earn its place separately.
+
+---
+
+## Copy conventions
+
+`LEARNER_COPY_STYLE.md` is the governing standard for the whole collection and
+applies here unchanged. Two points are worth restating because they are easy to
+miss in a simplified activity.
+
+**No em dashes in learner-facing copy.** Use a comma, a colon, a semicolon or a
+full stop. An em dash is usually a joint between two thoughts that would read
+better as two sentences, or as one sentence with a colon doing the work. This
+applies to every string a learner can see: page copy, option labels, feedback,
+diagram labels, live-region announcements and status text. It does not apply to
+developer comments, teaching notes, metadata or the files in `docs/`.
+
+**British English throughout**, and `lang="en-GB"` on every page.
+
+---
+
 ## 1. A parallel tree, sharing nothing at runtime
 
 The edition lives entirely under `simplified/`:

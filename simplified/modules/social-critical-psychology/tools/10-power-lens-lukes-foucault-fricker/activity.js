@@ -91,7 +91,7 @@
     {
       key: "4",
       title: "Item 4 · The incident log",
-      detail: "“A smell that gets into your throat” logged as “odour complaint — no action”."
+      detail: "“A smell that gets into your throat” logged as “odour complaint: no action”."
     },
     {
       key: "5",
@@ -113,13 +113,13 @@
       weights: { "1": "strongest", "2": "also", "3": "also", "4": "other", "5": "other" },
       why: {
         "1": "The clearest thing in the file. Nothing was resolved and nobody " +
-             "refused anything — an item was simply kept from becoming a " +
+             "refused anything. An item was simply kept from becoming a " +
              "question anyone had to answer.",
         "2": "Defensible: a rule that keeps a class of experience out of the " +
              "record can be read as agenda-setting made permanent. But the file " +
              "does not say who wrote it or whether anyone intended this, and the " +
              "second lens explains it more directly.",
-        "3": "This is the third dimension exactly — people who have learned what " +
+        "3": "This is the third dimension exactly: people who have learned what " +
              "counts stop asking, and the institution is spared the trouble of " +
              "refusing them. Item 1 is the sharper single exhibit only because " +
              "it is a thing that happened, on a date, that can be pointed at.",
@@ -165,7 +165,7 @@
         "4": "The downgrading of a speaker is not primarily about procedure. " +
              "The third lens names it better.",
         "5": "Defensible. An absent category is a limit on what the institution " +
-             "can know it has — though the third lens has a sharper name for " +
+             "can know it has, though the third lens has a sharper name for " +
              "the harm that follows."
       },
       alsoNote: "Items 3 and 5 are within this lens's reach too: being trained " +
@@ -178,7 +178,7 @@
       backgrounds: "Because power is treated as dispersed and productive rather " +
              "than held, this account has trouble saying who should answer for " +
              "anything. Item 1 has names and dates attached to it, and this lens " +
-             "has little use for them — which matters if anybody is to be held " +
+             "has little use for them. That matters if anybody is to be held " +
              "to account.",
       remedy: "Change what is allowed to count as knowing."
     },
@@ -205,11 +205,11 @@
              "other lens has any claim on it at all.",
         "5": "The second harm this lens names, and the one people miss: there " +
              "is no category for what happened, so even a completely credible " +
-             "speaker has nothing to report. Not a failure of belief at all — " +
-             "and the second lens has a partial claim on it, which is why item " +
+             "speaker has nothing to report. Not a failure of belief at all. " +
+             "The second lens has a partial claim on it too, which is why item " +
              "4 is the sharper evidence for this lens specifically."
       },
-      alsoNote: "Item 5 is the second harm this lens names — hermeneutical " +
+      alsoNote: "Item 5 is the second harm this lens names, hermeneutical " +
              "rather than testimonial. Item 3 is where the two feed each other: " +
              "people who are not believed stop speaking.",
       focus: "Two different things went wrong with the people who spoke, and " +
@@ -219,7 +219,7 @@
              "intermittent exposure with delayed symptoms, so even a trusted " +
              "speaker has nothing to report.",
       backgrounds: "Locating the wrong in an epistemic relation makes a real and " +
-             "often invisible harm nameable — and points at how individuals " +
+             "often invisible harm nameable. It also points at how individuals " +
              "receive reports. A written definition needs no speaker at all. " +
              "Believe every technician in the building, and item 2 still requires " +
              "an instrument reading none of them can obtain.",
@@ -231,7 +231,7 @@
 
   var VERDICTS = {
     strongest: "That is the strongest evidence for this lens.",
-    also: "Relevant to this lens — but one item is stronger.",
+    also: "Relevant to this lens, but one item is stronger.",
     other: "Another lens owns that one."
   };
 
