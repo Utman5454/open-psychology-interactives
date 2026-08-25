@@ -80,6 +80,7 @@ Three helper classes:
 | `plot__over` | figure text that has to sit over data marks. Paints a halo in the figure's background colour so the glyphs keep an edge without a filled box hiding anything. |
 | `field-legend` | a `<legend>` that should be seen. Most groups hide theirs because a nearby heading names them; use this when the group is the pivot of the activity. |
 | `stage__field` | an SVG stimulus field filling a `.stage`. For performed tasks that need a spatial display rather than a single word: boxes at known positions, a search array, a scene that alternates, a stream in the centre. |
+| `result[data-state]` | an outcome edge on a `.result` tile: `correct`, `incorrect` or `partial`. The tile's own text always says which outcome it is, so the edge is reinforcement and never the signal. |
 
 **Clearing a figure: use `wb.clearFigure(el)`, never a childNodes count.**
 Counting `childNodes` and trimming to a fixed number is the obvious way to
@@ -206,6 +207,16 @@ share a stylesheet: the references' `.flash` / `.flash-msg` / `.dot` are
   result panel or a chart that is never reached.
 - **Data points are not sitting on an axis.** A series whose first x value is
   the axis minimum puts its value label astride the axis line. Pad the domain.
+  This has now been the same defect four times; inset by half a step.
+- **Series labels do not collide when the series coincide.** Two lines that
+  meet at the right-hand edge put their labels on top of each other. Detect it
+  and draw one combined label.
+- **Keys go below the plot, not in the right-hand gutter**, if anything else
+  in that gutter moves with the data.
+- **A guided button that sets the controls moves the controls**, not just the
+  drawing. A radio left behind is a control and a figure disagreeing.
+- **Panels that would render empty are hidden**, not drawn blank: an empty
+  chart reads as a broken page rather than as a missing result.
 - Every activity has a control carrying `data-workbook-reset`.
 - Keyboard only, start to finish. Focus visible at every step, and never
   stranded after answering.
