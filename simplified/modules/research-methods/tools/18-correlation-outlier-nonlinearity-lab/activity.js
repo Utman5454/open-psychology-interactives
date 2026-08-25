@@ -184,7 +184,7 @@
     var X = function (v) { return LEFT + ((v - AXIS_MIN) / (AXIS_MAX - AXIS_MIN)) * (RIGHT - LEFT); };
     var Y = function (v) { return BOTTOM - ((v - AXIS_MIN) / (AXIS_MAX - AXIS_MIN)) * (BOTTOM - TOP); };
 
-    while (chart.childNodes.length > 2) { chart.removeChild(chart.lastChild); }
+    wb.clearFigure(chart);
     chart.setAttribute("viewBox", "0 0 900 " + (CAP_Y + 20));
 
     var title = svg("text", { x: LEFT, y: 26, class: "plot__label" });

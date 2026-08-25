@@ -337,9 +337,7 @@
     var axisY = height + 6;
     var total = axisY + 58;
 
-    while (chart.childNodes.length > 2) {
-      chart.removeChild(chart.lastChild);
-    }
+    wb.clearFigure(chart);
     chart.setAttribute("viewBox", "0 0 900 " + total);
 
     /* Key. The case marker is drawn as it appears in the plot, and the

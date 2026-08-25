@@ -147,7 +147,7 @@
       return LEFT + ((Math.max(LO, Math.min(HI, v)) - LO) / (HI - LO)) * (RIGHT - LEFT);
     };
 
-    while (chart.childNodes.length > 2) { chart.removeChild(chart.lastChild); }
+    wb.clearFigure(chart);
     chart.setAttribute("viewBox", "0 0 900 " + (BOTTOM + 60));
 
     var title = svg("text", { x: LEFT, y: TITLE_Y, class: "plot__label" });

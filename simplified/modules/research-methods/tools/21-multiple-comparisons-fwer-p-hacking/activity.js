@@ -425,9 +425,7 @@
     var HEIGHT = 190;
     var AXIS = TOP + HEIGHT;
 
-    while (chart.childNodes.length > 2) {
-      chart.removeChild(chart.lastChild);
-    }
+    wb.clearFigure(chart);
     chart.setAttribute("viewBox", "0 0 900 " + (AXIS + 66));
 
     var X = function (p) {

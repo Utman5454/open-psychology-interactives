@@ -564,6 +564,36 @@
        that fits adds nothing to the tab order. Re-checked on resize because
        whether it overflows depends on the viewport. */
 
+    /**
+     * Empty a figure of everything it has drawn, keeping its `<title>` and
+     * `<desc>`.
+     *
+     * Counting childNodes and trimming to a fixed number is the obvious way
+     * to do this and it is wrong. A browser creates a text node for the
+     * whitespace between `<title>` and `<desc>` in the markup, so the count
+     * is larger than the number of elements and the trim silently deletes the
+     * `<desc>`. The figure then keeps working, because the caller still holds
+     * a reference to the now-detached element and can still set its text, but
+     * `aria-labelledby` points at an id that is no longer in the document and
+     * the description is gone for exactly the readers it was written for.
+     *
+     * @param {string|Element} target
+     */
+    function clearFigure(target) {
+      var figure = resolve(target, root);
+      if (!figure) {
+        warn("figure not found.", target);
+        return null;
+      }
+      toArray(figure.childNodes).forEach(function (node) {
+        if (node.nodeType !== 1) { return; }
+        var tag = String(node.tagName || "").toLowerCase();
+        if (tag === "title" || tag === "desc") { return; }
+        figure.removeChild(node);
+      });
+      return figure;
+    }
+
     function updateScrollableFigures() {
       toArray(root.querySelectorAll(".plot")).forEach(function (figure) {
         var scrolls = figure.scrollWidth > figure.clientWidth + 1;
@@ -604,6 +634,7 @@
       focus: focusElement,
       bindRange: bindRange,
       refreshFigures: updateScrollableFigures,
+      clearFigure: clearFigure,
       onReset: onReset,
       reset: reset,
       prefersReducedMotion: prefersReducedMotion

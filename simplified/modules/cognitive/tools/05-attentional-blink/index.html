@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Attentional Blink | Simplified Edition</title>
+<meta name="description" content="Spot two targets in a stream of letters arriving ten a second. The second one is easy when it comes immediately and easy when it comes late, and for a few hundred milliseconds in between it is not there at all.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231C7293'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../../../assets/css/simplified.css">
+<link rel="stylesheet" href="../../../../assets/css/patterns.css">
+<script src="../../../../assets/js/workbook.js" defer></script>
+<script src="activity.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to the activity</a>
+
+<main class="workbook workbook--compact" id="main" data-workbook
+      data-reset-message="Cleared. Back to the start, with no results kept.">
+
+  <section class="hero">
+    <p class="eyebrow">Cognitive Psychology &middot; Simplified</p>
+    <h1>Attentional Blink</h1>
+    <p class="hero__lead">Find one thing in a fast stream and, for the next
+      few hundred milliseconds, you will miss the next one entirely.</p>
+  </section>
+
+  <nav aria-label="Activity progress">
+    <ol class="progress" data-workbook-progress
+        style="--progress-columns: 3; --progress-columns-narrow: 1">
+      <li class="progress__step">1 &middot; Practice</li>
+      <li class="progress__step">2 &middot; The block</li>
+      <li class="progress__step">3 &middot; The lag function</li>
+    </ol>
+  </nav>
+
+  <section class="card" id="task-card" aria-labelledby="task-heading">
+    <p class="step-label" id="step-label">Before you start</p>
+    <h2 id="task-heading">Two things to find in each stream</h2>
+    <p class="lead" id="task-lead">Letters appear one at a time in the middle
+      of the panel. Somewhere in each stream there is <strong>one
+      digit</strong>, and somewhere after it there may or may not be the letter
+      <strong>X</strong>. After each stream you answer two questions: was the
+      digit odd or even, and did you see an X.</p>
+
+    <div class="notice notice--caution" id="safety">
+      <p><strong>Please read this before starting.</strong> In the scored block
+        the letters change ten times a second. The panel background never
+        changes and nothing flashes or moves, but that is still rapid visual
+        change in one spot for about two seconds at a time. If rapid visual
+        change is something you avoid, use <strong>Show me a worked example
+        instead</strong> below: it produces the same figure from simulated
+        data, clearly labelled as simulated, and you will not miss anything the
+        activity is trying to teach.</p>
+    </div>
+
+    <div class="stage stage--focus" style="--stage-height: 12rem">
+      <p class="stage__message stage__fixation" id="stage-message">Ready when you are.</p>
+      <p class="stage__word" id="stimulus" hidden></p>
+    </div>
+
+    <div id="answers" hidden>
+      <p class="lead" id="q1-lead">Was the digit odd or even?</p>
+      <fieldset class="keypad" id="keypad-one" style="--keypad-columns: 2"></fieldset>
+      <p class="lead" id="q2-lead" hidden>Did you see an X?</p>
+      <fieldset class="keypad" id="keypad-two" style="--keypad-columns: 2" hidden></fieldset>
+    </div>
+
+    <p class="stage__feedback" id="feedback" hidden></p>
+    <p class="small" id="counter" aria-live="polite"></p>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="start" type="button">Start the practice</button>
+      <button class="btn btn-secondary" id="worked" type="button">Show me a worked example instead</button>
+      <button class="btn btn-secondary" id="stop" type="button" hidden>Stop and see my result</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+  </section>
+
+  <p class="workbook-status" data-workbook-status role="status" aria-live="polite"></p>
+
+  <section class="synthesis" id="synthesis" hidden aria-labelledby="result-heading">
+    <p class="step-label" id="result-step">The lag function</p>
+    <h2 id="result-heading">The dip</h2>
+    <p class="lead" id="result-lead"></p>
+
+    <div class="plot">
+      <svg id="chart" role="img" aria-labelledby="chart-title chart-desc">
+        <title id="chart-title">How often you saw the X, by how soon it followed the digit</title>
+        <desc id="chart-desc"></desc>
+      </svg>
+      <p class="legend">Each point is how often you spotted the X when it
+        arrived that many items after the digit, counting only streams where
+        you got the digit right. One item is a tenth of a second.</p>
+    </div>
+
+    <p class="small" id="notes-line"></p>
+
+    <details class="disclosure">
+      <summary>All the values behind this chart</summary>
+      <div class="disclosure__body">
+        <div class="table-scroll">
+          <table class="data-table">
+            <caption id="table-caption"></caption>
+            <thead>
+              <tr>
+                <th scope="col">Lag</th>
+                <th scope="col">Gap after the digit</th>
+                <th scope="col">X spotted</th>
+                <th scope="col">Streams counted</th>
+              </tr>
+            </thead>
+            <tbody id="table-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </details>
+
+    <div class="takeaway">
+      <p><strong>Key idea:</strong> The X is just as visible whenever it
+        arrives. What changes is whether anything is available to notice it.
+        Finding the digit is not instantaneous: it occupies something for a few
+        hundred milliseconds afterwards, and an X arriving inside that window
+        is displayed, is looked at, and is not reported. The curve usually
+        recovers by about half a second. The odd part is the left-hand end: an
+        X arriving <em>immediately</em> after the digit is often seen perfectly
+        well, because it is still inside the same brief window of processing
+        that the digit opened rather than arriving after it has closed.</p>
+    </div>
+
+    <div class="notice notice--caution">
+      <p>One person and a few streams per point, in a browser, so each point is
+        a rough figure and the shape can easily come out ragged. Missing the X
+        is not a failure of vision or of effort: the whole finding is that it
+        happens to people who are trying hard and looking straight at it.
+        Nothing here measures anyone's attention span or ability. And the name
+        is a metaphor. Nothing closes and nothing goes dark; the eyes stay open
+        and the stream keeps being seen.</p>
+    </div>
+
+    <p class="small" style="margin-top: 1.125rem">The longer version adds a
+      practice block with explanatory feedback on every stream, a second
+      response mode, and a comparison across blocks. It is at
+      <a href="../../../../../modules/cognitive/tools/05-attentional-blink/index.html">Attentional
+      Blink in the main collection</a>.</p>
+  </section>
+</main>
+</body>
+</html>

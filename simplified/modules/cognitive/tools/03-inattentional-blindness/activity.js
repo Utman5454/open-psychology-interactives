@@ -262,9 +262,7 @@
   }
 
   function paint(target, data, marked) {
-    while (target.childNodes.length > 2) {
-      target.removeChild(target.lastChild);
-    }
+    wb.clearFigure(target);
     target.setAttribute("viewBox", "0 0 " + VIEW_W + " " + VIEW_H);
 
     data.items.forEach(function (item) {

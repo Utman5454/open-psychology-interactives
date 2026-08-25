@@ -484,9 +484,7 @@
         "condition. That happens if the block was stopped early or if a lot of " +
         "responses were errors. Start again to run a full block.";
       chartDesc.textContent = "No chart: not enough usable trials.";
-      while (chart.childNodes.length > 2) {
-        chart.removeChild(chart.lastChild);
-      }
+      wb.clearFigure(chart);
       accuracyLine.textContent = "";
       tableBody.textContent = "";
       wb.show("#synthesis");
@@ -554,9 +552,7 @@
     var axisY = TOP + CONDITIONS.length * ROW + 6;
     var total = axisY + 46;
 
-    while (chart.childNodes.length > 2) {
-      chart.removeChild(chart.lastChild);
-    }
+    wb.clearFigure(chart);
     chart.setAttribute("viewBox", "0 0 900 " + total);
 
     var defs = svg("defs", {});

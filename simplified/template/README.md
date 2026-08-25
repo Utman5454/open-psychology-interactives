@@ -73,12 +73,25 @@ unreadable one. `workbook.js` makes the region keyboard reachable, and
 announces it, only while it actually scrolls; call `refreshFigures()` if you
 change a figure's size yourself.
 
-Two helper classes:
+Three helper classes:
 
 | Class | Use |
 | --- | --- |
 | `plot__over` | figure text that has to sit over data marks. Paints a halo in the figure's background colour so the glyphs keep an edge without a filled box hiding anything. |
 | `field-legend` | a `<legend>` that should be seen. Most groups hide theirs because a nearby heading names them; use this when the group is the pivot of the activity. |
+| `stage__field` | an SVG stimulus field filling a `.stage`. For performed tasks that need a spatial display rather than a single word: boxes at known positions, a search array, a scene that alternates, a stream in the centre. |
+
+**Clearing a figure: use `wb.clearFigure(el)`, never a childNodes count.**
+Counting `childNodes` and trimming to a fixed number is the obvious way to
+empty an SVG while keeping its `<title>` and `<desc>`, and it is wrong. A
+browser creates a text node for the whitespace between the two tags in the
+markup, so the count is larger than the number of elements and the trim
+deletes the `<desc>`. The figure goes on working, because the caller still
+holds a reference to the detached element and can still set its text, but
+`aria-labelledby` now points at an id that is not in the document and the
+description is gone for exactly the readers it was written for. This shipped
+in twenty-one activities before a browser check caught it; `qa.js` now fails
+any page with a dangling `aria-labelledby` or `aria-describedby` reference.
 
 Two things worth knowing before you draw one:
 
@@ -91,6 +104,24 @@ Two things worth knowing before you draw one:
   still while everything around it moves; autoscaled axes are right when the
   point is that the units do not matter. The two activities on z-scores and on
   Cohen's d make opposite choices for exactly this reason.
+
+## Performed tasks
+
+Several activities run timed trials. What they have in common:
+
+- **Results are withheld until the block ends.** A running mean on screen
+  during a speeded block changes how people answer the next trial. Practice
+  gives feedback; scored trials give none.
+- **Response controls are disabled until a stimulus is present**, so an
+  accidental press cannot be recorded as a response.
+- **Cleaning is reported, not silent.** Responses too fast to be reactions and
+  responses that are lapses are counted, named with their bounds, and kept out
+  of the means rather than averaged in.
+- **Nothing is timed out** unless the pacing is itself the manipulation, in
+  which case say so on the page.
+- **If the paradigm cannot be made gentler and still be itself**, as with
+  rapid serial presentation, offer a fully labelled simulated route *before*
+  the task rather than after it, and make it reach the same conclusions.
 
 ## Choosing patterns
 
@@ -169,6 +200,13 @@ share a stylesheet: the references' `.flash` / `.flash-msg` / `.dot` are
 - The figure has been looked at in a browser at 1440x900, 768px and 320px, not
   merely reasoned about: overlapping labels, text over data marks and figures
   that go unreadably dense do not show up in calculated geometry.
+- A **performed task has been checked in its important states**, not only on
+  load: mid-trial with the stimulus up, at the response point, and at the
+  result. Driving a block to completion in the browser is what finds an empty
+  result panel or a chart that is never reached.
+- **Data points are not sitting on an axis.** A series whose first x value is
+  the axis minimum puts its value label astride the axis line. Pad the domain.
+- Every activity has a control carrying `data-workbook-reset`.
 - Keyboard only, start to finish. Focus visible at every step, and never
   stranded after answering.
 - 320px wide and projector wide.

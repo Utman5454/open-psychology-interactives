@@ -173,7 +173,7 @@
     var X = function (v) { return LEFT + ((v - lo) / (hi - lo)) * (RIGHT - LEFT); };
     var H = function (count) { return (count / tallest) * (BASE - TOP); };
 
-    while (chart.childNodes.length > 2) { chart.removeChild(chart.lastChild); }
+    wb.clearFigure(chart);
     chart.setAttribute("viewBox", "0 0 900 " + (CAP_Y + 18));
 
     var title = svg("text", { x: LEFT, y: TITLE_Y, class: "plot__label" });

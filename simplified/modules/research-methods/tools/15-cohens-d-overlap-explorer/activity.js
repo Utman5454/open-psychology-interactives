@@ -206,7 +206,7 @@
     var X = function (v) { return LEFT + ((v - lo) / (hi - lo)) * (RIGHT - LEFT); };
     var Y = function (den) { return BASE - (den / (peak * 1.14)) * (BASE - TOP); };
 
-    while (chart.childNodes.length > 2) { chart.removeChild(chart.lastChild); }
+    wb.clearFigure(chart);
     chart.setAttribute("viewBox", "0 0 900 " + (CAPTION_Y + 16));
 
     var title = svg("text", { x: LEFT, y: TITLE_Y, class: "plot__label" });

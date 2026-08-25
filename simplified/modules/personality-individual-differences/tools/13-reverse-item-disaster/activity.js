@@ -258,9 +258,7 @@
     var axisY = TOP + ITEMS.length * ROW + 8;
     var total = axisY + 46;
 
-    while (chart.childNodes.length > 2) {
-      chart.removeChild(chart.lastChild);
-    }
+    wb.clearFigure(chart);
     chart.setAttribute("viewBox", "0 0 900 " + total);
 
     ITEMS.forEach(function (item, index) {

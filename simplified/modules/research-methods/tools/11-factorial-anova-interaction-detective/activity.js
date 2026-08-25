@@ -115,7 +115,7 @@
       return BOTTOM - ((Math.max(lo, Math.min(hi, val)) - lo) / (hi - lo)) * (BOTTOM - TOP);
     };
 
-    while (chart.childNodes.length > 2) { chart.removeChild(chart.lastChild); }
+    wb.clearFigure(chart);
 
     var title = svg("text", { x: 10, y: TITLE_Y, class: "plot__label" });
     title.textContent = scaleSelect.value === "zoom"

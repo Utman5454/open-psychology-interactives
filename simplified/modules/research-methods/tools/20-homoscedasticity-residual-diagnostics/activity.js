@@ -270,7 +270,7 @@
     var Y1 = function (v) { return BOT1 - ((v - yLo) / (yHi - yLo)) * (BOT1 - TOP1); };
     var Y2 = function (v) { return (TOP2 + BOT2) / 2 - (v / rMax) * ((BOT2 - TOP2) / 2); };
 
-    while (chart.childNodes.length > 2) { chart.removeChild(chart.lastChild); }
+    wb.clearFigure(chart);
     chart.setAttribute("viewBox", "0 0 900 " + (CAP_Y + 18));
 
     var titleA = svg("text", { x: LEFT, y: 26, class: "plot__label" });
