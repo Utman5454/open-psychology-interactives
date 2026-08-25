@@ -82,6 +82,29 @@ Three helper classes:
 | `stage__field` | an SVG stimulus field filling a `.stage`. For performed tasks that need a spatial display rather than a single word: boxes at known positions, a search array, a scene that alternates, a stream in the centre. |
 | `result[data-state]` | an outcome edge on a `.result` tile: `correct`, `incorrect` or `partial`. The tile's own text always says which outcome it is, so the edge is reinforcement and never the signal. |
 
+**Text that must sit over a gridline: add `plot__over`.** A marker label
+placed beside the point it names will sometimes land on an axis or gridline.
+The class adds a paint-order halo so it stays legible, and it is a declaration
+that the overlap is intended. Do not use it to wave away a label colliding with
+another label: that is a real defect and this does not fix it.
+
+**Judging against stated criteria: use `.checklist`.** A list of conditions
+with their status, for activities that judge something against criteria rather
+than against a right answer. Each item's own text must say whether it is met;
+the edge colour is reinforcement only.
+
+**A choice that would break a budget: dim it, never disable it.** Set
+`data-full="true"` on the `.toggle`, put the reason in its description, and
+refuse the attempt with a spoken explanation. `disabled` removes a control from
+the tab order, so a keyboard reader loses exactly the rows they need to know
+about.
+
+**Colliding labels: use `wb.spreadLabels(values, gap, lo, hi)`.** It nudges
+label positions apart and returns them in the caller's original order, so
+`labels[i]` still belongs to `values[i]`. Draw a short leader from the label
+back to its mark whenever the label has moved. Never solve a label collision by
+moving the data: two marks landing in the same place is usually the finding.
+
 **Clearing a figure: use `wb.clearFigure(el)`, never a childNodes count.**
 Counting `childNodes` and trimming to a fixed number is the obvious way to
 empty an SVG while keeping its `<title>` and `<desc>`, and it is wrong. A

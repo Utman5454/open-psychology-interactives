@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A General Factor With No General Ability | Simplified Edition</title>
+<meta name="description" content="Six tests, fifteen hundred small independent processes and no general ability anywhere in the model. Every correlation comes out positive and a single factor fits almost perfectly.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231C7293'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../../../assets/css/simplified.css">
+<link rel="stylesheet" href="../../../../assets/css/patterns.css">
+<script src="../../../../assets/js/workbook.js" defer></script>
+<script src="activity.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to the activity</a>
+
+<main class="workbook workbook--compact" id="main" data-workbook
+      data-reset-message="Cleared. Back to a moderate amount of overlap.">
+
+  <section class="hero">
+    <p class="eyebrow">Personality &amp; Individual Differences &middot; Simplified</p>
+    <h1>A General Factor With No General Ability</h1>
+    <p class="hero__lead">Cognitive tests all correlate positively with one
+      another. That fact is a hundred years old, and it is much weaker evidence
+      than it looks.</p>
+  </section>
+
+  <section class="card" id="card-predict" aria-labelledby="predict-heading">
+    <p class="step-label">Step 1 of 2</p>
+    <h2 id="predict-heading">First, a judgement</h2>
+    <p class="lead">Give a large group of people any collection of cognitive
+      tests and two things reliably happen. Every test correlates positively
+      with every other, and a single factor accounts for a large share of the
+      variance between them. What does that establish?</p>
+
+    <div class="option-grid" style="--option-columns: 2" id="options" data-workbook-choices>
+      <button class="option" type="button" data-choice="nothing">
+        <strong>Not much on its own</strong>
+        <span>Quite different accounts of the mind produce the same pattern.</span>
+      </button>
+      <button class="option" type="button" data-choice="general">
+        <strong>There is a general ability</strong>
+        <span>Something the tests all draw on, in different amounts.</span>
+      </button>
+      <button class="option" type="button" data-choice="similar">
+        <strong>The tests are too alike</strong>
+        <span>They overlap in content, so the correlations are artefacts.</span>
+      </button>
+      <button class="option" type="button" data-choice="exists">
+        <strong>That g exists, but not what it is</strong>
+        <span>The pattern establishes the factor; its nature is a separate
+          question.</span>
+      </button>
+    </div>
+
+    <div class="notice" id="verdict" hidden data-state="chosen">
+      <p id="verdict-text"></p>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="reveal" type="button" disabled>Open the model</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+  </section>
+
+  <section class="card" id="card-model" hidden aria-labelledby="model-heading">
+    <p class="step-label">Step 2 of 2</p>
+    <h2 id="model-heading">A mind with no general ability in it</h2>
+    <p class="lead">Here is a model of a mind. It has fifteen hundred small
+      independent processes and nothing else: no general ability, no central
+      resource, nothing that all the tests draw on. Each of the six tests draws
+      on a share of the pool, and the shares overlap by chance rather than by
+      design.</p>
+
+    <details class="disclosure" id="key-terms">
+      <summary>Key terms</summary>
+      <div class="disclosure__body">
+        <dl class="glossary">
+          <dt>Positive manifold</dt>
+          <dd>The observation that scores on cognitive tests correlate
+            positively with one another, whichever tests you pick.</dd>
+          <dt>General factor</dt>
+          <dd>The first factor extracted from such a set of correlations. It is
+            a summary of the pattern. Whether it corresponds to anything is a
+            further question that the pattern does not answer.</dd>
+          <dt>Sampling account</dt>
+          <dd>The proposal that tests correlate because they draw on
+            overlapping sets of many small processes, rather than because they
+            share one big thing. It is what this model implements.</dd>
+          <dt>Residual</dt>
+          <dd>How far a fitted model's implied correlations sit from the real
+            ones. A small residual means the model reproduces the data, not
+            that it is true.</dd>
+        </dl>
+      </div>
+    </details>
+
+    <fieldset class="controls" style="--controls-columns: 1">
+      <legend class="visually-hidden">How much the tests overlap</legend>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="overlap">What share of the pool
+            each test draws on</label>
+          <output class="control__value" for="overlap">40%</output>
+        </div>
+        <input type="range" id="overlap" min="0" max="90" step="5" value="40">
+        <p class="control__hint">Which processes each test happens to use was
+          fixed once and never changes. This slider changes only how many of
+          them each test uses, and so how often two tests happen to share one.</p>
+      </div>
+    </fieldset>
+
+    <ul class="results-grid" style="--results-columns: 3" id="readout"></ul>
+
+    <div class="table-scroll">
+      <table class="data-table" id="matrix">
+        <caption id="matrix-caption"></caption>
+        <thead><tr id="matrix-head"></tr></thead>
+        <tbody id="matrix-body"></tbody>
+      </table>
+    </div>
+
+    <p class="small" id="sentence"></p>
+
+    <div id="fitted" hidden>
+      <div class="table-scroll">
+        <table class="data-table" id="loadings">
+          <caption>Loadings on the single general factor fitted to the
+            correlations above, and how far that factor's implied correlations
+            sit from the real ones.</caption>
+          <thead>
+            <tr><th scope="col">Test</th><th scope="col">Loading on the general factor</th></tr>
+          </thead>
+          <tbody id="loadings-body"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="fit" type="button">Fit a single general factor to this</button>
+      <button class="btn btn-secondary" id="explain" type="button" disabled>What this shows</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+
+    <div class="notice" id="note" hidden data-state="chosen">
+      <p id="note-text"></p>
+    </div>
+  </section>
+
+  <p class="workbook-status" data-workbook-status role="status" aria-live="polite"></p>
+
+  <section class="synthesis" id="synthesis" hidden aria-labelledby="result-heading">
+    <p class="step-label">What this shows</p>
+    <h2 id="result-heading">The pattern is real. What it is evidence for is the open question.</h2>
+    <p class="lead" id="result-lead"></p>
+
+    <div class="takeaway">
+      <p><strong>Key idea:</strong> The positive manifold is one of the most
+        robust findings in psychology, and nothing here disputes it. What this
+        model shows is what it can and cannot be used to argue. There is no
+        general ability anywhere in the model you have been moving. There are
+        many small processes and some accidental overlap in which of them each
+        test happens to use, and that alone produces every correlation positive
+        and a single factor that reproduces the whole matrix to within a couple
+        of hundredths. So a well-fitting general factor is not evidence that
+        there is a general ability, because a mind built with no such thing
+        produces one anyway. The factor is a compact description of a pattern
+        in a set of scores. Whether anything in a person corresponds to it is a
+        further question, and answering it takes a different kind of evidence
+        from the correlations themselves: developmental, neural, genetic and
+        experimental work on what actually produces the overlap.</p>
+    </div>
+
+    <div class="notice notice--caution">
+      <p>This runs the argument in one direction only, and the other direction
+        matters just as much. Showing that a sampling model can produce a
+        positive manifold does not show that a general ability does not exist,
+        or that the sampling account is the right one. Both accounts fit these
+        correlations, which is exactly the point being made, and neither is
+        established by them. Three further cautions. The model is a toy: real
+        cognitive processes are not fifteen hundred independent things, real
+        tests do not draw on them at random, and real correlation matrices are
+        not this tidy. General-factor scores do predict a range of outcomes,
+        and that predictive record is untouched by anything here, since a
+        description can predict perfectly well without naming a cause. And
+        nothing on this page is about any person or group: it is a statement
+        about what a correlation matrix can be used to infer.</p>
+    </div>
+
+    <p class="small" style="margin-top: 1.125rem">The longer version compares
+      the sampling account directly against a common-factor model and a
+      mutualism model, lets you generate data from each, and works through
+      hierarchical and bifactor solutions. It is at
+      <a href="../../../../../modules/personality-individual-differences/tools/32-positive-manifold-visualiser/index.html">Positive
+      Manifold Visualiser in the main collection</a>.</p>
+  </section>
+</main>
+</body>
+</html>

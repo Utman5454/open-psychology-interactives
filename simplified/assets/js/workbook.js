@@ -635,15 +635,51 @@
       bindRange: bindRange,
       refreshFigures: updateScrollableFigures,
       clearFigure: clearFigure,
+      spreadLabels: spreadLabels,
       onReset: onReset,
       reset: reset,
       prefersReducedMotion: prefersReducedMotion
     };
   }
 
+
+  /**
+   * Nudge a set of label positions apart without moving what they label.
+   *
+   * Figures that plot people, groups or conditions on a shared scale will
+   * sooner or later put two of them in the same place, and that is usually the
+   * point being made rather than a fault to design away. Moving the marks
+   * would destroy the phenomenon, so move the labels instead and let the
+   * caller draw a short leader to each mark. Positions are assigned in order
+   * along the axis, then the whole block is shifted back inside [lo, hi] if it
+   * has run past either end.
+   *
+   * Returns a new array in the caller's original order, so labels[i] still
+   * belongs to values[i].
+   */
+  function spreadLabels(values, gap, lo, hi) {
+    var order = values.map(function (v, i) { return { v: v, i: i }; })
+      .sort(function (a, b) { return a.v - b.v; });
+    var out = [];
+    order.forEach(function (item, n) {
+      out[item.i] = n === 0 ? item.v : Math.max(item.v, out[order[n - 1].i] + gap);
+    });
+    if (!order.length) { return out; }
+    var last = out[order[order.length - 1].i];
+    if (last > hi) {
+      order.forEach(function (item) { out[item.i] -= last - hi; });
+    }
+    var first = out[order[0].i];
+    if (first < lo) {
+      order.forEach(function (item) { out[item.i] += lo - first; });
+    }
+    return out;
+  }
+
   global.Workbook = {
     version: VERSION,
     attach: attach,
+    spreadLabels: spreadLabels,
     prefersReducedMotion: prefersReducedMotion
   };
 })(window);

@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Turn the Axes, Change Every Number | Simplified Edition</title>
+<meta name="description" content="Rotate the axes of a two-factor solution and watch every loading change while the fit, the communalities and the total variance refuse to move.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231C7293'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../../../assets/css/simplified.css">
+<link rel="stylesheet" href="../../../../assets/css/patterns.css">
+<script src="../../../../assets/js/workbook.js" defer></script>
+<script src="activity.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to the activity</a>
+
+<main class="workbook workbook--compact" id="main" data-workbook
+      data-reset-message="Cleared. Back to the unrotated solution.">
+
+  <section class="hero">
+    <p class="eyebrow">Personality &amp; Individual Differences &middot; Simplified</p>
+    <h1>Turn the Axes, Change Every Number</h1>
+    <p class="hero__lead">Rotation is the step where a factor analysis stops
+      being arithmetic and starts being a decision.</p>
+  </section>
+
+  <section class="card" id="card-predict" aria-labelledby="predict-heading">
+    <p class="step-label">Step 1 of 2</p>
+    <h2 id="predict-heading">First, a prediction</h2>
+    <p class="lead">A researcher extracts two factors from twelve fictional
+      adjective ratings, then rotates them. Before you see it happen: what does
+      rotating the factors do to how well the model fits the data?</p>
+
+    <div class="option-grid" style="--option-columns: 2" id="options" data-workbook-choices>
+      <button class="option" type="button" data-choice="nothing">
+        <strong>Nothing at all</strong>
+        <span>The fit is exactly the same before and after.</span>
+      </button>
+      <button class="option" type="button" data-choice="better">
+        <strong>Improves it</strong>
+        <span>That is why researchers rotate in the first place.</span>
+      </button>
+      <button class="option" type="button" data-choice="worse">
+        <strong>Worsens it slightly</strong>
+        <span>You trade a little fit for something easier to read.</span>
+      </button>
+      <button class="option" type="button" data-choice="depends">
+        <strong>It depends on the method</strong>
+        <span>Some rotation methods fit better than others.</span>
+      </button>
+    </div>
+
+    <div class="notice" id="verdict" hidden data-state="chosen">
+      <p id="verdict-text"></p>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="reveal" type="button" disabled>Open the playground</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+  </section>
+
+  <section class="card" id="card-play" hidden aria-labelledby="play-heading">
+    <p class="step-label">Step 2 of 2</p>
+    <h2 id="play-heading">Twelve markers, two factors, one dial</h2>
+    <p class="lead">The twelve points came out of the extraction and they never
+      move. The only thing the dial moves is the pair of axes you are reading
+      them against.</p>
+
+    <details class="disclosure" id="key-terms">
+      <summary>Key terms</summary>
+      <div class="disclosure__body">
+        <dl class="glossary">
+          <dt>Loading</dt>
+          <dd>How strongly one marker relates to one factor. It is the marker's
+            position measured along that axis.</dd>
+          <dt>Communality</dt>
+          <dd>The share of a marker's variance accounted for by the two factors
+            together. It is the marker's distance from the centre, which no
+            rotation can change.</dd>
+          <dt>Simple structure</dt>
+          <dd>A solution in which each marker loads clearly on one factor and
+            near zero on the other. It is a criterion researchers choose, not a
+            property the data has.</dd>
+          <dt>Cross-loading</dt>
+          <dd>A marker that relates substantially to both factors at once.</dd>
+        </dl>
+      </div>
+    </details>
+
+    <fieldset class="controls" style="--controls-columns: 1">
+      <legend class="visually-hidden">Rotation</legend>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="angle">Rotate the axes</label>
+          <output class="control__value" for="angle">0&deg;</output>
+        </div>
+        <input type="range" id="angle" min="0" max="90" step="1" value="0">
+        <p class="control__hint">0&deg; is the solution as it came out of the
+          extraction. The axes stay at right angles to each other throughout.</p>
+      </div>
+    </fieldset>
+
+    <div class="plot">
+      <svg id="chart" role="img" aria-labelledby="chart-title chart-desc">
+        <title id="chart-title">Twelve markers plotted against two rotating factor axes</title>
+        <desc id="chart-desc"></desc>
+      </svg>
+      <p class="legend">Each numbered point is one marker, at the position the
+        extraction gave it. The two lines are the factor axes. A marker's
+        loading on a factor is how far along that axis it sits.</p>
+    </div>
+
+    <ul class="results-grid" style="--results-columns: 3" id="readout"></ul>
+
+    <p class="small" id="labels"></p>
+
+    <div class="table-scroll">
+      <table class="data-table" id="loadings">
+        <caption>Loadings on each factor, and the communality. The two loading
+          columns change as you rotate. The communality column does not.</caption>
+        <thead>
+          <tr><th scope="col">#</th><th scope="col">Marker</th>
+            <th scope="col">Factor 1</th><th scope="col">Factor 2</th>
+            <th scope="col">Communality</th><th scope="col">Reads as</th></tr>
+        </thead>
+        <tbody id="loadings-body"></tbody>
+      </table>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="simple" type="button">Find the simplest structure</button>
+      <button class="btn btn-secondary" id="explain" type="button" disabled>What this shows</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+
+    <div class="notice" id="note" hidden data-state="chosen">
+      <p id="note-text"></p>
+    </div>
+  </section>
+
+  <p class="workbook-status" data-workbook-status role="status" aria-live="polite"></p>
+
+  <section class="synthesis" id="synthesis" hidden aria-labelledby="result-heading">
+    <p class="step-label">What this shows</p>
+    <h2 id="result-heading">Rotation changes the description, not the data</h2>
+    <p class="lead" id="result-lead"></p>
+
+    <div class="takeaway">
+      <p><strong>Key idea:</strong> Every loading in the table changed as you
+        turned the dial, and three things did not: the position of each point,
+        each marker's communality, and the total variance the two factors
+        account for. The rotated solution reproduces the correlations exactly
+        as well as the unrotated one, so no rotation is more correct than
+        another in any sense the data can settle. What rotation buys is
+        readability, and simple structure is a criterion researchers impose
+        because a solution where each marker belongs to one factor is easier to
+        talk about. That is a good reason. It is not evidence. The same point
+        applies twice over to the names: the labels under the chart are the
+        highest-loading markers and nothing more, and a factor is a summary of
+        how a particular set of items covaried in a particular sample, not a
+        thing found inside people.</p>
+    </div>
+
+    <div class="notice notice--caution">
+      <p>Twelve invented markers with illustrative coordinates, chosen to make
+        rotation legible rather than drawn from a real dataset. Three limits
+        worth stating. The axes here stay at right angles, which forces the two
+        factors to be uncorrelated; letting them tilt is a further choice that
+        allows correlated factors, and it too leaves the fit unchanged. How many
+        factors to extract is a separate decision made before any of this, and
+        it changes the answer far more than rotation does. And nothing here
+        speaks to whether two factors is the right number for these markers, or
+        whether the same two would appear in another sample, in another
+        language, or with a different set of adjectives.</p>
+    </div>
+
+    <p class="small" style="margin-top: 1.125rem">The longer version adds a
+      second marker set, an oblique control that lets the axes come off 90
+      degrees, and a closing challenge. It is at
+      <a href="../../../../../modules/personality-individual-differences/tools/07-factor-rotation-playground/index.html">Factor
+      Rotation Playground in the main collection</a>.</p>
+  </section>
+</main>
+</body>
+</html>

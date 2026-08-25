@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>One Moment, or the Whole Fortnight? | Simplified Edition</title>
+<meta name="description" content="Two fictional people, sampled four times a day for a fortnight. Judge them from one moment each, then add moments and watch the difference between them disappear.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231C7293'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../../../assets/css/simplified.css">
+<link rel="stylesheet" href="../../../../assets/css/patterns.css">
+<script src="../../../../assets/js/workbook.js" defer></script>
+<script src="activity.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to the activity</a>
+
+<main class="workbook workbook--compact" id="main" data-workbook
+      data-reset-message="Cleared. Back to the single moment.">
+
+  <section class="hero">
+    <p class="eyebrow">Personality &amp; Individual Differences &middot; Simplified</p>
+    <h1>One Moment, or the Whole Fortnight?</h1>
+    <p class="hero__lead">You catch two people at one moment each. One of them
+      is having a bad hour.</p>
+  </section>
+
+  <section class="card" id="card-moment" aria-labelledby="moment-heading">
+    <p class="step-label">Step 1 of 2</p>
+    <h2 id="moment-heading">Two people, one reading each</h2>
+    <p class="lead">Ada and Bo are two fictional people in a study that asks
+      them, at random moments, how they are feeling right now on a scale of 0
+      to 100. Here is the first reading from each of them, taken at the same
+      moment on the same morning.</p>
+
+    <ul class="results-grid" style="--results-columns: 2">
+      <li class="result"><p class="result__label">Ada, Tuesday 09:20</p>
+        <p class="result__value big">67</p>
+        <span class="result__note">how Ada rates the moment</span></li>
+      <li class="result"><p class="result__label">Bo, Tuesday 09:20</p>
+        <p class="result__value big">47</p>
+        <span class="result__note">how Bo rates the moment</span></li>
+    </ul>
+
+    <p class="lead" id="ask">Which of them has the higher <strong>typical</strong>
+      level, the one you would put on their record as what they are generally
+      like?</p>
+
+    <div class="option-grid" style="--option-columns: 3" id="options" data-workbook-choices>
+      <button class="option" type="button" data-choice="ada">
+        <strong>Ada</strong>
+        <span>Ada is twenty points higher, which is a large difference.</span>
+      </button>
+      <button class="option" type="button" data-choice="bo">
+        <strong>Bo</strong>
+        <span>The reading is low enough that it is probably an off moment,
+          so Bo is really higher.</span>
+      </button>
+      <button class="option" type="button" data-choice="cannot">
+        <strong>You cannot tell</strong>
+        <span>One reading each says where they were at 09:20, not what they
+          are generally like.</span>
+      </button>
+    </div>
+
+    <div class="notice" id="verdict" hidden data-state="chosen">
+      <p id="verdict-text"></p>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="reveal" type="button" disabled>See the whole fortnight</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+  </section>
+
+  <section class="card" id="card-fortnight" hidden aria-labelledby="fortnight-heading">
+    <p class="step-label">Step 2 of 2</p>
+    <h2 id="fortnight-heading">Fifty-six moments each</h2>
+    <p class="lead">Every reading from both of them, four a day for fourteen
+      days. Move the slider to average more of those moments together, starting
+      from the one you were shown.</p>
+
+    <details class="disclosure" id="key-terms">
+      <summary>Key terms</summary>
+      <div class="disclosure__body">
+        <dl class="glossary">
+          <dt>State</dt>
+          <dd>Where somebody is at one moment.</dd>
+          <dt>Trait</dt>
+          <dd>What somebody is generally like, across many moments. It takes
+            more than one reading to estimate and more than an average to
+            describe.</dd>
+          <dt>Within-person variability</dt>
+          <dd>How much one person moves about from moment to moment. It is
+            reasonably stable for a given person, so it is a characteristic of
+            them rather than noise to be cleaned away.</dd>
+        </dl>
+      </div>
+    </details>
+
+    <fieldset class="controls" style="--controls-columns: 1">
+      <legend class="visually-hidden">How many moments to average</legend>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="moments">How many moments are you
+            averaging?</label>
+          <output class="control__value" for="moments">1</output>
+        </div>
+        <input type="range" id="moments" min="1" max="56" step="1" value="1">
+        <p class="control__hint">1 is the single reading from step 1. 56 is the
+          whole fortnight.</p>
+      </div>
+    </fieldset>
+
+    <div class="plot">
+      <svg id="chart" role="img" aria-labelledby="chart-title chart-desc">
+        <title id="chart-title">Every reading from Ada and Bo across the fortnight</title>
+        <desc id="chart-desc"></desc>
+      </svg>
+      <p class="legend">Each dot is one reading. The moments you are averaging
+        are filled in; the rest are hollow. The horizontal line across each
+        person's band is the average of the moments you have included so far.</p>
+    </div>
+
+    <ul class="results-grid" style="--results-columns: 3" id="readout"></ul>
+
+    <p class="small" id="spread"></p>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="all" type="button">Average the whole fortnight</button>
+      <button class="btn btn-secondary" id="explain" type="button" disabled>What this shows</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+
+    <div class="notice" id="note" hidden data-state="chosen">
+      <p id="note-text"></p>
+    </div>
+  </section>
+
+  <p class="workbook-status" data-workbook-status role="status" aria-live="polite"></p>
+
+  <section class="synthesis" id="synthesis" hidden aria-labelledby="result-heading">
+    <p class="step-label">What this shows</p>
+    <h2 id="result-heading">The average answers one question and hides another</h2>
+    <p class="lead" id="result-lead"></p>
+
+    <div class="takeaway">
+      <p><strong>Key idea:</strong> A single reading is a state. It tells you
+        where somebody was at that moment, and at 09:20 on Tuesday Ada really
+        was twenty points above Bo. It is a poor estimate of what either of
+        them is generally like, and it is a worse estimate for Bo than for Ada,
+        because Bo moves about more. That is why the gap between the two
+        averages collapses as you add moments: it was never a difference
+        between the people, only a difference between two mornings. But notice
+        what averaging does not remove. However many moments you include, Ada's
+        readings stay bunched and Bo's stay scattered, and that difference is
+        the most reliable thing on the chart. Two people can share an average
+        and have quite different lives behind it, so a questionnaire that asks
+        "in general, how do you feel?" and records one number per person throws
+        that difference away.</p>
+    </div>
+
+    <div class="notice notice--caution">
+      <p>Two invented people, with readings generated from a fixed random seed
+        rather than observed, so the same fortnight appears every time this
+        page is opened. Ada and Bo were built to have the same typical level
+        and different variability, which is the comparison the activity exists
+        to make; real pairs are rarely so tidy. Two other things this cannot
+        show. A single reading also contains measurement error, which does
+        shrink with averaging, and in one reading it cannot be told apart from
+        genuine fluctuation. And a fortnight is not a lifetime: a level that is
+        stable across fourteen days can still move across fourteen months, so
+        nothing here says a typical level is fixed.</p>
+    </div>
+
+    <p class="small" style="margin-top: 1.125rem">The longer version adds two
+      more people, controls for variability, measurement error and life events,
+      a re-seedable dataset and two challenges. It is at
+      <a href="../../../../../modules/personality-individual-differences/tools/04-state-versus-trait-tracker/index.html">State
+      versus Trait Tracker in the main collection</a>.</p>
+  </section>
+</main>
+</body>
+</html>
