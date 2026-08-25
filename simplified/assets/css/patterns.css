@@ -939,6 +939,11 @@
   color: var(--teal);
   font-weight: 800;
   font-variant-numeric: tabular-nums;
+  /* The readout is the control's current value and has to stay one token. At
+     narrow widths a long label squeezes the header's other cell until a value
+     like "8 of 10" wraps to "8 of" over "10", which reads as two numbers. The
+     label wraps instead, which is what a label is for. */
+  white-space: nowrap;
 }
 
 .control__hint {
@@ -1471,5 +1476,54 @@
 
   .entry input {
     width: 100%;
+  }
+}
+
+/* ---------------------------------------------------- perceptual stimulus
+   A dark, low-reference field for a judgement about apparent movement.
+
+   This deliberately does NOT use .plot. A .plot figure carries text labels,
+   so it holds a 46rem minimum width and lets the region scroll rather than
+   shrinking its type to nothing. A perceptual stimulus has the opposite
+   requirement: there is no text in it, the learner is judging how far a point
+   of light appeared to move, and a figure that scrolls sideways could carry
+   the moving point out of view. So the field keeps a set height, renders its
+   coordinate space at roughly 1:1, and crops its width at narrow viewports
+   instead (preserveAspectRatio="xMidYMid slice" in the markup). The motion is
+   centred, so cropping removes only empty field. The height is in rem, so a
+   learner who raises their browser's text size gets a larger field and a
+   proportionally larger displacement rather than an unchanged one. */
+.stimulus {
+  margin-top: var(--stack);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.stimulus svg {
+  display: block;
+  width: 100%;
+  height: clamp(12.5rem, 26vw, 15rem);
+  background: #080D18;
+}
+
+.stimulus__caption {
+  padding: 0.8125rem 1rem 0.875rem;
+  background: #FBFAF7;
+  border-top: 1px solid var(--border);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--ink-soft, #4A5568);
+}
+
+.stimulus__caption strong {
+  color: var(--ink, #1A2744);
+}
+
+@media (forced-colors: active) {
+  /* The field's contrast comes from fill attributes, which forced-colors
+     leaves alone; the border is what stops it merging into the page. */
+  .stimulus {
+    border: 2px solid CanvasText;
   }
 }
