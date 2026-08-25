@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What Gets Published From a Small Study | Simplified Edition</title>
+<meta name="description" content="Two thousand simulated studies of a real effect. Every study is honest and unbiased, yet the ones that reach significance overstate the effect, and at low power some of them point the wrong way entirely.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231C7293'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../../../assets/css/simplified.css">
+<link rel="stylesheet" href="../../../../assets/css/patterns.css">
+<script src="../../../../assets/js/workbook.js" defer></script>
+<script src="../../../../assets/js/stats.js" defer></script>
+<script src="activity.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to the activity</a>
+
+<main class="workbook workbook--compact" id="main" data-workbook
+      data-reset-message="Cleared. Back to a true effect of 0.4 studied on 20 people per group.">
+
+  <section class="hero">
+    <p class="eyebrow">Research Methods &middot; Simplified</p>
+    <h1>What Gets Published From a Small Study</h1>
+    <p class="hero__lead">Every study here is honest, unbiased and correctly
+      analysed. The ones that reach significance still overstate the effect,
+      and nobody had to do anything wrong.</p>
+  </section>
+
+  <section class="card" id="card" aria-labelledby="card-heading">
+    <p class="step-label">The simulation</p>
+    <h2 id="card-heading">Two thousand studies of the same real effect</h2>
+    <p class="lead">The effect below is genuinely there, in every single one of
+      these studies. Each research team draws its own sample, runs a correct
+      t-test, and reports what it finds. Only the significant ones tend to get
+      written up.</p>
+
+    <details class="disclosure" id="key-terms">
+      <summary>Key terms</summary>
+      <div class="disclosure__body">
+        <dl class="glossary">
+          <dt>Power</dt>
+          <dd>The proportion of studies that reach significance when the effect
+            really is there. It is a property of the study design, not of the
+            result.</dd>
+          <dt>Type M error</dt>
+          <dd>An error of magnitude. How much a significant finding overstates
+            the true effect, on average.</dd>
+          <dt>Type S error</dt>
+          <dd>An error of sign. A significant finding that points in the
+            opposite direction to the truth.</dd>
+          <dt>Exaggeration ratio</dt>
+          <dd>The average effect among significant studies, divided by the true
+            effect. A ratio of 2 means the published literature reports the
+            effect as twice its real size.</dd>
+        </dl>
+      </div>
+    </details>
+
+    <fieldset class="controls" style="--controls-columns: 3">
+      <legend class="visually-hidden">The studies</legend>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="trued">True effect</label>
+          <output class="control__value" for="trued">0.40</output>
+        </div>
+        <input type="range" id="trued" min="0.05" max="1.2" step="0.05" value="0.4">
+        <p class="control__hint">Cohen's d in the population. Really there, every time.</p>
+      </div>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="n">People per group</label>
+          <output class="control__value" for="n">20</output>
+        </div>
+        <input type="range" id="n" min="5" max="120" step="5" value="20">
+        <p class="control__hint">How large each team's study is.</p>
+      </div>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="seed">Seed</label>
+        </div>
+        <input type="number" id="seed" value="8317" min="1" max="99999" step="1">
+        <p class="control__hint">The same seed runs the same two thousand studies.</p>
+      </div>
+    </fieldset>
+
+    <div class="plot">
+      <svg id="chart" role="img" aria-labelledby="chart-title chart-desc">
+        <title id="chart-title">The effect estimated by every simulated study, with the significant ones marked</title>
+        <desc id="chart-desc"></desc>
+      </svg>
+      <p class="legend">One bar per slice of the range. The solid part of each
+        bar is the studies that reached significance; the outlined part is the
+        studies that did not. The dashed line is the true effect and the solid
+        line is the average of the significant studies alone.</p>
+    </div>
+
+    <ul class="results-grid" style="--results-columns: 4" id="readout"></ul>
+
+    <p class="small" id="sentence"></p>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="fix" type="button">Give every team a bigger study</button>
+      <button class="btn btn-secondary" id="explain" type="button" disabled>What this shows</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+
+    <div class="notice" id="task" hidden data-state="chosen">
+      <p id="task-text"></p>
+    </div>
+  </section>
+
+  <p class="workbook-status" data-workbook-status role="status" aria-live="polite"></p>
+
+  <section class="synthesis" id="synthesis" hidden aria-labelledby="result-heading">
+    <p class="step-label">What this shows</p>
+    <h2 id="result-heading">Filtering on significance is what does the damage</h2>
+    <p class="lead">No individual study here is biased. The average across all
+      two thousand of them lands on the true effect. The bias appears the
+      moment you look only at the ones that reached significance.</p>
+
+    <div class="takeaway">
+      <p><strong>Key idea:</strong> To be significant, a small study has to
+        produce a large estimate: that is what the threshold means. So when
+        power is low, the significant studies are precisely the ones that got a
+        lucky, unusually large sample, and the published effect is systematically
+        too big. Raising the sample size fixes this, not by making anyone more
+        careful, but by shrinking the gap between the effect a study needs in
+        order to be significant and the effect that is actually there. This is
+        also why a significant result from a small study is weak evidence about
+        the size of an effect even when it is correct about its existence, and
+        why replications so reliably come out smaller than the original.</p>
+    </div>
+
+    <div class="notice notice--caution">
+      <p>Three things this does not show. It is not about fraud or p-hacking:
+        every simulated team here does everything correctly, and the
+        exaggeration arises purely from which results get selected. It is not
+        an argument that significant findings are usually wrong; at decent
+        power the exaggeration is small and the sign errors vanish. And
+        computing power after the fact, from the effect a study happened to
+        observe, tells you nothing that the p-value did not already tell you,
+        because the observed effect is exactly the thing that has been
+        distorted. Power is something to work out before running a study, from
+        the smallest effect that would matter.</p>
+    </div>
+
+    <p class="small" style="margin-top: 1.125rem">The longer version adds alpha,
+      beta and power as three moving areas on two sampling distributions, a
+      sample-size calculator for a target power, and a worked treatment of why
+      observed power adds nothing. It is at
+      <a href="../../../../../modules/research-methods/tools/17-statistical-power-type-m-lab/index.html">Statistical
+      Power and Type M Error in the main collection</a>.</p>
+  </section>
+</main>
+</body>
+</html>

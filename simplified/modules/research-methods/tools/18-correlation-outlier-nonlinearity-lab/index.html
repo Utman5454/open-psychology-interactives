@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What r Cannot See | Simplified Edition</title>
+<meta name="description" content="A scatter plot with one point you can move. The correlation coefficient measures straight-line association only, and a single well-placed observation can move it further than the other twenty-four combined.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231C7293'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../../../assets/css/simplified.css">
+<link rel="stylesheet" href="../../../../assets/css/patterns.css">
+<script src="../../../../assets/js/workbook.js" defer></script>
+<script src="../../../../assets/js/stats.js" defer></script>
+<script src="activity.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to the activity</a>
+
+<main class="workbook workbook--compact" id="main" data-workbook
+      data-reset-message="Cleared. Back to a straight-line pattern with the movable point near the middle.">
+
+  <section class="hero">
+    <p class="eyebrow">Research Methods &middot; Simplified</p>
+    <h1>What r Cannot See</h1>
+    <p class="hero__lead">A correlation coefficient answers one narrow
+      question. Always look at the scatter plot before you trust the number.</p>
+  </section>
+
+  <section class="card" id="card" aria-labelledby="card-heading">
+    <p class="step-label">The scatter</p>
+    <h2 id="card-heading">Twenty-four points, and one you control</h2>
+    <p class="lead">The ringed point is yours to move. Everything else stays
+      exactly where it is. Watch what one observation out of twenty-five can do
+      to the number underneath.</p>
+
+    <details class="disclosure" id="key-terms">
+      <summary>Key terms</summary>
+      <div class="disclosure__body">
+        <dl class="glossary">
+          <dt>r</dt>
+          <dd>Pearson's correlation coefficient. It runs from minus one to plus
+            one and measures how well the points sit along a <em>straight</em>
+            line. That word is the whole difficulty.</dd>
+          <dt>r squared</dt>
+          <dd>The share of the variation in one variable that the straight-line
+            fit accounts for. An r of 0.5 accounts for a quarter of it, not
+            half.</dd>
+          <dt>Influential point</dt>
+          <dd>An observation that changes the answer noticeably when it is
+            removed. Being unusual is not enough; where it sits relative to the
+            rest is what matters.</dd>
+        </dl>
+      </div>
+    </details>
+
+    <fieldset class="toggle-grid" id="pattern" style="--toggle-columns: 3">
+      <legend class="field-legend">What the other twenty-four points look like</legend>
+      <label class="toggle" data-checked="true" id="pattern-straight-label">
+        <input type="radio" name="pattern" id="pattern-straight" value="straight" checked>
+        <span>
+          <strong>A straight line</strong>
+          <span>Rising, with ordinary scatter.</span>
+        </span>
+      </label>
+      <label class="toggle" data-checked="false" id="pattern-curved-label">
+        <input type="radio" name="pattern" id="pattern-curved" value="curved">
+        <span>
+          <strong>An arch</strong>
+          <span>A strong relationship that is not a straight one.</span>
+        </span>
+      </label>
+      <label class="toggle" data-checked="false" id="pattern-none-label">
+        <input type="radio" name="pattern" id="pattern-none" value="none">
+        <span>
+          <strong>No relationship</strong>
+          <span>A shapeless cloud.</span>
+        </span>
+      </label>
+    </fieldset>
+
+    <fieldset class="controls" style="--controls-columns: 2">
+      <legend class="visually-hidden">Where the movable point sits</legend>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="px">Movable point, across</label>
+          <output class="control__value" for="px">50</output>
+        </div>
+        <input type="range" id="px" min="2" max="98" step="1" value="50">
+        <p class="control__hint">Its position on the horizontal axis.</p>
+      </div>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="py">Movable point, up</label>
+          <output class="control__value" for="py">55</output>
+        </div>
+        <input type="range" id="py" min="2" max="98" step="1" value="55">
+        <p class="control__hint">Its position on the vertical axis.</p>
+      </div>
+    </fieldset>
+
+    <div class="plot">
+      <svg id="chart" role="img" aria-labelledby="chart-title chart-desc">
+        <title id="chart-title">A scatter plot of twenty-five observations with the best-fitting straight line</title>
+        <desc id="chart-desc"></desc>
+      </svg>
+      <p class="legend">The ringed point is the one you are moving. The solid
+        line is the best-fitting straight line through all twenty-five points;
+        the dashed line is the best fit through the other twenty-four, so the
+        gap between them is what your one point is doing.</p>
+    </div>
+
+    <ul class="results-grid" style="--results-columns: 3" id="readout"></ul>
+
+    <p class="small" id="sentence"></p>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="challenge" type="button">Set me a challenge</button>
+      <button class="btn btn-secondary" id="explain" type="button" disabled>What this shows</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+
+    <div class="notice" id="task" hidden data-state="chosen">
+      <p id="task-text"></p>
+    </div>
+  </section>
+
+  <p class="workbook-status" data-workbook-status role="status" aria-live="polite"></p>
+
+  <section class="synthesis" id="synthesis" hidden aria-labelledby="result-heading">
+    <p class="step-label">What this shows</p>
+    <h2 id="result-heading">The number is a summary, and summaries lose things</h2>
+    <p class="lead">r asks how closely the points hug a straight line, and
+      nothing else. It cannot tell a strong curved relationship from no
+      relationship at all, and it can be dragged a long way by one observation.</p>
+
+    <div class="takeaway">
+      <p><strong>Key idea:</strong> On the arch, the relationship is almost
+        perfect and r sits near zero, because no straight line fits an arch. On
+        the shapeless cloud, one point placed far out in the corner produces a
+        respectable-looking correlation out of nothing at all. In both cases
+        the number is not lying: it is answering the narrow question it was
+        asked. The mistake is to treat that answer as a summary of whether two
+        variables are related. This is why a scatter plot is not an optional
+        illustration of a correlation, it is the thing you have to look at
+        before the correlation means anything.</p>
+    </div>
+
+    <div class="notice notice--caution">
+      <p>Two further points. A point that looks extreme is not automatically
+        influential: an unusual observation sitting near the middle of the
+        horizontal range barely moves the line at all, which you can check by
+        sliding the movable point straight up while leaving it at 50 across.
+        Influence comes from being unusual on the predictor as well as far from
+        the fit. And none of this says an outlier should be deleted. Whether an
+        observation is a recording error, a genuine rare case or a sign that
+        the model is wrong is a question about the study, not about the
+        arithmetic, and the honest response is usually to report the analysis
+        both ways.</p>
+    </div>
+
+    <p class="small" style="margin-top: 1.125rem">The longer version adds
+      negative and zero relationships, a change-of-units demonstration, and a
+      guess-the-correlation challenge across many scatter plots. It is at
+      <a href="../../../../../modules/research-methods/tools/18-correlation-outlier-nonlinearity-lab/index.html">Correlation:
+      Outliers and Non-Linearity in the main collection</a>.</p>
+  </section>
+</main>
+</body>
+</html>

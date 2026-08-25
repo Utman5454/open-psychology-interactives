@@ -63,6 +63,43 @@ than in a block of its own.
 An activity with none of them still gets a working controller — `announce()`
 becomes a no-op, `progress` reports no steps, and everything else carries on.
 
+## Figures
+
+Wrap every SVG in `<div class="plot">`. That gives it a floor: below about
+46rem the figure keeps its designed proportions and the region scrolls
+sideways instead of shrinking, because a 900-unit viewBox stretched to 320px
+renders its 12px labels at three pixels, which is not a small figure but an
+unreadable one. `workbook.js` makes the region keyboard reachable, and
+announces it, only while it actually scrolls; call `refreshFigures()` if you
+change a figure's size yourself.
+
+Two helper classes:
+
+| Class | Use |
+| --- | --- |
+| `plot__over` | figure text that has to sit over data marks. Paints a halo in the figure's background colour so the glyphs keep an edge without a filled box hiding anything. |
+| `field-legend` | a `<legend>` that should be seen. Most groups hide theirs because a nearby heading names them; use this when the group is the pivot of the activity. |
+
+Two things worth knowing before you draw one:
+
+- **A figure whose meaning depends on shape needs matching axes.** If you draw
+  squares on residuals, or ask a learner to judge how strong a correlation
+  looks, one unit across and one unit up have to be the same number of pixels,
+  and the plot area has to be square. Aspect ratio is not decorative there.
+- **Decide deliberately whether the axes are fixed or autoscaled, and say why
+  in a comment.** Fixed axes are right when something must be seen to stay
+  still while everything around it moves; autoscaled axes are right when the
+  point is that the units do not matter. The two activities on z-scores and on
+  Cohen's d make opposite choices for exactly this reason.
+
+## Choosing patterns
+
+Prefer a radio group in `.toggle-grid` over a `<select>` whenever the
+alternatives matter pedagogically. A select hides every option the learner is
+not currently on, and its longest option truncates in any narrow column. If
+switching between two states *is* the lesson, the states should both be
+visible.
+
 ## The JavaScript API
 
 ```js
@@ -127,7 +164,11 @@ share a stylesheet: the references' `.flash` / `.flash-msg` / `.dot` are
   collide the moment two activities share a page.
 - Every SVG has `<title>` and `<desc>` referenced by `aria-labelledby`, and
   the `<desc>` describes the argument, not the shapes.
-- Every chart has a data table or an equivalent readout.
+- Every chart has a data table or an equivalent readout, and every SVG is
+  inside a `.plot` wrapper.
+- The figure has been looked at in a browser at 1440x900, 768px and 320px, not
+  merely reasoned about: overlapping labels, text over data marks and figures
+  that go unreadably dense do not show up in calculated geometry.
 - Keyboard only, start to finish. Focus visible at every step, and never
   stranded after answering.
 - 320px wide and projector wide.

@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why It Is Called Least Squares | Simplified Edition</title>
+<meta name="description" content="Move a line by hand and watch a real square appear on every residual. The total area of those squares is the thing regression minimises, and exactly one line minimises it.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231C7293'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../../../assets/css/simplified.css">
+<link rel="stylesheet" href="../../../../assets/css/patterns.css">
+<script src="../../../../assets/js/workbook.js" defer></script>
+<script src="../../../../assets/js/stats.js" defer></script>
+<script src="activity.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to the activity</a>
+
+<main class="workbook workbook--compact" id="main" data-workbook
+      data-reset-message="Cleared. Back to the starting line, which is a poor one.">
+
+  <section class="hero">
+    <p class="eyebrow">Research Methods &middot; Simplified</p>
+    <h1>Why It Is Called Least Squares</h1>
+    <p class="hero__lead">The squares are not a metaphor. Move the line by hand
+      and watch the area you are trying to get rid of.</p>
+  </section>
+
+  <section class="card" id="card" aria-labelledby="card-heading">
+    <p class="step-label">Your turn</p>
+    <h2 id="card-heading">Fit the line yourself first</h2>
+    <p class="lead">Twelve observations, and a line you control with two
+      numbers. Every observation gets a square whose side is how far the line
+      missed it. Make the total area as small as you can, then find out how
+      close you got.</p>
+
+    <details class="disclosure" id="key-terms">
+      <summary>Key terms</summary>
+      <div class="disclosure__body">
+        <dl class="glossary">
+          <dt>Intercept</dt>
+          <dd>Where the line crosses the vertical axis: the predicted value of
+            Y when X is zero.</dd>
+          <dt>Slope</dt>
+          <dd>How much the predicted Y changes for a one-unit rise in X.</dd>
+          <dt>Residual</dt>
+          <dd>The vertical distance from an observation to the line. The side
+            of its square.</dd>
+          <dt>R squared</dt>
+          <dd>How much better your line does than simply predicting the average
+            of Y for everybody. It is 0 for a line no better than the average
+            and it can go negative for one that is worse.</dd>
+        </dl>
+      </div>
+    </details>
+
+    <fieldset class="controls" style="--controls-columns: 2">
+      <legend class="visually-hidden">Your line</legend>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="b0">Intercept</label>
+          <output class="control__value" for="b0">15</output>
+        </div>
+        <input type="range" id="b0" min="0" max="60" step="1" value="15">
+        <p class="control__hint">Where the line starts on the left.</p>
+      </div>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="b1">Slope</label>
+          <output class="control__value" for="b1">0.20</output>
+        </div>
+        <input type="range" id="b1" min="-0.5" max="1.5" step="0.05" value="0.2">
+        <p class="control__hint">How steeply it rises.</p>
+      </div>
+    </fieldset>
+
+    <div class="plot">
+      <svg id="chart" role="img" aria-labelledby="chart-title chart-desc">
+        <title id="chart-title">Twelve observations with your line and a square drawn on each residual</title>
+        <desc id="chart-desc"></desc>
+      </svg>
+      <p class="legend">Each square has its side equal to that observation's
+        residual, so its area is the residual squared. Adding up those twelve
+        areas gives the number below. Regression is the line that makes that
+        total as small as it can possibly be.</p>
+    </div>
+
+    <ul class="results-grid" style="--results-columns: 3" id="readout"></ul>
+
+    <p class="small" id="sentence"></p>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="reveal" type="button">Show me the best line</button>
+      <button class="btn btn-secondary" id="explain" type="button" disabled>What this shows</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+
+    <div class="notice" id="task" hidden data-state="chosen">
+      <p id="task-text"></p>
+    </div>
+  </section>
+
+  <p class="workbook-status" data-workbook-status role="status" aria-live="polite"></p>
+
+  <section class="synthesis" id="synthesis" hidden aria-labelledby="result-heading">
+    <p class="step-label">What this shows</p>
+    <h2 id="result-heading">One line, and no argument about it</h2>
+    <p class="lead">There is exactly one pair of numbers that makes the total
+      area smallest, and it can be worked out directly rather than searched
+      for. That is all a regression does.</p>
+
+    <div class="takeaway">
+      <p><strong>Key idea:</strong> Squaring the residuals is a choice, not a
+        law, and it has consequences. It makes the arithmetic solvable in one
+        step, and it means an observation twice as far from the line
+        contributes four times as much to the total, so the fitted line is
+        pulled hard towards distant points. R squared then compares your line
+        with the laziest possible prediction, the average of Y for everybody:
+        it is 0 for a line that does no better than that average, and negative
+        for one that does worse, which is worth seeing at least once because it
+        makes clear that R squared is a comparison rather than a percentage of
+        something absolute.</p>
+    </div>
+
+    <div class="notice notice--caution">
+      <p>What the best-fitting line is not. It is not evidence that a straight
+        line is the right model: a line can be fitted to anything, including
+        data with an obvious curve, and least squares will happily return one.
+        It is not a causal claim about X and Y. And a good fit here says
+        nothing about prediction for new cases, because the line was chosen to
+        suit these twelve observations specifically and will do somewhat worse
+        on any others. Note also that the intercept is only meaningful when X
+        of zero is a value that could actually occur.</p>
+    </div>
+
+    <p class="small" style="margin-top: 1.125rem">The longer version adds a
+      prediction exercise, a numeric target challenge and the standard error of
+      the estimate. It is at
+      <a href="../../../../../modules/research-methods/tools/19-regression-slope-intercept-lab/index.html">Regression:
+      Slope and Intercept in the main collection</a>.</p>
+  </section>
+</main>
+</body>
+</html>

@@ -977,6 +977,17 @@
    so the row — not the 18px box — is what has to be hit.
    ---------------------------------------------------------------------- */
 
+/* A fieldset legend that is meant to be seen. Most groups here hide theirs
+   because a nearby heading already names them, but a group that is the pivot
+   of its activity should say so in its own right. `legend` ignores most box
+   properties, so this stays deliberately typographic. */
+.field-legend {
+  padding: 0;
+  margin: 0 0 0.5rem;
+  color: var(--navy);
+  font-weight: 800;
+}
+
 .toggle-grid {
   display: grid;
   grid-template-columns: repeat(var(--toggle-columns, 2), minmax(0, 1fr));
@@ -1066,12 +1077,41 @@
   border-radius: var(--radius-md);
   background: #FBFAF7;
   border: 1px solid var(--border);
+  /* A figure drawn in a 900-unit viewBox and stretched to fit renders its
+     12px labels at 12px only when it is 900px wide. At a 320px viewport that
+     is three pixels, which is not a small figure but an unreadable one.
+     Below the floor the figure keeps its designed proportions and the region
+     scrolls instead, which is the same answer .table-scroll gives for a wide
+     table. workbook.js makes the region keyboard reachable when it scrolls. */
+  overflow-x: auto;
 }
 
 .plot svg {
   display: block;
   width: 100%;
+  min-width: 46rem;      /* labels never render below about 10px */
   height: auto;
+}
+
+/* A figure label that has to sit over data marks. The stroke is painted
+   first and in the figure's own background colour, so the glyphs keep a clear
+   edge against whatever is behind them without a filled box hiding marks. */
+.plot__over {
+  paint-order: stroke;
+  stroke: #FBFAF7;
+  stroke-width: 3.5px;
+  stroke-linejoin: round;
+}
+
+@media (forced-colors: active) {
+  .plot__over {
+    stroke: Canvas;
+  }
+}
+
+.plot:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
 }
 
 .plot__band {
@@ -1340,6 +1380,7 @@
   .voice-grid,
   .peers,
   .pair-grid,
+  .toggle-grid,
   .controls {
     grid-template-columns: minmax(0, 1fr);
   }

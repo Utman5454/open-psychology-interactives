@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Factorial Interaction Detective | Simplified Edition</title>
+<meta name="description" content="Four cell means from a 2 by 2 design. Edit them and watch the two main effects and the interaction, then find out how much of what you see is the axis scale and how much survives the uncertainty.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231C7293'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../../../assets/css/simplified.css">
+<link rel="stylesheet" href="../../../../assets/css/patterns.css">
+<script src="../../../../assets/js/workbook.js" defer></script>
+<script src="activity.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to the activity</a>
+
+<main class="workbook workbook--compact" id="main" data-workbook
+      data-reset-message="Cleared. Back to the four starting cell means.">
+
+  <section class="hero">
+    <p class="eyebrow">Research Methods &middot; Simplified</p>
+    <h1>Factorial Interaction Detective</h1>
+    <p class="hero__lead">An interaction is a difference of differences. Two
+      other things decide whether the one you can see means anything.</p>
+  </section>
+
+  <section class="card" id="card" aria-labelledby="card-heading">
+    <p class="step-label">The design</p>
+    <h2 id="card-heading">Four cell means, and nothing else</h2>
+    <p class="lead">A 2 by 2 study: feedback given immediately or after a
+      delay, on a simple or a complex task. Everything below is arithmetic on
+      these four numbers.</p>
+
+    <details class="disclosure" id="key-terms">
+      <summary>Key terms</summary>
+      <div class="disclosure__body">
+        <dl class="glossary">
+          <dt>Main effect</dt>
+          <dd>The difference between the two levels of one factor, averaged
+            over the levels of the other.</dd>
+          <dt>Interaction</dt>
+          <dd>A difference of differences: how much the effect of one factor
+            changes across the levels of the other. It is the same number
+            whichever factor you put on the horizontal axis.</dd>
+          <dt>Standard error</dt>
+          <dd>How much a cell mean would move if the study were repeated. Four
+            cell means each with standard error s give an interaction with
+            standard error 2s.</dd>
+          <dt>Crossover</dt>
+          <dd>Lines that cross. A crossover in the point estimates is not the
+            same as a crossover in the evidence.</dd>
+        </dl>
+      </div>
+    </details>
+
+    <fieldset class="controls" style="--controls-columns: 2">
+      <legend class="visually-hidden">Cell means</legend>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="is">Immediate, simple</label>
+          <output class="control__value" for="is">70</output>
+        </div>
+        <input type="range" id="is" min="20" max="90" step="1" value="70">
+      </div>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="ic">Immediate, complex</label>
+          <output class="control__value" for="ic">50</output>
+        </div>
+        <input type="range" id="ic" min="20" max="90" step="1" value="50">
+      </div>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="ds">Delayed, simple</label>
+          <output class="control__value" for="ds">50</output>
+        </div>
+        <input type="range" id="ds" min="20" max="90" step="1" value="50">
+      </div>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="dc">Delayed, complex</label>
+          <output class="control__value" for="dc">70</output>
+        </div>
+        <input type="range" id="dc" min="20" max="90" step="1" value="70">
+      </div>
+    </fieldset>
+
+    <fieldset class="controls" style="--controls-columns: 2">
+      <legend class="visually-hidden">How the picture is drawn</legend>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="scale">Vertical axis</label>
+        </div>
+        <select id="scale">
+          <option value="full" selected>Full range, 20 to 90</option>
+          <option value="zoom">Zoomed to the four means</option>
+        </select>
+        <p class="control__hint">A zoomed axis makes a small gap look large.</p>
+      </div>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="se">Uncertainty in each mean</label>
+        </div>
+        <select id="se">
+          <option value="0" selected>Not shown</option>
+          <option value="2">Standard error 2</option>
+          <option value="5">Standard error 5</option>
+          <option value="10">Standard error 10</option>
+        </select>
+        <p class="control__hint">Drawn as error bars on each cell mean.</p>
+      </div>
+    </fieldset>
+
+    <div class="plot">
+      <svg id="chart" viewBox="0 0 900 420" role="img" aria-labelledby="chart-title chart-desc">
+        <title id="chart-title">The four cell means, one line per feedback timing</title>
+        <desc id="chart-desc"></desc>
+      </svg>
+      <p class="legend">One line per feedback timing across the two tasks.
+        Parallel lines mean no interaction; the more they diverge, the larger
+        the difference of differences.</p>
+    </div>
+
+    <ul class="results-grid" style="--results-columns: 3" id="readout"></ul>
+
+    <div class="actions">
+      <button class="btn btn-secondary" id="explain" type="button" disabled>What this shows</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+  </section>
+
+  <p class="workbook-status" data-workbook-status role="status" aria-live="polite"></p>
+
+  <section class="synthesis" id="synthesis" hidden aria-labelledby="result-heading">
+    <p class="step-label">What this shows</p>
+    <h2 id="result-heading">The number, the picture and the evidence</h2>
+    <p class="lead">The interaction is fixed by the four means. How large it
+      looks is fixed by the axis. Whether it is worth interpreting is fixed by
+      the uncertainty, and none of the three settles the other two.</p>
+
+    <div class="takeaway">
+      <p><strong>Key idea:</strong> An interaction is the difference of
+        differences, and it is symmetric: how much the effect of feedback
+        timing changes across tasks is exactly how much the effect of task
+        changes across timings. Which factor goes on the horizontal axis is a
+        presentation decision and does not change the number. What does change
+        what you see is the vertical scale, and what decides whether the
+        pattern is worth a sentence is the uncertainty in the four means.</p>
+    </div>
+
+    <div class="notice notice--caution">
+      <p>There is no F, no p and no effect size here, because there is no
+        dataset: only four means. Putting a test result on screen would invite
+        reading one off numbers that contain no information about within-cell
+        variation or sample size. The standard errors offered are a menu rather
+        than an estimate from data. And a large main effect in the presence of
+        a crossover interaction is usually not worth reporting on its own,
+        because the average of two opposite effects describes nobody.</p>
+    </div>
+
+    <p class="small" style="margin-top: 1.125rem">The longer version adds
+      pattern presets, an additive-fit control that removes the interaction,
+      a read-it-the-other-way-round disclosure and a fill-in-the-sentence
+      challenge. It is at
+      <a href="../../../../../modules/research-methods/tools/11-factorial-anova-interaction-detective/index.html">Factorial
+      ANOVA Interaction Detective in the main collection</a>.</p>
+  </section>
+</main>
+</body>
+</html>

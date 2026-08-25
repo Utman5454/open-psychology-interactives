@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How Much Do Two Groups Overlap? | Simplified Edition</title>
+<meta name="description" content="Two distributions with a gap between them. Cohen's d, the overlap, the probability of superiority and U3 all describe the same picture, and all of them are about overlap rather than about whether an effect exists.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231C7293'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../../../assets/css/simplified.css">
+<link rel="stylesheet" href="../../../../assets/css/patterns.css">
+<script src="../../../../assets/js/workbook.js" defer></script>
+<script src="../../../../assets/js/stats.js" defer></script>
+<script src="activity.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to the activity</a>
+
+<main class="workbook workbook--compact" id="main" data-workbook
+      data-reset-message="Cleared. Back to a difference of 8 points on a spread of 10.">
+
+  <section class="hero">
+    <p class="eyebrow">Research Methods &middot; Simplified</p>
+    <h1>How Much Do Two Groups Overlap?</h1>
+    <p class="hero__lead">An effect size is a statement about two distributions
+      sitting on top of each other. It is not a statement about whether there
+      is an effect.</p>
+  </section>
+
+  <section class="card" id="card" aria-labelledby="card-heading">
+    <p class="step-label">Before you look</p>
+    <h2 id="card-heading">Make a guess first</h2>
+    <p class="lead">Two groups differ by what psychologists call a large
+      effect: Cohen's d of 0.8. Out of a hundred people in the lower group, how
+      many score above the average of the higher group?</p>
+
+    <fieldset class="option-grid" id="guess" style="--option-columns: 4">
+      <legend class="visually-hidden">Your estimate</legend>
+    </fieldset>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="commit" type="button" aria-disabled="true">Lock in my guess</button>
+    </div>
+  </section>
+
+  <section class="card" id="explorer" hidden aria-labelledby="explorer-heading">
+    <p class="step-label">The two distributions</p>
+    <h2 id="explorer-heading">The same gap, described four ways</h2>
+    <p class="lead" id="verdict"></p>
+
+    <details class="disclosure" id="key-terms">
+      <summary>Key terms</summary>
+      <div class="disclosure__body">
+        <dl class="glossary">
+          <dt>Cohen's d</dt>
+          <dd>The gap between the two means, measured in standard deviations.
+            It has no units, which is what lets it be compared across studies
+            that measured different things.</dd>
+          <dt>Overlap</dt>
+          <dd>The share of the two distributions that sits in the region they
+            have in common. The shaded area on the figure.</dd>
+          <dt>Probability of superiority</dt>
+          <dd>Pick one person at random from each group. This is the chance
+            that the one from the higher group scores higher.</dd>
+          <dt>U3</dt>
+          <dd>The percentage of the higher group that scores above the
+            <em>average</em> of the lower group.</dd>
+        </dl>
+      </div>
+    </details>
+
+    <fieldset class="controls" style="--controls-columns: 2">
+      <legend class="visually-hidden">The two distributions</legend>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="diff">Difference between the means</label>
+          <output class="control__value" for="diff">8</output>
+        </div>
+        <input type="range" id="diff" min="0" max="30" step="1" value="8">
+        <p class="control__hint">In raw score points.</p>
+      </div>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="sd">Spread within each group</label>
+          <output class="control__value" for="sd">10</output>
+        </div>
+        <input type="range" id="sd" min="4" max="20" step="1" value="10">
+        <p class="control__hint">The standard deviation, the same in both groups.</p>
+      </div>
+    </fieldset>
+
+    <div class="plot">
+      <svg id="chart" role="img" aria-labelledby="chart-title chart-desc">
+        <title id="chart-title">Two normal distributions with their overlap shaded</title>
+        <desc id="chart-desc"></desc>
+      </svg>
+      <p class="legend">The solid curve is the higher-scoring group and the
+        dashed curve the lower-scoring one. The shaded region is the part they
+        have in common. There is no score axis here on purpose: none of these
+        four numbers depends on the units.</p>
+    </div>
+
+    <ul class="results-grid" style="--results-columns: 4" id="readout"></ul>
+
+    <div class="actions">
+      <button class="btn btn-secondary" id="scalefree" type="button">Show me the same d twice</button>
+      <button class="btn btn-secondary" id="explain" type="button" disabled>What this shows</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+
+    <div class="notice" id="task" hidden data-state="chosen">
+      <p id="task-text"></p>
+    </div>
+  </section>
+
+  <p class="workbook-status" data-workbook-status role="status" aria-live="polite"></p>
+
+  <section class="synthesis" id="synthesis" hidden aria-labelledby="result-heading">
+    <p class="step-label">What this shows</p>
+    <h2 id="result-heading">Large effects still overlap enormously</h2>
+    <p class="lead">A d of 0.8 is conventionally called large. It leaves about
+      69 per cent of the two distributions in common, and picking one person
+      from each group gets the ordering people expect only about 71 times in a
+      hundred.</p>
+
+    <div class="takeaway">
+      <p><strong>Key idea:</strong> Cohen's d is the gap between two means
+        measured in standard deviations, exactly as a z-score measures one
+        person against one distribution. Because it has no units it can be
+        compared across studies, and because it is a ratio it is unchanged when
+        both the gap and the spread are scaled together: two studies with
+        nothing in common can produce the identical picture. All four numbers
+        here describe that one picture. None of them says whether the effect is
+        real, and none of them gets larger when you test more people. That is
+        the whole reason effect sizes are reported alongside p-values rather
+        than instead of them.</p>
+    </div>
+
+    <div class="notice notice--caution">
+      <p>Three cautions. Cohen's labels of small, medium and large were offered
+        as a rough fallback for researchers with nothing better, and he said so;
+        they are not benchmarks, and what counts as a consequential effect
+        depends entirely on the outcome and the cost of acting on it. The
+        figures here assume both groups are normal with the same spread, which
+        is what makes the four indices agree; where the spreads differ, d
+        depends on which standard deviation you divide by and the overlap no
+        longer follows from d alone. And a group difference licenses nothing
+        about any individual: at d of 0.8 you would still be wrong nearly three
+        times in ten guessing which of two people scored higher.</p>
+    </div>
+
+    <p class="small" style="margin-top: 1.125rem">The longer version adds the
+      sample-size control that separates an effect size from a test statistic,
+      a matching challenge across four indices, and worked presets from
+      published effects. It is at
+      <a href="../../../../../modules/research-methods/tools/15-cohens-d-overlap-explorer/index.html">Cohen's
+      d and Distributional Overlap in the main collection</a>.</p>
+  </section>
+</main>
+</body>
+</html>

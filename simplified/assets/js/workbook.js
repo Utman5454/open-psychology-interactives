@@ -557,11 +557,39 @@
       });
     });
 
+    /* --- Scrollable figures ---------------------------------------------
+       A region that scrolls has to be reachable from the keyboard, or the
+       content past its right edge cannot be read without a mouse. The tab
+       stop is added only while the region actually overflows, so a figure
+       that fits adds nothing to the tab order. Re-checked on resize because
+       whether it overflows depends on the viewport. */
+
+    function updateScrollableFigures() {
+      toArray(root.querySelectorAll(".plot")).forEach(function (figure) {
+        var scrolls = figure.scrollWidth > figure.clientWidth + 1;
+        if (scrolls) {
+          figure.setAttribute("tabindex", "0");
+          figure.setAttribute("role", "group");
+          if (!figure.getAttribute("aria-label")) {
+            figure.setAttribute("aria-label", "Figure, scrolls sideways");
+          }
+        } else {
+          figure.removeAttribute("tabindex");
+          figure.removeAttribute("role");
+          figure.removeAttribute("aria-label");
+        }
+      });
+    }
+
+    global.addEventListener("resize", updateScrollableFigures);
+
     /* --- Starting state ------------------------------------------------- */
 
     if (steps.length) {
       paintProgress(0);
     }
+
+    updateScrollableFigures();
 
     return {
       version: VERSION,
@@ -575,6 +603,7 @@
       scrollTo: scrollTo,
       focus: focusElement,
       bindRange: bindRange,
+      refreshFigures: updateScrollableFigures,
       onReset: onReset,
       reset: reset,
       prefersReducedMotion: prefersReducedMotion
