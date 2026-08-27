@@ -651,6 +651,116 @@
   }
 }
 
+/* --------------------------------------------------------- activity chrome
+   The breadcrumb edition-nav.js puts above an activity sits outside <main>,
+   so it does not inherit the workbook's width and has to restate it. Same
+   expression as .workbook in simplified.css, so the two align exactly. */
+.edition-chrome {
+  width: min(var(--workbook-width), calc(100% - 2rem));
+  margin: 0 auto;
+}
+
+.edition-bar--activity {
+  padding-top: 1.625rem;
+  margin-bottom: -1.25rem;   /* .workbook's own top padding does the rest */
+}
+
+.activity-nav-wrap {
+  margin-top: var(--stack);
+}
+
+/* ------------------------------------------------------------ activity nav
+   Injected at the foot of an activity by edition-nav.js. Previous and next
+   sit at the edges with the module link between them, so the two directions
+   are never confused with each other.
+
+   These rules are the only styling those injected elements get. Without them
+   the strip still works and still links correctly, so a test that checks the
+   links resolve will pass while every activity in the edition shows three
+   bare 19px anchors instead of three targets. Do not delete this section
+   without deleting the markup that depends on it. */
+.activity-nav {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: var(--gap);
+  align-items: stretch;
+  margin-top: var(--stack);
+}
+
+.activity-nav__link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1875rem;
+  padding: 0.8125rem 1rem;
+  min-height: var(--target);
+  justify-content: center;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--navy);
+  text-decoration: none;
+}
+
+.activity-nav__link:hover {
+  border-color: var(--teal);
+  color: var(--teal);
+}
+
+.activity-nav__link--next {
+  text-align: right;
+}
+
+.activity-nav__link--up {
+  align-items: center;
+  text-align: center;
+  font-weight: 700;
+  color: var(--teal);
+}
+
+.activity-nav__dir {
+  font-size: var(--text-xs);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.activity-nav__name {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+/* An empty cell where there is no previous or next, so the module link stays
+   in the middle rather than sliding to an edge on the first and last. */
+.activity-nav__gap {
+  min-height: var(--target);
+}
+
+/* simplified.css narrows .workbook below 47.5em. The breadcrumb sits outside
+   <main> and so has to follow it, or it stands 6px proud of every card on the
+   page at phone widths. Keep this expression and the one above in step with
+   .workbook; they are the whole of the claim that the two columns line up. */
+@media (max-width: 47.5em) {
+  .edition-chrome {
+    width: min(calc(100% - 1.25rem), var(--workbook-width));
+  }
+}
+
+@media (max-width: 40em) {
+  .activity-nav {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .activity-nav__link--next {
+    text-align: left;
+  }
+
+  .activity-nav__gap {
+    display: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .motif *,
   .motif__box--cued,

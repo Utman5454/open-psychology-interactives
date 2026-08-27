@@ -91,21 +91,30 @@ when `tool.status === "published"`. The vocabulary documented in
 * All 75 originals are `"published"`, in both the catalogue and their own
   metadata. The five module-level `status` values are `"in-progress"` and are
   read by nothing; they are descriptive.
-* All 75 simplified activities are `"draft"`. **They have not been changed.**
+* All 75 simplified activities are now `"published"`, in both their own
+  metadata and the generated catalogue. They were `"draft"` throughout the
+  build and were changed at the release-candidate audit.
 
-Nothing in this integration required a status change. `main.js` never reads
-`catalogue-simplified.json`, and the simplified module pages are generated, so
-`draft` does not hide anything. The generator gates on status the way `main.js`
-does — `planned` or `in-progress` is a hard error — and currently accepts both
-`draft` and `published`.
+**Why the change was safe.** It was proved before it was made, not assumed.
+`main.js` never reads `catalogue-simplified.json`; `edition-nav.js` does read
+it, but only for previous and next, and never looks at `status`;
+`check-edition-pairing.py` does not mention the field; and the string "draft"
+appeared in none of the 81 shipped HTML pages. Flipping all 75 in a sandbox and
+regenerating changed the 75 status values in `data/catalogue-simplified.json`
+and **nothing else** — all six generated HTML pages came out byte-identical.
 
-**Recommendation before deployment:** set the 75 to `"published"` and tighten
-`RENDERABLE_STATUSES` in the generator to `{"published"}`. In this project's
-own vocabulary "published" means finished work that may be listed on the site,
-which is what the edition now is; leaving it `draft` while it is linked from
-the home page would make the catalogue's documented meaning false. That is 75
-one-line metadata edits plus one regeneration, and it belongs in the
-deployment commit rather than here.
+**Why the change was needed.** In this project's vocabulary `published` means
+finished work that may be listed on the site, which is what the edition is once
+the home page links to it. `data/catalogue-simplified.json` is a public,
+machine-readable artefact, and leaving 75 entries in it marked `draft` would
+have made the catalogue's own documented meaning false.
+
+**Still open, deliberately.** `RENDERABLE_STATUSES` in the generator remains
+`{"draft", "published"}`. Tightening it to `{"published"}` would make any
+future draft activity a hard error rather than a listable one. That is a policy
+decision about how work in progress is handled in this edition, not a release
+blocker, so it has been left to the maintainer.
+
 
 ## Drift check
 
