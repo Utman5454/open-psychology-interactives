@@ -246,16 +246,37 @@
     }, FIXATION_MS);
   }
 
-  function record(task, value) {
-    if (!awaiting) { return; }
-    var trial = trials[index];
-    if (task === "letter" && (!trial.needLetter || answered.letter)) { return; }
-    if (task === "side" && (!trial.needSide || answered.side)) { return; }
+  /* The two response channels differ in only three ways: which flag on the
+     trial makes them live, which keypad they own, and how an answer is judged.
+     Stating those three differences once keeps record() a single path instead
+     of the same path written out twice. */
+  var CHANNELS = {
+    letter: {
+      pad: padLetter,
+      needed: function (trial) { return Boolean(trial.needLetter); },
+      isCorrect: function (trial, value) { return (value === "vowel") === trial.isVowel; }
+    },
+    side: {
+      pad: padSide,
+      needed: function (trial) { return Boolean(trial.needSide); },
+      isCorrect: function (trial, value) { return value === trial.side; }
+    }
+  };
+  var CHANNEL_KEYS = ["letter", "side"];
 
-    var rt = now() - shownAt;
-    var correct = task === "letter"
-      ? (value === "vowel") === trial.isVowel
-      : value === trial.side;
+  /* A channel is awaiting an answer when this trial asks for it and it has not
+     been given one yet. Both the entry guard and the end-of-trial test are the
+     same question, asked of one channel or of all of them. */
+  function awaitingChannel(key, trial) {
+    return CHANNELS[key].needed(trial) && !answered[key];
+  }
+
+  /* Where one response lands. A time is only kept when the answer was right
+     and it fell inside the window that means a real response rather than an
+     anticipation or a lapse; a wrong answer is counted as an error wherever it
+     fell. Separate from record() because "judge this response" and "decide
+     whether the trial is over" are different questions about it. */
+  function score(task, correct, rt) {
     var where = block().dual ? "together" : "alone";
     var usable = rt >= ANTICIPATION_MS && rt <= LAPSE_MS;
 
@@ -263,13 +284,25 @@
     if (!correct) {
       errors[task + (where === "together" ? "Together" : "Alone")] += 1;
     }
+  }
+
+  function record(task, value) {
+    if (!awaiting) { return; }
+    var trial = trials[index];
+    var channel = CHANNELS[task];
+    if (!channel || !awaitingChannel(task, trial)) { return; }
+
+    /* Read the clock before anything else, as it was read before. */
+    var rt = now() - shownAt;
+    score(task, channel.isCorrect(trial, value), rt);
 
     answered[task] = true;
-    if (task === "letter") { enable(padLetter, false); }
-    if (task === "side") { enable(padSide, false); }
+    enable(channel.pad, false);
 
-    var done = (!trial.needLetter || answered.letter) && (!trial.needSide || answered.side);
-    if (!done) { return; }
+    var outstanding = CHANNEL_KEYS.some(function (key) {
+      return awaitingChannel(key, trial);
+    });
+    if (outstanding) { return; }
 
     awaiting = false;
     index += 1;

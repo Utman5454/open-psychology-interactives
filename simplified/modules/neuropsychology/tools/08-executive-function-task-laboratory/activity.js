@@ -308,6 +308,19 @@
   /* Search the grid of settings for a profile with the same composite and a
      genuinely different shape. Searched rather than stored so it works from
      wherever the learner has left the sliders. */
+  /* One grid point, judged. Kept out of the four loops so that findTwin()
+     reads as "walk the grid" and this reads as "is this the profile we are
+     after": the shape furthest from where the sliders are now whose composite
+     still rounds to the same reported number. */
+  function considerCandidate(best, target, here, cand) {
+    if (Math.round(composite(cand)) !== target) { return best; }
+    var distance = CAPACITIES.reduce(function (sum, cap) {
+      return sum + Math.abs(cand[cap.key] - here[cap.key]);
+    }, 0);
+    if (best && distance <= best.distance) { return best; }
+    return { values: cand, distance: distance };
+  }
+
   function findTwin() {
     /* Match the composite as REPORTED, not as computed. A tolerance here lets
        the displayed number move by a point while the note claims it is the
@@ -321,14 +334,8 @@
       for (var b = 0; b <= 100; b += step) {
         for (var c = 0; c <= 100; c += step) {
           for (var d = 0; d <= 100; d += step) {
-            var cand = { inhibition: a, switching: b, updating: c, planning: d };
-            if (Math.round(composite(cand)) !== target) { continue; }
-            var distance = CAPACITIES.reduce(function (sum, cap) {
-              return sum + Math.abs(cand[cap.key] - here[cap.key]);
-            }, 0);
-            if (!best || distance > best.distance) {
-              best = { values: cand, distance: distance };
-            }
+            best = considerCandidate(best, target, here,
+              { inhibition: a, switching: b, updating: c, planning: d });
           }
         }
       }

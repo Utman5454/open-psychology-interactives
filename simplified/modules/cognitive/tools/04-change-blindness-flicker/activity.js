@@ -420,9 +420,19 @@
       without === null ? "not found" : (without / 1000).toFixed(1) + " s",
       solved[1] ? "and you identified it correctly" : "and it was not identified correctly");
 
+    resultLead.textContent = comparisonText(withBlank, without);
+
+    wb.show("#synthesis");
+    wb.scrollTo("#synthesis", { focus: true });
+    wb.announce("Both runs complete. The comparison is below.");
+  }
+
+  /* What the pair of times means. Split out so that report() stays "fill the
+     tiles and reveal the panel" while this stays "say what the comparison
+     shows". Each reading is written once and chosen, never assembled. */
+  function comparisonText(withBlank, without) {
     if (withBlank !== null && without !== null && solved[0] && solved[1]) {
-      resultLead.textContent =
-        "You found the change in " + (withBlank / 1000).toFixed(1) +
+      return "You found the change in " + (withBlank / 1000).toFixed(1) +
         " seconds with a blank between the two pictures and " +
         (without / 1000).toFixed(1) + " seconds without one" +
         (without < withBlank
@@ -431,23 +441,17 @@
           : ".") +
         " The changes were of similar size in both scenes. The only thing that " +
         "differed was the quarter of a second of blank.";
-    } else if (!solved[0] && solved[1]) {
-      resultLead.textContent =
-        "You did not find the change with the blank in place, and you found it " +
+    }
+    if (!solved[0] && solved[1]) {
+      return "You did not find the change with the blank in place, and you found it " +
         "without one" +
         (without !== null ? " in " + (without / 1000).toFixed(1) + " seconds" : "") +
         ". That is the demonstration in its strongest form: the same kind of " +
         "change, the same kind of scene, and the only difference is the blank.";
-    } else {
-      resultLead.textContent =
-        "Compare the two times above. The changes were of similar size in both " +
-        "scenes, and the only thing that differed between the runs was the " +
-        "quarter of a second of blank between the two pictures.";
     }
-
-    wb.show("#synthesis");
-    wb.scrollTo("#synthesis", { focus: true });
-    wb.announce("Both runs complete. The comparison is below.");
+    return "Compare the two times above. The changes were of similar size in both " +
+      "scenes, and the only thing that differed between the runs was the " +
+      "quarter of a second of blank between the two pictures.";
   }
 
   function tile(caption, figure, note) {

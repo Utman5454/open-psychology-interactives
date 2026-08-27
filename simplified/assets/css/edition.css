@@ -1,0 +1,683 @@
+/* =========================================================================
+   Simplified Edition — integration layer
+   -------------------------------------------------------------------------
+   The landing page and the five module pages only. Deliberately a separate
+   file from patterns.css, which all 75 activities load: browsing chrome has
+   no business growing the stylesheet an activity ships with.
+
+   Everything here builds on the tokens in simplified.css. No new colours.
+   ========================================================================= */
+
+/* --------------------------------------------------------------- edition bar
+   A slim line above the hero carrying the way back up. It is a nav landmark
+   so it can be jumped to, and it is the first thing in the document after the
+   skip link, so the reader's route out is also the first thing in the tab
+   order rather than the last. */
+.edition-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: var(--stack);
+  font-size: var(--text-sm);
+  color: var(--muted);
+}
+
+.edition-bar a {
+  color: var(--teal);
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 1px solid rgb(28 114 147 / 0.35);
+  padding: 0.125rem 0;
+}
+
+.edition-bar a:hover {
+  border-bottom-color: var(--teal);
+}
+
+.edition-bar__sep {
+  color: var(--border);
+}
+
+/* ------------------------------------------------------------------- chips
+   Small factual counts. They exist to answer "how much of this is there and
+   how long will it take" before a reader has to open anything, which is the
+   question a listing page is worst at answering and the one a teacher
+   planning a session asks first.
+
+   A chip is never a link and never the only place a number appears. It is a
+   summary of what the page already says, so nothing is lost if it is skipped.
+   The list is a real list, so the count is announced rather than implied by
+   the row of boxes. */
+.chip-row {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4375rem;
+  margin: 0.875rem 0 0;
+  padding: 0;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.3125rem;
+  padding: 0.3125rem 0.625rem;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--muted);
+  background: var(--page);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+}
+
+/* The figure is the part a reader is scanning for, so it carries the weight
+   and the colour and the word beside it stays quiet. --blue is 7.06:1 on
+   --page, which clears the 4.5:1 asked of text this small. */
+.chip__figure {
+  font-size: var(--text-sm);
+  font-weight: 800;
+  color: var(--blue);
+  font-variant-numeric: tabular-nums;
+}
+
+/* On a hero the chips sit on the card rather than the page, so they invert:
+   the tint that separated them from the page would disappear into it. */
+.chip-row--hero .chip {
+  background: var(--blue-light);
+  border-color: transparent;
+}
+
+/* ------------------------------------------------------------- card heading
+   A heading with a quiet note beside it rather than under it, so the note
+   does not read as the first line of the section's prose. */
+.card-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+}
+
+.card-head h2 {
+  margin: 0;
+}
+
+.card-head__note {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--muted);
+}
+
+/* Two columns of prose at desk width. The paragraphs are independent of one
+   another, so side by side costs nothing and halves the scroll. */
+.prose-cols {
+  display: grid;
+  gap: 0 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(19rem, 100%), 1fr));
+  margin-top: 0.5rem;
+}
+
+.prose-cols > p {
+  margin-top: 0;
+}
+
+/* --------------------------------------------------------------- hero split
+   A module hero with its figure beside it. The figure comes second in the
+   source, so a reader in a narrow viewport, or in the tab order, gets the
+   module's name and length before its illustration. */
+.hero--split {
+  display: grid;
+  gap: var(--stack) 2rem;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  align-items: center;
+  padding-block: 1.75rem;
+}
+
+/* A step down from the shared hero's display size. A module page is a
+   signpost, not a title page: at 54px the name alone wraps to two lines and,
+   with the figure beside it, puts the first activity most of the way down the
+   viewport. The landing page keeps the full size. */
+.hero--split h1 {
+  font-size: clamp(1.5rem, 5vw, 2.375rem);
+  line-height: 1.1;
+  max-width: 22ch;
+}
+
+.hero--split .hero__lead {
+  margin-top: 0.6875rem;
+}
+
+.hero--split .hero__text > :first-child {
+  margin-top: 0;
+}
+
+/* The shared hero carries a decorative ring in its top-right corner. On a
+   module page that corner now holds a figure that is doing actual work, and
+   a decoration behind a diagram is a decoration competing with it. */
+.hero--split::after {
+  display: none;
+}
+
+@media (max-width: 52em) {
+  .hero--split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* -------------------------------------------------------------- module rail
+   The landing page's five entries, as full-width rows rather than a grid.
+
+   A grid of five leaves an orphan on the second line at every column count
+   that fits three, and the gap reads as a missing sixth module. Rows also
+   give each module enough width for a line naming the activity it opens and
+   closes with, which is what actually helps somebody choose between them.
+
+   Each row carries a numbered badge in the module's own accent. The colour is
+   never the only difference: the badge holds the number, the eyebrow repeats
+   it in words, and the title says which module it is. */
+.module-rail {
+  list-style: none;
+  margin: var(--stack) 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.625rem;
+}
+
+.module-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2.75rem minmax(0, 1fr) auto;
+  gap: 0.1875rem 1.125rem;
+  padding: 1rem 1.25rem 0.9375rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  transition: border-color 120ms ease;
+}
+
+.module-row:hover {
+  border-color: var(--teal);
+}
+
+.module-row:has(a:focus-visible) {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.module-row:has(a:focus-visible) a:focus-visible {
+  outline: none;
+}
+
+/* The accent is set per row and used by the badge only, so one declaration
+   controls the module's colour and nothing else depends on it. */
+.module-row { --accent: var(--teal); --accent-bg: var(--teal-light); }
+.module-row:nth-child(2) { --accent: var(--blue); --accent-bg: var(--blue-light); }
+.module-row:nth-child(3) { --accent: var(--green-strong); --accent-bg: var(--green-light); }
+.module-row:nth-child(4) { --accent: var(--gold-strong); --accent-bg: var(--gold-light); }
+.module-row:nth-child(5) { --accent: var(--coral); --accent-bg: var(--coral-light); }
+
+.module-row__badge {
+  grid-row: 1 / span 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.25rem;
+  border-radius: var(--radius-sm);
+  background: var(--accent-bg);
+  color: var(--accent);
+  font-size: var(--text-md);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.module-row__title {
+  grid-column: 2;
+  margin: 0;
+  font-size: var(--text-md);
+  line-height: 1.25;
+}
+
+.module-row__title a {
+  color: var(--navy);
+  text-decoration: none;
+}
+
+.module-row__title a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.module-row__title a:hover {
+  color: var(--teal);
+}
+
+.module-row__body {
+  grid-column: 2;
+  margin: 0.25rem 0 0;
+  max-width: 52ch;
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+/* On one line, so the column sizes to the chips rather than the chips
+   stacking to fit a column that shrank around them. */
+.module-row .chip-row {
+  grid-column: 3;
+  grid-row: 1 / span 2;
+  flex-wrap: nowrap;
+  /* align-items, not align-content: with nowrap there is a single line, so
+     align-content does nothing and the chips stretch to the height of a cell
+     that spans two grid rows, which turns each one into a tall oval. */
+  align-items: flex-start;
+  justify-content: flex-end;
+  margin: 0;
+}
+
+.module-row .chip {
+  white-space: nowrap;
+}
+
+/* What the module opens and closes with. Two real activity titles say more
+   about its range than another sentence of description would, and they are
+   the page's only preview of what is actually inside. */
+.module-row__preview {
+  grid-column: 2 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.375rem 1rem;
+  margin: 0.6875rem 0 0;
+  padding-top: 0.5625rem;
+  border-top: 1px solid var(--border);
+  font-size: var(--text-xs);
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.module-row__span {
+  min-width: 0;
+}
+
+.module-row__preview b {
+  font-weight: 700;
+  color: var(--navy);
+}
+
+@media (max-width: 46em) {
+  .module-row {
+    grid-template-columns: 2.75rem minmax(0, 1fr);
+  }
+
+  .module-row .chip-row {
+    grid-column: 2;
+    grid-row: auto;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-top: 0.625rem;
+  }
+}
+
+/* ------------------------------------------------------- activity catalogue
+   A module page's activities, as a card grid rather than a numbered list.
+
+   Two columns from tablet width up and one below. Twelve to twenty-one rows
+   in a single column is a contents page; the same set in two columns is
+   something you browse. The cards are deliberately small, because the job is
+   still to scan twenty-one of them quickly: a card that has to be scrolled
+   past individually has stopped helping.
+
+   Ordered, because catalogue order is teaching order, and the number is a
+   badge rather than a bare figure so it survives the eye moving across two
+   columns instead of down one. */
+.activity-grid {
+  list-style: none;
+  margin: var(--stack) 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.625rem;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* Two columns, stated rather than derived. An auto-fill track count gives
+   three at desk width, and three columns of small cards is a contents page
+   again: the eye has to travel too far along each row to keep the teaching
+   order. Two is the most that stays scannable at twenty-one activities. */
+@media (min-width: 38em) {
+  .activity-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.activity-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.875rem minmax(0, 1fr);
+  gap: 0.125rem 0.6875rem;
+  padding: 0.8125rem 0.9375rem 0.75rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  transition: border-color 120ms ease, background-color 120ms ease;
+}
+
+.activity-card:hover {
+  border-color: var(--teal);
+  background: var(--teal-light);
+}
+
+/* The card is the hit area, so the card carries the focus ring and the
+   anchor's own is suppressed so the two do not stack into a box in a box.
+   Both guarded by :has(), so a browser without it drops the pair together and
+   keeps the native ring rather than losing every indicator. */
+.activity-card:has(a:focus-visible) {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.activity-card:has(a:focus-visible) a:focus-visible {
+  outline: none;
+}
+
+/* --blue on --blue-light is 6.3:1, and it has to hold on the card's hover
+   tint too. The badge is the one element that is neither title nor supporting
+   text, so the ordinal reads as an ordinal rather than as more prose. */
+.activity-card__badge {
+  grid-row: 1 / span 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.875rem;
+  height: 1.5rem;
+  border-radius: var(--radius-sm);
+  background: var(--blue-light);
+  color: var(--blue);
+  font-size: var(--text-xs);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.activity-card:hover .activity-card__badge {
+  background: var(--card);
+}
+
+.activity-card__title {
+  margin: 0;
+  font-size: var(--text-base);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.activity-card__title a {
+  color: var(--navy);
+  text-decoration: none;
+}
+
+.activity-card__title a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.activity-card__title a:hover {
+  color: var(--teal);
+}
+
+.activity-card__job {
+  grid-column: 2;
+  margin: 0.1875rem 0 0;
+  font-size: var(--text-sm);
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+/* Duration at one end, the affordance at the other, on a rule that separates
+   them from the description without boxing them in. */
+.activity-card__foot {
+  grid-column: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin: 0.5625rem 0 0;
+  padding-top: 0.4375rem;
+  border-top: 1px solid var(--border);
+  font-size: var(--text-xs);
+}
+
+.activity-card__time {
+  font-weight: 700;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Quiet until the card is under the pointer. It is decoration for a link
+   whose text already says where it goes, so it is hidden from the accessible
+   name and never the only sign the card is clickable: the title is a link, and
+   the card takes a focus ring. */
+.activity-card__go,
+.module-row__go {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.1875rem;
+  font-weight: 700;
+  color: var(--teal);
+  opacity: 0.55;
+  transition: opacity 120ms ease, transform 120ms ease;
+}
+
+.activity-card:hover .activity-card__go,
+.module-row:hover .module-row__go {
+  opacity: 1;
+  transform: translateX(2px);
+}
+
+.go-arrow {
+  flex: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .activity-card,
+  .activity-card__go,
+  .module-row__go {
+    transition: none;
+  }
+
+  .activity-card:hover .activity-card__go,
+  .module-row:hover .module-row__go {
+    transform: none;
+  }
+}
+
+/* ------------------------------------------------------------------ motifs
+   One small editorial illustration per module page, defined in
+   scripts/build-simplified-catalogue.py.
+
+   THIS FILE IS NOT LOAD-BEARING FOR COLOUR. Every shape in a motif carries a
+   `fill` or `stroke` attribute of its own; the rules below restate those in
+   design tokens so the figures track the palette. If this stylesheet fails to
+   arrive, the figures still render correctly rather than as black boxes,
+   which is what an SVG shape with no fill from any source paints.
+
+   What this file is load-bearing for is size, type scale and motion.
+
+   SIZE. The figure is an accent beside the module's name, not the page's
+   subject: about a third of the hero's width and around 190px tall. It was
+   twice that once, and it pushed the activities, which are what a reader came
+   for, most of the way down the viewport.
+
+   TYPE. Labels are interface scale, landing at roughly 13px on screen once
+   the viewBox is scaled. Anything longer than two or three words belongs in
+   the HTML caption underneath, where it can wrap.
+
+   MOTION. Bars and marks move; labels never do, and no animated state may
+   cover text. Every animation ends at the state that carries the meaning, so
+   the reduced-motion block at the bottom can stop them all and leave correct
+   static figures. That is why bars are drawn at true size in the markup and
+   scaled up from zero rather than drawn empty and scaled out. */
+.module-motif {
+  margin: 0;
+  align-self: center;
+  max-width: 20rem;
+  justify-self: end;
+}
+
+.motif {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.module-motif__caption {
+  margin: 0.6875rem 0 0;
+  font-size: var(--text-xs);
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+/* 10 user units in a 240-unit viewBox drawn at about 320px: roughly 13px on
+   screen, which is the same size as the chips beside it. */
+.motif__label {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 600;
+  fill: var(--muted);
+}
+
+.motif__label--mid {
+  text-anchor: middle;
+}
+
+.motif__axis { stroke: var(--border); }
+.motif__box { stroke: var(--border); }
+.motif__box--cued { stroke: var(--teal); }
+.motif__cross { stroke: var(--muted); }
+.motif__target { fill: var(--gold-strong); }
+.motif__bar { fill: var(--teal); }
+.motif__bar--alt { fill: var(--gold-strong); }
+.motif__swatch { fill: var(--teal); }
+.motif__swatch--alt { fill: var(--gold-strong); }
+.motif__link { stroke: var(--border); }
+.motif__mean { stroke: var(--gold-strong); }
+
+/* Bars grow from their own baseline. `transform-box: fill-box` puts the
+   origin on the shape rather than the canvas, so one rule serves bars at
+   every height. */
+.motif__bar {
+  transform-box: fill-box;
+  transform-origin: bottom;
+  animation: motif-rise 2.6s cubic-bezier(0.33, 1, 0.68, 1) infinite alternate;
+}
+
+/* The cognitive pair are durations, so they run along the axis instead. */
+.motif__bar--h {
+  transform-origin: left;
+  animation-name: motif-extend;
+}
+
+@keyframes motif-rise {
+  from { transform: scaleY(0); }
+  45%, to { transform: scaleY(1); }
+}
+
+@keyframes motif-extend {
+  from { transform: scaleX(0); }
+  60%, to { transform: scaleX(1); }
+}
+
+/* The invalid-cue bar starts later as well as running longer, so the gap
+   between the two reads as time and not only as length. */
+.motif__bar--slow {
+  fill: var(--blue);
+  animation-delay: 0.28s;
+}
+
+/* The cued box brightens before the target lands in it, which is the order
+   the effect depends on and the only reason this figure moves. */
+.motif__box--cued {
+  animation: motif-cue 2.6s ease-in-out infinite alternate;
+}
+
+.motif__target {
+  animation: motif-appear 2.6s ease-out infinite alternate;
+}
+
+@keyframes motif-cue {
+  from, 8% { stroke: var(--border); }
+  22%, to { stroke: var(--teal); }
+}
+
+@keyframes motif-appear {
+  from, 18% { opacity: 0; }
+  38%, to { opacity: 1; }
+}
+
+/* The hump fills from the middle outwards, so it reads as something
+   concentrating rather than as nine separate bars. */
+.motif__hump .motif__bar:nth-child(1),
+.motif__hump .motif__bar:nth-child(9) { animation-delay: 0.32s; }
+.motif__hump .motif__bar:nth-child(2),
+.motif__hump .motif__bar:nth-child(8) { animation-delay: 0.24s; }
+.motif__hump .motif__bar:nth-child(3),
+.motif__hump .motif__bar:nth-child(7) { animation-delay: 0.16s; }
+.motif__hump .motif__bar:nth-child(4),
+.motif__hump .motif__bar:nth-child(6) { animation-delay: 0.08s; }
+
+/* The second patient's bars follow the first's, so the reversal is watched
+   happening rather than presented finished. Likewise the second profile. */
+.motif__pair:nth-of-type(2) .motif__bar,
+.motif__profile--two .motif__bar {
+  animation-delay: 0.4s;
+}
+
+/* The social and critical figure is a static branch and has no rules here. A
+   diagram that is legible at a glance gains nothing from movement, and the
+   animated version it replaced risked a frame landing over a label. */
+
+/* Once the hero stacks, the figure sits under the copy and should line up
+   with it. Left right-aligned it leaves a column of empty card beside it and
+   reads as an image that failed to load. This has to come after
+   `.module-motif` above: same specificity, so source order decides. */
+@media (max-width: 52em) {
+  .module-motif {
+    justify-self: start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motif *,
+  .motif__box--cued,
+  .motif__target {
+    animation: none !important;
+  }
+}
+
+@media (forced-colors: active) {
+  .module-row,
+  .activity-card,
+  .activity-nav__link {
+    border: 1px solid CanvasText;
+  }
+
+  .activity-card:hover,
+  .module-row:hover {
+    background: Highlight;
+    color: HighlightText;
+  }
+
+  /* The figures are line art in a forced palette, where a fill and a stroke
+     may resolve to the same colour. Every series is named in a label beside
+     it, so nothing is lost when they do. */
+  .motif__bar,
+  .motif__swatch,
+  .motif__target {
+    fill: CanvasText;
+  }
+}

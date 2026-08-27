@@ -243,6 +243,39 @@
     return node;
   }
 
+  /* Bin the sample means and draw them as bars. Its own job, and a nameable
+     one: render() decides the layout and what each panel is for, this turns a
+     list of numbers into rectangles. Same bins, same heights, same geometry as
+     when it sat inline; the bars are drawn only when there are means to draw. */
+  function drawMeanBars(XL, llo, lhi, baseline, height) {
+    if (!means.length) { return; }
+
+    var counts = new Array(BIN_COUNT);
+    var b = 0;
+    while (b < BIN_COUNT) { counts[b] = 0; b += 1; }
+    var width = (lhi - llo) / BIN_COUNT;
+
+    means.forEach(function (value) {
+      var index = Math.floor((value - llo) / width);
+      if (index < 0) { index = 0; }
+      if (index >= BIN_COUNT) { index = BIN_COUNT - 1; }
+      counts[index] += 1;
+    });
+
+    var tallest = Math.max.apply(null, counts) || 1;
+    counts.forEach(function (count, index) {
+      if (!count) { return; }
+      var x0 = XL(llo + index * width);
+      var x1 = XL(llo + (index + 1) * width);
+      var h = (count / tallest) * height;
+      chart.appendChild(svg("rect", {
+        x: x0.toFixed(1), y: (baseline - h).toFixed(1),
+        width: Math.max(1, x1 - x0 - 1).toFixed(1), height: h.toFixed(1),
+        class: "plot__hist"
+      }));
+    });
+  }
+
   function render() {
     var pop = population();
     var n = sampleSize();
@@ -352,32 +385,7 @@
         : "The mean of each sample, none drawn yet",
       "plot__label");
 
-    if (means.length) {
-      var counts = new Array(BIN_COUNT);
-      var b = 0;
-      while (b < BIN_COUNT) { counts[b] = 0; b += 1; }
-      var width = (lhi - llo) / BIN_COUNT;
-
-      means.forEach(function (value) {
-        var index = Math.floor((value - llo) / width);
-        if (index < 0) { index = 0; }
-        if (index >= BIN_COUNT) { index = BIN_COUNT - 1; }
-        counts[index] += 1;
-      });
-
-      var tallest = Math.max.apply(null, counts) || 1;
-      counts.forEach(function (count, index) {
-        if (!count) { return; }
-        var x0 = XL(llo + index * width);
-        var x1 = XL(llo + (index + 1) * width);
-        var h = (count / tallest) * LOWER_H;
-        chart.appendChild(svg("rect", {
-          x: x0.toFixed(1), y: (LOWER_AXIS - h).toFixed(1),
-          width: Math.max(1, x1 - x0 - 1).toFixed(1), height: h.toFixed(1),
-          class: "plot__hist"
-        }));
-      });
-    }
+    drawMeanBars(XL, llo, lhi, LOWER_AXIS, LOWER_H);
 
     chart.appendChild(svg("line", {
       x1: LEFT, y1: LOWER_AXIS, x2: RIGHT, y2: LOWER_AXIS, class: "plot__axis"

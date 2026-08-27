@@ -30,6 +30,21 @@ server, a build step or a network request.
    references present no choices at all.
 6. Drop the `patterns.css` link if you end up using none of the optional
    patterns.
+7. Add the two integration lines to the end of `<head>`, which the template
+   does not carry because nothing in `template/` is listed in any catalogue:
+
+   ```html
+   <link rel="stylesheet" href="../../../../assets/css/edition.css">
+   <script src="../../../../assets/js/edition-nav.js" defer></script>
+   ```
+
+   They give the page its breadcrumb and its previous/next strip. Every
+   activity in the edition has them, and `scripts/check-edition-pairing.py`
+   fails if one does not.
+8. Run `python3 scripts/build-simplified-catalogue.py` so the new activity
+   appears in `data/catalogue-simplified.json` and on its module page. The
+   module pages are generated, so editing one by hand will be reverted by the
+   next run and reported by `--check`.
 
 ## Compact activity pages
 

@@ -299,48 +299,53 @@
       skipped ? "not run" : hits + " of " + TARGET_INDEXES.length,
       skipped ? "you skipped the task" : "colour words caught on the left");
 
+    resultLead.textContent = verdict(caughtChange, caughtMeaning);
+
+    wb.show("#synthesis");
+    wb.scrollTo("#synthesis", { focus: true });
+    wb.announce("Both questions answered. The result is below.");
+  }
+
+  /* Which of the five readings the two answers add up to. Split out so that
+     report() stays "show the tiles and reveal the panel" while this stays
+     "decide what the result means". The wording is the teaching here, so each
+     reading is written once and chosen, never assembled from fragments. */
+  function verdict(caughtChange, caughtMeaning) {
     if (skipped) {
-      resultLead.textContent =
-        "You did not run the task, which is fine: nothing below depends on " +
+      return "You did not run the task, which is fine: nothing below depends on " +
         "having done it. The right-hand column contained nothing but kitchen " +
         "things, and from pair " + (SWITCH_AT + 1) + " onwards every one of " +
         "them was in capitals. In a room of people who have just done this, " +
         "most notice the change in capitals and most cannot say what the words " +
         "were about.";
-    } else if (caughtChange && !caughtMeaning) {
-      resultLead.textContent =
-        "This is the usual pattern, and it is the one the whole argument was " +
+    }
+    if (caughtChange && !caughtMeaning) {
+      return "This is the usual pattern, and it is the one the whole argument was " +
         "built on. You caught the change in how the ignored words looked and " +
         "you could not say what they were about, even though every one of them " +
         "was a kitchen thing and you looked straight at all twenty-four.";
-    } else if (!caughtChange && !caughtMeaning) {
-      resultLead.textContent =
-        "Neither got through this time. The ignored column switched to capitals " +
+    }
+    if (!caughtChange && !caughtMeaning) {
+      return "Neither got through this time. The ignored column switched to capitals " +
         "at pair " + (SWITCH_AT + 1) + " and every word in it was a kitchen " +
         "thing. That is a stronger result than the usual one, not a worse one: " +
         "with only one trial it may simply mean you were attending very " +
         "closely to the left.";
-    } else if (caughtMeaning && !caughtChange) {
-      resultLead.textContent =
-        "The unusual way round: you have the category and not the change in " +
+    }
+    if (caughtMeaning && !caughtChange) {
+      return "The unusual way round: you have the category and not the change in " +
         "capitals. Worth being sceptical of your own answer here, since with " +
         "four options a guess is right one time in four, and kitchen things " +
         "are a natural guess.";
-    } else {
-      resultLead.textContent =
-        "You have both. That happens, and it usually means the left-hand task " +
-        "was not occupying you fully" +
-        (hits < TARGET_INDEXES.length
-          ? ", although you did miss " + (TARGET_INDEXES.length - hits) +
-            " of the colour words, so it was occupying you somewhat."
-          : ".") +
-        " The interesting question is not whether an ignored channel can ever " +
-        "be reported, but what it takes to stop it being reported.";
     }
-
-    wb.show("#synthesis");
-    wb.scrollTo("#synthesis", { focus: true });
-    wb.announce("Both questions answered. The result is below.");
+    return "You have both. That happens, and it usually means the left-hand task " +
+      "was not occupying you fully" +
+      (hits < TARGET_INDEXES.length
+        ? ", although you did miss " + (TARGET_INDEXES.length - hits) +
+          " of the colour words, so it was occupying you somewhat."
+        : ".") +
+      " The interesting question is not whether an ignored channel can ever " +
+      "be reported, but what it takes to stop it being reported.";
   }
 
   function tile(caption, figure, note) {

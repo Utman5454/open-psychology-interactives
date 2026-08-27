@@ -92,6 +92,31 @@
 
   /* --- Run the studies -------------------------------------------------- */
 
+  /* One study: two groups of `size`, drawn from populations `delta` standard
+     deviations apart, then Cohen's d and the two-tailed p for the difference.
+     Kept apart from simulate() so that one reads as "how a single study comes
+     out" and the other as "what a thousand of them look like together". The
+     draws stay in their original order, two per participant, so a given seed
+     produces exactly the run it always did. */
+  function runStudy(random, delta, size, df) {
+    var a = [], b = [];
+    var i = 0;
+    while (i < size) {
+      a.push(S.normalDraw(random));
+      b.push(delta + S.normalDraw(random));
+      i += 1;
+    }
+    var ma = S.mean(a), mb = S.mean(b);
+    var va = S.variance(a), vb = S.variance(b);
+    var pooled = Math.sqrt((va + vb) / 2);
+    var se = pooled * Math.sqrt(2 / size);
+    var t = se > 0 ? (mb - ma) / se : 0;
+    return {
+      observed: pooled > 0 ? (mb - ma) / pooled : 0,
+      p: S.tTwoTailedP(t, df)
+    };
+  }
+
   function simulate() {
     var random = S.mulberry32(seed());
     var delta = trueD();
@@ -103,25 +128,11 @@
     var study = 0;
 
     while (study < STUDY_COUNT) {
-      var a = [], b = [];
-      var i = 0;
-      while (i < size) {
-        a.push(S.normalDraw(random));
-        b.push(delta + S.normalDraw(random));
-        i += 1;
-      }
-      var ma = S.mean(a), mb = S.mean(b);
-      var va = S.variance(a), vb = S.variance(b);
-      var pooled = Math.sqrt((va + vb) / 2);
-      var observed = pooled > 0 ? (mb - ma) / pooled : 0;
-      var se = pooled * Math.sqrt(2 / size);
-      var t = se > 0 ? (mb - ma) / se : 0;
-      var p = S.tTwoTailedP(t, df);
-
-      estimates.push(observed);
-      if (p < ALPHA) {
-        significant.push(observed);
-        if (observed < 0) { wrongSign += 1; }
+      var outcome = runStudy(random, delta, size, df);
+      estimates.push(outcome.observed);
+      if (outcome.p < ALPHA) {
+        significant.push(outcome.observed);
+        if (outcome.observed < 0) { wrongSign += 1; }
       }
       study += 1;
     }
