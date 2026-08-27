@@ -6,21 +6,24 @@ methods**, **neuropsychology**, **social and critical psychology**, and
 **personality and individual differences**.
 
 **Site:** <https://utman5454.github.io/open-psychology-interactives/>
-*(live once GitHub Pages is enabled — see [Publishing](#publishing-with-github-pages))*
+**Simplified Edition:**
+<https://utman5454.github.io/open-psychology-interactives/simplified/>
 
 ---
 
 ## Status
 
-**Seventy-five tools published, across all five modules.**
+**Seventy-five tools published, across all five modules, each with a shorter
+Simplified Edition twin. 150 activities in total.**
 
-| Module | Tools |
-| --- | --- |
-| Cognitive Psychology | 12 |
-| Research Methods | 21 |
-| Neuropsychology | 12 |
-| Social and Critical Psychology | 12 |
-| Personality and Individual Differences | 18 |
+| Module | Tools | Simplified twins |
+| --- | --- | --- |
+| Cognitive Psychology | 12 | 12 |
+| Research Methods | 21 | 21 |
+| Neuropsychology | 12 | 12 |
+| Social and Critical Psychology | 12 | 12 |
+| Personality and Individual Differences | 18 | 18 |
+| **Total** | **75** | **75** |
 
 Cognitive covers covert orienting, visual search, inattentional and change
 blindness, the attentional blink, interference, selection, dual-task cost,
@@ -44,7 +47,16 @@ underdetermination, and self-esteem dynamics.
 
 Each tool is a self-contained page with teaching notes.
 
-`data/catalogue.json` is the authoritative list of what is published.
+`data/catalogue.json` is the authoritative list of what is published in the
+original edition; `data/catalogue-simplified.json` is its counterpart for the
+Simplified Edition.
+
+### Release history
+
+| Date | Release |
+| --- | --- |
+| 2026-08-27 | **Simplified Edition**, 75 shorter twins across all five modules, with its own landing and module pages, a generated catalogue, and pairing, answer-balance and lint gates. |
+| 2026-08 | **Seventy-five tools**, the original edition complete across all five modules. |
 
 ## What this is
 
@@ -75,6 +87,41 @@ Every tool is a plain web page:
 
 The slugs are canonical: they are the folder name, the CSS modifier and the
 `moduleSlug` in the catalogue.
+
+## Two editions
+
+Every topic exists twice, at two lengths. The activities are twins, not
+duplicates: the same underlying model, taught at a different scale.
+
+| | Original edition | Simplified Edition |
+| --- | --- | --- |
+| **Length** | 15 to 30 minutes | 3 to 7 minutes |
+| **Teaching jobs** | several, built up in stages | one |
+| **Where** | [`modules/`](modules/) &middot; [site root](https://utman5454.github.io/open-psychology-interactives/) | [`simplified/`](simplified/) &middot; [`/simplified/`](https://utman5454.github.io/open-psychology-interactives/simplified/) |
+| **Catalogue** | `data/catalogue.json` | `data/catalogue-simplified.json` |
+| **Count** | 75 | 75 |
+
+**The original edition** is the full treatment: more stages, more controls, and
+the challenge and transfer tasks the shorter version leaves out. It is the
+right choice for a lab session or independent study.
+
+**The Simplified Edition** is a shorter, focused twin of each original. Each
+one keeps the working model from its full-length version and cuts the lesson
+around it: the simulation stays a simulation and a manipulable model stays
+manipulable, and what was removed is the number of things being taught at once.
+The learner predicts something, changes something, sees what follows, and reads
+a short account of what it did and did not show. There is one idea to take away
+rather than five. Each activity names its full-length twin and links to it.
+
+The pairing is exact and enforced: every original has one simplified twin and
+every twin names one original, checked on every build by
+`scripts/check-edition-pairing.py`.
+
+Both editions are self-contained pages with teaching notes, work offline, and
+carry the same accessibility standard. Neither depends on the other at runtime.
+
+Maintaining the Simplified Edition is documented separately in
+**[docs/simplified-edition-maintenance.md](docs/simplified-edition-maintenance.md)**.
 
 ## Using it locally
 
@@ -171,7 +218,12 @@ Two things do need updating in a fork:
 │                                  ("Download activity HTML" is a plain link and needs no script)
 ├── scripts/
 │   ├── build-standalone.py        generates each tool's standalone.html
-│   └── add-export-control.py      adds the lecturer controls to a tool page
+│   ├── add-export-control.py      adds the lecturer controls to a tool page
+│   ├── build-simplified-catalogue.py   generates the Simplified Edition's index and pages
+│   ├── check-edition-pairing.py   verifies the 1:1 pairing between editions
+│   ├── test-edition-pairing.py    fault injection for that check
+│   ├── check-answer-balance.py    answer position and wording-length gate
+│   └── test-answer-balance.py     fault injection for that gate
 ├── modules/
 │   ├── cognitive/
 │   │   ├── index.html             module landing page
@@ -188,11 +240,24 @@ Two things do need updating in a fork:
 │   └── personality-individual-differences/
 │       ├── index.html
 │       └── tools/
-├── data/catalogue.json            machine-readable index of what is published
+├── simplified/                    the Simplified Edition (75 shorter twins)
+│   ├── index.html                 GENERATED landing page
+│   ├── assets/                    its own CSS and JS; shares nothing with the original
+│   ├── template/                  scaffolding for a new activity, not an activity
+│   └── modules/<slug>/
+│       ├── index.html             GENERATED module page
+│       └── tools/<slug>/          index.html, activity.js, metadata.json, teaching-notes.md
+├── .oxlintrc.json                 lint gate for the Simplified Edition's JavaScript
+├── data/
+│   ├── catalogue.json             machine-readable index of the original edition
+│   └── catalogue-simplified.json  GENERATED index of the Simplified Edition
 ├── docs/
 │   ├── teaching-guide.md          using the tools in lectures, labs and revision
 │   ├── accessibility.md           the WCAG 2.2 AA standard, testing, known gaps
-│   └── adapting-a-tool.md         copying, changing and re-hosting a tool
+│   ├── adapting-a-tool.md         copying, changing and re-hosting a tool
+│   ├── simplified-edition.md      why the Simplified Edition exists, and its rules
+│   ├── simplified-edition-maintenance.md   how to change it safely
+│   └── simplified-edition-integration.md   how its browsing layer was built
 ├── CONTRIBUTING.md
 └── LICENSE
 ```
@@ -237,6 +302,11 @@ finished.
 - **[Adapting a tool](docs/adapting-a-tool.md)** — copying a tool for your own
   course, the interactive shell's markup contract and JavaScript API, and
   hosting your version.
+- **[The Simplified Edition](docs/simplified-edition.md)** — why the shorter
+  edition exists, what was cut and what was kept.
+- **[Simplified Edition maintenance](docs/simplified-edition-maintenance.md)** —
+  directory structure, metadata and pairing, catalogue generation, the quality
+  gates, and how to add or change an activity safely.
 - **[Contributing](CONTRIBUTING.md)** — ground rules, folder conventions,
   metadata standard and the pre-merge checklist.
 - **[CLAUDE.md](CLAUDE.md)** — the project's standing rules for structure,

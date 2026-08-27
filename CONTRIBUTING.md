@@ -47,6 +47,14 @@ Planned topics are listed on each module page and in
 [`data/catalogue.json`](data/catalogue.json). A topic that is not on those lists
 is not thereby excluded — propose it.
 
+**Which edition are you changing?** The collection has two. This file covers
+the original edition, under `modules/`. The Simplified Edition, under
+`simplified/`, is a parallel tree of 75 shorter twins with its own shell,
+catalogue and quality gates; changing it is documented in
+[`docs/simplified-edition-maintenance.md`](docs/simplified-edition-maintenance.md).
+The two share no runtime code, and the originals are authoritative: nothing in
+the Simplified Edition may change how they behave.
+
 ## Ground rules
 
 These are firm, and a pull request that breaks one will be asked to change

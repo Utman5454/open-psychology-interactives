@@ -1,8 +1,15 @@
 # Simplified Edition — integration layer
 
 How the 75 Simplified Edition activities are browsed, catalogued and kept in
-step with the original edition. Written at the end of the integration phase,
-on the `simplified-edition` branch. Nothing here has been merged or deployed.
+step with the original edition, and why each gate exists.
+
+Written at the end of the integration phase, on the `simplified-edition`
+branch. **That branch was merged and the edition is live**; the record below is
+kept because the reasoning behind each decision is still the reasoning, and it
+is the only place several of these choices are argued rather than asserted.
+
+For the working instructions rather than the history, see
+[`simplified-edition-maintenance.md`](simplified-edition-maintenance.md).
 
 ## What was built
 
@@ -110,7 +117,8 @@ machine-readable artefact, and leaving 75 entries in it marked `draft` would
 have made the catalogue's own documented meaning false.
 
 **Still open, deliberately.** `RENDERABLE_STATUSES` in the generator remains
-`{"draft", "published"}`. Tightening it to `{"published"}` would make any
+`{"draft", "published"}`. It is the one policy question this edition has left
+unanswered. Tightening it to `{"published"}` would make any
 future draft activity a hard error rather than a listable one. That is a policy
 decision about how work in progress is handled in this edition, not a release
 blocker, so it has been left to the maintainer.
@@ -448,13 +456,26 @@ python3 scripts/build-standalone.py --all --check       # the original 75 untouc
 
 All seven exit 0 on this branch.
 
-## Deferred
+## Done since
 
-* Merging, publishing and deployment.
-* The status change described above.
-* A simplified standalone exporter. Not needed: nothing in the integration
-  depends on one.
+* **Merged, published and deployed.** The edition is live at
+  `/open-psychology-interactives/simplified/`.
+* **The status change.** All 75 activities are `"published"` in their metadata
+  and in the generated catalogue. See [Status](#status) above.
+
+## Still deferred
+
+Each of these is a deliberate omission rather than an oversight.
+
+* A simplified standalone exporter. Not needed: nothing depends on one, and the
+  activities already work from a downloaded folder.
 * Original-to-simplified cross-links on the 75 original pages. The reverse
-  direction already exists on all 75 simplified pages.
-* A header-navigation entry for the Simplified Edition.
+  direction exists on all 75 simplified pages, so a reader can always get from
+  the short version to the long one. Adding the forward direction would mean
+  editing 75 original pages, which rule 1 makes a decision rather than a
+  chore.
+* A header-navigation entry for the Simplified Edition. It is reached from the
+  home page, the 404 page and every simplified activity, but not from the site
+  header.
 * The 320px breadcrumb separator described under Accessibility and browser QA.
+  Known and accepted there, and repeated here so it is not lost.

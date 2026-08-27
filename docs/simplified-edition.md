@@ -6,11 +6,15 @@ Roughly 3–7 minutes of learner work each, against the original edition's
 15–30.
 
 This file records the architectural decisions that are **settled**. It is not
-a plan for the edition's content. Decisions still open are listed at the end.
+a plan for the edition's content. What remains open is listed at the end.
 
-**Status: foundations only.** The shared shell, the optional patterns, the
-activity mechanics and a template exist. No activities, no catalogue and no
-navigation pages have been built yet.
+**Status: complete and live.** All 75 activities are built, catalogued and
+published, alongside the landing and module pages, the navigation layer and the
+quality gates. The decisions below are the ones the edition was built on, and
+they still hold; where one was later superseded, the entry says so.
+
+For working instructions rather than rationale, see
+[`simplified-edition-maintenance.md`](simplified-edition-maintenance.md).
 
 ---
 
@@ -221,11 +225,17 @@ refusal rules are tuned to the original edition's four stylesheets.
 | depth back to `simplified/` | `../../../../` from an activity — a constant, mirroring the original edition's convention |
 | DOM ids | namespaced per activity; never the references' bare `id="a"`, `id="t"`, `id="d"` |
 
-The catalogue will be a **separate file**, `data/catalogue-simplified.json`,
-on the same schema. `data/catalogue.json` is not to be touched. Two current
-invariants hold across all 75 original tools and must hold in the new edition
-too: `id` equals `toolSlug`, and each `metadata.json` is field-for-field
-identical to its catalogue entry.
+The catalogue is a **separate file**, `data/catalogue-simplified.json`, on the
+same schema. `data/catalogue.json` is not touched.
+
+> **Superseded in the build.** Two invariants of the original edition were
+> expected to carry over and did not. `id` is `simplified--<moduleSlug>-<toolSlug>`
+> rather than equal to `toolSlug`, so ids stay globally unique across both
+> catalogues. And a catalogue entry is a **subset** of its `metadata.json`
+> (16 fields of 25) rather than field-for-field identical, because the full
+> metadata carries `scopeNote`, `simulationNotes`, `accessibilityNotes` and the
+> rest, which a listing has no use for. The full record stays in the activity's
+> own file.
 
 ---
 
@@ -323,16 +333,33 @@ with.
 
 ---
 
-## 6. What is deliberately not decided yet
+## 6. Open when this was written, and what happened
 
-- The Simplified Edition landing page and module pages.
-- `data/catalogue-simplified.json` and its loader.
-- Whether, and when, the original edition's pages link across to their
-  simplified twins. Adding that link is a 76-file edit to the originals and
-  should wait until the edition is broad enough to be worth pointing at.
-- Whether the Simplified Edition appears in the site's main navigation.
+**Settled since, and built:**
+
+- The landing page and the five module pages. Generated from the metadata by
+  `scripts/build-simplified-catalogue.py`.
+- `data/catalogue-simplified.json` and its loader. The catalogue is generated;
+  `simplified/assets/js/edition-nav.js` reads it at runtime for previous and
+  next.
 - A `404.html` entry for the new tree.
-- The exporter described in section 2.
-- How the two editions are kept from drifting apart when a factual correction
-  lands in only one of them. `pairedWith` is the hook; the check is not
-  written.
+- The drift check. `pairedWith` was indeed the hook:
+  `scripts/check-edition-pairing.py` verifies the 1:1 pairing in both
+  directions, and `scripts/test-edition-pairing.py` proves that check still
+  bites. It is structural only, and deliberately so: it does not compare
+  wording between an activity and its twin, because divergence in content is
+  what a simplified edition is for.
+
+**Still open:**
+
+- Whether, and when, the original edition's pages link across to their
+  simplified twins. Still a 75-file edit to the originals, which rule 1 makes a
+  decision rather than a chore. The reverse direction exists on all 75
+  simplified pages.
+- Whether the Simplified Edition appears in the site's main navigation. It is
+  reached from the home page, the 404 page and every simplified activity, but
+  not from the header.
+- The exporter described in section 2. Nothing depends on one.
+- Whether `RENDERABLE_STATUSES` in the generator should tighten from
+  `{"draft", "published"}` to `{"published"}`, which would make a future draft
+  activity a hard error rather than a listable one.
