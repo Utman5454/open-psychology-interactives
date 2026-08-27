@@ -26,9 +26,32 @@
  *
  * iterated to convergence. The largest absolute residual, max |r(a,b) -
  * loading_a * loading_b|, is displayed, and across the whole range of the
- * control it stays under 0.023. That number is the activity: a mind built with
+ * control it stays under 0.025. That number is the activity: a mind built with
  * no general ability produces correlations that a general factor reproduces to
  * within a couple of hundredths.
+ *
+ * FIT AND STRENGTH ARE TWO DIFFERENT THINGS, and keeping them apart is the
+ * whole of the wording on this page. They are separate quantities here:
+ *
+ *   fit       max |r(a,b) - loading_a * loading_b|, how closely the one-factor
+ *             model reproduces the correlation matrix. Never above 0.025 at
+ *             any setting of the control.
+ *   strength  sum of squared loadings over the number of tests, the share of
+ *             variance across the six tests the fitted factor carries. Runs
+ *             from 0 to about 0.90, tracking the control almost exactly.
+ *
+ * The reason they can be so far apart is visible in the algebra. With each
+ * test drawing a share p of the pool, |S_i| is about pN and |S_i intersect
+ * S_j| about p^2 N, so every off-diagonal r is about p: small at low p, but
+ * the same small number for all fifteen pairs. A one-factor model with every
+ * loading at sqrt(p) reproduces that flat pattern exactly, so the fit is
+ * close, while the factor carries only p of the variance. At 5 per cent the
+ * fit is as close as it is anywhere and the factor carries 6 per cent.
+ *
+ * A learner told only that the fit is "excellent" will read it as excellent
+ * evidence for a strong general ability, which is the exact inference this
+ * activity exists to block. So no readout on this page reports fit without
+ * reporting strength beside it.
  *
  * WHY THE SEED MATTERS. Which processes each test uses is drawn once, at load,
  * and never redrawn. The slider changes only how many each test uses. If the
@@ -171,11 +194,38 @@
     return worst;
   }
 
-  /** Share of the total variance across tests carried by the fitted factor. */
+  /** Share of the total variance across tests carried by the fitted factor.
+      This is the factor's STRENGTH, and it is not the same question as
+      whether the one-factor model fits. */
   function factorShare(loadings) {
     var sum = 0;
     loadings.forEach(function (l) { sum += l * l; });
     return sum / loadings.length;
+  }
+
+  /* How closely the one-factor model reproduces the matrix. Bands are the
+     ordinary ones used on a residual of this kind; on this model the answer is
+     "close" at every setting, which is the point rather than a coincidence. */
+  function fitWord(residual) {
+    if (residual <= 0.05) { return "Close fit"; }
+    if (residual <= 0.10) { return "Reasonable fit"; }
+    return "Poor fit";
+  }
+
+  /* How much the factor actually carries. Deliberately a separate vocabulary
+     from the fit words, so the two can never be read as one judgement. */
+  function strengthWord(share) {
+    if (share < 0.18) { return "weak common factor"; }
+    if (share < 0.38) { return "modest common factor"; }
+    if (share < 0.62) { return "substantial common factor"; }
+    return "strong common factor";
+  }
+
+  /** The combined verdict: what fits, and how much it carries. */
+  function verdictPhrase(state) {
+    if (state.share === 0) { return "Nothing to fit"; }
+    return fitWord(largestResidual(state.matrix, state.loadings)) + ", " +
+      strengthWord(factorShare(state.loadings));
   }
 
   /* Recomputing the matrix is 1500 comparisons per pair. Cheap, but it happens
@@ -305,10 +355,18 @@
     return li;
   }
 
+  /* Four tiles in two rows. The bottom row is the point of the whole page:
+     how well the one-factor model fits, and how much its factor carries, side
+     by side and never merged into a single verdict. At low overlap the first
+     stays close and the second falls away, and a learner who sees only the
+     first will draw the wrong conclusion from it. */
   function renderReadout() {
     var state = current();
     var off = offDiagonal(state.matrix);
     var share = state.share;
+    var residual = largestResidual(state.matrix, state.loadings);
+    var carried = factorShare(state.loadings);
+
     readout.textContent = "";
     readout.appendChild(tile("Processes each test uses",
       Math.round(share * PROCESSES) + " of " + PROCESSES,
@@ -317,9 +375,18 @@
       Math.min.apply(null, off) > 0
         ? "and every one of the fifteen is positive"
         : "no test shares anything with any other"));
-    readout.appendChild(tile("Carried by the first factor",
-      Math.round(factorShare(state.loadings) * 100) + "%",
-      "of the variance across the six tests"));
+    readout.appendChild(tile("Fit of the one-factor model",
+      share === 0 ? "Nothing to fit" : fitWord(residual),
+      share === 0
+        ? "with no correlations there is nothing for a factor to reproduce"
+        : "largest gap between implied and real correlations " +
+          residual.toFixed(3)));
+    readout.appendChild(tile("Variance that factor carries",
+      Math.round(carried * 100) + "%",
+      share === 0
+        ? "there is no common variance at all"
+        : "across the six tests, which is " + strengthWord(carried).replace(
+            " common factor", "") + " for a general factor"));
   }
 
   function renderFitted() {
@@ -375,20 +442,32 @@
     explainBtn.disabled = false;
     render();
     var state = current();
-    noteText.textContent =
-      "One general factor, fitted to the correlations above. It carries " +
-      Math.round(factorShare(state.loadings) * 100) + " per cent of the " +
-      "variance across the six tests, its loadings run from " +
-      Math.min.apply(null, state.loadings).toFixed(2) + " to " +
-      Math.max.apply(null, state.loadings).toFixed(2) + ", and the largest " +
-      "gap between the correlations it implies and the real ones is " +
-      largestResidual(state.matrix, state.loadings).toFixed(3) + ". By any " +
-      "ordinary standard that is an excellent fit, and it would be reported " +
-      "as one. There is no general ability in the model that produced these " +
-      "numbers. Move the slider and watch the fit stay good at every setting.";
+    var residual = largestResidual(state.matrix, state.loadings);
+    var carried = Math.round(factorShare(state.loadings) * 100);
+
+    /* Two sentences, in this order and never merged: what fits, then what it
+       carries. Reporting only the first is what makes "excellent fit" sound
+       like excellent evidence for a general ability. */
+    noteText.textContent = state.share === 0
+      ? "At zero overlap every correlation is zero, so there is nothing for a " +
+        "factor to reproduce and nothing for it to carry. Raise the slider " +
+        "and both numbers start to move, but they do not move together."
+      : verdictPhrase(state) + ". The one-factor model reproduces these " +
+        "correlations to within " + residual.toFixed(3) + ", which by any " +
+        "ordinary standard is a close fit and would be reported as one. That " +
+        "is a statement about how well the model matches the pattern. It is " +
+        "not a statement about how much the factor matters: this one carries " +
+        carried + " per cent of the variance across the six tests, with " +
+        "loadings from " + Math.min.apply(null, state.loadings).toFixed(2) +
+        " to " + Math.max.apply(null, state.loadings).toFixed(2) + ". Move " +
+        "the slider. The fit stays close at every setting; the share of " +
+        "variance does not. And there is no general ability in the model at " +
+        "any of them.";
     wb.show(note);
-    wb.announce("A single general factor has been fitted. Largest residual " +
-      largestResidual(state.matrix, state.loadings).toFixed(3) + ".");
+    wb.announce(state.share === 0
+      ? "Nothing to fit at zero overlap."
+      : verdictPhrase(state) + ". Largest residual " + residual.toFixed(3) +
+        ", carrying " + carried + " per cent of the variance.");
   }
 
   function onSlide() {
@@ -399,17 +478,19 @@
 
   function explain() {
     var state = current();
+    var carriedPct = Math.round(factorShare(state.loadings) * 100);
     resultLead.textContent = state.share === 0
       ? "With no overlap there are no correlations to explain. Raise the " +
         "slider and the whole pattern appears, out of a model that contains " +
         "no general ability at any setting."
       : "Six tests, " + PROCESSES + " small independent processes and no " +
         "general ability anywhere. The average correlation is " +
-        mean(offDiagonal(state.matrix)).toFixed(2) + ", every one of the " +
-        "fifteen is positive, and a single general factor carries " +
-        Math.round(factorShare(state.loadings) * 100) + " per cent of the " +
-        "variance and reproduces the matrix to within " +
-        largestResidual(state.matrix, state.loadings).toFixed(3) + ".";
+        mean(offDiagonal(state.matrix)).toFixed(2) + " and every one of the " +
+        "fifteen is positive. A single general factor reproduces the matrix " +
+        "to within " + largestResidual(state.matrix, state.loadings).toFixed(3) +
+        ", and carries " + carriedPct + " per cent of the variance across " +
+        "the six tests. Those are two separate findings, and only the second " +
+        "is about how much the factor matters.";
     wb.show(synthesis);
     wb.scrollTo(synthesis);
   }

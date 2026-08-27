@@ -60,16 +60,27 @@ corresponds to it.
 4. **Raise it to 40 per cent.** Every one of the fifteen correlations is
    positive and the average is around 0.40.
 5. **Press "Fit a single general factor".** Loadings around 0.65, forty per
-   cent of the variance, largest residual about 0.015.
-6. **Ask what a journal would say about that fit.** It would call it excellent.
-7. **Move the slider again with the factor fitted.** The fit stays good
-   everywhere.
+   cent of the variance, largest residual about 0.015. The readout reports
+   this as "Close fit, substantial common factor".
+6. **Ask what a journal would say about that fit.** It would call it good, and
+   it would be right. Then ask what "good fit" is a claim about.
+7. **Take the slider down to five per cent.** This is the step that separates
+   the two ideas. Every correlation is still positive, the fit is as close as
+   it is anywhere at 0.023, and the factor now carries six per cent of the
+   variance. The readout says "Close fit, weak common factor". A one-factor
+   model reproduces a weak but regular pattern just as well as a strong one.
+8. **Move the slider across the range with the factor fitted.** The fit stays
+   close everywhere; the share of variance tracks the slider. Fit and strength
+   are different quantities and this is the demonstration of it.
 
 ## Debrief questions
 
 - What is in this model, and what is not?
 - Where do the positive correlations come from?
-- The single factor fits to within about 0.015. What does that tell you?
+- The single factor fits to within about 0.015. What does that tell you, and
+  what does it not tell you?
+- At five per cent overlap the fit is just as close and the factor carries six
+  per cent of the variance. What has changed, and what has not?
 - If both accounts fit these correlations, what would tell them apart?
 - Does this show that there is no general ability?
 - General-factor scores predict a great many outcomes. Is that affected by
@@ -83,6 +94,13 @@ corresponds to it.
 - **This establishes the sampling account.** Equally not. Both accounts fit.
 - **A good fit means a true model.** A small residual means the model
   reproduces the data. Two incompatible models can both do that.
+- **A good fit means a strong factor.** These are separate quantities, and the
+  activity is built to pull them apart. Fit is how closely the one-factor model
+  reproduces the correlations; strength is how much variance the factor
+  carries. At low overlap the pattern is weak but regular, so the fit is close
+  and the factor is not. Students who hear "excellent fit" and conclude
+  "strong general ability" have made exactly the inference this page exists to
+  block.
 - **The tests must be similar to each other.** The manifold holds between tests
   with little in common on the surface, and this model produces it from random
   overlap rather than shared content.
