@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Stroop Interference Laboratory | Simplified Edition</title>
+<meta name="description" content="Name the ink colour on 45 timed trials, then see your own reaction times split into two effects against the neutral baseline: the cost of a conflicting word and the benefit of a matching one.">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231C7293'/%3E%3C/svg%3E">
+
+<link rel="stylesheet" href="../../../../assets/css/simplified.css">
+<link rel="stylesheet" href="../../../../assets/css/patterns.css">
+<script src="../../../../assets/js/workbook.js" defer></script>
+<script src="activity.js" defer></script>
+<link rel="stylesheet" href="../../../../assets/css/edition.css">
+<script src="../../../../assets/js/edition-nav.js" defer></script>
+</head>
+
+<body>
+
+<a class="skip-link" href="#main">Skip to the activity</a>
+
+<main class="workbook workbook--compact" id="main" data-workbook
+      data-reset-message="Cleared. Back to the practice trials, with no results kept.">
+
+  <section class="hero">
+    <p class="eyebrow">Cognitive Psychology &middot; Simplified</p>
+    <h1>Stroop Interference Laboratory</h1>
+    <p class="hero__lead">Name the ink colour, not the word. Your own reaction
+      times are the data.</p>
+  </section>
+
+  <nav aria-label="Activity progress">
+    <ol class="progress" data-workbook-progress
+        style="--progress-columns: 3; --progress-columns-narrow: 1">
+      <li class="progress__step">1 &middot; Practice</li>
+      <li class="progress__step">2 &middot; The block</li>
+      <li class="progress__step">3 &middot; Your result</li>
+    </ol>
+  </nav>
+
+  <section class="card" id="task-card" aria-labelledby="task-heading">
+
+    <p class="step-label" id="step-label">Practice</p>
+    <h2 id="task-heading">Name the ink colour</h2>
+    <p class="lead" id="task-lead">Six untimed practice trials first, with
+      feedback after each one. Ignore what the word says. Respond to the
+      colour it is printed in.</p>
+
+    <div class="notice">
+      <p><strong>What this needs.</strong> Telling four ink colours apart, and
+        about two minutes. Nothing flashes, nothing animates and no trial is
+        ever timed out: each word stays until you answer.</p>
+    </div>
+
+    <!-- The timed task departs from the workbook on purpose. See the note on
+         .stage--focus in patterns.css. -->
+    <div class="stage stage--focus" style="--stage-height: 13rem">
+      <p class="stage__message stage__fixation" id="stage-message">Ready when you are.</p>
+      <p class="stage__word" id="stimulus" hidden></p>
+      <p class="stage__feedback" id="feedback" hidden></p>
+    </div>
+
+    <fieldset class="keypad" id="keypad" aria-describedby="task-heading">
+      <legend class="visually-hidden">Which colour is the ink?</legend>
+    </fieldset>
+
+    <p class="small" id="counter" aria-live="polite">Practice trial 1 of 6.</p>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="start" type="button">Start the practice</button>
+      <button class="btn btn-secondary" id="stop" type="button" hidden>Stop and see my result</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+
+  </section>
+
+  <p class="workbook-status" data-workbook-status role="status" aria-live="polite"></p>
+
+  <section class="synthesis" id="synthesis" hidden aria-labelledby="result-heading">
+
+    <p class="step-label">Your result</p>
+    <h2 id="result-heading">Two effects, not one</h2>
+    <p class="lead" id="result-lead"></p>
+
+    <div class="plot">
+      <svg id="chart" role="img" aria-labelledby="chart-title chart-desc">
+        <title id="chart-title">Your mean reaction time in each condition</title>
+        <desc id="chart-desc"></desc>
+      </svg>
+      <p class="legend">The dashed line is your neutral mean. Everything to the
+        right of it is a cost, everything to the left is a benefit, and both
+        are measured from the same baseline.</p>
+    </div>
+
+    <p class="small" id="accuracy"></p>
+
+    <details class="disclosure">
+      <summary>All the values behind this chart</summary>
+      <div class="disclosure__body">
+        <div class="table-scroll">
+          <table class="data-table">
+            <caption id="table-caption"></caption>
+            <thead>
+              <tr>
+                <th scope="col">Condition</th>
+                <th scope="col">Mean reaction time</th>
+                <th scope="col">Correct trials used</th>
+                <th scope="col">Accuracy</th>
+              </tr>
+            </thead>
+            <tbody id="table-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </details>
+
+    <div class="takeaway">
+      <p><strong>Key idea:</strong> Without the neutral condition there is one
+        number, the gap between congruent and incongruent, and no way to say
+        what produced it. With it there are two: a cost when the word conflicts
+        with the ink, and a benefit when it agrees. They come from different
+        places, they are not the same size, and reporting only the gap between
+        the two extremes hides both.</p>
+    </div>
+
+    <div class="notice notice--caution">
+      <p>One person, one short block, in a browser. Fifteen scored trials per
+        condition is far too few to estimate anyone's reaction time reliably,
+        browser timing adds noise of its own, and a facilitation effect this
+        small often fails to appear in a block this length. A result near zero,
+        or the wrong way round, is a result about the block rather than about
+        you. Nothing here measures anything about your attention or your
+        ability.</p>
+    </div>
+
+    <p class="small" style="margin-top: 1.125rem">The longer version adds two
+      colour sets, two trial mixes so the effect can be moved by changing the
+      context, a table of every block run, a transfer challenge and a fully
+      documented simulated route for anyone who prefers not to respond to
+      colour. It is at
+      <a href="../../../../../modules/cognitive/tools/06-stroop-interference-lab/index.html">Stroop
+      Interference Laboratory in the main collection</a>.</p>
+
+  </section>
+
+</main>
+
+</body>
+</html>

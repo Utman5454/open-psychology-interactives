@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ANOVA F-Ratio Visualiser | Simplified Edition</title>
+<meta name="description" content="Three groups drawn from populations you control. A real one-way ANOVA is computed on the generated sample, and three separate things move F, only one of which is the effect.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231C7293'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../../../assets/css/simplified.css">
+<link rel="stylesheet" href="../../../../assets/css/patterns.css">
+<script src="../../../../assets/js/workbook.js" defer></script>
+<script src="../../../../assets/js/stats.js" defer></script>
+<script src="activity.js" defer></script>
+<link rel="stylesheet" href="../../../../assets/css/edition.css">
+<script src="../../../../assets/js/edition-nav.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to the activity</a>
+
+<main class="workbook workbook--compact" id="main" data-workbook
+      data-reset-message="Cleared. Back to the starting settings and a fresh sample.">
+
+  <section class="hero">
+    <p class="eyebrow">Research Methods &middot; Simplified</p>
+    <h1>ANOVA F-Ratio Visualiser</h1>
+    <p class="hero__lead">F is one variance estimate divided by another. Three
+      separate things move it, and only one of them is the effect.</p>
+  </section>
+
+  <section class="card" id="card" aria-labelledby="card-heading">
+    <p class="step-label">The simulator</p>
+    <h2 id="card-heading">Three groups, one ratio</h2>
+    <p class="lead">Each sample is generated from three normal populations and
+      then analysed for real. Move a control and a fresh sample is drawn, so
+      the numbers are an actual analysis rather than a formula being displayed.</p>
+
+    <details class="disclosure" id="key-terms">
+      <summary>Key terms</summary>
+      <div class="disclosure__body">
+        <dl class="glossary">
+          <dt>Between-groups variance</dt>
+          <dd>How far the three group means sit from the overall mean. It picks
+            up any real difference between the populations, and also ordinary
+            sampling noise.</dd>
+          <dt>Within-groups variance</dt>
+          <dd>How spread out people are inside their own group. It picks up
+            noise only, which is why it works as the yardstick.</dd>
+          <dt>F</dt>
+          <dd>Between-groups variance divided by within-groups variance. When
+            the populations are identical both estimate the same thing, so F
+            wanders around 1.</dd>
+          <dt>Share of variance</dt>
+          <dd>The proportion of the total variation that lies between the
+            groups. Unlike F it does not grow with the sample size.</dd>
+        </dl>
+      </div>
+    </details>
+
+    <fieldset class="controls" style="--controls-columns: 4">
+      <legend class="visually-hidden">Simulation settings</legend>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="sep">Separation</label>
+          <output class="control__value" for="sep">8</output>
+        </div>
+        <input type="range" id="sep" min="0" max="16" step="1" value="8">
+        <p class="control__hint">How far apart the population means are.</p>
+      </div>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="within">Within spread</label>
+          <output class="control__value" for="within">6</output>
+        </div>
+        <input type="range" id="within" min="2" max="20" step="1" value="6">
+        <p class="control__hint">How spread out people are inside a group.</p>
+      </div>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="n">Per group</label>
+          <output class="control__value" for="n">30</output>
+        </div>
+        <input type="range" id="n" min="5" max="120" step="5" value="30">
+        <p class="control__hint">How many people in each group.</p>
+      </div>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="seed">Seed</label>
+        </div>
+        <input type="number" id="seed" value="4021" min="1" max="99999" step="1">
+        <p class="control__hint">The same seed draws the same sample.</p>
+      </div>
+    </fieldset>
+
+    <div class="plot">
+      <svg id="chart" role="img" aria-labelledby="chart-title chart-desc">
+        <title id="chart-title">Three groups, their means, and the reach between them</title>
+        <desc id="chart-desc"></desc>
+      </svg>
+      <p class="legend">One mark per person. The heavy tick on each row is that
+        group's mean, and the bar beneath spans the three means: that reach is
+        what the numerator measures, and the scatter within each row is what
+        the denominator measures.</p>
+    </div>
+
+    <ul class="results-grid" style="--results-columns: 4" id="readout"></ul>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="redraw" type="button">Draw a fresh sample</button>
+      <button class="btn btn-secondary" id="explain" type="button" disabled>What this shows</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+  </section>
+
+  <p class="workbook-status" data-workbook-status role="status" aria-live="polite"></p>
+
+  <section class="synthesis" id="synthesis" hidden aria-labelledby="result-heading">
+    <p class="step-label">What this shows</p>
+    <h2 id="result-heading">F is a ratio, and three things move it</h2>
+    <p class="lead">Set the separation to zero and draw a few samples. F does
+      not settle on zero, it wanders around 1, because both parts of the ratio
+      are then estimating the same thing.</p>
+
+    <div class="takeaway">
+      <p><strong>Key idea:</strong> The numerator asks how far apart the group
+        means are; the denominator asks how spread out people are inside their
+        groups. When the populations are identical both estimate the same
+        quantity and their ratio hovers near 1. Separation raises F, spread
+        lowers it, and sample size raises it without the populations changing
+        at all. That last one is why F is not a measure of how large a
+        difference is: the share of variance beside it is, and it barely moves
+        when you add people.</p>
+    </div>
+
+    <div class="notice notice--caution">
+      <p>Every figure here is computed from one generated sample, so it moves
+        when you redraw. That is the point rather than a defect. The simulation
+        assumes normal populations, equal spreads and independent observations,
+        which is what makes the reference distribution for F correct; real data
+        satisfy those to varying degrees. A significant F says the three means
+        are unlikely to be this far apart under identical populations. It does
+        not say which groups differ, by how much, or whether the difference
+        matters.</p>
+    </div>
+
+    <p class="small" style="margin-top: 1.125rem">The longer version adds a
+      second experiment on what F cannot carry, worked-example presets, a
+      browse-then-commit identification task and a select-all challenge on
+      interpretation. It is at
+      <a href="../../../../../modules/research-methods/tools/10-anova-f-ratio-visualiser/index.html">ANOVA
+      F-Ratio Visualiser in the main collection</a>.</p>
+  </section>
+</main>
+</body>
+</html>

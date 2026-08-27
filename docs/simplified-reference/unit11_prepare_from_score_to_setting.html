@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>From Score to Setting | Unit 11 Prepare</title>
+<style>
+:root{
+  --page:#F5F2ED;--card:#FFFFFF;--navy:#1A2744;--muted:#5F6878;--teal:#1C7293;
+  --teal-light:#EAF4FA;--blue:#3D5A80;--blue-light:#EDF1F7;--gold:#D4A853;--gold-light:#F7EEDC;
+  --coral:#C0434F;--coral-light:#F9ECEE;--green:#2F7D69;--green-light:#EAF5F1;--border:#DDD8CF;
+  --shadow:0 12px 34px rgba(26,39,68,.08);--radius:18px
+}
+*{box-sizing:border-box}html{background:var(--page)}
+body{margin:0;color:var(--navy);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55;
+background:radial-gradient(circle at 10% 8%,rgba(212,168,83,.14),transparent 22rem),
+radial-gradient(circle at 90% 18%,rgba(28,114,147,.12),transparent 24rem),var(--page)}
+button{font:inherit}[hidden]{display:none!important}
+.workbook{width:min(980px,calc(100% - 32px));margin:0 auto;padding:42px 0 64px}
+.hero{position:relative;overflow:hidden;padding:34px 36px;border-radius:24px;background:var(--card);box-shadow:var(--shadow);border:1px solid rgba(26,39,68,.08)}
+.hero:after{content:"";position:absolute;width:190px;height:190px;right:-60px;top:-78px;border-radius:50%;background:var(--teal-light);border:22px solid rgba(212,168,83,.18)}
+.eyebrow{position:relative;z-index:1;margin:0 0 10px;color:var(--teal);font-size:13px;font-weight:800;letter-spacing:.09em;text-transform:uppercase}
+h1{position:relative;z-index:1;margin:0;max-width:18ch;font-size:clamp(34px,5vw,54px);line-height:1.02;letter-spacing:-.035em}
+.hero p:last-child{position:relative;z-index:1;max-width:720px;margin:16px 0 0;color:var(--muted);font-size:18px}
+.progress{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 0 26px}
+.progress div{padding:11px 13px;border-radius:12px;background:rgba(255,255,255,.66);border:1px solid var(--border);color:var(--muted);font-size:13px;font-weight:800;text-align:center}
+.progress .active{color:var(--navy);background:var(--teal-light);border-color:rgba(28,114,147,.35)}
+.progress .done{color:var(--navy);background:var(--gold-light);border-color:rgba(212,168,83,.45)}
+.card,.synthesis{margin-top:18px;padding:28px 30px;border-radius:var(--radius);background:var(--card);border:1px solid rgba(26,39,68,.09);box-shadow:0 7px 22px rgba(26,39,68,.05)}
+.step-label{display:inline-flex;align-items:center;gap:8px;margin-bottom:10px;color:var(--teal);font-weight:800;font-size:13px;letter-spacing:.05em;text-transform:uppercase}
+.step-label:before{content:"";width:9px;height:9px;border-radius:50%;background:var(--gold)}
+h2{margin:0 0 9px;font-size:clamp(24px,3vw,31px);line-height:1.15;letter-spacing:-.02em}.lead{max-width:760px;margin:0;color:var(--muted)}
+.casebox{margin-top:18px;padding:22px 24px;border-left:5px solid var(--teal);border-radius:12px;background:#fff;font-size:17px}.casebox p{margin:0}.casebox p+p{margin-top:8px}
+.evidence-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+.evidence{padding:15px;border-radius:13px;background:#FAF8F4;border:1px solid var(--border)}
+.evidence strong{display:block;margin-bottom:4px}.evidence span{font-size:13px;color:var(--muted)}
+.option-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px}
+.option{padding:18px;text-align:left;color:var(--navy);background:#fff;border:1.5px solid var(--border);border-radius:15px;cursor:pointer;min-height:135px}
+.option:hover{border-color:var(--teal)}.option.correct{border-color:var(--green);background:var(--green-light)}.option.wrong{border-color:var(--gold);background:var(--gold-light)}
+.option strong{display:block;font-size:17px;margin-bottom:6px}.option span{display:block;color:var(--muted);font-size:13px;line-height:1.45}
+.reveal{margin-top:16px;padding:20px 22px;border-radius:15px;background:#fff;border:1px solid rgba(26,39,68,.09)}
+.reveal p{margin:0}.reveal p+p{margin-top:8px}.small{font-size:13px;color:var(--muted)}
+.reveal-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.mini{padding:16px;border-radius:12px;background:#FAF8F4;border:1px solid var(--border)}
+.mini strong{display:block;margin-bottom:5px}.mini p{margin:0;color:var(--muted);font-size:14px}
+.mini.limit{background:var(--gold-light);border-color:rgba(212,168,83,.4)}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.btn{border:0;border-radius:11px;padding:11px 17px;font-weight:800;cursor:pointer}
+.btn-primary{background:var(--teal);color:#fff}.btn-secondary{background:#fff;color:var(--navy);border:1px solid var(--border)}.btn:disabled{opacity:.45;cursor:not-allowed}
+.diagram-wrap{margin-top:18px;overflow:hidden;border-radius:16px;background:#FBFAF7;border:1px solid var(--border)}
+svg{display:block;width:100%;height:auto}.node-title{font:800 16px Inter,system-ui,sans-serif;fill:var(--navy)}.node-sub{font:500 12px Inter,system-ui,sans-serif;fill:var(--muted)}
+.takeaway{margin-top:18px;padding:20px 22px;border-left:5px solid var(--gold);border-radius:12px;background:var(--gold-light)}.takeaway p{margin:0}
+@media(max-width:760px){.option-grid,.reveal-grid,.evidence-grid{grid-template-columns:1fr}.hero,.card,.synthesis{padding:24px}.workbook{width:min(100% - 20px,980px);padding-top:20px}.progress{grid-template-columns:1fr}}
+</style></head>
+<body><main class="workbook">
+
+<section class="hero">
+  <p class="eyebrow">Unit 11 · Prepare</p>
+  <h1>From Score to Setting</h1>
+  <p>A worker can report exhaustion. The harder question is what the score tells us about where the cause sits.</p>
+</section>
+
+<div class="progress">
+  <div id="p1" class="active">1 · Measure</div>
+  <div id="p2">2 · Inspect the job</div>
+  <div id="p3">3 · Change the setting</div>
+</div>
+
+<section class="card" id="card">
+  <div class="step-label" id="label">Stage 1</div>
+  <h2>What can we infer now?</h2>
+  <p class="lead">Follow the same fictional team as the evidence moves from worker scores to job design and then to an organisational change.</p>
+
+  <div class="casebox"><p id="scenario"></p></div>
+  <div class="evidence-grid" id="evidence"></div>
+  <div class="option-grid" id="options"></div>
+  <div class="reveal" id="reveal" hidden aria-live="polite"></div>
+
+  <div class="actions">
+    <button class="btn btn-primary" id="next" type="button" disabled>Next stage</button>
+    <button class="btn btn-secondary" id="reset" type="button">Reset</button>
+  </div>
+</section>
+
+<section class="synthesis" id="synthesis" hidden>
+  <div class="step-label">Compare</div>
+  <h2>Measurement and explanation are different jobs</h2>
+  <p class="lead">A score can identify a pattern in workers. To locate causes, we need evidence about the conditions around them and what happens when those conditions change.</p>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 900 540" role="img" aria-labelledby="t d">
+      <title id="t">From burnout score to setting diagram</title>
+      <desc id="d">The sequence moves from measuring worker exhaustion, to measuring job demands and resources, to changing the setting and observing outcomes.</desc>
+      <defs>
+        <marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+          <path d="M0 0L10 5L0 10Z" fill="#8CA0AD"/>
+        </marker>
+      </defs>
+
+      <rect x="55" y="75" width="230" height="150" rx="22" fill="#fff" stroke="#3D5A80" stroke-width="2"/>
+      <text x="170" y="113" text-anchor="middle" class="node-title">1 · Measure the worker</text>
+      <text x="170" y="147" text-anchor="middle" class="node-sub">Exhaustion / disengagement</text>
+      <text x="170" y="175" text-anchor="middle" class="node-sub">Shows a pattern</text>
+      <text x="170" y="202" text-anchor="middle" class="node-sub">Does not locate cause</text>
+
+      <path d="M285 150 L350 150" stroke="#8CA0AD" stroke-width="3" marker-end="url(#a)"/>
+
+      <rect x="360" y="75" width="230" height="150" rx="22" fill="#fff" stroke="#D4A853" stroke-width="2"/>
+      <text x="475" y="113" text-anchor="middle" class="node-title">2 · Measure the job</text>
+      <text x="475" y="147" text-anchor="middle" class="node-sub">Demands / resources</text>
+      <text x="475" y="175" text-anchor="middle" class="node-sub">Workload · autonomy · support</text>
+      <text x="475" y="202" text-anchor="middle" class="node-sub">Makes setting hypotheses testable</text>
+
+      <path d="M590 150 L655 150" stroke="#8CA0AD" stroke-width="3" marker-end="url(#a)"/>
+
+      <rect x="665" y="75" width="180" height="150" rx="22" fill="#fff" stroke="#C0434F" stroke-width="2"/>
+      <text x="755" y="113" text-anchor="middle" class="node-title">3 · Change the job</text>
+      <text x="755" y="147" text-anchor="middle" class="node-sub">Staffing / rota / support</text>
+      <text x="755" y="175" text-anchor="middle" class="node-sub">Track outcomes</text>
+      <text x="755" y="202" text-anchor="middle" class="node-sub">Stronger causal evidence</text>
+
+      <path d="M755 225 C755 320 575 355 500 385" fill="none" stroke="#8CA0AD" stroke-width="3" marker-end="url(#a)"/>
+      <path d="M170 225 C170 320 325 355 400 385" fill="none" stroke="#8CA0AD" stroke-width="3" marker-end="url(#a)"/>
+
+      <rect x="330" y="390" width="240" height="100" rx="22" fill="#EAF5F1" stroke="#2F7D69" stroke-width="2"/>
+      <text x="450" y="426" text-anchor="middle" class="node-title">Person–setting explanation</text>
+      <text x="450" y="456" text-anchor="middle" class="node-sub">Distress is experienced by people</text>
+      <text x="450" y="479" text-anchor="middle" class="node-sub">but may be produced by job conditions</text>
+    </svg>
+  </div>
+
+  <div class="takeaway">
+    <p><strong>Key idea:</strong> Measuring exhaustion in a worker does not mean the cause is inside the worker. A person-level outcome can be explained by <strong>job demands, resources and organisational design</strong>. The intervention should follow the evidence about where the problem is located.</p>
+  </div>
+</section>
+
+<script>
+(function(){
+const rounds=[
+  {
+    scenario:'A customer-service team completes a validated burnout measure. Scores show high emotional exhaustion and rising disengagement across the team.',
+    evidence:[['Outcome','High exhaustion'],['Pattern','Across many workers'],['Cause','Not yet observed']],
+    correct:'Pattern only',
+    opts:[
+      ['Pattern only','The measure shows that exhaustion is high, but does not by itself tell us why.'],
+      ['Low resilience','The scores show that the workers lack personal resilience.'],
+      ['Poor job design','The scores prove that workload and staffing are the cause.']
+    ],
+    can:'We can say the team reports a high level of exhaustion on the measure used.',
+    limit:'The outcome measure does not automatically locate the cause in either the person or the job.'
+  },
+  {
+    scenario:'The organisation then measures the work itself. Employees report sustained time pressure, frequent role conflict, little control over scheduling and limited supervisory support.',
+    evidence:[['Demands','High'],['Autonomy','Low'],['Support','Low']],
+    correct:'Setting hypothesis',
+    opts:[
+      ['Personal deficit','The new evidence strengthens the claim that workers need resilience training.'],
+      ['Setting hypothesis','The pattern is consistent with a job-demands/resources explanation of exhaustion.'],
+      ['Causal proof','The survey proves each job feature independently caused the burnout scores.']
+    ],
+    can:'The predictors now live in the setting: workload, role conflict, autonomy and support are properties of the job.',
+    limit:'Because demands and exhaustion are measured rather than experimentally manipulated, the associations are not perfect causal proof.'
+  },
+  {
+    scenario:'The organisation adds staff at peak periods, protects supervisor time, gives teams more rota control and tracks outcomes. Six months later, exhaustion falls and service performance improves.',
+    evidence:[['Setting','Changed'],['Exhaustion','Lower'],['Performance','Improved']],
+    correct:'Setting mattered',
+    opts:[
+      ['Setting mattered','The change strengthens the case that work conditions contributed to the original problem.'],
+      ['Personalities changed','The improvement shows employees became fundamentally more resilient people.'],
+      ['One component caused it','The evidence tells us exactly which single change produced the improvement.']
+    ],
+    can:'When outcomes improve after changing work conditions, the setting-based explanation becomes more persuasive.',
+    limit:'Several elements changed together, so we still cannot isolate which component produced each improvement.'
+  }
+];
+
+let i=0,answered=false;
+const scenario=document.getElementById('scenario');
+const evidence=document.getElementById('evidence');
+const options=document.getElementById('options');
+const reveal=document.getElementById('reveal');
+const next=document.getElementById('next');
+const syn=document.getElementById('synthesis');
+
+function render(){
+  answered=false;
+  const r=rounds[i];
+  scenario.textContent=r.scenario;
+  evidence.innerHTML='';
+  options.innerHTML='';
+  reveal.hidden=true;
+  next.disabled=true;
+  next.textContent=i<2?'Next stage':'See the pattern';
+  document.getElementById('label').textContent='Stage '+(i+1);
+
+  r.evidence.forEach(([a,b])=>{
+    const d=document.createElement('div');
+    d.className='evidence';
+    d.innerHTML='<strong>'+a+'</strong><span>'+b+'</span>';
+    evidence.appendChild(d);
+  });
+
+  r.opts.forEach(([title,short])=>{
+    const b=document.createElement('button');
+    b.type='button';
+    b.className='option';
+    b.dataset.key=title;
+    b.innerHTML='<strong>'+title+'</strong><span>'+short+'</span>';
+    b.addEventListener('click',()=>choose(b,title));
+    options.appendChild(b);
+  });
+
+  for(let n=0;n<3;n++){
+    document.getElementById('p'+(n+1)).className=n<i?'done':n===i?'active':'';
+  }
+}
+
+function choose(b,key){
+  if(answered)return;
+  answered=true;
+  const r=rounds[i],ok=key===r.correct;
+
+  options.querySelectorAll('.option').forEach(x=>{
+    x.disabled=true;
+    if(x.dataset.key===r.correct)x.classList.add('correct');
+    if(x===b&&!ok)x.classList.add('wrong');
+  });
+
+  reveal.innerHTML=
+    '<p><strong>'+(ok?'That inference stays within the evidence.':'That conclusion goes further than the evidence supports.')+'</strong></p>'+
+    '<div class="reveal-grid">'+
+      '<div class="mini"><strong>What we can say</strong><p>'+r.can+'</p></div>'+
+      '<div class="mini limit"><strong>What we still cannot say</strong><p>'+r.limit+'</p></div>'+
+    '</div>';
+
+  reveal.hidden=false;
+  next.disabled=false;
+}
+
+next.addEventListener('click',()=>{
+  if(i<2){
+    i++;
+    render();
+    document.getElementById('card').scrollIntoView({behavior:'smooth',block:'start'});
+  }else{
+    document.getElementById('p3').className='done';
+    syn.hidden=false;
+    syn.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+});
+
+document.getElementById('reset').addEventListener('click',()=>{
+  i=0;
+  syn.hidden=true;
+  render();
+});
+
+render();
+})();
+</script>
+
+</main></body></html>

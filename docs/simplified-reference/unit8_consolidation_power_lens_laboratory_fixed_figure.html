@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Power Lens Laboratory | Unit 8 Consolidation</title>
+<style>
+:root{
+  --page:#F5F2ED;--card:#FFFFFF;--navy:#1A2744;--muted:#5F6878;--teal:#1C7293;
+  --teal-light:#EAF4FA;--blue:#3D5A80;--blue-light:#EDF1F7;--gold:#D4A853;--gold-light:#F7EEDC;
+  --coral:#C0434F;--coral-light:#F9ECEE;--green:#2F7D69;--green-light:#EAF5F1;--border:#DDD8CF;
+  --shadow:0 12px 34px rgba(26,39,68,.08);--radius:18px
+}
+*{box-sizing:border-box}html{background:var(--page)}
+body{
+  margin:0;color:var(--navy);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  line-height:1.55;
+  background:
+    radial-gradient(circle at 10% 8%,rgba(212,168,83,.14),transparent 22rem),
+    radial-gradient(circle at 90% 18%,rgba(28,114,147,.12),transparent 24rem),
+    var(--page)
+}
+button{font:inherit}[hidden]{display:none!important}
+.workbook{width:min(980px,calc(100% - 32px));margin:0 auto;padding:42px 0 64px}
+.hero{
+  position:relative;overflow:hidden;padding:34px 36px;border-radius:24px;background:var(--card);
+  box-shadow:var(--shadow);border:1px solid rgba(26,39,68,.08)
+}
+.hero:after{
+  content:"";position:absolute;width:190px;height:190px;right:-60px;top:-78px;border-radius:50%;
+  background:var(--teal-light);border:22px solid rgba(212,168,83,.18)
+}
+.eyebrow{
+  position:relative;z-index:1;margin:0 0 10px;color:var(--teal);font-size:13px;font-weight:800;
+  letter-spacing:.09em;text-transform:uppercase
+}
+h1{
+  position:relative;z-index:1;margin:0;max-width:18ch;font-size:clamp(34px,5vw,54px);
+  line-height:1.02;letter-spacing:-.035em
+}
+.hero p:last-child{position:relative;z-index:1;max-width:720px;margin:16px 0 0;color:var(--muted);font-size:18px}
+.progress{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 0 26px}
+.progress div{
+  padding:11px 13px;border-radius:12px;background:rgba(255,255,255,.66);
+  border:1px solid var(--border);color:var(--muted);font-size:13px;font-weight:800;text-align:center
+}
+.progress .active{color:var(--navy);background:var(--teal-light);border-color:rgba(28,114,147,.35)}
+.progress .done{color:var(--navy);background:var(--gold-light);border-color:rgba(212,168,83,.45)}
+.card,.synthesis{
+  margin-top:18px;padding:28px 30px;border-radius:var(--radius);background:var(--card);
+  border:1px solid rgba(26,39,68,.09);box-shadow:0 7px 22px rgba(26,39,68,.05)
+}
+.step-label{
+  display:inline-flex;align-items:center;gap:8px;margin-bottom:10px;color:var(--teal);
+  font-weight:800;font-size:13px;letter-spacing:.05em;text-transform:uppercase
+}
+.step-label:before{content:"";width:9px;height:9px;border-radius:50%;background:var(--gold)}
+h2{margin:0 0 9px;font-size:clamp(24px,3vw,31px);line-height:1.15;letter-spacing:-.02em}
+.lead{max-width:760px;margin:0;color:var(--muted)}
+.casebox{
+  margin-top:18px;padding:22px 24px;border-left:5px solid var(--teal);
+  border-radius:12px;background:#fff;font-size:17px
+}
+.casebox p{margin:0}.casebox p+p{margin-top:8px}
+
+.lens-head{
+  margin-top:18px;padding:18px 20px;border-radius:14px;background:var(--teal-light);
+  border:1px solid rgba(28,114,147,.22)
+}
+.lens-head strong{display:block;font-size:20px;margin-bottom:4px}
+.lens-head span{font-size:14px;color:var(--muted)}
+
+.option-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px}
+.option{
+  padding:18px;text-align:left;color:var(--navy);background:#fff;border:1.5px solid var(--border);
+  border-radius:15px;cursor:pointer;min-height:138px
+}
+.option:hover{border-color:var(--teal)}
+.option.correct{border-color:var(--green);background:var(--green-light)}
+.option.wrong{border-color:var(--gold);background:var(--gold-light)}
+.option strong{display:block;font-size:17px;margin-bottom:6px}
+.option span{display:block;color:var(--muted);font-size:13px;line-height:1.45}
+
+.reveal{
+  margin-top:16px;padding:20px 22px;border-radius:15px;background:#fff;
+  border:1px solid rgba(26,39,68,.09)
+}
+.reveal p{margin:0}.reveal p+p{margin-top:8px}
+.reveal-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.mini{padding:16px;border-radius:12px;background:#FAF8F4;border:1px solid var(--border)}
+.mini strong{display:block;margin-bottom:5px}
+.mini p{margin:0;color:var(--muted);font-size:14px}
+.mini.background{background:var(--gold-light);border-color:rgba(212,168,83,.4)}
+.small{font-size:13px;color:var(--muted)}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.btn{border:0;border-radius:11px;padding:11px 17px;font-weight:800;cursor:pointer}
+.btn-primary{background:var(--teal);color:#fff}
+.btn-secondary{background:#fff;color:var(--navy);border:1px solid var(--border)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+
+.lens-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+.lens{
+  padding:18px;border-radius:15px;background:#fff;border:1px solid var(--border)
+}
+.lens strong{display:block;margin-bottom:6px}
+.lens p{margin:0;color:var(--muted);font-size:14px}
+.diagram-wrap{margin-top:18px;overflow:hidden;border-radius:16px;background:#FBFAF7;border:1px solid var(--border)}
+svg{display:block;width:100%;height:auto}
+.node-title{font:800 16px Inter,system-ui,sans-serif;fill:var(--navy)}
+.node-sub{font:500 12px Inter,system-ui,sans-serif;fill:var(--muted)}
+.takeaway{
+  margin-top:18px;padding:20px 22px;border-left:5px solid var(--gold);
+  border-radius:12px;background:var(--gold-light)
+}
+.takeaway p{margin:0}
+
+@media(max-width:760px){
+  .option-grid,.lens-grid,.reveal-grid{grid-template-columns:1fr}
+  .hero,.card,.synthesis{padding:24px}
+  .workbook{width:min(100% - 20px,980px);padding-top:20px}
+  .progress{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<main class="workbook">
+
+<section class="hero">
+  <p class="eyebrow">Unit 8 · Consolidation</p>
+  <h1>Power Lens Laboratory</h1>
+  <p>Keep the case the same. Change the lens, and different forms of power come into view.</p>
+</section>
+
+<div class="progress">
+  <div id="p1" class="active">1 · Lukes</div>
+  <div id="p2">2 · Foucault</div>
+  <div id="p3">3 · Fricker</div>
+</div>
+
+<section class="card" id="card">
+  <div class="step-label" id="label">Lens 1</div>
+  <h2 id="heading">A community service is being closed</h2>
+  <p class="lead">Use each lens to decide which part of the same case it would bring most sharply into focus.</p>
+
+  <div class="casebox">
+    <p>A local authority plans to close a neighbourhood support centre.</p>
+    <p>Residents challenge the decision, but the closure process also involves meeting agendas, official reports, eligibility rules, monitoring data and public consultation.</p>
+  </div>
+
+  <div class="lens-head" id="lens-head"></div>
+  <div class="option-grid" id="options"></div>
+  <div class="reveal" id="reveal" hidden aria-live="polite"></div>
+
+  <div class="actions">
+    <button class="btn btn-primary" id="next" type="button" disabled>Next lens</button>
+    <button class="btn btn-secondary" id="reset" type="button">Reset</button>
+  </div>
+</section>
+
+<section class="synthesis" id="synthesis" hidden>
+  <div class="step-label">Compare</div>
+  <h2>One case, three views of power</h2>
+  <p class="lead">The lenses overlap, but they do different analytic work. None gives a complete account on its own.</p>
+
+  <div class="lens-grid">
+    <div class="lens">
+      <strong>Lukes</strong>
+      <p>Looks at visible decisions, control of the agenda, and how power can shape what people come to accept as realistic or inevitable.</p>
+    </div>
+    <div class="lens">
+      <strong>Foucault</strong>
+      <p>Looks at routines, surveillance, normalisation and the ways institutions produce categories and subject positions.</p>
+    </div>
+    <div class="lens">
+      <strong>Fricker</strong>
+      <p>Looks at credibility and interpretive resources: who is believed, and whether people can make their experience intelligible to others.</p>
+    </div>
+  </div>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 900 590" role="img" aria-labelledby="t d">
+      <title id="t">Power Lens Laboratory synthesis</title>
+      <desc id="d">The same community service closure is analysed through Lukes, Foucault and Fricker. Each lens highlights a different dimension of power. Collective organisation can challenge agendas, create counter-knowledge and expand agency.</desc>
+
+      <rect x="320" y="28" width="260" height="82" rx="20" fill="#EAF4FA" stroke="#1C7293" stroke-width="2"/>
+      <text x="450" y="61" text-anchor="middle" class="node-title">Same institutional case</text>
+      <text x="450" y="86" text-anchor="middle" class="node-sub">Community service closure</text>
+
+      <path d="M390 110 C330 155 245 175 180 220" fill="none" stroke="#8CA0AD" stroke-width="3"/>
+      <path d="M450 110 L450 220" stroke="#8CA0AD" stroke-width="3"/>
+      <path d="M510 110 C570 155 655 175 720 220" fill="none" stroke="#8CA0AD" stroke-width="3"/>
+
+      <rect x="55" y="230" width="250" height="170" rx="20" fill="#FFFFFF" stroke="#3D5A80" stroke-width="2"/>
+      <text x="180" y="266" text-anchor="middle" class="node-title">Lukes</text>
+      <text x="180" y="298" text-anchor="middle" class="node-sub">Decision</text>
+      <text x="180" y="322" text-anchor="middle" class="node-sub">Agenda</text>
+      <text x="180" y="346" text-anchor="middle" class="node-sub">What comes to seem possible</text>
+
+      <rect x="325" y="230" width="250" height="170" rx="20" fill="#FFFFFF" stroke="#D4A853" stroke-width="2"/>
+      <text x="450" y="266" text-anchor="middle" class="node-title">Foucault</text>
+      <text x="450" y="298" text-anchor="middle" class="node-sub">Surveillance</text>
+      <text x="450" y="322" text-anchor="middle" class="node-sub">Normalisation</text>
+      <text x="450" y="346" text-anchor="middle" class="node-sub">How subjects are produced</text>
+
+      <rect x="595" y="230" width="250" height="170" rx="20" fill="#FFFFFF" stroke="#C0434F" stroke-width="2"/>
+      <text x="720" y="266" text-anchor="middle" class="node-title">Fricker</text>
+      <text x="720" y="298" text-anchor="middle" class="node-sub">Credibility</text>
+      <text x="720" y="322" text-anchor="middle" class="node-sub">Interpretive resources</text>
+      <text x="720" y="346" text-anchor="middle" class="node-sub">Whose knowledge counts</text>
+
+      <path d="M180 400 C240 455 315 470 365 485" fill="none" stroke="#8CA0AD" stroke-width="2" stroke-dasharray="5 5"/>
+      <path d="M450 400 L450 475" stroke="#8CA0AD" stroke-width="2" stroke-dasharray="5 5"/>
+      <path d="M720 400 C660 455 585 470 535 485" fill="none" stroke="#8CA0AD" stroke-width="2" stroke-dasharray="5 5"/>
+
+      <rect x="230" y="476" width="440" height="90" rx="20" fill="#EAF5F1" stroke="#2F7D69" stroke-width="2"/>
+      <text x="450" y="510" text-anchor="middle" class="node-title">Collective agency</text>
+      <text x="450" y="534" text-anchor="middle" class="node-sub">Challenge agendas · create counter-knowledge</text>
+      <text x="450" y="554" text-anchor="middle" class="node-sub">Widen possibilities</text>
+    </svg>
+  </div>
+
+  <div class="takeaway">
+    <p><strong>Key idea:</strong> A power lens changes what we treat as evidence. Looking across lenses helps us see power in <strong>decisions, institutional practices, credibility and the boundaries of what people come to see as possible</strong>. Collective organisation can challenge those arrangements rather than treating powerlessness as an individual deficit.</p>
+  </div>
+</section>
+
+<script>
+(function(){
+const rounds = [
+  {
+    name:'Lukes',
+    intro:'Ask how power operates through decisions, agendas, and what comes to seem realistic or inevitable.',
+    correct:'Agenda and possibility',
+    options:[
+      ['Formal vote only','Who has the legal authority to approve the closure?'],
+      ['Agenda and possibility','Which alternatives reach the agenda, and why does “there is no alternative” start to sound natural?'],
+      ['Credibility alone','Which speakers are believed or dismissed when they describe the harm?']
+    ],
+    reveal:'Lukes broadens power beyond the visible decision. The vote matters, but so do agenda control and the possibility that power shapes what people come to see as realistic or worth contesting.',
+    background:'This lens says less about the detailed everyday practices through which people are monitored, classified and normalised.'
+  },
+  {
+    name:'Foucault',
+    intro:'Ask how power works through routine practices, surveillance, categories and standards of normality.',
+    correct:'Monitoring and normalisation',
+    options:[
+      ['Monitoring and normalisation','Usage data, eligibility checks and “engagement” categories define who counts as a legitimate service user.'],
+      ['Formal decision power','The central issue is simply which councillors voted for the closure.'],
+      ['Testimonial credibility','The central issue is whether residents are believed when they speak.']
+    ],
+    reveal:'A Foucauldian lens makes mundane practices important: forms, monitoring, categories and standards can shape how people are seen and how they come to understand themselves.',
+    background:'It is less focused on identifying one actor who “possesses” power or on judging whose testimony is unjustly discounted.'
+  },
+  {
+    name:'Fricker',
+    intro:'Ask whose knowledge is treated as credible and whether people have the interpretive resources to make their experience understood.',
+    correct:'Credibility and intelligibility',
+    options:[
+      ['Credibility and intelligibility','Residents’ accounts are dismissed as anecdotal, while some struggle to name the kind of harm the closure will create.'],
+      ['Surveillance and discipline','The key issue is how eligibility forms encourage people to monitor themselves.'],
+      ['Agenda control','The key issue is which proposal reaches the formal meeting agenda.']
+    ],
+    reveal:'Fricker directs attention to epistemic injustice: people can be wronged specifically as knowers when their testimony receives less credibility or when shared concepts are inadequate for making an experience intelligible.',
+    background:'This lens does not by itself provide a full theory of institutional decision-making, surveillance or the wider production of norms.'
+  }
+];
+
+let i=0, answered=false;
+const lensHead=document.getElementById('lens-head');
+const options=document.getElementById('options');
+const reveal=document.getElementById('reveal');
+const next=document.getElementById('next');
+const syn=document.getElementById('synthesis');
+
+function render(){
+  answered=false;
+  const r=rounds[i];
+  document.getElementById('label').textContent='Lens '+(i+1);
+  lensHead.innerHTML='<strong>'+r.name+'</strong><span>'+r.intro+'</span>';
+  options.innerHTML='';
+  reveal.hidden=true;
+  next.disabled=true;
+  next.textContent=i<2?'Next lens':'Compare the lenses';
+
+  r.options.forEach(([title,short])=>{
+    const b=document.createElement('button');
+    b.className='option';
+    b.type='button';
+    b.dataset.key=title;
+    b.innerHTML='<strong>'+title+'</strong><span>'+short+'</span>';
+    b.addEventListener('click',()=>choose(b,title));
+    options.appendChild(b);
+  });
+
+  for(let n=0;n<3;n++){
+    document.getElementById('p'+(n+1)).className=n<i?'done':n===i?'active':'';
+  }
+}
+
+function choose(button,key){
+  if(answered)return;
+  answered=true;
+  const r=rounds[i];
+  const ok=key===r.correct;
+
+  options.querySelectorAll('.option').forEach(b=>{
+    b.disabled=true;
+    if(b.dataset.key===r.correct)b.classList.add('correct');
+    if(b===button && !ok)b.classList.add('wrong');
+  });
+
+  reveal.innerHTML=
+    '<p><strong>'+(ok?'Best fit for this lens.':'Another feature is more central to this lens.')+'</strong></p>'+
+    '<div class="reveal-grid">'+
+      '<div class="mini"><strong>What it brings into focus</strong><p>'+r.reveal+'</p></div>'+
+      '<div class="mini background"><strong>What it backgrounds</strong><p>'+r.background+'</p></div>'+
+    '</div>';
+
+  reveal.hidden=false;
+  next.disabled=false;
+}
+
+next.addEventListener('click',()=>{
+  if(i<2){
+    i++;
+    render();
+    document.getElementById('card').scrollIntoView({behavior:'smooth',block:'start'});
+  }else{
+    document.getElementById('p3').className='done';
+    syn.hidden=false;
+    syn.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+});
+
+document.getElementById('reset').addEventListener('click',()=>{
+  i=0;
+  syn.hidden=true;
+  render();
+});
+
+render();
+})();
+</script>
+
+</main>
+</body>
+</html>

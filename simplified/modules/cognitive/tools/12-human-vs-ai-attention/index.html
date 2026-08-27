@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Two Things Called Attention | Simplified Edition</title>
+<meta name="description" content="Work out what an ambiguous pronoun refers to, then work out by hand what a language model does with the same sentence. The two are both called attention and they are not the same thing.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231C7293'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../../../assets/css/simplified.css">
+<link rel="stylesheet" href="../../../../assets/css/patterns.css">
+<script src="../../../../assets/js/workbook.js" defer></script>
+<script src="activity.js" defer></script>
+<link rel="stylesheet" href="../../../../assets/css/edition.css">
+<script src="../../../../assets/js/edition-nav.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to the activity</a>
+
+<main class="workbook workbook--compact" id="main" data-workbook
+      data-reset-message="Cleared. Back to the sentence, with nothing kept.">
+
+  <section class="hero">
+    <p class="eyebrow">Cognitive Psychology &middot; Simplified</p>
+    <h1>Two Things Called Attention</h1>
+    <p class="hero__lead">You will do it one way. Then you will do by hand
+      what a language model does, and see how little the two have in common.</p>
+  </section>
+
+  <nav aria-label="Activity progress">
+    <ol class="progress" data-workbook-progress
+        style="--progress-columns: 3; --progress-columns-narrow: 1">
+      <li class="progress__step">1 &middot; You do it</li>
+      <li class="progress__step">2 &middot; The model does it</li>
+      <li class="progress__step">3 &middot; Which is which</li>
+    </ol>
+  </nav>
+
+  <section class="card" id="stage-one" aria-labelledby="one-heading">
+    <p class="step-label">You do it</p>
+    <h2 id="one-heading">What does "it" refer to?</h2>
+
+    <div class="casebox">
+      <p><strong>The trophy would not fit in the suitcase because it was too
+        big.</strong></p>
+    </div>
+
+    <p class="lead">One word in that sentence is doing a lot of work. Which
+      thing was too big?</p>
+
+    <fieldset class="option-grid" id="referent" style="--option-columns: 2">
+      <legend class="visually-hidden">What does the word it refer to?</legend>
+    </fieldset>
+
+    <div class="notice" id="one-verdict" hidden data-state="chosen">
+      <p id="one-verdict-text"></p>
+    </div>
+
+    <div class="actions" id="one-actions" hidden>
+      <button class="btn btn-primary" id="to-two" type="button">Now do it the way a model does</button>
+    </div>
+  </section>
+
+  <section class="card" id="stage-two" hidden aria-labelledby="two-heading">
+    <p class="step-label">The model does it</p>
+    <h2 id="two-heading">Work the weights out yourself</h2>
+    <p class="lead">A language model has no idea what a trophy is. When it
+      reaches the word <strong>it</strong>, what it does is compare that word
+      with every other word in the sentence and produce a score for each. Here
+      are the scores for this sentence. Your job is to turn them into weights.</p>
+
+    <div class="table-scroll">
+      <table class="data-table">
+        <caption id="score-caption">Scores for the word "it" against every word in the sentence.</caption>
+        <thead>
+          <tr>
+            <th scope="col">Word</th>
+            <th scope="col">Score</th>
+            <th scope="col">Weight</th>
+          </tr>
+        </thead>
+        <tbody id="score-body"></tbody>
+      </table>
+    </div>
+
+    <p class="lead" id="two-prompt">First, add the scores up. What do they come
+      to?</p>
+
+    <fieldset class="option-grid" id="total-options" style="--option-columns: 4">
+      <legend class="visually-hidden">What do the scores add up to?</legend>
+    </fieldset>
+
+    <div id="weights-step" hidden>
+      <p class="lead">Now every weight is that word's score divided by the
+        total, so they add up to one. Here they are.</p>
+      <div class="plot" id="chart-wrap">
+        <svg id="chart" role="img" aria-labelledby="chart-title chart-desc">
+          <title id="chart-title">The weight given to each word</title>
+          <desc id="chart-desc"></desc>
+        </svg>
+        <p class="legend">This is what "attention" means inside the model: a
+          set of numbers, one per word, adding up to one.</p>
+      </div>
+    </div>
+
+    <div class="notice" id="two-verdict" hidden data-state="chosen">
+      <p id="two-verdict-text"></p>
+    </div>
+
+    <div class="actions" id="two-actions" hidden>
+      <button class="btn btn-primary" id="to-three" type="button">Now sort the claims</button>
+    </div>
+  </section>
+
+  <section class="card" id="stage-three" hidden aria-labelledby="three-heading">
+    <p class="step-label">Which is which</p>
+    <h2 id="three-heading">Five claims. Who does each one apply to?</h2>
+    <p class="lead">You have now done both. For each claim, say whether it is
+      true of what you did, of what the model does, of both, or of neither.</p>
+    <div id="claims"></div>
+  </section>
+
+  <div class="actions">
+    <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+  </div>
+
+  <p class="workbook-status" data-workbook-status role="status" aria-live="polite"></p>
+
+  <section class="synthesis" id="synthesis" hidden aria-labelledby="result-heading">
+    <p class="step-label">What this shows</p>
+    <h2 id="result-heading">One word, two mechanisms</h2>
+    <p class="lead" id="result-lead"></p>
+
+    <div class="takeaway">
+      <p><strong>Key idea:</strong> The thing you did and the thing you
+        computed share a name and very little else. Yours used what a trophy is
+        and what a suitcase is for, which is knowledge about objects in the
+        world; the model's produced a set of numbers over word positions by
+        comparing each word with the word <em>it</em>, and those numbers add up
+        to one because they were divided by their total, not because anything
+        was understood. Both can arrive at the right answer and both can be
+        wrong. The reason this matters is that attention weights are often
+        shown as if they explained a model's answer, and a distribution over
+        words is a description of what was weighted rather than a reason for
+        anything. Borrowing a word from psychology does not import the theory
+        that came with it.</p>
+    </div>
+
+    <div class="notice notice--caution">
+      <p>Three things to keep in view. The scores here are invented for a
+        five-word illustration; a real model works over many more tokens, uses
+        an exponential before normalising rather than a plain division, and
+        runs many of these weightings in parallel at every layer, so what you
+        computed is the shape of the operation rather than the operation
+        itself. Whether attention weights explain a model's output is genuinely
+        disputed in the research literature and this activity does not settle
+        it; what it does show is that a weight distribution is not by itself an
+        explanation. And nothing here says a model cannot resolve this
+        sentence: current models usually do. The claim is about the mechanism,
+        not about the score.</p>
+    </div>
+
+    <p class="small" style="margin-top: 1.125rem">The longer version adds a
+      second sentence where the resolution flips, more of the surrounding
+      architecture, and a longer treatment of what interpretability claims can
+      and cannot support. It is at
+      <a href="../../../../../modules/cognitive/tools/12-human-vs-ai-attention/index.html">Human
+      Attention versus AI Attention in the main collection</a>.</p>
+  </section>
+</main>
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Who Gets to Define the Story? | Unit 6 Consolidation</title>
+<style>
+:root{
+  --page:#F5F2ED;--card:#FFFFFF;--navy:#1A2744;--muted:#5F6878;--teal:#1C7293;
+  --teal-light:#EAF4FA;--blue:#3D5A80;--blue-light:#EDF1F7;--gold:#D4A853;--gold-light:#F7EEDC;
+  --coral:#C0434F;--coral-light:#F9ECEE;--green:#2F7D69;--green-light:#EAF5F1;--border:#DDD8CF;
+  --shadow:0 12px 34px rgba(26,39,68,.08);--radius:18px
+}
+*{box-sizing:border-box}html{background:var(--page)}
+body{margin:0;color:var(--navy);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55;
+background:radial-gradient(circle at 10% 8%,rgba(212,168,83,.14),transparent 22rem),
+radial-gradient(circle at 90% 18%,rgba(28,114,147,.12),transparent 24rem),var(--page)}
+button{font:inherit}[hidden]{display:none!important}
+.workbook{width:min(980px,calc(100% - 32px));margin:0 auto;padding:42px 0 64px}
+.hero{position:relative;overflow:hidden;padding:34px 36px;border-radius:24px;background:var(--card);box-shadow:var(--shadow);border:1px solid rgba(26,39,68,.08)}
+.hero:after{content:"";position:absolute;width:190px;height:190px;right:-60px;top:-78px;border-radius:50%;background:var(--teal-light);border:22px solid rgba(212,168,83,.18)}
+.eyebrow{position:relative;z-index:1;margin:0 0 10px;color:var(--teal);font-size:13px;font-weight:800;letter-spacing:.09em;text-transform:uppercase}
+h1{position:relative;z-index:1;margin:0;max-width:18ch;font-size:clamp(34px,5vw,54px);line-height:1.02;letter-spacing:-.035em}
+.hero p:last-child{position:relative;z-index:1;max-width:720px;margin:16px 0 0;color:var(--muted);font-size:18px}
+.progress{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 0 26px}
+.progress div{padding:11px 13px;border-radius:12px;background:rgba(255,255,255,.66);border:1px solid var(--border);color:var(--muted);font-size:13px;font-weight:800;text-align:center}
+.progress .active{color:var(--navy);background:var(--teal-light);border-color:rgba(28,114,147,.35)}
+.progress .done{color:var(--navy);background:var(--gold-light);border-color:rgba(212,168,83,.45)}
+.card,.synthesis{margin-top:18px;padding:28px 30px;border-radius:var(--radius);background:var(--card);border:1px solid rgba(26,39,68,.09);box-shadow:0 7px 22px rgba(26,39,68,.05)}
+.step-label{display:inline-flex;align-items:center;gap:8px;margin-bottom:10px;color:var(--teal);font-weight:800;font-size:13px;letter-spacing:.05em;text-transform:uppercase}
+.step-label:before{content:"";width:9px;height:9px;border-radius:50%;background:var(--gold)}
+h2{margin:0 0 9px;font-size:clamp(24px,3vw,31px);line-height:1.15;letter-spacing:-.02em}.lead{max-width:760px;margin:0;color:var(--muted)}
+.casebox{margin-top:18px;padding:22px 24px;border-left:5px solid var(--teal);border-radius:12px;background:#fff;font-size:17px}.casebox p{margin:0}.casebox p+p{margin-top:8px}
+.option-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px}
+.option{padding:18px;text-align:left;color:var(--navy);background:#fff;border:1.5px solid var(--border);border-radius:15px;cursor:pointer;min-height:125px}
+.option:hover{border-color:var(--teal)}.option.active{border-color:var(--teal);background:var(--teal-light);box-shadow:inset 0 0 0 1px var(--teal)}
+.option strong{display:block;font-size:17px;margin-bottom:6px}.option span{display:block;color:var(--muted);font-size:13px;line-height:1.45}
+.reveal{margin-top:16px;padding:20px 22px;border-radius:15px;background:#fff;border:1px solid rgba(26,39,68,.09)}.reveal p{margin:0}.reveal p+p{margin-top:8px}.small{font-size:13px;color:var(--muted)}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.btn{border:0;border-radius:11px;padding:11px 17px;font-weight:800;cursor:pointer}.btn-primary{background:var(--teal);color:#fff}.btn-secondary{background:#fff;color:var(--navy);border:1px solid var(--border)}.btn:disabled{opacity:.45;cursor:not-allowed}
+.diagram-wrap{margin-top:18px;overflow:hidden;border-radius:16px;background:#FBFAF7;border:1px solid var(--border)}
+svg{display:block;width:100%;height:auto}.node-title{font:800 16px Inter,system-ui,sans-serif;fill:var(--navy)}.node-sub{font:500 12px Inter,system-ui,sans-serif;fill:var(--muted)}
+.takeaway{margin-top:18px;padding:20px 22px;border-left:5px solid var(--gold);border-radius:12px;background:var(--gold-light)}.takeaway p{margin:0}
+@media(max-width:760px){.option-grid{grid-template-columns:1fr}.hero,.card,.synthesis{padding:24px}.workbook{width:min(100% - 20px,980px);padding-top:20px}.progress{grid-template-columns:1fr}}
+
+.voice-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}.voice{padding:18px;border-radius:15px;background:#fff;border:1px solid var(--border)}.voice strong{display:block;margin-bottom:7px}.voice p{margin:0;color:var(--muted);font-size:14px}
+.authority{margin-top:15px;padding:18px;border-radius:14px;background:var(--gold-light);border:1px solid rgba(212,168,83,.4)}.authority p{margin:0}
+
+.continuation{margin-top:14px;padding:18px;border-radius:14px;background:#FAF8F4;border:1px solid var(--border)}
+.continuation strong{display:block;margin-bottom:6px}
+.cascade{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:12px}
+.cascade-step{padding:9px 11px;border-radius:10px;background:#fff;border:1px solid var(--border);font-size:13px;font-weight:700}
+.cascade-arrow{color:var(--coral);font-weight:900}
+@media(max-width:760px){.voice-grid{grid-template-columns:1fr}}
+
+</style></head>
+<body><main class="workbook">
+<section class="hero"><p class="eyebrow">Unit 6 · Consolidation</p><h1>Who Gets to Define the Story?</h1>
+<p>The same situation can support several accounts. But those accounts do not always have equal power.</p></section>
+
+<div class="progress"><div id="p1" class="active">1 · Person</div><div id="p2">2 · Peers</div><div id="p3">3 · Institution</div></div>
+
+<section class="card" id="card">
+<div class="step-label" id="label">Step 1</div><h2 id="heading">Aisha stops attending a weekly seminar</h2>
+<p class="lead">Move through three accounts of the same situation. Notice not only what each account says, but what it could do.</p>
+<div class="casebox"><p>Aisha has missed four seminars. She continues to submit work and regularly uses the online materials.</p></div>
+
+<div class="voice-grid" id="voices">
+  <div class="voice" id="v1"><strong>Aisha</strong><p>“I’m working late shifts most weeks. I keep up with the materials, but sometimes I genuinely cannot get there.”</p></div>
+  <div class="voice" id="v2" hidden><strong>Peers</strong><p>“She’s hardly ever there now. It feels like she isn’t really part of the group anymore.”</p></div>
+  <div class="voice" id="v3" hidden><strong>Attendance record</strong><p>“Persistent non-attendance: student engagement concern.”</p></div>
+</div>
+
+<div class="continuation" id="continuation" hidden></div>
+<div class="authority" id="authority" hidden></div>
+<div class="actions"><button class="btn btn-primary" id="next" type="button">Next account</button><button class="btn btn-secondary" id="reset" type="button">Reset</button></div>
+</section>
+
+<section class="synthesis" id="synthesis" hidden>
+<div class="step-label">Compare</div><h2>Different accounts, unequal authority</h2>
+<p class="lead">All three descriptions refer to the same attendance pattern, but they construct Aisha differently, invite different responses, and do not have equal institutional weight.</p>
+
+<div class="diagram-wrap">
+<svg viewBox="0 0 900 520" role="img" aria-labelledby="t d"><title id="t">Identity, discourse and authority diagram</title><desc id="d">The same person is described through self-account, peer account and institutional account. These create different identities and the institutional account has greater power to shape formal consequences.</desc>
+<rect x="330" y="28" width="240" height="78" rx="20" fill="#EAF4FA" stroke="#1C7293" stroke-width="2"/><text x="450" y="60" text-anchor="middle" class="node-title">Same attendance pattern</text><text x="450" y="84" text-anchor="middle" class="node-sub">Four missed seminars</text>
+<path d="M385 106 C325 150 250 165 180 220" fill="none" stroke="#8CA0AD" stroke-width="3"/><path d="M450 106 L450 220" stroke="#8CA0AD" stroke-width="3"/><path d="M515 106 C575 150 650 165 720 220" fill="none" stroke="#8CA0AD" stroke-width="3"/>
+<rect x="60" y="230" width="240" height="135" rx="20" fill="#fff" stroke="#3D5A80" stroke-width="2"/><text x="180" y="266" text-anchor="middle" class="node-title">Self-account</text><text x="180" y="296" text-anchor="middle" class="node-sub">Working student managing constraints</text><text x="180" y="325" text-anchor="middle" class="node-sub">Identity: committed but constrained</text>
+<rect x="330" y="230" width="240" height="135" rx="20" fill="#fff" stroke="#D4A853" stroke-width="2"/><text x="450" y="266" text-anchor="middle" class="node-title">Peer account</text><text x="450" y="296" text-anchor="middle" class="node-sub">Absent from shared group life</text><text x="450" y="325" text-anchor="middle" class="node-sub">Identity: peripheral member</text>
+<rect x="600" y="230" width="240" height="135" rx="20" fill="#fff" stroke="#C0434F" stroke-width="2"/><text x="720" y="266" text-anchor="middle" class="node-title">Institutional account</text><text x="720" y="296" text-anchor="middle" class="node-sub">“Engagement concern”</text><text x="720" y="325" text-anchor="middle" class="node-sub">Identity: student at risk / problem case</text>
+
+<path d="M720 365 L720 430" stroke="#C0434F" stroke-width="3"/>
+<rect x="590" y="430" width="260" height="62" rx="16" fill="#F9ECEE" stroke="#C0434F"/>
+<text x="720" y="455" text-anchor="middle" class="node-title">Greater formal authority</text>
+<text x="720" y="477" text-anchor="middle" class="node-sub">Can trigger monitoring or intervention</text>
+</svg></div>
+
+<div class="takeaway"><p><strong>Key idea:</strong> Critical approaches to identity ask how people are <strong>positioned through language</strong>, whose account is treated as authoritative, and how those descriptions can shape responses, opportunities and constraints that may then reinforce the original identity.</p></div>
+</section>
+
+<script>
+(function(){
+let account=1;
+let continuationShown=false;
+
+const next=document.getElementById('next');
+const syn=document.getElementById('synthesis');
+const authority=document.getElementById('authority');
+const continuation=document.getElementById('continuation');
+
+const stages = {
+  1:{
+    name:'Aisha',
+    title:'Aisha’s own account',
+    body:'If Aisha’s explanation is taken seriously, the likely response may be to look at the practical constraint rather than treating absence as lack of commitment.',
+    cascade:['“Committed but constrained”','Flexible response','Access becomes easier','Attendance may improve'],
+    note:'This account does not guarantee a supportive response. It simply makes a different course of action thinkable.'
+  },
+  2:{
+    name:'Peers',
+    title:'Peers’ account',
+    body:'If peers increasingly see Aisha as “not really part of the group”, they may involve her less in informal conversations, group planning or invitations.',
+    cascade:['“Peripheral member”','Fewer invitations','Weaker sense of belonging','Further withdrawal becomes more likely'],
+    note:'The social response can therefore help produce the distance that the original peer account seemed merely to describe.'
+  },
+  3:{
+    name:'Institution',
+    title:'Institutional account',
+    body:'If “engagement concern” becomes the formal record, it may trigger monitoring, warning procedures or other interventions that change how Aisha is treated.',
+    cascade:['“Engagement concern”','Formal monitoring','Relationship becomes more supervisory','Future absence reads as further evidence'],
+    note:'Because this account is recorded and institutionally authorised, its consequences can be more durable than the other descriptions.'
+  }
+};
+
+function updateProgress(){
+  for(let n=1;n<=3;n++){
+    document.getElementById('p'+n).className = n<account ? 'done' : n===account ? 'active' : '';
+  }
+}
+
+function showContinuation(){
+  const s=stages[account];
+  continuation.innerHTML=
+    '<strong>'+s.title+': what could happen next?</strong>'+
+    '<p class="small">'+s.body+'</p>'+
+    '<div class="cascade">'+
+      s.cascade.map((x,i)=>(i?'<span class="cascade-arrow">→</span>':'')+
+      '<span class="cascade-step">'+x+'</span>').join('')+
+    '</div>'+
+    '<p class="small" style="margin-top:10px">'+s.note+'</p>';
+  continuation.hidden=false;
+
+  if(account===1){
+    authority.hidden=true;
+  } else if(account===2){
+    authority.hidden=false;
+    authority.innerHTML='<p><strong>Notice:</strong> the peer account changes what Aisha’s absence means. It shifts from a practical constraint to a question of belonging and group membership.</p>';
+  } else {
+    authority.hidden=false;
+    authority.innerHTML='<p><strong>Now consider authority:</strong> the attendance record is brief, but because it is an institutional category it can carry more formal consequences than either Aisha’s or her peers’ account.</p>';
+  }
+
+  continuationShown=true;
+  next.textContent = account<3 ? 'Next account' : 'Compare the accounts';
+}
+
+function moveToNextAccount(){
+  continuation.hidden=true;
+  authority.hidden=true;
+  continuationShown=false;
+
+  account++;
+
+  if(account===2){
+    document.getElementById('v2').hidden=false;
+    document.getElementById('label').textContent='Step 2';
+  } else if(account===3){
+    document.getElementById('v3').hidden=false;
+    document.getElementById('label').textContent='Step 3';
+  }
+
+  next.textContent='What happens next?';
+  updateProgress();
+}
+
+next.addEventListener('click',()=>{
+  if(!continuationShown){
+    showContinuation();
+    return;
+  }
+
+  if(account<3){
+    moveToNextAccount();
+  } else {
+    document.getElementById('p3').className='done';
+    syn.hidden=false;
+    syn.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+});
+
+document.getElementById('reset').addEventListener('click',()=>{
+  account=1;
+  continuationShown=false;
+  document.getElementById('v2').hidden=true;
+  document.getElementById('v3').hidden=true;
+  continuation.hidden=true;
+  authority.hidden=true;
+  syn.hidden=true;
+  document.getElementById('label').textContent='Step 1';
+  next.textContent='What happens next?';
+  next.disabled=false;
+  updateProgress();
+});
+
+next.textContent='What happens next?';
+updateProgress();
+})();
+</script></main></body></html>

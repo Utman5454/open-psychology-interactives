@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Equally Accurate, or Equally Fast | Simplified Edition</title>
+<meta name="description" content="Two fictional people on the same task. One is better at it at every speed, and by moving one dial you can make them look identical on accuracy or identical on time.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231C7293'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../../../assets/css/simplified.css">
+<link rel="stylesheet" href="../../../../assets/css/patterns.css">
+<script src="../../../../assets/js/workbook.js" defer></script>
+<script src="activity.js" defer></script>
+<link rel="stylesheet" href="../../../../assets/css/edition.css">
+<script src="../../../../assets/js/edition-nav.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to the activity</a>
+
+<main class="workbook workbook--compact" id="main" data-workbook
+      data-reset-message="Cleared. Back to the two who are equally accurate.">
+
+  <section class="hero">
+    <p class="eyebrow">Personality &amp; Individual Differences &middot; Simplified</p>
+    <h1>Equally Accurate, or Equally Fast</h1>
+    <p class="hero__lead">One dial, two outcomes, and a single measurement that
+      cannot tell you which of them you are looking at.</p>
+  </section>
+
+  <section class="card" id="card-note" aria-labelledby="note-heading">
+    <h2 id="note-heading" class="visually-hidden">Before you start</h2>
+    <div class="notice notice--caution">
+      <p><strong>Nothing here is timed and nothing measures you.</strong> The
+        two people are fictional and their behaviour is produced by a formula.
+        Nothing on this page assesses the reader, and nothing it shows is about
+        intelligence, impulsivity, attention or anything clinical.</p>
+    </div>
+  </section>
+
+  <section class="card" id="card-predict" aria-labelledby="predict-heading">
+    <p class="step-label">Step 1 of 2</p>
+    <h2 id="predict-heading">First, a prediction</h2>
+    <p class="lead">Two people do the same simple discrimination task, deciding
+      over and over whether a row of arrows points mostly left or mostly right.
+      They turn out to be equally accurate, and one of them is consistently
+      faster. What can you conclude about the faster one?</p>
+
+    <div class="option-grid" style="--option-columns: 3" id="options" data-workbook-choices>
+      <button class="option" type="button" data-choice="better">
+        <strong>They are better at the task</strong>
+        <span>Same accuracy in less time is better performance.</span>
+      </button>
+      <button class="option" type="button" data-choice="hasty">
+        <strong>They are being less careful</strong>
+        <span>Speed is bought with caution, so the faster one is taking more
+          risk.</span>
+      </button>
+      <button class="option" type="button" data-choice="nothing">
+        <strong>Nothing yet</strong>
+        <span>Speed and accuracy have to be read together.</span>
+      </button>
+    </div>
+
+    <div class="notice" id="verdict" hidden data-state="chosen">
+      <p id="verdict-text"></p>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="reveal" type="button" disabled>Open the simulator</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+  </section>
+
+  <section class="card" id="card-sim" hidden aria-labelledby="sim-heading">
+    <p class="step-label">Step 2 of 2</p>
+    <h2 id="sim-heading">The two of them, and one dial</h2>
+    <p class="lead">Here are the two people from the prediction. Neither of
+      them changes from here on. The only thing you control is how much
+      evidence the second one waits for before answering.</p>
+
+    <details class="disclosure" id="key-terms">
+      <summary>Key terms</summary>
+      <div class="disclosure__body">
+        <dl class="glossary">
+          <dt>Response caution</dt>
+          <dd>How much evidence somebody waits for before committing to an
+            answer. Raising it raises accuracy and raises time together, which
+            is why one outcome measure cannot be read on its own.</dd>
+          <dt>Speed and accuracy together</dt>
+          <dd>Plotted on the same axes, a person's possible performances form a
+            curve. Where they sit on their curve is a strategy. Which curve
+            they are on is the thing a test is usually trying to find out.</dd>
+          <dt>Discrimination on this task</dt>
+          <dd>How clearly this particular task's evidence arrives for this
+            particular person. It is a property of a person meeting a task, not
+            a general ability, and it is not intelligence.</dd>
+        </dl>
+      </div>
+    </details>
+
+    <fieldset class="controls" style="--controls-columns: 1">
+      <legend class="visually-hidden">The second person's caution</legend>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="caution">How much evidence the
+            second person waits for</label>
+          <output class="control__value" for="caution">1.65</output>
+        </div>
+        <input type="range" id="caution" min="0.50" max="2.50" step="0.05" value="1.65">
+        <p class="control__hint">The first person's caution is fixed at 1.20
+          throughout. Nothing about either person's skill at the task changes at
+          any point.</p>
+      </div>
+    </fieldset>
+
+    <ul class="results-grid" style="--results-columns: 3" id="readout"></ul>
+
+    <div class="plot">
+      <svg id="chart" role="img" aria-labelledby="chart-title chart-desc">
+        <title id="chart-title">Accuracy against time for both people, across every level of caution</title>
+        <desc id="chart-desc"></desc>
+      </svg>
+      <p class="legend">Each line is everything one person could produce on
+        this task, as their caution runs from low to high. The marked points
+        are where the two of them are now. A line lying above and to the left
+        of another means better performance at every speed.</p>
+    </div>
+
+    <p class="small" id="sentence"></p>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="match" type="button">Now make them equally fast instead</button>
+      <button class="btn btn-secondary" id="explain" type="button" disabled>What this shows</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+
+    <div class="notice" id="note" hidden data-state="chosen">
+      <p id="note-text"></p>
+    </div>
+  </section>
+
+  <p class="workbook-status" data-workbook-status role="status" aria-live="polite"></p>
+
+  <section class="synthesis" id="synthesis" hidden aria-labelledby="result-heading">
+    <p class="step-label">What this shows</p>
+    <h2 id="result-heading">The curve is the person. A point on it is a decision.</h2>
+    <p class="lead" id="result-lead"></p>
+
+    <div class="takeaway">
+      <p><strong>Key idea:</strong> The two lines never cross. At every speed
+        the first person is more accurate, and at every accuracy they are
+        faster, so on this task they are better at it in the only sense that
+        does not depend on strategy. And yet by moving one dial, which changes
+        nothing about either of them, you can make the pair look identical on
+        accuracy or identical on time. That is what makes a single outcome
+        measure uninterpretable: an accuracy score does not say whether
+        somebody found the task hard or was being careful, and a time does not
+        say whether they found it easy or were being hasty. Only both together
+        locate a person on their curve, and only knowing where they are on it
+        tells you which curve they are on. The practical version is that a test
+        reporting one number, whether that number is a score or a time, has
+        already thrown away what it would take to interpret it.</p>
+    </div>
+
+    <div class="notice notice--caution">
+      <p>Two fictional people whose behaviour is produced by a formula, chosen
+        so that one clearly outperforms the other; real pairs are frequently
+        not orderable at all, with curves that cross so that who looks better
+        genuinely depends on the speed you compare them at. Three cautions.
+        What differs between these two is how clearly this task's evidence
+        arrives for each of them, which is a property of a person meeting a
+        particular task rather than a general ability, and it is not
+        intelligence. Caution is treated here as a dial somebody sets, whereas
+        in practice it responds to instructions, to fatigue, to what is at
+        stake, and to what a person has understood the task to be asking for.
+        And the model has no error in it at all: real data give an estimate of
+        where somebody sits with uncertainty around it, not a point.</p>
+    </div>
+
+    <p class="small" style="margin-top: 1.125rem">The longer version includes
+      the discrimination task itself, which you perform, along with practice
+      trials, three contrasting fictional strategies and a difficulty control.
+      It is at
+      <a href="../../../../../modules/personality-individual-differences/tools/36-speed-accuracy-trade-off/index.html">Speed-Accuracy
+      Trade-Off in the main collection</a>.</p>
+  </section>
+</main>
+</body>
+</html>

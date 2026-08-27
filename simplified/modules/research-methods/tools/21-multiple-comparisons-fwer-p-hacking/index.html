@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>The Garden of Forking Paths | Simplified Edition</title>
+<meta name="description" content="One dataset with no group difference in it, four defensible analysis choices, and 72 complete analyses. Walk a few paths, then see every path you did not take.">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231C7293'/%3E%3C/svg%3E">
+
+<link rel="stylesheet" href="../../../../assets/css/simplified.css">
+<link rel="stylesheet" href="../../../../assets/css/patterns.css">
+<script src="../../../../assets/js/workbook.js" defer></script>
+<script src="activity.js" defer></script>
+<link rel="stylesheet" href="../../../../assets/css/edition.css">
+<script src="../../../../assets/js/edition-nav.js" defer></script>
+</head>
+
+<body>
+
+<a class="skip-link" href="#main">Skip to the activity</a>
+
+<main class="workbook workbook--compact" id="main" data-workbook
+      data-reset-message="Cleared. No analyses run, back to the first set of choices.">
+
+  <section class="hero">
+    <p class="eyebrow">Research Methods &middot; Simplified</p>
+    <h1>The Garden of Forking Paths</h1>
+    <p class="hero__lead">One dataset, several perfectly defensible choices,
+      and a p-value at the end of each.</p>
+  </section>
+
+  <section class="card" id="lab" aria-labelledby="lab-heading">
+
+    <p class="step-label">The analysis</p>
+    <h2 id="lab-heading">Your study, and the decisions nobody wrote down</h2>
+
+    <div class="casebox">
+      <p>Ninety students were assigned to a new revision method or to the usual
+        one. You measured four things afterwards, recorded a baseline test
+        score and how quickly each student worked, and you know which are
+        first-year students.</p>
+      <p>Now analyse it. Every choice below is one a careful researcher might
+        make in good faith, and none of them is cheating.</p>
+    </div>
+
+    <details class="disclosure" id="key-terms">
+      <summary>Key terms</summary>
+      <div class="disclosure__body">
+        <dl class="glossary">
+          <dt>p-value</dt>
+          <dd>How often a difference at least this large would turn up if there
+            were really no difference, in an analysis decided before the data
+            were seen.</dd>
+
+          <dt>Unadjusted</dt>
+          <dd>The two groups are compared on the outcome exactly as measured,
+            with nothing taken out of it first.</dd>
+
+          <dt>Adjusted for baseline score</dt>
+          <dd>The part of the outcome that the baseline test already predicted
+            is removed before the groups are compared. The baseline is acting
+            as a covariate: a variable held constant so the comparison is not
+            confused by it.</dd>
+
+          <dt>Exclusion rule</dt>
+          <dd>A stated reason for leaving some participants out before
+            analysing, such as working implausibly fast. Which rule you pick
+            changes who is in the sample.</dd>
+
+          <dt>Subgroup</dt>
+          <dd>A part of the sample analysed on its own, such as first-year
+            students. The comparison is then about those people only.</dd>
+
+          <dt>Significant at 0.05</dt>
+          <dd>Shorthand for a p-value below 0.05. It is a conventional
+            threshold, not a discovery, and it says nothing about how large or
+            important a difference is.</dd>
+        </dl>
+      </div>
+    </details>
+
+    <fieldset class="controls" style="--controls-columns: 2">
+      <legend class="visually-hidden">Analysis choices</legend>
+
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="outcome">Which outcome?</label>
+        </div>
+        <select id="outcome">
+          <option value="0" selected>Overall revision score</option>
+          <option value="1">Recall accuracy</option>
+          <option value="2">Comprehension score</option>
+          <option value="3">Self-rated confidence</option>
+        </select>
+      </div>
+
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="exclusion">Which exclusions?</label>
+        </div>
+        <select id="exclusion">
+          <option value="0" selected>No exclusions</option>
+          <option value="1">Slowest 10% excluded</option>
+          <option value="2">Fastest and slowest 5% excluded</option>
+        </select>
+      </div>
+
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="subgroup">Which students?</label>
+        </div>
+        <select id="subgroup">
+          <option value="0" selected>Everyone</option>
+          <option value="1">First-year students only</option>
+          <option value="2">Continuing students only</option>
+        </select>
+      </div>
+
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="adjusted">Adjust for baseline?</label>
+        </div>
+        <select id="adjusted">
+          <option value="0" selected>Unadjusted</option>
+          <option value="1">Adjusted for baseline score</option>
+        </select>
+      </div>
+    </fieldset>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="run" type="button">Run this analysis</button>
+      <button class="btn btn-primary" id="reveal-paths" type="button" disabled>Show me every path</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+
+    <p class="tag" id="result">No analysis run yet.</p>
+
+    <div class="block" style="margin-top: 0.875rem">
+      <h3>What you have run</h3>
+      <ol id="trail"></ol>
+      <p class="small">Try a few. Change one choice at a time, or change your
+        mind entirely: nothing here records what you looked at first.</p>
+    </div>
+
+  </section>
+
+  <p class="workbook-status" data-workbook-status role="status" aria-live="polite"></p>
+
+  <section class="synthesis" id="synthesis" hidden aria-labelledby="result-heading">
+
+    <p class="step-label">Every path</p>
+    <h2 id="result-heading">There was nothing there</h2>
+    <p class="lead" id="result-lead"></p>
+
+    <div class="plot">
+      <svg id="chart" role="img" aria-labelledby="chart-title chart-desc">
+        <title id="chart-title">The p-value of all 72 complete analyses of the same data</title>
+        <desc id="chart-desc"></desc>
+      </svg>
+      <p class="legend">One dot per complete, reportable analysis. The shaded
+        region on the left is everything that would have been called
+        significant.</p>
+    </div>
+
+    <div class="takeaway">
+      <p><strong>Key idea:</strong> A p-value answers a question about a
+        procedure: how often would data like this arise if there were nothing
+        to find, under this analysis, specified in advance. Choose the analysis
+        after seeing the data and the procedure is no longer the one the
+        p-value describes. Nobody here ran seventy-two tests. A researcher
+        walks one path, reports one number, and the other seventy-one never
+        existed on paper. That is what makes this hard to catch: the published
+        analysis looks exactly like a pre-specified one.</p>
+    </div>
+
+    <div class="notice notice--caution">
+      <p>This is not a demonstration of dishonesty, and none of the choices
+        offered is a bad one. Analysts face exactly these decisions and resolve
+        them with reasons. The problem is that the reasons are available after
+        the data are, and a decision that would have gone the other way on
+        other data is a decision the p-value has not accounted for. Note also
+        that these paths share participants and outcomes, so they are heavily
+        correlated: this is why no simple correction applies to them, and why
+        pre-registration and reporting the whole analysis space are the usual
+        answers rather than dividing by seventy-two. The dataset is invented
+        and the exact count of significant paths is a property of this one
+        simulated sample.</p>
+    </div>
+
+    <p class="small" style="margin-top: 1.125rem">This is the forking-paths
+      half of a longer activity. The full version adds a simulation of the
+      family-wise error rate across a family of independent tests, a Bonferroni
+      correction shown together with its cost in detection, and a set of
+      vignettes to classify. It is at
+      <a href="../../../../../modules/research-methods/tools/21-multiple-comparisons-fwer-p-hacking/index.html">Multiple
+      Comparisons, FWER and p-Hacking in the main collection</a>.</p>
+
+  </section>
+
+</main>
+
+</body>
+</html>

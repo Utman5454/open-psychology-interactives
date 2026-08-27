@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Central Limit Theorem Simulator | Simplified Edition</title>
+<meta name="description" content="Draw samples from a population that is nothing like normal and watch two panels on one axis: the population, which never changes, and the distribution of the sample means, which does.">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231C7293'/%3E%3C/svg%3E">
+
+<link rel="stylesheet" href="../../../../assets/css/simplified.css">
+<link rel="stylesheet" href="../../../../assets/css/patterns.css">
+<script src="../../../../assets/js/workbook.js" defer></script>
+<script src="activity.js" defer></script>
+<link rel="stylesheet" href="../../../../assets/css/edition.css">
+<script src="../../../../assets/js/edition-nav.js" defer></script>
+</head>
+
+<body>
+
+<a class="skip-link" href="#main">Skip to the activity</a>
+
+<main class="workbook workbook--compact" id="main" data-workbook
+      data-reset-message="Cleared. No samples drawn, back to the starting settings.">
+
+  <section class="hero">
+    <p class="eyebrow">Research Methods &middot; Simplified</p>
+    <h1>Central Limit Theorem Simulator</h1>
+    <p class="hero__lead">Two panels, one axis. Only one of them changes shape,
+      and it is not the data.</p>
+  </section>
+
+  <section class="card" id="sim" aria-labelledby="sim-heading">
+
+    <p class="step-label">The simulator</p>
+    <h2 id="sim-heading">The population, one sample, and the means so far</h2>
+    <p class="lead">Draw samples from a population that is nothing like normal.
+      Each sample gives one mean, and the means pile up in the lower panel.</p>
+
+    <fieldset class="controls" style="--controls-columns: 3">
+      <legend class="visually-hidden">Simulation settings</legend>
+
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="pop">Population</label>
+        </div>
+        <select id="pop">
+          <option value="skewed" selected>Skewed</option>
+          <option value="bimodal">Bimodal</option>
+        </select>
+        <p class="control__hint" id="pop-note"></p>
+      </div>
+
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="n">Sample size</label>
+          <output class="control__value" for="n">25</output>
+        </div>
+        <input type="range" id="n" min="2" max="100" step="1" value="25">
+        <p class="control__hint">How many observations go into each mean.</p>
+      </div>
+
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="seed">Seed</label>
+        </div>
+        <input type="number" id="seed" value="7311" min="1" max="99999" step="1">
+        <p class="control__hint">The same seed gives the same samples again.</p>
+      </div>
+    </fieldset>
+
+    <div class="plot">
+      <svg id="chart" role="img" aria-labelledby="chart-title chart-desc">
+        <title id="chart-title">Population above, distribution of the sample means below</title>
+        <desc id="chart-desc"></desc>
+      </svg>
+      <p class="legend">Upper panel: the population, with the most recent sample
+        drawn as ticks beneath it. Lower panel: the mean of every sample drawn
+        so far. Both panels share one value axis unless the lower one is
+        zoomed.</p>
+    </div>
+
+    <div class="pair-grid" style="--pair-columns: 2">
+
+    <fieldset class="toggle-grid" style="--toggle-columns: 1">
+      <legend class="visually-hidden">Lower panel scale</legend>
+      <label class="toggle" data-checked="false" id="zoom-label">
+        <input type="checkbox" id="zoom">
+        <span>
+          <strong>Zoom the lower panel to the means</strong>
+          <span>The upper panel does not move. Zooming changes how wide the
+            means look, not how wide they are.</span>
+        </span>
+      </label>
+    </fieldset>
+
+    <div class="table-scroll">
+      <table class="data-table">
+        <caption id="table-caption">Nothing drawn yet.</caption>
+        <thead>
+          <tr>
+            <th scope="col">Distribution of the sample mean</th>
+            <th scope="col">What the theory predicts</th>
+            <th scope="col">What this simulation measured</th>
+          </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
+    </div>
+
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="draw-one" type="button">Draw one sample</button>
+      <button class="btn btn-primary" id="draw-many" type="button">Draw 50 samples</button>
+      <button class="btn btn-secondary" id="explain" type="button" disabled>What this shows</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+
+  </section>
+
+  <p class="workbook-status" data-workbook-status role="status" aria-live="polite"></p>
+
+  <section class="synthesis" id="synthesis" hidden aria-labelledby="result-heading">
+
+    <p class="step-label">What this shows</p>
+    <h2 id="result-heading">The data never became normal</h2>
+    <p class="lead">The upper panel has not changed shape once, at any sample
+      size. It cannot: it is the population, and drawing from it does not alter
+      it. Only the lower panel changes, and the lower panel is not data. It is
+      the distribution of a statistic computed from data.</p>
+
+    <div class="takeaway">
+      <p><strong>Key idea:</strong> The theorem is about the sample mean, not
+        about the sample. As the sample size grows, the distribution of the
+        mean becomes more normal and narrower, at a rate of one over the square
+        root of the sample size. Three things are being confused whenever
+        someone says data become normal with a big enough sample: the
+        population, one sample from it, and the distribution of a statistic
+        across many samples. This figure keeps all three on screen at once so
+        they can be told apart.</p>
+    </div>
+
+    <div class="notice notice--caution">
+      <p>Two cautions. The zoom control changes how wide the means look and
+        nothing about how wide they are: read the standard error, not the
+        picture. And "thirty is enough" is a rule of thumb, not a fact. Set the
+        skewed population to a sample size of thirty and the predicted skewness
+        of the mean is still 0.37, while the bimodal population is already
+        close to symmetric by ten. How large a sample needs to be depends on
+        the population it comes from, which is exactly what a fixed number
+        cannot tell you.</p>
+    </div>
+
+    <p class="small" style="margin-top: 1.125rem">The longer version adds four
+      populations, excess kurtosis alongside skewness, a three-part prediction
+      before the simulation, and a challenge on what the theorem does and does
+      not claim. It is at
+      <a href="../../../../../modules/research-methods/tools/14-central-limit-theorem-simulator/index.html">Central
+      Limit Theorem Simulator in the main collection</a>.</p>
+
+  </section>
+
+</main>
+
+</body>
+</html>

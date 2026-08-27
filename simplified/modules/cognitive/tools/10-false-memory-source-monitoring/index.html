@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Remembering a Word Nobody Said | Simplified Edition</title>
+<meta name="description" content="Study two lists read by two different people, then judge each test word three ways. One of the words you are surest about was never presented at all.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231C7293'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../../../assets/css/simplified.css">
+<link rel="stylesheet" href="../../../../assets/css/patterns.css">
+<script src="../../../../assets/js/workbook.js" defer></script>
+<script src="activity.js" defer></script>
+<link rel="stylesheet" href="../../../../assets/css/edition.css">
+<script src="../../../../assets/js/edition-nav.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to the activity</a>
+
+<main class="workbook workbook--compact" id="main" data-workbook
+      data-reset-message="Cleared. Back to the start, with nothing kept.">
+
+  <section class="hero">
+    <p class="eyebrow">Cognitive Psychology &middot; Simplified</p>
+    <h1>Remembering a Word Nobody Said</h1>
+    <p class="hero__lead">You will be sure you saw a word that was never on
+      the screen, and you will be able to say who said it.</p>
+  </section>
+
+  <nav aria-label="Activity progress">
+    <ol class="progress" data-workbook-progress
+        style="--progress-columns: 3; --progress-columns-narrow: 1">
+      <li class="progress__step">1 &middot; Study</li>
+      <li class="progress__step">2 &middot; Test</li>
+      <li class="progress__step">3 &middot; What happened</li>
+    </ol>
+  </nav>
+
+  <section class="card" id="task-card" aria-labelledby="task-heading">
+    <p class="step-label" id="step-label">Study</p>
+    <h2 id="task-heading">Two lists, read by two people</h2>
+    <p class="lead" id="task-lead">Twenty words appear one at a time, about one
+      a second. Each one is labelled with who read it out, Ravi or Nina. Just
+      watch and take them in. There is nothing to press.</p>
+
+    <div class="notice" id="setup-note">
+      <p><strong>What this needs.</strong> About four minutes, and no writing
+        anything down. Nothing flashes and nothing moves; the words simply
+        change about once a second.</p>
+    </div>
+
+    <div class="stage stage--focus" style="--stage-height: 12rem">
+      <svg class="stage__field" id="field" viewBox="0 0 600 220"
+           role="img" aria-labelledby="field-title field-desc">
+        <title id="field-title">The word being shown</title>
+        <desc id="field-desc">Nothing is showing yet.</desc>
+      </svg>
+    </div>
+
+    <div id="test-panel" hidden>
+      <p class="lead" id="probe-word"></p>
+      <div id="q-seen">
+        <p class="small">Was this word in either list?</p>
+        <fieldset class="option-grid" id="options-seen" style="--option-columns: 2">
+          <legend class="visually-hidden">Was this word in either list?</legend>
+        </fieldset>
+      </div>
+      <div id="q-confidence" hidden>
+        <p class="small">How sure are you?</p>
+        <fieldset class="option-grid" id="options-confidence" style="--option-columns: 3">
+          <legend class="visually-hidden">How sure are you?</legend>
+        </fieldset>
+      </div>
+      <div id="q-source" hidden>
+        <p class="small">Who read it out?</p>
+        <fieldset class="option-grid" id="options-source" style="--option-columns: 3">
+          <legend class="visually-hidden">Who read it out?</legend>
+        </fieldset>
+      </div>
+    </div>
+
+    <p class="small" id="counter" aria-live="polite"></p>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="start" type="button">Start the lists</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+  </section>
+
+  <p class="workbook-status" data-workbook-status role="status" aria-live="polite"></p>
+
+  <section class="synthesis" id="synthesis" hidden aria-labelledby="result-heading">
+    <p class="step-label">What happened</p>
+    <h2 id="result-heading">The word that was never there</h2>
+    <p class="lead" id="result-lead"></p>
+
+    <ul class="results-grid" style="--results-columns: 3" id="readout"></ul>
+
+    <div class="plot" id="chart-wrap">
+      <svg id="chart" role="img" aria-labelledby="chart-title chart-desc">
+        <title id="chart-title">How often you said yes to each kind of word</title>
+        <desc id="chart-desc"></desc>
+      </svg>
+      <p class="legend">Three kinds of test word: ones that really were in the
+        lists, ones with nothing to do with them, and the two that fit the
+        lists perfectly and were never shown.</p>
+    </div>
+
+    <details class="disclosure" id="values">
+      <summary>Every word you judged</summary>
+      <div class="disclosure__body">
+        <div class="table-scroll">
+          <table class="data-table">
+            <caption id="table-caption"></caption>
+            <thead>
+              <tr>
+                <th scope="col">Word</th>
+                <th scope="col">Really in the lists?</th>
+                <th scope="col">You said</th>
+                <th scope="col">How sure</th>
+                <th scope="col">Who you said read it</th>
+              </tr>
+            </thead>
+            <tbody id="table-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </details>
+
+    <div class="takeaway">
+      <p><strong>Key idea:</strong> Both lists were built so that every word
+        pointed at one word that was never in them. Taking in the list means
+        the theme gets activated too, and afterwards there is nothing about
+        that activation that marks it as having come from you rather than from
+        the screen. So it feels like a memory, because it is one: it is just a
+        memory of thinking of the word rather than of seeing it. That is why
+        the three judgements can come apart. Saying yes is one thing, being
+        confident is a second, and naming a source is a third, and a false
+        memory can score highly on all three. Confidence is not a measure of
+        accuracy, and the ability to say where something came from is not proof
+        that it came from there.</p>
+    </div>
+
+    <div class="notice notice--caution">
+      <p>Two lists and ten test words from one person, so the percentages are
+        rough and a single unlucky guess moves them a long way. The lists here
+        were written for this activity rather than taken from a published set,
+        so they are not calibrated and the effect may be weaker or stronger
+        than the literature reports. And this does not show that memory is
+        generally unreliable, or that anyone is a poor witness. It shows one
+        specific, well-understood way in which remembering can produce
+        something that was never presented, using materials built precisely to
+        produce it.</p>
+    </div>
+
+    <p class="small" style="margin-top: 1.125rem">The longer version adds a
+      third list, a fuller source-monitoring analysis separating the two kinds
+      of error, and a treatment of what warning people in advance does. It is
+      at
+      <a href="../../../../../modules/cognitive/tools/10-false-memory-source-monitoring/index.html">False
+      Memory and Source Monitoring in the main collection</a>.</p>
+  </section>
+</main>
+</body>
+</html>

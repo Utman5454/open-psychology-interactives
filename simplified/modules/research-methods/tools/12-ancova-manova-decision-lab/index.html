@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What a Covariate Can and Cannot Buy | Simplified Edition</title>
+<meta name="description" content="A fictional reading programme evaluated against a comparison group, with a September score as covariate. Adjustment changes the number. Only the design decides what the number is allowed to mean.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231C7293'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../../../assets/css/simplified.css">
+<link rel="stylesheet" href="../../../../assets/css/patterns.css">
+<script src="../../../../assets/js/workbook.js" defer></script>
+<script src="../../../../assets/js/stats.js" defer></script>
+<script src="activity.js" defer></script>
+<link rel="stylesheet" href="../../../../assets/css/edition.css">
+<script src="../../../../assets/js/edition-nav.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to the activity</a>
+
+<main class="workbook workbook--compact" id="main" data-workbook
+      data-reset-message="Cleared. Back to the starting settings and a fresh sample.">
+
+  <section class="hero">
+    <p class="eyebrow">Research Methods &middot; Simplified</p>
+    <h1>What a Covariate Can and Cannot Buy</h1>
+    <p class="hero__lead">Adjusting for a covariate changes the number. Only the
+      design decides what the number is allowed to mean.</p>
+  </section>
+
+  <section class="card" id="card" aria-labelledby="card-heading">
+    <p class="step-label">The evaluation</p>
+    <h2 id="card-heading">A reading programme, and a score from September</h2>
+    <p class="lead">Forty children take a reading programme and forty do not.
+      Everyone was scored in September, before anything began, and again in
+      June. The June difference is the headline. The September score is the
+      covariate.</p>
+
+    <details class="disclosure" id="key-terms">
+      <summary>Key terms</summary>
+      <div class="disclosure__body">
+        <dl class="glossary">
+          <dt>Covariate</dt>
+          <dd>Something measured before allocation that is related to the
+            outcome. Here, the September score.</dd>
+          <dt>Unadjusted difference</dt>
+          <dd>The gap between the two groups' June means, with nothing taken
+            into account.</dd>
+          <dt>Adjusted difference</dt>
+          <dd>The gap between the groups once both are compared at the same
+            September score. On the figure it is the vertical distance between
+            the two fitted lines, which is the same wherever you measure it.</dd>
+          <dt>Precision</dt>
+          <dd>How tightly the estimate is pinned down, reported here as the
+            standard error. Smaller is better, and it is not the same thing as
+            the estimate being right.</dd>
+        </dl>
+      </div>
+    </details>
+
+    <fieldset class="controls" style="--controls-columns: 3">
+      <legend class="visually-hidden">Study settings</legend>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="r">Covariate strength</label>
+          <output class="control__value" for="r">0.70</output>
+        </div>
+        <input type="range" id="r" min="0" max="0.9" step="0.05" value="0.7">
+        <p class="control__hint">How well September predicts June, within a group.</p>
+      </div>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="gap">September gap</label>
+          <output class="control__value" for="gap">3</output>
+        </div>
+        <input type="range" id="gap" min="0" max="10" step="1" value="3">
+        <p class="control__hint">How far ahead the programme group already was.</p>
+      </div>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="seed">Seed</label>
+        </div>
+        <input type="number" id="seed" value="3140" min="1" max="99999" step="1">
+        <p class="control__hint">The same seed draws the same children.</p>
+      </div>
+    </fieldset>
+
+    <div class="plot">
+      <svg id="chart" role="img" aria-labelledby="chart-title chart-desc">
+        <title id="chart-title">September score against June score, with a fitted line for each group</title>
+        <desc id="chart-desc"></desc>
+      </svg>
+      <p class="legend">One mark per child: filled circles are the programme
+        group, hollow squares the comparison group. Each group gets a fitted
+        line of the same slope, and the large ringed marks are the two group
+        centres. The bracket is the vertical distance between the lines, which
+        is the adjusted difference.</p>
+    </div>
+
+    <ul class="results-grid" style="--results-columns: 4" id="readout"></ul>
+
+    <fieldset class="toggle-grid" id="design" style="--toggle-columns: 2">
+      <legend class="field-legend">How were the two groups formed?</legend>
+      <label class="toggle" data-checked="true" id="design-random-label">
+        <input type="radio" name="design" id="design-random" value="random" checked>
+        <span>
+          <strong>Random allocation</strong>
+          <span>Each child was assigned by chance.</span>
+        </span>
+      </label>
+      <label class="toggle" data-checked="false" id="design-intact-label">
+        <input type="radio" name="design" id="design-intact" value="intact">
+        <span>
+          <strong>Two intact classes</strong>
+          <span>One class took the programme, the other did not.</span>
+        </span>
+      </label>
+    </fieldset>
+
+    <p class="small">Switching between these changes no arithmetic whatsoever.
+      Watch every figure above as you do it.</p>
+
+    <div class="notice" id="warrant" data-state="chosen">
+      <p id="warrant-text"></p>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="redraw" type="button">Draw a fresh cohort</button>
+      <button class="btn btn-secondary" id="explain" type="button" disabled>What this shows</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+  </section>
+
+  <p class="workbook-status" data-workbook-status role="status" aria-live="polite"></p>
+
+  <section class="synthesis" id="synthesis" hidden aria-labelledby="result-heading">
+    <p class="step-label">What this shows</p>
+    <h2 id="result-heading">The same arithmetic, two different warrants</h2>
+    <p class="lead">Switch the design between random allocation and two intact
+      classes. Not one number on the screen changes. What the adjusted
+      difference is allowed to mean changes completely.</p>
+
+    <div class="takeaway">
+      <p><strong>Key idea:</strong> Under random allocation the groups start
+        level apart from chance, so adjustment is not correcting anything. What
+        it does is remove the part of June that September already explains,
+        which shrinks the leftover variation and buys precision: the same
+        estimate, pinned down more tightly. With two intact classes the
+        adjustment does exactly the same arithmetic, but it can only remove the
+        part of the difference that September accounts for. Anything else that
+        differs between two classes, and something always does, is still
+        sitting inside the adjusted number. Adjustment is a way of asking a
+        narrower question, not a way of turning a comparison into an
+        experiment.</p>
+    </div>
+
+    <div class="notice notice--caution">
+      <p>This simulation is generous to the intact-classes case: here September
+        genuinely is the only thing that differs between the groups, because
+        that is how the data were built. In a real pair of intact classes it
+        will not be, and you have no way of checking. That is the whole
+        difficulty, and no amount of adjusting reaches it. Two further points.
+        The adjusted difference assumes one common slope for both groups; if
+        the covariate works differently in the two groups there is no single
+        adjusted figure to report, and the difference of slopes is itself the
+        finding. And precision is not accuracy: turning the covariate strength
+        up tightens the estimate whether or not the estimate is aimed at the
+        right thing.</p>
+    </div>
+
+    <p class="small" style="margin-top: 1.125rem">The longer version adds a
+      variable-role assignment stage, a second experiment on multivariate tests
+      and what they are not, a slope-difference violation to diagnose, and
+      several described designs to classify. It is at
+      <a href="../../../../../modules/research-methods/tools/12-ancova-manova-decision-lab/index.html">ANCOVA
+      / MANOVA Decision Laboratory in the main collection</a>.</p>
+  </section>
+</main>
+</body>
+</html>

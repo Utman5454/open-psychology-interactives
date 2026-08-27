@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Confound Detective | Simplified Edition</title>
+<meta name="description" content="One fictional study with a confident causal claim. Sort what varies with the conditions from what merely varies, then repair the design and watch the estimate move toward the truth while the sample size moves only the precision.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231C7293'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../../../assets/css/simplified.css">
+<link rel="stylesheet" href="../../../../assets/css/patterns.css">
+<script src="../../../../assets/js/workbook.js" defer></script>
+<script src="activity.js" defer></script>
+<link rel="stylesheet" href="../../../../assets/css/edition.css">
+<script src="../../../../assets/js/edition-nav.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to the activity</a>
+
+<main class="workbook workbook--compact" id="main" data-workbook
+      data-reset-message="Cleared. Back to the study as reported, with no repairs applied.">
+
+  <section class="hero">
+    <p class="eyebrow">Research Methods &middot; Simplified</p>
+    <h1>Confound Detective</h1>
+    <p class="hero__lead">Something is wrong with this study. Work out what,
+      then fix it and watch the number move.</p>
+  </section>
+
+  <nav aria-label="Activity progress">
+    <ol class="progress" data-workbook-progress
+        style="--progress-columns: 2; --progress-columns-narrow: 1">
+      <li class="progress__step">1 &middot; Sort the variables</li>
+      <li class="progress__step">2 &middot; Repair the design</li>
+    </ol>
+  </nav>
+
+  <section class="card" id="card" aria-labelledby="card-heading">
+    <p class="step-label" id="step-label">Sort the variables</p>
+    <h2 id="card-heading">Using the revision app improves exam performance</h2>
+
+    <div class="casebox">
+      <p>Fictional study. Sixty students. The Tuesday 09:00 seminar group is
+        given the app; the Thursday 14:00 group is not. Students chose their
+        seminar group at enrolment. The Tuesday group is taught by the module
+        leader, the Thursday group by a postgraduate tutor. Both sit the same
+        exam, marked by the module leader.</p>
+    </div>
+
+    <details class="disclosure" id="key-terms">
+      <summary>Key terms</summary>
+      <div class="disclosure__body">
+        <dl class="glossary">
+          <dt>Confound</dt>
+          <dd>Something that differs systematically between the conditions and
+            also touches the outcome. Both have to be true. It shifts the
+            estimate away from the truth.</dd>
+          <dt>Nuisance variable</dt>
+          <dd>Something that varies between people but not with the condition.
+            It adds scatter, which widens the interval and leaves the estimate
+            where it was.</dd>
+          <dt>Part of the treatment</dt>
+          <dd>Something that is part of what the manipulation is. Removing it
+            deletes the effect rather than cleaning up the comparison.</dd>
+          <dt>Bias and precision</dt>
+          <dd>Bias is being systematically off. Precision is how tightly
+            repeated studies would cluster. More participants buys precision
+            and buys no bias back at all.</dd>
+        </dl>
+      </div>
+    </details>
+
+    <div id="sorting">
+      <div class="lens-head">
+        <strong id="variable-label"></strong>
+        <span>Does it differ systematically between the two groups, and does it
+          touch exam performance? Both have to be true for it to bias the
+          comparison.</span>
+      </div>
+      <div class="option-grid" id="options" style="--option-columns: 2"></div>
+    </div>
+
+    <div id="repairing" hidden>
+      <ul class="results-grid" style="--results-columns: 3" id="readout"></ul>
+      <div class="plot">
+        <svg id="chart" role="img" aria-labelledby="chart-title chart-desc">
+          <title id="chart-title">The reported estimate against the true effect</title>
+          <desc id="chart-desc"></desc>
+        </svg>
+        <p class="legend">The solid line is the true effect, which the study
+          cannot see. The marker is what this design would report, with the
+          interval it would report around it.</p>
+      </div>
+      <fieldset class="toggle-grid" id="repairs" style="--toggle-columns: 1">
+        <legend class="visually-hidden">Repairs to the design</legend>
+      </fieldset>
+    </div>
+
+    <div class="reveal" id="reveal" hidden></div>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="next" type="button" disabled>Repair the design</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+  </section>
+
+  <p class="workbook-status" data-workbook-status role="status" aria-live="polite"></p>
+
+  <section class="synthesis" id="synthesis" hidden aria-labelledby="result-heading">
+    <p class="step-label">What moved and what did not</p>
+    <h2 id="result-heading">Bias and noise are different problems</h2>
+    <p class="lead" id="result-lead"></p>
+
+    <div class="takeaway">
+      <p><strong>Key idea:</strong> A variable biases a comparison only if it
+        travels with the conditions <em>and</em> touches the outcome. Both have
+        to be true. Things that vary between people but not between conditions
+        add scatter, not bias: they widen the interval and leave the estimate
+        where it was. And recruiting more participants narrows the interval
+        around a wrong number, which is the most common student answer to a
+        bias problem and the wrong tool for it.</p>
+    </div>
+
+    <div class="notice notice--caution">
+      <p>The bias figures are invented and were chosen to make the argument
+        legible, not to estimate confounding in any real study. Real confounds
+        interact, point in opposite directions and sometimes cancel; keeping
+        them additive here is a deliberate simplification so that the
+        arithmetic can be followed. No real module, tutor, student or dataset
+        is described, and the true effect is knowable here only because the
+        activity invented it.</p>
+    </div>
+
+    <p class="small" style="margin-top: 1.125rem">The longer version adds two
+      further studies, a fuller repair set and a select-all challenge on what
+      each repair buys. It is at
+      <a href="../../../../../modules/research-methods/tools/03-confound-detective/index.html">Confound
+      Detective in the main collection</a>.</p>
+  </section>
+</main>
+</body>
+</html>

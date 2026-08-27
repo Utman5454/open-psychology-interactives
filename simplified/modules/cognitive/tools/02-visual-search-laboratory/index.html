@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Visual Search Laboratory | Simplified Edition</title>
+<meta name="description" content="Find a target defined by one feature, then one defined by two features together. Your own reaction times produce two search functions, and the difference between them is a slope rather than a speed.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231C7293'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../../../assets/css/simplified.css">
+<link rel="stylesheet" href="../../../../assets/css/patterns.css">
+<script src="../../../../assets/js/workbook.js" defer></script>
+<script src="activity.js" defer></script>
+<link rel="stylesheet" href="../../../../assets/css/edition.css">
+<script src="../../../../assets/js/edition-nav.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to the activity</a>
+
+<main class="workbook workbook--compact" id="main" data-workbook
+      data-reset-message="Cleared. Back to the practice trials, with no results kept.">
+
+  <section class="hero">
+    <p class="eyebrow">Cognitive Psychology &middot; Simplified</p>
+    <h1>Visual Search Laboratory</h1>
+    <p class="hero__lead">Some targets are found in the same time however many
+      things surround them. Others cost you more for every item added.</p>
+  </section>
+
+  <nav aria-label="Activity progress">
+    <ol class="progress" data-workbook-progress
+        style="--progress-columns: 3; --progress-columns-narrow: 1">
+      <li class="progress__step">1 &middot; Practice</li>
+      <li class="progress__step">2 &middot; The block</li>
+      <li class="progress__step">3 &middot; Your two slopes</li>
+    </ol>
+  </nav>
+
+  <section class="card" id="task-card" aria-labelledby="task-heading">
+    <p class="step-label" id="step-label">Practice</p>
+    <h2 id="task-heading">Find the target, then say which half it is in</h2>
+    <p class="lead" id="task-lead">Every display contains exactly one target.
+      Find it, then press Left or Right to say which half of the panel it was
+      in. Six untimed practice trials first, with feedback.</p>
+
+    <div class="notice" id="target-note">
+      <p><strong>What you are looking for.</strong> It changes between blocks,
+        and you are told before each one. Nothing is ever timed out: the
+        display stays until you answer. About four minutes.</p>
+    </div>
+
+    <div class="stage stage--focus" style="--stage-height: 17rem">
+      <svg class="stage__field" id="field" viewBox="0 0 600 300"
+           role="img" aria-labelledby="field-title field-desc">
+        <title id="field-title">The search display</title>
+        <desc id="field-desc">Nothing is showing yet.</desc>
+      </svg>
+      <p class="stage__feedback" id="feedback" hidden></p>
+    </div>
+
+    <fieldset class="keypad" id="keypad" style="--keypad-columns: 2"></fieldset>
+
+    <p class="small" id="counter" aria-live="polite">Practice trial 1 of 6.</p>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="start" type="button">Start the practice</button>
+      <button class="btn btn-secondary" id="stop" type="button" hidden>Stop and see my result</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+  </section>
+
+  <p class="workbook-status" data-workbook-status role="status" aria-live="polite"></p>
+
+  <section class="synthesis" id="synthesis" hidden aria-labelledby="result-heading">
+    <p class="step-label">Your two slopes</p>
+    <h2 id="result-heading">A slope, not a speed</h2>
+    <p class="lead" id="result-lead"></p>
+
+    <ul class="results-grid" style="--results-columns: 3" id="readout"></ul>
+
+    <div class="plot">
+      <svg id="chart" role="img" aria-labelledby="chart-title chart-desc">
+        <title id="chart-title">Your mean reaction time against the number of items</title>
+        <desc id="chart-desc"></desc>
+      </svg>
+      <p class="legend">Each point is your mean for that many items. The line
+        through each set is the best-fitting straight line, and its steepness
+        is the number that matters: how much every extra item cost you.</p>
+    </div>
+
+    <p class="small" id="accuracy"></p>
+
+    <details class="disclosure">
+      <summary>All the values behind this chart</summary>
+      <div class="disclosure__body">
+        <div class="table-scroll">
+          <table class="data-table">
+            <caption id="table-caption"></caption>
+            <thead>
+              <tr>
+                <th scope="col">Search</th>
+                <th scope="col">Items</th>
+                <th scope="col">Mean reaction time</th>
+                <th scope="col">Trials used</th>
+                <th scope="col">Accuracy</th>
+              </tr>
+            </thead>
+            <tbody id="table-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </details>
+
+    <div class="takeaway">
+      <p><strong>Key idea:</strong> The interesting number is not how fast you
+        were, it is how much slower each extra item made you. When the target
+        differs from everything else in a single feature it tends to be found
+        in about the same time whether there are eight items or thirty-two, so
+        the line is nearly flat. When the target is only defined by two
+        features <em>in combination</em>, and every distractor shares one of
+        them, each added item costs you time and the line climbs. Describing
+        those two functions is solid. Explaining them is where the argument
+        starts, and a flat slope is evidence about the shape of the search, not
+        proof that everything was examined at once.</p>
+    </div>
+
+    <div class="notice notice--caution">
+      <p>One person, eight trials per point, in a browser. A slope estimated
+        from three points and this few trials each is a rough figure and can
+        easily come out negative by chance. Real experiments also include
+        trials with no target at all, where the slopes are steeper still and
+        usually about twice the target-present ones, and leaving those out is
+        the largest simplification here. Browser timing adds noise of its own.
+        A result that comes out flat for both searches, or steeper for the
+        feature search, is a result about the block rather than about you, and
+        nothing here measures anyone's attention or ability.</p>
+    </div>
+
+    <p class="small" style="margin-top: 1.125rem">The longer version adds
+      target-absent trials and the slope ratio they permit, an untimed display
+      inspection with the target revealed, a practice mode with feedback on
+      every trial and a transfer challenge. It is at
+      <a href="../../../../../modules/cognitive/tools/02-visual-search-laboratory/index.html">Visual
+      Search Laboratory in the main collection</a>.</p>
+  </section>
+</main>
+</body>
+</html>

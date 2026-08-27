@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Same Difference, Twice Over | Simplified Edition</title>
+<meta name="description" content="Two groups differ by 0.20 on a four-item scale. The same observed difference can come entirely from one item behaving differently or entirely from a real difference in the trait, and the totals cannot tell them apart.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231C7293'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../../../assets/css/simplified.css">
+<link rel="stylesheet" href="../../../../assets/css/patterns.css">
+<script src="../../../../assets/js/workbook.js" defer></script>
+<script src="activity.js" defer></script>
+<link rel="stylesheet" href="../../../../assets/css/edition.css">
+<script src="../../../../assets/js/edition-nav.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to the activity</a>
+
+<main class="workbook workbook--compact" id="main" data-workbook
+      data-reset-message="Cleared. Back to the difference that is entirely the item.">
+
+  <section class="hero">
+    <p class="eyebrow">Personality &amp; Individual Differences &middot; Simplified</p>
+    <h1>The Same Difference, Twice Over</h1>
+    <p class="hero__lead">Two groups differ on a questionnaire. That sentence
+      has two completely different meanings, and the totals cannot tell you
+      which one you have.</p>
+  </section>
+
+  <section class="card" id="card-note" aria-labelledby="note-heading">
+    <h2 id="note-heading" class="visually-hidden">About the two groups</h2>
+    <div class="notice notice--caution">
+      <p><strong>About the two groups.</strong> They are called group A and
+        group B and have no nationality, ethnicity, language, region or
+        culture. Where this page discusses why an item might behave
+        differently, it does so in terms of a setting, whether disagreeing
+        openly is invited or costly, and not in terms of a people. Nothing here
+        is a claim about any real group, and nothing could be: every number is
+        one you set with a slider.</p>
+    </div>
+  </section>
+
+  <section class="card" id="card-predict" aria-labelledby="predict-heading">
+    <p class="step-label">Step 1 of 2</p>
+    <h2 id="predict-heading">First, a judgement</h2>
+    <p class="lead">A four-item assertiveness scale is given to two groups.
+      Group B averages 0.20 points higher on the 1 to 5 scale, and with a
+      sample of several thousand the difference is comfortably significant.
+      What does that establish?</p>
+
+    <div class="option-grid" style="--option-columns: 3" id="options" data-workbook-choices>
+      <button class="option" type="button" data-choice="real">
+        <strong>Group B is more assertive</strong>
+        <span>The sample is large and the difference is significant.</span>
+      </button>
+      <button class="option" type="button" data-choice="nothing">
+        <strong>Nothing yet</strong>
+        <span>The items may not behave the same way in the two groups.</span>
+      </button>
+      <button class="option" type="button" data-choice="biased">
+        <strong>The scale is biased against group A</strong>
+        <span>A group difference on a questionnaire is a sign of a biased
+          questionnaire.</span>
+      </button>
+    </div>
+
+    <div class="notice" id="verdict" hidden data-state="chosen">
+      <p id="verdict-text"></p>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="reveal" type="button" disabled>Open the translator</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+  </section>
+
+  <section class="card" id="card-sim" hidden aria-labelledby="sim-heading">
+    <p class="step-label">Step 2 of 2</p>
+    <h2 id="sim-heading">Two ways to produce one number</h2>
+    <p class="lead">The observed difference stays at 0.20 throughout. The
+      slider changes only where it comes from: at one end the two groups are
+      identical on the trait and a single item is easier for group B to
+      endorse, and at the other end every item behaves identically and group B
+      genuinely stands higher.</p>
+
+    <details class="disclosure" id="key-terms">
+      <summary>Key terms</summary>
+      <div class="disclosure__body">
+        <dl class="glossary">
+          <dt>Latent variable</dt>
+          <dd>The standing on the trait that the model posits. It is not any
+            observed score.</dd>
+          <dt>Loading</dt>
+          <dd>How strongly an item reflects the latent variable. Equal loadings
+            across groups mean a unit of the trait buys the same amount of item
+            in both.</dd>
+          <dt>Intercept</dt>
+          <dd>The answer expected on an item from somebody at the middle of the
+            trait. Two groups can differ here while their latent means match,
+            which is what makes an item easier or harder to endorse at the same
+            level of the trait.</dd>
+          <dt>Scalar invariance</dt>
+          <dd>Equal loadings and equal intercepts across groups. It is the
+            condition that licenses comparing means, and it is a thing to be
+            tested rather than assumed.</dd>
+        </dl>
+      </div>
+    </details>
+
+    <fieldset class="controls" style="--controls-columns: 1">
+      <legend class="visually-hidden">Where the difference comes from</legend>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="blend">How much of the observed
+            difference is a real difference in the trait?</label>
+          <output class="control__value" for="blend">0%</output>
+        </div>
+        <input type="range" id="blend" min="0" max="100" step="5" value="0">
+        <p class="control__hint">The rest of it comes from item 3 being easier
+          to endorse in group B's setting. Whatever you choose, the two groups'
+          observed averages stay exactly where they are.</p>
+      </div>
+    </fieldset>
+
+    <ul class="results-grid" style="--results-columns: 3" id="readout"></ul>
+
+    <div class="plot">
+      <svg id="chart" role="img" aria-labelledby="chart-title chart-desc">
+        <title id="chart-title">How much of the observed difference each item contributes</title>
+        <desc id="chart-desc"></desc>
+      </svg>
+      <p class="legend">One bar per item, showing how much higher group B
+        scores on it. The four bars always add to the same total. Only their
+        shape changes, and that shape is what a test of invariance looks at.</p>
+    </div>
+
+    <div class="table-scroll">
+      <table class="data-table" id="params">
+        <caption>The parameters behind the four bars. Loadings are equal across
+          the groups throughout, so the two groups always agree about what a
+          unit of the trait is worth.</caption>
+        <thead>
+          <tr><th scope="col">Item</th><th scope="col">Loading</th>
+            <th scope="col">Intercept, group A</th><th scope="col">Intercept, group B</th>
+            <th scope="col">Behaves the same?</th></tr>
+        </thead>
+        <tbody id="params-body"></tbody>
+      </table>
+    </div>
+
+    <p class="small" id="sentence"></p>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="allreal" type="button">Make the whole difference real</button>
+      <button class="btn btn-secondary" id="explain" type="button" disabled>What this shows</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+
+    <div class="notice" id="note" hidden data-state="chosen">
+      <p id="note-text"></p>
+    </div>
+  </section>
+
+  <p class="workbook-status" data-workbook-status role="status" aria-live="polite"></p>
+
+  <section class="synthesis" id="synthesis" hidden aria-labelledby="result-heading">
+    <p class="step-label">What this shows</p>
+    <h2 id="result-heading">The total cannot tell you which situation you are in</h2>
+    <p class="lead" id="result-lead"></p>
+
+    <div class="takeaway">
+      <p><strong>Key idea:</strong> At every position of the slider group B
+        averages 0.20 points above group A, and at every position that sentence
+        means something different. At one end there is no difference in
+        assertiveness at all and one item is simply easier to endorse where
+        speaking up is invited rather than costly. At the other end every item
+        works identically in both groups and group B really does stand higher.
+        The total score is the same number in both cases, so no amount of
+        looking at totals, and no p-value computed from them, can separate
+        them. What separates them is the shape of the bars, which is to say the
+        item-level parameters, which is what a test of measurement invariance
+        examines. That is why the test comes before the comparison rather than
+        after it. Without it, an observed mean difference is not yet a finding
+        about people; it is a finding about numbers that people produced.</p>
+    </div>
+
+    <div class="notice notice--caution">
+      <p>Every figure here is a parameter that was set rather than estimated,
+        with no sampling error, so nothing carries the uncertainty a real
+        invariance test works with. Real tests compare the fit of nested models
+        and reach conclusions with degrees of confidence, not certainties.
+        Three further cautions. Failing scalar invariance does not mean a scale
+        is worthless or that a comparison is forbidden forever: it means the
+        comparison of raw means is not licensed, and partial invariance, where
+        most items behave alike and a few do not, is common and can often still
+        support a comparison. An item behaving differently is not by itself
+        evidence of prejudice in the item writer; it can arise wherever the
+        same behaviour costs different amounts in different settings. And
+        invariance holding is not a guarantee that a difference is
+        interesting, important, or caused by anything in particular.</p>
+    </div>
+
+    <p class="small" style="margin-top: 1.125rem">The longer version lets you
+      move every loading and intercept separately, walks the full configural,
+      metric and scalar ladder, and shows the item characteristic lines for all
+      four items in both groups. It is at
+      <a href="../../../../../modules/personality-individual-differences/tools/21-measurement-invariance-translator/index.html">Measurement-Invariance
+      Translator in the main collection</a>.</p>
+  </section>
+</main>
+</body>
+</html>

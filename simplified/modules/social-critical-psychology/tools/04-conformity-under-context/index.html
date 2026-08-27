@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Two Reasons to Agree | Simplified Edition</title>
+<meta name="description" content="Run the same fictional task under six conditions and watch which changes collapse the rate and which barely touch it. The answer tells you which of two routes was doing the work.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231C7293'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../../../assets/css/simplified.css">
+<link rel="stylesheet" href="../../../../assets/css/patterns.css">
+<script src="../../../../assets/js/workbook.js" defer></script>
+<script src="activity.js" defer></script>
+<link rel="stylesheet" href="../../../../assets/css/edition.css">
+<script src="../../../../assets/js/edition-nav.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to the activity</a>
+
+<main class="workbook workbook--compact" id="main" data-workbook
+      data-reset-message="Cleared. No conditions run.">
+
+  <section class="hero">
+    <p class="eyebrow">Social &amp; Critical Psychology &middot; Simplified</p>
+    <h1>Two Reasons to Agree</h1>
+    <p class="hero__lead">People conform is not a finding. It is the beginning
+      of a question about which of two quite different things is happening.</p>
+  </section>
+
+  <section class="card" id="card-note" aria-labelledby="note-heading">
+    <h2 id="note-heading" class="visually-hidden">The task, and what it is not</h2>
+    <div class="notice notice--caution">
+      <p><strong>The task, and what it is not.</strong> Six people look at a
+        fictional display and say how many marks it contains. The classic
+        studies used line lengths and points of light; nothing here reproduces
+        their stimuli, their procedure or their data. The percentages come from
+        a small two-route model whose parameters are printed below. They are
+        chosen to put the classic conditions in roughly the right order of
+        magnitude, which is a teaching decision and not a replication.</p>
+    </div>
+  </section>
+
+  <section class="card" id="card-predict" aria-labelledby="predict-heading">
+    <p class="step-label">Step 1 of 2</p>
+    <h2 id="predict-heading">First, a prediction</h2>
+    <p class="lead">A participant sits with five others who all give the same
+      obviously wrong answer aloud. The display is easy to judge. On what share
+      of those rounds does the participant go along with them?</p>
+
+    <div class="option-grid" style="--option-columns: 2" id="options" data-workbook-choices>
+      <button class="option" type="button" data-choice="most">
+        <strong>Most rounds</strong>
+        <span>Under that much pressure, agreement is the norm.</span>
+      </button>
+      <button class="option" type="button" data-choice="third">
+        <strong>About a third</strong>
+        <span>Often enough to matter, and most rounds still answered
+          correctly.</span>
+      </button>
+      <button class="option" type="button" data-choice="few">
+        <strong>Almost never</strong>
+        <span>The answer is obvious, so people say what they see.</span>
+      </button>
+      <button class="option" type="button" data-choice="depends">
+        <strong>It depends on the room</strong>
+        <span>There is no rate without a set of conditions.</span>
+      </button>
+    </div>
+
+    <div class="notice" id="verdict" hidden data-state="chosen">
+      <p id="verdict-text"></p>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="reveal" type="button" disabled>Run some conditions</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+  </section>
+
+  <section class="card" id="card-lab" hidden aria-labelledby="lab-heading">
+    <p class="step-label">Step 2 of 2</p>
+    <h2 id="lab-heading">Six conditions, one at a time</h2>
+    <p class="lead">Run whichever you like. Each one stays in the table so you
+      can compare them, and each is reported as two separate routes rather than
+      as one rate. Watch which conditions move which route.</p>
+
+    <details class="disclosure" id="key-terms">
+      <summary>Key terms</summary>
+      <div class="disclosure__body">
+        <dl class="glossary">
+          <dt>Normative influence</dt>
+          <dd>Agreeing because of what saying otherwise would cost you in front
+            of these people. It needs an audience.</dd>
+          <dt>Informational influence</dt>
+          <dd>Agreeing because other people are evidence about a thing you
+            cannot judge on your own. It does not need an audience at all.</dd>
+          <dt>Unanimity</dt>
+          <dd>Whether anybody else breaks with the majority. It works as a step
+            rather than a headcount: one person is a great deal more than a
+            fifth of five.</dd>
+          <dt>Identification</dt>
+          <dd>Whether the participant regards these people as the sort of
+            people they are. The classic two-route account has no term for it.</dd>
+        </dl>
+      </div>
+    </details>
+
+    <div class="actions" id="condition-buttons"></div>
+
+    <ul class="results-grid" style="--results-columns: 3" id="readout"></ul>
+
+    <div class="plot">
+      <svg id="chart" role="img" aria-labelledby="chart-title chart-desc">
+        <title id="chart-title">The two routes to agreement under each condition run</title>
+        <desc id="chart-desc"></desc>
+      </svg>
+      <p class="legend">Two bars per condition. The upper bar is the normative
+        route and the lower is the informational one, each labelled with its
+        value, so the two are never told apart by colour alone.</p>
+    </div>
+
+    <div class="table-scroll">
+      <table class="data-table" id="runs">
+        <caption id="runs-caption"></caption>
+        <thead>
+          <tr><th scope="col">Condition</th><th scope="col">Normative route</th>
+            <th scope="col">Informational route</th><th scope="col">Agrees on</th></tr>
+        </thead>
+        <tbody id="runs-body"></tbody>
+      </table>
+    </div>
+
+    <p class="small" id="sentence"></p>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="diagnose" type="button">Run the comparison that tells them apart</button>
+      <button class="btn btn-secondary" id="explain" type="button" disabled>What this shows</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+
+    <div class="notice" id="note" hidden data-state="chosen">
+      <p id="note-text"></p>
+    </div>
+  </section>
+
+  <p class="workbook-status" data-workbook-status role="status" aria-live="polite"></p>
+
+  <section class="synthesis" id="synthesis" hidden aria-labelledby="result-heading">
+    <p class="step-label">What this shows</p>
+    <h2 id="result-heading">The manipulation that separates them</h2>
+    <p class="lead" id="result-lead"></p>
+
+    <div class="takeaway">
+      <p><strong>Key idea:</strong> Taking away the audience is the manipulation
+        that tells the two routes apart, because only one of them needs one.
+        On the easy display, going private removes about twenty points of
+        agreement, and almost all of what is left is the small informational
+        component. On the ambiguous display it removes about eleven, because
+        most of the agreement there was people using each other as evidence,
+        and that does not care who is watching. So the same intervention, a
+        private response, is highly effective in one room and half as effective
+        in the other, and you cannot know which room you are in from the rate
+        alone. Two further things the table shows. Unanimity works as a step:
+        one person breaking ranks changes far more than the arithmetic of four
+        against one suggests, because what has changed is whether another
+        answer is sayable. And a group the participant does not regard as their
+        sort of people exerts much less pull than five unanimous voices should,
+        which the classic two-route account has no term for at all.</p>
+    </div>
+
+    <div class="notice notice--caution">
+      <p>This is a teaching model, not a replication. The parameters are
+        printed so they can be argued with, they are chosen to put the classic
+        conditions in roughly the right order of magnitude, and no figure here
+        is an estimate of anything. Three cautions about the underlying
+        research rather than the model. The classic findings are of their time
+        and their place: rates vary substantially across decades and across
+        societies, and the studies that produced them would not be run in the
+        same way today. Conformity is not a defect being measured, and going
+        along with a group that knows more than you is often the sensible thing
+        to do; the ambiguous condition here is a case where the agreement may
+        well be correct. And a group average conceals a great deal, since a
+        rate of a third is compatible with most participants never agreeing
+        once and a minority agreeing almost always.</p>
+    </div>
+
+    <p class="small" style="margin-top: 1.125rem">The longer version lets you
+      move each parameter continuously rather than choosing conditions, adds a
+      participant task, and simulates a hundred individuals so you can see the
+      distribution behind the group rate. It is at
+      <a href="../../../../../modules/social-critical-psychology/tools/04-conformity-under-context/index.html">Conformity
+      Under Context in the main collection</a>.</p>
+  </section>
+</main>
+</body>
+</html>

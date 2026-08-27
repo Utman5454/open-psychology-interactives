@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Same Score, Different People | Simplified Edition</title>
+<meta name="description" content="Two fictional people score the same on a broad trait and behave quite differently. See what the broad score averaged away, then change the questionnaire and watch the equal scores come apart.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231C7293'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../../../assets/css/simplified.css">
+<link rel="stylesheet" href="../../../../assets/css/patterns.css">
+<script src="../../../../assets/js/workbook.js" defer></script>
+<script src="activity.js" defer></script>
+<link rel="stylesheet" href="../../../../assets/css/edition.css">
+<script src="../../../../assets/js/edition-nav.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to the activity</a>
+
+<main class="workbook workbook--compact" id="main" data-workbook
+      data-reset-message="Cleared. Back to the opening judgement.">
+
+  <section class="hero">
+    <p class="eyebrow">Personality &amp; Individual Differences &middot; Simplified</p>
+    <h1>Same Score, Different People</h1>
+    <p class="hero__lead">Sam and Priya both come out at 66 for
+      conscientiousness. Nobody who knows them would call them alike.</p>
+  </section>
+
+  <section class="card" id="card-predict" aria-labelledby="predict-heading">
+    <p class="step-label">Step 1 of 3</p>
+    <h2 id="predict-heading">First, a judgement</h2>
+    <p class="lead">Two fictional people complete the same personality
+      questionnaire. Their broad conscientiousness scores come out equal.
+      Watched over several weeks they behave differently, in ways everyone
+      around them recognises. What is the most likely explanation?</p>
+
+    <div class="option-grid" style="--option-columns: 2" id="options" data-workbook-choices>
+      <button class="option" type="button" data-choice="unreliable">
+        <strong>The questionnaire is unreliable</strong>
+        <span>The scores are not really equal, so the tie is measurement error.</span>
+      </button>
+      <button class="option" type="button" data-choice="situations">
+        <strong>They are in different situations</strong>
+        <span>The trait is the same; the settings differ.</span>
+      </button>
+      <button class="option" type="button" data-choice="facets">
+        <strong>The broad score is an average</strong>
+        <span>It averages over narrower traits, and they differ on those.</span>
+      </button>
+      <button class="option" type="button" data-choice="dishonest">
+        <strong>Somebody answered dishonestly</strong>
+        <span>At least one of the two reports is not accurate.</span>
+      </button>
+    </div>
+
+    <div class="notice" id="verdict" hidden data-state="chosen">
+      <p id="verdict-text"></p>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="reveal" type="button" disabled>See what the score averaged</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+  </section>
+
+  <section class="card" id="card-facets" hidden aria-labelledby="facets-heading">
+    <p class="step-label">Step 2 of 3</p>
+    <h2 id="facets-heading">Underneath the broad score</h2>
+    <p class="lead">Conscientiousness is usually described as having two
+      narrower aspects: getting things done, and keeping things in order. Sam
+      and Priya are close to opposites on them.</p>
+
+    <details class="disclosure" id="key-terms">
+      <summary>Key terms</summary>
+      <div class="disclosure__body">
+        <dl class="glossary">
+          <dt>Domain and facet</dt>
+          <dd>The broad trait, and the narrower components it is made of. A
+            domain score is an average over its facets.</dd>
+          <dt>Bandwidth and fidelity</dt>
+          <dd>Broad measures predict broad outcomes; narrow measures predict
+            narrow ones. Choosing a level is a decision about what you want to
+            predict, not about which is more real.</dd>
+          <dt>Item mix</dt>
+          <dd>Which items a particular questionnaire happens to contain. Two
+            questionnaires for the same domain can draw on its facets in quite
+            different proportions.</dd>
+        </dl>
+      </div>
+    </details>
+
+    <div class="table-scroll">
+      <table class="data-table" id="profile">
+        <caption>Facet scores for both people, on an illustrative 0 to 100
+          scale, and the broad score they average to.</caption>
+        <thead>
+          <tr><th scope="col">Measured at</th><th scope="col">Sam</th>
+            <th scope="col">Priya</th><th scope="col">Difference</th></tr>
+        </thead>
+        <tbody id="profile-body"></tbody>
+      </table>
+    </div>
+
+    <p class="lead" style="margin-top: 1.25rem">Here is why that matters. Four
+      things they were observed doing, with what you would expect of each
+      person if you used their two facet scores, and what you would expect if
+      you used only the broad score.</p>
+
+    <div class="table-scroll">
+      <table class="data-table" id="obs">
+        <caption>Model-implied tendency for each observation, predicted twice:
+          once from the facets, once from the broad score alone.</caption>
+        <thead>
+          <tr><th scope="col">Observed behaviour</th>
+            <th scope="col">Facets say Sam</th><th scope="col">Facets say Priya</th>
+            <th scope="col">Broad score says, for both</th></tr>
+        </thead>
+        <tbody id="obs-body"></tbody>
+      </table>
+    </div>
+
+    <p class="small" id="obs-note"></p>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="tomix" type="button">Now change the questionnaire</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+  </section>
+
+  <section class="card" id="card-mix" hidden aria-labelledby="mix-heading">
+    <p class="step-label">Step 3 of 3</p>
+    <h2 id="mix-heading">Change the questionnaire, not the people</h2>
+    <p class="lead">Sam and Priya do not change from here on. The only thing
+      that changes is how many of the questionnaire's items are about getting
+      things done rather than keeping things in order.</p>
+
+    <fieldset class="controls" style="--controls-columns: 1">
+      <legend class="visually-hidden">Item mix</legend>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="mix">Share of items about getting
+            things done</label>
+          <output class="control__value" for="mix">50%</output>
+        </div>
+        <input type="range" id="mix" min="0" max="100" step="5" value="50">
+        <p class="control__hint">The rest of the items are about keeping things
+          in order. Both questionnaires would be published as measures of
+          conscientiousness.</p>
+      </div>
+    </fieldset>
+
+    <div class="plot">
+      <svg id="chart" role="img" aria-labelledby="chart-title chart-desc">
+        <title id="chart-title">Each person's broad score across every possible item mix</title>
+        <desc id="chart-desc"></desc>
+      </svg>
+      <p class="legend">Each line is one person's broad conscientiousness score
+        as the questionnaire changes. The upright marker is the questionnaire
+        you have built. Where the lines cross, the two people score the same.</p>
+    </div>
+
+    <ul class="results-grid" style="--results-columns: 3" id="readout"></ul>
+
+    <p class="small" id="sentence"></p>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="tidy" type="button">Make it all about keeping things in order</button>
+      <button class="btn btn-secondary" id="explain" type="button" disabled>What this shows</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+
+    <div class="notice" id="note" hidden data-state="chosen">
+      <p id="note-text"></p>
+    </div>
+  </section>
+
+  <p class="workbook-status" data-workbook-status role="status" aria-live="polite"></p>
+
+  <section class="synthesis" id="synthesis" hidden aria-labelledby="result-heading">
+    <p class="step-label">What this shows</p>
+    <h2 id="result-heading">A broad score is an average, and averages hide things</h2>
+    <p class="lead" id="result-lead"></p>
+
+    <div class="takeaway">
+      <p><strong>Key idea:</strong> Sam and Priya scored the same because a
+        domain score averages over its facets, and they are high and low on
+        opposite ones. The broad score is not wrong. It predicts broad things
+        well, and if you want to know who will generally be dependable it is a
+        reasonable thing to ask for. What it cannot do is tell those two people
+        apart, and the four observations show exactly where it fails: the facet
+        prediction separates them on every one, and the broad prediction gives
+        the identical number to both. The second half is less comfortable.
+        Their scores were only equal because the questionnaire happened to draw
+        half its items from each facet. Shift that balance and the same two
+        unchanged people swap places. So the sentence "Sam and Priya are
+        equally conscientious" is not purely a fact about Sam and Priya. It is
+        partly a fact about which questionnaire someone reached for.</p>
+    </div>
+
+    <div class="notice notice--caution">
+      <p>Two invented people and four invented observations, with tendencies
+        produced by a formula rather than measured. Real facet structures are
+        richer than two aspects per domain, the aspects themselves correlate
+        rather than trading off cleanly, and real behaviour has error in it
+        that this model does not. Two cautions about the argument rather than
+        the numbers. Narrower is not automatically better: facets predict
+        narrow outcomes better and broad scores predict broad ones better, so
+        the level to measure at follows from what you want to predict. And
+        nothing here says either person is more conscientious in any sense that
+        exists apart from a measure. The point is the opposite, that the
+        comparison depends on a measurement choice somebody made.</p>
+    </div>
+
+    <p class="small" style="margin-top: 1.125rem">The longer version adds three
+      domains to investigate, a matching task in which you assign each
+      observation to a person from behaviour alone, and a studio where you
+      build your own pair of profiles. It is at
+      <a href="../../../../../modules/personality-individual-differences/tools/09-facet-level-detective/index.html">Facet-Level
+      Detective in the main collection</a>.</p>
+  </section>
+</main>
+</body>
+</html>

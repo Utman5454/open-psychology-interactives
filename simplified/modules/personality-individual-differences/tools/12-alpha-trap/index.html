@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chasing Alpha | Simplified Edition</title>
+<meta name="description" content="Replace items in a ten-item scale with near-duplicates. Cronbach's alpha climbs past 0.9 while the scale's content narrows and its correlation with the outcome falls.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231C7293'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../../../assets/css/simplified.css">
+<link rel="stylesheet" href="../../../../assets/css/patterns.css">
+<script src="../../../../assets/js/workbook.js" defer></script>
+<script src="activity.js" defer></script>
+<link rel="stylesheet" href="../../../../assets/css/edition.css">
+<script src="../../../../assets/js/edition-nav.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to the activity</a>
+
+<main class="workbook workbook--compact" id="main" data-workbook
+      data-reset-message="Cleared. Back to the scale you started with.">
+
+  <section class="hero">
+    <p class="eyebrow">Personality &amp; Individual Differences &middot; Simplified</p>
+    <h1>Chasing Alpha</h1>
+    <p class="hero__lead">There is a reliable way to push Cronbach's alpha
+      above 0.9. It is also a reliable way to make the scale worse.</p>
+  </section>
+
+  <section class="card" id="card-predict" aria-labelledby="predict-heading">
+    <p class="step-label">Step 1 of 2</p>
+    <h2 id="predict-heading">First, a prediction</h2>
+    <p class="lead">You have a ten-item scale of academic conscientiousness
+      covering five areas: planning, orderliness, persistence, punctuality and
+      resisting distraction. Its alpha is 0.82. You are going to swap items out
+      for near-duplicates of items already in it, until alpha is above 0.94.
+      Meanwhile the scale is being correlated with something it should predict,
+      a tutor's rating of dependability.</p>
+    <p class="lead">What happens to that correlation as alpha climbs?</p>
+
+    <div class="option-grid" style="--option-columns: 2" id="options" data-workbook-choices>
+      <button class="option" type="button" data-choice="rises">
+        <strong>It rises too</strong>
+        <span>A more reliable scale is a better measure, so it should predict better.</span>
+      </button>
+      <button class="option" type="button" data-choice="flat">
+        <strong>It stays about the same</strong>
+        <span>Alpha and prediction are separate things, so nothing much moves.</span>
+      </button>
+      <button class="option" type="button" data-choice="cannot">
+        <strong>Alpha cannot tell you</strong>
+        <span>Internal consistency says nothing about what a scale predicts.</span>
+      </button>
+      <button class="option" type="button" data-choice="falls">
+        <strong>It falls</strong>
+        <span>The scale predicts the outcome less well than it did at 0.82.</span>
+      </button>
+    </div>
+
+    <div class="notice" id="verdict" hidden data-state="chosen">
+      <p id="verdict-text"></p>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="reveal" type="button" disabled>Open the scale</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+  </section>
+
+  <section class="card" id="card-build" hidden aria-labelledby="build-heading">
+    <p class="step-label">Step 2 of 2</p>
+    <h2 id="build-heading">Ten items, however you spend them</h2>
+    <p class="lead">The scale stays ten items long. The only thing you change
+      is how many of those ten are near-duplicates of one another, all asking
+      about meeting deadlines in slightly different words.</p>
+
+    <details class="disclosure" id="key-terms">
+      <summary>Key terms</summary>
+      <div class="disclosure__body">
+        <dl class="glossary">
+          <dt>Cronbach's alpha</dt>
+          <dd>An index of how consistently a set of items covary. It is a
+            function of two things only: how many items there are, and how
+            strongly they correlate on average.</dd>
+          <dt>Near-duplicate items</dt>
+          <dd>Items whose wording is almost the same. They correlate highly
+            with each other for a reason that has nothing to do with the
+            construct.</dd>
+          <dt>Unidimensionality</dt>
+          <dd>Whether the items measure one thing. It is a different question
+            from internal consistency, and alpha does not answer it.</dd>
+          <dt>Construct validity</dt>
+          <dd>Whether the scale measures what it claims to. Answering that
+            needs evidence from outside the scale itself.</dd>
+        </dl>
+      </div>
+    </details>
+
+    <fieldset class="controls" style="--controls-columns: 1">
+      <legend class="visually-hidden">Scale composition</legend>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="dupes">How many of the ten items
+            are near-duplicates?</label>
+          <output class="control__value" for="dupes">0</output>
+        </div>
+        <input type="range" id="dupes" min="0" max="8" step="1" value="0">
+        <p class="control__hint">Each one replaces an item covering something
+          else. The scale never gets longer, so every duplicate costs a
+          different question.</p>
+      </div>
+    </fieldset>
+
+    <ul class="results-grid" style="--results-columns: 3" id="readout"></ul>
+
+    <p class="small" id="contents"></p>
+
+    <div class="plot">
+      <svg id="chart" role="img" aria-labelledby="chart-title chart-desc">
+        <title id="chart-title">Alpha and the correlation with the outcome, across every version of the scale</title>
+        <desc id="chart-desc"></desc>
+      </svg>
+      <p class="legend">Two lines across every version of this scale. The upper
+        line is Cronbach's alpha. The lower line is how well the scale predicts
+        the tutor's rating. The upright marker is the scale you have built.</p>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="chase" type="button">Chase alpha as far as it goes</button>
+      <button class="btn btn-secondary" id="explain" type="button" disabled>What this shows</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+
+    <div class="notice" id="note" hidden data-state="chosen">
+      <p id="note-text"></p>
+    </div>
+  </section>
+
+  <p class="workbook-status" data-workbook-status role="status" aria-live="polite"></p>
+
+  <section class="synthesis" id="synthesis" hidden aria-labelledby="result-heading">
+    <p class="step-label">What this shows</p>
+    <h2 id="result-heading">Alpha went up because the scale got narrower</h2>
+    <p class="lead" id="result-lead"></p>
+
+    <div class="takeaway">
+      <p><strong>Key idea:</strong> Alpha is a function of how many items there
+        are and how strongly they agree with each other. Near-duplicates agree
+        with each other almost perfectly, because they are the same question
+        twice, so they raise alpha very efficiently. None of that agreement is
+        news about academic conscientiousness. Meanwhile every duplicate you
+        added cost you a question about something else, so the scale that ends
+        up with the best alpha is the one that asks about the least. That is
+        why the two lines separate. A high alpha is consistent with an
+        excellent scale and equally consistent with a scale that asks the same
+        question nine times, and nothing inside the scale can tell those apart.
+        Deciding between them takes evidence from outside it, which is what the
+        lower line is.</p>
+    </div>
+
+    <div class="notice notice--caution">
+      <p>Every number here is what a fictional correlation model implies for a
+        population, not an estimate from a sample, so nothing carries the
+        sampling error a real alpha or a real validity coefficient would.
+        Three things this must not be taken to say. Low alpha is not thereby
+        good: a scale whose items do not covary at all has its own problems,
+        and the argument here is against treating alpha as a target rather than
+        against alpha. Alpha is also not a test of unidimensionality, and a set
+        of items measuring two distinct things can return a perfectly
+        respectable alpha. And a single validity coefficient against one
+        criterion is itself thin evidence; the lower line is here to show that
+        it moves independently of alpha, not to be the last word on whether a
+        scale is any good.</p>
+    </div>
+
+    <p class="small" style="margin-top: 1.125rem">The longer version lets you
+      choose which item to paraphrase, shows the full item pool and the
+      inter-item correlation matrix, and adds two closing challenges. It is at
+      <a href="../../../../../modules/personality-individual-differences/tools/12-alpha-trap/index.html">The
+      Alpha Trap in the main collection</a>.</p>
+  </section>
+</main>
+</body>
+</html>

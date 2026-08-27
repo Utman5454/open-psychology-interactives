@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Reverse-Item Disaster | Simplified Edition</title>
+<meta name="description" content="A six-item scale with two reverse-keyed items nobody recoded. Watch Cronbach's alpha and the item-total correlations as each reverse item is repaired.">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231C7293'/%3E%3C/svg%3E">
+
+<link rel="stylesheet" href="../../../../assets/css/simplified.css">
+<link rel="stylesheet" href="../../../../assets/css/patterns.css">
+<script src="../../../../assets/js/workbook.js" defer></script>
+<script src="activity.js" defer></script>
+<link rel="stylesheet" href="../../../../assets/css/edition.css">
+<script src="../../../../assets/js/edition-nav.js" defer></script>
+</head>
+
+<body>
+
+<a class="skip-link" href="#main">Skip to the activity</a>
+
+<main class="workbook workbook--compact" id="main" data-workbook
+      data-reset-message="Cleared. Back to the scale as it was scored, with neither reverse item recoded.">
+
+  <section class="hero">
+    <p class="eyebrow">Personality and Individual Differences &middot; Simplified</p>
+    <h1>Reverse-Item Disaster</h1>
+    <p class="hero__lead">Two items were worded the other way round and nobody
+      recoded them. Look at what that does to the scale.</p>
+  </section>
+
+  <nav aria-label="Activity progress">
+    <ol class="progress" data-workbook-progress
+        style="--progress-columns: 3; --progress-columns-narrow: 1">
+      <li class="progress__step">1 &middot; As scored</li>
+      <li class="progress__step">2 &middot; Repair the first</li>
+      <li class="progress__step">3 &middot; Repair the second</li>
+    </ol>
+  </nav>
+
+  <section class="card" id="lab" aria-labelledby="lab-heading">
+
+    <p class="step-label" id="step-label">As scored</p>
+    <h2 id="lab-heading">A six-item scale, scored exactly as answered</h2>
+    <p class="lead" id="lab-lead">A fictional persistence scale, six items
+      answered from 1 to 5 by six respondents. Two items are worded so that
+      agreeing means <em>less</em> persistence, and every answer has been added
+      up at face value.</p>
+
+    <details class="disclosure" id="key-terms">
+      <summary>Key terms</summary>
+      <div class="disclosure__body">
+        <dl class="glossary">
+          <dt>Reverse-keyed item</dt>
+          <dd>An item worded so that agreement indicates less of the trait, not
+            more. It has to be turned round before it is added to the others.</dd>
+
+          <dt>Recoding</dt>
+          <dd>Turning a reverse-keyed answer round by subtracting it from one
+            more than the sum of the scale endpoints. On a 1 to 5 scale that is
+            6 minus the answer.</dd>
+
+          <dt>Corrected item-total correlation</dt>
+          <dd>How strongly one item agrees with the total of the other five. A
+            positive value means the item is pulling the same way as the rest.
+            A negative value means it is pulling against them.</dd>
+
+          <dt>Cronbach's alpha</dt>
+          <dd>A summary of how consistently the items of a scale agree with one
+            another. It runs up to 1, and a value at or below zero means the
+            items are not measuring one thing at all.</dd>
+        </dl>
+      </div>
+    </details>
+
+    <ul class="results-grid" style="--results-columns: 2" id="readout"></ul>
+
+    <div class="plot">
+      <svg id="chart" role="img" aria-labelledby="chart-title chart-desc">
+        <title id="chart-title">How well each item agrees with the rest of the scale</title>
+        <desc id="chart-desc"></desc>
+      </svg>
+      <p class="legend">One bar per item, showing its corrected item-total
+        correlation. Bars to the right of the line agree with the rest of the
+        scale. Bars to the left pull against it.</p>
+    </div>
+
+    <div id="repair" hidden>
+      <div class="casebox">
+        <p id="repair-prompt"></p>
+      </div>
+      <div class="entry">
+        <label for="recoded" id="recoded-label">Recoded value</label>
+        <input id="recoded" type="number" min="1" max="5" inputmode="numeric"
+               aria-describedby="repair-error">
+        <button class="btn btn-primary" id="check" type="button">Recode this item</button>
+        <p class="entry__error" id="repair-error" hidden></p>
+      </div>
+    </div>
+
+    <div class="reveal" id="reveal" hidden></div>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="advance" type="button">Find the problem items</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+
+  </section>
+
+  <p class="workbook-status" data-workbook-status role="status" aria-live="polite"></p>
+
+  <section class="synthesis" id="synthesis" hidden aria-labelledby="result-heading">
+
+    <p class="step-label">What changed</p>
+    <h2 id="result-heading">One scale, three reliabilities</h2>
+    <p class="lead">Nothing about the six people changed. Nobody answered
+      anything differently. The only thing that changed was the arithmetic
+      applied to two columns.</p>
+
+    <ul class="results-grid" style="--results-columns: 3" id="journey"></ul>
+
+    <div class="takeaway">
+      <p><strong>Key idea:</strong> An unrecoded reverse item does not sit
+        quietly at the bottom of a reliability table. It correlates negatively
+        with everything else, drags alpha to nothing, and makes the scale look
+        as though it is not measuring one thing. It does not even stay in its
+        own column: with both reverse items unrecoded, four of the six items
+        correlated negatively with the rest, because the total they were being
+        measured against was itself broken. Repairing the first item barely
+        moved alpha, because the second was still pulling the other way, and it
+        took both before the scale behaved. The item-total correlations
+        are what pointed at which column to fix; alpha only said that something
+        was wrong.</p>
+    </div>
+
+    <div class="notice notice--caution">
+      <p>Two cautions. Six respondents is far too few for a real reliability
+        estimate, and every figure here is arithmetic on an invented dataset
+        chosen to make the effect visible. And reverse wording is a trade
+        rather than a free fix: it does reduce agreement bias, and it also
+        introduces comprehension difficulty, is answered inconsistently by
+        people reading quickly, and routinely forms a method factor that can be
+        mistaken for a second substantive dimension.</p>
+    </div>
+
+    <p class="small" style="margin-top: 1.125rem">The longer version adds two
+      further ways of getting the keying wrong, including one that leaves every
+      total looking entirely plausible, and shows the effect on the
+      respondents' totals and rank order alongside the scale statistics. It is
+      at
+      <a href="../../../../../modules/personality-individual-differences/tools/13-reverse-item-disaster/index.html">Reverse-Item
+      Disaster in the main collection</a>.</p>
+
+  </section>
+
+</main>
+
+</body>
+</html>

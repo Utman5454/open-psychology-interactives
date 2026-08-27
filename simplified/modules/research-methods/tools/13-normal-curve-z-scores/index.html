@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Same Mark, Two Different Distributions | Simplified Edition</title>
+<meta name="description" content="A normal curve whose mean and spread you control, on a score axis that never moves. Hold a mark still, slide the distribution underneath it, and watch what the mark is worth change.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231C7293'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../../../assets/css/simplified.css">
+<link rel="stylesheet" href="../../../../assets/css/patterns.css">
+<script src="../../../../assets/js/workbook.js" defer></script>
+<script src="../../../../assets/js/stats.js" defer></script>
+<script src="activity.js" defer></script>
+<link rel="stylesheet" href="../../../../assets/css/edition.css">
+<script src="../../../../assets/js/edition-nav.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to the activity</a>
+
+<main class="workbook workbook--compact" id="main" data-workbook
+      data-reset-message="Cleared. Back to a mark of 62 on the starting distribution.">
+
+  <section class="hero">
+    <p class="eyebrow">Research Methods &middot; Simplified</p>
+    <h1>The Same Mark, Two Different Distributions</h1>
+    <p class="hero__lead">A score on its own says almost nothing. What it is
+      worth depends entirely on the distribution it sits in.</p>
+  </section>
+
+  <section class="card" id="card" aria-labelledby="card-heading">
+    <p class="step-label">The curve</p>
+    <h2 id="card-heading">One mark, held still, while the distribution moves</h2>
+    <p class="lead">The score axis below never changes and neither does the
+      mark. Move the mean and the spread, and watch the same 62 turn from
+      unremarkable into exceptional and back again.</p>
+
+    <details class="disclosure" id="key-terms">
+      <summary>Key terms</summary>
+      <div class="disclosure__body">
+        <dl class="glossary">
+          <dt>z-score</dt>
+          <dd>How many standard deviations a score sits above or below the
+            mean. A z of 0 is exactly average; a z of +2 is two standard
+            deviations above it.</dd>
+          <dt>Percentile</dt>
+          <dd>The percentage of the distribution that falls below the score.
+            The shaded area on the figure.</dd>
+          <dt>Density</dt>
+          <dd>The height of the curve. It is not a probability; the area
+            underneath is. Spreading a distribution out lowers the peak,
+            because the total area has to stay at one.</dd>
+        </dl>
+      </div>
+    </details>
+
+    <fieldset class="controls" style="--controls-columns: 3">
+      <legend class="visually-hidden">The distribution and the mark</legend>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="mu">Mean</label>
+          <output class="control__value" for="mu">50</output>
+        </div>
+        <input type="range" id="mu" min="20" max="80" step="1" value="50">
+        <p class="control__hint">Where the centre of the distribution sits.</p>
+      </div>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="sd">Standard deviation</label>
+          <output class="control__value" for="sd">10</output>
+        </div>
+        <input type="range" id="sd" min="4" max="20" step="1" value="10">
+        <p class="control__hint">How spread out the scores are.</p>
+      </div>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="score">The mark</label>
+          <output class="control__value" for="score">62</output>
+        </div>
+        <input type="range" id="score" min="0" max="100" step="1" value="62">
+        <p class="control__hint">One person's raw score. Leave it alone at first.</p>
+      </div>
+    </fieldset>
+
+    <div class="plot">
+      <svg id="chart" role="img" aria-labelledby="chart-title chart-desc">
+        <title id="chart-title">A normal curve on a fixed score axis, with the same axis relabelled in standard deviations beneath it</title>
+        <desc id="chart-desc"></desc>
+      </svg>
+      <p class="legend">The shaded area is everyone scoring below the mark. The
+        lower axis is the very same axis as the upper one, relabelled in
+        standard deviations from the mean: that relabelling is all
+        standardising does.</p>
+    </div>
+
+    <ul class="results-grid" style="--results-columns: 4" id="readout"></ul>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="challenge" type="button">Set me a challenge</button>
+      <button class="btn btn-secondary" id="explain" type="button" disabled>What this shows</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+
+    <div class="notice" id="task" hidden data-state="chosen">
+      <p id="task-text"></p>
+    </div>
+  </section>
+
+  <p class="workbook-status" data-workbook-status role="status" aria-live="polite"></p>
+
+  <section class="synthesis" id="synthesis" hidden aria-labelledby="result-heading">
+    <p class="step-label">What this shows</p>
+    <h2 id="result-heading">Standardising relabels the axis</h2>
+    <p class="lead">The mark never moved. Everything that changed about what it
+      is worth came from the distribution around it.</p>
+
+    <div class="takeaway">
+      <p><strong>Key idea:</strong> A raw score is not interpretable on its own.
+        A z-score answers the only question that can be asked of a single mark:
+        how far from the middle is it, measured in the units this particular
+        distribution actually varies by. That is why the same 62 can be
+        thoroughly ordinary in one cohort and near the top of another, and why
+        moving the standard deviation changes a z-score just as decisively as
+        moving the mean does. Standardising does not change the distribution.
+        It relabels the axis.</p>
+    </div>
+
+    <div class="notice notice--caution">
+      <p>Two limits worth keeping in view. The percentile and the tail areas
+        here are read off a normal curve, so they are properties of that model
+        rather than of any real data: if a set of marks is skewed or has a
+        ceiling, as coursework marks usually do, the model gives the wrong
+        answer and the familiar 68, 95 and 99.7 figures go with it. And a
+        z-score says where a score sits, not how good, how meaningful or how
+        reliable it is. A z of +2 on a poorly made measure is still a score on
+        a poorly made measure.</p>
+    </div>
+
+    <p class="small" style="margin-top: 1.125rem">The longer version adds a
+      second experiment placing one mark on two distributions at once, the
+      distinction between one-tailed and two-tailed areas worked through in
+      detail, and a set of read-the-curve challenges. It is at
+      <a href="../../../../../modules/research-methods/tools/13-normal-curve-z-scores/index.html">The
+      Normal Curve and z-Scores in the main collection</a>.</p>
+  </section>
+</main>
+</body>
+</html>

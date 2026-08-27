@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Six Questions, One Module | Unit 12 Prepare</title>
+<style>
+:root{
+  --page:#F5F2ED;--card:#FFFFFF;--navy:#1A2744;--muted:#5F6878;--teal:#1C7293;
+  --teal-light:#EAF4FA;--blue:#3D5A80;--gold:#D4A853;--gold-light:#F7EEDC;
+  --coral:#C0434F;--green:#2F7D69;--green-light:#EAF5F1;--border:#DDD8CF;
+  --shadow:0 12px 34px rgba(26,39,68,.08);--radius:18px
+}
+*{box-sizing:border-box}html{background:var(--page)}
+body{
+  margin:0;color:var(--navy);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  line-height:1.55;
+  background:
+    radial-gradient(circle at 10% 8%,rgba(212,168,83,.14),transparent 22rem),
+    radial-gradient(circle at 90% 18%,rgba(28,114,147,.12),transparent 24rem),
+    var(--page)
+}
+button{font:inherit}[hidden]{display:none!important}
+.workbook{width:min(980px,calc(100% - 32px));margin:0 auto;padding:42px 0 64px}
+.hero{
+  position:relative;overflow:hidden;padding:34px 36px;border-radius:24px;background:var(--card);
+  box-shadow:var(--shadow);border:1px solid rgba(26,39,68,.08)
+}
+.hero:after{
+  content:"";position:absolute;width:190px;height:190px;right:-60px;top:-78px;border-radius:50%;
+  background:var(--teal-light);border:22px solid rgba(212,168,83,.18)
+}
+.eyebrow{
+  position:relative;z-index:1;margin:0 0 10px;color:var(--teal);font-size:13px;font-weight:800;
+  letter-spacing:.09em;text-transform:uppercase
+}
+h1{
+  position:relative;z-index:1;margin:0;max-width:18ch;font-size:clamp(34px,5vw,54px);
+  line-height:1.02;letter-spacing:-.035em
+}
+.hero p:last-child{
+  position:relative;z-index:1;max-width:760px;margin:16px 0 0;color:var(--muted);font-size:18px
+}
+.progress{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 0 26px}
+.progress div{
+  padding:11px 13px;border-radius:12px;background:rgba(255,255,255,.66);
+  border:1px solid var(--border);color:var(--muted);font-size:13px;font-weight:800;text-align:center
+}
+.progress .active{color:var(--navy);background:var(--teal-light);border-color:rgba(28,114,147,.35)}
+.progress .done{color:var(--navy);background:var(--gold-light);border-color:rgba(212,168,83,.45)}
+.card,.synthesis{
+  margin-top:18px;padding:28px 30px;border-radius:var(--radius);background:var(--card);
+  border:1px solid rgba(26,39,68,.09);box-shadow:0 7px 22px rgba(26,39,68,.05)
+}
+.step-label{
+  display:inline-flex;align-items:center;gap:8px;margin-bottom:10px;color:var(--teal);
+  font-weight:800;font-size:13px;letter-spacing:.05em;text-transform:uppercase
+}
+.step-label:before{content:"";width:9px;height:9px;border-radius:50%;background:var(--gold)}
+h2{margin:0 0 9px;font-size:clamp(24px,3vw,31px);line-height:1.15;letter-spacing:-.02em}
+.lead{max-width:780px;margin:0;color:var(--muted)}
+.casebox{
+  margin-top:18px;padding:22px 24px;border-left:5px solid var(--teal);
+  border-radius:12px;background:#fff;font-size:17px
+}
+.casebox p{margin:0}.casebox p+p{margin-top:8px}
+.option-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px}
+.option{
+  padding:18px;text-align:left;color:var(--navy);background:#fff;border:1.5px solid var(--border);
+  border-radius:15px;cursor:pointer;min-height:105px;display:flex;align-items:center
+}
+.option:hover{border-color:var(--teal)}
+.option.correct{border-color:var(--green);background:var(--green-light)}
+.option.wrong{border-color:var(--gold);background:var(--gold-light)}
+.option strong{display:block;font-size:16px;line-height:1.4}
+.reveal{
+  margin-top:16px;padding:20px 22px;border-radius:15px;background:#fff;
+  border:1px solid rgba(26,39,68,.09)
+}
+.reveal p{margin:0}.reveal p+p{margin-top:8px}
+.small{font-size:13px;color:var(--muted)}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.btn{border:0;border-radius:11px;padding:11px 17px;font-weight:800;cursor:pointer}
+.btn-primary{background:var(--teal);color:#fff}
+.btn-secondary{background:#fff;color:var(--navy);border:1px solid var(--border)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.topic{
+  display:inline-flex;margin-top:16px;padding:9px 12px;border-radius:999px;background:var(--teal-light);
+  border:1px solid rgba(28,114,147,.25);font-size:13px;font-weight:800
+}
+.diagram-wrap{margin-top:18px;overflow:hidden;border-radius:16px;background:#FBFAF7;border:1px solid var(--border)}
+svg{display:block;width:100%;height:auto}
+.node-title{font:800 15px Inter,system-ui,sans-serif;fill:var(--navy)}
+.node-sub{font:500 12px Inter,system-ui,sans-serif;fill:var(--muted)}
+.col-head{font:800 14px Inter,system-ui,sans-serif;fill:var(--teal);letter-spacing:.03em}
+.takeaway{
+  margin-top:18px;padding:20px 22px;border-left:5px solid var(--gold);
+  border-radius:12px;background:var(--gold-light)
+}
+.takeaway p{margin:0}
+@media(max-width:760px){
+  .option-grid{grid-template-columns:1fr}
+  .hero,.card,.synthesis{padding:24px}
+  .workbook{width:min(100% - 20px,980px);padding-top:20px}
+  .progress{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<main class="workbook">
+
+<section class="hero">
+  <p class="eyebrow">Unit 12 · Prepare</p>
+  <h1>Six Questions, One Module</h1>
+  <p>The topics changed across the module, but a similar move kept returning: psychology widened its lens and began asking different questions about the same social world.</p>
+</section>
+
+<div class="progress">
+  <div id="p1" class="active">1 · Knowledge</div>
+  <div id="p2">2 · Social life</div>
+  <div id="p3">3 · Application</div>
+</div>
+
+<section class="card" id="card">
+  <div class="step-label" id="label">Question 1 of 6</div>
+  <h2>Which question does the wider lens add?</h2>
+  <p class="lead">All three questions are plausible. Choose the one that best captures the extra question introduced as the module widens its focus.</p>
+  <div class="topic" id="topic"></div>
+  <div class="casebox"><p id="prompt"></p></div>
+  <div class="option-grid" id="options"></div>
+  <div class="reveal" id="reveal" hidden aria-live="polite"></div>
+  <div class="actions">
+    <button class="btn btn-primary" id="next" type="button" disabled>Next question</button>
+    <button class="btn btn-secondary" id="reset" type="button">Reset</button>
+  </div>
+</section>
+
+<section class="synthesis" id="synthesis" hidden>
+  <div class="step-label">Module map</div>
+  <h2>Six parallel shifts, not one chain</h2>
+  <p class="lead">These strands connect with one another, but not in a simple sequence. The cleaner summary is that each topic widened the level at which explanation was sought.</p>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 900 780" role="img" aria-labelledby="t d">
+      <title id="t">Module recap as six parallel shifts</title>
+      <desc id="d">Six topic rows each move from an earlier traditional focus to a wider social or critical focus. All rows feed into a final principle about evidence, explanation and intervention.</desc>
+      <defs>
+        <marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+          <path d="M0 0L10 5L0 10Z" fill="#8CA0AD"/>
+        </marker>
+      </defs>
+
+      <text x="270" y="42" text-anchor="middle" class="col-head">EARLIER / TRADITIONAL LENS</text>
+      <text x="650" y="42" text-anchor="middle" class="col-head">WIDER SOCIAL / CRITICAL LENS</text>
+
+      <!-- Row 1 -->
+      <text x="45" y="104" class="node-title">Knowledge</text>
+      <rect x="135" y="72" width="265" height="60" rx="16" fill="#fff" stroke="#3D5A80" stroke-width="2"/>
+      <text x="267" y="98" text-anchor="middle" class="node-sub">How can we measure accurately?</text>
+      <path d="M400 102 L500 102" stroke="#8CA0AD" stroke-width="2.5" marker-end="url(#a)"/>
+      <rect x="510" y="72" width="325" height="60" rx="16" fill="#EAF4FA" stroke="#1C7293" stroke-width="2"/>
+      <text x="672" y="98" text-anchor="middle" class="node-sub">How do assumptions shape what becomes knowable?</text>
+
+      <!-- Row 2 -->
+      <text x="45" y="194" class="node-title">Influence</text>
+      <rect x="135" y="162" width="265" height="60" rx="16" fill="#fff" stroke="#3D5A80" stroke-width="2"/>
+      <text x="267" y="188" text-anchor="middle" class="node-sub">What predicts this person’s response?</text>
+      <path d="M400 192 L500 192" stroke="#8CA0AD" stroke-width="2.5" marker-end="url(#a)"/>
+      <rect x="510" y="162" width="325" height="60" rx="16" fill="#EAF4FA" stroke="#1C7293" stroke-width="2"/>
+      <text x="672" y="188" text-anchor="middle" class="node-sub">How do norms and context shape the response?</text>
+
+      <!-- Row 3 -->
+      <text x="45" y="284" class="node-title">Identity</text>
+      <rect x="135" y="252" width="265" height="60" rx="16" fill="#fff" stroke="#3D5A80" stroke-width="2"/>
+      <text x="267" y="278" text-anchor="middle" class="node-sub">Which identity is salient here?</text>
+      <path d="M400 282 L500 282" stroke="#8CA0AD" stroke-width="2.5" marker-end="url(#a)"/>
+      <rect x="510" y="252" width="325" height="60" rx="16" fill="#EAF4FA" stroke="#1C7293" stroke-width="2"/>
+      <text x="672" y="278" text-anchor="middle" class="node-sub">How is this person positioned and described?</text>
+
+      <!-- Row 4 -->
+      <text x="45" y="374" class="node-title">Groups</text>
+      <rect x="135" y="342" width="265" height="60" rx="16" fill="#fff" stroke="#3D5A80" stroke-width="2"/>
+      <text x="267" y="368" text-anchor="middle" class="node-sub">How do roles and norms shape behaviour?</text>
+      <path d="M400 372 L500 372" stroke="#8CA0AD" stroke-width="2.5" marker-end="url(#a)"/>
+      <rect x="510" y="342" width="325" height="60" rx="16" fill="#EAF4FA" stroke="#1C7293" stroke-width="2"/>
+      <text x="672" y="368" text-anchor="middle" class="node-sub">How do power and legitimacy reshape the group?</text>
+
+      <!-- Row 5 -->
+      <text x="45" y="464" class="node-title">Prejudice</text>
+      <rect x="135" y="432" width="265" height="60" rx="16" fill="#fff" stroke="#3D5A80" stroke-width="2"/>
+      <text x="267" y="458" text-anchor="middle" class="node-sub">What attitudes or associations are measured?</text>
+      <path d="M400 462 L500 462" stroke="#8CA0AD" stroke-width="2.5" marker-end="url(#a)"/>
+      <rect x="510" y="432" width="325" height="60" rx="16" fill="#EAF4FA" stroke="#1C7293" stroke-width="2"/>
+      <text x="672" y="458" text-anchor="middle" class="node-sub">How do discourse and institutions sustain inequality?</text>
+
+      <!-- Row 6 -->
+      <text x="45" y="554" class="node-title">Work</text>
+      <rect x="135" y="522" width="265" height="60" rx="16" fill="#fff" stroke="#3D5A80" stroke-width="2"/>
+      <text x="267" y="548" text-anchor="middle" class="node-sub">What outcome does the worker report?</text>
+      <path d="M400 552 L500 552" stroke="#8CA0AD" stroke-width="2.5" marker-end="url(#a)"/>
+      <rect x="510" y="522" width="325" height="60" rx="16" fill="#EAF4FA" stroke="#1C7293" stroke-width="2"/>
+      <text x="672" y="548" text-anchor="middle" class="node-sub">What job or system conditions produce it?</text>
+
+      <!-- Final synthesis -->
+      <text x="450" y="625" text-anchor="middle" class="col-head">ACROSS ALL SIX STRANDS</text>
+      <path d="M450 636 L450 655" stroke="#8CA0AD" stroke-width="2.5" fill="none" marker-end="url(#a)"/>
+
+      <rect x="280" y="665" width="340" height="78" rx="20" fill="#EAF5F1" stroke="#2F7D69" stroke-width="2"/>
+      <text x="450" y="695" text-anchor="middle" class="node-title">Widening the lens</text>
+      <text x="450" y="720" text-anchor="middle" class="node-sub">changes evidence, explanation and intervention</text>
+    </svg>
+  </div>
+
+  <div class="takeaway">
+    <p><strong>Key idea:</strong> The module does not move through six topics in a single causal chain. Instead, each topic revisits the same broader issue: <strong>what becomes visible when explanation moves beyond the individual?</strong></p>
+  </div>
+</section>
+
+<script>
+(function(){
+const rounds = [
+  {
+    topic:'Knowledge and epistemology',
+    prompt:'A study produces a reliable score for a psychological category.',
+    correct:'Who decided what counts as the category?',
+    opts:[
+      'Would a larger sample change the estimate?',
+      'Who decided what counts as the category?',
+      'Which test has the highest reliability?'
+    ],
+    why:'The wider lens adds a question about how the object of measurement was defined, not only how well it was measured.'
+  },
+  {
+    topic:'Social influence',
+    prompt:'A person changes their judgement after hearing what others think.',
+    correct:'What norm became relevant in this setting?',
+    opts:[
+      'How confident was the person beforehand?',
+      'What norm became relevant in this setting?',
+      'How accurate was the final judgement?'
+    ],
+    why:'The wider lens adds the social conditions around the judgement, rather than treating the response as an isolated choice.'
+  },
+  {
+    topic:'Self and identity',
+    prompt:'A student behaves differently across two social settings.',
+    correct:'How is the student positioned in each?',
+    opts:[
+      'Which identity is most salient here?',
+      'How stable is the student’s self-esteem?',
+      'How is the student positioned in each?'
+    ],
+    why:'Traditional social psychology already gives us identity salience. The wider lens adds how others and institutions position the person.'
+  },
+  {
+    topic:'Group dynamics',
+    prompt:'A crowd becomes more confrontational after relations with police deteriorate.',
+    correct:'Did police action alter legitimacy and identity?',
+    opts:[
+      'Did anonymity reduce individual self-focus?',
+      'Did police action alter legitimacy and identity?',
+      'Were more aggressive people in the crowd?'
+    ],
+    why:'The wider lens makes changing intergroup relations, legitimacy and shared identity part of the explanation.'
+  },
+  {
+    topic:'Stereotypes and prejudice',
+    prompt:'Applicants from one group progress less often despite similar qualifications.',
+    correct:'Where in the process is disparity produced?',
+    opts:[
+      'Do selectors report negative group attitudes?',
+      'Where in the process is disparity produced?',
+      'Do applicants expect to be stereotyped?'
+    ],
+    why:'The wider lens adds the institutional process itself as an object of study, not just the attitudes of individuals within it.'
+  },
+  {
+    topic:'Work and organisations',
+    prompt:'A team reports high exhaustion and disengagement.',
+    correct:'Which job conditions could be producing it?',
+    opts:[
+      'Which job conditions could be producing it?',
+      'Which workers score highest on resilience?',
+      'How stable are the burnout scores over time?'
+    ],
+    why:'The person-setting lens asks whether workload, autonomy, support or design are producing the measured outcome.'
+  }
+];
+
+let i=0,answered=false;
+const topic=document.getElementById('topic');
+const promptEl=document.getElementById('prompt');
+const options=document.getElementById('options');
+const reveal=document.getElementById('reveal');
+const next=document.getElementById('next');
+const syn=document.getElementById('synthesis');
+
+function render(){
+  answered=false;
+  const r=rounds[i];
+  topic.textContent=r.topic;
+  promptEl.textContent=r.prompt;
+  options.innerHTML='';
+  reveal.hidden=true;
+  next.disabled=true;
+  next.textContent=i<5?'Next question':'See the module map';
+  document.getElementById('label').textContent='Question '+(i+1)+' of 6';
+
+  const stage=i<2?0:i<4?1:2;
+  for(let n=0;n<3;n++){
+    document.getElementById('p'+(n+1)).className=n<stage?'done':n===stage?'active':'';
+  }
+
+  r.opts.forEach(text=>{
+    const b=document.createElement('button');
+    b.type='button';
+    b.className='option';
+    b.dataset.key=text;
+    b.innerHTML='<strong>'+text+'</strong>';
+    b.addEventListener('click',()=>choose(b,text));
+    options.appendChild(b);
+  });
+}
+
+function choose(b,key){
+  if(answered)return;
+  answered=true;
+  const r=rounds[i],ok=key===r.correct;
+
+  options.querySelectorAll('.option').forEach(x=>{
+    x.disabled=true;
+    if(x.dataset.key===r.correct)x.classList.add('correct');
+    if(x===b&&!ok)x.classList.add('wrong');
+  });
+
+  reveal.innerHTML=
+    '<p><strong>'+(ok?'Yes — that is the extra question the wider lens adds.':'Another question better captures the widening move.')+'</strong></p>'+
+    '<p class="small">'+r.why+'</p>';
+  reveal.hidden=false;
+  next.disabled=false;
+}
+
+next.addEventListener('click',()=>{
+  if(i<5){
+    i++;
+    render();
+    document.getElementById('card').scrollIntoView({behavior:'smooth',block:'start'});
+  }else{
+    document.getElementById('p3').className='done';
+    syn.hidden=false;
+    syn.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+});
+
+document.getElementById('reset').addEventListener('click',()=>{
+  i=0;
+  syn.hidden=true;
+  render();
+});
+
+render();
+})();
+</script>
+</main>
+</body>
+</html>

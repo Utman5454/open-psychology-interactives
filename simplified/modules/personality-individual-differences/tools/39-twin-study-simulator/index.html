@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Same Genes, A Different Heritability | Simplified Edition</title>
+<meta name="description" content="Change how much people's circumstances differ, without changing a single gene, and watch the heritability of a trait move from 0.19 to 0.67.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231C7293'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../../../assets/css/simplified.css">
+<link rel="stylesheet" href="../../../../assets/css/patterns.css">
+<script src="../../../../assets/js/workbook.js" defer></script>
+<script src="activity.js" defer></script>
+<link rel="stylesheet" href="../../../../assets/css/edition.css">
+<script src="../../../../assets/js/edition-nav.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to the activity</a>
+
+<main class="workbook workbook--compact" id="main" data-workbook
+      data-reset-message="Cleared. Back to the population we started with.">
+
+  <section class="hero">
+    <p class="eyebrow">Personality &amp; Individual Differences &middot; Simplified</p>
+    <h1>The Same Genes, A Different Heritability</h1>
+    <p class="hero__lead">Heritability is a fraction. This page leaves the top
+      of the fraction alone and changes the bottom.</p>
+  </section>
+
+  <section class="card" id="card-note" aria-labelledby="note-heading">
+    <h2 id="note-heading">The one sentence to take away</h2>
+    <div class="notice notice--caution">
+      <p>Heritability is the proportion of the <em>variation between people</em>
+        in a particular population, living in the range of environments that
+        population happens to contain, that is associated with genetic
+        variation. It is not the proportion of any individual's trait caused by
+        their genes, no such proportion exists, and it says nothing about
+        whether the trait can be changed.</p>
+    </div>
+  </section>
+
+  <section class="card" id="card-predict" aria-labelledby="predict-heading">
+    <p class="step-label">Step 1 of 2</p>
+    <h2 id="predict-heading">First, the definition</h2>
+    <p class="lead">A study reports that a trait has a heritability of 0.50.
+      What does that mean?</p>
+
+    <div class="option-grid" style="--option-columns: 2" id="options" data-workbook-choices>
+      <button class="option" type="button" data-choice="individual">
+        <strong>Half of each person's trait</strong>
+        <span>For any given person, half of what they are was caused by
+          their genes and half by everything that happened to them.</span>
+      </button>
+      <button class="option" type="button" data-choice="variance">
+        <strong>Half the variation between people</strong>
+        <span>In this population, in these environments, is associated with
+          genetic variation.</span>
+      </button>
+      <button class="option" type="button" data-choice="fixed">
+        <strong>The trait is half fixed</strong>
+        <span>Half of it is open to change and half of it is not.</span>
+      </button>
+      <button class="option" type="button" data-choice="genes">
+        <strong>Half the genes are known</strong>
+        <span>Half of the relevant genes have been identified.</span>
+      </button>
+    </div>
+
+    <div class="notice" id="verdict" hidden data-state="chosen">
+      <p id="verdict-text"></p>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="reveal" type="button" disabled>Open the simulator</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+  </section>
+
+  <section class="card" id="card-sim" hidden aria-labelledby="sim-heading">
+    <p class="step-label">Step 2 of 2</p>
+    <h2 id="sim-heading">One population, one dial</h2>
+    <p class="lead">Below is a fictional population. The amount of genetic
+      variation in it is fixed and does not change at any point on this page.
+      Neither does the amount that families differ from one another. The only
+      thing the slider changes is how much people's individual circumstances
+      differ, the things that make two children in the same family turn out
+      unlike each other.</p>
+
+    <details class="disclosure" id="key-terms">
+      <summary>Key terms</summary>
+      <div class="disclosure__body">
+        <dl class="glossary">
+          <dt>Heritability</dt>
+          <dd>The share of the variation in a trait, in one population at one
+            time, associated with genetic variation. A property of that
+            population, not of any person in it.</dd>
+          <dt>Shared and non-shared environment</dt>
+          <dd>The part of the environment that makes members of the same family
+            alike, and the part that makes them different. The second is
+            usually the larger of the two, and it is not upbringing in the
+            ordinary sense.</dd>
+          <dt>Falconer's formulae</dt>
+          <dd>The arithmetic that turns two correlations into three variance
+            components: double the gap between the identical and fraternal
+            correlations for the genetic share, and so on.</dd>
+        </dl>
+      </div>
+    </details>
+
+    <fieldset class="controls" style="--controls-columns: 1">
+      <legend class="visually-hidden">How much circumstances differ</legend>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="env">How much people's individual
+            circumstances differ</label>
+          <output class="control__value" for="env">1.00</output>
+        </div>
+        <input type="range" id="env" min="0.20" max="4.00" step="0.05" value="1.00">
+        <p class="control__hint">In the same units as the genetic variation,
+          which stays at 1.00 whatever you do here.</p>
+      </div>
+    </fieldset>
+
+    <ul class="results-grid" style="--results-columns: 3" id="readout"></ul>
+
+    <div class="plot">
+      <svg id="chart" role="img" aria-labelledby="chart-title chart-desc">
+        <title id="chart-title">What the variation in this population is made of</title>
+        <desc id="chart-desc"></desc>
+      </svg>
+      <p class="legend">The bar is all the variation there is between people in
+        this population, in the units the slider uses. The genetic segment is
+        the same length at every setting. Heritability is that segment as a
+        share of the whole bar, so the bar getting longer is the only thing
+        that has to happen for heritability to fall.</p>
+    </div>
+
+    <div class="table-scroll">
+      <table class="data-table" id="study">
+        <caption>What a twin study of this population would find, and what
+          Falconer's formulae would make of it. The two right-hand columns
+          agree, because the assumptions the formulae make are all true in this
+          model.</caption>
+        <thead>
+          <tr><th scope="col">Quantity</th><th scope="col">What the study sees</th>
+            <th scope="col">Estimated by the formulae</th><th scope="col">The truth in the model</th></tr>
+        </thead>
+        <tbody id="study-body"></tbody>
+      </table>
+    </div>
+
+    <p class="small" id="sentence"></p>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="narrow" type="button">Make everybody's circumstances much more alike</button>
+      <button class="btn btn-secondary" id="explain" type="button" disabled>What this shows</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+
+    <div class="notice" id="note" hidden data-state="chosen">
+      <p id="note-text"></p>
+    </div>
+  </section>
+
+  <p class="workbook-status" data-workbook-status role="status" aria-live="polite"></p>
+
+  <section class="synthesis" id="synthesis" hidden aria-labelledby="result-heading">
+    <p class="step-label">What this shows</p>
+    <h2 id="result-heading">A number about a population, at a time, in a range of environments</h2>
+    <p class="lead" id="result-lead"></p>
+
+    <div class="takeaway">
+      <p><strong>Key idea:</strong> Not one gene changed anywhere on this page.
+        The amount of genetic variation stayed at exactly 1.00 from beginning to
+        end, and the heritability of the trait ran from 0.19 to 0.67 all the
+        same, because heritability is a ratio and the slider was moving the
+        denominator. Three things follow, and they are the three things
+        heritability is most often taken to mean. It cannot be the proportion
+        of an individual's trait caused by their genes, because it changed
+        without any individual changing. It cannot say whether a trait can be
+        altered, because the whole demonstration consisted of altering the
+        environment, and doing so raised heritability rather than lowering it.
+        And it does not travel: a figure from one population, at one time,
+        across the range of environments that population happened to contain,
+        is a description of that and of nothing else.</p>
+    </div>
+
+    <div class="notice notice--caution">
+      <p>The model here is the simple one the formulae assume, and it is
+        simple in ways real data are not. There is no sampling error at all:
+        the correlations shown are the ones the model implies exactly, whereas
+        a real study estimates them from a finite number of pairs and reports
+        them with a confidence interval, and heritability estimates from real
+        twin studies are considerably less precise than the two decimal places
+        here suggest. The formulae also rest on assumptions that this model
+        satisfies and reality may not, chiefly that identical and fraternal
+        pairs share their environments to the same degree, and that partners do
+        not resemble each other on the trait; when those fail the estimates go
+        wrong in specific directions. There is no gene-environment interaction
+        and no correlation between genes and environment, both of which are
+        real and both of which this decomposition simply assigns elsewhere. And
+        one thing that does not need qualifying: none of this bears on anybody
+        as an individual, and heritability was never a statement about a
+        person.</p>
+    </div>
+
+    <p class="small" style="margin-top: 1.125rem">The longer version lets you
+      set all three variance components separately, generates fictional twin
+      and sibling pairs with sampling error, and offers three assumption
+      violations whose direction of bias you can watch. It is at
+      <a href="../../../../../modules/personality-individual-differences/tools/39-twin-study-simulator/index.html">Twin-Study
+      Simulator in the main collection</a>.</p>
+  </section>
+</main>
+</body>
+</html>

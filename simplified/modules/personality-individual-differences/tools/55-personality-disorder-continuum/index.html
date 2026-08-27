@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Where the Line Goes | Simplified Edition</title>
+<meta name="description" content="Four fictional profiles on two continuous dimensions, and a category line you can move. Change where it falls, or which rule draws it, and different profiles end up on different sides.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231C7293'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../../../assets/css/simplified.css">
+<link rel="stylesheet" href="../../../../assets/css/patterns.css">
+<script src="../../../../assets/js/workbook.js" defer></script>
+<script src="../../../../assets/js/stats.js" defer></script>
+<script src="activity.js" defer></script>
+<link rel="stylesheet" href="../../../../assets/css/edition.css">
+<script src="../../../../assets/js/edition-nav.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to the activity</a>
+
+<main class="workbook workbook--compact" id="main" data-workbook
+      data-reset-message="Cleared. Back to the line where it started.">
+
+  <section class="hero">
+    <p class="eyebrow">Personality &amp; Individual Differences &middot; Simplified</p>
+    <h1>Where the Line Goes</h1>
+    <p class="hero__lead">People are spread along personality dimensions rather
+      than sorted into kinds. Somewhere along the way somebody has to decide
+      where a description becomes a clinical question.</p>
+  </section>
+
+  <section class="card" id="card-note" aria-labelledby="note-heading">
+    <h2 id="note-heading" class="visually-hidden">What this is and is not</h2>
+    <div class="notice notice--caution">
+      <p><strong>What this is and is not.</strong> This page contains no
+        diagnostic instrument and returns no diagnosis. It asks you nothing
+        about yourself or about anybody you know, names nobody, names no
+        diagnosis, and reproduces no criteria from any classification system.
+        The four profiles are invented pairs of numbers on invented scales, and
+        the phrase used throughout is that a profile falls above or below a
+        line, which is a statement about the line. Personality difficulties are
+        real, they cause real suffering, and nothing here makes light of that.
+        What is being examined is the step from a continuous description to a
+        category, and who takes it.</p>
+    </div>
+  </section>
+
+  <section class="card" id="card-predict" aria-labelledby="predict-heading">
+    <p class="step-label">Step 1 of 2</p>
+    <h2 id="predict-heading">First, a judgement</h2>
+    <p class="lead">What most makes a personality pattern a clinical question
+      rather than simply a personality?</p>
+
+    <div class="option-grid" style="--option-columns: 2" id="options" data-workbook-choices>
+      <button class="option" type="button" data-choice="unusual">
+        <strong>How unusual the traits are</strong>
+        <span>The further from typical a profile sits, the more it is the
+          kind of thing a clinician is asked about.</span>
+      </button>
+      <button class="option" type="button" data-choice="interferes">
+        <strong>How inflexible and persistent it is, and how much it
+          interferes</strong>
+        <span>Difficulty in living, rather than distance from the average.</span>
+      </button>
+      <button class="option" type="button" data-choice="distress">
+        <strong>How much distress the person is in</strong>
+        <span>Suffering is what makes something a clinical matter.</span>
+      </button>
+      <button class="option" type="button" data-choice="line">
+        <strong>Where the line is drawn, and who draws it</strong>
+        <span>There is nothing in the profile itself that settles it.</span>
+      </button>
+    </div>
+
+    <div class="notice" id="verdict" hidden data-state="chosen">
+      <p id="verdict-text"></p>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="reveal" type="button" disabled>Open the continuum</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+  </section>
+
+  <section class="card" id="card-line" hidden aria-labelledby="line-heading">
+    <p class="step-label">Step 2 of 2</p>
+    <h2 id="line-heading">Four profiles, one line</h2>
+    <p class="lead">Four invented profiles, each described by two numbers that
+      are not calculated from each other: how far its traits sit from the
+      average, and how much the pattern interferes with living. You control
+      where the line falls and which of the two rules draws it. None of the
+      four profiles changes at any point.</p>
+
+    <details class="disclosure" id="key-terms">
+      <summary>Key terms</summary>
+      <div class="disclosure__body">
+        <dl class="glossary">
+          <dt>Dimensional and categorical</dt>
+          <dd>Describing a profile by where it sits on continua, and sorting it
+            into a class by applying a cut. The same numbers can be handled
+            either way.</dd>
+          <dt>Trait extremity</dt>
+          <dd>How far from the average of a population a pattern sits. It is a
+            statement about a distribution, not about difficulty.</dd>
+          <dt>Interference</dt>
+          <dd>How inflexible and persistent the pattern is and how much it gets
+            in the way of work, relationships and daily life.</dd>
+          <dt>Prevalence</dt>
+          <dd>How many people fall above the line. When the underlying
+            dimension is continuous, this is set by where the line goes.</dd>
+        </dl>
+      </div>
+    </details>
+
+    <fieldset class="controls" style="--controls-columns: 2">
+      <legend class="visually-hidden">The line and the rule</legend>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="cut">Where the line falls</label>
+          <output class="control__value" for="cut">70</output>
+        </div>
+        <input type="range" id="cut" min="55" max="90" step="1" value="70">
+        <p class="control__hint">On the same 0 to 100 scale as the profiles.
+          Nothing in the data suggests a value; it is chosen.</p>
+      </div>
+      <div class="control">
+        <div class="control__header">
+          <span class="control__label" id="rule-label">Which rule draws it</span>
+          <output class="control__value" id="rule-value">how much it interferes</output>
+        </div>
+        <button class="btn btn-secondary" id="rule" type="button"
+                aria-describedby="rule-label" aria-pressed="false">Switch to counting unusual traits</button>
+        <p class="control__hint">Counting unusual features is how a great deal
+          of classification has historically worked, so it is not a straw
+          man.</p>
+      </div>
+    </fieldset>
+
+    <ul class="results-grid" style="--results-columns: 3" id="readout"></ul>
+
+    <div class="plot">
+      <svg id="chart" role="img" aria-labelledby="chart-title chart-desc">
+        <title id="chart-title">Four profiles on two dimensions, with the category line</title>
+        <desc id="chart-desc"></desc>
+      </svg>
+      <p class="legend">Each marker is one invented profile, placed by how
+        unusual its traits are and by how much the pattern interferes. The
+        heavy line is the current cut, and the shaded region is the side that
+        would be counted. The markers never move.</p>
+    </div>
+
+    <div class="table-scroll">
+      <table class="data-table" id="profiles">
+        <caption id="profiles-caption"></caption>
+        <thead>
+          <tr><th scope="col">Profile</th><th scope="col">How unusual the traits are</th>
+            <th scope="col">How much it interferes</th>
+            <th scope="col">Which side of the line</th></tr>
+        </thead>
+        <tbody id="profiles-body"></tbody>
+      </table>
+    </div>
+
+    <p class="small" id="sentence"></p>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="swap" type="button">Show me a profile that changes sides</button>
+      <button class="btn btn-secondary" id="explain" type="button" disabled>What this shows</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+
+    <div class="notice" id="note" hidden data-state="chosen">
+      <p id="note-text"></p>
+    </div>
+  </section>
+
+  <p class="workbook-status" data-workbook-status role="status" aria-live="polite"></p>
+
+  <section class="synthesis" id="synthesis" hidden aria-labelledby="result-heading">
+    <p class="step-label">What this shows</p>
+    <h2 id="result-heading">The cut is a decision, and it is not a small one</h2>
+    <p class="lead" id="result-lead"></p>
+
+    <div class="takeaway">
+      <p><strong>Key idea:</strong> Two of these four profiles change sides
+        when the rule changes, and neither of them moved. One has traits a long
+        way from the average and is managing perfectly well; the other has
+        unremarkable traits and a great deal of difficulty. Which of them gets
+        counted is decided entirely by whether the rule is about distance from
+        the average or about interference, and that is the substantive question
+        the word "disorder" is usually being asked to settle quietly. The
+        second thing the controls show is that the number of people above the
+        line is set by where the line goes: moving it across its range changes
+        the share of a fictional population above it by more than twentyfold,
+        with no person in that population changing. None of this makes the
+        difficulties unreal. It means that a category imposed on a continuum
+        inherits a decision, and that the honest thing is to say what the
+        decision was and what it was for, rather than to treat the resulting
+        count as something that was discovered.</p>
+    </div>
+
+    <div class="notice notice--caution">
+      <p>Four invented profiles and two invented scales, chosen to make the
+        argument legible. Real assessment does not consist of two numbers and a
+        threshold; it involves history, context, corroboration and time, and
+        clinicians are not unaware of any of this. Three cautions. That a
+        boundary is a decision does not make what falls either side of it
+        arbitrary or unreal, and it does not follow that categories are useless:
+        they carry information about what has helped before, and they open
+        doors to care that dimensions currently do not. Distress is deliberately
+        not one of the two dimensions here, because it is a reason for help in
+        its own right and can be present without interference or absent with
+        it; folding it into either axis would have hidden that. And this page
+        is not a position on any particular classification system, current or
+        proposed. It is about what happens arithmetically when a continuum is
+        cut, which is true of every cut on every continuum.</p>
+    </div>
+
+    <p class="small" style="margin-top: 1.125rem">The longer version uses six
+      dimensions rather than two, all of them separately settable, lets you
+      build profiles of your own, and includes a worked pair with identical
+      trait extremity and very different functioning. It is at
+      <a href="../../../../../modules/personality-individual-differences/tools/55-personality-disorder-continuum/index.html">Personality
+      Disorder Continuum in the main collection</a>.</p>
+  </section>
+</main>
+</body>
+</html>

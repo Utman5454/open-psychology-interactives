@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>No Best Battery | Simplified Edition</title>
+<meta name="description" content="Assemble a testing session from seven generic task families, then change what the assessment is for and watch a good battery become a poor one without a single task changing.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231C7293'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../../../assets/css/simplified.css">
+<link rel="stylesheet" href="../../../../assets/css/patterns.css">
+<script src="../../../../assets/js/workbook.js" defer></script>
+<script src="activity.js" defer></script>
+<link rel="stylesheet" href="../../../../assets/css/edition.css">
+<script src="../../../../assets/js/edition-nav.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to the activity</a>
+
+<main class="workbook workbook--compact" id="main" data-workbook
+      data-reset-message="Cleared. Empty session, research purpose.">
+
+  <section class="hero">
+    <p class="eyebrow">Personality &amp; Individual Differences &middot; Simplified</p>
+    <h1>No Best Battery</h1>
+    <p class="hero__lead">Sixty minutes of testing time, seven things you could
+      do with it, and three different reasons somebody might be sitting there.</p>
+  </section>
+
+  <section class="card" id="card-note" aria-labelledby="note-heading">
+    <h2 id="note-heading" class="visually-hidden">What this is not</h2>
+    <div class="notice notice--caution">
+      <p><strong>What this is not.</strong> This page scores batteries and
+        never people. It produces no ability score for anybody, reproduces no
+        published test, item, norm or scoring rule, and cannot be used to
+        assess or screen anyone. The task families are generic descriptions,
+        and every number attached to them was written for teaching. Real
+        cognitive assessment is carried out by qualified practitioners using
+        standardised instruments under conditions none of which are simulated
+        here.</p>
+    </div>
+  </section>
+
+  <section class="card" id="card-predict" aria-labelledby="predict-heading">
+    <p class="step-label">Step 1 of 2</p>
+    <h2 id="predict-heading">First, a judgement</h2>
+    <p class="lead">What makes one test battery better than another?</p>
+
+    <div class="option-grid" style="--option-columns: 2" id="options" data-workbook-choices>
+      <button class="option" type="button" data-choice="reliable">
+        <strong>The highest composite reliability</strong>
+        <span>The most consistent measurement wins.</span>
+      </button>
+      <button class="option" type="button" data-choice="longest">
+        <strong>The one that takes longest</strong>
+        <span>More testing time means more information.</span>
+      </button>
+      <button class="option" type="button" data-choice="purpose">
+        <strong>It depends what it is for</strong>
+        <span>There is no answer to the question in the abstract.</span>
+      </button>
+      <button class="option" type="button" data-choice="culture">
+        <strong>The one free of cultural content</strong>
+        <span>Whatever depends least on what somebody has had the chance to
+          learn.</span>
+      </button>
+    </div>
+
+    <div class="notice" id="verdict" hidden data-state="chosen">
+      <p id="verdict-text"></p>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="reveal" type="button" disabled>Open the builder</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+  </section>
+
+  <section class="card" id="card-build" hidden aria-labelledby="build-heading">
+    <p class="step-label">Step 2 of 2</p>
+    <h2 id="build-heading">Sixty minutes to spend</h2>
+    <p class="lead">Choose the tasks, then choose what the session is for. The
+      two choices are independent, which is the thing to notice: changing the
+      purpose changes the verdict without changing a single task.</p>
+
+    <details class="disclosure" id="key-terms">
+      <summary>Key terms</summary>
+      <div class="disclosure__body">
+        <dl class="glossary">
+          <dt>Purpose</dt>
+          <dd>What the assessment is for. Validity attaches to a use, not to a
+            task considered on its own.</dd>
+          <dt>Coverage</dt>
+          <dd>How much of what you are trying to reach the battery reaches
+            between its tasks. A battery that measures one thing four ways is
+            not broad, however long it is.</dd>
+          <dt>Composite reliability</dt>
+          <dd>How consistently the total score measures whatever it measures.
+            It is a precondition rather than an achievement.</dd>
+          <dt>Dependence on prior opportunity</dt>
+          <dd>How much a task's score turns on having had the chance to learn
+            its particular content, in a particular language and a particular
+            schooling. It is a property of a task, never of a person or a
+            group.</dd>
+          <dt>Burden</dt>
+          <dd>What the session costs the person sitting it: fatigue, stress,
+            and what it demands of movement, hearing and sight.</dd>
+        </dl>
+      </div>
+    </details>
+
+    <fieldset class="toggle-grid" style="--toggle-columns: 1" id="tasks">
+      <legend class="field-legend">Which tasks are in the session</legend>
+    </fieldset>
+
+    <fieldset class="toggle-grid" style="--toggle-columns: 3" id="purposes">
+      <legend class="field-legend">What the session is for</legend>
+    </fieldset>
+
+    <ul class="results-grid" style="--results-columns: 4" id="readout"></ul>
+
+    <div class="plot">
+      <svg id="chart" role="img" aria-labelledby="chart-title chart-desc">
+        <title id="chart-title">How far the battery reaches into each ability area</title>
+        <desc id="chart-desc"></desc>
+      </svg>
+      <p class="legend">One bar per broad ability area. A bar reaching the
+        marked line means the battery samples that area at all. Two tasks
+        measuring the same area do not make the battery broader.</p>
+    </div>
+
+    <div id="requirements"></div>
+
+    <p class="small" id="sentence"></p>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="best" type="button">Build the best battery for research</button>
+      <button class="btn btn-secondary" id="explain" type="button" disabled>What this shows</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+
+    <div class="notice" id="note" hidden data-state="chosen">
+      <p id="note-text"></p>
+    </div>
+  </section>
+
+  <p class="workbook-status" data-workbook-status role="status" aria-live="polite"></p>
+
+  <section class="synthesis" id="synthesis" hidden aria-labelledby="result-heading">
+    <p class="step-label">What this shows</p>
+    <h2 id="result-heading">The battery did not change. The question did.</h2>
+    <p class="lead" id="result-lead"></p>
+
+    <div class="takeaway">
+      <p><strong>Key idea:</strong> Every property on this page is a real
+        property of the battery, and not one of them is a verdict. Coverage,
+        composite reliability, dependence on prior opportunity and burden are
+        the same numbers whatever the session is for, and they turn into
+        good or bad only once somebody says what the assessment is being used
+        to decide. That is what it means to say validity belongs to a use
+        rather than to a test. The constraint underneath it is time. Sixty
+        minutes buys you either depth in a few areas or a thin sweep across
+        several, and there is no arrangement of these seven tasks inside the
+        budget that satisfies all three purposes at once. Not one. That is not
+        a failure of the task list; it is what a trade-off is. The practical
+        version of this is that the first question to ask about any assessment
+        is not how good it is but what it is for, and that a battery assembled
+        without answering it will turn out to have answered it by accident.</p>
+    </div>
+
+    <div class="notice notice--caution">
+      <p>The task families are generic and every number attached to them was
+        invented for teaching, so the specific trade-offs here are not the
+        trade-offs any real battery faces. Three cautions about the ideas
+        rather than the numbers. Dependence on prior opportunity is a property
+        of a task and never of a person or a group; a task that assumes
+        particular schooling tells you about the task's demands, and reading it
+        as a fact about whoever scores lower on it is exactly the inference
+        this page is built to block. A score also means nothing without the
+        reference sample it is expressed against, and choosing that sample is a
+        substantive decision this page does not model at all. And none of the
+        properties here, alone or together, licenses a claim about anybody's
+        ability: a battery can be well built for its purpose and still be the
+        wrong thing to have done to somebody.</p>
+    </div>
+
+    <p class="small" style="margin-top: 1.125rem">The longer version adds
+      further task families, a burden tolerance that varies by scenario, a
+      graded fit score rather than a checklist, and an explicit treatment of
+      norms and ceilings. It is at
+      <a href="../../../../../modules/personality-individual-differences/tools/31-intelligence-test-battery-builder/index.html">Intelligence-Test
+      Battery Builder in the main collection</a>.</p>
+  </section>
+</main>
+</body>
+</html>

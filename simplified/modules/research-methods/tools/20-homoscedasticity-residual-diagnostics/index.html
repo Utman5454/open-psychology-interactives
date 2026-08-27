@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Does the Spread Stay the Same? | Simplified Edition</title>
+<meta name="description" content="A regression line summarises the average relationship. One more plot, with the line taken out, shows whether the scatter around it stays about the same width all the way across.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231C7293'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../../../assets/css/simplified.css">
+<link rel="stylesheet" href="../../../../assets/css/patterns.css">
+<script src="../../../../assets/js/workbook.js" defer></script>
+<script src="../../../../assets/js/stats.js" defer></script>
+<script src="activity.js" defer></script>
+<link rel="stylesheet" href="../../../../assets/css/edition.css">
+<script src="../../../../assets/js/edition-nav.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to the activity</a>
+
+<main class="workbook workbook--compact" id="main" data-workbook
+      data-reset-message="Cleared. Back to the scatter plot on its own.">
+
+  <section class="hero">
+    <p class="eyebrow">Research Methods &middot; Simplified</p>
+    <h1>Does the Spread Stay the Same?</h1>
+    <p class="hero__lead">A regression line tells you the average
+      relationship. It tells you nothing about whether the scatter around it
+      stays the same width all the way across.</p>
+  </section>
+
+  <section class="card" id="card" aria-labelledby="card-heading">
+    <p class="step-label">The relationship</p>
+    <h2 id="card-heading">Sixty people, and one line through them</h2>
+    <p class="lead">The line below is the best summary of the average
+      relationship between the two variables: as the predictor goes up, the
+      outcome goes up by about the same amount each time. That is what the
+      slope means, and it is a single number for the whole range.</p>
+
+    <details class="disclosure" id="key-terms">
+      <summary>Key terms</summary>
+      <div class="disclosure__body">
+        <dl class="glossary">
+          <dt>Residual</dt>
+          <dd>The vertical distance from one person's dot to the line: how far
+            the line missed them.</dd>
+          <dt>Homoscedasticity</dt>
+          <dd>The residuals are spread about equally all the way across.</dd>
+          <dt>Heteroscedasticity</dt>
+          <dd>The residuals are spread more in some parts of the range than in
+            others.</dd>
+          <dt>Robust standard error</dt>
+          <dd>A measure of how uncertain the slope is, worked out without
+            assuming the spread is even.</dd>
+        </dl>
+      </div>
+    </details>
+
+    <fieldset class="toggle-grid" id="shape" style="--toggle-columns: 3">
+      <legend class="field-legend">Choose a set of sixty people</legend>
+      <label class="toggle" data-checked="true" id="shape-even-label">
+        <input type="radio" name="shape" id="shape-even" value="even" checked>
+        <span>
+          <strong>Group A</strong>
+          <span>Sixty people, one relationship.</span>
+        </span>
+      </label>
+      <label class="toggle" data-checked="false" id="shape-fan-label">
+        <input type="radio" name="shape" id="shape-fan" value="fan">
+        <span>
+          <strong>Group B</strong>
+          <span>A different sixty people.</span>
+        </span>
+      </label>
+      <label class="toggle" data-checked="false" id="shape-bow-label">
+        <input type="radio" name="shape" id="shape-bow" value="bow">
+        <span>
+          <strong>Group C</strong>
+          <span>A third set of sixty.</span>
+        </span>
+      </label>
+    </fieldset>
+
+    <fieldset class="controls" style="--controls-columns: 2">
+      <legend class="visually-hidden">Simulation settings</legend>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="severity">How different the groups are</label>
+          <output class="control__value" for="severity">70</output>
+        </div>
+        <input type="range" id="severity" min="0" max="100" step="5" value="70">
+        <p class="control__hint">At zero, all three groups are the same.</p>
+      </div>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="seed">Seed</label>
+        </div>
+        <input type="number" id="seed" value="5150" min="1" max="99999" step="1">
+        <p class="control__hint">The same seed draws the same sixty people.</p>
+      </div>
+    </fieldset>
+
+    <div class="plot">
+      <svg id="chart" role="img" aria-labelledby="chart-title chart-desc">
+        <title id="chart-title">A scatter plot of sixty people with a fitted regression line</title>
+        <desc id="chart-desc"></desc>
+      </svg>
+      <p class="legend" id="legend"></p>
+    </div>
+
+    <ul class="results-grid" style="--results-columns: 3" id="readout"></ul>
+
+    <div class="notice" id="question" data-state="chosen">
+      <p><strong>Before you go on, look at the plot properly.</strong> Follow
+        the line from left to right. Does the band of dots around it stay about
+        the same width the whole way, or does it get wider or narrower in
+        places? Try each of the three groups and decide for yourself. It is
+        harder to judge than it looks, which is the point.</p>
+    </div>
+
+    <p class="small" id="sentence" hidden></p>
+
+    <div class="notice" id="task" hidden data-state="chosen">
+      <p id="task-text"></p>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="strip" type="button">Take the line out and look again</button>
+      <button class="btn btn-secondary" id="explain" type="button" disabled>What this shows</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+  </section>
+
+  <p class="workbook-status" data-workbook-status role="status" aria-live="polite"></p>
+
+  <section class="synthesis" id="synthesis" hidden aria-labelledby="result-heading">
+    <p class="step-label">What this shows</p>
+    <h2 id="result-heading">Two plots, two different questions</h2>
+    <p class="lead">The scatter plot answers "what is the relationship?" The
+      residual plot answers "how well does that relationship hold up across the
+      range?" You need both, and the second one is the one people skip.</p>
+
+    <div class="takeaway">
+      <p><strong>Key idea:</strong> The slope is a single number describing the
+        average relationship, so it cannot say anything about whether the fit
+        is equally good everywhere. Subtracting the line pulls the trend flat
+        and leaves only the misses, and once the trend is out of the way an
+        uneven band is easy to see. When the spread stays roughly constant
+        across the range, that is homoscedasticity, and the usual formulas for
+        how uncertain the slope is are doing what they claim. When the spread
+        changes across the range, that is heteroscedasticity. The slope itself
+        stays trustworthy either way. What stops being trustworthy is the
+        stated uncertainty around it, and a slope on its own looks exactly the
+        same in both cases.</p>
+    </div>
+
+    <h3>Going further: how much does it actually matter?</h3>
+    <p>Once you can see uneven spread, the natural next question is how badly
+      it damages the numbers you would report. There are two ways to work out
+      how uncertain the slope is: the ordinary way, which assumes the spread is
+      even, and the robust way, which assumes nothing about it. When they
+      agree, the assumption was harmless here. When they disagree, it was not.</p>
+
+    <ul class="results-grid" style="--results-columns: 2" id="advanced"></ul>
+
+    <p id="advanced-note"></p>
+
+    <div class="notice notice--caution">
+      <p>Four cautions. A slope is pinned down mostly by the people at the two
+        ends of the range, so what matters is not how alarming the residual
+        plot looks but whether the extra spread sits at those ends: Group B
+        looks dramatic and barely moves the numbers, while Group C looks no
+        worse and moves them by around a fifth. Uneven spread is also not the
+        worst thing a residual plot can show, and a residual plot with a clear
+        curve in it means the straight line was the wrong model altogether,
+        which no adjustment to a standard error repairs. Judging these plots by
+        eye is genuinely hard at sixty people, where an even band can look
+        uneven by chance, so change the seed a few times before concluding
+        anything. And this is one sample: the two figures differing tells you
+        the assumption is doing work, not which of them is nearer the truth on
+        any particular occasion.</p>
+    </div>
+
+    <p class="small" style="margin-top: 1.125rem">The longer version adds a
+      sample-size control, a repeated-sampling check on whether the reported
+      intervals contain the true slope as often as they claim, and a
+      diagnose-four-plots exercise. It is at
+      <a href="../../../../../modules/research-methods/tools/20-homoscedasticity-residual-diagnostics/index.html">Homoscedasticity
+      and Residual Diagnostics in the main collection</a>.</p>
+  </section>
+</main>
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Double Dissociation Detective | Simplified Edition</title>
+<meta name="description" content="Four fictional case files, read against their own control groups. Watch what a second person adds, why a reversal rules out the boring rival explanation, and how test length decides whether a crossover counts as evidence at all.">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231C7293'/%3E%3C/svg%3E">
+
+<link rel="stylesheet" href="../../../../assets/css/simplified.css">
+<link rel="stylesheet" href="../../../../assets/css/patterns.css">
+<script src="../../../../assets/js/workbook.js" defer></script>
+<script src="activity.js" defer></script>
+<link rel="stylesheet" href="../../../../assets/css/edition.css">
+<script src="../../../../assets/js/edition-nav.js" defer></script>
+</head>
+
+<body>
+
+<a class="skip-link" href="#main">Skip to the activity</a>
+
+<main class="workbook workbook--compact" id="main" data-workbook
+      data-reset-message="Cleared. Back to the first case file.">
+
+  <section class="hero">
+    <p class="eyebrow">Neuropsychology &middot; Simplified</p>
+    <h1>Double Dissociation Detective</h1>
+    <p class="hero__lead">Evidence arrives one file at a time. Watch what each
+      new file rules out, and what it leaves standing.</p>
+  </section>
+
+  <nav aria-label="Activity progress">
+    <ol class="progress" data-workbook-progress
+        style="--progress-columns: 4; --progress-columns-narrow: 2">
+      <li class="progress__step">1 &middot; One person</li>
+      <li class="progress__step">2 &middot; Two people</li>
+      <li class="progress__step">3 &middot; A reversal</li>
+      <li class="progress__step">4 &middot; Precision</li>
+    </ol>
+  </nav>
+
+  <section class="card" id="case-card" aria-labelledby="case-heading">
+
+    <p class="step-label" id="step-label">Case 1</p>
+    <h2 id="case-heading"></h2>
+    <p class="lead" id="brief"></p>
+
+    <div class="notice" id="fiction">
+      <p><strong>These are not patients.</strong> Every person, task, score and
+        control group is invented for teaching.</p>
+    </div>
+
+    <div class="plot">
+      <svg id="chart" role="img" aria-labelledby="chart-title chart-desc">
+        <title id="chart-title">Scores against their own control groups</title>
+        <desc id="chart-desc"></desc>
+      </svg>
+      <p class="legend">Each score is plotted as its distance from that task's
+        own control average, in control standard deviations. The shaded band is
+        the control group range: the scores a control group would usually
+        produce. A filled marker means the whole interval sits below that band;
+        a hollow marker means it does not.</p>
+    </div>
+
+    <details class="disclosure">
+      <summary>All the values in this plot</summary>
+      <div class="disclosure__body">
+      <div class="table-scroll">
+      <table class="data-table">
+        <caption id="table-caption"></caption>
+        <thead>
+          <tr>
+            <th scope="col">Person and task</th>
+            <th scope="col">Score</th>
+            <th scope="col">Against its control group</th>
+            <th scope="col">Whole interval below the control range?</th>
+          </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
+      </div>
+      </div>
+    </details>
+
+    <div id="precision" hidden>
+      <fieldset class="controls" style="--controls-columns: 1">
+        <legend class="visually-hidden">Test length</legend>
+        <div class="control">
+          <div class="control__header">
+            <label class="control__label" for="items">Items in each task</label>
+            <output class="control__value" for="items">40</output>
+          </div>
+          <input type="range" id="items" min="20" max="80" step="5" value="40">
+          <p class="control__hint">The percentages never change. Only the
+            precision of the estimates does.</p>
+        </div>
+      </fieldset>
+      <p class="tag" id="live-verdict"></p>
+    </div>
+
+    <p class="lead" id="task-prompt" style="margin-top: 1.125rem">What does
+      this file support?</p>
+
+    <div class="option-grid" id="options" style="--option-columns: 2"></div>
+
+    <div class="reveal" id="reveal" hidden></div>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="next" type="button" disabled>Next case</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+
+  </section>
+
+  <p class="workbook-status" data-workbook-status role="status" aria-live="polite"></p>
+
+  <section class="synthesis" id="synthesis" hidden aria-labelledby="synthesis-heading">
+
+    <p class="step-label">What the evidence bought</p>
+    <h2 id="synthesis-heading">Why a reversal is worth more than a bigger gap</h2>
+    <p class="lead">Every file had one rival explanation to beat: that one task
+      is simply harder than the other. Only one shape of evidence beats it.</p>
+
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 900 570" role="img"
+           aria-labelledby="dd-fig-title dd-fig-desc">
+        <title id="dd-fig-title">What each shape of evidence rules out</title>
+        <desc id="dd-fig-desc">Three rows, each pairing a shape of evidence
+          with the verdict it supports and with what happens to the rival
+          explanation that one task is simply harder. One person worse on one
+          task gives a single dissociation, and the rival still stands. A
+          second person worse on the same task gives a general severity
+          difference, and the rival still stands. A second person worse on the
+          other task gives a double dissociation, and the rival is ruled out,
+          because a task cannot be more demanding for one person and less
+          demanding for another. Below, a note that this inference holds only
+          when each difference is larger than measurement error and when the
+          two tasks differ in the process of interest.</desc>
+
+        <defs>
+          <marker id="dd-arrow" viewBox="0 0 10 10" refX="8" refY="5"
+                  markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0 0L10 5L0 10Z" fill="#8CA0AD"/>
+          </marker>
+        </defs>
+
+        <text x="195" y="44" text-anchor="middle" class="col-head">THE EVIDENCE</text>
+        <text x="525" y="44" text-anchor="middle" class="col-head">THE VERDICT</text>
+        <text x="770" y="44" text-anchor="middle" class="col-head">THE RIVAL</text>
+
+        <rect x="30" y="70" width="330" height="90" rx="18"
+              fill="#FFFFFF" stroke="#3D5A80" stroke-width="2"/>
+        <text x="195" y="104" text-anchor="middle" class="node-sub">One person, worse on one task</text>
+        <text x="195" y="128" text-anchor="middle" class="node-sub">than on the other</text>
+        <path d="M360 115 L410 115" stroke="#8CA0AD" stroke-width="2.5" marker-end="url(#dd-arrow)"/>
+        <rect x="420" y="70" width="210" height="90" rx="18"
+              fill="#EAF4FA" stroke="#1C7293" stroke-width="2"/>
+        <text x="525" y="122" text-anchor="middle" class="node-title">Single dissociation</text>
+        <path d="M630 115 L660 115" stroke="#8CA0AD" stroke-width="2.5" marker-end="url(#dd-arrow)"/>
+        <rect x="670" y="70" width="200" height="90" rx="18"
+              fill="#F7EEDC" stroke="#9E7318" stroke-width="2"/>
+        <text x="770" y="122" text-anchor="middle" class="node-sub">Still standing</text>
+
+        <rect x="30" y="190" width="330" height="90" rx="18"
+              fill="#FFFFFF" stroke="#3D5A80" stroke-width="2"/>
+        <text x="195" y="224" text-anchor="middle" class="node-sub">A second person, worse on</text>
+        <text x="195" y="248" text-anchor="middle" class="node-sub">the same task</text>
+        <path d="M360 235 L410 235" stroke="#8CA0AD" stroke-width="2.5" marker-end="url(#dd-arrow)"/>
+        <rect x="420" y="190" width="210" height="90" rx="18"
+              fill="#EAF4FA" stroke="#1C7293" stroke-width="2"/>
+        <text x="525" y="230" text-anchor="middle" class="node-title">Severity</text>
+        <text x="525" y="256" text-anchor="middle" class="node-sub">difference</text>
+        <path d="M630 235 L660 235" stroke="#8CA0AD" stroke-width="2.5" marker-end="url(#dd-arrow)"/>
+        <rect x="670" y="190" width="200" height="90" rx="18"
+              fill="#F7EEDC" stroke="#9E7318" stroke-width="2"/>
+        <text x="770" y="242" text-anchor="middle" class="node-sub">Still standing</text>
+
+        <rect x="30" y="310" width="330" height="90" rx="18"
+              fill="#FFFFFF" stroke="#3D5A80" stroke-width="2"/>
+        <text x="195" y="344" text-anchor="middle" class="node-sub">A second person, worse on</text>
+        <text x="195" y="368" text-anchor="middle" class="node-sub">the other task</text>
+        <path d="M360 355 L410 355" stroke="#8CA0AD" stroke-width="2.5" marker-end="url(#dd-arrow)"/>
+        <rect x="420" y="310" width="210" height="90" rx="18"
+              fill="#EAF5F1" stroke="#2F7D69" stroke-width="2"/>
+        <text x="525" y="362" text-anchor="middle" class="node-title">Double dissociation</text>
+        <path d="M630 355 L660 355" stroke="#8CA0AD" stroke-width="2.5" marker-end="url(#dd-arrow)"/>
+        <rect x="670" y="310" width="200" height="90" rx="18"
+              fill="#EAF5F1" stroke="#2F7D69" stroke-width="2"/>
+        <text x="770" y="350" text-anchor="middle" class="node-sub">Ruled out</text>
+        <text x="770" y="374" text-anchor="middle" class="node-sub">A task cannot be harder</text>
+
+        <path d="M525 400 L525 432" stroke="#8CA0AD" stroke-width="2.5" marker-end="url(#dd-arrow)"/>
+
+        <rect x="90" y="440" width="720" height="104" rx="20"
+              fill="#FBFAF7" stroke="#C0434F" stroke-width="2"/>
+        <text x="450" y="476" text-anchor="middle" class="node-title">Only if two things hold</text>
+        <text x="450" y="504" text-anchor="middle" class="node-sub">Each difference is larger than measurement error</text>
+        <text x="450" y="528" text-anchor="middle" class="node-sub">and the two tasks differ in the process of interest</text>
+      </svg>
+    </div>
+
+    <div class="takeaway">
+      <p><strong>Key idea:</strong> A single dissociation shows that two tasks
+        come apart. It cannot rule out that one task is simply harder, and a
+        second person with the same pattern does not help: that adds severity,
+        not logic. A reversal does rule it out, because a task cannot be more
+        demanding for one person and less demanding for another. That one
+        piece of logic is the whole contribution of a double dissociation.</p>
+    </div>
+
+    <div class="notice notice--caution">
+      <p>Two limits on that inference. The first you have just watched: a
+        crossover in the point estimates is not a crossover in the evidence,
+        and test length decides which you have. The second the numbers cannot
+        reach at all: two tasks always differ in more than the process of
+        interest, so a clean reversal on tasks that differ in several ways
+        does not tell you which difference produced it. A double dissociation
+        establishes that at least partly separable processing exists. Where
+        that processing sits is a different question, and none of these files
+        touches it.</p>
+    </div>
+
+    <p class="small" style="margin-top: 1.125rem">The longer version adds six
+      case files, including a large raw gap that is not a dissociation at all
+      and a clean crossover on tasks that differ in too much, plus a challenge
+      on what a crossover buys. It is at
+      <a href="../../../../../modules/neuropsychology/tools/01-double-dissociation-detective/index.html">Double
+      Dissociation Detective in the main collection</a>.</p>
+
+  </section>
+
+</main>
+
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ahead, or Better Off | Simplified Edition</title>
+<meta name="description" content="Allocate points between two anonymous strangers when you cannot allocate to yourself. The option that puts your category furthest ahead gives it fewer points than the option that gives it most.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231C7293'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../../../assets/css/simplified.css">
+<link rel="stylesheet" href="../../../../assets/css/patterns.css">
+<script src="../../../../assets/js/workbook.js" defer></script>
+<script src="activity.js" defer></script>
+<link rel="stylesheet" href="../../../../assets/css/edition.css">
+<script src="../../../../assets/js/edition-nav.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to the activity</a>
+
+<main class="workbook workbook--compact" id="main" data-workbook
+      data-reset-message="Cleared. No allocations made.">
+
+  <section class="hero">
+    <p class="eyebrow">Social &amp; Critical Psychology &middot; Simplified</p>
+    <h1>Ahead, or Better Off</h1>
+    <p class="hero__lead">You are about to be able to choose between the two,
+      and they are not the same choice.</p>
+  </section>
+
+  <section class="card" id="card-note" aria-labelledby="note-heading">
+    <h2 id="note-heading">A caution before you start</h2>
+    <div class="notice notice--caution">
+      <p>The categories here are invented and empty. That is the design: it is
+        what lets the paradigm ask whether being sorted into a category is on
+        its own enough to produce differential allocation. It is also the
+        reason the result cannot simply be lifted out of the laboratory. Real
+        groups have histories, unequal starting positions, material interests
+        and things that have actually been done to them, none of which is
+        present when the categories are Kestrels and Wrens. Nothing you choose
+        is saved, nothing is measured about you, and there is no score.</p>
+    </div>
+  </section>
+
+  <section class="card" id="card-predict" aria-labelledby="predict-heading">
+    <p class="step-label">Step 1 of 3</p>
+    <h2 id="predict-heading">First, a prediction</h2>
+    <p class="lead">People are sorted into two categories on the basis of
+      something trivial. Each person then allocates points between two other
+      people, one from each category, who are anonymous. Nobody can allocate
+      anything to themselves, and the points buy nothing. What do most people
+      do?</p>
+
+    <div class="option-grid" style="--option-columns: 2" id="options" data-workbook-choices>
+      <button class="option" type="button" data-choice="fair">
+        <strong>Split it evenly</strong>
+        <span>There is nothing to be gained, so people are fair.</span>
+      </button>
+      <button class="option" type="button" data-choice="gap">
+        <strong>Put their own category as far ahead as possible</strong>
+        <span>Even when a different option would give it more points.</span>
+      </button>
+      <button class="option" type="button" data-choice="joint">
+        <strong>Maximise the total handed out</strong>
+        <span>If nobody gains personally, more for everyone is the sensible
+          rule.</span>
+      </button>
+      <button class="option" type="button" data-choice="ingroup">
+        <strong>Give their own category as much as possible</strong>
+        <span>Favouritism, in the straightforward sense.</span>
+      </button>
+    </div>
+
+    <div class="notice" id="verdict" hidden data-state="chosen">
+      <p id="verdict-text"></p>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="reveal" type="button" disabled>Make the allocations</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+  </section>
+
+  <section class="card" id="card-task" hidden aria-labelledby="task-heading">
+    <p class="step-label">Step 2 of 3</p>
+    <h2 id="task-heading">Four allocations</h2>
+    <p class="lead" id="assign-line"></p>
+    <p class="lead">Each allocation gives points to two anonymous people: one
+      Kestrel and one Wren, neither of whom is you. You cannot allocate
+      anything to yourself, you will never meet either of them, and the points
+      buy nothing at all.</p>
+
+    <details class="disclosure" id="key-terms">
+      <summary>Key terms</summary>
+      <div class="disclosure__body">
+        <dl class="glossary">
+          <dt>Minimal group</dt>
+          <dd>A category with no history, no contact, no shared interest and no
+            content. If differential allocation appears here, categorisation
+            alone was enough to produce it.</dd>
+          <dt>Maximum ingroup profit</dt>
+          <dd>The option that gives your own category the most points it can
+            get.</dd>
+          <dt>Maximum difference</dt>
+          <dd>The option that puts your own category furthest ahead of the
+            other. It always gives your category fewer points than maximum
+            ingroup profit does.</dd>
+        </dl>
+      </div>
+    </details>
+
+    <div id="allocations"></div>
+
+    <ul class="results-grid" style="--results-columns: 3" id="readout"></ul>
+
+    <p class="small" id="sentence"></p>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="score" type="button" disabled>See what those choices did</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+  </section>
+
+  <section class="card" id="card-result" hidden aria-labelledby="result2-heading">
+    <p class="step-label">Step 3 of 3</p>
+    <h2 id="result2-heading">The same choices, three starting positions</h2>
+    <p class="lead">Your four choices are fixed from here. What changes is only
+      where the two categories stood before you allocated anything.</p>
+
+    <div class="table-scroll">
+      <table class="data-table" id="contexts">
+        <caption>The points you handed out are identical in all three rows.
+          The act is not.</caption>
+        <thead>
+          <tr><th scope="col">Starting position</th><th scope="col">Kestrels before</th>
+            <th scope="col">Wrens before</th><th scope="col">Kestrels after</th>
+            <th scope="col">Wrens after</th><th scope="col">What your allocations did</th></tr>
+        </thead>
+        <tbody id="contexts-body"></tbody>
+      </table>
+    </div>
+
+    <p class="small" id="context-sentence"></p>
+
+    <div class="actions">
+      <button class="btn btn-secondary" id="explain" type="button">What this shows</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+  </section>
+
+  <p class="workbook-status" data-workbook-status role="status" aria-live="polite"></p>
+
+  <section class="synthesis" id="synthesis" hidden aria-labelledby="result-heading">
+    <p class="step-label">What this shows</p>
+    <h2 id="result-heading">Being ahead is not the same as being better off</h2>
+    <p class="lead" id="result-lead"></p>
+
+    <div class="takeaway">
+      <p><strong>Key idea:</strong> In every one of the four allocations there
+        was an option that gave Kestrels more points than the maximum-difference
+        option did. Choosing maximum difference is therefore not a way of
+        getting more; it is a way of being further ahead, and it costs your own
+        category real points to achieve. That is the finding the paradigm
+        exists to produce, and it is the reason a self-interest explanation
+        does not reach it: nobody can allocate to themselves, the points buy
+        nothing, and the allocator will never meet either recipient. What an
+        allocation pattern cannot do is say why. Positive distinctiveness is
+        one account and it is not the only one, and a pattern of choices is
+        compatible with several. The last table is the part to take away. The
+        same four choices create an inequality from a level start and widen an
+        existing one from an unequal start, and nothing in the allocation
+        itself knows the difference.</p>
+    </div>
+
+    <div class="notice notice--caution">
+      <p>This is a demonstration of a paradigm rather than a replication, and
+        nothing here reproduces the matrices, procedure or data of any
+        published study. Two things the paradigm itself cannot settle. It shows
+        that categorisation alone is sufficient to produce differential
+        allocation in this setting; it does not show that categorisation is
+        what produces intergroup behaviour outside it, and the ordinary
+        experience of most conflicts involves histories, resources and harms
+        that this design removes on purpose. And it does not establish the
+        explanation. Positive distinctiveness, demand characteristics, a norm
+        of playing the game as it appears to be set up, and simple category
+        salience have all been offered, and choices between four options cannot
+        distinguish them. The third row of the last table is here to make the
+        absence of history visible rather than to fix it.</p>
+    </div>
+
+    <p class="small" style="margin-top: 1.125rem">The longer version adds more
+      allocations, a sorting task before the allocations begin, and an exercise
+      in judging what a set of published claims about the paradigm can and
+      cannot support. It is at
+      <a href="../../../../../modules/social-critical-psychology/tools/08-minimal-group-positive-distinctiveness/index.html">Minimal
+      Group and Positive Distinctiveness in the main collection</a>.</p>
+  </section>
+</main>
+</body>
+</html>

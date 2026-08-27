@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Same Finding, Twice | Simplified Edition</title>
+<meta name="description" content="One independent-samples t-test read off a single picture: the distribution of t when the two populations are identical, with the observed statistic marked. Then the same finding run on more people.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231C7293'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../../../assets/css/simplified.css">
+<link rel="stylesheet" href="../../../../assets/css/patterns.css">
+<script src="../../../../assets/js/workbook.js" defer></script>
+<script src="../../../../assets/js/stats.js" defer></script>
+<script src="activity.js" defer></script>
+<link rel="stylesheet" href="../../../../assets/css/edition.css">
+<script src="../../../../assets/js/edition-nav.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to the activity</a>
+
+<main class="workbook workbook--compact" id="main" data-workbook
+      data-reset-message="Cleared. Back to a 4-point difference on 15 people per group.">
+
+  <section class="hero">
+    <p class="eyebrow">Research Methods &middot; Simplified</p>
+    <h1>The Same Finding, Twice</h1>
+    <p class="hero__lead">A t-test asks one question: how surprising is this
+      difference if the two populations are identical. The sample size changes
+      the answer without changing the finding.</p>
+  </section>
+
+  <section class="card" id="card" aria-labelledby="card-heading">
+    <p class="step-label">The test</p>
+    <h2 id="card-heading">One difference, placed on the null distribution</h2>
+    <p class="lead">Two groups are compared. The curve below is what t would
+      look like across endless repetitions <em>if the two populations were
+      exactly the same</em>. The observed t is the marked line. Everything else
+      follows from where it falls.</p>
+
+    <details class="disclosure" id="key-terms">
+      <summary>Key terms</summary>
+      <div class="disclosure__body">
+        <dl class="glossary">
+          <dt>Standard error of the difference</dt>
+          <dd>How much the difference between two sample means bounces around
+            from one study to the next. It shrinks as the groups get larger,
+            which is the only place the sample size enters.</dd>
+          <dt>t</dt>
+          <dd>The observed difference divided by that standard error. A
+            difference measured in units of its own wobble.</dd>
+          <dt>The null distribution</dt>
+          <dd>The curve. Not a distribution of scores or of people, but of the
+            statistic t across repeated studies in a world where the two
+            populations are identical.</dd>
+          <dt>p</dt>
+          <dd>The shaded area: how often that world would produce a t at least
+            this far from zero, in either direction.</dd>
+        </dl>
+      </div>
+    </details>
+
+    <fieldset class="controls" style="--controls-columns: 3">
+      <legend class="visually-hidden">The study</legend>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="diff">Mean difference</label>
+          <output class="control__value" for="diff">4</output>
+        </div>
+        <input type="range" id="diff" min="0" max="20" step="1" value="4">
+        <p class="control__hint">In raw score points.</p>
+      </div>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="sd">Spread within each group</label>
+          <output class="control__value" for="sd">10</output>
+        </div>
+        <input type="range" id="sd" min="4" max="20" step="1" value="10">
+        <p class="control__hint">The standard deviation, the same in both groups.</p>
+      </div>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="n">People per group</label>
+          <output class="control__value" for="n">15</output>
+        </div>
+        <input type="range" id="n" min="5" max="200" step="5" value="15">
+        <p class="control__hint">Watch what this does, and what it does not.</p>
+      </div>
+    </fieldset>
+
+    <div class="plot">
+      <svg id="chart" role="img" aria-labelledby="chart-title chart-desc">
+        <title id="chart-title">The distribution of t when the two populations are identical, with the observed t marked</title>
+        <desc id="chart-desc"></desc>
+      </svg>
+      <p class="legend">The shaded tails are the two-tailed p: how often a world
+        with no difference at all would throw up a t at least this extreme. The
+        dashed lines are the 5 per cent critical values. The faint curve behind
+        is the standard normal, which t approaches as the groups grow.</p>
+    </div>
+
+    <ul class="results-grid" style="--results-columns: 4" id="readout"></ul>
+
+    <p class="small" id="sentence"></p>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="again" type="button">Run the same finding on more people</button>
+      <button class="btn btn-secondary" id="explain" type="button" disabled>What this shows</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+
+    <div class="notice" id="task" hidden data-state="chosen">
+      <p id="task-text"></p>
+    </div>
+  </section>
+
+  <p class="workbook-status" data-workbook-status role="status" aria-live="polite"></p>
+
+  <section class="synthesis" id="synthesis" hidden aria-labelledby="result-heading">
+    <p class="step-label">What this shows</p>
+    <h2 id="result-heading">The sample size lives in the denominator</h2>
+    <p class="lead">Nothing about the two populations changed when you added
+      people. The difference is the same, the spread is the same, and Cohen's d
+      did not move. Only the standard error shrank, and t is the difference
+      divided by it.</p>
+
+    <div class="takeaway">
+      <p><strong>Key idea:</strong> t is a difference measured in units of how
+        much that difference wobbles from study to study. Collecting more
+        people does not make the effect bigger; it makes the wobble smaller, so
+        the same effect sits further out on a narrower null distribution and
+        the tail area collapses. This is why a p-value on its own tells you
+        almost nothing about the size of a finding, why a small study can miss
+        a real effect, and why an enormous study can return a significant
+        result for a difference nobody would care about. Report the interval
+        and the effect size beside the decision, not instead of it.</p>
+    </div>
+
+    <div class="notice notice--caution">
+      <p>Read the conclusion carefully. A p above 0.05 does not show the
+        populations are the same; it says this study could not distinguish
+        them, which is why the wording is "fail to reject" rather than
+        "accept". The p-value is the probability of data at least this extreme
+        given no difference, and not the probability that there is no
+        difference; those are different quantities and swapping them is the
+        commonest error in the literature. The figures here also assume
+        independent observations, roughly normal populations and equal spreads,
+        and that this test was the one you meant to run before you saw the
+        data, which is the assumption most often broken in practice.</p>
+    </div>
+
+    <p class="small" style="margin-top: 1.125rem">The longer version adds a
+      one-tailed and two-tailed comparison, the heavier tails of t worked
+      through against the normal in detail, and a conclusion-writing exercise.
+      It is at
+      <a href="../../../../../modules/research-methods/tools/16-independent-t-test-null-lab/index.html">Independent-Samples
+      t-Test: The Null Distribution in the main collection</a>.</p>
+  </section>
+</main>
+</body>
+</html>

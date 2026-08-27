@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Four Ways to Answer the Same Questionnaire | Simplified Edition</title>
+<meta name="description" content="Four fictional respondents with identical true standing use a rating scale differently. See what reverse-worded items fix, and what they leave untouched.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231C7293'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../../../assets/css/simplified.css">
+<link rel="stylesheet" href="../../../../assets/css/patterns.css">
+<script src="../../../../assets/js/workbook.js" defer></script>
+<script src="activity.js" defer></script>
+<link rel="stylesheet" href="../../../../assets/css/edition.css">
+<script src="../../../../assets/js/edition-nav.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to the activity</a>
+
+<main class="workbook workbook--compact" id="main" data-workbook
+      data-reset-message="Cleared. Back to the balanced questionnaire.">
+
+  <section class="hero">
+    <p class="eyebrow">Personality &amp; Individual Differences &middot; Simplified</p>
+    <h1>Four Ways to Answer the Same Questionnaire</h1>
+    <p class="hero__lead">Four people who genuinely stand in the same place,
+      and four rather different sets of numbers.</p>
+  </section>
+
+  <section class="card" id="card-predict" aria-labelledby="predict-heading">
+    <p class="step-label">Step 1 of 2</p>
+    <h2 id="predict-heading">First, a prediction</h2>
+    <p class="lead">Four fictional people have exactly the same true standing
+      on a trait. One answers the twenty items straightforwardly. One tends to
+      agree with whatever an item says. One prefers the ends of the scale. One
+      stays near the middle.</p>
+    <p class="lead">Half the items are reverse worded, so that agreeing with an
+      item and agreeing with its opposite pull the score in opposite
+      directions. Whose score does that reverse wording rescue?</p>
+
+    <div class="option-grid" style="--option-columns: 2" id="options" data-workbook-choices>
+      <button class="option" type="button" data-choice="agree">
+        <strong>The one who agrees with everything</strong>
+        <span>And only that one. The other two styles are untouched by it.</span>
+      </button>
+      <button class="option" type="button" data-choice="all">
+        <strong>All three</strong>
+        <span>Reverse wording is the standard fix for response styles, so it
+          ought to do something about each of the three.</span>
+      </button>
+      <button class="option" type="button" data-choice="ends">
+        <strong>The one who uses the ends</strong>
+        <span>Reversing items balances out the extreme answers.</span>
+      </button>
+      <button class="option" type="button" data-choice="none">
+        <strong>None of them</strong>
+        <span>Reverse wording is about item quality, not about scoring.</span>
+      </button>
+    </div>
+
+    <div class="notice" id="verdict" hidden data-state="chosen">
+      <p id="verdict-text"></p>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="reveal" type="button" disabled>See the four grids</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+  </section>
+
+  <section class="card" id="card-sim" hidden aria-labelledby="sim-heading">
+    <p class="step-label">Step 2 of 2</p>
+    <h2 id="sim-heading">The same person, four ways of answering</h2>
+    <p class="lead">All four rows come from one underlying set of reactions to
+      the twenty items. The only difference between the rows is how each person
+      turns a reaction into a number between 1 and 5.</p>
+
+    <details class="disclosure" id="key-terms">
+      <summary>Key terms</summary>
+      <div class="disclosure__body">
+        <dl class="glossary">
+          <dt>Acquiescence</dt>
+          <dd>Tending to agree, more or less whatever the item says.</dd>
+          <dt>Extreme and midpoint responding</dt>
+          <dd>Preferring the ends of the scale, or preferring the middle of it,
+            independently of what the items say.</dd>
+          <dt>Reverse wording and balanced keying</dt>
+          <dd>Writing some items so that agreement means less of the trait, and
+            then recoding them before adding up. On a balanced scale, agreeing
+            with everything no longer produces a high score.</dd>
+          <dt>Recoded score</dt>
+          <dd>The score after reverse-worded answers have been flipped. It is
+            the number that would go on the record.</dd>
+        </dl>
+      </div>
+    </details>
+
+    <fieldset class="controls" style="--controls-columns: 2">
+      <legend class="visually-hidden">The people and the questionnaire</legend>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="standing">Where all four actually
+            stand on the trait</label>
+          <output class="control__value" for="standing">+50</output>
+        </div>
+        <input type="range" id="standing" min="-100" max="100" step="10" value="50">
+        <p class="control__hint">The same value for all four of them. Nothing
+          about the people differs except how they use the scale.</p>
+      </div>
+      <div class="control">
+        <div class="control__header">
+          <span class="control__label" id="keying-label">The questionnaire</span>
+          <output class="control__value" id="keying-value">balanced</output>
+        </div>
+        <button class="btn btn-secondary" id="keying" type="button"
+                aria-describedby="keying-label" aria-pressed="true">Half the items reverse worded</button>
+        <p class="control__hint">Press to switch between a balanced
+          questionnaire and one where every item is worded the same way round.</p>
+      </div>
+    </fieldset>
+
+    <div class="table-scroll">
+      <table class="data-table" id="grid">
+        <caption id="grid-caption"></caption>
+        <thead><tr id="grid-head"></tr></thead>
+        <tbody id="grid-body"></tbody>
+      </table>
+    </div>
+
+    <ul class="results-grid" style="--results-columns: 4" id="readout"></ul>
+
+    <div class="plot">
+      <svg id="chart" role="img" aria-labelledby="chart-title chart-desc">
+        <title id="chart-title">Where each respondent's recoded score lands</title>
+        <desc id="chart-desc"></desc>
+      </svg>
+      <p class="legend">Each marker is one respondent's recoded score on the
+        1 to 5 scale. The upright line is the score their shared true standing
+        should have produced.</p>
+    </div>
+
+    <p class="small" id="sentence"></p>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="unbalance" type="button">Show the unbalanced questionnaire</button>
+      <button class="btn btn-secondary" id="explain" type="button" disabled>What this shows</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+
+    <div class="notice" id="note" hidden data-state="chosen">
+      <p id="note-text"></p>
+    </div>
+  </section>
+
+  <p class="workbook-status" data-workbook-status role="status" aria-live="polite"></p>
+
+  <section class="synthesis" id="synthesis" hidden aria-labelledby="result-heading">
+    <p class="step-label">What this shows</p>
+    <h2 id="result-heading">Reverse wording fixes one problem, not three</h2>
+    <p class="lead" id="result-lead"></p>
+
+    <div class="takeaway">
+      <p><strong>Key idea:</strong> Agreeing with everything adds the same
+        amount to every answer. On a balanced questionnaire that addition
+        lands on the positively worded items and on the reverse-worded ones
+        alike, and the recoding turns the second half of it into a subtraction,
+        so the two cancel and the score comes out close to where it should be.
+        Take the reverse wording away and nothing cancels: the same person now
+        scores more than a point higher than they should, which on a five-point
+        scale is a great deal. That is the strongest practical reason to
+        balance a scale. The other two styles are untouched by it. Preferring
+        the ends stretches the score away from the middle whichever way the
+        item is worded, and preferring the middle squashes it, and recoding
+        cannot undo either, because both distortions survive the flip. So a
+        balanced scale is worth building and it is not a general defence
+        against response styles.</p>
+    </div>
+
+    <div class="notice notice--caution">
+      <p>Response styles are routinely written about as though they were
+        failures of character or attention. They are not. Agreeing readily and
+        using the ends of a scale both vary systematically between cultures and
+        with education, staying near the middle may be caution, ambivalence or
+        items that genuinely do not apply, and an apparently careless pattern
+        can be produced by fatigue, by pain, or by a badly built form met with
+        a screen reader. What a grid like this can show is that a pattern is
+        present. It cannot show why, and it cannot establish anything about a
+        person's motives. On the numbers: four invented respondents whose
+        answers come from a formula, one shared set of underlying reactions so
+        that the rows differ only by style, and a fixed random seed so the same
+        grids appear every time. Real respondents differ from each other for
+        many reasons at once, and no real questionnaire separates them this
+        cleanly.</p>
+    </div>
+
+    <p class="small" style="margin-top: 1.125rem">The longer version adds three
+      further styles including random and straight-line responding, split-half
+      correlations, longest-run statistics and a diagnosis exercise in which
+      you name a style from its evidence. It is at
+      <a href="../../../../../modules/personality-individual-differences/tools/14-response-style-simulator/index.html">Response-Style
+      Simulator in the main collection</a>.</p>
+  </section>
+</main>
+</body>
+</html>

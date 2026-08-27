@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Quick Judgement Study | Unit 4 Prepare</title>
+<style>
+:root{
+  --page:#F5F2ED;--card:#FFFFFF;--navy:#1A2744;--muted:#5F6878;--teal:#1C7293;
+  --teal-light:#EAF4FA;--blue:#3D5A80;--gold:#D4A853;--gold-light:#F7EEDC;
+  --coral:#C0434F;--green:#2F7D69;--border:#DDD8CF;
+  --shadow:0 12px 34px rgba(26,39,68,.08);--radius:18px
+}
+*{box-sizing:border-box} html{background:var(--page)}
+body{
+  margin:0;color:var(--navy);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  line-height:1.55;
+  background:
+    radial-gradient(circle at 10% 8%,rgba(212,168,83,.14),transparent 22rem),
+    radial-gradient(circle at 90% 18%,rgba(28,114,147,.12),transparent 24rem),
+    var(--page)
+}
+button,input{font:inherit}[hidden]{display:none!important}
+.workbook{width:min(980px,calc(100% - 32px));margin:0 auto;padding:42px 0 64px}
+.hero{
+  position:relative;overflow:hidden;padding:34px 36px;border-radius:24px;background:var(--card);
+  box-shadow:var(--shadow);border:1px solid rgba(26,39,68,.08)
+}
+.hero:after{
+  content:"";position:absolute;width:190px;height:190px;right:-60px;top:-78px;border-radius:50%;
+  background:var(--teal-light);border:22px solid rgba(212,168,83,.18)
+}
+.eyebrow{
+  position:relative;z-index:1;margin:0 0 10px;color:var(--teal);font-size:13px;font-weight:800;
+  letter-spacing:.09em;text-transform:uppercase
+}
+h1{
+  position:relative;z-index:1;margin:0;max-width:18ch;font-size:clamp(34px,5vw,54px);
+  line-height:1.02;letter-spacing:-.035em
+}
+.hero p:last-child{position:relative;z-index:1;max-width:710px;margin:16px 0 0;color:var(--muted);font-size:18px}
+
+.progress{
+  display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:20px 0 26px
+}
+.progress div{
+  padding:10px 8px;border-radius:11px;background:rgba(255,255,255,.66);border:1px solid var(--border);
+  color:var(--muted);font-size:12px;font-weight:800;text-align:center
+}
+.progress .active{color:var(--navy);background:var(--teal-light);border-color:rgba(28,114,147,.35)}
+.progress .done{color:var(--navy);background:var(--gold-light);border-color:rgba(212,168,83,.45)}
+
+.card,.synthesis{
+  margin-top:18px;padding:28px 30px;border-radius:var(--radius);background:var(--card);
+  border:1px solid rgba(26,39,68,.09);box-shadow:0 7px 22px rgba(26,39,68,.05)
+}
+.step-label{
+  display:inline-flex;align-items:center;gap:8px;margin-bottom:10px;color:var(--teal);
+  font-weight:800;font-size:13px;letter-spacing:.05em;text-transform:uppercase
+}
+.step-label:before{content:"";width:9px;height:9px;border-radius:50%;background:var(--gold)}
+h2{margin:0 0 9px;font-size:clamp(24px,3vw,31px);line-height:1.15;letter-spacing:-.02em}
+.lead{max-width:760px;margin:0;color:var(--muted)}
+
+.flash{
+  margin-top:18px;height:285px;border-radius:16px;background:#FBFAF7;border:1px solid var(--border);
+  position:relative;overflow:hidden;display:grid;place-items:center
+}
+.flash-msg{color:var(--muted);font-weight:800;text-align:center;padding:20px}
+.dot{position:absolute;width:8px;height:8px;border-radius:50%;background:var(--blue)}
+
+.peers{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px
+}
+.peer{
+  padding:15px;border-radius:14px;background:var(--teal-light);
+  border:1px solid rgba(28,114,147,.2);text-align:center
+}
+.peer strong{display:block;font-size:24px}
+.peer span{font-size:13px;color:var(--muted)}
+
+.entry{margin-top:18px;display:flex;gap:10px;align-items:end;flex-wrap:wrap}
+.entry label{font-weight:800}
+.entry input{
+  width:150px;padding:11px 12px;border-radius:11px;border:1px solid var(--border);
+  background:#fff;color:var(--navy)
+}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.btn{border:0;border-radius:11px;padding:11px 17px;font-weight:800;cursor:pointer}
+.btn-primary{background:var(--teal);color:#fff}
+.btn-secondary{background:#fff;color:var(--navy);border:1px solid var(--border)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+
+.results-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px
+}
+.result{
+  padding:18px;border-radius:14px;border:1px solid var(--border);background:#FAF8F4
+}
+.result strong{display:block;margin-bottom:4px;font-size:13px;color:var(--muted)}
+.result .big{font-size:30px;font-weight:800;color:var(--teal)}
+.result span{font-size:12px;color:var(--muted)}
+
+.trial-table{
+  display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px
+}
+.block{
+  padding:18px;border-radius:14px;background:#fff;border:1px solid var(--border)
+}
+.block h3{margin:0 0 10px;font-size:17px}
+.block ol{margin:0;padding-left:20px;color:var(--muted)}
+.block li+li{margin-top:5px}
+
+.compare-bar{margin-top:18px;padding:20px;border-radius:14px;background:#FBFAF7;border:1px solid var(--border)}
+.bar-row{display:grid;grid-template-columns:150px 1fr 55px;gap:10px;align-items:center;margin-top:12px}
+.bar-row:first-child{margin-top:0}
+.track{height:12px;border-radius:999px;background:#E8E4DD;overflow:hidden}
+.fill{height:100%;border-radius:999px;background:var(--teal)}
+.value{text-align:right;font-weight:800}
+.legend{margin-top:12px;color:var(--muted);font-size:12px}
+
+.reveal{margin-top:16px;padding:20px 22px;border-radius:15px;background:#fff;border:1px solid rgba(26,39,68,.09)}
+.reveal p{margin:0}.reveal p+p{margin-top:8px}
+.small{font-size:13px;color:var(--muted)}
+.takeaway{
+  margin-top:18px;padding:20px 22px;border-left:5px solid var(--gold);
+  border-radius:12px;background:var(--gold-light)
+}
+.takeaway p{margin:0}
+
+@media(max-width:760px){
+  .hero,.card,.synthesis{padding:24px}
+  .workbook{width:min(100% - 20px,980px);padding-top:20px}
+  .progress{grid-template-columns:repeat(3,1fr)}
+  .peers,.results-grid,.trial-table{grid-template-columns:1fr}
+  .bar-row{grid-template-columns:110px 1fr 45px}
+}
+</style>
+</head>
+<body>
+<main class="workbook">
+
+<section class="hero">
+  <p class="eyebrow">Unit 4 · Prepare</p>
+  <h1>Quick Judgement Study</h1>
+  <p>Work through six brief visual trials and give your best estimate each time.</p>
+</section>
+
+<div class="progress" id="progress" aria-label="Activity progress">
+  <div class="active">Trial 1</div><div>Trial 2</div><div>Trial 3</div>
+  <div>Trial 4</div><div>Trial 5</div><div>Trial 6</div>
+</div>
+
+<section class="card" id="trial-card">
+  <div class="step-label" id="trial-label">Trial 1 of 6</div>
+  <h2 id="trial-heading">Make a quick estimate</h2>
+  <p class="lead" id="trial-lead">The pattern will appear briefly. Do not try to count every dot.</p>
+
+  <div class="flash" id="flash">
+    <span class="flash-msg" id="flash-msg">Press “Show pattern” when you are ready.</span>
+  </div>
+
+  <div id="peer-area" hidden>
+    <div class="peers" id="peers"></div>
+    <p class="small">These are fictional responses from other participants.</p>
+  </div>
+
+  <div class="actions" id="show-area">
+    <button class="btn btn-primary" id="show" type="button">Show pattern</button>
+  </div>
+
+  <div class="entry" id="entry" hidden>
+    <label for="estimate">Your estimate</label>
+    <input id="estimate" type="number" min="1" max="100" inputmode="numeric">
+    <button class="btn btn-primary" id="submit" type="button">Submit estimate</button>
+  </div>
+
+  <div class="reveal" id="reveal" hidden aria-live="polite"></div>
+
+  <div class="actions" id="next-area" hidden>
+    <button class="btn btn-primary" id="next" type="button">Next trial</button>
+    <button class="btn btn-secondary" id="reset" type="button">Reset</button>
+  </div>
+</section>
+
+<section class="synthesis" id="synthesis" hidden>
+  <div class="step-label">Your results</div>
+  <h2>Compare your two sets of judgements</h2>
+  <p class="lead">The first three dot quantities were repeated in the same order for the final three trials. What changed was the context in which you made the estimate.</p>
+
+  <div class="results-grid">
+    <div class="result"><strong>Average · Trials 1–3</strong><div class="big" id="avg-alone">—</div><span>No peer estimates shown</span></div>
+    <div class="result"><strong>Average · Trials 4–6</strong><div class="big" id="avg-social">—</div><span>Peer estimates shown</span></div>
+    <div class="result"><strong>Peer average</strong><div class="big" id="avg-peers">—</div><span>Across the three later trials</span></div>
+    <div class="result"><strong>Actual sequence</strong><div class="big" style="font-size:24px">20 · 70 · 50</div><span>Repeated for Trials 4–6</span></div>
+  </div>
+
+  <div class="trial-table">
+    <div class="block"><h3>Trials 1–3</h3><ol id="alone-list"></ol></div>
+    <div class="block"><h3>Trials 4–6</h3><ol id="social-list"></ol></div>
+  </div>
+
+  <div class="compare-bar" aria-label="Average estimate comparison">
+    <div class="bar-row">
+      <span>Trials 1–3</span><div class="track"><div class="fill" id="bar-alone"></div></div><span class="value" id="bar-alone-value">—</span>
+    </div>
+    <div class="bar-row">
+      <span>Trials 4–6</span><div class="track"><div class="fill" id="bar-social"></div></div><span class="value" id="bar-social-value">—</span>
+    </div>
+    <div class="bar-row">
+      <span>Peer average</span><div class="track"><div class="fill" id="bar-peers"></div></div><span class="value" id="bar-peers-value">—</span>
+    </div>
+    <p class="legend">Longer bars represent higher average estimates.</p>
+  </div>
+
+  <div class="reveal" id="summary"></div>
+
+  <div class="takeaway">
+    <p><strong>Key idea:</strong> When a judgement is uncertain, other people’s responses can become a useful reference point. This is one route through which <strong>informational social influence</strong> and shared norms can develop.</p>
+  </div>
+</section>
+
+<script>
+(function(){
+  const dotCounts = [20,70,50,20,70,50];
+  const peerSets = [
+    [24,22,23],
+    [74,76,75],
+    [54,56,55]
+  ];
+
+  let trial = 0;
+  let estimates = [];
+
+  const flash = document.getElementById('flash');
+  const flashMsg = document.getElementById('flash-msg');
+  const peerArea = document.getElementById('peer-area');
+  const peers = document.getElementById('peers');
+  const show = document.getElementById('show');
+  const entry = document.getElementById('entry');
+  const estimate = document.getElementById('estimate');
+  const submit = document.getElementById('submit');
+  const reveal = document.getElementById('reveal');
+  const nextArea = document.getElementById('next-area');
+  const next = document.getElementById('next');
+  const reset = document.getElementById('reset');
+  const synthesis = document.getElementById('synthesis');
+  const progress = Array.from(document.querySelectorAll('#progress div'));
+
+  function renderDots(){
+    flash.querySelectorAll('.dot').forEach(d => d.remove());
+    for(let i=0;i<dotCounts[trial];i++){
+      const d=document.createElement('span');
+      d.className='dot';
+      d.style.left=(5+Math.random()*90)+'%';
+      d.style.top=(8+Math.random()*84)+'%';
+      flash.appendChild(d);
+    }
+  }
+
+  function renderTrial(){
+    flash.querySelectorAll('.dot').forEach(d=>d.remove());
+    flashMsg.hidden=false;
+    flashMsg.textContent='Press “Show pattern” when you are ready.';
+    show.hidden=false;
+    show.disabled=false;
+    entry.hidden=true;
+    estimate.value='';
+    estimate.disabled=false;
+    submit.disabled=false;
+    reveal.hidden=true;
+    nextArea.hidden=true;
+    peerArea.hidden=true;
+
+    document.getElementById('trial-label').textContent='Trial '+(trial+1)+' of 6';
+    document.getElementById('trial-heading').textContent='Make a quick estimate';
+    document.getElementById('trial-lead').textContent='The pattern will appear briefly. Do not try to count every dot.';
+
+    progress.forEach((p,i)=>{
+      p.className = i<trial ? 'done' : (i===trial ? 'active' : '');
+    });
+  }
+
+  function showPeers(){
+    if(trial < 3) return;
+    const set = peerSets[trial-3];
+    peers.innerHTML = '';
+    set.forEach((v,i)=>{
+      const div=document.createElement('div');
+      div.className='peer';
+      div.innerHTML='<span>Participant '+String.fromCharCode(65+i)+'</span><strong>'+v+'</strong>';
+      peers.appendChild(div);
+    });
+    peerArea.hidden=false;
+  }
+
+  show.addEventListener('click',()=>{
+    show.disabled=true;
+    flashMsg.hidden=true;
+    renderDots();
+
+    setTimeout(()=>{
+      flash.querySelectorAll('.dot').forEach(d=>d.remove());
+      flashMsg.textContent='Pattern hidden. Enter your estimate.';
+      flashMsg.hidden=false;
+      show.hidden=true;
+      showPeers();
+      entry.hidden=false;
+      estimate.focus();
+    },1000);
+  });
+
+  submit.addEventListener('click',()=>{
+    const v=Number(estimate.value);
+    if(!v || v<1 || v>100) return;
+
+    estimates[trial]=v;
+    estimate.disabled=true;
+    submit.disabled=true;
+
+    reveal.innerHTML='<p><strong>Estimate recorded.</strong></p><p class="small">Your result will be compared with the other trials at the end.</p>';
+    reveal.hidden=false;
+    nextArea.hidden=false;
+    next.textContent = trial<5 ? 'Next trial' : 'See my results';
+  });
+
+  next.addEventListener('click',()=>{
+    if(trial<5){
+      trial++;
+      renderTrial();
+      document.getElementById('trial-card').scrollIntoView({behavior:'smooth',block:'start'});
+    } else {
+      progress.forEach(p=>p.className='done');
+      showResults();
+      synthesis.hidden=false;
+      synthesis.scrollIntoView({behavior:'smooth',block:'start'});
+    }
+  });
+
+  reset.addEventListener('click',()=>{
+    trial=0;
+    estimates=[];
+    synthesis.hidden=true;
+    renderTrial();
+  });
+
+  function mean(arr){
+    return arr.reduce((a,b)=>a+b,0)/arr.length;
+  }
+
+  function showResults(){
+    const alone = estimates.slice(0,3);
+    const social = estimates.slice(3,6);
+    const allPeers = peerSets.flat();
+
+    const avgAlone = mean(alone);
+    const avgSocial = mean(social);
+    const avgPeers = mean(allPeers);
+
+    document.getElementById('avg-alone').textContent=avgAlone.toFixed(1);
+    document.getElementById('avg-social').textContent=avgSocial.toFixed(1);
+    document.getElementById('avg-peers').textContent=avgPeers.toFixed(1);
+
+    document.getElementById('alone-list').innerHTML=alone.map((v,i)=>'<li>Estimated <strong>'+v+'</strong> <span class="small">(actual '+dotCounts[i]+')</span></li>').join('');
+    document.getElementById('social-list').innerHTML=social.map((v,i)=>{
+      const peerMean=mean(peerSets[i]).toFixed(1);
+      return '<li>Estimated <strong>'+v+'</strong> <span class="small">(actual '+dotCounts[i+3]+'; peer mean '+peerMean+')</span></li>';
+    }).join('');
+
+    const maxScale=70;
+    const width=v=>Math.max(3,Math.min(100,(v/maxScale)*100))+'%';
+    document.getElementById('bar-alone').style.width=width(avgAlone);
+    document.getElementById('bar-social').style.width=width(avgSocial);
+    document.getElementById('bar-peers').style.width=width(avgPeers);
+    document.getElementById('bar-alone-value').textContent=avgAlone.toFixed(1);
+    document.getElementById('bar-social-value').textContent=avgSocial.toFixed(1);
+    document.getElementById('bar-peers-value').textContent=avgPeers.toFixed(1);
+
+    const pairedShifts = social.map((v,i)=>v-alone[i]);
+    const meanShift = mean(pairedShifts);
+    let text;
+    if(meanShift > 1){
+      text='Across the repeated trials, your estimates were higher when peer responses were visible.';
+    }else if(meanShift < -1){
+      text='Across the repeated trials, your estimates were lower when peer responses were visible.';
+    }else{
+      text='Across the repeated trials, your estimates were very similar with and without peer responses.';
+    }
+
+    document.getElementById('summary').innerHTML=
+      '<p><strong>'+text+'</strong></p>'+
+      '<p class="small">Because Trials 4–6 repeat the same dot quantities as Trials 1–3, you can compare each judgement with its matched earlier trial. There is no required pattern for an individual participant.</p>';
+  }
+
+  renderTrial();
+})();
+</script>
+</main>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sampling Distribution and p-Value Simulator | Simplified Edition</title>
+<meta name="description" content="Run studies in a world where the true difference is exactly zero, build the sampling distribution from them, and read a p-value off it as a count as well as an area.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231C7293'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../../../assets/css/simplified.css">
+<link rel="stylesheet" href="../../../../assets/css/patterns.css">
+<script src="../../../../assets/js/workbook.js" defer></script>
+<script src="activity.js" defer></script>
+<link rel="stylesheet" href="../../../../assets/css/edition.css">
+<script src="../../../../assets/js/edition-nav.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to the activity</a>
+
+<main class="workbook workbook--compact" id="main" data-workbook
+      data-reset-message="Cleared. No studies run, back to the starting settings.">
+
+  <section class="hero">
+    <p class="eyebrow">Research Methods &middot; Simplified</p>
+    <h1>Sampling Distribution and p-Value Simulator</h1>
+    <p class="hero__lead">A world in which nothing is going on. Run studies in
+      it, and see how far apart two groups drift anyway.</p>
+  </section>
+
+  <section class="card" id="card" aria-labelledby="card-heading">
+    <p class="step-label">The simulator</p>
+    <h2 id="card-heading">Two groups from the same population</h2>
+    <p class="lead">Both groups are drawn from one population, so the true
+      difference is exactly zero. Every study still finds some difference. The
+      pile of those differences is the sampling distribution, and the p-value
+      is read off it.</p>
+
+    <details class="disclosure" id="key-terms">
+      <summary>Key terms</summary>
+      <div class="disclosure__body">
+        <dl class="glossary">
+          <dt>Null model</dt>
+          <dd>The assumed state of affairs the calculation is done under: here,
+            that both groups come from the same population and the true
+            difference is zero.</dd>
+          <dt>Sampling distribution</dt>
+          <dd>The spread of results you would get by repeating the same study
+            many times when the null model is true.</dd>
+          <dt>Standard error</dt>
+          <dd>How much the difference between two group means moves from study
+            to study. Here it is the population standard deviation times the
+            square root of two over the group size.</dd>
+          <dt>p-value</dt>
+          <dd>The share of studies under the null model that land at least as
+            far from zero as the one observed, counting both directions.</dd>
+        </dl>
+      </div>
+    </details>
+
+    <fieldset class="controls" style="--controls-columns: 4">
+      <legend class="visually-hidden">Simulation settings</legend>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="n">Per group</label>
+          <output class="control__value" for="n">40</output>
+        </div>
+        <input type="range" id="n" min="5" max="200" step="5" value="40">
+      </div>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="sd">Population SD</label>
+          <output class="control__value" for="sd">15</output>
+        </div>
+        <input type="range" id="sd" min="5" max="40" step="1" value="15">
+      </div>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="obs">Observed difference</label>
+          <output class="control__value" for="obs">5</output>
+        </div>
+        <input type="range" id="obs" min="0" max="20" step="0.5" value="5">
+      </div>
+      <div class="control">
+        <div class="control__header">
+          <label class="control__label" for="seed">Seed</label>
+        </div>
+        <input type="number" id="seed" value="5140" min="1" max="99999" step="1">
+      </div>
+    </fieldset>
+
+    <div class="plot">
+      <svg id="chart" role="img" aria-labelledby="chart-title chart-desc">
+        <title id="chart-title">Differences between two groups drawn from the same population</title>
+        <desc id="chart-desc"></desc>
+      </svg>
+      <p class="legend">One mark per simulated study. The shaded regions are
+        everything at least as far from zero as the observed difference, in
+        either direction.</p>
+    </div>
+
+    <ul class="results-grid" style="--results-columns: 3" id="readout"></ul>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="run20" type="button">Run 20 studies</button>
+      <button class="btn btn-primary" id="run1000" type="button">Run 1000 studies</button>
+      <button class="btn btn-secondary" id="explain" type="button" disabled>What a p-value is not</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+  </section>
+
+  <p class="workbook-status" data-workbook-status role="status" aria-live="polite"></p>
+
+  <section class="synthesis" id="synthesis" hidden aria-labelledby="result-heading">
+    <p class="step-label">What a p-value is not</p>
+    <h2 id="result-heading">A tail area, and it points backwards</h2>
+    <p class="lead">The two figures agree because they are the same quantity
+      computed twice: once as an area under an assumed distribution, once as a
+      count of simulated studies. The tail area is not a convention. It is a
+      proportion of something.</p>
+
+    <div class="takeaway">
+      <p><strong>Key idea:</strong> Everything on this page was computed
+        assuming the null model, independent sampling, a pre-specified analysis
+        and a single comparison. A p-value answers one question: if there were
+        nothing going on, how often would a difference this far from zero turn
+        up. It is <em>not</em> the probability that the null hypothesis is
+        true, <em>not</em> the probability that the result happened by chance,
+        <em>not</em> a measure of the size or importance of an effect, and
+        <em>not</em> evidence of no effect when it is large.</p>
+    </div>
+
+    <div class="notice notice--caution">
+      <p>No threshold is named anywhere in this activity, deliberately.
+        Whether a tail area of a particular size should change anybody's
+        behaviour is a decision rather than a statistical fact. Note also that
+        the population standard deviation is treated as known here, because the
+        null model states it, which is why the reference curve is normal. A
+        real t-test estimates it from the sample and pays for that with heavier
+        tails and a larger p-value at small samples, which is a different tool.</p>
+    </div>
+
+    <p class="small" style="margin-top: 1.125rem">The longer version adds a
+      three-part prediction before the simulation, progressive disclosure of
+      the reference distribution, and a select-all challenge on interpretation.
+      It is at
+      <a href="../../../../../modules/research-methods/tools/08-sampling-distribution-pvalue-simulator/index.html">Sampling
+      Distribution and p-Value Simulator in the main collection</a>.</p>
+  </section>
+</main>
+</body>
+</html>

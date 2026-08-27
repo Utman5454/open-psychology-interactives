@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dual-Task Capacity Laboratory | Simplified Edition</title>
+<meta name="description" content="Do two easy tasks on their own, then both at once. The cost is measured against your own single-task times, and it does not fall evenly on the two.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231C7293'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../../../assets/css/simplified.css">
+<link rel="stylesheet" href="../../../../assets/css/patterns.css">
+<script src="../../../../assets/js/workbook.js" defer></script>
+<script src="activity.js" defer></script>
+<link rel="stylesheet" href="../../../../assets/css/edition.css">
+<script src="../../../../assets/js/edition-nav.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to the activity</a>
+
+<main class="workbook workbook--compact" id="main" data-workbook
+      data-reset-message="Cleared. Back to the first block, with no results kept.">
+
+  <section class="hero">
+    <p class="eyebrow">Cognitive Psychology &middot; Simplified</p>
+    <h1>Dual-Task Capacity Laboratory</h1>
+    <p class="hero__lead">Two tasks you can do without thinking. Then both at
+      once, which is a different matter entirely.</p>
+  </section>
+
+  <nav aria-label="Activity progress">
+    <ol class="progress" data-workbook-progress
+        style="--progress-columns: 4; --progress-columns-narrow: 1">
+      <li class="progress__step">1 &middot; Letters alone</li>
+      <li class="progress__step">2 &middot; Sides alone</li>
+      <li class="progress__step">3 &middot; Both at once</li>
+      <li class="progress__step">4 &middot; What it cost</li>
+    </ol>
+  </nav>
+
+  <section class="card" id="task-card" aria-labelledby="task-heading">
+    <p class="step-label" id="step-label">Block 1 of 3</p>
+    <h2 id="task-heading">The letter task, on its own</h2>
+    <p class="lead" id="task-lead">A letter appears in the middle. Say whether
+      it is a vowel or a consonant, using the two buttons or the up and down
+      arrow keys. Nothing else is happening in this block.</p>
+
+    <div class="notice" id="setup-note">
+      <p><strong>What this needs.</strong> Four keys or four buttons, and about
+        four minutes. The three blocks always run in this order, because the
+        cost of doing both can only be measured against how fast you were doing
+        each one alone. No trial is ever timed out.</p>
+    </div>
+
+    <div class="stage stage--focus" style="--stage-height: 13rem">
+      <svg class="stage__field" id="field" viewBox="0 0 600 240"
+           role="img" aria-labelledby="field-title field-desc">
+        <title id="field-title">The task display</title>
+        <desc id="field-desc">Nothing is showing yet.</desc>
+      </svg>
+      <p class="stage__feedback" id="feedback" hidden></p>
+    </div>
+
+    <fieldset class="keypad" id="keypad-letter" style="--keypad-columns: 2"></fieldset>
+    <fieldset class="keypad" id="keypad-side" style="--keypad-columns: 2" hidden></fieldset>
+
+    <p class="small" id="counter" aria-live="polite"></p>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="start" type="button">Start block 1</button>
+      <button class="btn btn-secondary" id="stop" type="button" hidden>Stop and see my result</button>
+      <button class="btn btn-secondary" type="button" data-workbook-reset>Start again</button>
+    </div>
+  </section>
+
+  <p class="workbook-status" data-workbook-status role="status" aria-live="polite"></p>
+
+  <section class="synthesis" id="synthesis" hidden aria-labelledby="result-heading">
+    <p class="step-label">What it cost</p>
+    <h2 id="result-heading">Two costs, and they are not the same size</h2>
+    <p class="lead" id="result-lead"></p>
+
+    <div class="plot" id="chart-wrap">
+      <svg id="chart" role="img" aria-labelledby="chart-title chart-desc">
+        <title id="chart-title">Your reaction times alone and together</title>
+        <desc id="chart-desc"></desc>
+      </svg>
+      <p class="legend">The pale bar is how fast you were doing that task on
+        its own. The dark bar is the same task while the other one was also
+        going on. The gap between them is what the second task cost you.</p>
+    </div>
+
+    <p class="small" id="accuracy"></p>
+
+    <details class="disclosure" id="values">
+      <summary>All the values behind this chart</summary>
+      <div class="disclosure__body">
+        <div class="table-scroll">
+          <table class="data-table">
+            <caption id="table-caption"></caption>
+            <thead>
+              <tr>
+                <th scope="col">Task</th>
+                <th scope="col">Alone</th>
+                <th scope="col">Together</th>
+                <th scope="col">Cost</th>
+                <th scope="col">Accuracy together</th>
+              </tr>
+            </thead>
+            <tbody id="table-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </details>
+
+    <div class="takeaway">
+      <p><strong>Key idea:</strong> Neither task is difficult. Each one alone
+        is close to as fast as a person can press a button. Put them together
+        and both get slower, which means something they both need is in short
+        supply and cannot simply be doubled up. The more interesting part is
+        that the two costs are rarely equal. Whichever task you treated as the
+        one to get right first tends to hold most of its speed, and the other
+        one absorbs the delay. That is why "can you do two things at once" is
+        the wrong question. You can. The question is what it costs, and which
+        of the two ends up paying.</p>
+    </div>
+
+    <div class="notice notice--caution">
+      <p>One person, a short block of each, in a browser, and the three blocks
+        always ran in the same order, so any practice effect across the session
+        is mixed into the dual-task cost and would make it look smaller than it
+        is. A proper design would counterbalance the order across people.
+        Browser timing adds noise of its own. A cost near zero, or a negative
+        one, is a result about the block rather than about you. And nothing
+        here says anything about driving, or phones, or anyone's ability to
+        multitask: those involve tasks that are far less trivial than these
+        two, over far longer periods.</p>
+    </div>
+
+    <p class="small" style="margin-top: 1.125rem">The longer version adds a
+      difficulty manipulation, a response-overlap manipulation that separates a
+      bottleneck at the response from one earlier, and a full stage track with
+      block-by-block records. It is at
+      <a href="../../../../../modules/cognitive/tools/08-dual-task-capacity-lab/index.html">Dual-Task
+      and Limited Capacity Laboratory in the main collection</a>.</p>
+  </section>
+</main>
+</body>
+</html>
