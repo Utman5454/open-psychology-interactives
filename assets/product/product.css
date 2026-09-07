@@ -27,6 +27,26 @@
   .library__filters {
     position: sticky;
     top: 5.5rem; /* below the sticky site header */
+    /* Bounded to what is left of the viewport below the sticky point, so the
+       column never runs taller than the screen. Search and Clear are outside
+       .library__filter-groups and so stay put; only the fieldsets between
+       them scroll, which is where Edition through Level can add up to more
+       than a screenful. display: flex plus min-height: 0 is what lets a flex
+       child (.library__filter-groups) shrink below its content size instead
+       of forcing the column past max-height. */
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 5.5rem - var(--space-5));
+    min-height: 0;
+  }
+  .library__filter-groups {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    min-height: 0;
+    /* Room for a scrollbar that does not sit on top of the focus ring or
+       the checkboxes themselves. */
+    padding-right: var(--space-2);
+    margin-right: calc(var(--space-2) * -1);
   }
 }
 
@@ -210,6 +230,12 @@
   flex-wrap: wrap;
   gap: var(--space-3);
   margin: var(--space-4) 0 var(--space-5);
+}
+
+/* The copy repeated above the teaching notes: no leading margin, since it
+   sits right under the section header rather than under the hero text. */
+.activity-actions--repeat {
+  margin-top: 0;
 }
 
 .activity-meta {
@@ -470,6 +496,44 @@ textarea.field {
   margin-bottom: var(--space-5);
 }
 
+/* The compact picker's four facets in one row on a wide screen, wrapping to
+   fewer as space runs out; kept to a fraction of the library's full-page
+   fieldset stack, which is the point of a picker embedded in the builder
+   rather than a page of its own. */
+.picker__filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-3) 0;
+}
+
+.picker__edition {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1) var(--space-3);
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.picker__edition legend {
+  font-weight: 600;
+  font-size: var(--text-sm);
+  padding: 0;
+  margin-right: var(--space-1);
+}
+
+.choice--compact {
+  min-height: 2.25rem;
+  gap: var(--space-1);
+}
+
+.choice--compact input {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
 .picker__results {
   list-style: none;
   margin: var(--space-3) 0 0;
@@ -590,17 +654,39 @@ textarea.field {
   color: var(--colour-text-muted);
 }
 
+.player__stage-wrap {
+  min-width: 0;
+}
+
 .player__stage {
   min-width: 0;
 }
 
+/* Deliberately not muted or uppercase, unlike a section eyebrow: this is the
+   answer to "where am I", so it reads as content, not decoration. */
 .player__progress {
   margin: 0 0 var(--space-2);
-  font-size: var(--text-sm);
+  font-size: var(--text-lg);
   font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--colour-text-muted);
+  color: var(--colour-text);
+}
+
+.player__progress-bar {
+  height: 0.5rem;
+  margin-bottom: var(--space-5);
+  border-radius: 999px;
+  background: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  overflow: hidden;
+}
+
+.player__progress-fill {
+  display: block;
+  height: 100%;
+  background: var(--colour-accent);
+  /* Width is set per step from script; the transition is what turns
+     "Continue" into a visible step forward rather than a page swap. */
+  transition: width 0.3s ease;
 }
 
 .player__instructions {
@@ -671,10 +757,19 @@ textarea.field {
   .player__step-button[aria-current="step"] {
     border-color: Highlight;
   }
+  .player__progress-bar {
+    border-color: CanvasText;
+  }
+  .player__progress-fill {
+    background: Highlight;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .builder__side, .player__nav {
     position: static;
+  }
+  .player__progress-fill {
+    transition: none;
   }
 }

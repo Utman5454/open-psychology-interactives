@@ -24,6 +24,14 @@
     return doc.querySelector("[data-activity-" + name + "]");
   }
 
+  /** Every element carrying this data-activity-<name> attribute, not just
+      the first: "open" and "lesson-link" each appear twice on the page
+      (once near the title, once again before the teaching notes), and both
+      copies need the same href. */
+  function slotAll(name) {
+    return Array.prototype.slice.call(doc.querySelectorAll("[data-activity-" + name + "]"));
+  }
+
   function setText(name, text) {
     var node = slot(name);
     if (node) { node.textContent = text || ""; }
@@ -91,8 +99,7 @@
     fillList("topics", activity.topics);
     fillList("interactions", activity.interactionTypes);
 
-    var open = slot("open");
-    if (open) { open.href = OPI.fromSiteRoot(activity.path); }
+    slotAll("open").forEach(function (node) { node.href = OPI.fromSiteRoot(activity.path); });
 
     var moduleLink = slot("module-link");
     if (moduleLink) {
@@ -116,10 +123,9 @@
       }
     }
 
-    var lessonLink = slot("lesson-link");
-    if (lessonLink) {
-      lessonLink.href = OPI.fromSiteRoot("lessons/build.html?add=" + encodeURIComponent(activity.key));
-    }
+    slotAll("lesson-link").forEach(function (node) {
+      node.href = OPI.fromSiteRoot("lessons/build.html?add=" + encodeURIComponent(activity.key));
+    });
 
     renderNotes(activity);
   }

@@ -126,21 +126,71 @@
             </div>
 
             <h3 style="margin-top: var(--space-6)">Steps</h3>
-            <p class="text-muted" data-builder-empty>No steps yet. Add an activity, a note or a question below.</p>
+            <p class="text-muted" data-builder-empty>No steps yet. Add an activity, a note or a reflection question below.</p>
             <ol class="steps-list" data-builder-steps aria-label="Lesson steps"></ol>
 
             <div class="builder__add">
               <button class="button button--primary" type="button" data-action="add-activity">Add an activity</button>
               <button class="button button--secondary" type="button" data-action="add-note">Add a note</button>
-              <button class="button button--secondary" type="button" data-action="add-question">Add a question</button>
+              <button class="button button--secondary" type="button" data-action="add-question">Add a reflection question</button>
             </div>
 
+            <!-- Compact version of the library's own search-and-filter model
+                 (assets/product/library.js), narrowed to fit inside the
+                 builder rather than a full page: one search box, Edition as
+                 three quick options rather than a checkbox pair, and Module,
+                 Length and Level as single-choice selects rather than
+                 checkbox lists. The actual filtering is the same shared
+                 OPI.filterActivities() the library page calls, so a search
+                 here finds, and ranks, the same activities it would there. -->
             <div class="picker" data-builder-picker hidden>
               <div class="builder__field">
-                <label for="picker-query">Find an activity</label>
+                <label for="picker-query">Search</label>
                 <input class="field" id="picker-query" type="search" autocomplete="off" placeholder="p-value, Stroop, reliability…">
-                <p class="builder__hint" data-builder-picker-count aria-live="polite"></p>
               </div>
+
+              <div class="picker__filters">
+                <fieldset class="picker__edition">
+                  <legend>Edition</legend>
+                  <label class="choice choice--compact"><input type="radio" name="picker-edition" value="" checked> All</label>
+                  <label class="choice choice--compact"><input type="radio" name="picker-edition" value="original"> Full</label>
+                  <label class="choice choice--compact"><input type="radio" name="picker-edition" value="simplified"> Simplified</label>
+                </fieldset>
+
+                <div class="builder__field">
+                  <label for="picker-module">Module</label>
+                  <select class="field" id="picker-module">
+                    <option value="">All modules</option>
+                    <option value="cognitive">Cognitive Psychology</option>
+                    <option value="research-methods">Research Methods</option>
+                    <option value="neuropsychology">Neuropsychology</option>
+                    <option value="social-critical-psychology">Social and Critical Psychology</option>
+                    <option value="personality-individual-differences">Personality and Individual Differences</option>
+                  </select>
+                </div>
+
+                <div class="builder__field">
+                  <label for="picker-band">Length</label>
+                  <select class="field" id="picker-band">
+                    <option value="">Any length</option>
+                    <option value="short">Up to 10 minutes</option>
+                    <option value="medium">15 to 20 minutes</option>
+                    <option value="long">25 to 30 minutes</option>
+                  </select>
+                </div>
+
+                <div class="builder__field">
+                  <label for="picker-difficulty">Level</label>
+                  <select class="field" id="picker-difficulty">
+                    <option value="">Any level</option>
+                    <option value="Introductory">Introductory</option>
+                    <option value="Intermediate">Intermediate</option>
+                    <option value="Advanced">Advanced</option>
+                  </select>
+                </div>
+              </div>
+
+              <p class="builder__hint" data-builder-picker-count aria-live="polite"></p>
               <ul class="picker__results" data-builder-picker-results aria-label="Matching activities"></ul>
               <p style="margin: var(--space-3) 0 0">
                 <button class="button button--secondary button--small" type="button" data-action="close-picker">Close</button>
