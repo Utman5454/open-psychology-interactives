@@ -192,20 +192,33 @@ observations, flagged here rather than silently fixed, and classified
 per the brief.
 
 - **Live learner-facing defect, `21-multiple-comparisons-fwer-p-hacking`
-  (Full), `tool.js`.** The on-screen "Family-wise rate, predicted"
-  figure is computed from the full test count `k`, not `k` minus the
-  number of real effects, so whenever real effects are present and no
-  correction is applied, the displayed "predicted" rate visibly
-  disagrees with the displayed simulated rate (64.2% shown against
-  roughly 53% simulated, an 11-point gap that undermines the tool's
-  own predicted-versus-simulated pedagogy). The old teaching notes'
-  reference table compounds this by using the statistically correct
-  formula for one row and the code's flawed figure for the very next
-  row. The new guide does not cite the tool's "predicted" figure for
-  this case at all, reporting only the independently verified
-  simulated rates. **This is live and learner-facing, so it needs a
-  separate product-code fix in `tool.js`, done immediately after this
-  teaching-notes branch is resolved; it is not touched here.**
+  (Full), `tool.js`. RESOLVED.** The on-screen "Family-wise rate,
+  predicted" figure was computed from the full test count `k`, not `k`
+  minus the number of real effects, so whenever real effects were
+  present and no correction was applied, the displayed "predicted" rate
+  visibly disagreed with the displayed simulated rate (64.2% shown
+  against roughly 53% simulated, an 11-point gap that undermined the
+  tool's own predicted-versus-simulated pedagogy). The old teaching
+  notes' reference table compounded this by using the statistically
+  correct formula for one row and the code's flawed figure for the very
+  next row. The new guide did not cite the tool's "predicted" figure for
+  this case at all, reporting only the independently verified simulated
+  rates. This is how the defect was first found and logged, deliberately
+  as a documentation-only observation rather than a silent code edit, in
+  the original submission of this branch.
+
+  It was fixed by a separate, tightly scoped follow-up
+  (`fix-multiple-comparisons-fwer-prediction`), immediately after this
+  branch merged, as flagged above: the predicted family-wise rate and
+  expected false-positive count now use `m0 = k - real`, the count of
+  true-null tests, since a test with a genuine effect can only be a
+  correct detection or a miss, never a false positive (`FWER = 1 - (1 -
+  threshold)^m0`, zero when `m0` is zero). The Bonferroni threshold
+  itself is unaffected: it is still defined across the full family of
+  `k` hypotheses. A regression test
+  (`scripts/test-multiple-comparisons-fwer.js`, run via
+  `scripts/check-all.py`) locks in the corrected figures and fails
+  against the old `k`-based formula.
 - **Stale teaching-note claim (numeric error), `03-confound-detective`
   (Full).** The old notes gave Study 2's unrepaired estimate as "2.4
   days"; the executing code computes and displays 2.5 (0.3 + 1.4 + 0.5
@@ -392,11 +405,13 @@ a code change.
 7. **Cross-file AI-tell family, 19 instances.** Covered above under
    "Cross-file AI-tell patterns found and rewritten."
 8. **`21-multiple-comparisons-fwer-p-hacking` (Full), live defect.**
-   Re-confirmed, not re-fixed: the FWER defect already logged under
-   "Content discrepancies discovered" is real, is learner-facing, and
-   stays out of scope for this teaching-notes branch. It needs a
-   separate `tool.js` fix, to be done immediately once this branch is
-   resolved.
+   Re-confirmed, not re-fixed, on this teaching-notes branch: the FWER
+   defect already logged under "Content discrepancies discovered" is
+   real, is learner-facing, and stayed out of scope here on purpose. It
+   was fixed immediately afterwards by the separate, tightly scoped
+   follow-up branch `fix-multiple-comparisons-fwer-prediction`; see the
+   updated entry under "Content discrepancies discovered" above for what
+   changed.
 
 Corrections 1 to 6 changed nine Full-guide word counts and two
 Simplified-guide word counts (`03-confound-detective` and
