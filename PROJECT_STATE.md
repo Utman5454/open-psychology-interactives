@@ -27,9 +27,13 @@ student link). See `docs/decisions.md` for the settled decisions and the
 
 - Both editions complete: 75 + 75, 1:1 paired, every entry `published`.
 - All structural gates pass (see "Checks" below).
-- Browser smoke test: 15 representative page loads (including two in embed
-  mode) at 1280px and 360px with zero console errors, zero failed requests,
+- Browser smoke test: 19 representative page loads (including two in embed
+  mode and four library pages) at 1280px and 360px with zero console errors, zero failed requests,
   no horizontal scroll, and no site chrome visible in embed mode.
+- Library: `library/index.html` searches and filters all 150 activities;
+  `library/activity.html` renders any activity's metadata and teaching notes
+  (all 150 notes files render through `assets/product/markdown.js` with no
+  leftover markup).
 - Embed mode: any of the 150 activity pages opened with `?embed=1` hides
   site chrome and posts its content height to a parent frame
   (`{type: "opi:height", height}`).
@@ -44,7 +48,8 @@ student link). See `docs/decisions.md` for the settled decisions and the
 | **Recovery and harness baseline** (this file, `check-all.py`, browser smoke, decisions and lessons logs) | `3580131` (working branch) | 2026-09-07 |
 | **Audit, architecture, M0 definition** (`docs/product/`) | `a1264ed` | 2026-09-07 |
 | **M0 Stage 1: honest site** (defects D1 to D8) | `ce98a79` | 2026-09-07 |
-| **M0 Stage 2: embed mode** (`?embed=1` on any activity page) | see `git log` | 2026-09-07 |
+| **M0 Stage 2: embed mode** (`?embed=1` on any activity page) | `63e8a3d` | 2026-09-07 |
+| **M0 Stage 3: library and activity pages** (`library/`, `assets/product/`) | see `git log` | 2026-09-07 |
 
 ## Branches
 
@@ -139,7 +144,7 @@ Recorded rather than silently fixed, so the fix is a reviewable change.
 | D5 | `modules/*/tools/README.md` | "All are unclaimed. Open an issue before starting" under planned-topic lists that have since been built. | fixed 2026-09-07 |
 | D6 | `CLAUDE.md` "A normal completed tool contains" | Lists three files; a real tool folder has six (`index.html`, `metadata.json`, `teaching-notes.md`, `tool.css`, `tool.js`, `standalone.html`). | fixed 2026-09-07 |
 | D7 | `CONTRIBUTING.md` | "There is no CI. Every check is manual." True on GitHub (no workflow), but there are now seven scripted gates; the sentence undersells them. | fixed 2026-09-07 |
-| D9 | `docs/teaching-guide.md`, tool pages | Says each tool "carries a Teaching notes panel on the page". 1 of 75 tool pages links its notes, and to a raw `.md`. The 150 teaching-notes files are not reachable from the site. | open (Stage 3 of M0 renders them) |
+| D9 | `docs/teaching-guide.md`, tool pages | Says each tool "carries a Teaching notes panel on the page". 1 of 75 tool pages links its notes, and to a raw `.md`. The 150 teaching-notes files are not reachable from the site. | fixed 2026-09-07: `library/activity.html` renders them |
 | D8 | oxlint | 10 warnings (unused variables, `new Array(n)`, two `no-loss-of-precision` literals in `21-multiple-comparisons-fwer-p-hacking/activity.js`). Exit code is 0, so not blocking, but the precision warnings deserve a look. | assessed 2026-09-07: the literals are the standard Lanczos gamma coefficients; loss is in the 17th digit and harmless. No change. |
 
 ## What must not be changed casually
@@ -154,6 +159,9 @@ Recorded rather than silently fixed, so the fix is a reviewable change.
 - `404.html` root-absolute paths (deliberate, documented in the file).
 - The `.gitignore` rules for `/modules/*.md` and `/modules/*/*.md`: local
   brief files live there and must never be committed.
+- The product layer (`library/`, `lessons/`, `assets/product/`, `data/lessons/`)
+  must never become a runtime dependency of any activity; activities must keep
+  working with those folders deleted.
 
 ## What we are trying next
 
@@ -171,8 +179,8 @@ harming the free collection. Working sequence:
    | --- | --- |
    | 1 Honest site (defects D1 to D8 fixed) | done 2026-09-07 |
    | 2 Embed mode | done 2026-09-07 |
-   | 3 Library and activity pages (fixes D9) | next |
-   | 4 Lesson builder | not started |
+   | 3 Library and activity pages (fixes D9) | done 2026-09-07 |
+   | 4 Lesson builder | next |
    | 5 Lesson player | not started |
    | 6 Curated lessons and home page | not started |
 

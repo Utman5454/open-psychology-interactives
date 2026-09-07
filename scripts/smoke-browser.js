@@ -60,6 +60,10 @@ const REPRESENTATIVE = [
   ['simplified-module-cognitive', 'simplified/modules/cognitive/index.html'],
   ['simplified-rm-08', 'simplified/modules/research-methods/tools/08-sampling-distribution-pvalue-simulator/index.html'],
   ['simplified-soc-08', 'simplified/modules/social-critical-psychology/tools/08-minimal-group-positive-distinctiveness/index.html'],
+  ['library', 'library/index.html'],
+  ['library-search', 'library/index.html?q=p-value&module=research-methods'],
+  ['activity-page', 'library/activity.html?edition=original&module=research-methods&tool=08-sampling-distribution-pvalue-simulator'],
+  ['activity-page-simplified', 'library/activity.html?edition=simplified&module=cognitive&tool=06-stroop-interference-lab'],
   // Embed mode: the same pages with ?embed=1 must lose their site chrome.
   ['embed-tool-rm-08', 'modules/research-methods/tools/08-sampling-distribution-pvalue-simulator/index.html?embed=1', 'embed'],
   ['embed-simplified-rm-08', 'simplified/modules/research-methods/tools/08-sampling-distribution-pvalue-simulator/index.html?embed=1', 'embed'],
