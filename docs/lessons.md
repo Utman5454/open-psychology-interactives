@@ -67,21 +67,22 @@ The pinned `npx --yes oxlint@1.80.0` run reports warnings (unused variables,
 in `.oxlintrc.json` are errors. Do not treat a warning-only run as a failure,
 and do not "fix" warnings in a commit meant for something else.
 
-## L-009: The remote Claude environment cannot write to GitHub
+## L-009: Establish the GitHub write path before doing work that must persist
 
-`git push` returned 403 from the agent proxy (the Claude GitHub App is not
-installed for the account) and the GitHub API integration returned 403
-"Resource not accessible by integration" on a branch create, while reads
-through both paths worked. **Rule:** establish the write path before doing
-work you expect to persist. When there is none, export each checkpoint with
+In one remote session `git push` returned 403 from the agent proxy and the
+GitHub API integration returned 403 "Resource not accessible by integration",
+while reads through both paths worked. The cause was that the Claude GitHub
+App was not installed for the repository; installing it (GitHub, Apps,
+Claude, select the repository) fixed both paths at once, and the branch was
+pushed from the same session. **Rule:** check `git push` early. When it is
+refused, keep working but export each checkpoint with
 
     git bundle create <name>.bundle main..<branch>
     git format-patch main..<branch> -o <dir>
 
-and hand the files to the owner, who runs `git fetch <bundle> <branch>` (or
-`git am`) and pushes. Installing the Claude GitHub App for the repository
-removes the detour. Never assume a local commit is safe until it is visible
-on GitHub.
+and hand the files to the owner, who can `git fetch <bundle> <branch>` and
+push, or install the App. Never assume a local commit is safe until it is
+visible on GitHub.
 
 ## L-010: A framed page that fills its viewport reports a height that never settles
 

@@ -73,16 +73,13 @@ merged into `main` (commit `8e8fb50`) and is kept only as history.
 
 No open pull requests or issues on GitHub as of 2026-09-07.
 
-**Persistence in the Claude Code remote environment (2026-09-07).** No
-write path to GitHub exists from that environment: `git push` is refused by
-the egress proxy (HTTP 403, "Claude doesn't have GitHub access ... for your
-organization") and the GitHub API integration is read-only for this
-repository (HTTP 403, "Resource not accessible by integration"). Reads work.
-Until the owner installs the Claude GitHub App for the repository (or
-reconnects GitHub under claude.ai Settings, Connectors), every checkpoint is
-exported as a git bundle and a patch series and handed to the owner, who
-applies it locally and pushes (see `docs/lessons.md`, L-009). Treat anything
-not yet on GitHub as unsaved.
+**Persistence in the Claude Code remote environment.** `git push` to the
+working branch works: the owner installed the Claude GitHub App for the
+repository on 2026-09-07, after an earlier session found both `git push` and
+the GitHub API integration refused (HTTP 403). If a future session sees that
+403 again, the fix is the App installation, not a workaround; until then
+export a bundle as `docs/lessons.md` L-009 describes. Commit, push, and
+confirm the remote head matches before ending a session.
 
 ## Checks: what passes and how to run it
 
