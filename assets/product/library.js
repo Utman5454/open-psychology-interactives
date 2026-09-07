@@ -26,6 +26,11 @@
    are ranked by where they matched (title first) and otherwise stay in
    catalogue order. The count is announced after each change, debounced so
    typing does not flood a screen reader. Nothing is stored.
+
+   The filtering and ranking themselves (OPI.tokens, OPI.filterActivities)
+   live in catalogue.js, shared with the lesson builder's activity picker,
+   so the two narrow and rank a search the same way; this file supplies only
+   the DOM this page is built from.
    ========================================================================= */
 
 (function (global) {
@@ -36,43 +41,9 @@
 
   var ANNOUNCE_DELAY_MS = 400;
 
-  function tokens(text) {
-    return String(text || "").toLowerCase().split(/[^a-z0-9]+/).filter(function (t) { return t.length > 1; });
-  }
-
-  function haystacks(activity) {
-    return {
-      title: activity.title.toLowerCase(),
-      strong: (activity.teachingJob + " " + activity.topics.join(" ")).toLowerCase(),
-      weak: (activity.summary + " " + activity.learningObjectives.join(" ")).toLowerCase()
-    };
-  }
-
-  /** Score > 0 when every token matches somewhere; higher for better places. */
-  function score(activity, queryTokens) {
-    if (!queryTokens.length) { return 1; }
-    var fields = haystacks(activity);
-    var total = 0;
-    for (var i = 0; i < queryTokens.length; i += 1) {
-      var t = queryTokens[i];
-      if (fields.title.indexOf(t) !== -1) { total += 3; }
-      else if (fields.strong.indexOf(t) !== -1) { total += 2; }
-      else if (fields.weak.indexOf(t) !== -1) { total += 1; }
-      else { return 0; }
-    }
-    return total;
-  }
-
   function checkedValues(form, name) {
     var boxes = form.querySelectorAll('[data-library-filter="' + name + '"] input:checked');
     return Array.prototype.map.call(boxes, function (box) { return box.value; });
-  }
-
-  function passesFilters(activity, filters) {
-    return (!filters.module.length || filters.module.indexOf(activity.moduleSlug) !== -1) &&
-      (!filters.edition.length || filters.edition.indexOf(activity.edition) !== -1) &&
-      (!filters.band.length || filters.band.indexOf(activity.band) !== -1) &&
-      (!filters.difficulty.length || filters.difficulty.indexOf(activity.difficulty) !== -1);
   }
 
   function element(tag, className, text) {
@@ -146,23 +117,27 @@
 
     function render() {
       var filters = currentFilters();
-      var queryTokens = tokens(query.value);
-      var matched = [];
-      catalogue.activities.forEach(function (activity, index) {
-        if (!passesFilters(activity, filters)) { return; }
-        var s = score(activity, queryTokens);
-        if (s > 0) { matched.push({ activity: activity, score: s, index: index }); }
-      });
-      matched.sort(function (a, b) { return (b.score - a.score) || (a.index - b.index); });
+      filters.query = query.value;
+      var matched = OPI.filterActivities(catalogue.activities, filters);
 
       results.textContent = "";
-      matched.forEach(function (m) { results.appendChild(renderResult(m.activity, catalogue)); });
+      matched.forEach(function (activity) { results.appendChild(renderResult(activity, catalogue)); });
       empty.hidden = matched.length > 0;
       announce(matched.length);
     }
 
+    // "input" alone, not also "change": every control here (search, and
+    // checkboxes once the picker's compact controls made this shared code)
+    // fires "input" as the user acts on it, in every evergreen browser. A
+    // text input's own "change" event fires separately, on blur, which is
+    // exactly the moment a click on a result link starts (mousedown moves
+    // focus away from the search box before mouseup completes the click);
+    // binding "change" here as well used to rebuild the results list, and
+    // so the link, between those two events, and the browser drops a click
+    // whose target changed between mousedown and mouseup. Live QA on the
+    // lesson builder's picker (assets/product/builder.js) found this by a
+    // click on "Add" doing nothing right after typing a search term.
     form.addEventListener("input", render);
-    form.addEventListener("change", render);
     form.addEventListener("submit", function (event) { event.preventDefault(); render(); });
     form.addEventListener("reset", function () { global.setTimeout(render, 0); });
 

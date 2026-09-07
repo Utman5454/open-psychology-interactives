@@ -108,6 +108,8 @@ GATES = [
          needs=["node"], timeout=600),
     gate("lesson-tests", ["node", "scripts/test-lessons.js"], tier="browser",
          needs=["node"], timeout=600),
+    gate("picker-tests", ["node", "scripts/test-picker.js"], tier="browser",
+         needs=["node"], timeout=600),
 ]
 
 

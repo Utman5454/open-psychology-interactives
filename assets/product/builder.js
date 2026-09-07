@@ -45,24 +45,6 @@
     return String(text).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 60) || "lesson";
   }
 
-  function tokens(text) {
-    return String(text || "").toLowerCase().split(/[^a-z0-9]+/).filter(function (t) { return t.length > 1; });
-  }
-
-  /** 0 when a token is missing; otherwise higher for a match in the title. */
-  function matchScore(activity, queryTokens) {
-    var title = activity.title.toLowerCase();
-    var rest = (activity.teachingJob + " " + activity.topics.join(" ") + " " +
-      activity.summary + " " + activity.module).toLowerCase();
-    var total = 1;
-    for (var i = 0; i < queryTokens.length; i += 1) {
-      if (title.indexOf(queryTokens[i]) !== -1) { total += 2; }
-      else if (rest.indexOf(queryTokens[i]) !== -1) { total += 1; }
-      else { return 0; }
-    }
-    return total;
-  }
-
   /* --------------------------------------------------------------- state */
 
   function Builder(root, catalogue) {
@@ -266,20 +248,37 @@
 
   /* -------------------------------------------------------------- picker */
 
+  /**
+   * A compact version of the library's own search-and-filter model
+   * (assets/product/library.js): the same four facets in the same order
+   * (edition, module, length, level), narrowed to controls that fit inside
+   * the builder rather than a full page. It calls the same
+   * OPI.filterActivities() the library page calls, so this is one filtering
+   * system reused twice, not two that could drift apart.
+   */
   Builder.prototype.bindPicker = function () {
     var self = this;
     var picker = this.q("[data-builder-picker]");
     var query = this.q("#picker-query");
+    var moduleSelect = this.q("#picker-module");
+    var bandSelect = this.q("#picker-band");
+    var difficultySelect = this.q("#picker-difficulty");
     var results = this.q("[data-builder-picker-results]");
     var count = this.q("[data-builder-picker-count]");
 
+    function currentFilters() {
+      var edition = picker.querySelector('input[name="picker-edition"]:checked');
+      return {
+        query: query.value,
+        edition: edition && edition.value ? [edition.value] : [],
+        module: moduleSelect.value ? [moduleSelect.value] : [],
+        band: bandSelect.value ? [bandSelect.value] : [],
+        difficulty: difficultySelect.value ? [difficultySelect.value] : []
+      };
+    }
+
     function render() {
-      var queryTokens = tokens(query.value);
-      var found = self.catalogue.activities
-        .map(function (a, index) { return { a: a, score: matchScore(a, queryTokens), index: index }; })
-        .filter(function (m) { return m.score > 0; })
-        .sort(function (x, y) { return (y.score - x.score) || (x.index - y.index); })
-        .map(function (m) { return m.a; });
+      var found = OPI.filterActivities(self.catalogue.activities, currentFilters());
       results.textContent = "";
       found.slice(0, PICKER_MAX_RESULTS).forEach(function (activity) {
         var item = el("li", "picker__item");
@@ -296,11 +295,17 @@
         results.appendChild(item);
       });
       count.textContent = found.length > PICKER_MAX_RESULTS
-        ? "Showing the first " + PICKER_MAX_RESULTS + " of " + found.length + " matches; add a word to narrow it."
+        ? "Showing the first " + PICKER_MAX_RESULTS + " of " + found.length + " matches; narrow the search or a filter."
         : found.length + " match" + (found.length === 1 ? "" : "es");
     }
 
-    query.addEventListener("input", render);
+    // "input" alone, not also "change": see the matching comment in
+    // library.js. A radio, select or text change all fire "input" in every
+    // evergreen browser, and adding "change" here reintroduces the bug this
+    // comment is warning against - clicking Add right after typing a search
+    // term rebuilds the results list, and the button under the pointer,
+    // between mousedown and mouseup, so the browser drops the click.
+    picker.addEventListener("input", render);
     this.q('[data-action="add-activity"]').addEventListener("click", function () {
       picker.hidden = false;
       query.focus();

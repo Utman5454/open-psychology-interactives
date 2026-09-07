@@ -210,4 +210,76 @@
       return response.text();
     });
   };
+
+  /* -----------------------------------------------------------------------
+     Shared search and filtering
+     -------------------------------------------------------------------------
+     One filtering model for every place that lists activities: the library
+     and the lesson builder's activity picker. Both narrow the same four
+     facets (edition, module, length band, difficulty) and rank the same
+     way, so a search that finds an activity in one finds it, ranked the
+     same way, in the other. Kept here rather than duplicated in each page's
+     script, which is what the library and the picker did independently
+     before this was written and which had already drifted slightly (an
+     extra base score in one, not the other) even though neither was wrong.
+     ----------------------------------------------------------------------- */
+
+  /** Lowercase word tokens of two characters or more. */
+  OPI.tokens = function (text) {
+    return String(text || "").toLowerCase().split(/[^a-z0-9]+/).filter(function (t) { return t.length > 1; });
+  };
+
+  /**
+   * Score > 0 when every query token appears somewhere in the activity;
+   * higher when it appears in a more prominent field (title, then topic and
+   * teaching job, then summary and objectives). 1 with no query, so an
+   * unfiltered list keeps every activity without ranking it above another.
+   */
+  OPI.scoreActivity = function (activity, queryTokens) {
+    if (!queryTokens.length) { return 1; }
+    var title = activity.title.toLowerCase();
+    var strong = (activity.teachingJob + " " + activity.topics.join(" ")).toLowerCase();
+    var weak = (activity.summary + " " + activity.learningObjectives.join(" ")).toLowerCase();
+    var total = 0;
+    for (var i = 0; i < queryTokens.length; i += 1) {
+      var t = queryTokens[i];
+      if (title.indexOf(t) !== -1) { total += 3; }
+      else if (strong.indexOf(t) !== -1) { total += 2; }
+      else if (weak.indexOf(t) !== -1) { total += 1; }
+      else { return 0; }
+    }
+    return total;
+  };
+
+  /**
+   * Filter and rank activities against a common set of facets.
+   * @param {Activity[]} activities
+   * @param {{query?: string, edition?: string[], module?: string[], band?: string[], difficulty?: string[]}} [filters]
+   *   An empty or omitted array for a facet means no restriction on it,
+   *   values within a facet are OR'd, and facets are AND'd, exactly as the
+   *   library's checkbox fieldsets behave. `query` is tokenised with
+   *   OPI.tokens.
+   * @returns {Activity[]} matches ranked by score (title matches first,
+   *   then catalogue order); catalogue order alone when there is no query.
+   */
+  OPI.filterActivities = function (activities, filters) {
+    var f = filters || {};
+    var editionSet = f.edition || [];
+    var moduleSet = f.module || [];
+    var bandSet = f.band || [];
+    var difficultySet = f.difficulty || [];
+    var queryTokens = OPI.tokens(f.query);
+
+    var matches = [];
+    activities.forEach(function (activity, index) {
+      if (editionSet.length && editionSet.indexOf(activity.edition) === -1) { return; }
+      if (moduleSet.length && moduleSet.indexOf(activity.moduleSlug) === -1) { return; }
+      if (bandSet.length && bandSet.indexOf(activity.band) === -1) { return; }
+      if (difficultySet.length && difficultySet.indexOf(activity.difficulty) === -1) { return; }
+      var score = OPI.scoreActivity(activity, queryTokens);
+      if (score > 0) { matches.push({ activity: activity, score: score, index: index }); }
+    });
+    matches.sort(function (a, b) { return (b.score - a.score) || (a.index - b.index); });
+    return matches.map(function (m) { return m.activity; });
+  };
 }(window));
