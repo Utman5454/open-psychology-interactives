@@ -25,7 +25,7 @@
   var SAVE_DELAY_MS = 400;
   var LINK_WARN_LENGTH = 2000;
   var PICKER_MAX_RESULTS = 30;
-  var STEP_LABELS = { activity: "Activity", note: "Note", question: "Question" };
+  var STEP_LABELS = { activity: "Activity", note: "Note", question: "Reflection question" };
 
   function el(tag, className, text) {
     var node = doc.createElement(tag);
@@ -178,7 +178,7 @@
       input.maxLength = OPI.LESSON_LIMITS.note;
       input.addEventListener("input", function () { step.text = input.value; self.changed(false); });
     } else {
-      label.textContent = "Question";
+      label.textContent = "Reflection question";
       input = el("textarea", "field");
       input.value = step.prompt || "";
       input.maxLength = OPI.LESSON_LIMITS.prompt;
@@ -190,12 +190,16 @@
     wrap.appendChild(input);
 
     if (step.type === "question") {
+      wrap.appendChild(el("p", "builder__hint",
+        "Free response: the student writes their own answer in their own words. " +
+        "There is no correct answer to mark automatically."));
+
       var kindWrap = el("div", "builder__field");
-      var kindLabel = el("label", null, "Answer length");
+      var kindLabel = el("label", null, "Answer type");
       kindLabel.htmlFor = "step-" + index + "-kind";
       var select = el("select", "field");
       select.id = kindLabel.htmlFor;
-      [["short", "Short (one line)"], ["long", "Long (a paragraph)"]].forEach(function (pair) {
+      [["short", "Short answer (one line)"], ["long", "Long answer (a paragraph)"]].forEach(function (pair) {
         var option = el("option", null, pair[1]);
         option.value = pair[0];
         option.selected = step.kind === pair[0];
