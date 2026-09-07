@@ -197,6 +197,64 @@ async function testPlayer(page, base) {
   check(!focusedIsInput, 'activating the prompt link does not move focus to the input');
 }
 
+/**
+ * M0.1 live-QA fix: Step X of Y is prominent beside the content, the
+ * forward button reads as a continuation, Previous still works, and a step
+ * is only ever marked with something the player genuinely knows (typed an
+ * answer, or was shown) - never "completed", which it cannot know for an
+ * embedded activity.
+ */
+async function testProgression(page, base) {
+  const lesson = {
+    schema: 1, title: 'Progression', intro: '', author: '',
+    steps: [
+      { type: 'note', text: 'First note.' },
+      { type: 'question', prompt: 'Question one?', kind: 'short' },
+    ],
+  };
+  await page.goto(base + 'lessons/build.html', { waitUntil: 'networkidle' });
+  const encoded = await page.evaluate((l) => OPI.encodeLesson(l), lesson);
+  await page.goto(base + 'lessons/index.html#l=' + encoded, { waitUntil: 'networkidle' });
+  await page.waitForTimeout(200);
+
+  check((await page.textContent('[data-player-progress]')).trim() === 'Step 1 of 4',
+    'the progress line reads "Step X of Y" from the first panel');
+  check((await page.$eval('[data-player-progress-fill]', (el) => el.style.width)) === '25%',
+    'the progress bar fill matches the current step (1 of 4 = 25%)');
+  check((await page.textContent('[data-player-next]')).trim() === 'Continue to next step',
+    'the forward button reads as a continuation, not a bare "Next"');
+  check((await page.textContent('[data-player-prev]')).trim() === 'Previous step',
+    'the backward button label is preserved');
+  check(await page.isDisabled('[data-player-prev]'), 'Previous is disabled on the first step');
+
+  const doneBefore = await page.$$eval('[data-player-nav] .done', (els) => els.map((e) => e.textContent));
+  check(doneBefore.every((t) => t === ''), 'nothing is marked before any step has been shown');
+
+  await page.click('[data-player-next]');
+  await page.waitForTimeout(150);
+  check((await page.textContent('[data-player-progress]')).trim() === 'Step 2 of 4', 'the progress line advances with Continue');
+  check(!(await page.isDisabled('[data-player-prev]')), 'Previous becomes enabled after moving forward');
+  const noteMark = await page.$eval('[data-player-nav] li:nth-child(2) .done', (el) => el.textContent);
+  check(noteMark === 'viewed', 'a note step is marked "viewed" once shown, not "completed" or "done"');
+
+  await page.click('[data-player-next]');
+  await page.waitForTimeout(150);
+  const questionMarkBeforeAnswer = await page.$eval('[data-player-nav] li:nth-child(3) .done', (el) => el.textContent);
+  check(questionMarkBeforeAnswer === '', 'an unanswered question step carries no mark, even once viewed');
+  await page.fill('#answer-1', 'my answer');
+  await page.waitForTimeout(150);
+  const questionMarkAfterAnswer = await page.$eval('[data-player-nav] li:nth-child(3) .done', (el) => el.textContent);
+  check(questionMarkAfterAnswer === 'answered', 'a question is marked "answered" once the student has typed something');
+
+  await page.click('[data-player-prev]');
+  await page.waitForTimeout(150);
+  check((await page.textContent('[data-player-progress]')).trim() === 'Step 2 of 4', 'Previous moves back a step');
+
+  const bodyText = (await page.textContent('body')).toLowerCase();
+  check(!bodyText.includes('completed') && !bodyText.includes('complete!'),
+    'the player never claims a step or activity is "completed"');
+}
+
 async function main() {
   const playwright = loadPlaywright();
   if (!playwright) { console.log('SKIPPED: Playwright is not available.'); return 0; }
@@ -219,6 +277,7 @@ async function main() {
     });
     await testBuilder(await context.newPage(), base);
     await testPlayer(await context.newPage(), base);
+    await testProgression(await context.newPage(), base);
     check(errors.length === 0, 'no console errors or exceptions (' + errors.join(' | ') + ')');
   } finally {
     if (browser) await browser.close();

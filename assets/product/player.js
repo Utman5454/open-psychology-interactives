@@ -63,6 +63,12 @@
     this.lesson = lesson;
     this.catalogue = catalogue;
     this.answers = {};
+    // Panels the student has actually shown, keyed by panel index. This is
+    // the only sense in which a step is ever marked as anything here: the
+    // player genuinely knows a panel was opened, and says no more than
+    // that. It does not, and cannot, know whether an embedded activity was
+    // finished, so nothing here is ever labelled "completed".
+    this.visited = {};
     this.current = 0;
     this.panels = [];
     this.q = function (selector) { return root.querySelector(selector); };
@@ -309,13 +315,25 @@
     this.q("[data-player-next]").addEventListener("click", function () { self.show(self.current + 1); });
   };
 
+  /**
+   * The small marker beside each step in the nav list. A question shows
+   * whether it has been answered, which the player knows because the
+   * student typed something into it. Every other step shows "viewed" once
+   * shown, which the player knows because show() was called for it - never
+   * "done" or "completed", since an embedded activity's own progress is not
+   * something this page can see across its frame.
+   */
   Player.prototype.updateNavMarks = function () {
     var self = this;
     var buttons = this.q("[data-player-nav]").querySelectorAll("button");
     this.lesson.steps.forEach(function (step, index) {
-      if (step.type !== "question") { return; }
-      var mark = buttons[index + 1].querySelector(".done");
-      mark.textContent = self.answers[index] ? "answered" : "";
+      var panelIndex = index + 1;  // panels[0] is the introduction
+      var mark = buttons[panelIndex].querySelector(".done");
+      if (step.type === "question") {
+        mark.textContent = self.answers[index] ? "answered" : "";
+      } else {
+        mark.textContent = self.visited[panelIndex] ? "viewed" : "";
+      }
     });
   };
 
@@ -323,6 +341,7 @@
     var self = this;
     if (index < 0 || index >= this.panels.length) { return; }
     this.current = index;
+    this.visited[index] = true;
     this.panels.forEach(function (panel, i) { panel.hidden = i !== index; });
     var buttons = this.q("[data-player-nav]").querySelectorAll("button");
     Array.prototype.forEach.call(buttons, function (b, i) {
@@ -331,6 +350,8 @@
     this.q("[data-player-prev]").disabled = index === 0;
     this.q("[data-player-next]").disabled = index === this.panels.length - 1;
     this.q("[data-player-progress]").textContent = "Step " + (index + 1) + " of " + this.panels.length;
+    var fill = this.q("[data-player-progress-fill]");
+    if (fill) { fill.style.width = Math.round(((index + 1) / this.panels.length) * 100) + "%"; }
 
     // Load an activity's frame the first time its step is shown.
     var frame = this.panels[index].querySelector("iframe[data-src]");

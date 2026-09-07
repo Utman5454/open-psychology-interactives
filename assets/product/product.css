@@ -654,17 +654,39 @@ textarea.field {
   color: var(--colour-text-muted);
 }
 
+.player__stage-wrap {
+  min-width: 0;
+}
+
 .player__stage {
   min-width: 0;
 }
 
+/* Deliberately not muted or uppercase, unlike a section eyebrow: this is the
+   answer to "where am I", so it reads as content, not decoration. */
 .player__progress {
   margin: 0 0 var(--space-2);
-  font-size: var(--text-sm);
+  font-size: var(--text-lg);
   font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--colour-text-muted);
+  color: var(--colour-text);
+}
+
+.player__progress-bar {
+  height: 0.5rem;
+  margin-bottom: var(--space-5);
+  border-radius: 999px;
+  background: var(--colour-surface);
+  border: 1px solid var(--colour-border);
+  overflow: hidden;
+}
+
+.player__progress-fill {
+  display: block;
+  height: 100%;
+  background: var(--colour-accent);
+  /* Width is set per step from script; the transition is what turns
+     "Continue" into a visible step forward rather than a page swap. */
+  transition: width 0.3s ease;
 }
 
 .player__instructions {
@@ -735,10 +757,19 @@ textarea.field {
   .player__step-button[aria-current="step"] {
     border-color: Highlight;
   }
+  .player__progress-bar {
+    border-color: CanvasText;
+  }
+  .player__progress-fill {
+    background: Highlight;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .builder__side, .player__nav {
     position: static;
+  }
+  .player__progress-fill {
+    transition: none;
   }
 }
