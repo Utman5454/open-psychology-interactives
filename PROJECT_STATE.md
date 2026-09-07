@@ -5,7 +5,7 @@ next (a person or an AI session), where the project is and how to work on it
 without breaking it. Keep it short, keep it current, and update it in the
 same commit as any milestone it describes.
 
-Last updated: 2026-09-07 on branch `claude/open-psych-recovery-ibyvho`.
+Last updated: 2026-09-07 on branch `claude/open-psych-recovery-ibyvho` (M0 complete).
 
 ---
 
@@ -58,7 +58,8 @@ student link). See `docs/decisions.md` for the settled decisions and the
 | **M0 Stage 1: honest site** (defects D1 to D8) | `ce98a79` | 2026-09-07 |
 | **M0 Stage 2: embed mode** (`?embed=1` on any activity page) | `63e8a3d` | 2026-09-07 |
 | **M0 Stage 3: library and activity pages** (`library/`, `assets/product/`) | `beb2459` | 2026-09-07 |
-| **M0 Stages 4 and 5: lesson builder and player** (`lessons/`, lesson-in-link) | see `git log` | 2026-09-07 |
+| **M0 Stages 4 and 5: lesson builder and player** (`lessons/`, lesson-in-link) | `99cbd68` | 2026-09-07 |
+| **M0 complete: curated lessons and lecturer home page** | see `git log` | 2026-09-07 |
 
 ## Branches
 
@@ -182,8 +183,8 @@ harming the free collection. Working sequence:
 2. ~~Repository and product audit~~: `docs/product/audit.md` (done).
 3. ~~Architecture and M0 definition~~: `docs/product/architecture.md`,
    `docs/product/m0.md` (done).
-4. Implement M0 in six stages, one checkpoint commit per stage,
-   `check-all.py` green at every commit. Stage status:
+4. ~~Implement M0 in six stages~~ (done; see the M0 walkthrough below).
+   Stage status:
 
    | Stage | Status |
    | --- | --- |
@@ -192,7 +193,26 @@ harming the free collection. Working sequence:
    | 3 Library and activity pages (fixes D9) | done 2026-09-07 |
    | 4 Lesson builder | done 2026-09-07 |
    | 5 Lesson player | done 2026-09-07 |
-   | 6 Curated lessons and home page | next |
+   | 6 Curated lessons and home page | done 2026-09-07 |
+
+**M0 walkthrough (verified 2026-09-07, headless Chromium, 1280px and 360px).**
+Lecturer opens `lessons/build.html`, titles the lesson, searches
+"p-value" in the picker and adds the simulator, adds a question and a
+note, reorders with the buttons (focus follows the moved step), sees the
+draft saved with a time, reloads and finds it restored, copies a
+456-character student link. Student opens the link: introduction with
+rendered Markdown, five steps listed, the embedded activity loads with site
+chrome hidden and a stable height, the answer typed is marked "answered"
+in the step list and appears on the final panel with download and copy.
+The curated seminar lesson opens on a phone with no horizontal scroll.
+Zero console errors throughout. `check-all.py --lint --browser`: 11 of 11.
+
+**What M1 should be** (not started): accounts with magic-link sign-in and
+server-side lesson storage so a link is a short id and lessons can be
+duplicated and shared within a department; then optional anonymous
+class-aggregate views; then LTI. Before M1: a real-lecturer pilot of M0
+with three or four colleagues, and their feedback recorded in
+`docs/product/`.
 
 Constraints agreed with the owner: no rewrite of the 150 activities; no
 student tracking by default; no payment integration in M0; no framework
