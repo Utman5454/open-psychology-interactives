@@ -5,8 +5,10 @@
 **What it teaches.** Pearson's r measures how well a straight line
 fits, not whether a relationship exists or how strong it is in
 general. A perfect curved relationship can give an r close to zero,
-and in a small sample a single point can dominate r depending on how
-extreme its x-value is, not its y-value.
+and in a small sample a single point's pull on r depends on its
+leverage, how unusual its x-value is, together with where it falls
+relative to the rest of the pattern; a point unusual only in y, near
+the centre of x, has little leverage at all.
 
 **Before students start.** r only ever measures linear fit. Make this
 clear before showing the curved dataset.
@@ -32,10 +34,10 @@ in the small dataset. What made it so influential, its x-value or its
 y-value?
 
 **Common misconception / caution.** "r of 0.5 means half the variance
-is explained" is the misconception to correct: r squared, not r
-itself, gives the proportion of shared variance, so r of 0.5 explains
-about a quarter. Correlation does not establish causation, and nothing
-in this activity, which only ever generates or reshapes points on a
+is explained" confuses r with r squared: it is r squared that gives
+the proportion of shared variance, so r of 0.5 explains about a
+quarter. Correlation does not establish causation, and nothing in this
+activity, which only ever generates or reshapes points on a
 scatterplot, could.
 
 **Use in class / timing.** Looking through the six datasets takes

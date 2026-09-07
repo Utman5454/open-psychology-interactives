@@ -23,9 +23,9 @@ symmetric as sample size grows.
 **Debrief.** Does the raw population panel ever change shape, no
 matter what is done to the sample size?
 
-**Common misconception / caution.** "With a big sample the data become
-normal" is worth catching here too: only the pile of means changes
-shape as n grows, not the population it was drawn from.
+**Common misconception / caution.** Only the pile of means changes
+shape as n grows, not the population it was drawn from, so a big
+sample never makes the raw data normal.
 
 **Use in class / timing.** Drawing samples from both populations takes
 about 5 to 7 minutes.

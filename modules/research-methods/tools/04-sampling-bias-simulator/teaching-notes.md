@@ -4,9 +4,11 @@
 
 **What it teaches.** Sampling variability, scatter that shrinks as n
 grows, and selection bias, a systematic offset that does not, are
-different problems needing different remedies. A quota only corrects
-the variable it targets, and a probability sample stays unbiased only
-as long as everyone selected actually responds.
+different problems needing different remedies. Probability sampling
+protects the selection step, but nonresponse related to the outcome
+can still reintroduce bias; incomplete response on its own does not
+automatically make an estimate biased. A quota only ever corrects the
+one variable it targets.
 
 **Before students start.** This is a generated population of fictional
 students, not real survey data. The true average is known only because

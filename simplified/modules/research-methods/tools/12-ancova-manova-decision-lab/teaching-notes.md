@@ -27,9 +27,9 @@ attached to them.
 the groups were randomly allocated?
 
 **Common misconception / caution.** "ANCOVA controls for pre-existing
-differences" is worth catching here too: the arithmetic is identical
-whether groups were randomly allocated or not, only the warrant for
-reading it causally differs.
+differences" does not become true just because the sample is simpler:
+the arithmetic is identical whether groups were randomly allocated or
+not, only the warrant for reading it causally differs.
 
 **Use in class / timing.** Drawing a cohort and comparing the two
 estimates takes about 6 to 7 minutes.

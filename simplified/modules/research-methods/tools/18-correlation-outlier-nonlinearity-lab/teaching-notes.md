@@ -2,8 +2,10 @@
 
 `simplified/modules/research-methods/tools/18-correlation-outlier-nonlinearity-lab/`
 
-**What it teaches.** r measures straight-line fit, and a single point
-can move it a long way if it sits far from the others on the x-axis.
+**What it teaches.** r measures straight-line fit, and a single
+point's pull on it depends on its leverage, how far it sits from the
+others on the x-axis, together with where it falls relative to the
+rest of the pattern. A point unusual only in y has far less effect.
 
 **Before students start.** Nothing to prepare. The plot already shows
 a fixed cloud of points plus one movable one.
@@ -24,10 +26,11 @@ in the middle of the x-range barely moves r at all.
 challenge scenarios and changed r by very different amounts; what
 differed between the two moves?
 
-**Common misconception / caution.** A single point's influence on r
-depends on where it sits on the x-axis, not on how far it is from the
-others in y. Judge leverage by position on x, not by how dramatic the
-point looks vertically.
+**Common misconception / caution.** A point's leverage comes from its
+x-position, how far it sits from the rest on the x-axis, but its
+actual pull on r also depends on where it falls relative to the
+existing pattern in y, not on x alone. A point unusual only in y, near
+the centre of x, barely moves r at all.
 
 **Use in class / timing.** Moving the point through a scenario or two
 takes about 5 to 7 minutes.

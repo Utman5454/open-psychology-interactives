@@ -22,7 +22,7 @@ interval is.
 **Debrief.** Complete honestly: "X% of the time, this procedure...".
 
 **Common misconception / caution.** "There's a 95% chance the true
-value is in this interval" needs correcting here too: once drawn, an
+value is in this interval" is the claim to correct: once drawn, an
 interval either contains the true value or it does not.
 
 **Use in class / timing.** Building up a pile large enough to read

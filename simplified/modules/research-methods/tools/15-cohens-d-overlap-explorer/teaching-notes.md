@@ -25,8 +25,8 @@ spread of 20.
 spread, or both together?
 
 **Common misconception / caution.** "A large effect means the groups
-barely overlap" is worth catching here too: even the largest gaps this
-tool can show still leave real overlap between the two groups.
+barely overlap" still is not right: even the largest gaps this tool
+can show still leave real overlap between the two groups.
 
 **Use in class / timing.** Trying the difference and spread sliders
 takes about 5 to 6 minutes.

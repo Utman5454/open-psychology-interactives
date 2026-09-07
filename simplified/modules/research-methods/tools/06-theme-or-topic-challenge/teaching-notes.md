@@ -21,8 +21,8 @@ is the one most often mistaken for the theme itself.
 even though it made no analytic claim?
 
 **Common misconception / caution.** "A theme is what most people
-said" is worth catching here too: prevalence is not the test being
-applied in this sort.
+said" is not what this sort tests: prevalence is not the standard
+being applied.
 
 **Use in class / timing.** Sorting the four candidates takes about 4
 to 5 minutes.

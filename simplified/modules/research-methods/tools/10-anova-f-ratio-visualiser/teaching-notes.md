@@ -22,9 +22,9 @@ small, unremarkable gap into a significant result.
 that tell you anything about which change would matter most in a real
 study?
 
-**Common misconception / caution.** "A big F means a big effect" is
-worth catching here too: a large sample size alone can produce a
-sizeable, significant F for a difference nobody would call important.
+**Common misconception / caution.** "A big F means a big effect"
+fails again here: a large sample size alone can produce a sizeable,
+significant F for a difference nobody would call important.
 
 **Use in class / timing.** Drawing a few samples and reading the
 readout takes about 5 to 7 minutes.

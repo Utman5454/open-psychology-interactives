@@ -24,10 +24,10 @@ is far easier to see which is which once the line has been taken out.
 **Debrief.** Why is it easier to judge equal spread from the residual
 plot than from the original scatterplot with the line still on it?
 
-**Common misconception / caution.** "A fan means the slope is wrong"
-is worth catching here too: the line barely moves between the three
-groups, even though the spread around it clearly does not behave the
-same way in each.
+**Common misconception / caution.** A fan shape does not mean the
+slope is wrong: the line barely moves between the three groups, even
+though the spread around it clearly does not behave the same way in
+each.
 
 **Use in class / timing.** Comparing the three groups takes about 6 to
 8 minutes.

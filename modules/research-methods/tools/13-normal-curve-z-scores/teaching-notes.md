@@ -6,7 +6,7 @@
 mean and standard deviation. A z-score is a change of units, not a
 change of shape, so standardising never normalises a distribution.
 Density, the curve's height, is not a probability; only shaded area
-is, and the 68/95/99.7 figures are exact properties of the normal
+is, and the familiar 68/95/99.7 figures are properties of the normal
 model, not of any real dataset.
 
 **Before students start.** The 68/95/99.7 figures describe the model,
@@ -41,7 +41,7 @@ agreeing?
 **Common misconception / caution.** "About 5% are above a z of 2"
 confuses the two-tailed area outside plus or minus two standard
 deviations with the one-tailed area above z equals 2, which is closer
-to 2.3%. The 68/95/99.7 figures are exact properties of the normal
+to 2.3%. The familiar 68/95/99.7 figures are properties of the normal
 model, and real datasets, reaction times, income, symptom counts,
 routinely depart from them.
 

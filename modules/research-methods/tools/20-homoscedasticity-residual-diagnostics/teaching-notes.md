@@ -3,9 +3,11 @@
 `modules/research-methods/tools/20-homoscedasticity-residual-diagnostics/`
 
 **What it teaches.** Unequal spread of residuals across the range of
-predicted values, heteroscedasticity, leaves the regression slope
-itself unbiased, but corrupts the standard error used for tests and
-intervals. Whether that makes an interval too narrow or too wide
+predicted values, heteroscedasticity, leaves the slope unbiased here,
+since the model this activity generates from is correctly specified
+with mean-zero errors throughout; what it corrupts is the standard
+error used for tests and intervals. Whether that makes an interval too
+narrow or too wide
 depends on whether the extra variance sits at the extremes of x or in
 the middle, not just on the presence of a fan shape.
 
@@ -37,9 +39,10 @@ coverage and the widest-in-the-middle pattern gave about 99%. Both are
 heteroscedastic; what distinguishes them?
 
 **Common misconception / caution.** "A fan means the slope is wrong"
-is the one to correct: the slope stays close to its true value
-throughout, only the standard error and the interval built from it are
-affected. Robust standard errors are not a cure-all; they behave
+is a natural but incorrect reading: in this correctly specified model,
+the slope stays close to its true value throughout, and only the
+standard error and the interval built from it are affected. Robust
+standard errors are not a cure-all; they behave
 poorly in very small samples and cannot repair a model whose shape is
 wrong to begin with.
 

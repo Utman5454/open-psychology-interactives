@@ -28,9 +28,8 @@ underlying studies changed.
 without a single new study being run?
 
 **Common misconception / caution.** "p is the probability the null is
-true" needs correcting here too: the simulation assumes the null
-before a single study runs, so its plausibility never enters the
-calculation.
+true" is wrong: the simulation assumes the null before a single study
+runs, so its plausibility never enters the calculation.
 
 **Use in class / timing.** Building up a pile of studies takes about 6
 to 7 minutes.

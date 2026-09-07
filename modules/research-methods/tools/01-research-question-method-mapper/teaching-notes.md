@@ -31,9 +31,10 @@ two researchers could report different prevalence figures without
 either one making a mistake. The tool never names a test; what would
 each of the four questions still need before naming one made sense?
 
-**Common misconception / caution.** "You look at the data and pick the
-test" is the misconception to correct directly: the tool structurally
-never lets a student reach a test, because the aim has to come first.
+**Common misconception / caution.** Students often say "you look at
+the data and pick the test." This activity never lets anyone reach
+that point, since the tool stops at the aim, before a test could even
+come up.
 The standing given to each choice is a qualitative judgement the
 activity's authors defend in writing, not the only defensible reading.
 

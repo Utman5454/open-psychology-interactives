@@ -34,7 +34,7 @@ admission of deficit" and a paraphrase like "participant has low
 academic self-efficacy"? Both sound analytic.
 
 **Common misconception / caution.** "We should calculate inter-rater
-reliability" is the misconception to correct: that standard fits
+reliability" reaches for the wrong standard: that fits
 coding-reliability or content-analysis designs, not reflexive thematic
 analysis, where the analyst's engagement is the instrument. Six short
 extracts are not a dataset, and the tool never claims to demonstrate a

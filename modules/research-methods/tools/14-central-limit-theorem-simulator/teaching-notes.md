@@ -34,9 +34,9 @@ means centre exactly on its true mean; why does the skew not drag them
 off centre? At n = 30 the predicted skewness of the mean is still
 0.37; what does that do to the sample-size advice you have been given?
 
-**Common misconception / caution.** "With a big sample the data become
-normal" is the misconception to correct directly: the raw data panel
-never changes shape at all, only the distribution of means does. The
+**Common misconception / caution.** A big sample does not make the
+data become normal: the raw data panel never changes shape at all,
+only the distribution of means does. The
 simulation does not prove the theorem, it agrees with it, and both
 rest on the same assumption of independent, identically distributed
 draws.

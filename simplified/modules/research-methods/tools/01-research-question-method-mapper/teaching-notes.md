@@ -24,8 +24,8 @@ one design. Which, and why does the question's wording not settle it
 alone?
 
 **Common misconception / caution.** "You look at the data and pick the
-test" is worth heading off here too: nothing in this activity ever
-reaches a test, because it stops at aim and kind.
+test" cannot happen in this activity: it stops at aim and kind, before
+a test could ever come up.
 
 **Use in class / timing.** All three questions together take about 5
 to 6 minutes.

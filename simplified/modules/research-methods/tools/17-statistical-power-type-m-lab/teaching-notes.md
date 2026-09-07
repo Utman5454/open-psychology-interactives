@@ -25,9 +25,10 @@ truth, changes a great deal.
 **Debrief.** Which of the two averages would a published literature
 made only of significant results actually show you?
 
-**Common misconception / caution.** "Low power biases every study" is
-worth catching here too: it biases the published, significant subset,
-not the honest average of everything that was actually run.
+**Common misconception / caution.** "Low power biases every study"
+mistakes which part is biased: it is the published, significant
+subset that is biased, not the honest average of everything that was
+actually run.
 
 **Use in class / timing.** Running the simulated studies at both
 sample sizes takes about 6 to 8 minutes.

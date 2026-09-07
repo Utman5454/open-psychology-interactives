@@ -23,9 +23,9 @@ pairing from coherent to strained.
 and strained pairings; what did?
 
 **Common misconception / caution.** "So it is all interpretation,
-anything goes" is worth catching here too: half the four pairings are
-rated strained, which is external evidence that not every combination
-is equally defensible.
+anything goes" does not survive the numbers: half the four pairings
+are rated strained, external evidence that not every combination is
+equally defensible.
 
 **Use in class / timing.** Trying a few question-lens pairings takes
 about 5 to 6 minutes.

@@ -4,10 +4,10 @@
 
 **What it teaches.** A variable biases a comparison only when it both
 differs systematically between conditions and has a route to the
-outcome. A bigger sample narrows the interval around an estimate; it
-cannot move the estimate itself when bias is present, and adjustment
-only removes bias from confounders that were measured, measured well,
-and modelled correctly.
+outcome. Increasing sample size improves precision, narrowing the
+interval around an estimate, but it does not remove systematic bias,
+and adjustment only removes bias from confounders that were measured,
+measured well, and modelled correctly.
 
 **Before students start.** The bias figures throughout are invented
 for teaching, not estimates of any real confounding. Mention this
@@ -39,10 +39,10 @@ for it to remove all of it, and why does randomisation not need that
 condition?
 
 **Common misconception / caution.** "A bigger sample will fix it" is
-the one to correct directly: the sample-size repair narrows the
-interval and leaves the estimate exactly where it was. The bias
-figures throughout are invented for teaching, not estimates of any
-real confounding.
+not right: more participants buys precision, not correction, and in
+this activity the sample-size repair leaves the displayed estimate
+exactly at 17.0. The bias figures throughout are invented for
+teaching, not estimates of any real confounding.
 
 **Use in class / timing.** Ten minutes covers one study as a
 demonstration. All three studies with the challenge and debrief take

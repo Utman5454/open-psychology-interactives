@@ -2,9 +2,9 @@
 
 `modules/research-methods/tools/15-cohens-d-overlap-explorer/`
 
-**What it teaches.** Cohen's d is a ratio, the gap between two means
-divided by their pooled standard deviation, set entirely by the two
-population parameters and unaffected by sample size. A "large" d of
+**What it teaches.** Cohen's d is the mean gap between two groups
+expressed relative to their pooled standard deviation, unaffected by
+sample size. A "large" d of
 0.8 still leaves 69% of the two distributions overlapping, so a
 benchmark label undersells how much two groups overlap and says
 nothing about any individual.
@@ -38,8 +38,8 @@ the sample size went from 10 to 400; what did?
 barely overlap" is refuted directly by the large-benchmark preset
 itself, which still leaves 69% overlap. These are exact population
 values the learner sets, not estimates from real data; a genuine
-sample d carries its own uncertainty and is biased upward in small
-samples.
+sample d carries its own uncertainty and is biased away from zero in
+small samples.
 
 **Use in class / timing.** Running through the three benchmarks takes
 about 10 minutes. With the sample-size slider, the matching challenge

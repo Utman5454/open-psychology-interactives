@@ -3,8 +3,8 @@
 `simplified/modules/research-methods/tools/03-confound-detective/`
 
 **What it teaches.** A confound must both differ between conditions
-and have a route to the outcome. A bigger sample narrows the interval
-around an estimate but cannot move it when bias is present.
+and have a route to the outcome. Increasing sample size improves
+precision but does not remove systematic bias.
 
 **Before students start.** The bias figures here are invented for
 teaching, not real.
@@ -25,8 +25,8 @@ minus 2.
 only narrowed the interval around it?
 
 **Common misconception / caution.** "A bigger sample will fix it" is
-worth correcting here too: it buys precision, not correction. The bias
-figures are invented for teaching, not real.
+not right: it buys precision, not correction, and does nothing to the
+bias itself. The bias figures are invented for teaching, not real.
 
 **Use in class / timing.** Sorting and repairing the one study takes
 about 6 to 7 minutes.

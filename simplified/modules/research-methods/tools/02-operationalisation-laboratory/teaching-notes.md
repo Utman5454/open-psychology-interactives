@@ -22,9 +22,9 @@ not move the coverage number. What does that tell you about what the
 third measure was actually adding?
 
 **Common misconception / caution.** "Use more measures and you will
-get there" is worth heading off here too: the coverage number has a
-ceiling this activity never lets a plan cross. The percentage itself is
-arithmetic on a facet list, not a validity coefficient.
+get there" meets a ceiling here: the coverage number has a limit this
+activity never lets a plan cross. The percentage itself is arithmetic
+on a facet list, not a validity coefficient.
 
 **Use in class / timing.** Toggling through the four measures takes
 about 5 to 7 minutes.

@@ -22,7 +22,7 @@ answer.
 passes rather than another?
 
 **Common misconception / caution.** "We should calculate inter-rater
-reliability" is worth heading off here too: reflexive thematic
+reliability" reaches for the wrong standard again: reflexive thematic
 analysis is judged by the coherence of the analyst's reasoning, not by
 agreement between coders.
 
