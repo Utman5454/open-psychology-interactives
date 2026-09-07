@@ -177,26 +177,48 @@
 
   /* --- Trials ------------------------------------------------------------ */
 
-  function buildTrials(block, random) {
-    var count = block.dual ? DUAL_TRIALS : SINGLE_TRIALS;
-    var list = [];
-    var i = 0;
-    while (i < count) {
-      var isVowel = i % 2 === 0;
-      var pool = isVowel ? VOWELS : CONSONANTS;
-      var trial = { needLetter: false, needSide: false };
-      if (block.key === "letter" || block.dual) {
-        trial.letter = pool[Math.floor(random() * pool.length)];
-        trial.isVowel = isVowel;
-        trial.needLetter = true;
+  /**
+   * The plan for one block: which of the two dimensions (vowel/consonant,
+   * left/right) each trial carries, before a letter or a side is drawn from
+   * it. A single-task block varies only its own dimension, alternating so
+   * the block stays 50/50.
+   *
+   * The dual block varies both, and here balance alone is not enough: an
+   * earlier version alternated each dimension by the same trial index, so
+   * vowel always fell on the same side as every other vowel and a learner
+   * could answer the side task by reading the letter. A full factorial
+   * design - each of the four combinations (vowel/left, vowel/right,
+   * consonant/left, consonant/right) repeated the same number of times -
+   * makes the two dimensions exactly orthogonal instead: knowing one tells
+   * you nothing about the other. DUAL_TRIALS is a multiple of 4 so the
+   * split is exact; a remainder, if the constant ever changed, is handed
+   * out one combination at a time so the count still cannot lean more than
+   * one trial towards any cell.
+   */
+  function planBlock(block, count) {
+    if (!block.dual) {
+      var isVowel = block.key === "letter";
+      var plan = [];
+      for (var i = 0; i < count; i += 1) {
+        plan.push(isVowel ? { isVowel: i % 2 === 0 } : { onLeft: i % 2 === 0 });
       }
-      if (block.key === "side" || block.dual) {
-        trial.side = SIDES[i % 2];
-        trial.needSide = true;
-      }
-      list.push(trial);
-      i += 1;
+      return plan;
     }
+    var cells = [
+      { isVowel: true, onLeft: true }, { isVowel: true, onLeft: false },
+      { isVowel: false, onLeft: true }, { isVowel: false, onLeft: false }
+    ];
+    var perCell = Math.floor(count / cells.length);
+    var remainder = count - perCell * cells.length;
+    var dual = [];
+    cells.forEach(function (cell, index) {
+      var repeats = perCell + (index < remainder ? 1 : 0);
+      for (var r = 0; r < repeats; r += 1) { dual.push(cell); }
+    });
+    return dual;
+  }
+
+  function shuffle(list, random) {
     var k = list.length - 1;
     while (k > 0) {
       var j = Math.floor(random() * (k + 1));
@@ -204,6 +226,25 @@
       k -= 1;
     }
     return list;
+  }
+
+  function buildTrials(block, random) {
+    var count = block.dual ? DUAL_TRIALS : SINGLE_TRIALS;
+    var plan = shuffle(planBlock(block, count), random);
+    return plan.map(function (entry) {
+      var trial = { needLetter: false, needSide: false };
+      if (entry.isVowel !== undefined) {
+        var pool = entry.isVowel ? VOWELS : CONSONANTS;
+        trial.letter = pool[Math.floor(random() * pool.length)];
+        trial.isVowel = entry.isVowel;
+        trial.needLetter = true;
+      }
+      if (entry.onLeft !== undefined) {
+        trial.side = entry.onLeft ? SIDES[0] : SIDES[1];
+        trial.needSide = true;
+      }
+      return trial;
+    });
   }
 
   /* --- Running ----------------------------------------------------------- */
