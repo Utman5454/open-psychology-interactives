@@ -4,10 +4,9 @@ Thank you for considering it. This project is for teaching staff and students,
 and it gets better mainly through people who teach these topics adding the
 demonstration they already run by hand.
 
-> **Current status.** Twelve tools are published, all of them in Personality
-> and Individual Differences. The other four modules hold the scaffold —
-> module page, shared interactive shell and documentation — and are unclaimed.
-> See `data/catalogue.json` for the authoritative list.
+> **Current status.** All five modules are complete: 75 tools, each with a
+> Simplified Edition twin. `data/catalogue.json` is the authoritative list,
+> and `PROJECT_STATE.md` records what is verified and what is next.
 
 ---
 
@@ -280,8 +279,10 @@ not how exciting it is. No claims about tools that do not exist.
    criticism of the work; consistency across the collection is much of what
    makes it usable.
 
-There is no CI. Every check is manual, which is exactly why the checklist above
-matters.
+There is no CI on GitHub. The scripted gates run locally with
+`python3 scripts/check-all.py` (see `PROJECT_STATE.md`); everything on the
+checklist above that a script cannot see is manual, which is exactly why the
+checklist matters.
 
 ## Licence
 

@@ -89,11 +89,12 @@ together. Tools here must keep them apart:
 
 See [`../../../docs/accessibility.md`](../../../docs/accessibility.md).
 
-## Planned topics
+## Topics the module was planned around
 
 Conformity and social influence · attitudes and what a measure captures ·
 intergroup bias and its measurement · sampling, generalisability and WEIRD
 samples · constructing the object of study.
 
-All are unclaimed. Open an issue before starting so two people do not build the
-same thing.
+These are covered by the published tools listed at the top of this file.
+Open an issue before starting a new tool so two people do not build the same
+thing.

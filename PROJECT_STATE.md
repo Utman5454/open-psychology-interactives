@@ -37,7 +37,9 @@ student link). See `docs/decisions.md` for the settled decisions and the
 | Milestone | Commit | Date |
 | --- | --- | --- |
 | Simplified Edition released and documented | `0314e14` (`main`) | 2026-08-27 |
-| **Recovery and harness baseline** (this file, `check-all.py`, browser smoke, decisions and lessons logs) | see `git log` on the working branch | 2026-09-07 |
+| **Recovery and harness baseline** (this file, `check-all.py`, browser smoke, decisions and lessons logs) | `3580131` (working branch) | 2026-09-07 |
+| **Audit, architecture, M0 definition** (`docs/product/`) | `a1264ed` | 2026-09-07 |
+| **M0 Stage 1: honest site** (defects D1 to D8) | see `git log` | 2026-09-07 |
 
 ## Branches
 
@@ -125,15 +127,15 @@ Recorded rather than silently fixed, so the fix is a reviewable change.
 
 | # | Where | Problem | Status |
 | --- | --- | --- | --- |
-| D1 | `CONTRIBUTING.md` status note, `docs/teaching-guide.md` status note | Say "Twelve tools are published, all in Personality" and "other modules are scaffold only". Reality: 75 + 75, all modules complete. | open |
-| D2 | `index.html` line ~123 | "the tools themselves are being written now". All 75 are published. | open |
-| D3 | `modules/*/index.html` badge and `<meta description>` | "N tools published — more in preparation" and "This module is in preparation". No more are in preparation. | open |
-| D4 | `data/catalogue.json` | Every module carries `"status": "in-progress"` and `plannedTopics` lists that are largely delivered; `project.updated` is 2026-08-07 while tools were updated to 2026-08-13. Nothing reads the module status, so this is cosmetic. | open |
-| D5 | `modules/*/tools/README.md` | "All are unclaimed. Open an issue before starting" under planned-topic lists that have since been built. | open |
-| D6 | `CLAUDE.md` "A normal completed tool contains" | Lists three files; a real tool folder has six (`index.html`, `metadata.json`, `teaching-notes.md`, `tool.css`, `tool.js`, `standalone.html`). | open |
-| D7 | `CONTRIBUTING.md` | "There is no CI. Every check is manual." True on GitHub (no workflow), but there are now seven scripted gates; the sentence undersells them. | open |
+| D1 | `CONTRIBUTING.md` status note, `docs/teaching-guide.md` status note | Say "Twelve tools are published, all in Personality" and "other modules are scaffold only". Reality: 75 + 75, all modules complete. | fixed 2026-09-07 |
+| D2 | `index.html` line ~123 | "the tools themselves are being written now". All 75 are published. | fixed 2026-09-07 |
+| D3 | `modules/*/index.html` badge and `<meta description>` | "N tools published — more in preparation" and "This module is in preparation". No more are in preparation. | fixed 2026-09-07 |
+| D4 | `data/catalogue.json` | Every module carries `"status": "in-progress"` and `plannedTopics` lists that are largely delivered; `project.updated` is 2026-08-07 while tools were updated to 2026-08-13. Nothing reads the module status, so this is cosmetic. | fixed 2026-09-07 (`complete`) |
+| D5 | `modules/*/tools/README.md` | "All are unclaimed. Open an issue before starting" under planned-topic lists that have since been built. | fixed 2026-09-07 |
+| D6 | `CLAUDE.md` "A normal completed tool contains" | Lists three files; a real tool folder has six (`index.html`, `metadata.json`, `teaching-notes.md`, `tool.css`, `tool.js`, `standalone.html`). | fixed 2026-09-07 |
+| D7 | `CONTRIBUTING.md` | "There is no CI. Every check is manual." True on GitHub (no workflow), but there are now seven scripted gates; the sentence undersells them. | fixed 2026-09-07 |
 | D9 | `docs/teaching-guide.md`, tool pages | Says each tool "carries a Teaching notes panel on the page". 1 of 75 tool pages links its notes, and to a raw `.md`. The 150 teaching-notes files are not reachable from the site. | open (Stage 3 of M0 renders them) |
-| D8 | oxlint | 10 warnings (unused variables, `new Array(n)`, two `no-loss-of-precision` literals in `21-multiple-comparisons-fwer-p-hacking/activity.js`). Exit code is 0, so not blocking, but the precision warnings deserve a look. | open |
+| D8 | oxlint | 10 warnings (unused variables, `new Array(n)`, two `no-loss-of-precision` literals in `21-multiple-comparisons-fwer-p-hacking/activity.js`). Exit code is 0, so not blocking, but the precision warnings deserve a look. | assessed 2026-09-07: the literals are the standard Lanczos gamma coefficients; loss is in the 17th digit and harmless. No change. |
 
 ## What must not be changed casually
 
@@ -162,8 +164,8 @@ harming the free collection. Working sequence:
 
    | Stage | Status |
    | --- | --- |
-   | 1 Honest site (defects D1 to D8 fixed) | next |
-   | 2 Embed mode | not started |
+   | 1 Honest site (defects D1 to D8 fixed) | done 2026-09-07 |
+   | 2 Embed mode | next |
    | 3 Library and activity pages (fixes D9) | not started |
    | 4 Lesson builder | not started |
    | 5 Lesson player | not started |
