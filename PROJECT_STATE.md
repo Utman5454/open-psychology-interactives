@@ -132,6 +132,7 @@ Recorded rather than silently fixed, so the fix is a reviewable change.
 | D5 | `modules/*/tools/README.md` | "All are unclaimed. Open an issue before starting" under planned-topic lists that have since been built. | open |
 | D6 | `CLAUDE.md` "A normal completed tool contains" | Lists three files; a real tool folder has six (`index.html`, `metadata.json`, `teaching-notes.md`, `tool.css`, `tool.js`, `standalone.html`). | open |
 | D7 | `CONTRIBUTING.md` | "There is no CI. Every check is manual." True on GitHub (no workflow), but there are now seven scripted gates; the sentence undersells them. | open |
+| D9 | `docs/teaching-guide.md`, tool pages | Says each tool "carries a Teaching notes panel on the page". 1 of 75 tool pages links its notes, and to a raw `.md`. The 150 teaching-notes files are not reachable from the site. | open (Stage 3 of M0 renders them) |
 | D8 | oxlint | 10 warnings (unused variables, `new Array(n)`, two `no-loss-of-precision` literals in `21-multiple-comparisons-fwer-p-hacking/activity.js`). Exit code is 0, so not blocking, but the precision warnings deserve a look. | open |
 
 ## What must not be changed casually
@@ -152,13 +153,21 @@ Recorded rather than silently fixed, so the fix is a reviewable change.
 Programme: turn the collection into a sellable lecturer product without
 harming the free collection. Working sequence:
 
-1. ~~Recover repository, establish baseline, build harness~~ (done, this
-   milestone).
-2. Repository and product audit written up in `docs/product/audit.md`.
-3. Product architecture and M0 definition in `docs/product/architecture.md`
-   and `docs/product/m0.md`.
-4. Implement M0 incrementally, one checkpoint commit per acceptance-criteria
-   stage, `check-all.py` green at every commit.
+1. ~~Recover repository, establish baseline, build harness~~ (done).
+2. ~~Repository and product audit~~: `docs/product/audit.md` (done).
+3. ~~Architecture and M0 definition~~: `docs/product/architecture.md`,
+   `docs/product/m0.md` (done).
+4. Implement M0 in six stages, one checkpoint commit per stage,
+   `check-all.py` green at every commit. Stage status:
+
+   | Stage | Status |
+   | --- | --- |
+   | 1 Honest site (defects D1 to D8 fixed) | next |
+   | 2 Embed mode | not started |
+   | 3 Library and activity pages (fixes D9) | not started |
+   | 4 Lesson builder | not started |
+   | 5 Lesson player | not started |
+   | 6 Curated lessons and home page | not started |
 
 Constraints agreed with the owner: no rewrite of the 150 activities; no
 student tracking by default; no payment integration in M0; no framework
