@@ -60,6 +60,15 @@ const REPRESENTATIVE = [
   ['simplified-module-cognitive', 'simplified/modules/cognitive/index.html'],
   ['simplified-rm-08', 'simplified/modules/research-methods/tools/08-sampling-distribution-pvalue-simulator/index.html'],
   ['simplified-soc-08', 'simplified/modules/social-critical-psychology/tools/08-minimal-group-positive-distinctiveness/index.html'],
+  // Embed mode: the same pages with ?embed=1 must lose their site chrome.
+  ['embed-tool-rm-08', 'modules/research-methods/tools/08-sampling-distribution-pvalue-simulator/index.html?embed=1', 'embed'],
+  ['embed-simplified-rm-08', 'simplified/modules/research-methods/tools/08-sampling-distribution-pvalue-simulator/index.html?embed=1', 'embed'],
+];
+
+/** Selectors that must not be visible on a page loaded in embed mode. */
+const CHROME_SELECTORS = [
+  '.site-header', '.breadcrumbs', '.site-footer', '[data-activity-utilities]',
+  '.edition-chrome', '.activity-nav-wrap',
 ];
 
 /* ------------------------------------------------------------------ setup */
@@ -157,10 +166,17 @@ async function inspect(page, url) {
   const h1 = (await page.locator('h1').first().textContent().catch(() => '')) || '';
   const hscroll = await page.evaluate(
     () => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1);
-  return { status: response ? response.status() : 0, h1: h1.trim(), hscroll };
+  const visibleChrome = await page.evaluate((selectors) => selectors.filter((sel) =>
+    Array.from(document.querySelectorAll(sel)).some((el) => el.getClientRects().length > 0)),
+  CHROME_SELECTORS);
+  const mainVisible = await page.evaluate(() => {
+    const main = document.querySelector('main');
+    return Boolean(main && main.getClientRects().length > 0);
+  });
+  return { status: response ? response.status() : 0, h1: h1.trim(), hscroll, visibleChrome, mainVisible };
 }
 
-async function checkPage(browser, url, name, vp, shotsDir) {
+async function checkPage(browser, url, name, vp, shotsDir, mode) {
   const [label, width, height] = vp;
   const context = await browser.newContext({ viewport: { width, height } });
   const page = await context.newPage();
@@ -169,6 +185,10 @@ async function checkPage(browser, url, name, vp, shotsDir) {
   if (found.status !== 200) problems.push(`status ${found.status}`);
   if (!found.h1) problems.push('no <h1>');
   if (found.hscroll) problems.push('horizontal page scroll');
+  if (!found.mainVisible) problems.push('<main> not visible');
+  if (mode === 'embed' && found.visibleChrome.length) {
+    problems.push('chrome visible in embed mode: ' + found.visibleChrome.join(', '));
+  }
   if (shotsDir) await page.screenshot({ path: path.join(shotsDir, `${name}-${label}.png`) });
   await context.close();
 
@@ -191,9 +211,9 @@ async function runAll(playwright, base, pages, shotsDir) {
   const browser = await playwright.chromium.launch();
   let failures = 0;
   try {
-    for (const [name, rel] of pages) {
+    for (const [name, rel, mode] of pages) {
       for (const vp of VIEWPORTS) {
-        if (!(await checkPage(browser, base + rel, name, vp, shotsDir))) failures++;
+        if (!(await checkPage(browser, base + rel, name, vp, shotsDir, mode))) failures++;
       }
     }
   } finally {

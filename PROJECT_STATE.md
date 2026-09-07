@@ -27,8 +27,12 @@ student link). See `docs/decisions.md` for the settled decisions and the
 
 - Both editions complete: 75 + 75, 1:1 paired, every entry `published`.
 - All structural gates pass (see "Checks" below).
-- Browser smoke test: 9 representative pages load at 1280px and 360px with
-  zero console errors, zero failed requests, no horizontal scroll.
+- Browser smoke test: 15 representative page loads (including two in embed
+  mode) at 1280px and 360px with zero console errors, zero failed requests,
+  no horizontal scroll, and no site chrome visible in embed mode.
+- Embed mode: any of the 150 activity pages opened with `?embed=1` hides
+  site chrome and posts its content height to a parent frame
+  (`{type: "opi:height", height}`).
 - Site works from `file://` (tools) and over HTTP (tools plus catalogue-driven
   module listings).
 
@@ -39,7 +43,8 @@ student link). See `docs/decisions.md` for the settled decisions and the
 | Simplified Edition released and documented | `0314e14` (`main`) | 2026-08-27 |
 | **Recovery and harness baseline** (this file, `check-all.py`, browser smoke, decisions and lessons logs) | `3580131` (working branch) | 2026-09-07 |
 | **Audit, architecture, M0 definition** (`docs/product/`) | `a1264ed` | 2026-09-07 |
-| **M0 Stage 1: honest site** (defects D1 to D8) | see `git log` | 2026-09-07 |
+| **M0 Stage 1: honest site** (defects D1 to D8) | `ce98a79` | 2026-09-07 |
+| **M0 Stage 2: embed mode** (`?embed=1` on any activity page) | see `git log` | 2026-09-07 |
 
 ## Branches
 
@@ -165,8 +170,8 @@ harming the free collection. Working sequence:
    | Stage | Status |
    | --- | --- |
    | 1 Honest site (defects D1 to D8 fixed) | done 2026-09-07 |
-   | 2 Embed mode | next |
-   | 3 Library and activity pages (fixes D9) | not started |
+   | 2 Embed mode | done 2026-09-07 |
+   | 3 Library and activity pages (fixes D9) | next |
    | 4 Lesson builder | not started |
    | 5 Lesson player | not started |
    | 6 Curated lessons and home page | not started |
