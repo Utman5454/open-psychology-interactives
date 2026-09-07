@@ -11,8 +11,10 @@ format can be agreed before the 150-note pass it would justify begins.
 | Original edition `teaching-notes.md` | 75 | 233 lines | 184–315 |
 | Simplified Edition `teaching-notes.md` | 75 | 126 lines | 93–175 |
 
-Every one of the 150 files is already longer than the shortest original
-(184 lines). Live QA on the merged M0 called this "much too long for the
+The two ranges do not overlap: every original note (184–315 lines) is
+longer than every Simplified note (93–175), and even the shortest file in
+either edition is already well above the 20-to-25-line target proposed
+below. Live QA on the merged M0 called this "much too long for the
 lecturer-facing product" now that the notes are readable on the site
 (`library/activity.html`) rather than only in the repository. The content is
 not wrong — it is dense, accurate, and clearly written by someone who has
@@ -173,18 +175,20 @@ sequence for the pass this proposal would authorise:
    that is a content fix, not a format change, and belongs in its own
    reviewable commit.
 
-## What this proposal does not decide
+## Decided
 
-- Whether `library/activity.html` should show the full teaching-notes.md
-  or something generated from structured fields (a `teachingGuide` object
-  in `metadata.json` mirroring these seven keys) instead of Markdown prose.
-  A structured field would make the 20–25 line budget mechanically
-  enforceable and easier to keep in sync between twins, at the cost of a
-  metadata-schema change and a script to migrate 150 files at once instead
-  of by hand. Worth deciding before the pilot, not after.
-- Whether the full-length original notes should stay this long for the
-  lab/seminar setting they already serve well, with the concise format
-  applying only to a new, shorter field — versus replacing the original
-  notes outright. The worked example above assumes replacement; keeping
-  both would mean writing two guides per activity, doubling the
-  maintenance the M0.1 audit exists to reduce.
+Two questions this proposal originally left open have since been settled:
+
+- **Format: Markdown, not a structured field.** The concise guides stay
+  Markdown prose in `teaching-notes.md`, as today. No `metadata.json`
+  schema change and no migration script for now; a structured
+  `teachingGuide` field could still be worth it once several dozen guides
+  exist to keep in sync, but it is not a precondition for the pilot.
+- **Replace, not maintain two guides.** Once the five-activity pilot
+  (above) is reviewed and approved, the intention is to replace each
+  activity's current `teaching-notes.md` with its concise guide, not keep
+  the long version alongside a new short one. Git history keeps every
+  detailed version that existed before the replacement, so nothing is
+  destroyed — only what a lecturer opens by default changes. This
+  replacement is not part of the current pass: no notes are rewritten by
+  this proposal, and the pilot itself is future work.
