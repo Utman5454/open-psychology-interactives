@@ -27,6 +27,26 @@
   .library__filters {
     position: sticky;
     top: 5.5rem; /* below the sticky site header */
+    /* Bounded to what is left of the viewport below the sticky point, so the
+       column never runs taller than the screen. Search and Clear are outside
+       .library__filter-groups and so stay put; only the fieldsets between
+       them scroll, which is where Edition through Level can add up to more
+       than a screenful. display: flex plus min-height: 0 is what lets a flex
+       child (.library__filter-groups) shrink below its content size instead
+       of forcing the column past max-height. */
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 5.5rem - var(--space-5));
+    min-height: 0;
+  }
+  .library__filter-groups {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    min-height: 0;
+    /* Room for a scrollbar that does not sit on top of the focus ring or
+       the checkboxes themselves. */
+    padding-right: var(--space-2);
+    margin-right: calc(var(--space-2) * -1);
   }
 }
 
