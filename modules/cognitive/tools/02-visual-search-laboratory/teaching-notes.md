@@ -23,9 +23,9 @@ before anyone compares slopes.
 
 **What to look for.** The worked example gives feature slopes of about
 2.7ms and 3.9ms per item (present and absent trials) against conjunction
-slopes of about 22ms and 45ms, an eightfold to twelvefold difference in
-the same two people. In both conditions the absent slope is the steeper
-of the pair, not only in this example.
+slopes of about 22ms and 45ms, an eightfold to twelvefold difference
+within the same worked example. In both conditions the absent slope is
+the steeper of the pair, not only in this example.
 
 **Debrief.** Why is the absent slope always steeper than the present
 slope, within each condition? The worked example's two-to-one ratio of

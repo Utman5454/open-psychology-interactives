@@ -8,8 +8,8 @@ shows attention and awareness are not the same thing, and that failing to
 report something is not the same as failing to see it.
 
 **Before students start.** Say nothing about anything beyond the counting
-task. Mentioning that anything else is on screen empties out the whole
-demonstration.
+task. Mentioning that anything else is on screen removes the surprise
+the demonstration depends on.
 
 **What students do.**
 1. Give a mild opening judgement about how accurate their count will be.

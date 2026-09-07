@@ -9,8 +9,9 @@ fits a list's gist, yet still fail source attribution, since source is
 inferred at retrieval rather than retrieved as a stored tag.
 
 **Before students start.** This is a specific, constrained intrusion,
-not a general claim that memory cannot be trusted. Nobody falsely
-recognises an unrelated word.
+not a general claim that memory cannot be trusted. Unrelated new words
+are rarely mistaken for something studied; related lures are a
+different story.
 
 **What students do.**
 1. Predict which judgement, source, recognition or confidence, will be
@@ -37,10 +38,12 @@ stored alongside the item?
 
 **Common misconception / caution.** "This proves memory is unreliable"
 goes further than the evidence supports: the intrusion is tightly
-constrained to words that fit the list's theme, and nobody falsely
-recognises an unrelated word. Once a student has run this once,
-forewarning reduces false endorsement, so a second theme set is for a
-fresh demonstration, not for practice.
+constrained to words that fit the list's theme. An unrelated word is
+endorsed only 9% of the time in the worked example, against 61% for a
+related lure, which is exactly why the unrelated condition works as the
+comparison. Once a student has run this once, forewarning reduces false
+endorsement, so a second theme set is for a fresh demonstration, not
+for practice.
 
 **Use in class / timing.** Plan on 6 minutes for a demonstration. One
 study-test cycle takes 8 to 10. With the challenge and the debrief,

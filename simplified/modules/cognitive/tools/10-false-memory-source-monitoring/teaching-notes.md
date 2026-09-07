@@ -8,7 +8,8 @@ the wrong speaker, showing that recognition, confidence and source are
 three separate judgements rather than one.
 
 **Before students start.** Say nothing about the two critical words
-beforehand. That silence is the whole design.
+beforehand; naming either one first would remove the chance to catch a
+false memory happening live.
 
 **What students do.**
 1. Watch two short lists of ten words, each read by a named person.

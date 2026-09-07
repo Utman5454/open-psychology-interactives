@@ -10,8 +10,8 @@ produced; weights can shift substantially without the output changing,
 and identical outputs can come from different weight patterns.
 
 **Before students start.** Say that "attention" is being used as the
-same English word for two different things on this page, deliberately.
-That collision is the entire point.
+same English word for two different things on this page, deliberately,
+and that the two senses are not meant to line up.
 
 **What students do.**
 1. Predict what it would show if a model's weights landed on the same

@@ -19,9 +19,9 @@ lines.
    climbing.
 
 **What to look for.** The conjunction line climbs across the three set
-sizes tested while the feature line stays close to flat. That gap is the
-whole finding: the same eyes, the same target, a very different cost per
-added item.
+sizes tested while the feature line stays close to flat. The same eyes
+and the same target produce a very different cost per added item,
+depending only on which kind of search it is.
 
 **Debrief.** Why would adding items barely slow one kind of search but
 slow the other a lot? Every display here contains a target. What might

@@ -17,7 +17,8 @@ begin.
 
 **What to look for.** Watch for a student who chose the safe option
 under "saved" wording but the risky option under "lost" wording, for the
-same underlying numbers. That switch is the whole demonstration.
+same underlying numbers. That switch, not either choice on its own, is
+what the wording changed.
 
 **Debrief.** If you switched between the two framings of the same
 problem, what actually changed about the numbers? Nothing. What changed

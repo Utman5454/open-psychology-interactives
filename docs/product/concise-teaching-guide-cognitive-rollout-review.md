@@ -45,17 +45,17 @@ standard set in the pilot's review.
 | Dichotic Listening and Selection Theories | 2,396 | 384 | 84% |
 | Dual-Task and Limited Capacity Laboratory | 2,328 | 377 | 84% |
 | Working-Memory Load Laboratory | 2,187 | 330 | 85% |
-| False Memory and Source Monitoring | 2,141 | 362 | 83% |
+| False Memory and Source Monitoring | 2,141 | 395 | 82% |
 | Decision Framing Laboratory | 2,100 | 366 | 83% |
-| Human Attention versus AI Attention | 2,481 | 331 | 87% |
-| **Full total (11 files)** | **24,846** | **3,799** | **85%** |
+| Human Attention versus AI Attention | 2,481 | 336 | 86% |
+| **Full total (11 files)** | **24,846** | **3,839** | **85%** |
 
 ### Simplified edition
 
 | Activity | Old words | New words | Reduction |
 | --- | --- | --- | --- |
 | Posner Spatial Cueing | 991 | 236 | 76% |
-| Visual Search Laboratory | 995 | 256 | 74% |
+| Visual Search Laboratory | 995 | 261 | 74% |
 | Inattentional Blindness | 1,138 | 239 | 79% |
 | Change Blindness | 942 | 213 | 77% |
 | Attentional Blink | 977 | 256 | 74% |
@@ -63,19 +63,21 @@ standard set in the pilot's review.
 | Dichotic Listening and Selection Theories | 968 | 247 | 74% |
 | Dual-Task and Limited Capacity Laboratory | 882 | 214 | 76% |
 | Working-Memory Load Laboratory | 909 | 251 | 72% |
-| False Memory and Source Monitoring | 943 | 239 | 75% |
-| Decision Framing Laboratory | 852 | 223 | 74% |
-| Human Attention versus AI Attention | 964 | 245 | 75% |
-| **Simplified total (12 files)** | **11,846** | **2,892** | **76%** |
+| False Memory and Source Monitoring | 943 | 248 | 74% |
+| Decision Framing Laboratory | 852 | 230 | 73% |
+| Human Attention versus AI Attention | 964 | 242 | 75% |
+| **Simplified total (12 files)** | **11,846** | **2,910** | **75%** |
 
-**Grand total (23 files): 36,692 to 6,691 words, an 82% reduction.** New
-guides range from 213 to 384 words. No guide reached 450 words, so none
-needed the "inspect for creeping detail" check the brief calls for above
-that line. Full guides sit close to the 300-to-400 target throughout;
-Simplified guides sit lower, 213 to 273, because the Simplified activities
-themselves are shorter and simpler, the same pattern the pilot's proposal
-document measured across the whole collection (Simplified originals
-averaging roughly half the length of their Full twins).
+**Grand total (23 files): 36,692 to 6,749 words, an 82% reduction**
+(figures as of the pre-merge correction pass below; the batch was
+36,692 to 6,691 before it). New guides range from 213 to 395 words. No
+guide reached 450 words, so none needed the "inspect for creeping
+detail" check the brief calls for above that line. Full guides sit close
+to the 300-to-400 target throughout; Simplified guides sit lower, 213 to
+273, because the Simplified activities themselves are shorter and
+simpler, the same pattern the pilot's proposal document measured across
+the whole collection (Simplified originals averaging roughly half the
+length of their Full twins).
 
 ## Substantive facts deliberately retained
 
@@ -127,9 +129,11 @@ observations flagged here rather than silently fixed, per the brief.
   notes were not internally consistent about whether the analogy between
   human and model "attention" has one genuine correspondence or two (one
   passage says "exactly one", the debrief section lists two headed
-  points). The new guide avoids asserting a specific count and instead
-  asks students to state each true correspondence precisely, which
-  sidesteps the inconsistency rather than propagating it.
+  points). This was resolved against the activity itself rather than by
+  avoiding the question: the page's own stage-three challenge establishes
+  that two of the eight statements are true of both systems, so the new
+  guide's debrief correctly says two. The activity's own code is the
+  source of truth that settles the old notes' inconsistency.
 
 None of these are new defects introduced by this branch; all were present
 in the code or old notes beforehand and are reported here rather than
@@ -185,6 +189,43 @@ between files rather than within one. Concretely:
 After these fixes, all 23 guides were re-read against "does this sound
 like an experienced psychology lecturer quickly briefing another
 lecturer?" No further rewriting was judged necessary.
+
+### Pre-merge correction pass
+
+An independent review of the merged batch found four further issues,
+fixed in place rather than as a rewrite:
+
+- **False Memory (Full) stated an absolute claim its own numbers
+  contradict.** "Nobody falsely recognises an unrelated word" appeared in
+  both "Before students start" and "Common misconception / caution",
+  while the same guide's "What to look for" correctly reports a 9%
+  unrelated-new endorsement rate in the worked example, matching the
+  activity's own `SIM` config. The absolute claim is removed from both
+  sections; the intended point, that unrelated new words are endorsed far
+  less often than related lures (9% against 61%), is stated directly
+  instead, since that contrast is what makes the unrelated condition work
+  as a comparison.
+- **Visual Search (Full) invented participants for simulated data.**
+  "An eightfold to twelvefold difference in the same two people"
+  described the seeded worked example, which has no participants at all.
+  Changed to "within the same worked example."
+- **The Human vs AI Attention correction above.**
+- **A further cross-file punchline family**, caught on the same kind of
+  side-by-side read that found the earlier patterns in this section:
+  "the whole demonstration" (Full Inattentional Blindness; Simplified
+  Decision Framing), "the entire point" (Full Human vs AI Attention),
+  "the whole finding" (Simplified Visual Search), "the whole design"
+  (Simplified False Memory) and "the whole point" (Simplified Human vs AI
+  Attention, split across a line wrap so it did not show up in the first
+  pass's single-line search). Six instances in total, each rewritten into
+  a plain statement of the actual teaching point rather than a
+  generic-emphasis tag, for example "That switch, not either choice on
+  its own, is what the wording changed" in place of "That switch is the
+  whole demonstration." One further match, "covers the whole thing,
+  practice included" in Simplified Attentional Blink's timing line, was
+  left as is: it is a literal statement that the given time range
+  includes practice, not a generic-emphasis tag, and the word "whole" is
+  doing real work there.
 
 ## What this rollout does not do
 

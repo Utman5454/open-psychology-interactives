@@ -7,8 +7,8 @@ form, is nothing but a score divided by the total of all the scores, not
 the everyday psychological sense of attention at all.
 
 **Before students start.** Say that "attention" here means one specific
-calculation, not the everyday sense of the word. That gap is the whole
-point of the activity.
+calculation, not the everyday sense of the word most students bring
+into the room.
 
 **What students do.**
 1. Resolve what "it" refers to in one ambiguous sentence.
