@@ -77,10 +77,11 @@ their own result. Those tools must:
 
 See [`../../../docs/accessibility.md`](../../../docs/accessibility.md).
 
-## Planned topics
+## Topics the module was planned around
 
 Selective attention and its costs · working memory capacity · reconstructive
 memory · perception as inference · judgement under uncertainty.
 
-All are unclaimed. Open an issue before starting so two people do not build the
-same thing.
+These are covered by the published tools listed at the top of this file.
+Open an issue before starting a new tool so two people do not build the same
+thing.

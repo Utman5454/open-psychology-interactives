@@ -84,10 +84,11 @@ See [`../../../docs/accessibility.md`](../../../docs/accessibility.md) for the
 accessibility requirements every tool must meet, including the text or tabular
 alternative that must accompany every chart.
 
-## Planned topics
+## Topics the module was planned around
 
 Sampling distributions · confidence intervals · p-values and significance
 testing · correlation and regression · statistical power.
 
-All are unclaimed. Open an issue before starting so two people do not build the
-same thing.
+These are covered by the published tools listed at the top of this file.
+Open an issue before starting a new tool so two people do not build the same
+thing.

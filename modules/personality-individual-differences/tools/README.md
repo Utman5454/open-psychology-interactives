@@ -96,12 +96,11 @@ in part, even as "examples".
 
 See [`../../../docs/accessibility.md`](../../../docs/accessibility.md).
 
-## Planned topics
+## Topics the module was planned around
 
 Trait structure and the Big Five · factor analysis · reliability · validity and
 measurement error · reading a trait profile.
 
-Reliability is partly covered by The Alpha Trap, which takes the internal
-consistency side of it; test–retest reliability is still open. Everything else
-is unclaimed. Open an issue before starting so two people do not build the same
-thing.
+These are covered by the published tools listed at the top of this file.
+Test–retest reliability is the one topic without a dedicated tool. Open an
+issue before starting a new tool so two people do not build the same thing.

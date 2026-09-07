@@ -2,10 +2,10 @@
 
 How to use Open Psychology Interactives in university teaching.
 
-> **Current status.** Twelve tools are published, all in Personality and
-> Individual Differences; each carries its own `teaching-notes.md` with a
+> **Current status.** All five modules are complete: 75 tools and 75
+> Simplified Edition twins, each with its own `teaching-notes.md` giving a
 > suggested sequence, debrief questions and limitations. This guide covers what
-> applies across all of them. The other four modules are still scaffold only.
+> applies across all of them.
 
 ---
 
@@ -45,9 +45,10 @@ Students work on their own devices while you set tasks.
 
 - Give a specific target rather than "have a play": *find the smallest sample
   size at which the interval usually contains the true value*.
-- Each tool carries a **Teaching notes** panel on the page (collapsed by
-  default), and a fuller `teaching-notes.md` beside it in the repository, with
-  prompts, likely misconceptions and debrief questions. These are written for
+- Each tool has a `teaching-notes.md` beside it in the repository, with a
+  from-the-front script, prompts, likely misconceptions and debrief questions.
+  The notes are not yet shown on the tool's own page; open them from the
+  repository. These are written for
   you, not for students; there is no harm in students reading them.
 - Ask for a written sentence at the end. "What did you find?" produces better
   learning than "did it work?".

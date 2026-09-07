@@ -223,7 +223,9 @@ Two things do need updating in a fork:
 │   ├── check-edition-pairing.py   verifies the 1:1 pairing between editions
 │   ├── test-edition-pairing.py    fault injection for that check
 │   ├── check-answer-balance.py    answer position and wording-length gate
-│   └── test-answer-balance.py     fault injection for that gate
+│   ├── test-answer-balance.py     fault injection for that gate
+│   ├── check-all.py               runs every gate above and prints one table
+│   └── smoke-browser.js           optional headless-browser smoke test (development only)
 ├── modules/
 │   ├── cognitive/
 │   │   ├── index.html             module landing page
@@ -257,7 +259,10 @@ Two things do need updating in a fork:
 │   ├── adapting-a-tool.md         copying, changing and re-hosting a tool
 │   ├── simplified-edition.md      why the Simplified Edition exists, and its rules
 │   ├── simplified-edition-maintenance.md   how to change it safely
-│   └── simplified-edition-integration.md   how its browsing layer was built
+│   ├── simplified-edition-integration.md   how its browsing layer was built
+│   ├── decisions.md               settled decisions and why
+│   └── lessons.md                 mistakes already made once
+├── PROJECT_STATE.md               where the project is, how to test and recover it
 ├── CONTRIBUTING.md
 └── LICENSE
 ```

@@ -42,6 +42,84 @@
   }
 
   /* -----------------------------------------------------------------------
+     0. Embed mode
+     --------------------------------------------------------------------- */
+
+  /**
+   * True when the page was requested with `?embed=1`.
+   *
+   * The lesson player under lessons/ shows an activity inside an <iframe>
+   * pointing at the activity's own page, so that the activity runs exactly
+   * as published with its own element ids and scripts. What the player does
+   * not want is the site around the activity: header, navigation,
+   * breadcrumbs, footer and the lecturer's copy/download controls, which
+   * would otherwise appear as a website inside a website. The parameter is
+   * the only signal; a page opened without it is unchanged in every respect.
+   *
+   * @returns {boolean}
+   */
+  function isEmbedded() {
+    return /[?&]embed=1(?:&|$)/.test(window.location.search || "");
+  }
+
+  /**
+   * Hide the site chrome and report the document's height to the parent.
+   *
+   * Chrome is hidden with an inline style rather than a stylesheet rule, so
+   * that no shared CSS changes (which would regenerate every standalone
+   * export) and so that a page without the parameter never carries a rule
+   * it does not use. The sticky header is gone, so the scroll padding that
+   * keeps focused elements clear of it is set to zero.
+   *
+   * The height message lets the parent size the frame to the content, so a
+   * student never scrolls inside a scrolling page. It carries a number and
+   * nothing else; there is nothing here to protect, and the parent may be
+   * served from a different origin when the site is previewed locally, so
+   * the target origin is "*".
+   */
+  function initEmbedMode() {
+    if (!isEmbedded()) {
+      return;
+    }
+    var root = document.documentElement;
+    root.classList.add("is-embedded");
+    root.style.scrollPaddingTop = "0";
+    // The body fills the viewport (min-height: 100vh) so the footer sits at
+    // the bottom of a short page. Inside a frame that is sized to the
+    // content, a viewport-high minimum would make the reported height grow
+    // every time the frame did. Content height is what the parent needs.
+    if (document.body) { document.body.style.minHeight = "0"; }
+
+    var chrome = document.querySelectorAll(
+      ".site-header, .breadcrumbs, .site-footer, [data-activity-utilities]");
+    for (var i = 0; i < chrome.length; i += 1) {
+      chrome[i].hidden = true;
+      chrome[i].style.display = "none";
+    }
+
+    if (window.parent === window) {
+      return;
+    }
+    var lastHeight = -1;
+    function reportHeight() {
+      // offsetHeight of the body is the content's own height; scrollHeight
+      // of the document element would include the frame's viewport.
+      var height = document.body ? document.body.offsetHeight : 0;
+      if (Math.abs(height - lastHeight) < 2) {
+        return;
+      }
+      lastHeight = height;
+      window.parent.postMessage({ type: "opi:height", height: height }, "*");
+    }
+    window.addEventListener("load", reportHeight);
+    window.addEventListener("resize", reportHeight);
+    if (typeof window.ResizeObserver === "function" && document.body) {
+      new window.ResizeObserver(reportHeight).observe(document.body);
+    }
+    reportHeight();
+  }
+
+  /* -----------------------------------------------------------------------
      1. Collapsible navigation (small screens)
      --------------------------------------------------------------------- */
 
@@ -411,6 +489,7 @@
      4. Start-up
      --------------------------------------------------------------------- */
 
+  initEmbedMode();
   initNavigation();
   initFooterYear();
   initCatalogue();

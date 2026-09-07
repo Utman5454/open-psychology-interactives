@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://utman5454.github.io/open-psychology-interactives/data/lessons/schema.json",
+  "title": "Open Psychology Interactives lesson",
+  "description": "A lesson a lecturer composes from catalogue activities, notes and questions. The same object travels in a student link, sits in data/lessons/ as a curated lesson, and would be what a later server stores. Nothing in it names a person, a subject or a platform. The limits here are mirrored in assets/product/lesson.js and scripts/check-lessons.py.",
+  "type": "object",
+  "required": ["schema", "title", "steps"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": { "const": 1 },
+    "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]{0,80}$", "description": "Only for curated lessons under data/lessons/; equals the file name without .json." },
+    "title": { "type": "string", "minLength": 1, "maxLength": 200 },
+    "intro": { "type": "string", "maxLength": 4000, "description": "Shown to the student before the first step. Markdown, rendered without raw HTML." },
+    "author": { "type": "string", "maxLength": 100, "description": "Optional. How the lesson is signed for the student, for example a module code." },
+    "setting": { "type": "string", "enum": ["lecture", "seminar", "revision"], "description": "Only for curated lessons: the teaching setting the sequence was written for." },
+    "summary": { "type": "string", "maxLength": 400, "description": "Only for curated lessons: one or two sentences for a listing." },
+    "steps": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 40,
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "required": ["type", "edition", "module", "tool"],
+            "additionalProperties": false,
+            "properties": {
+              "type": { "const": "activity" },
+              "edition": { "enum": ["original", "simplified"] },
+              "module": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]{0,80}$" },
+              "tool": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]{0,80}$" },
+              "instructions": { "type": "string", "maxLength": 2000 }
+            }
+          },
+          {
+            "type": "object",
+            "required": ["type", "text"],
+            "additionalProperties": false,
+            "properties": {
+              "type": { "const": "note" },
+              "text": { "type": "string", "minLength": 1, "maxLength": 4000 }
+            }
+          },
+          {
+            "type": "object",
+            "required": ["type", "prompt"],
+            "additionalProperties": false,
+            "properties": {
+              "type": { "const": "question" },
+              "prompt": { "type": "string", "minLength": 1, "maxLength": 1000 },
+              "kind": { "enum": ["short", "long"] }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

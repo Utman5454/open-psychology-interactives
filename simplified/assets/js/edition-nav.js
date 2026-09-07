@@ -207,9 +207,47 @@
     if (at < activities.length - 1) { fillCell(cells[1], "Next", activities[at + 1]); }
   }
 
+  /* ------------------------------------------------------------ embed mode
+     The lesson player under lessons/ shows an activity in an <iframe>
+     pointing at this page with `?embed=1`. Inside a lesson the breadcrumb
+     and the previous/next strip would lead a student out of the lesson, so
+     neither is added; the activity itself is untouched. The page reports
+     its height to the parent so the frame can be sized to the content. The
+     message carries a number and nothing else, hence the "*" target. A page
+     opened without the parameter is unchanged. */
+  function isEmbedded() {
+    return /[?&]embed=1(?:&|$)/.test(global.location.search || "");
+  }
+
+  function reportHeightToParent() {
+    if (global.parent === global) { return; }
+    var lastHeight = -1;
+    function report() {
+      var height = doc.body ? doc.body.offsetHeight : 0;
+      if (Math.abs(height - lastHeight) < 2) { return; }
+      lastHeight = height;
+      global.parent.postMessage({ type: "opi:height", height: height }, "*");
+    }
+    global.addEventListener("load", report);
+    global.addEventListener("resize", report);
+    if (typeof global.ResizeObserver === "function" && doc.body) {
+      new global.ResizeObserver(report).observe(doc.body);
+    }
+    report();
+  }
+
   function start() {
     var main = doc.querySelector("main[data-workbook]");
     if (!main) { return; }
+
+    if (isEmbedded()) {
+      doc.documentElement.classList.add("is-embedded");
+      // A viewport-high body minimum would grow with the frame; the parent
+      // needs the content's own height.
+      if (doc.body) { doc.body.style.minHeight = "0"; }
+      reportHeightToParent();
+      return;
+    }
 
     var here = locate();
     if (!here) { return; }
