@@ -105,6 +105,8 @@ GATES = [
     gate("oxlint", ["npx", "--yes", OXLINT], tier="lint", needs=["npx"]),
     gate("browser-smoke", ["node", "scripts/smoke-browser.js"], tier="browser",
          needs=["node"], timeout=600),
+    gate("lesson-tests", ["node", "scripts/test-lessons.js"], tier="browser",
+         needs=["node"], timeout=600),
 ]
 
 

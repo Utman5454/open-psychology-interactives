@@ -184,12 +184,20 @@
     var self = this;
     var n = this.questionNumber(index);
     var section = this.panel("Question " + n);
+    // The prompt is rendered Markdown (block content, possibly with links),
+    // so it cannot sit inside a <label>. It is its own block, and the input
+    // is described by it; the label itself is short and names the field.
+    var prompt = markdown(step.prompt);
+    prompt.className = "notes question__prompt";
+    prompt.id = "prompt-" + index;
+    section.appendChild(prompt);
+
     var field = el("div", "builder__field");
-    var label = el("label");
+    var label = el("label", null, "Your answer");
     label.htmlFor = "answer-" + index;
-    label.appendChild(markdown(step.prompt));
     var input = el(step.kind === "short" ? "input" : "textarea", "field");
     input.id = label.htmlFor;
+    input.setAttribute("aria-describedby", prompt.id);
     if (step.kind === "short") { input.type = "text"; input.autocomplete = "off"; } else { input.rows = 6; }
     input.addEventListener("input", function () {
       self.answers[index] = input.value;

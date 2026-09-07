@@ -98,17 +98,28 @@
 
   /* ---------------------------------------------------------- top fields */
 
+  var TOP_FIELDS = { title: "#lesson-title", intro: "#lesson-intro", author: "#lesson-author" };
+
+  /** Install the listeners for the three top fields. Called once, from
+      start(); the handlers read this.lesson at event time, so replacing the
+      lesson (open a file, clear the draft) needs only fillFields(). */
   Builder.prototype.bindFields = function () {
     var self = this;
-    var fields = { title: "#lesson-title", intro: "#lesson-intro", author: "#lesson-author" };
-    Object.keys(fields).forEach(function (name) {
-      var input = self.q(fields[name]);
-      input.value = self.lesson[name] || "";
+    Object.keys(TOP_FIELDS).forEach(function (name) {
+      var input = self.q(TOP_FIELDS[name]);
       input.maxLength = OPI.LESSON_LIMITS[name];
       input.addEventListener("input", function () {
         self.lesson[name] = input.value;
         self.changed(false);
       });
+    });
+  };
+
+  /** Write the current lesson's top fields into the inputs. */
+  Builder.prototype.fillFields = function () {
+    var self = this;
+    Object.keys(TOP_FIELDS).forEach(function (name) {
+      self.q(TOP_FIELDS[name]).value = self.lesson[name] || "";
     });
   };
 
@@ -304,6 +315,18 @@
 
   /* ---------------------------------------------------------------- link */
 
+  /**
+   * Validate the current lesson and, when valid, encode it and refresh the
+   * displayed link. Resolves with the URL, or null when the lesson is not
+   * yet shareable.
+   *
+   * Encoding is asynchronous, so two things are guarded. Each call takes a
+   * sequence number and an older encode that finishes after a newer one is
+   * discarded, so the display can never regress to a stale link. And Copy
+   * and Preview call this directly rather than reading the display, so a
+   * click that lands inside the autosave debounce still uses the lesson as
+   * it is at that moment.
+   */
   Builder.prototype.updateLink = function () {
     var self = this;
     var problems = OPI.validateLesson(this.lesson);
@@ -313,14 +336,18 @@
     problems.forEach(function (text) { list.appendChild(el("li", null, text)); });
     this.q("[data-builder-problems-wrap]").hidden = problems.length === 0;
     box.hidden = problems.length > 0;
-    if (problems.length) { return; }
+    if (problems.length) { return Promise.resolve(null); }
 
-    OPI.encodeLesson(this.lesson).then(function (encoded) {
+    this.linkSequence = (this.linkSequence || 0) + 1;
+    var sequence = this.linkSequence;
+    return OPI.encodeLesson(this.lesson).then(function (encoded) {
       var url = OPI.lessonUrl(encoded);
+      if (sequence !== self.linkSequence) { return url; }  // superseded; leave the newer one
       self.q("#student-link").value = url;
       self.q("[data-builder-link-length]").textContent = url.length + " characters";
       self.q("[data-builder-link-warning]").hidden = url.length <= LINK_WARN_LENGTH;
       self.q('[data-action="preview"]').href = url;
+      return url;
     });
   };
 
@@ -340,6 +367,9 @@
         self.addStep(OPI.newStep("question", { kind: "long" }));
       } else if (action === "copy") {
         self.copyLink();
+      } else if (action === "preview") {
+        event.preventDefault();
+        self.preview();
       } else if (action === "download") {
         self.download();
       } else if (action === "clear") {
@@ -363,11 +393,31 @@
       field.select();
       self.announce("Select the link and copy it with your keyboard.");
     };
-    if (global.navigator.clipboard && global.navigator.clipboard.writeText) {
-      global.navigator.clipboard.writeText(field.value).then(done, fallback);
-    } else {
-      fallback();
-    }
+    // Encode the lesson as it is now; the displayed link may be a debounce behind.
+    this.updateLink().then(function (url) {
+      if (!url) { self.announce("The lesson is not ready to share yet."); return; }
+      if (global.navigator.clipboard && global.navigator.clipboard.writeText) {
+        global.navigator.clipboard.writeText(url).then(done, fallback);
+      } else {
+        fallback();
+      }
+    });
+  };
+
+  /** Open the player on the lesson as it is now, in a new tab. The tab is
+      opened synchronously inside the click so browsers treat it as
+      user-initiated; it is pointed at the lesson once the link exists. */
+  Builder.prototype.preview = function () {
+    var self = this;
+    var tab = global.open("", "_blank");
+    this.updateLink().then(function (url) {
+      if (!url) {
+        if (tab) { tab.close(); }
+        self.announce("The lesson is not ready to preview yet.");
+        return;
+      }
+      if (tab) { tab.location.href = url; } else { global.location.href = url; }
+    });
   };
 
   Builder.prototype.download = function () {
@@ -390,7 +440,7 @@
       try {
         var lesson = OPI.normaliseLesson(JSON.parse(String(reader.result)));
         self.lesson = lesson;
-        self.bindFields();
+        self.fillFields();
         self.changed(true);
         self.announce("Lesson file opened: " + (lesson.title || "untitled") + ", " + lesson.steps.length + " steps.");
       } catch (error) {
@@ -404,7 +454,7 @@
     if (!global.confirm("Clear the draft from this browser? A downloaded lesson file or a copied link is unaffected.")) { return; }
     OPI.draft.clear();
     this.lesson = OPI.newLesson();
-    this.bindFields();
+    this.fillFields();
     this.renderSteps();
     this.q("[data-builder-draft]").textContent = "Draft cleared.";
     this.announce("Draft cleared.");
@@ -415,6 +465,7 @@
 
   Builder.prototype.start = function () {
     this.bindFields();
+    this.fillFields();
     this.bindPicker();
     this.bindActions();
 
