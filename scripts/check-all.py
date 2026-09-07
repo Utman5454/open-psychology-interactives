@@ -99,6 +99,7 @@ GATES = [
     gate("standalone-exports", [PY, "scripts/build-standalone.py", "--all", "--check"]),
     gate("export-controls", [PY, "scripts/add-export-control.py", "--all", "--check"]),
     gate("answer-balance", [PY, "scripts/check-answer-balance.py"]),
+    gate("curated-lessons", [PY, "scripts/check-lessons.py", "--quiet"]),
     gate("test-edition-pairing", [PY, "scripts/test-edition-pairing.py"], tier="full"),
     gate("test-answer-balance", [PY, "scripts/test-answer-balance.py"], tier="full"),
     gate("oxlint", ["npx", "--yes", OXLINT], tier="lint", needs=["npx"]),

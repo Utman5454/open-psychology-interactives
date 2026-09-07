@@ -82,3 +82,12 @@ and hand the files to the owner, who runs `git fetch <bundle> <branch>` (or
 `git am`) and pushes. Installing the Claude GitHub App for the repository
 removes the detour. Never assume a local commit is safe until it is visible
 on GitHub.
+
+## L-010: A framed page that fills its viewport reports a height that never settles
+
+The player sized each frame from the embedded page's reported height, and
+the height climbed by a step on every message until it passed 8,000px.
+The body had `min-height: 100vh`, so each time the frame grew the page's
+content grew to match and reported again. **Rule:** in embed mode set the
+body's minimum height to zero and report `body.offsetHeight`, not the
+document's `scrollHeight`; ignore changes under two pixels.

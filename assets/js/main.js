@@ -84,6 +84,11 @@
     var root = document.documentElement;
     root.classList.add("is-embedded");
     root.style.scrollPaddingTop = "0";
+    // The body fills the viewport (min-height: 100vh) so the footer sits at
+    // the bottom of a short page. Inside a frame that is sized to the
+    // content, a viewport-high minimum would make the reported height grow
+    // every time the frame did. Content height is what the parent needs.
+    if (document.body) { document.body.style.minHeight = "0"; }
 
     var chrome = document.querySelectorAll(
       ".site-header, .breadcrumbs, .site-footer, [data-activity-utilities]");
@@ -97,10 +102,10 @@
     }
     var lastHeight = -1;
     function reportHeight() {
-      var height = Math.max(
-        document.documentElement.scrollHeight,
-        document.body ? document.body.scrollHeight : 0);
-      if (height === lastHeight) {
+      // offsetHeight of the body is the content's own height; scrollHeight
+      // of the document element would include the frame's viewport.
+      var height = document.body ? document.body.offsetHeight : 0;
+      if (Math.abs(height - lastHeight) < 2) {
         return;
       }
       lastHeight = height;

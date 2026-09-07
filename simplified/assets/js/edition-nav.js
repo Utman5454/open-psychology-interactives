@@ -223,9 +223,8 @@
     if (global.parent === global) { return; }
     var lastHeight = -1;
     function report() {
-      var height = Math.max(
-        doc.documentElement.scrollHeight, doc.body ? doc.body.scrollHeight : 0);
-      if (height === lastHeight) { return; }
+      var height = doc.body ? doc.body.offsetHeight : 0;
+      if (Math.abs(height - lastHeight) < 2) { return; }
       lastHeight = height;
       global.parent.postMessage({ type: "opi:height", height: height }, "*");
     }
@@ -243,6 +242,9 @@
 
     if (isEmbedded()) {
       doc.documentElement.classList.add("is-embedded");
+      // A viewport-high body minimum would grow with the frame; the parent
+      // needs the content's own height.
+      if (doc.body) { doc.body.style.minHeight = "0"; }
       reportHeightToParent();
       return;
     }

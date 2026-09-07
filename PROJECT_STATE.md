@@ -27,13 +27,21 @@ student link). See `docs/decisions.md` for the settled decisions and the
 
 - Both editions complete: 75 + 75, 1:1 paired, every entry `published`.
 - All structural gates pass (see "Checks" below).
-- Browser smoke test: 19 representative page loads (including two in embed
-  mode and four library pages) at 1280px and 360px with zero console errors, zero failed requests,
+- Browser smoke test: 22 representative page loads (including two in embed
+  mode, four library pages and three lesson pages) at 1280px and 360px with zero console errors, zero failed requests,
   no horizontal scroll, and no site chrome visible in embed mode.
 - Library: `library/index.html` searches and filters all 150 activities;
   `library/activity.html` renders any activity's metadata and teaching notes
   (all 150 notes files render through `assets/product/markdown.js` with no
   leftover markup).
+- Lessons: `lessons/build.html` composes a lesson (activities with
+  instructions, notes, questions), autosaves a draft in the browser, and
+  produces one student link with the whole lesson compressed into the URL
+  fragment; `lessons/index.html` plays it step by step with activities
+  embedded, answers held in memory and downloadable. Verified end to end in
+  headless Chromium at desktop and phone widths, zero console errors.
+- Curated lessons under `data/lessons/` are validated by
+  `scripts/check-lessons.py` (schema rules plus catalogue resolution).
 - Embed mode: any of the 150 activity pages opened with `?embed=1` hides
   site chrome and posts its content height to a parent frame
   (`{type: "opi:height", height}`).
@@ -49,7 +57,8 @@ student link). See `docs/decisions.md` for the settled decisions and the
 | **Audit, architecture, M0 definition** (`docs/product/`) | `a1264ed` | 2026-09-07 |
 | **M0 Stage 1: honest site** (defects D1 to D8) | `ce98a79` | 2026-09-07 |
 | **M0 Stage 2: embed mode** (`?embed=1` on any activity page) | `63e8a3d` | 2026-09-07 |
-| **M0 Stage 3: library and activity pages** (`library/`, `assets/product/`) | see `git log` | 2026-09-07 |
+| **M0 Stage 3: library and activity pages** (`library/`, `assets/product/`) | `beb2459` | 2026-09-07 |
+| **M0 Stages 4 and 5: lesson builder and player** (`lessons/`, lesson-in-link) | see `git log` | 2026-09-07 |
 
 ## Branches
 
@@ -98,6 +107,7 @@ Baseline on 2026-09-07, all passing:
 | `test-edition-pairing` | the pairing gate still catches 17 injected faults |
 | `test-answer-balance` | the balance gate still catches 4 injected faults |
 | `oxlint` (`--lint`) | 0 errors; 10 warnings are known and non-blocking |
+| `curated-lessons` | every `data/lessons/*.json` obeys the lesson rules and references published activities |
 | `browser-smoke` (`--browser`) | representative pages load without console errors |
 
 Run `--quick` before every commit, the default before every push, and
@@ -180,9 +190,9 @@ harming the free collection. Working sequence:
    | 1 Honest site (defects D1 to D8 fixed) | done 2026-09-07 |
    | 2 Embed mode | done 2026-09-07 |
    | 3 Library and activity pages (fixes D9) | done 2026-09-07 |
-   | 4 Lesson builder | next |
-   | 5 Lesson player | not started |
-   | 6 Curated lessons and home page | not started |
+   | 4 Lesson builder | done 2026-09-07 |
+   | 5 Lesson player | done 2026-09-07 |
+   | 6 Curated lessons and home page | next |
 
 Constraints agreed with the owner: no rewrite of the 150 activities; no
 student tracking by default; no payment integration in M0; no framework

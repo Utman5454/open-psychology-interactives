@@ -89,3 +89,34 @@ risk for no gain to the product.
 
 **Rules out.** Rewriting activities into a framework; making any activity
 depend on the product layer to run.
+
+## D-007 (2026-09-07): In M0 the lesson is carried in the link, not stored anywhere
+
+**Decided.** A lecturer's lesson is serialised (JSON, deflated, base64url)
+into the fragment of the player's URL. There is no account, no server and no
+storage beyond the lecturer's own browser draft. Curated lessons are JSON
+files in `data/lessons/` validated by a gate.
+
+**Why.** Every capability in the M0 workflow except sign-in is delivered by
+static files, on the existing deployment, with the existing privacy promise
+intact: a fragment is never sent to a server, so nobody can see who opened a
+lesson. A six-step lesson is about 1,100 characters, within every VLE's
+limits. Accounts become worth having when there is a library to sync, which
+is M1.
+
+**Rules out.** Storing lessons or student answers server-side in M0; any
+lesson format that a later server could not store as-is (the JSON object is
+the storage schema).
+
+## D-008 (2026-09-07): Activities are embedded by page, not by standalone fragment
+
+**Decided.** The player shows an activity in an `<iframe>` pointing at the
+activity's own page with `?embed=1`, which hides the site chrome and posts
+the content height. It does not inject `standalone.html`.
+
+**Why.** A frame keeps each activity's element ids and scripts isolated,
+works for the Simplified Edition (which has no standalone export), and
+needs only a few lines of progressive enhancement in the two shared site
+scripts. One rule learned the hard way: an embedded page must drop its
+viewport-high body minimum before measuring, or the reported height grows
+with the frame (docs/lessons.md, L-010).
