@@ -101,6 +101,8 @@ GATES = [
     gate("answer-balance", [PY, "scripts/check-answer-balance.py"]),
     gate("curated-lessons", [PY, "scripts/check-lessons.py", "--quiet"]),
     gate("dual-task-balance", ["node", "scripts/test-dual-task-balance.js"], tier="full", needs=["node"]),
+    gate("multiple-comparisons-fwer", ["node", "scripts/test-multiple-comparisons-fwer.js"],
+         tier="full", needs=["node"]),
     gate("test-edition-pairing", [PY, "scripts/test-edition-pairing.py"], tier="full"),
     gate("test-answer-balance", [PY, "scripts/test-answer-balance.py"], tier="full"),
     gate("oxlint", ["npx", "--yes", OXLINT], tier="lint", needs=["npx"]),

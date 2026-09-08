@@ -13,6 +13,21 @@
        FWER = 1 - (1 - alpha)^k
        expected false positives per experiment = k * alpha
 
+   More generally, only a true-null test can produce a false positive; a
+   test with a genuine effect can only ever be a correct detection or a
+   miss. So with m0 = k - real true-null tests in the family, the tool's
+   predicted figures are
+
+       FWER = 1 - (1 - threshold)^m0     (0 when m0 = 0)
+       expected false positives per experiment = m0 * threshold
+
+   which reduce to the two lines above when real = 0 (m0 = k).
+
+   Bonferroni still divides alpha by the full family size k, not by m0: the
+   correction is defined across every hypothesis in the family, whether or
+   not it happens to be true. Only the probability-of-at-least-one-false-
+   positive prediction is restricted to the true-null tests.
+
    Bonferroni tests each hypothesis at alpha/k. It does what it promises to
    the first of those quantities, and the tool reports the price in the same
    breath: the detection rate for the tests that DO have something to find
@@ -303,11 +318,25 @@
     var real = Math.min(Number(realRange.value), k);
     var alpha = Number(alphaSelect.value);
     return {
-      k: k, real: real, alpha: alpha,
+      k: k, real: real, m0: k - real, alpha: alpha,
       threshold: correctSelect.value === "bonferroni" ? alpha / k : alpha,
       corrected: correctSelect.value === "bonferroni",
       seed: Math.max(1, Math.round(Number(seedInput.value) || 1))
     };
+  }
+
+  /** Predicted family-wise false-positive rate. Only the m0 true-null
+      tests can produce a false positive; a test with a genuine effect can
+      only be a correct detection or a miss. Zero true nulls means the
+      family-wise rate is exactly zero, not undefined. */
+  function predictedFWER(threshold, m0) {
+    return m0 > 0 ? 1 - Math.pow(1 - threshold, m0) : 0;
+  }
+
+  /** Expected false positives per experiment, over the m0 true-null tests
+      only. */
+  function predictedFalsePositives(threshold, m0) {
+    return m0 * threshold;
   }
 
   /** One experiment: k independent two-sample t-tests, `real` of which have a
@@ -400,8 +429,8 @@
 
   function renderFamily() {
     var s = settings();
-    var fwer = 1 - Math.pow(1 - s.threshold, s.k);
-    var expected = s.k * s.threshold;
+    var fwer = predictedFWER(s.threshold, s.m0);
+    var expected = predictedFalsePositives(s.threshold, s.m0);
 
     chartHeading.textContent = lastRun
       ? "Experiment " + runCounter + " of " + s.k + " tests" +
@@ -417,7 +446,7 @@
         if (t.hit) { if (t.real) { realHits += 1; } else { falseHits += 1; } }
       });
       [
-        ["Tests with nothing to find", String(s.k - s.real)],
+        ["Tests with nothing to find", String(s.m0)],
         ["...of which came out significant", String(falseHits)],
         ["Tests with a real effect", String(s.real)],
         ["...of which came out significant", String(realHits)]
@@ -426,11 +455,13 @@
       runTable.appendChild(row(["No experiment run yet", "—"]));
     }
 
+    var trueNullSuffix = s.real > 0 ? " (true-null tests only)" : "";
+
     clear(readout);
     [
       ["Threshold per test", s.threshold < 0.001
         ? s.threshold.toExponential(1) : fmt(s.threshold, 4)],
-      ["Family-wise rate, predicted", pct(fwer)],
+      ["Family-wise rate, predicted" + trueNullSuffix, pct(fwer)],
       ["Runs with a false positive", tally.runs
         ? pct(tally.anyFalse / tally.runs) + " of " + tally.runs : "—"],
       ["Real effects detected", tally.realTotal
@@ -445,10 +476,10 @@
     clear(theoryTable);
     [
       ["Threshold applied to each test", fmt(s.threshold, 4), "—"],
-      ["Probability of at least one false positive", pct(fwer),
-        tally.runs ? pct(tally.anyFalse / tally.runs) : "—"],
-      ["False positives per experiment",
-        fmt((s.k - s.real) * s.threshold, 2),
+      ["Probability of at least one false positive" + trueNullSuffix,
+        pct(fwer), tally.runs ? pct(tally.anyFalse / tally.runs) : "—"],
+      ["False positives per experiment" + trueNullSuffix,
+        fmt(expected, 2),
         tally.runs ? fmt(tally.falseTotal / tally.runs, 2) : "—"],
       ["Experiments run", "—", String(tally.runs)]
     ].forEach(function (cells) { theoryTable.appendChild(row(cells)); });
@@ -461,29 +492,36 @@
       tone = "caution";
       text =
         "With " + s.k + " tests at a threshold of " + fmt(s.threshold, 4) +
-        ", the formula says the probability of at least one false positive is " +
+        (s.real > 0
+          ? ", of which " + s.m0 + " have nothing to find, the formula says " +
+            "the probability of at least one false positive among those " +
+            s.m0 + " true nulls is "
+          : ", the formula says the probability of at least one false " +
+            "positive is ") +
         pct(fwer) + " and the expected number is " +
-        fmt((s.k - s.real) * s.threshold, 2) + " per experiment. Run one and " +
-        "see, then run a thousand and count.";
+        fmt(expected, 2) + " per experiment. Run one and see, then run a " +
+        "thousand and count.";
     } else if (s.corrected) {
       tone = "good";
       text =
         "Across " + tally.runs + " experiments, " +
         pct(tally.anyFalse / tally.runs) + " produced at least one false " +
-        "positive, against " + pct(fwer) + " predicted. The correction has " +
-        "done what it promises: the family-wise rate is back down to roughly " +
-        "the per-test rate you started with. Now read the last figure in the " +
-        "readout.";
+        "positive, against " + pct(fwer) + " predicted" +
+        (s.real > 0 ? " for the " + s.m0 + " true-null tests" : "") +
+        ". The correction has done what it promises: the family-wise rate " +
+        "is back down to roughly the per-test rate you started with. Now " +
+        "read the last figure in the readout.";
     } else {
       tone = "warn";
       text =
         "Across " + tally.runs + " experiments, " +
         pct(tally.anyFalse / tally.runs) + " produced at least one false " +
         "positive, against " + pct(fwer) + " predicted by " +
-        "1 minus (1 minus alpha) to the power k. Every individual test behaved " +
-        "exactly as advertised at " + fmt(s.alpha, 2) + ". What changed is the " +
-        "question - \"did anything come out?\" - and that question has an " +
-        "error rate of its own.";
+        "1 minus (1 minus alpha) to the power " +
+        (s.real > 0 ? s.m0 + ", the number of true-null tests" : "k") +
+        ". Every individual test behaved exactly as advertised at " +
+        fmt(s.alpha, 2) + ". What changed is the question - \"did anything " +
+        "come out?\" - and that question has an error rate of its own.";
     }
     interpretation.textContent = text;
     verdictBox.setAttribute("data-tone", tone);
@@ -537,8 +575,9 @@
       var s = settings();
       familyShell.announce(
         "Threshold per test is now " + fmt(s.threshold, 4) +
-        ", so the predicted family-wise rate is " +
-        pct(1 - Math.pow(1 - s.threshold, s.k)) +
+        ", so the predicted family-wise rate" +
+        (s.real > 0 ? " for the " + s.m0 + " true-null tests" : "") +
+        " is " + pct(predictedFWER(s.threshold, s.m0)) +
         ". The tally has been cleared, because those experiments used a " +
         "different rule.", { immediate: true });
     });
@@ -558,7 +597,7 @@
     var falseHits = lastRun.filter(function (t) { return t.hit && !t.real; }).length;
     familyShell.announce(
       "Experiment " + runCounter + ": " + falseHits +
-      " of the " + (s.k - s.real) + " tests with nothing to find came out " +
+      " of the " + s.m0 + " tests with nothing to find came out " +
       "significant.", { immediate: true });
   });
 
@@ -573,7 +612,8 @@
     familyShell.announce(
       tally.runs + " experiments run. " + pct(tally.anyFalse / tally.runs) +
       " of them produced at least one false positive, against " +
-      pct(1 - Math.pow(1 - s.threshold, s.k)) + " predicted.",
+      pct(predictedFWER(s.threshold, s.m0)) +
+      (s.real > 0 ? " predicted for the " + s.m0 + " true-null tests." : " predicted."),
       { immediate: true });
   });
 
