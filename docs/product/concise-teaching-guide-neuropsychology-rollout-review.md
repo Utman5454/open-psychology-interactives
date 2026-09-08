@@ -1,14 +1,19 @@
 # Concise teaching-guide rollout: Neuropsychology
 
-Date: 2026-09-08. Status: **rollout batch complete; pre-merge correction
-pass applied on independent review, still awaiting merge**.
-Third module-sized pass, after Cognitive Psychology
+Date: 2026-09-08. Status: **rollout merged; four learner-facing defects
+found during the rollout resolved by a separate follow-up PR
+(`fix-neuropsychology-live-qa`)**. Third module-sized pass, after
+Cognitive Psychology
 (`docs/product/concise-teaching-guide-cognitive-rollout-review.md`) and
 Research Methods
 (`docs/product/concise-teaching-guide-research-methods-rollout-review.md`).
 It rewrites every remaining Neuropsychology teaching guide, Full and
 Simplified, into the approved seven-section format. No other module was
-touched, and no activity code was touched.
+touched. No activity code was touched by the rollout itself or its
+pre-merge correction pass; the four resolved defects below were fixed
+afterwards by the separate follow-up named above, in the same pattern
+as the Multiple Comparisons FWER fix after the Research Methods
+rollout.
 
 ## Files changed
 
@@ -48,11 +53,11 @@ guide was not touched.
 | Memory Systems Detective | 2,237 | 355 | 84% |
 | Aphasia Profile Comparator | 1,819 | 353 | 81% |
 | Executive Function Task Laboratory | 2,711 | 356 | 87% |
-| Split-Brain Laboratory | 2,645 | 409 | 85% |
+| Split-Brain Laboratory | 2,645 | 398 | 85% |
 | Face Recognition Detective | 2,359 | 350 | 85% |
 | Assessment Battery Builder | 2,469 | 325 | 87% |
 | Recovery and Plasticity Simulator | 2,406 | 347 | 86% |
-| **Full total (11 files)** | **24,232** | **4,005** | **83%** |
+| **Full total (11 files)** | **24,232** | **3,994** | **84%** |
 
 ### Simplified edition (12)
 
@@ -72,14 +77,19 @@ guide was not touched.
 | Recovery and Plasticity Simulator | 781 | 298 | 62% |
 | **Simplified total (12 files)** | **9,594** | **3,378** | **65%** |
 
-**Grand total (23 files): 33,826 to 7,383 words, a 78% reduction.**
-New guides range from 228 to 409 words. Every Full guide sits under the
-450-word check-in point; the longest, Split-Brain Laboratory at 409,
-carries two genuinely separate experiments (a routing-based trial
-builder, and a five-condition dependency check on the classic result)
-and was inspected for detail that belonged elsewhere before being left
-at that length. Nothing was moved out to metadata or trimmed further
-without losing one of the two experiments. Simplified guides run
+**Grand total (23 files): 33,826 to 7,372 words, a 78% reduction.**
+New guides range from 228 to 408 words. Every Full guide sits under the
+450-word check-in point; the longest, Lesion-Symptom Inference Trap at
+408, walks six independent complications through a single confidence-
+ceiling model plus a closing challenge, and was inspected for detail
+that belonged elsewhere before being left at that length. Split-Brain
+Laboratory, the previous longest at 409, dropped to 398 when the
+live-QA follow-up replaced its now-obsolete "the callosum starts
+sectioned" workaround sentence with a shorter statement of the fixed
+intact-first default (see "Cross-source accuracy audit and content
+discrepancies found" above). Nothing was moved out to metadata or
+trimmed further without losing content specific to either activity.
+Simplified guides run
 noticeably shorter than the Full/Simplified ratio in the two earlier
 rollouts (65% reduction against 77% for Cognitive, 77% for Research
 Methods): the pre-existing Neuropsychology Simplified notes were
@@ -217,61 +227,125 @@ observations, flagged here rather than silently fixed, and classified
 per the brief.
 
 - **Live learner-facing defect, `06-memory-systems-amnesia-detective`
-  (Full), `index.html`.** A screen-reader-exposed figcaption
-  (`visually-hidden`, not `aria-hidden`) reads "Seven memory measures,"
+  (Full), `index.html`. RESOLVED.** A screen-reader-exposed figcaption
+  (`visually-hidden`, not `aria-hidden`) read "Seven memory measures,"
   but the tool implements exactly six, and the page's own debrief
-  panel elsewhere correctly says "Six measures is very few." The old
+  panel elsewhere correctly said "Six measures is very few." The old
   teaching notes repeated the wrong count ("Seven measures is very
-  few"). This is genuinely learner-facing for screen-reader users and
-  needs a separate `index.html` fix; the new guide does not state a
-  measure count at all, so it does not repeat the error.
+  few"). This was genuinely learner-facing for screen-reader users.
+  This is how the defect was first found and logged, deliberately as a
+  documentation-only observation rather than a silent code edit, in
+  the original submission of this branch.
+
+  It was fixed by a separate, tightly scoped follow-up
+  (`fix-neuropsychology-live-qa`), immediately after this branch
+  merged, as flagged above: the figcaption now reads "Six memory
+  measures," matching the debrief panel and the rewritten guide, which
+  never repeated the wrong count. A regression test
+  (`scripts/test-neuropsychology-live-qa.js`, run via
+  `scripts/check-all.py`) checks the figcaption text directly and
+  fails if "Seven memory measures" reappears.
 - **Live learner-facing conceptual overclaim,
-  `06-memory-systems-amnesia-detective` (Simplified), `activity.js`.**
-  Caught by the same independent review that found the internal
-  contradiction above, while checking the guide's opening claim
-  against the code that actually judges it. The executing activity's
-  own answer-key comment reasons in deterministic terms: it states
-  that a shared system "cannot produce" a crossed preserved-and-lost
-  pattern, and marks a profile as counting against the one-system
-  claim on that basis. That is the same overclaim the first draft of
-  this guide had repeated, a crossed profile counts against a simple
-  shared-resource account; it does not prove two separate biological
-  memory systems and does not rule out every possible single-system
-  model. The new guide states the narrower claim (see "Pre-merge
-  correction pass" below); the code's own "cannot produce" reasoning is
-  unchanged and needs a separate `activity.js` fix.
+  `06-memory-systems-amnesia-detective` (Simplified), `activity.js`.
+  RESOLVED.** Caught by the same independent review that found the
+  internal contradiction above, while checking the guide's opening
+  claim against the code that actually judges it. The executing
+  activity's own answer-key comment reasoned in deterministic terms: it
+  stated that a shared system "cannot produce" a crossed
+  preserved-and-lost pattern, and marked a profile as counting against
+  the one-system claim on that basis. Its synthesis panel likewise
+  said a claim about one shared system is "forbidden" by a crossed
+  profile. That was the same overclaim the first draft of the teaching
+  guide had repeated. This is how the defect was first found and
+  logged, deliberately as a documentation-only observation rather than
+  a silent code edit, in the original submission of this branch.
+
+  It was fixed by the same follow-up as the item above: Claim 1 is now
+  the more explicit "depend on exactly the same underlying resources in
+  the same way," and every "why" explanation, the code comment above
+  the answer key, and the page's synthesis panel now state the
+  narrower, correct claim, a crossed profile counts against a simple
+  shared-resource account without proving two separate biological
+  memory systems and without ruling out every possible single-system
+  or overlapping-network account. Profile C is unchanged: it still
+  cannot decide either claim, since an across-the-board impairment is
+  compatible with more than one account. The regression test checks
+  that neither "cannot produce" nor "system forbids" reasoning, nor the
+  old Claim 1 wording, survives in either `activity.js` or `index.html`.
 - **Live learner-facing defect and stale documentation (four places),
   `10-face-recognition-prosopagnosia-detective` (Simplified),
   `index.html`, `activity.js`, `metadata.json`, old
-  `teaching-notes.md`.** All four claim the Full edition "adds a sixth
-  component, covert recognition." The Full edition's `tool.js` has no
-  component called covert recognition anywhere; its sixth component,
-  absent from the Simplified edition, is voice recognition, a whole
-  second input route, not an extra step in the face route. The
-  Simplified edition's own extra step, reading someone's expression,
-  is also not present in the Full edition, so neither tool's
-  documentation correctly describes the other. This sentence sits
-  directly on the learner-facing Simplified page, so it needs a
-  separate `index.html`/`activity.js`/`metadata.json` fix; the new
-  guide does not repeat the covert-recognition claim.
+  `teaching-notes.md`. RESOLVED.** All four claimed the Full edition
+  "adds a sixth component, covert recognition." The Full edition's
+  `tool.js` has no component called covert recognition anywhere; its
+  sixth component, absent from the Simplified edition, is voice
+  recognition, a whole second input route, not an extra step in the
+  face route. The Simplified edition's own extra step, reading
+  someone's expression, is also not present in the Full edition, so
+  neither tool's documentation correctly described the other. This
+  sentence sat directly on the learner-facing Simplified page. This is
+  how the defect was first found and logged, deliberately as a
+  documentation-only observation rather than a silent code edit, in
+  the original submission of this branch.
+
+  It was fixed by the same follow-up: all three surviving copies
+  (`index.html`'s closing note, `activity.js`'s header comment, and
+  `metadata.json`'s `scopeNote`) now say the longer version adds "a
+  matched general-visual control and a parallel voice-recognition
+  route," then runs the inference backwards from fictional profiles to
+  every compatible break point. The Full face-recognition model itself
+  was not touched. `data/catalogue-simplified.json` does not mirror
+  `scopeNote`, so no regeneration was needed for this field, confirmed
+  by `scripts/build-simplified-catalogue.py --check`. The regression
+  test greps all three Simplified files (plus the catalogue) for
+  "covert recognition" and fails if it reappears anywhere.
 - **Live UI / default-state mismatch,
-  `09-hemispheric-lateralisation-split-brain` (Full), `tool.js`.** The
-  corpus callosum control defaults to "sectioned," not "intact," on
-  load and on reset, even though the disclosure that reveals it is
-  titled "Cut the corpus callosum, and run the same trial again,"
-  which implies the intended order is an intact trial first. A learner
-  who never opens that disclosure runs every trial already sectioned.
-  The new guide tells instructors to set the control to intact
-  themselves before a first demonstration trial, working around the
-  default rather than silently changing it; a future PR could instead
-  change the default state to "intact" in `tool.js`.
-- **Stale source-code comment (same tool), `tool.js`.** The header
-  comment states "Twelve combinations; six succeed after a section,"
-  but only three of the six sectioned field-and-channel combinations
-  succeed (confirmed against the code's own `succeeds()` function and
-  against `metadata.json` and the old teaching notes, both of which
-  correctly say three). Not learner-facing; only an internal comment
-  is wrong.
+  `09-hemispheric-lateralisation-split-brain` (Full), `tool.js`.
+  RESOLVED.** The corpus callosum control defaulted to "sectioned," not
+  "intact," on load and on reset, even though the disclosure that
+  reveals it is titled "Cut the corpus callosum, and run the same
+  trial again," which implies the intended order is an intact trial
+  first. A learner who never opened that disclosure ran every trial
+  already sectioned. The teaching guide's first submission worked
+  around this by telling instructors to set the control to intact
+  themselves before a first demonstration trial, rather than silently
+  changing the default. This is how the defect was first found and
+  logged.
+
+  It was fixed by a separate, tightly scoped follow-up
+  (`fix-neuropsychology-live-qa`), immediately after this branch
+  merged: `initialState()` now sets `callosum: CALLOSUM[0].id`
+  ("intact") instead of `CALLOSUM[1].id` ("sectioned"), so both page
+  load and reset start intact, the radio UI reflects that (it derives
+  `checked` from the same state), and sectioning the callosum from
+  there still works exactly as before, since the `succeeds()` routing
+  function itself was not touched. The teaching guide's workaround
+  sentence, now false, was replaced with a plain statement of the new
+  intact-first default. A regression test extracts and runs the actual
+  `initialState()` function and fails if it ever defaults to
+  `"sectioned"` again.
+- **Stale source-code comment (same tool), `tool.js` and
+  `metadata.json`. RESOLVED.** The header comment stated "Twelve
+  combinations; six succeed after a section," but only three of the
+  six sectioned field-and-channel combinations succeed (confirmed
+  against the code's own `succeeds()` function and against
+  `metadata.json` and the old teaching notes, both of which correctly
+  said three). `metadata.json`'s `simulationNotes` and an
+  accessibility caption in `index.html` separately used a muddled
+  "twelve combinations" framing (two visual fields by three channels
+  by two callosum states) alongside the correct three-sectioned-
+  successes figure, which was confusing even where it wasn't
+  numerically wrong. Not learner-facing for the `tool.js` comment;
+  the `index.html` caption is screen-reader-exposed.
+
+  Fixed by the same follow-up: all three locations now describe the
+  actual six-combination grid directly, two visual fields by three
+  response channels, all six succeeding with the callosum intact and
+  three succeeding after a section, with no reference to "twelve"
+  anywhere. The regression test checks both the wrong phrase's absence
+  and the correct one's presence in `tool.js`, and the absence of
+  "twelve combinations" in `tool.js`, `metadata.json` and
+  `index.html`.
 - **Metadata inconsistency (duration),
   `08-executive-function-task-laboratory`.** `metadata.json` gives
   `estimatedMinutes: 20`; the page's own hero text says "About 30
@@ -404,9 +478,11 @@ fixed on this branch; none required a code change.
    claim" and "stronger evidence for separate systems," in "What to
    look for" and "Common misconception / caution," were reworded to
    match ("the separability claim," "evidence that the two abilities
-   are separable"). The executing `activity.js` contains the same
-   overclaim in its own answer-key reasoning and is not touched here;
-   see the new discrepancy entry above.
+   are separable"). The executing `activity.js` contained the same
+   overclaim in its own answer-key reasoning; not touched on this
+   teaching-notes branch, but fixed immediately afterwards by the
+   separate follow-up branch `fix-neuropsychology-live-qa` — see the
+   updated discrepancy entry above for what changed.
 2. **`08-executive-function-task-laboratory` (Simplified), internal
    inconsistency.** Covered above under "Internal-consistency audit":
    the debrief assumed the "find me a different person" search always
@@ -462,20 +538,30 @@ the original 33,826.
 
 No Cognitive, Research Methods, Social and Critical Psychology, or
 Personality and Individual Differences file was touched. No
-`metadata.json` schema changed, and no `metadata.json` content was
-changed (the discrepancies above are reported, not fixed). No activity
-code changed, on either the original submission or this pre-merge
-correction pass. Five items above are logged as candidates for
-separate, tightly scoped follow-up PRs once this branch is resolved, in
-the same spirit as the Multiple Comparisons FWER fix that followed the
-Research Methods rollout, highest priority first since all four are
-genuinely learner-facing: the `06` Full measure-count figcaption, the
-`06` Simplified `activity.js` answer key's "cannot produce" overclaim
-(found on independent review, see "Pre-merge correction pass" above),
-the `10` Simplified covert-recognition claim (a four-file fix:
-`index.html`, `activity.js`, `metadata.json`, `teaching-notes.md`), and
-the `09` callosum default state; and, lowest priority since nothing
-learner-facing is wrong, the two stale source-code comments and two
-metadata arithmetic/duration mismatches. This document does not
+`metadata.json` schema changed. No activity code changed, on either
+the original submission or the pre-merge correction pass that followed
+it: both were teaching-notes-only branches, and the discrepancies above
+were reported, not fixed, in either.
+
+Five items were originally logged here as candidates for a separate,
+tightly scoped follow-up PR, in the same spirit as the Multiple
+Comparisons FWER fix that followed the Research Methods rollout. Four
+of the five, all of the genuinely learner-facing ones, were resolved
+by exactly such a follow-up, branch `fix-neuropsychology-live-qa`,
+merged after this rollout: the `06` Full measure-count figcaption, the
+`06` Simplified `activity.js` answer key's "cannot produce" and
+"system forbids" overclaims, the `10` Simplified covert-recognition
+claim across `index.html`, `activity.js` and `metadata.json`, and the
+`09` callosum default state (together with its stale "six succeed
+after a section" / "twelve combinations" documentation, corrected in
+the same follow-up once the file was open for the default-state fix).
+See the updated entries under "Cross-source accuracy audit and content
+discrepancies found" above for exactly what changed in each case; that
+follow-up also added a regression test
+(`scripts/test-neuropsychology-live-qa.js`) guarding all four. Only the
+fifth and lowest-priority pair, `metadata.json`'s minor arithmetic
+mismatch in `11-neuropsych-assessment-battery-builder` (Simplified)
+and the stale "ninety minutes" comment in its `activity.js`, remains
+open, since neither is learner-facing. This document does not
 authorise scaling to Social and Critical Psychology; that decision
 follows review of this batch.

@@ -28,8 +28,9 @@
 
    WHAT WAS REDUCED
    ----------------
-   A sixth component, covert recognition, and the backwards inference from a
-   profile to the component.
+   The matched general-visual control and the parallel voice-recognition
+   route, and the backwards inference from a profile to every component
+   compatible with it.
 
    HONESTY, ON THE PAGE
    --------------------

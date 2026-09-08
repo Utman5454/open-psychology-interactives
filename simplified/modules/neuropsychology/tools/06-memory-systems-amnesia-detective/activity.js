@@ -62,19 +62,25 @@
   var CLAIMS = [
     {
       key: "same",
-      text: "Learning new facts and learning new skills are done by one and " +
-        "the same system.",
-      /* A claim of one shared system is contradicted by any preserved-and-lost
-         pattern, and is untouched by a profile in which both are lost. */
+      text: "Learning new facts and learning new skills depend on exactly " +
+        "the same underlying resources in the same way.",
+      /* A claim that one shared resource handles both abilities in the same
+         way counts against any preserved-and-lost pattern, and is untouched
+         by a profile in which both are lost. Countering it is not the same
+         as proving two completely separate biological systems, or as ruling
+         out every possible single-system or overlapping-network account. */
       answer: { A: "against", B: "against", C: "cannot" },
       why: {
-        A: "One thing is preserved while the other is lost. A single shared " +
-          "system cannot produce that, so this profile counts against the claim.",
-        B: "The same argument running the other way. Taken with Profile A this " +
-          "is a double dissociation, which also rules out the reply that the " +
-          "lost task was simply the harder one.",
-        C: "Both are lost, which is exactly what one shared system predicts " +
-          "and also exactly what two separate systems predict if both are " +
+        A: "One thing is preserved while the other is lost, which is hard to " +
+          "reconcile with both depending on exactly the same resources in " +
+          "the same way, so this profile counts against the claim. It does " +
+          "not by itself prove two completely separate systems.",
+        B: "The same argument running the other way. Taken with Profile A " +
+          "this is a double dissociation, which also defeats the reply that " +
+          "the lost task was simply the harder one, without settling how " +
+          "many systems are involved.",
+        C: "Both are lost, which fits a single shared resource being " +
+          "damaged and equally fits two separate systems both being " +
           "damaged. It fits either way, so it cannot decide between them."
       }
     },

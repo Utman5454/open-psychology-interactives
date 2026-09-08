@@ -13,10 +13,9 @@ handful of surgically disconnected people, into a claim about
 connected brains, where both hemispheres receive almost everything at
 once.
 
-**Before students start.** The callosum control starts on "sectioned,"
-not "intact," so set it to intact yourself before a first
-demonstration trial if you want students to see an unaffected baseline
-first. Read the caution that nothing here is flashed to one visual
+**Before students start.** The callosum control starts on "intact," so
+a first trial shows the unaffected baseline before anyone cuts
+anything. Read the caution that nothing here is flashed to one visual
 field; a browser cannot control fixation, and the tool reports what a
 routing model predicts.
 
