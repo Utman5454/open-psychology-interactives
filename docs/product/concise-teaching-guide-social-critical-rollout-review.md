@@ -2,12 +2,14 @@
 
 Date: 2026-09-08. Status: **rollout merged; four learner-facing defects and
 one self-contradictory metadata file found during research resolved by a
-separate follow-up PR (`fix-social-critical-live-qa`), whose own first pass
-on Tool 06 needed a second, corrective pass after independent review found
-it had replaced one overclaim with a narrower but still false one (see
-"Cross-source accuracy audit and content discrepancies found" below); two
-pre-merge correction passes on the rollout itself applied seven wording and
-classification fixes to this batch's own guides and review document (see
+separate follow-up PR (`fix-social-critical-live-qa`), whose Tool 06 fix
+took three internal attempts after independent review twice found the
+previous attempt still wrong (a too-strong replacement claim, then a
+"final" three-way fix that missed one Full-edition sentence and the
+Simplified edition's code entirely; see "Cross-source accuracy audit and
+content discrepancies found" below); two pre-merge correction passes on
+the rollout itself applied seven wording and classification fixes to this
+batch's own guides and review document (see
 "Pre-merge correction pass" below).** Fourth module-sized pass, after
 Cognitive Psychology
 (`docs/product/concise-teaching-guide-cognitive-rollout-review.md`), Research
@@ -269,11 +271,12 @@ field, and both are corrected here.
   asserts the 0/5/2 split directly, and checks that the stale "six of the
   seven" and unqualified "none of them can use" phrasings are absent from
   every listed file.
-- **Live learner-facing defect, `06-discourse-subject-position-lab` (Full),
-  `index.html` (multiple places, all learner-facing body and meta text),
-  a `tool.js` header comment, the runtime synthesis, `tool.css`'s ledger
-  annotation, `metadata.json`, and the old `teaching-notes.md` (which
-  already self-contradicted). RESOLVED, in two stages.**
+- **Live learner-facing defect, `06-discourse-subject-position-lab` (both
+  editions), across `tool.js`/`activity.js`, `index.html` (body and meta
+  text), `tool.css`, `metadata.json`, both `data/catalogue*.json` mirrors,
+  and the old `teaching-notes.md` (which already self-contradicted).
+  RESOLVED, after three attempts, the middle two of which independent
+  review found were themselves still wrong.**
 
   **Stage 1 (original defect).** All stated "none of the five accounts
   mentions" the halved hours. `ACCOUNTS.advocacy.text` and the code's own
@@ -283,48 +286,79 @@ field, and both are corrected here.
   observation rather than a silent code edit, in the original submission
   of the teaching-guide rollout branch.
 
-  **Stage 1's fix was itself too strong, and independent review caught
-  it.** The first pass of this follow-up (`fix-social-critical-live-qa`)
-  replaced "none of the five accounts mentions" with "only the advocacy
-  bulletin mentions it; the other four genres have no field for it." That
-  is also false: the commissioning report's own text ("Reduced-hours model
-  implemented on schedule and within budget") does acknowledge the
-  reduction, only recoded as implementation performance rather than named
-  as the council's decision. Only the case note, the risk register and the
-  recovery summary genuinely have no field for it. This is being recorded
-  candidly, in the same document, as a correction to a correction, rather
-  than quietly rewritten as though the first pass had gotten it right.
+  **Stage 2: the first fix was itself too strong.** The first pass of
+  this follow-up (`fix-social-critical-live-qa`) replaced "none of the
+  five accounts mentions" with "only the advocacy bulletin mentions it;
+  the other four genres have no field for it." That is also false: the
+  Full commissioning report's own text ("Reduced-hours model implemented
+  on schedule and within budget") does acknowledge the reduction, only
+  recoded as implementation performance rather than named as the
+  council's decision. Only the case note, the risk register and the
+  recovery summary genuinely have no field for it. Independent review
+  caught this.
 
-  **The final, three-way fix.** `tool.js`'s `mentionsCut` variable, which
-  could only ever be true or false for "advocacy analysed or not," was
-  removed. The header comment, the runtime synthesis (previously a binary
-  ternary keyed on `mentionsCut`), the opening-prediction feedback (which
-  separately claimed the fact was "missing from four of the five"), both
-  `index.html` body passages, its meta/OpenGraph/Twitter descriptions,
-  `tool.css`'s ledger-entry marker text, `metadata.json`'s
-  `accessibilityNotes` and `simulationNotes`, and `data/catalogue.json`'s
-  mirrored entry now all state the same three-way distinction: the
-  advocacy bulletin names the council's decision in its first clause; the
-  commissioning report acknowledges a "reduced-hours model" but recodes it
-  as implementation performance, keeping neither its cause, its scale, nor
-  its link to what happened to R next; the case note, the risk register
-  and the recovery summary have no field for it at all. The regenerated
-  `standalone.html` carries the fix. Both teaching guides (Full and
-  Simplified) repeated the stage-1 overclaim and were rewritten to state
-  the three-way distinction too, including a debrief question in each
-  asking what changes when the halving becomes "a reduced-hours model
-  implemented on schedule" rather than disappearing entirely; the
-  Simplified activity's own code already carried this nuance (its
-  `mentionsHours` flag is `false` for the commissioning report, with prose
-  explaining it "comes closest of the other four" without being the same
-  entry), so only its Simplified guide needed to catch up to code that was
-  already right. The regression test now checks that the advocacy account
-  explicitly contains the halving, that the commissioning account
-  explicitly contains "Reduced-hours model," that no listed file claims
-  "none of the five," "only one of the five," or "the other four
-  genres/accounts" lack the entry, and that the source names the
-  "reduced-hours model" wording and the three genuinely omitting genres by
-  name.
+  **Stage 3: the "final" three-way fix was itself incomplete.** A second
+  pass rewrote the Full edition correctly: `tool.js`'s `mentionsCut`
+  variable was removed, and the header comment, the runtime synthesis, the
+  opening-prediction feedback, `index.html`, `tool.css`'s ledger marker,
+  `metadata.json` and `data/catalogue.json` all came to state the same
+  three-way distinction. But that pass's own review, and this document's
+  own write-up of it, missed two things: one remaining Full-edition
+  sentence, and the Simplified edition's code entirely. Both are recorded
+  here candidly rather than silently folded into a rewritten "final" story.
+  First, the advocacy account's own `note` field in `tool.js` still said
+  "The only account that includes the budget decision," which under the
+  three-way distinction reads as excluding the commissioning report's
+  acknowledgement of it too, not just its omission by the other three.
+  Second, and more seriously, this document's stage-3 write-up claimed
+  "the Simplified activity's own code already carried this nuance," citing
+  its `mentionsHours` flag and a note saying the commissioning report
+  "comes closest of the other four." That claim was wrong: the Simplified
+  `activity.js` implemented the exact same binary the Full edition had
+  just been fixed to abandon, a `mentionsHours` boolean and a `MENTIONING`
+  array reducing the ledger entry to a one-of-five count, throughout its
+  opening prediction, comparison table, summary sentence and closing
+  synthesis, and its `metadata.json` repeated "four of the five have
+  nowhere to put the decision." The regression test added at stage 3 only
+  checked the Full edition's files, so it could not catch this.
+
+  **Stage 4 (this pass): the actual complete fix.** The advocacy note in
+  `tool.js` now reads "The only account that names the council's decision
+  to halve the hours outright." The Simplified `activity.js` replaced the
+  binary `mentionsHours` field with a three-value `hoursHandling: "states"
+  | "recodes" | "omits"` field (advocacy states, the commissioning report
+  ["market"] recodes, the case note/risk register/recovery summary omit),
+  removed `MENTIONING` entirely, rewrote the opening prediction (no longer
+  telling learners in advance that the entry "appears in only one of the
+  five accounts"; it now asks what kind of event is handled most
+  inconsistently, stated, recoded or omitted), replaced the comparison
+  table's binary "Mentions the halving of hours?" yes/no column with "How
+  the hours reduction appears" (three text values), and rewrote the
+  summary sentence and closing synthesis to state the three-way result
+  directly. The Simplified `metadata.json`'s `scopeNote`, `summary`,
+  `interactionTypes` and `simulationNotes` were corrected to match, and
+  `data/catalogue-simplified.json` was regenerated through the normal
+  generator (not hand-edited) and verified to match. The regenerated
+  `standalone.html` carries the Full-edition fixes. Neither teaching guide
+  needed to change again at this stage: both already stated the three-way
+  distinction correctly from stage 3.
+
+  The regression test (`scripts/test-social-critical-live-qa.js`) was
+  extended at this stage to close the gap that let stage 3 through: it now
+  extracts the Simplified edition's real `ACCOUNTS` array and asserts the
+  1 states / 1 recodes / 3 omits split directly (naming advocacy and the
+  commissioning report by id), checks that neither `mentionsHours` nor
+  `MENTIONING` survive in `activity.js`, checks the comparison table's
+  column heading, and checks that `data/catalogue-simplified.json` agrees
+  with `metadata.json`, alongside a new check that the Full edition's
+  "only account that includes the budget decision" sentence cannot
+  return. It still checks the Full edition's advocacy/commissioning text,
+  the absence of "none of the five," "only one of the five," "the other
+  four genres/accounts," "four of the five," and "comes closest of the
+  other four" across every listed file in both editions, and the presence
+  of "reduced-hours model" and the three genuinely omitting genres by
+  name. The Tool 05 and Tool 12 checks already in this file were not
+  weakened.
 - **Stale walkthrough claim, `09-crowd-deindividuation-vs-esim`
   (Simplified), old `teaching-notes.md` only (not the tool's own
   learner-facing text).** The old guide's walkthrough implied the "Show two
@@ -429,26 +463,28 @@ follow-up PR and have now been resolved there (`fix-social-critical-live-qa`):
    framework count, in `tool.js`'s CLAIMS-challenge feedback,
    `index.html`'s "What is left over" section, a `tool.js` header comment,
    and `metadata.json`'s `simulationNotes`. RESOLVED.
-2. `06-discourse-subject-position-lab` (Full): the false "none of the five
-   accounts mentions" the hours cut, and then the false "only the advocacy
-   bulletin mentions it; the other four have no field for it" that
-   replaced it in this follow-up's own first pass, across `tool.js`'s
-   header comment and runtime synthesis, `index.html`, `tool.css`,
-   `metadata.json`, and both teaching guides. RESOLVED with the actual
-   three-way distinction (explicit / recoded / omitted).
+2. `06-discourse-subject-position-lab` (both editions): the false "none of
+   the five accounts mentions" the hours cut, then the false "only the
+   advocacy bulletin mentions it; the other four have no field for it"
+   that replaced it, then a "final" three-way fix that missed one
+   remaining Full-edition sentence and left the Simplified edition's
+   `activity.js` implementing the same binary (`mentionsHours`,
+   `MENTIONING`) it had just been fixed to remove from the Full edition,
+   across three attempts touching `tool.js`/`activity.js`, `index.html`,
+   `tool.css`, both `metadata.json` files, both `data/catalogue*.json`
+   mirrors, and the regression test itself. RESOLVED with the actual
+   three-way distinction (states / recodes / omits) in both editions.
 3. `12-person-or-setting-workplace-lab` (Full): the off-by-one
    round-counter crash in `tool.js` and `standalone.html`. RESOLVED.
 4. `12-person-or-setting-workplace-lab` (Simplified): the "38 is less than
    half of 74" wording in `index.html` and `activity.js`. RESOLVED.
 
 The same follow-up also resolved Full Tool 12's self-contradictory
-`metadata.json` (see above) and added
-`scripts/test-social-critical-live-qa.js`, registered as a gate in
-`scripts/check-all.py`, which moved the harness from 12 to 13 gates.
-
-The same tool's stale 50/35 `metadata.json` figures (item 3's tool) are
-carried in the same follow-up as an additional, non-learner-facing metadata
-cleanup, not as a fifth defect.
+`metadata.json`, including its stale 50/35 outcome figures (see above),
+as an additional, non-learner-facing metadata cleanup rather than a fifth
+defect, and added `scripts/test-social-critical-live-qa.js`, registered as
+a gate in `scripts/check-all.py`, which moved the harness from 12 to 13
+gates.
 
 No discrepancies were found for `01-epistemology-lens-switch` (either
 edition), `02-constructing-a-category` (either edition),

@@ -167,11 +167,11 @@
         "started a weekly peer group at the library, now attended by five " +
         "people. Her case has since been closed as \"disengaged\".",
       note:
-        "The only account that includes the budget decision, and it includes it " +
-        "in the first clause. Note what that does to the last sentence: " +
-        "\"closed as disengaged\" is presented as something done to R rather " +
-        "than something she did, and the quotation marks carry the whole " +
-        "argument.",
+        "The only account that names the council's decision to halve the " +
+        "hours outright, and it puts that decision in the first clause. Note " +
+        "what that does to the last sentence: \"closed as disengaged\" is " +
+        "presented as something done to R rather than something she did, and " +
+        "the quotation marks carry the whole argument.",
       hidden:
         "Whatever the reassessment might have got right. This account is not " +
         "neutral either, and its confidence that the assessment was in error is " +

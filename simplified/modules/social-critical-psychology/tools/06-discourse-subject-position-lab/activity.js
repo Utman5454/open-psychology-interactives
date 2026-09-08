@@ -12,11 +12,15 @@
  *   the events are made of language, and a fixed, undisputed ledger that every
  *   account is compatible with is the guard against that reading.
  *
- *   THE HALVING OF THE HOURS APPEARS IN ONE ACCOUNT OF FIVE. It happened in
- *   April, before anything R did, and an account written about a person has
- *   nowhere to put a decision that was not hers. What a discourse cannot say
- *   about anything other than the person is usually more consequential than
- *   what it says about the person.
+ *   THE HALVING OF THE HOURS IS HANDLED THREE WAYS. It happened in April,
+ *   before anything R did. The advocacy bulletin states the council's
+ *   decision outright, in its first clause. The commissioning report
+ *   acknowledges a "reduced-hours model implemented on schedule," but recodes
+ *   it as implementation performance rather than keeping it as a decision
+ *   made about people. The case note, the risk register and the recovery
+ *   summary have no field for it at all. What a discourse cannot say about
+ *   anything other than the person is usually more consequential than what it
+ *   says about the person.
  *
  * WHAT WAS CUT. The original asks four questions of every account, twenty
  * judgements in all. This asks one, the authority question, because it is the
@@ -53,7 +57,8 @@
     "In September the service closed R's case, recording that she had disengaged."
   ];
 
-  /* The entry that four of the five accounts have no place for. */
+  /* The entry that three of the five accounts have no place for, one
+     recodes, and one states outright. */
   var HOURS_ENTRY = 2;
 
   var AUTHORITY_OPTIONS = [
@@ -73,7 +78,7 @@
       position: "A patient whose engagement has declined and whose disagreement is a symptom",
       action: "Close the case",
       responsibility: "R's, by default, because nothing else in the record can hold any",
-      mentionsHours: false,
+      hoursHandling: "omits",
       note: "Notice how much of the ledger survives and how little of it stays the same kind of event. Expressed dissatisfaction and has written to management are both true. Limited insight turns a disagreement into a symptom, and once it is a symptom the letter cannot be answered on its merits without a category error.",
       hidden: "That the hours were halved in April. The record has a field for R's attendance and no field for the programme's."
     },
@@ -85,7 +90,7 @@
       position: "An unmonitored risk with no responsible person attached",
       action: "Flag it pending review",
       responsibility: "Nobody's. It is recorded as a gap in oversight rather than as anyone's doing",
-      mentionsHours: false,
+      hoursHandling: "omits",
       note: "The same library group that the advocacy bulletin calls peer support is here an unassessed setting. Neither description is inaccurate. What differs is that this one is written in a genre whose whole purpose is to notice what has not been signed off, and that genre has no way of recording a thing going well.",
       hidden: "That R is in a library, on a weekday, with four people she knows. The register records the absence of oversight, not the presence of anyone."
     },
@@ -97,8 +102,8 @@
       position: "A member wronged by a decision, who is acting on it",
       action: "Answer her letter",
       responsibility: "The council's, and the service's for not replying",
-      mentionsHours: true,
-      note: "The only account of the five that includes the budget decision, and it includes it in the first clause. Notice what that does to the last sentence: closed as disengaged becomes something done to R rather than something she did.",
+      hoursHandling: "states",
+      note: "The only account that states the council's decision outright, and it puts that decision in the first clause. Notice what that does to the last sentence: closed as disengaged becomes something done to R rather than something she did.",
       hidden: "Whatever the reassessment might have got right. This account is not neutral either, and its confidence that the assessment was in error is asserted rather than shown."
     },
     {
@@ -109,7 +114,7 @@
       position: "Someone progressing, under her own steam, towards independence",
       action: "Discharge her and wish her well",
       responsibility: "Nobody's, because on this account nothing went wrong",
-      mentionsHours: false,
+      hoursHandling: "omits",
       note: "The humane one, and the one that most completely turns a service cut into a personal achievement. Every verb is R's: she has moved, chosen, taken ownership, built. Nothing was done to her, and ready to manage without formal input does the work that case closed does in the case note, with none of the friction.",
       hidden: "That she asked for something and did not get it. In this vocabulary there is no grammatical position for an unanswered request, and a disagreement can only appear as a view that has been voiced."
     },
@@ -121,7 +126,7 @@
       position: "A unit of expected step-down within a cohort",
       action: "Report delivery on schedule and move on",
       responsibility: "No one's. The model performed as designed",
-      mentionsHours: false,
+      hoursHandling: "recodes",
       note: "The hours appear here, and only as a model implemented on schedule, which is not the same entry. R's letter appears as written feedback, counted rather than read, and the account that comes closest to naming the April decision is the one in which it cannot be a cause of anything.",
       hidden: "R, as a person at all. She appears once, as one service user, and the sentence she appears in is about the data being within tolerance."
     }
@@ -145,7 +150,24 @@
     return found;
   }
 
-  var MENTIONING = ACCOUNTS.filter(function (a) { return a.mentionsHours; });
+  function accountsHandling(kind) {
+    return ACCOUNTS.filter(function (a) { return a.hoursHandling === kind; });
+  }
+
+  function naturalJoin(items) {
+    if (items.length <= 1) { return items.join(""); }
+    return items.slice(0, -1).join(", ") + " and " + items[items.length - 1];
+  }
+
+  function capitalise(text) {
+    return text.charAt(0).toUpperCase() + text.slice(1);
+  }
+
+  var HOURS_LABELS = {
+    states: "States the decision outright",
+    recodes: "Recodes it as a reduced-hours model",
+    omits: "Omits it"
+  };
 
   /* ------------------------------------------------------------------ dom */
 
@@ -160,25 +182,30 @@
 
   var VERDICTS = {
     service: { state: "correct", text:
-      "Correct, and the reasoning is the useful part. Four of the five " +
-      "accounts are written about R, and an account written about a person " +
-      "has nowhere to put a decision that was not hers. The entry that " +
-      "appears in only one is the halving of the hours in April, which " +
-      "happened before anything R did." },
+      "Correct, and the reasoning is the useful part. An account built " +
+      "around what a person did or experienced has to do something else " +
+      "with a decision that was not hers. Only the advocacy bulletin states " +
+      "the council's decision outright, in its first clause. The " +
+      "commissioning report acknowledges a reduced-hours model but recodes " +
+      "it as implementation performance. The case note, the risk register " +
+      "and the recovery summary have no place for it at all." },
     behaviour: { state: "incorrect", text:
       "R's behaviour is the one thing every account contains. All five " +
       "mention the sessions, the letter or the library group, and they " +
       "disagree about what those things are rather than about whether they " +
-      "happened. What drops out is something that was not hers." },
+      "happened. What varies most is something that was not hers." },
     date: { state: "incorrect", text:
-      "The missing entry is not a detail. It is the decision that started the " +
-      "six months, it is in the ledger with a month attached, and four of the " +
-      "five accounts have no place for it at all." },
+      "The entry that varies most is not a detail. It is the decision that " +
+      "started the six months, and it is in the ledger with a month " +
+      "attached. Three of the five accounts have no place for it at all, " +
+      "one recodes it as a reduced-hours model, and only one states it " +
+      "outright." },
     disputed: { state: "partial", text:
       "A reasonable rule of thumb, and it points at the wrong entry here. " +
-      "Nothing in the ledger is disputed, and the entry that goes missing is " +
-      "one nobody contests. It goes missing because of who it is about rather " +
-      "than because anyone disagrees with it." }
+      "Nothing in the ledger is disputed, and the entry most accounts have " +
+      "no place for is one nobody contests. It varies across accounts " +
+      "because of who it is about rather than because anyone disagrees " +
+      "with it." }
   };
 
   function answer(key) {
@@ -351,19 +378,28 @@
       tr.appendChild(cell("td", account.position));
       tr.appendChild(cell("td", account.action));
       tr.appendChild(cell("td", optionText(account.authority)));
-      tr.appendChild(cell("td", account.mentionsHours ? "yes" : "no"));
-      tr.setAttribute("data-state", account.mentionsHours ? "chosen" : "incorrect");
+      tr.appendChild(cell("td", HOURS_LABELS[account.hoursHandling]));
+      tr.setAttribute("data-state",
+        account.hoursHandling === "states" ? "correct" :
+        account.hoursHandling === "recodes" ? "partial" : "incorrect");
       summaryBody.appendChild(tr);
     });
 
+    var states = accountsHandling("states");
+    var recodes = accountsHandling("recodes");
+    var omits = accountsHandling("omits");
     summarySentence.textContent =
-      "Entry " + HOURS_ENTRY + " of the ledger, the halving of the hours, " +
-      "appears in " + MENTIONING.length + " of the " + ACCOUNTS.length +
-      " accounts: " + MENTIONING.map(function (a) { return a.title.toLowerCase(); }).join(", ") +
-      ". It happened in April, before anything R did, and it is the only entry " +
-      "in the ledger that is about a decision rather than about a person. The " +
-      "commissioning report comes closest of the other four, and it has the " +
-      "hours as a model implemented on schedule, which is not the same entry.";
+      "Entry " + HOURS_ENTRY + " of the ledger, the halving of the hours, is " +
+      "handled three ways. " + states[0].title + " states the council's " +
+      "decision outright, in its first clause. " + recodes[0].title +
+      " turns it into implementation performance: a reduced-hours model " +
+      "implemented on schedule, which is not the same entry. " +
+      capitalise(naturalJoin(omits.map(function (a) {
+        return a.title.replace(/^The /, "the ");
+      }))) +
+      " have no place for it at all. It happened in April, before anything " +
+      "R did, and it is the only entry in the ledger that is about a " +
+      "decision rather than about a person.";
     wb.scrollTo(cardSummary);
     wb.announce("All five accounts side by side.");
   }
@@ -375,9 +411,10 @@
     resultLead.textContent =
       "You settled " + Object.keys(settled).length + " of the five accounts " +
       "and named the right authority for " + correct + " of them. Across all " +
-      "five, the same eight events produce five different kinds of person, " +
-      "five different obvious next steps, and " + MENTIONING.length +
-      " account of five that has anywhere to put the decision that started it.";
+      "five, the same eight events produce five different kinds of person and " +
+      "five different obvious next steps. Only one account states the " +
+      "decision that started it outright; one recodes it as implementation " +
+      "performance; the rest have nowhere to put it at all.";
     wb.show(synthesis);
     wb.scrollTo(synthesis);
   }

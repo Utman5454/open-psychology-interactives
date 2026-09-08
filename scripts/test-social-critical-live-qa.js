@@ -14,10 +14,19 @@
       reach it indirectly. The tool's own `LENSES[*].coding[8]` data instead
       gives: no framework central, five with no concept, and two ("possible
       selves" and "relational") reaching it only indirectly.
-   2. modules/social-critical-psychology/tools/06-discourse-subject-position-lab/
+   2. Both editions of
+      modules/social-critical-psychology/tools/06-discourse-subject-position-lab/
       claimed, in several places, that none of the five accounts mentions
-      the halved programme hours. The advocacy bulletin's own text mentions
-      it; the other four genres have no field for it.
+      the halved programme hours (and, in an intermediate over-correction
+      of that bug caught by later independent review, that only the
+      advocacy bulletin mentions it and the other four genres have no
+      field for it, including a Simplified `mentionsHours` boolean and
+      `MENTIONING` array that implemented that same binary). The actual
+      distinction is three-way: the advocacy bulletin states the council's
+      decision to halve the hours outright, in its first clause; the
+      commissioning report acknowledges a "reduced-hours model" but
+      recodes it as implementation performance; the case note, the risk
+      register and the recovery summary have no field for it at all.
    3. modules/social-critical-psychology/tools/12-person-or-setting-workplace-lab/
       tool.js contained stale three-round state logic (`answers.length ===
       3`, `answers[2]`, `round === 2` as the final-round check) left over
@@ -71,6 +80,13 @@ const DISCOURSE_CSS = path.join(
 const DISCOURSE_META = path.join(
   ROOT, 'modules/social-critical-psychology/tools/06-discourse-subject-position-lab/metadata.json');
 
+const SIMPLE_DISCOURSE_JS = path.join(
+  ROOT, 'simplified/modules/social-critical-psychology/tools/06-discourse-subject-position-lab/activity.js');
+const SIMPLE_DISCOURSE_HTML = path.join(
+  ROOT, 'simplified/modules/social-critical-psychology/tools/06-discourse-subject-position-lab/index.html');
+const SIMPLE_DISCOURSE_META = path.join(
+  ROOT, 'simplified/modules/social-critical-psychology/tools/06-discourse-subject-position-lab/metadata.json');
+
 const FULL12_JS = path.join(
   ROOT, 'modules/social-critical-psychology/tools/12-person-or-setting-workplace-lab/tool.js');
 const FULL12_HTML = path.join(
@@ -88,6 +104,7 @@ const SIMPLE12_META = path.join(
   ROOT, 'simplified/modules/social-critical-psychology/tools/12-person-or-setting-workplace-lab/metadata.json');
 
 const CATALOGUE = path.join(ROOT, 'data/catalogue.json');
+const CATALOGUE_SIMPLIFIED = path.join(ROOT, 'data/catalogue-simplified.json');
 
 function read(file) {
   return fs.readFileSync(file, 'utf8');
@@ -249,6 +266,13 @@ function checkDiscourse() {
         label + ' does not claim "the other four genres/accounts" lack the entry');
       check(!/appears in only one of the five/i.test(content),
         label + ' does not claim the entry "appears in only one of the five"');
+      // A second intermediate overclaim, caught separately: the advocacy
+      // account's own "note" describing itself as the only account that
+      // "includes" the budget decision, which reads as excluding the
+      // commissioning report's recoded acknowledgement of it too.
+      check(!/only account that includes the budget decision/i.test(content),
+        label + ' does not claim the advocacy bulletin is "the only account ' +
+        'that includes the budget decision"');
     });
 
   // The synthesis (and the equivalent static copy) must no longer be able
@@ -290,6 +314,109 @@ function checkDiscourse() {
   if (entry) {
     check(JSON.stringify(entry) === JSON.stringify(metaObj),
       'data/catalogue.json entry for Tool 06 matches metadata.json exactly');
+  }
+}
+
+/* =========================================================================
+   2b. Discourse and Subject Position Lab (Simplified): the same
+   three-way distinction, checked against the actual data model
+   -------------------------------------------------------------------------
+   The Simplified edition implemented the intermediate overclaim in code,
+   not just in prose: a binary `mentionsHours` field and a `MENTIONING`
+   array that reduced the ledger entry to a one-of-five count, missed by
+   the first pass of this regression because it only covered the Full
+   edition. This section extracts the real `ACCOUNTS` array and asserts
+   the three-way split directly, then checks the learner-facing copy and
+   the generated Simplified catalogue.
+   ========================================================================= */
+
+function loadSimplifiedAccounts() {
+  const source = read(SIMPLE_DISCOURSE_JS);
+  const snippet = [
+    extractArray(source, 'ACCOUNTS', SIMPLE_DISCOURSE_JS),
+    'module.exports = { ACCOUNTS: ACCOUNTS };',
+  ].join('\n\n');
+  const sandbox = { module: { exports: {} } };
+  vm.createContext(sandbox);
+  vm.runInContext(snippet, sandbox, { filename: 'extracted-simplified-discourse-accounts.js' });
+  return sandbox.module.exports.ACCOUNTS;
+}
+
+function checkDiscourseSimplified() {
+  const source = read(SIMPLE_DISCOURSE_JS);
+
+  check(!/mentionsHours/.test(source),
+    'activity.js no longer has a binary "mentionsHours" field');
+  check(!/\bMENTIONING\b/.test(source),
+    'activity.js no longer has a "MENTIONING" one-of-five array');
+
+  const accounts = loadSimplifiedAccounts();
+  check(accounts.length === 5, 'ACCOUNTS has five accounts (got ' + accounts.length + ')');
+
+  const states = accounts.filter(function (a) { return a.hoursHandling === 'states'; });
+  const recodes = accounts.filter(function (a) { return a.hoursHandling === 'recodes'; });
+  const omits = accounts.filter(function (a) { return a.hoursHandling === 'omits'; });
+
+  check(states.length === 1,
+    'exactly one account states the hours reduction outright (got ' + states.length + ')');
+  check(recodes.length === 1,
+    'exactly one account recodes the hours reduction (got ' + recodes.length + ')');
+  check(omits.length === 3,
+    'exactly three accounts omit the hours reduction (got ' + omits.length + ')');
+  check(states.length === 1 && states[0].id === 'advocacy',
+    'the "states" account is advocacy');
+  check(recodes.length === 1 && recodes[0].id === 'market',
+    'the "recodes" account is the commissioning report ("market")');
+
+  const commissioningMatch = /market[\s\S]{0,300}?Reduced-hours model/.exec(source);
+  check(Boolean(commissioningMatch),
+    'activity.js\'s commissioning report ("market") account text contains ' +
+    '"Reduced-hours model"');
+
+  [SIMPLE_DISCOURSE_JS, SIMPLE_DISCOURSE_HTML, SIMPLE_DISCOURSE_META, CATALOGUE_SIMPLIFIED]
+    .forEach(function (file) {
+      const content = read(file);
+      const label = path.relative(ROOT, file);
+      check(!/appears in only one of the five/i.test(content),
+        label + ' does not claim the entry "appears in only one of the five"');
+      check(!/one account of five/i.test(content),
+        label + ' does not claim the entry "appears in one account of five"');
+      check(!/four of the five/i.test(content),
+        label + ' does not claim "four of the five" have no place for it');
+      check(!/four of them have no place/i.test(content),
+        label + ' does not claim "four of them have no place" for it');
+      check(!/comes closest of the other four/i.test(content),
+        label + ' does not describe the commissioning report as merely ' +
+        '"closest of the other four"');
+    });
+
+  // The comparison table must no longer be a binary "Mentions the halving of
+  // hours?" yes/no column.
+  const html = read(SIMPLE_DISCOURSE_HTML);
+  check(!/mentions the halving of hours\?/i.test(html),
+    'index.html\'s comparison table is no longer headed "Mentions the ' +
+    'halving of hours?"');
+  check(/how the hours reduction appears/i.test(html),
+    'index.html\'s comparison table has a column describing how the hours ' +
+    'reduction appears, not a yes/no mention column');
+
+  // Simplified metadata and its generated catalogue entry must agree.
+  const catalogueSimplified = JSON.parse(read(CATALOGUE_SIMPLIFIED));
+  const metaObj = JSON.parse(read(SIMPLE_DISCOURSE_META));
+  let entry = null;
+  catalogueSimplified.modules.forEach(function (m) {
+    (m.activities || []).forEach(function (t) {
+      if (t.moduleSlug === 'social-critical-psychology' &&
+          t.toolSlug === '06-discourse-subject-position-lab') {
+        entry = t;
+      }
+    });
+  });
+  check(Boolean(entry),
+    'data/catalogue-simplified.json has a Simplified entry for 06-discourse-subject-position-lab');
+  if (entry) {
+    check(entry.summary === metaObj.summary,
+      'data/catalogue-simplified.json\'s summary matches metadata.json\'s summary');
   }
 }
 
@@ -560,6 +687,7 @@ function checkSimplified12Wording() {
 function main() {
   checkLenses();
   checkDiscourse();
+  checkDiscourseSimplified();
   checkFull12StateMachine();
   checkFull12StalePatternsAbsent();
   checkFull12Metadata();
