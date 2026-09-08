@@ -3259,17 +3259,26 @@
 
     // Computed separately for each person rather than assumed equal, so a
     // future change to a case's facet scores cannot silently break the
-    // "equal by construction" claim this paragraph makes.
+    // "equal by construction" claim this paragraph makes. If the case data
+    // is ever edited so the two scores stop matching, this must stop
+    // claiming they are equal rather than just hiding the number behind a
+    // dash while keeping the false claim in the surrounding prose.
     var scoreA = domainScore(theCase.people[0], BALANCED_MIX);
     var scoreB = domainScore(theCase.people[1], BALANCED_MIX);
+    var scoresEqual = scoreA === scoreB;
     verdictBody.appendChild(
       make("p", null,
         theCase.people[0].name + " is higher on " + theCase.facetA.name +
         "; " + theCase.people[1].name + " is higher on " + theCase.facetB.name +
-        ". Both average out to a " + theCase.domain + " score of " +
-        fmt(scoreA === scoreB ? scoreA : NaN) +
-        ", so the broad score is blind to the difference by construction — " +
-        "it is the average of the two things that differ.")
+        ". " +
+        (scoresEqual
+          ? "Both average out to a " + theCase.domain + " score of " + fmt(scoreA) +
+            ", so the broad score is blind to the difference by construction — " +
+            "it is the average of the two things that differ."
+          : theCase.people[0].name + " averages " + fmt(scoreA) + " and " +
+            theCase.people[1].name + " averages " + fmt(scoreB) + " on " +
+            theCase.domain + " — not the equal broad score this case is meant " +
+            "to demonstrate."))
     );
 
     // The two predictions, side by side, per observation.
@@ -3296,10 +3305,14 @@
 
     verdictBody.appendChild(
       make("p", null,
-        "The two domain-score columns are identical: both people have the same " +
-        "domain score, and a domain score is one number. The facet columns " +
-        "separate them. A prediction from the broad score alone cannot beat " +
-        "guessing here, however reliable that score is.")
+        scoresEqual
+          ? "The two domain-score columns are identical: both people have the same " +
+            "domain score, and a domain score is one number. The facet columns " +
+            "separate them. A prediction from the broad score alone cannot beat " +
+            "guessing here, however reliable that score is."
+          : "The two domain-score columns are not identical here either, because " +
+            "the case data above no longer produces the equal broad score this " +
+            "demonstration is meant to rely on.")
     );
 
     verdictBody.appendChild(

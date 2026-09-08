@@ -284,13 +284,16 @@ function loadTheatreHarness() {
   const effectiveStrengthFn = extractFunction(source, 'effectiveStrength', THEATRE_JS);
   const behaviourFn = extractFunction(source, 'behaviour', THEATRE_JS);
   const ranksForFn = extractFunction(source, 'ranksFor', THEATRE_JS);
+  const spearmanFn = extractFunction(source, 'spearman', THEATRE_JS);
   const spreadFn = extractFunction(source, 'spread', THEATRE_JS);
+  const consistencyFn = extractFunction(source, 'consistency', THEATRE_JS);
   const byIdFn = extractFunction(source, 'byId', THEATRE_JS);
   const fmtFn = extractFunction(source, 'fmt', THEATRE_JS);
   const makeFn = extractFunction(source, 'make', THEATRE_JS);
   const clearFn = extractFunction(source, 'clear', THEATRE_JS);
   const showFeedbackFn = extractFunction(source, 'showFeedback', THEATRE_JS);
   const currentStrengthFn = extractFunction(source, 'currentStrength', THEATRE_JS);
+  const renderMatrixFn = extractFunction(source, 'renderMatrix', THEATRE_JS);
   const challengeBody = extractAnonymousBody(
     source, 'challengeForm.addEventListener("submit", function (event) {', THEATRE_JS);
 
@@ -298,12 +301,15 @@ function loadTheatreHarness() {
     'var document = { createElement: function () { return makeFakeNode(); }, ' +
       'createTextNode: function (t) { return { textContent: t }; } };',
     gain, cast, situations, roles,
-    clampFn, dispositionFn, effectiveStrengthFn, behaviourFn, ranksForFn, spreadFn,
+    clampFn, dispositionFn, effectiveStrengthFn, behaviourFn, ranksForFn, spearmanFn,
+    spreadFn, consistencyFn,
     byIdFn, fmtFn, makeFn, clearFn, showFeedbackFn,
     'var state = { situationId: "party", roleId: "none", strength: null };',
     currentStrengthFn,
     'var challengeForm = {};',
     'var challengeFeedback = makeFakeNode();',
+    'var matrixTable = makeFakeNode();',
+    'var matrixNote = makeFakeNode();',
     'var answerValue = null;',
     'function $(selector, scope) {\n' +
       '  if (selector === \'input[name="challenge"]:checked\') {\n' +
@@ -314,9 +320,11 @@ function loadTheatreHarness() {
     'var shellCalls = [];',
     'var shell = { announce: function (msg) { shellCalls.push(msg); } };',
     'function challengeSubmit(event) {\n' + challengeBody + '\n}',
+    renderMatrixFn,
     'module.exports = {',
     '  CAST: CAST, SITUATIONS: SITUATIONS, ROLES: ROLES,',
     '  ranksFor: ranksFor, byId: byId, spread: spread,',
+    '  spearman: spearman, consistency: consistency,',
     '  setAnswer: function (v) { answerValue = v; },',
     '  setState: function (situationId, roleId, strength) {',
     '    state.situationId = situationId; state.roleId = roleId; state.strength = strength;',
@@ -324,6 +332,10 @@ function loadTheatreHarness() {
     '  submitChallenge: function () {',
     '    challengeSubmit({ preventDefault: function () {} });',
     '    return { tone: challengeFeedback._attrs["data-tone"] };',
+    '  },',
+    '  renderMatrixAt: function (strength, roleId) {',
+    '    renderMatrix(strength, byId(ROLES, roleId || "none"));',
+    '    return matrixNote.textContent;',
     '  },',
     '};',
   ];
@@ -333,6 +345,7 @@ function loadTheatreHarness() {
 function checkTheatreTieHandling() {
   const h = loadTheatreHarness();
   const emergency = h.byId(h.SITUATIONS, 'emergency');
+  const party = h.byId(h.SITUATIONS, 'party');
   const none = h.byId(h.ROLES, 'none');
   const ranks = h.ranksFor(emergency, null, none);
 
@@ -344,12 +357,78 @@ function checkTheatreTieHandling() {
   check(ranks.jonah !== 1 && ranks.jonah !== 4,
     'the tied pair does not receive the extreme ranks (got ' + ranks.jonah + ')');
 
-  // Sanity check that this is a genuine, exact tie and not an artefact of
-  // rounding in the test itself.
-  const bJonah = h.spread ? null : null; // spread() is between-person; behaviour is what ties.
   check(typeof ranks.jonah === 'number' && ranks.jonah % 1 !== 0,
     'the tied rank is reported as the conventional averaged mid-rank, not a whole number ' +
       '(got ' + ranks.jonah + ')');
+
+  // The Spearman shortcut 1 - 6*sum(d^2)/(n(n^2-1)) is only exact without
+  // ties; with the shipped emergency tie in play, rho must be the Pearson
+  // correlation of the (mid-)rank vectors, which independently comes to
+  // 0.632455532... for party vs. emergency, not the shortcut's 0.65.
+  const partyRanks = h.ranksFor(party, null, none);
+  const rhoPartyEmergency = h.spearman(partyRanks, ranks);
+  check(rhoPartyEmergency !== null &&
+      Math.abs(rhoPartyEmergency - 0.6324555320336759) < 1e-9,
+    'party vs. emergency Spearman rho, computed on the real shipped ranks, is the tie-correct ' +
+      '0.632455532... rather than the untied shortcut\'s 0.65 (got ' +
+      rhoPartyEmergency + ')');
+  check(Math.abs(rhoPartyEmergency - 0.65) > 1e-6,
+    'the old untied-shortcut value of 0.65 is not what production now reports');
+
+  // Another genuinely tied comparison: emergency against itself is a
+  // perfect (defined) correlation of 1, exercising the tie-aware formula
+  // on both sides of the pair at once.
+  const rhoEmergencySelf = h.spearman(ranks, ranks);
+  check(rhoEmergencySelf !== null && Math.abs(rhoEmergencySelf - 1) < 1e-9,
+    'emergency ranks correlated with themselves (tie included on both sides) give a defined rho of 1 ' +
+      '(got ' + rhoEmergencySelf + ')');
+}
+
+function checkTheatreDegenerateAllTied() {
+  const h = loadTheatreHarness();
+
+  // At maximum situation strength every character's behaviour collapses to
+  // an exact four-way tie in every situation, so no pairwise rank
+  // correlation is defined and consistency() must not silently report 1.
+  const none = h.byId(h.ROLES, 'none');
+  const emergency = h.byId(h.SITUATIONS, 'emergency');
+  const maxRanks = h.ranksFor(emergency, 1, none);
+  check(Object.keys(maxRanks).every(function (id) { return maxRanks[id] === 2.5; }),
+    'sanity check: at maximum strength, every character in a situation shares the same mid-rank ' +
+      '(got ' + JSON.stringify(maxRanks) + ')');
+
+  const selfRho = h.spearman(maxRanks, maxRanks);
+  check(selfRho === null,
+    'spearman() between two fully-tied (zero-variance) rank vectors is undefined (null), not 1 ' +
+      '(got ' + selfRho + ')');
+
+  const overallConsistency = h.consistency(1, none);
+  check(overallConsistency === null,
+    'consistency() at maximum strength, where every situation ties everyone, is undefined (null) ' +
+      'rather than defaulting to a numeric value such as 1 (got ' + overallConsistency + ')');
+
+  // Production-render check: drive the real renderMatrix() at maximum
+  // strength and confirm the learner-facing note explicitly says
+  // consistency is undefined, and never claims "High" consistency for a
+  // state where no between-person ordering survives.
+  const noteAtMax = h.renderMatrixAt(1, 'none');
+  check(/not defined/i.test(noteAtMax),
+    'renderMatrix(): the learner-facing matrix note at maximum strength says consistency is not ' +
+      'defined (got "' + noteAtMax + '")');
+  check(!/high/i.test(noteAtMax),
+    'renderMatrix(): the all-tied state is never described as "High" consistency (got "' +
+      noteAtMax + '")');
+  check(noteAtMax.indexOf('1.00') === -1,
+    'renderMatrix(): the all-tied state does not report a numeric rho of 1.00 (got "' +
+      noteAtMax + '")');
+
+  // Sanity check the render path still reports an ordinary numeric verdict
+  // away from the degenerate case, so the null branch above is additive
+  // rather than having disabled the normal reading.
+  const noteAtDefault = h.renderMatrixAt(null, 'none');
+  check(/Mean rank correlation/.test(noteAtDefault) && !/not defined/i.test(noteAtDefault),
+    'renderMatrix(): away from maximum strength, the ordinary numeric verdict still renders ' +
+      '(got "' + noteAtDefault + '")');
 }
 
 function checkTheatreChallengeGrading() {
@@ -433,10 +512,81 @@ function loadRotationHarness() {
   return runSandbox(snippet, 'extracted-rotation.js');
 }
 
+/** Independently computes the simplicity optimum for a marker set, from
+    first principles, without calling or importing any of tool.js's own
+    loadings()/simplicity()/bestAngle()/naturalSeparation() functions. This
+    exists so the check below validates that production actually found the
+    right answer, rather than only checking that production's prose agrees
+    with production's own arithmetic (which would pass even if
+    naturalSeparation() itself were wrong).
+
+    Two oblique angles that sum to 180 always describe the same physical
+    pair of axes (the second axis merely points the other way), so they are
+    mathematically guaranteed to score identically; this oracle reports the
+    conventional acute (<=90 degree) member of that pair, exactly as
+    production's naturalSeparation() is now expected to. */
+function independentNaturalSeparation(markers) {
+  const RAD = Math.PI / 180;
+  function loadingsOf(marker, angle, obliqueAngle) {
+    const a = angle * RAD;
+    const b = (angle + obliqueAngle) * RAD;
+    return {
+      one: marker.x * Math.cos(a) + marker.y * Math.sin(a),
+      two: marker.x * Math.cos(b) + marker.y * Math.sin(b),
+    };
+  }
+  function simplicityOf(markerList, angle, obliqueAngle) {
+    let total = 0;
+    markerList.forEach(function (marker) {
+      const l = loadingsOf(marker, angle, obliqueAngle);
+      const a = l.one * l.one;
+      const b = l.two * l.two;
+      const sum = a + b;
+      if (sum < 1e-9) { return; }
+      const p = Math.max(a, b) / sum;
+      total += (p - 0.5) * 2;
+    });
+    return total / markerList.length;
+  }
+  function bestScoreForOblique(markerList, obliqueAngle) {
+    let bestScore = -Infinity;
+    for (let angle = 0; angle < 180; angle += 0.5) {
+      const score = simplicityOf(markerList, angle, obliqueAngle);
+      if (score > bestScore) { bestScore = score; }
+    }
+    return bestScore;
+  }
+  let best = null;
+  let bestScore = -Infinity;
+  for (let oblique = 5; oblique <= 175; oblique += 0.5) {
+    const score = bestScoreForOblique(markers, oblique);
+    if (score > bestScore) { bestScore = score; best = oblique; }
+  }
+  if (best > 90) { best = 180 - best; }
+  return { oblique: best, correlation: Math.cos(best * RAD), score: bestScore };
+}
+
 function checkRotationNaturalAngle() {
   const h = loadRotationHarness();
   const live = h.naturalSeparation(h.SETS.correlated.markers);
   const note = h.SETS.correlated.note;
+
+  // Independent oracle, computed with fresh test-side code (not production's
+  // own naturalSeparation()) over the actual shipped, post-preRotate marker
+  // coordinates, so this genuinely checks that production found the right
+  // answer rather than merely echoing whatever production itself computed.
+  const independent = independentNaturalSeparation(h.SETS.correlated.markers);
+  check(independent.oblique >= 33 && independent.oblique <= 41,
+    'independent oracle: the correlated set\'s true simplicity optimum, computed from scratch, ' +
+      'falls in the already-reviewed neighbourhood of roughly 36-38 degrees (got ' +
+      independent.oblique + '°)');
+  check(independent.correlation > 0.75 && independent.correlation < 0.85,
+    'independent oracle: the implied factor correlation at that optimum is in the reviewed ' +
+      'neighbourhood of roughly 0.79-0.81 (got ' + independent.correlation.toFixed(3) + ')');
+  check(Math.abs(live.trueOblique - independent.oblique) <= 0.5,
+    'production naturalSeparation().trueOblique agrees with the independent oracle within the ' +
+      '0.5-degree sweep resolution (production ' + live.trueOblique + '°, independent ' +
+      independent.oblique + '°)');
 
   check(note.indexOf(String(Math.round(live.trueOblique))) !== -1,
     'the correlated-set note quotes the live-computed natural angle (' +
@@ -449,6 +599,19 @@ function checkRotationNaturalAngle() {
   check(Math.abs(live.trueOblique - 55) > 5,
     'sanity check: the true best fit for these markers is genuinely well away from 55° ' +
       '(computed ' + live.trueOblique + '°)');
+
+  // The learner-facing value (the debrief prose's [data-natural-angle]
+  // figure, populated from the same live computation) must also agree with
+  // the independent result, not just with production's own self-report.
+  const debriefHtml = read(ROTATION_HTML);
+  const spanMatch = /data-natural-angle>(\d+)</.exec(debriefHtml);
+  check(Boolean(spanMatch),
+    'index.html carries a [data-natural-angle] placeholder for the debrief prose to populate');
+  if (spanMatch) {
+    check(Math.abs(Number(spanMatch[1]) - independent.oblique) <= 1,
+      'the learner-facing debrief figure agrees with the independent oracle within 1 degree ' +
+        '(placeholder ' + spanMatch[1] + '°, independent ' + independent.oblique + '°)');
+  }
 
   [ROTATION_HTML, ROTATION_META, ROTATION_STANDALONE, CATALOGUE].forEach(function (file) {
     const content = read(file);
@@ -492,6 +655,83 @@ function checkFacetAgreeableness() {
     check(!/"b":\s*80/.test(content) || content.indexOf('"Tomas"') === -1 || content.indexOf('b: 80') === -1,
       path.relative(ROOT, file) + ' does not still ship the old, unequal Tomas value');
   });
+}
+
+/** Loads the real buildVerdict() plus everything it calls, with a fake DOM,
+    so the fail-safe branch can be exercised directly rather than assumed
+    from reading the source. */
+function loadFacetVerdictHarness() {
+  const source = read(FACET_JS);
+  const balancedMix = /var BALANCED_MIX = [\d.]+;/.exec(source)[0];
+  const domainScoreFn = extractFunction(source, 'domainScore', FACET_JS);
+  const facetTendencyFn = extractFunction(source, 'facetTendency', FACET_JS);
+  const domainTendencyFn = extractFunction(source, 'domainTendency', FACET_JS);
+  const likelierPersonFn = extractFunction(source, 'likelierPerson', FACET_JS);
+  const fmtFn = extractFunction(source, 'fmt', FACET_JS);
+  const makeFn = extractFunction(source, 'make', FACET_JS);
+  const clearFn = extractFunction(source, 'clear', FACET_JS);
+  const buildVerdictFn = extractFunction(source, 'buildVerdict', FACET_JS);
+
+  const snippet = [
+    'var document = { createElement: function () { return makeFakeNode(); } };',
+    balancedMix,
+    domainScoreFn, facetTendencyFn, domainTendencyFn, likelierPersonFn,
+    fmtFn, makeFn, clearFn,
+    'var verdictBody = makeFakeNode();',
+    'var predictionTable = makeFakeNode();',
+    'var state = { assignments: {} };',
+    buildVerdictFn,
+    'module.exports = {',
+    '  renderVerdict: function (theCase) {',
+    '    verdictBody._children.length = 0;',
+    '    buildVerdict(theCase);',
+    '    return verdictBody._children.map(function (p) { return p.textContent; }).join(" ");',
+    '  },',
+    '};',
+  ];
+  return runSandbox(snippet, 'extracted-facet-verdict.js');
+}
+
+function checkFacetVerdictFailSafe() {
+  const source = read(FACET_JS);
+  const balancedMix = /var BALANCED_MIX = [\d.]+;/.exec(source)[0];
+  const cases = extractArray(source, 'CASES', FACET_JS);
+  const domainScoreFn = extractFunction(source, 'domainScore', FACET_JS);
+  const dataHarness = runSandbox([
+    balancedMix, cases, domainScoreFn,
+    'module.exports = { CASES: CASES };',
+  ], 'extracted-facet-cases.js');
+  const agreeableness = dataHarness.CASES.filter(function (c) { return c.id === 'agreeableness'; })[0];
+
+  const h = loadFacetVerdictHarness();
+
+  // The shipped, genuinely-equal case: buildVerdict() must still state the
+  // scores are equal, in the same words as before.
+  const equalText = h.renderVerdict(agreeableness);
+  check(/blind to the difference by construction/.test(equalText),
+    'buildVerdict(): the shipped, genuinely-equal Agreeableness case still states the two scores ' +
+      'are equal by construction');
+  check(!/not the equal broad score/.test(equalText),
+    'buildVerdict(): the equal-case sentence does not also show the fail-safe unequal wording');
+
+  // Defence-in-depth: if the case data were ever edited so the two scores
+  // stopped matching, buildVerdict() must show both real numbers and must
+  // NOT keep asserting equality. This is not permission to ship unequal
+  // data (see checkFacetAgreeableness above, which still requires the
+  // shipped case to be exactly equal) — it is a guard against the display
+  // silently lying if that ever regresses.
+  const brokenCase = JSON.parse(JSON.stringify(agreeableness));
+  brokenCase.people[1].b += 1; // deliberately break the equality
+  const unequalText = h.renderVerdict(brokenCase);
+  check(!/blind to the difference by construction/.test(unequalText),
+    'buildVerdict(): with a deliberately broken (unequal) case, it no longer claims the scores are ' +
+      'equal by construction');
+  check(/not the equal broad score/.test(unequalText),
+    'buildVerdict(): with a deliberately broken case, it states both real, unequal scores instead ' +
+      '(got: "' + unequalText + '")');
+  check(!/two domain-score columns are identical/.test(unequalText),
+    'buildVerdict(): with a deliberately broken case, the second paragraph also stops claiming the ' +
+      'domain-score columns are identical (got: "' + unequalText + '")');
 }
 
 /* =========================================================================
@@ -725,10 +965,12 @@ function checkEsteemSimplifiedDomainWording() {
 
 function main() {
   checkTheatreTieHandling();
+  checkTheatreDegenerateAllTied();
   checkTheatreChallengeGrading();
   checkTheatreGating();
   checkRotationNaturalAngle();
   checkFacetAgreeableness();
+  checkFacetVerdictFailSafe();
   checkCourtroomAccessibility();
   checkTwinUnequalEnvironmentsDirection();
   checkGxeSimplifiedWidenReachesFullRange();

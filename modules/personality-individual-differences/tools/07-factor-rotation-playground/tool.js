@@ -288,6 +288,21 @@
         trueBest = oblique;
       }
     }
+    // bestAngle(markers, oblique).score is always identical to
+    // bestAngle(markers, 180 - oblique).score for any marker set: the two
+    // oblique angles describe the same physical pair of axes with the
+    // second axis's direction reversed, which the simplicity objective
+    // (built from squared loadings) cannot tell apart. The unconstrained
+    // sweep above can therefore land on either member of that mirrored
+    // pair depending on incidental marker-coordinate detail (such as the
+    // display-only preRotate() applied above), even though only the
+    // narrower, conventional angle between two axes — at most 90 degrees —
+    // is what "how separated are the two clusters" is meant to describe.
+    // Normalise to that acute form so the reported figure does not flip
+    // to its (mathematically equivalent but confusing) supplement.
+    if (trueBest > 90) {
+      trueBest = 180 - trueBest;
+    }
     var reachableBest = null;
     var reachableScore = -Infinity;
     for (var o2 = OBLIQUE_MIN; o2 <= OBLIQUE_MAX; o2 += 0.5) {

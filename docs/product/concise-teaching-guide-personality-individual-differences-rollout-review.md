@@ -392,6 +392,84 @@ eight points would fail the harness rather than merely a stale comment.
      consistently end to end, so there is no longer a whole-number rank
      implying a distinction the underlying behaviour does not support.
 
+## Live-QA follow-up: independent-review correction pass
+
+The first live-QA follow-up pass above (the eight RESOLVED clusters) was
+itself independently reviewed before merge. That review found the fixes
+directionally correct but incomplete in three places, all corrected in a
+second commit on the same branch:
+
+1. **Tool 03: mid-rank tie handling had been fixed without updating
+   Spearman.** `ranksFor()` was correctly changed to assign averaged
+   mid-ranks to tied behavioural values, but `spearman()` still used the
+   untied shortcut `1 - 6*sum(d²)/(n(n²-1))`, which is only exact without
+   ties — so the rank-correlation figure the tool actually reports for the
+   shipped emergency tie was mathematically wrong under the very fix meant
+   to correct it (0.65 instead of the tie-correct 0.632455532...). Fixed by
+   rewriting `spearman()` as the ordinary Pearson correlation of the
+   (mid-)rank vectors, the standard definition when ranks are tied, with no
+   ad-hoc correction bolted onto the old shortcut. This also exposed a
+   genuine degenerate case: at maximum situation strength every character
+   ties in every situation, giving two zero-variance rank vectors between
+   which a correlation is not mathematically defined. `spearman()` now
+   returns `null` in that case, `consistency()` averages only the pairwise
+   correlations that are defined and returns `null` if none are, and
+   `renderMatrix()`'s note explicitly says consistency is not defined
+   rather than falling through to a numeric verdict — verified live in a
+   headless browser that maximum strength never renders "1.00" or "High."
+   The new Tool 03 regression did not exercise `spearman()`/`consistency()`
+   at all (it only called `ranksFor()`), so it could not have caught either
+   half of this; it now extracts and drives the real `spearman()`,
+   `consistency()` and `renderMatrix()` functions directly, with a
+   deterministic check on the shipped party-vs-emergency pair (asserting
+   0.632455532..., not 0.65) and on the all-tied degenerate state.
+2. **Tool 09: the defensive equality check was not fail-safe.** The first
+   fix computed both Agreeableness scores independently and rendered
+   `NaN` if they ever diverged, but the surrounding sentence still asserted
+   "equal by construction" regardless, and an unconditional second
+   paragraph a few lines later separately claimed the domain-score columns
+   "are identical" — so a future data edit that broke the equality would
+   still read as confidently, doubly wrong prose around a lone dash.
+   `buildVerdict()` now branches on whether the two computed scores are
+   actually equal: the shipped, genuinely-equal case renders the original
+   "equal by construction" wording in both paragraphs; a deliberately
+   broken case (exercised directly by the regression, not just imagined)
+   renders both real, unequal numbers and neither equality claim. The
+   shipped Agreeableness case is still required to be exactly equal by the
+   original regression check, so this fallback is defence-in-depth rather
+   than permission for the data to drift.
+3. **Tool 07: the regression oracle was self-referential.** The first
+   regression compared production's own `naturalSeparation()` output
+   against production's own prose, which would pass even if
+   `naturalSeparation()` itself found the wrong angle — it validated
+   prose/code synchronisation, not correctness. Adding a genuinely
+   independent oracle (fresh test-side re-implementation of the simplicity
+   search, not calling any of tool.js's own functions) surfaced a real bug
+   `naturalSeparation()`'s unconstrained sweep can land on either member of
+   a mathematically tied, mirror-image pair of oblique angles (`x` and
+   `180 − x` always score identically, since the second axis merely points
+   the other way) — and the shipped display-only `preRotate()` transform
+   happened to tip the shipped correlated set onto the wide (144.5°,
+   correlation −0.81) member of that pair instead of the intended narrow,
+   conventional one (35.5°, correlation +0.81), the one the earlier
+   independent review had already established as ground truth. The
+   resulting shipped sentence — "the two groups sit closer to 145° apart
+   than to 90°" — was nonsensical on its own terms. Fixed by normalising
+   `naturalSeparation()`'s unconstrained result to the conventional acute
+   (≤ 90°) representation of the angle between two axes, which is always
+   available given the proven tie. The regression now includes a
+   from-scratch independent oracle that never calls production's
+   `naturalSeparation()`/`bestAngle()`/`simplicity()`/`loadings()`, and
+   asserts the independent result lands in the already-reviewed
+   neighbourhood (≈36–38°, r ≈ 0.79–0.81), that production agrees with it
+   within the sweep resolution, and that the learner-facing debrief figure
+   agrees with it too.
+
+All eight original live-QA clusters remain RESOLVED after this correction
+pass. None of the three points above reopens a cluster; each completes a
+fix (Tool 03, Tool 09, Tool 07) that the first pass made correctly in
+substance but had not carried all the way through.
+
 ## Stale teaching-note claims found (not repeated in the new guides)
 
 - Tool 04 Full: "the stability curve settles after about 5 observations for

@@ -2815,14 +2815,33 @@
     return ranks;
   }
 
-  /** Spearman's rho between two rankings of the same four people. */
+  /** Spearman's rho between two rankings of the same four people.
+      With tied ranks, rho is the ordinary Pearson correlation of the
+      (mid-)rank vectors rather than the untied 1 - 6*sum(d^2)/(n(n^2-1))
+      shortcut, which is only exact when no ranks are tied. Returns null
+      when either ranking has zero variance (every person tied), since a
+      correlation is undefined between two constants. */
   function spearman(one, two) {
-    var n = CAST.length;
-    var sum = CAST.reduce(function (total, person) {
-      var d = one[person.id] - two[person.id];
-      return total + d * d;
-    }, 0);
-    return 1 - (6 * sum) / (n * (n * n - 1));
+    var ids = CAST.map(function (person) { return person.id; });
+    var xs = ids.map(function (id) { return one[id]; });
+    var ys = ids.map(function (id) { return two[id]; });
+    var n = xs.length;
+    var meanX = xs.reduce(function (a, b) { return a + b; }, 0) / n;
+    var meanY = ys.reduce(function (a, b) { return a + b; }, 0) / n;
+    var covariance = 0;
+    var varX = 0;
+    var varY = 0;
+    for (var i = 0; i < n; i += 1) {
+      var dx = xs[i] - meanX;
+      var dy = ys[i] - meanY;
+      covariance += dx * dy;
+      varX += dx * dx;
+      varY += dy * dy;
+    }
+    if (varX === 0 || varY === 0) {
+      return null;
+    }
+    return covariance / Math.sqrt(varX * varY);
   }
 
   /** Between-person standard deviation of behaviour in a situation. */
@@ -2839,20 +2858,26 @@
     return Math.sqrt(variance);
   }
 
-  /** Mean pairwise rank correlation across all five situations. */
+  /** Mean pairwise rank correlation across all five situations, averaging
+      only the pairs for which rho is defined. Returns null when no pair
+      has a defined correlation (for example, everyone tied in every
+      situation, which happens at maximum situation strength). */
   function consistency(strengthOverride, role) {
     var rankings = SITUATIONS.map(function (situation) {
       return ranksFor(situation, strengthOverride, role);
     });
     var total = 0;
-    var pairs = 0;
+    var defined = 0;
     for (var i = 0; i < rankings.length; i += 1) {
       for (var j = i + 1; j < rankings.length; j += 1) {
-        total += spearman(rankings[i], rankings[j]);
-        pairs += 1;
+        var rho = spearman(rankings[i], rankings[j]);
+        if (rho !== null) {
+          total += rho;
+          defined += 1;
+        }
       }
     }
-    return pairs ? total / pairs : 0;
+    return defined ? total / defined : null;
   }
 
   /* =======================================================================
@@ -3530,16 +3555,20 @@
 
     var rho = consistency(k, role);
     matrixNote.textContent =
-      "Mean rank correlation between every pair of situations: " + fmt(rho, 2) +
-      ". " +
-      (rho > 0.75
-        ? "High — the same people come out near the top almost everywhere, " +
-          "which is what trait consistency looks like."
-        : rho > 0.35
-        ? "Moderate — there is a recognisable person here, and the situations " +
-          "still reorder them substantially. This is the ordinary case."
-        : "Low — the ranking is being driven by what each situation affords " +
-          "rather than by a single dimension of personality.");
+      rho === null
+        ? "Rank consistency is not defined here: every character behaves " +
+          "identically in every situation, so no between-person ordering " +
+          "remains to compare."
+        : "Mean rank correlation between every pair of situations: " +
+          fmt(rho, 2) + ". " +
+          (rho > 0.75
+            ? "High — the same people come out near the top almost everywhere, " +
+              "which is what trait consistency looks like."
+            : rho > 0.35
+            ? "Moderate — there is a recognisable person here, and the situations " +
+              "still reorder them substantially. This is the ordinary case."
+            : "Low — the ranking is being driven by what each situation affords " +
+              "rather than by a single dimension of personality.");
   }
 
   /* --- Challenge ---------------------------------------------------------- */
