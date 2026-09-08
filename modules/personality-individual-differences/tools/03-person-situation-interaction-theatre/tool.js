@@ -219,7 +219,10 @@
     return clamp(value, 0, 100);
   }
 
-  /** Ranks, 1 = highest behaviour. Ties share the lower rank number. */
+  /** Ranks, 1 = highest behaviour. Exactly tied values share the average of
+      the rank positions they occupy (the conventional mid-rank method), so
+      two people with identical behaviour are never shown as unequal purely
+      because of array order. */
   function ranksFor(situation, strengthOverride, role) {
     var scored = CAST.map(function (person) {
       return { id: person.id, value: behaviour(person, situation, strengthOverride, role) };
@@ -228,9 +231,18 @@
       return b.value - a.value;
     });
     var ranks = {};
-    scored.forEach(function (entry, index) {
-      ranks[entry.id] = index + 1;
-    });
+    var i = 0;
+    while (i < scored.length) {
+      var j = i;
+      while (j + 1 < scored.length && scored[j + 1].value === scored[i].value) {
+        j += 1;
+      }
+      var averageRank = (i + 1 + j + 1) / 2;
+      for (var k = i; k <= j; k += 1) {
+        ranks[scored[k].id] = averageRank;
+      }
+      i = j + 1;
+    }
     return ranks;
   }
 
@@ -486,6 +498,7 @@
       } else {
         state.exploreUnlocked = true;
         $("#explore").hidden = false;
+        $("#matrix-section").hidden = false;
         renderAll();
         $("#explore-heading").focus();
       }
@@ -981,17 +994,36 @@
 
     var situation = byId(SITUATIONS, state.situationId);
     var currentSpread = spread(situation, currentStrength(), byId(ROLES, state.roleId));
+    var spreadDone = currentSpread < 2;
+    var answerCorrect = answer.value === "nothing";
+    var correct = spreadDone && answerCorrect;
 
-    var correct = answer.value === "nothing";
+    var message;
+    if (!spreadDone) {
+      message =
+        "The spread here is still " + fmt(currentSpread, 1) + " points. " +
+          "Use the strength slider, or an assigned role, to bring it below " +
+          "2 before this challenge can be marked — the question is about " +
+          "what a spread that low would show, not what the current one does.";
+    } else if (!answerCorrect) {
+      message =
+        "The spread is down to " + fmt(currentSpread, 1) + " points, so the " +
+          "manipulation is done. But look again at what that low spread does " +
+          "and does not tell you about the four characters.";
+    } else {
+      message =
+        "You have the spread down to " + fmt(currentSpread, 1) + " points. " +
+          "When a situation is strong enough, everyone does roughly the same " +
+          "thing, so the behaviour tells you almost nothing about who they are. " +
+          "The trait scores in the cast list are unchanged. Low observed " +
+          "variance is not evidence of low trait variance.";
+    }
+
     showFeedback(
       challengeFeedback,
       correct ? "good" : "caution",
-      correct ? "Yes." : "Not quite.",
-      "You have the spread down to " + fmt(currentSpread, 1) + " points. " +
-        "When a situation is strong enough, everyone does roughly the same " +
-        "thing, so the behaviour tells you almost nothing about who they are. " +
-        "The trait scores in the cast list are unchanged. Low observed " +
-        "variance is not evidence of low trait variance."
+      correct ? "Yes." : "Not yet.",
+      message
     );
     shell.announce("Challenge answered.", { immediate: true });
   });
@@ -1054,6 +1086,7 @@
     });
     rounds[1].section.hidden = true;
     $("#explore").hidden = true;
+    $("#matrix-section").hidden = true;
 
     challengeForm.reset();
     challengeFeedback.hidden = true;

@@ -1459,13 +1459,6 @@
   text-decoration: underline dotted;
   text-underline-offset: 0.25em;
 }
-.opi-activity.opi-activity.opi-activity .scatter__points {
-  stroke: var(--colour-accent);
-  stroke-width: 2.4;
-  stroke-linecap: round;
-  stroke-opacity: 0.4;
-  fill: none;
-}
 .opi-activity.opi-activity.opi-activity .data-table td[data-emphasis="yes"] {
   font-weight: 700;
 }
@@ -1509,10 +1502,6 @@
 .opi-activity.opi-activity.opi-activity .matrix td[data-strength="high"] {
   background-color: Highlight;
     color: Canvas;
-}
-.opi-activity.opi-activity.opi-activity .scatter__points {
-  stroke: CanvasText;
-    stroke-opacity: 1;
 }
 .opi-activity.opi-activity.opi-activity .claims__results > li {
   border: 1px solid CanvasText;
@@ -1656,11 +1645,13 @@
       <div class="section__header">
         <h2 id="opening-heading">First, a judgement</h2>
         <p class="prose">
-          A fictional research group administers four measures, all described
-          in the literature as measures of emotional intelligence: a
-          questionnaire about how you usually handle feelings, a task whose
-          answers are scored against a key, an emotion-recognition accuracy
-          test, and ratings of social effectiveness by colleagues.
+          A fictional research group administers three measures, each
+          described in the literature as measuring emotional intelligence:
+          a questionnaire about how you usually handle feelings, a task
+          whose answers are scored against a key, and an emotion-recognition
+          accuracy test. They also collect ratings of social effectiveness
+          by colleagues — the outcome each of the three measures is meant
+          to predict, not a fourth measure of the same thing.
         </p>
       </div>
 
@@ -1723,10 +1714,11 @@
         <h2 id="lab-heading" tabindex="-1">The laboratory</h2>
         <p class="prose">
           Six fictional measures: three carry the emotional-intelligence
-          label, one is the outcome the label is sold on, and two are the
-          ordinary measures any claim of added value has to beat. The matrix
-          is what the model implies; the scatterplot shows 300 simulated
-          people drawn from it.
+          label, one is the colleague-rated outcome the label is sold on
+          predicting, and two are the ordinary measures any claim of added
+          value has to beat. Every correlation below is what the model
+          implies directly, worked out from the measures' shared loadings
+          rather than sampled from simulated people.
         </p>
       </div>
 
@@ -3096,8 +3088,7 @@
 
 
   /* =======================================================================
-     Seeded randomness — a documented seed keeps the scatterplot identical
-     for every student and every projector.
+     Model helpers
      ===================================================================== */
 
   function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }

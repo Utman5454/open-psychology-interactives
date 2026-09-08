@@ -2763,7 +2763,7 @@
       facetB: { key: "politeness", name: "Politeness" },
       people: [
         { id: "A", name: "Iris", a: 83, b: 51 },
-        { id: "B", name: "Tomas", a: 52, b: 80 }
+        { id: "B", name: "Tomas", a: 52, b: 82 }
       ],
       observations: [
         {
@@ -3257,12 +3257,17 @@
         : right + " of " + total + " matched the model.";
     verdictBody.appendChild(make("p", "reveal__lead", lead));
 
+    // Computed separately for each person rather than assumed equal, so a
+    // future change to a case's facet scores cannot silently break the
+    // "equal by construction" claim this paragraph makes.
+    var scoreA = domainScore(theCase.people[0], BALANCED_MIX);
+    var scoreB = domainScore(theCase.people[1], BALANCED_MIX);
     verdictBody.appendChild(
       make("p", null,
         theCase.people[0].name + " is higher on " + theCase.facetA.name +
         "; " + theCase.people[1].name + " is higher on " + theCase.facetB.name +
         ". Both average out to a " + theCase.domain + " score of " +
-        fmt(domainScore(theCase.people[0], BALANCED_MIX)) +
+        fmt(scoreA === scoreB ? scoreA : NaN) +
         ", so the broad score is blind to the difference by construction — " +
         "it is the average of the two things that differ.")
     );

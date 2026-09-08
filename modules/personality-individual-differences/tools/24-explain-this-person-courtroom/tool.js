@@ -526,7 +526,7 @@
         pairs.push([EXPLANATIONS[a], EXPLANATIONS[b], rel]);
       }
     }
-    pairs.slice(0, 14).forEach(function (pair) {
+    pairs.forEach(function (pair) {
       var row = make("tr");
       var th = make("th", null, pair[0].id + " / " + pair[1].id);
       th.setAttribute("scope", "row");

@@ -284,6 +284,114 @@ what a learner actually sees.
    vacuous reading, since there is no real ordering left once everyone is
    behaviourally identical.
 
+## Live-QA follow-up: resolution status
+
+All eight defects listed above were fixed on the follow-up branch
+`fix-personality-individual-differences-live-qa`, scoped tightly to the
+defects themselves — no teaching guide prose was rewritten and no new
+product functionality was added. A new regression gate,
+`scripts/test-personality-individual-differences-live-qa.js` (registered as
+the 14th `check-all.py` gate), runs each fix's REAL production code inside a
+sandboxed extraction of the shipped source, so a regression to any of these
+eight points would fail the harness rather than merely a stale comment.
+
+1. **Tool 24 (Courtroom), Full — RESOLVED.** `pairs.slice(0, 14).forEach(...)`
+   in `tool.js` is now `pairs.forEach(...)`, so the accessible table renders
+   every one of the 25 non-"partly" pairs the sighted diagram encodes (as
+   either "compete" or "compatible"), not just the first 14. The
+   `metadata.json` "every pair" accessibility claim is now true of the code
+   rather than aspirational. Verified live in a headless browser: the
+   `[data-diagram-table]` body now contains 25 rows, up from 14.
+2. **Tool 09 (Facet-Level Detective), Full — RESOLVED.** The smallest
+   truthful correction was made to the data, not the prose: Tomas's `b`
+   value changed from 80 to 82, so his Agreeableness domain average is
+   genuinely 67, matching the other profile's 67 exactly (previously 66 vs.
+   67). `buildVerdict()` was also changed to compute both people's domain
+   scores independently and only display a single shared figure when they
+   are actually equal (`scoreA === scoreB ? fmt(scoreA) : ...`), so a future
+   data edit that broke the equality would show two different numbers
+   instead of silently asserting a false one. The two facets underneath
+   still differ by more than 20 points each, preserving the behavioural
+   contrast the case is built to teach.
+3. **Tool 07 (Factor Rotation Playground), Full — RESOLVED.** The
+   "correlated" marker set's note, the `index.html` debrief prose, the
+   `metadata.json` `simulationNotes`, and the generated `standalone.html`
+   no longer assert a fixed "about 55 degrees" claim. A new
+   `naturalSeparation()` function computes the marker set's own best-fitting
+   axis separation from its actual coordinates at load time (the same
+   simplicity objective the tool's "find the simplest structure" control
+   already sweeps), and the debrief prose and note now quote that live
+   figure via a `[data-natural-angle]` span rather than a hard-coded number.
+   Because the figure is computed from the shipped coordinates rather than
+   typed in, it cannot go stale again if the coordinates ever change — the
+   regression gate independently re-derives the same optimum from the
+   shipped markers and asserts the shown figure matches it.
+4. **Tool 39 (Twin-Study Simulator), Full — RESOLVED.** All three
+   occurrences of the backwards mechanism claim — the live "What the
+   violations are doing" panel, the challenge feedback string, and the file's
+   header docstring — were corrected to state the actual mechanism:
+   unequal environments leave r(MZ) unaffected and lower r(DZ), which is
+   what inflates the Falconer heritability estimate. The bias direction
+   itself was already correctly described and is unchanged. The regression
+   gate numerically recomputes both correlations under the violation and
+   asserts r(MZ) is unaffected while r(DZ) falls, guarding against the
+   backwards phrase returning.
+5. **Tool 42 (Gene × Environment Interaction Visualiser), Simplified —
+   RESOLVED.** `toggleWiden()` now sets the centre control to `0` whenever
+   it widens the window, so pressing "Widen the study to the whole range"
+   genuinely sets the sampled window to the tool's full `[-1, 1]` range
+   regardless of where the centre slider currently sits — the button's
+   promise is now unconditionally true rather than true only from a centre
+   of exactly 0. Verified live from both the shipped default (`centre =
+   -60`) and from `centre = 0.6`: both now reach the full range after one
+   click.
+6. **Tool 49 (Emotional-Intelligence Claims Laboratory), Full — RESOLVED.**
+   The lab introduction and opening-question prose no longer describe a
+   scatterplot or "300 simulated people"; the model is described as what it
+   actually is, a deterministic closed-form calculation on a correlation
+   matrix. The dead "seeded randomness" comment block and the unused
+   `.scatter__points` CSS rule (with its `forced-colors` variant) were
+   removed after confirming by search that nothing in `tool.js` or
+   `index.html` still referenced them. Separately, the opening question now
+   names exactly the three EI-labelled predictors as EI measures and
+   describes colleague ratings as the outcome they are being sold on
+   predicting, consistent with the lab's own later section.
+7. **Tool 50 (Self-Esteem Stability Tracker), Simplified — RESOLVED.** The
+   synthesis panel no longer claims Ada and Cleo take the knock "in
+   different domains" — there is only one shared work-domain event array, as
+   the review above notes. It now explains the actually-implemented
+   mechanism: Cleo's work contingency is higher than Ada's and her recovery
+   is slower, so the identical work setback lands harder on her and takes
+   longer to fade, while Ada — who has no work/social asymmetry in her own
+   contingency values — recovers within days. No domain manipulation was
+   invented; the explanation was brought in line with the code that already
+   ships.
+8. **Tool 03 (Person-Situation Interaction Theatre), Full, four related
+   issues — RESOLVED.**
+   - (i) Tie handling: `ranksFor()` now assigns the statistically
+     conventional averaged mid-rank to tied behavioural values (so Jonah and
+     Elif's bit-identical emergency-situation behaviour both rank 2.5,
+     rather than one arbitrarily outranking the other), matching what the
+     code comment already claimed. The Spearman calculation, the displayed
+     ranks, and the generated `standalone.html` all use the same corrected
+     function.
+   - (ii) Gating: the matrix/challenge section (`#matrix-section`) now ships
+     `hidden` in `index.html` and is only unhidden in the same step that
+     unlocks the explorer (after both prediction rounds are complete);
+     resetting the page re-hides it along with the explorer.
+   - (iii) Challenge grading: the submit handler now requires both the
+     actual spread-below-2 manipulation (checked against the live model
+     state, not merely assumed) and the correct conceptual answer before
+     accepting the challenge, with distinct feedback for "right answer,
+     manipulation not done," "manipulation done, wrong answer," and "both
+     done." Verified live: selecting the correct answer before touching the
+     strength slider is correctly rejected, and is only accepted once the
+     spread is actually driven below 2.
+   - (iv) The tie-break display artifact was resolved by (i) above: with
+     mid-rank averaging, the shipped emergency tie now displays and computes
+     consistently end to end, so there is no longer a whole-number rank
+     implying a distinction the underlying behaviour does not support.
+
 ## Stale teaching-note claims found (not repeated in the new guides)
 
 - Tool 04 Full: "the stability curve settles after about 5 observations for

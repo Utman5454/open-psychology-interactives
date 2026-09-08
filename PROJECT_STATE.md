@@ -60,6 +60,7 @@ student link). See `docs/decisions.md` for the settled decisions and the
 | **M0 Stage 3: library and activity pages** (`library/`, `assets/product/`) | `beb2459` | 2026-09-07 |
 | **M0 Stages 4 and 5: lesson builder and player** (`lessons/`, lesson-in-link) | `99cbd68` | 2026-09-07 |
 | **M0 complete: curated lessons and lecturer home page** | see `git log` | 2026-09-07 |
+| **Personality & Individual Differences live-QA follow-up** (8 defect clusters found during the teaching-guide rollout fixed in production code across tools 03, 07, 09, 24, 39, 42-Simplified, 49, 50-Simplified; 14th `check-all.py` gate added) | branch `fix-personality-individual-differences-live-qa` | 2026-09-08 |
 
 ## Branches
 

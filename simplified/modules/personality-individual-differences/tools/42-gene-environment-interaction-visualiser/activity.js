@@ -364,6 +364,14 @@
 
   function toggleWiden() {
     var widening = width < FULL_WINDOW;
+    if (widening) {
+      /* A width of FULL_WINDOW only reaches the tool's true [-1, 1] range
+         when it is centred on 0 — windowFor() clamps at the edges, so
+         widening from any other centre would silently leave part of the
+         range unsampled while still being labelled "the whole range".
+         Recentring here is what makes that label true. */
+      centreInput.value = "0";
+    }
     width = widening ? FULL_WINDOW : WINDOW;
     moves = 2;
     explainBtn.disabled = false;
