@@ -8,9 +8,9 @@ set. A plausible three-item questionnaire built from the most obvious
 features also misses real people whose accounts use different language
 for the same difficulty.
 
-**Before students start.** None needed. The table showing five
-accounts and their coded features is visible from the start, captioned
-as already a decision.
+**Before students start.** The table of five accounts and their coded
+features is visible from the start, already captioned as a decision
+rather than a fact.
 
 **What students do.**
 1. Predict what a later prevalence figure will most depend on.

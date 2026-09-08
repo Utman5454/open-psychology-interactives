@@ -8,8 +8,8 @@ a fee rise and a cut in hours in the same month, is central to none
 and reachable only indirectly, as a change in a relationship, by one
 framework.
 
-**Before students start.** None needed. Coverage tiles for the chosen
-framework are visible as soon as it is selected.
+**Before students start.** Nothing to prepare. Coverage tiles for
+whichever framework a student picks appear as soon as it is selected.
 
 **What students do.**
 1. Predict what will mostly differ between the five frameworks.

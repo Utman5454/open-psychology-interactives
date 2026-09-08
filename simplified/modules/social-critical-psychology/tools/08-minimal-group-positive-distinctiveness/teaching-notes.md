@@ -33,10 +33,13 @@ three afterward?
 **Common misconception / caution.** This does not explain real
 prejudice or racism. Real groups carry histories, unequal starting
 positions and things that have actually been done to them, none of
-which is present when the categories are invented and unlabelled. It
-shows that categorising people is enough to produce differential
-allocation in this stripped-down setting, not that categorising is
-what produces intergroup conflict outside it.
+which is present when the categories are invented and unlabelled.
+What it does show is narrower: the same four choices produced
+differential allocation here with no prior hostility, no competition
+and no group history at all, so none of those three is necessary to
+produce the effect in this stripped-down setting. That is not the same
+as establishing that categorising people is a sufficient cause of
+real-world intergroup behaviour.
 
 **Use in class / timing.** All four allocations and the comparison
 take about 6 to 8 minutes.

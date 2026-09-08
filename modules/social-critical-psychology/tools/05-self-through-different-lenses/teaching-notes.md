@@ -39,5 +39,5 @@ is built specifically to catch a student who slides from one to the
 other.
 
 **Use in class / timing.** Two contrasting lenses take about 10
-minutes. Bring in all four lenses with the synthesis and challenge,
-and the session runs to about 35.
+minutes. Apply four contrasting lenses with the synthesis and
+challenge, and the session runs to about 35.

@@ -9,8 +9,9 @@ constraint differ between them even though the score does not. Giving
 one of them another colleague's opportunity, and changing nothing
 else, nearly triples his rate.
 
-**Before students start.** None needed. All four colleagues' scores
-and meeting counts are visible from the start.
+**Before students start.** All four colleagues' identical attitude
+score and very different meeting counts are visible before anything is
+touched.
 
 **What students do.**
 1. Predict how many of the next thirty meetings one colleague, scoring
@@ -21,7 +22,7 @@ and meeting counts are visible from the start.
 3. Toggle three hundred colleagues between uniform and real conditions
    and read how the attitude-behaviour correlation changes.
 
-**What to look for.** Giving the lowest-scoring colleague another
+**What to look for.** Giving the lowest-frequency colleague another
 colleague's opportunity alone takes his rate from about 4 to about 24
 meetings out of 30, with nothing else about him changed. The same 300
 people's correlation is roughly twice as strong under uniform

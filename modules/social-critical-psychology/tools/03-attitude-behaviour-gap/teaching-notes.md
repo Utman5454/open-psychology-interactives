@@ -37,9 +37,12 @@ before it became a claim you could actually check?
 
 **Common misconception / caution.** This does not show attitudes are
 unimportant. Attitude carries the largest single coefficient in the
-model; it is necessary without being sufficient. A modest correlation
-across a sample also does not license a frequency claim about any one
-person in it.
+model, but it is not necessary for behaviour: with attitude at zero,
+norm, control and habit can still push the estimate above zero.
+Opportunity is the one term that behaves like a gate, since it
+multiplies the whole probability rather than adding to it. A modest
+correlation across a sample also does not license a frequency claim
+about any one person in it.
 
 **Use in class / timing.** Five minutes covers the first experiment on
 its own. Add the deeper level and the closing challenge, and the full

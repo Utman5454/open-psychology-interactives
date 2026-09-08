@@ -9,8 +9,8 @@ the second adds more. The remedies table then shows the same question,
 what would this explanation leave running, getting a different answer
 for each of the three.
 
-**Before students start.** None needed. The first commitment is itself
-the prediction; there is no separate question beforehand.
+**Before students start.** The first commitment doubles as the
+prediction, so there is no separate question to ask beforehand.
 
 **What students do.**
 1. On four individual-level items, commit to where the problem mainly

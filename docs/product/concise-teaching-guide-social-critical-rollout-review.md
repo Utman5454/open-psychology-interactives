@@ -1,9 +1,12 @@
 # Concise teaching-guide rollout: Social and Critical Psychology
 
-Date: 2026-09-08. Status: **awaiting independent review before merge; one
-learner-facing defect and one self-contradictory metadata file found during
-research, both left unfixed on this branch and flagged below for a separate
-follow-up PR.** Fourth module-sized pass, after Cognitive Psychology
+Date: 2026-09-08. Status: **awaiting independent review before merge; four
+learner-facing defects and one self-contradictory metadata file found
+during research, all left unfixed on this branch and flagged below for a
+separate follow-up PR; a pre-merge correction pass applied six wording and
+classification fixes to this batch's own guides and review document (see
+"Pre-merge correction pass" below).** Fourth module-sized pass, after
+Cognitive Psychology
 (`docs/product/concise-teaching-guide-cognitive-rollout-review.md`), Research
 Methods (`docs/product/concise-teaching-guide-research-methods-rollout-review.md`)
 and Neuropsychology
@@ -45,42 +48,50 @@ is empty, confirming the approved Full Minimal Group guide was not touched.
 | --- | --- | --- | --- |
 | Epistemology Lens Switch | 2,422 | 335 | 86% |
 | Constructing a Category | 2,395 | 345 | 86% |
-| Attitude-Behaviour Gap | 2,123 | 347 | 84% |
+| Attitude-Behaviour Gap | 2,123 | 384 | 82% |
 | Conformity Under Context | 1,801 | 313 | 83% |
-| Self Through Different Lenses | 1,806 | 348 | 81% |
+| Self Through Different Lenses | 1,806 | 347 | 81% |
 | Discourse and Subject Position Lab | 1,715 | 328 | 81% |
 | Sherif Norm-Formation Laboratory | 1,628 | 308 | 81% |
 | Crowd Behaviour Laboratory (Deindividuation vs ESIM) | 2,326 | 312 | 87% |
 | Power Lens Laboratory | 2,296 | 361 | 84% |
 | Measuring Prejudice: Instrument Lab | 2,526 | 319 | 87% |
 | Person or Setting: Workplace Lab | 2,325 | 351 | 85% |
-| **Full total (11 files)** | **23,363** | **3,667** | **84%** |
+| **Full total (11 files)** | **23,363** | **3,703** | **84%** |
 
 ### Simplified edition (12)
 
 | Activity | Old words | New words | Reduction |
 | --- | --- | --- | --- |
 | Epistemology Lens Switch | 924 | 309 | 67% |
-| Constructing a Category | 1,005 | 261 | 74% |
-| Attitude-Behaviour Gap | 943 | 267 | 72% |
-| Conformity Under Context | 900 | 242 | 73% |
-| Self Through Different Lenses | 903 | 242 | 73% |
-| Discourse and Subject Position Lab | 952 | 234 | 75% |
+| Constructing a Category | 1,005 | 263 | 74% |
+| Attitude-Behaviour Gap | 943 | 270 | 71% |
+| Conformity Under Context | 900 | 249 | 72% |
+| Self Through Different Lenses | 903 | 244 | 73% |
+| Discourse and Subject Position Lab | 952 | 245 | 74% |
 | Sherif Norm-Formation Laboratory | 1,524 | 259 | 83% |
-| Minimal Group / Positive Distinctiveness | 926 | 295 | 68% |
-| Crowd Behaviour Laboratory (Deindividuation vs ESIM) | 890 | 265 | 70% |
+| Minimal Group / Positive Distinctiveness | 926 | 329 | 64% |
+| Crowd Behaviour Laboratory (Deindividuation vs ESIM) | 890 | 272 | 69% |
 | Power Lens Laboratory | 1,247 | 264 | 79% |
-| Measuring Prejudice: Instrument Lab | 910 | 225 | 75% |
-| Person or Setting: Workplace Lab | 846 | 256 | 70% |
-| **Simplified total (12 files)** | **11,970** | **3,119** | **74%** |
+| Measuring Prejudice: Instrument Lab | 910 | 229 | 75% |
+| Person or Setting: Workplace Lab | 846 | 257 | 70% |
+| **Simplified total (12 files)** | **11,970** | **3,190** | **73%** |
 
-**Grand total (23 files): 35,333 to 6,786 words, an 81% reduction.**
-New guides range from 225 to 361 words. Every one of the 23 sits well under
-the 450-word check-in point named in the brief, so nothing required
-justification for length; the longest, Power Lens Laboratory (Full) at 361,
-walks three named-only-at-debrief lenses plus a transfer case and stayed at
-that length because each lens needs its own "brings into focus / leaves less
-visible / remedy" triad stated once, not because anything padded it.
+**Grand total (23 files): 35,333 to 6,893 words, an 80% reduction.** These
+figures already include the pre-merge correction pass below: five files'
+counts moved when a false or contradictory claim was corrected (Attitude-
+Behaviour Gap, Full and Simplified; Minimal Group, Simplified, whose
+caution grew most, from 295 to 329 words, in exchange for stating the
+approved necessity-not-sufficiency standard precisely rather than the
+shorter, overclaiming version), and eight further Simplified files' counts
+moved by a handful of words each when their "Before students start"
+sentence was rewritten out of the "None needed" template. New guides range
+from 229 to 384 words. Every one of the 23 still sits well under the
+450-word check-in point named in the brief, so nothing required
+justification for length; the longest, Attitude-Behaviour Gap (Full) at
+384, grew past the previous longest (Power Lens Laboratory at 361) only
+because of the correction pass's added precision about opportunity acting
+as a multiplicative gate rather than because anything was padded.
 
 ## Source-of-truth workflow
 
@@ -186,8 +197,9 @@ unmentioned:
 - The first draft of Self Through Different Lenses (Full) stated the
   fee-rise/hours-cut synthesis figure as "six of seven frameworks," copying
   the tool's own stale figure (see the discrepancy entry below) before the
-  research brief's independently recomputed figure, five directly and two
-  indirectly, was substituted.
+  research brief's independently recomputed figure, no framework treating
+  it as central, five with no concept for it at all, and two reaching it
+  only indirectly, was substituted.
 - The first draft of Discourse and Subject Position Lab (Full) stated
   "none of the five accounts mentions" the halved hours, again copying the
   tool's own stale claim, before being corrected to "only the advocacy
@@ -205,36 +217,56 @@ None required a code fix in this branch; all are documentation-only
 observations, flagged here rather than silently fixed, and classified per
 the brief's five-way taxonomy.
 
-- **Stale tool-side claim, `05-self-through-different-lenses` (Full),
-  `tool.js` comment, `index.html` debrief text, `metadata.json`, and the
-  CLAIMS challenge feedback.** All four state that six of the seven
-  frameworks can reach the fee-rise/hours-cut statement. The tool's own
-  `LENSES[*].coding[8]` data gives five frameworks a direct "yes" and two
-  ("possible selves," "relational") only an indirect route. Not fixed in
-  code on this branch; the new teaching guide states "five of the seven...
-  two can reach it indirectly" instead of repeating the stale figure.
-- **Stale tool-side claim, `06-discourse-subject-position-lab` (Full),
-  `index.html` (two places) and the old `teaching-notes.md` (which already
-  self-contradicted).** All state "none of the five accounts mentions" the
-  halved hours. `ACCOUNTS.advocacy.text` and the code's own `mentionsCut`
-  logic confirm the advocacy bulletin does mention it. Not fixed in code on
-  this branch; the new guide states "only the advocacy bulletin mentions
-  it... the other four genres have no field for it." The new guide also
-  adds an epistemic caveat, that these are authored readings of an invented
-  case and a well-argued alternative reading deserves credit, which the
-  Simplified edition's existing materials already carry but the Full
-  edition currently lacks anywhere in its learner-facing text.
+An independent pre-merge review re-examined these entries and found that
+two of them were originally under-classified: both are visible in the
+tool's own learner-facing text, not only in a code comment or metadata
+field, and both are corrected here.
+
+- **Live learner-facing defect, `05-self-through-different-lenses` (Full),
+  `tool.js`'s CLAIMS-challenge feedback text and `index.html`'s "What is
+  left over" section (both shown to the learner), plus a matching stale
+  comment in `tool.js` and a matching stale sentence in `metadata.json`'s
+  `simulationNotes`. NOT RESOLVED ON THIS BRANCH.** All state that the
+  fee-rise/hours-cut statement is "no concept for it" in six of the seven
+  frameworks and reachable, indirectly, by only the seventh. The tool's
+  own `LENSES[*].coding[8]` data instead gives: no framework treats it as
+  central; five ("self-schema," "social comparison," "self-discrepancy,"
+  "self-efficacy," "social identity") have no concept for it at all; two
+  ("possible selves," "relational and contextual") can reach it only
+  indirectly. The CLAIMS-challenge "why" text compounds this by naming only
+  one framework ("a change in how believable a future self is") when two
+  actually qualify. Not fixed in code on this branch; the new teaching
+  guide states the correct figure, "five of the seven... have no concept
+  for it at all... the other two can reach it indirectly," instead of
+  repeating the stale six-and-one figure. Flagged below for the Social and
+  Critical Psychology live-QA follow-up.
+- **Live learner-facing defect, `06-discourse-subject-position-lab` (Full),
+  `index.html` (two places, both in learner-facing body text) and the old
+  `teaching-notes.md` (which already self-contradicted). NOT RESOLVED ON
+  THIS BRANCH.** All state "none of the five accounts mentions" the halved
+  hours. `ACCOUNTS.advocacy.text` and the code's own `mentionsCut` logic
+  confirm the advocacy bulletin's own text opens by stating the council
+  halved the programme hours. Not fixed in code on this branch; the new
+  guide states "only the advocacy bulletin mentions it... the other four
+  genres have no field for it." The new guide also adds an epistemic
+  caveat, that these are authored readings of an invented case and a
+  well-argued alternative reading deserves credit, which the Simplified
+  edition's existing materials already carry but the Full edition
+  currently lacks anywhere in its learner-facing text. Flagged below for
+  the live-QA follow-up.
 - **Stale walkthrough claim, `09-crowd-deindividuation-vs-esim`
-  (Simplified), old `teaching-notes.md`.** The old guide's walkthrough
-  implied the "Show two afternoons with the same index" comparison feature
-  would display the specific "common" and "fragmented" scenarios the
-  student had just run. The code's `compare()`/`MATCHED` logic always shows
-  a fixed pair, "differentiated" against "restraint," both anonymous, whose
-  index values happen to match. Not fixed in code on this branch; the new
-  guide describes the comparison generically ("two runs that share an
-  identical disinhibition index but very different concentration") rather
-  than repeating the implication that it replays whichever scenarios were
-  just run.
+  (Simplified), old `teaching-notes.md` only (not the tool's own
+  learner-facing text).** The old guide's walkthrough implied the "Show two
+  afternoons with the same index" comparison feature would display the
+  specific "common" and "fragmented" scenarios the student had just run.
+  The code's `compare()`/`MATCHED` logic always shows a fixed pair,
+  "differentiated" against "restraint," both anonymous, whose index values
+  happen to match. Not fixed on this branch; the new guide describes the
+  comparison generically ("two runs that share an identical disinhibition
+  index but very different concentration") rather than repeating the
+  implication that it replays whichever scenarios were just run. Left out
+  of the live-QA follow-up queue since the defect is confined to the
+  superseded teaching notes, not to anything the tool itself displays.
 - **Live learner-facing defect, `12-person-or-setting-workplace-lab`
   (Full), `tool.js` and the exported `standalone.html`. NOT RESOLVED ON
   THIS BRANCH.** An off-by-one round-counter check (`exp1.round === 2`
@@ -246,21 +278,58 @@ the brief's five-way taxonomy.
   and in the exported `standalone.html` alike. Per the task's instructions,
   this was not fixed on this teaching-notes branch; the new guide describes
   only the documented, working two-round design, matching the parts of the
-  old teaching notes that were already accurate, and this item is flagged
-  here for a separate, tightly scoped follow-up PR in the same pattern as
-  the Neuropsychology rollout's `fix-neuropsychology-live-qa` follow-up.
+  old teaching notes that were already accurate. Flagged below for the
+  live-QA follow-up.
 - **Metadata inconsistency, `12-person-or-setting-workplace-lab` (Full),
   `metadata.json`.** `simulationNotes` describes an old pair-bonus/leaver
   formula model with figures of 50 and 35, alongside text stating that same
   mechanic is "gone." The actual, current figures are 53 and 40, with no
-  bonuses, which is what the new guide uses and what the old
-  `teaching-notes.md` already correctly stated. Not fixed on this branch.
-- **Minor imprecision, `12-person-or-setting-workplace-lab` (Simplified),
-  `tool.js`/`index.html`.** The comparison team is described as scoring
-  "less than half" of the reference team; the actual figures (38 against a
-  true half of 37) make this imprecise rather than wrong. Not fixed on this
-  branch; the new guide avoids citing the specific fraction, describing the
-  comparison team generically as scoring "much lower."
+  bonuses (confirmed against `tool.js`'s own constants), which is what the
+  new guide uses and what the old `teaching-notes.md` already correctly
+  stated. Not learner-facing (the field is not rendered in the UI). Not
+  fixed on this branch; kept in the follow-up queue as a metadata cleanup
+  alongside the same tool's crash fix, but not counted among the
+  learner-facing defects below.
+- **Live learner-facing defect, `12-person-or-setting-workplace-lab`
+  (Simplified), `index.html` and `activity.js` (both places the sentence
+  appears, in the challenge statement and again in the round-2 feedback).
+  NOT RESOLVED ON THIS BRANCH.** Both state the comparison team's mean
+  exhaustion score is "less than half" the reference team's. The Full
+  edition's own constants for the same fictional scenario are
+  `COMPARISON_TEAM = 38` against `START_EXHAUSTION = 74`; half of 74 is 37,
+  so 38 is slightly more than half, not less. The Simplified edition
+  carries no numeric constants of its own, only this narrative sentence, so
+  the wording itself is the defect. Originally logged in this review as a
+  "minor imprecision" and left uncorrected in the new guide's prose; an
+  independent pre-merge review judged this too generous, since the
+  sentence is wrong in the direction it claims (the true relationship is
+  "close to half," not "less than half"), and it sits directly on the
+  learner-facing page and in the round-2 feedback text, not only in
+  metadata. The new guide avoids the false comparison, describing the
+  comparison team generically as scoring "much lower," but the tool's own
+  text is unchanged. Flagged below for the live-QA follow-up.
+
+### Social and Critical Psychology live-QA follow-up queue
+
+Following the same pattern as the Neuropsychology rollout's
+`fix-neuropsychology-live-qa` follow-up, four learner-facing defects found
+during this rollout's research are queued for a separate, tightly scoped
+follow-up PR rather than fixed here:
+
+1. `05-self-through-different-lenses` (Full): the wrong statement-8
+   framework count, in `tool.js`'s CLAIMS-challenge feedback,
+   `index.html`'s "What is left over" section, a `tool.js` header comment,
+   and `metadata.json`'s `simulationNotes`.
+2. `06-discourse-subject-position-lab` (Full): the false "none of the five
+   accounts mentions" the hours cut, in `index.html` (two places).
+3. `12-person-or-setting-workplace-lab` (Full): the off-by-one
+   round-counter crash in `tool.js` and `standalone.html`.
+4. `12-person-or-setting-workplace-lab` (Simplified): the "38 is less than
+   half of 74" wording in `index.html` and `activity.js`.
+
+The same tool's stale 50/35 `metadata.json` figures (item 3's tool) are
+carried in the same follow-up as an additional, non-learner-facing metadata
+cleanup, not as a fifth defect.
 
 No discrepancies were found for `01-epistemology-lens-switch` (either
 edition), `02-constructing-a-category` (either edition),
@@ -280,8 +349,12 @@ Social/Critical-specific stock phrases named in the brief ("context
 matters," "nothing is neutral," "this reveals how," "this highlights the
 role of," "foregrounds," "problematizes," "invites us to question," "a more
 nuanced picture," "a useful reminder that," "the lens changes what we see"),
-found none of those phrases present in any of the 23 drafts. One genuine
-cross-file template was found and fixed:
+found none of those phrases present in any of the 23 drafts. This section
+originally reported one genuine cross-file template found and fixed at that
+stage, and judged a second candidate pattern acceptable as written. A
+pre-merge independent review re-checked that judgement and found it wrong:
+the second pattern was a real batch-level tell that the first pass missed.
+Both are recorded here, candidly, as two separate findings rather than one:
 
 - **"[X] alone makes/make the point in about N minutes. [Y] run(s) to about
   M" closed 9 of the 11 Full guides' "Use in class / timing" sections**
@@ -293,17 +366,32 @@ cross-file template was found and fixed:
   extends/pushes to about M"), while every minute figure was left
   unchanged. The Simplified guides' timing sentences already varied their
   opening noun phrase from file to file and did not need the same fix.
+- **"None needed." opened 9 of the 12 Simplified "Before students start"
+  sections**, an identical three-word sentence repeated across three
+  quarters of the Simplified batch. The first AI-tell pass judged this
+  acceptable because each instance was followed by a different, concrete
+  second sentence and the underlying fact (no pre-briefing required) is
+  genuinely true for all nine tools; independent pre-merge review judged
+  that reasoning too generous, since a literal, identical three-word
+  opening repeated nine times is exactly the kind of collection-level tell
+  the brief asks this pass to catch, regardless of what follows it. All
+  nine were rewritten so the section states the concrete orientation fact
+  directly (what is visible on load, what stays the same across editions,
+  what doubles as the prediction) rather than opening with a boilerplate
+  verdict before the fact; two rewrites explicitly cross-reference the Full
+  edition's own withheld-name and timing differences, since that is
+  genuinely useful orientation for a lecturer running both editions, not
+  filler added to manufacture variety. `01-epistemology-lens-switch`,
+  `07-sherif-norm-formation-lab` and `08-minimal-group-positive-distinctiveness`
+  already opened their Simplified "Before students start" sections with a
+  substantive, tool-specific sentence and needed no change.
 
 "Power is everywhere" appears in three files (Power Lens Laboratory, Full
 and Simplified, and once in each guide's caution section), but in every
 instance it is the phrase being warned against, not a description offered
 in the guide's own voice; this is the accuracy rule in the brief being
-enforced, not a stock filler phrase, so it was left as written. "None
-needed" opens 9 of the 12 Simplified "Before students start" sections; each
-instance is followed by a different, concrete second sentence naming what
-is already visible on load, and it states a genuine shared fact (these
-particular tools require no pre-briefing), so it was left as an accurate
-description rather than treated as a template requiring diversification.
+enforced, not a stock filler phrase, and this judgement was rechecked at
+the same time as the "None needed" one above and left standing.
 
 Zero em dashes were found across all 23 final guides. After the fix above,
 all 23 guides were re-read against "does this sound like an experienced
@@ -330,23 +418,106 @@ political conclusions:
   location, incident and policing operation are entirely invented.
 - **Minimal Group / Positive Distinctiveness (Simplified)** keeps the Full
   guide's explicit limit on what the paradigm shows: differential
-  allocation without any prior hostility, competition or group history is
-  sufficient in this stripped-down setting to produce favouritism, which is
-  a narrower claim than saying the paradigm explains real prejudice,
-  racism, discrimination or conflict, and the guide states that limit
-  directly rather than leaving it implied.
+  allocation appeared here with no prior hostility, no competition and no
+  group history at all, so none of those three is necessary to produce the
+  effect in this stripped-down setting. That is narrower than, and not the
+  same claim as, saying categorising people is a sufficient cause of real
+  prejudice, racism, discrimination or conflict. An earlier draft of the
+  Simplified caution stated the stronger, unsupported sufficiency version
+  ("categorising people is enough to produce differential allocation");
+  independent pre-merge review caught this exceeding the approved Full
+  guide's own standard, and it was corrected in this pass (see "Pre-merge
+  correction pass" below).
+
+## Pre-merge correction pass
+
+Before merge, independent review re-read all 23 final guides and this
+review document against the tools' actual behaviour and against the
+brief's accuracy rules, and found six issues beyond the Tool 05 arithmetic
+error and the "None needed" cross-file tell already folded into the
+sections above. All six are fixed on this branch as a new commit; none
+required a code change. This section says plainly what earlier passes
+missed, rather than presenting the original submission as though it had
+already caught everything.
+
+1. **`05-self-through-different-lenses` (Full), timing wording implying
+   four is the complete set.** "Bring in all four lenses" in "Use in
+   class / timing" read as though the activity has only four frameworks,
+   when it has seven and the synthesis merely unlocks after four are
+   applied. Reworded to "Apply four contrasting lenses with the synthesis
+   and challenge."
+2. **`03-attitude-behaviour-gap` (Full), false "necessary" claim.** The
+   caution stated attitude "is necessary without being sufficient." The
+   model is `p = logistic(B0 + attitude + norm + control + habit -
+   constraint) * opportunity`; with attitude at zero, norm, control and
+   habit can still produce a nonzero estimate, so attitude is not
+   necessary. Opportunity is the genuine gate, since it multiplies the
+   whole probability rather than adding to it. Reworded to keep the true,
+   useful point (attitude carries the model's largest single coefficient)
+   without the false necessity claim.
+3. **`03-attitude-behaviour-gap` (Simplified), wrong "lowest-scoring"
+   wording.** All four colleagues share the identical attitude score,
+   0.86; "the lowest-scoring colleague" in "What to look for" misdescribed
+   which quantity varies between them. Reworded to "the lowest-frequency
+   colleague," which is what actually differs.
+4. **`10-power-lens-lukes-foucault-fricker` (Simplified), debrief
+   contradicting the activity's own Fricker lens.** The debrief asked what
+   a hypothetical fourth lens "covering how colleagues judge each other's
+   credibility day to day" would add, but the activity's third lens,
+   Fricker ("Who is believed, and what can be said"), already covers
+   exactly that, and the guide's own "What to look for" names a colleague
+   not being believed as that lens's strongest item. Replaced with a
+   question grounded in an actual feature of the activity: item 5, the
+   missing category, is coded "also relevant" for both Foucault and
+   Fricker in the tool's own data, without being either lens's strongest
+   evidence, so the new debrief asks why that overlap does not make the
+   two lenses interchangeable.
+5. **`08-minimal-group-positive-distinctiveness` (Simplified), sufficiency
+   overclaim.** The caution stated "categorising people is enough to
+   produce differential allocation in this stripped-down setting," a
+   sufficiency claim stronger than the approved Full guide's own standard
+   and stronger than the interactive establishes. Reworded to the Full
+   guide's own framing: differential allocation appeared here with no
+   prior hostility, no competition and no group history at all, so none
+   of those three is necessary to produce the effect in this stripped-down
+   setting, which is not the same as showing categorisation is a
+   sufficient cause of real-world intergroup behaviour.
+6. **Second cross-file AI-tell pattern, "None needed."** opening 9 of the
+   12 Simplified "Before students start" sections. Covered in full under
+   "Cross-file AI-tell patterns found and rewritten" above; all nine were
+   rewritten to state the concrete orientation fact directly.
+
+Also reclassified during this pass, with no wording change to the guides
+themselves: Tool 05 Full's stale framework count and Tool 06 Full's stale
+"none of five" claim were promoted from a generic "stale tool-side claim"
+to an explicit "live learner-facing defect," and Tool 12 Simplified's
+"less than half" wording was promoted from "minor imprecision" to the same
+live-QA follow-up queue, since all three sit in text the tool itself shows
+to the learner, not only in a code comment or a metadata field. See
+"Cross-source accuracy audit and content discrepancies found" above for
+the corrected entries and the resulting four-item follow-up queue.
+
+Corrections 2 through 5 changed four word counts by a handful of words
+each; correction 6 changed all nine affected Simplified word counts by
+small, mostly negative amounts. The word-count tables above already
+reflect the corrected, current text.
 
 ## What this rollout does not do
 
 No Cognitive, Research Methods, Neuropsychology, or Personality and
 Individual Differences file was touched. No `metadata.json` schema changed.
-No activity code changed on this branch: the discrepancies above, including
-the `12-person-or-setting-workplace-lab` (Full) round-counter crash, are
-reported here, not fixed. That defect, being genuinely learner-facing, is
-the leading candidate for a separate, tightly scoped follow-up PR in the
-same pattern as the Neuropsychology rollout's `fix-neuropsychology-live-qa`
-follow-up; the `metadata.json` inconsistency in the same tool and the minor
-"less than half" imprecision in its Simplified twin are lower-priority
-candidates for the same follow-up. This document does not authorise scaling
+No activity code changed on this branch, including in this correction
+pass: every discrepancy above, including the `12-person-or-setting-
+workplace-lab` (Full) round-counter crash, is reported here, not fixed.
+Four learner-facing defects are queued for a separate, tightly scoped
+follow-up PR in the same pattern as the Neuropsychology rollout's
+`fix-neuropsychology-live-qa` follow-up: `05-self-through-different-lenses`
+(Full)'s wrong statement-8 framework count, `06-discourse-subject-
+position-lab` (Full)'s false "none of the five accounts mentions" copy,
+`12-person-or-setting-workplace-lab` (Full)'s round-counter crash, and
+`12-person-or-setting-workplace-lab` (Simplified)'s "38 is less than half
+of 74" wording. The same Tool 12 (Full)'s stale 50/35 `metadata.json`
+figures are carried in the same follow-up as a non-learner-facing metadata
+cleanup, not as a fifth defect. This document does not authorise scaling
 to Personality and Individual Differences; that decision follows review of
 this batch.

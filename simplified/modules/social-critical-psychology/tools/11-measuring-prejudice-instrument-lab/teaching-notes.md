@@ -7,8 +7,8 @@ prejudice differ mainly in what they directly observe, not in
 accuracy. Putting them side by side shows a level missing between
 them that a fifth instrument would be needed to reach.
 
-**Before students start.** None needed. All four instruments are
-named from the start.
+**Before students start.** Nothing is withheld here: all four
+instruments carry their names from the first screen.
 
 **What students do.**
 1. Predict what mainly differs between four instruments all described

@@ -7,8 +7,9 @@ and Fricker, one item in the case file is the strongest evidence.
 Picking it out from the others shows what that lens is built to
 notice, and what it leaves for a different lens to pick up.
 
-**Before students start.** None needed. All three lenses are named on
-the page from the start.
+**Before students start.** Names are given upfront here, unlike the
+Full edition, which withholds Lukes, Foucault and Fricker until
+debrief.
 
 **What students do.**
 1. For each lens, pick the single case item that is its strongest
@@ -24,9 +25,8 @@ lens's strongest item is a colleague not being believed, not the
 missing category for logging a complaint, which counts as relevant
 here but is not its best fit.
 
-**Debrief.** What might a fourth lens, covering how colleagues judge
-each other's credibility day to day, add that none of these three
-cover?
+**Debrief.** Why can the missing-category item be relevant to both
+Foucault and Fricker without making the two lenses interchangeable?
 
 **Common misconception / caution.** Do not read the three lenses as
 three ways of saying power is everywhere. The point of setting them

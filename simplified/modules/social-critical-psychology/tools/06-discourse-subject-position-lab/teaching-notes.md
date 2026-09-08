@@ -7,8 +7,8 @@ the decision to halve a programme's hours, appears in only one of
 five accounts of the same six months. Each account also entitles a
 different kind of person to say what is really happening.
 
-**Before students start.** None needed. All five accounts are
-available from the start.
+**Before students start.** The five accounts are all visible together
+from the outset, so any two can be opened side by side to compare.
 
 **What students do.**
 1. Predict what kind of ledger entry would appear in only one of five

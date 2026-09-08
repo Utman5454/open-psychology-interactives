@@ -8,8 +8,8 @@ about 11 points on a genuinely ambiguous one, because the move only
 touches the normative route, and the ambiguous condition's agreement
 is mostly informational to begin with.
 
-**Before students start.** None needed. All six conditions are
-available from the start.
+**Before students start.** Every condition is on the page from the
+outset; there is no forced sequence for running them.
 
 **What students do.**
 1. Predict the conformity rate on an easy display with a unanimous

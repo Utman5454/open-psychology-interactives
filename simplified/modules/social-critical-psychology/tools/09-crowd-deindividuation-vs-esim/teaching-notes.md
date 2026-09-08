@@ -8,8 +8,9 @@ concentrated the action becomes on one target depends on whether a
 shared category exists once the crowd turns anonymous, not on
 anonymity by itself.
 
-**Before students start.** None needed. The table of what each account
-predicts is visible before running anything.
+**Before students start.** Worth reading before running a single
+scenario: the table of what each account predicts is what makes the
+later comparison legible.
 
 **What students do.**
 1. Predict which account better fits a crowd whose action nearly all
