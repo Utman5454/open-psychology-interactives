@@ -7,7 +7,8 @@ attitude scale yet range from about 4 to 25 meetings out of 30 where
 they would speak up, because opportunity, norm, control, habit and
 constraint differ between them even though the score does not. Giving
 one of them another colleague's opportunity, and changing nothing
-else, nearly triples his rate.
+else, takes his predicted count from about 4 to about 24 meetings out
+of 30.
 
 **Before students start.** All four colleagues' identical attitude
 score and very different meeting counts are visible before anything is

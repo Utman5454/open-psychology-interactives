@@ -3,9 +3,10 @@
 Date: 2026-09-08. Status: **awaiting independent review before merge; four
 learner-facing defects and one self-contradictory metadata file found
 during research, all left unfixed on this branch and flagged below for a
-separate follow-up PR; a pre-merge correction pass applied six wording and
-classification fixes to this batch's own guides and review document (see
-"Pre-merge correction pass" below).** Fourth module-sized pass, after
+separate follow-up PR; two pre-merge correction passes applied seven
+wording and classification fixes to this batch's own guides and review
+document (see "Pre-merge correction pass" below).** Fourth module-sized
+pass, after
 Cognitive Psychology
 (`docs/product/concise-teaching-guide-cognitive-rollout-review.md`), Research
 Methods (`docs/product/concise-teaching-guide-research-methods-rollout-review.md`)
@@ -65,7 +66,7 @@ is empty, confirming the approved Full Minimal Group guide was not touched.
 | --- | --- | --- | --- |
 | Epistemology Lens Switch | 924 | 309 | 67% |
 | Constructing a Category | 1,005 | 263 | 74% |
-| Attitude-Behaviour Gap | 943 | 270 | 71% |
+| Attitude-Behaviour Gap | 943 | 280 | 70% |
 | Conformity Under Context | 900 | 249 | 72% |
 | Self Through Different Lenses | 903 | 244 | 73% |
 | Discourse and Subject Position Lab | 952 | 245 | 74% |
@@ -75,20 +76,23 @@ is empty, confirming the approved Full Minimal Group guide was not touched.
 | Power Lens Laboratory | 1,247 | 264 | 79% |
 | Measuring Prejudice: Instrument Lab | 910 | 229 | 75% |
 | Person or Setting: Workplace Lab | 846 | 257 | 70% |
-| **Simplified total (12 files)** | **11,970** | **3,190** | **73%** |
+| **Simplified total (12 files)** | **11,970** | **3,200** | **73%** |
 
-**Grand total (23 files): 35,333 to 6,893 words, an 80% reduction.** These
-figures already include the pre-merge correction pass below: five files'
-counts moved when a false or contradictory claim was corrected (Attitude-
+**Grand total (23 files): 35,333 to 6,903 words, an 80% reduction.** These
+figures already include both correction passes below: five files' counts
+moved when a false or contradictory claim was corrected (Attitude-
 Behaviour Gap, Full and Simplified; Minimal Group, Simplified, whose
 caution grew most, from 295 to 329 words, in exchange for stating the
 approved necessity-not-sufficiency standard precisely rather than the
-shorter, overclaiming version), and eight further Simplified files' counts
+shorter, overclaiming version), eight further Simplified files' counts
 moved by a handful of words each when their "Before students start"
-sentence was rewritten out of the "None needed" template. New guides range
-from 229 to 384 words. Every one of the 23 still sits well under the
-450-word check-in point named in the brief, so nothing required
-justification for length; the longest, Attitude-Behaviour Gap (Full) at
+sentence was rewritten out of the "None needed" template, and
+Attitude-Behaviour Gap (Simplified) gained ten words in a second pass when
+its "nearly triples his rate" wording was replaced with the same 4-to-24
+figure the rest of the guide already used. New guides range from 229 to
+384 words. Every one of the 23 still sits well under the 450-word
+check-in point named in the brief, so nothing required justification for
+length; the longest, Attitude-Behaviour Gap (Full) at
 384, grew past the previous longest (Power Lens Laboratory at 361) only
 because of the correction pass's added precision about opportunity acting
 as a multiplicative gate rather than because anything was padded.
@@ -333,13 +337,18 @@ cleanup, not as a fifth defect.
 
 No discrepancies were found for `01-epistemology-lens-switch` (either
 edition), `02-constructing-a-category` (either edition),
-`03-attitude-behaviour-gap` (either edition),
+`03-attitude-behaviour-gap` (Full),
 `04-conformity-under-context` (either edition),
 `07-sherif-norm-formation-lab` (either edition),
 `09-crowd-deindividuation-vs-esim` (Full),
 `10-power-lens-lukes-foucault-fricker` (either edition), or
 `11-measuring-prejudice-instrument-lab` (either edition): every number and
-claim checked against the executing code matched.
+claim checked against the executing code matched. `03-attitude-behaviour-gap`
+(Simplified) was originally placed in this clean list too; a later pass
+found the guide's own "nearly triples his rate" did not match the 4-to-24
+figure the same guide, and the code, both give for that same manipulation
+(see item 7 under "Pre-merge correction pass" below), so it no longer
+belongs here.
 
 ## Cross-file AI-tell patterns found and rewritten
 
@@ -433,12 +442,12 @@ political conclusions:
 
 Before merge, independent review re-read all 23 final guides and this
 review document against the tools' actual behaviour and against the
-brief's accuracy rules, and found six issues beyond the Tool 05 arithmetic
-error and the "None needed" cross-file tell already folded into the
-sections above. All six are fixed on this branch as a new commit; none
-required a code change. This section says plainly what earlier passes
-missed, rather than presenting the original submission as though it had
-already caught everything.
+brief's accuracy rules. The pre-merge review found seven guide/batch
+issues in total (numbered below), alongside the separate Tool 05
+arithmetic correction folded into the sections above. All seven are fixed
+on this branch, across two commits; none required a code change. This
+section says plainly what earlier passes missed, rather than presenting
+the original submission as though it had already caught everything.
 
 1. **`05-self-through-different-lenses` (Full), timing wording implying
    four is the complete set.** "Bring in all four lenses" in "Use in
@@ -486,6 +495,17 @@ already caught everything.
    12 Simplified "Before students start" sections. Covered in full under
    "Cross-file AI-tell patterns found and rewritten" above; all nine were
    rewritten to state the concrete orientation fact directly.
+7. **`03-attitude-behaviour-gap` (Simplified), wrong ratio wording,
+   caught in a second, later pass over this same branch.** "What it
+   teaches" stated that giving Marek another colleague's opportunity
+   "nearly triples his rate." The guide's own later sections already
+   correctly report the change as about 4 to about 24 meetings out of
+   30, roughly a sixfold increase, not a near-tripling. Reworded to state
+   the same 4-to-24 figure directly ("takes his predicted count from
+   about 4 to about 24 meetings out of 30") instead of a ratio, removing
+   the inconsistency rather than replacing one ratio with another. This
+   guide had previously been listed below as one with no discrepancies
+   found; that listing was wrong and is corrected in the same section.
 
 Also reclassified during this pass, with no wording change to the guides
 themselves: Tool 05 Full's stale framework count and Tool 06 Full's stale
