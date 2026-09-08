@@ -1,4 +1,4 @@
-# Review: concise teaching-guide rollout — Personality & Individual Differences
+# Review: concise teaching-guide rollout, Personality & Individual Differences
 
 Branch: `personality-individual-differences-teaching-guide-rollout`. This is
 the fifth and final module-sized rollout in the concise teaching-guide
@@ -17,7 +17,7 @@ editions, across the 18 published tool pairs in
 
 03 Person-Situation Interaction Theatre, 04 State versus Trait Tracker,
 07 Factor Rotation Playground, 09 Facet-Level Detective, 12 The Alpha Trap
-(Simplified twin only — see below), 13 Reverse-Item Disaster, 14
+(Simplified twin only, see below), 13 Reverse-Item Disaster, 14
 Response-Style Simulator, 21 Measurement-Invariance Translator, 24 "Explain
 This Person" Courtroom, 31 Intelligence-Test Battery Builder, 32 Positive
 Manifold Visualiser, 34 Culture-Fair Test Challenge, 36 Speed-Accuracy
@@ -104,7 +104,7 @@ uninterrupted pass. Where a report's numbers seemed surprising on first
 read, they were re-derived a second time by hand or by a fresh Node script
 before being used in a guide (this happened for tool 07's rotation angles,
 tool 14's response-style formula constants, tool 24's distinctiveness
-ranking, tool 36's response times, and tool 39's resample range — see
+ranking, tool 36's response times, and tool 39's resample range, see
 "First-pass conclusions corrected on reread" below).
 
 ## Numerical checks performed
@@ -203,7 +203,7 @@ None of these were fixed in this branch, per instruction. Each guide was
 written to avoid repeating the defect's overclaim while still describing
 what a learner actually sees.
 
-1. **Tool 24 (Courtroom), Full — accessibility defect.** The screen-reader
+1. **Tool 24 (Courtroom), Full, accessibility defect.** The screen-reader
    table equivalent for the competition diagram renders only 14 of the 25
    non-"partly" pairs (`pairs.slice(0, 14)` in `tool.js`), dropping 8 of 14
    genuinely competing pairs that the sighted SVG diagram does show. A
@@ -258,7 +258,7 @@ what a learner actually sees.
    has no domain-asymmetry in her contingency values (0.25/0.25), so the
    framing of "the domain that matters to them" does not apply to her
    either way.
-8. **Tool 03 (Person-Situation Interaction Theatre), Full — four related
+8. **Tool 03 (Person-Situation Interaction Theatre), Full, four related
    issues.** (i) A code comment claims tied ranks "share the lower rank
    number," but `ranksFor()` assigns strictly sequential ranks with no
    tie-sharing; a genuine tie exists in the shipped data (the emergency
@@ -274,17 +274,17 @@ what a learner actually sees.
    interaction still returns a self-contradictory "correct, spread now
    15.2" message. (iv) At the strength slider's maximum, all four people's
    behaviour collapses to an exact tie, and a stable-sort artifact makes
-   the tool report "the two settings agree about who does most" — a
+   the tool report "the two settings agree about who does most." This is a
    vacuous reading, since there is no real ordering left once everyone is
    behaviourally identical.
 
 ## Stale teaching-note claims found (not repeated in the new guides)
 
 - Tool 04 Full: "the stability curve settles after about 5 observations for
-  Ada and 25 for Bo" — recomputing the tool's own settle criterion at the
+  Ada and 25 for Bo." Recomputing the tool's own settle criterion at the
   shipped default seed gives n=2 and n=41.
 - Tool 04 Simplified: "the spread... at every setting from about five
-  moments upward" — only holds from roughly n≈15–20 upward; at n=5 the
+  moments upward." This only holds from roughly n≈15–20 upward; at n=5 the
   values are meaningfully off.
 - Tool 07 Full: the "55°/0.57" figure (see live defect 3) is repeated four
   times in the previous teaching-notes.md, inherited uncritically from the
@@ -369,7 +369,7 @@ what a learner actually sees.
   construct.
 - Tool 32 Simplified: `metadata.json` repeats the incorrect 0.023 residual
   bound and additionally claims it is "verified at every setting in the
-  test suite" — no automated test suite exists anywhere in this
+  test suite." No automated test suite exists anywhere in this
   repository.
 - Tool 32 Full, Tool 42 Full, Tool 49 Full: each tool's `metadata.json`
   `estimatedMinutes` (20, 15, 15 respectively) disagrees with that same
@@ -388,7 +388,7 @@ what a learner actually sees.
   which is how the pressure/reputation/incentive correction was found.
 - Tool 34: the previous notes' "roughly half" claim was checked against
   its own later reference table in the same document, which already stated
-  37% — the two sections of the same file disagreed with each other before
+  37%; the two sections of the same file disagreed with each other before
   this rewrite.
 - Tool 39: the previous notes' "a few hundredths" resampling claim
   contradicted its own earlier "several points" claim in the same
@@ -434,7 +434,7 @@ defer this pass until every file existed:
   constants are 1.2 and 0.45. The previous notes' *qualitative* balanced/
   unbalanced gap figures ("about 6" and "about 15" points) turned out to
   still be correct against the real code once the correct per-style seed
-  offset (`state.seed + style.id.length * 17`) was accounted for — an
+  offset (`state.seed + style.id.length * 17`) was accounted for. An
   initial same-seed comparison across styles gave the wrong gap entirely
   until this was found and corrected.
 - **Tool 24's distinctiveness ranking.** The obvious move was to keep the
@@ -470,7 +470,7 @@ defer this pass until every file existed:
 - Zero em dashes across all 35 changed files (confirmed by grep).
 - `python3 scripts/check-all.py` run on the branch; this task does not add
   a new gate, unlike the Neuropsychology and Social & Critical rollouts,
-  which each added a live-QA follow-up gate — the harness stays at 13
+  which each added a live-QA follow-up gate; the harness stays at 13
   gates.
 
 ## Candour
