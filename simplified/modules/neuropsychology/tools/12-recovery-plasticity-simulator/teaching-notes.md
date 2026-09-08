@@ -27,13 +27,13 @@ to about 80, and only about seven per cent of that climb shows up on
 the untrained task, since restitution was kept small on purpose while
 the other three components did the work.
 
-**Debrief.** Ask what the guided case's climb would look like reported
-as "improvement" if the untrained task had never been checked at all.
+**Debrief.** What would the guided case's climb look like, reported as
+"improvement," if the untrained task had never been checked at all?
 
 **Common misconception / caution.** The four bands are drawn as if
 they simply add up with no interaction between them, and their shapes
 are illustrative rather than measured. Nothing here describes a real
 patient or predicts a real recovery.
 
-**Use in class / timing.** Trying the sliders and the guided case takes
-about 5 to 7 minutes.
+**Use in class / timing.** The sliders and the guided case take about
+5 to 7 minutes to try.

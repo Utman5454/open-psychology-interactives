@@ -29,9 +29,9 @@ change. Most students stay above that line the whole way through,
 because nothing in the three complications ever raises support back
 up, only lowers it.
 
-**Debrief.** Ask what the case still supports once all three
+**Debrief.** What does the case still support once all three
 complications are in, and what would have to be true of the evidence
-for the broader claim to survive them.
+for the broader claim to survive them?
 
 **Common misconception / caution.** "Damage here, so the region does
 this" turns necessity into function without justification. The falling
@@ -40,5 +40,5 @@ neuropsychologist could draw it elsewhere; what is not arbitrary is the
 direction, since every complication here removes support and none adds
 any.
 
-**Use in class / timing.** Rating and rereading through all three
-complications takes about 5 minutes.
+**Use in class / timing.** Five minutes covers rating confidence and
+reading through all three complications.

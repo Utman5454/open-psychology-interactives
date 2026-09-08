@@ -31,9 +31,9 @@ premorbid language organisation, a second unrelated lesion, and finally
 a confound in how comprehension was tested, while the four numbers
 describing Person M never change. Most students do not lower their
 rating enough between complications, and the gauge names that gap
-directly. The premorbid-level complication is the one to watch for
-misreading: it raises uncertainty about how atypical her language
-organisation might already have been, not evidence that left-handers
+directly. Students often misread the premorbid-level complication: it
+raises uncertainty about how atypical her language organisation might
+already have been, not evidence that left-handers
 have reversed lateralisation.
 
 **Debrief.** Ask what exactly stays true throughout: the claim about
@@ -47,6 +47,6 @@ damage shows is that a task could not be done without that tissue in
 this person; what the tissue contributes to the task in general is a
 separate question that one case, however clean, cannot answer.
 
-**Use in class / timing.** The prediction and the first three
-complications run to about 12 minutes from the front. The full six
-complications with the closing challenge run to about 40 minutes.
+**Use in class / timing.** Twelve minutes covers the prediction and
+the first three complications read from the front. Reaching all six
+complications and the closing challenge takes closer to 40.

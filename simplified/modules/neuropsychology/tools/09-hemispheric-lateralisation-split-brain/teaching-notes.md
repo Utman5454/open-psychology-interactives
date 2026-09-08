@@ -8,8 +8,9 @@ alone, leaving the callosum cut, and the same trial that failed now
 succeeds, because the eyes have time to move and both hemispheres end
 up with the word.
 
-**Before students start.** None needed. The diagram updates live as
-each control changes, with no run button and no prediction step.
+**Before students start.** Nothing to prepare. The diagram updates
+live as each control changes, with no run button and no prediction
+step.
 
 **What students do.**
 1. Set which side the word appears on, how the answer is given, and
@@ -34,5 +35,5 @@ the classic result, not a lab technicality, and more recent work has
 questioned even the sharpness of the perceptual split these patients
 show outside a laboratory.
 
-**Use in class / timing.** Trying the controls and both guided buttons
-takes about 5 minutes.
+**Use in class / timing.** The controls and both guided buttons take
+about 5 minutes to try.

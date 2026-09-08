@@ -8,8 +8,8 @@ people are equally poor on a measure, which makes it useless for
 telling them apart, and a different measure that neither profile's own
 low score pointed to turns out to do the separating.
 
-**Before students start.** None needed. Each pairing asks for a
-prediction before the chart appears.
+**Before students start.** No preparation is required. Each pairing
+asks for a prediction before the chart appears.
 
 **What students do.**
 1. For each of three paired profiles, predict which of four measures,
@@ -31,5 +31,5 @@ automatically the measure that best separates them from someone else;
 it only is once the comparison person's score on that same measure is
 checked too.
 
-**Use in class / timing.** Working through all three pairings takes
-about 5 minutes.
+**Use in class / timing.** All three pairings fit into about 5
+minutes.

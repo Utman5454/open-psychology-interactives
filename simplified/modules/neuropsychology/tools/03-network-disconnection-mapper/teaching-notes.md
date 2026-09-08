@@ -8,8 +8,8 @@ Damaging a region knocks out every task built on it. Cutting a pathway
 knocks out only the one task that crosses it, leaving both regions it
 joins undamaged, so a scan of the grey matter finds nothing wrong.
 
-**Before students start.** None needed. The diagram and its three
-tasks are visible from the start.
+**Before students start.** Nothing to prepare. The diagram and its
+three tasks are visible from the start.
 
 **What students do.**
 1. Damage a region or cut a pathway, alone or together, and read which
@@ -37,5 +37,5 @@ three-region network as a cartoon rather than an anatomy lesson; real
 networks have far more regions, pathways that serve more than one task,
 and redundancy that this model leaves out.
 
-**Use in class / timing.** Trying a few combinations and the guided
-case takes about 5 minutes.
+**Use in class / timing.** A few combinations and the guided case fit
+into about 5 minutes.

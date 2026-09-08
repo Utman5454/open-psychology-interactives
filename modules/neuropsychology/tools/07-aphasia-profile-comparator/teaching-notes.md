@@ -29,9 +29,9 @@ are both fluent and both comprehend well can still be told apart
 cleanly by repetition alone, since repeating a word needs neither
 fluent production nor comprehension.
 
-**Debrief.** Ask why naming two profiles as belonging to different
-categories is a label rather than an explanation of what actually
-separates them.
+**Debrief.** Why is naming two profiles as belonging to different
+categories a label rather than an explanation of what actually
+separates them?
 
 **Common misconception / caution.** A textbook syndrome name is not a
 lesion location and not an explanation for a profile. This activity
@@ -40,6 +40,6 @@ distributed network, the same profile can follow damage in several
 places, and a profile constrains what has gone wrong far less tightly
 than the classical region-to-syndrome diagrams imply.
 
-**Use in class / timing.** Comparing one pair of profiles makes the
-point in about 8 minutes. Working through several pairs with the
-challenge runs to about 40 minutes.
+**Use in class / timing.** One pair of profiles, compared once, makes
+the point in about 8 minutes. Several pairs and the closing challenge
+fill a session of about 40.

@@ -42,6 +42,6 @@ a control group would score the same on it as on recall. No anatomy
 and no syndrome is named anywhere in this activity, on purpose: a
 behavioural profile constrains what is going on, not where.
 
-**Use in class / timing.** Judging one profile across all three claims
-makes the point in about 8 minutes. All four profiles with the
-challenge run to about 30 minutes.
+**Use in class / timing.** Eight minutes covers one profile judged
+against all three claims. Bringing in the fourth profile and the
+challenge fills a session closer to 30.

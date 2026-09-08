@@ -20,10 +20,9 @@ matter to the answer.
 3. Write the report and read what the chosen battery can and cannot
    speak to.
 
-**What to look for.** Skipping sleep, illness and mood coverage to fit
-more memory and language testing into the budget leaves the rival,
-non-progressive explanation for the whole picture completely
-unexamined, not merely under-tested.
+**What to look for.** Two batteries covering the same number of
+questions can read very differently in the final report, depending on
+whether sleep, illness and mood happened to be among the tasks chosen.
 
 **Debrief.** Ask whether any battery buildable here could actually
 settle whether this is the beginning of a dementia.
@@ -33,5 +32,5 @@ list would be sufficient to diagnose or exclude a dementia. That is a
 clinical judgement made over time, with information this exercise
 deliberately leaves out.
 
-**Use in class / timing.** Building one battery against the budget
+**Use in class / timing.** One battery, built against the budget,
 takes about 5 to 7 minutes.

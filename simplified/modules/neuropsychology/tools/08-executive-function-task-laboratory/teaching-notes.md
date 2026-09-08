@@ -27,9 +27,9 @@ near the top or the bottom of its range. That failure is itself
 informative: it shows how much room a capacity has left to trade
 against the others.
 
-**Debrief.** Ask what one composite score can and cannot tell you
-about which capacity is reduced, given that the search just found a
-very different profile with the same score.
+**Debrief.** Put to the group what one composite score can and cannot
+tell you about which capacity is reduced, given that the search just
+found a very different profile with the same score.
 
 **Common misconception / caution.** The weights and tasks here are
 invented for teaching. Real tasks do not decompose into four tidy
@@ -37,5 +37,5 @@ capacities with fixed weights, the capacities themselves are inferred
 from performance rather than observed directly, and how separable they
 really are is still argued about.
 
-**Use in class / timing.** Trying the sliders and one search takes
-about 5 to 6 minutes.
+**Use in class / timing.** Five to six minutes covers the sliders and
+one search.

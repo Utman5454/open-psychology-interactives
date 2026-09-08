@@ -43,6 +43,6 @@ alone reproduces the identical pattern. Naming a brain region is worse
 still: executive tasks are impaired by damage in many places, and
 frontal damage does not reliably impair them.
 
-**Use in class / timing.** The opening question and one task's reveal
-make the point in about 10 minutes. Both experiments with the closing
-challenge run to about 45 minutes.
+**Use in class / timing.** Ten minutes covers the opening question and
+one task's reveal. A full run through both experiments and the
+closing challenge needs about 45.

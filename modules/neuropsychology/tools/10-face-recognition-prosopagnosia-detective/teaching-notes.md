@@ -40,6 +40,6 @@ difficulty. Faces are far more similar to one another than everyday
 objects are, so an easier control task can look intact for reasons
 that have nothing to do with faces.
 
-**Use in class / timing.** One damaged step and one profile make the
-point in about 10 minutes. Both experiments with the challenge run to
-about 45 minutes.
+**Use in class / timing.** Damaging one step and checking one profile
+makes the argument in about 10 minutes. Both experiments in full,
+including the challenge, need about 45.

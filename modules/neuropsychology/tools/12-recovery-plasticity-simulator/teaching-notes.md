@@ -40,6 +40,6 @@ so recovery stays bounded even under the most favourable settings
 available. A rising curve on a trained task is not evidence that a
 programme worked without a comparison group who did not receive it.
 
-**Use in class / timing.** One route through experiment 2 makes the
-point in about 10 minutes. Both experiments with the closing challenge
-run to about 40 minutes.
+**Use in class / timing.** A single route through experiment 2 lands
+the point in about 10 minutes. Both experiments together, with the
+closing challenge, run to about 40.

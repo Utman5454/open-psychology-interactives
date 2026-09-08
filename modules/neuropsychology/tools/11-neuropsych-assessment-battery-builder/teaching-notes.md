@@ -29,9 +29,9 @@ less time. Switching to a different referral without reselecting any
 task leaves every number on screen unchanged but changes which checks
 now pass.
 
-**Debrief.** Ask what the four checks actually evaluate, the design of
-the battery, and what they say nothing about, any particular person's
-diagnosis.
+**Debrief.** Put to the group what the four checks actually evaluate,
+the design of the battery, and what they say nothing about, any
+particular person's diagnosis.
 
 **Common misconception / caution.** The closing challenge's report
 says a recall score "indicating a significant memory impairment" came
@@ -41,6 +41,6 @@ unscreened hearing problem, or variable effort, as well as by a
 genuine memory difficulty, and none of those alternatives was
 measured.
 
-**Use in class / timing.** Building one battery against its referral
-makes the point in about 10 minutes. All three referrals with the
-challenge run to about 45 minutes.
+**Use in class / timing.** A single battery, built against its own
+referral, takes about 10 minutes. Cycling through all three referrals
+and the challenge fills about 45.

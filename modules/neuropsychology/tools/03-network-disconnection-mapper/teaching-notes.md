@@ -30,9 +30,9 @@ the tool names this tie automatically rather than asserting it.
 Toggling the direct picture-to-word pathway alone changes nothing on
 any of the four tasks, a negative result worth pausing on.
 
-**Debrief.** Ask what a deficit on its own can rule in or out about a
+**Debrief.** What can a deficit on its own rule in or out about a
 single region, given that three different single failures here produce
-one indistinguishable profile.
+one indistinguishable profile?
 
 **Common misconception / caution.** Students sometimes name preset 3's
 pattern as transcortical sensory aphasia. The tool deliberately names
@@ -42,6 +42,6 @@ break. Localisation and network accounts are not presented as rivals
 either: a region still does something, and what it does depends on
 what it connects to.
 
-**Use in class / timing.** The pathway-cut preset alone makes the point
-in about 6 minutes. The full activity with the challenge runs to about
-25 minutes.
+**Use in class / timing.** Six minutes is all the pathway-cut preset
+needs to make its point on its own. Free toggling and the closing
+challenge take the full session to about 25.

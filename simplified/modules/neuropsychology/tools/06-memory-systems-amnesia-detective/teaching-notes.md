@@ -24,13 +24,13 @@ is the most impaired of the three and decides the least: it looks
 exactly like what a single general reduction would produce, so it
 cannot tell the two-systems claim from the one-system claim.
 
-**Debrief.** Ask why the most severely impaired profile is the one
-that settles the fewest questions.
+**Debrief.** Why is the most severely impaired profile the one that
+settles the fewest questions?
 
 **Common misconception / caution.** A bigger deficit is not stronger
 evidence for separate systems. Losing both abilities together is
 exactly what one shared problem would also produce, which is why a
 reversal, not a larger loss, is what a genuine dissociation needs.
 
-**Use in class / timing.** Judging all three profiles against both
-claims takes about 5 minutes.
+**Use in class / timing.** All three profiles judged against both
+claims fit into about 5 minutes.

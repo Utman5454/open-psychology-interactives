@@ -28,8 +28,8 @@ narrows the site further than a full hemifield defect does. A spared
 centre at the occipital site is the traditional clue for placing
 damage further back, not proof of it.
 
-**Debrief.** Ask what the tract-versus-occipital tie says about how
-far a field pattern alone can narrow down the site of damage.
+**Debrief.** What does the tract-versus-occipital tie say about how
+far a field pattern alone can narrow down the site of damage?
 
 **Common misconception / caution.** A field pattern is not a
 diagnosis. In practice it is read alongside visual acuity, pupil
@@ -39,6 +39,6 @@ neglect: a field defect is about not seeing, not about not attending,
 which is why the earlier neglect activity spends its time on that
 distinction instead.
 
-**Use in class / timing.** Mapping the optic nerve, the chiasm and the
-optic tract makes the point in about 10 minutes. The full site-by-site
-tour with the challenge runs to about 30 minutes.
+**Use in class / timing.** Mapping just the nerve, the chiasm and the
+tract carries the argument in about 10 minutes. The remaining sites
+and the challenge take the full tour to about 30.

@@ -10,8 +10,8 @@ field cross. A cut at the optic tract and a cut at the visual cortex
 give the identical pattern, so the shape of the loss narrows the site
 without pinning it down.
 
-**Before students start.** None needed. Selecting a site shows the
-result immediately.
+**Before students start.** Nothing needs setting up. Selecting a site
+shows the result immediately.
 
 **What students do.**
 1. Choose a damage site along the pathway and read the loss in each
@@ -34,5 +34,5 @@ possible site; it does not name a diagnosis. Some people are unaware
 of a substantial field loss, so the absence of a complaint is not
 evidence that the field is intact.
 
-**Use in class / timing.** Working through the six sites takes about
-5 minutes.
+**Use in class / timing.** The six sites take about 5 minutes to work
+through.

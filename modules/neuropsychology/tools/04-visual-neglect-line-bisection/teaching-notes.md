@@ -46,6 +46,6 @@ here: neglect follows damage in several regions and in the connections
 between them, and while it is more common and more persistent after
 right-hemisphere damage, the reverse occurs too.
 
-**Use in class / timing.** Comparing one profile across the three
-tasks makes the point in about 10 minutes. The full activity with the
-challenge runs to about 40 minutes.
+**Use in class / timing.** Ten minutes is enough to compare one
+profile across all three tasks. Cover every profile and the closing
+challenge and the session runs closer to 40.

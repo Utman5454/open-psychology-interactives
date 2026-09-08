@@ -8,8 +8,8 @@ knowledge, retrieving the name, with reading someone's expression
 branching off right after perception rather than depending on any of
 the later identity steps.
 
-**Before students start.** None needed. The model and its five
-questions are visible from the start.
+**Before students start.** Nothing needs setting up. The model and its
+five questions are visible from the start.
 
 **What students do.**
 1. Pick which step is impaired, or none, and read which of five
@@ -23,13 +23,13 @@ questions are visible from the start.
 expression untouched, because that branches off earlier in the chain,
 before familiarity is ever checked.
 
-**Debrief.** Ask what the familiarity-break profile can still do, and
-why that matters for how someone manages day to day without it.
+**Debrief.** What can the familiarity-break profile still do, and why
+does that matter for how someone manages day to day without it?
 
 **Common misconception / caution.** This chain is a summary of which
 abilities come apart, not a map of anything in the brain. It earns its
 place by predicting which profiles should and should not exist, and it
 is those predictions, not the boxes, that are the evidence.
 
-**Use in class / timing.** Trying each break and the guided case takes
-about 5 minutes.
+**Use in class / timing.** Each break and the guided case together
+take about 5 minutes.

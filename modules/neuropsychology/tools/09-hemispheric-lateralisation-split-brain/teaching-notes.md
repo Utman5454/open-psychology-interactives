@@ -36,8 +36,8 @@ fixation control alone makes the trial uninterpretable whatever else
 holds. Dropping cross-cueing control lets a correct answer through by
 a route the design was meant to exclude.
 
-**Debrief.** Ask why the same word, seen by the same hemisphere, can be
-picked out by one hand and not spoken.
+**Debrief.** Why can the same word, seen by the same hemisphere, be
+picked out by one hand and not spoken?
 
 **Common misconception / caution.** "The left hemisphere is dominant,
 so it overrides the right" misreads silence as suppression: the left
@@ -45,6 +45,6 @@ hemisphere says nothing because it never received the information, not
 because it beat the right hemisphere to an answer. Left-brained and
 right-brained personality talk makes the same error at a larger scale.
 
-**Use in class / timing.** The classic trial and one section make the
-point in about 8 minutes. Both experiments with the challenge run to
-about 30 minutes.
+**Use in class / timing.** Eight minutes is enough for the classic
+trial and a single section change to land. Both experiments in full,
+with the challenge, take about 30.
