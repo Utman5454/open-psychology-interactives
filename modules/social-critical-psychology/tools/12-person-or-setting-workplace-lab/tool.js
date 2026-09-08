@@ -62,7 +62,7 @@
   var BUDGET = 10;
   var COMPARISON_TEAM = 38;
 
-  /* --- The evidence, in three rounds ---------------------------------------- */
+  /* --- The evidence, in two rounds -------------------------------------- */
 
   var EVIDENCE = [
     {
@@ -452,7 +452,7 @@
   }
 
   /* =======================================================================
-     Experiment 1 - three rounds
+     Experiment 1 - two rounds
      ===================================================================== */
 
   var roundsShell = InteractiveShell.attach("#rounds-lab");
@@ -521,13 +521,13 @@
       li.appendChild(make("span", "trail__answer", EXPLANATION_LABELS[answer]));
       trail.appendChild(li);
     });
-    if (exp1.answers.length === 3) {
-      var moved = exp1.answers[0] !== exp1.answers[2];
+    if (exp1.answers.length === 2) {
+      var moved = exp1.answers[0] !== exp1.answers[1];
       var note = make("li", "trail__note");
       note.textContent = moved
-        ? "Your explanation moved between round 1 and round 3. Nothing about " +
+        ? "Your explanation moved between round 1 and round 2. Nothing about " +
           "Team B changed in between."
-        : "Your explanation held across all three rounds. Worth asking what " +
+        : "Your explanation held across both rounds. Worth asking what " +
           "would have moved it, and whether the file could have supplied it.";
       trail.appendChild(note);
     }
@@ -544,7 +544,7 @@
       box.appendChild(make("p", "verdict__body", entry.body));
       roundFeedback.appendChild(box);
     });
-    if (exp1.answers.length === 3) {
+    if (exp1.answers.length === 2) {
       var closing = make("div", "verdict");
       closing.setAttribute("data-tone", "warn");
       closing.appendChild(make("h5", "verdict__title",
@@ -578,8 +578,8 @@
     roundLegend.textContent = ROUND_TITLES[exp1.round];
     buildEvidence();
     buildExplanationOptions();
-    commitButton.hidden = exp1.answers.length >= 3;
-    commitButton.textContent = exp1.round === 2
+    commitButton.hidden = exp1.answers.length >= 2;
+    commitButton.textContent = exp1.round === 1
       ? "Record my final explanation"
       : "Record this and release the next round";
     renderTrail();
@@ -591,6 +591,9 @@
   }
 
   commitButton.addEventListener("click", function () {
+    if (exp1.answers.length >= ROUND_TITLES.length) {
+      return;
+    }
     if (!exp1.choice) {
       roundNote.textContent =
         "Choose one before recording. \"Several at once\" is a real answer " +
@@ -600,7 +603,7 @@
     }
     roundNote.textContent = "";
     exp1.answers.push(exp1.choice);
-    var last = exp1.round === 2;
+    var last = exp1.round === 1;
     if (!last) {
       exp1.round += 1;
       exp1.choice = null;
@@ -1041,7 +1044,7 @@
       verdict: "A cause, smuggled in as a description.",
       text:
         "Nothing in a within-team correlation compares this team's recruitment " +
-        "with anybody else's. Round 3 supplies a comparison team that was " +
+        "with anybody else's. Round 2 supplies a comparison team that was " +
         "matched at recruitment, which is exactly the evidence this claim " +
         "would need and does not have yet."
     }
