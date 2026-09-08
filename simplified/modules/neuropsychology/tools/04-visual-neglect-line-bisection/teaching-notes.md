@@ -29,10 +29,10 @@ while cancellation succeeds?
 
 **Common misconception / caution.** "Neglect is blindness on one
 side" has it backwards: the field-loss patient cannot see the left
-without moving his eyes, and moves them, while the neglect patient can
-see it perfectly well and does not attend to it. Patient A's
-right-hemisphere stroke is the typical site for neglect, not the only
-one it can follow.
+without moving his eyes, and moves them, while the neglect patient's
+visual input from the left is available but goes unattended and
+unacted on. Patient A's right-hemisphere stroke is the typical site
+for neglect, not the only one it can follow.
 
 **Use in class / timing.** Five minutes is enough to compare the two
 patients on both tasks.

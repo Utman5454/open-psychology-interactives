@@ -36,10 +36,10 @@ particular person's diagnosis.
 **Common misconception / caution.** The closing challenge's report
 says a recall score "indicating a significant memory impairment" came
 from one task alone. "Indicating" is the word doing the damage: that
-percentile is produced by poor sleep, low mood, pain, medication, an
-unscreened hearing problem, or variable effort, as well as by a
-genuine memory difficulty, and none of those alternatives was
-measured.
+percentile can just as easily reflect poor sleep, low mood, pain,
+medication, an unscreened hearing problem, or variable effort as a
+genuine memory difficulty, and a single score cannot tell those apart
+when none of the alternatives was measured.
 
 **Use in class / timing.** A single battery, built against its own
 referral, takes about 10 minutes. Cycling through all three referrals

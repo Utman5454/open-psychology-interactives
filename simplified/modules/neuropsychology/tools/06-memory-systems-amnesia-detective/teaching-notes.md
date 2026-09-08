@@ -3,10 +3,13 @@
 `simplified/modules/neuropsychology/tools/06-memory-systems-amnesia-detective/`
 
 **What it teaches.** Two profiles that lose fact-learning and skill-
-learning in opposite directions show the two do not run on one and the
-same system. A third profile that loses both together decides nothing,
-because one general reduction in capacity predicts exactly that same
-picture.
+learning in opposite directions count against a simple account in
+which both abilities depend on exactly the same resources in the same
+way: they show the two do not depend on all the same things. That is
+weaker than proving two separate biological memory systems, and it
+does not rule out every possible single-system model. A third profile
+that loses both together decides nothing, because one general
+reduction in capacity predicts exactly that same picture.
 
 **Before students start.** None needed. All three profiles are
 described in a sentence each from the start.
@@ -22,15 +25,17 @@ described in a sentence each from the start.
 **What to look for.** The profile that loses both abilities together
 is the most impaired of the three and decides the least: it looks
 exactly like what a single general reduction would produce, so it
-cannot tell the two-systems claim from the one-system claim.
+cannot tell the separability claim from the one-shared-resource
+account.
 
 **Debrief.** Why is the most severely impaired profile the one that
 settles the fewest questions?
 
 **Common misconception / caution.** A bigger deficit is not stronger
-evidence for separate systems. Losing both abilities together is
-exactly what one shared problem would also produce, which is why a
-reversal, not a larger loss, is what a genuine dissociation needs.
+evidence that the two abilities are separable. Losing both abilities
+together is exactly what one shared problem would also produce, which
+is why a reversal, not a larger loss, is what a genuine dissociation
+needs.
 
 **Use in class / timing.** All three profiles judged against both
 claims fit into about 5 minutes.

@@ -5,8 +5,10 @@
 **What it teaches.** Which single measure separates two language
 profiles most is computed live for whatever pair a student picks, not
 looked up from a table. Repetition can separate two profiles that are
-both fluent and both understand well, because repeating a word needs
-neither. The classical aphasia categories are prototypes: useful
+both fluent and both understand well, because a fairly direct route
+from sound to speech can carry it without needing comprehension, and
+repetition does not simply track spontaneous fluency. The classical
+aphasia categories are prototypes: useful
 shorthand with three known problems, a substantial minority of people
 fit none of them, the same label covers very different profiles, and
 the anatomical claims attached to them are looser than the textbook
@@ -26,8 +28,9 @@ understanding well, actually tells you, before comparing profiles.
 **What to look for.** Some pairs are near ties on more than one
 measure, which the tool names rather than hiding. Two profiles that
 are both fluent and both comprehend well can still be told apart
-cleanly by repetition alone, since repeating a word needs neither
-fluent production nor comprehension.
+cleanly by repetition alone, since its fairly direct sound-to-speech
+route lets it run without comprehension and without tracking
+spontaneous fluency.
 
 **Debrief.** Why is naming two profiles as belonging to different
 categories a label rather than an explanation of what actually

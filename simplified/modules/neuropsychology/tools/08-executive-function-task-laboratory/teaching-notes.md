@@ -5,9 +5,9 @@
 **What it teaches.** A task's score is a weighted blend of several
 capacities, never one alone, and two very different capacity profiles
 can land on the identical composite score. The "find me a different
-person" search proves this live rather than asserting it: it hunts for
-a distant profile that rounds to the same overall score as the one on
-screen.
+person" search demonstrates this within the model rather than
+asserting it: it hunts for a distant profile that rounds to the same
+overall score as the one on screen.
 
 **Before students start.** None needed. All three tasks' weights are
 visible from the start; nothing is hidden and revealed later.
@@ -27,9 +27,10 @@ near the top or the bottom of its range. That failure is itself
 informative: it shows how much room a capacity has left to trade
 against the others.
 
-**Debrief.** Put to the group what one composite score can and cannot
-tell you about which capacity is reduced, given that the search just
-found a very different profile with the same score.
+**Debrief.** If the search finds a twin, ask what the shared composite
+score hides about which capacity is reduced. If it reports none, ask
+what that failure says about how much room is left for the remaining
+capacities to trade against each other.
 
 **Common misconception / caution.** The weights and tasks here are
 invented for teaching. Real tasks do not decompose into four tidy

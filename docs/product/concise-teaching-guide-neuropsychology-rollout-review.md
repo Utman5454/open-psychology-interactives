@@ -1,6 +1,7 @@
 # Concise teaching-guide rollout: Neuropsychology
 
-Date: 2026-09-08. Status: **rollout batch complete, awaiting review**.
+Date: 2026-09-08. Status: **rollout batch complete; pre-merge correction
+pass applied on independent review, still awaiting merge**.
 Third module-sized pass, after Cognitive Psychology
 (`docs/product/concise-teaching-guide-cognitive-rollout-review.md`) and
 Research Methods
@@ -43,15 +44,15 @@ guide was not touched.
 | Lesion-Symptom Inference Trap | 1,793 | 408 | 77% |
 | Network Disconnection Mapper | 2,026 | 362 | 82% |
 | Visual Neglect Laboratory | 2,021 | 386 | 81% |
-| Visual Field Defect Mapper | 1,746 | 345 | 80% |
+| Visual Field Defect Mapper | 1,746 | 354 | 80% |
 | Memory Systems Detective | 2,237 | 355 | 84% |
-| Aphasia Profile Comparator | 1,819 | 330 | 82% |
+| Aphasia Profile Comparator | 1,819 | 353 | 81% |
 | Executive Function Task Laboratory | 2,711 | 356 | 87% |
 | Split-Brain Laboratory | 2,645 | 409 | 85% |
 | Face Recognition Detective | 2,359 | 350 | 85% |
-| Assessment Battery Builder | 2,469 | 318 | 87% |
+| Assessment Battery Builder | 2,469 | 325 | 87% |
 | Recovery and Plasticity Simulator | 2,406 | 347 | 86% |
-| **Full total (11 files)** | **24,232** | **3,966** | **84%** |
+| **Full total (11 files)** | **24,232** | **4,005** | **83%** |
 
 ### Simplified edition (12)
 
@@ -60,18 +61,18 @@ guide was not touched.
 | Double Dissociation Detective | 1,342 | 339 | 75% |
 | Lesion-Symptom Inference Trap | 729 | 321 | 56% |
 | Network Disconnection Mapper | 794 | 319 | 60% |
-| Visual Neglect Laboratory | 810 | 266 | 67% |
+| Visual Neglect Laboratory | 810 | 268 | 67% |
 | Visual Field Defect Mapper | 766 | 275 | 64% |
-| Memory Systems Detective | 724 | 250 | 65% |
+| Memory Systems Detective | 724 | 292 | 60% |
 | Aphasia Profile Comparator | 735 | 240 | 67% |
-| Executive Function Task Laboratory | 755 | 291 | 61% |
+| Executive Function Task Laboratory | 755 | 303 | 60% |
 | Split-Brain Laboratory | 705 | 255 | 64% |
 | Face Recognition Detective | 706 | 228 | 68% |
 | Assessment Battery Builder | 747 | 240 | 68% |
 | Recovery and Plasticity Simulator | 781 | 298 | 62% |
-| **Simplified total (12 files)** | **9,594** | **3,322** | **65%** |
+| **Simplified total (12 files)** | **9,594** | **3,378** | **65%** |
 
-**Grand total (23 files): 33,826 to 7,288 words, a 78% reduction.**
+**Grand total (23 files): 33,826 to 7,383 words, a 78% reduction.**
 New guides range from 228 to 409 words. Every Full guide sits under the
 450-word check-in point; the longest, Split-Brain Laboratory at 409,
 carries two genuinely separate experiments (a routing-based trial
@@ -184,12 +185,30 @@ concrete, observable fact (two batteries covering the same number of
 questions can read very differently in the final report) rather than
 restating the lesson already given above it.
 
-No instance was found of a genuine internal contradiction, an
-activity stated as never producing some outcome while the same guide
-reports it happening, or a localisation claim contradicted by a nearby
-network caution. This audit's scope is the 23 guides drafted in this
-batch; the Full Double Dissociation Detective guide was not re-audited,
-since it is unchanged from its already-reviewed pilot version.
+This section originally went on to say that no genuine internal
+contradiction was found in the batch. That was wrong, and it can no
+longer say that. An independent review, done specifically to re-check
+this batch before merge, caught one: the Simplified Executive Function
+Task Laboratory guide's "What to look for" correctly stated that the
+"find me a different person" search can sometimes report that no
+usefully different profile exists, near the top or bottom of a
+capacity's range, but its "Debrief" then asked a question that only
+made sense on the assumption a twin had been found ("given that the
+search just found a very different profile with the same score"). The
+two sections described mutually exclusive outcomes of the same
+control as though only one of them ever happened. The debrief was
+rewritten to branch on both outcomes explicitly (what a found twin
+hides, and what a failed search says about remaining room to trade
+off), so it now works whichever way the search actually goes. See
+"Pre-merge correction pass" below for the other five issues this same
+independent review caught, none of which were internal contradictions.
+
+Beyond that one case, no further instance was found of an activity
+stated as never producing some outcome while the same guide reports it
+happening, or a localisation claim contradicted by a nearby network
+caution. This audit's scope is the 23 guides drafted in this batch; the
+Full Double Dissociation Detective guide was not re-audited, since it
+is unchanged from its already-reviewed pilot version.
 
 ## Cross-source accuracy audit and content discrepancies found
 
@@ -206,6 +225,21 @@ per the brief.
   few"). This is genuinely learner-facing for screen-reader users and
   needs a separate `index.html` fix; the new guide does not state a
   measure count at all, so it does not repeat the error.
+- **Live learner-facing conceptual overclaim,
+  `06-memory-systems-amnesia-detective` (Simplified), `activity.js`.**
+  Caught by the same independent review that found the internal
+  contradiction above, while checking the guide's opening claim
+  against the code that actually judges it. The executing activity's
+  own answer-key comment reasons in deterministic terms: it states
+  that a shared system "cannot produce" a crossed preserved-and-lost
+  pattern, and marks a profile as counting against the one-system
+  claim on that basis. That is the same overclaim the first draft of
+  this guide had repeated, a crossed profile counts against a simple
+  shared-resource account; it does not prove two separate biological
+  memory systems and does not rule out every possible single-system
+  model. The new guide states the narrower claim (see "Pre-merge
+  correction pass" below); the code's own "cannot produce" reasoning is
+  unchanged and needs a separate `activity.js` fix.
 - **Live learner-facing defect and stale documentation (four places),
   `10-face-recognition-prosopagnosia-detective` (Simplified),
   `index.html`, `activity.js`, `metadata.json`, old
@@ -287,13 +321,18 @@ per the brief.
 No discrepancies were found for `02-lesion-symptom-inference-trap`
 (either edition), `03-network-disconnection-mapper` (either edition),
 `05-visual-field-defect-mapper` (either edition),
+`09-hemispheric-lateralisation-split-brain` (Simplified), or
+`10-face-recognition-prosopagnosia-detective` (Full): every number and
+claim checked against the executing code matched exactly.
 `06-memory-systems-amnesia-detective` (Simplified),
 `07-aphasia-profile-comparator` (Full),
-`08-executive-function-task-laboratory` (Simplified),
-`09-hemispheric-lateralisation-split-brain` (Simplified),
-`10-face-recognition-prosopagnosia-detective` (Full), or
-`11-neuropsych-assessment-battery-builder` (Full): every number and
-claim checked against the executing code matched exactly.
+`08-executive-function-task-laboratory` (Simplified), and
+`11-neuropsych-assessment-battery-builder` (Full) were originally
+placed in this clean list too; the pre-merge correction pass below
+found a conceptual overclaim, an accuracy issue, an internal
+inconsistency, and a deterministic-causal overclaim in those four
+respectively, all in the guides' own wording rather than in a number
+checked against code, so this list no longer includes them.
 
 ## Cross-file AI-tell patterns found and rewritten
 
@@ -347,19 +386,96 @@ draft; every caution in the batch names the specific mechanism it
 qualifies (a shrinking ceiling, a route through meaning, a control task
 matched for difficulty) rather than gesturing at complexity in general.
 
+## Pre-merge correction pass
+
+Before merge, independent review re-read all 23 final guides at head
+`cbe94b4554dca992569adc2b50083b7096166e23` against their tools' actual
+behaviour and against each other, and found six issues. All six are
+fixed on this branch; none required a code change.
+
+1. **`06-memory-systems-amnesia-detective` (Simplified), separability
+   overclaim.** "What it teaches" said the crossed profiles show the
+   two abilities "do not run on one and the same system." Rewritten to
+   the weaker, correct claim: the profiles count against a simple
+   account in which both abilities depend on exactly the same
+   resources in the same way, which is not the same as proving two
+   separate biological memory systems or ruling out every possible
+   single-system model. The later references to "the two-systems
+   claim" and "stronger evidence for separate systems," in "What to
+   look for" and "Common misconception / caution," were reworded to
+   match ("the separability claim," "evidence that the two abilities
+   are separable"). The executing `activity.js` contains the same
+   overclaim in its own answer-key reasoning and is not touched here;
+   see the new discrepancy entry above.
+2. **`08-executive-function-task-laboratory` (Simplified), internal
+   inconsistency.** Covered above under "Internal-consistency audit":
+   the debrief assumed the "find me a different person" search always
+   finds a twin, contradicting "What to look for"'s own note that it
+   can fail. The debrief now asks a question for each outcome. Also
+   replaced "the search proves this live" with "demonstrates this
+   within the model," since it is an authored model, not proof about
+   human executive architecture.
+3. **`05-visual-field-defect-mapper` (Full), tract-versus-occipital
+   wording.** "The optic tract and the occipital cortex give an
+   anatomically identical pattern" overstated the tie: the code's two
+   sites give the same loss in quadrant terms, but the occipital model
+   additionally represents central sparing, which the guide's own next
+   sentence already treats as a real, if inconclusive, distinguishing
+   clue. Both occurrences ("What it teaches" and "What to look for")
+   now say the two sites give "the same loss/pattern in quadrant
+   terms" rather than an unqualified "anatomically identical" one. The
+   Simplified twin, which has no macular-sparing concept at all, still
+   correctly says its own tract and V1 sites give the same shape, and
+   was left unchanged.
+4. **`07-aphasia-profile-comparator` (Full), repetition wording.**
+   Both occurrences of "repeating a word needs neither" fluent
+   production nor comprehension overstated the point: repetition still
+   needs auditory and phonological processing and speech output. Both
+   are now stated as the activity actually supports it, a fairly
+   direct sound-to-speech route can carry repetition without needing
+   comprehension, and repetition does not simply track spontaneous
+   fluency.
+5. **`11-neuropsych-assessment-battery-builder` (Full), deterministic
+   causal wording.** "That percentile is produced by poor sleep, low
+   mood, pain, medication, an unscreened hearing problem, or variable
+   effort" stated a deterministic causal claim the activity does not
+   make. Reworded to "can just as easily reflect" those factors, and a
+   single score "cannot tell those apart" without measuring them,
+   preserving the guide's existing test-performance / impairment-
+   inference / diagnosis distinction rather than adding new language
+   about it.
+6. **`04-visual-neglect-line-bisection` (Simplified), "can see it
+   perfectly well."** Overstated the neglect patient's visual
+   experience as fully intact. Reworded to "the neglect patient's
+   visual input from the left is available but goes unattended and
+   unacted on," keeping the contrast with field loss without implying
+   every aspect of visual experience is unaffected.
+
+Corrections 1, 3, 4 and 5 changed four Full-guide word counts and two
+Simplified-guide word counts (1 and 2 both gained words from the extra
+precision required; 6 gained two words). The word-count tables above
+already reflect the corrected figures; the grand total moved from
+7,288 to 7,383 words, a change of 95 words, still a 78% reduction from
+the original 33,826.
+
 ## What this rollout does not do
 
 No Cognitive, Research Methods, Social and Critical Psychology, or
 Personality and Individual Differences file was touched. No
 `metadata.json` schema changed, and no `metadata.json` content was
 changed (the discrepancies above are reported, not fixed). No activity
-code changed. Four items above are logged as candidates for separate,
-tightly scoped follow-up PRs once this branch is resolved, in the same
-spirit as the Multiple Comparisons FWER fix that followed the Research
-Methods rollout: the `06` measure-count figcaption, the `10` Simplified
-covert-recognition claim (a four-file fix: `index.html`, `activity.js`,
-`metadata.json`, `teaching-notes.md`), the `09` callosum default state,
-and, lowest priority since nothing learner-facing is wrong, the two
-stale source-code comments and two metadata arithmetic/duration
-mismatches. This document does not authorise scaling to Social and
-Critical Psychology; that decision follows review of this batch.
+code changed, on either the original submission or this pre-merge
+correction pass. Five items above are logged as candidates for
+separate, tightly scoped follow-up PRs once this branch is resolved, in
+the same spirit as the Multiple Comparisons FWER fix that followed the
+Research Methods rollout, highest priority first since all four are
+genuinely learner-facing: the `06` Full measure-count figcaption, the
+`06` Simplified `activity.js` answer key's "cannot produce" overclaim
+(found on independent review, see "Pre-merge correction pass" above),
+the `10` Simplified covert-recognition claim (a four-file fix:
+`index.html`, `activity.js`, `metadata.json`, `teaching-notes.md`), and
+the `09` callosum default state; and, lowest priority since nothing
+learner-facing is wrong, the two stale source-code comments and two
+metadata arithmetic/duration mismatches. This document does not
+authorise scaling to Social and Critical Psychology; that decision
+follows review of this batch.
