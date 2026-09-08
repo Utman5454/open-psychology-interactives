@@ -13,9 +13,9 @@ at a similar accuracy to the impulsive respondent while taking more
 than twice as long, which a single accuracy or response-time figure
 alone cannot tell apart from a caution difference.
 
-**Before students start.** Students should already have the basic idea that a decision can be
-made faster at the cost of accuracy, or more carefully at the cost of
-speed.
+**Before students start.** Students only need the basic idea of a
+speed-accuracy trade-off, that answering faster can cost accuracy and
+answering more carefully can cost speed.
 
 **What students do.**
 1. Predict whether accuracy or response time alone can reveal how

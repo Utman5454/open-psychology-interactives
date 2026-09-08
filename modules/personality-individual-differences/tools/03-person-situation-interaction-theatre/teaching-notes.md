@@ -12,9 +12,9 @@ situations at once shows how much they agree with each other and
 which situations reorder the same four people; it does not converge on
 one privileged ordering that the individual situations were hiding.
 
-**Before students start.** Students should already have the idea of a personality trait; Mara,
-Jonah, Elif and Theo and all five situations are fictional and shown
-as such throughout.
+**Before students start.** The four characters and five situations are
+fictional and shown as such throughout; a basic idea of a personality
+trait is all that's assumed.
 
 **What students do.**
 1. Rank four fictional people twice, once for a party and once for an

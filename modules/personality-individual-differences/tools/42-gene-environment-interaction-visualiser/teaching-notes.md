@@ -12,9 +12,9 @@ appears to support can also change just by restricting which part of
 the environmental range gets sampled, with neither slope nor crossover
 moving at all.
 
-**Before students start.** Students should already distinguish a main effect from an
-interaction; the two fictional sensitivity groups are not modelled on
-any real genotype.
+**Before students start.** This works best once the group can already
+tell a main effect from an interaction; the two fictional sensitivity
+groups are not modelled on any real genotype.
 
 **What students do.**
 1. Predict what a study finding "the more sensitive group does worse

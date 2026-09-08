@@ -10,9 +10,9 @@ reading can land almost anywhere in that spread. A single
 administration can never establish how variable a person is, because
 variability is a property of a series, not of one point in it.
 
-**Before students start.** Students should already be able to tell a
-trait from a single measurement of it; the fortnight of readings
-regenerates from the seed shown in the controls.
+**Before students start.** This works best once the group has met the
+state-trait distinction; the fortnight of readings regenerates from
+the seed shown in the controls.
 
 **What students do.**
 1. See one reading for each of four people and rank them, then reveal

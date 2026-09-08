@@ -15,9 +15,9 @@ a time biases the estimate in a specific, predictable direction for
 that assumption; two violations pulling in opposite directions could
 still partly mask one another.
 
-**Before students start.** Students should already have met the idea of a correlation
-coefficient; none of the simulated twin pairs is real, and a fresh
-sample can be drawn at any time from the seed shown.
+**Before students start.** A correlation coefficient is the only
+statistical idea this needs; none of the simulated twin pairs is real,
+and a fresh sample can be drawn at any time from the seed shown.
 
 **What students do.**
 1. Predict what a twin study needs to assume for its heritability

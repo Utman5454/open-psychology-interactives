@@ -14,9 +14,9 @@ unfamiliarity profiles are affected very unevenly by whichever demands
 the design carries, even though none of them is defined by any
 real-world group.
 
-**Before students start.** Students should already have met the idea that a test score can
-reflect more than the ability it names; none of the four fictional
-test-takers stands in for any real group.
+**Before students start.** It helps if the idea that a test score can
+reflect more than the ability it names is already familiar; none of
+the four fictional test-takers stands in for any real group.
 
 **What students do.**
 1. Predict what removing verbal content from a test does to how fair

@@ -10,9 +10,9 @@ equally good rotations, not a fact the rotation uncovers, and letting
 the axes go oblique buys a cleaner-looking pattern only by allowing
 the two factors to correlate.
 
-**Before students start.** Students should already have met the idea of a factor loading; the
-three marker sets, clean, cross-loading and correlated, are
-preloaded.
+**Before students start.** A basic familiarity with factor loadings is
+enough; the three marker sets, clean, cross-loading and correlated,
+are preloaded.
 
 **What students do.**
 1. Predict whether rotating the axes changes how well the two factors

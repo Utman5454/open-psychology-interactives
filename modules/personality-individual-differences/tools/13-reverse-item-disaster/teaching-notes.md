@@ -12,9 +12,9 @@ identical numbers whether that came from a careless slip or a genuine
 misunderstanding. Some scoring errors are loud and some are silent,
 and the silent one is the more dangerous.
 
-**Before students start.** Students should already have met Cronbach's alpha and item-total
-correlation; the six items and six fictional respondents, A through
-F, are fixed throughout.
+**Before students start.** Familiarity with Cronbach's alpha and
+item-total correlation is assumed; the six items and six fictional
+respondents, A through F, are fixed throughout.
 
 **What students do.**
 1. Predict what happens to the ranking of six fictional respondents

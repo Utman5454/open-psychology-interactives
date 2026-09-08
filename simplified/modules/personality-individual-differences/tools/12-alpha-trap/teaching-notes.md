@@ -11,8 +11,8 @@ scale's correlation with a tutor's rating of dependability falls from
 the total score is variance about how one question happens to be
 worded rather than about the construct.
 
-**Before students start.** Students should already have met Cronbach's
-alpha and the 0.70 convention.
+**Before students start.** The 0.70 convention for Cronbach's alpha
+should already be familiar going in.
 
 **What students do.**
 1. Predict what happens to the scale's correlation with a tutor's

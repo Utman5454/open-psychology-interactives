@@ -12,9 +12,9 @@ by itself establish that a measure taps something distinct, and the
 sliders here let a claim be checked against the model rather than
 taken on the strength of the label.
 
-**Before students start.** Students should already have met the idea of a correlation
-coefficient; all six measures and every correlation are
-model-implied, not drawn from any real dataset.
+**Before students start.** Nothing beyond a correlation coefficient is
+assumed; all six measures and every correlation are model-implied, not
+drawn from any real dataset.
 
 **What students do.**
 1. Predict whether a scale correlating with workplace effectiveness is

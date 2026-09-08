@@ -41,38 +41,38 @@ branch.
 
 ## Word counts
 
-These figures are post-correction, after the independent-review pass
-described below. See that section for what changed and why several
-guides grew.
+These figures are post-correction, after both the independent-review
+pass and the final collection-level cleanup pass described below. See
+those sections for what changed and why several guides grew.
 
 | Tool | Full old | Full new | Simplified old | Simplified new |
 |---|---:|---:|---:|---:|
-| 03 Person-Situation Interaction Theatre | 1700 | 428 | 707 | 338 |
-| 04 State versus Trait Tracker | 1908 | 464 | 963 | 337 |
-| 07 Factor Rotation Playground | 1594 | 411 | 1029 | 347 |
+| 03 Person-Situation Interaction Theatre | 1700 | 426 | 707 | 338 |
+| 04 State versus Trait Tracker | 1908 | 460 | 963 | 337 |
+| 07 Factor Rotation Playground | 1594 | 408 | 1029 | 347 |
 | 09 Facet-Level Detective | 1971 | 389 | 949 | 333 |
-| 12 The Alpha Trap | 378 | 378 (frozen) | 1027 | 383 |
-| 13 Reverse-Item Disaster | 1718 | 393 | 1157 | 339 |
+| 12 The Alpha Trap | 378 | 378 (frozen) | 1027 | 384 |
+| 13 Reverse-Item Disaster | 1718 | 392 | 1157 | 339 |
 | 14 Response-Style Simulator | 1510 | 391 | 1059 | 334 |
 | 21 Measurement-Invariance Translator | 1703 | 400 | 1008 | 349 |
 | 24 "Explain This Person" Courtroom | 1482 | 421 | 878 | 341 |
-| 31 Intelligence-Test Battery Builder | 1769 | 379 | 1090 | 327 |
+| 31 Intelligence-Test Battery Builder | 1769 | 376 | 1090 | 327 |
 | 32 Positive Manifold Visualiser | 1524 | 390 | 1199 | 332 |
-| 34 Culture-Fair Test Challenge | 1726 | 431 | 961 | 316 |
-| 36 Speed-Accuracy Trade-Off | 1672 | 440 | 919 | 360 |
-| 39 Twin-Study Simulator | 1797 | 454 | 926 | 283 |
-| 42 Gene × Environment Interaction Visualiser | 1372 | 390 | 969 | 284 |
-| 49 Emotional-Intelligence Claims Laboratory | 2039 | 423 | 930 | 378 |
-| 50 Self-Esteem Stability Tracker | 1609 | 410 | 969 | 336 |
+| 34 Culture-Fair Test Challenge | 1726 | 432 | 961 | 316 |
+| 36 Speed-Accuracy Trade-Off | 1672 | 436 | 919 | 360 |
+| 39 Twin-Study Simulator | 1797 | 453 | 926 | 283 |
+| 42 Gene × Environment Interaction Visualiser | 1372 | 395 | 969 | 284 |
+| 49 Emotional-Intelligence Claims Laboratory | 2039 | 419 | 930 | 378 |
+| 50 Self-Esteem Stability Tracker | 1609 | 414 | 969 | 336 |
 | 55 Personality Disorder Continuum | 1968 | 379 | 1081 | 356 |
 
-Full total: 29,440 → 7,372 words (17 rewritten Full guides plus the frozen
+Full total: 29,440 → 7,360 words (17 rewritten Full guides plus the frozen
 378-word pilot both included in the "new" figure above).
-Simplified total: 17,821 → 6,073 words.
-Aggregate: 47,261 → 13,445 words, a **71.5% reduction**.
+Simplified total: 17,821 → 6,074 words.
+Aggregate: 47,261 → 13,434 words, a **71.6% reduction**.
 
-New word-count range: 283 (Simplified, tool 39) to 464 (Full, tool 04).
-Two guides sit just above 450: Full 04 (464 words) and Full 39 (454
+New word-count range: 283 (Simplified, tool 39) to 460 (Full, tool 04).
+Two guides sit just above 450: Full 04 (460 words) and Full 39 (453
 words). Both grew directly from the independent-review corrections
 below (04's stability-curve and measurement-error fixes; 39's E/error
 and gene-environment-correlation fixes) and were trimmed as far as
@@ -170,8 +170,9 @@ actually say:
   scoring well under one purpose's weighting and failing another's,
   without any task changing.
 - **Statistical factor vs. causal/biological claim** (32): a single
-  extracted factor is described as compatible with one general source and
-  with correlated group factors, and the caution rejects both "proves
+  extracted factor is described as compatible with one dominant general
+  source and with a structure dominated by two independent group sources
+  plus a smaller shared source, and the caution rejects both "proves
   general ability exists" and "factor analysis is useless."
 - **Construct-relevant vs. irrelevant demand, and bias as evidence-based**
   (34): bias is defined as established by evidence of differential
@@ -685,6 +686,52 @@ learner-facing defects found" above actually covers eight tool pairs (03,
 problems within its own entry, so the queue holds eleven individual
 issues clustered into eight entries. The Candour section was rewritten to
 state this accurately; see that section below.
+
+## Final cleanup pass
+
+A second, tightly bounded pass followed the independent-review correction
+pass above, prompted by a fresh reread of the finished guides rather than
+a new full audit.
+
+**Tool 32, remaining overstatement.** "What to look for" still described
+the Broad Group Factors condition as "a structure that is really two
+groups, not one general source," which the independent-review pass above
+had missed even while rewriting the surrounding sentences. The executing
+model has two independent group sources plus a smaller shared source, not
+zero shared source, so calling it a structure with no general source at
+all overstated the case. Replaced with "a structure dominated by two
+group sources rather than by one dominant general source," which is
+accurate to the model's actual composition rather than an all-or-nothing
+claim.
+
+**Review artifact, stale Tool 32 wording.** The "Psychometric distinctions
+deliberately preserved" section still described the Broad Group Factors
+condition as "correlated group factors," the exact phrasing the
+independent-review correction pass had already flagged as wrong and
+removed from the guide itself. That sentence was rewritten to match the
+corrected model description. The historical description of the same
+mistake inside "Independent-review correction pass" item 7 was left
+alone, since it is clearly framed in the past tense as the mistake being
+fixed, not a current claim.
+
+**Collection-level "Students should already" template.** Removing "None
+needed" from 30 guides had, without being noticed at the time, introduced
+a new repeated opening across 13 of the guides this rollout owns: 12 Full
+guides (03, 04, 07, 13, 31, 32, 34, 36, 39, 42, 49, 50) plus the
+Simplified Alpha Trap twin, all beginning "Students should already...".
+This is the same batch-level problem "None needed" was, in a different
+form: one phrase copied across many files regardless of what each guide
+actually needed to say. All 13 instances were reworded with genuinely
+varied sentence structures (for example "A basic familiarity with factor
+loadings is enough," "Correlation is the only statistical idea needed
+here," "This works best once the group has met the state-trait
+distinction," "The four characters and five situations are fictional,"
+"Students only need the basic idea of a speed-accuracy trade-off"),
+while keeping every genuine prerequisite and activity-specific fact the
+original sentences stated. The literal phrase "Students should already"
+went from 13 occurrences to 0. "None needed" remains at 0 in every guide
+this rollout owns; the frozen Alpha Trap pilot still carries its own
+single, untouched occurrence.
 
 ## Candour
 

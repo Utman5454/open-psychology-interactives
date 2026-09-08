@@ -11,8 +11,9 @@ cannot by itself tell these structures apart. A first factor that
 explains most of the variance is compatible with one general source
 and with two independent group sources plus a much smaller shared one.
 
-**Before students start.** Students should already have met the idea of a correlation matrix;
-all three presets, and the resulting scatterplots, are fictional.
+**Before students start.** Correlation is the only statistical idea
+needed here; all three presets, and the resulting scatterplots, are
+fictional.
 
 **What students do.**
 1. Predict whether a single extracted factor proves there is one
@@ -29,8 +30,8 @@ load at about 0.81 on the first factor, which captures about 66% of
 the variance. Under "Broad group factors," where correlation is high
 within a verbal-ish and a spatial-ish cluster but low across them, the
 loadings are still uniformly positive at about 0.67, and the first
-factor still captures 45%, a sizeable share for a structure that is
-really two groups, not one general source.
+factor still captures 45%, a sizeable share for a structure dominated
+by two group sources rather than by one dominant general source.
 
 **Debrief.** Two very different underlying structures, one general
 source and one dominated by two independent group sources, both

@@ -10,9 +10,9 @@ for a research purpose, an educational placement, or a screening
 purpose, score differently against each scenario's own priorities,
 because validity is a property of a use rather than of a test.
 
-**Before students start.** Students should already have some sense of what a reliability
-coefficient is; the seven tasks and three scenarios are fixed and
-visible from the start.
+**Before students start.** Some sense of what a reliability coefficient
+is helps; the seven tasks and three scenarios are fixed and visible
+from the start.
 
 **What students do.**
 1. Predict whether adding more tasks to a battery always makes it more

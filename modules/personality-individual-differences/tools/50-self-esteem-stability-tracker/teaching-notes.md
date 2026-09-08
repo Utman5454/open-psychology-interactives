@@ -12,9 +12,9 @@ person's decay rate is set independently of their contingency values,
 so how long an effect actually takes to fade depends on both how large
 the initial drop was and that separate recovery rate together.
 
-**Before students start.** Students should already distinguish an average level from
-variability around it; Ari, Bea, Cal and Dee are fictional and
-nothing here scores a real person.
+**Before students start.** An average level and the variability around
+it should already read as two different things; Ari, Bea, Cal and Dee
+are fictional and nothing here scores a real person.
 
 **What students do.**
 1. Predict whether two people with the same average level over six
