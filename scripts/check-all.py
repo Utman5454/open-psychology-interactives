@@ -103,6 +103,8 @@ GATES = [
     gate("dual-task-balance", ["node", "scripts/test-dual-task-balance.js"], tier="full", needs=["node"]),
     gate("multiple-comparisons-fwer", ["node", "scripts/test-multiple-comparisons-fwer.js"],
          tier="full", needs=["node"]),
+    gate("neuropsychology-live-qa", ["node", "scripts/test-neuropsychology-live-qa.js"],
+         tier="full", needs=["node"]),
     gate("test-edition-pairing", [PY, "scripts/test-edition-pairing.py"], tier="full"),
     gate("test-answer-balance", [PY, "scripts/test-answer-balance.py"], tier="full"),
     gate("oxlint", ["npx", "--yes", OXLINT], tier="lint", needs=["npx"]),
