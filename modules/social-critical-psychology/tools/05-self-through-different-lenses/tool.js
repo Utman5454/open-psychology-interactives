@@ -21,8 +21,9 @@
    The codings are authored judgements made for teaching, and the tool says so.
    The point they are arranged to make is structural rather than particular:
 
-     * statement 8 (the fees went up and the hours were cut) is coded `none` by
-       six of the seven frameworks and only `usable` by the seventh;
+     * statement 8 (the fees went up and the hours were cut) is coded `none`
+       by five of the seven frameworks, `usable` by two (possible selves and
+       the relational account), and `central` by none of them;
      * statement 9 (the tutor's remark about "people from your background") is
        coded differently by frameworks that treat it as information about Nadia
        and frameworks that treat it as information about the course.
@@ -241,12 +242,14 @@
         "her hours, and would be resolved by reversing either.\"",
       answer: "none",
       why:
-        "No framework on this board can support it. Six of the seven mark that " +
-        "statement as something they have no concept for, and the seventh can " +
-        "only reach it as a change in how believable a future self is. The " +
-        "claim may well be true. The vocabulary in use cannot express it, so " +
-        "instruments built from it will not collect the evidence that would " +
-        "test it."
+        "No framework on this board treats it as central. Five of the seven " +
+        "mark that statement as something they have no concept for, and two " +
+        "can reach it only indirectly: possible selves as a change in how " +
+        "believable a future self is, and the relational account as a change " +
+        "in a relationship. Neither treats it as central evidence. The " +
+        "claim may well be true. Most of the vocabulary in use cannot " +
+        "express it, so instruments built from it will not collect the " +
+        "evidence that would test it."
     },
     {
       id: "realself",

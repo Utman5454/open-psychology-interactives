@@ -22,10 +22,10 @@
      * The ledger stays on screen. Discourse analysis here is not a claim that
        the events are made of language, and the fixed ledger is the guard
        against that reading.
-     * Ledger entry 2 - the decision to halve the programme's hours - appears in
-       none of the five accounts. What a discourse cannot say about anything
-       other than the person is usually more consequential than what it says
-       about the person.
+     * Ledger entry 2 - the decision to halve the programme's hours - appears
+       only in the advocacy bulletin; the other four genres have no field for
+       it. What a discourse cannot say about anything other than the person
+       is usually more consequential than what it says about the person.
 
    WHAT THIS IS NOT
    ----------------
