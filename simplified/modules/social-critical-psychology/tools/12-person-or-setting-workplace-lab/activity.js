@@ -56,7 +56,7 @@
     "Team B works split shifts and Team A does not. The rota was produced by a scheduling system optimised for coverage, and no manager chose it.",
     "Team B's queue carries all bereavement and complaint calls for the region. There is no scheduled recovery time after an escalated call.",
     "The team target is calls per hour. Staff cannot close a case themselves; every resolution needs a supervisor sign-off, which averages nineteen minutes.",
-    "Team A, matched with Team B on staff characteristics at recruitment and doing nominally the same job, has a mean exhaustion score less than half Team B's."
+    "Team A, matched with Team B on staff characteristics at recruitment and doing nominally the same job, has a mean exhaustion score much lower than Team B's."
   ];
 
   var EXPLANATIONS = [
@@ -83,7 +83,7 @@
 
   var ROUND_TWO_FEEDBACK = {
     individual: { state: "partial", title: "Still available, and now one reading among three",
-      body: "Nothing in the first round has been withdrawn and the training gaps are still there. What has changed is that there is now a comparison, and a team matched with this one at recruitment has less than half its exhaustion on nominally the same work with a different rota. An individual explanation now has to say why the difference between the two teams is also about individuals." },
+      body: "Nothing in the first round has been withdrawn and the training gaps are still there. What has changed is that there is now a comparison, and a team matched with this one at recruitment has much lower exhaustion on nominally the same work with a different rota. An individual explanation now has to say why the difference between the two teams is also about individuals." },
     relational: { state: "correct", title: "Supported by the second round",
       body: "Feedback only through a monthly rating, and a norm that reads escalating as not coping, are both in the file now. This is a well-supported reading, and it shares the file with a structural one that would produce much the same symptoms." },
     structural: { state: "correct", title: "Supported by the second round",

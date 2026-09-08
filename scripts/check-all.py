@@ -105,6 +105,8 @@ GATES = [
          tier="full", needs=["node"]),
     gate("neuropsychology-live-qa", ["node", "scripts/test-neuropsychology-live-qa.js"],
          tier="full", needs=["node"]),
+    gate("social-critical-live-qa", ["node", "scripts/test-social-critical-live-qa.js"],
+         tier="full", needs=["node"]),
     gate("test-edition-pairing", [PY, "scripts/test-edition-pairing.py"], tier="full"),
     gate("test-answer-balance", [PY, "scripts/test-answer-balance.py"], tier="full"),
     gate("oxlint", ["npx", "--yes", OXLINT], tier="lint", needs=["npx"]),

@@ -7,7 +7,7 @@
 | Constructing a Category | [`02-constructing-a-category/`](02-constructing-a-category/) | From nine accounts to a named condition with a prevalence figure: reification broken into steps you can point at |
 | Attitude-Behaviour Gap Laboratory | [`03-attitude-behaviour-gap/`](03-attitude-behaviour-gap/) | Four identical attitude scores, four different working lives: what stands between an evaluation and an act |
 | Conformity Under Context | [`04-conformity-under-context/`](04-conformity-under-context/) | Two routes to agreement, six things about the situation, and the distribution hiding inside a conformity percentage |
-| The Self Through Different Lenses | [`05-self-through-different-lenses/`](05-self-through-different-lenses/) | Seven frameworks for the self applied to one person, and the statement none of them can use |
+| The Self Through Different Lenses | [`05-self-through-different-lenses/`](05-self-through-different-lenses/) | Seven frameworks for the self applied to one person, and the statement almost none of them can use |
 | Discourse and Subject Position Laboratory | [`06-discourse-subject-position-lab/`](06-discourse-subject-position-lab/) | Same events, five write-ups: subject positions, legitimacy, authority and where responsibility comes to rest |
 | Norm-Formation Laboratory | [`07-sherif-norm-formation-lab/`](07-sherif-norm-formation-lab/) | Alone, together, alone again: how a shared frame of reference forms under ambiguity and outlives the group |
 | Minimal Group Allocation Laboratory | [`08-minimal-group-positive-distinctiveness/`](08-minimal-group-positive-distinctiveness/) | Sorted into an invented category, allocating points to strangers - and the option that costs your own side points to buy a bigger lead |

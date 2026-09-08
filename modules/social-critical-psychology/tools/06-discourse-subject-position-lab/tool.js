@@ -22,10 +22,15 @@
      * The ledger stays on screen. Discourse analysis here is not a claim that
        the events are made of language, and the fixed ledger is the guard
        against that reading.
-     * Ledger entry 2 - the decision to halve the programme's hours - appears in
-       none of the five accounts. What a discourse cannot say about anything
-       other than the person is usually more consequential than what it says
-       about the person.
+     * Ledger entry 2 - the decision to halve the programme's hours - is
+       handled three ways. The advocacy bulletin names the decision, in its
+       first clause. The commissioning report acknowledges a "reduced-hours
+       model" but recodes it as implementation performance, dropping its
+       cause, its scale and its relationship to what happened to R next. The
+       case note, the risk register and the recovery summary omit it
+       altogether. What a discourse cannot say about anything other than the
+       person is usually more consequential than what it says about the
+       person.
 
    WHAT THIS IS NOT
    ----------------
@@ -162,11 +167,11 @@
         "started a weekly peer group at the library, now attended by five " +
         "people. Her case has since been closed as \"disengaged\".",
       note:
-        "The only account that includes the budget decision, and it includes it " +
-        "in the first clause. Note what that does to the last sentence: " +
-        "\"closed as disengaged\" is presented as something done to R rather " +
-        "than something she did, and the quotation marks carry the whole " +
-        "argument.",
+        "The only account that names the council's decision to halve the " +
+        "hours outright, and it puts that decision in the first clause. Note " +
+        "what that does to the last sentence: \"closed as disengaged\" is " +
+        "presented as something done to R rather than something she did, and " +
+        "the quotation marks carry the whole argument.",
       hidden:
         "Whatever the reassessment might have got right. This account is not " +
         "neutral either, and its confidence that the assessment was in error is " +
@@ -503,7 +508,6 @@
         "and with two the difference looks like a difference of opinion."));
       return;
     }
-    var mentionsCut = done.filter(function (a) { return a.id === "advocacy"; }).length;
     synthesis.appendChild(make("h5", "verdict__title",
       "After " + done.length + " accounts"));
     synthesis.appendChild(make("p", "verdict__body",
@@ -512,20 +516,15 @@
       "person R is made into, and with it what she may reasonably do, who may " +
       "say what is happening, and where responsibility comes to rest."));
     synthesis.appendChild(make("p", "verdict__body",
-      mentionsCut
-        ? "Of the accounts you have analysed, only the advocacy bulletin " +
-          "mentions ledger entry 2 - the decision to halve the programme's " +
-          "hours - and it puts it in the first clause. The others are not " +
-          "concealing it. Their genres have no field for it: a case note " +
-          "records a patient, a risk register records an exposure, a discharge " +
-          "summary records a journey and a commissioning report records a " +
-          "cohort."
-        : "None of the accounts you have analysed mentions ledger entry 2 - " +
-          "the decision to halve the programme's hours. They are not " +
-          "concealing it. Their genres have no field for it: a case note " +
-          "records a patient, a risk register records an exposure, a discharge " +
-          "summary records a journey and a commissioning report records a " +
-          "cohort. Try the advocacy bulletin and see where it puts that entry."));
+      "The five accounts handle ledger entry 2 - the decision to halve the " +
+      "programme's hours - three different ways. The advocacy bulletin names " +
+      "the council's decision and puts it in the first clause. The " +
+      "commissioning report acknowledges a \"reduced-hours model,\" but turns " +
+      "the change into implementation performance, dropping its cause, its " +
+      "scale and its relationship to what happened to R next. The case note, " +
+      "the risk register and the recovery summary omit it altogether: not " +
+      "concealment, but a case note records a patient, a risk register " +
+      "records an exposure, and a discharge summary records a journey."));
     synthesis.appendChild(make("p", "verdict__note",
       "None of this makes the events unreal, and none of it makes one account " +
       "the honest one. The ledger is on screen for the first reason and the " +
@@ -643,8 +642,10 @@
       tone: "caution",
       verdict: "Closer, and still not the main thing.",
       text:
-        "One fact is indeed missing from four of the five, and it is worth " +
-        "finding. But every account is compatible with every line of the " +
+        "One fact is indeed worth tracking across the five, though it is not " +
+        "simply present or missing: one account states it outright, one " +
+        "recodes it as something else entirely, and three have no place for " +
+        "it at all. But every account is compatible with every line of the " +
         "ledger; what separates them is not which facts they contain but what " +
         "kind of thing R becomes in them."
     },
