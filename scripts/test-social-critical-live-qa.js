@@ -66,6 +66,10 @@ const DISCOURSE_HTML = path.join(
   ROOT, 'modules/social-critical-psychology/tools/06-discourse-subject-position-lab/index.html');
 const DISCOURSE_STANDALONE = path.join(
   ROOT, 'modules/social-critical-psychology/tools/06-discourse-subject-position-lab/standalone.html');
+const DISCOURSE_CSS = path.join(
+  ROOT, 'modules/social-critical-psychology/tools/06-discourse-subject-position-lab/tool.css');
+const DISCOURSE_META = path.join(
+  ROOT, 'modules/social-critical-psychology/tools/06-discourse-subject-position-lab/metadata.json');
 
 const FULL12_JS = path.join(
   ROOT, 'modules/social-critical-psychology/tools/12-person-or-setting-workplace-lab/tool.js');
@@ -198,28 +202,95 @@ function checkLenses() {
 }
 
 /* =========================================================================
-   2. Discourse and Subject Position Lab (Full): "none of five" claim
+   2. Discourse and Subject Position Lab (Full): the hours-reduction claim
+   -------------------------------------------------------------------------
+   Two successive bugs affected the same fact. The first ("none of the five
+   accounts mentions the hours reduction") was fixed in an earlier pass by
+   saying only the advocacy bulletin mentions it. That replacement was
+   itself too strong: the commissioning report's own text ("Reduced-hours
+   model implemented on schedule and within budget") does acknowledge the
+   reduction, just recoded as implementation performance rather than named
+   as the council's decision. The real distinction is three-way: advocacy
+   states it outright, the commissioning report abstracts it, and the
+   remaining three genres (case note, risk register, recovery summary) omit
+   it entirely. This section checks for that three-way distinction directly
+   and guards against both the original and the intermediate overclaim.
    ========================================================================= */
 
 function checkDiscourse() {
   const source = read(DISCOURSE_JS);
-  // The advocacy account's own text is a plain string property; check it
-  // directly against the source rather than requiring a full ACCOUNTS
-  // extraction, since ACCOUNTS mixes string and function values.
+  // The advocacy and commissioning accounts' own text are plain string
+  // properties; check them directly against the source rather than
+  // requiring a full ACCOUNTS extraction, since ACCOUNTS mixes string and
+  // function values.
   const advocacyMatch = /advocacy[\s\S]{0,400}?halved the hours/i.exec(source);
   check(Boolean(advocacyMatch),
-    'tool.js\'s advocacy account text mentions the hours being halved');
+    'tool.js\'s advocacy account text explicitly states the hours were halved');
 
-  [DISCOURSE_JS, DISCOURSE_HTML, DISCOURSE_STANDALONE].forEach(function (file) {
+  const commissioningMatch = /market[\s\S]{0,200}?Reduced-hours model/.exec(source);
+  check(Boolean(commissioningMatch),
+    'tool.js\'s commissioning report ("market") account text contains ' +
+    '"Reduced-hours model"');
+
+  [DISCOURSE_JS, DISCOURSE_HTML, DISCOURSE_STANDALONE, DISCOURSE_CSS, DISCOURSE_META, CATALOGUE]
+    .forEach(function (file) {
+      const content = read(file);
+      const label = path.relative(ROOT, file);
+      // The original bug: claiming nobody mentions it at all.
+      check(!/none of the five accounts/i.test(content),
+        label + ' does not claim "none of the five accounts"');
+      check(!/none of them mentions/i.test(content),
+        label + ' does not claim "none of them mentions"');
+      // The intermediate overclaim: treating the commissioning report as
+      // though it were just another genre with no field for the entry.
+      check(!/only one of the five accounts/i.test(content),
+        label + ' does not claim "only one of the five accounts" (mentions)');
+      check(!/the other four (genres|accounts)/i.test(content),
+        label + ' does not claim "the other four genres/accounts" lack the entry');
+      check(!/appears in only one of the five/i.test(content),
+        label + ' does not claim the entry "appears in only one of the five"');
+    });
+
+  // The synthesis (and the equivalent static copy) must no longer be able
+  // to say the commissioning report has "no field for" the reduction, and
+  // must distinguish stating it outright from recoding it.
+  check(!/mentionsCut/.test(source),
+    'tool.js no longer has a binary "mentionsCut" (advocacy-only) variable');
+  check(/reduced-hours model/i.test(source) &&
+    /(recodes|recoded|turns the change into|abstracts)/i.test(source),
+    'tool.js\'s learner-facing copy names the "reduced-hours model" wording ' +
+    'and describes it as a recoding, not an omission');
+  check(/case note, (the )?risk register and (the )?recovery summary/i.test(source),
+    'tool.js identifies the three genres that actually omit the reduction ' +
+    '(case note, risk register, recovery summary)');
+
+  // tool.css's ledger annotation is deliberately a short muted marker, not
+  // full prose, so it is checked only for the absence of the overclaim
+  // above, not for repeating "reduced-hours model" verbatim.
+  [DISCOURSE_HTML, DISCOURSE_META].forEach(function (file) {
     const content = read(file);
-    check(!/none of the five accounts/i.test(content),
-      path.relative(ROOT, file) + ' does not claim "none of the five accounts"');
-    check(!/none of them mentions/i.test(content),
-      path.relative(ROOT, file) + ' does not claim "none of them mentions"');
+    const label = path.relative(ROOT, file);
+    check(/reduced-hours model/i.test(content),
+      label + ' names the commissioning report\'s "reduced-hours model" wording');
   });
-  check(/only the advocacy bulletin mentions/i.test(read(DISCOURSE_JS)) ||
-    /only one of them mentions/i.test(read(DISCOURSE_HTML)),
-    'the corrected "only the advocacy bulletin / only one" figure appears somewhere');
+
+  // data/catalogue.json's Tool 06 entry must match metadata.json exactly.
+  const catalogue = JSON.parse(read(CATALOGUE));
+  const metaObj = JSON.parse(read(DISCOURSE_META));
+  let entry = null;
+  catalogue.modules.forEach(function (m) {
+    m.tools.forEach(function (t) {
+      if (t.moduleSlug === 'social-critical-psychology' &&
+          t.toolSlug === '06-discourse-subject-position-lab') {
+        entry = t;
+      }
+    });
+  });
+  check(Boolean(entry), 'data/catalogue.json has an entry for 06-discourse-subject-position-lab');
+  if (entry) {
+    check(JSON.stringify(entry) === JSON.stringify(metaObj),
+      'data/catalogue.json entry for Tool 06 matches metadata.json exactly');
+  }
 }
 
 /* =========================================================================

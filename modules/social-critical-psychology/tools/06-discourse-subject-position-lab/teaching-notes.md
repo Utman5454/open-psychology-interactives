@@ -6,8 +6,10 @@
 eight-entry ledger put "R" into five different kinds of person, each
 making a different next step seem obviously reasonable and locating
 responsibility somewhere different. None of the five accounts is
-inaccurate, and only one of them, the advocacy bulletin, mentions the
-decision that halved her programme's hours at all.
+inaccurate, and the decision that halved her programme's hours is
+handled three ways: named as a decision by the advocacy bulletin,
+recoded as a "reduced-hours model" by the commissioning report, and
+absent altogether from the other three.
 
 **Before students start.** Read the eight-entry ledger aloud. It stays
 visible and undisputed throughout, and every account below is
@@ -23,14 +25,18 @@ compatible with all of it.
 3. Analyse at least three accounts to unlock the synthesis, then judge
    four short extracts against a shared four-option list.
 
-**What to look for.** Only the advocacy bulletin mentions the decision
-to halve the programme's hours; the other four genres have no field
-for it at all, so responsibility for the six months lands somewhere
-else in each one without anybody having to distort a fact.
+**What to look for.** Only the advocacy bulletin names the council's
+decision to halve the hours, in its first clause. The commissioning
+report keeps the change but turns it into "a reduced-hours model
+implemented on schedule," dropping its cause, its scale and its link
+to what happened to R next. The case note, the risk register and the
+recovery summary have no field for it at all. Responsibility for the
+six months lands somewhere else in every one of the five without
+anybody having to distort a fact.
 
-**Debrief.** What would it take for the halved hours to appear in the
-case note or the commissioning report, given that nothing in either
-genre is false?
+**Debrief.** What changes when the council halving the hours becomes a
+"reduced-hours model implemented on schedule" rather than
+disappearing from the account entirely?
 
 **Common misconception / caution.** Choosing the wrong option in the
 matching task is not a misreading of the text; it is the right reading

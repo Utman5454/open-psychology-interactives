@@ -2,8 +2,11 @@
 
 Date: 2026-09-08. Status: **rollout merged; four learner-facing defects and
 one self-contradictory metadata file found during research resolved by a
-separate follow-up PR (`fix-social-critical-live-qa`); two pre-merge
-correction passes on the rollout itself applied seven wording and
+separate follow-up PR (`fix-social-critical-live-qa`), whose own first pass
+on Tool 06 needed a second, corrective pass after independent review found
+it had replaced one overclaim with a narrower but still false one (see
+"Cross-source accuracy audit and content discrepancies found" below); two
+pre-merge correction passes on the rollout itself applied seven wording and
 classification fixes to this batch's own guides and review document (see
 "Pre-merge correction pass" below).** Fourth module-sized pass, after
 Cognitive Psychology
@@ -51,13 +54,13 @@ is empty, confirming the approved Full Minimal Group guide was not touched.
 | Attitude-Behaviour Gap | 2,123 | 384 | 82% |
 | Conformity Under Context | 1,801 | 313 | 83% |
 | Self Through Different Lenses | 1,806 | 347 | 81% |
-| Discourse and Subject Position Lab | 1,715 | 328 | 81% |
+| Discourse and Subject Position Lab | 1,715 | 384 | 78% |
 | Sherif Norm-Formation Laboratory | 1,628 | 308 | 81% |
 | Crowd Behaviour Laboratory (Deindividuation vs ESIM) | 2,326 | 312 | 87% |
 | Power Lens Laboratory | 2,296 | 361 | 84% |
 | Measuring Prejudice: Instrument Lab | 2,526 | 319 | 87% |
 | Person or Setting: Workplace Lab | 2,325 | 351 | 85% |
-| **Full total (11 files)** | **23,363** | **3,703** | **84%** |
+| **Full total (11 files)** | **23,363** | **3,759** | **84%** |
 
 ### Simplified edition (12)
 
@@ -68,33 +71,42 @@ is empty, confirming the approved Full Minimal Group guide was not touched.
 | Attitude-Behaviour Gap | 943 | 280 | 70% |
 | Conformity Under Context | 900 | 249 | 72% |
 | Self Through Different Lenses | 903 | 244 | 73% |
-| Discourse and Subject Position Lab | 952 | 245 | 74% |
+| Discourse and Subject Position Lab | 952 | 324 | 66% |
 | Sherif Norm-Formation Laboratory | 1,524 | 259 | 83% |
 | Minimal Group / Positive Distinctiveness | 926 | 329 | 64% |
 | Crowd Behaviour Laboratory (Deindividuation vs ESIM) | 890 | 272 | 69% |
 | Power Lens Laboratory | 1,247 | 264 | 79% |
 | Measuring Prejudice: Instrument Lab | 910 | 229 | 75% |
 | Person or Setting: Workplace Lab | 846 | 257 | 70% |
-| **Simplified total (12 files)** | **11,970** | **3,200** | **73%** |
+| **Simplified total (12 files)** | **11,970** | **3,279** | **73%** |
 
-**Grand total (23 files): 35,333 to 6,903 words, an 80% reduction.** These
-figures already include both correction passes below: five files' counts
-moved when a false or contradictory claim was corrected (Attitude-
-Behaviour Gap, Full and Simplified; Minimal Group, Simplified, whose
-caution grew most, from 295 to 329 words, in exchange for stating the
-approved necessity-not-sufficiency standard precisely rather than the
+**Grand total (23 files): 35,333 to 7,038 words, an 80% reduction.** These
+figures already include both pre-merge correction passes below: five
+files' counts moved when a false or contradictory claim was corrected
+(Attitude-Behaviour Gap, Full and Simplified; Minimal Group, Simplified,
+whose caution grew most, from 295 to 329 words, in exchange for stating
+the approved necessity-not-sufficiency standard precisely rather than the
 shorter, overclaiming version), eight further Simplified files' counts
 moved by a handful of words each when their "Before students start"
 sentence was rewritten out of the "None needed" template, and
 Attitude-Behaviour Gap (Simplified) gained ten words in a second pass when
 its "nearly triples his rate" wording was replaced with the same 4-to-24
-figure the rest of the guide already used. New guides range from 229 to
-384 words. Every one of the 23 still sits well under the 450-word
-check-in point named in the brief, so nothing required justification for
-length; the longest, Attitude-Behaviour Gap (Full) at
-384, grew past the previous longest (Power Lens Laboratory at 361) only
-because of the correction pass's added precision about opportunity acting
-as a multiplicative gate rather than because anything was padded.
+figure the rest of the guide already used. They also include a later,
+separate correction: the `fix-social-critical-live-qa` follow-up (see
+"Social and Critical Psychology live-QA follow-up" below) found that both
+Discourse and Subject Position Lab guides repeated the same overstrong
+"only the advocacy bulletin mentions it" claim the code itself no longer
+supports, and rewrote the relevant sentences and debrief in each, taking
+the Full guide from 328 to 384 words and the Simplified guide from 245 to
+324. New guides range from 229 to 384 words. Every one of the 23 still
+sits well under the 450-word check-in point named in the brief, so
+nothing required justification for length; the longest are now
+Attitude-Behaviour Gap (Full) and Discourse and Subject Position Lab
+(Full), tied at 384, both past the previous longest (Power Lens
+Laboratory at 361) for the same kind of reason and no other: added
+precision correcting an overclaim (opportunity as a multiplicative gate
+for the former, the three-way advocacy/commissioning/omission split for
+the latter), never padding.
 
 ## Source-of-truth workflow
 
@@ -258,32 +270,61 @@ field, and both are corrected here.
   seven" and unqualified "none of them can use" phrasings are absent from
   every listed file.
 - **Live learner-facing defect, `06-discourse-subject-position-lab` (Full),
-  `index.html` (two places, both in learner-facing body text), a `tool.js`
-  header comment, and the old `teaching-notes.md` (which already
-  self-contradicted). RESOLVED.** All stated "none of the five accounts
+  `index.html` (multiple places, all learner-facing body and meta text),
+  a `tool.js` header comment, the runtime synthesis, `tool.css`'s ledger
+  annotation, `metadata.json`, and the old `teaching-notes.md` (which
+  already self-contradicted). RESOLVED, in two stages.**
+
+  **Stage 1 (original defect).** All stated "none of the five accounts
   mentions" the halved hours. `ACCOUNTS.advocacy.text` and the code's own
-  `mentionsCut` logic confirm the advocacy bulletin's own text opens by
+  `mentionsCut` logic confirmed the advocacy bulletin's own text opens by
   stating the council halved the programme hours. This is how the defect
   was first found and logged, deliberately as a documentation-only
   observation rather than a silent code edit, in the original submission
-  of this branch. The new teaching guide already stated "only the
-  advocacy bulletin mentions it... the other four genres have no field for
-  it" and did not need to change; it also already carried an epistemic
-  caveat, that these are authored readings of an invented case and a
-  well-argued alternative reading deserves credit, which the Simplified
-  edition's existing materials already had but the Full edition's own
-  learner-facing text lacked.
+  of the teaching-guide rollout branch.
 
-  It was fixed by the same follow-up (`fix-social-critical-live-qa`): the
-  `tool.js` header comment and both `index.html` passages now state "only
-  the advocacy bulletin mentions it; the other four genres have no field
-  for it," the meta/OpenGraph/Twitter descriptions say "only one of them
-  mentions" in place of "none of them mentions," and the regenerated
-  `standalone.html` carries the fix. `metadata.json`'s `simulationNotes`
-  already stated the correct distinction and did not need to change. The
-  same regression test verifies the advocacy account's own text mentions
-  the hours cut and that the stale "none of the five accounts" and "none
-  of them mentions" phrasings are absent from every listed file.
+  **Stage 1's fix was itself too strong, and independent review caught
+  it.** The first pass of this follow-up (`fix-social-critical-live-qa`)
+  replaced "none of the five accounts mentions" with "only the advocacy
+  bulletin mentions it; the other four genres have no field for it." That
+  is also false: the commissioning report's own text ("Reduced-hours model
+  implemented on schedule and within budget") does acknowledge the
+  reduction, only recoded as implementation performance rather than named
+  as the council's decision. Only the case note, the risk register and the
+  recovery summary genuinely have no field for it. This is being recorded
+  candidly, in the same document, as a correction to a correction, rather
+  than quietly rewritten as though the first pass had gotten it right.
+
+  **The final, three-way fix.** `tool.js`'s `mentionsCut` variable, which
+  could only ever be true or false for "advocacy analysed or not," was
+  removed. The header comment, the runtime synthesis (previously a binary
+  ternary keyed on `mentionsCut`), the opening-prediction feedback (which
+  separately claimed the fact was "missing from four of the five"), both
+  `index.html` body passages, its meta/OpenGraph/Twitter descriptions,
+  `tool.css`'s ledger-entry marker text, `metadata.json`'s
+  `accessibilityNotes` and `simulationNotes`, and `data/catalogue.json`'s
+  mirrored entry now all state the same three-way distinction: the
+  advocacy bulletin names the council's decision in its first clause; the
+  commissioning report acknowledges a "reduced-hours model" but recodes it
+  as implementation performance, keeping neither its cause, its scale, nor
+  its link to what happened to R next; the case note, the risk register
+  and the recovery summary have no field for it at all. The regenerated
+  `standalone.html` carries the fix. Both teaching guides (Full and
+  Simplified) repeated the stage-1 overclaim and were rewritten to state
+  the three-way distinction too, including a debrief question in each
+  asking what changes when the halving becomes "a reduced-hours model
+  implemented on schedule" rather than disappearing entirely; the
+  Simplified activity's own code already carried this nuance (its
+  `mentionsHours` flag is `false` for the commissioning report, with prose
+  explaining it "comes closest of the other four" without being the same
+  entry), so only its Simplified guide needed to catch up to code that was
+  already right. The regression test now checks that the advocacy account
+  explicitly contains the halving, that the commissioning account
+  explicitly contains "Reduced-hours model," that no listed file claims
+  "none of the five," "only one of the five," or "the other four
+  genres/accounts" lack the entry, and that the source names the
+  "reduced-hours model" wording and the three genuinely omitting genres by
+  name.
 - **Stale walkthrough claim, `09-crowd-deindividuation-vs-esim`
   (Simplified), old `teaching-notes.md` only (not the tool's own
   learner-facing text).** The old guide's walkthrough implied the "Show two
@@ -389,8 +430,12 @@ follow-up PR and have now been resolved there (`fix-social-critical-live-qa`):
    `index.html`'s "What is left over" section, a `tool.js` header comment,
    and `metadata.json`'s `simulationNotes`. RESOLVED.
 2. `06-discourse-subject-position-lab` (Full): the false "none of the five
-   accounts mentions" the hours cut, in `index.html` (two places) and a
-   `tool.js` header comment. RESOLVED.
+   accounts mentions" the hours cut, and then the false "only the advocacy
+   bulletin mentions it; the other four have no field for it" that
+   replaced it in this follow-up's own first pass, across `tool.js`'s
+   header comment and runtime synthesis, `index.html`, `tool.css`,
+   `metadata.json`, and both teaching guides. RESOLVED with the actual
+   three-way distinction (explicit / recoded / omitted).
 3. `12-person-or-setting-workplace-lab` (Full): the off-by-one
    round-counter crash in `tool.js` and `standalone.html`. RESOLVED.
 4. `12-person-or-setting-workplace-lab` (Simplified): the "38 is less than
