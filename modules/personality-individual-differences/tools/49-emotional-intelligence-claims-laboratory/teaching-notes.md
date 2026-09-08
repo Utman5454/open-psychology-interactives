@@ -3,16 +3,18 @@
 `modules/personality-individual-differences/tools/49-emotional-intelligence-claims-laboratory/`
 
 **What it teaches.** Three measures marketed as emotional intelligence
-correlate with a colleague-rated outcome, but sharing 63% of their
-variance with an ordinary personality questionnaire is a
-discriminant-validity problem, and adding either one to a baseline of
+correlate with a colleague-rated outcome, but correlating .63 with an
+ordinary personality questionnaire is a discriminant-validity problem,
+and adding either one to a baseline of
 personality and reasoning raises predicted variance in the outcome by
 only a few percentage points. A correlation with an outcome does not
 by itself establish that a measure taps something distinct, and the
 sliders here let a claim be checked against the model rather than
 taken on the strength of the label.
 
-**Before students start.** None needed.
+**Before students start.** Students should already have met the idea of a correlation
+coefficient; all six measures and every correlation are
+model-implied, not drawn from any real dataset.
 
 **What students do.**
 1. Predict whether a scale correlating with workplace effectiveness is
@@ -40,13 +42,16 @@ the label's promise.
 would you need to see before agreeing it measures something
 personality and reasoning do not already cover?
 
-**Common misconception / caution.** Predicting an outcome does not
-establish that a measure is conceptually distinct from measures
-already in use; distinctness needs low overlap with existing measures
-as well as an independent contribution, and a claim that satisfies
-only one of those two is not thereby fully supported. An attractive
-label can survive on convergent correlations with an outcome long
-after its discriminant validity has been questioned.
+**Common misconception / caution.** Predicting an outcome is
+criterion-related evidence, not convergent validity, which concerns
+agreement with other indicators of the same intended construct;
+neither on its own establishes that a measure is conceptually distinct
+from measures already in use. Distinctness needs adequate discriminant
+evidence against competing measures as well as an independent
+contribution, and a claim that satisfies only one of those two is not
+thereby fully supported. An attractive label can survive on
+correlations with an outcome long after its discriminant validity has
+been questioned.
 
 **Use in class / timing.** Working through the correlation matrix and
 one incremental-validity comparison takes about 10 minutes. All five

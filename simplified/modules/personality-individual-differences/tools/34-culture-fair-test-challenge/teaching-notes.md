@@ -10,7 +10,8 @@ of verbal ones, drops reading demand nearly to zero, but two other
 demands, a puzzle-format demand and a test-taking-convention demand,
 actually rise as a result.
 
-**Before students start.** None needed.
+**Before students start.** The four design decisions and the six demand levels they set are
+visible as soon as the page opens.
 
 **What students do.**
 1. Predict how many of the six demands a heavily verbal design carries

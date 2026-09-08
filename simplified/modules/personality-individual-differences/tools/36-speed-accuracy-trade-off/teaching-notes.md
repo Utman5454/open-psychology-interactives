@@ -11,7 +11,8 @@ instead drops their accuracy to about 79%. The same two people can be
 made to look equally accurate or equally fast, never both, depending
 only on where the threshold is set.
 
-**Before students start.** None needed.
+**Before students start.** Both fictional people's drift rates and thresholds are fixed from
+the start; only the buttons and the slider change what is shown.
 
 **What students do.**
 1. Predict whether two people with the same accuracy must be equally

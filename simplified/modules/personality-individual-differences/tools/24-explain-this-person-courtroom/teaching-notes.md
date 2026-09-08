@@ -11,7 +11,8 @@ survives having committed itself on only one, because a general
 disposition is compatible with almost anything a person does on a
 single occasion.
 
-**Before students start.** None needed.
+**Before students start.** The five explanations and the case are visible from the start;
+nothing is asked about the person reading the page.
 
 **What students do.**
 1. Rate all five explanations before requesting any evidence.

@@ -41,39 +41,44 @@ branch.
 
 ## Word counts
 
+These figures are post-correction, after the independent-review pass
+described below. See that section for what changed and why several
+guides grew.
+
 | Tool | Full old | Full new | Simplified old | Simplified new |
 |---|---:|---:|---:|---:|
-| 03 Person-Situation Interaction Theatre | 1700 | 369 | 707 | 320 |
-| 04 State versus Trait Tracker | 1908 | 434 | 963 | 320 |
-| 07 Factor Rotation Playground | 1594 | 392 | 1029 | 331 |
-| 09 Facet-Level Detective | 1971 | 391 | 949 | 318 |
+| 03 Person-Situation Interaction Theatre | 1700 | 428 | 707 | 338 |
+| 04 State versus Trait Tracker | 1908 | 464 | 963 | 337 |
+| 07 Factor Rotation Playground | 1594 | 411 | 1029 | 347 |
+| 09 Facet-Level Detective | 1971 | 389 | 949 | 333 |
 | 12 The Alpha Trap | 378 | 378 (frozen) | 1027 | 383 |
-| 13 Reverse-Item Disaster | 1718 | 367 | 1157 | 322 |
-| 14 Response-Style Simulator | 1510 | 391 | 1059 | 315 |
+| 13 Reverse-Item Disaster | 1718 | 393 | 1157 | 339 |
+| 14 Response-Style Simulator | 1510 | 391 | 1059 | 334 |
 | 21 Measurement-Invariance Translator | 1703 | 400 | 1008 | 349 |
-| 24 "Explain This Person" Courtroom | 1482 | 404 | 878 | 323 |
-| 31 Intelligence-Test Battery Builder | 1769 | 356 | 1090 | 310 |
-| 32 Positive Manifold Visualiser | 1524 | 354 | 1199 | 313 |
-| 34 Culture-Fair Test Challenge | 1726 | 387 | 961 | 299 |
-| 36 Speed-Accuracy Trade-Off | 1672 | 377 | 919 | 340 |
-| 39 Twin-Study Simulator | 1797 | 392 | 926 | 273 |
-| 42 Gene × Environment Interaction Visualiser | 1372 | 369 | 969 | 269 |
-| 49 Emotional-Intelligence Claims Laboratory | 2039 | 384 | 930 | 317 |
-| 50 Self-Esteem Stability Tracker | 1609 | 371 | 969 | 320 |
-| 55 Personality Disorder Continuum | 1968 | 360 | 1081 | 343 |
+| 24 "Explain This Person" Courtroom | 1482 | 421 | 878 | 341 |
+| 31 Intelligence-Test Battery Builder | 1769 | 379 | 1090 | 327 |
+| 32 Positive Manifold Visualiser | 1524 | 390 | 1199 | 332 |
+| 34 Culture-Fair Test Challenge | 1726 | 431 | 961 | 316 |
+| 36 Speed-Accuracy Trade-Off | 1672 | 440 | 919 | 360 |
+| 39 Twin-Study Simulator | 1797 | 454 | 926 | 283 |
+| 42 Gene × Environment Interaction Visualiser | 1372 | 390 | 969 | 284 |
+| 49 Emotional-Intelligence Claims Laboratory | 2039 | 423 | 930 | 378 |
+| 50 Self-Esteem Stability Tracker | 1609 | 410 | 969 | 336 |
+| 55 Personality Disorder Continuum | 1968 | 379 | 1081 | 356 |
 
-Full total: 29,440 → 6,876 words (17 rewritten Full guides plus the frozen
+Full total: 29,440 → 7,372 words (17 rewritten Full guides plus the frozen
 378-word pilot both included in the "new" figure above).
-Simplified total: 17,821 → 5,765 words.
-Aggregate: 47,261 → 12,641 words, a **73.3% reduction**.
+Simplified total: 17,821 → 6,073 words.
+Aggregate: 47,261 → 13,445 words, a **71.5% reduction**.
 
-New word-count range: 269 (Simplified, tool 42) to 434 (Full, tool 04). One
-guide, Full 04, sits closer to the upper end of the target band; it was kept
-at that length because State versus Trait Tracker's model has more moving
-parts to describe accurately (four people, wobble, event decay, measurement
-error, and a stability-convergence comparison) than most of the other
-guides, and cutting further risked losing one of those distinctions rather
-than tightening prose. No guide exceeds 450 words.
+New word-count range: 283 (Simplified, tool 39) to 464 (Full, tool 04).
+Two guides sit just above 450: Full 04 (464 words) and Full 39 (454
+words). Both grew directly from the independent-review corrections
+below (04's stability-curve and measurement-error fixes; 39's E/error
+and gene-environment-correlation fixes) and were trimmed as far as
+seemed possible without dropping the corrected content; the review
+judged that acceptable rather than cutting a substantive fix to hit
+the target.
 
 ## Source-of-truth method
 
@@ -410,11 +415,14 @@ defer this pass until every file existed:
   person," "does not automatically mean," "cannot tell you why," "the key
   is," "worth noting," and the rest of the supplied list).
 - No exact-duplicate "Use in class / timing" sentences across the batch.
-- "None needed" appears in 30 of 35 "Before students start" sections. This
-  is the established house phrase from the approved Alpha Trap pilot itself
-  ("Before students start. None needed.") and from every prior module's
-  rollout, not a drafting tic introduced here, so it was kept rather than
-  varied for variety's own sake.
+- "None needed" originally appeared in 30 of 35 "Before students start"
+  sections. The first pass defended keeping it as an established house
+  phrase; independent review rejected that defence outright. The brief
+  explicitly named repeated "None needed" as a known AI tell, and the
+  Social & Critical rollout had already removed the same collection-level
+  template from its own guides, so defending it here as house style was a
+  direct contradiction of both. See "Independent-review correction pass"
+  below for the fix and the exact before/after count.
 - One genuine repeated-opening pattern was found: the Full guides for tools
   14, 36 and 50 all opened with a "[number] fictional [people/respondents]
   share exactly/the same..." construction. Tool 14's was kept as the
@@ -473,19 +481,242 @@ defer this pass until every file existed:
   which each added a live-QA follow-up gate; the harness stays at 13
   gates.
 
+## Independent-review correction pass
+
+An independent review inspected the finished guides against the actual
+executing source and found the rollout strong but not merge-ready. This
+section documents what that review caught and how each point was fixed.
+The corrections below do not touch activity code, metadata, catalogue
+files or standalone exports, and none of the queued live-QA defects were
+fixed in this branch.
+
+**1. The "None needed" AI tell.** The original cross-file AI-tell pass
+found "None needed" in 30 of 35 "Before students start" sections and
+decided to keep it as an established house phrase. Independent review
+rejected that decision: the brief given for this rollout explicitly named
+repeated "None needed" as a known AI tell, and the Social & Critical
+rollout earlier in this series had already removed the identical
+collection-level template from its own guides. Defending the pattern here
+as house style directly contradicted both. All 30 instances were revisited
+and rewritten with a genuine, activity-specific statement, drawn from a mix
+of what students need to know already, what is visible when the page
+opens, whether the values are fictional, whether the task is
+self-contained, and whether nobody is assessed. No two guides received the
+same sentence, and nothing was padded purely to create variation. The
+literal phrase "None needed" went from 30 occurrences across the guides
+this rollout owns to 0; the single remaining occurrence in the repository
+is inside the frozen Alpha Trap pilot, which this branch never touches.
+
+**2. Tool 03 (Person-Situation Interaction Theatre), Full, nonexistent
+aggregate ordering.** The guide claimed that looking across several
+situations "recovers an ordering that no single situation can show on its
+own." The executing `consistency()` function computes mean pairwise
+Spearman agreement among five separate situation-specific rankings; it
+never constructs any single aggregate ordering of the four people. The
+"What it teaches" paragraph and the debrief question were rewritten to
+describe what the tool actually shows: how much the five rankings agree
+with each other and which situations reorder the same people, not a
+privileged grand ordering.
+
+**3. Tool 04 (State versus Trait Tracker), Full, impossible duration and
+an unverified invariant.** The guide said the volatile person's running
+mean "keeps drifting for several simulated weeks," but the whole series is
+only fourteen days at four observations a day, fifty-six readings total,
+so "several weeks" cannot be correct on its own terms. This was corrected
+to "roughly forty of the fifty-six readings, well over half the
+fortnight," matching this rollout's own earlier recomputation of the
+shipped default settle criterion (Ada settles at n=2, Bo at n=41).
+Independent review also asked that the claim "raising measurement error
+adds noise to every reading without moving any of the four means" be
+re-verified rather than assumed. Re-implementing `generate()` in Node and
+sweeping `errorSd` from 0 to 20 at the default seed showed the claim was
+false as an exact invariant: because the error draws are a fixed set of
+values simply scaled by `errorSd` rather than redrawn, each person's
+displayed six-week average drifts measurably as error rises (Ada's mean
+moved from 61.696 at `errorSd=0` to 64.339 at `errorSd=20` in this
+recomputation). The guide now says measurement error never changes
+anyone's underlying trait value, while noting it can nudge a person's own
+displayed average slightly too, at a fixed seed, since the same draws are
+scaled larger rather than redrawn. This is a genuine, newly-caught
+numerical error in the original guide, not merely a wording tighten.
+
+**4. Tool 04, Simplified, first-reading direction error.** The opening
+said "Bo's first reading sits twenty points above his," but Bo's own
+average is about 62 and his first reading is 47, about fifteen points
+below his own mean, not above it. The twenty-point figure is the gap
+between Ada's first reading (67) and Bo's first reading (47), a
+between-person comparison, not a statement about Bo's own reading
+relative to his own mean. The opening paragraph was rewritten to state
+both facts correctly and distinguish them explicitly.
+
+**5. Tool 13 (Reverse-Item Disaster), Full, arithmetic count.** The guide
+said only two of the four scoring methods are "arithmetically distinct."
+There are three distinct numerical results, not two: correct scoring
+(`6 − raw`), the wrong-maximum method (`7 − raw`), and the two remaining
+methods (noting the reverse wording but never recoding, and simply
+forgetting to recode), which land on identical numbers as each other but
+are numerically distinct from both correct and wrong-maximum scoring. The
+opening was rewritten to state three distinct results, with the two
+identical methods named as the pair that collapses together.
+
+**6. Tool 24 ("Explain This Person" Courtroom), Full, "equally well."**
+The guide said the eight explanations "all fit the same fictional case
+equally well." The executing `EXPLANATIONS` array gives fit values from
+0.70 to 0.85, not a single equal number. The intended point, that every
+explanation was deliberately authored to fit the case plausibly, was
+preserved, and "equally well" was replaced with wording that does not
+imply numerically identical fit, while keeping the distinction between
+retrospective fit and distinctive, falsifiable prediction intact.
+
+**7. Tool 32 (Positive Manifold Visualiser), Full, correlated group
+factors that do not exist in the model.** The guide repeatedly described
+the "Broad Group Factors" alternative as "two correlated group factors."
+The executing generator's own header comment states all latent sources
+are independent: `z(i) = g·G + s·Group(i) + u·Specific(i) + e·Error(i)`,
+with cross-group correlation coming entirely from the shared `g`
+component, not from any correlation between the two group factors, which
+are independent of each other by construction. Every instance of
+"correlated group factors" (and the slogan "dressed up as one") was
+replaced with accurate language: two independent group sources plus a
+smaller shared source. The teaching point, that a positive first factor
+does not by itself adjudicate between causal interpretations, is
+unchanged.
+
+**8. Tool 34 (Culture-Fair Test Challenge), Full, teaching proxy presented
+as real score attribution.** The guide said the default design leaves
+"only 37% of the score attributable to reasoning itself" and that "most of
+what the score reflects is something other than reasoning." The executing
+code defines `construct-relevant share = 1 − mean(demand levels) × LOAD`
+as an explicitly stated crude illustrative model, and no score is ever
+computed for any fictional test-taker anywhere in the tool. Both sentences
+were rewritten to describe the 37% figure as the tool's illustrative
+construct-relevant-share readout rather than a measured decomposition of a
+real score.
+
+**9. Tool 36 (Speed-Accuracy Trade-Off), Full, identification overclaim.**
+The caution said that comparing accuracy and response time together,
+alongside knowing whether threshold or drift moved, "actually
+distinguishes them," which could be read as claiming joint speed-accuracy
+data is generally sufficient to identify the underlying parameters. The
+caution now makes explicit that this activity can state which parameter
+moved only because it supplies the drift rate and threshold directly; with
+real data, telling the two apart needs an explicit model fitted to the
+full response pattern, not simply reading two summary numbers together.
+
+**10. Tool 39 (Twin-Study Simulator), Full, variance components and
+absolute language.** Two separate issues. First, the guide called the
+default truth a "0.40/0.35/0.20 split," but the default also includes
+0.05 of measurement error, and Falconer's `e² = 1 − r(MZ)` absorbs
+measurement error together with non-shared environment, so the correct
+comparison target for the formula's non-shared-environment row is 0.25,
+not 0.20. The opening was rewritten to state all four true values and the
+0.25 comparison target explicitly. Second, "never producing an unbiased
+number by accident" was removed as an overclaim that clashes with the
+activity's own lesson that two assumption violations pulling in opposite
+directions can partly mask each other; the sentence now says a broken
+assumption biases the estimate in a specific direction for that
+assumption, with the masking possibility noted. Independent review also
+asked that the gene-environment-correlation paragraph's direction claims
+be independently recomputed rather than carried over. Re-implementing
+`generateGroup()` and `falconer()` in Node at the documented default seed
+(4471) and truth confirmed the guide's existing claims exactly: baseline
+r(MZ)=0.7179, r(DZ)=0.5007; at gxeCorr=0.60, r(MZ) rises to 0.8077 and
+r(DZ) falls to 0.4584, giving h²=0.6986 (inflated); at unequalEnv=0.40,
+r(MZ) is unchanged and r(DZ) falls to 0.3483, giving h²=0.7393 and c²=0
+(inflated); at assortative=0.60, r(MZ) is unchanged and r(DZ) rises to
+0.6301, giving h²=0.1756 (deflated, the opposite direction). No change was
+needed to those specific sentences; they were independently reverified
+rather than assumed correct.
+
+**11. Tool 42 (Gene × Environment Interaction Visualiser), Full, crossover
+terminology.** "Where that interaction crosses zero" was replaced with
+"where the two group lines cross." An interaction is a difference in
+slopes; it is not itself a scalar quantity that can cross zero, and the
+corrected wording describes the actual geometric event the tool displays.
+
+**12. Tool 49 (Emotional-Intelligence Claims Laboratory), Full, two
+terminology errors.** First, the guide said the self-report measure shares
+"63% of their variance" with the personality questionnaire, but the live
+figure is a correlation of r = .63, not 63% shared variance (r² ≈ .397, or
+about 40%, if a variance figure were wanted). This was corrected to state
+the correlation directly, ".63," without converting it to a variance
+percentage. Second, the caution described predicting an outcome as
+producing "convergent correlations," but a correlation with a
+criterion/outcome is criterion-related or predictive evidence, not
+convergent validity, which specifically concerns agreement with other
+indicators of the same intended construct. The caution was rewritten to
+use the correct terms and to avoid implying "low overlap" is a fixed
+numeric threshold, framing the real question as whether a measure has
+adequate discriminant evidence against competing measures.
+
+**13. Tool 49, Simplified, an outcome correlation wrongly treated as
+fixed.** The guide implied the new questionnaire's correlation with the
+outcome does not need to change for its incremental contribution to
+collapse. In the executing model, `newWithOutcome(overlap)` does move,
+from about 0.46 at the lowest overlap up to about 0.48 and back down to
+about 0.36 at the highest overlap, confirmed by independently
+re-implementing the formula. The guide was rewritten to state the real
+contrast accurately: the raw outcome correlation moves only modestly
+across the slider's range, while the incremental contribution collapses
+far more sharply, from about ten percentage points to under one.
+
+**14. Tool 50 (Self-Esteem Stability Tracker), Full, recovery rate versus
+recovery duration.** The guide said how long an effect lasts "has nothing
+to do with how large the initial drop was." The model is
+`carry(t+1) = carry(t) × recovery`, so while the recovery-rate parameter
+is set independently of a person's reactivity, the actual number of days
+until a profile returns near baseline depends on both the size of the
+initial displacement and the decay rate together, not on the rate alone.
+The sentence was rewritten to say the two parameters are independently
+set without claiming duration is unrelated to drop size.
+
+**15. Tool 55 (Personality Disorder Continuum), Full, diagnostic
+wording.** "Diagnostic threshold" was replaced with "the activity's
+classification threshold." The activity deliberately does not diagnose
+anybody or reproduce any real diagnostic rule, so calling its threshold
+"diagnostic" risked exactly the overclaim the tool itself is built to
+guard against.
+
+**16. Live-defect count and Candour wording corrected.** The original
+Candour section understated the live-defect queue as "three of the
+eighteen tool pairs (03, 39, 50 Full)." The queue documented in "Live
+learner-facing defects found" above actually covers eight tool pairs (03,
+07, 09, 24, 39, 42, 49, 50), and tool 03 alone contributes four related
+problems within its own entry, so the queue holds eleven individual
+issues clustered into eight entries. The Candour section was rewritten to
+state this accurately; see that section below.
+
 ## Candour
 
-This rewrite was not a clean, linear pass. Two figures were nearly copied
+This rewrite was not a clean, linear pass, and the first version of this
+document was not candid enough about that. Two figures were nearly copied
 forward from the previous notes before independent recomputation caught
 them (tool 14's formula constants, tool 36's response times), and one
 ranking claim (tool 24) would have propagated a wrong answer if the
 distinctiveness scores had not been recomputed from the raw predictions
-array rather than trusted from prose. Three of the eighteen tool pairs (03,
-39, 50 Full) turned out to have live UI text that actively asserts
-something the executing code does not do, not merely stale documentation,
-which is a more serious class of finding than most of what turned up in
-earlier module rollouts in this series; all three are queued above rather
-than fixed here. One tool (55, Personality Disorder Continuum) came back
+array rather than trusted from prose.
+
+Eight of the eighteen tool pairs, not three, turned out to have live UI
+text that actively asserts something the executing code does not do, a
+more serious class of finding than most of what turned up in earlier
+module rollouts in this series: tools 03, 07, 09, 24, 39, 42, 49 and 50.
+Tool 03 alone contributes four separate related problems within its own
+Full edition (a stale tie-handling comment, an ungated section, challenge
+grading that never checks the manipulation it claims to grade, and a
+tie-break display artifact), so the live-defect queue holds eleven
+individual issues clustered into eight entries, not eight bugs. All are
+queued in "Live learner-facing defects found" above and none were fixed
+in this branch. One tool (55, Personality Disorder Continuum) came back
 from research with no discrepancies of any kind, Full or Simplified, which
 is presented as encouraging rather than treated with suspicion, since it
 matches the amount of scrutiny given to every other tool in this batch.
+
+See "Independent-review correction pass" below for what an independent
+read of the finished guides against the executing source caught that the
+original drafting and AI-tell passes missed, including the "None needed"
+reversal, three numeric/directional errors that survived the original
+numerical-audit claims (tool 03's aggregate-ordering claim, tool 04's
+"several simulated weeks" and measurement-error invariance claim, and
+tool 39's variance-component and gene-environment-correlation claims),
+and several terminology and overclaim corrections across tools 13, 24,
+32, 34, 36, 42, 49 and 50.

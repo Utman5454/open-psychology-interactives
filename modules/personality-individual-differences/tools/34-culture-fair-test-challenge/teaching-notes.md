@@ -6,13 +6,17 @@
 not the problem: six design decisions, instructions, practice, timing,
 response format, stimulus content and scoring rule, each load onto the
 same six construct-irrelevant demands, and the tool's default,
-deliberately poor design leaves only 37% of the score attributable to
-reasoning itself. Four fictional test-takers with different
+deliberately poor design gives its illustrative construct-relevant-
+share readout as only about 37%, a crude teaching proxy rather than a
+measured decomposition of any real score. Four fictional test-takers
+with different
 unfamiliarity profiles are affected very unevenly by whichever demands
 the design carries, even though none of them is defined by any
 real-world group.
 
-**Before students start.** None needed.
+**Before students start.** Students should already have met the idea that a test score can
+reflect more than the ability it names; none of the four fictional
+test-takers stands in for any real group.
 
 **What students do.**
 1. Predict what removing verbal content from a test does to how fair
@@ -27,10 +31,11 @@ real-world group.
 5. Work through the evidence checklist and decide what would actually
    establish comparability across groups.
 
-**What to look for.** The default design gives a construct-relevant
-share of about 37%, meaning most of what the score reflects is
-something other than reasoning. The lowest-demand design raises that
-to about 79%, while a puzzle-format demand stays substantial in both,
+**What to look for.** The default design's construct-relevant-share
+readout sits at about 37%, and falls further the more construct-
+irrelevant demand the six authored design decisions carry. The
+lowest-demand design raises the readout to about 79%, while a
+puzzle-format demand stays substantial in both,
 at 90% and 60% respectively, because switching away from language does
 not remove every source of unfamiliarity. The four fictional
 test-takers' irrelevant load varies far more under the poor design

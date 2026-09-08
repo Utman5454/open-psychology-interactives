@@ -9,7 +9,8 @@ that variation from its narrowest setting to its widest drops the
 heritability estimate from 0.67 to 0.19, without a single gene or a
 single shared-environment value changing at all.
 
-**Before students start.** None needed.
+**Before students start.** Genetic variance and shared-environment variance are fixed
+throughout; only the slider moves.
 
 **What students do.**
 1. Predict whether heritability is a fixed property of a trait or

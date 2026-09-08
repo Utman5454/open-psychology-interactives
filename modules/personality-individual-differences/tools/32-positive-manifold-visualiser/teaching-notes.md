@@ -4,14 +4,15 @@
 
 **What it teaches.** Six fictional cognitive tasks correlate
 positively with each other under three different underlying
-structures, a strong shared source, strong group factors, or mostly
-task-specific noise, and extracting a single first factor from the
-resulting correlation matrix cannot by itself tell these structures
-apart. A first factor that explains most of the variance is compatible
-with one general source and with two correlated group factors dressed
-up as one.
+structures, a strong shared source, a block structure dominated by two
+independent group sources, or mostly task-specific noise, and
+extracting a single first factor from the resulting correlation matrix
+cannot by itself tell these structures apart. A first factor that
+explains most of the variance is compatible with one general source
+and with two independent group sources plus a much smaller shared one.
 
-**Before students start.** None needed.
+**Before students start.** Students should already have met the idea of a correlation matrix;
+all three presets, and the resulting scatterplots, are fictional.
 
 **What students do.**
 1. Predict whether a single extracted factor proves there is one
@@ -32,17 +33,17 @@ factor still captures 45%, a sizeable share for a structure that is
 really two groups, not one general source.
 
 **Debrief.** Two very different underlying structures, one general
-source and two correlated groups, both produce uniform positive
-loadings on a first factor. What extra piece of evidence would tell
-them apart?
+source and one dominated by two independent group sources, both
+produce uniform positive loadings on a first factor. What extra piece
+of evidence would tell them apart?
 
 **Common misconception / caution.** Extracting a factor that fits well
 does not prove a single general ability exists, and a positive
-manifold this clean is equally compatible with correlated group
-factors; the reverse overcorrection, that factor analysis is therefore
-useless, does not follow either, since the technique is doing exactly
-what it claims, summarising a correlation matrix, not adjudicating
-between causal stories about it.
+manifold this clean is equally compatible with two independent group
+sources plus a small shared one; the reverse overcorrection, that
+factor analysis is therefore useless, does not follow either, since
+the technique is doing exactly what it claims, summarising a
+correlation matrix, not adjudicating between causal stories about it.
 
 **Use in class / timing.** Comparing the three presets takes about 10
 minutes. With the simulated scatterplots and variance bars, allow 20

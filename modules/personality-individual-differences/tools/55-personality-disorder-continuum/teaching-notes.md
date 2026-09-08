@@ -12,11 +12,13 @@ of the population above the line; requiring unusual traits together
 with genuine functional difficulty drops that to about 1.8%, from the
 identical population and the identical threshold value.
 
-**Before students start.** None needed.
+**Before students start.** Nobody is diagnosed or assessed anywhere on this page; the
+six-dimension profiles and the population of 800 are entirely
+fictional.
 
 **What students do.**
-1. Predict whether raising a diagnostic threshold changes anything
-   about the fictional people underneath it.
+1. Predict whether raising the activity's classification threshold
+   changes anything about the fictional people underneath it.
 2. Load the "unusual, and working" preset and the "same traits, much
    more difficulty" preset and compare their extremity and functioning
    scores.

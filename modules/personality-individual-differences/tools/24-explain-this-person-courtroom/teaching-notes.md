@@ -2,11 +2,12 @@
 
 `modules/personality-individual-differences/tools/24-explain-this-person-courtroom/`
 
-**What it teaches.** Eight explanations all fit the same fictional
-case equally well, because each was written to fit it; the tool stores
-no fact about which one is "true." What separates them is
-distinctiveness, how much a prediction differs from its rivals, not
-fit. The broad trait account and the role-experience account predict
+**What it teaches.** Eight explanations were each deliberately written
+to fit the same fictional case plausibly, and every one of them does;
+the tool stores no fact about which one is "true." What separates them
+is not how well they fit the case retrospectively but distinctiveness,
+how much a prediction differs from its rivals and could in principle
+have been shown wrong. The broad trait account and the role-experience account predict
 almost nothing the others do not and so could barely ever have been
 shown wrong; the situational-pressure, reputation and incentive
 accounts commit to something distinctive about timing or reward that

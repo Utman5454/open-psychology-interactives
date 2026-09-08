@@ -9,7 +9,8 @@ observations; the facet-based prediction separates them by more than
 twenty points each time and gets the pattern right. A domain score is
 not wrong here, it simply cannot see what an average discards.
 
-**Before students start.** None needed.
+**Before students start.** Sam and Priya's facet scores are fixed from the start; nothing about
+either of them is real.
 
 **What students do.**
 1. Predict why two people scoring the same on a broad trait behave

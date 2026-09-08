@@ -9,7 +9,8 @@ everyone toward its own demand. As the slider rises, the four people's
 behaviour converges toward whatever the setting rewards; nothing about
 the people underneath changes.
 
-**Before students start.** None needed.
+**Before students start.** Both settings and the strength slider are on screen as soon as the
+page loads; nothing needs to be prepared.
 
 **What students do.**
 1. Predict whether the most sociable person will also do best at the

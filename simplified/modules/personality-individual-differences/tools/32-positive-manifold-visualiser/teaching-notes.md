@@ -10,7 +10,8 @@ residual of about 0.015, and a factor that carries about 40% of the
 variance, purely from accidental overlap between the pools each test
 draws on.
 
-**Before students start.** None needed.
+**Before students start.** The six tests' overlap model is fixed; only the slider changes how
+much of the shared pool each test draws on.
 
 **What students do.**
 1. Predict whether a well-fitting general factor requires a real

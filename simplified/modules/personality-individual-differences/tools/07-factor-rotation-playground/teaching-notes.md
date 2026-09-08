@@ -9,7 +9,8 @@ genuine varimax-style simplicity score, and turning the dial to where
 that score peaks brings ten of twelve markers cleanly onto one factor
 or the other, while two markers refuse to cooperate at any angle.
 
-**Before students start.** None needed.
+**Before students start.** The twelve markers' fixed positions are visible as soon as the page
+opens; only the rotation angle moves.
 
 **What students do.**
 1. Predict whether rotating the axes can raise the total variance

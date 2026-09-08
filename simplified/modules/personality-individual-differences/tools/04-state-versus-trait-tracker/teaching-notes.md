@@ -3,14 +3,16 @@
 `simplified/modules/personality-individual-differences/tools/04-state-versus-trait-tracker/`
 
 **What it teaches.** Ada and Bo end up with almost exactly the same
-average score over a fortnight of readings, 61.9 against 62.0, but a
-single reading tells two different stories about them: Ada's first
-reading sits close to her average, Bo's first reading sits twenty
-points above his. Averaging more readings brings both running means
-toward the same place while their spreads stay far apart, because
-spread and average are separate properties of the same series.
+average score over a fortnight of readings, 61.9 against 62.0, but
+their first readings, 67 and 47, are twenty points apart from each
+other. Ada's first reading sits close to her own average; Bo's sits
+about fifteen points below his. Averaging more readings brings both
+running means toward the same place while their spreads stay far
+apart, because spread and average are separate properties of the same
+series.
 
-**Before students start.** None needed.
+**Before students start.** Ada and Bo's fixed fortnight of readings is generated once,
+automatically, when the page loads.
 
 **What students do.**
 1. Predict whether one reading is enough to say who has the higher

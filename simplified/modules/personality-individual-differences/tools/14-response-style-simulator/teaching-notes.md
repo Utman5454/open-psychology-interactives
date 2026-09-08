@@ -12,7 +12,9 @@ someone who prefers the ends or the middle, because those two styles
 multiply the distance from the midpoint rather than adding a constant
 to it.
 
-**Before students start.** None needed.
+**Before students start.** The four respondents' shared reactions to twenty items are generated
+once when the page loads, before either questionnaire view is
+chosen.
 
 **What students do.**
 1. Predict which of the three non-straightforward styles reverse

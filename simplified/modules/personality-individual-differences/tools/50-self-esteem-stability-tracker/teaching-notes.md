@@ -10,7 +10,8 @@ identical work setback to all three drops Cleo by 22 points and Ada by
 only 5.5, and Ada is back within three days while Cleo has still not
 recovered by the end of the six weeks.
 
-**Before students start.** None needed.
+**Before students start.** Ada, Bo and Cleo's day-to-day movement is generated automatically
+when the page loads; nothing needs to be prepared.
 
 **What students do.**
 1. Predict whether an identical average over six weeks means three

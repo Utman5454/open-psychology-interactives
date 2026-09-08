@@ -10,7 +10,8 @@ adverse end of the range makes the higher-sensitivity group look worse
 off and converging toward the better end, a diathesis-stress reading
 of a relationship that, sampled more widely, actually crosses.
 
-**Before students start.** None needed.
+**Before students start.** The two groups' slopes are fixed from the start; only the position of
+the observation window changes.
 
 **What students do.**
 1. Predict what pattern a narrow slice of the adverse end of the range

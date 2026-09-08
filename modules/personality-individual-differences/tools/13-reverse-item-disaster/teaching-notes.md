@@ -3,15 +3,18 @@
 `modules/personality-individual-differences/tools/13-reverse-item-disaster/`
 
 **What it teaches.** The same six raw answers can be scored four
-different ways, but only two of those ways are arithmetically
-distinct: scoring correctly and using the wrong maximum both recode
-the two reverse items, one with the right constant and one with the
-wrong one, while noting the reverse wording but never actually
-recoding produces identical numbers whether that came from a careless
-slip or a genuine misunderstanding. Some scoring errors are loud and
-some are silent, and the silent one is the more dangerous.
+different ways, giving three distinct numerical results, not four:
+scoring correctly recodes the two reverse items with the right
+constant, using the wrong maximum recodes them with a different, wrong
+constant, and the two remaining methods, noting the reverse wording
+but never actually recoding, and simply forgetting to, land on
+identical numbers whether that came from a careless slip or a genuine
+misunderstanding. Some scoring errors are loud and some are silent,
+and the silent one is the more dangerous.
 
-**Before students start.** None needed.
+**Before students start.** Students should already have met Cronbach's alpha and item-total
+correlation; the six items and six fictional respondents, A through
+F, are fixed throughout.
 
 **What students do.**
 1. Predict what happens to the ranking of six fictional respondents

@@ -4,8 +4,8 @@
 
 **What it teaches.** Three fictional respondents accumulate evidence
 at exactly the same rate and differ only in how much of it they insist
-on before answering.
-Impulsive, Balanced and Cautious move from about 84% accuracy at
+on before answering. Impulsive, Balanced and Cautious move from about
+84% accuracy at
 roughly half a second to about 99.5% accuracy at close to a second and
 a half, purely by raising a response threshold. A fourth respondent
 has a genuinely lower drift rate but a moderate threshold, and lands
@@ -13,7 +13,9 @@ at a similar accuracy to the impulsive respondent while taking more
 than twice as long, which a single accuracy or response-time figure
 alone cannot tell apart from a caution difference.
 
-**Before students start.** None needed.
+**Before students start.** Students should already have the basic idea that a decision can be
+made faster at the cost of accuracy, or more carefully at the cost of
+speed.
 
 **What students do.**
 1. Predict whether accuracy or response time alone can reveal how
@@ -39,11 +41,15 @@ long as the other. Does that tell you which one is more able?
 **Common misconception / caution.** Neither accuracy nor response
 time alone can separate ability from response caution; a single
 outcome measure is compatible with more than one combination of the
-two, and only comparing both together, and knowing whether threshold
-or drift moved, actually distinguishes them. Real decision-making is
-not reducible to two parameters, and the drift-diffusion model used
-here is a simplification chosen because it makes the trade-off exact,
-not because it is the last word on decision-making.
+two. This activity can state which parameter moved because it
+supplies the drift rate and threshold directly; with real data,
+telling the two apart is not simply a matter of reading accuracy and
+response time together, it needs an explicit model fitted to the full
+pattern of responses, not just two summary numbers. Real
+decision-making is not reducible to two parameters either, and the
+drift-diffusion model used here is a simplification chosen because it
+makes the trade-off exact, not because it is the last word on
+decision-making.
 
 **Use in class / timing.** Comparing the three same-drift respondents
 takes about 8 minutes. Adding the fourth respondent and your own

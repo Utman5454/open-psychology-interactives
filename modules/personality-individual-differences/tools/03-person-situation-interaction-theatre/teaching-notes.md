@@ -7,10 +7,14 @@ strong situation narrows the gap between people without changing their
 traits at all. Weak situations, like a party or an anonymous online
 discussion, let dispositions show through; a maximally strong one
 compresses everyone toward the same behaviour while their trait scores
-in the cast list never move. Looking across several situations at once
-recovers an ordering that no single situation can show on its own.
+in the cast list never move. Comparing the rankings from several
+situations at once shows how much they agree with each other and
+which situations reorder the same four people; it does not converge on
+one privileged ordering that the individual situations were hiding.
 
-**Before students start.** None needed.
+**Before students start.** Students should already have the idea of a personality trait; Mara,
+Jonah, Elif and Theo and all five situations are fictional and shown
+as such throughout.
 
 **What students do.**
 1. Rank four fictional people twice, once for a party and once for an
@@ -30,9 +34,10 @@ toward its ceiling collapses the gap between the four people to a
 fraction of a point, while their trait scores never change.
 
 **Debrief.** If four people behave almost identically at a strong
-party, has anything about their personalities changed? What does
-looking across many situations recover that no single situation can
-show by itself?
+party, has anything about their personalities changed? Two situations
+give the four people very different rankings. What would you need to
+see across many situations before concluding one of the two rankings
+is the more trustworthy one?
 
 **Common misconception / caution.** A strong situation compressing
 behaviour is not evidence that traits stopped existing, only that the

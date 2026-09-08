@@ -10,7 +10,8 @@ one of the three requirements for a brief screen: it takes too long
 and costs too much respondent burden, despite its reliability being
 excellent by any ordinary standard.
 
-**Before students start.** None needed.
+**Before students start.** The seven tasks, the sixty-minute budget and the three purposes are
+all visible as soon as the page opens.
 
 **What students do.**
 1. Predict whether a highly reliable battery built for one purpose

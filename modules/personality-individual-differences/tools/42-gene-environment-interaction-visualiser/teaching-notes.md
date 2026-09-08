@@ -4,7 +4,7 @@
 
 **What it teaches.** Two fictional sensitivity groups respond to
 environmental quality with different slopes, a genuine interaction,
-and where that interaction crosses zero decides whether the same two
+and where the two group lines cross decides whether the same two
 slopes look like diathesis-stress, differential susceptibility, or
 vantage sensitivity. All three "theories" here are the identical pair
 of slopes with only the crossover point moved; which one a study
@@ -12,7 +12,9 @@ appears to support can also change just by restricting which part of
 the environmental range gets sampled, with neither slope nor crossover
 moving at all.
 
-**Before students start.** None needed.
+**Before students start.** Students should already distinguish a main effect from an
+interaction; the two fictional sensitivity groups are not modelled on
+any real genotype.
 
 **What students do.**
 1. Predict what a study finding "the more sensitive group does worse

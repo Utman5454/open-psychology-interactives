@@ -9,7 +9,8 @@ who falls above it. At a threshold of 70 on the interference rule, two
 of the four profiles sit above the line; switching to the traits rule
 at the same threshold swaps which two.
 
-**Before students start.** None needed.
+**Before students start.** The four profiles are fixed and fictional; nobody reading the page is
+assessed or scored.
 
 **What students do.**
 1. Predict whether the same four profiles would be sorted the same way

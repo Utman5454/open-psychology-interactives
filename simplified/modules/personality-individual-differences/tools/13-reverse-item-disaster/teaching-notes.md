@@ -9,7 +9,8 @@ were never reverse-worded at all. Recoding one reverse item at a time
 shows the second one getting worse before both are fixed: alpha moves
 from -.04 to +.03 to +.78 as the two repairs are made in sequence.
 
-**Before students start.** None needed.
+**Before students start.** The six items and six fictional respondents are fixed from the
+start; only which scoring method is applied changes.
 
 **What students do.**
 1. Predict what leaving two reverse items unrecoded does to the

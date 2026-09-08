@@ -10,9 +10,9 @@ it from opposite directions. Facet scores predict specific behaviour
 better than the domain does; the domain predicts breadth, stability
 and aggregate outcomes better than any single facet can.
 
-**Before students start.** None needed. Decide whether the opening
-question is answered individually or as a room; a skip button covers
-the second case.
+**Before students start.** Decide whether the opening question is
+answered individually or as a room; a skip button covers the second
+case.
 
 **What students do.**
 1. Predict why two people with near-identical broad scores behave
