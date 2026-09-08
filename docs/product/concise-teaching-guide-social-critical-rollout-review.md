@@ -1,12 +1,11 @@
 # Concise teaching-guide rollout: Social and Critical Psychology
 
-Date: 2026-09-08. Status: **awaiting independent review before merge; four
-learner-facing defects and one self-contradictory metadata file found
-during research, all left unfixed on this branch and flagged below for a
-separate follow-up PR; two pre-merge correction passes applied seven
-wording and classification fixes to this batch's own guides and review
-document (see "Pre-merge correction pass" below).** Fourth module-sized
-pass, after
+Date: 2026-09-08. Status: **rollout merged; four learner-facing defects and
+one self-contradictory metadata file found during research resolved by a
+separate follow-up PR (`fix-social-critical-live-qa`); two pre-merge
+correction passes on the rollout itself applied seven wording and
+classification fixes to this batch's own guides and review document (see
+"Pre-merge correction pass" below).** Fourth module-sized pass, after
 Cognitive Psychology
 (`docs/product/concise-teaching-guide-cognitive-rollout-review.md`), Research
 Methods (`docs/product/concise-teaching-guide-research-methods-rollout-review.md`)
@@ -230,34 +229,61 @@ field, and both are corrected here.
   `tool.js`'s CLAIMS-challenge feedback text and `index.html`'s "What is
   left over" section (both shown to the learner), plus a matching stale
   comment in `tool.js` and a matching stale sentence in `metadata.json`'s
-  `simulationNotes`. NOT RESOLVED ON THIS BRANCH.** All state that the
-  fee-rise/hours-cut statement is "no concept for it" in six of the seven
-  frameworks and reachable, indirectly, by only the seventh. The tool's
-  own `LENSES[*].coding[8]` data instead gives: no framework treats it as
+  `simulationNotes`. RESOLVED.** All stated that the fee-rise/hours-cut
+  statement is "no concept for it" in six of the seven frameworks and
+  reachable, indirectly, by only the seventh. The tool's own
+  `LENSES[*].coding[8]` data instead gives: no framework treats it as
   central; five ("self-schema," "social comparison," "self-discrepancy,"
   "self-efficacy," "social identity") have no concept for it at all; two
   ("possible selves," "relational and contextual") can reach it only
-  indirectly. The CLAIMS-challenge "why" text compounds this by naming only
-  one framework ("a change in how believable a future self is") when two
-  actually qualify. Not fixed in code on this branch; the new teaching
-  guide states the correct figure, "five of the seven... have no concept
-  for it at all... the other two can reach it indirectly," instead of
-  repeating the stale six-and-one figure. Flagged below for the Social and
-  Critical Psychology live-QA follow-up.
+  indirectly. The CLAIMS-challenge "why" text compounded this by naming
+  only one framework ("a change in how believable a future self is") when
+  two actually qualify. This is how the defect was first found and logged,
+  deliberately as a documentation-only observation rather than a silent
+  code edit, in the original submission of this branch.
+
+  It was fixed by a separate, tightly scoped follow-up
+  (`fix-social-critical-live-qa`): the `tool.js` header comment, the
+  CLAIMS-challenge "why" text (now naming both indirect routes, possible
+  selves and the relational account), `index.html`'s "What is left over"
+  section and its meta/OpenGraph/Twitter descriptions, `metadata.json`'s
+  `simulationNotes` and `readmeTopic`, the module's `README.md` topic line,
+  and `data/catalogue.json`'s mirrored entry all now state the correct
+  figure (no framework central, five with no concept, two reaching it only
+  indirectly), and the regenerated `standalone.html` carries the fix. The
+  new teaching guide already stated this correctly and did not need to
+  change. A regression test (`scripts/test-social-critical-live-qa.js`,
+  run via `scripts/check-all.py`) extracts the tool's own `LENSES` data,
+  asserts the 0/5/2 split directly, and checks that the stale "six of the
+  seven" and unqualified "none of them can use" phrasings are absent from
+  every listed file.
 - **Live learner-facing defect, `06-discourse-subject-position-lab` (Full),
-  `index.html` (two places, both in learner-facing body text) and the old
-  `teaching-notes.md` (which already self-contradicted). NOT RESOLVED ON
-  THIS BRANCH.** All state "none of the five accounts mentions" the halved
-  hours. `ACCOUNTS.advocacy.text` and the code's own `mentionsCut` logic
-  confirm the advocacy bulletin's own text opens by stating the council
-  halved the programme hours. Not fixed in code on this branch; the new
-  guide states "only the advocacy bulletin mentions it... the other four
-  genres have no field for it." The new guide also adds an epistemic
+  `index.html` (two places, both in learner-facing body text), a `tool.js`
+  header comment, and the old `teaching-notes.md` (which already
+  self-contradicted). RESOLVED.** All stated "none of the five accounts
+  mentions" the halved hours. `ACCOUNTS.advocacy.text` and the code's own
+  `mentionsCut` logic confirm the advocacy bulletin's own text opens by
+  stating the council halved the programme hours. This is how the defect
+  was first found and logged, deliberately as a documentation-only
+  observation rather than a silent code edit, in the original submission
+  of this branch. The new teaching guide already stated "only the
+  advocacy bulletin mentions it... the other four genres have no field for
+  it" and did not need to change; it also already carried an epistemic
   caveat, that these are authored readings of an invented case and a
   well-argued alternative reading deserves credit, which the Simplified
-  edition's existing materials already carry but the Full edition
-  currently lacks anywhere in its learner-facing text. Flagged below for
-  the live-QA follow-up.
+  edition's existing materials already had but the Full edition's own
+  learner-facing text lacked.
+
+  It was fixed by the same follow-up (`fix-social-critical-live-qa`): the
+  `tool.js` header comment and both `index.html` passages now state "only
+  the advocacy bulletin mentions it; the other four genres have no field
+  for it," the meta/OpenGraph/Twitter descriptions say "only one of them
+  mentions" in place of "none of them mentions," and the regenerated
+  `standalone.html` carries the fix. `metadata.json`'s `simulationNotes`
+  already stated the correct distinction and did not need to change. The
+  same regression test verifies the advocacy account's own text mentions
+  the hours cut and that the stale "none of the five accounts" and "none
+  of them mentions" phrasings are absent from every listed file.
 - **Stale walkthrough claim, `09-crowd-deindividuation-vs-esim`
   (Simplified), old `teaching-notes.md` only (not the tool's own
   learner-facing text).** The old guide's walkthrough implied the "Show two
@@ -272,64 +298,108 @@ field, and both are corrected here.
   of the live-QA follow-up queue since the defect is confined to the
   superseded teaching notes, not to anything the tool itself displays.
 - **Live learner-facing defect, `12-person-or-setting-workplace-lab`
-  (Full), `tool.js` and the exported `standalone.html`. NOT RESOLVED ON
-  THIS BRANCH.** An off-by-one round-counter check (`exp1.round === 2`
-  against `ROUND_TITLES`/`ROUND_FEEDBACK` arrays that are only two entries
-  long) causes an "undefined" round heading followed by an uncaught
-  TypeError once a learner reaches what should be a documented two-round
-  design's end state, which then prevents the closing pedagogical summary
-  from ever rendering. This reproduces in the live `index.html`/`tool.js`
+  (Full), `tool.js` and the exported `standalone.html`. RESOLVED.** An
+  off-by-one round-counter check (`exp1.round === 2` against
+  `ROUND_TITLES`/`ROUND_FEEDBACK` arrays that are only two entries long)
+  caused an "undefined" round heading followed by an uncaught TypeError
+  once a learner reached what should have been a documented two-round
+  design's end state, which then prevented the closing pedagogical summary
+  from ever rendering. This reproduced in the live `index.html`/`tool.js`
   and in the exported `standalone.html` alike. Per the task's instructions,
-  this was not fixed on this teaching-notes branch; the new guide describes
-  only the documented, working two-round design, matching the parts of the
-  old teaching notes that were already accurate. Flagged below for the
-  live-QA follow-up.
+  this was not fixed on the original teaching-notes branch; the guide
+  written then described only the documented, working two-round design,
+  matching the parts of the old teaching notes that were already accurate,
+  and this is how the defect was first found and logged.
+
+  It was fixed by a separate, tightly scoped follow-up
+  (`fix-social-critical-live-qa`): every stale three-round check in
+  `tool.js` (`exp1.round === 2` as the final-round test, `exp1.answers.
+  length === 3` and `>= 3` as the closing/hide conditions, and the
+  `exp1.answers[2]` comparison) was replaced with the corresponding
+  two-round check (`=== 1`, `=== 2`, `>= 2`, `exp1.answers[1]`), two stale
+  "three rounds" section comments and one stale "Round 3" reference in a
+  claims-feedback string were corrected, and `index.html`'s stage-track
+  list was reduced from three `<li>` items to the two the design actually
+  uses. A defensive guard was also added at the top of the commit handler
+  (`if (exp1.answers.length >= ROUND_TITLES.length) return;`) so a stray
+  extra invocation after the second round cannot push a third answer and
+  reproduce the same crash by another route; this was found by the
+  regression test itself before it was added to the codebase. The
+  regenerated `standalone.html` carries all of these fixes. A regression
+  test (`scripts/test-social-critical-live-qa.js`) extracts the real
+  `ROUND_TITLES`, `ROUND_FEEDBACK`, `renderTrail`, `renderRoundFeedback`,
+  `renderExp1` and the commit click handler from `tool.js` into a minimal
+  fake-DOM harness and runs the actual two-commit learner path, asserting
+  no exception, the correct round heading and button state throughout, the
+  closing summary rendering exactly once, reset returning to round index 0,
+  and a stray extra commit attempt neither throwing nor exposing a third
+  round.
 - **Metadata inconsistency, `12-person-or-setting-workplace-lab` (Full),
-  `metadata.json`.** `simulationNotes` describes an old pair-bonus/leaver
-  formula model with figures of 50 and 35, alongside text stating that same
-  mechanic is "gone." The actual, current figures are 53 and 40, with no
-  bonuses (confirmed against `tool.js`'s own constants), which is what the
-  new guide uses and what the old `teaching-notes.md` already correctly
-  stated. Not learner-facing (the field is not rendered in the UI). Not
-  fixed on this branch; kept in the follow-up queue as a metadata cleanup
-  alongside the same tool's crash fix, but not counted among the
-  learner-facing defects below.
+  `metadata.json`. RESOLVED.** `simulationNotes` described an old
+  pair-bonus/leaver formula model with figures of 50 and 35, alongside text
+  stating that same mechanic is "gone." The actual, current figures are 53
+  and 40, with no bonuses (confirmed against `tool.js`'s own constants),
+  which is what the teaching guide already used and what the old
+  `teaching-notes.md` already correctly stated. Not learner-facing (the
+  field is not rendered in the UI); this is how the inconsistency was
+  first found and logged.
+
+  It was fixed by the same follow-up: `simulationNotes` now describes the
+  current two-round, no-bonus, no-projected-leavers model once, cleanly,
+  with the correct 53/40 ten-unit extremes, and `accessibilityNotes` no
+  longer says the outcome chart's text alternative reports projected
+  leavers. `data/catalogue.json`'s mirrored entry was updated identically
+  and verified byte-for-byte equal to `metadata.json` by the same
+  regression test, which also checks that "projected leaver," "pair
+  bonus" (outside the correcting "there are no pair bonuses" sentence) and
+  the stale 50/35 figures are absent from both files.
 - **Live learner-facing defect, `12-person-or-setting-workplace-lab`
-  (Simplified), `index.html` and `activity.js` (both places the sentence
-  appears, in the challenge statement and again in the round-2 feedback).
-  NOT RESOLVED ON THIS BRANCH.** Both state the comparison team's mean
-  exhaustion score is "less than half" the reference team's. The Full
-  edition's own constants for the same fictional scenario are
+  (Simplified), `index.html` and `activity.js` (three places: the
+  challenge statement, the round-2 feedback, and the summary sentence
+  before the round-2 evidence). RESOLVED.** All stated the comparison
+  team's mean exhaustion score is "less than half" the reference team's.
+  The Full edition's own constants for the same fictional scenario are
   `COMPARISON_TEAM = 38` against `START_EXHAUSTION = 74`; half of 74 is 37,
   so 38 is slightly more than half, not less. The Simplified edition
   carries no numeric constants of its own, only this narrative sentence, so
-  the wording itself is the defect. Originally logged in this review as a
-  "minor imprecision" and left uncorrected in the new guide's prose; an
-  independent pre-merge review judged this too generous, since the
-  sentence is wrong in the direction it claims (the true relationship is
-  "close to half," not "less than half"), and it sits directly on the
-  learner-facing page and in the round-2 feedback text, not only in
-  metadata. The new guide avoids the false comparison, describing the
-  comparison team generically as scoring "much lower," but the tool's own
-  text is unchanged. Flagged below for the live-QA follow-up.
+  the wording itself was the defect. Originally logged in this review as a
+  "minor imprecision" and left uncorrected in the first draft of the new
+  guide's prose; an independent pre-merge review of the teaching-guide
+  branch judged this too generous, since the sentence is wrong in the
+  direction it claims, and flagged it for this follow-up instead of
+  leaving it as a low-priority note.
 
-### Social and Critical Psychology live-QA follow-up queue
+  It was fixed by the same follow-up: all three occurrences now say the
+  comparison team's score is "much lower" than the reference team's,
+  matching the wording the teaching guide already used and avoiding any
+  new numeric precision the Simplified activity does not otherwise show.
+  `metadata.json` did not contain the phrase and needed no change. The
+  regression test checks that "less than half" is absent from all three
+  Simplified files.
+
+### Social and Critical Psychology live-QA follow-up: RESOLVED
 
 Following the same pattern as the Neuropsychology rollout's
 `fix-neuropsychology-live-qa` follow-up, four learner-facing defects found
-during this rollout's research are queued for a separate, tightly scoped
-follow-up PR rather than fixed here:
+during this rollout's research were queued for a separate, tightly scoped
+follow-up PR and have now been resolved there (`fix-social-critical-live-qa`):
 
 1. `05-self-through-different-lenses` (Full): the wrong statement-8
    framework count, in `tool.js`'s CLAIMS-challenge feedback,
    `index.html`'s "What is left over" section, a `tool.js` header comment,
-   and `metadata.json`'s `simulationNotes`.
+   and `metadata.json`'s `simulationNotes`. RESOLVED.
 2. `06-discourse-subject-position-lab` (Full): the false "none of the five
-   accounts mentions" the hours cut, in `index.html` (two places).
+   accounts mentions" the hours cut, in `index.html` (two places) and a
+   `tool.js` header comment. RESOLVED.
 3. `12-person-or-setting-workplace-lab` (Full): the off-by-one
-   round-counter crash in `tool.js` and `standalone.html`.
+   round-counter crash in `tool.js` and `standalone.html`. RESOLVED.
 4. `12-person-or-setting-workplace-lab` (Simplified): the "38 is less than
-   half of 74" wording in `index.html` and `activity.js`.
+   half of 74" wording in `index.html` and `activity.js`. RESOLVED.
+
+The same follow-up also resolved Full Tool 12's self-contradictory
+`metadata.json` (see above) and added
+`scripts/test-social-critical-live-qa.js`, registered as a gate in
+`scripts/check-all.py`, which moved the harness from 12 to 13 gates.
 
 The same tool's stale 50/35 `metadata.json` figures (item 3's tool) are
 carried in the same follow-up as an additional, non-learner-facing metadata
