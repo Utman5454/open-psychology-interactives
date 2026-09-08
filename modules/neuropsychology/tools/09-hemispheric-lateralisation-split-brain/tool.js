@@ -23,8 +23,9 @@
      * after a complete section, a response succeeds only when the hemisphere
        that received the item also controls the channel that was asked with.
 
-   That is the whole of experiment 1. Twelve combinations; six succeed after a
-   section and all twelve succeed with the callosum intact.
+   That is the whole of experiment 1. Six field-response combinations (two
+   visual fields by three response channels); all six succeed with the
+   callosum intact, and three succeed after a section.
 
    WHY EXPERIMENT 2 EXISTS
    -----------------------
@@ -269,7 +270,7 @@
       item: ITEMS[0].id,
       field: FIELDS[0].id,
       channel: CHANNELS[0].id,
-      callosum: CALLOSUM[1].id,
+      callosum: CALLOSUM[0].id,
       predicted: null,      /* "yes" | "no" | null */
       lastTrial: null,      /* the trial just run, or null */
       log: [],              /* every trial run, newest last */
