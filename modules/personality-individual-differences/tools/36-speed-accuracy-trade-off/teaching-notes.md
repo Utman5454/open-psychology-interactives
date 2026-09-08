@@ -2,9 +2,9 @@
 
 `modules/personality-individual-differences/tools/36-speed-accuracy-trade-off/`
 
-**What it teaches.** Three fictional respondents share exactly the
-same drift rate, the same underlying ability to accumulate evidence,
-and differ only in how much evidence they insist on before answering.
+**What it teaches.** Three fictional respondents accumulate evidence
+at exactly the same rate and differ only in how much of it they insist
+on before answering.
 Impulsive, Balanced and Cautious move from about 84% accuracy at
 roughly half a second to about 99.5% accuracy at close to a second and
 a half, purely by raising a response threshold. A fourth respondent

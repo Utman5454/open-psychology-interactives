@@ -2,10 +2,10 @@
 
 `modules/personality-individual-differences/tools/50-self-esteem-stability-tracker/`
 
-**What it teaches.** Four fictional people share the same baseline
-level but differ in three separable characteristics: how much they
-wobble day to day, how strongly an event in a given domain moves them,
-and how quickly that movement fades. The same criticism delivered in a
+**What it teaches.** Four fictional people start from the same
+baseline level, then diverge on three separable characteristics: how
+much they wobble day to day, how strongly an event in a given domain
+moves them, and how quickly that movement fades. The same criticism delivered in a
 domain that matters to someone barely registers if delivered in a
 domain that does not, and how long its effect lasts depends on a
 separate recovery parameter that has nothing to do with how large the
