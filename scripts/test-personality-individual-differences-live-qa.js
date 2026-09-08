@@ -682,10 +682,24 @@ function loadFacetVerdictHarness() {
     'var state = { assignments: {} };',
     buildVerdictFn,
     'module.exports = {',
-    '  renderVerdict: function (theCase) {',
+    // assignmentsMode: "all-correct" fills state.assignments so every
+    // observation matches likelierPerson() (right === total); "zero-correct"
+    // (or omitted) leaves it empty so nothing can match (right === 0) —
+    // exercising both of buildVerdict()\'s lead-paragraph branches, not
+    // just the "none matched" one the empty default happens to hit.
+    '  renderVerdict: function (theCase, assignmentsMode) {',
+    '    state.assignments = {};',
+    '    if (assignmentsMode === "all-correct") {',
+    '      theCase.observations.forEach(function (observation) {',
+    '        state.assignments[observation.id] = likelierPerson(theCase, observation);',
+    '      });',
+    '    }',
     '    verdictBody._children.length = 0;',
     '    buildVerdict(theCase);',
-    '    return verdictBody._children.map(function (p) { return p.textContent; }).join(" ");',
+    '    return {',
+    '      lead: verdictBody._children[0].textContent,',
+    '      full: verdictBody._children.map(function (p) { return p.textContent; }).join(" "),',
+    '    };',
     '  },',
     '};',
   ];
@@ -706,37 +720,99 @@ function checkFacetVerdictFailSafe() {
   const h = loadFacetVerdictHarness();
 
   // The shipped, genuinely-equal case: buildVerdict() must still state the
-  // scores are equal, in the same words as before.
-  const equalText = h.renderVerdict(agreeableness);
-  check(/blind to the difference by construction/.test(equalText),
+  // scores are equal, in the same words as before, and the lead paragraph's
+  // equality-dependent framing must hold in BOTH of its states (all correct
+  // and none correct), not just the one the harness happens to default to.
+  const equalZero = h.renderVerdict(agreeableness, 'zero-correct');
+  check(/blind to the difference by construction/.test(equalZero.full),
     'buildVerdict(): the shipped, genuinely-equal Agreeableness case still states the two scores ' +
       'are equal by construction');
-  check(!/not the equal broad score/.test(equalText),
+  check(!/not the equal broad score/.test(equalZero.full),
     'buildVerdict(): the equal-case sentence does not also show the fail-safe unequal wording');
+  check(/gave you nothing to go on/.test(equalZero.lead),
+    'buildVerdict(): equal case, zero correct — lead paragraph gives the "broad score gave you ' +
+      'nothing to go on" reasoning, which is only true because the scores are equal ' +
+      '(got: "' + equalZero.lead + '")');
+
+  const equalAll = h.renderVerdict(agreeableness, 'all-correct');
+  check(/whose broad .* scores are identical/.test(equalAll.lead),
+    'buildVerdict(): equal case, all correct — lead paragraph states the two broad scores are ' +
+      'identical (got: "' + equalAll.lead + '")');
 
   // Defence-in-depth: if the case data were ever edited so the two scores
   // stopped matching, buildVerdict() must show both real numbers and must
-  // NOT keep asserting equality. This is not permission to ship unequal
-  // data (see checkFacetAgreeableness above, which still requires the
-  // shipped case to be exactly equal) — it is a guard against the display
-  // silently lying if that ever regresses.
+  // NOT keep asserting equality anywhere, including the lead paragraph, and
+  // regardless of how many observations happen to be answered correctly.
+  // This is not permission to ship unequal data (see checkFacetAgreeableness
+  // above, which still requires the shipped case to be exactly equal) — it
+  // is a guard against the display silently lying if that ever regresses.
   const brokenCase = JSON.parse(JSON.stringify(agreeableness));
   brokenCase.people[1].b += 1; // deliberately break the equality
-  const unequalText = h.renderVerdict(brokenCase);
-  check(!/blind to the difference by construction/.test(unequalText),
+
+  const brokenZero = h.renderVerdict(brokenCase, 'zero-correct');
+  check(!/blind to the difference by construction/.test(brokenZero.full),
     'buildVerdict(): with a deliberately broken (unequal) case, it no longer claims the scores are ' +
       'equal by construction');
-  check(/not the equal broad score/.test(unequalText),
+  check(/not the equal broad score/.test(brokenZero.full),
     'buildVerdict(): with a deliberately broken case, it states both real, unequal scores instead ' +
-      '(got: "' + unequalText + '")');
-  check(!/two domain-score columns are identical/.test(unequalText),
+      '(got: "' + brokenZero.full + '")');
+  check(!/two domain-score columns are identical/.test(brokenZero.full),
     'buildVerdict(): with a deliberately broken case, the second paragraph also stops claiming the ' +
-      'domain-score columns are identical (got: "' + unequalText + '")');
+      'domain-score columns are identical (got: "' + brokenZero.full + '")');
+  check(!/gave you nothing to go on/.test(brokenZero.lead) &&
+      !/whose broad .* scores are identical/.test(brokenZero.lead),
+    'buildVerdict(): broken case, zero correct — the lead paragraph does not use either ' +
+      'equality-dependent claim (got: "' + brokenZero.lead + '")');
+
+  const brokenAll = h.renderVerdict(brokenCase, 'all-correct');
+  check(/^All \d+ correct\.$/.test(brokenAll.lead.trim()),
+    'buildVerdict(): broken case, all correct — the lead paragraph reports the plain count with ' +
+      'no equality claim attached (got: "' + brokenAll.lead + '")');
+  check(!/blind to the difference by construction/.test(brokenAll.full) &&
+      !/two domain-score columns are identical/.test(brokenAll.full),
+    'buildVerdict(): broken case, all correct — no paragraph anywhere claims the scores are equal ' +
+      '(got: "' + brokenAll.full + '")');
 }
 
 /* =========================================================================
    4. "Explain This Person" Courtroom (Full): accessible table completeness
    ========================================================================= */
+
+/** Loads the real renderDiagram() plus everything it calls, with a fake
+    SVG/DOM, so the number of rows the accessible table actually renders can
+    be counted directly rather than inferred from source-text patterns. */
+function loadCourtroomDiagramHarness() {
+  const source = read(COURTROOM_JS);
+  const explanations = extractArray(source, 'EXPLANATIONS', COURTROOM_JS);
+  const evidence = extractArray(source, 'EVIDENCE', COURTROOM_JS);
+  const byIdFn = extractFunction(source, 'byId', COURTROOM_JS);
+  const makeFn = extractFunction(source, 'make', COURTROOM_JS);
+  const clearFn = extractFunction(source, 'clear', COURTROOM_JS);
+  const standingFn = extractFunction(source, 'standing', COURTROOM_JS);
+  const relationFn = extractFunction(source, 'relation', COURTROOM_JS);
+  const renderDiagramFn = extractFunction(source, 'renderDiagram', COURTROOM_JS);
+
+  const snippet = [
+    'var document = {\n' +
+      '  createElementNS: function () { return makeFakeNode(); },\n' +
+      '  createElement: function () { return makeFakeNode(); },\n' +
+      '};',
+    explanations, evidence,
+    byIdFn, makeFn, clearFn, standingFn, relationFn,
+    'var diagramSvg = makeFakeNode();',
+    'var diagramTable = makeFakeNode();',
+    'var state = { requested: [] };',
+    renderDiagramFn,
+    'module.exports = {',
+    '  EXPLANATIONS: EXPLANATIONS, EVIDENCE: EVIDENCE, relation: relation,',
+    '  renderAndCountRows: function () {',
+    '    renderDiagram();',
+    '    return diagramTable._children.length;',
+    '  },',
+    '};',
+  ];
+  return runSandbox(snippet, 'extracted-courtroom-diagram.js');
+}
 
 function checkCourtroomAccessibility() {
   const source = read(COURTROOM_JS);
@@ -744,30 +820,46 @@ function checkCourtroomAccessibility() {
     'tool.js no longer truncates the accessible pairs table to the first 14 rows');
   check(/pairs\.forEach\(function \(pair\)/.test(source),
     'tool.js renders every entry of the pairs array, not a sliced subset');
+  check(!/if \(rel === "partly"\) \{ continue; \}/.test(source),
+    'tool.js no longer skips "partly" relationships when building the accessible pairs table');
 
-  const explanations = extractArray(source, 'EXPLANATIONS', COURTROOM_JS);
-  const evidence = extractArray(source, 'EVIDENCE', COURTROOM_JS);
-  const relationFn = extractFunction(source, 'relation', COURTROOM_JS);
-  const snippet = [
-    explanations, evidence, relationFn,
-    'module.exports = { EXPLANATIONS: EXPLANATIONS, relation: relation };',
-  ];
-  const h = runSandbox(snippet, 'extracted-courtroom.js');
+  const h = loadCourtroomDiagramHarness();
+  const n = h.EXPLANATIONS.length;
+  const expectedTotal = (n * (n - 1)) / 2;
 
   let total = 0;
   let competing = 0;
-  for (let a = 0; a < h.EXPLANATIONS.length; a += 1) {
-    for (let b = a + 1; b < h.EXPLANATIONS.length; b += 1) {
+  let compatible = 0;
+  let partly = 0;
+  for (let a = 0; a < n; a += 1) {
+    for (let b = a + 1; b < n; b += 1) {
       const rel = h.relation(h.EXPLANATIONS[a], h.EXPLANATIONS[b]);
-      if (rel === 'partly') { continue; }
       total += 1;
       if (rel === 'competing') { competing += 1; }
+      else if (rel === 'compatible') { compatible += 1; }
+      else { partly += 1; }
     }
   }
-  check(total > 14,
-    'there are genuinely more than 14 competing-or-compatible pairs to show (' + total + '), ' +
-      'so the old cap really did drop real relationships');
+  check(total === expectedTotal,
+    'independent count: there are exactly ' + expectedTotal + ' unordered pairs among the ' +
+      n + ' shipped explanations (got ' + total + ')');
   check(competing >= 1, 'at least one competing pair exists to have been at risk of being dropped');
+  check(partly >= 1,
+    'the shipped explanations genuinely include at least one "partly" relationship, so ' +
+      'excluding that category was a real, not hypothetical, omission (got ' + partly + ')');
+
+  // Production-render check: drive the REAL renderDiagram() with a fake DOM
+  // and count how many table rows it actually appends. This must equal
+  // every unordered pair, including the "partly" ones, independently of
+  // the pair count computed above.
+  const renderedRows = h.renderAndCountRows();
+  check(renderedRows === expectedTotal,
+    'renderDiagram(): the accessible table actually renders all ' + expectedTotal +
+      ' unordered pairs (including "partly" relationships), not just the competing/compatible ' +
+      'ones (got ' + renderedRows + ' rows)');
+  check(renderedRows === total,
+    'renderDiagram()\'s rendered row count matches the independently computed pair count ' +
+      '(rendered ' + renderedRows + ', independent ' + total + ')');
 
   [COURTROOM_META].forEach(function (file) {
     const content = read(file);

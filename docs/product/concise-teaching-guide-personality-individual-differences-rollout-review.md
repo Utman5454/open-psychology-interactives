@@ -470,6 +470,55 @@ pass. None of the three points above reopens a cluster; each completes a
 fix (Tool 03, Tool 09, Tool 07) that the first pass made correctly in
 substance but had not carried all the way through.
 
+## Live-QA follow-up: second independent-review correction pass
+
+A further independent review of the correction pass above found two more
+gaps, both completing fixes already made rather than reopening a cluster:
+
+1. **Tool 24: the accessible table still excluded a real category of
+   relationship.** The first fix removed the `pairs.slice(0, 14)` cap so
+   every non-"partly" pair rendered, but the pair-building loop still
+   silently skipped the 3 pairs whose relationship is "partly" (a
+   third, genuine outcome of `relation()` — neither a clear competition
+   nor a clear compatibility), so the table still fell short of the 28
+   unordered pairs among the 8 shipped explanations. The sighted SVG
+   diagram only ever draws lines for competing pairs, so this was the
+   only place a "partly" relationship was recorded anywhere on the page,
+   sighted or not. Fixed by removing the skip so all 28 pairs render,
+   with a third table label ("partly related — the evidence does not
+   clearly make them compete or agree") that does not overclaim either
+   direction. The regression's earlier check only required "more than
+   14" pairs, which the previous 25-pair state already satisfied and so
+   could not catch this; it now independently derives the expected count
+   as `n(n-1)/2` for the shipped explanation count, confirms the shipped
+   data genuinely contains at least one "partly" pair, and drives the
+   real `renderDiagram()` function against a fake DOM to count the actual
+   rendered rows (28), rather than only inspecting source text.
+2. **Tool 09: the lead paragraph still carried unconditional
+   equality-dependent claims.** The earlier fail-safe fix made the two
+   sentence-level paragraphs conditional on the two scores actually being
+   equal, but the lead paragraph above them — "All N correct. You
+   separated two people whose broad ... scores are identical" and "None
+   matched ... because the broad score gave you nothing to go on" — still
+   asserted or relied on equality unconditionally in both of its
+   informative branches. Both are now conditional: the "identical scores"
+   sentence and the "gave you nothing to go on" reasoning only appear when
+   the scores are genuinely equal; with a broken (unequal) case the lead
+   reports the plain count with no equality claim attached at all. The
+   regression previously only drove the harness's default (empty)
+   assignments, which always yields zero correct and so could only have
+   ever exercised the "none matched" branch; it now explicitly drives both
+   the all-correct and zero-correct states, for both the shipped equal
+   case and a deliberately broken one, and asserts the right wording (or
+   the right absence of a claim) in each of the four resulting
+   combinations.
+
+Both fixes have been verified against real production code (a driven
+`renderDiagram()` render and a driven `buildVerdict()` render under all four
+assignment/equality combinations) and live in a headless browser (Tool 24's
+accessible table genuinely contains 28 rows — 14 competing, 11 compatible,
+3 partly related — with zero console errors).
+
 ## Stale teaching-note claims found (not repeated in the new guides)
 
 - Tool 04 Full: "the stability curve settles after about 5 observations for

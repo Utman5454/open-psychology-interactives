@@ -3247,25 +3247,31 @@
     }).length;
     var total = theCase.observations.length;
 
-    var lead =
-      right === total
-        ? "All " + total + " correct. You separated two people whose broad " +
-          theCase.domain + " scores are identical."
-        : right === 0
-        ? "None matched — which is worth sitting with, because the broad score " +
-          "gave you nothing to go on."
-        : right + " of " + total + " matched the model.";
-    verdictBody.appendChild(make("p", "reveal__lead", lead));
-
     // Computed separately for each person rather than assumed equal, so a
     // future change to a case's facet scores cannot silently break the
-    // "equal by construction" claim this paragraph makes. If the case data
-    // is ever edited so the two scores stop matching, this must stop
-    // claiming they are equal rather than just hiding the number behind a
-    // dash while keeping the false claim in the surrounding prose.
+    // "equal by construction" claim this and the paragraphs below make. If
+    // the case data is ever edited so the two scores stop matching, none of
+    // this prose may go on asserting they are equal.
     var scoreA = domainScore(theCase.people[0], BALANCED_MIX);
     var scoreB = domainScore(theCase.people[1], BALANCED_MIX);
     var scoresEqual = scoreA === scoreB;
+
+    var lead =
+      right === total
+        ? "All " + total + " correct." +
+          (scoresEqual
+            ? " You separated two people whose broad " + theCase.domain +
+              " scores are identical."
+            : "")
+        : right === 0
+        ? "None matched." +
+          (scoresEqual
+            ? " Which is worth sitting with, because the broad score gave you " +
+              "nothing to go on."
+            : " With the domain scores no longer equal here, that is not the " +
+              "intended demonstration — see below.")
+        : right + " of " + total + " matched the model.";
+    verdictBody.appendChild(make("p", "reveal__lead", lead));
     verdictBody.appendChild(
       make("p", null,
         theCase.people[0].name + " is higher on " + theCase.facetA.name +
