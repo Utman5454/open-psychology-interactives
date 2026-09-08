@@ -219,7 +219,10 @@
     return clamp(value, 0, 100);
   }
 
-  /** Ranks, 1 = highest behaviour. Ties share the lower rank number. */
+  /** Ranks, 1 = highest behaviour. Exactly tied values share the average of
+      the rank positions they occupy (the conventional mid-rank method), so
+      two people with identical behaviour are never shown as unequal purely
+      because of array order. */
   function ranksFor(situation, strengthOverride, role) {
     var scored = CAST.map(function (person) {
       return { id: person.id, value: behaviour(person, situation, strengthOverride, role) };
@@ -228,20 +231,48 @@
       return b.value - a.value;
     });
     var ranks = {};
-    scored.forEach(function (entry, index) {
-      ranks[entry.id] = index + 1;
-    });
+    var i = 0;
+    while (i < scored.length) {
+      var j = i;
+      while (j + 1 < scored.length && scored[j + 1].value === scored[i].value) {
+        j += 1;
+      }
+      var averageRank = (i + 1 + j + 1) / 2;
+      for (var k = i; k <= j; k += 1) {
+        ranks[scored[k].id] = averageRank;
+      }
+      i = j + 1;
+    }
     return ranks;
   }
 
-  /** Spearman's rho between two rankings of the same four people. */
+  /** Spearman's rho between two rankings of the same four people.
+      With tied ranks, rho is the ordinary Pearson correlation of the
+      (mid-)rank vectors rather than the untied 1 - 6*sum(d^2)/(n(n^2-1))
+      shortcut, which is only exact when no ranks are tied. Returns null
+      when either ranking has zero variance (every person tied), since a
+      correlation is undefined between two constants. */
   function spearman(one, two) {
-    var n = CAST.length;
-    var sum = CAST.reduce(function (total, person) {
-      var d = one[person.id] - two[person.id];
-      return total + d * d;
-    }, 0);
-    return 1 - (6 * sum) / (n * (n * n - 1));
+    var ids = CAST.map(function (person) { return person.id; });
+    var xs = ids.map(function (id) { return one[id]; });
+    var ys = ids.map(function (id) { return two[id]; });
+    var n = xs.length;
+    var meanX = xs.reduce(function (a, b) { return a + b; }, 0) / n;
+    var meanY = ys.reduce(function (a, b) { return a + b; }, 0) / n;
+    var covariance = 0;
+    var varX = 0;
+    var varY = 0;
+    for (var i = 0; i < n; i += 1) {
+      var dx = xs[i] - meanX;
+      var dy = ys[i] - meanY;
+      covariance += dx * dy;
+      varX += dx * dx;
+      varY += dy * dy;
+    }
+    if (varX === 0 || varY === 0) {
+      return null;
+    }
+    return covariance / Math.sqrt(varX * varY);
   }
 
   /** Between-person standard deviation of behaviour in a situation. */
@@ -258,20 +289,26 @@
     return Math.sqrt(variance);
   }
 
-  /** Mean pairwise rank correlation across all five situations. */
+  /** Mean pairwise rank correlation across all five situations, averaging
+      only the pairs for which rho is defined. Returns null when no pair
+      has a defined correlation (for example, everyone tied in every
+      situation, which happens at maximum situation strength). */
   function consistency(strengthOverride, role) {
     var rankings = SITUATIONS.map(function (situation) {
       return ranksFor(situation, strengthOverride, role);
     });
     var total = 0;
-    var pairs = 0;
+    var defined = 0;
     for (var i = 0; i < rankings.length; i += 1) {
       for (var j = i + 1; j < rankings.length; j += 1) {
-        total += spearman(rankings[i], rankings[j]);
-        pairs += 1;
+        var rho = spearman(rankings[i], rankings[j]);
+        if (rho !== null) {
+          total += rho;
+          defined += 1;
+        }
       }
     }
-    return pairs ? total / pairs : 0;
+    return defined ? total / defined : null;
   }
 
   /* =======================================================================
@@ -486,6 +523,7 @@
       } else {
         state.exploreUnlocked = true;
         $("#explore").hidden = false;
+        $("#matrix-section").hidden = false;
         renderAll();
         $("#explore-heading").focus();
       }
@@ -948,16 +986,20 @@
 
     var rho = consistency(k, role);
     matrixNote.textContent =
-      "Mean rank correlation between every pair of situations: " + fmt(rho, 2) +
-      ". " +
-      (rho > 0.75
-        ? "High — the same people come out near the top almost everywhere, " +
-          "which is what trait consistency looks like."
-        : rho > 0.35
-        ? "Moderate — there is a recognisable person here, and the situations " +
-          "still reorder them substantially. This is the ordinary case."
-        : "Low — the ranking is being driven by what each situation affords " +
-          "rather than by a single dimension of personality.");
+      rho === null
+        ? "Rank consistency is not defined here: every character behaves " +
+          "identically in every situation, so no between-person ordering " +
+          "remains to compare."
+        : "Mean rank correlation between every pair of situations: " +
+          fmt(rho, 2) + ". " +
+          (rho > 0.75
+            ? "High — the same people come out near the top almost everywhere, " +
+              "which is what trait consistency looks like."
+            : rho > 0.35
+            ? "Moderate — there is a recognisable person here, and the situations " +
+              "still reorder them substantially. This is the ordinary case."
+            : "Low — the ranking is being driven by what each situation affords " +
+              "rather than by a single dimension of personality.");
   }
 
   /* --- Challenge ---------------------------------------------------------- */
@@ -981,17 +1023,36 @@
 
     var situation = byId(SITUATIONS, state.situationId);
     var currentSpread = spread(situation, currentStrength(), byId(ROLES, state.roleId));
+    var spreadDone = currentSpread < 2;
+    var answerCorrect = answer.value === "nothing";
+    var correct = spreadDone && answerCorrect;
 
-    var correct = answer.value === "nothing";
+    var message;
+    if (!spreadDone) {
+      message =
+        "The spread here is still " + fmt(currentSpread, 1) + " points. " +
+          "Use the strength slider, or an assigned role, to bring it below " +
+          "2 before this challenge can be marked — the question is about " +
+          "what a spread that low would show, not what the current one does.";
+    } else if (!answerCorrect) {
+      message =
+        "The spread is down to " + fmt(currentSpread, 1) + " points, so the " +
+          "manipulation is done. But look again at what that low spread does " +
+          "and does not tell you about the four characters.";
+    } else {
+      message =
+        "You have the spread down to " + fmt(currentSpread, 1) + " points. " +
+          "When a situation is strong enough, everyone does roughly the same " +
+          "thing, so the behaviour tells you almost nothing about who they are. " +
+          "The trait scores in the cast list are unchanged. Low observed " +
+          "variance is not evidence of low trait variance.";
+    }
+
     showFeedback(
       challengeFeedback,
       correct ? "good" : "caution",
-      correct ? "Yes." : "Not quite.",
-      "You have the spread down to " + fmt(currentSpread, 1) + " points. " +
-        "When a situation is strong enough, everyone does roughly the same " +
-        "thing, so the behaviour tells you almost nothing about who they are. " +
-        "The trait scores in the cast list are unchanged. Low observed " +
-        "variance is not evidence of low trait variance."
+      correct ? "Yes." : "Not yet.",
+      message
     );
     shell.announce("Challenge answered.", { immediate: true });
   });
@@ -1054,6 +1115,7 @@
     });
     rounds[1].section.hidden = true;
     $("#explore").hidden = true;
+    $("#matrix-section").hidden = true;
 
     challengeForm.reset();
     challengeFeedback.hidden = true;

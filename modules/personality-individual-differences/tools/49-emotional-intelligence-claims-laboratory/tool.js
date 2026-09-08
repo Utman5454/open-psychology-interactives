@@ -213,8 +213,7 @@
 
 
   /* =======================================================================
-     Seeded randomness — a documented seed keeps the scatterplot identical
-     for every student and every projector.
+     Model helpers
      ===================================================================== */
 
   function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }

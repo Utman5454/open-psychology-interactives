@@ -104,10 +104,13 @@
     },
     correlated: {
       name: "Clusters that are not at right angles",
+      /* Replaced below, once bestObliqueFor() exists, with a note computed
+         from these markers' own coordinates rather than a fixed claim — see
+         the comment on OBLIQUE_MIN/OBLIQUE_MAX. */
       note:
-        "The two groups sit about 55° apart. An orthogonal rotation cannot " +
-        "put an axis through both; an oblique one can, at the price of " +
-        "factors that correlate.",
+        "The two groups are not at right angles. An orthogonal rotation " +
+        "cannot put an axis through both; an oblique one can, at the price " +
+        "of factors that correlate.",
       markers: [
         { id: "talkative", name: "talkative", x: 0.80, y: 0.14 },
         { id: "outgoing", name: "outgoing", x: 0.84, y: 0.08 },
@@ -137,8 +140,9 @@
      Pre-rotating every set by a constant reproduces that starting point.
      Because the same rotation is applied to every marker, all the relative
      geometry the sets were designed around — cluster separation, the
-     cross-loading, the 55° case — is exactly preserved. Only the starting
-     orientation changes, and rotation now has real work to do. */
+     cross-loading, the correlated set's cluster separation — is exactly
+     preserved. Only the starting orientation changes, and rotation now has
+     real work to do. */
   var UNROTATED_OFFSET = 45;
 
   (function preRotate() {
@@ -257,6 +261,86 @@
     }
     return { angle: best, score: bestScore };
   }
+
+  /* Kept in sync by hand with index.html's #oblique-range min/max — the
+     search below is deliberately bounded to what the control can actually
+     reach, so the reported "closest this control gets" figure can never
+     promise more than a learner can verify by pulling the slider there. */
+  var OBLIQUE_MIN = 40;
+  var OBLIQUE_MAX = 120;
+
+  /**
+   * Where a marker set's two clusters actually sit, found by sweeping the
+   * angle BETWEEN the axes and, at each one, the best rotation of the first
+   * axis — i.e. searching the same simplicity objective the tool itself
+   * uses, over both of its own dimensions, rather than asserting a fixed
+   * angle. Returns the true (unconstrained) best-fitting oblique angle and
+   * correlation, plus whatever the tool's own slider can actually reach,
+   * so learner-facing copy can describe both without hard-coding either.
+   */
+  function naturalSeparation(markers) {
+    var trueBest = null;
+    var trueScore = -Infinity;
+    for (var oblique = 5; oblique <= 175; oblique += 0.5) {
+      var score = bestAngle(markers, oblique).score;
+      if (score > trueScore) {
+        trueScore = score;
+        trueBest = oblique;
+      }
+    }
+    // bestAngle(markers, oblique).score is always identical to
+    // bestAngle(markers, 180 - oblique).score for any marker set: the two
+    // oblique angles describe the same physical pair of axes with the
+    // second axis's direction reversed, which the simplicity objective
+    // (built from squared loadings) cannot tell apart. The unconstrained
+    // sweep above can therefore land on either member of that mirrored
+    // pair depending on incidental marker-coordinate detail (such as the
+    // display-only preRotate() applied above), even though only the
+    // narrower, conventional angle between two axes — at most 90 degrees —
+    // is what "how separated are the two clusters" is meant to describe.
+    // Normalise to that acute form so the reported figure does not flip
+    // to its (mathematically equivalent but confusing) supplement.
+    if (trueBest > 90) {
+      trueBest = 180 - trueBest;
+    }
+    var reachableBest = null;
+    var reachableScore = -Infinity;
+    for (var o2 = OBLIQUE_MIN; o2 <= OBLIQUE_MAX; o2 += 0.5) {
+      var s2 = bestAngle(markers, o2).score;
+      if (s2 > reachableScore) {
+        reachableScore = s2;
+        reachableBest = o2;
+      }
+    }
+    return {
+      trueOblique: trueBest,
+      trueCorrelation: factorCorrelation(trueBest),
+      reachableOblique: reachableBest,
+      reachableCorrelation: factorCorrelation(reachableBest)
+    };
+  }
+
+  /* Rebuild the correlated set's note from what the simplicity objective
+     actually finds for its markers, rather than a hard-coded angle, so a
+     future change to these coordinates cannot leave the prose stale again
+     the way the original "about 55° apart... 0.57" claim did. */
+  (function describeCorrelatedSet() {
+    var separation = naturalSeparation(SETS.correlated.markers);
+    SETS.correlated.note =
+      "The two groups sit closer to " + Math.round(separation.trueOblique) +
+      "° apart than to 90°. Even the closest this control's own range gets, " +
+      Math.round(separation.reachableOblique) + "°, already needs factors " +
+      "correlating at about " + fmt(separation.reachableCorrelation) +
+      " to fit them; a fully orthogonal rotation cannot put an axis " +
+      "through both.";
+
+    // The static debrief prose quotes the same computed angle so it cannot
+    // drift from SETS.correlated's actual coordinates independently.
+    var naturalAngleSpans = document.querySelectorAll("[data-natural-angle]");
+    for (var i = 0; i < naturalAngleSpans.length; i += 1) {
+      naturalAngleSpans[i].textContent = String(Math.round(separation.trueOblique));
+    }
+  })();
 
   /* =======================================================================
      Helpers

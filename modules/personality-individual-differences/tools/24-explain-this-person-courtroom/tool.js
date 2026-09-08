@@ -516,17 +516,18 @@
     caption.textContent = "lines join explanations that compete";
     diagramSvg.appendChild(caption);
 
-    // Table equivalent: every pair, and whether it competes.
+    // Table equivalent: every one of the 28 unordered pairs, and how they
+    // relate — including the pairs that neither clearly compete nor
+    // clearly agree, so the table is a complete record rather than only
+    // the subset the diagram happens to draw a line for.
     clear(diagramTable);
     var pairs = [];
     for (var a = 0; a < EXPLANATIONS.length; a += 1) {
       for (var b = a + 1; b < EXPLANATIONS.length; b += 1) {
-        var rel = relation(EXPLANATIONS[a], EXPLANATIONS[b]);
-        if (rel === "partly") { continue; }
-        pairs.push([EXPLANATIONS[a], EXPLANATIONS[b], rel]);
+        pairs.push([EXPLANATIONS[a], EXPLANATIONS[b], relation(EXPLANATIONS[a], EXPLANATIONS[b])]);
       }
     }
-    pairs.slice(0, 14).forEach(function (pair) {
+    pairs.forEach(function (pair) {
       var row = make("tr");
       var th = make("th", null, pair[0].id + " / " + pair[1].id);
       th.setAttribute("scope", "row");
@@ -535,7 +536,9 @@
         make("td", null,
           pair[2] === "competing"
             ? "compete — they predict opposite things"
-            : "compatible — both can be true"));
+            : pair[2] === "compatible"
+            ? "compatible — both can be true"
+            : "partly related — the evidence does not clearly make them compete or agree"));
       diagramTable.appendChild(row);
     });
   }

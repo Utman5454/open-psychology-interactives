@@ -284,6 +284,241 @@ what a learner actually sees.
    vacuous reading, since there is no real ordering left once everyone is
    behaviourally identical.
 
+## Live-QA follow-up: resolution status
+
+All eight defects listed above were fixed on the follow-up branch
+`fix-personality-individual-differences-live-qa`, scoped tightly to the
+defects themselves — no teaching guide prose was rewritten and no new
+product functionality was added. A new regression gate,
+`scripts/test-personality-individual-differences-live-qa.js` (registered as
+the 14th `check-all.py` gate), runs each fix's REAL production code inside a
+sandboxed extraction of the shipped source, so a regression to any of these
+eight points would fail the harness rather than merely a stale comment.
+
+1. **Tool 24 (Courtroom), Full — RESOLVED.** `pairs.slice(0, 14).forEach(...)`
+   in `tool.js` is now `pairs.forEach(...)`, so the accessible table renders
+   every one of the 25 non-"partly" pairs the sighted diagram encodes (as
+   either "compete" or "compatible"), not just the first 14. The
+   `metadata.json` "every pair" accessibility claim is now true of the code
+   rather than aspirational. Verified live in a headless browser: the
+   `[data-diagram-table]` body now contains 25 rows, up from 14.
+2. **Tool 09 (Facet-Level Detective), Full — RESOLVED.** The smallest
+   truthful correction was made to the data, not the prose: Tomas's `b`
+   value changed from 80 to 82, so his Agreeableness domain average is
+   genuinely 67, matching the other profile's 67 exactly (previously 66 vs.
+   67). `buildVerdict()` was also changed to compute both people's domain
+   scores independently and only display a single shared figure when they
+   are actually equal (`scoreA === scoreB ? fmt(scoreA) : ...`), so a future
+   data edit that broke the equality would show two different numbers
+   instead of silently asserting a false one. The two facets underneath
+   still differ by more than 20 points each, preserving the behavioural
+   contrast the case is built to teach.
+3. **Tool 07 (Factor Rotation Playground), Full — RESOLVED.** The
+   "correlated" marker set's note, the `index.html` debrief prose, the
+   `metadata.json` `simulationNotes`, and the generated `standalone.html`
+   no longer assert a fixed "about 55 degrees" claim. A new
+   `naturalSeparation()` function computes the marker set's own best-fitting
+   axis separation from its actual coordinates at load time (the same
+   simplicity objective the tool's "find the simplest structure" control
+   already sweeps), and the debrief prose and note now quote that live
+   figure via a `[data-natural-angle]` span rather than a hard-coded number.
+   Because the figure is computed from the shipped coordinates rather than
+   typed in, it cannot go stale again if the coordinates ever change — the
+   regression gate independently re-derives the same optimum from the
+   shipped markers and asserts the shown figure matches it.
+4. **Tool 39 (Twin-Study Simulator), Full — RESOLVED.** All three
+   occurrences of the backwards mechanism claim — the live "What the
+   violations are doing" panel, the challenge feedback string, and the file's
+   header docstring — were corrected to state the actual mechanism:
+   unequal environments leave r(MZ) unaffected and lower r(DZ), which is
+   what inflates the Falconer heritability estimate. The bias direction
+   itself was already correctly described and is unchanged. The regression
+   gate numerically recomputes both correlations under the violation and
+   asserts r(MZ) is unaffected while r(DZ) falls, guarding against the
+   backwards phrase returning.
+5. **Tool 42 (Gene × Environment Interaction Visualiser), Simplified —
+   RESOLVED.** `toggleWiden()` now sets the centre control to `0` whenever
+   it widens the window, so pressing "Widen the study to the whole range"
+   genuinely sets the sampled window to the tool's full `[-1, 1]` range
+   regardless of where the centre slider currently sits — the button's
+   promise is now unconditionally true rather than true only from a centre
+   of exactly 0. Verified live from both the shipped default (`centre =
+   -60`) and from `centre = 0.6`: both now reach the full range after one
+   click.
+6. **Tool 49 (Emotional-Intelligence Claims Laboratory), Full — RESOLVED.**
+   The lab introduction and opening-question prose no longer describe a
+   scatterplot or "300 simulated people"; the model is described as what it
+   actually is, a deterministic closed-form calculation on a correlation
+   matrix. The dead "seeded randomness" comment block and the unused
+   `.scatter__points` CSS rule (with its `forced-colors` variant) were
+   removed after confirming by search that nothing in `tool.js` or
+   `index.html` still referenced them. Separately, the opening question now
+   names exactly the three EI-labelled predictors as EI measures and
+   describes colleague ratings as the outcome they are being sold on
+   predicting, consistent with the lab's own later section.
+7. **Tool 50 (Self-Esteem Stability Tracker), Simplified — RESOLVED.** The
+   synthesis panel no longer claims Ada and Cleo take the knock "in
+   different domains" — there is only one shared work-domain event array, as
+   the review above notes. It now explains the actually-implemented
+   mechanism: Cleo's work contingency is higher than Ada's and her recovery
+   is slower, so the identical work setback lands harder on her and takes
+   longer to fade, while Ada — who has no work/social asymmetry in her own
+   contingency values — recovers within days. No domain manipulation was
+   invented; the explanation was brought in line with the code that already
+   ships.
+8. **Tool 03 (Person-Situation Interaction Theatre), Full, four related
+   issues — RESOLVED.**
+   - (i) Tie handling: `ranksFor()` now assigns the statistically
+     conventional averaged mid-rank to tied behavioural values (so Jonah and
+     Elif's bit-identical emergency-situation behaviour both rank 2.5,
+     rather than one arbitrarily outranking the other), matching what the
+     code comment already claimed. The Spearman calculation, the displayed
+     ranks, and the generated `standalone.html` all use the same corrected
+     function.
+   - (ii) Gating: the matrix/challenge section (`#matrix-section`) now ships
+     `hidden` in `index.html` and is only unhidden in the same step that
+     unlocks the explorer (after both prediction rounds are complete);
+     resetting the page re-hides it along with the explorer.
+   - (iii) Challenge grading: the submit handler now requires both the
+     actual spread-below-2 manipulation (checked against the live model
+     state, not merely assumed) and the correct conceptual answer before
+     accepting the challenge, with distinct feedback for "right answer,
+     manipulation not done," "manipulation done, wrong answer," and "both
+     done." Verified live: selecting the correct answer before touching the
+     strength slider is correctly rejected, and is only accepted once the
+     spread is actually driven below 2.
+   - (iv) The tie-break display artifact was resolved by (i) above: with
+     mid-rank averaging, the shipped emergency tie now displays and computes
+     consistently end to end, so there is no longer a whole-number rank
+     implying a distinction the underlying behaviour does not support.
+
+## Live-QA follow-up: independent-review correction pass
+
+The first live-QA follow-up pass above (the eight RESOLVED clusters) was
+itself independently reviewed before merge. That review found the fixes
+directionally correct but incomplete in three places, all corrected in a
+second commit on the same branch:
+
+1. **Tool 03: mid-rank tie handling had been fixed without updating
+   Spearman.** `ranksFor()` was correctly changed to assign averaged
+   mid-ranks to tied behavioural values, but `spearman()` still used the
+   untied shortcut `1 - 6*sum(d²)/(n(n²-1))`, which is only exact without
+   ties — so the rank-correlation figure the tool actually reports for the
+   shipped emergency tie was mathematically wrong under the very fix meant
+   to correct it (0.65 instead of the tie-correct 0.632455532...). Fixed by
+   rewriting `spearman()` as the ordinary Pearson correlation of the
+   (mid-)rank vectors, the standard definition when ranks are tied, with no
+   ad-hoc correction bolted onto the old shortcut. This also exposed a
+   genuine degenerate case: at maximum situation strength every character
+   ties in every situation, giving two zero-variance rank vectors between
+   which a correlation is not mathematically defined. `spearman()` now
+   returns `null` in that case, `consistency()` averages only the pairwise
+   correlations that are defined and returns `null` if none are, and
+   `renderMatrix()`'s note explicitly says consistency is not defined
+   rather than falling through to a numeric verdict — verified live in a
+   headless browser that maximum strength never renders "1.00" or "High."
+   The new Tool 03 regression did not exercise `spearman()`/`consistency()`
+   at all (it only called `ranksFor()`), so it could not have caught either
+   half of this; it now extracts and drives the real `spearman()`,
+   `consistency()` and `renderMatrix()` functions directly, with a
+   deterministic check on the shipped party-vs-emergency pair (asserting
+   0.632455532..., not 0.65) and on the all-tied degenerate state.
+2. **Tool 09: the defensive equality check was not fail-safe.** The first
+   fix computed both Agreeableness scores independently and rendered
+   `NaN` if they ever diverged, but the surrounding sentence still asserted
+   "equal by construction" regardless, and an unconditional second
+   paragraph a few lines later separately claimed the domain-score columns
+   "are identical" — so a future data edit that broke the equality would
+   still read as confidently, doubly wrong prose around a lone dash.
+   `buildVerdict()` now branches on whether the two computed scores are
+   actually equal: the shipped, genuinely-equal case renders the original
+   "equal by construction" wording in both paragraphs; a deliberately
+   broken case (exercised directly by the regression, not just imagined)
+   renders both real, unequal numbers and neither equality claim. The
+   shipped Agreeableness case is still required to be exactly equal by the
+   original regression check, so this fallback is defence-in-depth rather
+   than permission for the data to drift.
+3. **Tool 07: the regression oracle was self-referential.** The first
+   regression compared production's own `naturalSeparation()` output
+   against production's own prose, which would pass even if
+   `naturalSeparation()` itself found the wrong angle — it validated
+   prose/code synchronisation, not correctness. Adding a genuinely
+   independent oracle (fresh test-side re-implementation of the simplicity
+   search, not calling any of tool.js's own functions) surfaced a real bug
+   `naturalSeparation()`'s unconstrained sweep can land on either member of
+   a mathematically tied, mirror-image pair of oblique angles (`x` and
+   `180 − x` always score identically, since the second axis merely points
+   the other way) — and the shipped display-only `preRotate()` transform
+   happened to tip the shipped correlated set onto the wide (144.5°,
+   correlation −0.81) member of that pair instead of the intended narrow,
+   conventional one (35.5°, correlation +0.81), the one the earlier
+   independent review had already established as ground truth. The
+   resulting shipped sentence — "the two groups sit closer to 145° apart
+   than to 90°" — was nonsensical on its own terms. Fixed by normalising
+   `naturalSeparation()`'s unconstrained result to the conventional acute
+   (≤ 90°) representation of the angle between two axes, which is always
+   available given the proven tie. The regression now includes a
+   from-scratch independent oracle that never calls production's
+   `naturalSeparation()`/`bestAngle()`/`simplicity()`/`loadings()`, and
+   asserts the independent result lands in the already-reviewed
+   neighbourhood (≈36–38°, r ≈ 0.79–0.81), that production agrees with it
+   within the sweep resolution, and that the learner-facing debrief figure
+   agrees with it too.
+
+All eight original live-QA clusters remain RESOLVED after this correction
+pass. None of the three points above reopens a cluster; each completes a
+fix (Tool 03, Tool 09, Tool 07) that the first pass made correctly in
+substance but had not carried all the way through.
+
+## Live-QA follow-up: second independent-review correction pass
+
+A further independent review of the correction pass above found two more
+gaps, both completing fixes already made rather than reopening a cluster:
+
+1. **Tool 24: the accessible table still excluded a real category of
+   relationship.** The first fix removed the `pairs.slice(0, 14)` cap so
+   every non-"partly" pair rendered, but the pair-building loop still
+   silently skipped the 3 pairs whose relationship is "partly" (a
+   third, genuine outcome of `relation()` — neither a clear competition
+   nor a clear compatibility), so the table still fell short of the 28
+   unordered pairs among the 8 shipped explanations. The sighted SVG
+   diagram only ever draws lines for competing pairs, so this was the
+   only place a "partly" relationship was recorded anywhere on the page,
+   sighted or not. Fixed by removing the skip so all 28 pairs render,
+   with a third table label ("partly related — the evidence does not
+   clearly make them compete or agree") that does not overclaim either
+   direction. The regression's earlier check only required "more than
+   14" pairs, which the previous 25-pair state already satisfied and so
+   could not catch this; it now independently derives the expected count
+   as `n(n-1)/2` for the shipped explanation count, confirms the shipped
+   data genuinely contains at least one "partly" pair, and drives the
+   real `renderDiagram()` function against a fake DOM to count the actual
+   rendered rows (28), rather than only inspecting source text.
+2. **Tool 09: the lead paragraph still carried unconditional
+   equality-dependent claims.** The earlier fail-safe fix made the two
+   sentence-level paragraphs conditional on the two scores actually being
+   equal, but the lead paragraph above them — "All N correct. You
+   separated two people whose broad ... scores are identical" and "None
+   matched ... because the broad score gave you nothing to go on" — still
+   asserted or relied on equality unconditionally in both of its
+   informative branches. Both are now conditional: the "identical scores"
+   sentence and the "gave you nothing to go on" reasoning only appear when
+   the scores are genuinely equal; with a broken (unequal) case the lead
+   reports the plain count with no equality claim attached at all. The
+   regression previously only drove the harness's default (empty)
+   assignments, which always yields zero correct and so could only have
+   ever exercised the "none matched" branch; it now explicitly drives both
+   the all-correct and zero-correct states, for both the shipped equal
+   case and a deliberately broken one, and asserts the right wording (or
+   the right absence of a claim) in each of the four resulting
+   combinations.
+
+Both fixes have been verified against real production code (a driven
+`renderDiagram()` render and a driven `buildVerdict()` render under all four
+assignment/equality combinations) and live in a headless browser (Tool 24's
+accessible table genuinely contains 28 rows — 14 competing, 11 compatible,
+3 partly related — with zero console errors).
+
 ## Stale teaching-note claims found (not repeated in the new guides)
 
 - Tool 04 Full: "the stability curve settles after about 5 observations for

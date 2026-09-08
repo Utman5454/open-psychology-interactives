@@ -2763,7 +2763,7 @@
       facetB: { key: "politeness", name: "Politeness" },
       people: [
         { id: "A", name: "Iris", a: 83, b: 51 },
-        { id: "B", name: "Tomas", a: 52, b: 80 }
+        { id: "B", name: "Tomas", a: 52, b: 82 }
       ],
       observations: [
         {
@@ -3247,24 +3247,44 @@
     }).length;
     var total = theCase.observations.length;
 
+    // Computed separately for each person rather than assumed equal, so a
+    // future change to a case's facet scores cannot silently break the
+    // "equal by construction" claim this and the paragraphs below make. If
+    // the case data is ever edited so the two scores stop matching, none of
+    // this prose may go on asserting they are equal.
+    var scoreA = domainScore(theCase.people[0], BALANCED_MIX);
+    var scoreB = domainScore(theCase.people[1], BALANCED_MIX);
+    var scoresEqual = scoreA === scoreB;
+
     var lead =
       right === total
-        ? "All " + total + " correct. You separated two people whose broad " +
-          theCase.domain + " scores are identical."
+        ? "All " + total + " correct." +
+          (scoresEqual
+            ? " You separated two people whose broad " + theCase.domain +
+              " scores are identical."
+            : "")
         : right === 0
-        ? "None matched — which is worth sitting with, because the broad score " +
-          "gave you nothing to go on."
+        ? "None matched." +
+          (scoresEqual
+            ? " Which is worth sitting with, because the broad score gave you " +
+              "nothing to go on."
+            : " With the domain scores no longer equal here, that is not the " +
+              "intended demonstration — see below.")
         : right + " of " + total + " matched the model.";
     verdictBody.appendChild(make("p", "reveal__lead", lead));
-
     verdictBody.appendChild(
       make("p", null,
         theCase.people[0].name + " is higher on " + theCase.facetA.name +
         "; " + theCase.people[1].name + " is higher on " + theCase.facetB.name +
-        ". Both average out to a " + theCase.domain + " score of " +
-        fmt(domainScore(theCase.people[0], BALANCED_MIX)) +
-        ", so the broad score is blind to the difference by construction — " +
-        "it is the average of the two things that differ.")
+        ". " +
+        (scoresEqual
+          ? "Both average out to a " + theCase.domain + " score of " + fmt(scoreA) +
+            ", so the broad score is blind to the difference by construction — " +
+            "it is the average of the two things that differ."
+          : theCase.people[0].name + " averages " + fmt(scoreA) + " and " +
+            theCase.people[1].name + " averages " + fmt(scoreB) + " on " +
+            theCase.domain + " — not the equal broad score this case is meant " +
+            "to demonstrate."))
     );
 
     // The two predictions, side by side, per observation.
@@ -3291,10 +3311,14 @@
 
     verdictBody.appendChild(
       make("p", null,
-        "The two domain-score columns are identical: both people have the same " +
-        "domain score, and a domain score is one number. The facet columns " +
-        "separate them. A prediction from the broad score alone cannot beat " +
-        "guessing here, however reliable that score is.")
+        scoresEqual
+          ? "The two domain-score columns are identical: both people have the same " +
+            "domain score, and a domain score is one number. The facet columns " +
+            "separate them. A prediction from the broad score alone cannot beat " +
+            "guessing here, however reliable that score is."
+          : "The two domain-score columns are not identical here either, because " +
+            "the case data above no longer produces the equal broad score this " +
+            "demonstration is meant to rely on.")
     );
 
     verdictBody.appendChild(
