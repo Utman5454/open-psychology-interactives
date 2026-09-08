@@ -41,6 +41,6 @@ differences set who sits where within it. Redesigning a rota will not
 close a documented skill gap, and two teams matched at recruitment are
 not matched now.
 
-**Use in class / timing.** The first round of evidence alone makes the
-point in about 8 minutes. Both experiments with the closing challenge
-run to about 40.
+**Use in class / timing.** The first round of evidence alone takes
+about 8 minutes. Add the second experiment and the closing challenge,
+and the session runs to about 40.

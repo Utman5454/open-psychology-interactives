@@ -40,6 +40,6 @@ measurement claim. Using any single score to select, train, reassure
 or accuse one person is a category error that no significance test
 repairs.
 
-**Use in class / timing.** The first experiment alone makes the point
-in about 8 minutes. Both experiments with the closing challenge run to
-about 40.
+**Use in class / timing.** The first experiment alone takes about 8
+minutes. Both experiments with the closing challenge extend the
+session to about 40.

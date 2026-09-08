@@ -38,6 +38,6 @@ the same claim as "there is no stable self," and the closing challenge
 is built specifically to catch a student who slides from one to the
 other.
 
-**Use in class / timing.** Two contrasting lenses make the point in
-about 10 minutes. Four lenses with the synthesis and challenge run to
-about 35.
+**Use in class / timing.** Two contrasting lenses take about 10
+minutes. Bring in all four lenses with the synthesis and challenge,
+and the session runs to about 35.

@@ -40,6 +40,6 @@ to encode somebody's definition before the first observation, so
 treating that lens as neutrally reading off the facts is its own
 mistake.
 
-**Use in class / timing.** The prediction question and one lens make
-the point in about 15 minutes. Building a second lens with the
-closing challenge runs to about 40.
+**Use in class / timing.** Fifteen minutes covers the prediction
+question and one lens. Add a second lens and the closing challenge,
+and the session grows to about 40.

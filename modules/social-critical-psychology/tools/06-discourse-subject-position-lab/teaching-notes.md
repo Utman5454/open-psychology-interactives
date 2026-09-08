@@ -38,6 +38,6 @@ of a different genre. These are also authored readings of an invented
 case, not settled facts: a well-argued alternative to any of the four
 judgements deserves credit, not only the one built into the tool.
 
-**Use in class / timing.** Two contrasting accounts make the point in
-about 10 minutes. Three or more accounts with the closing challenge
-run to about 30.
+**Use in class / timing.** Two contrasting accounts take about 10
+minutes. Add a third or more accounts with the closing challenge, and
+the session extends to about 30.

@@ -41,6 +41,6 @@ model; it is necessary without being sufficient. A modest correlation
 across a sample also does not license a frequency claim about any one
 person in it.
 
-**Use in class / timing.** The first experiment alone makes the point
-in about 5 minutes. The full sequence with the deeper level and the
-closing challenge runs to about 35.
+**Use in class / timing.** Five minutes covers the first experiment on
+its own. Add the deeper level and the closing challenge, and the full
+sequence runs to about 35.

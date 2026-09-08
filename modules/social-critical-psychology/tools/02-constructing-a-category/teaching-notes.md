@@ -41,6 +41,6 @@ has to sit somewhere if anyone is to be offered anything on the basis
 of it. The caution runs the other way too: a prevalence figure quoted
 without the threshold that produced it is not interpretable at all.
 
-**Use in class / timing.** The worked example alone makes the point in
-about 10 minutes. All five stages with the closing challenge run to
-about 40.
+**Use in class / timing.** The worked example alone takes about 10
+minutes. All five stages with the closing challenge extend the
+session to about 40.

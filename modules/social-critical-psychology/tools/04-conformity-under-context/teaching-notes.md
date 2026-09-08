@@ -40,6 +40,6 @@ behaviour. This activity models Asch-style pressure toward a stated
 majority answer, not Sherif-style convergence on a genuinely ambiguous
 judgement with no majority answer stated beforehand.
 
-**Use in class / timing.** The worked example alone makes the point in
-about 8 minutes. Both experiments with the closing challenge run to
-about 45.
+**Use in class / timing.** The worked example alone takes about 8
+minutes. Both experiments with the closing challenge push the session
+to about 45.

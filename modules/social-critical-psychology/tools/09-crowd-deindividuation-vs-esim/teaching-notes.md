@@ -40,6 +40,6 @@ disproved. One run built into this activity is deliberately a case
 the classic account describes better than the usual identity
 prediction does.
 
-**Use in class / timing.** Comparing one pair of presets makes the
-point in about 10 minutes. The full sequence with the closing
-challenge runs to about 35.
+**Use in class / timing.** Comparing one pair of presets takes about
+10 minutes. Run the full sequence with the closing challenge, and the
+session extends to about 35.

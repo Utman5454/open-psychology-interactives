@@ -39,6 +39,6 @@ With no information beyond three other estimates, using them is the
 rational move, and there is no true answer here for anyone to have
 abandoned.
 
-**Use in class / timing.** A worked demonstration makes the point in
-about 10 minutes. The full fifteen rounds with the debrief run to
-about 35.
+**Use in class / timing.** A worked demonstration takes about 10
+minutes. The full fifteen rounds with the debrief extend the session
+to about 35.

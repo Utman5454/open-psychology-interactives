@@ -42,6 +42,6 @@ case is built to show. The credibility lens carries its own warning
 too: applied carelessly, it can make an institutional problem look
 like a problem of one person's character.
 
-**Use in class / timing.** The worked example alone makes the point in
-about 6 minutes. The full sequence with the transfer case runs to
-about 30.
+**Use in class / timing.** The worked example alone takes about 6
+minutes. Add the transfer case, and the full sequence runs to about
+30.
